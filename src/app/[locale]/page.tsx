@@ -21,13 +21,35 @@ export default function HomePage() {
     router.push(`/${newLocale}`);
   };
 
-  const handleSubmit = () => {
-    const input = document.getElementById('emailInput') as HTMLInputElement;
-    if (input?.value?.includes('@')) {
-      const form = document.getElementById('emailForm');
-      if (form) form.innerHTML = `<p class="confirm-msg">${t('cta.confirm')}</p>`;
+  const handleSubmit = async () => {
+  const input = document.getElementById('emailInput') as HTMLInputElement;
+  const email = input?.value;
+  if (!email?.includes('@')) return;
+
+  const btn = document.querySelector('.email-form button') as HTMLButtonElement;
+  if (btn) btn.textContent = '...';
+
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await res.json();
+    const form = document.getElementById('emailForm');
+
+    if (res.ok && form) {
+      form.innerHTML = `<p class="confirm-msg">${t('cta.confirm')}</p>`;
+    } else {
+      if (btn) btn.textContent = t('cta.button');
+      alert('Une erreur est survenue. Veuillez réessayer.');
     }
-  };
+  } catch {
+    if (btn) btn.textContent = t('cta.button');
+    alert('Une erreur est survenue. Veuillez réessayer.');
+  }
+};
 
   return (
     <>
