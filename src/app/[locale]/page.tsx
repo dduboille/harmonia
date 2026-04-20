@@ -12,10 +12,10 @@ const locales = [
 ];
 
 const notes = {
-  soprano: ['Mi', 'Fa', 'Sol', 'Mi'],
-  alto:    ['Do', 'La', 'Si',  'Do'],
-  tenor:   ['Sol','Do', 'Ré',  'Sol'],
-  bass:    ['Do', 'Fa', 'Sol', 'Do'],
+  soprano: ['E', 'F', 'G', 'E'],
+  alto:    ['C', 'A', 'B', 'C'],
+  tenor:   ['G', 'C', 'D', 'G'],
+  bass:    ['C', 'F', 'G', 'C'],
 };
 
 export default function HomePage() {
