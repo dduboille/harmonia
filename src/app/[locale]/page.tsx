@@ -30,7 +30,7 @@ export default function HomePage() {
   if (btn) btn.textContent = '...';
 
   try {
-    const res = await fetch('/api/subscribe', {
+    const res = await fetch(`${window.location.origin}/api/subscribe`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
