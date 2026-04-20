@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import { logHarmonyCheck } from './harmonyCheck';
 
 const GOLD = '#C9A84C';
 const INK = '#0E0B08';
@@ -57,9 +58,9 @@ const CHORDS = [
   },
   {
     label: 'V⁷',
-    soprano: 'G4', alto: 'B3',
+    soprano: 'D4', alto: 'B3',
     tenor: 'F3',  bass: 'G2',
-    midi: ['G2', 'F3', 'B3', 'G4'],
+    midi: ['G2', 'F3', 'B3', 'D4'],
   },
   {
     label: 'I',
@@ -137,6 +138,7 @@ export default function StaffNotation({
 
   useEffect(() => {
     let mounted = true;
+    logHarmonyCheck(CHORDS, 'I-IV-V7-I en Do');
     const init = async () => {
       const Tone = await import('tone');
       const s = new Tone.Sampler({
