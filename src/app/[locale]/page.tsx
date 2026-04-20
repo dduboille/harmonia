@@ -1,6 +1,7 @@
 'use client';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
+import StaffNotation from './StaffNotation';
 
 const locales = [
   { code: 'fr', label: 'Français' },
@@ -11,13 +12,6 @@ const locales = [
   { code: 'it', label: 'Italiano' },
 ];
 
-const notes = {
-  soprano: ['E', 'F', 'G', 'E'],
-  alto:    ['C', 'A', 'B', 'C'],
-  tenor:   ['G', 'C', 'D', 'G'],
-  bass:    ['C', 'F', 'G', 'C'],
-};
-
 export default function HomePage() {
   const t = useTranslations();
   const locale = useLocale();
@@ -25,22 +19,6 @@ export default function HomePage() {
 
   const switchLocale = (newLocale: string) => {
     router.push(`/${newLocale}`);
-  };
-
-  const animateNotes = () => {
-    let step = 0;
-    const voices = ['s', 'a', 't', 'b'];
-    const interval = setInterval(() => {
-      step = (step + 1) % 4;
-      voices.forEach(v => {
-        for (let i = 0; i < 4; i++) {
-          const el = document.getElementById(`${v}${i}`);
-          if (!el) return;
-          el.className = i === step ? 'note active' : i < step ? 'note mid' : 'note dim';
-        }
-      });
-      if (step === 3) clearInterval(interval);
-    }, 700);
   };
 
   const handleSubmit = () => {
@@ -102,15 +80,7 @@ export default function HomePage() {
         .demo-layout { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; margin-top:4rem; }
         .demo-text p { font-size:0.95rem; line-height:1.8; color:rgba(250,248,244,0.55); font-weight:300; margin-bottom:1rem; }
         .demo-visual { background:rgba(201,168,76,0.04); border:1px solid rgba(201,168,76,0.15); border-radius:4px; padding:2.5rem; }
-        .vl-label { font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dim); margin-bottom:1rem; }
-        .vl-row { display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem; }
-        .vl-voice { font-size:0.72rem; color:rgba(250,248,244,0.35); text-transform:uppercase; letter-spacing:0.1em; width:4rem; text-align:right; flex-shrink:0; }
-        .vl-notes { display:flex; gap:4px; flex:1; }
-        .note { height:32px; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:0.78rem; border-radius:2px; transition:all 0.3s; flex:1; }
-        .note.active { background:var(--gold); color:var(--ink); font-weight:700; }
-        .note.dim { background:rgba(201,168,76,0.08); color:rgba(250,248,244,0.3); }
-        .note.mid { background:rgba(201,168,76,0.2); color:var(--gold-light); }
-        .chord-label { margin-top:1.5rem; font-size:0.72rem; color:rgba(250,248,244,0.2); letter-spacing:0.08em; }
+        .vl-label { font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dim); margin-bottom:1.5rem; }
         .levels-section { background:var(--ink-soft); }
         .levels-flex { display:flex; gap:1px; background:rgba(201,168,76,0.08); margin-top:4rem; border:1px solid rgba(201,168,76,0.08); }
         .level-card { flex:1; padding:2.5rem 2rem; background:var(--ink-soft); transition:background 0.3s; }
@@ -200,25 +170,13 @@ export default function HomePage() {
               <h2>{t('demo.title1')} <em>{t('demo.title1em')}</em></h2>
               <p>{t('demo.p1')}</p>
               <p>{t('demo.p2')}</p>
-              <button className="btn-primary" style={{marginTop:'1.5rem'}} onClick={animateNotes}>{t('demo.animate')}</button>
             </div>
             <div className="demo-visual">
               <p className="vl-label">{t('demo.vl_label')}</p>
-              {(['soprano','alto','tenor','bass'] as const).map((voice) => {
-                const key = voice === 'soprano' ? 's' : voice === 'alto' ? 'a' : voice === 'tenor' ? 't' : 'b';
-                const noteArr = notes[voice];
-                return (
-                  <div className="vl-row" key={voice}>
-                    <span className="vl-voice">{t(`demo.${voice}`)}</span>
-                    <div className="vl-notes">
-                      {noteArr.map((n, i) => (
-                        <div key={i} id={`${key}${i}`} className={i === 0 ? (voice === 'bass' ? 'note mid' : 'note active') : 'note dim'}>{n}</div>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
-              <p className="chord-label">I &nbsp;&nbsp;&nbsp; IV &nbsp;&nbsp;&nbsp; V &nbsp;&nbsp;&nbsp; I</p>
+              <StaffNotation
+                animateLabel={t('demo.animate')}
+                pauseLabel="Pause"
+              />
             </div>
           </div>
         </div>
