@@ -30,14 +30,14 @@
     "p3_body": "Cada regra é ilustrada com trechos reais — Bach, Debussy, Coltrane. A harmonia como linguagem universal, decifrada em seus múltiplos dialetos.",
     "p3_tag": "Repertório analisado"
   },
-  "demo": {
+ "demo": {
     "label": "Prévia dos exercícios",
     "title1": "Condução de vozes",
     "title1em": "interativa",
     "p1": "Visualize em tempo real o movimento de cada voz através de uma progressão harmônica. Identifique movimentos paralelos, contrários e oblíquos.",
     "p2": "Cada exercício se adapta ao seu nível e guia você para a resolução natural das tensões harmônicas.",
     "animate": "Iniciar animação",
-    "vl_label": "Progression I – IV – V – I in C"
+    "vl_label": "Progression I - IV - V - I in C",
     "soprano": "Soprano",
     "alto": "Contralto",
     "tenor": "Tenor",
