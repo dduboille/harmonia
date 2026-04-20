@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "method": "Método",
+    "exercises": "Ejercicios",
+    "levels": "Niveles",
+    "start": "Empezar"
+  },
+  "hero": {
+    "eyebrow": "Teoría musical viva",
+    "title1": "La armonía,",
+    "title2": "por fin",
+    "title2em": "inteligible",
+    "sub": "Desde los conceptos fundamentales hasta los colores armónicos más sutiles — aprende a escuchar lo que tocas, y a tocar lo que escuchas.",
+    "cta_primary": "Acceso gratuito",
+    "cta_ghost": "Ver ejercicios",
+    "scroll": "Desplazar"
+  },
+  "pillars": {
+    "label": "Nuestro método",
+    "title1": "Tres pilares para",
+    "title2": "comprender",
+    "title2em": "de verdad",
+    "p1_title": "El oído primero",
+    "p1_body": "Cada concepto se ancla en la escucha activa. Identificas los colores armónicos antes de nombrarlos — porque la teoría debe servir a la música, no al revés.",
+    "p1_tag": "Entrenamiento auditivo",
+    "p2_title": "Conducción de voces",
+    "p2_body": "Domina el movimiento de las voces a través de las progresiones de acordes. Ejercicios graduales de lo simple a lo complejo, del barroco al jazz contemporáneo.",
+    "p2_tag": "Ejercicios interactivos",
+    "p3_title": "Contexto musical vivo",
+    "p3_body": "Cada regla se ilustra con fragmentos reales — Bach, Debussy, Coltrane. La armonía como lenguaje universal, descifrado en sus múltiples dialectos.",
+    "p3_tag": "Repertorio analizado"
+  },
+  "demo": {
+    "label": "Vista previa de ejercicios",
+    "title1": "Conducción de voces",
+    "title1em": "interactiva",
+    "p1": "Visualiza en tiempo real el movimiento de cada voz a través de una progresión armónica. Identifica los movimientos paralelos, contrarios y oblicuos.",
+    "p2": "Cada ejercicio se adapta a tu nivel y te guía hacia la resolución natural de las tensiones armónicas.",
+    "animate": "Iniciar animación",
+    "vl_label": "Progresión I - IV - V - I en Do",
+    "soprano": "Soprano",
+    "alto": "Contralto",
+    "tenor": "Tenor",
+    "bass": "Bajo"
+  },
+  "levels": {
+    "label": "Itinerarios",
+    "title1": "Para cada músico,",
+    "title2": "su propio",
+    "title2em": "camino",
+    "beginner_badge": "Fundamentos",
+    "beginner_title": "Principiante",
+    "beginner_items": ["Intervalos y escalas", "Tríadas e inversiones", "Cadencias básicas", "Dictado armónico simple"],
+    "inter_badge": "Popular",
+    "inter_title": "Intermedio",
+    "inter_items": ["Acordes de 7a y 9a", "Conducción de 4 voces", "Modulaciones próximas", "Análisis de corales de Bach"],
+    "adv_badge": "Avanzado",
+    "adv_title": "Avanzado",
+    "adv_items": ["Cromatismo y sustituciones", "Modalidad y jazz", "Microtonalidad contemporánea", "Composición guiada"]
+  },
+  "cta": {
+    "label": "Acceso anticipado",
+    "title1": "Únete a los primeros",
+    "title1em": "exploradores",
+    "sub": "La plataforma está en desarrollo. Regístrate para acceder gratis a la beta y dar forma a las funciones por venir.",
+    "placeholder": "tu@email.com",
+    "button": "Registrarse",
+    "note": "Acceso beta gratuito · Sin compromiso · Sin spam",
+    "confirm": "Registro confirmado — hasta pronto."
+  },
+  "footer": {
+    "rights": "© 2025 Harmonia — Todos los derechos reservados",
+    "made": "Hecho con intención"
+  }
+}

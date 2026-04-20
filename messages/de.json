@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "method": "Methode",
+    "exercises": "Übungen",
+    "levels": "Levels",
+    "start": "Loslegen"
+  },
+  "hero": {
+    "eyebrow": "Lebendige Musiktheorie",
+    "title1": "Harmonie,",
+    "title2": "endlich",
+    "title2em": "verständlich",
+    "sub": "Von den Grundkonzepten bis zu den feinsten Klangfarben — lerne zu hören, was du spielst, und zu spielen, was du hörst.",
+    "cta_primary": "Kostenloser Zugang",
+    "cta_ghost": "Übungen ansehen",
+    "scroll": "Scrollen"
+  },
+  "pillars": {
+    "label": "Unsere Methode",
+    "title1": "Drei Säulen zum",
+    "title2": "echten",
+    "title2em": "Verstehen",
+    "p1_title": "Das Ohr zuerst",
+    "p1_body": "Jedes Konzept ist im aktiven Hören verankert. Du erkennst Klangfarben, bevor du sie benennen kannst — denn Theorie soll der Musik dienen, nicht umgekehrt.",
+    "p1_tag": "Gehörbildung",
+    "p2_title": "Stimmführung",
+    "p2_body": "Meistere die Stimmführung durch Akkordfolgen. Schrittweise Übungen von einfach bis komplex, vom Barock bis zum zeitgenössischen Jazz.",
+    "p2_tag": "Interaktive Übungen",
+    "p3_title": "Lebendiger musikalischer Kontext",
+    "p3_body": "Jede Regel wird mit echten Ausschnitten illustriert — Bach, Debussy, Coltrane. Harmonie als universelle Sprache, entschlüsselt in ihren vielen Dialekten.",
+    "p3_tag": "Analysiertes Repertoire"
+  },
+  "demo": {
+    "label": "Übungsvorschau",
+    "title1": "Stimmführung",
+    "title1em": "interaktiv",
+    "p1": "Visualisiere in Echtzeit die Bewegung jeder Stimme durch eine harmonische Progression. Erkenne parallele, gegensätzliche und oblique Bewegungen.",
+    "p2": "Jede Übung passt sich deinem Niveau an und führt dich zur natürlichen Auflösung harmonischer Spannungen.",
+    "animate": "Animation starten",
+    "vl_label": "Progression I - IV - V - I in C",
+    "soprano": "Sopran",
+    "alto": "Alt",
+    "tenor": "Tenor",
+    "bass": "Bass"
+  },
+  "levels": {
+    "label": "Lernpfade",
+    "title1": "Für jeden Musiker",
+    "title2": "sein eigener",
+    "title2em": "Weg",
+    "beginner_badge": "Grundlagen",
+    "beginner_title": "Einsteiger",
+    "beginner_items": ["Intervalle und Tonleitern", "Dreiklänge und Umkehrungen", "Grundlegende Kadenzen", "Einfaches Harmonie-Diktat"],
+    "inter_badge": "Beliebt",
+    "inter_title": "Fortgeschritten",
+    "inter_items": ["Sept- und Nonakkorde", "4-stimmige Führung", "Nahverwandte Modulationen", "Bach-Choral-Analyse"],
+    "adv_badge": "Experte",
+    "adv_title": "Experte",
+    "adv_items": ["Chromatik und Substitutionen", "Modalität und Jazz", "Zeitgenössische Mikrotonalität", "Geführte Komposition"]
+  },
+  "cta": {
+    "label": "Früher Zugang",
+    "title1": "Werde einer der ersten",
+    "title1em": "Entdecker",
+    "sub": "Die Plattform ist in Entwicklung. Melde dich an für kostenlosen Beta-Zugang und gestalte die kommenden Funktionen mit.",
+    "placeholder": "deine@email.de",
+    "button": "Anmelden",
+    "note": "Kostenloser Beta-Zugang · Keine Verpflichtung · Kein Spam",
+    "confirm": "Anmeldung bestätigt — bis bald."
+  },
+  "footer": {
+    "rights": "© 2025 Harmonia — Alle Rechte vorbehalten",
+    "made": "Mit Intention gemacht"
+  }
+}

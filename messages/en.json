@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "method": "Method",
+    "exercises": "Exercises",
+    "levels": "Levels",
+    "start": "Get started"
+  },
+  "hero": {
+    "eyebrow": "Living music theory",
+    "title1": "Harmony,",
+    "title2": "finally",
+    "title2em": "intelligible",
+    "sub": "From foundational concepts to the subtlest harmonic colours — learn to hear what you play, and play what you hear.",
+    "cta_primary": "Free access",
+    "cta_ghost": "See exercises",
+    "scroll": "Scroll"
+  },
+  "pillars": {
+    "label": "Our method",
+    "title1": "Three pillars to",
+    "title2": "truly",
+    "title2em": "understand",
+    "p1_title": "The ear first",
+    "p1_body": "Every concept is grounded in active listening. You identify harmonic colours before naming them — because theory must serve music, not the other way around.",
+    "p1_tag": "Ear training",
+    "p2_title": "Voice leading",
+    "p2_body": "Master the movement of voices through chord progressions. Gradual exercises from simple to complex, from baroque to contemporary jazz.",
+    "p2_tag": "Interactive exercises",
+    "p3_title": "Living musical context",
+    "p3_body": "Every rule is illustrated with real excerpts — Bach, Debussy, Coltrane. Harmony as a universal language, decoded across its many dialects.",
+    "p3_tag": "Analysed repertoire"
+  },
+  "demo": {
+    "label": "Exercise preview",
+    "title1": "Voice leading",
+    "title1em": "interactive",
+    "p1": "Visualise in real time the movement of each voice through a harmonic progression. Identify parallel, contrary, and oblique motions.",
+    "p2": "Each exercise adapts to your level and guides you toward the natural resolution of harmonic tensions.",
+    "animate": "Play animation",
+    "vl_label": "Progression I - IV - V - I in C",
+    "soprano": "Soprano",
+    "alto": "Alto",
+    "tenor": "Tenor",
+    "bass": "Bass"
+  },
+  "levels": {
+    "label": "Paths",
+    "title1": "For every musician,",
+    "title2": "their own",
+    "title2em": "journey",
+    "beginner_badge": "Foundations",
+    "beginner_title": "Beginner",
+    "beginner_items": ["Intervals and scales", "Triads and inversions", "Basic cadences", "Simple harmonic dictation"],
+    "inter_badge": "Popular",
+    "inter_title": "Intermediate",
+    "inter_items": ["7th and 9th chords", "4-voice leading", "Closely related modulations", "Bach chorale analysis"],
+    "adv_badge": "Advanced",
+    "adv_title": "Advanced",
+    "adv_items": ["Chromaticism and substitutions", "Modality and jazz", "Contemporary microtonality", "Guided composition"]
+  },
+  "cta": {
+    "label": "Early access",
+    "title1": "Join the first",
+    "title1em": "explorers",
+    "sub": "The platform is under development. Sign up for free beta access and help shape the features to come.",
+    "placeholder": "your@email.com",
+    "button": "Sign up",
+    "note": "Free beta access · No commitment · No spam",
+    "confirm": "Registration confirmed — see you soon."
+  },
+  "footer": {
+    "rights": "© 2025 Harmonia — All rights reserved",
+    "made": "Made with intention"
+  }
+}
