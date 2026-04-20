@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     }
 
     await resend.emails.send({
-      from: 'Harmonia <onboarding@resend.dev>',
+      from: 'Harmonia <noreply@getharmonia.app>',
       to: email,
       subject: 'Bienvenue sur Harmonia — Accès bêta confirmé',
       html: `
