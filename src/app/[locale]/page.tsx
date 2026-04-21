@@ -22,38 +22,26 @@ export default function HomePage() {
   };
 
   const handleSubmit = async () => {
-    console.log('handleSubmit déclenché');
     const input = document.getElementById('emailInput') as HTMLInputElement;
-    console.log('input:', input, 'value:', input?.value);
     const email = input?.value;
-    if (!email?.includes('@')) {
-      console.log('email invalide ou vide');
-      return;
-    }
-
+    if (!email?.includes('@')) return;
     const btn = document.querySelector('.email-form button') as HTMLButtonElement;
     if (btn) btn.textContent = '...';
-
-    console.log('envoi fetch...');
     try {
       const res = await fetch(`${window.location.origin}/api/subscribe`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       });
-      console.log('réponse:', res.status, res.ok);
-      const data = await res.json();
-      console.log('data:', data);
+      await res.json();
       const form = document.getElementById('emailForm');
-
       if (res.ok && form) {
         form.innerHTML = `<p class="confirm-msg">${t('cta.confirm')}</p>`;
       } else {
         if (btn) btn.textContent = t('cta.button');
         alert('Une erreur est survenue. Veuillez réessayer.');
       }
-    } catch (err) {
-      console.log('erreur catch:', err);
+    } catch {
       const btn2 = document.querySelector('.email-form button') as HTMLButtonElement;
       if (btn2) btn2.textContent = t('cta.button');
       alert('Une erreur est survenue. Veuillez réessayer.');
