@@ -1,75 +1,135 @@
 {
-  "nav": {
-    "method": "Método",
-    "exercises": "Ejercicios",
-    "levels": "Niveles",
-    "start": "Empezar"
+  "common": {
+    "level": "Nivel",
+    "cours": "Lección",
+    "listen": "Escuchar",
+    "listenProg": "Escuchar la progresión",
+    "newQuestions": "Nuevas preguntas →",
+    "nextQuestion": "Pregunta siguiente →",
+    "seeScore": "Ver puntuación →",
+    "question": "Pregunta",
+    "of": "/",
+    "questionsPool": "preguntas en el banco",
+    "score": "Puntuación",
+    "perfect": "Perfecto",
+    "veryGood": "¡Muy bien!",
+    "keepGoing": "Sigue explorando las secciones — inténtalo de nuevo cuando estés listo.",
+    "training": "Práctica"
   },
-  "hero": {
-    "eyebrow": "Teoría musical viva",
-    "title1": "La armonía,",
-    "title2": "por fin",
-    "title2em": "inteligible",
-    "sub": "Desde los conceptos fundamentales hasta los colores armónicos más sutiles — aprende a escuchar lo que tocas, y a tocar lo que escuchas.",
-    "cta_primary": "Acceso gratuito",
-    "cta_ghost": "Ver ejercicios",
-    "scroll": "Desplazar"
+  "coursHub": {
+    "title": "Lecciones de teoría musical",
+    "subtitle": "Nivel 1 — 9 lecciones para dominar la armonía tonal",
+    "progress": "Progreso",
+    "available": "Disponible",
+    "comingSoon": "Próximamente",
+    "startCours": "Empezar",
+    "continueCours": "Continuar",
+    "completed": "Completado"
   },
-  "pillars": {
-    "label": "Nuestro método",
-    "title1": "Tres pilares para",
-    "title2": "comprender",
-    "title2em": "de verdad",
-    "p1_title": "El oído primero",
-    "p1_body": "Cada concepto se ancla en la escucha activa. Identificas los colores armónicos antes de nombrarlos — porque la teoría debe servir a la música, no al revés.",
-    "p1_tag": "Entrenamiento auditivo",
-    "p2_title": "Conducción de voces",
-    "p2_body": "Domina el movimiento de las voces a través de las progresiones de acordes. Ejercicios graduales de lo simple a lo complejo, del barroco al jazz contemporáneo.",
-    "p2_tag": "Ejercicios interactivos",
-    "p3_title": "Contexto musical vivo",
-    "p3_body": "Cada regla se ilustra con fragmentos reales — Bach, Debussy, Coltrane. La armonía como lenguaje universal, descifrado en sus múltiples dialectos.",
-    "p3_tag": "Repertorio analizado"
+  "cours": {
+    "level1": "Nivel 1",
+    "listen": "▶ Escuchar",
+    "listenProg": "▶ Escuchar la progresión",
+    "training": "Práctica"
   },
-  "demo": {
-    "label": "Vista previa de ejercicios",
-    "title1": "Conducción de voces",
-    "title1em": "interactiva",
-    "p1": "Visualiza en tiempo real el movimiento de cada voz a través de una progresión armónica. Identifica los movimientos paralelos, contrarios y oblicuos.",
-    "p2": "Cada ejercicio se adapta a tu nivel y te guía hacia la resolución natural de las tensiones armónicas.",
-    "animate": "Iniciar animación",
-    "vl_label": "Progression I – IV – V – I in C",
-    "soprano": "Soprano",
-    "alto": "Contralto",
-    "tenor": "Tenor",
-    "bass": "Bajo"
+  "cours4": {
+    "badge": "Nivel 1 · Lección 4",
+    "title": "Cadencias y progresiones",
+    "subtitle": "La puntuación armónica — cadencias perfectas, rotas, plagales y semicadencias.",
+    "sections": {
+      "cadences": "Las cadencias",
+      "progressions": "Progresiones",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas las cadencias y progresiones.",
+      "veryGood": "¡Muy bien! Algunos tipos de cadencias por consolidar.",
+      "keepGoing": "Sigue practicando — escucha los ejemplos de nuevo e inténtalo."
+    }
   },
-  "levels": {
-    "label": "Itinerarios",
-    "title1": "Para cada músico,",
-    "title2": "su propio",
-    "title2em": "camino",
-    "beginner_badge": "Fundamentos",
-    "beginner_title": "Principiante",
-    "beginner_items": ["Intervalos y escalas", "Tríadas e inversiones", "Cadencias básicas", "Dictado armónico simple"],
-    "inter_badge": "Popular",
-    "inter_title": "Intermedio",
-    "inter_items": ["Acordes de 7a y 9a", "Conducción de 4 voces", "Modulaciones próximas", "Análisis de corales de Bach"],
-    "adv_badge": "Avanzado",
-    "adv_title": "Avanzado",
-    "adv_items": ["Cromatismo y sustituciones", "Modalidad y jazz", "Microtonalidad contemporánea", "Composición guiada"]
+  "cours5": {
+    "badge": "Nivel 1 · Lección 5",
+    "title": "Préstamos y progresiones armónicas clásicas",
+    "subtitle": "El menor como fuente de color — préstamos, círculo de quintas, chacona y acorde napolitano.",
+    "sections": {
+      "mineur": "La escala menor",
+      "emprunts": "Préstamos",
+      "classiques": "Progresiones clásicas",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas los préstamos y progresiones clásicas.",
+      "veryGood": "¡Muy bien! Algunos matices por consolidar.",
+      "keepGoing": "Sigue practicando — escucha las progresiones e inténtalo."
+    }
   },
-  "cta": {
-    "label": "Acceso anticipado",
-    "title1": "Únete a los primeros",
-    "title1em": "exploradores",
-    "sub": "La plataforma está en desarrollo. Regístrate para acceder gratis a la beta y dar forma a las funciones por venir.",
-    "placeholder": "tu@email.com",
-    "button": "Registrarse",
-    "note": "Acceso beta gratuito · Sin compromiso · Sin spam",
-    "confirm": "Registro confirmado — hasta pronto."
+  "cours6": {
+    "badge": "Nivel 1 · Lección 6",
+    "title": "Construir una armonización",
+    "subtitle": "De la melodía al acorde — identificar el centro tonal, distinguir notas ajenas, construir el esqueleto armónico y elegir el acompañamiento.",
+    "sections": {
+      "tonal": "Centro tonal",
+      "etrangeres": "Notas ajenas",
+      "squelette": "Esqueleto armónico",
+      "accomp": "Acompañamiento",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas los fundamentos de la armonización.",
+      "veryGood": "¡Muy bien! Algunos puntos por consolidar.",
+      "keepGoing": "Sigue explorando las secciones — inténtalo cuando estés listo."
+    }
   },
-  "footer": {
-    "rights": "© 2025 Harmonia — Todos los derechos reservados",
-    "made": "Hecho con intención"
+  "cours7": {
+    "badge": "Nivel 1 · Lección 7",
+    "title": "La tonicización",
+    "subtitle": "Dominantes secundarias, tonos vecinos y cadenas — hacer que un acorde sea tónica momentáneamente.",
+    "sections": {
+      "principe": "Principio",
+      "secondaires": "Dominantes secundarias",
+      "voisins": "Tonos vecinos",
+      "chaines": "Cadenas",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! La tonicización no tiene secretos.",
+      "veryGood": "¡Muy bien! Algunos matices por consolidar.",
+      "keepGoing": "Sigue explorando — inténtalo cuando estés listo."
+    }
+  },
+  "cours8": {
+    "badge": "Nivel 1 · Lección 8",
+    "title": "Modulación por acorde pivote",
+    "subtitle": "Cambiar de tonalidad sin ruptura — el acorde pivote, el 6/4 cadencial y el V7sus4.",
+    "sections": {
+      "logique": "Lógica",
+      "pivot": "Acorde pivote",
+      "outils": "6/4 y sus4",
+      "exemples": "Ejemplos",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! La modulación por acorde pivote no tiene secretos.",
+      "veryGood": "¡Muy bien! Algunos matices por consolidar.",
+      "keepGoing": "Escucha las progresiones de nuevo e inténtalo."
+    }
+  },
+  "cours9": {
+    "badge": "Nivel 1 · Lección 9",
+    "title": "Modulaciones avanzadas y pedales armónicas",
+    "subtitle": "Marcha armónica, nota común, minorización, pedales y acordes de apoyatura.",
+    "sections": {
+      "marche": "Marcha armónica",
+      "notecom": "Nota común",
+      "minor": "Minorización",
+      "pedales": "Pedales",
+      "appog": "Acordes de apoyatura",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Felicidades! ¡El nivel 1 está completo!",
+      "veryGood": "¡Muy bien! Algunos matices por consolidar.",
+      "keepGoing": "Sigue explorando las secciones e inténtalo."
+    }
   }
 }

@@ -1,75 +1,135 @@
 {
-  "nav": {
-    "method": "Metodo",
-    "exercises": "Esercizi",
-    "levels": "Livelli",
-    "start": "Iniziare"
+  "common": {
+    "level": "Livello",
+    "cours": "Lezione",
+    "listen": "Ascoltare",
+    "listenProg": "Ascoltare la progressione",
+    "newQuestions": "Nuove domande →",
+    "nextQuestion": "Domanda successiva →",
+    "seeScore": "Vedi punteggio →",
+    "question": "Domanda",
+    "of": "/",
+    "questionsPool": "domande nel pool",
+    "score": "Punteggio",
+    "perfect": "Perfetto",
+    "veryGood": "Molto bene",
+    "keepGoing": "Continua a esplorare le sezioni — riprova quando sei pronto.",
+    "training": "Esercitazione"
   },
-  "hero": {
-    "eyebrow": "Teoria musicale viva",
-    "title1": "L'armonia,",
-    "title2": "finalmente",
-    "title2em": "intelligibile",
-    "sub": "Dai concetti fondamentali ai colori armonici più sottili — impara ad ascoltare ciò che suoni, e a suonare ciò che ascolti.",
-    "cta_primary": "Accesso gratuito",
-    "cta_ghost": "Vedere gli esercizi",
-    "scroll": "Scorrere"
+  "coursHub": {
+    "title": "Lezioni di teoria musicale",
+    "subtitle": "Livello 1 — 9 lezioni per padroneggiare l'armonia tonale",
+    "progress": "Progresso",
+    "available": "Disponibile",
+    "comingSoon": "Prossimamente",
+    "startCours": "Iniziare",
+    "continueCours": "Continuare",
+    "completed": "Completato"
   },
-  "pillars": {
-    "label": "Il nostro metodo",
-    "title1": "Tre pilastri per",
-    "title2": "capire",
-    "title2em": "davvero",
-    "p1_title": "L'orecchio prima di tutto",
-    "p1_body": "Ogni concetto è radicato nell'ascolto attivo. Identifichi i colori armonici prima di nominarli — perché la teoria deve servire la musica, non il contrario.",
-    "p1_tag": "Formazione uditiva",
-    "p2_title": "Conduzione delle voci",
-    "p2_body": "Padroneggia il movimento delle voci attraverso le progressioni di accordi. Esercizi graduali dal semplice al complesso, dal barocco al jazz contemporaneo.",
-    "p2_tag": "Esercizi interattivi",
-    "p3_title": "Contesto musicale vivo",
-    "p3_body": "Ogni regola è illustrata da brani reali — Bach, Debussy, Coltrane. L'armonia come linguaggio universale, decifrato nei suoi molteplici dialetti.",
-    "p3_tag": "Repertorio analizzato"
+  "cours": {
+    "level1": "Livello 1",
+    "listen": "▶ Ascoltare",
+    "listenProg": "▶ Ascoltare la progressione",
+    "training": "Esercitazione"
   },
-  "demo": {
-    "label": "Anteprima degli esercizi",
-    "title1": "Conduzione delle voci",
-    "title1em": "interattiva",
-    "p1": "Visualizza in tempo reale il movimento di ogni voce attraverso una progressione armonica. Identifica i movimenti paralleli, contrari e obliqui.",
-    "p2": "Ogni esercizio si adatta al tuo livello e ti guida verso la risoluzione naturale delle tensioni armoniche.",
-    "animate": "Avvia animazione",
-    "vl_label": "Progression I – IV – V – I in C",
-    "soprano": "Soprano",
-    "alto": "Contralto",
-    "tenor": "Tenore",
-    "bass": "Basso"
+  "cours4": {
+    "badge": "Livello 1 · Lezione 4",
+    "title": "Cadenze e progressioni",
+    "subtitle": "La punteggiatura armonica — cadenze perfette, rotte, plagali e semicadenze.",
+    "sections": {
+      "cadences": "Le cadenze",
+      "progressions": "Progressioni",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Perfetto — padroneggi le cadenze e le progressioni.",
+      "veryGood": "Molto bene! Alcuni tipi di cadenza da consolidare.",
+      "keepGoing": "Continua a esercitarti — riascoltta gli esempi e riprova."
+    }
   },
-  "levels": {
-    "label": "Percorsi",
-    "title1": "Per ogni musicista,",
-    "title2": "il proprio",
-    "title2em": "cammino",
-    "beginner_badge": "Fondamenti",
-    "beginner_title": "Principiante",
-    "beginner_items": ["Intervalli e scale", "Triadi e rivolti", "Cadenze di base", "Dettato armonico semplice"],
-    "inter_badge": "Popolare",
-    "inter_title": "Intermedio",
-    "inter_items": ["Accordi di 7a e 9a", "Conduzione a 4 voci", "Modulazioni vicine", "Analisi di corali di Bach"],
-    "adv_badge": "Avanzato",
-    "adv_title": "Avanzato",
-    "adv_items": ["Cromatismo e sostituzioni", "Modalità e jazz", "Microtonalità contemporanea", "Composizione guidata"]
+  "cours5": {
+    "badge": "Livello 1 · Lezione 5",
+    "title": "Prestiti e progressioni armoniche classiche",
+    "subtitle": "Il minore come fonte di colore — prestiti, ciclo delle quinte, ciaccona e accordo napoletano.",
+    "sections": {
+      "mineur": "La scala minore",
+      "emprunts": "Prestiti",
+      "classiques": "Progressioni classiche",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Perfetto! Padroneggi i prestiti e le progressioni classiche.",
+      "veryGood": "Molto bene! Alcune sfumature da consolidare.",
+      "keepGoing": "Continua a esercitarti — riascoltta le progressioni e riprova."
+    }
   },
-  "cta": {
-    "label": "Accesso anticipato",
-    "title1": "Unisciti ai primi",
-    "title1em": "esploratori",
-    "sub": "La piattaforma è in sviluppo. Iscriviti per accedere gratuitamente alla beta e contribuire a definire le funzionalità future.",
-    "placeholder": "tua@email.it",
-    "button": "Iscriversi",
-    "note": "Accesso beta gratuito · Nessun impegno · Niente spam",
-    "confirm": "Iscrizione confermata — a presto."
+  "cours6": {
+    "badge": "Livello 1 · Lezione 6",
+    "title": "Costruire un'armonizzazione",
+    "subtitle": "Dalla melodia all'accordo — identificare il centro tonale, distinguere le note estranee, costruire lo scheletro armonico e scegliere l'accompagnamento.",
+    "sections": {
+      "tonal": "Centro tonale",
+      "etrangeres": "Note estranee",
+      "squelette": "Scheletro armonico",
+      "accomp": "Accompagnamento",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Perfetto — padroneggi le basi dell'armonizzazione.",
+      "veryGood": "Molto bene! Alcuni punti da consolidare.",
+      "keepGoing": "Continua a esplorare le sezioni — riprova quando sei pronto."
+    }
   },
-  "footer": {
-    "rights": "© 2025 Harmonia — Tutti i diritti riservati",
-    "made": "Fatto con intenzione"
+  "cours7": {
+    "badge": "Livello 1 · Lezione 7",
+    "title": "La tonicizzazione",
+    "subtitle": "Dominanti secondarie, tonalità vicine e catene — rendere un accordo tonica momentaneamente.",
+    "sections": {
+      "principe": "Principio",
+      "secondaires": "Dominanti secondarie",
+      "voisins": "Tonalità vicine",
+      "chaines": "Catene",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Perfetto — la tonicizzazione non ha più segreti.",
+      "veryGood": "Molto bene! Alcune sfumature da consolidare.",
+      "keepGoing": "Continua a esplorare — riprova quando sei pronto."
+    }
+  },
+  "cours8": {
+    "badge": "Livello 1 · Lezione 8",
+    "title": "Modulazione per accordo perno",
+    "subtitle": "Cambiare tonalità senza rottura — l'accordo perno, il 6/4 cadenzale e il V7sus4.",
+    "sections": {
+      "logique": "Logica",
+      "pivot": "Accordo perno",
+      "outils": "6/4 e sus4",
+      "exemples": "Esempi",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Perfetto — la modulazione per accordo perno non ha più segreti.",
+      "veryGood": "Molto bene! Alcune sfumature da consolidare.",
+      "keepGoing": "Riascoltta le progressioni e riprova."
+    }
+  },
+  "cours9": {
+    "badge": "Livello 1 · Lezione 9",
+    "title": "Modulazioni avanzate e pedalé armoniche",
+    "subtitle": "Sequenza armonica, nota comune, minorizzazione, pedalé e accordi di appoggiatúra.",
+    "sections": {
+      "marche": "Sequenza armonica",
+      "notecom": "Nota comune",
+      "minor": "Minorizzazione",
+      "pedales": "Pedalé",
+      "appog": "Accordi di appoggiatúra",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Congratulazioni — il livello 1 è completo!",
+      "veryGood": "Molto bene! Alcune sfumature da consolidare.",
+      "keepGoing": "Continua a esplorare le sezioni e riprova."
+    }
   }
 }

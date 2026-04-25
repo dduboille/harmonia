@@ -1,75 +1,135 @@
 {
-  "nav": {
-    "method": "Méthode",
-    "exercises": "Exercices",
-    "levels": "Niveaux",
-    "start": "Commencer"
+  "common": {
+    "level": "Niveau",
+    "cours": "Cours",
+    "listen": "Écouter",
+    "listenProg": "Écouter la progression",
+    "newQuestions": "Nouvelles questions →",
+    "nextQuestion": "Question suivante →",
+    "seeScore": "Voir le score →",
+    "question": "Question",
+    "of": "/",
+    "questionsPool": "questions dans le pool",
+    "score": "Score",
+    "perfect": "Parfait",
+    "veryGood": "Très bien",
+    "keepGoing": "Continue à explorer les sections — recommence quand tu es prêt.",
+    "training": "Entraînement"
   },
-  "hero": {
-    "eyebrow": "Théorie musicale vivante",
-    "title1": "L'harmonie,",
-    "title2": "enfin",
-    "title2em": "intelligible",
-    "sub": "Des concepts fondamentaux aux couleurs harmoniques les plus subtiles — apprenez à entendre ce que vous jouez, et à jouer ce que vous entendez.",
-    "cta_primary": "Accès gratuit",
-    "cta_ghost": "Voir les exercices",
-    "scroll": "Défiler"
+  "coursHub": {
+    "title": "Cours de théorie musicale",
+    "subtitle": "Niveau 1 — 9 cours pour maîtriser l'harmonie tonale",
+    "progress": "Progression",
+    "available": "Disponible",
+    "comingSoon": "Bientôt disponible",
+    "startCours": "Commencer",
+    "continueCours": "Continuer",
+    "completed": "Terminé"
   },
-  "pillars": {
-    "label": "Notre méthode",
-    "title1": "Trois piliers pour",
-    "title2": "comprendre",
-    "title2em": "vraiment",
-    "p1_title": "L'oreille avant tout",
-    "p1_body": "Chaque concept est ancré dans l'écoute active. Vous identifiez les couleurs harmoniques avant de les nommer — parce que la théorie doit servir la musique, pas l'inverse.",
-    "p1_tag": "Formation auditive",
-    "p2_title": "Conduite des voix",
-    "p2_body": "Maîtrisez le mouvement des voix à travers les progressions d'accords. Des exercices graduels du simple au complexe, du baroque au jazz contemporain.",
-    "p2_tag": "Exercices interactifs",
-    "p3_title": "Contexte musical vivant",
-    "p3_body": "Chaque règle est illustrée par des extraits réels — Bach, Debussy, Coltrane. L'harmonie comme langage universel, décrypté dans ses multiples dialectes.",
-    "p3_tag": "Répertoire analysé"
+  "cours": {
+    "level1": "Niveau 1",
+    "listen": "▶ Écouter",
+    "listenProg": "▶ Écouter la progression",
+    "training": "Entraînement"
   },
-  "demo": {
-    "label": "Aperçu des exercices",
-    "title1": "Conduite de voix",
-    "title1em": "interactive",
-    "p1": "Visualisez en temps réel le mouvement de chaque voix à travers une progression harmonique. Identifiez les mouvements parallèles, contraires, obliques.",
-    "p2": "Chaque exercice s'adapte à votre niveau et vous guide vers la résolution naturelle des tensions harmoniques.",
-    "animate": "Lancer l'animation",
-    "vl_label": "Progression I – IV – V – I in C",
-    "soprano": "Soprano",
-    "alto": "Alto",
-    "tenor": "Ténor",
-    "bass": "Basse"
+  "cours4": {
+    "badge": "Niveau 1 · Cours 4",
+    "title": "Cadences et progressions",
+    "subtitle": "La ponctuation harmonique — cadences parfaites, rompues, plagales et demi-cadences.",
+    "sections": {
+      "cadences": "Les cadences",
+      "progressions": "Progressions",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait — tu maîtrises les cadences et progressions.",
+      "veryGood": "Très bien ! Quelques types de cadences à consolider.",
+      "keepGoing": "Continue à pratiquer — réécoute les exemples et recommence."
+    }
   },
-  "levels": {
-    "label": "Parcours",
-    "title1": "À chaque musicien",
-    "title2": "son",
-    "title2em": "chemin",
-    "beginner_badge": "Fondations",
-    "beginner_title": "Débutant",
-    "beginner_items": ["Intervalles et gammes", "Triades et renversements", "Cadences fondamentales", "Dictée harmonique simple"],
-    "inter_badge": "Populaire",
-    "inter_title": "Intermédiaire",
-    "inter_items": ["Accords de 7e et 9e", "Conduite des 4 voix", "Modulations proches", "Analyse de chorals Bach"],
-    "adv_badge": "Avancé",
-    "adv_title": "Confirmé",
-    "adv_items": ["Chromatisme et substitutions", "Modalité et jazz", "Microtonalité contemporaine", "Composition guidée"]
+  "cours5": {
+    "badge": "Niveau 1 · Cours 5",
+    "title": "Emprunts et suites harmoniques classiques",
+    "subtitle": "Le mineur comme source de couleur — emprunts, cycle des quintes, chaconne et accord napolitain.",
+    "sections": {
+      "mineur": "La gamme mineure",
+      "emprunts": "Emprunts",
+      "classiques": "Suites classiques",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises les emprunts et suites classiques.",
+      "veryGood": "Très bien ! Quelques nuances à consolider.",
+      "keepGoing": "Continue à pratiquer — réécoute les progressions et recommence."
+    }
   },
-  "cta": {
-    "label": "Accès anticipé",
-    "title1": "Rejoignez les premiers",
-    "title1em": "explorateurs",
-    "sub": "La plateforme est en cours de développement. Inscrivez-vous pour accéder gratuitement à la bêta et façonner les fonctionnalités à venir.",
-    "placeholder": "votre@email.com",
-    "button": "S'inscrire",
-    "note": "Accès bêta gratuit · Sans engagement · Aucun spam",
-    "confirm": "Inscription confirmée — à très bientôt."
+  "cours6": {
+    "badge": "Niveau 1 · Cours 6",
+    "title": "Construire une harmonisation",
+    "subtitle": "De la mélodie à l'accord — identifier le centre tonal, distinguer les notes étrangères, bâtir le squelette harmonique et choisir l'accompagnement.",
+    "sections": {
+      "tonal": "Centre tonal",
+      "etrangeres": "Notes étrangères",
+      "squelette": "Squelette harmonique",
+      "accomp": "Accompagnement",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait — tu maîtrises les bases de l'harmonisation.",
+      "veryGood": "Très bien ! Quelques points à consolider.",
+      "keepGoing": "Continue à explorer les sections — recommence quand tu es prêt."
+    }
   },
-  "footer": {
-    "rights": "© 2025 Harmonia — Tous droits réservés",
-    "made": "Fait avec intention"
+  "cours7": {
+    "badge": "Niveau 1 · Cours 7",
+    "title": "La tonicisation",
+    "subtitle": "Dominantes secondaires, tons voisins et chaînes — rendre un accord tonique l'espace d'un instant.",
+    "sections": {
+      "principe": "Principe",
+      "secondaires": "Dominantes secondaires",
+      "voisins": "Tons voisins",
+      "chaines": "Chaînes",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait — la tonicisation n'a plus de secrets.",
+      "veryGood": "Très bien ! Quelques nuances à consolider.",
+      "keepGoing": "Continue à explorer — recommence quand tu es prêt."
+    }
+  },
+  "cours8": {
+    "badge": "Niveau 1 · Cours 8",
+    "title": "Modulation par accord pivot",
+    "subtitle": "Changer de tonalité sans rupture — l'accord pivot, le 6/4 de cadence et le V7sus4.",
+    "sections": {
+      "logique": "Logique",
+      "pivot": "Accord pivot",
+      "outils": "6/4 et sus4",
+      "exemples": "Exemples",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait — la modulation par accord pivot n'a plus de secrets.",
+      "veryGood": "Très bien ! Quelques nuances à consolider.",
+      "keepGoing": "Réécoute les progressions et recommence."
+    }
+  },
+  "cours9": {
+    "badge": "Niveau 1 · Cours 9",
+    "title": "Modulations avancées et pédales harmoniques",
+    "subtitle": "Marche harmonique, note commune, minorisation, pédales et accords appogiaturés.",
+    "sections": {
+      "marche": "Marche harmonique",
+      "notecom": "Note commune",
+      "minor": "Minorisation",
+      "pedales": "Pédales",
+      "appog": "Accords appogiaturés",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Félicitations — le niveau 1 est complet !",
+      "veryGood": "Très bien ! Quelques nuances à consolider.",
+      "keepGoing": "Continue à explorer les sections et recommence."
+    }
   }
 }

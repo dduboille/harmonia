@@ -1,75 +1,135 @@
 {
-  "nav": {
-    "method": "Methode",
-    "exercises": "Übungen",
-    "levels": "Levels",
-    "start": "Loslegen"
+  "common": {
+    "level": "Niveau",
+    "cours": "Lektion",
+    "listen": "Anhören",
+    "listenProg": "Progression anhören",
+    "newQuestions": "Neue Fragen →",
+    "nextQuestion": "Nächste Frage →",
+    "seeScore": "Ergebnis anzeigen →",
+    "question": "Frage",
+    "of": "/",
+    "questionsPool": "Fragen im Pool",
+    "score": "Ergebnis",
+    "perfect": "Perfekt",
+    "veryGood": "Sehr gut",
+    "keepGoing": "Erkunde die Abschnitte weiter — versuche es erneut, wenn du bereit bist.",
+    "training": "Übung"
   },
-  "hero": {
-    "eyebrow": "Lebendige Musiktheorie",
-    "title1": "Harmonie,",
-    "title2": "endlich",
-    "title2em": "verständlich",
-    "sub": "Von den Grundkonzepten bis zu den feinsten Klangfarben — lerne zu hören, was du spielst, und zu spielen, was du hörst.",
-    "cta_primary": "Kostenloser Zugang",
-    "cta_ghost": "Übungen ansehen",
-    "scroll": "Scrollen"
+  "coursHub": {
+    "title": "Musiktheorie-Lektionen",
+    "subtitle": "Niveau 1 — 9 Lektionen zur tonalen Harmonie",
+    "progress": "Fortschritt",
+    "available": "Verfügbar",
+    "comingSoon": "Demnächst",
+    "startCours": "Starten",
+    "continueCours": "Fortfahren",
+    "completed": "Abgeschlossen"
   },
-  "pillars": {
-    "label": "Unsere Methode",
-    "title1": "Drei Säulen zum",
-    "title2": "echten",
-    "title2em": "Verstehen",
-    "p1_title": "Das Ohr zuerst",
-    "p1_body": "Jedes Konzept ist im aktiven Hören verankert. Du erkennst Klangfarben, bevor du sie benennen kannst — denn Theorie soll der Musik dienen, nicht umgekehrt.",
-    "p1_tag": "Gehörbildung",
-    "p2_title": "Stimmführung",
-    "p2_body": "Meistere die Stimmführung durch Akkordfolgen. Schrittweise Übungen von einfach bis komplex, vom Barock bis zum zeitgenössischen Jazz.",
-    "p2_tag": "Interaktive Übungen",
-    "p3_title": "Lebendiger musikalischer Kontext",
-    "p3_body": "Jede Regel wird mit echten Ausschnitten illustriert — Bach, Debussy, Coltrane. Harmonie als universelle Sprache, entschlüsselt in ihren vielen Dialekten.",
-    "p3_tag": "Analysiertes Repertoire"
+  "cours": {
+    "level1": "Niveau 1",
+    "listen": "▶ Anhören",
+    "listenProg": "▶ Progression anhören",
+    "training": "Übung"
   },
-  "demo": {
-    "label": "Übungsvorschau",
-    "title1": "Stimmführung",
-    "title1em": "interaktiv",
-    "p1": "Visualisiere in Echtzeit die Bewegung jeder Stimme durch eine harmonische Progression. Erkenne parallele, gegensätzliche und oblique Bewegungen.",
-    "p2": "Jede Übung passt sich deinem Niveau an und führt dich zur natürlichen Auflösung harmonischer Spannungen.",
-    "animate": "Animation starten",
-    "vl_label": "Progression I - IV - V - I in C",
-    "soprano": "Sopran",
-    "alto": "Alt",
-    "tenor": "Tenor",
-    "bass": "Bass"
+  "cours4": {
+    "badge": "Niveau 1 · Lektion 4",
+    "title": "Kadenzen und Progressionen",
+    "subtitle": "Harmonische Interpunktion — vollkommene, getäuschte, plagale Kadenzen und Halbkadenzen.",
+    "sections": {
+      "cadences": "Kadenzen",
+      "progressions": "Progressionen",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt — du beherrschst Kadenzen und Progressionen.",
+      "veryGood": "Sehr gut! Einige Kadenztypen zu festigen.",
+      "keepGoing": "Weiter üben — höre die Beispiele erneut und versuche es nochmals."
+    }
   },
-  "levels": {
-    "label": "Lernpfade",
-    "title1": "Für jeden Musiker",
-    "title2": "sein eigener",
-    "title2em": "Weg",
-    "beginner_badge": "Grundlagen",
-    "beginner_title": "Einsteiger",
-    "beginner_items": ["Intervalle und Tonleitern", "Dreiklänge und Umkehrungen", "Grundlegende Kadenzen", "Einfaches Harmonie-Diktat"],
-    "inter_badge": "Beliebt",
-    "inter_title": "Fortgeschritten",
-    "inter_items": ["Sept- und Nonakkorde", "4-stimmige Führung", "Nahverwandte Modulationen", "Bach-Choral-Analyse"],
-    "adv_badge": "Experte",
-    "adv_title": "Experte",
-    "adv_items": ["Chromatik und Substitutionen", "Modalität und Jazz", "Zeitgenössische Mikrotonalität", "Geführte Komposition"]
+  "cours5": {
+    "badge": "Niveau 1 · Lektion 5",
+    "title": "Ausleihen und klassische Harmoniefolgen",
+    "subtitle": "Moll als Farbquelle — Ausleihen, Quintenzirkel, Chaconne und Neapolitanischer Akkord.",
+    "sections": {
+      "mineur": "Molltonleiter",
+      "emprunts": "Ausleihen",
+      "classiques": "Klassische Progressionen",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt! Du beherrschst Ausleihen und klassische Progressionen.",
+      "veryGood": "Sehr gut! Einige Nuancen zu festigen.",
+      "keepGoing": "Weiter üben — höre die Progressionen erneut und versuche es nochmals."
+    }
   },
-  "cta": {
-    "label": "Früher Zugang",
-    "title1": "Werde einer der ersten",
-    "title1em": "Entdecker",
-    "sub": "Die Plattform ist in Entwicklung. Melde dich an für kostenlosen Beta-Zugang und gestalte die kommenden Funktionen mit.",
-    "placeholder": "deine@email.de",
-    "button": "Anmelden",
-    "note": "Kostenloser Beta-Zugang · Keine Verpflichtung · Kein Spam",
-    "confirm": "Anmeldung bestätigt — bis bald."
+  "cours6": {
+    "badge": "Niveau 1 · Lektion 6",
+    "title": "Eine Harmonisierung erstellen",
+    "subtitle": "Von der Melodie zum Akkord — tonales Zentrum bestimmen, Nebentöne erkennen, harmonisches Gerüst aufbauen und Begleitung wählen.",
+    "sections": {
+      "tonal": "Tonales Zentrum",
+      "etrangeres": "Nebentöne",
+      "squelette": "Harmonisches Gerüst",
+      "accomp": "Begleitung",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt — du beherrschst die Grundlagen der Harmonisierung.",
+      "veryGood": "Sehr gut! Einige Punkte zu festigen.",
+      "keepGoing": "Erkunde die Abschnitte weiter — versuche es erneut, wenn du bereit bist."
+    }
   },
-  "footer": {
-    "rights": "© 2025 Harmonia — Alle Rechte vorbehalten",
-    "made": "Mit Intention gemacht"
+  "cours7": {
+    "badge": "Niveau 1 · Lektion 7",
+    "title": "Tonikalisierung",
+    "subtitle": "Sekundärdominanten, Nachbartonarten und Ketten — einen Akkord vorübergehend zur Tonika machen.",
+    "sections": {
+      "principe": "Prinzip",
+      "secondaires": "Sekundärdominanten",
+      "voisins": "Nachbartonarten",
+      "chaines": "Ketten",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt — die Tonikalisierung hält keine Geheimnisse mehr.",
+      "veryGood": "Sehr gut! Einige Nuancen zu festigen.",
+      "keepGoing": "Erkunde weiter — versuche es erneut, wenn du bereit bist."
+    }
+  },
+  "cours8": {
+    "badge": "Niveau 1 · Lektion 8",
+    "title": "Modulation durch Pivot-Akkord",
+    "subtitle": "Fließender Tonartenwechsel — der Pivot-Akkord, der Kadenzsextakkord und der V7sus4.",
+    "sections": {
+      "logique": "Logik",
+      "pivot": "Pivot-Akkord",
+      "outils": "6/4 und sus4",
+      "exemples": "Beispiele",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt — die Pivot-Akkord-Modulation hält keine Geheimnisse mehr.",
+      "veryGood": "Sehr gut! Einige Nuancen zu festigen.",
+      "keepGoing": "Höre die Progressionen erneut und versuche es nochmals."
+    }
+  },
+  "cours9": {
+    "badge": "Niveau 1 · Lektion 9",
+    "title": "Erweiterte Modulationen und harmonische Orgelpunkte",
+    "subtitle": "Harmonische Sequenz, Gemeinsamer Ton, Minorisation, Orgelpunkte und Vorhaltsakkorde.",
+    "sections": {
+      "marche": "Harmonische Sequenz",
+      "notecom": "Gemeinsamer Ton",
+      "minor": "Minorisation",
+      "pedales": "Orgelpunkte",
+      "appog": "Vorhaltsakkorde",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Herzlichen Glückwunsch — Niveau 1 ist abgeschlossen!",
+      "veryGood": "Sehr gut! Einige Nuancen zu festigen.",
+      "keepGoing": "Erkunde die Abschnitte weiter und versuche es erneut."
+    }
   }
 }
