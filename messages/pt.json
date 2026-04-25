@@ -131,5 +131,56 @@
       "veryGood": "Muito bem! Algumas nuances para consolidar.",
       "keepGoing": "Continue explorando as seções e tente novamente."
     }
+  },
+  "cours1": {
+    "badge": "Nível 1 · Aula 1",
+    "title": "A escala, os graus e os intervalos",
+    "subtitle": "Como 7 notas constroem toda uma linguagem musical.",
+    "sections": {
+      "origines": "Origens",
+      "degres": "Os graus",
+      "tons": "Tons e semitons",
+      "intervalles": "Intervalos",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Perfeito — você domina os fundamentos da escala.",
+      "veryGood": "Muito bem! Alguns pontos para consolidar.",
+      "keepGoing": "Continue praticando — revise as seções e tente novamente."
+    }
+  },
+  "cours2": {
+    "badge": "Nível 1 · Aula 2",
+    "title": "Os acordes",
+    "subtitle": "Construir uma tríade, enriquecer com sétima, dominar as inversões.",
+    "sections": {
+      "triades": "As tríades",
+      "gamme": "Escala maior",
+      "tetrades": "Tétrades",
+      "renversements": "Inversões",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Perfeito — você domina os acordes e suas estruturas.",
+      "veryGood": "Muito bem! Algumas nuances para consolidar.",
+      "keepGoing": "Continue explorando — ouça os acordes novamente e tente de novo."
+    }
+  },
+  "cours3": {
+    "badge": "Nível 1 · Aula 3",
+    "title": "Funções tonais e condução de vozes",
+    "subtitle": "O trítono como motor de tensão, as funções T/SD/D e as regras do contraponto a 4 vozes.",
+    "sections": {
+      "triton": "O trítono",
+      "fonctions": "Funções tonais",
+      "progressions": "Progressões",
+      "voix": "Condução de vozes",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Perfeito — o trítono e as funções tonais não têm mais segredos.",
+      "veryGood": "Muito bem! Algumas nuances para consolidar.",
+      "keepGoing": "Continue explorando — ouça as progressões novamente e tente de novo."
+    }
   }
 }

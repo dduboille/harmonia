@@ -131,5 +131,56 @@
       "veryGood": "Très bien ! Quelques nuances à consolider.",
       "keepGoing": "Continue à explorer les sections et recommence."
     }
+  },
+  "cours1": {
+    "badge": "Niveau 1 · Cours 1",
+    "title": "La gamme, les degrés et les intervalles",
+    "subtitle": "Comment 7 notes construisent tout un langage musical.",
+    "sections": {
+      "origines": "Origines",
+      "degres": "Les degrés",
+      "tons": "Tons & demi-tons",
+      "intervalles": "Intervalles",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait — tu maîtrises les fondements de la gamme.",
+      "veryGood": "Très bien ! Quelques points à consolider.",
+      "keepGoing": "Continue à pratiquer — relis les sections et recommence."
+    }
+  },
+  "cours2": {
+    "badge": "Niveau 1 · Cours 2",
+    "title": "Les accords",
+    "subtitle": "Construire une triade, enrichir en septième, maîtriser les renversements.",
+    "sections": {
+      "triades": "Les triades",
+      "gamme": "Gamme majeure",
+      "tetrades": "Tétrades",
+      "renversements": "Renversements",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait — tu maîtrises les accords et leurs structures.",
+      "veryGood": "Très bien ! Quelques nuances à consolider.",
+      "keepGoing": "Continue à explorer — réécoute les accords et recommence."
+    }
+  },
+  "cours3": {
+    "badge": "Niveau 1 · Cours 3",
+    "title": "Fonctions tonales et conduites de voix",
+    "subtitle": "Le triton comme moteur de tension, les fonctions T/SD/D, et les règles du contrepoint à 4 voix.",
+    "sections": {
+      "triton": "Le triton",
+      "fonctions": "Fonctions tonales",
+      "progressions": "Progressions",
+      "voix": "Conduite de voix",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait — le triton et les fonctions tonales n'ont plus de secrets.",
+      "veryGood": "Très bien ! Quelques nuances à consolider.",
+      "keepGoing": "Continue à explorer — réécoute les progressions et recommence."
+    }
   }
 }

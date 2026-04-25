@@ -131,5 +131,56 @@
       "veryGood": "¡Muy bien! Algunos matices por consolidar.",
       "keepGoing": "Sigue explorando las secciones e inténtalo."
     }
+  },
+  "cours1": {
+    "badge": "Nivel 1 · Lección 1",
+    "title": "La escala, los grados y los intervalos",
+    "subtitle": "Cómo 7 notas construyen todo un lenguaje musical.",
+    "sections": {
+      "origines": "Orígenes",
+      "degres": "Los grados",
+      "tons": "Tonos y semitonos",
+      "intervalles": "Intervalos",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas los fundamentos de la escala.",
+      "veryGood": "¡Muy bien! Algunos puntos por consolidar.",
+      "keepGoing": "Sigue practicando — repasa las secciones e inténtalo."
+    }
+  },
+  "cours2": {
+    "badge": "Nivel 1 · Lección 2",
+    "title": "Los acordes",
+    "subtitle": "Construir una tríada, enriquecer con séptimas, dominar las inversiones.",
+    "sections": {
+      "triades": "Las tríadas",
+      "gamme": "Escala mayor",
+      "tetrades": "Tétradas",
+      "renversements": "Inversiones",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas los acordes y sus estructuras.",
+      "veryGood": "¡Muy bien! Algunas matices por consolidar.",
+      "keepGoing": "Sigue explorando — escucha los acordes de nuevo e inténtalo."
+    }
+  },
+  "cours3": {
+    "badge": "Nivel 1 · Lección 3",
+    "title": "Funciones tonales y conducción de voces",
+    "subtitle": "El tritono como motor de tensión, las funciones T/SD/D y las reglas del contrapunto a 4 voces.",
+    "sections": {
+      "triton": "El tritono",
+      "fonctions": "Funciones tonales",
+      "progressions": "Progresiones",
+      "voix": "Conducción de voces",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! El tritono y las funciones tonales no tienen secretos.",
+      "veryGood": "¡Muy bien! Algunas nuances por consolidar.",
+      "keepGoing": "Sigue explorando — escucha las progresiones de nuevo e inténtalo."
+    }
   }
 }

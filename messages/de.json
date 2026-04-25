@@ -131,5 +131,56 @@
       "veryGood": "Sehr gut! Einige Nuancen zu festigen.",
       "keepGoing": "Erkunde die Abschnitte weiter und versuche es erneut."
     }
+  },
+  "cours1": {
+    "badge": "Niveau 1 · Lektion 1",
+    "title": "Tonleiter, Stufen und Intervalle",
+    "subtitle": "Wie 7 Noten eine ganze Musiksprache aufbauen.",
+    "sections": {
+      "origines": "Ursprünge",
+      "degres": "Stufen",
+      "tons": "Töne & Halbtons",
+      "intervalles": "Intervalle",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt — du beherrschst die Grundlagen.",
+      "veryGood": "Sehr gut! Einige Punkte zu festigen.",
+      "keepGoing": "Weiter üben — lies die Abschnitte nochmals und versuche es erneut."
+    }
+  },
+  "cours2": {
+    "badge": "Niveau 1 · Lektion 2",
+    "title": "Akkorde",
+    "subtitle": "Eine Dreiklang aufbauen, mit einer Septime bereichern, Umkehrungen meistern.",
+    "sections": {
+      "triades": "Dreiklänge",
+      "gamme": "Durtonleiter",
+      "tetrades": "Vierklänge",
+      "renversements": "Umkehrungen",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt — du beherrschst Akkorde und ihre Strukturen.",
+      "veryGood": "Sehr gut! Einige Nuancen zu festigen.",
+      "keepGoing": "Weiter erkunden — höre die Akkorde erneut und versuche es nochmals."
+    }
+  },
+  "cours3": {
+    "badge": "Niveau 1 · Lektion 3",
+    "title": "Tonale Funktionen und Stimmführung",
+    "subtitle": "Das Tritonus als Spannungsmotor, T/SD/D-Funktionen und die Regeln des 4-stimmigen Kontrapunkts.",
+    "sections": {
+      "triton": "Das Tritonus",
+      "fonctions": "Tonale Funktionen",
+      "progressions": "Progressionen",
+      "voix": "Stimmführung",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt — das Tritonus und die tonalen Funktionen haben keine Geheimnisse mehr.",
+      "veryGood": "Sehr gut! Einige Nuancen zu festigen.",
+      "keepGoing": "Weiter erkunden — höre die Progressionen erneut und versuche es nochmals."
+    }
   }
 }

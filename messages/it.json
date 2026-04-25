@@ -131,5 +131,56 @@
       "veryGood": "Molto bene! Alcune sfumature da consolidare.",
       "keepGoing": "Continua a esplorare le sezioni e riprova."
     }
+  },
+  "cours1": {
+    "badge": "Livello 1 · Lezione 1",
+    "title": "La scala, i gradi e gli intervalli",
+    "subtitle": "Come 7 note costruiscono un intero linguaggio musicale.",
+    "sections": {
+      "origines": "Origini",
+      "degres": "I gradi",
+      "tons": "Toni e semitoni",
+      "intervalles": "Intervalli",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Perfetto — padroneggi i fondamenti della scala.",
+      "veryGood": "Molto bene! Alcuni punti da consolidare.",
+      "keepGoing": "Continua a esercitarti — rileggi le sezioni e riprova."
+    }
+  },
+  "cours2": {
+    "badge": "Livello 1 · Lezione 2",
+    "title": "Gli accordi",
+    "subtitle": "Costruire una triade, arricchire con la settima, padroneggiare le rivolti.",
+    "sections": {
+      "triades": "Le triadi",
+      "gamme": "Scala maggiore",
+      "tetrades": "Tetradi",
+      "renversements": "Rivolti",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Perfetto — padroneggi gli accordi e le loro strutture.",
+      "veryGood": "Molto bene! Alcune sfumature da consolidare.",
+      "keepGoing": "Continua a esplorare — riascoltta gli accordi e riprova."
+    }
+  },
+  "cours3": {
+    "badge": "Livello 1 · Lezione 3",
+    "title": "Funzioni tonali e conduzione delle voci",
+    "subtitle": "Il tritono come motore di tensione, le funzioni T/SD/D e le regole del contrappunto a 4 voci.",
+    "sections": {
+      "triton": "Il tritono",
+      "fonctions": "Funzioni tonali",
+      "progressions": "Progressioni",
+      "voix": "Conduzione delle voci",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Perfetto — il tritono e le funzioni tonali non hanno più segreti.",
+      "veryGood": "Molto bene! Alcune sfumature da consolidare.",
+      "keepGoing": "Continua a esplorare — riascoltta le progressioni e riprova."
+    }
   }
 }

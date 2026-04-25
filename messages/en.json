@@ -131,5 +131,56 @@
       "veryGood": "Very good! A few nuances to consolidate.",
       "keepGoing": "Keep exploring the sections and retry."
     }
+  },
+  "cours1": {
+    "badge": "Level 1 · Lesson 1",
+    "title": "Scale, Degrees and Intervals",
+    "subtitle": "How 7 notes build an entire musical language.",
+    "sections": {
+      "origines": "Origins",
+      "degres": "Degrees",
+      "tons": "Tones & semitones",
+      "intervalles": "Intervals",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect — you've mastered the scale fundamentals.",
+      "veryGood": "Very good! A few points to consolidate.",
+      "keepGoing": "Keep practising — review the sections and retry."
+    }
+  },
+  "cours2": {
+    "badge": "Level 1 · Lesson 2",
+    "title": "Chords",
+    "subtitle": "Build a triad, enrich with a seventh, master inversions.",
+    "sections": {
+      "triades": "Triads",
+      "gamme": "Major scale",
+      "tetrades": "Seventh chords",
+      "renversements": "Inversions",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect — you've mastered chords and their structures.",
+      "veryGood": "Very good! A few nuances to consolidate.",
+      "keepGoing": "Keep exploring — listen to the chords again and retry."
+    }
+  },
+  "cours3": {
+    "badge": "Level 1 · Lesson 3",
+    "title": "Tonal Functions and Voice Leading",
+    "subtitle": "The tritone as tension engine, T/SD/D functions, and the rules of 4-voice counterpoint.",
+    "sections": {
+      "triton": "The tritone",
+      "fonctions": "Tonal functions",
+      "progressions": "Progressions",
+      "voix": "Voice leading",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect — the tritone and tonal functions hold no more secrets.",
+      "veryGood": "Very good! A few nuances to consolidate.",
+      "keepGoing": "Keep exploring — listen to the progressions again and retry."
+    }
   }
 }
