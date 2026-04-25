@@ -364,7 +364,6 @@ export default function Cours4() {
           <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
             {i18n.sectionLabel(id)}
           </button>
-          </button>
         ))}
       </nav>
 
