@@ -27,8 +27,17 @@ const TYPE_ICON: Record<string, string> = {
 const TYPE_LABEL: Record<string, string> = {
   satb:      "Réalisation SATB",
   identify:  "Identification",
+  build:     "Construction",
   harmonize: "Harmonisation",
   analysis:  "Analyse",
+};
+
+const TYPE_COLOR: Record<string, string> = {
+  satb:      "#185FA5",
+  identify:  "#534AB7",
+  build:     "#0F6E56",
+  harmonize: "#BA7517",
+  analysis:  "#555",
 };
 
 export default function ExerciseCard({ exercise: ex, locale, showCours = false }: ExerciseCardProps) {
@@ -66,8 +75,8 @@ export default function ExerciseCard({ exercise: ex, locale, showCours = false }
               fontSize: 10,
               fontWeight: 600,
               letterSpacing: "0.06em",
-              color: "#185FA5",
-              background: "#E6F1FB",
+              color: TYPE_COLOR[ex.type] ?? "#185FA5",
+              background: "#f0f0f0",
               padding: "2px 8px",
               borderRadius: 8,
             }}>

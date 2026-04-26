@@ -9,9 +9,63 @@ import type { NoteEntry, Voice } from "@/components/HarmoniaEditor";
 
 export type ExerciseType =
   | "satb"           // Réaliser une progression en 4 voix
-  | "identify"       // Identifier les erreurs dans un voicing donné
+  | "identify"       // Identifier : intervalle, degré, accord, note étrangère
+  | "build"          // Construire : gamme, triade, tétrade dans une tonalité
   | "harmonize"      // Harmoniser une mélodie donnée
   | "analysis";      // Analyser une progression existante
+
+// ─── Option quiz ──────────────────────────────────────────────────────────────
+
+export interface QuizOption {
+  id: string;
+  label: string;
+  isCorrect: boolean;
+}
+
+// ─── Exercice d'identification ────────────────────────────────────────────────
+
+export interface IdentifyExercise {
+  id: string;
+  type: "identify";
+  cours: number;
+  title: string;
+  subtitle?: string;
+  difficulty: Difficulty;
+  tags: string[];
+  concepts: string[];
+
+  /** Ce qu'on demande d'identifier */
+  question: string;
+  /** Contexte visuel ou musical (optionnel) */
+  context?: string;
+  /** Options de réponse */
+  options: QuizOption[];
+  /** Explication après réponse */
+  explanation: string;
+  hint?: string;
+}
+
+// ─── Exercice de construction ─────────────────────────────────────────────────
+
+export interface BuildExercise {
+  id: string;
+  type: "build";
+  cours: number;
+  title: string;
+  subtitle?: string;
+  difficulty: Difficulty;
+  tags: string[];
+  concepts: string[];
+
+  /** Ce qu'on demande de construire */
+  question: string;
+  /** Notes correctes (dans l'ordre) */
+  correctNotes: string[];
+  /** Tonalité de référence */
+  keySignature?: string;
+  explanation: string;
+  hint?: string;
+}
 
 export type Difficulty = 1 | 2 | 3; // 1=débutant, 2=intermédiaire, 3=avancé
 
@@ -48,7 +102,7 @@ export interface SATBExercise {
 
 // ─── Union type pour exercices futurs ─────────────────────────────────────────
 
-export type Exercise = SATBExercise; // à étendre avec | IdentifyExercise | ...
+export type Exercise = SATBExercise | IdentifyExercise | BuildExercise;
 
 // ─── Catalogue ────────────────────────────────────────────────────────────────
 

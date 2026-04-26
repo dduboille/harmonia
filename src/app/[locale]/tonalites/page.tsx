@@ -27,7 +27,33 @@ const QUALITY_SYMBOL: Record<string, string> = {
   major7: "M7", minor7: "m7", halfDim: "ø", augmented: "+",
 };
 
-// ─── Composant carte tonalité ─────────────────────────────────────────────────
+// ─── Calcul automatique des tétrades ─────────────────────────────────────────
+
+// Suffixes tétrades selon le degré (identiques dans toutes les tonalités)
+const TETRADE_SUFFIX_MAJOR = ["Maj7","m7","m7","Maj7","7","m7","m7b5"];
+const TETRADE_SUFFIX_MINOR = ["m7","m7b5","Maj7","m7","7","Maj7","dim7"];
+
+const TETRADE_DISPLAY: Record<string, { symbol: string; color: string; bg: string }> = {
+  "Maj7":  { symbol:"Maj7",  color:"#0F6E56", bg:"#E1F5EE" },
+  "m7":    { symbol:"m7",    color:"#534AB7", bg:"#EEEDFE" },
+  "7":     { symbol:"7",     color:"#BA7517", bg:"#FAEEDA" },
+  "m7b5":  { symbol:"m7♭5",  color:"#E53E3E", bg:"#FFF5F5" },
+  "dim7":  { symbol:"dim7",  color:"#C05621", bg:"#FEEBCB" },
+};
+
+function getTetrades(t: Tonalite): { degree: string; root: string; suffix: string; fn: string }[] {
+  const suffixes = t.mode === "major" ? TETRADE_SUFFIX_MAJOR : TETRADE_SUFFIX_MINOR;
+  return t.chords.map((chord, i) => {
+    // Extraire la fondamentale (supprimer m, dim, 7 du nom de la triade)
+    const root = chord.name.replace(/m7b5|m7|Maj7|dim7|dim|aug|m(?=[^a-z]|$)|7/g, "").replace(/\s/g,"");
+    return {
+      degree: chord.degree,
+      root,
+      suffix: suffixes[i],
+      fn: chord.function,
+    };
+  });
+}
 
 function TonaliteCard({
   tonalite: t,
@@ -202,6 +228,93 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
               <span style={{ color: "#888" }}>{label}</span>
             </span>
           ))}
+        </div>
+      </div>
+
+      {/* Tétrades */}
+      <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "16px 20px" }}>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#aaa", marginBottom: 12 }}>
+          TETRADES (ACCORDS DE SEPTIEME)
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 6 }}>
+          {getTetrades(t).map((chord) => {
+            const disp = TETRADE_DISPLAY[chord.suffix] ?? { symbol: chord.suffix, color: "#555", bg: "#f5f5f5" };
+            return (
+              <div key={chord.degree} style={{
+                display: "flex", flexDirection: "column" as const, alignItems: "center", gap: 4,
+              }}>
+                <div style={{ fontSize: 10, color: "#aaa", fontWeight: 500 }}>{chord.degree}</div>
+                <div style={{
+                  width: "100%",
+                  padding: "4px 2px",
+                  borderRadius: 8,
+                  background: FN_BG[chord.fn],
+                  border: `0.5px solid ${FN_COLOR[chord.fn]}30`,
+                  textAlign: "center" as const,
+                  fontSize: 11,
+                  fontWeight: 700,
+                  color: FN_COLOR[chord.fn],
+                  fontFamily: "monospace",
+                  lineHeight: 1.3,
+                }}>
+                  {chord.root}
+                  <span style={{
+                    display: "block",
+                    fontSize: 9,
+                    fontWeight: 500,
+                    color: disp.color,
+                    background: disp.bg,
+                    borderRadius: 4,
+                    padding: "1px 3px",
+                    marginTop: 2,
+                  }}>
+                    {disp.symbol}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Tableau récap */}
+        <div style={{ marginTop: 14, overflowX: "auto" as const }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+            <thead>
+              <tr style={{ borderBottom: "0.5px solid #e8e3db" }}>
+                {["Degré","Accord","Structure","Fonction"].map(h => (
+                  <th key={h} style={{ textAlign: "left" as const, padding: "4px 8px", fontWeight: 500, color: "#aaa", fontSize: 10, letterSpacing: "0.04em" }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {getTetrades(t).map((chord, i) => {
+                const disp = TETRADE_DISPLAY[chord.suffix] ?? { symbol: chord.suffix, color: "#555", bg: "#f5f5f5" };
+                const structures: Record<string, string> = {
+                  "Maj7": "1 – 3M – 5J – 7M",
+                  "m7":   "1 – 3m – 5J – 7m",
+                  "7":    "1 – 3M – 5J – 7m",
+                  "m7b5": "1 – 3m – 5dim – 7m",
+                  "dim7": "1 – 3m – 5dim – 7dim",
+                };
+                return (
+                  <tr key={i} style={{ borderBottom: "0.5px solid #f4f1ec" }}>
+                    <td style={{ padding: "5px 8px", color: "#888", fontWeight: 500 }}>{chord.degree}</td>
+                    <td style={{ padding: "5px 8px", fontFamily: "monospace", fontWeight: 700, color: FN_COLOR[chord.fn] }}>
+                      {chord.root}{disp.symbol}
+                    </td>
+                    <td style={{ padding: "5px 8px", color: "#888", fontSize: 11 }}>
+                      {structures[chord.suffix] ?? "—"}
+                    </td>
+                    <td style={{ padding: "5px 8px" }}>
+                      <span style={{ fontSize: 10, fontWeight: 600, color: FN_COLOR[chord.fn], background: FN_BG[chord.fn], padding: "1px 6px", borderRadius: 4 }}>
+                        {chord.fn}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
 
