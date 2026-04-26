@@ -120,25 +120,34 @@ export default function ExerciseCard({ exercise: ex, locale, showCours = false }
           )}
         </div>
 
-        {/* Mesures preview */}
-        <div style={{ display: "flex", gap: 4, flexWrap: "wrap" as const }}>
-          {ex.measures.map((m, i) => (
-            <span key={i} style={{
-              fontSize: 11,
-              fontFamily: "monospace",
-              color: "#BA7517",
-              background: "#FAEEDA",
-              padding: "2px 8px",
-              borderRadius: 6,
-            }}>
-              {m}
-            </span>
-          ))}
-        </div>
+        {/* Mesures preview — SATB uniquement */}
+        {"measures" in ex && Array.isArray(ex.measures) && ex.measures.length > 0 && (
+          <div style={{ display: "flex", gap: 4, flexWrap: "wrap" as const }}>
+            {ex.measures.map((m: string, i: number) => (
+              <span key={i} style={{
+                fontSize: 11,
+                fontFamily: "monospace",
+                color: "#BA7517",
+                background: "#FAEEDA",
+                padding: "2px 8px",
+                borderRadius: 6,
+              }}>
+                {m}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Question preview — identify/build */}
+        {"question" in ex && (
+          <div style={{ fontSize: 12, color: "#666", lineHeight: 1.5 }}>
+            {(ex as any).question.slice(0, 80)}{(ex as any).question.length > 80 ? "…" : ""}
+          </div>
+        )}
 
         {/* Tags concepts */}
         <div style={{ display: "flex", gap: 4, flexWrap: "wrap" as const }}>
-          {ex.concepts.slice(0, 3).map(c => (
+          {(ex.concepts ?? []).slice(0, 3).map(c => (
             <span key={c} style={{
               fontSize: 10,
               color: "#666",
@@ -149,8 +158,8 @@ export default function ExerciseCard({ exercise: ex, locale, showCours = false }
               {c}
             </span>
           ))}
-          {ex.concepts.length > 3 && (
-            <span style={{ fontSize: 10, color: "#bbb" }}>+{ex.concepts.length - 3}</span>
+          {(ex.concepts ?? []).length > 3 && (
+            <span style={{ fontSize: 10, color: "#bbb" }}>+{(ex.concepts ?? []).length - 3}</span>
           )}
         </div>
 
