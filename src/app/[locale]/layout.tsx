@@ -1,33 +1,43 @@
-import type { Metadata } from 'next';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+/**
+ * src/app/[locale]/layout.tsx
+ * Harmonia — Layout racine avec ClerkProvider
+ *
+ * IMPORTANT : remplace ton layout existant
+ * Ajoute ClerkProvider autour de tout le contenu
+ */
 
-const locales = ['fr', 'en', 'es', 'de', 'pt', 'it'];
+import { ClerkProvider } from "@clerk/nextjs";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: 'Harmonia — Théorie musicale vivante',
-  description: 'Apprenez l\'harmonie musicale avec des exercices interactifs.',
-};
+const LOCALES = ["fr", "en", "es", "de", "pt", "it"] as const;
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: {
+interface Props {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
-}) {
+}
+
+export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
-  if (!locales.includes(locale)) notFound();
+
+  if (!LOCALES.includes(locale as any)) notFound();
+
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang={locale}>
+        <body>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
+}
+
+export function generateStaticParams() {
+  return LOCALES.map(locale => ({ locale }));
 }

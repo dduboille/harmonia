@@ -70,6 +70,8 @@ export default async function ExercicePage({ params }: Props) {
           {exercise.type === "satb" ? (
             <ExerciceContent
               type="satb"
+              exerciseId={exercise.id}
+              coursId={exercise.cours}
               title={exercise.title}
               subtitle={(exercise as any).subtitle}
               measures={(exercise as any).measures}
@@ -80,6 +82,8 @@ export default async function ExercicePage({ params }: Props) {
           ) : (
             <ExerciceContent
               type={exercise.type as "identify" | "build"}
+              exerciseId={exercise.id}
+              coursId={exercise.cours}
               exercises={sameTypeExercises}
             />
           )}
