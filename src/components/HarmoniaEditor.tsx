@@ -77,23 +77,29 @@ const DEFAULT_OCTAVES: Record<Voice, number> = {
   bass: 2, tenor: 3, alto: 4, soprano: 4,
 };
 
-// Clavier chromatique — 12 touches
-const CHROMATIC_KEYS: { name: NoteName; isBlack: boolean; color: string }[] = [
-  { name: "C",  isBlack: false, color: "#E53E3E" },
-  { name: "C#", isBlack: true,  color: "#2D3748" },
-  { name: "D",  isBlack: false, color: "#DD6B20" },
-  { name: "D#", isBlack: true,  color: "#2D3748" },
-  { name: "E",  isBlack: false, color: "#D69E2E" },
-  { name: "F",  isBlack: false, color: "#38A169" },
-  { name: "F#", isBlack: true,  color: "#2D3748" },
-  { name: "G",  isBlack: false, color: "#3182CE" },
-  { name: "G#", isBlack: true,  color: "#2D3748" },
-  { name: "A",  isBlack: false, color: "#805AD5" },
-  { name: "A#", isBlack: true,  color: "#2D3748" },
-  { name: "B",  isBlack: false, color: "#D53F8C" },
+// Clavier — 7 touches naturelles uniquement
+const NATURAL_KEYS: { name: NoteName; color: string }[] = [
+  { name: "C", color: "#E53E3E" },
+  { name: "D", color: "#DD6B20" },
+  { name: "E", color: "#D69E2E" },
+  { name: "F", color: "#38A169" },
+  { name: "G", color: "#3182CE" },
+  { name: "A", color: "#805AD5" },
+  { name: "B", color: "#D53F8C" },
 ];
 
-// Noms français pour PianoPlayer
+// Modificateurs d'altération
+type Accidental = "bb" | "b" | "n" | "#" | "##";
+const ACCIDENTALS: { symbol: string; value: Accidental; label: string }[] = [
+  { symbol: "𝄫", value: "bb", label: "Double bémol" },
+  { symbol: "♭", value: "b",  label: "Bémol" },
+  { symbol: "♮", value: "n",  label: "Naturel" },
+  { symbol: "♯", value: "#",  label: "Dièse" },
+  { symbol: "𝄪", value: "##", label: "Double dièse" },
+];
+
+// Ordre chromatique pour les demi-tons (flèches clavier) et comparaisons MIDI
+const CHROMATIC_ORDER = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
 const NOTE_TO_FR: Record<string, string> = {
   "C": "Do", "C#": "Do#", "Db": "Réb",
   "D": "Ré", "D#": "Ré#", "Eb": "Mib",
@@ -103,9 +109,6 @@ const NOTE_TO_FR: Record<string, string> = {
   "A": "La", "A#": "La#", "Bb": "Sib",
   "B": "Si",
 };
-
-// Ordre chromatique pour comparaisons
-const CHROMATIC_ORDER = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
 
 function noteToMidi(name: string, octave: number): number {
   const base = CHROMATIC_ORDER.indexOf(name.replace("b", "#").replace("Db","C#")
@@ -207,27 +210,41 @@ function validateSATB(measures: Measure[]): ValidationError[] {
 
 function measureToVexFlow(measures: Measure[], measureIdx: number): { treble: string; bass: string } {
   const m = measures[measureIdx];
-  if (!m) return { treble: "C4/w", bass: "C3/w" };
+  if (!m) return { treble: "B4/wr", bass: "C3/wr" };
 
-  // Treble = Soprano + Alto
   const s = m.soprano;
   const a = m.alto;
-  // Bass clef = Tenor + Bass
   const t = m.tenor;
   const b = m.bass;
 
   function noteStr(n: NoteEntry): string {
-    if (!n.name) return "C4";
+    if (!n.name) return "";
     return `${n.name}${n.octave}`;
   }
 
-  const treble = s.name && a.name
-    ? `(${noteStr(s)} ${noteStr(a)})/w`
-    : s.name ? `${noteStr(s)}/w` : a.name ? `${noteStr(a)}/w` : "B4/w";
+  // Portée Sol (Soprano + Alto)
+  let treble: string;
+  if (s.name && a.name) {
+    treble = `(${noteStr(s)} ${noteStr(a)})/w`;
+  } else if (s.name) {
+    treble = `${noteStr(s)}/w`;
+  } else if (a.name) {
+    treble = `${noteStr(a)}/w`;
+  } else {
+    treble = "B4/wr"; // ronde invisible (rest)
+  }
 
-  const bassClef = t.name && b.name
-    ? `(${noteStr(t)} ${noteStr(b)})/w`
-    : t.name ? `${noteStr(t)}/w` : b.name ? `${noteStr(b)}/w` : "C3/w";
+  // Portée Fa (Tenor + Bass)
+  let bassClef: string;
+  if (t.name && b.name) {
+    bassClef = `(${noteStr(t)} ${noteStr(b)})/w`;
+  } else if (t.name) {
+    bassClef = `${noteStr(t)}/w`;
+  } else if (b.name) {
+    bassClef = `${noteStr(b)}/w`;
+  } else {
+    bassClef = "C3/wr"; // ronde invisible (rest)
+  }
 
   return { treble, bass: bassClef };
 }
@@ -284,6 +301,7 @@ export default function HarmoniaEditor({
   );
   const [activeVoice,   setActiveVoice]   = useState<Voice>("bass");
   const [activeMeasure, setActiveMeasure] = useState(0);
+  const [accidental,    setAccidental]    = useState<Accidental>("n");
   const [errors,        setErrors]        = useState<ValidationError[]>([]);
   const [completed,     setCompleted]     = useState(false);
   const [showSolution,  setShowSolution]  = useState(false);
@@ -296,25 +314,65 @@ export default function HarmoniaEditor({
     setErrors(errs);
   }, [measures]);
 
-  // Placer une note
-  const placeNote = useCallback((noteName: NoteName) => {
+  // ── Fix 3 : flèches clavier → demi-ton ──
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+      e.preventDefault();
+      setMeasures(prev => {
+        const next = prev.map(m => ({ ...m }));
+        const cur = { ...next[activeMeasure] };
+        const v = cur[activeVoice];
+        if (!v.name) return prev;
+        // Trouver position dans l'ordre chromatique
+        const normalized = v.name.replace("bb","").replace("##","")
+          .replace("b","").replace("#","").replace("n","");
+        // Utiliser noteName() pour normaliser vers dièses
+        const normSharp = noteName(v.name as string);
+        const idx = CHROMATIC_ORDER.indexOf(normSharp);
+        if (idx === -1) return prev;
+        let newIdx = idx + (e.key === "ArrowUp" ? 1 : -1);
+        let newOctave = v.octave;
+        if (newIdx > 11) { newIdx = 0; newOctave = Math.min(7, newOctave + 1); }
+        if (newIdx < 0)  { newIdx = 11; newOctave = Math.max(1, newOctave - 1); }
+        const newName = CHROMATIC_ORDER[newIdx] as NoteName;
+        cur[activeVoice] = { name: newName, octave: newOctave };
+        next[activeMeasure] = cur;
+        // Audio
+        const fr = NOTE_TO_FR[newName] || newName;
+        setTimeout(() => pianoRef.current?.playNote(fr, newOctave, { duration: 0.8 }), 0);
+        return next;
+      });
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [activeMeasure, activeVoice]);
+
+  // Placer une note (avec altération active)
+  const placeNote = useCallback((natural: NoteName) => {
+    // Construire le nom complet avec altération
+    let fullName: NoteName = natural;
+    if (accidental === "b")  fullName = `${natural}b` as NoteName;
+    if (accidental === "bb") fullName = `${natural}bb` as NoteName;
+    if (accidental === "#")  fullName = `${natural}#` as NoteName;
+    if (accidental === "##") fullName = `${natural}##` as NoteName;
+    // "n" = naturel, pas de modification
+
     setMeasures(prev => {
       const next = prev.map(m => ({ ...m }));
       const cur = { ...next[activeMeasure] };
       const existing = cur[activeVoice];
-      cur[activeVoice] = { name: noteName, octave: existing.octave };
+      cur[activeVoice] = { name: fullName, octave: existing.octave };
       next[activeMeasure] = cur;
       return next;
     });
 
-    // Audio
-    const fr = NOTE_TO_FR[noteName] || noteName;
+    // Audio — utiliser le nom normalisé (sans double altération pour PianoPlayer)
+    const audioName = fullName.replace("bb","b").replace("##","#");
+    const fr = NOTE_TO_FR[audioName] || NOTE_TO_FR[natural] || natural;
     const oct = measures[activeMeasure]?.[activeVoice]?.octave ?? DEFAULT_OCTAVES[activeVoice];
     pianoRef.current?.playNote(fr, oct, { duration: 1.2 });
-
-    // Auto-avancer à la mesure suivante si toutes les voix de la mesure courante sont remplies
-    // (optionnel — on peut aussi laisser l'utilisateur naviguer manuellement)
-  }, [activeMeasure, activeVoice, measures]);
+  }, [activeMeasure, activeVoice, accidental, measures]);
 
   // Effacer la note courante
   const clearNote = useCallback(() => {
@@ -535,37 +593,83 @@ export default function HarmoniaEditor({
           </strong>
         </div>
 
-        {/* Clavier chromatique */}
-        <div style={{ marginBottom:12 }}>
-          <div style={{ fontSize:11, color:"#bbb", letterSpacing:"0.06em", marginBottom:8 }}>NOTES</div>
-          <div style={{ display:"flex", gap:5, flexWrap:"wrap" as const }}>
-            {CHROMATIC_KEYS.map(key => {
-              const isSelected = currentNote?.name === key.name;
+        {/* Clavier — 7 touches naturelles + modificateurs */}
+        <div style={{ marginBottom:16 }}>
+          <div style={{ fontSize:11, color:"#bbb", letterSpacing:"0.06em", marginBottom:10 }}>NOTES</div>
+
+          {/* Modificateurs d'altération */}
+          <div style={{ display:"flex", gap:6, marginBottom:10, alignItems:"center" }}>
+            <span style={{ fontSize:11, color:"#aaa", marginRight:4 }}>Altération :</span>
+            {ACCIDENTALS.map(acc => (
+              <button key={acc.value} onClick={() => setAccidental(acc.value)}
+                title={acc.label}
+                style={{
+                  width: 38, height: 38,
+                  borderRadius: 8,
+                  border: `1.5px solid ${accidental === acc.value ? "#185FA5" : "#e0dbd3"}`,
+                  background: accidental === acc.value ? "#185FA5" : "#fff",
+                  color: accidental === acc.value ? "#fff" : "#555",
+                  fontSize: 16,
+                  cursor: "pointer",
+                  transition: "all .12s",
+                  fontFamily: "serif",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                {acc.symbol}
+              </button>
+            ))}
+            <span style={{ fontSize:11, color:"#bbb", marginLeft:4 }}>
+              {ACCIDENTALS.find(a => a.value === accidental)?.label}
+            </span>
+          </div>
+
+          {/* 7 touches naturelles */}
+          <div style={{ display:"flex", gap:6 }}>
+            {NATURAL_KEYS.map(key => {
+              const isSelected = currentNote?.name?.startsWith(key.name) && !currentNote.name.includes(key.name + "#") ? false
+                : currentNote?.name === key.name
+                || currentNote?.name === `${key.name}b`
+                || currentNote?.name === `${key.name}bb`
+                || currentNote?.name === `${key.name}#`
+                || currentNote?.name === `${key.name}##`;
               return (
                 <button key={key.name} onClick={() => placeNote(key.name)}
                   style={{
-                    width: key.isBlack ? 44 : 52,
-                    height: key.isBlack ? 44 : 52,
+                    flex: 1,
+                    height: 56,
                     borderRadius: 10,
                     border: `2px solid ${isSelected ? "#fff" : "transparent"}`,
-                    background: isSelected
-                      ? key.color
-                      : key.isBlack ? "#2D3748" : key.color,
+                    background: isSelected ? key.color : key.color,
                     color: "#fff",
-                    fontSize: key.isBlack ? 11 : 12,
-                    fontWeight: 600,
+                    fontSize: 15,
+                    fontWeight: 700,
                     cursor: "pointer",
-                    opacity: key.isBlack ? 0.75 : 1,
-                    transform: isSelected ? "scale(1.05)" : "scale(1)",
+                    opacity: isSelected ? 1 : 0.85,
+                    transform: isSelected ? "scale(1.04)" : "scale(1)",
                     transition: "all .12s",
-                    boxShadow: isSelected ? `0 0 0 3px ${key.color}40` : "none",
+                    boxShadow: isSelected ? `0 0 0 3px ${key.color}50` : "0 2px 4px rgba(0,0,0,0.1)",
                     fontFamily: "monospace",
+                    position: "relative" as const,
                   }}>
                   {key.name}
+                  {accidental !== "n" && isSelected && (
+                    <span style={{ position:"absolute", top:4, right:6, fontSize:10, opacity:0.8 }}>
+                      {ACCIDENTALS.find(a => a.value === accidental)?.symbol}
+                    </span>
+                  )}
                 </button>
               );
             })}
           </div>
+
+          {/* Info note complète */}
+          {currentNote?.name && accidental !== "n" && (
+            <div style={{ fontSize:11, color:"#888", marginTop:8 }}>
+              Prochain placement : <strong style={{ color:"#185FA5", fontFamily:"monospace" }}>
+                {"{note}"}{ACCIDENTALS.find(a=>a.value===accidental)?.symbol} → ex. C{ACCIDENTALS.find(a=>a.value===accidental)?.symbol}
+              </strong>
+            </div>
+          )}
         </div>
 
         {/* Octave */}
