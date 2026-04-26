@@ -34,7 +34,9 @@ const VexFlowScoreClient = dynamic(
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export type NoteName = "C" | "D" | "E" | "F" | "G" | "A" | "B"
-  | "C#" | "Db" | "D#" | "Eb" | "F#" | "Gb" | "G#" | "Ab" | "A#" | "Bb";
+  | "C#" | "Db" | "D#" | "Eb" | "F#" | "Gb" | "G#" | "Ab" | "A#" | "Bb"
+  | "Cbb" | "Dbb" | "Ebb" | "Fbb" | "Gbb" | "Abb" | "Bbb"
+  | "C##" | "D##" | "E##" | "F##" | "G##" | "A##" | "B##";
 
 export type Voice = "bass" | "tenor" | "alto" | "soprano";
 
@@ -219,6 +221,7 @@ function measureToVexFlow(measures: Measure[], measureIdx: number): { treble: st
 
   function noteStr(n: NoteEntry): string {
     if (!n.name) return "";
+    // VexFlow attend ex: Cb4, C##4, Bb3
     return `${n.name}${n.octave}`;
   }
 
@@ -231,7 +234,7 @@ function measureToVexFlow(measures: Measure[], measureIdx: number): { treble: st
   } else if (a.name) {
     treble = `${noteStr(a)}/w`;
   } else {
-    treble = "B4/wr"; // ronde invisible (rest)
+    treble = "B4/wr";
   }
 
   // Portée Fa (Tenor + Bass)
@@ -243,7 +246,7 @@ function measureToVexFlow(measures: Measure[], measureIdx: number): { treble: st
   } else if (b.name) {
     bassClef = `${noteStr(b)}/w`;
   } else {
-    bassClef = "C3/wr"; // ronde invisible (rest)
+    bassClef = "C3/wr";
   }
 
   return { treble, bass: bassClef };
@@ -626,12 +629,13 @@ export default function HarmoniaEditor({
           {/* 7 touches naturelles */}
           <div style={{ display:"flex", gap:6 }}>
             {NATURAL_KEYS.map(key => {
-              const isSelected = currentNote?.name?.startsWith(key.name) && !currentNote.name.includes(key.name + "#") ? false
-                : currentNote?.name === key.name
-                || currentNote?.name === `${key.name}b`
-                || currentNote?.name === `${key.name}bb`
-                || currentNote?.name === `${key.name}#`
-                || currentNote?.name === `${key.name}##`;
+              // La touche est "active" si la note courante commence par cette lettre naturelle
+              const curName = currentNote?.name ?? "";
+              const isSelected = curName === key.name
+                || curName === `${key.name}b`
+                || curName === `${key.name}bb`
+                || curName === `${key.name}#`
+                || curName === `${key.name}##`;
               return (
                 <button key={key.name} onClick={() => placeNote(key.name)}
                   style={{
