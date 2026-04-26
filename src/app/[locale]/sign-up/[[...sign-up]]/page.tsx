@@ -25,7 +25,7 @@ export default function SignUpPage() {
         }}>
           Harmonia<span style={{ color: "#BA7517" }}>.</span>
         </div>
-        <SignUp />
+        <SignUp forceRedirectUrl="/fr/dashboard" />
       </div>
     </main>
   );

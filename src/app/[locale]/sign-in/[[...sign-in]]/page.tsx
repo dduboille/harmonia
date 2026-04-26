@@ -1,8 +1,3 @@
-/**
- * src/app/[locale]/sign-in/[[...sign-in]]/page.tsx
- * Harmonia — Page de connexion Clerk
- */
-
 import { SignIn } from "@clerk/nextjs";
 
 export default function SignInPage() {
@@ -25,7 +20,7 @@ export default function SignInPage() {
         }}>
           Harmonia<span style={{ color: "#BA7517" }}>.</span>
         </div>
-        <SignIn />
+        <SignIn forceRedirectUrl="/fr/dashboard" />
       </div>
     </main>
   );
