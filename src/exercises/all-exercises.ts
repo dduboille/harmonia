@@ -381,14 +381,15 @@ const COURS9_EXERCISES: SATBExercise[] = [
 
 import { generateAllExercises } from "@/exercises/generator";
 import { COURS1_EXERCISES, COURS2_EXERCISES } from "@/exercises/cours1-2-exercises";
+import { COURS3_9_IDENTIFY } from "@/exercises/cours3-9-identify";
 export type { IdentifyExercise, BuildExercise } from "@/types/exercise";
 
-// Exercices générés automatiquement
 const GENERATED_EXERCISES = generateAllExercises();
 
 export const ALL_EXERCISES = [
   ...COURS1_EXERCISES,
   ...COURS2_EXERCISES,
+  ...COURS3_9_IDENTIFY,
   ...COURS3_EXERCISES,
   ...COURS4_EXERCISES,
   ...COURS5_EXERCISES,
