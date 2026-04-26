@@ -18,8 +18,9 @@ export function generateStaticParams() {
   return [1,2,3,4,5,6,7,8,9].map(id => ({ id: String(id) }));
 }
 
-export default function CoursPage({ params }: { params: { id: string } }) {
-  const C = COURS[parseInt(params.id)];
+export default async function CoursPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const C = COURS[parseInt(id)];
   if (!C) return notFound();
   return <main style={{ minHeight:"100vh", padding:"2rem 1rem" }}><C /></main>;
 }

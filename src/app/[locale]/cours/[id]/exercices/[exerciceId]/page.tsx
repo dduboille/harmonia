@@ -13,12 +13,12 @@ import { ALL_EXERCISES } from "@/exercises/all-exercises";
 import { DIFFICULTY_LABEL, DIFFICULTY_COLOR, DIFFICULTY_BG } from "@/types/exercise";
 import type { Measure } from "@/components/HarmoniaEditor";
 
-interface Props {
-  params: { locale: string; id: string; exerciceId: string };
-}
-
-export default function ExercicePage({ params }: Props) {
-  const { locale, id, exerciceId } = params;
+export default async function ExercicePage({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string; exerciceId: string }>;
+}) {
+  const { locale, id, exerciceId } = await params;
   const exercise = ALL_EXERCISES.find(e => e.id === exerciceId && e.cours === parseInt(id));
 
   const [completed, setCompleted] = useState(false);
