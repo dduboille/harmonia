@@ -379,6 +379,11 @@ const COURS9_EXERCISES: SATBExercise[] = [
 // EXPORT GLOBAL
 // ════════════════════════════════════════════════════════════════════════════
 
+import { generateAllExercises } from "@/exercises/generator";
+
+// Exercices générés automatiquement (toutes tonalités × toutes positions)
+const GENERATED_EXERCISES = generateAllExercises();
+
 export const ALL_EXERCISES: SATBExercise[] = [
   ...COURS3_EXERCISES,
   ...COURS4_EXERCISES,
@@ -387,6 +392,7 @@ export const ALL_EXERCISES: SATBExercise[] = [
   ...COURS7_EXERCISES,
   ...COURS8_EXERCISES,
   ...COURS9_EXERCISES,
+  ...GENERATED_EXERCISES,
 ];
 
 export {
@@ -397,4 +403,5 @@ export {
   COURS7_EXERCISES,
   COURS8_EXERCISES,
   COURS9_EXERCISES,
+  GENERATED_EXERCISES,
 };
