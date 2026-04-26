@@ -1,16 +1,12 @@
-"use client";
-
 /**
  * src/app/[locale]/cours/[id]/exercices/[exerciceId]/page.tsx
- * Harmonia — Page d'un exercice individuel
- * Gere les types : satb, identify, build
+ * Harmonia — Page d'un exercice individuel (Server Component)
  */
 
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import HarmoniaEditor from "@/components/HarmoniaEditor";
-import IdentificationQuiz from "@/components/IdentificationQuiz";
+import ExerciceContent from "@/components/ExerciceContent";
 import { ALL_EXERCISES } from "@/exercises/all-exercises";
 import { DIFFICULTY_LABEL, DIFFICULTY_COLOR, DIFFICULTY_BG } from "@/types/exercise";
 import type { IdentifyExercise, BuildExercise } from "@/types/exercise";
@@ -56,7 +52,7 @@ export default async function ExercicePage({ params }: Props) {
           <span style={{ fontSize: 10, fontWeight: 600, color: DIFFICULTY_COLOR[exercise.difficulty], background: DIFFICULTY_BG[exercise.difficulty], padding: "3px 10px", borderRadius: 10 }}>
             {DIFFICULTY_LABEL[exercise.difficulty]}
           </span>
-          {exercise.tags.slice(0, 3).map(t => (
+          {(exercise.tags ?? []).slice(0, 3).map(t => (
             <span key={t} style={{ fontSize: 10, color: "#666", background: "#f0ece6", padding: "3px 10px", borderRadius: 10 }}>{t}</span>
           ))}
           <span style={{ fontSize: 11, color: "#bbb", marginLeft: "auto" }}>{currentIdx + 1} / {allForCours.length}</span>
@@ -72,17 +68,19 @@ export default async function ExercicePage({ params }: Props) {
         {/* Composant selon le type */}
         <div style={{ marginBottom: "1.5rem" }}>
           {exercise.type === "satb" ? (
-            <HarmoniaEditor
+            <ExerciceContent
+              type="satb"
               title={exercise.title}
-              subtitle={exercise.subtitle}
-              measures={exercise.measures}
-              keySignature={exercise.keySignature}
-              solution={exercise.solution}
+              subtitle={(exercise as any).subtitle}
+              measures={(exercise as any).measures}
+              keySignature={(exercise as any).keySignature}
+              solution={(exercise as any).solution}
+              hint={(exercise as any).hint}
             />
           ) : (
-            <IdentificationQuiz
+            <ExerciceContent
+              type={exercise.type as "identify" | "build"}
               exercises={sameTypeExercises}
-              count={10}
             />
           )}
         </div>
