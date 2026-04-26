@@ -89,7 +89,7 @@ export default async function ExercicePage({ params }: Props) {
         <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 12, padding: "16px 20px", marginBottom: "1.5rem" }}>
           <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#aaa", marginBottom: 10 }}>CONCEPTS</div>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const }}>
-            {exercise.concepts.map(c => (
+            {(exercise.concepts ?? []).map(c => (
               <span key={c} style={{ fontSize: 12, color: "#185FA5", background: "#E6F1FB", padding: "4px 12px", borderRadius: 8 }}>{c}</span>
             ))}
           </div>
@@ -99,13 +99,13 @@ export default async function ExercicePage({ params }: Props) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
           {prevEx ? (
             <Link href={`/${locale}/cours/${id}/exercices/${prevEx.id}`} style={{ padding: "9px 18px", borderRadius: 10, border: "0.5px solid #e0dbd3", background: "#fff", color: "#555", fontSize: 13, textDecoration: "none" }}>
-              ← {prevEx.title.slice(0, 28)}
+              ← {(prevEx.title ?? "").slice(0, 28)}
             </Link>
           ) : <div />}
           <Link href={`/${locale}/cours/${id}/exercices`} style={{ fontSize: 12, color: "#aaa", textDecoration: "none" }}>Tous les exercices</Link>
           {nextEx ? (
             <Link href={`/${locale}/cours/${id}/exercices/${nextEx.id}`} style={{ padding: "9px 18px", borderRadius: 10, border: "0.5px solid #185FA5", background: "#185FA5", color: "#fff", fontSize: 13, textDecoration: "none" }}>
-              {nextEx.title.slice(0, 28)} →
+              {(nextEx.title ?? "").slice(0, 28)} →
             </Link>
           ) : (
             <Link href={`/${locale}/cours/${id}/exercices`} style={{ padding: "9px 18px", borderRadius: 10, border: "0.5px solid #0F6E56", background: "#E1F5EE", color: "#0F6E56", fontSize: 13, textDecoration: "none" }}>
