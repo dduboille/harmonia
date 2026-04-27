@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
         // Récupérer l'abonnement
         const subscription = await stripe.subscriptions.retrieve(
           session.subscription as string
-        );
+        ) as any;
 
         const priceId   = subscription.items.data[0].price.id;
         const isAnnual  = priceId === process.env.STRIPE_PRICE_PRO_ANNUAL;
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
       }
 
       case "customer.subscription.updated": {
-        const subscription = event.data.object as Stripe.Subscription;
+        const subscription = event.data.object as any;
         const userId = subscription.metadata?.clerk_user_id;
         if (!userId) break;
 
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
       }
 
       case "customer.subscription.deleted": {
-        const subscription = event.data.object as Stripe.Subscription;
+        const subscription = event.data.object as any;
         const userId = subscription.metadata?.clerk_user_id;
         if (!userId) break;
 
