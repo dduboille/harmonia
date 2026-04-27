@@ -55,6 +55,7 @@ const STEPS = [
 const PLANS = [
   {
     name: "Gratuit",
+    href: "cours",
     price: "0€",
     period: "",
     desc: "Pour découvrir l'harmonie tonale",
@@ -78,6 +79,7 @@ const PLANS = [
   },
   {
     name: "Pro",
+    href: "upgrade",
     price: "9€",
     period: "/mois",
     desc: "Pour maîtriser l'harmonie complète",
@@ -101,6 +103,7 @@ const PLANS = [
   },
   {
     name: "Annuel",
+    href: "upgrade",
     price: "79€",
     period: "/an",
     desc: "Économisez 29% vs mensuel",
@@ -582,7 +585,7 @@ export default function LandingPage() {
                   </p>
                 </div>
 
-                <Link href={`/${locale}/cours`} style={{
+                <Link href={`/${locale}/${plan.href}`} style={{
                   display: "block",
                   width: "100%",
                   padding: "12px",
