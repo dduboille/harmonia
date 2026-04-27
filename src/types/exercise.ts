@@ -28,7 +28,7 @@ export interface IdentifyExercise {
   id: string;
   type: "identify";
   cours: number;
-  title: string;
+  title?: string;
   subtitle?: string;
   difficulty: Difficulty;
   tags: string[];
@@ -51,7 +51,7 @@ export interface BuildExercise {
   id: string;
   type: "build";
   cours: number;
-  title: string;
+  title?: string;
   subtitle?: string;
   difficulty: Difficulty;
   tags: string[];

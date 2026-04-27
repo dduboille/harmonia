@@ -8,6 +8,7 @@
 import React from "react";
 import Link from "next/link";
 import type { Exercise } from "@/types/exercise";
+import { DIFFICULTY_LABEL, DIFFICULTY_COLOR, DIFFICULTY_BG } from "@/types/exercise";
 
 interface ExerciseCardProps {
   exercise: Exercise;  // au lieu de SATBExercise

@@ -578,7 +578,7 @@ export default function Cours1() {
 
           <div style={{ display: "flex", alignItems: "center", overflowX: "auto", gap: 0, margin: "12px 0", paddingBottom: 4 }}>
             {[...g.notes, g.root].map((note, i) => {
-              const isAccidental = g.accidentals.includes(note);
+              const isAccidental = (g.accidentals as string[]).includes(note);
               const displayNote = i === g.notes.length ? `${g.root} (VIII)` : note;
               return (
                 <React.Fragment key={i}>
@@ -617,7 +617,7 @@ export default function Cours1() {
           <div style={{ margin: "16px 0 8px" }}>
             <PianoPlayer
               dotKeys={g.dotKeys}
-              blackKeyLabels={g.blackLabels}
+              blackKeyLabels={g.blackLabels as any}
               octaves={2}
               startOctave={3}
               showLabels

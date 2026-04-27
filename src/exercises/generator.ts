@@ -288,7 +288,6 @@ function degreeToSemitones(degree: string, mode: "major" | "minor"): number {
   const semitones: Record<string,number> = {
     "I":0,"II":2,"III":4,"IV":5,"V":7,"VI":9,"VII":11,
     "i":0,"ii":2,"iii":3,"iv":5,"v":7,"vi":8,"vii":10,
-    "III":3,"VI":8,"VII":10,
   };
   return semitones[key] ?? 0;
 }
@@ -519,7 +518,7 @@ export function generateExercisesForTemplate(
         tags: [...template.tags, key.label, posLabel],
         keySignature: key.keySignature,
         measures: measureLabels,
-        solution,
+        solution: solution as any,
         hint: template.hint,
         explanation: template.explanation,
         concepts: template.concepts,

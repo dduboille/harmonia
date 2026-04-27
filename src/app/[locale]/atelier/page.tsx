@@ -48,7 +48,7 @@ export default function AtelierPage() {
       if (filterType       && ex.type       !== filterType)       return false;
       if (search) {
         const q = search.toLowerCase();
-        return ex.title.toLowerCase().includes(q)
+        return (ex.title ?? "").toLowerCase().includes(q)
           || ex.tags.some(t => t.toLowerCase().includes(q))
           || ex.concepts.some(c => c.toLowerCase().includes(q));
       }

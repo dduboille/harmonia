@@ -16,6 +16,9 @@
 import { useTranslations } from "next-intl";
 
 export type CoursKey =
+  | "cours1"
+  | "cours2"
+  | "cours3"
   | "cours4"
   | "cours5"
   | "cours6"
