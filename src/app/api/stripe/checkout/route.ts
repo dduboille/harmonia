@@ -9,6 +9,14 @@ import { stripe, PLANS } from "@/lib/stripe";
 import { supabaseAdmin } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
+  console.log("ENV CHECK:", {
+    hasSecret: !!process.env.STRIPE_SECRET_KEY,
+    secretPrefix: process.env.STRIPE_SECRET_KEY?.slice(0, 10),
+    monthlyPrice: process.env.STRIPE_PRICE_PRO_MONTHLY,
+    annualPrice: process.env.STRIPE_PRICE_PRO_ANNUAL,
+    appUrl: process.env.NEXT_PUBLIC_APP_URL,
+  });
+
   try {
     const { userId } = await auth();
     if (!userId) {
@@ -26,7 +34,6 @@ export async function POST(req: NextRequest) {
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
     const loc = locale ?? "fr";
 
-    // Chercher ou créer le customer Stripe
     let customerId: string | undefined;
     const { data: sub } = await supabaseAdmin
       .from("user_subscriptions")
@@ -44,7 +51,6 @@ export async function POST(req: NextRequest) {
       customerId = customer.id;
     }
 
-    // Créer la session Checkout
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       mode: "subscription",
