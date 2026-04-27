@@ -1,24 +1,28 @@
-/**
- * lib/supabase.ts
- * Harmonia — Client Supabase
- * Utilise service_role côté serveur pour bypass RLS
- */
-
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl      = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey  = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+const supabaseUrl     = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-// Client public (browser) — limité par RLS
 export const supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
 
-// Client serveur avec service_role — accès complet (Server Components / API routes uniquement)
-export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
-  auth: { autoRefreshToken: false, persistSession: false },
-});
+let _admin: ReturnType<typeof createClient> | null = null;
 
-// Types
+export function getSupabaseAdmin() {
+  if (!_admin) {
+    _admin = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      { auth: { autoRefreshToken: false, persistSession: false } }
+    );
+  }
+  return _admin;
+}
+
+// Garde la compatibilité avec le code existant
+export const supabaseAdmin = {
+  from: (table: string) => getSupabaseAdmin().from(table),
+};
+
 export interface UserProgress {
   id?: string;
   user_id: string;
