@@ -104,6 +104,3 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Webhook error" }, { status: 500 });
   }
 }
-
-// Désactiver le body parsing pour les webhooks Stripe
-export const config = { api: { bodyParser: false } };
