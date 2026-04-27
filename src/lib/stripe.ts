@@ -1,13 +1,17 @@
-/**
- * lib/stripe.ts
- * Harmonia — Client Stripe
- */
-
 import Stripe from "stripe";
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-04-22.dahlia",
-});
+let _stripe: Stripe | null = null;
+
+export function getStripe(): Stripe {
+  if (!_stripe) {
+    const key = process.env.STRIPE_SECRET_KEY;
+    console.log("Initializing Stripe, key prefix:", key?.slice(0, 10));
+    _stripe = new Stripe(key!, {
+      apiVersion: "2026-04-22.dahlia",
+    });
+  }
+  return _stripe;
+}
 
 export const PLANS = {
   pro_monthly: {

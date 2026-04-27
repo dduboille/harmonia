@@ -5,7 +5,7 @@
 
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
-import { stripe, PLANS } from "@/lib/stripe";
+import { getStripe, PLANS } from "@/lib/stripe";
 import { supabaseAdmin } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
@@ -16,6 +16,8 @@ export async function POST(req: NextRequest) {
     annualPrice: process.env.STRIPE_PRICE_PRO_ANNUAL,
     appUrl: process.env.NEXT_PUBLIC_APP_URL,
   });
+
+  const stripe = getStripe();
 
   try {
     const { userId } = await auth();
