@@ -384,7 +384,11 @@ import { COURS1_EXERCISES, COURS2_EXERCISES } from "@/exercises/cours1-2-exercis
 import { COURS3_9_IDENTIFY } from "@/exercises/cours3-9-identify";
 export type { IdentifyExercise, BuildExercise } from "@/types/exercise";
 
-const GENERATED_EXERCISES = generateAllExercises();
+let _generated: SATBExercise[] | null = null;
+function getGenerated() {
+  if (!_generated) _generated = generateAllExercises();
+  return _generated;
+}
 
 export const ALL_EXERCISES = [
   ...COURS1_EXERCISES,
@@ -397,7 +401,7 @@ export const ALL_EXERCISES = [
   ...COURS7_EXERCISES,
   ...COURS8_EXERCISES,
   ...COURS9_EXERCISES,
-  ...GENERATED_EXERCISES,
+  ...getGenerated(),
 ];
 
 export {
