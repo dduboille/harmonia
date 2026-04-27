@@ -1,13 +1,20 @@
-import { createClient } from "@supabase/supabase-js";
+/**
+ * lib/supabase.ts
+ * Harmonia — Client Supabase avec initialisation lazy
+ */
 
-const supabaseUrl     = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-export const supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+// Client public (browser)
+export const supabaseClient = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
-let _admin: ReturnType<typeof createClient> | null = null;
+// Client serveur lazy
+let _admin: SupabaseClient | null = null;
 
-export function getSupabaseAdmin() {
+export function getSupabaseAdmin(): SupabaseClient {
   if (!_admin) {
     _admin = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -18,10 +25,11 @@ export function getSupabaseAdmin() {
   return _admin;
 }
 
-// Garde la compatibilité avec le code existant
-export const supabaseAdmin = {
-  from: (table: string) => getSupabaseAdmin().from(table),
-};
+export const supabaseAdmin = new Proxy({} as SupabaseClient, {
+  get(_target, prop) {
+    return (getSupabaseAdmin() as any)[prop];
+  },
+});
 
 export interface UserProgress {
   id?: string;
