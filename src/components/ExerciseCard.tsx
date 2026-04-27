@@ -7,13 +7,11 @@
 
 import React from "react";
 import Link from "next/link";
-import type { SATBExercise } from "@/types/exercise";
-import { DIFFICULTY_LABEL, DIFFICULTY_COLOR, DIFFICULTY_BG } from "@/types/exercise";
+import type { Exercise } from "@/types/exercise";
 
 interface ExerciseCardProps {
-  exercise: SATBExercise;
+  exercise: Exercise;  // au lieu de SATBExercise
   locale: string;
-  /** Si true, affiche aussi le cours d'appartenance */
   showCours?: boolean;
 }
 
