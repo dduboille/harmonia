@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+import { PLANS } from "@/lib/stripe";
 
 export async function POST(req: NextRequest) {
-  console.log("MINIMAL TEST - route reached");
-  return NextResponse.json({ test: true, env: !!process.env.STRIPE_SECRET_KEY });
+  console.log("TEST - stripe import OK, plans:", Object.keys(PLANS));
+  return NextResponse.json({ test: true });
 }
