@@ -7,6 +7,7 @@
  */
 
 import React, { useState } from "react";
+import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
@@ -223,6 +224,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 export default function LandingPage() {
   const params = useParams();
   const locale = (params?.locale as string) ?? "fr";
+  const { isSignedIn } = useUser();
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
@@ -263,16 +265,29 @@ export default function LandingPage() {
           <Link href={`/${locale}/cours`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Cours</Link>
           <Link href={`/${locale}/atelier`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Atelier</Link>
           <Link href={`/${locale}/tonalites`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Tonalités</Link>
-          <Link href={`/${locale}/cours`} style={{
-            fontSize: 13, fontWeight: 500,
-            padding: "7px 18px",
-            borderRadius: 20,
-            background: "#1a1a1a",
-            color: "#fff",
-            textDecoration: "none",
-          }}>
-            Commencer →
-          </Link>
+          {isSignedIn ? (
+            <Link href={`/${locale}/dashboard`} style={{
+              fontSize: 13, fontWeight: 500,
+              padding: "7px 18px",
+              borderRadius: 20,
+              background: "#1a1a1a",
+              color: "#fff",
+              textDecoration: "none",
+            }}>
+              Mon espace →
+            </Link>
+          ) : (
+            <Link href={`/${locale}/sign-in`} style={{
+              fontSize: 13, fontWeight: 500,
+              padding: "7px 18px",
+              borderRadius: 20,
+              background: "#1a1a1a",
+              color: "#fff",
+              textDecoration: "none",
+            }}>
+              Se connecter →
+            </Link>
+          )}
         </div>
       </nav>
 
