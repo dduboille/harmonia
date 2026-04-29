@@ -16,7 +16,7 @@ interface Section { id: string; label: string; }
 
 // ─── Audio ────────────────────────────────────────────────────────────────────
 
-const CHORDS = SATB;{
+const CHORDS = SATB;
 
 function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], duration = 1.8) {
   keys.forEach((key, i) => {
