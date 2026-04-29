@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
         const subscription = event.data.object as any;
         const userId = subscription.metadata?.clerk_user_id;
         console.log("Webhook userId:", userId);
-        console.log("Webhook subscription:", session.subscription);
+        console.log("Webhook subscription id:", subscription.id);
         if (!userId) break;
 
         const priceId   = subscription.items.data[0].price.id;
