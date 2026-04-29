@@ -87,6 +87,8 @@ export async function POST(req: NextRequest) {
       case "customer.subscription.deleted": {
         const subscription = event.data.object as any;
         const userId = subscription.metadata?.clerk_user_id;
+          console.log("Webhook userId:", userId);
+          console.log("Webhook subscription:", session.subscription);
         if (!userId) break;
 
         await supabaseAdmin
