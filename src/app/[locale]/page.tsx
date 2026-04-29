@@ -221,9 +221,95 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 // ─── Page principale ──────────────────────────────────────────────────────────
 
+
+const LOCALES = [
+  { code: 'fr', label: 'FR', flag: '🇫🇷' },
+  { code: 'en', label: 'EN', flag: '🇬🇧' },
+  { code: 'es', label: 'ES', flag: '🇪🇸' },
+  { code: 'de', label: 'DE', flag: '🇩🇪' },
+  { code: 'pt', label: 'PT', flag: '🇧🇷' },
+  { code: 'it', label: 'IT', flag: '🇮🇹' },
+];
+
+function LanguageSwitcher({ currentLocale, pathname }: { currentLocale: string; pathname: string }) {
+  const [open, setOpen] = React.useState(false);
+  const current = LOCALES.find(l => l.code === currentLocale) ?? LOCALES[0];
+  
+  // Remplace la locale dans le pathname
+  const switchTo = (code: string) => {
+    const parts = pathname.split('/');
+    parts[1] = code;
+    return parts.join('/');
+  };
+
+  return (
+    <div style={{ position: "relative" as const }}>
+      <button
+        onClick={() => setOpen(!open)}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+          background: "none",
+          border: "0.5px solid #e0dbd3",
+          borderRadius: 20,
+          padding: "5px 12px",
+          cursor: "pointer",
+          fontSize: 12,
+          fontWeight: 600,
+          color: "#555",
+          fontFamily: "system-ui, sans-serif",
+        }}
+      >
+        <span>{current.flag}</span>
+        <span>{current.label}</span>
+        <span style={{ fontSize: 8, color: "#aaa" }}>▼</span>
+      </button>
+      {open && (
+        <div style={{
+          position: "absolute" as const,
+          top: "calc(100% + 8px)",
+          right: 0,
+          background: "#fff",
+          border: "0.5px solid #e0dbd3",
+          borderRadius: 10,
+          boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+          overflow: "hidden",
+          zIndex: 200,
+          minWidth: 120,
+        }}>
+          {LOCALES.map(loc => (
+            <a
+              key={loc.code}
+              href={switchTo(loc.code)}
+              onClick={() => setOpen(false)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "10px 16px",
+                fontSize: 13,
+                color: loc.code === currentLocale ? "#185FA5" : "#333",
+                textDecoration: "none",
+                background: loc.code === currentLocale ? "#E6F1FB" : "transparent",
+                fontFamily: "system-ui, sans-serif",
+                fontWeight: loc.code === currentLocale ? 600 : 400,
+              }}
+            >
+              <span>{loc.flag}</span>
+              <span>{loc.label}</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function LandingPage() {
   const params = useParams();
   const locale = (params?.locale as string) ?? "fr";
+  const pathname = typeof window !== "undefined" ? window.location.pathname : `/${locale}`;
   const { isSignedIn } = useUser();
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -265,6 +351,7 @@ export default function LandingPage() {
           <Link href={`/${locale}/cours`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Cours</Link>
           <Link href={`/${locale}/atelier`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Atelier</Link>
           <Link href={`/${locale}/tonalites`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Tonalités</Link>
+          <LanguageSwitcher currentLocale={locale} pathname={`/${locale}`} />
           {isSignedIn ? (
             <Link href={`/${locale}/dashboard`} style={{
               fontSize: 13, fontWeight: 500,
