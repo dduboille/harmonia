@@ -84,22 +84,35 @@ export default async function DashboardPage({ params }: Props) {
             </p>
           </div>
 
-          {/* Badge plan */}
-          <div style={{
-            padding: "6px 16px",
-            borderRadius: 20,
-            background: plan === "free" ? "#f0ece6" : plan === "pro" ? "#E6F1FB" : "#FAEEDA",
-            fontSize: 12,
-            fontWeight: 600,
-            color: PLAN_COLOR[plan],
-            border: `0.5px solid ${PLAN_COLOR[plan]}40`,
-          }}>
-            Plan {PLAN_LABEL[plan]}
-            {plan === "free" && (
-              <Link href={`/${locale}`} style={{ marginLeft: 8, color: "#185FA5", textDecoration: "none" }}>
-                Passer Pro →
-              </Link>
-            )}
+          {/* Badge plan + lien profil */}
+          <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" as const }}>
+            <div style={{
+              padding: "6px 16px",
+              borderRadius: 20,
+              background: plan === "free" ? "#f0ece6" : plan === "pro" ? "#E6F1FB" : "#FAEEDA",
+              fontSize: 12,
+              fontWeight: 600,
+              color: PLAN_COLOR[plan],
+              border: `0.5px solid ${PLAN_COLOR[plan]}40`,
+            }}>
+              Plan {PLAN_LABEL[plan]}
+              {plan === "free" && (
+                <Link href={`/${locale}/upgrade`} style={{ marginLeft: 8, color: "#185FA5", textDecoration: "none" }}>
+                  Passer Pro →
+                </Link>
+              )}
+            </div>
+            <Link href={`/${locale}/profil`} style={{
+              fontSize: 12,
+              color: "#888",
+              textDecoration: "none",
+              padding: "6px 14px",
+              borderRadius: 20,
+              background: "#fff",
+              border: "0.5px solid #e0dbd3",
+            }}>
+              Mon profil
+            </Link>
           </div>
         </div>
 
