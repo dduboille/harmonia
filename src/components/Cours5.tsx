@@ -34,7 +34,7 @@ const CHORDS = SATB;
 function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], duration = 1.8) {
   keys.forEach((key, i) => {
     const [note, octStr] = key.split(":");
-    setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration }), i * 40);
+    setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration }), 0);
   });
 }
 

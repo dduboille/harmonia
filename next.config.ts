@@ -16,7 +16,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
-              "connect-src 'self' https://clerk.com https://*.clerk.accounts.dev wss://*.clerk.accounts.dev",
+              "connect-src 'self' https://clerk.com https://*.clerk.accounts.dev wss://*.clerk.accounts.dev https://gleitz.github.io https://clerk-telemetry.com",
               "frame-src 'self' https://challenges.cloudflare.com https://*.clerk.accounts.dev",
             ].join("; "),
           },
