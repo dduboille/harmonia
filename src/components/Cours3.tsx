@@ -11,27 +11,16 @@
 import React, { useRef, useState } from "react";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { SATB } from "@/lib/satb-voicings";
 
 // ─── Audio ────────────────────────────────────────────────────────────────────
 
-const CHORDS: Record<string, string[]> = {
-  C:    ["Do:3","Mi:3","Sol:3"],
-  Dm:   ["Ré:3","Fa:3","La:3"],
-  Em:   ["Mi:3","Sol:3","Si:3"],
-  F:    ["Fa:3","La:3","Do:4"],
-  G7:   ["Sol:3","Si:3","Ré:4","Fa:4"],
-  Am:   ["La:3","Do:4","Mi:4"],
-  Bdim: ["Si:3","Ré:4","Fa:4"],
-  Dm7:  ["Ré:3","Fa:3","La:3","Do:4"],
-  CMaj7:["Do:3","Mi:3","Sol:3","Si:3"],
-  // Triton seul
-  tritone: ["Fa:3","Si:3"],
-};
+const CHORDS = SATB;
 
-function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], dur = 1.8) {
-  keys.forEach(k => {
-    const [n, o] = k.split(":");
-    ref.current?.playNote(n, parseInt(o), { duration: dur });
+function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], duration = 1.8) {
+  keys.forEach((key, i) => {
+    const [note, octStr] = key.split(":");
+    setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration }), i * 40);
   });
 }
 

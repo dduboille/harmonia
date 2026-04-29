@@ -20,6 +20,7 @@
 import React, { useRef, useState, useCallback } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import { SATB } from "@/lib/satb-voicings";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -28,39 +29,12 @@ interface Section { id: string; label: string; }
 // ─── Helpers audio ────────────────────────────────────────────────────────────
 
 // PianoPlayer attend des noms français
-const CHORDS: Record<string, string[]> = {
-  // C majeur
-  C:     ["Do:3","Mi:3","Sol:3"],
-  Dm:    ["Ré:3","Fa:3","La:3"],
-  F:     ["Fa:3","La:3","Do:4"],
-  G7:    ["Sol:3","Si:3","Ré:4","Fa:4"],
-  Am:    ["La:3","Do:4","Mi:4"],
-  Bdim:  ["Si:3","Ré:4","Fa:4"],
-  // C mineur (emprunts)
-  Cm:    ["Do:3","Mib:3","Sol:3"],
-  Fm:    ["Fa:3","Lab:3","Do:4"],
-  Ab:    ["Lab:3","Do:4","Mib:4"],
-  Eb:    ["Mib:3","Sol:3","Sib:3"],
-  Ddim:  ["Ré:3","Fa:3","Lab:3"],
-  // Napolitain (Db/F en C)
-  Db:    ["Réb:3","Fa:3","Lab:3"],
-  // Accords mineurs pour chaconne
-  Gm:    ["Sol:3","Sib:3","Ré:4"],
-  "Gm/Bb": ["Sib:2","Ré:3","Sol:3"],
-  "Cm/Eb": ["Mib:3","Sol:3","Do:4"],
-  // Cycle descendant en C mineur
-  Cm2:   ["Do:3","Mib:3","Sol:3"],
-  Fm7:   ["Fa:3","Lab:3","Do:4","Mib:4"],
-  Bdim7: ["Si:3","Ré:4","Fa:4","Lab:4"],
-  EbMaj7:["Mib:3","Sol:3","Sib:3","Ré:4"],
-  AbMaj7:["Lab:3","Do:4","Mib:4","Sol:4"],
-  Dm7b5: ["Ré:3","Fa:3","Lab:3","Do:4"],
-};
+const CHORDS = SATB;
 
 function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], duration = 1.8) {
-  keys.forEach((key) => {
+  keys.forEach((key, i) => {
     const [note, octStr] = key.split(":");
-    ref.current?.playNote(note, parseInt(octStr), { duration });
+    setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration }), i * 40);
   });
 }
 

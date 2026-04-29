@@ -11,39 +11,18 @@
 import React, { useRef, useState } from "react";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { SATB } from "@/lib/satb-voicings";
 
 interface Section { id: string; label: string; }
 
 // ─── Audio ────────────────────────────────────────────────────────────────────
 
-const CHORDS: Record<string, string[]> = {
-  C:      ["Do:3","Mi:3","Sol:3"],
-  Cm:     ["Do:3","Mib:3","Sol:3"],
-  Dm:     ["Ré:3","Fa:3","La:3"],
-  Em:     ["Mi:3","Sol:3","Si:3"],
-  F:      ["Fa:3","La:3","Do:4"],
-  Fm:     ["Fa:3","Lab:3","Do:4"],
-  G:      ["Sol:3","Si:3","Ré:4"],
-  G7:     ["Sol:3","Si:3","Ré:4","Fa:4"],
-  Am:     ["La:3","Do:4","Mi:4"],
-  Bb:     ["Sib:3","Ré:4","Fa:4"],
-  Eb:     ["Mib:3","Sol:3","Sib:3"],
-  Ab:     ["Lab:3","Do:4","Mib:4"],
-  Gm:     ["Sol:3","Sib:3","Ré:4"],
-  Fm2:    ["Fa:3","Lab:3","Do:4"],
-  Ebm:    ["Mib:3","Solb:3","Sib:3"],
-  Dbm:    ["Réb:3","Fa:3","Lab:3"],
-  D7:     ["Ré:3","Fa#:3","La:3","Do:4"],
-  F7:     ["Fa:3","La:3","Do:4","Mib:4"],
-  Bb7:    ["Sib:3","Ré:4","Fa:4","Lab:4"],
-  Eb7:    ["Mib:3","Sol:3","Sib:3","Réb:4"],
-  "G7/C": ["Do:2","Sol:3","Si:3","Ré:4","Fa:4"],
-};
+const CHORDS = SATB;
 
-function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], dur = 1.8) {
-  keys.forEach(k => {
-    const [n, o] = k.split(":");
-    ref.current?.playNote(n, parseInt(o), { duration: dur });
+function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], duration = 1.8) {
+  keys.forEach((key, i) => {
+    const [note, octStr] = key.split(":");
+    setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration }), i * 40);
   });
 }
 

@@ -10,40 +10,18 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import { SATB } from "@/lib/satb-voicings";
 
 interface Section { id: string; label: string; }
 
 // ─── Audio ────────────────────────────────────────────────────────────────────
 
-const CHORDS: Record<string, string[]> = {
-  // C majeur
-  C:      ["Do:3","Mi:3","Sol:3"],
-  F:      ["Fa:3","La:3","Do:4"],
-  G7:     ["Sol:3","Si:3","Ré:4","Fa:4"],
-  Am:     ["La:3","Do:4","Mi:4"],
-  Em:     ["Mi:3","Sol:3","Si:3"],
-  // G majeur
-  G:      ["Sol:3","Si:3","Ré:4"],
-  D7:     ["Ré:3","Fa#:3","La:3","Do:4"],
-  Bm:     ["Si:3","Ré:4","Fa#:4"],
-  // F majeur
-  Bb:     ["Sib:3","Ré:4","Fa:4"],
-  C7:     ["Do:3","Mi:3","Sol:3","Sib:3"],
-  Dm:     ["Ré:3","Fa:3","La:3"],
-  // D majeur
-  D:      ["Ré:3","Fa#:3","La:3"],
-  A7:     ["La:3","Do#:3","Mi:4","Sol:4"],
-  // Accords 6/4 et sus4
-  "C/G":  ["Sol:2","Do:3","Mi:3","Sol:3"],
-  "G7sus4":["Sol:3","Do:4","Ré:4","Fa:4"],
-  // Exemples de progression C→G
-  "Am_pivot": ["La:3","Do:4","Mi:4"],
-};
+const CHORDS = SATB;{
 
-function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], dur = 1.8) {
-  keys.forEach(k => {
-    const [n, o] = k.split(":");
-    ref.current?.playNote(n, parseInt(o), { duration: dur });
+function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], duration = 1.8) {
+  keys.forEach((key, i) => {
+    const [note, octStr] = key.split(":");
+    setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration }), i * 40);
   });
 }
 

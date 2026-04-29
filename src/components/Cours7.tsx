@@ -10,38 +10,18 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import { SATB } from "@/lib/satb-voicings";
 
 interface Section { id: string; label: string; }
 
 // ─── Audio ────────────────────────────────────────────────────────────────────
 
-const CHORDS: Record<string, string[]> = {
-  // C majeur diatonique
-  C:     ["Do:3","Mi:3","Sol:3"],
-  Dm:    ["Ré:3","Fa:3","La:3"],
-  Em:    ["Mi:3","Sol:3","Si:3"],
-  F:     ["Fa:3","La:3","Do:4"],
-  G7:    ["Sol:3","Si:3","Ré:4","Fa:4"],
-  Am:    ["La:3","Do:4","Mi:4"],
-  Bdim:  ["Si:3","Ré:4","Fa:4"],
-  // Dominantes secondaires en C
-  A7:    ["La:3","Do#:3","Mi:4","Sol:4"],   // V/II
-  B7:    ["Si:3","Ré#:4","Fa#:4","La:4"],   // V/III
-  D7:    ["Ré:3","Fa#:3","La:3","Do:4"],    // V/V
-  E7:    ["Mi:3","Sol#:3","Si:3","Ré:4"],   // V/VI
-  // Tonicisations en A majeur
-  A:     ["La:3","Do#:3","Mi:4"],
-  E7A:   ["Mi:3","Sol#:3","Si:3","Ré:4"],
-  B7A:   ["Si:3","Ré#:4","Fa#:4","La:4"],
-  // Chaînes
-  C7:    ["Do:3","Mi:3","Sol:3","Sib:3"],
-  F7:    ["Fa:3","La:3","Do:4","Mib:4"],
-};
+const CHORDS = SATB;
 
-function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], dur = 1.8) {
-  keys.forEach(k => {
-    const [n, o] = k.split(":");
-    ref.current?.playNote(n, parseInt(o), { duration: dur });
+function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], duration = 1.8) {
+  keys.forEach((key, i) => {
+    const [note, octStr] = key.split(":");
+    setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration }), i * 40);
   });
 }
 

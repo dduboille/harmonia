@@ -18,6 +18,7 @@
 import React, { useRef, useState, useCallback } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import { SATB } from "@/lib/satb-voicings";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -30,38 +31,13 @@ interface Section {
 
 // PianoPlayer attend des noms de notes EN FRANÇAIS (Do Ré Mi Fa Sol La Si)
 // Les dotKeys ont le format "NomFrançais:octave"
-const CHORDS: Record<string, string[]> = {
-  // Triades
-  C:    ["Do:3","Mi:3","Sol:3"],
-  Dm:   ["Ré:3","Fa:3","La:3"],
-  Em:   ["Mi:3","Sol:3","Si:3"],
-  F:    ["Fa:3","La:3","Do:4"],
-  G:    ["Sol:3","Si:3","Ré:4"],
-  Am:   ["La:3","Do:4","Mi:4"],
-  Bdim: ["Si:3","Ré:4","Fa:4"],
-  // Tétrades
-  G7:    ["Sol:3","Si:3","Ré:4","Fa:4"],
-  CMaj7: ["Do:3","Mi:3","Sol:3","Si:3"],
-  Dm7:   ["Ré:3","Fa:3","La:3","Do:4"],
-  // Renversements
-  "C/E":  ["Mi:3","Sol:3","Do:4"],
-  "G/B":  ["Si:3","Ré:4","Sol:4"],
-  "G7/B": ["Si:3","Ré:4","Fa:4","Sol:4"],
-};
+const CHORDS = SATB;
 
 // Joue une note de basse + accord au-dessus
-function playChord(
-  ref: React.RefObject<PianoPlayerRef>,
-  keys: string[],
-  arp = false,
-  duration = 1.8
-) {
+function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], duration = 1.8) {
   keys.forEach((key, i) => {
     const [note, octStr] = key.split(":");
-    setTimeout(
-      () => ref.current?.playNote(note, parseInt(octStr), { duration }),
-      arp ? i * 100 : 0
-    );
+    setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration }), i * 40);
   });
 }
 
