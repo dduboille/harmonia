@@ -41,7 +41,9 @@ export async function POST(req: NextRequest) {
         const priceId   = subscription.items.data[0].price.id;
         const isAnnual  = priceId === process.env.STRIPE_PRICE_PRO_ANNUAL;
         const plan      = isAnnual ? "annual" : "pro";
-        const periodEnd = new Date(subscription.current_period_end * 1000).toISOString();
+        const periodEnd = subscription.current_period_end 
+          ? new Date(subscription.current_period_end * 1000).toISOString()
+          : null;
 
         await supabaseAdmin
           .from("user_subscriptions")
