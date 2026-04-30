@@ -12,6 +12,7 @@ import React, { useRef, useState } from "react";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { SATB } from "@/lib/satb-voicings";
+import MaitreCard from "@/components/MaitreCard";
 
 // ─── Audio ────────────────────────────────────────────────────────────────────
 

@@ -10,6 +10,7 @@
 import React, { useRef, useState, useCallback } from "react";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
+import MaitreCard from "@/components/MaitreCard";
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
 

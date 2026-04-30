@@ -19,6 +19,7 @@ import React, { useRef, useState, useCallback } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { SATB } from "@/lib/satb-voicings";
+import MaitreCard from "@/components/MaitreCard";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -48,7 +49,7 @@ function playProgression(
 ) {
   chordNames.forEach((name, i) => {
     const keys = CHORDS[name] ?? [];
-    setTimeout(() => playChord(ref, keys, false, 1.2), i * gap);
+    setTimeout(() => playChord(ref, keys, 1.2), i * gap);
   });
 }
 

@@ -12,6 +12,7 @@
 import React, { useRef, useState, useCallback } from "react";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
+import MaitreCard from "@/components/MaitreCard";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -364,7 +365,6 @@ export default function Cours1() {
         <h1 style={S.h1}>{i18n.title}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
-      import MaitreCard from "@/components/MaitreCard";
 
       <MaitreCard
          composer="Pythagore"

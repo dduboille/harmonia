@@ -11,6 +11,7 @@ import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { SATB } from "@/lib/satb-voicings";
+import MaitreCard from "@/components/MaitreCard";
 
 interface Section { id: string; label: string; }
 
