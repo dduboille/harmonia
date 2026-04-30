@@ -242,6 +242,16 @@ export default function Cours8() {
         <p style={S.sub}>Changer de tonalité sans rupture — l'accord pivot, le 6/4 de cadence et le V7sus4.</p>
       </div>
 
+      <MaitreCard
+        composer="Wolfgang Amadeus Mozart"
+        period="1756–1791"
+       emoji="✨"
+        concept="Modulation par accord pivot"
+       anecdote="Dans ses quatuors dits 'Dissonance', Mozart utilise des accords pivots si subtils que les musiciens de l'époque croyaient à des fautes de frappe dans la partition. La transition d'une tonalité à l'autre était si naturelle que l'oreille ne percevait pas le changement — elle ne réalisait qu'après coup qu'elle se trouvait dans un nouveau pays musical."
+        lesson="La modulation est un voyage : l'accord pivot est la porte d'entrée invisible vers un nouveau monde."
+       accentColor="#185FA5"
+      />
+
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => <button key={id} style={S.pill(sec===id)} onClick={() => setSec(id)}>{i18n.sectionLabel(id)}</button>)}
       </nav>

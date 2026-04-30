@@ -408,6 +408,16 @@ export default function Cours2() {
         <p style={S.subtitle}>De la triade simple à l'accord de septième — construire, harmoniser, renverser.</p>
       </div>
 
+      <MaitreCard
+        composer="J.S. Bach"
+        period="1685–1750"
+        emoji="🎹"
+        concept="Les Accords"
+        anecdote="On raconte que Bach se levait la nuit pour résoudre au piano un triton laissé en suspens par ses fils. L'accord dissonant créait une tension si forte dans son oreille qu'il ne pouvait pas dormir sans l'avoir résolu. Pour lui, un accord n'était jamais une note statique — c'était une force en mouvement."
+        lesson="Un accord n'est pas qu'un empilement de notes, c'est une force qui cherche un repos."
+       accentColor="#BA7517"
+      />
+
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => (
           <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>

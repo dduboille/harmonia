@@ -334,6 +334,16 @@ export default function Cours4() {
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
+      <MaitreCard
+        composer="Joseph Haydn"
+        period="1732–1809"
+        emoji="😄"
+        concept="Cadences"
+        anecdote="Dans sa Symphonie n°94 dite 'La Surprise', Haydn utilise une cadence inattendue pour réveiller son public. Après une longue phrase douce, un accord fortissimo surgit là où l'auditeur attendait une résolution tranquille. Haydn aimait jouer avec les attentes — pour lui, la cadence n'était pas qu'une conclusion, c'était un outil dramatique."
+        lesson="La cadence est la ponctuation de la musique : elle peut affirmer, questionner ou surprendre."
+        accentColor="#185FA5"
+      />
+
       {/* Navigation */}
       <nav style={S.nav}>
         {SECTIONS_IDS.map((id) => (

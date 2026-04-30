@@ -279,6 +279,16 @@ export default function Cours9() {
         <p style={S.sub}>{i18n.subtitle}</p>
       </div>
 
+      <MaitreCard
+        composer="Franz Schubert"
+        period="1797–1828"
+        emoji="🌙"
+        concept="Modulations avancées & Pédales"
+        anecdote="Dans Le Roi des Aulnes, Schubert utilise une note de pédale au piano — une note grave répétée obstinément — pour simuler le galop obsessionnel du cheval. Pendant ce temps, l'harmonie s'affole, modulant dans des tonalités de plus en plus sombres. La pédale reste fixe comme une ancre pendant que tout sombre autour."
+       lesson="La pédale crée une tension psychologique puissante en restant fixe alors que tout bouge autour."
+        accentColor="#534AB7"
+      />
+
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => (
           <button key={id} style={S.pill(sec===id)} onClick={() => setSec(id)}>

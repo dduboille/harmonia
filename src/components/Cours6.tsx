@@ -225,6 +225,16 @@ export default function Cours6() {
         <p style={S.sub}>De la mélodie à l'accord — identifier le centre tonal, distinguer les notes étrangères, bâtir le squelette harmonique et choisir l'accompagnement.</p>
       </div>
 
+      <MaitreCard
+        composer="Claude Debussy"
+        period="1862–1918"
+        emoji="🎨"
+        concept="Harmonisation"
+        anecdote="Face aux jurés du Conservatoire de Paris qui lui reprochaient ses harmonisations non conventionnelles, Debussy répondit : 'Ma seule règle est mon propre plaisir.' Il refusait de traiter les règles d'harmonie comme des lois immuables — pour lui, elles étaient des points de départ, pas des limites."
+       lesson="Les règles d'harmonisation sont des guides, mais l'oreille reste la juge finale."
+       accentColor="#3B6D11"
+      />
+
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => <button key={id} style={S.pill(sec===id)} onClick={() => setSec(id)}>{i18n.sectionLabel(id)}</button>)}
       </nav>

@@ -364,6 +364,17 @@ export default function Cours1() {
         <h1 style={S.h1}>{i18n.title}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
+      import MaitreCard from "@/components/MaitreCard";
+
+      <MaitreCard
+         composer="Pythagore"
+         period="580–495 av. J.-C."
+         emoji="⚒️"
+          concept="Gammes & Intervalles"
+         anecdote="En passant devant une forge, Pythagore remarque que certains marteaux produisent des sons harmonieux ensemble. En mesurant leur poids, il découvre que l'harmonie est une proportion mathématique : un marteau deux fois plus lourd produit une octave, un et demi produit une quinte. La musique n'est pas une affaire de goût — c'est une affaire de physique."
+         lesson="L'intervalle est la cellule de base de la musique. Une question de physique acoustique avant d'être une question d'esthétique."
+        accentColor="#185FA5"
+      />
 
       {/* Navigation */}
       <nav style={S.nav}>

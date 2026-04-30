@@ -333,6 +333,16 @@ export default function Cours5() {
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
+      <MaitreCard
+        composer="Frédéric Chopin"
+        period="1810–1849"
+        emoji="🌩️"
+        concept="Emprunts & Suites classiques"
+        anecdote="Chopin avait une capacité extraordinaire à 'emprunter' des accords mineurs en mode majeur pour changer instantanément la couleur émotionnelle d'une phrase. Ses contemporains décrivaient cet effet comme un nuage qui passe devant le soleil — en un seul accord, l'atmosphère basculait du lumineux à l'orageux, sans jamais quitter la tonalité."
+       lesson="On ne change pas de tonalité, on change temporairement d'éclairage."
+        accentColor="#534AB7"
+      />
+
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => (
           <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>

@@ -233,6 +233,16 @@ export default function Cours3() {
         <p style={S.sub}>{i18n.subtitle}</p>
       </div>
 
+      <MaitreCard
+        composer="Johannes Brahms"
+        period="1833–1897"
+        emoji="🖊️"
+        concept="Conduite de voix"
+        anecdote="Brahms était obsédé par la pureté de l'écriture à quatre voix. Il traquait les quintes et octaves parallèles comme des fautes de goût absolues, annotant en rouge les copies de ses élèves. Il disait que deux voix qui bougent ensemble à la quinte cessent d'exister comme voix indépendantes — elles deviennent une seule et même couleur."
+        lesson="La conduite de voix, c'est l'art de rendre chaque ligne mélodique indépendante et fluide."
+        accentColor="#0F6E56"
+      />
+
       {/* Nav */}
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => (

@@ -220,6 +220,16 @@ export default function Cours7() {
         <p style={S.sub}>Dominantes secondaires, tons voisins et chaînes — rendre un accord tonique l'espace d'un instant.</p>
       </div>
 
+      <MaitreCard
+       composer="Ludwig van Beethoven"
+        period="1770–1827"
+       emoji="⚡"
+        concept="Tonicisation"
+        anecdote="Au début de sa Première Symphonie, Beethoven fait quelque chose de scandaleux pour l'époque : au lieu de commencer par un accord de Do majeur, il ouvre sur un accord de septième de dominante qui résout vers Fa majeur. Pendant deux mesures, l'auditeur croit être en Fa. C'est une tonicisation du IVe degré dès la première note — un coup d'état harmonique qui échoue aussitôt."
+        lesson="La tonicisation est une illusion d'optique harmonique : on installe un nouveau roi, mais il se fait renverser immédiatement."
+        accentColor="#BA7517"
+      />
+
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => <button key={id} style={S.pill(sec===id)} onClick={() => setSec(id)}>{i18n.sectionLabel(id)}</button>)}
       </nav>
