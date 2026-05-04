@@ -380,140 +380,271 @@ export default function LandingPage() {
 
       {/* ── Hero ── */}
       <section style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "120px 2rem 80px",
+        background: "#F5F0E8",
         position: "relative" as const,
         overflow: "hidden",
+        minHeight: "100vh",
       }}>
-        {/* Décorations musicales en arrière-plan */}
-        <div style={{
-          position: "absolute" as const,
-          top: "10%", right: "-5%",
-          fontSize: 320,
-          color: "#BA7517",
-          opacity: 0.04,
-          fontFamily: "serif",
-          userSelect: "none" as const,
-          lineHeight: 1,
-        }}>𝄞</div>
-        <div style={{
-          position: "absolute" as const,
-          bottom: "5%", left: "-3%",
-          fontSize: 240,
-          color: "#185FA5",
-          opacity: 0.04,
-          fontFamily: "serif",
-          userSelect: "none" as const,
-          lineHeight: 1,
-        }}>𝄢</div>
-        {/* Accords flottants */}
-        {["Dm7", "G7", "CMaj7", "Am", "F", "Bdim"].map((chord, i) => (
-          <div key={chord} style={{
+        {/* Courbes SVG des 4 voix */}
+        <svg style={{ position: "absolute" as const, inset: 0, width: "100%", height: "100%", pointerEvents: "none", zIndex: 0 }}
+          viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="hg1" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#DDD8C4" stopOpacity="0.6"/>
+              <stop offset="1" stopColor="#CBA153" stopOpacity="0.4"/>
+            </linearGradient>
+            <linearGradient id="hg2" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#CBA153" stopOpacity="0.3"/>
+              <stop offset="1" stopColor="#DDD8C4" stopOpacity="0.5"/>
+            </linearGradient>
+            <linearGradient id="hg3" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#DDD8C4" stopOpacity="0.4"/>
+              <stop offset="0.5" stopColor="#CBA153" stopOpacity="0.35"/>
+              <stop offset="1" stopColor="#DDD8C4" stopOpacity="0.4"/>
+            </linearGradient>
+            <linearGradient id="hg4" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#CBA153" stopOpacity="0.25"/>
+              <stop offset="1" stopColor="#DDD8C4" stopOpacity="0.45"/>
+            </linearGradient>
+          </defs>
+          <style>{`
+            @keyframes hv1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+            @keyframes hv2{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
+            @keyframes hv3{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+            @keyframes hv4{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+            .hv1{animation:hv1 8s ease-in-out infinite}
+            .hv2{animation:hv2 10s ease-in-out infinite}
+            .hv3{animation:hv3 9s ease-in-out infinite}
+            .hv4{animation:hv4 11s ease-in-out infinite}
+          `}</style>
+          <path className="hv1" d="M-40,180 C200,160 400,280 600,230 C800,180 1000,280 1200,220 C1340,180 1400,200 1480,190" stroke="url(#hg1)" strokeWidth="14" strokeLinecap="round" fill="none"/>
+          <path className="hv2" d="M-40,340 C180,320 380,420 580,370 C780,320 960,410 1160,360 C1320,325 1400,345 1480,340" stroke="url(#hg2)" strokeWidth="11" strokeLinecap="round" fill="none"/>
+          <path className="hv3" d="M-40,680 C200,660 420,740 620,705 C820,670 1020,745 1220,700 C1360,672 1420,685 1480,680" stroke="url(#hg3)" strokeWidth="12" strokeLinecap="round" fill="none"/>
+          <path className="hv4" d="M-40,820 C180,805 380,860 580,835 C780,810 980,858 1180,828 C1340,808 1420,820 1480,818" stroke="url(#hg4)" strokeWidth="9" strokeLinecap="round" fill="none"/>
+        </svg>
+
+        {/* Nœuds d'accords flottants */}
+        {[
+          { label: "Dm7", top: "14%", left: "3%", delay: "0s" },
+          { label: "Am",  top: "32%", left: "2%", delay: "1.5s" },
+          { label: "F",   top: "52%", left: "4%", delay: "0.7s" },
+          { label: "G7",  top: "15%", right: "3%", delay: "0.9s" },
+          { label: "CMaj7", top: "31%", right: "2%", delay: "1.8s" },
+          { label: "Bdim",  top: "50%", right: "4%", delay: "0.3s" },
+        ].map((n) => (
+          <div key={n.label} style={{
             position: "absolute" as const,
-            fontSize: 13,
-            fontFamily: "monospace",
-            color: i % 2 === 0 ? "#BA7517" : "#185FA5",
-            opacity: 0.12,
-            top: `${15 + i * 12}%`,
-            left: i < 3 ? `${3 + i * 4}%` : `${75 + (i - 3) * 7}%`,
-            fontWeight: 700,
-          }}>
-            {chord}
-          </div>
+            top: n.top,
+            left: (n as any).left,
+            right: (n as any).right,
+            fontFamily: "system-ui, sans-serif",
+            fontSize: 11,
+            fontWeight: 500,
+            color: "#A0956A",
+            background: "rgba(245,240,232,0.88)",
+            border: "0.5px solid rgba(185,160,90,0.35)",
+            borderRadius: 20,
+            padding: "3px 10px",
+            zIndex: 1,
+            animation: `heroFloat 7s ease-in-out infinite`,
+            animationDelay: n.delay,
+          }}>{n.label}</div>
         ))}
+        <style>{`@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}`}</style>
+
+        {/* Contenu centré */}
+        <div style={{
+          position: "relative" as const,
+          zIndex: 2,
+          display: "flex",
+          flexDirection: "column" as const,
+          alignItems: "center",
+          textAlign: "center" as const,
+          padding: "120px 2rem 80px",
+        }}>
+        {/* Carte partition */}
+        <div style={{
+          background: "#fff",
+          border: "0.5px solid rgba(28,24,16,0.09)",
+          borderRadius: 18,
+          boxShadow: "0 2px 8px rgba(28,24,16,0.05), 0 16px 48px rgba(28,24,16,0.11)",
+          maxWidth: 520,
+          width: "100%",
+          marginBottom: 24,
+          position: "relative" as const,
+          overflow: "visible",
+        }}>
+          {/* Tooltip */}
+          <div style={{
+            position: "absolute" as const,
+            top: -46,
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: "#1C1810",
+            color: "#F5F0E8",
+            fontSize: 11,
+            padding: "8px 14px",
+            borderRadius: 9,
+            whiteSpace: "nowrap" as const,
+            zIndex: 30,
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+          }}>
+            <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#C8A84B", flexShrink: 0, display: "inline-block" }}></span>
+            Feedback en temps réel · Correction des quintes parallèles
+          </div>
+          {/* Barre titre */}
+          <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "10px 14px", borderBottom: "0.5px solid #F0EAE0" }}>
+            {[["#F4BFBF",""], ["#F0D9A0",""], ["#B8E8CC",""]].map(([bg], i) => (
+              <span key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: bg, display: "inline-block" }}></span>
+            ))}
+            <span style={{ fontSize: 11, color: "#B5ACA0", marginLeft: 5, fontFamily: "system-ui, sans-serif" }}>Harmonia — Éditeur SATB · Do majeur</span>
+          </div>
+          {/* Corps */}
+          <div style={{ padding: "20px 20px 16px", position: "relative" as const }}>
+            <div style={{
+              position: "absolute" as const,
+              width: 80, height: 90,
+              background: "rgba(200,168,75,0.15)",
+              borderRadius: 12,
+              top: 30, left: "50%",
+              transform: "translateX(-50%)",
+              filter: "blur(10px)",
+              pointerEvents: "none" as const,
+            }}></div>
+            <div style={{ display: "flex", justifyContent: "space-around", marginBottom: 10 }}>
+              {[["Dm7","#3C3424"],["G7","#C8A84B"],["CMaj7","#3C3424"]].map(([name,color]) => (
+                <span key={name} style={{ fontFamily: "Georgia, serif", fontSize: 14, color, fontWeight: 500 }}>{name}</span>
+              ))}
+            </div>
+            <svg viewBox="0 0 460 118" style={{ width: "100%", display: "block" }} xmlns="http://www.w3.org/2000/svg">
+              {[22,32,42,52,62,72,82,92,102,112].map(y => (
+                <line key={y} x1="32" y1={y} x2="428" y2={y} stroke="#D8D2C4" strokeWidth="0.7"/>
+              ))}
+              <line x1="32" y1="22" x2="32" y2="112" stroke="#C8C0B0" strokeWidth="1"/>
+              <line x1="165" y1="22" x2="165" y2="112" stroke="#DDD8C8" strokeWidth="0.5"/>
+              <line x1="298" y1="22" x2="298" y2="112" stroke="#DDD8C8" strokeWidth="0.5"/>
+              <line x1="428" y1="22" x2="428" y2="112" stroke="#C8C0B0" strokeWidth="1"/>
+              <text x="18" y="56" fontFamily="serif" fontSize="50" fill="#4A4030" opacity="0.65">𝄞</text>
+              <text x="18" y="108" fontFamily="serif" fontSize="34" fill="#4A4030" opacity="0.65">𝄢</text>
+              {[[88,24],[78,36],[88,46],[78,56],[88,76],[78,86],[88,96]].map(([cx,cy]) => (
+                <ellipse key={`${cx}-${cy}`} cx={cx} cy={cy} rx="7" ry="5" fill="#3C3424" transform={`rotate(-12,${cx},${cy})`}/>
+              ))}
+              <rect x="172" y="14" width="120" height="104" fill="rgba(200,168,75,0.07)" rx="4"/>
+              {[[222,24],[212,36],[222,46],[212,56],[222,76],[212,86],[222,96]].map(([cx,cy]) => (
+                <ellipse key={`g-${cx}-${cy}`} cx={cx} cy={cy} rx="7" ry="5" fill="#C8A84B" transform={`rotate(-12,${cx},${cy})`}/>
+              ))}
+              {[[358,22],[348,34],[358,44],[348,54],[358,74],[348,84],[358,94]].map(([cx,cy]) => (
+                <ellipse key={`c-${cx}-${cy}`} cx={cx} cy={cy} rx="7" ry="5" fill="#3C3424" transform={`rotate(-12,${cx},${cy})`}/>
+              ))}
+            </svg>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 14px", borderTop: "0.5px solid #F0EAE0" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 11, color: "#3B6D11", background: "#EAF3DE", padding: "3px 10px", borderRadius: 20 }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#3B6D11", display: "inline-block" }}></span>
+              Validation active
+            </div>
+            <div style={{ display: "flex", gap: 4 }}>
+              {["S","A","T","B"].map(v => (
+                <span key={v} style={{ fontSize: 10, color: "#A09888", background: "#F0EAE0", padding: "2px 7px", borderRadius: 10, fontFamily: "system-ui, sans-serif" }}>{v}</span>
+              ))}
+            </div>
+          </div>
+        </div>
 
         <div style={{ maxWidth: 760, textAlign: "center" as const, position: "relative" as const, zIndex: 1 }}>
           {/* Badge */}
           <div style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: 8,
-            background: "#FAEEDA",
-            border: "0.5px solid #F6AD55",
+            gap: 6,
+            border: "0.5px solid rgba(200,168,75,0.55)",
             borderRadius: 20,
-            padding: "5px 14px",
-            fontSize: 12,
-            fontWeight: 500,
-            color: "#BA7517",
+            padding: "5px 16px",
+            fontSize: 11,
+            color: "#8A7840",
+            background: "rgba(250,246,236,0.9)",
+            letterSpacing: "0.03em",
+            marginBottom: 22,
             fontFamily: "system-ui, sans-serif",
-            marginBottom: 32,
-            letterSpacing: "0.04em",
           }}>
-            <span>✦</span>
+            <span style={{ color: "#C8A84B" }}>✦</span>
             Niveau 1 complet · 9 cours · 700+ exercices
           </div>
 
           {/* Titre */}
           <h1 style={{
-            fontSize: "clamp(40px, 7vw, 72px)",
+            fontFamily: "Georgia, 'Times New Roman', serif",
+            fontSize: "clamp(34px, 5.2vw, 56px)",
             fontWeight: 400,
-            lineHeight: 1.1,
+            lineHeight: 1.09,
             letterSpacing: "-0.02em",
-            margin: "0 0 24px",
-            color: "#1a1a1a",
+            margin: "0 0 4px",
+            color: "#1C1810",
           }}>
-            Maîtrisez l'harmonie tonale.
-            <br />
-            <em style={{ color: "#BA7517", fontStyle: "italic" }}>Vraiment.</em>
+            Maîtrisez l'harmonie
           </h1>
+          <div style={{ position: "relative" as const, height: "clamp(42px, 5.8vw, 62px)", marginBottom: 32, display: "flex", alignItems: "flex-start", justifyContent: "center" }}>
+            <div style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: "clamp(34px, 5.2vw, 56px)", fontStyle: "italic", color: "rgba(200,168,75,0.22)", lineHeight: 1, position: "absolute" as const, top: 5, left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" as const }}>
+              Vraiment.
+            </div>
+            <div style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: "clamp(34px, 5.2vw, 56px)", fontStyle: "italic", color: "#C8A84B", lineHeight: 1, position: "absolute" as const, top: 0, left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" as const }}>
+              Vraiment.
+            </div>
+          </div>
 
           {/* Sous-titre */}
           <p style={{
-            fontSize: "clamp(16px, 2.5vw, 20px)",
-            color: "#666",
-            lineHeight: 1.7,
-            maxWidth: 560,
-            margin: "0 auto 40px",
+            fontSize: 14,
+            color: "#706858",
+            lineHeight: 1.72,
+            maxWidth: 430,
+            margin: "0 auto 26px",
             fontFamily: "system-ui, sans-serif",
             fontWeight: 400,
           }}>
-            De la gamme aux modulations avancées — 9 cours interactifs,
-            700+ exercices avec feedback harmonique en temps réel,
-            dans les 24 tonalités.
+            La conduite de voix n'aura plus de secrets : corrections actives des quintes parallèles et des résolutions.
           </p>
 
           {/* CTA */}
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" as const }}>
+          <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" as const, marginBottom: 18 }}>
             <Link href={`/${locale}/cours`} style={{
-              padding: "14px 32px",
-              borderRadius: 4,
-              background: "#1a1a1a",
-              color: "#fff",
+              padding: "12px 28px",
+              borderRadius: 24,
+              background: "#1C1810",
+              color: "#F5F0E8",
               textDecoration: "none",
-              fontSize: 15,
+              fontSize: 14,
               fontWeight: 500,
               fontFamily: "system-ui, sans-serif",
-              letterSpacing: "0.02em",
-              border: "1px solid #1a1a1a",
             }}>
               Commencer gratuitement
             </Link>
             <Link href={`/${locale}/tonalites`} style={{
-              padding: "14px 32px",
-              borderRadius: 4,
+              padding: "12px 28px",
+              borderRadius: 24,
               background: "transparent",
-              color: "#1a1a1a",
+              color: "#4A4438",
               textDecoration: "none",
-              fontSize: 15,
+              fontSize: 14,
               fontFamily: "system-ui, sans-serif",
-              border: "1px solid #c8c4bc",
+              border: "0.5px solid #C0B9AA",
             }}>
               Explorer les tonalités
             </Link>
           </div>
 
           {/* Social proof */}
-          <p style={{
-            marginTop: 28,
-            fontSize: 12,
-            color: "#bbb",
-            fontFamily: "system-ui, sans-serif",
-          }}>
-            Gratuit pour commencer · Aucune carte requise · 6 langues
-          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, justifyContent: "center", fontSize: 11, color: "#B0A898", fontFamily: "system-ui, sans-serif" }}>
+            <span>Gratuit pour commencer</span>
+            <span style={{ width: 1, height: 10, background: "#D0C8B8", display: "inline-block" }}></span>
+            <span>Aucune carte requise</span>
+            <span style={{ width: 1, height: 10, background: "#D0C8B8", display: "inline-block" }}></span>
+            <span>6 langues</span>
+          </div>
+        </div>
         </div>
       </section>
 
