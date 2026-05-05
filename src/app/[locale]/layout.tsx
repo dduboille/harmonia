@@ -1,33 +1,124 @@
 /**
  * src/app/[locale]/layout.tsx
- * Harmonia — Layout racine avec ClerkProvider
- *
- * IMPORTANT : remplace ton layout existant
- * Ajoute ClerkProvider autour de tout le contenu
+ * Harmonia — Layout racine avec ClerkProvider + SEO metadata
  */
-
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 const LOCALES = ["fr", "en", "es", "de", "pt", "it"] as const;
+
+const META: Record<string, { title: string; description: string; lang: string }> = {
+  fr: {
+    title: "Harmonia — Apprenez l'harmonie musicale en ligne",
+    description: "9 cours interactifs, 700+ exercices SATB, feedback en temps réel. Maîtrisez la conduite de voix, les cadences et les modulations. Gratuit pour commencer.",
+    lang: "fr",
+  },
+  en: {
+    title: "Harmonia — Learn Music Harmony Online",
+    description: "9 interactive courses, 700+ SATB exercises, real-time feedback. Master voice leading, cadences and modulations. Free to start.",
+    lang: "en",
+  },
+  es: {
+    title: "Harmonia — Aprende Armonía Musical Online",
+    description: "9 cursos interactivos, 700+ ejercicios SATB, feedback en tiempo real. Domina el contrapunto, las cadencias y las modulaciones. Gratis para empezar.",
+    lang: "es",
+  },
+  de: {
+    title: "Harmonia — Musikharmonie Online Lernen",
+    description: "9 interaktive Kurse, 700+ SATB-Übungen, Echtzeit-Feedback. Meistern Sie Stimmführung, Kadenzen und Modulationen. Kostenlos starten.",
+    lang: "de",
+  },
+  pt: {
+    title: "Harmonia — Aprenda Harmonia Musical Online",
+    description: "9 cursos interativos, 700+ exercícios SATB, feedback em tempo real. Domine a condução de vozes, cadências e modulações. Gratuito para começar.",
+    lang: "pt",
+  },
+  it: {
+    title: "Harmonia — Impara l'Armonia Musicale Online",
+    description: "9 corsi interattivi, 700+ esercizi SATB, feedback in tempo reale. Padroneggia il contrappunto, le cadenze e le modulazioni. Gratis per iniziare.",
+    lang: "it",
+  },
+};
 
 interface Props {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const meta = META[locale] ?? META.fr;
+  const url = `https://www.getharmonia.app/${locale}`;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    metadataBase: new URL("https://www.getharmonia.app"),
+    alternates: {
+      canonical: url,
+      languages: {
+        "fr": "/fr",
+        "en": "/en",
+        "es": "/es",
+        "de": "/de",
+        "pt": "/pt",
+        "it": "/it",
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url,
+      siteName: "Harmonia",
+      locale: meta.lang,
+      type: "website",
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: "Harmonia — Apprentissage de l'harmonie musicale",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.description,
+      images: ["/og-image.png"],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    icons: {
+      icon: "/favicon.ico",
+      apple: "/apple-touch-icon.png",
+    },
+  };
+}
+
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
-
   if (!LOCALES.includes(locale as any)) notFound();
-
   const messages = await getMessages();
 
   return (
     <ClerkProvider>
       <html lang={locale}>
+        <head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+        </head>
         <body>
           <NextIntlClientProvider messages={messages}>
             {children}
@@ -36,8 +127,4 @@ export default async function LocaleLayout({ children, params }: Props) {
       </html>
     </ClerkProvider>
   );
-}
-
-export function generateStaticParams() {
-  return LOCALES.map(locale => ({ locale }));
 }
