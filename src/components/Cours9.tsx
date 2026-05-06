@@ -45,7 +45,7 @@ const TYPES_MARCHE = [
     desc: "Le motif se répète à l'intérieur de la même gamme, en suivant fidèlement les intervalles diatoniques. Les intervalles changent légèrement à chaque transposition pour rester dans la gamme.",
     exemple: "Canon de Pachelbel : I–V répété sur VI–III puis IV–I. Chaque 'marche' reste en D majeur.",
     effet: "Crée du mouvement et de l'animation sans quitter la tonalité. Très fréquent dans le baroque et le classique.",
-    prog: ["C","G","Am","Em","F","C","G","C"],
+    prog: ["C","G/B","Am","Em/B","F/A","C/E","G/B","C"],
     color2: "#0F6E56",
   },
   {

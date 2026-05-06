@@ -52,7 +52,7 @@ const EXEMPLES_MOD = [
     pivot: "Am",
     roles: "VI en C / II en G",
     prog: ["C","F","G7","C","Am","D7","G"],
-    progKeys: ["C","F","G7","C","Am_pivot","D7","G"],
+    progKeys: ["C","F/A","G7/B","C","Am_pivot","D7/C","G/B"],
     desc: "Am est VI en C (tonique secondaire) et II en G (sous-dominante). Après Am, D7 est la dominante de G — la modulation est confirmée par la cadence D7–G.",
     color: "#0F6E56", bg: "#E1F5EE",
   },
@@ -62,7 +62,7 @@ const EXEMPLES_MOD = [
     pivot: "Dm",
     roles: "II en C / VI en F",
     prog: ["C","Am","Dm","C7","F"],
-    progKeys: ["C","Am","Dm","C7","F"],
+    progKeys: ["C","Am/C","Dm/F","C7","F/A"],
     desc: "Dm est II en C (sous-dominante) et VI en F (tonique secondaire). C7 (V/IV en C = V de F) confirme la nouvelle tonalité. Cadence C7–F.",
     color: "#534AB7", bg: "#EEEDFE",
   },
@@ -72,7 +72,7 @@ const EXEMPLES_MOD = [
     pivot: "Bm",
     roles: "III en G / VI en D",
     prog: ["G","Em","Bm","A7","D"],
-    progKeys: ["G","Em","Bm","A7","D"],
+    progKeys: ["G","Em/B","Bm","A7/G","D/F#"],
     desc: "Bm est III en G (tonique) et VI en D (tonique secondaire). A7 (V de D) confirme D majeur. Transition fluide entre tons voisins à distance de quinte.",
     color: "#BA7517", bg: "#FAEEDA",
   },
@@ -376,7 +376,7 @@ export default function Cours8() {
             <div style={{ fontFamily:"monospace", fontSize:13, color:"#185FA5", letterSpacing:1, marginBottom:10 }}>
               C → F → G7 → C → Am → D7 → G
             </div>
-            <button onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ["C","F","G7","C","Am_pivot","D7","G"], 1000)}
+            <button onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ["C","F/A","G7/B","C","Am_pivot","D7/C","G/B"], 1000)}
               style={{ fontSize:12, padding:"5px 14px", border:"0.5px solid #185FA5", borderRadius:20, cursor:"pointer", background:"transparent", color:"#185FA5" }}>
               ▶ Écouter
             </button>
@@ -511,7 +511,7 @@ export default function Cours8() {
               Am = pivot (VI/C = II/G) → D7 = V de G → G/D = 6/4 de cadence (confirme G) → D7 – G = cadence parfaite.
             </div>
             <button
-              onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ["C","F","G7","C","Am_pivot","D7","C/G","G7","G"], 950)}
+              onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ["C","F/A","G7/B","C","Am_pivot","D7/C","C/G","G7/B","G"], 950)}
               style={{ fontSize:12, padding:"5px 14px", border:"0.5px solid #185FA5", borderRadius:20, cursor:"pointer", background:"transparent", color:"#185FA5" }}>
               ▶ Écouter
             </button>

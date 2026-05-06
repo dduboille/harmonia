@@ -122,7 +122,7 @@ const SUITES = [
     subtitle: "Archétype baroque de la variation",
     desc: "Une basse descend par degrés conjoints ou par tierces depuis la tonique jusqu'à la dominante, sur laquelle on s'arrête avant de repartir. Ce modèle sert de fondation à des séries de variations. On le retrouve chez Purcell, Bach, Handel — et dans d'innombrables morceaux modernes.",
     detail: "Modèle en C mineur : Cm → Gm/Bb → Fm/Ab → G7. La basse descend Do → Si♭ → La♭ → Sol, créant une ligne mélodique au registre grave. Note : le Gm utilise ici la gamme mineure naturelle.",
-    progression: ["Cm","Gm/Bb","Cm/Eb","G7"],
+    progression: ["Cm","Gm/Bb","Fm/Ab","G7"],
     color: "#534AB7", bg: "#EEEDFE",
   },
   {
@@ -131,7 +131,7 @@ const SUITES = [
     subtitle: "Le ♭II6 — couleur dramatique et pathétique",
     desc: "Le degré II abaissé (♭II), présenté en accord majeur et généralement en premier renversement. En C mineur, il s'agit de Db/F (Réb majeur avec Fa à la basse). Sa fonction est sous-dominante — il prépare la dominante avec une tension dramatique unique.",
     detail: "Le demi-ton entre le ♭II et la tonique (Réb → Do) est chargé d'une expressivité particulière — symbole du pathos romantique. On le retrouve chez Beethoven, Chopin, et dans la musique de film. Schéma classique : ♭II6 → V7 → I.",
-    progression: ["Db","G7","Cm"],
+    progression: ["Cm","Db","G7","Cm"],
     color: "#BA7517", bg: "#FAEEDA",
   },
 ];

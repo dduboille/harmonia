@@ -38,11 +38,11 @@ const SECTIONS_IDS = ["principe","secondaires","voisins","chaines","quiz"] as co
 
 // Dominantes secondaires en C majeur
 const DOM_SEC = [
-  { deg:"II", cible:"Dm", dom:"A7",  calc:"5 degrés au-dessus de D = A → A7", note:"Do# est la sensible de D. La septième (Sol) descend vers Fa#.", prog:["A7","Dm"],  progKeys:["A7","Dm"] },
-  { deg:"III",cible:"Em", dom:"B7",  calc:"5 degrés au-dessus de E = B → B7", note:"Ré# est la sensible de E. Tierce de B7 (Ré#) monte vers Mi.", prog:["B7","Em"],  progKeys:["B7","Em"] },
-  { deg:"IV", cible:"F",  dom:"C7",  calc:"5 degrés au-dessus de F = C → C7", note:"Mi♭ (septième) descend vers Ré. La à Sib n'est pas ici — C7 tonicise F.", prog:["C7","F"],   progKeys:["C7","F"] },
-  { deg:"V",  cible:"G7", dom:"D7",  calc:"5 degrés au-dessus de G = D → D7", note:"Fa# est la sensible de G. Très courant : crée une double dominante.", prog:["D7","G7","C"], progKeys:["D7","G7","C"] },
-  { deg:"VI", cible:"Am", dom:"E7",  calc:"5 degrés au-dessus de A = E → E7", note:"Sol# est la sensible de A. Très expressif — colore la progression.", prog:["E7","Am"],  progKeys:["E7","Am"] },
+  { deg:"II", cible:"Dm", dom:"A7",  calc:"5 degrés au-dessus de D = A → A7", note:"Do# est la sensible de D. La septième (Sol) descend vers Fa#.", prog:["A7","Dm"],  progKeys:["A7","Dm/F"] },
+  { deg:"III",cible:"Em", dom:"B7",  calc:"5 degrés au-dessus de E = B → B7", note:"Ré# est la sensible de E. Tierce de B7 (Ré#) monte vers Mi.", prog:["B7","Em"],  progKeys:["B7","Em/B"] },
+  { deg:"IV", cible:"F",  dom:"C7",  calc:"5 degrés au-dessus de F = C → C7", note:"Mi♭ (septième) descend vers Ré. La à Sib n'est pas ici — C7 tonicise F.", prog:["C7","F"],   progKeys:["C7","F/A"] },
+  { deg:"V",  cible:"G7", dom:"D7",  calc:"5 degrés au-dessus de G = D → D7", note:"Fa# est la sensible de G. Très courant : crée une double dominante.", prog:["D7","G7","C"], progKeys:["D7/C","G7/B","C"] },
+  { deg:"VI", cible:"Am", dom:"E7",  calc:"5 degrés au-dessus de A = E → E7", note:"Sol# est la sensible de A. Très expressif — colore la progression.", prog:["E7","Am"],  progKeys:["E7","Am/C"] },
 ];
 
 // Tons voisins de C majeur
