@@ -4,6 +4,7 @@
  */
 
 import type { NoteEntry, Voice } from "@/components/HarmoniaEditor";
+import type { InversionExercise } from "@/exercises/cours-inversion-exercises";
 
 // ─── Types de base ────────────────────────────────────────────────────────────
 
@@ -12,7 +13,8 @@ export type ExerciseType =
   | "identify"       // Identifier : intervalle, degré, accord, note étrangère
   | "build"          // Construire : gamme, triade, tétrade dans une tonalité
   | "harmonize"      // Harmoniser une mélodie donnée
-  | "analysis";      // Analyser une progression existante
+  | "analysis"       // Analyser une progression existante
+  | "inversion";     // Choisir le bon renversement
 
 // ─── Option quiz ──────────────────────────────────────────────────────────────
 

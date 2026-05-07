@@ -12,6 +12,8 @@ import { useCoursI18n } from "@/hooks/useCoursI18n";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { SATB } from "@/lib/satb-voicings";
 import MaitreCard from "@/components/MaitreCard";
+import InversionQuiz from "@/components/InversionQuiz";
+import { INVERSION_EXERCISES } from "@/exercises/cours-inversion-exercises";
 
 interface Section { id: string; label: string; }
 
@@ -443,7 +445,20 @@ export default function Cours7() {
           </div>
         </div>
       )}
-
+      {/* Exercices de renversements */}
+      {sec !== "quiz" && (
+        <div style={{ marginTop: 32 }}>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>Choisir le bon renversement</h3>
+          <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7, marginBottom: 16, fontFamily: "system-ui, sans-serif" }}>
+            Pour chaque progression, choisissez le renversement qui assure la meilleure conduite de voix.
+          </p>
+          {INVERSION_EXERCISES.filter(e => e.cours === 7).map(ex => (
+            <div key={ex.id} style={{ border: "0.5px solid #e5e5e5", borderRadius: 12, padding: "20px", marginBottom: 16, background: "#fff" }}>
+              <InversionQuiz exercise={ex} />
+            </div>
+          ))}
+        </div>
+      )}
       {/* ══ QUIZ ══ */}
       {sec === "quiz" && (
         <div>
