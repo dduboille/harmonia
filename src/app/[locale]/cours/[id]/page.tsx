@@ -8,14 +8,15 @@ import Cours6 from "@/components/Cours6";
 import Cours7 from "@/components/Cours7";
 import Cours8 from "@/components/Cours8";
 import Cours9 from "@/components/Cours9";
+import Cours10 from "@/components/Cours10";
 
 const COURS: Record<number, React.ComponentType> = {
   1: Cours1, 2: Cours2, 3: Cours3, 4: Cours4, 5: Cours5,
-  6: Cours6, 7: Cours7, 8: Cours8, 9: Cours9,
+  6: Cours6, 7: Cours7, 8: Cours8, 9: Cours9, 10: Cours10,
 };
 
 export function generateStaticParams() {
-  return [1,2,3,4,5,6,7,8,9].map(id => ({ id: String(id) }));
+  return [1,2,3,4,5,6,7,8,9,10].map(id => ({ id: String(id) }));
 }
 
 export default async function CoursPage({ params }: { params: Promise<{ id: string }> }) {

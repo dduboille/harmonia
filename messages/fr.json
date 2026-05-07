@@ -182,5 +182,20 @@
       "veryGood": "Très bien ! Quelques nuances à consolider.",
       "keepGoing": "Continue à explorer — réécoute les progressions et recommence."
     }
+  },
+  "cours10": {
+    "badge": "Niveau 2 · Cours 10",
+    "title": "Les modes de la gamme majeure",
+    "subtitle": "Ionien, dorien, phrygien, lydien, mixolydien, éolien, locrien — sept couleurs, une seule gamme.",
+    "sections": {
+      "modes": "Les 7 modes",
+      "harmonie": "Harmonie modale",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait — les modes n'ont plus de secrets !",
+      "veryGood": "Très bien ! Encore quelques écoutes et ce sera parfait.",
+      "keepGoing": "Continue à écouter les modes activement — l'oreille s'éduque !"
+    }
   }
 }

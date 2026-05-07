@@ -77,6 +77,13 @@ const COURS = [
     tags: ["Marche", "Pédale", "Minorisation"],
     available: true,
   },
+  {
+    num: 10,
+    title: "Les modes de la gamme majeure",
+    desc: "Ionien, dorien, phrygien, lydien, mixolydien, éolien, locrien — sept couleurs, une seule gamme.",
+    tags: ["Modes", "Modal", "Jazz"],
+    available: true,
+  },
 ];
 
 // ─── Styles ───────────────────────────────────────────────────────────────────

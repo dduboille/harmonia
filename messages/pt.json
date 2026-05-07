@@ -182,5 +182,20 @@
       "veryGood": "Muito bem! Algumas nuances para consolidar.",
       "keepGoing": "Continue explorando — ouça as progressões novamente e tente de novo."
     }
+  },
+  "cours10": {
+    "badge": "Level 2 · Course 10",
+    "title": "Modes of the Major Scale",
+    "subtitle": "Ionian, Dorian, Phrygian, Lydian, Mixolydian, Aeolian, Locrian — seven colors, one scale.",
+    "sections": {
+      "modes": "The 7 Modes",
+      "harmonie": "Modal Harmony",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect — you've mastered the modes!",
+      "veryGood": "Well done! A few more listens and you'll have it.",
+      "keepGoing": "Keep listening actively — the ear learns with practice!"
+    }
   }
 }
