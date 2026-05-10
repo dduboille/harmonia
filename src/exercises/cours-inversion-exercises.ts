@@ -17,7 +17,8 @@ export interface InversionExercise {
   id: string;
   type: "inversion";
   cours: number;
-  title: string;
+  title?: string;
+  subtitle?: string;
   difficulty: 1 | 2 | 3;
   tags: string[];
   concepts: string[];

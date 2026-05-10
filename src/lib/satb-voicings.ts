@@ -17,7 +17,6 @@ export const SATB: Record<string, string[]> = {
   // ── Triades majeures ──────────────────────────────────────────────────────
   C:      ["Do:3", "Sol:3", "Mi:4", "Do:5"],
   F:      ["Fa:2", "Do:3", "La:3", "Fa:4"],   // basse Fa grave
-  G7:     ["Sol:2", "Si:3",  "Ré:4", "Fa:4"],   // basse Sol grave, quinte présente
   G:      ["Sol:3", "Ré:3", "Si:3", "Sol:4"],
   A:      ["La:3", "Mi:3", "Do#:4", "La:4"],
   D:      ["Ré:3", "La:3", "Fa#:3", "Ré:4"],

@@ -114,9 +114,9 @@ export default function ExerciseCard({ exercise: ex, locale, showCours = false }
           <div style={{ fontSize: 15, fontWeight: 500, color: "#1a1a1a", lineHeight: 1.3, marginBottom: 3 }}>
             {ex.title}
           </div>
-          {ex.subtitle && (
+          {'subtitle' in ex && ex.subtitle && (
             <div style={{ fontSize: 12, color: "#888", lineHeight: 1.5 }}>
-              {ex.subtitle}
+              {ex.subtitle as string}
             </div>
           )}
         </div>
