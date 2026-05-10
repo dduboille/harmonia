@@ -382,7 +382,9 @@ const COURS9_EXERCISES: SATBExercise[] = [
 import { generateAllExercises } from "@/exercises/generator";
 import { COURS1_EXERCISES, COURS2_EXERCISES } from "@/exercises/cours1-2-exercises";
 import { COURS3_9_IDENTIFY } from "@/exercises/cours3-9-identify";
+import { INVERSION_EXERCISES } from "@/exercises/cours-inversion-exercises";
 export type { IdentifyExercise, BuildExercise } from "@/types/exercise";
+export type { InversionExercise, InversionChoice } from "@/exercises/cours-inversion-exercises";
 
 let _generated: SATBExercise[] | null = null;
 function getGenerated() {
@@ -401,5 +403,6 @@ export const ALL_EXERCISES = [
   ...COURS7_EXERCISES,
   ...COURS8_EXERCISES,
   ...COURS9_EXERCISES,
+  ...INVERSION_EXERCISES,
   ...getGenerated(),
 ];

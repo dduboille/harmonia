@@ -26,24 +26,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 
-  console.log("Webhook event type:", event.type);
-
   try {
     switch (event.type) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
         const userId  = session.metadata?.clerk_user_id;
-        console.log("checkout.session.completed - userId:", userId);
-        console.log("checkout.session.completed - subscription:", session.subscription);
         if (!userId) break;
 
         const subscription = await stripe.subscriptions.retrieve(
           session.subscription as string
         ) as any;
-
-        console.log("subscription retrieved:", subscription.id);
-        console.log("subscription status:", subscription.status);
-        console.log("subscription current_period_end:", subscription.current_period_end);
 
         const priceId  = subscription.items.data[0].price.id;
         const isAnnual = priceId === process.env.STRIPE_PRICE_PRO_ANNUAL;
@@ -51,8 +43,6 @@ export async function POST(req: NextRequest) {
         const periodEnd = subscription.current_period_end
           ? new Date(subscription.current_period_end * 1000).toISOString()
           : null;
-
-        console.log("Upserting plan:", plan, "for userId:", userId);
 
         const { error } = await supabaseAdmin
           .from("user_subscriptions")
@@ -65,11 +55,7 @@ export async function POST(req: NextRequest) {
             updated_at: new Date().toISOString(),
           }, { onConflict: "user_id" });
 
-        if (error) {
-          console.error("Supabase upsert error:", error);
-        } else {
-          console.log("Supabase upsert success for userId:", userId);
-        }
+        if (error) console.error("Supabase upsert error:", error);
 
         break;
       }
@@ -77,7 +63,6 @@ export async function POST(req: NextRequest) {
       case "customer.subscription.updated": {
         const subscription = event.data.object as any;
         const userId = subscription.metadata?.clerk_user_id;
-        console.log("subscription.updated - userId:", userId);
         if (!userId) break;
 
         const priceId  = subscription.items.data[0].price.id;

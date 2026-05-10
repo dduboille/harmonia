@@ -197,5 +197,140 @@
       "veryGood": "Well done! A few more listens and you'll have it.",
       "keepGoing": "Keep listening actively — the ear learns with practice!"
     }
+  },
+  "cours12": {
+    "badge": "Level 2 · Course 12",
+    "title": "Tritone Substitution",
+    "subtitle": "Replace V7 with the chord a tritone away — same tension, chromatic bass line.",
+    "sections": {
+      "principe": "The Principle",
+      "application": "Applications",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Excellent — tritone substitution holds no more secrets!",
+      "veryGood": "Well done! A few more progressions to practice.",
+      "keepGoing": "Keep comparing both resolutions by ear — that's how it clicks!"
+    }
+  },
+  "cours14": {
+    "badge": "Level 2 · Course 14",
+    "title": "Modal Harmonisation",
+    "subtitle": "Colouring each mode with its characteristic chords — no mandatory tonal resolution.",
+    "sections": {
+      "principes": "Modal harmonisation",
+      "modes": "By mode",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Excellent — modal harmonisation holds no more secrets!",
+      "veryGood": "Well done! A few more progressions to consolidate.",
+      "keepGoing": "Keep comparing the modes by ear — it comes with practice!"
+    }
+  },
+  "cours13": {
+    "badge": "Level 2 · Course 13",
+    "title": "Two-Voice Counterpoint",
+    "subtitle": "Fux's 5 species — note against note, passing notes, suspensions, florid counterpoint — the rules of two-voice motion.",
+    "sections": {
+      "especes": "The 5 Species",
+      "regles": "Rules",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Excellent — two-voice counterpoint holds no more secrets!",
+      "veryGood": "Well done! A few rules still to consolidate.",
+      "keepGoing": "Keep listening to the species — the ear learns with practice!"
+    }
+  },
+  "cours16": {
+    "badge": "Level 2 · Course 16",
+    "title": "Reharmonisation",
+    "subtitle": "Diatonic substitution, tritone substitution, modal borrowing, parallel harmonisation — transforming chords under an intact melody.",
+    "sections": {
+      "principe": "The principle",
+      "application": "Applications",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Excellent — reharmonisation holds no more secrets!",
+      "veryGood": "Well done! A few more techniques to consolidate.",
+      "keepGoing": "Keep comparing before/after versions by ear — that's how it clicks!"
+    }
+  },
+  "cours15": {
+    "badge": "Level 2 · Course 15",
+    "title": "Advanced Jazz Progressions",
+    "subtitle": "Basic, extended and minor II–V–I, rhythmic harmony, turnarounds and jazz blues.",
+    "sections": {
+      "iivi": "Advanced II–V–I",
+      "rythme": "Rhythm & turnarounds",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Excellent — jazz progressions hold no more secrets!",
+      "veryGood": "Well done! A few more progressions to consolidate.",
+      "keepGoing": "Keep listening actively — jazz is learned through the ear!"
+    }
+  },
+  "cours19": {
+    "badge": "Level 2 · Course 19",
+    "title": "Introduction to Orchestration",
+    "subtitle": "The 4 instrument families, their ranges and roles — doublings, balance, registers and SATB distribution in the orchestra.",
+    "sections": {
+      "instruments": "The instruments",
+      "ecriture": "Orchestral writing",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Excellent — orchestration holds no more secrets!",
+      "veryGood": "Well done! A few instrument families still to consolidate.",
+      "keepGoing": "Keep exploring the instrument families — the ear learns with practice!"
+    }
+  },
+  "cours18": {
+    "badge": "Level 2 · Course 18",
+    "title": "Motivic Development",
+    "subtitle": "The 5 elements of a motif, the repetition paradox, and the 4 families of techniques — from harmony (least radical) to rhythm (most radical).",
+    "sections": {
+      "motif": "The motif",
+      "techniques": "Techniques",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Excellent — motivic development holds no more secrets!",
+      "veryGood": "Well done! A few more techniques to consolidate.",
+      "keepGoing": "Keep listening to the transformations — the ear learns with practice!"
+    }
+  },
+  "cours17": {
+    "badge": "Level 2 · Course 17",
+    "title": "Musical Phrase and Form",
+    "subtitle": "Motif, 4-step development, repetition techniques, antecedent-consequent period and major musical forms.",
+    "sections": {
+      "phrase": "The phrase",
+      "periode": "Period & forms",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Excellent — musical phrase and form hold no more secrets!",
+      "veryGood": "Well done! A few forms still to consolidate.",
+      "keepGoing": "Keep listening to the examples — the ear learns to recognise forms with practice!"
+    }
+  },
+  "cours11": {
+    "badge": "Level 2 · Course 11",
+    "title": "Chord Extensions",
+    "subtitle": "9ths, 11ths, 13ths — stacking thirds beyond the 7th to enrich harmonic color.",
+    "sections": {
+      "extensions": "Extensions",
+      "application": "Harmonic Application",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Excellent — chord extensions hold no more secrets!",
+      "veryGood": "Well done! A few more chords to practice and you'll have it.",
+      "keepGoing": "Keep listening actively — the ear learns with practice!"
+    }
   }
 }

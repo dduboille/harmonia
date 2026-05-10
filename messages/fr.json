@@ -197,5 +197,140 @@
       "veryGood": "Très bien ! Encore quelques écoutes et ce sera parfait.",
       "keepGoing": "Continue à écouter les modes activement — l'oreille s'éduque !"
     }
+  },
+  "cours12": {
+    "badge": "Niveau 2 · Cours 12",
+    "title": "La substitution tritonique",
+    "subtitle": "Remplacer V7 par l'accord situé un triton plus bas — même tension, basse chromatique.",
+    "sections": {
+      "principe": "Le principe",
+      "application": "Applications",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Excellent — la substitution tritonique n'a plus de secrets !",
+      "veryGood": "Bien — encore quelques progressions à pratiquer.",
+      "keepGoing": "Continue à comparer les deux résolutions à l'oreille !"
+    }
+  },
+  "cours14": {
+    "badge": "Niveau 2 · Cours 14",
+    "title": "L'harmonisation modale",
+    "subtitle": "Colorer chaque mode avec ses accords caractéristiques — sans résolution tonale obligatoire.",
+    "sections": {
+      "principes": "Harmonisation modale",
+      "modes": "Par mode",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Excellent — l'harmonisation modale n'a plus de secrets !",
+      "veryGood": "Très bien ! Encore quelques progressions à consolider.",
+      "keepGoing": "Continue à comparer les modes à l'oreille — ça s'apprend avec la pratique !"
+    }
+  },
+  "cours13": {
+    "badge": "Niveau 2 · Cours 13",
+    "title": "Le contrepoint à 2 voix",
+    "subtitle": "Les 5 espèces de Fux — note contre note, doubles croches, syncopes, fleuretis — les règles du mouvement à 2 voix.",
+    "sections": {
+      "especes": "Les 5 espèces",
+      "regles": "Règles",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Excellent — le contrepoint à 2 voix n'a plus de secrets !",
+      "veryGood": "Très bien ! Encore quelques règles à consolider.",
+      "keepGoing": "Continue à écouter les espèces — l'oreille s'éduque avec la pratique !"
+    }
+  },
+  "cours16": {
+    "badge": "Niveau 2 · Cours 16",
+    "title": "La réharmonisation",
+    "subtitle": "Substitution diatonique, tritonique, emprunt modal, harmonisation parallèle — transformer les accords sous une mélodie intacte.",
+    "sections": {
+      "principe": "Le principe",
+      "application": "Applications",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Excellent — la réharmonisation n'a plus de secrets !",
+      "veryGood": "Très bien ! Encore quelques techniques à consolider.",
+      "keepGoing": "Continue à comparer les versions avant/après — l'oreille s'éduque avec la pratique !"
+    }
+  },
+  "cours15": {
+    "badge": "Niveau 2 · Cours 15",
+    "title": "Les progressions jazz avancées",
+    "subtitle": "II–V–I de base, extensions et mineur, rythme harmonique, turnarounds et jazz blues.",
+    "sections": {
+      "iivi": "II–V–I avancé",
+      "rythme": "Rythme & turnarounds",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Excellent — les progressions jazz n'ont plus de secrets !",
+      "veryGood": "Très bien ! Encore quelques progressions à consolider.",
+      "keepGoing": "Continue à écouter activement — le jazz s'apprend par l'oreille !"
+    }
+  },
+  "cours19": {
+    "badge": "Niveau 2 · Cours 19",
+    "title": "Introduction à l'orchestration",
+    "subtitle": "Les 4 familles d'instruments, leurs tessitures et rôles — doublures, équilibre, registres et distribution SATB à l'orchestre.",
+    "sections": {
+      "instruments": "Les instruments",
+      "ecriture": "Écriture orchestrale",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Excellent — l'orchestration n'a plus de secrets !",
+      "veryGood": "Très bien ! Encore quelques familles à consolider.",
+      "keepGoing": "Continue à explorer les familles d'instruments — l'oreille s'éduque avec la pratique !"
+    }
+  },
+  "cours18": {
+    "badge": "Niveau 2 · Cours 18",
+    "title": "Le développement motivique",
+    "subtitle": "Les 5 éléments du motif, le paradoxe de la répétition, et les 4 familles de techniques — de l'harmonie (moins radical) au rythme (plus radical).",
+    "sections": {
+      "motif": "Le motif",
+      "techniques": "Techniques",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Excellent — le développement motivique n'a plus de secrets !",
+      "veryGood": "Très bien ! Encore quelques techniques à consolider.",
+      "keepGoing": "Continue à écouter les transformations — l'oreille s'éduque avec la pratique !"
+    }
+  },
+  "cours17": {
+    "badge": "Niveau 2 · Cours 17",
+    "title": "La phrase musicale et la forme",
+    "subtitle": "Motif, développement en 4 étapes, techniques de répétition, période antécédent-conséquent et grandes formes musicales.",
+    "sections": {
+      "phrase": "La phrase",
+      "periode": "Période & formes",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Excellent — la phrase musicale n'a plus de secrets !",
+      "veryGood": "Très bien ! Encore quelques formes à consolider.",
+      "keepGoing": "Continue à écouter les exemples — l'oreille reconnaît les formes avec la pratique !"
+    }
+  },
+  "cours11": {
+    "badge": "Niveau 2 · Cours 11",
+    "title": "Les extensions d'accords",
+    "subtitle": "9e, 11e, 13e — empiler des tierces au-delà de la 7te pour enrichir la couleur harmonique.",
+    "sections": {
+      "extensions": "Les extensions",
+      "application": "Application harmonique",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Excellent — les extensions n'ont plus de secrets !",
+      "veryGood": "Bien — encore quelques accords à pratiquer et ce sera parfait.",
+      "keepGoing": "Continue à écouter les extensions activement — l'oreille s'éduque !"
+    }
   }
 }

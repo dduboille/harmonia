@@ -9,14 +9,6 @@ import { getStripe, PLANS } from "@/lib/stripe";
 import { supabaseAdmin } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
-  console.log("ENV CHECK:", {
-    hasSecret: !!process.env.STRIPE_SECRET_KEY,
-    secretPrefix: process.env.STRIPE_SECRET_KEY?.slice(0, 10),
-    monthlyPrice: process.env.STRIPE_PRICE_PRO_MONTHLY,
-    annualPrice: process.env.STRIPE_PRICE_PRO_ANNUAL,
-    appUrl: process.env.NEXT_PUBLIC_APP_URL,
-  });
-
   const stripe = getStripe();
 
   try {

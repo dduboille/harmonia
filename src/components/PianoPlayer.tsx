@@ -1,19 +1,9 @@
 "use client";
 
 /**
- * PianoPlayer v3 — Harmonia
- * soundfont-player + samples acoustic_grand_piano depuis CDN gleitz/midi-js-soundfonts
- * Seule dépendance : "soundfont-player"
- *
- * Usage :
- *   const ref = useRef<PianoPlayerRef>(null)
- *   <PianoPlayer ref={ref} highlightNotes={['Do','Mi','Sol']} rootNote="Do" />
- *   ref.current?.playChord(['Do','Mi','Sol'], 3, { arp: true })
- *   ref.current?.playSequence([
- *     { notes: ['Ré','Fa','La','Do'] },
- *     { notes: ['Sol','Si','Ré','Fa'] },
- *     { notes: ['Do','Mi','Sol','Si'] },
- *   ], { interval: 1.5 })
+ * PianoPlayer v4 — Harmonia
+ * @tonejs/piano (Salamander Grand Piano, 5 couches de vélocité, sustain)
+ * Fallback : synthèse WebAudio triangle si le chargement échoue
  */
 
 import React, {
@@ -101,51 +91,63 @@ function toSharp(note: string): string {
   return FLAT_TO_SHARP[note] ?? note;
 }
 
-// ─── Singleton instrument ─────────────────────────────────────────────────────
+// ─── Singleton Tone.Sampler (Salamander Grand Piano) ─────────────────────────
 
-let _instrument: any = null;
+// Filenames on tonejs.github.io use "Ds" / "Fs" for sharps, not "#"
+const SALAMANDER_URLS: Record<string, string> = {
+  A0: "A0.mp3",
+  C1: "C1.mp3", "D#1": "Ds1.mp3", "F#1": "Fs1.mp3",
+  A1: "A1.mp3",
+  C2: "C2.mp3", "D#2": "Ds2.mp3", "F#2": "Fs2.mp3",
+  A2: "A2.mp3",
+  C3: "C3.mp3", "D#3": "Ds3.mp3", "F#3": "Fs3.mp3",
+  A3: "A3.mp3",
+  C4: "C4.mp3", "D#4": "Ds4.mp3", "F#4": "Fs4.mp3",
+  A4: "A4.mp3",
+  C5: "C5.mp3", "D#5": "Ds5.mp3", "F#5": "Fs5.mp3",
+  A5: "A5.mp3",
+  C6: "C6.mp3", "D#6": "Ds6.mp3", "F#6": "Fs6.mp3",
+  A6: "A6.mp3",
+  C7: "C7.mp3", "D#7": "Ds7.mp3", "F#7": "Fs7.mp3",
+  A7: "A7.mp3",
+  C8: "C8.mp3",
+};
+
+let _sampler: any = null;
+let _tone: any = null;
 let _audioCtx: AudioContext | null = null;
 let _loading = false;
 let _ready = false;
 let _cbs: Array<() => void> = [];
 
-function getInstrument(): Promise<any> {
-  if (_ready && _instrument) return Promise.resolve(_instrument);
+function getInstrument(): Promise<void> {
+  if (_ready) return Promise.resolve();
   return new Promise((resolve) => {
-    _cbs.push(() => resolve(_instrument));
+    _cbs.push(resolve);
     if (_loading) return;
     _loading = true;
 
-    if (!_audioCtx) {
-      _audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
-    }
-
-    import("soundfont-player").then((Soundfont) => {
-      const SF = (Soundfont as any).default ?? Soundfont;
-      SF.instrument(_audioCtx, "acoustic_grand_piano", {
-        soundfont: "MusyngKite",
-        format: "mp3",
-      }).then((inst: any) => {
-        _instrument = inst;
-        _ready = true;
-        _cbs.forEach((cb) => cb());
-        _cbs = [];
-      }).catch(() => {
-        // fallback: try FluidR3_GM
-        SF.instrument(_audioCtx, "acoustic_grand_piano", {
-          soundfont: "FluidR3_GM",
-          format: "ogg",
-        }).then((inst: any) => {
-          _instrument = inst;
+    import("tone").then(async (Tone) => {
+      _tone = Tone;
+      await Tone.start();
+      _sampler = new Tone.Sampler({
+        urls: SALAMANDER_URLS,
+        baseUrl: "https://tonejs.github.io/audio/salamander/",
+        onload: () => {
           _ready = true;
           _cbs.forEach((cb) => cb());
           _cbs = [];
-        }).catch(() => {
+        },
+        onerror: () => {
           _ready = true; // will use synth fallback
           _cbs.forEach((cb) => cb());
           _cbs = [];
-        });
-      });
+        },
+      }).toDestination();
+    }).catch(() => {
+      _ready = true;
+      _cbs.forEach((cb) => cb());
+      _cbs = [];
     });
   });
 }
@@ -227,7 +229,6 @@ const PianoPlayer = forwardRef<PianoPlayerRef, PianoPlayerProps>(({
   const [isReady, setIsReady] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [pressed, setPressed] = useState<Set<string>>(new Set());
-  const scheduledNotes = useRef<any[]>([]);
 
   const ensureReady = useCallback(async () => {
     if (isReady) return;
@@ -257,14 +258,11 @@ const PianoPlayer = forwardRef<PianoPlayerRef, PianoPlayerProps>(({
       setTimeout(() => setPressed((p) => { const s = new Set(p); s.delete(id); return s; }), 280);
     }, startTime * 1000);
 
-    if (_ready && _instrument) {
+    if (_ready && _sampler && _tone) {
       const midiNote = toMidiNote(note, octave);
-      const when = (_audioCtx?.currentTime ?? 0) + startTime;
-      const node = _instrument.play(midiNote, when, {
-        duration,
-        gain: velocity,
-      });
-      if (node) scheduledNotes.current.push(node);
+      const lookahead = 0.05;
+      const when = _tone.now() + startTime + lookahead;
+      _sampler.triggerAttackRelease(midiNote, duration, when, velocity);
     } else {
       synthNote(note, octave, startTime, duration, velocity);
     }

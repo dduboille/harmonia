@@ -28,11 +28,11 @@ export const SATB: Record<string, string[]> = {
   Db:     ["Réb:3", "Lab:3", "Fa:4", "Réb:5"],
 
   // ── Triades mineures ──────────────────────────────────────────────────────
-  Am:     ["La:3", "Mi:3", "Do:4", "La:4"],
+  Am:     ["La:2", "Mi:3", "Do:4", "La:4"],
   Dm:     ["Ré:3", "Fa:3", "La:3", "Ré:4"],
   Em:     ["Mi:3", "Si:3", "Sol:3", "Mi:4"],
   Bm:     ["Si:3", "Fa#:3", "Ré:4", "Si:4"],
-  Gm:     ["Sol:3", "Ré:3", "Sib:3", "Sol:4"],
+  Gm:     ["Sol:2", "Ré:3", "Sib:3", "Sol:4"],
   Cm:     ["Do:3", "Sol:3", "Mib:4", "Do:5"],
   Fm:     ["Fa:3", "Do:3", "Lab:3", "Fa:4"],
   Ebm:    ["Mib:3", "Sib:3", "Solb:4", "Mib:5"],
@@ -70,7 +70,7 @@ export const SATB: Record<string, string[]> = {
   Cm7:    ["Do:3", "Sol:3", "Mib:4", "Sib:4"],
   Fm7:    ["Fa:3", "Do:3",  "Lab:3", "Mib:4"],
   Gm7:    ["Sol:3", "Ré:3", "Sib:3", "Fa:4"],
-  Dm7b5:  ["Ré:3", "Lab:3", "Fa:3", "Do:4"],
+  Dm7b5:  ["Ré:3", "Fa:3",  "Lab:3", "Do:4"],
 
   // ── Renversements — Triades majeures ──────────────────────────────────────
 
@@ -102,7 +102,8 @@ export const SATB: Record<string, string[]> = {
   "Em/B":   ["Si:3",  "Mi:3",  "Sol:3", "Mi:4"],   // 2e renversement (quinte)
 
   // Gm : tierce=Sib, quinte=Ré
-  "Gm/Bb":  ["Sib:3", "Sol:3", "Ré:4",  "Sol:4"],  // 1er renversement
+  "Gm/Bb":  ["Sib:2", "Sol:3", "Ré:4",  "Sol:4"],  // 1er renversement
+  "Gm/D":   ["Ré:3",  "Sol:3", "Sib:3", "Sol:4"],  // 2e renversement
 
   // Fm : tierce=Lab, quinte=Do
   "Fm/Ab":  ["Lab:3", "Fa:3",  "Do:4",  "Fa:4"],   // 1er renversement
@@ -127,7 +128,7 @@ export const SATB: Record<string, string[]> = {
   // 1er /F# : Fa# (tierce) à la basse
   // 3e /C  : Do (septième) à la basse
 
-  "D7/F#":  ["Fa#:3", "Ré:3",  "La:3",  "Do:4"],   // 1er renversement
+  "D7/F#":  ["Fa#:3", "La:3",  "Do:4",  "Ré:4"],   // 1er renversement
   "D7/C":   ["Do:3",  "Ré:3",  "Fa#:3", "Do:4"],   // 3e renversement
 
   // ── Renversements — A7 (La Do# Mi Sol) ───────────────────────────────────
@@ -141,6 +142,7 @@ export const SATB: Record<string, string[]> = {
   // 1er /F : Fa (tierce) à la basse
 
   "Db/F":   ["Fa:3",  "Réb:4", "Lab:4", "Réb:5"],  // 1er renversement (♭II6)
+  "Db/Ab":  ["Lab:3", "Réb:4", "Fa:4",  "Réb:5"],  // 2e renversement
 
   // ── Progressions spéciales ────────────────────────────────────────────────
   "Am_pivot": ["La:3", "Mi:3",  "Do:4",  "La:4"],
