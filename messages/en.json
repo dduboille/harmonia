@@ -273,6 +273,21 @@
       "keepGoing": "Keep listening actively — jazz is learned through the ear!"
     }
   },
+  "cours20": {
+    "badge": "Level 2 · Course 20",
+    "title": "Analysis of the Great Classical Composers",
+    "subtitle": "Bach, Mozart, Beethoven, Schubert, Chopin, Liszt, Berlioz, Tchaikovsky, Rachmaninoff — the harmonic signatures that shaped Western music.",
+    "sections": {
+      "compositeurs": "The composers",
+      "analyse": "Comparative analysis",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Excellent — the great masters hold no more secrets!",
+      "veryGood": "Well done! A few more composers to consolidate.",
+      "keepGoing": "Keep exploring — each listen reveals new harmonic details!"
+    }
+  },
   "cours19": {
     "badge": "Level 2 · Course 19",
     "title": "Introduction to Orchestration",

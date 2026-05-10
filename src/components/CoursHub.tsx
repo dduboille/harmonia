@@ -147,6 +147,13 @@ const COURS = [
     tags: ["Orchestre", "Timbres", "Ravel"],
     available: true,
   },
+  {
+    num: 20,
+    title: "Analyse des grands compositeurs classiques",
+    desc: "Bach, Mozart, Beethoven, Schubert, Chopin, Liszt, Berlioz, Tchaïkovski, Rachmaninov — les signatures harmoniques qui ont façonné la musique occidentale.",
+    tags: ["Analyse", "Compositeurs", "Histoire"],
+    available: true,
+  },
 ];
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
