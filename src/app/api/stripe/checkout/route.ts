@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Plan invalide" }, { status: 400 });
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.getharmonia.app";
     const loc = locale ?? "fr";
 
     let customerId: string | undefined;
