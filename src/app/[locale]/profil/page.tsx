@@ -4,6 +4,7 @@
  */
 
 import { auth, currentUser } from "@clerk/nextjs/server";
+import { SignOutButton } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getUserPlan } from "@/lib/progression";
@@ -237,20 +238,25 @@ export default async function ProfilPage({ params }: Props) {
               <span style={{ color: "#bbb" }}>→</span>
             </Link>
 
-            <a href="/sign-out" style={{
-              padding: "12px 16px",
-              borderRadius: 8,
-              background: "#FFF5F5",
-              color: "#E53E3E",
-              fontSize: 14,
-              textDecoration: "none",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}>
-              <span>🚪 Se déconnecter</span>
-              <span style={{ color: "#FC8181" }}>→</span>
-            </a>
+            <SignOutButton redirectUrl="/fr">
+              <button style={{
+                padding: "12px 16px",
+                borderRadius: 8,
+                background: "#FFF5F5",
+                color: "#E53E3E",
+                fontSize: 14,
+                border: "none",
+                cursor: "pointer",
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                fontFamily: "inherit",
+              }}>
+                <span>🚪 Se déconnecter</span>
+                <span style={{ color: "#FC8181" }}>→</span>
+              </button>
+            </SignOutButton>
           </div>
         </div>
 
