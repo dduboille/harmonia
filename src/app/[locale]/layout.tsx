@@ -115,7 +115,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignOutUrl="/fr">
       <html lang={locale}>
         <head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
