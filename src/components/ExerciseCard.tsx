@@ -29,6 +29,7 @@ const TYPE_LABEL: Record<string, string> = {
   build:     "Construction",
   harmonize: "Harmonisation",
   analysis:  "Analyse",
+  inversion: "Renversement",
 };
 
 const TYPE_COLOR: Record<string, string> = {
@@ -37,6 +38,7 @@ const TYPE_COLOR: Record<string, string> = {
   build:     "#0F6E56",
   harmonize: "#BA7517",
   analysis:  "#555",
+  inversion: "#A84E00",
 };
 
 export default function ExerciseCard({ exercise: ex, locale, showCours = false }: ExerciseCardProps) {

@@ -104,7 +104,7 @@ export interface SATBExercise {
 
 // ─── Union type pour exercices futurs ─────────────────────────────────────────
 
-export type Exercise = SATBExercise | IdentifyExercise | BuildExercise;
+export type Exercise = SATBExercise | IdentifyExercise | BuildExercise | InversionExercise;
 
 // ─── Catalogue ────────────────────────────────────────────────────────────────
 
