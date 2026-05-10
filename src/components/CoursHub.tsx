@@ -154,6 +154,13 @@ const COURS = [
     tags: ["Analyse", "Compositeurs", "Histoire"],
     available: true,
   },
+  {
+    num: 21,
+    title: "Analyse des compositeurs modernes et contemporains",
+    desc: "Debussy, Ravel, Stravinsky, Messiaen, Satie, Beatles, Radiohead, Morricone — de l'impressionnisme au rock, comment le XXe siècle a réinventé l'harmonie.",
+    tags: ["Moderne", "Contemporain", "Impressionnisme"],
+    available: true,
+  },
 ];
 
 // ─── Styles ───────────────────────────────────────────────────────────────────

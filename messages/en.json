@@ -273,6 +273,21 @@
       "keepGoing": "Keep listening actively — jazz is learned through the ear!"
     }
   },
+  "cours21": {
+    "badge": "Level 2 · Course 21",
+    "title": "Analysis of Modern and Contemporary Composers",
+    "subtitle": "Debussy, Ravel, Stravinsky, Messiaen, Satie, Beatles, Radiohead, Morricone — from impressionism to rock, how the 20th century reinvented harmony.",
+    "sections": {
+      "compositeurs": "The composers",
+      "analyse": "Comparative analysis",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Excellent — 20th-century musical languages hold no more secrets!",
+      "veryGood": "Well done! A few more composers to consolidate.",
+      "keepGoing": "Keep listening — modern harmony reveals itself through the ear!"
+    }
+  },
   "cours20": {
     "badge": "Level 2 · Course 20",
     "title": "Analysis of the Great Classical Composers",
