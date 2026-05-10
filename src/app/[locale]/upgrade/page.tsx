@@ -1,48 +1,120 @@
 "use client";
 
-/**
- * src/app/[locale]/upgrade/page.tsx
- * Harmonia — Page de passage au plan Pro
- */
-
 import React, { useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 
 const PLANS = [
   {
-    key: "pro_monthly",
-    name: "Pro mensuel",
-    price: "9€",
-    period: "/mois",
-    annual: false,
+    key: null,
+    name: "Gratuit",
+    monthlyPrice: "0€",
+    annualPrice: "0€",
+    period: "",
+    desc: "Pour découvrir l'harmonie tonale",
+    bg: "#fff",
+    border: "#e0dbd3",
+    labelColor: "#888",
+    priceColor: "#1a1a1a",
+    periodColor: "#aaa",
+    descColor: "#999",
+    checkColor: "#0F6E56",
+    featureColor: "#555",
+    cta: "Commencer gratuitement",
+    ctaBg: "transparent",
+    ctaColor: "#1a1a1a",
+    ctaBorder: "1px solid #c8c4bc",
+    badge: null,
+    badgeBg: "",
     features: [
-      "Tous les cours (1 à 9)",
-      "700+ exercices SATB",
-      "24 tonalités × 4 positions",
-      "Tous les niveaux",
-      "Mises à jour continues",
+      "Cours 1 à 3 complets",
+      "Quiz illimité (cours 1–3)",
+      "Exercices niveau 1",
+      "Page des 24 tonalités",
+      "Audio Salamander",
+    ],
+    notIncluded: [
+      "Cours 4 à 19",
+      "Exercices niveaux 2–3",
+      "Fonctionnalités IA",
     ],
   },
   {
-    key: "pro_annual",
-    name: "Pro annuel",
-    price: "79€",
-    period: "/an",
-    annual: true,
-    badge: "−29%",
+    key: "student",
+    name: "Étudiant",
+    monthlyPrice: "9€",
+    annualPrice: "79€",
+    monthlyKey: "student_monthly",
+    annualKey: "student_annual",
+    period: "/mois",
+    annualPeriod: "/an",
+    desc: "Tous les cours et exercices",
+    bg: "#1a1a1a",
+    border: "#1a1a1a",
+    labelColor: "#aaa",
+    priceColor: "#fff",
+    periodColor: "#666",
+    descColor: "#888",
+    checkColor: "#9AE6B4",
+    featureColor: "#ccc",
+    cta: "Choisir Étudiant",
+    ctaBg: "#BA7517",
+    ctaColor: "#fff",
+    ctaBorder: "none",
+    badge: "Le plus populaire",
+    badgeBg: "#BA7517",
     features: [
-      "Tout le plan Pro mensuel",
-      "Économie de 29€ par an",
-      "Équivaut à 6,58€/mois",
+      "Tous les cours (1 à 19)",
+      "Quiz illimité sur tous les cours",
+      "Tous les exercices SATB",
+      "24 tonalités × 4 positions",
+      "Tous les niveaux de difficulté",
+      "Mises à jour continues",
     ],
+    notIncluded: [
+      "Fonctionnalités IA (bientôt)",
+    ],
+  },
+  {
+    key: "pro",
+    name: "Pro",
+    monthlyPrice: "19€",
+    annualPrice: "159€",
+    monthlyKey: "pro_monthly",
+    annualKey: "pro_annual",
+    period: "/mois",
+    annualPeriod: "/an",
+    desc: "Étudiant + fonctionnalités IA",
+    bg: "#FAEEDA",
+    border: "#F6AD55",
+    labelColor: "#BA7517",
+    priceColor: "#1a1a1a",
+    periodColor: "#BA7517",
+    descColor: "#8a5c00",
+    checkColor: "#BA7517",
+    featureColor: "#5c3d00",
+    cta: "Choisir Pro",
+    ctaBg: "#1a1a1a",
+    ctaColor: "#fff",
+    ctaBorder: "none",
+    badge: "Meilleure valeur",
+    badgeBg: "#1a1a1a",
+    features: [
+      "Tout le plan Étudiant",
+      "Correction IA de vos harmonisations",
+      "Analyse stylistique automatique",
+      "Suggestions contextuelles",
+      "Accès prioritaire aux nouvelles IA",
+    ],
+    notIncluded: [],
+    aiNote: "Fonctionnalités IA bientôt disponibles",
   },
 ];
 
 export default function UpgradePage() {
   const params  = useParams();
-  const router  = useRouter();
   const locale  = (params?.locale as string) ?? "fr";
+  const [annual,  setAnnual]  = useState(false);
   const [loading, setLoading] = useState<string | null>(null);
   const [error,   setError]   = useState<string | null>(null);
 
@@ -70,107 +142,140 @@ export default function UpgradePage() {
 
   return (
     <main style={{ minHeight: "100vh", background: "#f4f1ec", padding: "3rem 1rem" }}>
-      <div style={{ maxWidth: 680, margin: "0 auto" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto" }}>
 
         {/* Header */}
-        <div style={{ textAlign: "center" as const, marginBottom: "3rem" }}>
-          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", color: "#BA7517", textTransform: "uppercase" as const, marginBottom: 8 }}>
-            Passer au Pro
+        <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
+          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", color: "#BA7517", textTransform: "uppercase", marginBottom: 8, fontFamily: "system-ui" }}>
+            Tarifs
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 400, fontFamily: "Georgia, serif", color: "#1a1a1a", margin: "0 0 12px" }}>
-            Accédez à tout Harmonia
+          <h1 style={{ fontSize: 36, fontWeight: 400, fontFamily: "Georgia, serif", color: "#1a1a1a", margin: "0 0 12px" }}>
+            Choisissez votre rythme
           </h1>
-          <p style={{ fontSize: 15, color: "#888", margin: 0, lineHeight: 1.7 }}>
-            9 cours complets · 700+ exercices · 24 tonalités · feedback temps réel
+          <p style={{ fontSize: 15, color: "#888", margin: "0 0 28px", lineHeight: 1.7, fontFamily: "system-ui" }}>
+            19 cours · 700+ exercices · Feedback harmonique en temps réel
           </p>
+
+          {/* Toggle mensuel/annuel */}
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 12, background: "#fff", border: "0.5px solid #e0dbd3", borderRadius: 30, padding: "6px 8px", fontFamily: "system-ui" }}>
+            <button
+              onClick={() => setAnnual(false)}
+              style={{ padding: "7px 20px", borderRadius: 24, border: "none", background: !annual ? "#1a1a1a" : "transparent", color: !annual ? "#fff" : "#888", fontSize: 13, fontWeight: 500, cursor: "pointer", transition: "all .15s" }}
+            >
+              Mensuel
+            </button>
+            <button
+              onClick={() => setAnnual(true)}
+              style={{ padding: "7px 20px", borderRadius: 24, border: "none", background: annual ? "#1a1a1a" : "transparent", color: annual ? "#fff" : "#888", fontSize: 13, fontWeight: 500, cursor: "pointer", transition: "all .15s", display: "flex", alignItems: "center", gap: 8 }}
+            >
+              Annuel
+              <span style={{ background: "#0F6E56", color: "#fff", fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: 10, letterSpacing: "0.05em" }}>
+                −26%
+              </span>
+            </button>
+          </div>
         </div>
 
         {/* Plans */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: "2rem" }}>
-          {PLANS.map(plan => (
-            <div key={plan.key} style={{
-              background: plan.annual ? "#1a1a1a" : "#fff",
-              border: `1px solid ${plan.annual ? "#1a1a1a" : "#e0dbd3"}`,
-              borderRadius: 12,
-              padding: "28px 24px",
-              position: "relative" as const,
-            }}>
-              {plan.badge && (
-                <div style={{
-                  position: "absolute" as const,
-                  top: -10, right: 16,
-                  background: "#BA7517",
-                  color: "#fff",
-                  fontSize: 11,
-                  fontWeight: 700,
-                  padding: "3px 10px",
-                  borderRadius: 10,
-                }}>
-                  {plan.badge}
-                </div>
-              )}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: "2rem", alignItems: "start" }}>
+          {PLANS.map(plan => {
+            const priceKey = plan.key
+              ? (annual ? (plan as any).annualKey : (plan as any).monthlyKey)
+              : null;
+            const isLoading = loading === priceKey;
 
-              <div style={{ fontSize: 13, fontWeight: 600, color: plan.annual ? "#aaa" : "#888", marginBottom: 8 }}>
-                {plan.name}
-              </div>
+            return (
+              <div key={plan.name} style={{ background: plan.bg, border: `1px solid ${plan.border}`, borderRadius: 14, padding: "32px 28px", position: "relative" }}>
 
-              <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 20 }}>
-                <span style={{ fontSize: 36, fontWeight: 400, color: plan.annual ? "#fff" : "#1a1a1a", fontFamily: "Georgia, serif" }}>
-                  {plan.price}
-                </span>
-                <span style={{ fontSize: 14, color: plan.annual ? "#666" : "#aaa" }}>
-                  {plan.period}
-                </span>
-              </div>
-
-              <div style={{ display: "flex", flexDirection: "column" as const, gap: 8, marginBottom: 24 }}>
-                {plan.features.map(f => (
-                  <div key={f} style={{ display: "flex", gap: 8, fontSize: 13, alignItems: "flex-start" }}>
-                    <span style={{ color: plan.annual ? "#9AE6B4" : "#0F6E56", flexShrink: 0 }}>✓</span>
-                    <span style={{ color: plan.annual ? "#ccc" : "#555" }}>{f}</span>
+                {/* Badge */}
+                {plan.badge && (
+                  <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: plan.badgeBg, color: "#fff", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", padding: "4px 14px", borderRadius: 10, fontFamily: "system-ui", whiteSpace: "nowrap" }}>
+                    {plan.badge}
                   </div>
-                ))}
-              </div>
+                )}
 
-              <button
-                onClick={() => handleCheckout(plan.key)}
-                disabled={loading === plan.key}
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  borderRadius: 6,
-                  border: "none",
-                  background: plan.annual ? "#BA7517" : "#1a1a1a",
-                  color: "#fff",
-                  fontSize: 14,
-                  fontWeight: 500,
-                  cursor: loading === plan.key ? "wait" : "pointer",
-                  opacity: loading === plan.key ? 0.7 : 1,
-                }}
-              >
-                {loading === plan.key ? "Chargement..." : "Choisir ce plan"}
-              </button>
-            </div>
-          ))}
+                {/* Nom */}
+                <div style={{ fontSize: 12, fontWeight: 700, color: plan.labelColor, fontFamily: "system-ui", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>
+                  {plan.name}
+                </div>
+
+                {/* Prix */}
+                <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 6 }}>
+                  <span style={{ fontSize: 42, fontWeight: 400, color: plan.priceColor, fontFamily: "Georgia, serif", letterSpacing: "-0.02em" }}>
+                    {annual ? plan.annualPrice : plan.monthlyPrice}
+                  </span>
+                  <span style={{ fontSize: 14, color: plan.periodColor, fontFamily: "system-ui" }}>
+                    {plan.key ? (annual ? (plan as any).annualPeriod : plan.period) : ""}
+                  </span>
+                </div>
+                {plan.key && annual && (
+                  <div style={{ fontSize: 12, color: plan.periodColor, fontFamily: "system-ui", marginBottom: 6 }}>
+                    soit {plan.name === "Étudiant" ? "6,58€" : "13,25€"}/mois
+                  </div>
+                )}
+                <p style={{ fontSize: 13, color: plan.descColor, margin: "0 0 24px", fontFamily: "system-ui", lineHeight: 1.5 }}>
+                  {plan.desc}
+                </p>
+
+                {/* CTA */}
+                {plan.key ? (
+                  <button
+                    onClick={() => priceKey && handleCheckout(priceKey)}
+                    disabled={isLoading}
+                    style={{ width: "100%", padding: "12px", borderRadius: 6, border: plan.ctaBorder, background: plan.ctaBg, color: plan.ctaColor, fontSize: 14, fontWeight: 500, cursor: isLoading ? "wait" : "pointer", opacity: isLoading ? 0.7 : 1, fontFamily: "system-ui", boxSizing: "border-box", marginBottom: 24 }}
+                  >
+                    {isLoading ? "Chargement..." : plan.cta}
+                  </button>
+                ) : (
+                  <Link href={`/${locale}/cours`} style={{ display: "block", width: "100%", padding: "12px", borderRadius: 6, border: plan.ctaBorder, background: plan.ctaBg, color: plan.ctaColor, fontSize: 14, fontWeight: 500, fontFamily: "system-ui", textAlign: "center", textDecoration: "none", boxSizing: "border-box", marginBottom: 24 }}>
+                    {plan.cta}
+                  </Link>
+                )}
+
+                {/* Features */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+                  {plan.features.map(f => (
+                    <div key={f} style={{ display: "flex", gap: 9, fontSize: 13, alignItems: "flex-start", fontFamily: "system-ui" }}>
+                      <span style={{ color: plan.checkColor, flexShrink: 0, marginTop: 1 }}>✓</span>
+                      <span style={{ color: plan.featureColor, lineHeight: 1.4 }}>{f}</span>
+                    </div>
+                  ))}
+                  {plan.notIncluded.map(f => (
+                    <div key={f} style={{ display: "flex", gap: 9, fontSize: 13, alignItems: "flex-start", fontFamily: "system-ui", opacity: 0.4 }}>
+                      <span style={{ color: "#aaa", flexShrink: 0, marginTop: 1 }}>✗</span>
+                      <span style={{ color: "#aaa", lineHeight: 1.4 }}>{f}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* AI note */}
+                {"aiNote" in plan && plan.aiNote && (
+                  <div style={{ marginTop: 20, padding: "10px 12px", background: "rgba(186,117,23,0.12)", borderRadius: 8, fontSize: 12, color: "#8a5c00", fontFamily: "system-ui", lineHeight: 1.4, fontStyle: "italic" }}>
+                    ✦ {plan.aiNote}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {error && (
-          <div style={{ padding: "12px 16px", background: "#FFF5F5", border: "0.5px solid #FC8181", borderRadius: 8, fontSize: 13, color: "#C53030", marginBottom: 16 }}>
+          <div style={{ padding: "12px 16px", background: "#FFF5F5", border: "0.5px solid #FC8181", borderRadius: 8, fontSize: 13, color: "#C53030", marginBottom: 16, fontFamily: "system-ui" }}>
             {error}
           </div>
         )}
 
         {/* Garanties */}
-        <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "16px 20px", display: "flex", gap: 24, flexWrap: "wrap" as const, justifyContent: "center" }}>
+        <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "16px 20px", display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center" }}>
           {["Annulation à tout moment", "Paiement sécurisé Stripe", "Aucun engagement"].map(g => (
-            <div key={g} style={{ fontSize: 12, color: "#888", display: "flex", alignItems: "center", gap: 6 }}>
+            <div key={g} style={{ fontSize: 12, color: "#888", display: "flex", alignItems: "center", gap: 6, fontFamily: "system-ui" }}>
               <span style={{ color: "#0F6E56" }}>✓</span> {g}
             </div>
           ))}
         </div>
 
-        <div style={{ textAlign: "center" as const, marginTop: 20 }}>
-          <Link href={`/${locale}/dashboard`} style={{ fontSize: 12, color: "#bbb", textDecoration: "none" }}>
+        <div style={{ textAlign: "center", marginTop: 20 }}>
+          <Link href={`/${locale}/dashboard`} style={{ fontSize: 12, color: "#bbb", textDecoration: "none", fontFamily: "system-ui" }}>
             ← Retour au dashboard
           </Link>
         </div>

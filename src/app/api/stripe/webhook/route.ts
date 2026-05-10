@@ -8,6 +8,14 @@ import { getStripe } from "@/lib/stripe";
 import { supabaseAdmin } from "@/lib/supabase";
 import Stripe from "stripe";
 
+function resolvePlan(priceId: string): string {
+  if (priceId === process.env.STRIPE_PRICE_STUDENT_MONTHLY) return "student";
+  if (priceId === process.env.STRIPE_PRICE_STUDENT_ANNUAL)  return "student_annual";
+  if (priceId === process.env.STRIPE_PRICE_PRO_MONTHLY)     return "pro";
+  if (priceId === process.env.STRIPE_PRICE_PRO_ANNUAL)      return "pro_annual";
+  return "pro";
+}
+
 export async function POST(req: NextRequest) {
   const stripe = getStripe();
   const body = await req.text();
@@ -37,9 +45,8 @@ export async function POST(req: NextRequest) {
           session.subscription as string
         ) as any;
 
-        const priceId  = subscription.items.data[0].price.id;
-        const isAnnual = priceId === process.env.STRIPE_PRICE_PRO_ANNUAL;
-        const plan     = isAnnual ? "annual" : "pro";
+        const priceId = subscription.items.data[0].price.id;
+        const plan = resolvePlan(priceId);
         const periodEnd = subscription.current_period_end
           ? new Date(subscription.current_period_end * 1000).toISOString()
           : null;
@@ -65,11 +72,8 @@ export async function POST(req: NextRequest) {
         const userId = subscription.metadata?.clerk_user_id;
         if (!userId) break;
 
-        const priceId  = subscription.items.data[0].price.id;
-        const isAnnual = priceId === process.env.STRIPE_PRICE_PRO_ANNUAL;
-        const plan     = subscription.status === "active"
-          ? (isAnnual ? "annual" : "pro")
-          : "free";
+        const priceId = subscription.items.data[0].price.id;
+        const plan    = subscription.status === "active" ? resolvePlan(priceId) : "free";
         const periodEnd = subscription.current_period_end
           ? new Date(subscription.current_period_end * 1000).toISOString()
           : null;

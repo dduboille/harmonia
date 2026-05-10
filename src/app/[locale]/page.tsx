@@ -30,20 +30,21 @@ const PLANS = [
   {
     name: "Gratuit", href: "cours", price: "0€", period: "", desc: "Pour découvrir l'harmonie tonale",
     color: "#555", bg: "#fff", border: "#e0dbd3", cta: "Commencer gratuitement", ctaStyle: "outline",
-    features: ["Cours 1 à 3 complets", "Quiz illimité (cours 1–3)", "Exercices SATB niveaux 1", "Page des 24 tonalités", "Audio Salamander"],
-    notIncluded: ["Cours 4 à 9", "Exercices avancés (niv. 2–3)", "Toutes les tonalités en exercice"],
+    features: ["Cours 1 à 3 complets", "Quiz illimité (cours 1–3)", "Exercices SATB niveau 1", "Page des 24 tonalités", "Audio Salamander"],
+    notIncluded: ["Cours 4 à 19", "Exercices niveaux 2–3", "Fonctionnalités IA"],
   },
   {
-    name: "Pro", href: "upgrade", price: "9€", period: "/mois", desc: "Pour maîtriser l'harmonie complète",
-    color: "#fff", bg: "#1a1a1a", border: "#1a1a1a", cta: "Commencer l'essai gratuit", ctaStyle: "solid", badge: "Le plus populaire",
-    features: ["Tous les cours (1 à 9) complets", "Quiz illimité sur tous les cours", "700+ exercices SATB", "24 tonalités × 4 positions", "Tous les niveaux de difficulté", "Exercices identify & build", "Mises à jour en continu", "Support prioritaire"],
-    notIncluded: [],
+    name: "Étudiant", href: "upgrade", price: "9€", period: "/mois", desc: "Tous les cours et exercices",
+    color: "#fff", bg: "#1a1a1a", border: "#1a1a1a", cta: "Choisir Étudiant", ctaStyle: "solid", badge: "Le plus populaire",
+    features: ["Tous les cours (1 à 19)", "Quiz illimité sur tous les cours", "700+ exercices SATB", "24 tonalités × 4 positions", "Tous les niveaux de difficulté", "Mises à jour continues"],
+    notIncluded: ["Fonctionnalités IA (bientôt)"],
   },
   {
-    name: "Annuel", href: "upgrade", price: "79€", period: "/an", desc: "Économisez 29% vs mensuel",
-    color: "#BA7517", bg: "#FAEEDA", border: "#F6AD55", cta: "Choisir l'annuel", ctaStyle: "amber", badge: "Meilleure valeur",
-    features: ["Tout le plan Pro", "Économie de 29€ par an", "Accès à vie aux cours achetés"],
+    name: "Pro", href: "upgrade", price: "19€", period: "/mois", desc: "Étudiant + fonctionnalités IA",
+    color: "#BA7517", bg: "#FAEEDA", border: "#F6AD55", cta: "Choisir Pro", ctaStyle: "amber", badge: "Meilleure valeur",
+    features: ["Tout le plan Étudiant", "Correction IA des harmonisations", "Analyse stylistique automatique", "Accès prioritaire aux nouvelles IA"],
     notIncluded: [],
+    aiNote: "Fonctionnalités IA bientôt disponibles",
   },
 ];
 
