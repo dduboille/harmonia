@@ -1,5 +1,12 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import createIntlMiddleware from "next-intl/middleware";
 import { NextResponse } from "next/server";
+
+const intlMiddleware = createIntlMiddleware({
+  locales: ["fr", "en", "es", "de", "pt", "it"],
+  defaultLocale: "fr",
+  localePrefix: "always",
+});
 
 const isPublicRoute = createRouteMatcher([
   "/",
@@ -11,10 +18,9 @@ const isPublicRoute = createRouteMatcher([
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
-  const { userId } = await auth();
   const url = req.nextUrl;
+  const isApiRoute = url.pathname.startsWith("/api/");
 
-  // Redirect /sign-in and /sign-up without locale to /fr/sign-in etc.
   if (url.pathname === "/sign-in") {
     return NextResponse.redirect(new URL("/fr/sign-in", req.url));
   }
@@ -22,8 +28,13 @@ export default clerkMiddleware(async (auth, req) => {
     return NextResponse.redirect(new URL("/fr/sign-up", req.url));
   }
 
+  const { userId } = await auth();
   if (!isPublicRoute(req) && !userId) {
     return NextResponse.redirect(new URL("/fr/sign-in", req.url));
+  }
+
+  if (!isApiRoute) {
+    return intlMiddleware(req);
   }
 });
 
