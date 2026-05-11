@@ -134,12 +134,14 @@ export async function getAllProgress(userId: string): Promise<UserProgress[]> {
 // "student" / "student_annual" viennent du webhook actuel.
 // "pro_annual" / "annual" sont les plans annuels.
 const PLAN_MAP: Record<string, "free" | "pro" | "annual"> = {
-  free:           "free",
-  student:        "pro",
-  student_annual: "annual",
-  pro:            "pro",
-  pro_annual:     "annual",
-  annual:         "annual",
+  free:            "free",
+  student:         "pro",
+  étudiant:        "pro",
+  etudiant:        "pro",
+  student_annual:  "annual",
+  pro:             "pro",
+  pro_annual:      "annual",
+  annual:          "annual",
 };
 
 export async function getUserPlan(

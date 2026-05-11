@@ -70,6 +70,7 @@ export default async function DashboardPage({ params }: Props) {
     <main style={{ minHeight: "100vh", background: "#f4f1ec", padding: "2.5rem 1rem" }}>
       <div style={{ maxWidth: 900, margin: "0 auto" }}>
 
+
         {/* Header */}
         <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap" as const, gap: 12 }}>
           <div>
