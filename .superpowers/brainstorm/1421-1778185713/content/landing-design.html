@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harmonia — Landing page (proposition)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #faf8f4; font-family: system-ui, sans-serif; color: #1a1a1a; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+    background: rgba(250,248,244,0.85); backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid rgba(0,0,0,0.08);
+  }
+  .nav-logo {
+    font-family: Georgia, serif; font-size: 18px; font-weight: 700; color: #1a1a1a;
+    letter-spacing: -0.3px;
+  }
+  .nav-logo span { color: #BA7517; }
+  .nav-links {
+    display: flex; gap: 28px; align-items: center;
+    font-size: 13px; color: #555;
+  }
+  .nav-links a { text-decoration: none; color: #555; }
+  .nav-links a:hover { color: #1a1a1a; }
+  .nav-right { display: flex; align-items: center; gap: 14px; }
+  .lang-btn {
+    font-size: 11px; color: #888; letter-spacing: 1px;
+    border: 0.5px solid #ddd; border-radius: 4px; padding: 4px 8px;
+    cursor: pointer;
+  }
+  .cta-nav {
+    background: #1a1a1a; color: #fff; padding: 7px 16px;
+    border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer;
+    text-decoration: none;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; padding-top: 52px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+  }
+  /* Floating chord labels */
+  .chord-float {
+    position: absolute; font-family: Georgia, serif;
+    font-size: 12px; color: rgba(26,26,26,0.18);
+    font-style: italic; pointer-events: none; user-select: none;
+  }
+  .hero-content {
+    position: relative; z-index: 10;
+    text-align: center; max-width: 780px; padding: 0 24px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.7); border: 0.5px solid rgba(0,0,0,0.1);
+    border-radius: 100px; padding: 5px 14px;
+    font-size: 12px; color: #555; margin-bottom: 32px;
+    backdrop-filter: blur(4px);
+  }
+  .hero-badge-dot { color: #BA7517; font-size: 14px; }
+  .hero-title {
+    font-family: Georgia, serif;
+    font-size: clamp(44px, 7vw, 80px);
+    font-weight: 700; line-height: 1.05;
+    letter-spacing: -1.5px; color: #1a1a1a;
+    margin-bottom: 0;
+  }
+  .hero-title em {
+    font-style: italic; color: #BA7517;
+  }
+  .hero-score-card {
+    margin: 32px auto;
+    background: #fff;
+    border: 0.5px solid #e0dbd2;
+    border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+    overflow: hidden;
+    max-width: 500px;
+    text-align: left;
+  }
+  .score-card-top {
+    padding: 10px 16px;
+    border-bottom: 0.5px solid #f0ece6;
+    display: flex; align-items: center; gap: 8px;
+    background: #fdfcfa;
+  }
+  .score-chord-label {
+    font-size: 10px; font-family: Georgia, serif;
+    color: #888; flex: 1; display: flex; gap: 24px;
+  }
+  .score-chord-label span { color: #555; font-weight: 600; }
+  .score-body {
+    padding: 16px 20px 20px;
+    position: relative;
+  }
+  /* Fake staff */
+  .staff { position: relative; height: 60px; margin-bottom: 12px; }
+  .staff-lines { position: absolute; inset: 0; }
+  .staff-line {
+    position: absolute; left: 0; right: 0; height: 0.5px; background: #bbb;
+  }
+  .clef { font-size: 42px; line-height: 1; color: #1a1a1a; position: absolute; left: 0; top: -2px; }
+  /* Notes simulées */
+  .note {
+    position: absolute; width: 9px; height: 7px;
+    background: #1a1a1a; border-radius: 50%;
+    transform: rotate(-15deg);
+  }
+  .note-stem {
+    position: absolute; width: 1px; background: #1a1a1a;
+  }
+  .score-tooltip {
+    background: #1a1a1a; color: #fff; border-radius: 6px;
+    padding: 6px 10px; font-size: 10px; line-height: 1.4;
+    position: absolute; right: 16px; top: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    max-width: 180px;
+  }
+  .score-tooltip strong { display: block; font-size: 10px; margin-bottom: 2px; }
+  .score-tooltip span { color: #aaa; font-size: 9px; }
+
+  /* Hero description + CTAs */
+  .hero-desc {
+    font-size: 16px; color: #555; line-height: 1.65;
+    margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto;
+  }
+  .hero-ctas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: #1a1a1a; color: #fff; padding: 12px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 500;
+    cursor: pointer; border: none; text-decoration: none;
+  }
+  .btn-secondary {
+    background: transparent; color: #1a1a1a; padding: 12px 24px;
+    border-radius: 8px; font-size: 14px;
+    cursor: pointer; border: 1px solid #d0ccc5; text-decoration: none;
+  }
+  .hero-footnote {
+    margin-top: 16px; font-size: 11px; color: #aaa;
+    letter-spacing: 0.3px;
+  }
+
+  /* SECTION: HOW IT WORKS */
+  .section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 10px; color: #BA7517; text-transform: uppercase;
+    letter-spacing: 2.5px; margin-bottom: 14px; font-family: system-ui;
+  }
+  .section-title {
+    font-family: Georgia, serif; font-size: clamp(26px, 3vw, 38px);
+    font-weight: 700; letter-spacing: -0.5px; margin-bottom: 48px;
+    color: #1a1a1a;
+  }
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  }
+  .step {
+    background: #fff; border: 0.5px solid #e8e3db;
+    border-radius: 10px; padding: 24px 20px;
+  }
+  .step-num {
+    font-family: Georgia, serif; font-size: 32px; font-weight: 700;
+    color: #e8e3db; margin-bottom: 12px; line-height: 1;
+  }
+  .step-title {
+    font-family: Georgia, serif; font-size: 15px; font-weight: 700;
+    color: #1a1a1a; margin-bottom: 8px;
+  }
+  .step-desc { font-size: 12px; color: #888; line-height: 1.6; }
+
+  /* COURS grid */
+  .cours-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .cours-card {
+    background: #fff; border: 0.5px solid #e8e3db;
+    border-radius: 10px; padding: 20px;
+    transition: box-shadow 0.15s, border-color 0.15s;
+    cursor: pointer;
+  }
+  .cours-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border-color: #d0ccc5;
+  }
+  .cours-card-top {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .degree-badges { display: flex; gap: 4px; }
+  .badge {
+    font-size: 9px; font-weight: 700; font-family: Georgia, serif;
+    padding: 2px 6px; border-radius: 3px; color: #fff;
+  }
+  .badge-I { background: #BA7517; }
+  .badge-IV { background: #185FA5; }
+  .badge-V { background: #A32D2D; }
+  .badge-VI { background: #0F6E56; }
+  .badge-II { background: #534AB7; }
+  .cours-num {
+    font-size: 10px; color: #bbb; font-family: system-ui;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .cours-title {
+    font-family: Georgia, serif; font-size: 15px;
+    font-weight: 700; color: #1a1a1a; margin-bottom: 6px;
+  }
+  .cours-desc { font-size: 11px; color: #888; line-height: 1.55; margin-bottom: 12px; }
+  .cours-meta {
+    display: flex; gap: 12px; font-size: 10px; color: #bbb;
+    border-top: 0.5px solid #f0ece6; padding-top: 10px;
+  }
+  .divider { border: none; border-top: 0.5px solid #e8e3db; margin: 0 40px; }
+
+  /* Label annotation */
+  .annotation {
+    position: absolute; background: rgba(255,193,7,0.15);
+    border: 1px dashed #BA7517; border-radius: 4px;
+    padding: 2px 6px; font-size: 10px; color: #BA7517;
+    font-family: system-ui; white-space: nowrap; z-index: 50;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Harmonia<span>.</span></div>
+  <div class="nav-links">
+    <a href="#">Cours</a>
+    <a href="#">Atelier</a>
+    <a href="#">Tonalités</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-btn">FR ▾</div>
+    <a class="cta-nav" href="#">Mon espace →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- Background SVG organiques -->
+  <div class="hero-bg">
+    <svg width="100%" height="100%" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Courbe 1 — grande courbe gauche dorée -->
+      <path d="M -80 200 C 150 150, 300 400, 500 320 S 750 100, 950 280 S 1200 500, 1520 400"
+        fill="none" stroke="#C8A96E" stroke-width="60" stroke-linecap="round" opacity="0.18"/>
+      <!-- Courbe 2 — courbe centrale beige -->
+      <path d="M -100 550 C 200 480, 450 600, 650 520 S 900 350, 1100 480 S 1350 580, 1550 500"
+        fill="none" stroke="#D4B896" stroke-width="45" stroke-linecap="round" opacity="0.15"/>
+      <!-- Courbe 3 — petite courbe haute droite -->
+      <path d="M 600 -50 C 750 80, 900 200, 1100 150 S 1350 50, 1550 180"
+        fill="none" stroke="#BA9060" stroke-width="30" stroke-linecap="round" opacity="0.12"/>
+      <!-- Courbe 4 — courbe basse gauche -->
+      <path d="M -50 750 C 200 700, 400 800, 600 740 S 800 650, 1050 730"
+        fill="none" stroke="#C8A96E" stroke-width="25" stroke-linecap="round" opacity="0.10"/>
+    </svg>
+
+    <!-- Accords flottants -->
+    <div class="chord-float" style="top:14%;left:3%;">Dm7</div>
+    <div class="chord-float" style="top:30%;left:26%;font-size:11px;">G7</div>
+    <div class="chord-float" style="top:22%;right:8%;">Am</div>
+    <div class="chord-float" style="top:65%;left:5%;font-size:11px;">Cmaj7</div>
+    <div class="chord-float" style="top:55%;right:5%;font-size:10px;">Bdim</div>
+    <div class="chord-float" style="top:78%;left:32%;font-size:10px;">F</div>
+    <div class="chord-float" style="top:12%;right:30%;font-size:11px;">Em7</div>
+    <div class="chord-float" style="top:72%;right:22%;font-size:10px;">A7</div>
+    <div class="chord-float" style="top:42%;left:2%;font-size:10px;">Fmaj7</div>
+  </div>
+
+  <!-- Contenu -->
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot">✦</span>
+      Niveau 1 complet · 9 cours · 700+ exercices
+    </div>
+
+    <h1 class="hero-title">
+      Maîtrisez l'harmonie<br>
+      <em>Vraiment.</em>
+    </h1>
+
+    <!-- Score card -->
+    <div class="hero-score-card">
+      <div class="score-card-top">
+        <div class="score-chord-label">
+          <span>Dm7</span>
+          <span>G7</span>
+          <span>Cmaj7</span>
+        </div>
+        <div style="font-size:10px;color:#bbb;">Exercice — Cours 6</div>
+      </div>
+      <div class="score-body">
+        <!-- Staff soprano simulé -->
+        <div class="staff" style="margin-left:32px;">
+          <div class="clef" style="left:-30px;">𝄞</div>
+          <div class="staff-line" style="top:10px;"></div>
+          <div class="staff-line" style="top:19px;"></div>
+          <div class="staff-line" style="top:28px;"></div>
+          <div class="staff-line" style="top:37px;"></div>
+          <div class="staff-line" style="top:46px;"></div>
+          <!-- Notes -->
+          <div class="note" style="left:30px;top:23px;background:#185FA5;"></div>
+          <div class="note-stem" style="left:38px;top:0;height:24px;background:#185FA5;"></div>
+          <div class="note" style="left:80px;top:15px;background:#185FA5;"></div>
+          <div class="note-stem" style="left:88px;top:0;height:16px;background:#185FA5;"></div>
+          <div class="note" style="left:130px;top:31px;background:#185FA5;"></div>
+          <div class="note-stem" style="left:138px;top:0;height:32px;background:#185FA5;"></div>
+          <div class="note" style="left:200px;top:19px;background:#BA7517;"></div>
+          <div class="note-stem" style="left:208px;top:0;height:20px;background:#BA7517;"></div>
+          <div class="note" style="left:260px;top:27px;background:#A32D2D;"></div>
+          <div class="note-stem" style="left:268px;top:0;height:28px;background:#A32D2D;"></div>
+          <div class="note" style="left:320px;top:11px;background:#A32D2D;"></div>
+          <div class="note-stem" style="left:328px;top:0;height:12px;background:#A32D2D;"></div>
+        </div>
+        <!-- Staff basse simulé -->
+        <div class="staff" style="margin-left:32px;margin-top:4px;">
+          <div class="clef" style="left:-30px;top:4px;">𝄢</div>
+          <div class="staff-line" style="top:10px;"></div>
+          <div class="staff-line" style="top:19px;"></div>
+          <div class="staff-line" style="top:28px;"></div>
+          <div class="staff-line" style="top:37px;"></div>
+          <div class="staff-line" style="top:46px;"></div>
+          <div class="note" style="left:30px;top:35px;background:#185FA5;"></div>
+          <div class="note-stem" style="left:38px;top:36px;height:24px;background:#185FA5;"></div>
+          <div class="note" style="left:80px;top:27px;background:#185FA5;"></div>
+          <div class="note-stem" style="left:88px;top:28px;height:22px;background:#185FA5;"></div>
+          <div class="note" style="left:130px;top:39px;background:#185FA5;"></div>
+          <div class="note-stem" style="left:138px;top:40px;height:20px;background:#185FA5;"></div>
+          <div class="note" style="left:200px;top:31px;background:#BA7517;"></div>
+          <div class="note-stem" style="left:208px;top:32px;height:22px;background:#BA7517;"></div>
+          <div class="note" style="left:260px;top:23px;background:#A32D2D;"></div>
+          <div class="note-stem" style="left:268px;top:24px;height:24px;background:#A32D2D;"></div>
+          <div class="note" style="left:320px;top:35px;background:#A32D2D;"></div>
+          <div class="note-stem" style="left:328px;top:36px;height:14px;background:#A32D2D;"></div>
+        </div>
+        <!-- Tooltip -->
+        <div class="score-tooltip">
+          <strong>Feedback en temps réel</strong>
+          Correction des quintes parallèles
+          <br><span>Corriger la soprano →</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="hero-desc">
+      La conduite de voix n'aura plus de secrets : corrections actives des quintes parallèles et des résolutions.
+    </p>
+
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#">Commencer gratuitement</a>
+      <a class="btn-secondary" href="#">Explorer les tonalités</a>
+    </div>
+
+    <p class="hero-footnote">Gratuit pour commencer · Aucune carte requise · 6 langues</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SECTION COURS -->
+<div class="section">
+  <div class="section-label">Programme</div>
+  <div class="section-title">10 cours structurés,<br>du triade à la modulation</div>
+
+  <div class="cours-grid">
+
+    <div class="cours-card">
+      <div class="cours-card-top">
+        <div class="degree-badges">
+          <span class="badge badge-I">I</span>
+          <span class="badge badge-IV">IV</span>
+          <span class="badge badge-V">V</span>
+        </div>
+        <div class="cours-num">Cours 1</div>
+      </div>
+      <div class="cours-title">Les triades fondamentales</div>
+      <div class="cours-desc">Construction et identification des accords parfaits majeurs, mineurs, diminués et augmentés.</div>
+      <div class="cours-meta">
+        <span>8 exercices</span>
+        <span>·</span>
+        <span>Gratuit</span>
+      </div>
+    </div>
+
+    <div class="cours-card">
+      <div class="cours-card-top">
+        <div class="degree-badges">
+          <span class="badge badge-V">V</span>
+          <span class="badge badge-I">I</span>
+        </div>
+        <div class="cours-num">Cours 2</div>
+      </div>
+      <div class="cours-title">La dominante</div>
+      <div class="cours-desc">L'accord de dominante et sa résolution. Tension et repos dans la tonalité.</div>
+      <div class="cours-meta">
+        <span>10 exercices</span>
+        <span>·</span>
+        <span>Gratuit</span>
+      </div>
+    </div>
+
+    <div class="cours-card">
+      <div class="cours-card-top">
+        <div class="degree-badges">
+          <span class="badge badge-I">I</span>
+          <span class="badge badge-IV">IV</span>
+          <span class="badge badge-V">V</span>
+          <span class="badge badge-VI">VI</span>
+        </div>
+        <div class="cours-num">Cours 3</div>
+      </div>
+      <div class="cours-title">Cadences</div>
+      <div class="cours-desc">Authentique, plagale, demi-cadence et cadence rompue. Ponctuation musicale.</div>
+      <div class="cours-meta">
+        <span>12 exercices</span>
+        <span>·</span>
+        <span>Pro</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ANNOTATION PANEL -->
+<div style="background:#fff8f0;border-top:0.5px solid #e8e3db;padding:24px 40px;">
+  <div style="font-size:11px;color:#BA7517;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;">Éléments proposés dans ce design</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:12px;color:#555;line-height:1.6;">
+    <div>
+      <div style="font-weight:600;color:#1a1a1a;margin-bottom:4px;">Nav</div>
+      <div>Logo "Harmonia." avec point-accent · Nav épurée · Bouton "Mon espace →" noir</div>
+    </div>
+    <div>
+      <div style="font-weight:600;color:#1a1a1a;margin-bottom:4px;">Hero</div>
+      <div>Courbes SVG organiques chaudes · Accords flottants en filigrane · Partition interactive comme vitrine produit · Badge de social proof</div>
+    </div>
+    <div>
+      <div style="font-weight:600;color:#1a1a1a;margin-bottom:4px;">Composants</div>
+      <div>Badges de degrés colorisés (I/IV/V/VI…) · Cards avec méta-infos propres · Boutons noir/contour · Séparateurs fins</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

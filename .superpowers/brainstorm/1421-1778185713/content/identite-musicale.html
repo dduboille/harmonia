@@ -1,0 +1,108 @@
+<h2>Comment incarner l'identité musicale ?</h2>
+<p class="subtitle">Quelle approche pour rendre Harmonia immédiatement reconnaissable comme un outil musical ?</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="notation" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#faf8f4;padding:20px;border-bottom:1px solid #e8e3db;position:relative;overflow:hidden;">
+      <!-- Staff lines as background decoration -->
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.07;">
+        <div style="position:absolute;top:28px;left:0;right:0;height:1px;background:#1a1a1a;"></div>
+        <div style="position:absolute;top:36px;left:0;right:0;height:1px;background:#1a1a1a;"></div>
+        <div style="position:absolute;top:44px;left:0;right:0;height:1px;background:#1a1a1a;"></div>
+        <div style="position:absolute;top:52px;left:0;right:0;height:1px;background:#1a1a1a;"></div>
+        <div style="position:absolute;top:60px;left:0;right:0;height:1px;background:#1a1a1a;"></div>
+        <div style="position:absolute;top:88px;left:0;right:0;height:1px;background:#1a1a1a;"></div>
+        <div style="position:absolute;top:96px;left:0;right:0;height:1px;background:#1a1a1a;"></div>
+        <div style="position:absolute;top:104px;left:0;right:0;height:1px;background:#1a1a1a;"></div>
+        <div style="position:absolute;top:112px;left:0;right:0;height:1px;background:#1a1a1a;"></div>
+        <div style="position:absolute;top:120px;left:0;right:0;height:1px;background:#1a1a1a;"></div>
+      </div>
+      <div style="position:relative;">
+        <div style="font-family:Georgia,serif;font-size:32px;color:#BA7517;line-height:1;margin-bottom:4px;">𝄞</div>
+        <div style="font-family:Georgia,serif;font-size:20px;font-weight:700;color:#1a1a1a;margin-bottom:6px;">Harmonia</div>
+        <div style="font-size:10px;font-family:system-ui;color:#888;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">L'harmonie tonale</div>
+        <div style="display:flex;gap:6px;">
+          <div style="background:#fff;border:0.5px solid #e8e3db;border-radius:6px;padding:8px 10px;font-size:10px;font-family:Georgia;">
+            <span style="color:#BA7517;font-weight:700;">I</span> <span style="color:#555;">Do</span>
+          </div>
+          <div style="background:#fff;border:0.5px solid #e8e3db;border-radius:6px;padding:8px 10px;font-size:10px;font-family:Georgia;">
+            <span style="color:#185FA5;font-weight:700;">IV</span> <span style="color:#555;">Fa</span>
+          </div>
+          <div style="background:#fff;border:0.5px solid #e8e3db;border-radius:6px;padding:8px 10px;font-size:10px;font-family:Georgia;">
+            <span style="color:#A32D2D;font-weight:700;">V</span> <span style="color:#555;">Sol</span>
+          </div>
+          <div style="background:#fff;border:0.5px solid #e8e3db;border-radius:6px;padding:8px 10px;font-size:10px;font-family:Georgia;">
+            <span style="color:#0F6E56;font-weight:700;">VI</span> <span style="color:#555;">La</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Notation & Degrés colorisés</h3>
+      <p>Portées musicales comme éléments décoratifs en filigrane, clé de sol en accent. Les degrés harmoniques (I, IV, V…) avec leur couleur propre deviennent le système visuel central — badges, étiquettes, indicateurs de progression.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="partition" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#faf8f4;padding:20px;border-bottom:1px solid #e8e3db;">
+      <div style="font-family:Georgia,serif;font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:10px;letter-spacing:-0.2px;">Harmonia</div>
+      <!-- Fake score excerpt -->
+      <div style="background:#fff;border:0.5px solid #ddd;border-radius:6px;padding:12px;margin-bottom:10px;">
+        <div style="font-size:9px;font-family:system-ui;color:#bbb;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Extrait — Cours 4 · Renversements</div>
+        <div style="display:flex;align-items:center;gap:0;">
+          <div style="font-size:28px;color:#1a1a1a;font-family:Georgia;line-height:1;margin-right:6px;">𝄞</div>
+          <div style="flex:1;position:relative;height:36px;">
+            <div style="position:absolute;top:6px;left:0;right:0;height:0.5px;background:#bbb;"></div>
+            <div style="position:absolute;top:13px;left:0;right:0;height:0.5px;background:#bbb;"></div>
+            <div style="position:absolute;top:20px;left:0;right:0;height:0.5px;background:#bbb;"></div>
+            <div style="position:absolute;top:27px;left:0;right:0;height:0.5px;background:#bbb;"></div>
+            <div style="position:absolute;top:34px;left:0;right:0;height:0.5px;background:#bbb;"></div>
+            <!-- Notes simulées -->
+            <div style="position:absolute;top:8px;left:20px;width:8px;height:8px;background:#185FA5;border-radius:50%;transform:rotate(-10deg);"></div>
+            <div style="position:absolute;top:15px;left:38px;width:8px;height:8px;background:#185FA5;border-radius:50%;transform:rotate(-10deg);"></div>
+            <div style="position:absolute;top:22px;left:56px;width:8px;height:8px;background:#185FA5;border-radius:50%;transform:rotate(-10deg);"></div>
+            <div style="position:absolute;top:8px;left:74px;width:8px;height:8px;background:#BA7517;border-radius:50%;transform:rotate(-10deg);"></div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:10px;font-family:system-ui;color:#999;">La partition devient l'image hero de chaque cours</div>
+    </div>
+    <div class="card-body">
+      <h3>B — Partition comme image centrale</h3>
+      <p>Une vraie partition (rendue par VexFlow) sert de visuel d'en-tête pour chaque cours et la landing page. L'identité visuelle naît directement du contenu musical. Authentique et distinctif.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="mixte" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#faf8f4;padding:20px;border-bottom:1px solid #e8e3db;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+        <div>
+          <div style="font-family:Georgia,serif;font-size:16px;font-weight:700;color:#1a1a1a;">Harmonia</div>
+          <div style="font-size:9px;font-family:system-ui;color:#BA7517;letter-spacing:2px;text-transform:uppercase;">Harmonie tonale</div>
+        </div>
+        <div style="font-size:22px;color:#e8e3db;">𝄞</div>
+      </div>
+      <!-- Card with degree badge + mini score -->
+      <div style="background:#fff;border:0.5px solid #e8e3db;border-radius:8px;padding:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <div style="display:flex;gap:4px;">
+            <span style="background:#BA7517;color:#fff;font-size:9px;font-family:system-ui;font-weight:700;padding:2px 6px;border-radius:3px;">I</span>
+            <span style="background:#185FA5;color:#fff;font-size:9px;font-family:system-ui;font-weight:700;padding:2px 6px;border-radius:3px;">IV</span>
+            <span style="background:#A32D2D;color:#fff;font-size:9px;font-family:system-ui;font-weight:700;padding:2px 6px;border-radius:3px;">V</span>
+          </div>
+          <div style="font-size:9px;font-family:system-ui;color:#bbb;">Cours 3</div>
+        </div>
+        <div style="font-family:Georgia,serif;font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:4px;">Cadences authentiques</div>
+        <div style="height:2px;background:linear-gradient(90deg,#BA7517 40%,#185FA5 40% 70%,#A32D2D 70%);border-radius:2px;margin-top:6px;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Système mixte (degrés + partition)</h3>
+      <p>Les degrés colorisés servent de système de badges et de navigation (identité rapide), la partition apparaît là où le contenu s'y prête (en-têtes de cours, exercices). Les deux se renforcent mutuellement.</p>
+    </div>
+  </div>
+
+</div>
+
+<p style="margin-top:24px;font-size:13px;color:#888;text-align:center;">Cliquez pour sélectionner, puis répondez dans le terminal — plusieurs choix possibles</p>
