@@ -130,6 +130,18 @@ export async function getAllProgress(userId: string): Promise<UserProgress[]> {
 
 // ── Abonnement utilisateur ────────────────────────────────────
 
+// Normalise tous les noms de plan Stripe vers les 3 valeurs connues du dashboard.
+// "student" / "student_annual" viennent du webhook actuel.
+// "pro_annual" / "annual" sont les plans annuels.
+const PLAN_MAP: Record<string, "free" | "pro" | "annual"> = {
+  free:           "free",
+  student:        "pro",
+  student_annual: "annual",
+  pro:            "pro",
+  pro_annual:     "annual",
+  annual:         "annual",
+};
+
 export async function getUserPlan(
   userId: string
 ): Promise<"free" | "pro" | "annual"> {
@@ -147,13 +159,14 @@ export async function getUserPlan(
     if (expiry < new Date()) return "free";
   }
 
-  return data.plan as "free" | "pro" | "annual";
+  return PLAN_MAP[data.plan] ?? "free";
 }
 
 // ── Cours accessibles selon le plan ──────────────────────────
 
-export const FREE_COURS = [1, 2, 3]; // cours gratuits
-export const PRO_COURS  = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const TOTAL_COURS = 21;
+export const FREE_COURS = [1, 2, 3];
+export const PRO_COURS  = Array.from({ length: TOTAL_COURS }, (_, i) => i + 1);
 
 export function getAccessibleCours(plan: "free" | "pro" | "annual"): number[] {
   return plan === "free" ? FREE_COURS : PRO_COURS;
