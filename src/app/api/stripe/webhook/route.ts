@@ -62,7 +62,10 @@ export async function POST(req: NextRequest) {
             updated_at: new Date().toISOString(),
           }, { onConflict: "user_id" });
 
-        if (error) console.error("Supabase upsert error:", error);
+        if (error) {
+          console.error("Supabase upsert error (checkout):", error);
+          return NextResponse.json({ error: "DB error" }, { status: 500 });
+        }
 
         break;
       }
@@ -88,7 +91,10 @@ export async function POST(req: NextRequest) {
             updated_at: new Date().toISOString(),
           }, { onConflict: "user_id" });
 
-        if (error) console.error("Supabase upsert error:", error);
+        if (error) {
+          console.error("Supabase upsert error (subscription.updated):", error);
+          return NextResponse.json({ error: "DB error" }, { status: 500 });
+        }
         break;
       }
 
