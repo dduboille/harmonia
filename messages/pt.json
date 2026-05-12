@@ -197,5 +197,200 @@
       "veryGood": "Well done! A few more listens and you'll have it.",
       "keepGoing": "Keep listening actively — the ear learns with practice!"
     }
+  },
+  "cours11": {
+    "badge": "Nível 2 · Curso 11",
+    "title": "Extensões de acordes",
+    "subtitle": "9ª, 11ª, 13ª — empilhar terças além da 7ª para enriquecer a cor harmônica.",
+    "sections": {
+      "extensions": "Extensões",
+      "application": "Aplicação harmônica",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Excelente — as extensões de acordes não têm mais segredos!",
+      "veryGood": "Muito bem! Mais alguns acordes para praticar e você domina.",
+      "keepGoing": "Continue a ouvir ativamente — o ouvido aprende com a prática!"
+    }
+  },
+  "cours12": {
+    "badge": "Nível 2 · Curso 12",
+    "title": "Substituição de trítono",
+    "subtitle": "Substituir V7 pelo acorde um trítono abaixo — mesma tensão, linha de baixo cromática.",
+    "sections": {
+      "principe": "O princípio",
+      "application": "Aplicações",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Excelente — a substituição de trítono não tem mais segredos!",
+      "veryGood": "Muito bem! Mais algumas progressões para praticar.",
+      "keepGoing": "Continue comparando as duas resoluções de ouvido — assim se entende!"
+    }
+  },
+  "cours13": {
+    "badge": "Nível 2 · Curso 13",
+    "title": "Contraponto a duas vozes",
+    "subtitle": "As 5 espécies de Fux — nota contra nota, notas de passagem, síncopas, floreado — as regras do movimento a duas vozes.",
+    "sections": {
+      "especes": "As 5 espécies",
+      "regles": "Regras",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Excelente — o contraponto a duas vozes não tem mais segredos!",
+      "veryGood": "Muito bem! Mais algumas regras para consolidar.",
+      "keepGoing": "Continue ouvindo as espécies — o ouvido aprende com a prática!"
+    }
+  },
+  "cours14": {
+    "badge": "Nível 2 · Curso 14",
+    "title": "Harmonização modal",
+    "subtitle": "Colorir cada modo com seus acordes característicos — sem resolução tonal obrigatória.",
+    "sections": {
+      "principes": "Harmonização modal",
+      "modes": "Por modo",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Excelente — a harmonização modal não tem mais segredos!",
+      "veryGood": "Muito bem! Mais algumas progressões para consolidar.",
+      "keepGoing": "Continue comparando os modos de ouvido — vem com a prática!"
+    }
+  },
+  "cours15": {
+    "badge": "Nível 2 · Curso 15",
+    "title": "Progressões de jazz avançadas",
+    "subtitle": "II–V–I básico, estendido e menor, ritmo harmônico, turnarounds e jazz blues.",
+    "sections": {
+      "iivi": "II–V–I avançado",
+      "rythme": "Ritmo e turnarounds",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Excelente — as progressões de jazz não têm mais segredos!",
+      "veryGood": "Muito bem! Mais algumas progressões para consolidar.",
+      "keepGoing": "Continue ouvindo ativamente — o jazz se aprende pelo ouvido!"
+    }
+  },
+  "cours16": {
+    "badge": "Nível 2 · Curso 16",
+    "title": "Rearmonização",
+    "subtitle": "Substituição diatônica, de trítono, empréstimo modal, harmonização paralela — transformar acordes sob uma melodia intacta.",
+    "sections": {
+      "principe": "O princípio",
+      "application": "Aplicações",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Excelente — a rearmonização não tem mais segredos!",
+      "veryGood": "Muito bem! Mais algumas técnicas para consolidar.",
+      "keepGoing": "Continue comparando as versões antes/depois de ouvido!"
+    }
+  },
+  "cours17": {
+    "badge": "Nível 2 · Curso 17",
+    "title": "A frase musical e a forma",
+    "subtitle": "Motivo, desenvolvimento em 4 etapas, técnicas de repetição, período antecedente-consequente e grandes formas musicais.",
+    "sections": {
+      "phrase": "A frase",
+      "periode": "Período e formas",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Excelente — a frase musical e a forma não têm mais segredos!",
+      "veryGood": "Muito bem! Mais algumas formas para consolidar.",
+      "keepGoing": "Continue ouvindo os exemplos — o ouvido aprende a reconhecer formas com a prática!"
+    }
+  },
+  "cours18": {
+    "badge": "Nível 2 · Curso 18",
+    "title": "Desenvolvimento motivico",
+    "subtitle": "Os 5 elementos do motivo, o paradoxo da repetição e as 4 famílias de técnicas — da harmonia ao ritmo.",
+    "sections": {
+      "motif": "O motivo",
+      "techniques": "Técnicas",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Excelente — o desenvolvimento motivico não tem mais segredos!",
+      "veryGood": "Muito bem! Mais algumas técnicas para consolidar.",
+      "keepGoing": "Continue ouvindo as transformações — o ouvido aprende com a prática!"
+    }
+  },
+  "cours19": {
+    "badge": "Nível 2 · Curso 19",
+    "title": "Introdução à orquestração",
+    "subtitle": "As 4 famílias de instrumentos, suas tessituras e papéis — dobramentos, equilíbrio, registros e distribuição SATB na orquestra.",
+    "sections": {
+      "instruments": "Os instrumentos",
+      "ecriture": "Escrita orquestral",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Excelente — a orquestração não tem mais segredos!",
+      "veryGood": "Muito bem! Mais algumas famílias de instrumentos para consolidar.",
+      "keepGoing": "Continue explorando as famílias de instrumentos — o ouvido aprende com a prática!"
+    }
+  },
+  "cours20": {
+    "badge": "Nível 2 · Curso 20",
+    "title": "Análise dos grandes compositores clássicos",
+    "subtitle": "Bach, Mozart, Beethoven, Schubert, Chopin, Liszt, Berlioz, Tchaikovsky, Rachmaninov — as assinaturas harmônicas que moldaram a música ocidental.",
+    "sections": {
+      "compositeurs": "Os compositores",
+      "analyse": "Análise comparativa",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Excelente — os grandes mestres não têm mais segredos!",
+      "veryGood": "Muito bem! Mais alguns compositores para consolidar.",
+      "keepGoing": "Continue explorando — cada escuta revela novos detalhes harmônicos!"
+    }
+  },
+  "cours21": {
+    "badge": "Nível 2 · Curso 21",
+    "title": "Análise dos compositores modernos e contemporâneos",
+    "subtitle": "Debussy, Ravel, Stravinsky, Messiaen, Satie, Beatles, Radiohead, Morricone — do impressionismo ao rock, como o século XX reinventou a harmonia.",
+    "sections": {
+      "compositeurs": "Os compositores",
+      "analyse": "Análise comparativa",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Excelente — as linguagens musicais do século XX não têm mais segredos!",
+      "veryGood": "Muito bem! Mais alguns compositores para consolidar.",
+      "keepGoing": "Continue ouvindo — a harmonia moderna se revela através do ouvido!"
+    }
+  },
+  "cours22": {
+    "badge": "Nível 2 · Curso 22",
+    "title": "Rearmonização",
+    "subtitle": "Transformar uma progressão conservando a melodia — substituições diatônica e de trítono, empréstimo modal, harmonização paralela.",
+    "sections": {
+      "principe": "As técnicas",
+      "application": "Análises",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Excelente — a rearmonização não tem mais segredos!",
+      "veryGood": "Muito bem! Mais algumas progressões para consolidar.",
+      "keepGoing": "Continue ouvindo as progressões — o ouvido aprende fazendo!"
+    }
+  },
+  "cours23": {
+    "badge": "Nível 2 · Curso 23",
+    "title": "Compor no estilo dos mestres",
+    "subtitle": "Bach, Mozart, Chopin, Debussy, Jazz, Rock — aprender a identificar e reproduzir as assinaturas harmônicas que definem cada grande estilo.",
+    "sections": {
+      "styles": "Os estilos",
+      "exercices": "Exercícios guiados",
+      "quiz": "Prática"
+    },
+    "quiz": {
+      "perfect": "Perfeito! Você domina as grandes assinaturas estilísticas.",
+      "veryGood": "Muito bem! Ainda alguns matizes para refinar entre estilos próximos.",
+      "keepGoing": "Continue explorando os estilos — recomece quando estiver pronto."
+    }
   }
 }

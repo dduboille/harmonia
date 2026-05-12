@@ -362,5 +362,35 @@
       "veryGood": "Bien — encore quelques accords à pratiquer et ce sera parfait.",
       "keepGoing": "Continue à écouter les extensions activement — l'oreille s'éduque !"
     }
+  },
+  "cours22": {
+    "badge": "Niveau 2 · Cours 22",
+    "title": "La réharmonisation",
+    "subtitle": "Transformer une progression en conservant la mélodie — substitutions diatonique et tritonique, emprunt modal, harmonisation parallèle.",
+    "sections": {
+      "principe": "Les techniques",
+      "application": "Analyses",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Excellent — la réharmonisation n'a plus de secrets !",
+      "veryGood": "Très bien ! Encore quelques progressions à consolider.",
+      "keepGoing": "Continue à écouter les progressions — l'oreille s'éduque !"
+    }
+  },
+  "cours23": {
+    "badge": "Niveau 2 · Cours 23",
+    "title": "Composer dans le style des maîtres",
+    "subtitle": "Bach, Mozart, Chopin, Debussy, Jazz, Rock — apprendre à identifier et reproduire les signatures harmoniques qui définissent chaque grand style.",
+    "sections": {
+      "styles": "Les styles",
+      "exercices": "Exercices guidés",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises les grandes signatures stylistiques.",
+      "veryGood": "Très bien ! Quelques nuances à affiner entre les styles proches.",
+      "keepGoing": "Continue à explorer les styles — recommence quand tu es prêt."
+    }
   }
 }

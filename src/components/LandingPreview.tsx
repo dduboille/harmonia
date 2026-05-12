@@ -1,8 +1,10 @@
 "use client";
 
 /**
- * src/app/[locale]/page.tsx
- * Harmonia — Landing page principale
+ * src/components/LandingPreview.tsx
+ * Harmonia — Bac à sable de la landing page
+ * Accessible via /fr/preview — jamais en production
+ * Modifier librement ici, copier dans page.tsx quand c'est parfait.
  */
 
 import React, { useState } from "react";
@@ -61,6 +63,8 @@ const FAQ = [
   { q: "Puis-je annuler mon abonnement à tout moment ?", a: "Oui, sans engagement. L'annulation prend effet à la fin de la période en cours. Pour le plan annuel, vous conservez l'accès jusqu'à la fin de l'année payée." },
   { q: "Le contenu est-il régulièrement mis à jour ?", a: "Oui. Harmonia est en développement actif — de nouveaux exercices, cours et fonctionnalités sont ajoutés régulièrement. Les abonnés Pro bénéficient de toutes les mises à jour." },
 ];
+
+const BANNER_H = 38;
 
 function StarRating({ n }: { n: number }) {
   return (
@@ -122,43 +126,41 @@ function LanguageSwitcher({ currentLocale, pathname }: { currentLocale: string; 
   );
 }
 
-const TOPBAR_H = 42;
-
-export default function LandingPage() {
+export default function LandingPreview() {
   const params = useParams();
   const locale = (params?.locale as string) ?? "fr";
-  const pathname = typeof window !== "undefined" ? window.location.pathname : `/${locale}`;
+  const pathname = typeof window !== "undefined" ? window.location.pathname : `/${locale}/preview`;
   const { isSignedIn } = useUser();
 
   return (
     <div style={{ fontFamily: "'Georgia', 'Times New Roman', serif", background: "#faf8f4", color: "#1a1a1a", overflowX: "hidden" }}>
 
-      {/* Bandeau d'annonce */}
+      {/* ── Bandeau PREVIEW ────────────────────────────────────────── */}
       <div style={{
         position: "fixed" as const,
         top: 0, left: 0, right: 0,
         zIndex: 200,
-        height: TOPBAR_H,
+        height: BANNER_H,
         background: "#5C3D6E",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         gap: 20,
         fontFamily: "system-ui, sans-serif",
-        fontSize: 13,
+        fontSize: 12,
         fontWeight: 600,
         color: "#fff",
-        letterSpacing: "0.05em",
+        letterSpacing: "0.06em",
       }}>
-        <span style={{ background: "rgba(255,255,255,0.15)", padding: "2px 10px", borderRadius: 10 }}>Nouveau</span>
-        <span style={{ opacity: 0.85, fontWeight: 400 }}>Cours 23 disponible — Composer dans le style des maîtres</span>
-        <Link href={`/${locale}/cours`} style={{ color: "#E9C97E", textDecoration: "none", fontWeight: 600 }}>
-          Découvrir →
+        <span style={{ background: "rgba(255,255,255,0.15)", padding: "2px 10px", borderRadius: 10 }}>APERÇU</span>
+        <span style={{ opacity: 0.7, fontWeight: 400 }}>Cette page n&apos;est pas en production — modifie librement LandingPreview.tsx</span>
+        <Link href={`/${locale}`} style={{ color: "#E9C97E", textDecoration: "none", fontWeight: 600 }}>
+          Voir la prod →
         </Link>
       </div>
 
-      {/* Navigation */}
-      <nav style={{ position: "fixed" as const, top: TOPBAR_H, left: 0, right: 0, zIndex: 100, background: "rgba(250,248,244,0.95)", backdropFilter: "blur(8px)", borderBottom: "0.5px solid #e8e3db", padding: "0 2rem", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      {/* Navigation — décalée sous le bandeau */}
+      <nav style={{ position: "fixed" as const, top: BANNER_H, left: 0, right: 0, zIndex: 100, background: "rgba(250,248,244,0.95)", backdropFilter: "blur(8px)", borderBottom: "0.5px solid #e8e3db", padding: "0 2rem", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: "-0.02em", color: "#1a1a1a" }}>
           Harmonia<span style={{ color: "#BA7517", marginLeft: 2 }}>.</span>
         </div>
@@ -166,7 +168,7 @@ export default function LandingPage() {
           <Link href={`/${locale}/cours`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Cours</Link>
           <Link href={`/${locale}/atelier`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Atelier</Link>
           <Link href={`/${locale}/tonalites`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Tonalités</Link>
-          <LanguageSwitcher currentLocale={locale} pathname={`/${locale}`} />
+          <LanguageSwitcher currentLocale={locale} pathname={`/${locale}/preview`} />
           {isSignedIn ? (
             <Link href={`/${locale}/dashboard`} style={{ fontSize: 13, fontWeight: 500, padding: "7px 18px", borderRadius: 20, background: "#1a1a1a", color: "#fff", textDecoration: "none" }}>Mon espace →</Link>
           ) : (
@@ -178,20 +180,34 @@ export default function LandingPage() {
       {/* Hero — image plein écran */}
       <section style={{
         minHeight: "100vh",
-        marginTop: TOPBAR_H + 60,
+        marginTop: BANNER_H + 60,
         position: "relative" as const,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden",
       }}>
+        {/* Image de fond plein écran */}
         <img
           src="/partition-hero.jpg"
           alt=""
-          style={{ position: "absolute" as const, top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+          style={{
+            position: "absolute" as const,
+            top: 0, left: 0,
+            width: "100%", height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
         />
-        <div style={{ position: "absolute" as const, top: 0, left: 0, right: 0, bottom: 0, background: "linear-gradient(to bottom, rgba(250,248,244,0.55) 0%, rgba(250,248,244,0.72) 60%, rgba(250,248,244,0.92) 100%)" }} />
 
+        {/* Voile sombre pour lisibilité du texte */}
+        <div style={{
+          position: "absolute" as const,
+          top: 0, left: 0, right: 0, bottom: 0,
+          background: "linear-gradient(to bottom, rgba(250,248,244,0.55) 0%, rgba(250,248,244,0.72) 60%, rgba(250,248,244,0.92) 100%)",
+        }} />
+
+        {/* Contenu centré par-dessus */}
         <div style={{ maxWidth: 760, textAlign: "center" as const, position: "relative" as const, zIndex: 1, padding: "80px 2rem" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#FAEEDA", border: "0.5px solid #F6AD55", borderRadius: 20, padding: "5px 14px", fontSize: 12, fontWeight: 500, color: "#BA7517", fontFamily: "system-ui, sans-serif", marginBottom: 32, letterSpacing: "0.04em" }}>
             <span>✦</span>
@@ -239,7 +255,7 @@ export default function LandingPage() {
       <section style={{ padding: "100px 2rem", maxWidth: 900, margin: "0 auto" }}>
         <div style={{ textAlign: "center" as const, marginBottom: 64 }}>
           <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", color: "#BA7517", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>Méthode</div>
-          <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, letterSpacing: "-0.01em" }}>L'apprentissage par la pratique</h2>
+          <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, letterSpacing: "-0.01em" }}>L&apos;apprentissage par la pratique</h2>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 2 }}>
           {STEPS.map((step, i) => (
@@ -257,7 +273,7 @@ export default function LandingPage() {
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
           <div style={{ textAlign: "center" as const, marginBottom: 64 }}>
             <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", color: "#185FA5", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>Fonctionnalités</div>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, letterSpacing: "-0.01em" }}>Tout ce qu'il faut pour progresser</h2>
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, letterSpacing: "-0.01em" }}>Tout ce qu&apos;il faut pour progresser</h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
             {FEATURES.map(f => (
@@ -323,13 +339,13 @@ export default function LandingPage() {
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
           <div style={{ textAlign: "center" as const, marginBottom: 56 }}>
             <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", color: "#BA7517", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>Témoignages</div>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, color: "#fff", letterSpacing: "-0.01em" }}>Ce qu'en disent les musiciens</h2>
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, color: "#fff", letterSpacing: "-0.01em" }}>Ce qu&apos;en disent les musiciens</h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
             {TESTIMONIALS.map((t, i) => (
               <div key={i} style={{ padding: "28px", background: "#252525", border: "0.5px solid #333", borderRadius: 10 }}>
                 <StarRating n={t.stars} />
-                <p style={{ fontSize: 14, color: "#ccc", lineHeight: 1.75, margin: "16px 0 20px", fontFamily: "system-ui, sans-serif", fontStyle: "italic" }}>"{t.text}"</p>
+                <p style={{ fontSize: 14, color: "#ccc", lineHeight: 1.75, margin: "16px 0 20px", fontFamily: "system-ui, sans-serif", fontStyle: "italic" }}>&ldquo;{t.text}&rdquo;</p>
                 <div style={{ fontSize: 13, color: "#888", fontFamily: "system-ui, sans-serif" }}>
                   <span style={{ color: "#ddd", fontWeight: 500 }}>{t.author}</span>{" · "}{t.role}
                 </div>

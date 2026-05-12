@@ -197,5 +197,200 @@
       "veryGood": "Well done! A few more listens and you'll have it.",
       "keepGoing": "Keep listening actively — the ear learns with practice!"
     }
+  },
+  "cours11": {
+    "badge": "Livello 2 · Corso 11",
+    "title": "Estensioni degli accordi",
+    "subtitle": "9ª, 11ª, 13ª — sovrapporre terze oltre la settima per arricchire il colore armonico.",
+    "sections": {
+      "extensions": "Estensioni",
+      "application": "Applicazione armonica",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Eccellente — le estensioni degli accordi non hanno più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche accordo da praticare e ci sei.",
+      "keepGoing": "Continua ad ascoltare attivamente — l'orecchio impara con la pratica!"
+    }
+  },
+  "cours12": {
+    "badge": "Livello 2 · Corso 12",
+    "title": "Sostituzione del tritono",
+    "subtitle": "Sostituire V7 con l'accordo un tritono più basso — stessa tensione, linea di basso cromatica.",
+    "sections": {
+      "principe": "Il principio",
+      "application": "Applicazioni",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Eccellente — la sostituzione del tritono non ha più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche progressione da praticare.",
+      "keepGoing": "Continua a confrontare le due risoluzioni all'orecchio — così si capisce!"
+    }
+  },
+  "cours13": {
+    "badge": "Livello 2 · Corso 13",
+    "title": "Contrappunto a due voci",
+    "subtitle": "Le 5 specie di Fux — nota contro nota, note di passaggio, sincopi, fioretto — le regole del moto a due voci.",
+    "sections": {
+      "especes": "Le 5 specie",
+      "regles": "Regole",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Eccellente — il contrappunto a due voci non ha più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche regola da consolidare.",
+      "keepGoing": "Continua ad ascoltare le specie — l'orecchio impara con la pratica!"
+    }
+  },
+  "cours14": {
+    "badge": "Livello 2 · Corso 14",
+    "title": "Armonizzazione modale",
+    "subtitle": "Colorare ogni modo con i suoi accordi caratteristici — senza risoluzione tonale obbligatoria.",
+    "sections": {
+      "principes": "Armonizzazione modale",
+      "modes": "Per modo",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Eccellente — l'armonizzazione modale non ha più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche progressione da consolidare.",
+      "keepGoing": "Continua a confrontare i modi all'orecchio — viene con la pratica!"
+    }
+  },
+  "cours15": {
+    "badge": "Livello 2 · Corso 15",
+    "title": "Progressioni jazz avanzate",
+    "subtitle": "II–V–I di base, esteso e minore, ritmo armonico, turnaround e jazz blues.",
+    "sections": {
+      "iivi": "II–V–I avanzato",
+      "rythme": "Ritmo e turnaround",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Eccellente — le progressioni jazz non hanno più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche progressione da consolidare.",
+      "keepGoing": "Continua ad ascoltare attivamente — il jazz si impara con l'orecchio!"
+    }
+  },
+  "cours16": {
+    "badge": "Livello 2 · Corso 16",
+    "title": "Riarmonizzazione",
+    "subtitle": "Sostituzione diatonica, del tritono, prestito modale, armonizzazione parallela — trasformare accordi sotto una melodia intatta.",
+    "sections": {
+      "principe": "Il principio",
+      "application": "Applicazioni",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Eccellente — la riarmonizzazione non ha più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche tecnica da consolidare.",
+      "keepGoing": "Continua a confrontare le versioni prima/dopo all'orecchio!"
+    }
+  },
+  "cours17": {
+    "badge": "Livello 2 · Corso 17",
+    "title": "La frase musicale e la forma",
+    "subtitle": "Motivo, sviluppo in 4 tappe, tecniche di ripetizione, periodo antecedente-conseguente e grandi forme musicali.",
+    "sections": {
+      "phrase": "La frase",
+      "periode": "Periodo e forme",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Eccellente — la frase musicale e la forma non hanno più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche forma da consolidare.",
+      "keepGoing": "Continua ad ascoltare gli esempi — l'orecchio impara a riconoscere le forme con la pratica!"
+    }
+  },
+  "cours18": {
+    "badge": "Livello 2 · Corso 18",
+    "title": "Sviluppo motivico",
+    "subtitle": "I 5 elementi del motivo, il paradosso della ripetizione e le 4 famiglie di tecniche — dall'armonia al ritmo.",
+    "sections": {
+      "motif": "Il motivo",
+      "techniques": "Tecniche",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Eccellente — lo sviluppo motivico non ha più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche tecnica da consolidare.",
+      "keepGoing": "Continua ad ascoltare le trasformazioni — l'orecchio impara con la pratica!"
+    }
+  },
+  "cours19": {
+    "badge": "Livello 2 · Corso 19",
+    "title": "Introduzione all'orchestrazione",
+    "subtitle": "Le 4 famiglie di strumenti, le loro estensioni e ruoli — raddoppi, equilibrio, registri e distribuzione SATB nell'orchestra.",
+    "sections": {
+      "instruments": "Gli strumenti",
+      "ecriture": "Scrittura orchestrale",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Eccellente — l'orchestrazione non ha più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche famiglia di strumenti da consolidare.",
+      "keepGoing": "Continua ad esplorare le famiglie di strumenti — l'orecchio impara con la pratica!"
+    }
+  },
+  "cours20": {
+    "badge": "Livello 2 · Corso 20",
+    "title": "Analisi dei grandi compositori classici",
+    "subtitle": "Bach, Mozart, Beethoven, Schubert, Chopin, Liszt, Berlioz, Čajkovskij, Rachmaninov — le firme armoniche che hanno plasmato la musica occidentale.",
+    "sections": {
+      "compositeurs": "I compositori",
+      "analyse": "Analisi comparativa",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Eccellente — i grandi maestri non hanno più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche compositore da consolidare.",
+      "keepGoing": "Continua ad esplorare — ogni ascolto rivela nuovi dettagli armonici!"
+    }
+  },
+  "cours21": {
+    "badge": "Livello 2 · Corso 21",
+    "title": "Analisi dei compositori moderni e contemporanei",
+    "subtitle": "Debussy, Ravel, Stravinskij, Messiaen, Satie, Beatles, Radiohead, Morricone — dall'impressionismo al rock, come il XX secolo ha reinventato l'armonia.",
+    "sections": {
+      "compositeurs": "I compositori",
+      "analyse": "Analisi comparativa",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Eccellente — i linguaggi musicali del XX secolo non hanno più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche compositore da consolidare.",
+      "keepGoing": "Continua ad ascoltare — l'armonia moderna si rivela attraverso l'orecchio!"
+    }
+  },
+  "cours22": {
+    "badge": "Livello 2 · Corso 22",
+    "title": "Riarmonizzazione",
+    "subtitle": "Trasformare una progressione conservando la melodia — sostituzioni diatonica e del tritono, prestito modale, armonizzazione parallela.",
+    "sections": {
+      "principe": "Le tecniche",
+      "application": "Analisi",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Eccellente — la riarmonizzazione non ha più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche progressione da consolidare.",
+      "keepGoing": "Continua ad ascoltare le progressioni — l'orecchio impara facendo!"
+    }
+  },
+  "cours23": {
+    "badge": "Livello 2 · Corso 23",
+    "title": "Comporre nello stile dei maestri",
+    "subtitle": "Bach, Mozart, Chopin, Debussy, Jazz, Rock — imparare a identificare e riprodurre le firme armoniche che definiscono ogni grande stile.",
+    "sections": {
+      "styles": "Gli stili",
+      "exercices": "Esercizi guidati",
+      "quiz": "Esercitazione"
+    },
+    "quiz": {
+      "perfect": "Perfetto! Hai padroneggiato le grandi firme stilistiche.",
+      "veryGood": "Molto bene! Ancora qualche sfumatura da affinare tra stili vicini.",
+      "keepGoing": "Continua ad esplorare gli stili — riprendi quando sei pronto."
+    }
   }
 }

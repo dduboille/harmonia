@@ -197,5 +197,200 @@
       "veryGood": "Well done! A few more listens and you'll have it.",
       "keepGoing": "Keep listening actively — the ear learns with practice!"
     }
+  },
+  "cours11": {
+    "badge": "Level 2 · Kurs 11",
+    "title": "Akkorderweiterungen",
+    "subtitle": "9., 11., 13. — Terzen über die Septima hinaus stapeln, um die harmonische Klangfarbe zu bereichern.",
+    "sections": {
+      "extensions": "Erweiterungen",
+      "application": "Harmonische Anwendung",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Ausgezeichnet — Akkorderweiterungen halten keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Akkorde üben und du hast es.",
+      "keepGoing": "Bleib aktiv am Hören — das Ohr lernt durch Übung!"
+    }
+  },
+  "cours12": {
+    "badge": "Level 2 · Kurs 12",
+    "title": "Tritonussubstitution",
+    "subtitle": "V7 durch den Akkord einen Tritonus tiefer ersetzen — gleiche Spannung, chromatische Basslinie.",
+    "sections": {
+      "principe": "Das Prinzip",
+      "application": "Anwendungen",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Ausgezeichnet — die Tritonussubstitution hält keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Progressionen üben.",
+      "keepGoing": "Vergleiche beide Auflösungen weiter nach Gehör — so klingt es!"
+    }
+  },
+  "cours13": {
+    "badge": "Level 2 · Kurs 13",
+    "title": "Zweistimmiger Kontrapunkt",
+    "subtitle": "Fux' 5 Arten — Note gegen Note, Durchgangsnoten, Vorhalte, Figuration — die Regeln der zweistimmigen Bewegung.",
+    "sections": {
+      "especes": "Die 5 Arten",
+      "regles": "Regeln",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Ausgezeichnet — zweistimmiger Kontrapunkt hält keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Regeln festigen.",
+      "keepGoing": "Höre die Arten weiter — das Ohr lernt durch Übung!"
+    }
+  },
+  "cours14": {
+    "badge": "Level 2 · Kurs 14",
+    "title": "Modale Harmonisierung",
+    "subtitle": "Jeden Modus mit seinen charakteristischen Akkorden einfärben — keine obligatorische tonale Auflösung.",
+    "sections": {
+      "principes": "Modale Harmonisierung",
+      "modes": "Nach Modus",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Ausgezeichnet — modale Harmonisierung hält keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Progressionen festigen.",
+      "keepGoing": "Vergleiche die Modi weiter nach Gehör — das kommt mit der Übung!"
+    }
+  },
+  "cours15": {
+    "badge": "Level 2 · Kurs 15",
+    "title": "Fortgeschrittene Jazzprogressionen",
+    "subtitle": "Einfacher, erweiterter und mollartiger II–V–I, harmonischer Rhythmus, Turnarounds und Jazz-Blues.",
+    "sections": {
+      "iivi": "Erweiterter II–V–I",
+      "rythme": "Rhythmus & Turnarounds",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Ausgezeichnet — Jazzprogressionen halten keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Progressionen festigen.",
+      "keepGoing": "Bleib aktiv am Hören — Jazz lernt man durch das Ohr!"
+    }
+  },
+  "cours16": {
+    "badge": "Level 2 · Kurs 16",
+    "title": "Reharmonisierung",
+    "subtitle": "Diatonische Substitution, Tritonussubstitution, modales Borgen, parallele Harmonisierung — Akkorde unter einer intakten Melodie transformieren.",
+    "sections": {
+      "principe": "Das Prinzip",
+      "application": "Anwendungen",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Ausgezeichnet — Reharmonisierung hält keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Techniken festigen.",
+      "keepGoing": "Vergleiche die Vor/Nachher-Versionen weiter nach Gehör!"
+    }
+  },
+  "cours17": {
+    "badge": "Level 2 · Kurs 17",
+    "title": "Musikalischer Satz und Form",
+    "subtitle": "Motiv, 4-stufige Entwicklung, Wiederholungstechniken, Vordersatz-Nachsatz und große musikalische Formen.",
+    "sections": {
+      "phrase": "Der Satz",
+      "periode": "Periode & Formen",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Ausgezeichnet — musikalischer Satz und Form halten keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Formen festigen.",
+      "keepGoing": "Höre die Beispiele weiter — das Ohr lernt Formen durch Übung!"
+    }
+  },
+  "cours18": {
+    "badge": "Level 2 · Kurs 18",
+    "title": "Motivische Entwicklung",
+    "subtitle": "Die 5 Elemente eines Motivs, das Wiederholungsparadoxon und die 4 Techniken-Familien — von der Harmonik bis zum Rhythmus.",
+    "sections": {
+      "motif": "Das Motiv",
+      "techniques": "Techniken",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Ausgezeichnet — motivische Entwicklung hält keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Techniken festigen.",
+      "keepGoing": "Höre die Transformationen weiter — das Ohr lernt durch Übung!"
+    }
+  },
+  "cours19": {
+    "badge": "Level 2 · Kurs 19",
+    "title": "Einführung in die Orchestrierung",
+    "subtitle": "Die 4 Instrumentenfamilien, ihre Lagen und Rollen — Verdopplungen, Balance, Register und SATB-Verteilung im Orchester.",
+    "sections": {
+      "instruments": "Die Instrumente",
+      "ecriture": "Orchestersatz",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Ausgezeichnet — Orchestrierung hält keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Instrumentenfamilien festigen.",
+      "keepGoing": "Erforsche die Instrumentenfamilien weiter — das Ohr lernt durch Übung!"
+    }
+  },
+  "cours20": {
+    "badge": "Level 2 · Kurs 20",
+    "title": "Analyse der großen klassischen Komponisten",
+    "subtitle": "Bach, Mozart, Beethoven, Schubert, Chopin, Liszt, Berlioz, Tschaikowski, Rachmaninow — harmonische Signaturen, die die westliche Musik geprägt haben.",
+    "sections": {
+      "compositeurs": "Die Komponisten",
+      "analyse": "Vergleichende Analyse",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Ausgezeichnet — die großen Meister halten keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Komponisten festigen.",
+      "keepGoing": "Höre weiter — jedes Zuhören enthüllt neue harmonische Details!"
+    }
+  },
+  "cours21": {
+    "badge": "Level 2 · Kurs 21",
+    "title": "Analyse moderner und zeitgenössischer Komponisten",
+    "subtitle": "Debussy, Ravel, Strawinsky, Messiaen, Satie, Beatles, Radiohead, Morricone — vom Impressionismus bis zum Rock, wie das 20. Jahrhundert die Harmonie neu erfunden hat.",
+    "sections": {
+      "compositeurs": "Die Komponisten",
+      "analyse": "Vergleichende Analyse",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Ausgezeichnet — die Musiksprachen des 20. Jahrhunderts halten keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Komponisten festigen.",
+      "keepGoing": "Bleib am Hören — moderne Harmonie erschließt sich durch das Ohr!"
+    }
+  },
+  "cours22": {
+    "badge": "Level 2 · Kurs 22",
+    "title": "Reharmonisierung",
+    "subtitle": "Eine Progression transformieren und dabei die Melodie erhalten — diatonische und Tritonussubstitutionen, modales Borgen, parallele Harmonisierung.",
+    "sections": {
+      "principe": "Die Techniken",
+      "application": "Analysen",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Ausgezeichnet — Reharmonisierung hält keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Progressionen festigen.",
+      "keepGoing": "Höre die Progressionen weiter — das Ohr lernt durch Tun!"
+    }
+  },
+  "cours23": {
+    "badge": "Level 2 · Kurs 23",
+    "title": "Im Stil der Meister komponieren",
+    "subtitle": "Bach, Mozart, Chopin, Debussy, Jazz, Rock — harmonische Signaturen erkennen und reproduzieren, die jeden großen Stil definieren.",
+    "sections": {
+      "styles": "Die Stile",
+      "exercices": "Geführte Übungen",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt! Du beherrschst die großen Stilsignaturen.",
+      "veryGood": "Sehr gut! Noch ein paar Nuancen zwischen ähnlichen Stilen verfeinern.",
+      "keepGoing": "Erforsche die Stile weiter — beginne neu, wenn du bereit bist."
+    }
   }
 }

@@ -161,6 +161,20 @@ const COURS = [
     tags: ["Moderne", "Contemporain", "Impressionnisme"],
     available: true,
   },
+  {
+    num: 22,
+    title: "La réharmonisation",
+    desc: "Transformer une progression en conservant la mélodie — substitutions diatonique et tritonique, emprunt modal, harmonisation parallèle.",
+    tags: ["Réharmonisation", "Substitution", "Jazz"],
+    available: true,
+  },
+  {
+    num: 23,
+    title: "Composer dans le style des maîtres",
+    desc: "Bach, Mozart, Chopin, Debussy, Jazz, Rock — identifier et reproduire les signatures harmoniques des grands compositeurs.",
+    tags: ["Style", "Composition", "Analyse"],
+    available: true,
+  },
 ];
 
 // ─── Styles ───────────────────────────────────────────────────────────────────

@@ -11,6 +11,7 @@ const intlMiddleware = createIntlMiddleware({
 const isPublicRoute = createRouteMatcher([
   "/",
   "/:locale",
+  "/:locale/preview",
   "/:locale/sign-in(.*)",
   "/:locale/sign-up(.*)",
   "/api/stripe/webhook",
