@@ -398,7 +398,8 @@
     "home": "Accueil",
     "courses": "Cours",
     "atelier": "Atelier",
-    "dictee": "Dictée"
+    "dictee": "Dictée",
+    "scales": "Tonalités"
   },
   "hub": {
     "chooseLevel": "Choisissez votre niveau",
@@ -409,5 +410,30 @@
     "level3": "Niveau 3",
     "level3sub": "Maîtrise",
     "start": "Commencer →"
+  },
+  "landing": {
+    "topbar": "Cours 23 disponible — Composer dans le style des maîtres",
+    "topbarCta": "Découvrir →",
+    "badge": "Niveaux 1 & 2 · 23 cours · 700+ exercices",
+    "h1": "Maîtrisez l'harmonie tonale.",
+    "h1em": "Vraiment.",
+    "sub": "De la gamme aux techniques des grands compositeurs — 23 cours interactifs, 700+ exercices avec feedback harmonique en temps réel, dans les 24 tonalités.",
+    "cta1": "Commencer gratuitement",
+    "cta2": "Explorer les tonalités",
+    "footer": "Gratuit pour commencer · Aucune carte requise · 6 langues",
+    "navCourses": "Cours",
+    "navAtelier": "Atelier",
+    "navScales": "Tonalités",
+    "methodLabel": "Méthode",
+    "methodH2": "L'apprentissage par la pratique",
+    "featuresLabel": "Fonctionnalités",
+    "featuresH2": "Tout ce qu'il faut pour progresser",
+    "pricingLabel": "Tarifs",
+    "pricingH2": "Choisissez votre rythme",
+    "pricingSub": "Commencez gratuitement. Passez Pro quand vous êtes prêt.",
+    "ctaH2": "Commencez à comprendre",
+    "ctaEm": "la musique",
+    "ctaSub": "3 cours gratuits. Aucune carte de crédit. Commencez maintenant.",
+    "ctaBtn": "Commencer gratuitement →"
   }
 }

@@ -398,7 +398,8 @@
     "home": "Home",
     "courses": "Courses",
     "atelier": "Workshop",
-    "dictee": "Ear Training"
+    "dictee": "Ear Training",
+    "scales": "Keys"
   },
   "hub": {
     "chooseLevel": "Choose your level",
@@ -409,5 +410,30 @@
     "level3": "Level 3",
     "level3sub": "Advanced",
     "start": "Start →"
+  },
+  "landing": {
+    "topbar": "Course 23 available — Composing in the style of the masters",
+    "topbarCta": "Discover →",
+    "badge": "Levels 1 & 2 · 23 courses · 700+ exercises",
+    "h1": "Master tonal harmony.",
+    "h1em": "Really.",
+    "sub": "From scales to the techniques of the great composers — 23 interactive courses, 700+ exercises with real-time harmonic feedback, in 24 keys.",
+    "cta1": "Start for free",
+    "cta2": "Explore the keys",
+    "footer": "Free to start · No card required · 6 languages",
+    "navCourses": "Courses",
+    "navAtelier": "Workshop",
+    "navScales": "Keys",
+    "methodLabel": "Method",
+    "methodH2": "Learning through practice",
+    "featuresLabel": "Features",
+    "featuresH2": "Everything you need to progress",
+    "pricingLabel": "Pricing",
+    "pricingH2": "Choose your pace",
+    "pricingSub": "Start for free. Go Pro when you're ready.",
+    "ctaH2": "Start understanding",
+    "ctaEm": "music",
+    "ctaSub": "3 free courses. No credit card. Start now.",
+    "ctaBtn": "Start for free →"
   }
 }

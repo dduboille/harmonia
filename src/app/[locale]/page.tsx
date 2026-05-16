@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const FEATURES = [
   { icon: "𝄞", title: "23 cours structurés", desc: "Des origines acoustiques de la gamme aux techniques des grands compositeurs — deux niveaux progressifs couvrant l'harmonie classique, le jazz et la composition." },
@@ -129,6 +130,7 @@ export default function LandingPage() {
   const locale = (params?.locale as string) ?? "fr";
   const pathname = typeof window !== "undefined" ? window.location.pathname : `/${locale}`;
   const { isSignedIn } = useUser();
+  const t = useTranslations("landing");
 
   return (
     <div style={{ fontFamily: "'Georgia', 'Times New Roman', serif", background: "#faf8f4", color: "#1a1a1a", overflowX: "hidden" }}>
@@ -151,9 +153,9 @@ export default function LandingPage() {
         letterSpacing: "0.05em",
       }}>
         <span style={{ background: "rgba(255,255,255,0.15)", padding: "2px 10px", borderRadius: 10 }}>Nouveau</span>
-        <span style={{ opacity: 0.85, fontWeight: 400 }}>Cours 23 disponible — Composer dans le style des maîtres</span>
+        <span style={{ opacity: 0.85, fontWeight: 400 }}>{t("topbar")}</span>
         <Link href={`/${locale}/cours`} style={{ color: "#E9C97E", textDecoration: "none", fontWeight: 600 }}>
-          Découvrir →
+          {t("topbarCta")}
         </Link>
       </div>
 
@@ -163,9 +165,9 @@ export default function LandingPage() {
           Harmonia<span style={{ color: "#BA7517", marginLeft: 2 }}>.</span>
         </div>
         <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
-          <Link href={`/${locale}/cours`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Cours</Link>
-          <Link href={`/${locale}/atelier`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Atelier</Link>
-          <Link href={`/${locale}/tonalites`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Tonalités</Link>
+          <Link href={`/${locale}/cours`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>{t("navCourses")}</Link>
+          <Link href={`/${locale}/atelier`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>{t("navAtelier")}</Link>
+          <Link href={`/${locale}/tonalites`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>{t("navScales")}</Link>
           <LanguageSwitcher currentLocale={locale} pathname={`/${locale}`} />
           {isSignedIn ? (
             <Link href={`/${locale}/dashboard`} style={{ fontSize: 13, fontWeight: 500, padding: "7px 18px", borderRadius: 20, background: "#1a1a1a", color: "#fff", textDecoration: "none" }}>Mon espace →</Link>
@@ -195,30 +197,30 @@ export default function LandingPage() {
         <div style={{ maxWidth: 760, textAlign: "center" as const, position: "relative" as const, zIndex: 1, padding: "80px 2rem" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#FAEEDA", border: "0.5px solid #F6AD55", borderRadius: 20, padding: "5px 14px", fontSize: 12, fontWeight: 500, color: "#BA7517", fontFamily: "system-ui, sans-serif", marginBottom: 32, letterSpacing: "0.04em" }}>
             <span>✦</span>
-            Niveaux 1 &amp; 2 · 23 cours · 700+ exercices
+            {t("badge")}
           </div>
 
           <h1 style={{ fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.02em", margin: "0 0 24px", color: "#1a1a1a" }}>
-            Maîtrisez l&apos;harmonie tonale.
+            {t("h1")}
             <br />
-            <em style={{ color: "#BA7517", fontStyle: "italic" }}>Vraiment.</em>
+            <em style={{ color: "#BA7517", fontStyle: "italic" }}>{t("h1em")}</em>
           </h1>
 
           <p style={{ fontSize: "clamp(16px, 2.5vw, 20px)", color: "#444", lineHeight: 1.7, maxWidth: 560, margin: "0 auto 40px", fontFamily: "system-ui, sans-serif", fontWeight: 400 }}>
-            De la gamme aux techniques des grands compositeurs — 23 cours interactifs, 700+ exercices avec feedback harmonique en temps réel, dans les 24 tonalités.
+            {t("sub")}
           </p>
 
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" as const }}>
             <Link href={`/${locale}/cours`} style={{ padding: "14px 32px", borderRadius: 4, background: "#1a1a1a", color: "#fff", textDecoration: "none", fontSize: 15, fontWeight: 500, fontFamily: "system-ui, sans-serif", letterSpacing: "0.02em", border: "1px solid #1a1a1a" }}>
-              Commencer gratuitement
+              {t("cta1")}
             </Link>
             <Link href={`/${locale}/tonalites`} style={{ padding: "14px 32px", borderRadius: 4, background: "rgba(255,255,255,0.7)", color: "#1a1a1a", textDecoration: "none", fontSize: 15, fontFamily: "system-ui, sans-serif", border: "1px solid #c8c4bc" }}>
-              Explorer les tonalités
+              {t("cta2")}
             </Link>
           </div>
 
           <p style={{ marginTop: 28, fontSize: 12, color: "#bbb", fontFamily: "system-ui, sans-serif" }}>
-            Gratuit pour commencer · Aucune carte requise · 6 langues
+            {t("footer")}
           </p>
         </div>
       </section>
@@ -238,8 +240,8 @@ export default function LandingPage() {
       {/* Comment ça marche */}
       <section style={{ padding: "100px 2rem", maxWidth: 900, margin: "0 auto" }}>
         <div style={{ textAlign: "center" as const, marginBottom: 64 }}>
-          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", color: "#BA7517", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>Méthode</div>
-          <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, letterSpacing: "-0.01em" }}>L'apprentissage par la pratique</h2>
+          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", color: "#BA7517", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>{t("methodLabel")}</div>
+          <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, letterSpacing: "-0.01em" }}>{t("methodH2")}</h2>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 2 }}>
           {STEPS.map((step, i) => (
@@ -256,8 +258,8 @@ export default function LandingPage() {
       <section style={{ padding: "80px 2rem", background: "#fff", borderTop: "0.5px solid #e8e3db", borderBottom: "0.5px solid #e8e3db" }}>
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
           <div style={{ textAlign: "center" as const, marginBottom: 64 }}>
-            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", color: "#185FA5", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>Fonctionnalités</div>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, letterSpacing: "-0.01em" }}>Tout ce qu'il faut pour progresser</h2>
+            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", color: "#185FA5", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>{t("featuresLabel")}</div>
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, letterSpacing: "-0.01em" }}>{t("featuresH2")}</h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
             {FEATURES.map(f => (
@@ -275,9 +277,9 @@ export default function LandingPage() {
       <section style={{ padding: "100px 2rem" }}>
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
           <div style={{ textAlign: "center" as const, marginBottom: 64 }}>
-            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", color: "#0F6E56", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>Tarifs</div>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: "0 0 12px", letterSpacing: "-0.01em" }}>Choisissez votre rythme</h2>
-            <p style={{ fontSize: 15, color: "#888", margin: 0, fontFamily: "system-ui, sans-serif" }}>Commencez gratuitement. Passez Pro quand vous êtes prêt.</p>
+            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", color: "#0F6E56", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>{t("pricingLabel")}</div>
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: "0 0 12px", letterSpacing: "-0.01em" }}>{t("pricingH2")}</h2>
+            <p style={{ fontSize: 15, color: "#888", margin: 0, fontFamily: "system-ui, sans-serif" }}>{t("pricingSub")}</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16, alignItems: "start" }}>
             {PLANS.map(plan => (
@@ -357,13 +359,13 @@ export default function LandingPage() {
         <div style={{ maxWidth: 580, margin: "0 auto" }}>
           <div style={{ fontSize: 64, marginBottom: 24, lineHeight: 1, color: "#BA7517", opacity: 0.6 }}>𝄞</div>
           <h2 style={{ fontSize: "clamp(28px, 5vw, 48px)", fontWeight: 400, color: "#fff", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
-            Commencez à comprendre<br /><em style={{ color: "#BA7517" }}>la musique</em>
+            {t("ctaH2")}<br /><em style={{ color: "#BA7517" }}>{t("ctaEm")}</em>
           </h2>
           <p style={{ fontSize: 16, color: "#888", lineHeight: 1.7, margin: "0 0 40px", fontFamily: "system-ui, sans-serif" }}>
-            3 cours gratuits. Aucune carte de crédit. Commencez maintenant et voyez la différence entre mémoriser et comprendre.
+            {t("ctaSub")}
           </p>
           <Link href={`/${locale}/cours`} style={{ display: "inline-block", padding: "16px 40px", borderRadius: 4, background: "#BA7517", color: "#fff", textDecoration: "none", fontSize: 16, fontWeight: 500, fontFamily: "system-ui, sans-serif", letterSpacing: "0.02em" }}>
-            Commencer gratuitement →
+            {t("ctaBtn")}
           </Link>
           <p style={{ marginTop: 16, fontSize: 12, color: "#555", fontFamily: "system-ui, sans-serif" }}>Cours 1 à 3 · Quiz illimité · Exercices SATB</p>
         </div>

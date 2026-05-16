@@ -398,7 +398,8 @@
     "home": "Start",
     "courses": "Kurse",
     "atelier": "Übungen",
-    "dictee": "Gehörtraining"
+    "dictee": "Gehörtraining",
+    "scales": "Tonarten"
   },
   "hub": {
     "chooseLevel": "Wähle dein Niveau",
@@ -409,5 +410,30 @@
     "level3": "Stufe 3",
     "level3sub": "Meisterschaft",
     "start": "Starten →"
+  },
+  "landing": {
+    "topbar": "Kurs 23 verfügbar — Im Stil der Meister komponieren",
+    "topbarCta": "Entdecken →",
+    "badge": "Stufen 1 & 2 · 23 Kurse · 700+ Übungen",
+    "h1": "Beherrsche die tonale Harmonielehre.",
+    "h1em": "Wirklich.",
+    "sub": "Von der Tonleiter bis zu den Techniken der großen Komponisten — 23 interaktive Kurse, 700+ Übungen mit Echtzeit-Feedback in 24 Tonarten.",
+    "cta1": "Kostenlos starten",
+    "cta2": "Tonarten erkunden",
+    "footer": "Kostenlos starten · Keine Karte erforderlich · 6 Sprachen",
+    "navCourses": "Kurse",
+    "navAtelier": "Werkstatt",
+    "navScales": "Tonarten",
+    "methodLabel": "Methode",
+    "methodH2": "Lernen durch Üben",
+    "featuresLabel": "Funktionen",
+    "featuresH2": "Alles was du brauchst, um voranzukommen",
+    "pricingLabel": "Preise",
+    "pricingH2": "Wähle dein Tempo",
+    "pricingSub": "Starte kostenlos. Wechsle zu Pro, wenn du bereit bist.",
+    "ctaH2": "Beginne zu verstehen",
+    "ctaEm": "die Musik",
+    "ctaSub": "3 kostenlose Kurse. Keine Kreditkarte. Starte jetzt.",
+    "ctaBtn": "Kostenlos starten →"
   }
 }

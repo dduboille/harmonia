@@ -398,7 +398,8 @@
     "home": "Inizio",
     "courses": "Lezioni",
     "atelier": "Studio",
-    "dictee": "Dettato"
+    "dictee": "Dettato",
+    "scales": "Tonalità"
   },
   "hub": {
     "chooseLevel": "Scegli il tuo livello",
@@ -409,5 +410,30 @@
     "level3": "Livello 3",
     "level3sub": "Avanzato",
     "start": "Inizia →"
+  },
+  "landing": {
+    "topbar": "Lezione 23 disponibile — Comporre nello stile dei maestri",
+    "topbarCta": "Scopri →",
+    "badge": "Livelli 1 & 2 · 23 lezioni · 700+ esercizi",
+    "h1": "Padroneggia l'armonia tonale.",
+    "h1em": "Davvero.",
+    "sub": "Dalle scale alle tecniche dei grandi compositori — 23 lezioni interattive, 700+ esercizi con feedback armonico in tempo reale, in 24 tonalità.",
+    "cta1": "Inizia gratuitamente",
+    "cta2": "Esplora le tonalità",
+    "footer": "Gratuito per iniziare · Nessuna carta richiesta · 6 lingue",
+    "navCourses": "Lezioni",
+    "navAtelier": "Laboratorio",
+    "navScales": "Tonalità",
+    "methodLabel": "Metodo",
+    "methodH2": "Imparare attraverso la pratica",
+    "featuresLabel": "Funzionalità",
+    "featuresH2": "Tutto il necessario per progredire",
+    "pricingLabel": "Prezzi",
+    "pricingH2": "Scegli il tuo ritmo",
+    "pricingSub": "Inizia gratis. Passa al Pro quando sei pronto.",
+    "ctaH2": "Inizia a capire",
+    "ctaEm": "la musica",
+    "ctaSub": "3 lezioni gratuite. Nessuna carta di credito. Inizia ora.",
+    "ctaBtn": "Inizia gratuitamente →"
   }
 }
