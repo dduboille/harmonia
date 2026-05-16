@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation";
+
+export const dynamic = 'force-dynamic';
 import Cours1 from "@/components/Cours1";
 import Cours2 from "@/components/Cours2";
 import Cours3 from "@/components/Cours3";

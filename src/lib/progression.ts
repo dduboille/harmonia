@@ -166,7 +166,7 @@ export async function getUserPlan(
 
 // ── Cours accessibles selon le plan ──────────────────────────
 
-const TOTAL_COURS = 21;
+const TOTAL_COURS = 23;
 export const FREE_COURS = [1, 2, 3];
 export const PRO_COURS  = Array.from({ length: TOTAL_COURS }, (_, i) => i + 1);
 
