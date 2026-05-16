@@ -428,10 +428,7 @@ export default function Cours19() {
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 19</span>
         <h1 style={S.h1}>Introduction à l'orchestration</h1>
-        <p style={S.subtitle}>
-          Les 4 familles d'instruments, leurs tessitures et rôles — puis les principes
-          d'écriture : doublures, équilibre, registres, distribution SATB, écriture pour piano.
-        </p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

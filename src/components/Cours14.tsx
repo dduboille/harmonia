@@ -347,9 +347,7 @@ export default function Cours14() {
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 14</span>
         <h1 style={S.h1}>L'harmonisation modale</h1>
-        <p style={S.subtitle}>
-          Colorer chaque mode avec ses accords caractéristiques — sans résolution tonale obligatoire.
-        </p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

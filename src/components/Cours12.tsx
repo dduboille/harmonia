@@ -258,7 +258,7 @@ export default function Cours12() {
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 12</span>
         <h1 style={S.h1}>La substitution tritonique</h1>
-        <p style={S.subtitle}>Remplacer V7 par l&apos;accord situé un triton plus bas — même tension, basse chromatique.</p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

@@ -370,10 +370,7 @@ export default function Cours17() {
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 17</span>
         <h1 style={S.h1}>La phrase musicale et la forme</h1>
-        <p style={S.subtitle}>
-          Motif, développement en 4 étapes, techniques de répétition, période antécédent-conséquent
-          et grandes formes — comment le discours musical s'organise dans le temps.
-        </p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

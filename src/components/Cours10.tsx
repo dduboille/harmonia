@@ -336,7 +336,7 @@ export default function Cours10() {
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 10</span>
         <h1 style={S.h1}>Les modes de la gamme majeure</h1>
-        <p style={S.subtitle}>Ionien, dorien, phrygien, lydien, mixolydien, éolien, locrien — sept couleurs, une seule gamme.</p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

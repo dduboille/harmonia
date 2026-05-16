@@ -365,7 +365,7 @@ export default function Cours11() {
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 11</span>
         <h1 style={S.h1}>Les extensions d&apos;accords</h1>
-        <p style={S.subtitle}>9e, 11e, 13e — empiler des tierces au-delà de la 7te pour enrichir la couleur harmonique.</p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

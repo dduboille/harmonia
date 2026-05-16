@@ -409,7 +409,7 @@ export default function Cours2() {
       <div style={S.header}>
         <span style={S.badge}>{i18n.badge}</span>
         <h1 style={S.h1}>{i18n.title}</h1>
-        <p style={S.subtitle}>De la triade simple à l'accord de septième — construire, harmoniser, renverser.</p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

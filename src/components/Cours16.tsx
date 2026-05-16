@@ -362,10 +362,7 @@ export default function Cours16() {
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 16</span>
         <h1 style={S.h1}>La réharmonisation</h1>
-        <p style={S.subtitle}>
-          Substitution diatonique, tritonique, emprunt modal, harmonisation parallèle —
-          transformer les accords sous une mélodie intacte.
-        </p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

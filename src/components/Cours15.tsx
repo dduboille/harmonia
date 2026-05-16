@@ -316,9 +316,7 @@ export default function Cours15() {
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 15</span>
         <h1 style={S.h1}>Les progressions jazz avancées</h1>
-        <p style={S.subtitle}>
-          II–V–I avec extensions, version mineure, rythme harmonique, turnarounds et jazz blues.
-        </p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

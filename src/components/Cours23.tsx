@@ -591,7 +591,7 @@ export default function Cours23() {
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 23</span>
         <h1 style={S.h1}>Composer dans le style des maîtres</h1>
-        <p style={S.subtitle}>Bach, Mozart, Chopin, Debussy, Jazz, Rock, Romantique — identifier et reproduire les signatures harmoniques des grands compositeurs.</p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

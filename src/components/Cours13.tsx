@@ -420,7 +420,7 @@ export default function Cours13() {
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 13</span>
         <h1 style={S.h1}>Le contrepoint à 2 voix</h1>
-        <p style={S.subtitle}>Deux lignes mélodiques indépendantes. Cinq espèces, des règles précises, une liberté surprenante.</p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

@@ -376,7 +376,7 @@ export default function Cours22() {
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 22</span>
         <h1 style={S.h1}>La réharmonisation</h1>
-        <p style={S.subtitle}>Transformer une progression en conservant la mélodie — substitutions diatonique et tritonique, emprunt modal, harmonisation parallèle.</p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

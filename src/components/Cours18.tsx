@@ -389,10 +389,7 @@ export default function Cours18() {
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 18</span>
         <h1 style={S.h1}>Le développement motivique</h1>
-        <p style={S.subtitle}>
-          Les 5 éléments du motif, le paradoxe de la répétition, et les 4 familles de
-          techniques — de l'harmonie (moins radical) au rythme (plus radical).
-        </p>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard

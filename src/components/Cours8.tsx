@@ -245,7 +245,7 @@ export default function Cours8() {
       <div style={S.hdr}>
         <span style={S.badge}>{i18n.badge}</span>
         <h1 style={S.h1}>{i18n.title}</h1>
-        <p style={S.sub}>Changer de tonalité sans rupture — l'accord pivot, le 6/4 de cadence et le V7sus4.</p>
+        <p style={S.sub}>{i18n.subtitle}</p>
       </div>
 
       <MaitreCard
