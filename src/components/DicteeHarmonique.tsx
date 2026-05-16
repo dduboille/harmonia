@@ -228,6 +228,7 @@ export default function DicteeHarmonique() {
 
   const startNew = useCallback(() => {
     clearAll();
+    answering.current = false;
     setAnswers([]);
     setFeedback(null);
     setChordIdx(0);
@@ -420,7 +421,7 @@ export default function DicteeHarmonique() {
             </p>
 
             {/* Option grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.5rem", marginBottom: "1.2rem" }}>
+            <div key={chordIdx} style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.5rem", marginBottom: "1.2rem" }}>
               {currentOpts.map(opt => {
                 const isChosen = feedback?.chosen === opt.label;
                 const isExpected = !feedback?.ok && prog.chords[chordIdx].label === opt.label;

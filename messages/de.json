@@ -392,5 +392,22 @@
       "veryGood": "Sehr gut! Noch ein paar Nuancen zwischen ähnlichen Stilen verfeinern.",
       "keepGoing": "Erforsche die Stile weiter — beginne neu, wenn du bereit bist."
     }
+  },
+  "nav": {
+    "back": "Zurück",
+    "home": "Start",
+    "courses": "Kurse",
+    "atelier": "Übungen",
+    "dictee": "Gehörtraining"
+  },
+  "hub": {
+    "chooseLevel": "Wähle dein Niveau",
+    "level1": "Stufe 1",
+    "level1sub": "Grundlagen",
+    "level2": "Stufe 2",
+    "level2sub": "Fortgeschritten",
+    "level3": "Stufe 3",
+    "level3sub": "Meisterschaft",
+    "start": "Starten →"
   }
 }

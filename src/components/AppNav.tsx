@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const LOCALES = [
   { code: "fr", label: "FR" },
@@ -111,6 +112,7 @@ function AppNav() {
   const pathname = usePathname();
   const params = useParams();
   const locale = (params?.locale as string) ?? "fr";
+  const t = useTranslations("nav");
 
   const active = (seg: string) => pathname.startsWith(`/${locale}/${seg}`);
 
@@ -158,13 +160,13 @@ function AppNav() {
           }}
         >
           <span style={{ fontSize: 15, lineHeight: 1 }}>←</span>
-          <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.07em" }}>RETOUR</span>
+          <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.07em" }}>{t("back").toUpperCase()}</span>
         </button>
 
-        <NavItem href={`/${locale}/dashboard`} active={active("dashboard")} icon="⌂" label="ACCUEIL" />
-        <NavItem href={`/${locale}/cours`}     active={active("cours")}     icon="♩" label="COURS" />
-        <NavItem href={`/${locale}/atelier`}   active={active("atelier")}   icon="✎" label="ATELIER" />
-        <NavItem href={`/${locale}/dictee`}    active={active("dictee")}    icon="♫" label="DICTÉE" />
+        <NavItem href={`/${locale}/dashboard`} active={active("dashboard")} icon="⌂" label={t("home").toUpperCase()} />
+        <NavItem href={`/${locale}/cours`}     active={active("cours")}     icon="♩" label={t("courses").toUpperCase()} />
+        <NavItem href={`/${locale}/atelier`}   active={active("atelier")}   icon="✎" label={t("atelier").toUpperCase()} />
+        <NavItem href={`/${locale}/dictee`}    active={active("dictee")}    icon="♫" label={t("dictee").toUpperCase()} />
       </div>
     </div>
   );

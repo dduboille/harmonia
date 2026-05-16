@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const LEVELS = [
   {
@@ -49,6 +50,7 @@ const LEVELS = [
 export default function CoursHubPage() {
   const params = useParams();
   const locale = (params?.locale as string) ?? "fr";
+  const t = useTranslations("hub");
 
   return (
     <div style={{
@@ -73,7 +75,7 @@ export default function CoursHubPage() {
             fontWeight: 400, margin: "0 0 14px",
             letterSpacing: "-0.02em", color: "#1a1a1a",
           }}>
-            Choisissez votre niveau
+            {t("chooseLevel")}
           </h1>
           <p style={{
             fontSize: 16, color: "#666", lineHeight: 1.7, margin: 0,
@@ -116,7 +118,7 @@ export default function CoursHubPage() {
                 {/* Contenu */}
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8, flexWrap: "wrap" as const }}>
-                    <span style={{ fontSize: 17, fontWeight: 500, color: "#1a1a1a" }}>{lvl.label}</span>
+                    <span style={{ fontSize: 17, fontWeight: 500, color: "#1a1a1a" }}>{t(`level${lvl.num}`)}</span>
                     <span style={{
                       fontSize: 11, fontWeight: 600,
                       color: lvl.color, background: lvl.bg,
@@ -124,7 +126,7 @@ export default function CoursHubPage() {
                       padding: "2px 9px", borderRadius: 10,
                       fontFamily: "system-ui",
                     }}>
-                      {lvl.sublabel}
+                      {t(`level${lvl.num}sub`)}
                     </span>
                     <span style={{ fontSize: 11, color: "#bbb", fontFamily: "system-ui" }}>
                       {lvl.coursRange} · {lvl.count} cours
@@ -150,7 +152,7 @@ export default function CoursHubPage() {
                 </div>
 
                 {/* Flèche */}
-                <div style={{ fontSize: 20, color: lvl.color, flexShrink: 0, fontFamily: "system-ui" }}>→</div>
+                <div style={{ fontSize: 14, color: lvl.color, flexShrink: 0, fontFamily: "system-ui", fontWeight: 600 }}>{t("start")}</div>
               </div>
             </Link>
           ))}

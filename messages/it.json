@@ -392,5 +392,22 @@
       "veryGood": "Molto bene! Ancora qualche sfumatura da affinare tra stili vicini.",
       "keepGoing": "Continua ad esplorare gli stili — riprendi quando sei pronto."
     }
+  },
+  "nav": {
+    "back": "Torna",
+    "home": "Inizio",
+    "courses": "Lezioni",
+    "atelier": "Studio",
+    "dictee": "Dettato"
+  },
+  "hub": {
+    "chooseLevel": "Scegli il tuo livello",
+    "level1": "Livello 1",
+    "level1sub": "Fondamentali",
+    "level2": "Livello 2",
+    "level2sub": "Intermedio",
+    "level3": "Livello 3",
+    "level3sub": "Avanzato",
+    "start": "Inizia →"
   }
 }

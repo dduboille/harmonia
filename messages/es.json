@@ -392,5 +392,22 @@
       "veryGood": "¡Muy bien! Unos matices más por afinar entre estilos cercanos.",
       "keepGoing": "Sigue explorando los estilos — recomienza cuando estés listo."
     }
+  },
+  "nav": {
+    "back": "Volver",
+    "home": "Inicio",
+    "courses": "Lecciones",
+    "atelier": "Taller",
+    "dictee": "Dictado"
+  },
+  "hub": {
+    "chooseLevel": "Elige tu nivel",
+    "level1": "Nivel 1",
+    "level1sub": "Fundamentos",
+    "level2": "Nivel 2",
+    "level2sub": "Intermedio",
+    "level3": "Nivel 3",
+    "level3sub": "Avanzado",
+    "start": "Empezar →"
   }
 }

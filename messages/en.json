@@ -392,5 +392,22 @@
       "veryGood": "Very good! A few nuances to refine between close styles.",
       "keepGoing": "Keep exploring the styles — restart when you are ready."
     }
+  },
+  "nav": {
+    "back": "Back",
+    "home": "Home",
+    "courses": "Courses",
+    "atelier": "Workshop",
+    "dictee": "Ear Training"
+  },
+  "hub": {
+    "chooseLevel": "Choose your level",
+    "level1": "Level 1",
+    "level1sub": "Fundamentals",
+    "level2": "Level 2",
+    "level2sub": "Intermediate",
+    "level3": "Level 3",
+    "level3sub": "Advanced",
+    "start": "Start →"
   }
 }

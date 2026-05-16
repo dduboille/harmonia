@@ -392,5 +392,22 @@
       "veryGood": "Très bien ! Quelques nuances à affiner entre les styles proches.",
       "keepGoing": "Continue à explorer les styles — recommence quand tu es prêt."
     }
+  },
+  "nav": {
+    "back": "Retour",
+    "home": "Accueil",
+    "courses": "Cours",
+    "atelier": "Atelier",
+    "dictee": "Dictée"
+  },
+  "hub": {
+    "chooseLevel": "Choisissez votre niveau",
+    "level1": "Niveau 1",
+    "level1sub": "Fondamentaux",
+    "level2": "Niveau 2",
+    "level2sub": "Approfondissement",
+    "level3": "Niveau 3",
+    "level3sub": "Maîtrise",
+    "start": "Commencer →"
   }
 }
