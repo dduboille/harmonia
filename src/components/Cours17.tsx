@@ -8,6 +8,8 @@
 
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { cours17Content } from "@/data/cours17Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
 
@@ -321,6 +323,7 @@ const S = {
 export default function Cours17() {
   const [activeSection, setActiveSection] = useState<SectionId>("phrase");
   const i18n = useCoursI18n("cours17");
+  const { questions: ALL_QUESTIONS } = useCoursContent(cours17Content);
   const [activeTech,  setActiveTech]  = useState<string | null>(null);
   const [activeForme, setActiveForme] = useState<string | null>(null);
 

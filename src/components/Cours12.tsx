@@ -8,6 +8,8 @@
 
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { cours12Content } from "@/data/cours12Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
 
@@ -211,6 +213,7 @@ const S = {
 export default function Cours12() {
   const [activeSection, setActiveSection] = useState<string>("principe");
   const i18n = useCoursI18n("cours12");
+  const { questions: ALL_QUESTIONS } = useCoursContent(cours12Content);
 
   const [quizQuestions] = useState(() => shuffle(ALL_QUESTIONS).slice(0, QUIZ_COUNT));
   const [quizIdx,      setQuizIdx]      = useState(0);

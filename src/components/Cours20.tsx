@@ -7,6 +7,8 @@ import React, { useRef, useState, useMemo } from "react";
 import PianoPlayer, { PianoPlayerRef } from "./PianoPlayer";
 import MaitreCard from "./MaitreCard";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { cours20Content } from "@/data/cours20Content";
 
 const PRIMARY    = "#7B2055";
 const PRIMARY_BG = "#FAF0F5";
@@ -423,6 +425,7 @@ function AnalysisCard({ a, pianoRef }: { a: typeof ANALYSES[0]; pianoRef: React.
 
 export default function Cours20() {
   const { badge, title, subtitle } = useCoursI18n("cours20");
+  const { questions: ALL_QUESTIONS } = useCoursContent(cours20Content);
   const pianoRef = useRef<PianoPlayerRef | null>(null);
   const [section, setSection] = useState<"compositeurs"|"analyse"|"quiz">("compositeurs");
 

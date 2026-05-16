@@ -12,6 +12,8 @@
 import React, { useRef, useState, useCallback } from "react";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { cours1Content, type Degree, type IntervalDef } from "@/data/cours1Content";
 import MaitreCard from "@/components/MaitreCard";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -58,209 +60,8 @@ const GAMMES = [
   },
 ];
 
-const DEGREES = [
-  {
-    num: "I", name: "Tonique", note: "C",
-    origin: "Du latin «&nbsp;tonus&nbsp;» — le son de référence, le centre de gravité de toute la gamme. Toutes les autres notes gravitent autour d'elle.",
-    attraction: "Elle attire toutes les autres notes, et plus particulièrement le VIIe degré (la sensible), situé à seulement un demi-ton en dessous.",
-    color: "#0F6E56", bg: "#E1F5EE",
-  },
-  {
-    num: "II", name: "Sus-tonique", note: "D",
-    origin: "Littéralement «&nbsp;au-dessus de la tonique&nbsp;» — la note immédiatement supérieure au centre tonal.",
-    attraction: "Instable, elle tend vers le Ier degré (en descendant) ou vers le IIIe (en montant). Elle est souvent le point de départ des progressions harmoniques.",
-    color: "#534AB7", bg: "#EEEDFE",
-  },
-  {
-    num: "III", name: "Médiante", note: "E",
-    origin: "Du latin «&nbsp;medius&nbsp;» — elle est à mi-chemin entre la tonique (I) et la dominante (V), à 4 demi-tons de chacune.",
-    attraction: "Elle définit la couleur de la gamme : tierce majeure (4 demi-tons) = sonorité majeure, tierce mineure (3 demi-tons) = sonorité mineure.",
-    color: "#185FA5", bg: "#E6F1FB",
-  },
-  {
-    num: "IV", name: "Sous-dominante", note: "F",
-    origin: "«&nbsp;Sous la dominante&nbsp;» — elle est une quinte en dessous de la dominante, ou une quarte au-dessus de la tonique.",
-    attraction: "Elle prépare la tension. Dans une résolution, le IVe degré tend à descendre vers le IIIe — c'est l'un des mouvements les plus caractéristiques de l'harmonie tonale.",
-    color: "#993C1D", bg: "#FAECE7",
-  },
-  {
-    num: "V", name: "Dominante", note: "G",
-    origin: "Du latin «&nbsp;dominare&nbsp;» — elle domine la gamme, à la quinte juste au-dessus de la tonique. C'est le second pôle structurant.",
-    attraction: "Elle appelle fortement la résolution vers la tonique. L'accord de dominante est le plus tendu de la gamme — c'est lui qui donne son mouvement au discours musical.",
-    color: "#BA7517", bg: "#FAEEDA",
-  },
-  {
-    num: "VI", name: "Sus-dominante", note: "A",
-    origin: "«&nbsp;Au-dessus de la dominante&nbsp;» — une seconde au-dessus du Ve degré.",
-    attraction: "Sa stabilité relative en fait un substitut naturel de la tonique. La cadence rompue (V→VI) exploite cette parenté pour surprendre l'oreille.",
-    color: "#3B6D11", bg: "#EAF3DE",
-  },
-  {
-    num: "VII", name: "Sensible", note: "B",
-    origin: "«&nbsp;Sensible&nbsp;» car elle est sensible à l'attraction de la tonique — à seulement un demi-ton en dessous du Ier degré.",
-    attraction: "L'attraction la plus puissante de toute la gamme. La sensible monte quasi-obligatoirement vers la tonique. Son instabilité est le moteur principal de la résolution harmonique.",
-    color: "#A32D2D", bg: "#FCEBEB",
-  },
-];
 
-interface IntervalDef {
-  name: string;
-  semis: number;
-  nature: string;
-  example: string;
-  exampleNotes: [string, number, string, number];
-  inverse: string;
-  inverseSemis: number;
-  inverseNature: string;
-}
 
-const INTERVALS: IntervalDef[] = [
-  {
-    name: "Seconde mineure", semis: 1, nature: "mineure",
-    example: "E → F",
-    exampleNotes: ["E", 3, "F", 3],
-    inverse: "Septième majeure", inverseSemis: 11, inverseNature: "majeure",
-  },
-  {
-    name: "Seconde majeure", semis: 2, nature: "majeure",
-    example: "C → D",
-    exampleNotes: ["C", 3, "D", 3],
-    inverse: "Septième mineure", inverseSemis: 10, inverseNature: "mineure",
-  },
-  {
-    name: "Tierce mineure", semis: 3, nature: "mineure",
-    example: "D → F",
-    exampleNotes: ["D", 3, "F", 3],
-    inverse: "Sixte majeure", inverseSemis: 9, inverseNature: "majeure",
-  },
-  {
-    name: "Tierce majeure", semis: 4, nature: "majeure",
-    example: "C → E",
-    exampleNotes: ["C", 3, "E", 3],
-    inverse: "Sixte mineure", inverseSemis: 8, inverseNature: "mineure",
-  },
-  {
-    name: "Quarte juste", semis: 5, nature: "juste",
-    example: "C → F",
-    exampleNotes: ["C", 3, "F", 3],
-    inverse: "Quinte juste", inverseSemis: 7, inverseNature: "juste",
-  },
-  {
-    name: "Triton", semis: 6, nature: "augm. / dim.",
-    example: "F → B",
-    exampleNotes: ["F", 3, "B", 3],
-    inverse: "Triton", inverseSemis: 6, inverseNature: "augm. / dim.",
-  },
-];
-
-// ─── Quiz ─────────────────────────────────────────────────────────────────────
-// Contenu reformulé — approche pédagogique Harmonia (non copiée)
-
-const ALL_QUESTIONS = [
-  // ── Théorie générale ──
-  { q: "Quel moine a inventé les noms des notes au XIe siècle ?", opts: ["Rameau", "Guido d'Arezzo", "Bach", "Pythagore"], a: 1, fb: "Guido d'Arezzo a créé la solmisation en tirant les syllabes des premiers mots de chaque vers d'un hymne à Saint Jean-Baptiste." },
-  { q: "Pourquoi le VIIe degré s'appelle-t-il « sensible » ?", opts: ["Car il est le plus aigu", "Car il est expressif", "Car il est à ½ ton de la tonique", "Car il est toujours bémol"], a: 2, fb: "La sensible est à ½ ton sous la tonique. Cette proximité crée une attraction vers le haut presque irrésistible." },
-  { q: "Quelle est la formule T/½ d'une gamme majeure ?", opts: ["T-T-T-½-T-T-½", "T-½-T-T-½-T-T", "T-T-½-T-T-T-½", "½-T-T-T-T-½-T"], a: 2, fb: "T-T-½-T-T-T-½ est la formule universelle. Les deux demi-tons se trouvent entre les degrés III–IV et VII–I." },
-  { q: "Que signifie « médiante » ?", opts: ["Mi-chemin entre tonique et dominante", "Note la plus haute", "Note sous la dominante", "Note la plus instable"], a: 0, fb: "La médiante (IIIe) est à mi-chemin entre I et V — à 4 demi-tons de chacune." },
-  { q: "Combien de notes contient une gamme diatonique ?", opts: ["5", "6", "7", "8"], a: 2, fb: "La gamme diatonique contient 7 notes distinctes, plus la répétition de la tonique à l'octave." },
-  { q: "Combien de demi-tons contient une octave ?", opts: ["6", "10", "12", "14"], a: 2, fb: "Une octave = 12 demi-tons. C'est la base du tempérament égal occidental." },
-  { q: "Quelle consonance a permis de construire la gamme naturelle ?", opts: ["La tierce", "La quinte juste (3/2)", "La seconde", "Le triton"], a: 1, fb: "La quinte juste (rapport 3/2) est la seconde consonance fondamentale après l'octave. En enchaînant 6 quintes, on obtient les 7 notes de la gamme." },
-  { q: "Quel est le rapport de fréquence de l'octave ?", opts: ["3/2", "4/3", "2/1", "5/4"], a: 2, fb: "L'octave = rapport 2/1. Une note à 220 Hz a son octave à 440 Hz." },
-  { q: "Un ton correspond à combien de demi-tons ?", opts: ["1", "2", "3", "4"], a: 1, fb: "Un ton = 2 demi-tons. Ex : C–D = 1 ton = 2 demi-tons (C → C# → D)." },
-  { q: "Quel est le plus petit intervalle du système occidental ?", opts: ["Le ton", "Le demi-ton", "La tierce mineure", "La seconde majeure"], a: 1, fb: "Le demi-ton est l'unité de base. Sur un piano, c'est la distance entre deux touches voisines." },
-  { q: "À quelle fréquence est accordé le La standard (A4) ?", opts: ["220 Hz", "330 Hz", "440 Hz", "880 Hz"], a: 2, fb: "Le A4 = 440 Hz est la référence internationale d'accordage depuis 1939." },
-  { q: "Combien d'octaves couvre un piano standard à 88 touches ?", opts: ["5", "7", "8", "10"], a: 1, fb: "Un piano à 88 touches couvre 7 octaves et une tierce mineure (de A0 à C8)." },
-  // ── Degrés ──
-  { q: "Quel degré s'appelle la « dominante » ?", opts: ["IIIe", "IVe", "Ve", "VIe"], a: 2, fb: "La dominante est le Ve degré — à la quinte juste au-dessus de la tonique." },
-  { q: "Quel degré s'appelle la « sous-dominante » ?", opts: ["IIe", "IIIe", "IVe", "Ve"], a: 2, fb: "La sous-dominante (IVe) est une quinte en dessous de la dominante, ou une quarte au-dessus de la tonique." },
-  { q: "Quel degré s'appelle la « sus-tonique » ?", opts: ["Ier", "IIe", "IIIe", "IVe"], a: 1, fb: "La sus-tonique (IIe) est la note immédiatement au-dessus de la tonique." },
-  { q: "En C majeur, quelle note est la sensible ?", opts: ["A", "G", "B", "F"], a: 2, fb: "B est le VIIe degré de C majeur — à ½ ton sous C." },
-  { q: "En C majeur, quelle note est la médiante ?", opts: ["D", "E", "F", "G"], a: 1, fb: "E est le IIIe degré de C majeur — à mi-chemin entre C (I) et G (V)." },
-  { q: "En C majeur, quelle note est la dominante ?", opts: ["F", "G", "A", "B"], a: 1, fb: "G est le Ve degré de C majeur." },
-  { q: "En C majeur, quelle note est la sous-dominante ?", opts: ["E", "F", "G", "A"], a: 1, fb: "F est le IVe degré de C majeur." },
-  { q: "En G majeur, quelle note est la dominante ?", opts: ["C", "D", "E", "F#"], a: 1, fb: "G(I) A(II) B(III) C(IV) D(V). La dominante de G majeur est D." },
-  { q: "En G majeur, quelle note est la sensible ?", opts: ["E", "F", "F#", "G#"], a: 2, fb: "G A B C D E F#(VII). La sensible de G majeur est F#." },
-  { q: "En F majeur, quelle note est la sensible ?", opts: ["E", "G", "Bb", "D"], a: 0, fb: "F G A Bb C D E(VII). La sensible de F majeur est E." },
-  { q: "En D majeur, quelle note est la sous-dominante ?", opts: ["G", "A", "B", "C#"], a: 0, fb: "D(I) E(II) F#(III) G(IV). La sous-dominante de D majeur est G." },
-  { q: "En D majeur, quelle note est la sensible ?", opts: ["C", "C#", "D#", "B"], a: 1, fb: "D E F# G A B C#(VII). La sensible est C#, à ½ ton sous D." },
-  { q: "Quel est le VIIe degré de G majeur ?", opts: ["F", "F#", "G#", "A"], a: 1, fb: "G(I) A(II) B(III) C(IV) D(V) E(VI) F#(VII). La sensible de G majeur est F#." },
-  { q: "Quel est le IVe degré de G majeur ?", opts: ["C", "D", "E", "F#"], a: 0, fb: "G(I) A(II) B(III) C(IV). La sous-dominante de G majeur est C." },
-  { q: "Quel est le Ve degré de F majeur ?", opts: ["C", "Bb", "D", "E"], a: 0, fb: "F(I) G(II) A(III) Bb(IV) C(V). La dominante de F majeur est C." },
-  { q: "Quel est le IIIe degré de D majeur ?", opts: ["F", "F#", "G", "G#"], a: 1, fb: "D(I) E(II) F#(III). La médiante de D majeur est F#." },
-  { q: "Quelle gamme a E comme sensible ?", opts: ["C majeur", "F majeur", "G majeur", "Bb majeur"], a: 1, fb: "En F majeur : F G A Bb C D E(VII). E est la sensible à ½ ton sous F." },
-  { q: "Quelle gamme a B comme sensible ?", opts: ["C majeur", "G majeur", "F majeur", "D majeur"], a: 0, fb: "En C majeur : C D E F G A B(VII). B est la sensible à ½ ton sous C." },
-  // ── Gammes ──
-  { q: "La gamme de G majeur contient quel dièse ?", opts: ["C#", "F#", "G#", "B#"], a: 1, fb: "G A B C D E F# — le F# assure le ½ ton entre le VIe et VIIe degré." },
-  { q: "La gamme de F majeur contient quelle altération ?", opts: ["F#", "Bb", "Eb", "C#"], a: 1, fb: "F G A Bb C D E — le Bb assure le ½ ton entre le IIIe (A) et IVe (Bb) degré." },
-  { q: "La gamme de D majeur contient combien d'altérations ?", opts: ["0", "1", "2", "3"], a: 2, fb: "D E F# G A B C# — deux dièses : F# et C#." },
-  { q: "Quelle gamme ne contient aucune altération ?", opts: ["G majeur", "F majeur", "C majeur", "D majeur"], a: 2, fb: "C majeur est la seule gamme majeure sans dièse ni bémol." },
-  { q: "Combien de dièses contient A majeur ?", opts: ["1", "2", "3", "4"], a: 2, fb: "A B C# D E F# G# — trois dièses : C#, F#, G#." },
-  { q: "Combien de bémols contient Bb majeur ?", opts: ["1", "2", "3", "4"], a: 1, fb: "Bb C D Eb F G A — deux bémols : Bb et Eb." },
-  { q: "La gamme de E majeur contient combien de dièses ?", opts: ["2", "3", "4", "5"], a: 2, fb: "E F# G# A B C# D# — quatre dièses." },
-  { q: "Quelle gamme contient un seul bémol ?", opts: ["Db majeur", "Bb majeur", "F majeur", "Eb majeur"], a: 2, fb: "F majeur contient un seul bémol : Bb." },
-  { q: "Laquelle de ces notes n'appartient pas à G majeur ?", opts: ["F#", "C", "F naturel", "B"], a: 2, fb: "G majeur contient F# — F naturel n'en fait pas partie." },
-  { q: "Laquelle de ces notes n'appartient pas à F majeur ?", opts: ["Bb", "A", "B naturel", "C"], a: 2, fb: "F majeur contient Bb — B naturel n'en fait pas partie." },
-  { q: "Combien de notes C majeur et G majeur ont-ils en commun ?", opts: ["4", "5", "6", "7"], a: 2, fb: "C majeur et G majeur partagent 6 notes. Seul le F (vs F#) diffère." },
-  // ── Intervalles ──
-  { q: "Combien de demi-tons contient une tierce majeure ?", opts: ["2", "3", "4", "5"], a: 2, fb: "Tierce majeure = 4 demi-tons. Ex : C–E." },
-  { q: "Combien de demi-tons contient une tierce mineure ?", opts: ["2", "3", "4", "5"], a: 1, fb: "Tierce mineure = 3 demi-tons. Ex : D–F." },
-  { q: "Combien de demi-tons contient une quinte juste ?", opts: ["5", "6", "7", "8"], a: 2, fb: "Quinte juste = 7 demi-tons. Ex : C–G." },
-  { q: "Combien de demi-tons contient une quarte juste ?", opts: ["4", "5", "6", "7"], a: 1, fb: "Quarte juste = 5 demi-tons. Ex : C–F." },
-  { q: "Combien de demi-tons contient une seconde majeure ?", opts: ["1", "2", "3", "4"], a: 1, fb: "Seconde majeure = 2 demi-tons. Ex : C–D." },
-  { q: "Combien de demi-tons contient une seconde mineure ?", opts: ["1", "2", "3", "4"], a: 0, fb: "Seconde mineure = 1 demi-ton. Ex : E–F." },
-  { q: "Combien de demi-tons contient une sixte majeure ?", opts: ["7", "8", "9", "10"], a: 2, fb: "Sixte majeure = 9 demi-tons. Ex : C–A." },
-  { q: "Combien de demi-tons contient une septième majeure ?", opts: ["9", "10", "11", "12"], a: 2, fb: "Septième majeure = 11 demi-tons. Ex : C–B." },
-  { q: "Combien de demi-tons contient le triton ?", opts: ["5", "6", "7", "8"], a: 1, fb: "Triton = 6 demi-tons = exactement 3 tons. Ex : F–B en C majeur." },
-  // ── Renversements ──
-  { q: "L'inversion d'une tierce majeure donne :", opts: ["Sixte mineure", "Sixte majeure", "Septième mineure", "Quinte juste"], a: 0, fb: "3+6=9. La nature s'inverse : majeure → mineure. Tierce majeure → Sixte mineure." },
-  { q: "L'inversion d'une quarte juste donne :", opts: ["Quinte diminuée", "Quinte juste", "Sixte mineure", "Tierce majeure"], a: 1, fb: "4+5=9. La nature juste reste juste. Quarte juste → Quinte juste." },
-  { q: "L'inversion du triton est :", opts: ["Quinte juste", "Quarte juste", "Le triton lui-même", "Sixte mineure"], a: 2, fb: "Triton = 6 demi-tons. 12-6=6. Le triton est son propre renversement !" },
-  { q: "L'inversion d'une tierce mineure donne :", opts: ["Sixte majeure", "Sixte mineure", "Septième majeure", "Quinte juste"], a: 0, fb: "3+6=9. La nature s'inverse : mineure → majeure. Tierce mineure → Sixte majeure." },
-  { q: "La somme du nom d'un intervalle et de son renversement vaut toujours :", opts: ["7", "8", "9", "12"], a: 2, fb: "Toujours 9 : tierce(3)+sixte(6)=9 ; quarte(4)+quinte(5)=9 ; seconde(2)+septième(7)=9." },
-  // ── Reconnaissance d'intervalles ──
-  { q: "Quel intervalle sépare C et G ?", opts: ["Quarte juste", "Quinte juste", "Sixte majeure", "Tierce majeure"], a: 1, fb: "C D E F G = 5 degrés → quinte. 7 demi-tons → juste." },
-  { q: "Quel intervalle sépare C et F ?", opts: ["Tierce majeure", "Quarte juste", "Quinte juste", "Sixte mineure"], a: 1, fb: "C D E F = 4 degrés → quarte. 5 demi-tons → juste." },
-  { q: "Quel intervalle sépare C et E ?", opts: ["Seconde majeure", "Tierce mineure", "Tierce majeure", "Quarte juste"], a: 2, fb: "C D E = 3 degrés → tierce. 4 demi-tons → majeure." },
-  { q: "Quel intervalle sépare E et F ?", opts: ["Seconde mineure", "Seconde majeure", "Tierce mineure", "Triton"], a: 0, fb: "E F = 2 degrés → seconde. 1 demi-ton → mineure. C'est l'un des deux demi-tons naturels." },
-  { q: "Quel intervalle sépare F et B ?", opts: ["Quinte juste", "Quarte juste", "Triton", "Sixte mineure"], a: 2, fb: "F G A B = 4 degrés → quarte. Mais 6 demi-tons → quarte augmentée = triton." },
-  { q: "Quel intervalle sépare B et C ?", opts: ["Seconde majeure", "Seconde mineure", "Tierce mineure", "Triton"], a: 1, fb: "B C = 2 degrés → seconde. 1 demi-ton → mineure. C'est l'autre demi-ton naturel." },
-  // ── Structure de la gamme ──
-  { q: "Entre quels degrés se trouvent les ½ tons de la gamme majeure ?", opts: ["I-II et V-VI", "III-IV et VII-VIII", "II-III et VI-VII", "IV-V et VI-VII"], a: 1, fb: "Les demi-tons se trouvent entre III-IV (E-F) et VII-VIII (B-C). Ce sont les seuls endroits sans touche noire entre deux touches blanches." },
-  { q: "Entre E et F, il y a :", opts: ["1 ton", "½ ton", "1 ton et ½", "2 tons"], a: 1, fb: "E-F est l'un des deux demi-tons naturels du piano — deux touches blanches adjacentes sans touche noire entre elles." },
-  { q: "Entre B et C, il y a :", opts: ["1 ton", "½ ton", "1 ton et ½", "2 tons"], a: 1, fb: "B-C est l'autre demi-ton naturel du piano." },
-  // ── Notation ──
-  { q: "Comment s'appelle C en notation française ?", opts: ["La", "Ré", "Do", "Sol"], a: 2, fb: "C = Do. La correspondance complète : C=Do, D=Ré, E=Mi, F=Fa, G=Sol, A=La, B=Si." },
-  { q: "Comment s'appelle A en notation française ?", opts: ["Mi", "Fa", "Sol", "La"], a: 3, fb: "A = La. La fréquence standard du A est 440 Hz (A4)." },
-  { q: "Comment s'appelle B en notation française ?", opts: ["La", "Si", "Do", "Ré"], a: 1, fb: "B = Si. En Allemagne, 'B' désigne Sib et 'H' désigne Si naturel !" },
-  { q: "Comment s'appelle G en notation française ?", opts: ["Mi", "Fa", "Sol", "La"], a: 2, fb: "G = Sol. La gamme de Sol majeur se note G major en anglais." },
-  // ── Altérations ──
-  { q: "Qu'est-ce qu'un dièse (#) ?", opts: ["Baisse d'un ½ ton", "Hausse d'un ½ ton", "Hausse d'un ton", "Baisse d'un ton"], a: 1, fb: "Un dièse (#) élève la note d'un demi-ton. F# est un demi-ton au-dessus de F." },
-  { q: "Qu'est-ce qu'un bémol (♭) ?", opts: ["Baisse d'un ½ ton", "Hausse d'un ½ ton", "Hausse d'un ton", "Baisse d'un ton"], a: 0, fb: "Un bémol (♭) abaisse la note d'un demi-ton. Bb est un demi-ton en dessous de B." },
-  { q: "F# et Gb désignent-ils la même touche sur un piano ?", opts: ["Non, jamais", "Oui, en tempérament égal", "Seulement en G majeur", "Seulement en F majeur"], a: 1, fb: "En tempérament égal, F# = Gb : ce sont des enharmoniques — même touche, noms différents selon le contexte." },
-  { q: "Comment appelle-t-on deux notes qui sonnent pareil mais s'écrivent différemment ?", opts: ["Synonymes", "Enharmoniques", "Homophones", "Chromatiques"], a: 1, fb: "Les enharmoniques sonnent pareil mais ont des noms différents. Ex : F# = Gb." },
-
-  // ── Questions supplémentaires ──
-  { q: "Pourquoi la gamme à 7 degrés s'est-elle imposée par rapport à d'autres gammes ?", opts: ["Elle est plus facile à jouer", "Elle était associée au chiffre 'parfait' 7 et jugée harmonieuse par les Grecs", "Elle est la seule possible acoustiquement", "Elle correspond aux 7 planètes connues"], a: 1, fb: "Les théoriciens grecs privilégiaient le chiffre 7 (nombre 'parfait'). La gamme à 7 sons, issue d'empilements de quintes, s'est imposée comme référence face aux gammes pentatonique (5) et chromatique (12)." },
-  { q: "En C majeur, quel est le VIe degré ?", opts: ["D", "E", "F", "A"], a: 3, fb: "C(I) D(II) E(III) F(IV) G(V) A(VI). Le VIe degré de C majeur est A (La) — appelé sus-dominante." },
-  { q: "Quel est le nom du IIe degré ?", opts: ["Tonique", "Sus-tonique", "Médiante", "Sensible"], a: 1, fb: "Le IIe degré s'appelle sus-tonique — il est juste au-dessus de la tonique (I)." },
-  { q: "Quel est le nom du VIe degré ?", opts: ["Sus-dominante", "Médiante", "Sous-dominante", "Sensible"], a: 0, fb: "Le VIe degré s'appelle sus-dominante — il est juste au-dessus de la dominante (V)." },
-  { q: "En A majeur, quelle est la sensible ?", opts: ["F#", "G", "G#", "B"], a: 2, fb: "A B C# D E F# G#(VII). La sensible de A majeur est G#, à ½ ton sous A." },
-  { q: "En E majeur, quelle est la sous-dominante ?", opts: ["A", "B", "C#", "D#"], a: 0, fb: "E(I) F#(II) G#(III) A(IV). La sous-dominante de E majeur est A." },
-  { q: "En Bb majeur, quelle est la dominante ?", opts: ["Eb", "F", "G", "Ab"], a: 1, fb: "Bb(I) C(II) D(III) Eb(IV) F(V). La dominante de Bb majeur est F." },
-  { q: "Combien de demi-tons contient une sixte mineure ?", opts: ["7", "8", "9", "10"], a: 1, fb: "Sixte mineure = 8 demi-tons. Ex : E–C (ascendant). C'est l'inversion de la tierce majeure (4 + 8 = 12)." },
-  { q: "Combien de demi-tons contient une septième mineure ?", opts: ["9", "10", "11", "12"], a: 1, fb: "Septième mineure = 10 demi-tons. Ex : C–Bb. C'est l'inversion de la seconde majeure (2 + 10 = 12)." },
-  { q: "L'inversion d'une seconde majeure donne :", opts: ["Septième majeure", "Septième mineure", "Sixte majeure", "Sixte mineure"], a: 0, fb: "2 + 7 = 9. La nature s'inverse : majeure → mineure... attendez — seconde majeure → septième mineure (nature inversée) ? Non : seconde MAjeure → septième MIneure. Mais la règle est 2+7=9 et majeure↔mineure." },
-  { q: "L'inversion d'une quinte juste donne :", opts: ["Quarte diminuée", "Quarte juste", "Tierce majeure", "Sixte mineure"], a: 1, fb: "5 + 4 = 9. La nature juste reste juste. Quinte juste → Quarte juste." },
-  { q: "En B majeur, combien de dièses y a-t-il ?", opts: ["3", "4", "5", "6"], a: 2, fb: "B majeur a 5 dièses : F#, C#, G#, D#, A#. La gamme : B C# D# E F# G# A#." },
-  { q: "Quel intervalle sépare C et B (notes adjacentes dans la gamme) ?", opts: ["Seconde mineure", "Seconde majeure", "Tierce mineure", "Triton"], a: 1, fb: "C→D = seconde majeure (2 demi-tons). La seconde diatonique entre C et D dans la gamme de C majeur est majeure." },
-  { q: "L'intervalle C–G# est :", opts: ["Quinte juste", "Quinte diminuée", "Quinte augmentée", "Sixte mineure"], a: 2, fb: "C–G = quinte juste (7 demi-tons). C–G# = 8 demi-tons → quinte augmentée (+1 demi-ton par rapport à la juste)." },
-  { q: "L'intervalle C–Gb est :", opts: ["Quinte juste", "Quinte diminuée", "Quarte augmentée", "Triton"], a: 1, fb: "C–G = quinte juste (7 demi-tons). C–Gb = 6 demi-tons → quinte diminuée (-1 demi-ton). C'est aussi un triton !" },
-  { q: "Quel est le terme exact pour un intervalle augmenté d'un demi-ton supplémentaire ?", opts: ["Doublement augmenté", "Sur-augmenté", "Excédentaire", "Ils n'existent pas"], a: 0, fb: "Un intervalle peut être doublement augmenté (deux demi-tons de plus que juste/majeur). Très rare en pratique mais théoriquement valide." },
-  { q: "La gamme pentatonique contient combien de notes ?", opts: ["4", "5", "6", "7"], a: 1, fb: "La gamme pentatonique (du grec penta = 5) contient 5 notes. Elle précède historiquement la gamme à 7 sons et reste très utilisée en jazz, blues et musiques du monde." },
-  { q: "Quel est le rapport de fréquence d'une quinte juste ?", opts: ["2/1", "3/2", "4/3", "5/4"], a: 1, fb: "La quinte juste = rapport 3/2. C'est la seconde consonance fondamentale après l'octave (2/1). Ces rapports simples sont à la base de la gamme pythagoricienne." },
-  { q: "En Ab majeur, combien de bémols y a-t-il ?", opts: ["2", "3", "4", "5"], a: 2, fb: "Ab majeur a 4 bémols : Bb, Eb, Ab, Db. La gamme : Ab Bb C Db Eb F G." },
-  { q: "Quel intervalle est formé entre le IVe et le VIIe degré d'une gamme majeure ?", opts: ["Quinte juste", "Quarte augmentée (triton)", "Tierce majeure", "Sixte mineure"], a: 1, fb: "En C majeur : F(IV) et B(VII). F–B = 6 demi-tons = quarte augmentée = triton. C'est le triton fonctionnel qui génère la tension harmonique." },
-];
 
 function shuffleArray<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -300,6 +101,7 @@ const S = {
 
 export default function Cours1() {
   const i18n = useCoursI18n("cours1");
+  const { degrees: DEGREES, intervals: INTERVALS, questions: ALL_QUESTIONS } = useCoursContent(cours1Content);
   const [activeSection,  setActiveSection]  = useState("origines");
   const [activeGamme,    setActiveGamme]    = useState(0);
   const [activeDeg,      setActiveDeg]      = useState<number | null>(null);

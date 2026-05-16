@@ -10,6 +10,8 @@
 import React, { useRef, useState, useCallback } from "react";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { cours2Content } from "@/data/cours2Content";
 import MaitreCard from "@/components/MaitreCard";
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
@@ -331,6 +333,7 @@ const QUIZ_COUNT = 10;
 
 export default function Cours2() {
   const i18n = useCoursI18n("cours2");
+  const { questions: QUIZ_POOL } = useCoursContent(cours2Content);
   const [activeSection, setActiveSection] = useState("triades");
   const pianoRef = useRef<PianoPlayerRef>(null);
 

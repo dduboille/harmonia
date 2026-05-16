@@ -17,6 +17,8 @@
 
 import React, { useRef, useState, useCallback } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { cours4Content } from "@/data/cours4Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { SATB } from "@/lib/satb-voicings";
 import MaitreCard from "@/components/MaitreCard";
@@ -284,6 +286,7 @@ const S = {
 export default function Cours4() {
   const [activeSection, setActiveSection] = useState("cadences");
   const i18n = useCoursI18n("cours4");
+  const { questions: ALL_QUESTIONS } = useCoursContent(cours4Content);
   const [activeCadence, setActiveCadence] = useState<string | null>(null);
   const [activeTech,    setActiveTech]    = useState<string | null>(null);
 
