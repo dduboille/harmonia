@@ -424,7 +424,7 @@ export default function DicteeHarmonique() {
             <div key={chordIdx} style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.5rem", marginBottom: "1.2rem" }}>
               {currentOpts.map(opt => {
                 const isChosen = feedback?.chosen === opt.label;
-                const isExpected = !feedback?.ok && prog.chords[chordIdx].label === opt.label;
+                const isExpected = feedback !== null && !feedback.ok && prog.chords[chordIdx].label === opt.label;
                 let bg = "#f5f0fb";
                 let color = PURPLE;
                 let border = "2px solid #e0d8ea";

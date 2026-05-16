@@ -139,13 +139,13 @@ export default function CoursHubPage() {
                     {lvl.desc}
                   </p>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const }}>
-                    {lvl.topics.map(t => (
-                      <span key={t} style={{
+                    {lvl.topics.map(topic => (
+                      <span key={topic} style={{
                         fontSize: 11, color: "#888", background: "#f5f5f5",
                         padding: "2px 8px", borderRadius: 6,
                         fontFamily: "system-ui",
                       }}>
-                        {t}
+                        {topic}
                       </span>
                     ))}
                   </div>
