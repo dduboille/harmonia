@@ -400,7 +400,8 @@
     "atelier": "Atelier",
     "dictee": "Dictée",
     "scales": "Tonalités",
-    "styles": "Styles"
+    "styles": "Styles",
+    "progressions": "Progressions"
   },
   "hub": {
     "chooseLevel": "Choisissez votre niveau",

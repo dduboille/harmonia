@@ -167,7 +167,8 @@ function AppNav() {
         <NavItem href={`/${locale}/cours`}        active={active("cours")}        icon="♩" label={t("courses").toUpperCase()} />
         <NavItem href={`/${locale}/atelier`}      active={active("atelier")}      icon="✎" label={t("atelier").toUpperCase()} />
         <NavItem href={`/${locale}/dictee`}       active={active("dictee")}       icon="♫" label={t("dictee").toUpperCase()} />
-        <NavItem href={`/${locale}/comparateur`}  active={active("comparateur")}  icon="⟳" label={t("styles").toUpperCase()} />
+        <NavItem href={`/${locale}/comparateur`}   active={active("comparateur")}   icon="⟳" label={t("styles").toUpperCase()} />
+        <NavItem href={`/${locale}/progressions`}  active={active("progressions")}  icon="♬" label={t("progressions").toUpperCase()} />
       </div>
     </div>
   );

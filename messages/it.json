@@ -400,7 +400,8 @@
     "atelier": "Studio",
     "dictee": "Dettato",
     "scales": "Tonalità",
-    "styles": "Stili"
+    "styles": "Stili",
+    "progressions": "Progressioni"
   },
   "hub": {
     "chooseLevel": "Scegli il tuo livello",

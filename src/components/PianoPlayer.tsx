@@ -128,7 +128,12 @@ function parseNoteSpec(spec: string): { note: string; octave: number } {
 }
 
 function toSharp(note: string): string {
-  return FLAT_TO_SHARP[note] ?? note;
+  // French bémols → French dièses
+  if (FLAT_TO_SHARP[note]) return FLAT_TO_SHARP[note];
+  // English flats → French dièses (e.g. "Bb" → "La#")
+  if (EN_FLAT_TO_FR_SHARP[note]) return EN_FLAT_TO_FR_SHARP[note];
+  // English naturals/sharps → French (e.g. "C" → "Do", "G#" → "Sol#")
+  return EN_TO_FR[note] ?? note;
 }
 
 // ─── Singleton Tone.Sampler (Salamander Grand Piano) ─────────────────────────
