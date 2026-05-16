@@ -399,7 +399,8 @@
     "courses": "Kurse",
     "atelier": "Übungen",
     "dictee": "Gehörtraining",
-    "scales": "Tonarten"
+    "scales": "Tonarten",
+    "styles": "Stile"
   },
   "hub": {
     "chooseLevel": "Wähle dein Niveau",

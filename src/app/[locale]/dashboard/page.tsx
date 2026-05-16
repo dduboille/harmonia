@@ -217,6 +217,46 @@ export default async function DashboardPage({ params }: Props) {
           </div>
         </div>
 
+        {/* Promo Comparateur de styles */}
+        <Link href={`/${locale}/comparateur`} style={{ textDecoration: "none", display: "block", marginBottom: "2rem" }}>
+          <div style={{
+            background: "linear-gradient(135deg, #5C3D6E 0%, #3a2547 100%)",
+            border: "0.5px solid #7a5490",
+            borderRadius: 12,
+            padding: "20px 24px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 16,
+            flexWrap: "wrap" as const,
+            cursor: "pointer",
+          }}>
+            <div>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#E9C97E", textTransform: "uppercase" as const, marginBottom: 6 }}>
+                Nouveau
+              </div>
+              <div style={{ fontSize: 18, fontWeight: 600, color: "#fff", marginBottom: 6 }}>
+                ⟳ Comparateur de styles harmoniques
+              </div>
+              <div style={{ fontSize: 13, color: "rgba(255,255,255,0.72)", lineHeight: 1.5, maxWidth: 480 }}>
+                Écoutez la même mélodie harmonisée dans 11 styles différents — jazz, baroque, romantique, modal et plus encore. Comparez côte à côte et explorez les techniques caractéristiques de chaque courant.
+              </div>
+            </div>
+            <div style={{
+              background: "#E9C97E",
+              color: "#3a2547",
+              fontWeight: 700,
+              fontSize: 13,
+              padding: "10px 20px",
+              borderRadius: 8,
+              whiteSpace: "nowrap" as const,
+              flexShrink: 0,
+            }}>
+              Explorer →
+            </div>
+          </div>
+        </Link>
+
         {/* Activité récente */}
         {recentExercises.length > 0 && (
           <div>

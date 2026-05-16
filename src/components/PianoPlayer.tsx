@@ -37,6 +37,10 @@ export interface PianoPlayerRef {
   playNote: (note: string, octave?: number, opts?: PlayOptions) => void;
   playChord: (notes: string[], octave?: number, opts?: PlayOptions) => void;
   playSequence: (chords: ChordDef[], opts?: PlaySequenceOptions) => void;
+  /** Play a chord where each element is "Note:octave" (e.g. "C:3", "Bb:3", "G#:4"). */
+  playVoicing: (specs: string[], opts?: PlayOptions) => void;
+  /** Play a sequence of voicings, each element an array of "Note:octave" specs. */
+  playVoicingSequence: (voicings: string[][], opts?: PlaySequenceOptions) => void;
   isReady: boolean;
 }
 
@@ -86,14 +90,41 @@ const FLAT_TO_SHARP: Record<string, string> = {
   "Réb":"Do#","Mib":"Ré#","Solb":"Fa#","Lab":"Sol#","Sib":"La#","Dob":"Si",
 };
 
+// English flats → French sharps (for synth fallback semitone lookup)
+const EN_FLAT_TO_FR_SHARP: Record<string, string> = {
+  "Bb":"La#","Ab":"Sol#","Eb":"Ré#","Db":"Do#","Gb":"Fa#","Cb":"Si",
+};
+
+// English naturals/sharps → French forms (for synth fallback)
+const EN_TO_FR: Record<string, string> = {
+  "C":"Do","C#":"Do#","D":"Ré","D#":"Ré#","E":"Mi",
+  "F":"Fa","F#":"Fa#","G":"Sol","G#":"Sol#","A":"La","A#":"La#","B":"Si",
+};
+
 function toMidiNote(note: string, octave: number): string {
   const n = FLAT_TO_SHARP[note] ?? note;
   return `${FR_TO_MIDI[n] ?? "C"}${octave + 1}`;
 }
 
 function semiOf(note: string, octave: number): number {
-  const n = FLAT_TO_SHARP[note] ?? note;
+  // Resolve to a French sharp form present in CHROMATIC_FR
+  const n = FLAT_TO_SHARP[note] ?? EN_FLAT_TO_FR_SHARP[note] ?? EN_TO_FR[note] ?? note;
   return CHROMATIC_FR.indexOf(n) + (octave - 3) * 12;
+}
+
+/**
+ * Parse a "Note:octave" spec (e.g. "C:3", "Bb:3", "G#:4") into note + octave.
+ * Also handles specs without colon if the last char is a digit (e.g. "C3", "Bb3").
+ */
+function parseNoteSpec(spec: string): { note: string; octave: number } {
+  if (spec.includes(":")) {
+    const idx = spec.lastIndexOf(":");
+    return { note: spec.slice(0, idx), octave: parseInt(spec.slice(idx + 1)) };
+  }
+  // No colon — try to split at last digit sequence
+  const m = spec.match(/^(.+?)(\d+)$/);
+  if (m) return { note: m[1], octave: parseInt(m[2]) };
+  return { note: spec, octave: 3 };
 }
 
 function toSharp(note: string): string {
@@ -297,6 +328,29 @@ const PianoPlayer = forwardRef<PianoPlayerRef, PianoPlayerProps>(({
             startTime: ci * interval + (arp ? ni * arpDelay : 0),
           })
         );
+      });
+    },
+    playVoicing: (specs, opts = {}) => {
+      const { arp = false, arpDelay = 0.05, ...rest } = opts;
+      specs.forEach((spec, i) => {
+        const { note, octave } = parseNoteSpec(spec);
+        playNoteInternal(note, octave, {
+          ...rest,
+          startTime: (rest.startTime ?? 0) + (arp ? i * arpDelay : 0),
+        });
+      });
+    },
+    playVoicingSequence: (voicings, opts = {}) => {
+      const { interval = 1.8, arp = false, arpDelay = 0.05, duration, velocity = 0.75 } = opts;
+      const dur = duration ?? interval * 0.9;
+      voicings.forEach((specs, vi) => {
+        specs.forEach((spec, ni) => {
+          const { note, octave } = parseNoteSpec(spec);
+          playNoteInternal(note, octave, {
+            duration: dur, velocity,
+            startTime: vi * interval + (arp ? ni * arpDelay : 0),
+          });
+        });
       });
     },
   }), [isReady, playNoteInternal]);

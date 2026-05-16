@@ -399,7 +399,8 @@
     "courses": "Lezioni",
     "atelier": "Studio",
     "dictee": "Dettato",
-    "scales": "Tonalità"
+    "scales": "Tonalità",
+    "styles": "Stili"
   },
   "hub": {
     "chooseLevel": "Scegli il tuo livello",

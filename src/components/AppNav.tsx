@@ -163,10 +163,11 @@ function AppNav() {
           <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.07em" }}>{t("back").toUpperCase()}</span>
         </button>
 
-        <NavItem href={`/${locale}/dashboard`} active={active("dashboard")} icon="⌂" label={t("home").toUpperCase()} />
-        <NavItem href={`/${locale}/cours`}     active={active("cours")}     icon="♩" label={t("courses").toUpperCase()} />
-        <NavItem href={`/${locale}/atelier`}   active={active("atelier")}   icon="✎" label={t("atelier").toUpperCase()} />
-        <NavItem href={`/${locale}/dictee`}    active={active("dictee")}    icon="♫" label={t("dictee").toUpperCase()} />
+        <NavItem href={`/${locale}/dashboard`}    active={active("dashboard")}    icon="⌂" label={t("home").toUpperCase()} />
+        <NavItem href={`/${locale}/cours`}        active={active("cours")}        icon="♩" label={t("courses").toUpperCase()} />
+        <NavItem href={`/${locale}/atelier`}      active={active("atelier")}      icon="✎" label={t("atelier").toUpperCase()} />
+        <NavItem href={`/${locale}/dictee`}       active={active("dictee")}       icon="♫" label={t("dictee").toUpperCase()} />
+        <NavItem href={`/${locale}/comparateur`}  active={active("comparateur")}  icon="⟳" label={t("styles").toUpperCase()} />
       </div>
     </div>
   );

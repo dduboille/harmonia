@@ -399,7 +399,8 @@
     "courses": "Courses",
     "atelier": "Workshop",
     "dictee": "Ear Training",
-    "scales": "Keys"
+    "scales": "Keys",
+    "styles": "Styles"
   },
   "hub": {
     "chooseLevel": "Choose your level",
