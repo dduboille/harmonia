@@ -61,8 +61,9 @@ const CHROMATIC_FR = [
   "Fa", "Fa#", "Sol", "Sol#", "La", "La#", "Si",
 ];
 
-// French → MIDI note name
+// French → MIDI note name (English pass-through included)
 const FR_TO_MIDI: Record<string, string> = {
+  // French names
   "Do": "C",   "Do#": "C#",  "Réb": "Db",
   "Ré": "D",   "Ré#": "D#",  "Mib": "Eb",
   "Mi": "E",
@@ -70,6 +71,14 @@ const FR_TO_MIDI: Record<string, string> = {
   "Sol": "G",  "Sol#": "G#", "Lab": "Ab",
   "La": "A",   "La#": "A#",  "Sib": "Bb",
   "Si": "B",
+  // English pass-through (Cours1/Cours2+ use English note names)
+  "C": "C",  "C#": "C#",  "Db": "Db",
+  "D": "D",  "D#": "D#",  "Eb": "Eb",
+  "E": "E",
+  "F": "F",  "F#": "F#",  "Gb": "Gb",
+  "G": "G",  "G#": "G#",  "Ab": "Ab",
+  "A": "A",  "A#": "A#",  "Bb": "Bb",
+  "B": "B",
 };
 
 // Bémols → dièses (unique définition, utilisée partout)
