@@ -6,6 +6,7 @@ const intlMiddleware = createIntlMiddleware({
   locales: ["fr", "en", "es", "de", "pt", "it"],
   defaultLocale: "fr",
   localePrefix: "always",
+  localeDetection: false,
 });
 
 const isPublicRoute = createRouteMatcher([

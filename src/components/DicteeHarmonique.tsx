@@ -192,8 +192,9 @@ export default function DicteeHarmonique() {
   const [answers,    setAnswers]    = useState<Ans[]>([]);
   const [feedback,   setFeedback]   = useState<{ chosen: string; ok: boolean } | null>(null);
 
-  const piano  = useRef<PianoPlayerRef>(null);
-  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const piano     = useRef<PianoPlayerRef>(null);
+  const timers    = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const answering = useRef(false);
 
   const clearAll = useCallback(() => {
     timers.current.forEach(clearTimeout);
@@ -253,7 +254,9 @@ export default function DicteeHarmonique() {
   }, [prog, chordIdx, playChord]);
 
   const handleAnswer = useCallback((chosen: CE) => {
-    if (!prog || feedback) return;
+    if (!prog || answering.current) return;
+    answering.current = true;
+
     const expected = prog.chords[chordIdx];
     const ok = chosen.label === expected.label;
 
@@ -267,6 +270,7 @@ export default function DicteeHarmonique() {
     }
 
     const t = setTimeout(() => {
+      answering.current = false;
       setFeedback(null);
       const next = chordIdx + 1;
       if (next >= prog.chords.length) {
@@ -277,7 +281,7 @@ export default function DicteeHarmonique() {
       }
     }, 1300);
     timers.current.push(t);
-  }, [prog, feedback, chordIdx, playChord]);
+  }, [prog, chordIdx, playChord]);
 
   // ── Render helpers ──────────────────────────────────────────────────────────
 

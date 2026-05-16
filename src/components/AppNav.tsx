@@ -1,8 +1,70 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useParams } from "next/navigation";
+
+const LOCALES = [
+  { code: "fr", label: "FR" },
+  { code: "en", label: "EN" },
+  { code: "es", label: "ES" },
+  { code: "de", label: "DE" },
+  { code: "pt", label: "PT" },
+  { code: "it", label: "IT" },
+];
+
+function LangSwitcher({ locale, pathname }: { locale: string; pathname: string }) {
+  const [open, setOpen] = useState(false);
+  const switchTo = (code: string) => {
+    const parts = pathname.split("/");
+    parts[1] = code;
+    return parts.join("/");
+  };
+  return (
+    <div style={{ position: "relative" }}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        style={{
+          display: "flex", alignItems: "center", gap: 3,
+          background: "rgba(255,255,255,0.10)",
+          border: "0.5px solid rgba(255,255,255,0.25)",
+          borderRadius: 12, padding: "4px 8px",
+          cursor: "pointer", color: "#fff",
+          fontSize: 10, fontWeight: 700, letterSpacing: "0.06em",
+          fontFamily: "system-ui, sans-serif",
+        }}
+      >
+        {locale.toUpperCase()}
+        <span style={{ fontSize: 7, opacity: 0.7 }}>▼</span>
+      </button>
+      {open && (
+        <div style={{
+          position: "absolute", top: "calc(100% + 6px)", right: 0,
+          background: "#fff", border: "0.5px solid #e0dbd3",
+          borderRadius: 10, boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
+          overflow: "hidden", zIndex: 400, minWidth: 70,
+        }}>
+          {LOCALES.map(loc => (
+            <a
+              key={loc.code}
+              href={switchTo(loc.code)}
+              onClick={() => setOpen(false)}
+              style={{
+                display: "block", padding: "8px 14px",
+                fontSize: 12, fontWeight: loc.code === locale ? 700 : 400,
+                color: loc.code === locale ? "#5C3D6E" : "#444",
+                background: loc.code === locale ? "#F0EBF8" : "transparent",
+                textDecoration: "none", fontFamily: "system-ui, sans-serif",
+              }}
+            >
+              {loc.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export const APPNAV_H = 52;
 
@@ -78,6 +140,7 @@ function AppNav() {
       </Link>
 
       <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
+        <LangSwitcher locale={locale} pathname={pathname} />
         <button
           onClick={() => router.back()}
           style={{
