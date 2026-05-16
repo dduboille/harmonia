@@ -9,6 +9,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours22Content } from "@/data/cours22Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
@@ -329,6 +330,7 @@ const S = {
 export default function Cours22() {
   const [activeSection, setActiveSection] = useState<string>("principe");
   const i18n = useCoursI18n("cours22");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours22Content);
   const [activeTech,    setActiveTech]    = useState<string | null>(null);
   const [activeAnalyse, setActiveAnalyse] = useState<string | null>(null);
@@ -375,7 +377,7 @@ export default function Cours22() {
       {/* Header */}
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 22</span>
-        <h1 style={S.h1}>La réharmonisation</h1>
+        <h1 style={S.h1}>{tr("La réharmonisation")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
@@ -401,7 +403,7 @@ export default function Cours22() {
       {/* ══ SECTION 1 : LES TECHNIQUES ══ */}
       {activeSection === "principe" && (
         <div>
-          <h2 style={S.h2}>Les 4 techniques de réharmonisation</h2>
+          <h2 style={S.h2}>{tr("Les 4 techniques de réharmonisation")}</h2>
           <p style={S.p}>
             Réharmoniser, c'est remplacer les accords d'une progression tout en conservant
             la mélodie intacte. La contrainte fondamentale : chaque note de mélodie doit
@@ -493,7 +495,7 @@ export default function Cours22() {
                     </div>
                   </div>
 
-                  <div style={S.tip}><strong>Conseil :</strong> {tech.tip}</div>
+                  <div style={S.tip}><strong>{tr("Conseil :")}</strong> {tech.tip}</div>
                 </div>
               )}
             </div>
@@ -510,7 +512,7 @@ export default function Cours22() {
       {/* ══ SECTION 2 : ANALYSES ══ */}
       {activeSection === "application" && (
         <div>
-          <h2 style={S.h2}>Réharmonisations célèbres analysées</h2>
+          <h2 style={S.h2}>{tr("Réharmonisations célèbres analysées")}</h2>
           <p style={S.p}>
             Trois exemples issus du répertoire jazz, chacun illustrant une technique différente.
             Comparez les progressions originales et réharmonisées en les écoutant.
@@ -574,7 +576,7 @@ export default function Cours22() {
                     </div>
 
                     <div style={{ background: analyse.bg, border: `0.5px solid ${analyse.color}40`, borderRadius: 8, padding: "10px 12px" }}>
-                      <div style={{ fontSize: 10, fontWeight: 600, color: analyse.color, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: 8 }}>Réharmonisé</div>
+                      <div style={{ fontSize: 10, fontWeight: 600, color: analyse.color, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: 8 }}>{tr("Réharmonisé")}</div>
                       <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const, marginBottom: 8 }}>
                         {analyse.after.map((chord, ci) => (
                           <span key={ci} style={{ fontSize: 12, fontWeight: 600, color: analyse.color, background: "white", padding: "2px 8px", borderRadius: 6, border: `0.5px solid ${analyse.color}`, fontFamily: "monospace" }}>{chord}</span>
@@ -589,14 +591,14 @@ export default function Cours22() {
                     </div>
                   </div>
 
-                  <div style={S.infoBox}><strong>Analyse :</strong> {analyse.insight}</div>
+                  <div style={S.infoBox}><strong>{tr("Analyse :")}</strong> {analyse.insight}</div>
                 </div>
               )}
             </div>
           ))}
 
           <div style={S.tip}>
-            <strong>Exercice :</strong> prenez un standard que vous connaissez (Autumn Leaves,
+            <strong>{tr("Exercice :")}</strong> prenez un standard que vous connaissez (Autumn Leaves,
             All The Things You Are) et réharmonisez 2–3 accords avec les techniques de cette leçon.
             Commencez par la substitution diatonique — c'est la plus proche de l'original.
           </div>
@@ -606,7 +608,7 @@ export default function Cours22() {
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Entraînement</h2>
+          <h2 style={S.h2}>{tr("Entraînement")}</h2>
 
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
@@ -624,9 +626,7 @@ export default function Cours22() {
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: "#E8EFF8", color: PRIMARY }}
-              >
-                Nouveau quiz
-              </button>
+              >{tr("Nouveau quiz")}</button>
             </div>
           ) : (
             <div>

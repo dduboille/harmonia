@@ -9,6 +9,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours10Content } from "@/data/cours10Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
@@ -286,6 +287,7 @@ const S = {
 export default function Cours10() {
   const [activeSection, setActiveSection] = useState<string>("modes");
   const i18n = useCoursI18n("cours10");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours10Content);
   const [activeMode, setActiveMode] = useState<string | null>(null);
 
@@ -335,7 +337,7 @@ export default function Cours10() {
       {/* Header */}
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 10</span>
-        <h1 style={S.h1}>Les modes de la gamme majeure</h1>
+        <h1 style={S.h1}>{tr("Les modes de la gamme majeure")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
@@ -361,7 +363,7 @@ export default function Cours10() {
       {/* ══ SECTION 1 : LES 7 MODES ══ */}
       {activeSection === "modes" && (
         <div>
-          <h2 style={S.h2}>Les 7 modes de la gamme majeure</h2>
+          <h2 style={S.h2}>{tr("Les 7 modes de la gamme majeure")}</h2>
           <p style={S.p}>
             Un mode est simplement la gamme majeure jouée depuis un degré différent.
             En C majeur (Do Ré Mi Fa Sol La Si), si on commence sur D et qu'on joue
@@ -434,9 +436,7 @@ export default function Cours10() {
 
                   {/* Note caractéristique */}
                   <div style={{ marginBottom: 12 }}>
-                    <div style={{ fontSize: 11, fontWeight: 600, color: mode.color, marginBottom: 4, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>
-                      Note caractéristique
-                    </div>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: mode.color, marginBottom: 4, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>{tr("Note caractéristique")}</div>
                     <div style={{ fontSize: 13, color: "#444" }}>{mode.alteration}</div>
                   </div>
 
@@ -450,9 +450,7 @@ export default function Cours10() {
 
                   {/* Exemples musicaux */}
                   <div style={{ marginBottom: 14 }}>
-                    <div style={{ fontSize: 11, fontWeight: 600, color: mode.color, marginBottom: 4, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>
-                      Exemples musicaux
-                    </div>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: mode.color, marginBottom: 4, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>{tr("Exemples musicaux")}</div>
                     <div style={{ fontSize: 13, color: "#185FA5", fontWeight: 500, marginBottom: 4 }}>{mode.famous}</div>
                     <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>{mode.famousDetail}</div>
                   </div>
@@ -469,7 +467,7 @@ export default function Cours10() {
           ))}
 
           {/* Tableau récap */}
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "24px 0 8px", color: "#111" }}>Récapitulatif</h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "24px 0 8px", color: "#111" }}>{tr("Récapitulatif")}</h3>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
               <thead>
@@ -508,7 +506,7 @@ export default function Cours10() {
       {/* ══ SECTION 2 : HARMONIE MODALE ══ */}
       {activeSection === "harmonie" && (
         <div>
-          <h2 style={S.h2}>Harmonie modale — accords et progressions</h2>
+          <h2 style={S.h2}>{tr("Harmonie modale — accords et progressions")}</h2>
           <p style={S.p}>
             Chaque mode génère ses propres accords diatoniques. La couleur harmonique d'un mode
             vient autant de ses accords que de sa gamme — c'est la relation entre la tonique
@@ -548,11 +546,11 @@ export default function Cours10() {
                     </div>
                     <div style={{ display: "flex", gap: 12, flexWrap: "wrap" as const }}>
                       <div>
-                        <span style={{ fontSize: 11, color: "#888" }}>Accord caractéristique : </span>
+                        <span style={{ fontSize: 11, color: "#888" }}>{tr("Accord caractéristique :")}</span>
                         <span style={{ fontSize: 12, fontWeight: 500, color: mode.color, fontFamily: "monospace" }}>{mc.characteristic}</span>
                       </div>
                       <div>
-                        <span style={{ fontSize: 11, color: "#888" }}>Progression type : </span>
+                        <span style={{ fontSize: 11, color: "#888" }}>{tr("Progression type :")}</span>
                         <span style={{ fontSize: 12, fontWeight: 500, color: "#333", fontFamily: "monospace" }}>{mc.progression}</span>
                       </div>
                     </div>
@@ -563,9 +561,7 @@ export default function Cours10() {
           })}
 
           {/* Progressions modales emblématiques */}
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "24px 0 12px", color: "#111" }}>
-            Progressions modales emblématiques
-          </h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "24px 0 12px", color: "#111" }}>{tr("Progressions modales emblématiques")}</h3>
 
           {[
             {
@@ -630,7 +626,7 @@ export default function Cours10() {
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Entraînement</h2>
+          <h2 style={S.h2}>{tr("Entraînement")}</h2>
 
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
@@ -648,9 +644,7 @@ export default function Cours10() {
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: "0.5px solid #185FA5", borderRadius: 20, cursor: "pointer", background: "#E6F1FB", color: "#185FA5" }}
-              >
-                Nouveau quiz
-              </button>
+              >{tr("Nouveau quiz")}</button>
             </div>
           ) : (
             <div>

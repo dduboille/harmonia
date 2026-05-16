@@ -12,6 +12,7 @@ import React, { useRef, useState } from "react";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours9Content } from "@/data/cours9Content";
 import { SATB } from "@/lib/satb-voicings";
 import MaitreCard from "@/components/MaitreCard";
@@ -253,6 +254,7 @@ const S = {
 
 export default function Cours9() {
   const i18n = useCoursI18n("cours9");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours9Content);
   const [sec,    setSec]    = useState("marche");
   const [selM,   setSelM]   = useState<number|null>(null);
@@ -304,7 +306,7 @@ export default function Cours9() {
       {/* ══ MARCHE ══ */}
       {sec === "marche" && (
         <div>
-          <h2 style={S.h2}>La marche harmonique</h2>
+          <h2 style={S.h2}>{tr("La marche harmonique")}</h2>
           <p style={S.p}>Une <strong>marche</strong> est un motif musical (harmonique ou mélodique) répété à différents degrés — comme si on déplaçait le motif progressivement. Il en existe deux grandes familles aux effets très différents.</p>
 
           <div style={S.info}>
@@ -354,8 +356,8 @@ export default function Cours9() {
                   { label:"Effet",       dia:"Animation interne", har:"Dérive / voyage tonal" },
                   { label:"Exemple",     dia:"Canon de Pachelbel", har:"Gm–Fm–Ebm–Dbm" },
                 ].map((row, i) => (
-                  <tr key={row.label} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
-                    <td style={{ padding:"7px 10px", fontWeight:500, color:"#888" }}>{row.label}</td>
+                  <tr key={tr(row.label)} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
+                    <td style={{ padding:"7px 10px", fontWeight:500, color:"#888" }}>{tr(row.label)}</td>
                     <td style={{ padding:"7px 10px", color:"#0F6E56" }}>{row.dia}</td>
                     <td style={{ padding:"7px 10px", color:"#534AB7" }}>{row.har}</td>
                   </tr>
@@ -369,7 +371,7 @@ export default function Cours9() {
       {/* ══ NOTE COMMUNE ══ */}
       {sec === "notecom" && (
         <div>
-          <h2 style={S.h2}>Modulation par note commune</h2>
+          <h2 style={S.h2}>{tr("Modulation par note commune")}</h2>
           <p style={S.p}>Au lieu d'un <em>accord</em> commun aux deux tonalités (pivot), on utilise ici une seule <strong>note</strong> comme lien. Cette note appartient à l'accord de départ avec une certaine fonction, puis est maintenue pendant que l'harmonie change — elle se retrouve dans le nouvel accord avec une fonction différente.</p>
 
           <div style={S.tip}>
@@ -403,8 +405,8 @@ export default function Cours9() {
             { label:"C → Am via Mi (I de Am)", prog:["C","Am","E7","Am"], desc:"Mi = III de C → I de Am. C devient Am — modulation vers le relatif mineur." },
             { label:"C → F via Fa (IV de C)", prog:["C","F","C7","F"], desc:"Fa = IV de C → I de F. C7 (V/IV) confirme F comme nouveau centre." },
           ].map(ex => (
-            <div key={ex.label} style={{ border:"0.5px solid #e5e5e5", borderRadius:10, padding:"12px 16px", marginBottom:8, background:"#fafafa" }}>
-              <div style={{ fontSize:13, fontWeight:500, color:"#111", marginBottom:4 }}>{ex.label}</div>
+            <div key={tr(ex.label)} style={{ border:"0.5px solid #e5e5e5", borderRadius:10, padding:"12px 16px", marginBottom:8, background:"#fafafa" }}>
+              <div style={{ fontSize:13, fontWeight:500, color:"#111", marginBottom:4 }}>{tr(ex.label)}</div>
               <div style={{ fontFamily:"monospace", fontSize:12, color:"#534AB7", marginBottom:6, letterSpacing:1 }}>{ex.prog.join(" → ")}</div>
               <p style={{ fontSize:12, color:"#666", margin:"0 0 8px", lineHeight:1.6 }}>{ex.desc}</p>
               <button onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ex.prog, 950)}
@@ -459,7 +461,7 @@ export default function Cours9() {
       {/* ══ PÉDALES ══ */}
       {sec === "pedales" && (
         <div>
-          <h2 style={S.h2}>Les pédales harmoniques</h2>
+          <h2 style={S.h2}>{tr("Les pédales harmoniques")}</h2>
           <p style={S.p}>Une <strong>pédale harmonique</strong> est une note maintenue (tenue ou répétée) dans une voix pendant que les autres voix changent d'accords. Elle peut appartenir aux accords qui passent — ou leur être étrangère, créant des dissonances expressives résolues plus tard.</p>
 
           <p style={{ fontSize:13, color:"#888", marginBottom:12 }}>Cliquez sur un type de pédale pour en voir les détails.</p>
@@ -483,7 +485,7 @@ export default function Cours9() {
             </div>
           ))}
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Tableau comparatif</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{tr("Tableau comparatif")}</h3>
           <div style={{ overflowX:"auto" }}>
             <table style={{ width:"100%", borderCollapse:"collapse", fontSize:12 }}>
               <thead>
@@ -520,7 +522,7 @@ export default function Cours9() {
       {/* ══ ACCORDS APPOGIATURÉS ══ */}
       {sec === "appog" && (
         <div>
-          <h2 style={S.h2}>Les accords appogiaturés</h2>
+          <h2 style={S.h2}>{tr("Les accords appogiaturés")}</h2>
           <p style={S.p}>Un <strong>accord appogiaturé</strong> est l'équivalent harmonique de la note d'appogiature — un accord entier étranger à la fonction en cours, inséré sur un <em>temps fort</em>, qui se résout vers un accord réel. La dissonance est brève mais expressive.</p>
 
           <div style={S.info}>

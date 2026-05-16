@@ -9,6 +9,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours14Content } from "@/data/cours14Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
@@ -301,6 +302,7 @@ const S = {
 export default function Cours14() {
   const [activeSection, setActiveSection] = useState<SectionId>("principes");
   const i18n = useCoursI18n("cours14");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours14Content);
   const [activeMode, setActiveMode] = useState<string | null>(null);
 
@@ -346,7 +348,7 @@ export default function Cours14() {
       {/* Header */}
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 14</span>
-        <h1 style={S.h1}>L'harmonisation modale</h1>
+        <h1 style={S.h1}>{tr("L'harmonisation modale")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
@@ -372,7 +374,7 @@ export default function Cours14() {
       {/* ══ SECTION 1 : PRINCIPES ══ */}
       {activeSection === "principes" && (
         <div>
-          <h2 style={S.h2}>Harmonisation modale vs tonale</h2>
+          <h2 style={S.h2}>{tr("Harmonisation modale vs tonale")}</h2>
           <p style={S.p}>
             En harmonie tonale, les accords ont des <strong>fonctions</strong> : Tonique (T),
             Sous-dominante (SD), Dominante (D). La progression SD→D→T crée tension et résolution.
@@ -530,9 +532,7 @@ export default function Cours14() {
                   <p style={{ ...S.p, marginTop: 12 }}>{mode.description}</p>
 
                   <div style={{ marginBottom: 12 }}>
-                    <div style={{ fontSize: 11, fontWeight: 600, color: mode.color, marginBottom: 4, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>
-                      Accord caractéristique
-                    </div>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: mode.color, marginBottom: 4, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>{tr("Accord caractéristique")}</div>
                     <div style={{ fontFamily: "monospace", fontSize: 13, color: "#333", background: "#f8f8f8", padding: "5px 10px", borderRadius: 6, display: "inline-block" }}>
                       {mode.characteristicChord}
                     </div>
@@ -570,7 +570,7 @@ export default function Cours14() {
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Entraînement</h2>
+          <h2 style={S.h2}>{tr("Entraînement")}</h2>
 
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
@@ -590,9 +590,7 @@ export default function Cours14() {
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: PRIMARY_BG, color: PRIMARY }}
-              >
-                Nouveau quiz
-              </button>
+              >{tr("Nouveau quiz")}</button>
             </div>
           ) : (
             <div>

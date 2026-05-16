@@ -8,6 +8,7 @@ import PianoPlayer, { PianoPlayerRef } from "./PianoPlayer";
 import MaitreCard from "./MaitreCard";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours20Content } from "@/data/cours20Content";
 
 const PRIMARY    = "#7B2055";
@@ -318,6 +319,7 @@ const ALL_QUESTIONS = [
 
 function ComposerCard({ c, pianoRef }: { c: typeof COMPOSERS[0]; pianoRef: React.RefObject<PianoPlayerRef | null> }) {
   const [open, setOpen] = useState(false);
+  const tr = useTerm();
   return (
     <div style={{ border: `1.5px solid ${open ? c.color : "#e0dbd3"}`, borderRadius: 12, background: open ? c.bg : "#fff", transition: "all .2s", marginBottom: 12 }}>
       <button onClick={() => setOpen(!open)} style={{ width: "100%", padding: "18px 20px", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 14, textAlign: "left" }}>
@@ -347,7 +349,7 @@ function ComposerCard({ c, pianoRef }: { c: typeof COMPOSERS[0]; pianoRef: React
 
           {/* Harmonie */}
           <div style={{ fontSize: 13, color: "#555", fontFamily: "system-ui", lineHeight: 1.6, marginBottom: 16, padding: "10px 14px", background: "rgba(255,255,255,0.7)", borderRadius: 8, borderLeft: `3px solid ${c.color}` }}>
-            <strong style={{ color: c.color }}>Couleur harmonique :</strong> {c.harmonie}
+            <strong style={{ color: c.color }}>{tr("Couleur harmonique :")}</strong> {c.harmonie}
           </div>
 
           {/* Demo audio */}
@@ -425,6 +427,7 @@ function AnalysisCard({ a, pianoRef }: { a: typeof ANALYSES[0]; pianoRef: React.
 
 export default function Cours20() {
   const { badge, title, subtitle } = useCoursI18n("cours20");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours20Content);
   const pianoRef = useRef<PianoPlayerRef | null>(null);
   const [section, setSection] = useState<"compositeurs"|"analyse"|"quiz">("compositeurs");
@@ -502,9 +505,7 @@ export default function Cours20() {
         {/* ── Section Analyse ── */}
         {section === "analyse" && (
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 20 }}>
-              EXERCICES D'ANALYSE COMPARATIVE
-            </div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 20 }}>{tr("EXERCICES D'ANALYSE COMPARATIVE")}</div>
             <div style={{ fontSize: 13, color: "#666", fontFamily: "system-ui", marginBottom: 24, lineHeight: 1.7, padding: "12px 16px", background: PRIMARY_BG, borderRadius: 8, borderLeft: `3px solid ${PRIMARY}` }}>
               Écoute les progressions, compare les versions et identifie le style de chaque compositeur. L'analyse auditive est la clé de la reconnaissance stylistique.
             </div>
@@ -560,9 +561,9 @@ export default function Cours20() {
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
                     <button onClick={() => setQIdx(i => Math.max(0, i - 1))} disabled={qIdx === 0} style={{ padding: "10px 20px", borderRadius: 6, border: "1px solid #e0dbd3", background: "#fff", color: "#888", fontSize: 13, cursor: qIdx === 0 ? "not-allowed" : "pointer", fontFamily: "system-ui", opacity: qIdx === 0 ? 0.4 : 1 }}>← Précédente</button>
                     {qIdx < QUIZ_COUNT - 1 ? (
-                      <button onClick={() => setQIdx(i => i + 1)} disabled={!answered} style={{ padding: "10px 24px", borderRadius: 6, border: "none", background: answered ? PRIMARY : "#e0dbd3", color: "#fff", fontSize: 13, cursor: answered ? "pointer" : "not-allowed", fontFamily: "system-ui" }}>Suivante →</button>
+                      <button onClick={() => setQIdx(i => i + 1)} disabled={!answered} style={{ padding: "10px 24px", borderRadius: 6, border: "none", background: answered ? PRIMARY : "#e0dbd3", color: "#fff", fontSize: 13, cursor: answered ? "pointer" : "not-allowed", fontFamily: "system-ui" }}>{tr("Suivante →")}</button>
                     ) : (
-                      <button onClick={() => setShowResult(true)} disabled={answers.filter(a => a !== null).length < QUIZ_COUNT} style={{ padding: "10px 24px", borderRadius: 6, border: "none", background: PRIMARY, color: "#fff", fontSize: 13, cursor: "pointer", fontFamily: "system-ui" }}>Voir le résultat</button>
+                      <button onClick={() => setShowResult(true)} disabled={answers.filter(a => a !== null).length < QUIZ_COUNT} style={{ padding: "10px 24px", borderRadius: 6, border: "none", background: PRIMARY, color: "#fff", fontSize: 13, cursor: "pointer", fontFamily: "system-ui" }}>{tr("Voir le résultat")}</button>
                     )}
                   </div>
                 </div>

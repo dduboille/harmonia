@@ -11,6 +11,7 @@ import React, { useRef, useState, useCallback } from "react";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours2Content } from "@/data/cours2Content";
 import MaitreCard from "@/components/MaitreCard";
 
@@ -333,6 +334,7 @@ const QUIZ_COUNT = 10;
 
 export default function Cours2() {
   const i18n = useCoursI18n("cours2");
+  const tr = useTerm();
   const { questions: QUIZ_POOL } = useCoursContent(cours2Content);
   const [activeSection, setActiveSection] = useState("triades");
   const pianoRef = useRef<PianoPlayerRef>(null);
@@ -433,7 +435,7 @@ export default function Cours2() {
       {/* ══ TRIADES ══ */}
       {activeSection === "triades" && (
         <div>
-          <h2 style={S.stitle}>Construire une triade</h2>
+          <h2 style={S.stitle}>{tr("Construire une triade")}</h2>
           <p style={S.sbody}>
             Un accord naît d'une idée simple : <strong>empiler des tierces</strong>. On part d'une fondamentale,
             on monte d'une tierce, puis d'une autre. Deux tierces empilées donnent trois sons — une <strong>triade</strong>.
@@ -450,12 +452,12 @@ export default function Cours2() {
           </div>
 
           <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 12, color: "#888", marginBottom: 6 }}>Type d'accord</div>
+            <div style={{ fontSize: 12, color: "#888", marginBottom: 6 }}>{tr("Type d'accord")}</div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               {TRIAD_TYPES.map(t => (
                 <button key={t.id} onClick={() => setTriadTypeId(t.id)}
                   style={{ fontSize: 12, padding: "5px 12px", border: `0.5px solid ${t.id === triadTypeId ? t.color : "#ddd"}`, borderRadius: 6, cursor: "pointer", background: t.id === triadTypeId ? t.bg : "transparent", color: t.id === triadTypeId ? t.color : "#666" }}>
-                  {t.label}
+                  {tr(t.label)}
                 </button>
               ))}
             </div>
@@ -466,7 +468,7 @@ export default function Cours2() {
               <span style={{ fontSize: 24, fontWeight: 600, color: triadType.color }}>{triadChord.name}</span>
               <span style={{ fontSize: 13, color: "#666" }}>{triadChord.notes.join(" – ")}</span>
               <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: 10, background: triadType.stability === "stable" ? "#E1F5EE" : "#FAECE7", color: triadType.stability === "stable" ? "#0F6E56" : "#993C1D" }}>
-                {triadType.stability}
+                {tr(triadType.stability)}
               </span>
             </div>
 
@@ -488,7 +490,7 @@ export default function Cours2() {
             </div>
 
             <div style={{ fontSize: 13, color: "#555", marginBottom: 6 }}>
-              <strong>Quinte :</strong> {triadType.quinte}
+              <strong>{tr("Quinte :")}</strong> {triadType.quinte}
             </div>
             <p style={{ fontSize: 13, color: "#444", lineHeight: 1.6, marginBottom: 10 }}>{triadType.desc}</p>
 
@@ -506,7 +508,7 @@ export default function Cours2() {
 
           <PianoPlayer dotKeys={triadChord.dotKeys} octaves={2} startOctave={3} showLabels showOctaveMarkers />
 
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 8px", color: "#111" }}>Les 4 types de triades</h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 8px", color: "#111" }}>{tr("Les 4 types de triades")}</h3>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
               <thead>
@@ -521,11 +523,11 @@ export default function Cours2() {
                   const ex = buildChord("C", t.intervals, t.suffix, t.ctx);
                   return (
                     <tr key={t.id} style={{ borderBottom: "0.5px solid #f0f0f0", background: i%2===0?"#fff":"#fafafa" }}>
-                      <td style={{ padding: "7px 10px", fontWeight: 500, color: t.color }}>{t.label}</td>
+                      <td style={{ padding: "7px 10px", fontWeight: 500, color: t.color }}>{tr(t.label)}</td>
                       <td style={{ padding: "7px 10px", fontSize: 12, color: "#555" }}>{t.struct1}<br/><span style={{ color: "#aaa" }}>+</span> {t.struct2}</td>
                       <td style={{ padding: "7px 10px", fontSize: 12 }}>{t.quinte}</td>
                       <td style={{ padding: "7px 10px" }}>
-                        <span style={{ fontSize: 11, padding: "1px 7px", borderRadius: 10, background: t.stability==="stable"?"#E1F5EE":"#FAECE7", color: t.stability==="stable"?"#0F6E56":"#993C1D" }}>{t.stability}</span>
+                        <span style={{ fontSize: 11, padding: "1px 7px", borderRadius: 10, background: t.stability==="stable"?"#E1F5EE":"#FAECE7", color: t.stability==="stable"?"#0F6E56":"#993C1D" }}>{tr(t.stability)}</span>
                       </td>
                       <td style={{ padding: "7px 10px", fontSize: 12, color: "#555" }}>C{t.suffix} = {ex.notes.join("–")}</td>
                     </tr>
@@ -540,7 +542,7 @@ export default function Cours2() {
       {/* ══ GAMME ══ */}
       {activeSection === "gamme" && (
         <div>
-          <h2 style={S.stitle}>Les 7 accords de la gamme majeure</h2>
+          <h2 style={S.stitle}>{tr("Les 7 accords de la gamme majeure")}</h2>
           <p style={S.sbody}>
             En construisant une triade sur chaque degré de la gamme — en utilisant <strong>uniquement les notes de cette gamme</strong> —
             on obtient 7 accords, chacun avec une couleur et une fonction précise.
@@ -556,8 +558,8 @@ export default function Cours2() {
                   style={{ border: `0.5px solid ${selDeg===i ? d.fnColor : "#e5e5e5"}`, borderRadius: 8, padding: "8px 4px", textAlign: "center", cursor: "pointer", background: selDeg===i ? d.fnBg : "#fff", transition: "all .15s" }}>
                   <div style={{ fontSize: 10, color: "#999", fontWeight: 500 }}>{d.deg}</div>
                   <div style={{ fontSize: 13, fontWeight: 600, color: "#111", margin: "2px 0" }}>{chord.name}</div>
-                  <div style={{ fontSize: 10, color: "#888" }}>{d.type}</div>
-                  <div style={{ fontSize: 9, marginTop: 3, padding: "1px 4px", borderRadius: 8, display: "inline-block", background: d.fnBg, color: d.fnColor, fontWeight: 500 }}>{d.fn}</div>
+                  <div style={{ fontSize: 10, color: "#888" }}>{tr(d.type)}</div>
+                  <div style={{ fontSize: 9, marginTop: 3, padding: "1px 4px", borderRadius: 8, display: "inline-block", background: d.fnBg, color: d.fnColor, fontWeight: 500 }}>{tr(d.fn)}</div>
                 </div>
               );
             })}
@@ -590,7 +592,7 @@ export default function Cours2() {
       {/* ══ TÉTRADES ══ */}
       {activeSection === "tetrades" && (
         <div>
-          <h2 style={S.stitle}>Les accords de septième</h2>
+          <h2 style={S.stitle}>{tr("Les accords de septième")}</h2>
           <p style={S.sbody}>
             On enrichit une triade en ajoutant <strong>une tierce supplémentaire</strong> au-dessus de la quinte.
             Cette 4e note — la <strong>septième</strong> — complexifie la couleur de l'accord sans en briser la structure.
@@ -611,7 +613,7 @@ export default function Cours2() {
               {TETRAD_TYPES.map(t => (
                 <button key={t.id} onClick={() => setTetTypeId(t.id)}
                   style={{ fontSize: 12, padding: "5px 12px", border: `0.5px solid ${t.id===tetTypeId ? t.color : "#ddd"}`, borderRadius: 6, cursor: "pointer", background: t.id===tetTypeId ? t.bg : "transparent", color: t.id===tetTypeId ? t.color : "#666" }}>
-                  {t.label}
+                  {tr(t.label)}
                 </button>
               ))}
             </div>
@@ -642,7 +644,7 @@ export default function Cours2() {
               ))}
             </div>
 
-            <div style={{ fontSize: 12, color: "#666", marginBottom: 8 }}><strong>Base :</strong> {tetType.base}</div>
+            <div style={{ fontSize: 12, color: "#666", marginBottom: 8 }}><strong>{tr("Base :")}</strong> {tetType.base}</div>
             <p style={{ fontSize: 13, color: "#444", lineHeight: 1.6, marginBottom: 8 }}>{tetType.desc}</p>
             <div style={{ fontSize: 12, color: tetType.color, fontStyle: "italic", marginBottom: 10 }}>{tetType.example(tetRoot)}</div>
 
@@ -656,7 +658,7 @@ export default function Cours2() {
 
           <PianoPlayer dotKeys={tetChord.dotKeys} octaves={2} startOctave={3} showLabels showOctaveMarkers />
 
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 8px", color: "#111" }}>Tétrades de C majeur</h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 8px", color: "#111" }}>{tr("Tétrades de C majeur")}</h3>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
               <thead>
@@ -681,7 +683,7 @@ export default function Cours2() {
                     <td style={{ padding: "7px 10px", fontWeight: 600, color: row.color }}>{row.chord}</td>
                     <td style={{ padding: "7px 10px", color: "#555" }}>{row.notes}</td>
                     <td style={{ padding: "7px 10px" }}>
-                      <span style={{ fontSize: 11, padding: "1px 7px", borderRadius: 10, background: "#f0f0f0", color: row.color }}>{row.type}</span>
+                      <span style={{ fontSize: 11, padding: "1px 7px", borderRadius: 10, background: "#f0f0f0", color: row.color }}>{tr(row.type)}</span>
                     </td>
                   </tr>
                 ))}
@@ -711,12 +713,12 @@ export default function Cours2() {
               </div>
             </div>
             <div>
-              <div style={{ fontSize: 12, color: "#888", marginBottom: 6 }}>Type d'accord</div>
+              <div style={{ fontSize: 12, color: "#888", marginBottom: 6 }}>{tr("Type d'accord")}</div>
               <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
                 {INV_CHORD_TYPES.map(t => (
                   <button key={t.id} onClick={() => { setInvChordTypeId(t.id); setInvIdx(0); }}
                     style={{ fontSize: 12, padding: "4px 10px", border: `0.5px solid ${t.id===invChordTypeId ? "#333" : "#ddd"}`, borderRadius: 6, cursor: "pointer", background: t.id===invChordTypeId ? "#111" : "transparent", color: t.id===invChordTypeId ? "#fff" : "#666" }}>
-                    {t.label}
+                    {tr(t.label)}
                   </button>
                 ))}
               </div>
@@ -742,7 +744,7 @@ export default function Cours2() {
               </span>
             </div>
             <div style={{ fontSize: 13, color: "#555", marginBottom: 6 }}>
-              <strong>Basse :</strong> {invChord.dotKeys[0].split(":")[0]} ({INV_BASS[safeInvIdx]})
+              <strong>{tr("Basse :")}</strong> {invChord.dotKeys[0].split(":")[0]} ({INV_BASS[safeInvIdx]})
             </div>
             <p style={{ fontSize: 13, color: "#444", lineHeight: 1.6, margin: "0 0 10px" }}>{INV_DESC[safeInvIdx]}</p>
             <button onClick={() => playChordFromKeys(invChord.dotKeys, true)}
@@ -754,10 +756,10 @@ export default function Cours2() {
           <PianoPlayer dotKeys={invChord.dotKeys} octaves={2} startOctave={3} showLabels showOctaveMarkers />
 
           <div style={S.infoBox}>
-            <strong>Notation slash :</strong> C/E = accord de C major avec E à la basse. Toujours : <em>nom de l'accord / note de basse</em>. L'état fondamental n'a pas de slash.
+            <strong>{tr("Notation slash :")}</strong> C/E = accord de C major avec E à la basse. Toujours : <em>nom de l'accord / note de basse</em>. L'état fondamental n'a pas de slash.
           </div>
 
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 8px", color: "#111" }}>Renversements de C major</h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 8px", color: "#111" }}>{tr("Renversements de C major")}</h3>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
               <thead>

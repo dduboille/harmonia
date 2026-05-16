@@ -9,6 +9,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours11Content } from "@/data/cours11Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
@@ -319,6 +320,7 @@ const S = {
 export default function Cours11() {
   const [activeSection, setActiveSection] = useState<string>("extensions");
   const i18n = useCoursI18n("cours11");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours11Content);
   const [activeExt, setActiveExt] = useState<string | null>(null);
 
@@ -497,7 +499,7 @@ export default function Cours11() {
           ))}
 
           {/* Tableau récap */}
-          <h3 style={S.h3}>Récapitulatif</h3>
+          <h3 style={S.h3}>{tr("Récapitulatif")}</h3>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
               <thead>
@@ -604,7 +606,7 @@ export default function Cours11() {
           </div>
 
           {/* Tensions disponibles */}
-          <h3 style={S.h3}>Tensions disponibles par fonction</h3>
+          <h3 style={S.h3}>{tr("Tensions disponibles par fonction")}</h3>
           <div style={S.infoBox}>
             <strong>La règle des tensions disponibles :</strong> une extension est &laquo; disponible &raquo;
             si elle ne crée pas d&apos;intervalle de ♭9 (demi-ton + octave) avec une note
@@ -652,7 +654,7 @@ export default function Cours11() {
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Entraînement</h2>
+          <h2 style={S.h2}>{tr("Entraînement")}</h2>
 
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
@@ -672,9 +674,7 @@ export default function Cours11() {
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: "0.5px solid #6B3FA0", borderRadius: 20, cursor: "pointer", background: "#F0EAFA", color: "#6B3FA0" }}
-              >
-                Nouveau quiz
-              </button>
+              >{tr("Nouveau quiz")}</button>
             </div>
           ) : (
             <div>

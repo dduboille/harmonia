@@ -9,6 +9,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours23Content } from "@/data/cours23Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
@@ -538,6 +539,7 @@ const S = {
 export default function Cours23() {
   const [activeSection, setActiveSection] = useState<string>("styles");
   const i18n = useCoursI18n("cours23");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours23Content);
   const [activeStyle, setActiveStyle] = useState<string | null>(null);
   const [activeEx,    setActiveEx]    = useState<number | null>(null);
@@ -590,7 +592,7 @@ export default function Cours23() {
       {/* Header */}
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 23</span>
-        <h1 style={S.h1}>Composer dans le style des maîtres</h1>
+        <h1 style={S.h1}>{tr("Composer dans le style des maîtres")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
@@ -831,7 +833,7 @@ export default function Cours23() {
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Entraînement</h2>
+          <h2 style={S.h2}>{tr("Entraînement")}</h2>
 
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
@@ -849,9 +851,7 @@ export default function Cours23() {
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: "#F0EAFA", color: PRIMARY }}
-              >
-                Nouveau quiz
-              </button>
+              >{tr("Nouveau quiz")}</button>
             </div>
           ) : (
             <div>

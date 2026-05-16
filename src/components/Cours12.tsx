@@ -9,6 +9,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours12Content } from "@/data/cours12Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
@@ -213,6 +214,7 @@ const S = {
 export default function Cours12() {
   const [activeSection, setActiveSection] = useState<string>("principe");
   const i18n = useCoursI18n("cours12");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours12Content);
 
   const [quizQuestions] = useState(() => shuffle(ALL_QUESTIONS).slice(0, QUIZ_COUNT));
@@ -257,7 +259,7 @@ export default function Cours12() {
       {/* Header */}
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 12</span>
-        <h1 style={S.h1}>La substitution tritonique</h1>
+        <h1 style={S.h1}>{tr("La substitution tritonique")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
@@ -572,7 +574,7 @@ export default function Cours12() {
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Entraînement</h2>
+          <h2 style={S.h2}>{tr("Entraînement")}</h2>
 
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
@@ -592,9 +594,7 @@ export default function Cours12() {
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: PRIMARY_BG, color: PRIMARY }}
-              >
-                Nouveau quiz
-              </button>
+              >{tr("Nouveau quiz")}</button>
             </div>
           ) : (
             <div>

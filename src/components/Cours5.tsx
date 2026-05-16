@@ -20,6 +20,7 @@
 import React, { useRef, useState, useCallback } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours5Content } from "@/data/cours5Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { SATB } from "@/lib/satb-voicings";
@@ -299,6 +300,7 @@ const S = {
 export default function Cours5() {
   const [activeSection, setActiveSection] = useState("mineur");
   const i18n = useCoursI18n("cours5");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours5Content);
   const [selDeg,    setSelDeg]    = useState<number | null>(null);
   const [selEmprunt, setSelEmprunt] = useState<number | null>(null);
@@ -360,7 +362,7 @@ export default function Cours5() {
       {/* ══ MINEUR ══ */}
       {activeSection === "mineur" && (
         <div>
-          <h2 style={S.stitle}>La gamme mineure et ses deux formes</h2>
+          <h2 style={S.stitle}>{tr("La gamme mineure et ses deux formes")}</h2>
           <p style={S.sbody}>
             La gamme mineure naturelle est issue de la gamme majeure — on la construit en partant de son VIe degré.
             Mais elle pose un problème : son triton n'est pas fonctionnel. Il ne pousse pas vers la tonique,
@@ -414,9 +416,7 @@ export default function Cours5() {
           </div>
 
           {/* Accords de C mineur */}
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 8px", color: "#111" }}>
-            Les 7 accords de C mineur
-          </h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 8px", color: "#111" }}>{tr("Les 7 accords de C mineur")}</h3>
           <p style={{ fontSize: 13, color: "#888", marginBottom: 12 }}>
             Cliquez sur un degré pour l'entendre.
           </p>
@@ -428,7 +428,7 @@ export default function Cours5() {
                 <div style={{ fontSize: 10, color: "#999", fontWeight: 500 }}>{d.deg}</div>
                 <div style={{ fontSize: 13, fontWeight: 600, color: "#111", margin: "2px 0" }}>{d.chord}</div>
                 <div style={{ fontSize: 10, color: "#888" }}>{d.type}</div>
-                <div style={{ fontSize: 9, marginTop: 3, padding: "1px 4px", borderRadius: 8, display: "inline-block", background: d.fnBg, color: d.fnColor, fontWeight: 500 }}>{d.fn}</div>
+                <div style={{ fontSize: 9, marginTop: 3, padding: "1px 4px", borderRadius: 8, display: "inline-block", background: d.fnBg, color: d.fnColor, fontWeight: 500 }}>{tr(d.fn)}</div>
               </div>
             ))}
           </div>
@@ -447,7 +447,7 @@ export default function Cours5() {
       {/* ══ EMPRUNTS ══ */}
       {activeSection === "emprunts" && (
         <div>
-          <h2 style={S.stitle}>Emprunts à l'homonyme</h2>
+          <h2 style={S.stitle}>{tr("Emprunts à l'homonyme")}</h2>
           <p style={S.sbody}>
             C majeur et C mineur sont <strong>homonymes</strong> — même tonique, mode différent.
             Ils partagent exactement le même triton fonctionnel (F–B), ce qui signifie que leurs accords
@@ -486,11 +486,11 @@ export default function Cours5() {
                     Emprunté à <em>{e.from}</em>
                   </div>
                   <div style={{ fontSize: 11, color: "#888", marginTop: 2 }}>
-                    Fonction : {e.fn} — remplace {e.replaces}
+                    Fonction : {tr(e.fn)} — remplace {e.replaces}
                   </div>
                 </div>
                 <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 10, background: e.bg, color: e.color, border: `0.5px solid ${e.color}` }}>
-                  {e.fn}
+                  {tr(e.fn)}
                 </span>
               </div>
 
@@ -530,8 +530,8 @@ export default function Cours5() {
                   { fn:"Sous-dominante", maj:"Dm – F",   min:"Ddim – Fm" },
                   { fn:"Dominante",      maj:"G7 – Bdim",min:"G7 – Bdim" },
                 ].map((row, i) => (
-                  <tr key={row.fn} style={{ borderBottom: "0.5px solid #f0f0f0", background: i%2===0?"#fff":"#fafafa" }}>
-                    <td style={{ padding: "7px 10px", fontWeight: 500 }}>{row.fn}</td>
+                  <tr key={tr(row.fn)} style={{ borderBottom: "0.5px solid #f0f0f0", background: i%2===0?"#fff":"#fafafa" }}>
+                    <td style={{ padding: "7px 10px", fontWeight: 500 }}>{tr(row.fn)}</td>
                     <td style={{ padding: "7px 10px", color: "#185FA5", fontFamily: "monospace" }}>{row.maj}</td>
                     <td style={{ padding: "7px 10px", color: "#993C1D", fontFamily: "monospace" }}>{row.min}</td>
                   </tr>
@@ -551,7 +551,7 @@ export default function Cours5() {
       {/* ══ SUITES CLASSIQUES ══ */}
       {activeSection === "classiques" && (
         <div>
-          <h2 style={S.stitle}>Trois suites harmoniques incontournables</h2>
+          <h2 style={S.stitle}>{tr("Trois suites harmoniques incontournables")}</h2>
           <p style={S.sbody}>
             Certaines progressions ont traversé les siècles parce qu'elles combinent logique harmonique
             et beauté mélodique de la basse. Ces trois modèles sont la base de centaines de morceaux —
@@ -604,7 +604,7 @@ export default function Cours5() {
       )}
       {activeSection === "progressions" && (
         <div style={{ marginTop: 32 }}>
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>Choisir le bon renversement</h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>{tr("Choisir le bon renversement")}</h3>
           <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7, marginBottom: 16, fontFamily: "system-ui, sans-serif" }}>
             Pour chaque progression, choisissez le renversement qui assure la meilleure conduite de voix.
           </p>

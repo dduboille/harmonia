@@ -10,6 +10,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours7Content } from "@/data/cours7Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { SATB } from "@/lib/satb-voicings";
@@ -197,6 +198,7 @@ const S = {
 export default function Cours7() {
   const [sec,   setSec]   = useState("principe");
   const i18n = useCoursI18n("cours7");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours7Content);
   const [selDs, setSelDs] = useState<number|null>(null);
   const [selTv, setSelTv] = useState<number|null>(null);
@@ -243,7 +245,7 @@ export default function Cours7() {
       {/* ══ PRINCIPE ══ */}
       {sec === "principe" && (
         <div>
-          <h2 style={S.h2}>Principe de la tonicisation</h2>
+          <h2 style={S.h2}>{tr("Principe de la tonicisation")}</h2>
           <p style={S.p}>La tonicisation consiste à traiter un accord — le temps d'un instant — comme une <strong>tonique temporaire</strong>, en le précédant de sa propre dominante (et optionnellement de sa sous-dominante). C'est une autre forme d'emprunt : au lieu de remplacer un accord par un autre, on vient le <em>préparer</em> avec les accords de sa propre tonalité.</p>
 
           <div style={S.info}>
@@ -296,11 +298,11 @@ export default function Cours7() {
       {/* ══ DOMINANTES SECONDAIRES ══ */}
       {sec === "secondaires" && (
         <div>
-          <h2 style={S.h2}>Les dominantes secondaires en C majeur</h2>
+          <h2 style={S.h2}>{tr("Les dominantes secondaires en C majeur")}</h2>
           <p style={S.p}>Chaque degré diatonique (sauf I et VII°) peut être tonicisé. Sa dominante secondaire se calcule en montant 5 degrés depuis l'accord cible et en jouant un accord de dominante 7.</p>
 
           <div style={S.tip}>
-            <strong>Calcul rapide :</strong> pour toniciser X, compte 5 notes depuis X (inclusif) et joue un accord X7. Ex : pour Dm → D E F G A = A7. Pour Am → A B C D E = E7.
+            <strong>{tr("Calcul rapide :")}</strong> pour toniciser X, compte 5 notes depuis X (inclusif) et joue un accord X7. Ex : pour Dm → D E F G A = A7. Pour Am → A B C D E = E7.
           </div>
 
           <p style={{ fontSize:13, color:"#888", marginBottom:12, marginTop:16 }}>
@@ -368,7 +370,7 @@ export default function Cours7() {
       {/* ══ TONS VOISINS ══ */}
       {sec === "voisins" && (
         <div>
-          <h2 style={S.h2}>Tons voisins et fonctions secondaires</h2>
+          <h2 style={S.h2}>{tr("Tons voisins et fonctions secondaires")}</h2>
           <p style={S.p}>Les <strong>tons voisins</strong> d'une tonalité sont les tonalités qui partagent au moins 6 notes communes avec elle — ce sont les tonalités des 6 degrés diatoniques. Chaque ton voisin correspond à un degré de la gamme, et ses propres accords fonctionnels (dominante et sous-dominante) deviennent les dominantes et sous-dominantes <em>secondaires</em>.</p>
 
           <div style={S.info}>
@@ -392,11 +394,11 @@ export default function Cours7() {
                 <div style={{ padding:"0 16px 14px", borderTop:"0.5px solid #534AB720" }}>
                   <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginTop:8 }}>
                     <div style={{ background:"#fff", borderRadius:8, padding:"10px 12px", border:"0.5px solid #534AB730" }}>
-                      <div style={{ fontSize:11, color:"#999", marginBottom:4 }}>Dominante secondaire</div>
+                      <div style={{ fontSize:11, color:"#999", marginBottom:4 }}>{tr("Dominante secondaire")}</div>
                       <div style={{ fontSize:14, fontFamily:"monospace", fontWeight:600, color:"#534AB7" }}>{tv.dom_sec}</div>
                     </div>
                     <div style={{ background:"#fff", borderRadius:8, padding:"10px 12px", border:"0.5px solid #534AB730" }}>
-                      <div style={{ fontSize:11, color:"#999", marginBottom:4 }}>Sous-dominante secondaire</div>
+                      <div style={{ fontSize:11, color:"#999", marginBottom:4 }}>{tr("Sous-dominante secondaire")}</div>
                       <div style={{ fontSize:13, fontFamily:"monospace", color:"#534AB7" }}>{tv.sd_sec}</div>
                     </div>
                   </div>
@@ -407,7 +409,7 @@ export default function Cours7() {
           ))}
 
           <div style={S.warn}>
-            <strong>Rappel :</strong> dans une tonicisation, le triton de référence est celui de la tonalité <em>temporaire</em> (du ton voisin), pas celui de la tonalité principale. Les fonctions SD et D s'analysent localement.
+            <strong>{tr("Rappel :")}</strong> dans une tonicisation, le triton de référence est celui de la tonalité <em>temporaire</em> (du ton voisin), pas celui de la tonalité principale. Les fonctions SD et D s'analysent localement.
           </div>
         </div>
       )}
@@ -415,7 +417,7 @@ export default function Cours7() {
       {/* ══ CHAÎNES ══ */}
       {sec === "chaines" && (
         <div>
-          <h2 style={S.h2}>Chaînes de tonicisations</h2>
+          <h2 style={S.h2}>{tr("Chaînes de tonicisations")}</h2>
           <p style={S.p}>Puisque tout accord peut être tonicisé, on peut aussi toniciser une tonicisation — c'est-à-dire appliquer une dominante secondaire à un accord déjà secondaire. Cela crée une <strong>chaîne de dominantes secondaires</strong>, dont chaque maillon renforce la tension vers la résolution finale.</p>
 
           <div style={S.info}>
@@ -451,7 +453,7 @@ export default function Cours7() {
       {/* Exercices de renversements */}
       {sec !== "quiz" && (
         <div style={{ marginTop: 32 }}>
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>Choisir le bon renversement</h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>{tr("Choisir le bon renversement")}</h3>
           <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7, marginBottom: 16, fontFamily: "system-ui, sans-serif" }}>
             Pour chaque progression, choisissez le renversement qui assure la meilleure conduite de voix.
           </p>

@@ -9,6 +9,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours17Content } from "@/data/cours17Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
@@ -323,6 +324,7 @@ const S = {
 export default function Cours17() {
   const [activeSection, setActiveSection] = useState<SectionId>("phrase");
   const i18n = useCoursI18n("cours17");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours17Content);
   const [activeTech,  setActiveTech]  = useState<string | null>(null);
   const [activeForme, setActiveForme] = useState<string | null>(null);
@@ -369,7 +371,7 @@ export default function Cours17() {
       {/* Header */}
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 17</span>
-        <h1 style={S.h1}>La phrase musicale et la forme</h1>
+        <h1 style={S.h1}>{tr("La phrase musicale et la forme")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
@@ -495,7 +497,7 @@ export default function Cours17() {
       {/* ══ SECTION 2 : PÉRIODE & FORMES ══ */}
       {activeSection === "periode" && (
         <div>
-          <h2 style={S.h2}>La période et les grandes formes</h2>
+          <h2 style={S.h2}>{tr("La période et les grandes formes")}</h2>
           <p style={S.p}>
             La <strong>période</strong> est une structure de deux phrases : l'antécédent pose une
             question (cadence faible sur V), le conséquent apporte la réponse (cadence forte sur I).
@@ -576,7 +578,7 @@ export default function Cours17() {
           </div>
 
           {/* Grandes formes */}
-          <h3 style={S.h3}>Les grandes formes musicales</h3>
+          <h3 style={S.h3}>{tr("Les grandes formes musicales")}</h3>
           {FORMES.map(forme => (
             <div
               key={forme.id}
@@ -632,7 +634,7 @@ export default function Cours17() {
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Entraînement</h2>
+          <h2 style={S.h2}>{tr("Entraînement")}</h2>
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
               <div style={{ fontSize: 32, marginBottom: 8 }}>
@@ -647,9 +649,7 @@ export default function Cours17() {
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: PRIMARY_BG, color: PRIMARY }}
-              >
-                Nouveau quiz
-              </button>
+              >{tr("Nouveau quiz")}</button>
             </div>
           ) : (
             <div>

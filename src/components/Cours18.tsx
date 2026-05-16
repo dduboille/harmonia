@@ -9,6 +9,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours18Content } from "@/data/cours18Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
@@ -343,6 +344,7 @@ const S = {
 export default function Cours18() {
   const [activeSection, setActiveSection] = useState<SectionId>("motif");
   const i18n = useCoursI18n("cours18");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours18Content);
   const [activeFamily, setActiveFamily] = useState<string | null>(null);
 
@@ -388,7 +390,7 @@ export default function Cours18() {
       {/* Header */}
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 18</span>
-        <h1 style={S.h1}>Le développement motivique</h1>
+        <h1 style={S.h1}>{tr("Le développement motivique")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
@@ -459,7 +461,7 @@ export default function Cours18() {
           </div>
 
           {/* 5 éléments */}
-          <h3 style={S.h3}>Les 5 éléments constitutifs d'un motif</h3>
+          <h3 style={S.h3}>{tr("Les 5 éléments constitutifs d'un motif")}</h3>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 8, marginBottom: "1.25rem" }}>
             {ELEMENTS.map(({ n, name, desc }) => (
               <div key={n} style={{ border: `0.5px solid ${PRIMARY}25`, borderRadius: 8, padding: "12px 14px", background: PRIMARY_BG }}>
@@ -517,7 +519,7 @@ export default function Cours18() {
       {/* ══ SECTION 2 : TECHNIQUES ══ */}
       {activeSection === "techniques" && (
         <div>
-          <h2 style={S.h2}>Les 4 familles de techniques de développement</h2>
+          <h2 style={S.h2}>{tr("Les 4 familles de techniques de développement")}</h2>
           <p style={S.p}>
             Les techniques de développement sont organisées en 4 familles, classées du moins
             au plus radical. On commence par transformer le contexte (harmonie, dynamique) avant
@@ -674,7 +676,7 @@ export default function Cours18() {
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Entraînement</h2>
+          <h2 style={S.h2}>{tr("Entraînement")}</h2>
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
               <div style={{ fontSize: 32, marginBottom: 8 }}>
@@ -689,9 +691,7 @@ export default function Cours18() {
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: PRIMARY_BG, color: PRIMARY }}
-              >
-                Nouveau quiz
-              </button>
+              >{tr("Nouveau quiz")}</button>
             </div>
           ) : (
             <div>

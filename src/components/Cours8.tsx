@@ -10,6 +10,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours8Content } from "@/data/cours8Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { SATB } from "@/lib/satb-voicings";
@@ -219,6 +220,7 @@ const S = {
 export default function Cours8() {
   const [sec,    setSec]    = useState("logique");
   const i18n = useCoursI18n("cours8");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours8Content);
   const [selAc,  setSelAc]  = useState<number|null>(null);
   const [selEx,  setSelEx]  = useState<string|null>(null);
@@ -265,7 +267,7 @@ export default function Cours8() {
       {/* ══ LOGIQUE ══ */}
       {sec === "logique" && (
         <div>
-          <h2 style={S.h2}>Logique d'une modulation</h2>
+          <h2 style={S.h2}>{tr("Logique d'une modulation")}</h2>
           <p style={S.p}>La modulation est d'une autre nature que l'emprunt ou la tonicisation. Ce n'est plus un simple jeu de couleurs — c'est un <strong>véritable voyage</strong>. Lorsqu'un compositeur module, il change de tonalité de référence. Le centre de gravité harmonique se déplace durablement.</p>
 
           <div style={S.info}>
@@ -292,7 +294,7 @@ export default function Cours8() {
             ))}
           </div>
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Tons voisins — les destinations privilégiées</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{tr("Tons voisins — les destinations privilégiées")}</h3>
           <p style={S.p}>Plus deux tonalités sont proches (partagent de nombreuses notes), plus la modulation est fluide et les pivots abondants. Les tons voisins sont les destinations naturelles de la modulation.</p>
 
           <div style={{ overflowX:"auto" }}>
@@ -329,7 +331,7 @@ export default function Cours8() {
       {/* ══ ACCORD PIVOT ══ */}
       {sec === "pivot" && (
         <div>
-          <h2 style={S.h2}>L'accord pivot</h2>
+          <h2 style={S.h2}>{tr("L'accord pivot")}</h2>
           <p style={S.p}>L'accord pivot appartient simultanément à la tonalité de départ <em>et</em> à celle d'arrivée. On le joue dans la tonalité de départ avec sa fonction d'origine, puis on le <strong>réinterprète</strong> avec sa nouvelle fonction dans la tonalité d'arrivée. C'est cette double appartenance qui assure la fluidité de la transition.</p>
 
           <div style={S.tip}>
@@ -472,7 +474,7 @@ export default function Cours8() {
       {/* ══ EXEMPLES ══ */}
       {sec === "exemples" && (
         <div>
-          <h2 style={S.h2}>Exemples de modulations par accord pivot</h2>
+          <h2 style={S.h2}>{tr("Exemples de modulations par accord pivot")}</h2>
           <p style={S.p}>Trois modulations par accord pivot illustrant différentes relations tonales — dominante, sous-dominante, et modulation à la quinte par degrés diatoniques.</p>
 
           {EXEMPLES_MOD.map(ex => (
@@ -530,7 +532,7 @@ export default function Cours8() {
       {/* Exercices de renversements */}
       {sec !== "quiz" && (
         <div style={{ marginTop: 32 }}>
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>Choisir le bon renversement</h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>{tr("Choisir le bon renversement")}</h3>
           <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7, marginBottom: 16, fontFamily: "system-ui, sans-serif" }}>
             Pour chaque progression, choisissez le renversement qui assure la meilleure conduite de voix.
           </p>

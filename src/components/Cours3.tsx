@@ -12,6 +12,7 @@ import React, { useRef, useState } from "react";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours3Content } from "@/data/cours3Content";
 import { SATB } from "@/lib/satb-voicings";
 import MaitreCard from "@/components/MaitreCard";
@@ -204,6 +205,7 @@ const S = {
 
 export default function Cours3() {
   const i18n = useCoursI18n("cours3");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours3Content);
   const [sec,    setSec]    = useState("triton");
   const [selDeg, setSelDeg] = useState<number|null>(null);
@@ -259,7 +261,7 @@ export default function Cours3() {
       {/* ══ TRITON ══ */}
       {sec === "triton" && (
         <div>
-          <h2 style={S.h2}>Le triton — moteur de la tension harmonique</h2>
+          <h2 style={S.h2}>{tr("Le triton — moteur de la tension harmonique")}</h2>
           <p style={S.p}>Le <strong>triton</strong> est l'intervalle de 3 tons (6 demi-tons) qui se forme naturellement entre les IVe et VIIe degrés d'une gamme majeure. En C majeur : <strong>F et B</strong> (Fa et Si). Son instabilité acoustique est le moteur de toute la tension harmonique tonale.</p>
 
           <div style={S.info}>
@@ -294,7 +296,7 @@ export default function Cours3() {
             <strong>Le triton en C majeur est la clé fonctionnelle :</strong> la présence des deux notes F et B dans un accord détermine sa fonction. C'est lui qui organise toute la tension harmonique.
           </div>
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Classification des accords par rapport au triton</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{tr("Classification des accords par rapport au triton")}</h3>
           <div style={{ overflowX:"auto" }}>
             <table style={{ width:"100%", borderCollapse:"collapse", fontSize:13 }}>
               <thead>
@@ -310,8 +312,8 @@ export default function Cours3() {
                   { fn:"Sous-dom. (SD)",   notes:"F seul",      car:"Prépare",         ex:"Dm, F" },
                   { fn:"Dominante (D)",    notes:"F et B",      car:"Tension maximale",ex:"G7, Bdim" },
                 ].map((row, i) => (
-                  <tr key={row.fn} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
-                    <td style={{ padding:"7px 10px", fontWeight:500 }}>{row.fn}</td>
+                  <tr key={tr(row.fn)} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
+                    <td style={{ padding:"7px 10px", fontWeight:500 }}>{tr(row.fn)}</td>
                     <td style={{ padding:"7px 10px", fontFamily:"monospace", color:"#BA7517" }}>{row.notes}</td>
                     <td style={{ padding:"7px 10px", color:"#555" }}>{row.car}</td>
                     <td style={{ padding:"7px 10px", fontFamily:"monospace" }}>{row.ex}</td>
@@ -326,11 +328,11 @@ export default function Cours3() {
       {/* ══ FONCTIONS ══ */}
       {sec === "fonctions" && (
         <div>
-          <h2 style={S.h2}>Les fonctions tonales</h2>
+          <h2 style={S.h2}>{tr("Les fonctions tonales")}</h2>
           <p style={S.p}>Chaque accord d'une gamme majeure remplit un <strong>rôle fonctionnel</strong> déterminé par sa relation au triton. Ce rôle définit son comportement dans la progression — s'il crée du repos, prépare ou génère de la tension.</p>
 
           <div style={S.tip}>
-            <strong>Mémo rapide :</strong> F et B ? → Dominante. F seul ? → Sous-dominante. Ni l'un ni l'autre ? → Tonique.
+            <strong>{tr("Mémo rapide :")}</strong> F et B ? → Dominante. F seul ? → Sous-dominante. Ni l'un ni l'autre ? → Tonique.
           </div>
 
           <p style={{ fontSize:13, color:"#888", marginBottom:12, marginTop:16 }}>
@@ -344,7 +346,7 @@ export default function Cours3() {
                 style={{ border:`0.5px solid ${selDeg===i?d.fnColor:"#e5e5e5"}`, borderRadius:8, padding:"8px 4px", textAlign:"center", cursor:"pointer", background:selDeg===i?d.fnBg:"#fff", transition:"all .15s" }}>
                 <div style={{ fontSize:10, color:"#999", fontWeight:500 }}>{d.deg}</div>
                 <div style={{ fontSize:13, fontWeight:600, color:"#111", margin:"2px 0" }}>{d.chord}</div>
-                <div style={{ fontSize:9, padding:"1px 4px", borderRadius:8, display:"inline-block", background:d.fnBg, color:d.fnColor, fontWeight:500, marginTop:2 }}>{d.fn}</div>
+                <div style={{ fontSize:9, padding:"1px 4px", borderRadius:8, display:"inline-block", background:d.fnBg, color:d.fnColor, fontWeight:500, marginTop:2 }}>{tr(d.fn)}</div>
               </div>
             ))}
           </div>
@@ -371,7 +373,7 @@ export default function Cours3() {
       {/* ══ PROGRESSIONS ══ */}
       {sec === "progressions" && (
         <div>
-          <h2 style={S.h2}>Progressions et cadences</h2>
+          <h2 style={S.h2}>{tr("Progressions et cadences")}</h2>
           <p style={S.p}>L'enchaînement <strong>SD → D → T</strong> est la colonne vertébrale de l'harmonie tonale. Toutes les progressions en sont des variantes ou des extensions. Les <strong>cadences</strong> ponctuent le discours musical comme des signes de ponctuation.</p>
 
           <p style={{ fontSize:13, color:"#888", marginBottom:12 }}>Cliquez sur une progression pour l'écouter et voir son analyse.</p>
@@ -400,7 +402,7 @@ export default function Cours3() {
             </div>
           ))}
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Les cadences</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{tr("Les cadences")}</h3>
           <div style={{ overflowX:"auto" }}>
             <table style={{ width:"100%", borderCollapse:"collapse", fontSize:13 }}>
               <thead>
@@ -433,7 +435,7 @@ export default function Cours3() {
       {/* ══ CONDUITE DE VOIX ══ */}
       {sec === "voix" && (
         <div>
-          <h2 style={S.h2}>La conduite de voix (SATB)</h2>
+          <h2 style={S.h2}>{tr("La conduite de voix (SATB)")}</h2>
           <p style={S.p}>L'harmonie à 4 voix (Soprano, Alto, Ténor, Basse) n'est pas un empilement d'accords — c'est une <strong>polyphonie contrôlée</strong> où chaque voix a sa propre logique mélodique. La conduite de voix est l'art de faire évoluer ces 4 lignes simultanément de manière fluide et logique.</p>
 
           <p style={{ fontSize:13, color:"#888", marginBottom:12 }}>Cliquez sur une règle pour en voir le détail.</p>

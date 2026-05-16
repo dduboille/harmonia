@@ -10,6 +10,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours6Content } from "@/data/cours6Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { SATB } from "@/lib/satb-voicings";
@@ -198,6 +199,7 @@ const S = {
 export default function Cours6() {
   const [sec,  setSec]  = useState("tonal");
   const i18n = useCoursI18n("cours6");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours6Content);
   const [si,   setSi]   = useState<number|null>(null);
   const [se,   setSe]   = useState<number|null>(null);
@@ -246,7 +248,7 @@ export default function Cours6() {
       {/* ══ CENTRE TONAL ══ */}
       {sec === "tonal" && (
         <div>
-          <h2 style={S.h2}>Identifier le centre tonal</h2>
+          <h2 style={S.h2}>{tr("Identifier le centre tonal")}</h2>
           <p style={S.p}>Avant de choisir un seul accord, la première question est : <em>dans quel paysage tonal la mélodie évolue-t-elle ?</em> La tonalité est une force d'attraction — la mélodie montre ses préférences, ses appuis, ses pôles de repos. Plusieurs indices permettent de les repérer.</p>
           <div style={S.info}>Il n'existe souvent pas de certitude absolue. L'harmonisation est un art d'interprétation : on propose la lecture la plus cohérente et naturelle à l'oreille.</div>
           <p style={{ fontSize:13, color:"#888", marginBottom:12 }}>Cliquez sur un indice pour en savoir plus.</p>
@@ -264,7 +266,7 @@ export default function Cours6() {
               <p style={{ fontSize:13, color:"#0C447C", lineHeight:1.65, margin:0 }}>{INDICES_TONAL[si].desc}</p>
             </div>
           )}
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Les 5 étapes de l'harmonisation</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{tr("Les 5 étapes de l'harmonisation")}</h3>
           <div style={{ display:"flex", flexDirection:"column", gap:8, marginBottom:16 }}>
             {[
               { n:"1", t:"Identifier le centre tonal", d:"Armure, sensible, points stables, cadence finale, altérations accidentelles." },
@@ -282,16 +284,16 @@ export default function Cours6() {
               </div>
             ))}
           </div>
-          <div style={S.warn}><strong>Erreur fréquente :</strong> vouloir harmoniser chaque note avec un accord différent. Résultat : un rythme harmonique chaotique. La plupart des notes sont des notes étrangères — elles n'ont pas besoin d'un accord propre.</div>
+          <div style={S.warn}><strong>{tr("Erreur fréquente :")}</strong> vouloir harmoniser chaque note avec un accord différent. Résultat : un rythme harmonique chaotique. La plupart des notes sont des notes étrangères — elles n'ont pas besoin d'un accord propre.</div>
         </div>
       )}
 
       {/* ══ NOTES ÉTRANGÈRES ══ */}
       {sec === "etrangeres" && (
         <div>
-          <h2 style={S.h2}>Notes réelles et notes étrangères</h2>
+          <h2 style={S.h2}>{tr("Notes réelles et notes étrangères")}</h2>
           <p style={S.p}>Une mélodie contient souvent des notes qui <em>ornent</em> l'accord sans en faire partie — ce sont les <strong>notes étrangères</strong>. Les identifier est essentiel pour harmoniser sans surabondance d'accords.</p>
-          <div style={S.tip}><strong>Règle d'or :</strong> si une note peut s'expliquer comme une note étrangère par rapport à un accord voisin, pas besoin d'un nouvel accord. On garde l'accord en cours.</div>
+          <div style={S.tip}><strong>{tr("Règle d'or :")}</strong> si une note peut s'expliquer comme une note étrangère par rapport à un accord voisin, pas besoin d'un nouvel accord. On garde l'accord en cours.</div>
           <p style={{ fontSize:13, color:"#888", marginBottom:12, marginTop:16 }}>Cliquez sur une catégorie pour voir sa définition et son exemple.</p>
           <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:8, marginBottom:12 }}>
             {NOTES_ETRANGERES.map((ne, i) => (
@@ -309,7 +311,7 @@ export default function Cours6() {
               <div style={{ fontSize:12, color:NOTES_ETRANGERES[se].color, fontWeight:500 }}>Règle : {NOTES_ETRANGERES[se].regles}</div>
             </div>
           )}
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Tableau récapitulatif</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{tr("Tableau récapitulatif")}</h3>
           <div style={{ overflowX:"auto" }}>
             <table style={{ width:"100%", borderCollapse:"collapse", fontSize:12 }}>
               <thead>
@@ -342,7 +344,7 @@ export default function Cours6() {
       {/* ══ SQUELETTE ══ */}
       {sec === "squelette" && (
         <div>
-          <h2 style={S.h2}>Construire le squelette harmonique</h2>
+          <h2 style={S.h2}>{tr("Construire le squelette harmonique")}</h2>
           <p style={S.p}>Le squelette harmonique est la réalisation à 3 ou 4 voix de la progression — avant tout choix stylistique. C'est l'étape décisive : elle teste la solidité de la structure harmonique.</p>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:16 }}>
             {[
@@ -373,7 +375,7 @@ export default function Cours6() {
               )}
             </div>
           ))}
-          <div style={S.tip}><strong>Principe clé :</strong> une bonne conduite de voix repose sur la nécessité des mouvements, pas leur multiplication. Conservez les notes communes, avancez par degrés conjoints.</div>
+          <div style={S.tip}><strong>{tr("Principe clé :")}</strong> une bonne conduite de voix repose sur la nécessité des mouvements, pas leur multiplication. Conservez les notes communes, avancez par degrés conjoints.</div>
         </div>
       )}
 

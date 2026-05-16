@@ -9,6 +9,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours13Content } from "@/data/cours13Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
@@ -358,6 +359,7 @@ const S = {
 export default function Cours13() {
   const [activeSection, setActiveSection] = useState<string>("especes");
   const i18n = useCoursI18n("cours13");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours13Content);
   const [activeSp, setActiveSp] = useState<string | null>(null);
 
@@ -419,7 +421,7 @@ export default function Cours13() {
       {/* Header */}
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 13</span>
-        <h1 style={S.h1}>Le contrepoint à 2 voix</h1>
+        <h1 style={S.h1}>{tr("Le contrepoint à 2 voix")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
@@ -445,7 +447,7 @@ export default function Cours13() {
       {/* ══ SECTION 1 : ESPÈCES ══ */}
       {activeSection === "especes" && (
         <div>
-          <h2 style={S.h2}>Les 5 espèces de contrepoint</h2>
+          <h2 style={S.h2}>{tr("Les 5 espèces de contrepoint")}</h2>
           <p style={S.p}>
             Fux organise l&apos;apprentissage du contrepoint en 5 espèces progressives.
             Chaque espèce introduit une nouvelle difficulté : d&apos;abord les consonances pures,
@@ -558,7 +560,7 @@ export default function Cours13() {
       {/* ══ SECTION 2 : RÈGLES ══ */}
       {activeSection === "regles" && (
         <div>
-          <h2 style={S.h2}>Règles fondamentales du contrepoint</h2>
+          <h2 style={S.h2}>{tr("Règles fondamentales du contrepoint")}</h2>
           <p style={S.p}>
             Le contrepoint strict repose sur trois piliers : la qualité des intervalles
             (consonances vs dissonances), le type de mouvement entre les voix,
@@ -566,10 +568,10 @@ export default function Cours13() {
           </p>
 
           {/* Intervalles */}
-          <h3 style={S.h3}>Intervalles consonants et dissonants</h3>
+          <h3 style={S.h3}>{tr("Intervalles consonants et dissonants")}</h3>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 16 }}>
             <div style={{ border: "0.5px solid #0F6E5640", borderRadius: 10, padding: "14px 16px", background: "#E1F5EE" }}>
-              <div style={{ fontSize: 11, fontWeight: 600, color: "#0F6E56", marginBottom: 10, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>Consonances ✓</div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: "#0F6E56", marginBottom: 10, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>{tr("Consonances ✓")}</div>
               {[
                 { name: "Parfaites", intervals: "Unisson (1), Quinte (5J), Octave (8)" },
                 { name: "Imparfaites", intervals: "Tierces (M3, m3) · Sixtes (M6, m6)" },
@@ -581,7 +583,7 @@ export default function Cours13() {
               ))}
             </div>
             <div style={{ border: "0.5px solid #A32D2D40", borderRadius: 10, padding: "14px 16px", background: "#FCEBEB" }}>
-              <div style={{ fontSize: 11, fontWeight: 600, color: "#A32D2D", marginBottom: 10, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>Dissonances ✗</div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: "#A32D2D", marginBottom: 10, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>{tr("Dissonances ✗")}</div>
               {[
                 { name: "Toutes espèces", intervals: "Seconde (M2, m2) · Septième (M7, m7)" },
                 { name: "Contrepoint 2 voix", intervals: "Quarte juste (4J) · Triton (A4/D5)" },
@@ -595,7 +597,7 @@ export default function Cours13() {
           </div>
 
           {/* Mouvements */}
-          <h3 style={S.h3}>Les 4 types de mouvement</h3>
+          <h3 style={S.h3}>{tr("Les 4 types de mouvement")}</h3>
 
           {MOTIONS.map(motion => (
             <div key={motion.id} style={{
@@ -692,7 +694,7 @@ export default function Cours13() {
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Entraînement</h2>
+          <h2 style={S.h2}>{tr("Entraînement")}</h2>
 
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
@@ -712,9 +714,7 @@ export default function Cours13() {
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: PRIMARY_BG, color: PRIMARY }}
-              >
-                Nouveau quiz
-              </button>
+              >{tr("Nouveau quiz")}</button>
             </div>
           ) : (
             <div>

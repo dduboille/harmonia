@@ -9,6 +9,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours16Content } from "@/data/cours16Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
@@ -315,6 +316,7 @@ const S = {
 export default function Cours16() {
   const [activeSection, setActiveSection] = useState<SectionId>("principe");
   const i18n = useCoursI18n("cours16");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours16Content);
   const [activeTechnique, setActiveTechnique]   = useState<string | null>(null);
   const [activeComparison, setActiveComparison] = useState<string | null>(null);
@@ -361,7 +363,7 @@ export default function Cours16() {
       {/* Header */}
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 16</span>
-        <h1 style={S.h1}>La réharmonisation</h1>
+        <h1 style={S.h1}>{tr("La réharmonisation")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
@@ -454,7 +456,7 @@ export default function Cours16() {
                       </button>
                     </div>
                     <div style={{ background: tech.bg, border: `0.5px solid ${tech.color}40`, borderRadius: 8, padding: "10px 12px" }}>
-                      <div style={{ fontSize: 11, color: tech.color, marginBottom: 4 }}>Réharmonisé</div>
+                      <div style={{ fontSize: 11, color: tech.color, marginBottom: 4 }}>{tr("Réharmonisé")}</div>
                       <div style={{ fontFamily: "monospace", fontSize: 12, color: tech.color, marginBottom: 8 }}>
                         {tech.reharmLabel}
                       </div>
@@ -543,7 +545,7 @@ export default function Cours16() {
                       </button>
                     </div>
                     <div style={{ background: "#f0f4f8", border: `0.5px solid ${cmp.techniqueColor}40`, borderRadius: 8, padding: "10px 12px" }}>
-                      <div style={{ fontSize: 11, color: cmp.techniqueColor, marginBottom: 4 }}>Réharmonisé</div>
+                      <div style={{ fontSize: 11, color: cmp.techniqueColor, marginBottom: 4 }}>{tr("Réharmonisé")}</div>
                       <div style={{ fontFamily: "monospace", fontSize: 12, color: cmp.techniqueColor, marginBottom: 8 }}>{cmp.reharmLabel}</div>
                       <button
                         onClick={e => {
@@ -613,7 +615,7 @@ export default function Cours16() {
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Entraînement</h2>
+          <h2 style={S.h2}>{tr("Entraînement")}</h2>
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
               <div style={{ fontSize: 32, marginBottom: 8 }}>
@@ -628,9 +630,7 @@ export default function Cours16() {
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: PRIMARY_BG, color: PRIMARY }}
-              >
-                Nouveau quiz
-              </button>
+              >{tr("Nouveau quiz")}</button>
             </div>
           ) : (
             <div>

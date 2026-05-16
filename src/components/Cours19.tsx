@@ -9,6 +9,7 @@
 import React, { useRef, useState } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours19Content } from "@/data/cours19Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
@@ -381,6 +382,7 @@ const S = {
 export default function Cours19() {
   const [activeSection, setActiveSection] = useState<SectionId>("instruments");
   const i18n = useCoursI18n("cours19");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours19Content);
   const [activeFamily,    setActiveFamily]    = useState<string | null>(null);
   const [activePrinciple, setActivePrinciple] = useState<string | null>(null);
@@ -427,7 +429,7 @@ export default function Cours19() {
       {/* Header */}
       <div style={S.header}>
         <span style={S.badge}>Niveau 2 · Cours 19</span>
-        <h1 style={S.h1}>Introduction à l'orchestration</h1>
+        <h1 style={S.h1}>{tr("Introduction à l'orchestration")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
@@ -453,7 +455,7 @@ export default function Cours19() {
       {/* ══ SECTION 1 : LES INSTRUMENTS ══ */}
       {activeSection === "instruments" && (
         <div>
-          <h2 style={S.h2}>Les familles d'instruments et leurs caractéristiques</h2>
+          <h2 style={S.h2}>{tr("Les familles d'instruments et leurs caractéristiques")}</h2>
           <p style={S.p}>
             L'orchestre symphonique est organisé en 4 grandes familles. Chaque famille
             a ses propres caractéristiques acoustiques, ses tessitures et ses rôles
@@ -589,7 +591,7 @@ export default function Cours19() {
       {/* ══ SECTION 2 : ÉCRITURE ORCHESTRALE ══ */}
       {activeSection === "ecriture" && (
         <div>
-          <h2 style={S.h2}>Principes d'écriture orchestrale</h2>
+          <h2 style={S.h2}>{tr("Principes d'écriture orchestrale")}</h2>
           <p style={S.p}>
             L'orchestration est l'art d'attribuer les voix musicales aux instruments selon
             leurs caractéristiques. Cinq principes guident l'écriture : doublures, équilibre
@@ -710,7 +712,7 @@ export default function Cours19() {
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Entraînement</h2>
+          <h2 style={S.h2}>{tr("Entraînement")}</h2>
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
               <div style={{ fontSize: 32, marginBottom: 8 }}>
@@ -725,9 +727,7 @@ export default function Cours19() {
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: PRIMARY_BG, color: PRIMARY }}
-              >
-                Nouveau quiz
-              </button>
+              >{tr("Nouveau quiz")}</button>
             </div>
           ) : (
             <div>

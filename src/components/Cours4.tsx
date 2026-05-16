@@ -18,6 +18,7 @@
 import React, { useRef, useState, useCallback } from "react";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
 import { cours4Content } from "@/data/cours4Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { SATB } from "@/lib/satb-voicings";
@@ -286,6 +287,7 @@ const S = {
 export default function Cours4() {
   const [activeSection, setActiveSection] = useState("cadences");
   const i18n = useCoursI18n("cours4");
+  const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours4Content);
   const [activeCadence, setActiveCadence] = useState<string | null>(null);
   const [activeTech,    setActiveTech]    = useState<string | null>(null);
@@ -364,7 +366,7 @@ export default function Cours4() {
       ══════════════════════════════════════════════════════════════ */}
       {activeSection === "cadences" && (
         <div>
-          <h2 style={S.stitle}>Les cadences : ponctuation du discours musical</h2>
+          <h2 style={S.stitle}>{tr("Les cadences : ponctuation du discours musical")}</h2>
           <p style={S.sbody}>
             En musique tonale, une <strong>cadence</strong> est une formule harmonique qui termine une phrase musicale.
             Comme la ponctuation dans une langue, elle indique au niveau de conclusion — point final, virgule,
@@ -439,7 +441,7 @@ export default function Cours4() {
           ))}
 
           {/* Tableau récap */}
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "24px 0 8px", color: "#111" }}>Récapitulatif</h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "24px 0 8px", color: "#111" }}>{tr("Récapitulatif")}</h3>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
               <thead>
@@ -475,7 +477,7 @@ export default function Cours4() {
       ══════════════════════════════════════════════════════════════ */}
       {activeSection === "progressions" && (
         <div>
-          <h2 style={S.stitle}>Techniques de progression harmonique</h2>
+          <h2 style={S.stitle}>{tr("Techniques de progression harmonique")}</h2>
           <p style={S.sbody}>
             La structure fondamentale <strong>SD → D → T</strong> est le squelette de presque toute progression tonale.
             Mais la musique n'est pas faite d'une seule phrase — elle se déploie, respire, insiste, surprend.
@@ -547,9 +549,7 @@ export default function Cours4() {
           </div>
 
           {/* Tableau fonctions rappel */}
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "24px 0 8px", color: "#111" }}>
-            Substitutions diatoniques en C majeur
-          </h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "24px 0 8px", color: "#111" }}>{tr("Substitutions diatoniques en C majeur")}</h3>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
               <thead>
@@ -583,7 +583,7 @@ export default function Cours4() {
       {/* Exercices de renversements */}
       {activeSection === "progressions" && (
         <div style={{ marginTop: 32 }}>
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>Choisir le bon renversement</h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>{tr("Choisir le bon renversement")}</h3>
           <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7, marginBottom: 16, fontFamily: "system-ui, sans-serif" }}>
             Pour chaque progression, choisissez le renversement qui assure la meilleure conduite de voix.
           </p>
