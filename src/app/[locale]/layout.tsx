@@ -8,6 +8,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { ConditionalAppNav } from "@/components/AppNav";
 
 const LOCALES = ["fr", "en", "es", "de", "pt", "it"] as const;
 
@@ -122,6 +123,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         </head>
         <body>
           <NextIntlClientProvider messages={messages}>
+            <ConditionalAppNav />
             {children}
           </NextIntlClientProvider>
           <Analytics />

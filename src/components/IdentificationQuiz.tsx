@@ -412,11 +412,13 @@ export default function IdentificationQuiz({
 
         {ex.type === "identify" ? (
           <IdentifyQuestion
+            key={current}
             exercise={ex as IdentifyExercise}
             onAnswer={handleAnswer}
           />
         ) : (
           <BuildQuestion
+            key={current}
             exercise={ex as BuildExercise}
             onAnswer={handleAnswer}
           />

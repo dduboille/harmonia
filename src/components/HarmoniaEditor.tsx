@@ -411,7 +411,7 @@ export default function HarmoniaEditor({
         const fr = NOTE_TO_FR[n.name] || n.name;
         setTimeout(() => {
           pianoRef.current?.playNote(fr, n.octave, { duration: 1.5 });
-        }, delay + 30 * VOICES.indexOf(v));
+        }, delay);
       });
     });
   }, [measures]);
@@ -753,7 +753,7 @@ export default function HarmoniaEditor({
                 background:showSolution?"#f0ece6":"#fff",
                 color:"#666", fontSize:13, cursor:"pointer",
               }}>
-              {showSolution ? "Masquer la solution" : "Voir la solution"}
+              {showSolution ? "Masquer la solution proposée" : "Voir une solution proposée"}
             </button>
           )}
 

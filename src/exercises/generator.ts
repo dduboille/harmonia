@@ -45,6 +45,12 @@ type SATBMeasure = { soprano: NoteEntry; alto: NoteEntry; tenor: NoteEntry; bass
 
 const CHROMATIC = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
 
+const SHARP_TO_FLAT: Record<string, string> = {
+  "C#": "Db", "D#": "Eb", "F#": "Gb", "G#": "Ab", "A#": "Bb",
+};
+
+const FLAT_KEY_SIGS = new Set(["F", "Bb", "Eb", "Ab", "Db", "Gb"]);
+
 function noteIndex(note: string): number {
   const map: Record<string,number> = {
     "C":0,"C#":1,"Db":1,"D":2,"D#":3,"Eb":3,"E":4,"Fb":4,
@@ -55,12 +61,13 @@ function noteIndex(note: string): number {
 }
 
 /** Transposes une note de `semitones` demi-tons, retourne note + octave */
-function transposeNote(rootNote: string, rootOctave: number, semitones: number): { name: string; octave: number } {
+function transposeNote(rootNote: string, rootOctave: number, semitones: number, useFlats = false): { name: string; octave: number } {
   const base = noteIndex(rootNote);
   const total = base + semitones;
   const oct   = rootOctave + Math.floor(total / 12);
   const idx   = ((total % 12) + 12) % 12;
-  return { name: CHROMATIC[idx], octave: oct };
+  const sharp = CHROMATIC[idx];
+  return { name: useFlats ? (SHARP_TO_FLAT[sharp] ?? sharp) : sharp, octave: oct };
 }
 
 // ─── Intervalles standard ─────────────────────────────────────────────────────
@@ -325,10 +332,11 @@ function noteToMidi(name: string, octave: number): number {
   return noteIndex(name) + (octave + 1) * 12;
 }
 
-function midiToNote(midi: number): { name: string; octave: number } {
+function midiToNote(midi: number, useFlats = false): { name: string; octave: number } {
   const oct  = Math.floor(midi / 12) - 1;
   const idx  = ((midi % 12) + 12) % 12;
-  return { name: CHROMATIC[idx], octave: oct };
+  const sharp = CHROMATIC[idx];
+  return { name: useFlats ? (SHARP_TO_FLAT[sharp] ?? sharp) : sharp, octave: oct };
 }
 
 /**
@@ -338,6 +346,7 @@ function computeVoicing(
   rootNote: string,
   intervals: [number, number, number, number],
   sopranoPosition: Position,
+  useFlats = false,
 ): SATBMeasure | null {
   // Notes de l'accord (4 intervalles depuis la fondamentale)
   const chordNotes = intervals.map(int => noteIndex(rootNote) + int);
@@ -402,7 +411,7 @@ function computeVoicing(
   if (altoMidi - tenorMidi > 12) return null; // A-T max 1 octave
 
   const toEntry = (midi: number): NoteEntry => {
-    const { name, octave } = midiToNote(midi);
+    const { name, octave } = midiToNote(midi, useFlats);
     return { name, octave };
   };
 
@@ -470,6 +479,7 @@ export function generateExercisesForTemplate(
   const keys = ALL_KEY_DATA.filter(k => template.modes.includes(k.mode));
 
   for (const key of keys) {
+    const useFlats = FLAT_KEY_SIGS.has(key.keySignature);
     for (const position of positions) {
       const solution: SATBMeasure[] = [];
       const measureLabels: string[] = [];
@@ -483,7 +493,7 @@ export function generateExercisesForTemplate(
         const degreeSemitones = degreeToSemitones(chord.degreeLabel, key.mode);
 
         // Transposer depuis la tonique de la gamme
-        const chordRoot = transposeNote(key.root, 4, degreeSemitones);
+        const chordRoot = transposeNote(key.root, 4, degreeSemitones, useFlats);
 
         // V/V : dominante de la dominante = sur le IIe degré de la gamme
         const effectiveIntervals: [number,number,number,number] =
@@ -494,8 +504,8 @@ export function generateExercisesForTemplate(
         // Calculer le voicing SATB
         // Pour la première mesure, on utilise la position demandée
         // Pour les mesures suivantes, on optimise par notes communes
-        const pos: Position = ci === 0 ? position : bestNextPosition(solution, chordRoot.name, effectiveIntervals);
-        const voicing = computeVoicing(chordRoot.name, effectiveIntervals, pos);
+        const pos: Position = ci === 0 ? position : bestNextPosition(solution, chordRoot.name, effectiveIntervals, useFlats);
+        const voicing = computeVoicing(chordRoot.name, effectiveIntervals, pos, useFlats);
 
         if (!voicing) { valid = false; break; }
 
@@ -537,6 +547,7 @@ function bestNextPosition(
   prevMeasures: SATBMeasure[],
   rootNote: string,
   intervals: [number,number,number,number],
+  useFlats = false,
 ): Position {
   if (prevMeasures.length === 0) return 3; // défaut : septième au soprano
 
@@ -547,7 +558,7 @@ function bestNextPosition(
   let minMovement = Infinity;
 
   for (const pos of [0, 1, 2, 3] as Position[]) {
-    const voicing = computeVoicing(rootNote, intervals, pos);
+    const voicing = computeVoicing(rootNote, intervals, pos, useFlats);
     if (!voicing || !voicing.soprano.name) continue;
 
     const sopMidi = noteToMidi(voicing.soprano.name, voicing.soprano.octave);
