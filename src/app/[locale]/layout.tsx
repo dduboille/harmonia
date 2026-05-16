@@ -4,7 +4,7 @@
  */
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
@@ -113,6 +113,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   if (!LOCALES.includes(locale as any)) notFound();
+  setRequestLocale(locale);
   const messages = await getMessages();
 
   return (
