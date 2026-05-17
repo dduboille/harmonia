@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { getUserPlan } from "@/lib/progression";
+import { unzipSync, strFromU8 } from "fflate";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -310,11 +311,9 @@ export async function POST(req: Request) {
   if (!file) return Response.json({ error: "Aucun fichier fourni" }, { status: 400 });
 
   const name = file.name.toLowerCase();
-  if (!name.endsWith(".xml") && !name.endsWith(".musicxml")) {
-    const msg = name.endsWith(".mxl")
-      ? "Format .mxl non supporté. Exportez en .xml depuis MuseScore (Fichier > Exporter > MusicXML) ou Sibelius (File > Export > MusicXML)."
-      : "Format non supporté. Utilisez un fichier .xml ou .musicxml.";
-    return Response.json({ error: msg }, { status: 400 });
+  const isMxl = name.endsWith(".mxl");
+  if (!name.endsWith(".xml") && !name.endsWith(".musicxml") && !isMxl) {
+    return Response.json({ error: "Format non supporté. Utilisez un fichier .xml, .musicxml ou .mxl." }, { status: 400 });
   }
 
   if (file.size > 5 * 1024 * 1024) {
@@ -323,7 +322,34 @@ export async function POST(req: Request) {
 
   let xmlText: string;
   try {
-    xmlText = await file.text();
+    if (isMxl) {
+      const buffer = await file.arrayBuffer();
+      const unzipped = unzipSync(new Uint8Array(buffer));
+
+      // Locate rootfile path from META-INF/container.xml
+      let rootPath: string | null = null;
+      const containerEntry = unzipped["META-INF/container.xml"];
+      if (containerEntry) {
+        const containerXml = strFromU8(containerEntry);
+        const m = /full-path="([^"]+)"/.exec(containerXml);
+        if (m) rootPath = m[1];
+      }
+
+      // Fallback: first .xml/.musicxml entry that's not in META-INF
+      if (!rootPath) {
+        rootPath = Object.keys(unzipped).find(
+          k => !k.startsWith("META-INF") && (k.endsWith(".xml") || k.endsWith(".musicxml"))
+        ) ?? null;
+      }
+
+      if (!rootPath || !unzipped[rootPath]) {
+        return Response.json({ error: "Archive .mxl invalide : aucun fichier MusicXML trouvé à l'intérieur." }, { status: 422 });
+      }
+
+      xmlText = strFromU8(unzipped[rootPath]);
+    } else {
+      xmlText = await file.text();
+    }
   } catch {
     return Response.json({ error: "Impossible de lire le fichier" }, { status: 400 });
   }

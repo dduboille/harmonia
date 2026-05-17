@@ -181,15 +181,15 @@ export default function AnalysePartition() {
         fontFamily: "system-ui, sans-serif",
         letterSpacing: "0.04em",
       }}>
-        .xml · .musicxml
+        .mxl · .xml · .musicxml
       </div>
       <div style={{ marginTop: 10, fontSize: 11, color: "#aaa", fontFamily: "system-ui, sans-serif" }}>
-        Max 5 Mo — Pour .mxl : exportez en .xml depuis MuseScore ou Sibelius
+        Max 5 Mo
       </div>
       <input
         ref={inputRef}
         type="file"
-        accept=".xml,.musicxml"
+        accept=".xml,.musicxml,.mxl"
         style={{ display: "none" }}
         onChange={e => { const f = e.target.files?.[0]; if (f) handleFile(f); }}
       />
