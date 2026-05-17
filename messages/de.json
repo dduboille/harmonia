@@ -184,18 +184,18 @@
     }
   },
   "cours10": {
-    "badge": "Level 2 · Course 10",
-    "title": "Modes of the Major Scale",
-    "subtitle": "Ionian, Dorian, Phrygian, Lydian, Mixolydian, Aeolian, Locrian — seven colors, one scale.",
+    "badge": "Stufe 2 · Kurs 10",
+    "title": "Die Kirchentonarten der Durtonleiter",
+    "subtitle": "Ionisch, Dorisch, Phrygisch, Lydisch, Mixolydisch, Äolisch, Lokrisch — sieben Farben, eine Tonleiter.",
     "sections": {
-      "modes": "The 7 Modes",
-      "harmonie": "Modal Harmony",
-      "quiz": "Practice"
+      "modes": "Die 7 Kirchentonarten",
+      "harmonie": "Modale Harmonik",
+      "quiz": "Übung"
     },
     "quiz": {
-      "perfect": "Perfect — you've mastered the modes!",
-      "veryGood": "Well done! A few more listens and you'll have it.",
-      "keepGoing": "Keep listening actively — the ear learns with practice!"
+      "perfect": "Ausgezeichnet — die Kirchentonarten halten keine Geheimnisse mehr!",
+      "veryGood": "Gut gemacht! Noch ein paar Zuhören und du hast es.",
+      "keepGoing": "Bleib aktiv am Hören der Kirchentonarten — das Ohr lernt durch Übung!"
     }
   },
   "cours11": {

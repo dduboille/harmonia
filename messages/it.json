@@ -184,18 +184,18 @@
     }
   },
   "cours10": {
-    "badge": "Level 2 · Course 10",
-    "title": "Modes of the Major Scale",
-    "subtitle": "Ionian, Dorian, Phrygian, Lydian, Mixolydian, Aeolian, Locrian — seven colors, one scale.",
+    "badge": "Livello 2 · Corso 10",
+    "title": "I modi della scala maggiore",
+    "subtitle": "Ionico, dorico, frigio, lidio, misolidio, eolico, locrio — sette colori, una sola scala.",
     "sections": {
-      "modes": "The 7 Modes",
-      "harmonie": "Modal Harmony",
-      "quiz": "Practice"
+      "modes": "I 7 modi",
+      "harmonie": "Armonia modale",
+      "quiz": "Esercitazione"
     },
     "quiz": {
-      "perfect": "Perfect — you've mastered the modes!",
-      "veryGood": "Well done! A few more listens and you'll have it.",
-      "keepGoing": "Keep listening actively — the ear learns with practice!"
+      "perfect": "Eccellente — i modi non hanno più segreti!",
+      "veryGood": "Ben fatto! Ancora qualche ascolto e ci sei.",
+      "keepGoing": "Continua ad ascoltare i modi attivamente — l'orecchio impara con la pratica!"
     }
   },
   "cours11": {
