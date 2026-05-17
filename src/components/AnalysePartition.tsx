@@ -12,6 +12,7 @@ interface ChordResult {
   degree: string;
   degreeNum: number;
   fonction: Fonction;
+  beat?: number;
 }
 
 interface CadenceResult {
@@ -363,7 +364,7 @@ export default function AnalysePartition() {
             <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: "system-ui, sans-serif" }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid #e8e3ed" }}>
-                  {["Mesure", "Accord", "Degré", "Fonction"].map(h => (
+                  {["Mesure", "Temps", "Accord", "Degré", "Fonction"].map(h => (
                     <th key={h} style={{
                       padding: "12px 16px", textAlign: "left",
                       fontSize: 10, fontWeight: 700, letterSpacing: "0.08em",
@@ -375,33 +376,43 @@ export default function AnalysePartition() {
                 </tr>
               </thead>
               <tbody>
-                {analysis.mesures.map((m, idx) => {
-                  const chord = m.accords[0];
-                  return (
+                {analysis.mesures.flatMap((m, mi) => {
+                  const rowBg = mi % 2 === 0 ? "#fff" : "#faf9f7";
+                  if (m.accords.length === 0) {
+                    return [(
+                      <tr key={`${m.numero}-empty`} style={{ borderBottom: "1px solid #f0ebe8", background: rowBg }}>
+                        <td style={{ padding: "10px 16px", color: "#888", fontSize: 13, fontWeight: 600 }}>{m.numero}</td>
+                        <td style={{ padding: "10px 16px", color: "#ccc", fontSize: 12 }}>—</td>
+                        <td colSpan={3} style={{ padding: "10px 16px", color: "#ccc", fontSize: 13 }}>—</td>
+                      </tr>
+                    )];
+                  }
+                  return m.accords.map((chord, ci) => (
                     <tr
-                      key={m.numero}
-                      style={{ borderBottom: "1px solid #f0ebe8", background: idx % 2 === 0 ? "#fff" : "#faf9f7" }}
+                      key={`${m.numero}-${ci}`}
+                      style={{ borderBottom: "1px solid #f0ebe8", background: rowBg }}
                     >
                       <td style={{ padding: "10px 16px", color: "#888", fontSize: 13, fontWeight: 600 }}>
-                        {m.numero}
+                        {ci === 0 ? m.numero : ""}
+                      </td>
+                      <td style={{ padding: "10px 16px", color: "#bbb", fontSize: 12, fontWeight: 600 }}>
+                        {chord.beat !== undefined ? `T${chord.beat}` : ""}
                       </td>
                       <td style={{ padding: "10px 16px", fontSize: 14, fontWeight: 700, color: "#1a1a1a" }}>
-                        {chord ? `${chord.rootFr}${chord.quality}` : <span style={{ color: "#ccc" }}>—</span>}
+                        {`${chord.rootFr}${chord.quality}`}
                       </td>
                       <td style={{ padding: "10px 16px" }}>
-                        {chord ? (
-                          <span style={{
-                            display: "inline-block",
-                            background: "#F0EBF8", color: "#5C3D6E",
-                            padding: "2px 10px", borderRadius: 12,
-                            fontSize: 12, fontWeight: 700,
-                          }}>
-                            {chord.degree}
-                          </span>
-                        ) : <span style={{ color: "#ccc" }}>—</span>}
+                        <span style={{
+                          display: "inline-block",
+                          background: "#F0EBF8", color: "#5C3D6E",
+                          padding: "2px 10px", borderRadius: 12,
+                          fontSize: 12, fontWeight: 700,
+                        }}>
+                          {chord.degree}
+                        </span>
                       </td>
                       <td style={{ padding: "10px 16px" }}>
-                        {chord && chord.fonction !== "?" ? (
+                        {chord.fonction !== "?" ? (
                           <span style={{
                             display: "inline-block",
                             background: FONC_STYLE[chord.fonction].bg,
@@ -411,7 +422,7 @@ export default function AnalysePartition() {
                           }}>
                             {FONC_STYLE[chord.fonction].label}
                           </span>
-                        ) : chord?.fonction === "?" ? (
+                        ) : (
                           <span style={{
                             display: "inline-block",
                             background: "#F5F5F5", color: "#999",
@@ -420,10 +431,10 @@ export default function AnalysePartition() {
                           }}>
                             chr
                           </span>
-                        ) : null}
+                        )}
                       </td>
                     </tr>
-                  );
+                  ));
                 })}
               </tbody>
             </table>

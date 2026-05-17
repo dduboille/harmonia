@@ -11,6 +11,7 @@ export interface ChordResult {
   degree: string;
   degreeNum: number;
   fonction: Fonction;
+  beat?: number;
 }
 
 export interface CadenceResult {
@@ -132,7 +133,7 @@ function parseMusicXML(xml: string): {
   fifths: number;
   mode: "major" | "minor";
   signature: string;
-  measurePcs: Array<{ numero: number; pcs: number[] }>;
+  measureBeats: Array<{ numero: number; onsets: Array<{ beat: number; pcs: number[] }> }>;
 } {
   const fifths = parseInt(getTag(xml, "fifths") || "0", 10);
   const mode: "major" | "minor" = getTag(xml, "mode") === "minor" ? "minor" : "major";
@@ -141,10 +142,10 @@ function parseMusicXML(xml: string): {
   const beatTypeStr = getTag(xml, "beat-type");
   const signature = beatsStr && beatTypeStr ? `${beatsStr}/${beatTypeStr}` : "4/4";
 
-  // Collect all pitch classes per measure number, across all parts
-  const measureMap = new Map<number, Set<number>>();
+  // measureBeatMap: measure# -> Map<beat#, Set<pc>>
+  const measureBeatMap = new Map<number, Map<number, Set<number>>>();
+  const measureDivMap = new Map<number, number>();
 
-  // Extract all <part id="..."> music blocks (not <score-part> which is inside <part-list>)
   const partRe = /<part\b([^>]*)>([\s\S]*?)<\/part>/g;
   let pMatch: RegExpExecArray | null;
 
@@ -153,6 +154,7 @@ function parseMusicXML(xml: string): {
     const measureRe = /<measure\b([^>]*)>([\s\S]*?)<\/measure>/g;
     let mMatch: RegExpExecArray | null;
     let seqCounter = 0;
+    let currentDivisions = 1;
 
     while ((mMatch = measureRe.exec(partContent)) !== null) {
       seqCounter++;
@@ -161,15 +163,31 @@ function parseMusicXML(xml: string): {
       const numM = attrs.match(/number="(\d+)"/);
       const measureNum = numM ? parseInt(numM[1], 10) : seqCounter;
 
-      if (!measureMap.has(measureNum)) measureMap.set(measureNum, new Set());
-      const pcSet = measureMap.get(measureNum)!;
+      const divStr = getTag(measureContent, "divisions");
+      if (divStr) currentDivisions = Math.max(1, parseInt(divStr, 10) || 1);
 
-      // Extract notes
+      if (!measureBeatMap.has(measureNum)) {
+        measureBeatMap.set(measureNum, new Map());
+        measureDivMap.set(measureNum, currentDivisions);
+      }
+      const beatMap = measureBeatMap.get(measureNum)!;
+
       const noteRe = /<note\b[^>]*>([\s\S]*?)<\/note>/g;
       let nMatch: RegExpExecArray | null;
+      let currentOnset = 0;
+      let lastDuration = 0;
+
       while ((nMatch = noteRe.exec(measureContent)) !== null) {
         const noteContent = nMatch[1];
-        // Skip rests
+        // <chord/> means this note is simultaneous with the previous note
+        const isChord = /<chord[\s/>]/.test(noteContent);
+        const dur = parseInt(getTag(noteContent, "duration") || "0", 10);
+
+        if (!isChord) {
+          currentOnset += lastDuration;
+          lastDuration = dur;
+        }
+
         if (noteContent.includes("<rest")) continue;
 
         const pitchXml = getTag(noteContent, "pitch");
@@ -178,26 +196,34 @@ function parseMusicXML(xml: string): {
         const step = getTag(pitchXml, "step");
         const alterStr = getTag(pitchXml, "alter");
         const alter = alterStr ? parseFloat(alterStr) : 0;
-
         const basePc = STEP_PC[step];
         if (basePc === undefined) continue;
         const pc = ((basePc + Math.round(alter)) % 12 + 12) % 12;
-        pcSet.add(pc);
+
+        const beat = Math.floor(currentOnset / currentDivisions) + 1;
+        if (!beatMap.has(beat)) beatMap.set(beat, new Set());
+        beatMap.get(beat)!.add(pc);
       }
     }
   }
 
-  const measurePcs = [...measureMap.keys()]
+  const measureBeats = [...measureBeatMap.keys()]
     .sort((a, b) => a - b)
-    .map(n => ({ numero: n, pcs: [...(measureMap.get(n) ?? [])] }));
+    .map(num => {
+      const beatMap = measureBeatMap.get(num)!;
+      const onsets = [...beatMap.keys()]
+        .sort((a, b) => a - b)
+        .map(beat => ({ beat, pcs: [...beatMap.get(beat)!] }));
+      return { numero: num, onsets };
+    });
 
-  return { fifths, mode, signature, measurePcs };
+  return { fifths, mode, signature, measureBeats };
 }
 
 // ── Main Analysis ─────────────────────────────────────────────────────────────
 
 function analyze(xml: string, filename: string): AnalysisResult {
-  const { fifths, mode, signature, measurePcs } = parseMusicXML(xml);
+  const { fifths, mode, signature, measureBeats } = parseMusicXML(xml);
 
   const tonicPc = FIFTHS_PC.get(fifths) ?? 0;
   const tonicFr = NOTE_FR[tonicPc] ?? "Do";
@@ -207,20 +233,25 @@ function analyze(xml: string, filename: string): AnalysisResult {
   const mesures: MesureResult[] = [];
   const chordSequence: Array<{ result: ChordResult; measure: number }> = [];
 
-  for (const { numero, pcs } of measurePcs) {
-    if (pcs.length === 0) {
+  for (const { numero, onsets } of measureBeats) {
+    if (onsets.length === 0) {
       mesures.push({ numero, accords: [] });
       continue;
     }
-    const chord = identifyChord(pcs);
-    if (!chord) {
-      mesures.push({ numero, accords: [] });
-      continue;
+
+    const accordsMesure: ChordResult[] = [];
+    for (const { beat, pcs } of onsets) {
+      if (pcs.length < 2) continue;
+      const chord = identifyChord(pcs);
+      if (!chord) continue;
+      const result = analyzeChord(chord, tonicPc, mode);
+      result.beat = beat;
+      if (result.fonction === "?") nombreChromatiques++;
+      accordsMesure.push(result);
+      chordSequence.push({ result, measure: numero });
     }
-    const result = analyzeChord(chord, tonicPc, mode);
-    if (result.fonction === "?") nombreChromatiques++;
-    mesures.push({ numero, accords: [result] });
-    chordSequence.push({ result, measure: numero });
+
+    mesures.push({ numero, accords: accordsMesure });
   }
 
   // Cadence detection on the chord sequence
@@ -251,7 +282,7 @@ function analyze(xml: string, filename: string): AnalysisResult {
     tonalite,
     tonicFr,
     mode,
-    nombreMesures: measurePcs.length,
+    nombreMesures: measureBeats.length,
     signature,
     mesures,
     cadences,
