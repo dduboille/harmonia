@@ -31,21 +31,20 @@ const PLANS = [
   {
     name: "Gratuit", href: "cours", price: "0€", period: "", desc: "Pour découvrir l'harmonie tonale",
     color: "#555", bg: "#fff", border: "#e0dbd3", cta: "Commencer gratuitement", ctaStyle: "outline",
-    features: ["Cours 1 à 3 complets", "Quiz illimité (cours 1–3)", "Exercices SATB niveau 1", "Page des 24 tonalités", "Audio Salamander"],
+    features: ["Cours 1 à 3 complets", "Quiz illimité (cours 1–3)", "Exercices SATB niveau 1", "Dictée harmonique", "Page des 24 tonalités", "Audio haute qualité"],
     notIncluded: ["Cours 4 à 23", "Exercices niveaux 2–3", "Fonctionnalités IA"],
   },
   {
     name: "Étudiant", href: "upgrade", price: "9€", period: "/mois", desc: "Tous les cours et exercices",
     color: "#fff", bg: "#1a1a1a", border: "#1a1a1a", cta: "Choisir Étudiant", ctaStyle: "solid", badge: "Le plus populaire",
     features: ["Tous les cours (1 à 23)", "Quiz illimité sur tous les cours", "700+ exercices SATB", "24 tonalités × 4 positions", "Tous les niveaux de difficulté", "Mises à jour continues"],
-    notIncluded: ["Fonctionnalités IA (bientôt)"],
+    notIncluded: ["Fonctionnalités IA"],
   },
   {
     name: "Pro", href: "upgrade", price: "19€", period: "/mois", desc: "Étudiant + fonctionnalités IA",
     color: "#BA7517", bg: "#FAEEDA", border: "#F6AD55", cta: "Choisir Pro", ctaStyle: "amber", badge: "Meilleure valeur",
-    features: ["Tout le plan Étudiant", "Analyse MusicXML automatique (bientôt)", "Assistant IA conversationnel (bientôt)", "Dictée harmonique (bientôt)", "Bibliothèque 500+ progressions (bientôt)", "Support prioritaire"],
+    features: ["Tout le plan Étudiant", "Assistant IA conversationnel", "Analyse de partition MusicXML", "Bibliothèque de 110 progressions", "Comparateur de 11 styles harmoniques", "Support prioritaire"],
     notIncluded: [],
-    aiNote: "Fonctionnalités IA bientôt disponibles",
   },
 ];
 
