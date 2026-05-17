@@ -401,7 +401,8 @@
     "dictee": "Ear Training",
     "scales": "Keys",
     "styles": "Styles",
-    "progressions": "Progressions"
+    "progressions": "Progressions",
+    "assistant": "Assistant"
   },
   "hub": {
     "chooseLevel": "Choose your level",

@@ -217,6 +217,48 @@ export default async function DashboardPage({ params }: Props) {
           </div>
         </div>
 
+        {/* Promo Assistant IA — Pro uniquement */}
+        {(plan === "pro" || plan === "annual") && (
+          <Link href={`/${locale}/assistant`} style={{ textDecoration: "none", display: "block", marginBottom: "1rem" }}>
+            <div style={{
+              background: "linear-gradient(135deg, #BA7517 0%, #7a4c0e 100%)",
+              border: "0.5px solid #E9C97E60",
+              borderRadius: 12,
+              padding: "16px 24px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 16,
+              flexWrap: "wrap" as const,
+              cursor: "pointer",
+            }}>
+              <div>
+                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#E9C97E", textTransform: "uppercase" as const, marginBottom: 4 }}>
+                  Pro · Nouveau
+                </div>
+                <div style={{ fontSize: 16, fontWeight: 600, color: "#fff", marginBottom: 4 }}>
+                  ✦ Assistant IA — Professeur virtuel 24h/24
+                </div>
+                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.72)", lineHeight: 1.4, maxWidth: 440 }}>
+                  Posez vos questions de théorie, demandez l'analyse d'une progression, obtenez des explications personnalisées instantanément.
+                </div>
+              </div>
+              <div style={{
+                background: "#E9C97E",
+                color: "#7a4c0e",
+                fontWeight: 700,
+                fontSize: 13,
+                padding: "9px 18px",
+                borderRadius: 8,
+                whiteSpace: "nowrap" as const,
+                flexShrink: 0,
+              }}>
+                Accéder →
+              </div>
+            </div>
+          </Link>
+        )}
+
         {/* Promo Comparateur de styles */}
         <Link href={`/${locale}/comparateur`} style={{ textDecoration: "none", display: "block", marginBottom: "2rem" }}>
           <div style={{

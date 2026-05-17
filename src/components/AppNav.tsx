@@ -107,6 +107,34 @@ function NavItem({
   );
 }
 
+function NavItemPro({
+  href,
+  active,
+  icon,
+  label,
+}: {
+  href: string;
+  active: boolean;
+  icon: string;
+  label: string;
+}) {
+  return (
+    <div style={{ position: "relative" }}>
+      <NavItem href={href} active={active} icon={icon} label={label} />
+      <span style={{
+        position: "absolute", top: 2, right: 2,
+        background: "#E9C97E", color: "#3a2547",
+        fontSize: 5, fontWeight: 800,
+        padding: "1px 3px", borderRadius: 3,
+        letterSpacing: "0.05em", lineHeight: 1.3,
+        pointerEvents: "none",
+      }}>
+        PRO
+      </span>
+    </div>
+  );
+}
+
 function AppNav() {
   const router = useRouter();
   const pathname = usePathname();
@@ -168,7 +196,8 @@ function AppNav() {
         <NavItem href={`/${locale}/atelier`}      active={active("atelier")}      icon="✎" label={t("atelier").toUpperCase()} />
         <NavItem href={`/${locale}/dictee`}       active={active("dictee")}       icon="♫" label={t("dictee").toUpperCase()} />
         <NavItem href={`/${locale}/comparateur`}   active={active("comparateur")}   icon="⟳" label={t("styles").toUpperCase()} />
-        <NavItem href={`/${locale}/progressions`}  active={active("progressions")}  icon="♬" label={t("progressions").toUpperCase()} />
+        <NavItem    href={`/${locale}/progressions`}  active={active("progressions")}  icon="♬" label={t("progressions").toUpperCase()} />
+        <NavItemPro href={`/${locale}/assistant`}    active={active("assistant")}     icon="✦" label={t("assistant").toUpperCase()} />
       </div>
     </div>
   );

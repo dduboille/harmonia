@@ -401,7 +401,8 @@
     "dictee": "Gehörtraining",
     "scales": "Tonarten",
     "styles": "Stile",
-    "progressions": "Progressionen"
+    "progressions": "Progressionen",
+    "assistant": "Assistent"
   },
   "hub": {
     "chooseLevel": "Wähle dein Niveau",

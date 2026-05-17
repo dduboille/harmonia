@@ -401,7 +401,8 @@
     "dictee": "Dictée",
     "scales": "Tonalités",
     "styles": "Styles",
-    "progressions": "Progressions"
+    "progressions": "Progressions",
+    "assistant": "Assistant"
   },
   "hub": {
     "chooseLevel": "Choisissez votre niveau",
