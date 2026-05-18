@@ -226,6 +226,30 @@ export default async function DashboardPage({ params }: Props) {
                 </div>
               </div>
             </Link>
+
+            {/* Composition guidée */}
+            <Link href={`/${locale}/composition`} style={{ textDecoration: "none" }}>
+              <div style={{
+                background: "linear-gradient(135deg, #F0EAFA 0%, #E8E0F5 100%)",
+                border: "0.5px solid #C4B0E0",
+                borderRadius: 10,
+                padding: "18px 20px",
+                cursor: "pointer",
+                height: "100%",
+                boxSizing: "border-box" as const,
+              }}>
+                <div style={{ fontSize: 22, marginBottom: 8 }}>✎</div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#3D1F7A", marginBottom: 6 }}>
+                  Composition guidée
+                </div>
+                <div style={{ fontSize: 12, color: "#6B4FA0", lineHeight: 1.5, marginBottom: 12 }}>
+                  Harmonisez une mélodie imposée accord par accord et recevez un feedback détaillé sur vos choix.
+                </div>
+                <div style={{ fontSize: 12, color: "#6B3FA0", fontWeight: 600 }}>
+                  Démarrer →
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
 
