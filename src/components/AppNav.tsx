@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useUser } from "@clerk/nextjs";
 
 const LOCALES = [
   { code: "fr", label: "FR" },
@@ -141,6 +142,7 @@ function AppNav() {
   const params = useParams();
   const locale = (params?.locale as string) ?? "fr";
   const t = useTranslations("nav");
+  const { isSignedIn } = useUser();
 
   const active = (seg: string) => pathname.startsWith(`/${locale}/${seg}`);
 
@@ -201,6 +203,9 @@ function AppNav() {
         <NavItem    href={`/${locale}/progressions`}       active={active("progressions")}      icon="♬" label={t("progressions").toUpperCase()} />
         <NavItemPro href={`/${locale}/analyse-partition`} active={active("analyse-partition")} icon="◎" label={t("analyser").toUpperCase()} />
         <NavItemPro href={`/${locale}/assistant`}         active={active("assistant")}         icon="✦" label={t("assistant").toUpperCase()} />
+        {isSignedIn && (
+          <NavItem href={`/${locale}/prof`} active={active("prof")} icon="🎓" label="ÉCOLE" />
+        )}
       </div>
     </div>
   );

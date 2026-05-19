@@ -8,6 +8,8 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getAllProgress, getCoursStats, getUserPlan, canAccessCours } from "@/lib/progression";
 import { ALL_EXERCISES } from "@/exercises/all-exercises";
+import { supabaseAdmin } from "@/lib/supabase";
+import MaClasseSection from "@/components/MaClasseSection";
 
 const COURS_META = [
   { id: 1,  title: "La gamme, les degrés et les intervalles" },
@@ -75,6 +77,30 @@ export default async function DashboardPage({ params }: Props) {
 
   const allProgress = await getAllProgress(userId);
   const recentExercises = allProgress.slice(0, 5);
+
+  // Fetch student's class membership (conservatoire feature)
+  const { data: classeMembership } = await supabaseAdmin
+    .from("classe_eleves")
+    .select("classe_id, classes(id, nom, prof_id, code_acces)")
+    .eq("eleve_id", userId)
+    .limit(1)
+    .maybeSingle();
+
+  // Fetch devoirs for the class if member
+  let classeDevoirs: Array<{ titre: string; dateLimite: string | null; type: string }> = [];
+  if (classeMembership?.classe_id) {
+    const { data: devoirsData } = await supabaseAdmin
+      .from("devoirs")
+      .select("titre, date_limite, type")
+      .eq("classe_id", classeMembership.classe_id)
+      .order("created_at", { ascending: false })
+      .limit(5);
+    classeDevoirs = (devoirsData ?? []).map((d: { titre: string; date_limite: string | null; type: string }) => ({
+      titre: d.titre,
+      dateLimite: d.date_limite,
+      type: d.type,
+    }));
+  }
 
   const totalCompleted = coursStats.reduce((s, c) => s + c.completedExercises, 0);
   const totalExercises = ALL_EXERCISES.length;
@@ -146,6 +172,9 @@ export default async function DashboardPage({ params }: Props) {
             </div>
           ))}
         </div>
+
+        {/* ── Ma classe (conservatoire) ───────────────────────── */}
+        <MaClasseSection locale={locale} membership={classeMembership as any} devoirs={classeDevoirs} />
 
         {/* ── Outils d'entraînement ───────────────────────────── */}
         <div style={{ marginBottom: "2rem" }}>
