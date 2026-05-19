@@ -7,7 +7,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import ExerciseCard from "@/components/ExerciseCard";
 import { ALL_EXERCISES } from "@/exercises/all-exercises";
 import { DIFFICULTY_LABEL, DIFFICULTY_COLOR, DIFFICULTY_BG } from "@/types/exercise";
@@ -34,6 +34,7 @@ const TYPE_LABELS: Record<string, string> = {
 
 export default function AtelierPage() {
   const params = useParams();
+  const router = useRouter();
   const locale = (params?.locale as string) ?? "fr";
 
   const [filterCours,      setFilterCours]      = useState<number | null>(null);
@@ -78,6 +79,40 @@ export default function AtelierPage() {
             {ALL_EXERCISES.length} exercices de conduite de voix SATB — filtre par cours, difficulté ou concept.
             Chaque exercice génère un feedback harmonique en temps réel.
           </p>
+        </div>
+
+        {/* Générateur SATB */}
+        <div style={{ marginBottom: "2.5rem" }}>
+          <div style={{ fontSize: 13, fontWeight: 600, color: "#1a1a1a", marginBottom: 10 }}>
+            ⊞ Générateur d'exercices
+          </div>
+          <div
+            onClick={() => router.push(`/${locale}/generateur-satb`)}
+            style={{
+              background: "linear-gradient(135deg, #E6F1FB 0%, #D8EAFA 100%)",
+              border: "0.5px solid #A8C7EE",
+              borderRadius: 12,
+              padding: "20px 24px",
+              cursor: "pointer",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: 16,
+            }}
+          >
+            <div>
+              <div style={{ fontSize: 15, fontWeight: 600, color: "#185FA5", marginBottom: 4 }}>
+                Générateur d'exercices SATB
+              </div>
+              <div style={{ fontSize: 12, color: "#3A7CC7", lineHeight: 1.5 }}>
+                Créez un exercice SATB paramétrable — 22 progressions, 24 tonalités, 4 doigtés de départ.
+                Les 4 voix sont calculées automatiquement selon les règles harmoniques.
+              </div>
+            </div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: "#185FA5", whiteSpace: "nowrap" as const }}>
+              Accéder →
+            </div>
+          </div>
         </div>
 
         {/* Filtres */}

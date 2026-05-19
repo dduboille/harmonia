@@ -279,6 +279,30 @@ export default async function DashboardPage({ params }: Props) {
                 </div>
               </div>
             </Link>
+
+            {/* Générateur SATB */}
+            <Link href={`/${locale}/generateur-satb`} style={{ textDecoration: "none" }}>
+              <div style={{
+                background: "linear-gradient(135deg, #E6F1FB 0%, #D8EAFA 100%)",
+                border: "0.5px solid #A8C7EE",
+                borderRadius: 10,
+                padding: "18px 20px",
+                cursor: "pointer",
+                height: "100%",
+                boxSizing: "border-box" as const,
+              }}>
+                <div style={{ fontSize: 22, marginBottom: 8 }}>⊞</div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#185FA5", marginBottom: 6 }}>
+                  Générateur d'exercices SATB
+                </div>
+                <div style={{ fontSize: 12, color: "#3A7CC7", lineHeight: 1.5, marginBottom: 12 }}>
+                  Créez vos propres exercices SATB dans les 24 tonalités. Le générateur calcule les 4 voix selon les règles de conduite.
+                </div>
+                <div style={{ fontSize: 12, color: "#185FA5", fontWeight: 600 }}>
+                  Générer →
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
 

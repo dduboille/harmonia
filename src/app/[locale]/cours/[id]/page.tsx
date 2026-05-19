@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 export const dynamic = 'force-dynamic';
+
+const SATB_COURS = new Set([3,4,5,6]);
 import Cours1 from "@/components/Cours1";
 import Cours2 from "@/components/Cours2";
 import Cours3 from "@/components/Cours3";
@@ -34,9 +37,37 @@ export function generateStaticParams() {
   return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23].map(id => ({ id: String(id) }));
 }
 
-export default async function CoursPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
-  const C = COURS[parseInt(id)];
+export default async function CoursPage({ params }: { params: Promise<{ id: string; locale: string }> }) {
+  const { id, locale } = await params;
+  const num = parseInt(id);
+  const C = COURS[num];
   if (!C) return notFound();
-  return <main style={{ minHeight:"100vh", padding:"2rem 1rem" }}><C /></main>;
+  return (
+    <main style={{ minHeight:"100vh", padding:"2rem 1rem" }}>
+      <C />
+      {SATB_COURS.has(num) && (
+        <div style={{ maxWidth: 800, margin: "2rem auto 0", padding: "0 1rem" }}>
+          <Link href={`/${locale}/generateur-satb`} style={{ textDecoration: "none" }}>
+            <div style={{
+              display: "flex", justifyContent: "space-between", alignItems: "center",
+              background: "linear-gradient(135deg, #E6F1FB 0%, #D8EAFA 100%)",
+              border: "0.5px solid #A8C7EE", borderRadius: 12, padding: "16px 20px",
+            }}>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: "#185FA5", marginBottom: 4 }}>
+                  ⊞ Pratiquer avec le Générateur SATB
+                </div>
+                <div style={{ fontSize: 12, color: "#3A7CC7" }}>
+                  Créez vos propres exercices de conduite des voix dans les 24 tonalités.
+                </div>
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "#185FA5", whiteSpace: "nowrap" as const }}>
+                Accéder →
+              </div>
+            </div>
+          </Link>
+        </div>
+      )}
+    </main>
+  );
 }
