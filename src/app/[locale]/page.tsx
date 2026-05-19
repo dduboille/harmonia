@@ -380,6 +380,7 @@ export default function LandingPage() {
               { label: "Atelier", href: `/${locale}/atelier` },
               { label: "Tonalités", href: `/${locale}/tonalites` },
               { label: "Confidentialité", href: `/${locale}/confidentialite` },
+              { label: "CGU", href: `/${locale}/conditions` },
               { label: "getharmonia.app", href: "https://getharmonia.app" },
             ].map(link => (
               <Link key={link.label} href={link.href} style={{ fontSize: 13, color: "#555", textDecoration: "none", fontFamily: "system-ui, sans-serif" }}>{link.label}</Link>
