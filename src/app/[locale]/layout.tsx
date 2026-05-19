@@ -9,6 +9,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { ConditionalAppNav } from "@/components/AppNav";
+import CookieBanner from "@/components/CookieBanner";
 
 const LOCALES = ["fr", "en", "es", "de", "pt", "it"] as const;
 
@@ -128,6 +129,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             {children}
           </NextIntlClientProvider>
           <Analytics />
+          <CookieBanner locale={locale} />
         </body>
       </html>
     </ClerkProvider>
