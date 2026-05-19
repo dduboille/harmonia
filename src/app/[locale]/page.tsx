@@ -375,7 +375,13 @@ export default function LandingPage() {
         <div style={{ maxWidth: 960, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" as const, gap: 16 }}>
           <div style={{ fontSize: 18, fontWeight: 700, color: "#fff", letterSpacing: "-0.02em" }}>Harmonia<span style={{ color: "#BA7517" }}>.</span></div>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" as const }}>
-            {[{ label: "Cours", href: `/${locale}/cours` }, { label: "Atelier", href: `/${locale}/atelier` }, { label: "Tonalités", href: `/${locale}/tonalites` }, { label: "getharmonia.app", href: "https://getharmonia.app" }].map(link => (
+            {[
+              { label: "Cours", href: `/${locale}/cours` },
+              { label: "Atelier", href: `/${locale}/atelier` },
+              { label: "Tonalités", href: `/${locale}/tonalites` },
+              { label: "Confidentialité", href: `/${locale}/confidentialite` },
+              { label: "getharmonia.app", href: "https://getharmonia.app" },
+            ].map(link => (
               <Link key={link.label} href={link.href} style={{ fontSize: 13, color: "#555", textDecoration: "none", fontFamily: "system-ui, sans-serif" }}>{link.label}</Link>
             ))}
           </div>

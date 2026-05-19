@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import type { Classe, Eleve, Devoir } from "@/types/conservatoire";
 
 const ACCENT = "#2D5A8E";
@@ -31,6 +31,27 @@ const COURS_NOMS: Record<number, string> = {
   23: "Composer dans le style des maîtres",
 };
 
+export interface ExerciseOption {
+  id: string;
+  title: string;
+  cours: number;
+  type: string;
+}
+
+interface SoumissionInfo {
+  id: string;
+  devoirId: string;
+  eleveId: string;
+  note: number | null;
+  submittedAt: string;
+}
+
+interface DetailCell {
+  devoirTitre: string;
+  eleveNom: string;
+  soumission: SoumissionInfo;
+}
+
 interface ProgressionEntry {
   userId: string;
   coursCompletés: number;
@@ -44,17 +65,42 @@ interface Props {
   eleves: Eleve[];
   devoirs: Devoir[];
   progression: ProgressionEntry[];
+  exercises: ExerciseOption[];
 }
 
 type Tab = "eleves" | "devoirs" | "progression";
 
-export default function ClasseView({ classe, eleves: initialEleves, devoirs: initialDevoirs, progression }: Props) {
+export default function ClasseView({ classe, eleves: initialEleves, devoirs: initialDevoirs, progression, exercises }: Props) {
   const [tab, setTab] = useState<Tab>("eleves");
   const [devoirs, setDevoirs] = useState<Devoir[]>(initialDevoirs);
   const [showDevoirModal, setShowDevoirModal] = useState(false);
   const [newDevoir, setNewDevoir] = useState({ titre: "", type: "cours" as Devoir["type"], referenceId: "", dateLimite: "" });
   const [creating, setCreating] = useState(false);
   const [devoirError, setDevoirError] = useState("");
+  const [exerciseSearch, setExerciseSearch] = useState("");
+
+  const [soumissions, setSoumissions] = useState<SoumissionInfo[]>([]);
+  const [loadingSoumissions, setLoadingSoumissions] = useState(false);
+  const [detailCell, setDetailCell] = useState<DetailCell | null>(null);
+
+  useEffect(() => {
+    if (tab === "devoirs") {
+      setLoadingSoumissions(true);
+      fetch(`/api/conservatoire/soumissions?classeId=${classe.id}`)
+        .then(r => r.json())
+        .then(d => { setSoumissions(d.soumissions ?? []); })
+        .catch(() => {})
+        .finally(() => setLoadingSoumissions(false));
+    }
+  }, [tab, classe.id]);
+
+  const filteredExercises = useMemo(() => {
+    if (!exerciseSearch.trim()) return exercises.slice(0, 60);
+    const q = exerciseSearch.toLowerCase();
+    return exercises.filter(e =>
+      e.title.toLowerCase().includes(q) || `cours ${e.cours}`.includes(q) || e.type.includes(q)
+    ).slice(0, 60);
+  }, [exercises, exerciseSearch]);
 
   async function createDevoir() {
     if (!newDevoir.titre.trim()) { setDevoirError("Le titre est requis."); return; }
@@ -77,6 +123,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
       setDevoirs(prev => [data.devoir, ...prev]);
       setShowDevoirModal(false);
       setNewDevoir({ titre: "", type: "cours", referenceId: "", dateLimite: "" });
+      setExerciseSearch("");
     } catch {
       setDevoirError("Erreur réseau");
     } finally {
@@ -88,12 +135,10 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
   const progMap: Record<string, ProgressionEntry> = {};
   for (const p of progression) progMap[p.userId] = p;
 
-  // Top 3 most active students
   const top3 = [...progression]
     .sort((a, b) => b.exercicesReussis - a.exercicesReussis)
     .slice(0, 3);
 
-  // Chart: nb students per cours completed count
   const buckets: Record<number, number> = {};
   for (const p of progression) {
     buckets[p.coursCompletés] = (buckets[p.coursCompletés] ?? 0) + 1;
@@ -111,6 +156,10 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
     borderBottom: tab === t ? "2px solid " + ACCENT : "2px solid transparent",
     fontFamily: "system-ui, sans-serif",
   });
+
+  const selectedExercise = newDevoir.type === "exercice" && newDevoir.referenceId
+    ? exercises.find(e => e.id === newDevoir.referenceId)
+    : null;
 
   return (
     <div style={{ maxWidth: 960, margin: "0 auto", padding: "32px 20px", fontFamily: "system-ui, sans-serif" }}>
@@ -230,46 +279,121 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                 <p style={{ fontSize: 15 }}>Aucun devoir assigné pour l'instant.</p>
               </div>
             ) : (
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                {devoirs.map((d) => (
-                  <div key={d.id} style={{
-                    border: "1px solid #e8e2da",
-                    borderRadius: 10,
-                    padding: "16px 18px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    flexWrap: "wrap",
-                    gap: 10,
-                  }}>
-                    <div>
-                      <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4 }}>{d.titre}</div>
-                      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                        <span style={{
-                          background: "#f0eaf8", color: "#5C3D6E",
-                          padding: "2px 8px", borderRadius: 6, fontSize: 12, fontWeight: 600,
-                        }}>
-                          {d.type}
-                        </span>
-                        {d.dateLimite && (
-                          <span style={{ fontSize: 13, color: "#888" }}>
-                            Limite : {new Date(d.dateLimite).toLocaleDateString("fr-FR")}
+              <>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
+                  {devoirs.map((d) => (
+                    <div key={d.id} style={{
+                      border: "1px solid #e8e2da",
+                      borderRadius: 10,
+                      padding: "16px 18px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      flexWrap: "wrap",
+                      gap: 10,
+                    }}>
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4 }}>{d.titre}</div>
+                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                          <span style={{
+                            background: "#f0eaf8", color: "#5C3D6E",
+                            padding: "2px 8px", borderRadius: 6, fontSize: 12, fontWeight: 600,
+                          }}>
+                            {d.type}
                           </span>
-                        )}
+                          {d.dateLimite && (
+                            <span style={{ fontSize: 13, color: "#888" }}>
+                              Limite : {new Date(d.dateLimite).toLocaleDateString("fr-FR")}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div style={{ textAlign: "right" }}>
+                        <div style={{ fontSize: 13, color: "#666" }}>
+                          {d.soumissionsCount} soumission{d.soumissionsCount !== 1 ? "s" : ""}
+                        </div>
+                        <div style={{ fontSize: 13, color: d.corrigésCount < d.soumissionsCount ? "#BA7517" : "#27ae60" }}>
+                          {d.corrigésCount} corrigé{d.corrigésCount !== 1 ? "s" : ""}
+                          {d.corrigésCount < d.soumissionsCount && " ⚠"}
+                        </div>
                       </div>
                     </div>
-                    <div style={{ textAlign: "right" }}>
-                      <div style={{ fontSize: 13, color: "#666" }}>
-                        {d.soumissionsCount} soumission{d.soumissionsCount !== 1 ? "s" : ""}
-                      </div>
-                      <div style={{ fontSize: 13, color: d.corrigésCount < d.soumissionsCount ? "#BA7517" : "#27ae60" }}>
-                        {d.corrigésCount} corrigé{d.corrigésCount !== 1 ? "s" : ""}
-                        {d.corrigésCount < d.soumissionsCount && " ⚠"}
-                      </div>
+                  ))}
+                </div>
+
+                {/* Soumission matrix */}
+                {initialEleves.length > 0 && (
+                  <div>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: "#888", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 14 }}>
+                      Matrice des soumissions
                     </div>
+                    {loadingSoumissions ? (
+                      <div style={{ fontSize: 13, color: "#bbb" }}>Chargement…</div>
+                    ) : (
+                      <div style={{ overflowX: "auto" }}>
+                        <table style={{ borderCollapse: "collapse", fontSize: 12, width: "100%" }}>
+                          <thead>
+                            <tr style={{ borderBottom: "2px solid #e8e2da" }}>
+                              <th style={{ padding: "8px 12px", textAlign: "left", color: "#888", fontWeight: 600, minWidth: 160 }}>Devoir</th>
+                              {initialEleves.map(e => (
+                                <th key={e.userId} style={{
+                                  padding: "8px 10px", textAlign: "center", color: "#888",
+                                  fontWeight: 600, whiteSpace: "nowrap", maxWidth: 90, overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                }}>
+                                  {(e.nom || e.email.split("@")[0]).slice(0, 12)}
+                                </th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {devoirs.map(d => (
+                              <tr key={d.id} style={{ borderBottom: "1px solid #f0ece6" }}>
+                                <td style={{
+                                  padding: "10px 12px", fontWeight: 500, color: "#333",
+                                  maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                                }}>
+                                  {d.titre}
+                                </td>
+                                {initialEleves.map(e => {
+                                  const soum = soumissions.find(s => s.devoirId === d.id && s.eleveId === e.userId);
+                                  if (!soum) {
+                                    return (
+                                      <td key={e.userId} style={{ textAlign: "center", padding: "10px 8px", color: "#ccc", fontSize: 16 }}>
+                                        ○
+                                      </td>
+                                    );
+                                  }
+                                  const ok = (soum.note ?? 0) >= 70;
+                                  return (
+                                    <td
+                                      key={e.userId}
+                                      style={{ textAlign: "center", padding: "10px 8px", cursor: "pointer" }}
+                                      title={`${e.nom || e.email}: ${soum.note != null ? soum.note + "%" : "soumis"}`}
+                                      onClick={() => setDetailCell({
+                                        devoirTitre: d.titre,
+                                        eleveNom: e.nom || e.email,
+                                        soumission: soum,
+                                      })}
+                                    >
+                                      <span style={{ color: ok ? "#0F6E56" : "#E53E3E", fontWeight: 700, fontSize: 15 }}>
+                                        {ok ? "✓" : "✗"}
+                                      </span>
+                                    </td>
+                                  );
+                                })}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                        <div style={{ marginTop: 10, fontSize: 11, color: "#bbb" }}>
+                          ✓ rendu ≥ 70% · ✗ rendu &lt; 70% · ○ pas encore rendu — cliquez sur une cellule pour les détails
+                        </div>
+                      </div>
+                    )}
                   </div>
-                ))}
-              </div>
+                )}
+              </>
             )}
           </>
         )}
@@ -285,7 +409,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
               </div>
             ) : (
               <>
-                {/* Bar chart: students by cours completed */}
+                {/* Bar chart */}
                 <div style={{ marginBottom: 36 }}>
                   <h3 style={{ fontSize: 14, fontWeight: 700, color: "#888", marginBottom: 14, letterSpacing: "0.05em", textTransform: "uppercase" }}>
                     Élèves par nombre de cours complétés
@@ -332,9 +456,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                             borderRadius: 10,
                             border: `1px solid ${i === 0 ? "#f0c040" : "#e8e2da"}`,
                           }}>
-                            <span style={{ fontSize: 20 }}>
-                              {["🥇", "🥈", "🥉"][i]}
-                            </span>
+                            <span style={{ fontSize: 20 }}>{["🥇", "🥈", "🥉"][i]}</span>
                             <div style={{ flex: 1 }}>
                               <div style={{ fontWeight: 600, fontSize: 14 }}>{eleve?.nom || eleve?.email || p.userId.slice(0, 8)}</div>
                             </div>
@@ -349,7 +471,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                   </div>
                 )}
 
-                {/* Weakest students (lowest score) */}
+                {/* Weakest students */}
                 {progression.filter(p => p.scoreMoyen > 0).length > 0 && (
                   <div>
                     <h3 style={{ fontSize: 14, fontWeight: 700, color: "#888", marginBottom: 14, letterSpacing: "0.05em", textTransform: "uppercase" }}>
@@ -379,7 +501,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
         )}
       </div>
 
-      {/* Create devoir modal */}
+      {/* ── Create devoir modal ──────────────────────────────────── */}
       {showDevoirModal && (
         <div style={{
           position: "fixed", inset: 0,
@@ -387,14 +509,16 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
           display: "flex", alignItems: "center", justifyContent: "center",
           zIndex: 500, padding: 16,
         }}
-          onClick={(e) => { if (e.target === e.currentTarget) setShowDevoirModal(false); }}
+          onClick={(e) => { if (e.target === e.currentTarget) { setShowDevoirModal(false); setDevoirError(""); } }}
         >
           <div style={{
             background: "#fff",
             borderRadius: 16,
             padding: "32px 28px",
             width: "100%",
-            maxWidth: 480,
+            maxWidth: 520,
+            maxHeight: "90vh",
+            overflowY: "auto",
             boxShadow: "0 16px 60px rgba(0,0,0,0.2)",
           }}>
             <h2 style={{ fontSize: 20, fontWeight: 800, margin: "0 0 24px", fontFamily: "Georgia, serif" }}>
@@ -441,6 +565,65 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
               </label>
             )}
 
+            {newDevoir.type === "exercice" && (
+              <div style={{ marginBottom: 14 }}>
+                <span style={{ fontSize: 13, fontWeight: 600, color: "#444", display: "block", marginBottom: 6 }}>Exercice de référence</span>
+                {selectedExercise && (
+                  <div style={{
+                    fontSize: 12, color: "#0F6E56", background: "#E1F5EE",
+                    padding: "6px 10px", borderRadius: 6, marginBottom: 8,
+                    display: "flex", justifyContent: "space-between", alignItems: "center",
+                  }}>
+                    <span>✓ Cours {selectedExercise.cours} — {selectedExercise.title}</span>
+                    <button
+                      onClick={() => setNewDevoir(p => ({ ...p, referenceId: "" }))}
+                      style={{ background: "none", border: "none", color: "#888", cursor: "pointer", fontSize: 14, padding: 0 }}
+                    >×</button>
+                  </div>
+                )}
+                <input
+                  type="text"
+                  placeholder="Rechercher un exercice…"
+                  value={exerciseSearch}
+                  onChange={e => setExerciseSearch(e.target.value)}
+                  style={{
+                    width: "100%", boxSizing: "border-box",
+                    padding: "8px 12px", border: "1px solid #ccc",
+                    borderRadius: 8, fontSize: 13, outline: "none", marginBottom: 6,
+                  }}
+                />
+                <div style={{
+                  maxHeight: 200, overflowY: "auto",
+                  border: "1px solid #e0dbd3", borderRadius: 8,
+                  background: "#fafafa",
+                }}>
+                  {filteredExercises.length === 0 ? (
+                    <div style={{ padding: "12px 14px", fontSize: 13, color: "#bbb" }}>Aucun résultat</div>
+                  ) : filteredExercises.map(ex => (
+                    <div
+                      key={ex.id}
+                      onClick={() => { setNewDevoir(p => ({ ...p, referenceId: ex.id })); setExerciseSearch(""); }}
+                      style={{
+                        padding: "8px 12px",
+                        cursor: "pointer",
+                        background: newDevoir.referenceId === ex.id ? "#E6F1FB" : "transparent",
+                        borderBottom: "0.5px solid #f0ece6",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 8,
+                      }}
+                    >
+                      <span style={{ fontSize: 10, fontWeight: 600, color: "#888", background: "#f0ece6", padding: "1px 5px", borderRadius: 4, whiteSpace: "nowrap" }}>
+                        C{ex.cours}
+                      </span>
+                      <span style={{ fontSize: 13, color: "#1a1a1a" }}>{ex.title}</span>
+                      <span style={{ fontSize: 10, color: "#bbb", marginLeft: "auto" }}>{ex.type}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <label style={{ display: "block", marginBottom: 20 }}>
               <span style={{ fontSize: 13, fontWeight: 600, color: "#444", display: "block", marginBottom: 6 }}>Date limite (optionnel)</span>
               <input
@@ -455,7 +638,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
 
             <div style={{ display: "flex", gap: 10 }}>
               <button
-                onClick={() => { setShowDevoirModal(false); setDevoirError(""); }}
+                onClick={() => { setShowDevoirModal(false); setDevoirError(""); setExerciseSearch(""); }}
                 style={{ flex: 1, padding: "11px", border: "1px solid #ccc", borderRadius: 8, background: "#fff", fontSize: 14, cursor: "pointer", color: "#444" }}
               >
                 Annuler
@@ -468,6 +651,56 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                 {creating ? "Création…" : "Créer le devoir"}
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Detail cell modal ────────────────────────────────────── */}
+      {detailCell && (
+        <div style={{
+          position: "fixed", inset: 0,
+          background: "rgba(0,0,0,0.45)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          zIndex: 500, padding: 16,
+        }}
+          onClick={(e) => { if (e.target === e.currentTarget) setDetailCell(null); }}
+        >
+          <div style={{
+            background: "#fff", borderRadius: 14,
+            padding: "28px 24px", width: "100%", maxWidth: 360,
+            boxShadow: "0 12px 48px rgba(0,0,0,0.18)",
+          }}>
+            <h3 style={{ fontSize: 17, fontWeight: 700, margin: "0 0 16px", fontFamily: "Georgia, serif" }}>
+              Soumission
+            </h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10, fontSize: 14, color: "#444" }}>
+              <div>
+                <span style={{ fontWeight: 600, color: "#888", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em" }}>Devoir</span>
+                <div style={{ marginTop: 2 }}>{detailCell.devoirTitre}</div>
+              </div>
+              <div>
+                <span style={{ fontWeight: 600, color: "#888", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em" }}>Élève</span>
+                <div style={{ marginTop: 2 }}>{detailCell.eleveNom}</div>
+              </div>
+              <div>
+                <span style={{ fontWeight: 600, color: "#888", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em" }}>Note</span>
+                <div style={{ marginTop: 2, fontWeight: 700, fontSize: 20, color: (detailCell.soumission.note ?? 0) >= 70 ? "#0F6E56" : "#E53E3E" }}>
+                  {detailCell.soumission.note != null ? `${detailCell.soumission.note}%` : "—"}
+                </div>
+              </div>
+              <div>
+                <span style={{ fontWeight: 600, color: "#888", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em" }}>Remis le</span>
+                <div style={{ marginTop: 2, color: "#666" }}>
+                  {new Date(detailCell.soumission.submittedAt).toLocaleString("fr-FR")}
+                </div>
+              </div>
+            </div>
+            <button
+              onClick={() => setDetailCell(null)}
+              style={{ marginTop: 20, width: "100%", padding: "10px", border: "1px solid #ccc", borderRadius: 8, background: "#fff", fontSize: 14, cursor: "pointer", color: "#444" }}
+            >
+              Fermer
+            </button>
           </div>
         </div>
       )}

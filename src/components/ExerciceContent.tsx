@@ -1,11 +1,5 @@
 "use client";
 
-/**
- * ExerciceContent.tsx
- * Wrapper client pour le contenu interactif d'un exercice.
- * Gère la sauvegarde automatique de la progression.
- */
-
 import React from "react";
 import HarmoniaEditor from "@/components/HarmoniaEditor";
 import IdentificationQuiz from "@/components/IdentificationQuiz";
@@ -22,6 +16,7 @@ interface SATBData {
   keySignature: string;
   solution: any[];
   hint?: string;
+  devoirId?: string;
 }
 
 interface QuizData {
@@ -29,6 +24,7 @@ interface QuizData {
   exerciseId: string;
   coursId: number;
   exercises: (IdentifyExercise | BuildExercise)[];
+  devoirId?: string;
 }
 
 type ExerciceContentProps = SATBData | QuizData;
@@ -36,7 +32,7 @@ type ExerciceContentProps = SATBData | QuizData;
 export default function ExerciceContent(props: ExerciceContentProps) {
   const { saveProgress } = useProgress();
 
-  const handleComplete = (score: number) => {
+  const handleComplete = async (score: number) => {
     saveProgress({
       exerciseId: props.exerciseId,
       coursId: props.coursId,
@@ -44,6 +40,18 @@ export default function ExerciceContent(props: ExerciceContentProps) {
       score,
       completed: score >= 60,
     });
+
+    if (props.devoirId) {
+      try {
+        await fetch("/api/conservatoire/soumissions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ devoirId: props.devoirId, note: score }),
+        });
+      } catch (err) {
+        console.error("Devoir submission failed:", err);
+      }
+    }
   };
 
   if (props.type === "satb") {

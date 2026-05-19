@@ -13,10 +13,12 @@ import type { IdentifyExercise, BuildExercise } from "@/types/exercise";
 
 interface Props {
   params: Promise<{ locale: string; id: string; exerciceId: string }>;
+  searchParams: Promise<{ devoirId?: string }>;
 }
 
-export default async function ExercicePage({ params }: Props) {
+export default async function ExercicePage({ params, searchParams }: Props) {
   const { locale, id, exerciceId } = await params;
+  const { devoirId } = await searchParams;
   const exercise = ALL_EXERCISES.find(
     e => e.id === exerciceId && e.cours === parseInt(id)
   );
@@ -78,6 +80,7 @@ export default async function ExercicePage({ params }: Props) {
               keySignature={(exercise as any).keySignature}
               solution={(exercise as any).solution}
               hint={(exercise as any).hint}
+              devoirId={devoirId}
             />
           ) : (
             <ExerciceContent
@@ -85,6 +88,7 @@ export default async function ExercicePage({ params }: Props) {
               exerciseId={exercise.id}
               coursId={exercise.cours}
               exercises={sameTypeExercises}
+              devoirId={devoirId}
             />
           )}
         </div>

@@ -6,9 +6,11 @@ import Link from "next/link";
 const ACCENT = "#2D5A8E";
 
 interface Devoir {
+  id: string;
   titre: string;
   dateLimite: string | null;
   type: string;
+  exerciseUrl: string | null;
 }
 
 interface ClasseInfo {
@@ -190,8 +192,8 @@ export default function MaClasseSection({ locale, membership, devoirs }: Props) 
             Devoirs en cours
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {devoirs.map((d, i) => (
-              <div key={i} style={{
+            {devoirs.map((d) => (
+              <div key={d.id} style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -199,8 +201,9 @@ export default function MaClasseSection({ locale, membership, devoirs }: Props) 
                 background: "#fafafa",
                 borderRadius: 8,
                 gap: 10,
+                flexWrap: "wrap",
               }}>
-                <div>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <span style={{
                     background: "#f0eaf8", color: "#5C3D6E",
                     padding: "1px 7px", borderRadius: 5,
@@ -210,11 +213,26 @@ export default function MaClasseSection({ locale, membership, devoirs }: Props) 
                   </span>
                   <span style={{ fontSize: 14, color: "#1a1a1a" }}>{d.titre}</span>
                 </div>
-                {d.dateLimite && (
-                  <span style={{ fontSize: 12, color: "#888", whiteSpace: "nowrap" }}>
-                    Limite : {new Date(d.dateLimite).toLocaleDateString("fr-FR")}
-                  </span>
-                )}
+                <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+                  {d.dateLimite && (
+                    <span style={{ fontSize: 12, color: "#888", whiteSpace: "nowrap" }}>
+                      Limite : {new Date(d.dateLimite).toLocaleDateString("fr-FR")}
+                    </span>
+                  )}
+                  {d.exerciseUrl && (
+                    <Link
+                      href={`${d.exerciseUrl}?devoirId=${d.id}`}
+                      style={{
+                        fontSize: 12, fontWeight: 700,
+                        color: "#fff", background: ACCENT,
+                        padding: "5px 12px", borderRadius: 6,
+                        textDecoration: "none", whiteSpace: "nowrap",
+                      }}
+                    >
+                      Faire l'exercice →
+                    </Link>
+                  )}
+                </div>
               </div>
             ))}
           </div>

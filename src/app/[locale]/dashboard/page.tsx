@@ -87,19 +87,24 @@ export default async function DashboardPage({ params }: Props) {
     .maybeSingle();
 
   // Fetch devoirs for the class if member
-  let classeDevoirs: Array<{ titre: string; dateLimite: string | null; type: string }> = [];
+  let classeDevoirs: Array<{ id: string; titre: string; dateLimite: string | null; type: string; exerciseUrl: string | null }> = [];
   if (classeMembership?.classe_id) {
     const { data: devoirsData } = await supabaseAdmin
       .from("devoirs")
-      .select("titre, date_limite, type")
+      .select("id, titre, date_limite, type, reference_id")
       .eq("classe_id", classeMembership.classe_id)
       .order("created_at", { ascending: false })
       .limit(5);
-    classeDevoirs = (devoirsData ?? []).map((d: { titre: string; date_limite: string | null; type: string }) => ({
-      titre: d.titre,
-      dateLimite: d.date_limite,
-      type: d.type,
-    }));
+    classeDevoirs = (devoirsData ?? []).map((d: { id: string; titre: string; date_limite: string | null; type: string; reference_id: string | null }) => {
+      let exerciseUrl: string | null = null;
+      if (d.type === "exercice" && d.reference_id) {
+        const ex = ALL_EXERCISES.find(e => e.id === d.reference_id);
+        if (ex) exerciseUrl = `/${locale}/cours/${ex.cours}/exercices/${ex.id}`;
+      } else if (d.type === "cours" && d.reference_id) {
+        exerciseUrl = `/${locale}/cours/${d.reference_id}`;
+      }
+      return { id: d.id, titre: d.titre, dateLimite: d.date_limite, type: d.type, exerciseUrl };
+    });
   }
 
   const totalCompleted = coursStats.reduce((s, c) => s + c.completedExercises, 0);

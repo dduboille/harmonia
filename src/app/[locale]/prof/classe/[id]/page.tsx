@@ -4,6 +4,7 @@ import { redirect, notFound } from "next/navigation";
 import { supabaseAdmin } from "@/lib/supabase";
 import ClasseView from "@/components/ClasseView";
 import type { Classe, Eleve, Devoir } from "@/types/conservatoire";
+import { ALL_EXERCISES } from "@/exercises/all-exercises";
 
 interface Props {
   params: Promise<{ locale: string; id: string }>;
@@ -135,5 +136,7 @@ export default async function ClassePage({ params }: Props) {
     derniereActivite: e.progression.derniereActivite,
   }));
 
-  return <ClasseView classe={classe} eleves={eleves} devoirs={devoirs} progression={progression} />;
+  const exercises = ALL_EXERCISES.map(e => ({ id: e.id, title: e.title ?? "", cours: e.cours, type: e.type }));
+
+  return <ClasseView classe={classe} eleves={eleves} devoirs={devoirs} progression={progression} exercises={exercises} />;
 }
