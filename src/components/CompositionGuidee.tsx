@@ -277,14 +277,14 @@ export default function CompositionGuidee() {
   };
 
   const handlePlayMelody = useCallback(() => {
-    if (!exercise || !pianoRef.current?.isReady) return;
+    if (!exercise || !pianoRef.current) return;
     const beatSec = 60 / tempo;
     const voicings = exercise.notes.map(n => [`${n.note}:${n.octave - 1}`]);
     pianoRef.current.playVoicingSequence(voicings, { interval: beatSec, duration: beatSec * 0.88 });
   }, [exercise, tempo]);
 
   const handlePlayVersion = useCallback(() => {
-    if (!exercise || !pianoRef.current?.isReady) return;
+    if (!exercise || !pianoRef.current) return;
     const beatSec = 60 / tempo;
     const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
@@ -321,7 +321,7 @@ export default function CompositionGuidee() {
   }, [exercise, attempt, tempo]);
 
   const handlePlaySolution = useCallback(() => {
-    if (!exercise || !pianoRef.current?.isReady) return;
+    if (!exercise || !pianoRef.current) return;
     const beatSec = 60 / tempo;
     const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
