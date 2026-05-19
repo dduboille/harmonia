@@ -207,6 +207,8 @@ export default function Cours3() {
   const i18n = useCoursI18n("cours3");
   const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours3Content);
+  const tc = i18n.tc;
+  const n = (key: string) => tc(`narrative.${key}` as any);
   const [sec,    setSec]    = useState("triton");
   const [selDeg, setSelDeg] = useState<number|null>(null);
   const [selReg, setSelReg] = useState<number|null>(null);
@@ -241,11 +243,11 @@ export default function Cours3() {
 
       <MaitreCard
         composer="Johannes Brahms"
-        period="1833–1897"
+        period={n("maitreCardPeriod")}
         emoji="🖊️"
-        concept="Conduite de voix"
-        anecdote="Brahms était obsédé par la pureté de l'écriture à quatre voix. Il traquait les quintes et octaves parallèles comme des fautes de goût absolues, annotant en rouge les copies de ses élèves. Il disait que deux voix qui bougent ensemble à la quinte cessent d'exister comme voix indépendantes — elles deviennent une seule et même couleur."
-        lesson="La conduite de voix, c'est l'art de rendre chaque ligne mélodique indépendante et fluide."
+        concept={n("maitreCardConcept")}
+        anecdote={n("maitreCardAnecdote")}
+        lesson={n("maitreCardLesson")}
         accentColor="#0F6E56"
       />
 
@@ -261,59 +263,55 @@ export default function Cours3() {
       {/* ══ TRITON ══ */}
       {sec === "triton" && (
         <div>
-          <h2 style={S.h2}>{tr("Le triton — moteur de la tension harmonique")}</h2>
-          <p style={S.p}>Le <strong>triton</strong> est l'intervalle de 3 tons (6 demi-tons) qui se forme naturellement entre les IVe et VIIe degrés d'une gamme majeure. En C majeur : <strong>F et B</strong> (Fa et Si). Son instabilité acoustique est le moteur de toute la tension harmonique tonale.</p>
+          <h2 style={S.h2}>{n("tritonH2")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("tritonP1") }} />
 
-          <div style={S.info}>
-            <strong>En C majeur :</strong> le triton se forme entre F (IVe degré, sous-dominante) et B (VIIe degré, sensible). Ces deux notes se trouvent dans G7 — c'est pourquoi G7 est la dominante parfaite.
-          </div>
+          <div style={S.info} dangerouslySetInnerHTML={{ __html: n("tritonInfoBox") }} />
 
           <div style={{ background:"#fafafa", border:"0.5px solid #e5e5e5", borderRadius:10, padding:"14px 16px", marginBottom:16 }}>
-            <div style={{ fontSize:12, color:"#999", marginBottom:8 }}>Écouter le triton F–B en C majeur</div>
+            <div style={{ fontSize:12, color:"#999", marginBottom:8 }}>{n("tritonAudioLabel")}</div>
             <div style={{ display:"flex", gap:10, flexWrap:"wrap" as const }}>
               <button onClick={() => playChord(ref as React.RefObject<PianoPlayerRef>, CHORDS.tritone, 2.5)}
                 style={{ fontSize:12, padding:"5px 14px", border:"0.5px solid #BA7517", borderRadius:20, cursor:"pointer", background:"transparent", color:"#BA7517" }}>
-                ▶ F–B (le triton)
+                {n("tritonBtnTritone")}
               </button>
               <button onClick={() => playChord(ref as React.RefObject<PianoPlayerRef>, CHORDS.G7, 2.5)}
                 style={{ fontSize:12, padding:"5px 14px", border:"0.5px solid #BA7517", borderRadius:20, cursor:"pointer", background:"transparent", color:"#BA7517" }}>
-                ▶ G7 (contient F et B)
+                {n("tritonBtnG7")}
               </button>
               <button onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ["G7","C"], 1200)}
                 style={{ fontSize:12, padding:"5px 14px", border:"0.5px solid #0F6E56", borderRadius:20, cursor:"pointer", background:"transparent", color:"#0F6E56" }}>
-                ▶ G7 → C (résolution)
+                {n("tritonBtnResolution")}
               </button>
             </div>
             <div style={{ fontSize:12, color:"#888", marginTop:10, lineHeight:1.6 }}>
-              Dans G7 → C : B monte vers C (+½ ton, sensible→tonique) et F descend vers E (-½ ton, septième→tierce). Ce double mouvement contraire est la résolution du triton.
+              {n("tritonAudioDesc")}
             </div>
           </div>
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Pourquoi le triton crée-t-il de la tension ?</h3>
-          <p style={S.p}>Le triton divise l'octave en deux parties égales (6+6 demi-tons). Cette symétrie parfaite le prive de direction naturelle — il ne sait pas où aller. L'oreille perçoit cette ambiguïté comme une tension qui doit se résoudre.</p>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("tritonH3Why")}</h3>
+          <p style={S.p}>{n("tritonP2")}</p>
 
-          <div style={S.warn}>
-            <strong>Le triton en C majeur est la clé fonctionnelle :</strong> la présence des deux notes F et B dans un accord détermine sa fonction. C'est lui qui organise toute la tension harmonique.
-          </div>
+          <div style={S.warn} dangerouslySetInnerHTML={{ __html: n("tritonWarnBox") }} />
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{tr("Classification des accords par rapport au triton")}</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("tritonH3Classification")}</h3>
           <div style={{ overflowX:"auto" }}>
             <table style={{ width:"100%", borderCollapse:"collapse", fontSize:13 }}>
               <thead>
                 <tr style={{ borderBottom:"0.5px solid #e5e5e5" }}>
-                  {["Fonction","Notes du triton","Caractère","Exemples en C"].map(h => (
+                  {[n("tritonThFn"), n("tritonThNotes"), n("tritonThChar"), n("tritonThEx")].map(h => (
                     <th key={h} style={{ textAlign:"left", padding:"6px 10px", fontWeight:500, color:"#666" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { fn:"Tonique (T)",      notes:"Ni F ni B",   car:"Stable, repos",   ex:"C, Am" },
-                  { fn:"Sous-dom. (SD)",   notes:"F seul",      car:"Prépare",         ex:"Dm, F" },
-                  { fn:"Dominante (D)",    notes:"F et B",      car:"Tension maximale",ex:"G7, Bdim" },
+                  { fn: n("tritonRowToniqueLabel"), notes: n("tritonRowToniqueNotes"), car: n("tritonRowToniqueChar"), ex: n("tritonRowToniqueEx") },
+                  { fn: n("tritonRowSdLabel"),      notes: n("tritonRowSdNotes"),      car: n("tritonRowSdChar"),      ex: n("tritonRowSdEx") },
+                  { fn: n("tritonRowDomLabel"),     notes: n("tritonRowDomNotes"),     car: n("tritonRowDomChar"),     ex: n("tritonRowDomEx") },
                 ].map((row, i) => (
-                  <tr key={tr(row.fn)} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
-                    <td style={{ padding:"7px 10px", fontWeight:500 }}>{tr(row.fn)}</td>
+                  <tr key={row.fn} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
+                    <td style={{ padding:"7px 10px", fontWeight:500 }}>{row.fn}</td>
                     <td style={{ padding:"7px 10px", fontFamily:"monospace", color:"#BA7517" }}>{row.notes}</td>
                     <td style={{ padding:"7px 10px", color:"#555" }}>{row.car}</td>
                     <td style={{ padding:"7px 10px", fontFamily:"monospace" }}>{row.ex}</td>
@@ -328,15 +326,13 @@ export default function Cours3() {
       {/* ══ FONCTIONS ══ */}
       {sec === "fonctions" && (
         <div>
-          <h2 style={S.h2}>{tr("Les fonctions tonales")}</h2>
-          <p style={S.p}>Chaque accord d'une gamme majeure remplit un <strong>rôle fonctionnel</strong> déterminé par sa relation au triton. Ce rôle définit son comportement dans la progression — s'il crée du repos, prépare ou génère de la tension.</p>
+          <h2 style={S.h2}>{n("fonctionsH2")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("fonctionsP1") }} />
 
-          <div style={S.tip}>
-            <strong>{tr("Mémo rapide :")}</strong> F et B ? → Dominante. F seul ? → Sous-dominante. Ni l'un ni l'autre ? → Tonique.
-          </div>
+          <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("fonctionsTipBox") }} />
 
           <p style={{ fontSize:13, color:"#888", marginBottom:12, marginTop:16 }}>
-            Cliquez sur un degré pour l'entendre et voir son analyse.
+            {n("fonctionsClickHint")}
           </p>
 
           <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:5, marginBottom:12 }}>
@@ -360,23 +356,19 @@ export default function Cours3() {
             </div>
           )}
 
-          <div style={S.info}>
-            <strong>Substitutions diatoniques :</strong> deux accords de même fonction peuvent se remplacer. Am ↔ C (deux toniques), Dm ↔ F (deux sous-dominantes). Cette flexibilité permet des variations harmoniques sans changer la logique fonctionnelle.
-          </div>
+          <div style={S.info} dangerouslySetInnerHTML={{ __html: n("fonctionsInfoBox") }} />
 
-          <div style={S.warn}>
-            <strong>Em (IIIe degré) :</strong> accord 'bâtard' — il contient B (sensible) mais pas F. Sa fonction est ambiguë. Les compositeurs ne s'accordent pas sur son rôle, et il est rarement utilisé seul dans une progression simple.
-          </div>
+          <div style={S.warn} dangerouslySetInnerHTML={{ __html: n("fonctionsWarnBox") }} />
         </div>
       )}
 
       {/* ══ PROGRESSIONS ══ */}
       {sec === "progressions" && (
         <div>
-          <h2 style={S.h2}>{tr("Progressions et cadences")}</h2>
-          <p style={S.p}>L'enchaînement <strong>SD → D → T</strong> est la colonne vertébrale de l'harmonie tonale. Toutes les progressions en sont des variantes ou des extensions. Les <strong>cadences</strong> ponctuent le discours musical comme des signes de ponctuation.</p>
+          <h2 style={S.h2}>{n("progressionsH2")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("progressionsP1") }} />
 
-          <p style={{ fontSize:13, color:"#888", marginBottom:12 }}>Cliquez sur une progression pour l'écouter et voir son analyse.</p>
+          <p style={{ fontSize:13, color:"#888", marginBottom:12 }}>{n("progressionsClickHint")}</p>
 
           {PROGS.map(prog => (
             <div key={prog.id}
@@ -395,30 +387,30 @@ export default function Cours3() {
                   <button
                     onClick={e => { e.stopPropagation(); playProg(ref as React.RefObject<PianoPlayerRef>, prog.chords, 1000); }}
                     style={{ fontSize:12, padding:"5px 14px", border:`0.5px solid ${prog.color}`, borderRadius:20, cursor:"pointer", background:"transparent", color:prog.color }}>
-                    ▶ Écouter
+                    {n("progressionsBtnListen")}
                   </button>
                 </div>
               )}
             </div>
           ))}
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{tr("Les cadences")}</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("progressionsH3Cadences")}</h3>
           <div style={{ overflowX:"auto" }}>
             <table style={{ width:"100%", borderCollapse:"collapse", fontSize:13 }}>
               <thead>
                 <tr style={{ borderBottom:"0.5px solid #e5e5e5" }}>
-                  {["Cadence","Structure","Effet"].map(h => (
+                  {[n("progressionsThCadence"), n("progressionsThStructure"), n("progressionsThEffect")].map(h => (
                     <th key={h} style={{ textAlign:"left", padding:"6px 10px", fontWeight:500, color:"#666" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { c:"Parfaite",    s:"V → I (état fond.)",  e:"Conclusive, finale" },
-                  { c:"Imparfaite",  s:"V → I (renversé)",    e:"Conclusive mais moins ferme" },
-                  { c:"Plagale",     s:"IV → I",              e:"Douce, solennelle (Amen)" },
-                  { c:"Rompue",      s:"V → VI",              e:"Surprise, phrase prolongée" },
-                  { c:"Demi-cadence",s:"… → V",               e:"Suspension, question ouverte" },
+                  { c: n("progressionsRowParfaiteLabel"),   s: n("progressionsRowParfaiteStruct"),   e: n("progressionsRowParfaiteEffect") },
+                  { c: n("progressionsRowImparfaiteLabel"), s: n("progressionsRowImparfaiteStruct"), e: n("progressionsRowImparfaiteEffect") },
+                  { c: n("progressionsRowPlagaleLabel"),    s: n("progressionsRowPlagaleStruct"),    e: n("progressionsRowPlagaleEffect") },
+                  { c: n("progressionsRowRompueLabel"),     s: n("progressionsRowRompueStruct"),     e: n("progressionsRowRompueEffect") },
+                  { c: n("progressionsRowDemiLabel"),       s: n("progressionsRowDemiStruct"),       e: n("progressionsRowDemiEffect") },
                 ].map((row, i) => (
                   <tr key={row.c} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
                     <td style={{ padding:"7px 10px", fontWeight:500 }}>{row.c}</td>
@@ -435,10 +427,10 @@ export default function Cours3() {
       {/* ══ CONDUITE DE VOIX ══ */}
       {sec === "voix" && (
         <div>
-          <h2 style={S.h2}>{tr("La conduite de voix (SATB)")}</h2>
-          <p style={S.p}>L'harmonie à 4 voix (Soprano, Alto, Ténor, Basse) n'est pas un empilement d'accords — c'est une <strong>polyphonie contrôlée</strong> où chaque voix a sa propre logique mélodique. La conduite de voix est l'art de faire évoluer ces 4 lignes simultanément de manière fluide et logique.</p>
+          <h2 style={S.h2}>{n("voixH2")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("voixP1") }} />
 
-          <p style={{ fontSize:13, color:"#888", marginBottom:12 }}>Cliquez sur une règle pour en voir le détail.</p>
+          <p style={{ fontSize:13, color:"#888", marginBottom:12 }}>{n("voixClickHint")}</p>
 
           {REGLES_VOIX.map((r, i) => (
             <div key={r.titre} onClick={() => setSelReg(selReg===i?null:i)}
@@ -447,7 +439,7 @@ export default function Cours3() {
                 <span style={{ fontSize:20, minWidth:28 }}>{r.icon}</span>
                 <span style={{ fontSize:13, fontWeight:500, color:selReg===i?r.couleur:"#111", flex:1 }}>{r.titre}</span>
                 <span style={{ fontSize:11, color:r.couleur, background:r.bg, border:`0.5px solid ${r.couleur}`, padding:"1px 8px", borderRadius:8 }}>
-                  {["Interdit","Obligatoire","Obligatoire","Règle","Préféré","Limite"][i]}
+                  {n(`voixBadge${i}` as any)}
                 </span>
               </div>
               {selReg === i && (
@@ -458,27 +450,25 @@ export default function Cours3() {
             </div>
           ))}
 
-          <div style={S.tip}>
-            <strong>Principe clé :</strong> une bonne conduite de voix ne repose pas sur la multiplication des mouvements, mais sur leur nécessité. On conserve les notes communes, on avance par degrés conjoints, et on ne bouge que lorsque c'est musicalement nécessaire.
-          </div>
+          <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("voixTipBox") }} />
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Le modèle minimaliste : II – V – I</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("voixH3Minimaliste")}</h3>
           <div style={{ background:"#fafafa", border:"0.5px solid #e5e5e5", borderRadius:10, padding:"14px 16px", marginBottom:12 }}>
             <div style={{ overflowX:"auto" }}>
               <table style={{ borderCollapse:"collapse", fontSize:12, minWidth:400 }}>
                 <thead>
                   <tr style={{ borderBottom:"0.5px solid #e5e5e5" }}>
-                    {["Voix","Dm7 (II)","G7 (V)","CMaj7 (I)","Mouvement"].map(h => (
+                    {[n("voixTableThVoix"), n("voixTableThDm7"), n("voixTableThG7"), n("voixTableThC"), n("voixTableThMouvement")].map(h => (
                       <th key={h} style={{ textAlign:"left", padding:"5px 10px", fontWeight:500, color:"#666" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {[
-                    { v:"Soprano", dm7:"D5", g7:"D5", c:"E5", m:"D reste, puis monte vers E (+ton)" },
-                    { v:"Alto",    dm7:"F4", g7:"F4", c:"E4", m:"F reste (7e de G7), descend vers E (-½)" },
-                    { v:"Ténor",   dm7:"A3", g7:"G3", c:"G3", m:"A descend vers G (-ton), reste" },
-                    { v:"Basse",   dm7:"D3", g7:"G3", c:"C3", m:"D monte vers G (+4te), descend vers C (-5te)" },
+                    { v: n("voixRowSopranoVoix"), dm7:"D5", g7:"D5", c:"E5", m: n("voixRowSopranoMouvement") },
+                    { v: n("voixRowAltoVoix"),    dm7:"F4", g7:"F4", c:"E4", m: n("voixRowAltoMouvement") },
+                    { v: n("voixRowTenorVoix"),   dm7:"A3", g7:"G3", c:"G3", m: n("voixRowTenorMouvement") },
+                    { v: n("voixRowBasseVoix"),   dm7:"D3", g7:"G3", c:"C3", m: n("voixRowBasseMouvement") },
                   ].map((row, i) => (
                     <tr key={row.v} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
                       <td style={{ padding:"6px 10px", fontWeight:500, color:"#555" }}>{row.v}</td>
@@ -493,7 +483,7 @@ export default function Cours3() {
             </div>
             <button onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ["Dm7","G7","CMaj7"], 1000)}
               style={{ marginTop:10, fontSize:12, padding:"5px 14px", border:"0.5px solid #534AB7", borderRadius:20, cursor:"pointer", background:"transparent", color:"#534AB7" }}>
-              ▶ Écouter Dm7 → G7 → CMaj7
+              {n("voixBtnListen")}
             </button>
           </div>
         </div>

@@ -254,6 +254,8 @@ const S = {
 
 export default function Cours9() {
   const i18n = useCoursI18n("cours9");
+  const tc = i18n.tc;
+  const n = (key: string) => tc(`narrative.${key}` as any);
   const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours9Content);
   const [sec,    setSec]    = useState("marche");
@@ -287,11 +289,11 @@ export default function Cours9() {
 
       <MaitreCard
         composer="Franz Schubert"
-        period="1797–1828"
+        period={n("maitreCardPeriod")}
         emoji="🌙"
-        concept="Modulations avancées & Pédales"
-        anecdote="Dans Le Roi des Aulnes, Schubert utilise une note de pédale au piano — une note grave répétée obstinément — pour simuler le galop obsessionnel du cheval. Pendant ce temps, l'harmonie s'affole, modulant dans des tonalités de plus en plus sombres. La pédale reste fixe comme une ancre pendant que tout sombre autour."
-       lesson="La pédale crée une tension psychologique puissante en restant fixe alors que tout bouge autour."
+        concept={n("maitreCardConcept")}
+        anecdote={n("maitreCardAnecdote")}
+        lesson={n("maitreCardLesson")}
         accentColor="#534AB7"
       />
 
@@ -306,14 +308,12 @@ export default function Cours9() {
       {/* ══ MARCHE ══ */}
       {sec === "marche" && (
         <div>
-          <h2 style={S.h2}>{tr("La marche harmonique")}</h2>
-          <p style={S.p}>Une <strong>marche</strong> est un motif musical (harmonique ou mélodique) répété à différents degrés — comme si on déplaçait le motif progressivement. Il en existe deux grandes familles aux effets très différents.</p>
+          <h2 style={S.h2}>{n("marcheH2")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("marcheIntro") }} />
 
-          <div style={S.info}>
-            <strong>Canon de Pachelbel :</strong> l'exemple le plus célèbre de marche diatonique. Le motif I–V est transposé sur VI–III puis IV–I, restant dans D majeur tout au long.
-          </div>
+          <div style={S.info} dangerouslySetInnerHTML={{ __html: n("marcheInfoCanon") }} />
 
-          <p style={{ fontSize:13, color:"#888", marginBottom:12, marginTop:16 }}>Cliquez pour comparer les deux types.</p>
+          <p style={{ fontSize:13, color:"#888", marginBottom:12, marginTop:16 }}>{n("marcheClickHint")}</p>
 
           {TYPES_MARCHE.map((m, i) => (
             <div key={m.name} onClick={() => setSelM(selM===i?null:i)}
@@ -325,39 +325,39 @@ export default function Cours9() {
               </div>
               {selM === i && (
                 <div style={{ padding:"0 16px 14px", borderTop:`0.5px solid ${m.color}20` }}>
-                  <p style={{ fontSize:13, color:"#444", lineHeight:1.65, margin:"8px 0 8px", fontStyle:"italic" }}>Exemple : {m.exemple}</p>
-                  <p style={{ fontSize:12, color:m.color, margin:"0 0 10px" }}>Effet : {m.effet}</p>
+                  <p style={{ fontSize:13, color:"#444", lineHeight:1.65, margin:"8px 0 8px", fontStyle:"italic" }}>{n("marcheExempleLabel")} {m.exemple}</p>
+                  <p style={{ fontSize:12, color:m.color, margin:"0 0 10px" }}>{n("marcheEffetLabel")} {m.effet}</p>
                   <div style={{ fontFamily:"monospace", fontSize:13, color:m.color, letterSpacing:1, marginBottom:10 }}>
                     {m.prog.join(" → ")}
                   </div>
                   <button onClick={e => { e.stopPropagation(); playProg(ref as React.RefObject<PianoPlayerRef>, m.prog as string[], 900); }}
                     style={{ fontSize:12, padding:"5px 14px", border:`0.5px solid ${m.color}`, borderRadius:20, cursor:"pointer", background:"transparent", color:m.color }}>
-                    ▶ Écouter
+                    {n("marcheListenBtn")}
                   </button>
                 </div>
               )}
             </div>
           ))}
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Comparaison</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("marcheComparaisonH3")}</h3>
           <div style={{ overflowX:"auto" }}>
             <table style={{ width:"100%", borderCollapse:"collapse", fontSize:13 }}>
               <thead>
                 <tr style={{ borderBottom:"0.5px solid #e5e5e5" }}>
-                  {["","Marche diatonique","Marche harmonique"].map(h => (
+                  {[n("marcheTh0"), n("marcheTh1"), n("marcheTh2")].map(h => (
                     <th key={h} style={{ textAlign:"left", padding:"6px 10px", fontWeight:500, color:"#666" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { label:"Intervalles", dia:"Adaptés à la gamme", har:"Exactement identiques" },
-                  { label:"Tonalité",    dia:"Reste dans la gamme", har:"Quitte la gamme — module" },
-                  { label:"Effet",       dia:"Animation interne", har:"Dérive / voyage tonal" },
-                  { label:"Exemple",     dia:"Canon de Pachelbel", har:"Gm–Fm–Ebm–Dbm" },
+                  { label: n("marcheRowIntervallesLabel"), dia: n("marcheRowIntervallesDia"), har: n("marcheRowIntervallesHar") },
+                  { label: n("marcheRowTonaliteLabel"),    dia: n("marcheRowTonaliteDia"),    har: n("marcheRowTonaliteHar") },
+                  { label: n("marcheRowEffetLabel"),       dia: n("marcheRowEffetDia"),       har: n("marcheRowEffetHar") },
+                  { label: n("marcheRowExempleLabel"),     dia: n("marcheRowExempleDia"),     har: n("marcheRowExempleHar") },
                 ].map((row, i) => (
-                  <tr key={tr(row.label)} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
-                    <td style={{ padding:"7px 10px", fontWeight:500, color:"#888" }}>{tr(row.label)}</td>
+                  <tr key={row.label} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
+                    <td style={{ padding:"7px 10px", fontWeight:500, color:"#888" }}>{row.label}</td>
                     <td style={{ padding:"7px 10px", color:"#0F6E56" }}>{row.dia}</td>
                     <td style={{ padding:"7px 10px", color:"#534AB7" }}>{row.har}</td>
                   </tr>
@@ -371,172 +371,152 @@ export default function Cours9() {
       {/* ══ NOTE COMMUNE ══ */}
       {sec === "notecom" && (
         <div>
-          <h2 style={S.h2}>{tr("Modulation par note commune")}</h2>
-          <p style={S.p}>Au lieu d'un <em>accord</em> commun aux deux tonalités (pivot), on utilise ici une seule <strong>note</strong> comme lien. Cette note appartient à l'accord de départ avec une certaine fonction, puis est maintenue pendant que l'harmonie change — elle se retrouve dans le nouvel accord avec une fonction différente.</p>
+          <h2 style={S.h2}>{n("notecomH2")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("notecomIntro") }} />
 
-          <div style={S.tip}>
-            <strong>Exemple classique :</strong> G majeur → Eb majeur avec Sol au soprano.<br/>
-            Sol = tonique de G (fondamentale) → Sol = tierce de Eb (Mi♭–Sol–Si♭).<br/>
-            La même hauteur, deux rôles différents. La modulation est presque imperceptible.
-          </div>
+          <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("notecomTipContent") }} />
 
-          <div style={S.info}>
-            <strong>Où placer la note commune ?</strong> De préférence au soprano — elle est la plus audible et guide l'oreille. À la basse, elle crée plutôt un effet de pédale. Dans les voix intérieures, l'effet est plus discret.
-          </div>
+          <div style={S.info} dangerouslySetInnerHTML={{ __html: n("notecomInfoContent") }} />
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Notes communes fréquentes</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("notecomFrequentesH3")}</h3>
           <div style={{ display:"grid", gridTemplateColumns:"repeat(2,1fr)", gap:8, marginBottom:16 }}>
             {[
-              { note:"La tierce",     ex:"Mi de C = tierce de C → tierce de Am ou fondamentale de Em", color:"#0F6E56", bg:"#E1F5EE" },
-              { note:"La septième",   ex:"Sib de C7 = septième de C7 → fondamentale de Bb ou tierce de Gm", color:"#534AB7", bg:"#EEEDFE" },
-              { note:"La neuvième",   ex:"Ré de C9 = neuvième de C → tierce de Bb ou fondamentale de Dm", color:"#BA7517", bg:"#FAEEDA" },
-              { note:"La treizième",  ex:"La de C13 = treizième de C → fondamentale de Am ou tierce de F", color:"#185FA5", bg:"#E6F1FB" },
+              { nameKey:"notecomTierceName",     exKey:"notecomTierceEx",     color:"#0F6E56", bg:"#E1F5EE" },
+              { nameKey:"notecomSeptiemeName",   exKey:"notecomSeptiemeEx",   color:"#534AB7", bg:"#EEEDFE" },
+              { nameKey:"notecomNeuviemeName",   exKey:"notecomNeuviemeEx",   color:"#BA7517", bg:"#FAEEDA" },
+              { nameKey:"notecomTreizièmeName",  exKey:"notecomTreizièmeEx",  color:"#185FA5", bg:"#E6F1FB" },
             ].map(item => (
-              <div key={item.note} style={{ border:`0.5px solid ${item.color}30`, borderRadius:10, padding:"12px 14px", background:item.bg }}>
-                <div style={{ fontSize:13, fontWeight:500, color:item.color, marginBottom:5 }}>{item.note}</div>
-                <p style={{ fontSize:12, color:"#444", lineHeight:1.6, margin:0 }}>{item.ex}</p>
+              <div key={item.nameKey} style={{ border:`0.5px solid ${item.color}30`, borderRadius:10, padding:"12px 14px", background:item.bg }}>
+                <div style={{ fontSize:13, fontWeight:500, color:item.color, marginBottom:5 }}>{n(item.nameKey)}</div>
+                <p style={{ fontSize:12, color:"#444", lineHeight:1.6, margin:0 }}>{n(item.exKey)}</p>
               </div>
             ))}
           </div>
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Exemples de progressions</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("notecomExemplesH3")}</h3>
           {[
-            { label:"G → Eb via Sol (tierce de Eb)", prog:["G","Eb","Bb7","Eb"], desc:"Sol = I de G → III de Eb. Harmonie change, Sol tenu au soprano." },
-            { label:"C → Am via Mi (I de Am)", prog:["C","Am","E7","Am"], desc:"Mi = III de C → I de Am. C devient Am — modulation vers le relatif mineur." },
-            { label:"C → F via Fa (IV de C)", prog:["C","F","C7","F"], desc:"Fa = IV de C → I de F. C7 (V/IV) confirme F comme nouveau centre." },
+            { labelKey:"notecomEx1Label", descKey:"notecomEx1Desc", prog:["G","Eb","Bb7","Eb"] },
+            { labelKey:"notecomEx2Label", descKey:"notecomEx2Desc", prog:["C","Am","E7","Am"] },
+            { labelKey:"notecomEx3Label", descKey:"notecomEx3Desc", prog:["C","F","C7","F"] },
           ].map(ex => (
-            <div key={tr(ex.label)} style={{ border:"0.5px solid #e5e5e5", borderRadius:10, padding:"12px 16px", marginBottom:8, background:"#fafafa" }}>
-              <div style={{ fontSize:13, fontWeight:500, color:"#111", marginBottom:4 }}>{tr(ex.label)}</div>
+            <div key={ex.labelKey} style={{ border:"0.5px solid #e5e5e5", borderRadius:10, padding:"12px 16px", marginBottom:8, background:"#fafafa" }}>
+              <div style={{ fontSize:13, fontWeight:500, color:"#111", marginBottom:4 }}>{n(ex.labelKey)}</div>
               <div style={{ fontFamily:"monospace", fontSize:12, color:"#534AB7", marginBottom:6, letterSpacing:1 }}>{ex.prog.join(" → ")}</div>
-              <p style={{ fontSize:12, color:"#666", margin:"0 0 8px", lineHeight:1.6 }}>{ex.desc}</p>
+              <p style={{ fontSize:12, color:"#666", margin:"0 0 8px", lineHeight:1.6 }}>{n(ex.descKey)}</p>
               <button onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ex.prog, 950)}
                 style={{ fontSize:12, padding:"5px 14px", border:"0.5px solid #534AB7", borderRadius:20, cursor:"pointer", background:"transparent", color:"#534AB7" }}>
-                ▶ Écouter
+                {n("notecomListenBtn")}
               </button>
             </div>
           ))}
 
-          <div style={S.warn}>
-            La modulation par note commune est particulièrement efficace pour atteindre des <strong>tonalités éloignées</strong> (médiantes, relations de tierce) où l'accord pivot diatonique est difficile à trouver.
-          </div>
+          <div style={S.warn} dangerouslySetInnerHTML={{ __html: n("notecomWarnContent") }} />
         </div>
       )}
 
       {/* ══ MINORISATION ══ */}
       {sec === "minor" && (
         <div>
-          <h2 style={S.h2}>Modulation par minorisation</h2>
-          <p style={S.p}>La minorisation transforme un accord majeur en son homonyme mineur — on abaisse la tierce d'un demi-ton. Ce nouvel accord mineur peut alors être réinterprété comme un degré d'une autre tonalité, initiant ainsi une modulation.</p>
+          <h2 style={S.h2}>{n("minorH2")}</h2>
+          <p style={S.p}>{n("minorIntro")}</p>
 
-          <div style={S.tip}>
-            <strong>Exemple fondamental :</strong> C (Do–Mi–Sol) → Cm (Do–Mi♭–Sol)<br/>
-            Cm = IIm de Bb majeur → F7 (V de Bb) → Bb<br/>
-            En abaissant un seul demi-ton (Mi → Mi♭), on module de C vers Bb.
-          </div>
+          <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("minorTipContent") }} />
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Les trois minorisat ions les plus fréquentes</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("minorFrequentesH3")}</h3>
           {[
-            { de:"I → Im", ex:"C → Cm (C majeur)", vers:"Bb majeur (Cm = IIm de Bb)", desc:"La plus dramatique — la tonique elle-même s'assombrit. Très expressif dans les codas romantiques.", prog:["C","Cm","F7","Bb"], color:"#993C1D", bg:"#FAECE7" },
-            { de:"IV → IVm", ex:"F → Fm (en C)", vers:"Emprunt — reste en C", desc:"Le IVm est souvent un simple emprunt coloré, pas toujours une modulation. Couleur sombre sur la sous-dominante.", prog:["C","Fm","G7","C"], color:"#0F6E56", bg:"#E1F5EE" },
-            { de:"I → Im (en mineur)", ex:"A → Am (en G)", vers:"G mineur ou Gm est VI de Bb", desc:"Moins fréquent mais expressif — la majorisation inverse (Im→I) est aussi possible.", prog:["G","Gm","F","Eb"], color:"#534AB7", bg:"#EEEDFE" },
+            { deKey:"minorRow1De", exKey:"minorRow1Ex", versKey:"minorRow1Vers", descKey:"minorRow1Desc", prog:["C","Cm","F7","Bb"], color:"#993C1D", bg:"#FAECE7" },
+            { deKey:"minorRow2De", exKey:"minorRow2Ex", versKey:"minorRow2Vers", descKey:"minorRow2Desc", prog:["C","Fm","G7","C"], color:"#0F6E56", bg:"#E1F5EE" },
+            { deKey:"minorRow3De", exKey:"minorRow3Ex", versKey:"minorRow3Vers", descKey:"minorRow3Desc", prog:["G","Gm","F","Eb"], color:"#534AB7", bg:"#EEEDFE" },
           ].map(row => (
-            <div key={row.de} style={{ border:`0.5px solid ${row.color}30`, borderRadius:10, padding:"14px 16px", marginBottom:10, background:row.bg }}>
-              <div style={{ fontSize:14, fontWeight:500, color:row.color, marginBottom:4 }}>{row.de} — {row.ex}</div>
-              <div style={{ fontSize:12, color:"#666", marginBottom:6 }}>Vers : {row.vers}</div>
-              <p style={{ fontSize:13, color:"#444", lineHeight:1.6, marginBottom:8 }}>{row.desc}</p>
+            <div key={row.deKey} style={{ border:`0.5px solid ${row.color}30`, borderRadius:10, padding:"14px 16px", marginBottom:10, background:row.bg }}>
+              <div style={{ fontSize:14, fontWeight:500, color:row.color, marginBottom:4 }}>{n(row.deKey)} — {n(row.exKey)}</div>
+              <div style={{ fontSize:12, color:"#666", marginBottom:6 }}>{n("minorVersLabel")} {n(row.versKey)}</div>
+              <p style={{ fontSize:13, color:"#444", lineHeight:1.6, marginBottom:8 }}>{n(row.descKey)}</p>
               <div style={{ fontFamily:"monospace", fontSize:12, color:row.color, letterSpacing:1, marginBottom:8 }}>{row.prog.join(" → ")}</div>
               <button onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, row.prog, 1000)}
                 style={{ fontSize:12, padding:"5px 14px", border:`0.5px solid ${row.color}`, borderRadius:20, cursor:"pointer", background:"transparent", color:row.color }}>
-                ▶ Écouter
+                {n("minorListenBtn")}
               </button>
             </div>
           ))}
 
-          <div style={S.info}>
-            <strong>Cas fréquents :</strong> IV majeur → IV mineur (emprunt classique du romantisme), I majeur → I mineur (très expressif), V majeur → V mineur (rare mais efficace comme préparation modale).
-          </div>
+          <div style={S.info} dangerouslySetInnerHTML={{ __html: n("minorInfoContent") }} />
         </div>
       )}
 
       {/* ══ PÉDALES ══ */}
       {sec === "pedales" && (
         <div>
-          <h2 style={S.h2}>{tr("Les pédales harmoniques")}</h2>
-          <p style={S.p}>Une <strong>pédale harmonique</strong> est une note maintenue (tenue ou répétée) dans une voix pendant que les autres voix changent d'accords. Elle peut appartenir aux accords qui passent — ou leur être étrangère, créant des dissonances expressives résolues plus tard.</p>
+          <h2 style={S.h2}>{n("pedalesH2")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("pedalesIntro") }} />
 
-          <p style={{ fontSize:13, color:"#888", marginBottom:12 }}>Cliquez sur un type de pédale pour en voir les détails.</p>
+          <p style={{ fontSize:13, color:"#888", marginBottom:12 }}>{n("pedalesClickHint")}</p>
 
           {TYPES_PEDALES.map((p, i) => (
             <div key={p.type} onClick={() => setSelP(selP===i?null:i)}
               style={{ border:`0.5px solid ${selP===i?p.color:"#e5e5e5"}`, borderRadius:10, marginBottom:8, overflow:"hidden", background:selP===i?p.bg:"#fff", transition:"all .15s", cursor:"pointer" }}>
               <div style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px" }}>
                 <span style={{ fontSize:13, fontWeight:600, color:selP===i?p.color:"#111", minWidth:120 }}>{p.type}</span>
-                <span style={{ fontSize:11, color:"#999", flex:1 }}>Note tenue : {p.note}</span>
+                <span style={{ fontSize:11, color:"#999", flex:1 }}>{n("pedalesNoteTenueLabel")} {p.note}</span>
                 <span style={{ fontSize:11, color:p.color, background:p.bg, padding:"2px 8px", borderRadius:8, border:`0.5px solid ${p.color}` }}>{p.role.split(" — ")[0]}</span>
               </div>
               {selP === i && (
                 <div style={{ padding:"0 16px 14px", borderTop:`0.5px solid ${p.color}20` }}>
                   <p style={{ fontSize:13, color:"#444", lineHeight:1.65, margin:"8px 0 6px" }}>{p.car}</p>
                   <div style={{ fontFamily:"monospace", fontSize:12, color:p.color, marginTop:6 }}>
-                    Exemple : {p.ex}
+                    {n("pedalesExempleLabel")} {p.ex}
                   </div>
                 </div>
               )}
             </div>
           ))}
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{tr("Tableau comparatif")}</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("pedalesTableauH3")}</h3>
           <div style={{ overflowX:"auto" }}>
             <table style={{ width:"100%", borderCollapse:"collapse", fontSize:12 }}>
               <thead>
                 <tr style={{ borderBottom:"0.5px solid #e5e5e5" }}>
-                  {["Type","Note tenue","Position habituelle","Usage typique"].map(h => (
+                  {[n("pedalesTh1"), n("pedalesTh2"), n("pedalesTh3"), n("pedalesTh4")].map(h => (
                     <th key={h} style={{ textAlign:"left", padding:"6px 8px", fontWeight:500, color:"#666" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { t:"Tonique",  n:"I",    pos:"Basse",   u:"Début/fin — stabilisation" },
-                  { t:"Dominante",n:"V",    pos:"Basse",   u:"Avant cadence — tension" },
-                  { t:"Double",   n:"I+V",  pos:"Basse+voix",u:"Passages modulants" },
-                  { t:"Soprano",  n:"Variable",pos:"Soprano",u:"Impressionnisme — suspension" },
+                  { tKey:"pedalesRow1T", nKey:"pedalesRow1N", posKey:"pedalesRow1Pos", uKey:"pedalesRow1U" },
+                  { tKey:"pedalesRow2T", nKey:"pedalesRow2N", posKey:"pedalesRow2Pos", uKey:"pedalesRow2U" },
+                  { tKey:"pedalesRow3T", nKey:"pedalesRow3N", posKey:"pedalesRow3Pos", uKey:"pedalesRow3U" },
+                  { tKey:"pedalesRow4T", nKey:"pedalesRow4N", posKey:"pedalesRow4Pos", uKey:"pedalesRow4U" },
                 ].map((row, i) => (
-                  <tr key={row.t} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
-                    <td style={{ padding:"7px 8px", fontWeight:500 }}>{row.t}</td>
-                    <td style={{ padding:"7px 8px", color:"#185FA5", fontFamily:"monospace" }}>{row.n}</td>
-                    <td style={{ padding:"7px 8px", color:"#555" }}>{row.pos}</td>
-                    <td style={{ padding:"7px 8px", color:"#555" }}>{row.u}</td>
+                  <tr key={row.tKey} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
+                    <td style={{ padding:"7px 8px", fontWeight:500 }}>{n(row.tKey)}</td>
+                    <td style={{ padding:"7px 8px", color:"#185FA5", fontFamily:"monospace" }}>{n(row.nKey)}</td>
+                    <td style={{ padding:"7px 8px", color:"#555" }}>{n(row.posKey)}</td>
+                    <td style={{ padding:"7px 8px", color:"#555" }}>{n(row.uKey)}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
 
-          <div style={S.warn}>
-            <strong>Origine du terme :</strong> l'orgue possède un <em>pédalier</em> — un clavier joué aux pieds qui tient les basses. L'organiste peut maintenir une note au pied pendant que les deux mains jouent librement. D'où le terme 'pédale d'orgue' (pédale harmonique).
-          </div>
+          <div style={S.warn} dangerouslySetInnerHTML={{ __html: n("pedalesWarnContent") }} />
         </div>
       )}
 
       {/* ══ ACCORDS APPOGIATURÉS ══ */}
       {sec === "appog" && (
         <div>
-          <h2 style={S.h2}>{tr("Les accords appogiaturés")}</h2>
-          <p style={S.p}>Un <strong>accord appogiaturé</strong> est l'équivalent harmonique de la note d'appogiature — un accord entier étranger à la fonction en cours, inséré sur un <em>temps fort</em>, qui se résout vers un accord réel. La dissonance est brève mais expressive.</p>
+          <h2 style={S.h2}>{n("appogH2")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("appogIntro") }} />
 
-          <div style={S.info}>
-            <strong>Schéma fonctionnel :</strong> Accord étranger (temps fort, dissonant) → Accord réel (résolution conjointe des voix)
-          </div>
+          <div style={S.info} dangerouslySetInnerHTML={{ __html: n("appogInfoSchema") }} />
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>L'accord de dominante sur tonique — le cas classique</h3>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("appogDomToniqueH3")}</h3>
           <div style={{ border:"0.5px solid #185FA530", borderRadius:10, padding:"16px", background:"#E6F1FB", marginBottom:16 }}>
-            <div style={{ fontSize:14, fontWeight:500, color:"#185FA5", marginBottom:8 }}>G7/C — dominante appogiaturée sur basse de tonique</div>
-            <p style={{ fontSize:13, color:"#0C447C", lineHeight:1.65, marginBottom:12 }}>
-              G7/C = Sol–Si–Ré–Fa avec <strong>Do à la basse</strong>. L'accord exprime une tension de dominante (G7), mais le Do à la basse empêche la résolution réelle — Do est la tonique, pas Sol. C'est un <em>retard harmonique</em> de la résolution finale.
-            </p>
+            <div style={{ fontSize:14, fontWeight:500, color:"#185FA5", marginBottom:8 }}>{n("appogDomToniqueTitle")}</div>
+            <p style={{ fontSize:13, color:"#0C447C", lineHeight:1.65, marginBottom:12 }} dangerouslySetInnerHTML={{ __html: n("appogDomToniqueDesc") }} />
             <div style={{ background:"rgba(255,255,255,0.7)", borderRadius:8, padding:"10px 14px", marginBottom:12 }}>
-              <div style={{ fontSize:12, color:"#999", marginBottom:6 }}>Résolution G7/C → C</div>
+              <div style={{ fontSize:12, color:"#999", marginBottom:6 }}>{n("appogResolutionLabel")}</div>
               <div style={{ fontSize:13, fontFamily:"monospace", color:"#185FA5" }}>Si → Do ↑ (sensible → tonique)</div>
               <div style={{ fontSize:13, fontFamily:"monospace", color:"#185FA5" }}>Fa → Mi ↓ (7e → tierce)</div>
               <div style={{ fontSize:13, fontFamily:"monospace", color:"#185FA5" }}>Ré → Mi ou Sol (quinte → reste)</div>
@@ -544,20 +524,16 @@ export default function Cours9() {
             </div>
             <button onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ["G7/C","C"], 1000)}
               style={{ fontSize:12, padding:"5px 14px", border:"0.5px solid #185FA5", borderRadius:20, cursor:"pointer", background:"transparent", color:"#185FA5" }}>
-              ▶ Écouter G7/C → C
+              {n("appogListenBtn")}
             </button>
           </div>
 
-          <div style={S.tip}>
-            <strong>Séquence complète :</strong> Dm → G7/C → C ou I6/4 → G7/C → C. L'accord appogiaturé G7/C retarde la résolution en C — plus la tension est prolongée, plus la résolution est satisfaisante.
-          </div>
+          <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("appogTipContent") }} />
 
-          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>Relation avec la pédale de soprano</h3>
-          <p style={S.p}>La pédale de soprano crée naturellement des accords appogiaturés : la note tenue au soprano devient étrangère aux accords changeant sous elle, créant des dissonances successives résolues chaque fois que l'harmonie "rejoint" la pédale. C'est la technique caractéristique de l'écriture impressionniste.</p>
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("appogSopranoH3")}</h3>
+          <p style={S.p}>{n("appogSopranoDesc")}</p>
 
-          <div style={S.info}>
-            <strong>Usage romantique :</strong> les codas de Beethoven, Brahms et Mahler accumulent souvent : SD → I6/4 → G7/C → C. Chaque étape retarde la résolution finale — l'effet catartique est maximal quand C pur arrive enfin.
-          </div>
+          <div style={S.info} dangerouslySetInnerHTML={{ __html: n("appogInfoUsage") }} />
         </div>
       )}
 

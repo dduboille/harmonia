@@ -38,7 +38,6 @@ const COMPOSERS = [
     harmonie: "Architecturale — chaque note justifiée par la logique contrapuntique et le cycle des quintes",
     oeuvre: "Le Clavier Bien Tempéré",
     oeuvreWhy: "48 préludes et fugues dans toutes les tonalités — le monument absolu du contrepoint tonal.",
-    // I–V–I choral : 48,55,64,72 / 43,59,62,67 / 48,52,55,60
     demo: [["Do:3","Sol:3","Mi:4","Do:5"],["Sol:2","Si:3","Ré:4","Sol:4"],["Do:3","Mi:3","Sol:3","Do:4"]],
     demoLabel: "Choral I–V–I",
   },
@@ -50,7 +49,6 @@ const COMPOSERS = [
     harmonie: "Élégante et symétrique — harmonie fonctionnelle au service d'une mélodie naturelle",
     oeuvre: "Sonate K.331 · Symphonie n°40",
     oeuvreWhy: "La K.331 illustre la perfection formelle : thème, variations, menuet, rondo alla turca.",
-    // I–IV–V–I : 60,64,67 / 65,69,72 / 67,71,74 / 60,64,67,72
     demo: [["Do:4","Mi:4","Sol:4"],["Fa:4","La:4","Do:5"],["Sol:4","Si:4","Ré:5"],["Do:4","Mi:4","Sol:4","Do:5"]],
     demoLabel: "I–IV–V–I (période classique)",
   },
@@ -62,7 +60,6 @@ const COMPOSERS = [
     harmonie: "Tendue et dramatique — résolution différée au maximum pour un impact émotionnel maximal",
     oeuvre: "5e Symphonie · Sonate Pathétique",
     oeuvreWhy: "La 5e Symphonie (sol-sol-sol-mib) est l'archétype du développement motivique : 4 notes, toute une symphonie.",
-    // i–bVI–IV–V : 48,51,55 / 44,48,51,56 / 41,45,48,53 / 43,47,50,55
     demo: [["Do:3","Mib:3","Sol:3"],["Lab:2","Do:3","Mib:3","Lab:3"],["Fa:2","La:2","Do:3","Fa:3"],["Sol:2","Si:2","Ré:3","Sol:3"]],
     demoLabel: "i–bVI–IV–V (tension dramatique)",
   },
@@ -74,7 +71,6 @@ const COMPOSERS = [
     harmonie: "Coloristique — les accords sont choisis pour leur couleur émotionnelle, pas seulement leur fonction",
     oeuvre: "La Belle Meunière · Winterreise",
     oeuvreWhy: "Winterreise (24 lieder) explore toutes les couleurs harmoniques de la mélancolie romantique.",
-    // C → Ab → C (modulation par tierce basse) : 48,52,55,60 / 44,48,51,56 / 48,52,55,60
     demo: [["Do:3","Mi:3","Sol:3","Do:4"],["Lab:2","Do:3","Mib:3","Lab:3"],["Do:3","Mi:3","Sol:3","Do:4"]],
     demoLabel: "C → Lab → C (tierce basse)",
   },
@@ -86,7 +82,6 @@ const COMPOSERS = [
     harmonie: "Romantique débridée — enchaînements qui défient les règles classiques au service du récit",
     oeuvre: "Symphonie Fantastique",
     oeuvreWhy: "Premier chef-d'œuvre de musique à programme : 5 mouvements narrant une histoire d'amour halluciné.",
-    // Séquence de 7e : 48,52,55,59 / 52,56,59,62 / 57,60,64,67 / 50,54,57,60
     demo: [["Do:3","Mi:3","Sol:3","Si:3"],["Mi:3","Sol#:3","Si:3","Ré:4"],["La:3","Do:4","Mi:4","Sol:4"],["Ré:3","Fa#:3","La:3","Do:4"]],
     demoLabel: "Séquence ascendante romantique",
   },
@@ -98,7 +93,6 @@ const COMPOSERS = [
     harmonie: "Pianistique — exploite les ressources uniques du piano pour des couleurs harmoniques inouïes",
     oeuvre: "Nocturnes · Ballades · Préludes",
     oeuvreWhy: "Les Nocturnes créent une atmosphère introspective sans équivalent — harmonie au service de la rêverie.",
-    // Chromatisme nocturne : 48,52,55,59 / 47,51,54,57 / 45,49,52,55 / 43,47,50,54 / 48,52,55,60
     demo: [["Do:3","Mi:3","Sol:3","Si:3"],["Si:2","Ré#:3","Fa#:3","La:3"],["La:2","Do#:3","Mi:3","Sol:3"],["Sol:2","Si:2","Ré:3","Fa#:3"],["Do:3","Mi:3","Sol:3","Do:4"]],
     demoLabel: "Chromatisme descendant nocturne",
   },
@@ -110,7 +104,6 @@ const COMPOSERS = [
     harmonie: "Virtuose — la difficulté technique et la complexité harmonique sont indissociables",
     oeuvre: "Sonate en Si mineur · Études Transcendantes",
     oeuvreWhy: "La Sonate en Si mineur — un seul mouvement de 30 min — révolutionne la conception formelle.",
-    // Chromatisme ascendant : 48,52,55,59 / 50,54,57,60 / 52,56,59,62 / 53,57,60,63
     demo: [["Do:3","Mi:3","Sol:3","Si:3"],["Ré:3","Fa#:3","La:3","Do:4"],["Mi:3","Sol#:3","Si:3","Ré:4"],["Fa:3","La:3","Do:4","Mib:4"]],
     demoLabel: "Chromatisme ascendant (Liszt)",
   },
@@ -122,7 +115,6 @@ const COMPOSERS = [
     harmonie: "Lyrique et dramatique — grands arcs mélodiques soutenus par une harmonie dense",
     oeuvre: "Lac des Cygnes · Symphonie n°6 · Concerto pour piano n°1",
     oeuvreWhy: "La Symphonie Pathétique se termine par un mouvement lent — innovation formelle bouleversante.",
-    // Am–F–E–Am : 45,48,52,57 / 41,45,48,53 / 40,44,47,52 / 45,48,52,57
     demo: [["La:2","Do:3","Mi:3","La:3"],["Fa:2","La:2","Do:3","Fa:3"],["Mi:2","Sol#:2","Si:2","Mi:3"],["La:2","Do:3","Mi:3","La:3"]],
     demoLabel: "i–VI–V–i (lyrisme slave)",
   },
@@ -134,7 +126,6 @@ const COMPOSERS = [
     harmonie: "Dense et nostalgique — accords riches à 5-7 notes, lyrisme slave exacerbé",
     oeuvre: "Concerto pour piano n°2 · Vocalise · Rhapsodie sur Paganini",
     oeuvreWhy: "Le Concerto n°2 (Do mineur) est la quintessence du lyrisme post-romantique pour piano et orchestre.",
-    // Am–Dm–G–C : 45,52,60,64 / 38,45,53,57 / 43,47,50,55 / 36,43,52,55,60
     demo: [["La:2","Mi:3","Do:4","Mi:4"],["Ré:2","La:2","Fa:3","La:3"],["Sol:2","Si:2","Ré:3","Sol:3"],["Do:2","Sol:2","Mi:3","Sol:3","Do:4"]],
     demoLabel: "Richesse post-romantique",
   },
@@ -147,7 +138,6 @@ const ANALYSES = [
     id: "a1",
     title: "Quelle progression pour Bach ?",
     desc: "Bach construit ses chorals autour de cadences fonctionnelles strictes. Cette progression descend le cycle des quintes.",
-    // I–IV–V–I : 48,52,55,60 / 53,57,60,65 / 55,59,62,67 / 48,52,55,60
     demo: [["Do:3","Mi:3","Sol:3","Do:4"],["Fa:3","La:3","Do:4","Fa:4"],["Sol:3","Si:3","Ré:4","Sol:4"],["Do:3","Mi:3","Sol:3","Do:4"]],
     question: "Cette progression I–IV–V–I est typique de quel style ?",
     options: ["Bach (choral baroque)", "Chopin (nocturne)", "Berlioz (programme)", "Rachmaninov (post-romantisme)"],
@@ -320,6 +310,9 @@ const ALL_QUESTIONS = [
 function ComposerCard({ c, pianoRef }: { c: typeof COMPOSERS[0]; pianoRef: React.RefObject<PianoPlayerRef | null> }) {
   const [open, setOpen] = useState(false);
   const tr = useTerm();
+  const i18n = useCoursI18n("cours20");
+  const tc   = i18n.tc;
+  const n    = (key: string) => tc(`narrative.${key}` as any);
   return (
     <div style={{ border: `1.5px solid ${open ? c.color : "#e0dbd3"}`, borderRadius: 12, background: open ? c.bg : "#fff", transition: "all .2s", marginBottom: 12 }}>
       <button onClick={() => setOpen(!open)} style={{ width: "100%", padding: "18px 20px", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 14, textAlign: "left" }}>
@@ -349,26 +342,26 @@ function ComposerCard({ c, pianoRef }: { c: typeof COMPOSERS[0]; pianoRef: React
 
           {/* Harmonie */}
           <div style={{ fontSize: 13, color: "#555", fontFamily: "system-ui", lineHeight: 1.6, marginBottom: 16, padding: "10px 14px", background: "rgba(255,255,255,0.7)", borderRadius: 8, borderLeft: `3px solid ${c.color}` }}>
-            <strong style={{ color: c.color }}>{tr("Couleur harmonique :")}</strong> {c.harmonie}
+            <strong style={{ color: c.color }}>{n("composerHarmonieLabel")}</strong> {c.harmonie}
           </div>
 
           {/* Demo audio */}
           <div style={{ marginBottom: 16 }}>
             <div style={{ fontSize: 11, fontWeight: 600, color: "#888", fontFamily: "system-ui", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 8 }}>
-              Progression emblématique — {c.demoLabel}
+              {n("composerProgLabel").replace("{label}", c.demoLabel)}
             </div>
             <button
               onClick={() => playProg(pianoRef, c.demo, 650, 1.0)}
               style={{ padding: "8px 18px", borderRadius: 20, border: `1.5px solid ${c.color}`, background: "#fff", color: c.color, fontSize: 13, fontWeight: 500, cursor: "pointer", fontFamily: "system-ui" }}
             >
-              ▶ Écouter
+              {n("composerListenBtn")}
             </button>
           </div>
 
           {/* Œuvre de référence */}
           <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 8, padding: "12px 14px" }}>
             <div style={{ fontSize: 12, fontWeight: 700, color: c.color, fontFamily: "system-ui", marginBottom: 4 }}>
-              Œuvre de référence
+              {n("composerOeuvreTitle")}
             </div>
             <div style={{ fontSize: 14, fontWeight: 500, color: "#1a1a1a", marginBottom: 4 }}>{c.oeuvre}</div>
             <div style={{ fontSize: 13, color: "#666", lineHeight: 1.6, fontFamily: "system-ui" }}>{c.oeuvreWhy}</div>
@@ -426,16 +419,19 @@ function AnalysisCard({ a, pianoRef }: { a: typeof ANALYSES[0]; pianoRef: React.
 // ─── Composant principal ─────────────────────────────────────────────────────
 
 export default function Cours20() {
-  const { badge, title, subtitle } = useCoursI18n("cours20");
+  const i18n = useCoursI18n("cours20");
+  const tc   = i18n.tc;
+  const n    = (key: string) => tc(`narrative.${key}` as any);
+  const { badge, title, subtitle } = i18n;
   const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours20Content);
   const pianoRef = useRef<PianoPlayerRef | null>(null);
   const [section, setSection] = useState<"compositeurs"|"analyse"|"quiz">("compositeurs");
 
   const SECTIONS = [
-    { id: "compositeurs" as const, label: "Compositeurs" },
-    { id: "analyse"      as const, label: "Analyse comparative" },
-    { id: "quiz"         as const, label: "Quiz" },
+    { id: "compositeurs" as const, label: n("sectionCompositeurs") },
+    { id: "analyse"      as const, label: n("sectionAnalyse") },
+    { id: "quiz"         as const, label: n("sectionQuiz") },
   ];
 
   // Quiz state
@@ -468,9 +464,9 @@ export default function Cours20() {
             composer="Franz Schubert"
             period="1797–1828"
             emoji="🌙"
-            concept="Modulations par tierce & couleurs romantiques naissantes"
-            anecdote="Schubert a composé plus de 600 lieder, dont plusieurs en une seule journée. Il est mort à 31 ans sans jamais avoir dirigé la plupart de ses grandes œuvres en public."
-            lesson="La modulation par tierce — glisser de Do majeur à Lab majeur sans transition — crée une couleur unique, comme un changement soudain d'éclairage sur la même scène."
+            concept={n("maitreCardConcept")}
+            anecdote={n("maitreCardAnecdote")}
+            lesson={n("maitreCardLesson")}
             accentColor={PRIMARY}
           />
         </div>
@@ -493,10 +489,10 @@ export default function Cours20() {
         {section === "compositeurs" && (
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 20 }}>
-              9 COMPOSITEURS — Du Baroque au Post-romantisme
+              {n("compositeursHeading")}
             </div>
             <div style={{ fontSize: 13, color: "#666", fontFamily: "system-ui", marginBottom: 24, lineHeight: 1.7, padding: "12px 16px", background: PRIMARY_BG, borderRadius: 8, borderLeft: `3px solid ${PRIMARY}` }}>
-              Chaque compositeur développe un langage harmonique reconnaissable. Clique sur chaque carte pour découvrir ses techniques, écouter sa progression emblématique et comprendre son œuvre de référence.
+              {n("compositeursIntro")}
             </div>
             {COMPOSERS.map(c => <ComposerCard key={c.id} c={c} pianoRef={pianoRef} />)}
           </div>
@@ -505,9 +501,9 @@ export default function Cours20() {
         {/* ── Section Analyse ── */}
         {section === "analyse" && (
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 20 }}>{tr("EXERCICES D'ANALYSE COMPARATIVE")}</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 20 }}>{n("analyseHeading")}</div>
             <div style={{ fontSize: 13, color: "#666", fontFamily: "system-ui", marginBottom: 24, lineHeight: 1.7, padding: "12px 16px", background: PRIMARY_BG, borderRadius: 8, borderLeft: `3px solid ${PRIMARY}` }}>
-              Écoute les progressions, compare les versions et identifie le style de chaque compositeur. L'analyse auditive est la clé de la reconnaissance stylistique.
+              {n("analyseIntro")}
             </div>
             {ANALYSES.map(a => <AnalysisCard key={a.id} a={a} pianoRef={pianoRef} />)}
           </div>
@@ -517,15 +513,15 @@ export default function Cours20() {
         {section === "quiz" && (
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 20 }}>
-              QUIZ — {QUIZ_COUNT} QUESTIONS SUR {ALL_QUESTIONS.length} DISPONIBLES
+              {n("quizHeading").replace("{count}", String(QUIZ_COUNT)).replace("{total}", String(ALL_QUESTIONS.length))}
             </div>
 
             {!showResult ? (
               <div>
                 {/* Barre de progression */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, fontFamily: "system-ui" }}>
-                  <span style={{ fontSize: 12, color: "#888" }}>Question {qIdx + 1} / {QUIZ_COUNT}</span>
-                  <span style={{ fontSize: 12, color: PRIMARY }}>{answers.filter(a => a !== null).length} répondues</span>
+                  <span style={{ fontSize: 12, color: "#888" }}>{n("quizProgress").replace("{current}", String(qIdx + 1)).replace("{total}", String(QUIZ_COUNT))}</span>
+                  <span style={{ fontSize: 12, color: PRIMARY }}>{n("quizAnswered").replace("{count}", String(answers.filter(a => a !== null).length))}</span>
                 </div>
                 <div style={{ height: 4, background: "#e8e3db", borderRadius: 2, marginBottom: 24 }}>
                   <div style={{ height: "100%", width: `${((qIdx + 1) / QUIZ_COUNT) * 100}%`, background: PRIMARY, borderRadius: 2, transition: "width .3s" }} />
@@ -559,11 +555,11 @@ export default function Cours20() {
                   )}
 
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
-                    <button onClick={() => setQIdx(i => Math.max(0, i - 1))} disabled={qIdx === 0} style={{ padding: "10px 20px", borderRadius: 6, border: "1px solid #e0dbd3", background: "#fff", color: "#888", fontSize: 13, cursor: qIdx === 0 ? "not-allowed" : "pointer", fontFamily: "system-ui", opacity: qIdx === 0 ? 0.4 : 1 }}>← Précédente</button>
+                    <button onClick={() => setQIdx(i => Math.max(0, i - 1))} disabled={qIdx === 0} style={{ padding: "10px 20px", borderRadius: 6, border: "1px solid #e0dbd3", background: "#fff", color: "#888", fontSize: 13, cursor: qIdx === 0 ? "not-allowed" : "pointer", fontFamily: "system-ui", opacity: qIdx === 0 ? 0.4 : 1 }}>{n("quizPrev")}</button>
                     {qIdx < QUIZ_COUNT - 1 ? (
-                      <button onClick={() => setQIdx(i => i + 1)} disabled={!answered} style={{ padding: "10px 24px", borderRadius: 6, border: "none", background: answered ? PRIMARY : "#e0dbd3", color: "#fff", fontSize: 13, cursor: answered ? "pointer" : "not-allowed", fontFamily: "system-ui" }}>{tr("Suivante →")}</button>
+                      <button onClick={() => setQIdx(i => i + 1)} disabled={!answered} style={{ padding: "10px 24px", borderRadius: 6, border: "none", background: answered ? PRIMARY : "#e0dbd3", color: "#fff", fontSize: 13, cursor: answered ? "pointer" : "not-allowed", fontFamily: "system-ui" }}>{n("quizNext")}</button>
                     ) : (
-                      <button onClick={() => setShowResult(true)} disabled={answers.filter(a => a !== null).length < QUIZ_COUNT} style={{ padding: "10px 24px", borderRadius: 6, border: "none", background: PRIMARY, color: "#fff", fontSize: 13, cursor: "pointer", fontFamily: "system-ui" }}>{tr("Voir le résultat")}</button>
+                      <button onClick={() => setShowResult(true)} disabled={answers.filter(a => a !== null).length < QUIZ_COUNT} style={{ padding: "10px 24px", borderRadius: 6, border: "none", background: PRIMARY, color: "#fff", fontSize: 13, cursor: "pointer", fontFamily: "system-ui" }}>{n("quizSubmit")}</button>
                     )}
                   </div>
                 </div>
@@ -573,10 +569,10 @@ export default function Cours20() {
                 <div style={{ fontSize: 48, marginBottom: 16 }}>{score >= 8 ? "🎼" : score >= 5 ? "🎹" : "📚"}</div>
                 <div style={{ fontSize: 32, fontWeight: 400, color: PRIMARY, marginBottom: 8 }}>{score} / {QUIZ_COUNT}</div>
                 <div style={{ fontSize: 15, color: "#666", fontFamily: "system-ui", marginBottom: 28 }}>
-                  {score === QUIZ_COUNT ? "Parfait ! Vous maîtrisez l'analyse stylistique." : score >= 7 ? "Très bien ! Quelques compositeurs à revoir." : "Continuez à explorer les compositeurs."}
+                  {score === QUIZ_COUNT ? n("quizPerfect") : score >= 7 ? n("quizGood") : n("quizKeepGoing")}
                 </div>
                 <button onClick={() => { setAnswers(Array(QUIZ_COUNT).fill(null)); setQIdx(0); setShowResult(false); }} style={{ padding: "12px 28px", borderRadius: 6, border: "none", background: PRIMARY, color: "#fff", fontSize: 14, cursor: "pointer", fontFamily: "system-ui" }}>
-                  Recommencer
+                  {n("quizRestart")}
                 </button>
               </div>
             )}

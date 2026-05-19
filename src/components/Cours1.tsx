@@ -1,14 +1,5 @@
 "use client";
 
-/**
- * Cours1.tsx
- * Harmonia · Niveau 1 · Cours 1 — La gamme, les degrés et les intervalles
- * i18n : UI chrome traduit via next-intl (useCoursI18n)
- * Contenu pédagogique : FR pour MVP
- *
- * Convention Harmonia : noms de notes en anglais (C D E F G A B)
- */
-
 import React, { useRef, useState, useCallback } from "react";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { useCoursI18n } from "@/hooks/useCoursI18n";
@@ -16,19 +7,13 @@ import { useCoursContent } from "@/hooks/useCoursContent";
 import { cours1Content, type Degree, type IntervalDef } from "@/data/cours1Content";
 import MaitreCard from "@/components/MaitreCard";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface Section {
   id: string;
   label: string;
 }
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-
 const SECTIONS_IDS = ["origines","degres","tons","intervalles","quiz"] as const;
 
-// Noms de notes : notation anglaise (standard Harmonia)
-// dotKeys et playNote utilisent les noms anglais transmis au PianoPlayer
 const GAMMES = [
   {
     name: "C majeur", root: "C", displayRoot: "C", startOctave: 3,
@@ -60,9 +45,6 @@ const GAMMES = [
   },
 ];
 
-
-
-
 function shuffleArray<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -73,8 +55,6 @@ function shuffleArray<T>(arr: T[]): T[] {
 }
 
 const QUIZ_COUNT = 10;
-
-// ─── Styles ───────────────────────────────────────────────────────────────────
 
 const S = {
   wrap:     { fontFamily: "var(--font-sans, system-ui)", maxWidth: 720, margin: "0 auto", padding: "0 1rem 3rem" } as React.CSSProperties,
@@ -97,10 +77,10 @@ const S = {
   warnBox:  { borderLeft: "2px solid #BA7517", padding: "8px 14px", background: "#FAEEDA", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#633806", lineHeight: 1.6 } as React.CSSProperties,
 };
 
-// ─── Composant ────────────────────────────────────────────────────────────────
-
 export default function Cours1() {
   const i18n = useCoursI18n("cours1");
+  const tc = i18n.tc;
+  const n = (key: string) => tc(`narrative.${key}` as any);
   const { degrees: DEGREES, intervals: INTERVALS, questions: ALL_QUESTIONS } = useCoursContent(cours1Content);
   const [activeSection,  setActiveSection]  = useState("origines");
   const [activeGamme,    setActiveGamme]    = useState(0);
@@ -154,9 +134,43 @@ export default function Cours1() {
 
   const g = GAMMES[activeGamme];
 
+  // Interval reference table (name + quality translated, semitones + example universal)
+  const INT_TABLE = [
+    { name: n("intSeconde"),   nature: n("intNatureMinMaj"),      semis: "1 / 2",      ex: "F–G♭ / F–G"         },
+    { name: n("intTierce"),    nature: n("intNatureMinMaj"),      semis: "3 / 4",      ex: "F–A♭ / F–A"         },
+    { name: n("intQuarte"),    nature: n("intNaturePerfAug"),     semis: "5 / 6",      ex: "F–B♭ / F–B"         },
+    { name: n("intQuinte"),    nature: n("intNatureDimPerfAug"),  semis: "6 / 7 / 8",  ex: "F–C♭ / F–C / F–C#"  },
+    { name: n("intSixte"),     nature: n("intNatureMinMaj"),      semis: "8 / 9",      ex: "F–D♭ / F–D"         },
+    { name: n("intSeptieme"),  nature: n("intNatureMinMaj"),      semis: "10 / 11",    ex: "F–E♭ / F–E"         },
+    { name: n("intOctave"),    nature: n("intNaturePerf"),        semis: "12",          ex: "F–F"                },
+  ];
+
+  const NOTE_NAMES = [
+    n("originesNoteName0"), n("originesNoteName1"), n("originesNoteName2"),
+    n("originesNoteName3"), n("originesNoteName4"), n("originesNoteName5"),
+  ];
+
+  const NOTE_TABLE_ROWS = [
+    { syl: "Ut",  verse: "Ut queant laxis",  note: NOTE_NAMES[0] },
+    { syl: "Ré",  verse: "Resonare fibris",  note: NOTE_NAMES[1] },
+    { syl: "Mi",  verse: "Mira gestorum",    note: NOTE_NAMES[2] },
+    { syl: "Fa",  verse: "Famuli tuorum",    note: NOTE_NAMES[3] },
+    { syl: "Sol", verse: "Solve polluti",    note: NOTE_NAMES[4] },
+    { syl: "La",  verse: "Labii reatum",     note: NOTE_NAMES[5] },
+  ];
+
+  const DEGREE_ROLES: Record<string, string> = {
+    I:    n("degresRoleI"),
+    II:   n("degresRoleII"),
+    III:  n("degresRoleIII"),
+    IV:   n("degresRoleIV"),
+    V:    n("degresRoleV"),
+    VI:   n("degresRoleVI"),
+    VII:  n("degresRoleVII"),
+  };
+
   return (
     <div style={S.wrap}>
-      {/* Piano caché — audio uniquement */}
       <div style={{ position: "absolute", opacity: 0, pointerEvents: "none", height: 0, overflow: "hidden" }}>
         <PianoPlayer ref={pianoRef} octaves={2} startOctave={3} showLabels={false} />
       </div>
@@ -169,12 +183,12 @@ export default function Cours1() {
       </div>
 
       <MaitreCard
-         composer="Pythagore"
-         period="580–495 av. J.-C."
-         emoji="⚒️"
-          concept="Gammes & Intervalles"
-         anecdote="En passant devant une forge, Pythagore remarque que certains marteaux produisent des sons harmonieux ensemble. En mesurant leur poids, il découvre que l'harmonie est une proportion mathématique : un marteau deux fois plus lourd produit une octave, un et demi produit une quinte. La musique n'est pas une affaire de goût — c'est une affaire de physique."
-         lesson="L'intervalle est la cellule de base de la musique. Une question de physique acoustique avant d'être une question d'esthétique."
+        composer="Pythagore"
+        period={n("maitreCardPeriod")}
+        emoji="⚒️"
+        concept={n("maitreCardConcept")}
+        anecdote={n("maitreCardAnecdote")}
+        lesson={n("maitreCardLesson")}
         accentColor="#185FA5"
       />
 
@@ -187,54 +201,28 @@ export default function Cours1() {
         ))}
       </nav>
 
-      {/* ══════════════════════════════════════════════════════════════
-          SECTION 1 : ORIGINES
-      ══════════════════════════════════════════════════════════════ */}
+      {/* ══ SECTION 1 : ORIGINES ══ */}
       {activeSection === "origines" && (
         <div>
-          <h2 style={S.stitle}>D'où viennent ces 7 notes ?</h2>
-          <p style={S.sbody}>
-            Les premières théories musicales occidentales, notamment celles des Grecs avec Pythagore, cherchaient à
-            fonder la gamme sur des rapports de fréquences simples — des sons qui <em>s'accordent</em> naturellement à l'oreille.
-          </p>
-          <p style={S.sbody}>
-            Le point de départ est l'<strong>octave</strong> : une note et son double en fréquence sonnent identiques
-            à des hauteurs différentes. La seconde consonance fondamentale est la <strong>quinte juste</strong> (rapport 3/2).
-            En enchaînant six quintes à partir de Fa :
-          </p>
+          <h2 style={S.stitle}>{n("originesH2")}</h2>
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("originesP1") }} />
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("originesP2") }} />
 
           <div style={{ background: "#f8f8f8", borderRadius: 10, padding: "14px 18px", margin: "12px 0", fontFamily: "monospace", fontSize: 15, letterSpacing: 2, color: "#333", textAlign: "center" }}>
             F → C → G → D → A → E → B
           </div>
 
-          <p style={S.sbody}>
-            En ramenant chaque note dans la même octave, on obtient exactement <strong>7 hauteurs distinctes</strong>.
-            Réordonnées par hauteur croissante, elles forment la gamme diatonique naturelle.
-          </p>
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("originesP3") }} />
 
-          <div style={S.infoBox}>
-            En C majeur : <strong>C – D – E – F – G – A – B</strong>.<br />
-            La gamme la plus simple : aucune altération, toutes les touches blanches du piano.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("originesInfoBox") }} />
 
           <h3 style={{ fontSize: 15, fontWeight: 500, color: "#111", margin: "1.5rem 0 .5rem" }}>
-            L'origine des noms de notes
+            {n("originesH3")}
           </h3>
-          <p style={S.sbody}>
-            Au <strong>XIe siècle</strong>, le moine bénédictin <strong>Guido d'Arezzo</strong> cherche un
-            moyen d'enseigner le chant plus efficacement. Il remarque que les premières syllabes de chaque
-            vers d'un hymne à Saint Jean-Baptiste correspondent aux notes successives de la gamme :
-          </p>
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("originesP4") }} />
 
           <div style={{ border: "0.5px solid #e5e5e5", borderRadius: 10, overflow: "hidden", margin: "12px 0" }}>
-            {[
-              { syl: "Ut", verse: "Ut queant laxis",   note: "Do / C (Ier degré)"  },
-              { syl: "Ré", verse: "Resonare fibris",   note: "Ré / D (IIe degré)"  },
-              { syl: "Mi", verse: "Mira gestorum",     note: "Mi / E (IIIe degré)" },
-              { syl: "Fa", verse: "Famuli tuorum",     note: "Fa / F (IVe degré)"  },
-              { syl: "Sol", verse: "Solve polluti",    note: "Sol / G (Ve degré)"  },
-              { syl: "La", verse: "Labii reatum",      note: "La / A (VIe degré)"  },
-            ].map((row, i) => (
+            {NOTE_TABLE_ROWS.map((row, i) => (
               <div key={row.syl} style={{ display: "flex", alignItems: "center", gap: 16, padding: "8px 14px", background: i % 2 === 0 ? "#fff" : "#fafafa", borderBottom: i < 5 ? "0.5px solid #f0f0f0" : "none" }}>
                 <span style={{ fontWeight: 700, fontSize: 15, color: "#185FA5", minWidth: 32 }}>{row.syl}</span>
                 <span style={{ fontSize: 13, color: "#555", flex: 1, fontStyle: "italic" }}>{row.verse}…</span>
@@ -243,34 +231,18 @@ export default function Cours1() {
             ))}
           </div>
 
-          <p style={S.sbody}>
-            Le <strong>Si / B</strong> fut ajouté plus tard (initiales de <em>Sancte Ioannes</em>).
-            Au <strong>XVIe siècle</strong>, <em>Ut</em> devint <strong>Do</strong> — syllabe plus ouverte
-            et plus chantable.
-          </p>
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("originesP5") }} />
 
-          <div style={S.warnBox}>
-            <strong>Deux systèmes coexistent :</strong> le système latin (Do Ré Mi Fa Sol La Si) utilisé en France,
-            Italie et Espagne, et le système anglais (C D E F G A B) utilisé dans le monde entier en jazz,
-            pop et harmonie moderne. <strong>Harmonia utilise la notation anglaise</strong> comme standard universel.
-          </div>
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("originesWarnBox") }} />
         </div>
       )}
 
-      {/* ══════════════════════════════════════════════════════════════
-          SECTION 2 : LES DEGRÉS
-      ══════════════════════════════════════════════════════════════ */}
+      {/* ══ SECTION 2 : LES DEGRÉS ══ */}
       {activeSection === "degres" && (
         <div>
-          <h2 style={S.stitle}>Les 7 degrés : chaque note a un rôle</h2>
-          <p style={S.sbody}>
-            Dans une gamme, chaque note occupe une <strong>position</strong> appelée degré.
-            C'est une notion <em>relative</em> : F est le IVe degré en C majeur, mais le Ier degré en F majeur.
-            Les noms des degrés traduisent chacun une réalité acoustique précise dans le système tonal.
-          </p>
-          <p style={{ fontSize: 13, color: "#888", marginBottom: 12 }}>
-            Cliquez sur un degré pour découvrir l'origine de son nom et ses attractions.
-          </p>
+          <h2 style={S.stitle}>{n("degresH2")}</h2>
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("degresP1") }} />
+          <p style={{ fontSize: 13, color: "#888", marginBottom: 12 }}>{n("degresTip")}</p>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 6, marginBottom: 12 }}>
             {DEGREES.map((d, i) => (
@@ -296,21 +268,21 @@ export default function Cours1() {
                 <span style={{ fontSize: 22, fontWeight: 700, color: DEGREES[activeDeg].color }}>{DEGREES[activeDeg].num}</span>
                 <div>
                   <div style={{ fontSize: 16, fontWeight: 500, color: "#111" }}>{DEGREES[activeDeg].name}</div>
-                  <div style={{ fontSize: 13, color: "#666" }}>Note en C majeur : <strong>{DEGREES[activeDeg].note}</strong></div>
+                  <div style={{ fontSize: 13, color: "#666" }}>{n("degresNoteLabel")} : <strong>{DEGREES[activeDeg].note}</strong></div>
                 </div>
               </div>
               <div style={{ fontSize: 13, color: "#444", lineHeight: 1.65, marginBottom: 8 }}>
-                <strong>Étymologie :</strong>{" "}
+                <strong>{n("degresEtyLabel")} :</strong>{" "}
                 <span dangerouslySetInnerHTML={{ __html: DEGREES[activeDeg].origin }} />
               </div>
               <div style={{ fontSize: 13, color: "#444", lineHeight: 1.65, padding: "8px 12px", background: "rgba(255,255,255,0.6)", borderRadius: 6 }}>
-                <strong>Attraction :</strong> {DEGREES[activeDeg].attraction}
+                <strong>{n("degresAttrLabel")} :</strong> {DEGREES[activeDeg].attraction}
               </div>
               <button
                 onClick={() => pianoRef.current?.playNote(DEGREES[activeDeg].note, 4, { duration: 2 })}
                 style={{ marginTop: 10, fontSize: 12, padding: "5px 14px", border: `0.5px solid ${DEGREES[activeDeg].color}`, borderRadius: 20, cursor: "pointer", background: "transparent", color: DEGREES[activeDeg].color }}
               >
-                ▶ Écouter {DEGREES[activeDeg].note}
+                ▶ {n("degresListenBtn")} {DEGREES[activeDeg].note}
               </button>
             </div>
           )}
@@ -319,7 +291,7 @@ export default function Cours1() {
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
               <thead>
                 <tr style={{ borderBottom: "0.5px solid #e5e5e5" }}>
-                  {["N°", "Nom", "Note (C maj.)", "Rôle"].map((h) => (
+                  {[n("degresTableNum"), n("degresTableName"), n("degresTableNote"), n("degresTableRole")].map((h) => (
                     <th key={h} style={{ textAlign: "left", padding: "6px 10px", fontWeight: 500, color: "#666" }}>{h}</th>
                   ))}
                 </tr>
@@ -331,13 +303,7 @@ export default function Cours1() {
                     <td style={{ padding: "7px 10px", fontWeight: 500 }}>{d.name}</td>
                     <td style={{ padding: "7px 10px" }}>{d.note}</td>
                     <td style={{ padding: "7px 10px", color: "#666", fontSize: 12 }}>
-                      {d.num === "I"   && "Centre de gravité"}
-                      {d.num === "II"  && "Au-dessus de la tonique"}
-                      {d.num === "III" && "À mi-chemin (I↔V)"}
-                      {d.num === "IV"  && "Sous la dominante"}
-                      {d.num === "V"   && "Domine la gamme"}
-                      {d.num === "VI"  && "Au-dessus de la dominante"}
-                      {d.num === "VII" && "Sensible à la tonique"}
+                      {DEGREE_ROLES[d.num]}
                     </td>
                   </tr>
                 ))}
@@ -345,31 +311,17 @@ export default function Cours1() {
             </table>
           </div>
 
-          <div style={S.infoBox}>
-            <strong>Attractions fondamentales :</strong> La paire la plus forte est <strong>B → C</strong>
-            (VIIe vers Ier) — un seul demi-ton les sépare. La seconde paire est <strong>F → E</strong>
-            (IVe vers IIIe), particulièrement active lors de la résolution de la dominante.
-            Ces deux attractions sont le moteur de toute l'harmonie tonale.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("degresInfoBox") }} />
         </div>
       )}
 
-      {/* ══════════════════════════════════════════════════════════════
-          SECTION 3 : TONS & DEMI-TONS
-      ══════════════════════════════════════════════════════════════ */}
+      {/* ══ SECTION 3 : TONS & DEMI-TONS ══ */}
       {activeSection === "tons" && (
         <div>
-          <h2 style={S.stitle}>La structure interne : tons et demi-tons</h2>
-          <p style={S.sbody}>
-            Les 7 notes ne sont pas également espacées. Entre certaines il y a un <strong>ton</strong> (2 demi-tons),
-            entre d'autres seulement un <strong>demi-ton</strong>. Ce schéma précis est ce qui donne à la gamme majeure
-            sa couleur caractéristique — il est identique quelle que soit la note de départ.
-          </p>
+          <h2 style={S.stitle}>{n("tonsH2")}</h2>
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("tonsP1") }} />
 
-          <div style={S.infoBox}>
-            Formule universelle de la gamme majeure : <strong>T – T – ½ – T – T – T – ½</strong>.<br />
-            Les deux demi-tons se situent toujours entre les degrés <strong>III–IV</strong> et <strong>VII–I</strong>.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("tonsInfoBox") }} />
 
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap", margin: "16px 0 12px" }}>
             {GAMMES.map((gm, i) => (
@@ -422,8 +374,8 @@ export default function Cours1() {
 
           {g.accidentals.length > 0 && (
             <div style={S.warnBox}>
-              {g.name} contient {g.accidentals.length === 1 ? "une altération" : "deux altérations"} :{" "}
-              <strong>{g.accidentalDisplay.join(", ")}</strong>. Sans elle, la formule T-T-½-T-T-T-½ ne serait pas respectée.
+              {g.name} {n("tonsContains")} {g.accidentals.length === 1 ? n("tonsOneAccidental") : n("tonsTwoAccidentals")} :{" "}
+              <strong>{g.accidentalDisplay.join(", ")}</strong>. {n("tonsAccidentalNote")}
             </div>
           )}
 
@@ -445,32 +397,20 @@ export default function Cours1() {
             onClick={playGamme}
             style={{ fontSize: 13, padding: "7px 18px", border: "0.5px solid #0F6E56", borderRadius: 20, cursor: "pointer", background: "#E1F5EE", color: "#0F6E56" }}
           >
-            ▶ Jouer la gamme de {g.name}
+            ▶ {n("tonsPlayBtnPrefix")} {g.name}
           </button>
         </div>
       )}
 
-      {/* ══════════════════════════════════════════════════════════════
-          SECTION 4 : INTERVALLES
-      ══════════════════════════════════════════════════════════════ */}
+      {/* ══ SECTION 4 : INTERVALLES ══ */}
       {activeSection === "intervalles" && (
         <div>
-          <h2 style={S.stitle}>Les intervalles et leurs renversements</h2>
-          <p style={S.sbody}>
-            Un intervalle est la distance entre deux notes. Il se définit par son <strong>nom</strong>
-            (combien de degrés séparent les deux notes, extrêmes compris) et sa <strong>nature</strong>
-            (le nombre exact de demi-tons, qui détermine la couleur sonore).
-          </p>
+          <h2 style={S.stitle}>{n("intervallesH2")}</h2>
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("intervallesP1") }} />
 
-          <div style={S.infoBox}>
-            <strong>Loi des renversements :</strong> inverser un intervalle (faire monter la note grave d'une octave)
-            donne toujours un intervalle dont le nom s'additionne à <strong>9</strong> avec l'original
-            (ex : tierce 3 + sixte 6 = 9). La nature s'inverse : majeure ↔ mineure, juste ↔ juste.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("intervallesInfoBox") }} />
 
-          <p style={{ fontSize: 13, color: "#888", marginBottom: 12 }}>
-            Cliquez sur un intervalle pour l'entendre, puis son renversement.
-          </p>
+          <p style={{ fontSize: 13, color: "#888", marginBottom: 12 }}>{n("intervallesTip")}</p>
 
           {INTERVALS.map((iv, i) => (
             <div
@@ -485,13 +425,17 @@ export default function Cours1() {
               <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 8, padding: "10px 14px", alignItems: "center" }}>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 500, color: "#111" }}>{iv.name}</div>
-                  <div style={{ fontSize: 11, color: "#888", marginTop: 2 }}>{iv.semis} demi-ton{iv.semis > 1 ? "s" : ""} · {iv.nature}</div>
+                  <div style={{ fontSize: 11, color: "#888", marginTop: 2 }}>
+                    {iv.semis} {iv.semis > 1 ? n("semitones") : n("semitone")} · {iv.nature}
+                  </div>
                   <div style={{ fontSize: 11, color: "#185FA5", marginTop: 2 }}>{iv.example}</div>
                 </div>
                 <div style={{ fontSize: 16, color: "#ccc", userSelect: "none" }}>⇄</div>
                 <div style={{ textAlign: "right" }}>
                   <div style={{ fontSize: 13, fontWeight: 500, color: "#111" }}>{iv.inverse}</div>
-                  <div style={{ fontSize: 11, color: "#888", marginTop: 2 }}>{iv.inverseSemis} demi-tons · {iv.inverseNature}</div>
+                  <div style={{ fontSize: 11, color: "#888", marginTop: 2 }}>
+                    {iv.inverseSemis} {iv.inverseSemis > 1 ? n("semitones") : n("semitone")} · {iv.inverseNature}
+                  </div>
                   <div style={{ fontSize: 11, color: "#185FA5", marginTop: 2 }}>{iv.exampleNotes[2]} → {iv.exampleNotes[0]}</div>
                 </div>
               </div>
@@ -508,11 +452,11 @@ export default function Cours1() {
                     onClick={(e) => { e.stopPropagation(); playInverse(iv); }}
                     style={{ fontSize: 12, padding: "5px 14px", border: "0.5px solid #993C1D", borderRadius: 20, cursor: "pointer", background: "#FAECE7", color: "#993C1D" }}
                   >
-                    ▶ {iv.inverse} (renversement)
+                    ▶ {iv.inverse} ({n("renversement")})
                   </button>
                   {iv.name === "Triton" && (
                     <span style={{ fontSize: 11, color: "#888", display: "flex", alignItems: "center", marginLeft: 4 }}>
-                      Le triton est son propre renversement !
+                      {n("tritonSelfNote")}
                     </span>
                   )}
                 </div>
@@ -521,27 +465,19 @@ export default function Cours1() {
           ))}
 
           <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 8px", color: "#111" }}>
-            Tableau complet des intervalles
+            {n("intervallesTableH2")}
           </h3>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
               <thead>
                 <tr style={{ borderBottom: "0.5px solid #e5e5e5" }}>
-                  {["Intervalle", "Nature", "Demi-tons", "Exemple (sur F)"].map((h) => (
+                  {[n("intTableH1"), n("intTableH2"), n("intTableH3"), n("intTableH4")].map((h) => (
                     <th key={h} style={{ textAlign: "left", padding: "6px 10px", fontWeight: 500, color: "#666" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {[
-                  ["Seconde",   "mineure / majeure",   "1 / 2",     "F–G♭ / F–G"],
-                  ["Tierce",    "mineure / majeure",   "3 / 4",     "F–A♭ / F–A"],
-                  ["Quarte",    "juste / augmentée",   "5 / 6",     "F–B♭ / F–B"],
-                  ["Quinte",    "dim. / juste / aug.", "6 / 7 / 8", "F–C♭ / F–C / F–C#"],
-                  ["Sixte",     "mineure / majeure",   "8 / 9",     "F–D♭ / F–D"],
-                  ["Septième",  "mineure / majeure",   "10 / 11",   "F–E♭ / F–E"],
-                  ["Octave",    "juste",               "12",        "F–F"],
-                ].map(([name, nature, semis, ex], i) => (
+                {INT_TABLE.map(({ name, nature, semis, ex }, i) => (
                   <tr key={name} style={{ borderBottom: "0.5px solid #f0f0f0", background: i % 2 === 0 ? "#fff" : "#fafafa" }}>
                     <td style={{ padding: "7px 10px", fontWeight: 500 }}>{name}</td>
                     <td style={{ padding: "7px 10px", color: "#666" }}>{nature}</td>
@@ -555,9 +491,7 @@ export default function Cours1() {
         </div>
       )}
 
-      {/* ══════════════════════════════════════════════════════════════
-          SECTION 5 : QUIZ
-      ══════════════════════════════════════════════════════════════ */}
+      {/* ══ SECTION 5 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
           <h2 style={S.stitle}>{i18n.training}</h2>

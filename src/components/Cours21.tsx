@@ -35,7 +35,6 @@ const COMPOSERS = [
     harmonie: "Coloristique pure — les accords ne résolvent pas, ils créent des atmosphères comme des touches de peinture impressionniste",
     oeuvre: "Préludes pour piano · La Mer · Pelléas et Mélisande",
     oeuvreWhy: "Les Préludes (2 livres, 24 pièces) sont la bible de l'impressionnisme — chaque pièce est une aquarelle sonore libérée de la tonalité fonctionnelle.",
-    // 9e parallèles sans résolution : 48,52,55,59,62 / 53,57,60,64,67 / 52,56,59,63
     demo: [["Do:3","Mi:3","Sol:3","Si:3","Ré:4"],["Fa:3","La:3","Do:4","Mi:4","Sol:4"],["Mi:3","Sol#:3","Si:3","Ré#:4"]],
     demoLabel: "Accords de 9e parallèles (sans résolution)",
   },
@@ -47,7 +46,6 @@ const COMPOSERS = [
     harmonie: "Précise et artisanale — Ravel assemble ses accords avec une rigueur d'horloger, là où Debussy peint par intuition",
     oeuvre: "Boléro · La Valse · Concerto pour piano en Sol",
     oeuvreWhy: "Le Boléro (1928) est un seul thème répété 18 fois en crescendo continu — l'ostinato érigé en chef-d'œuvre orchestral.",
-    // Mode ré dorien : 50,53,57,60 / 55,59,62,65 / 57,60,64,67 / 50,53,57,60
     demo: [["Ré:3","Fa:3","La:3","Do:4"],["Sol:3","Si:3","Ré:4","Fa:4"],["La:3","Do:4","Mi:4","Sol:4"],["Ré:3","Fa:3","La:3","Do:4"]],
     demoLabel: "Mode ré dorien (cadence modale de Ravel)",
   },
@@ -59,7 +57,6 @@ const COMPOSERS = [
     harmonie: "Dissonante et percussive — l'harmonie est au service de la brutalité rythmique, pas de l'expression mélodique",
     oeuvre: "Le Sacre du Printemps · L'Oiseau de Feu · Petrouchka",
     oeuvreWhy: "Le Sacre (1913) a provoqué une émeute à sa première — bitonalité, polymétrie et violence rythmique jamais vus jusqu'alors.",
-    // Bitonalité Ré maj + Mib maj : 38,42,45,51,55,58 / 39,43,46,50,54,57
     demo: [["Ré:2","Fa#:2","La:2","Mib:3","Sol:3","Sib:3"],["Mib:2","Sol:2","Sib:2","Ré:3","Fa#:3","La:3"]],
     demoLabel: "Bitonalité : Ré majeur + Mib majeur (style Sacre)",
   },
@@ -71,7 +68,6 @@ const COMPOSERS = [
     harmonie: "Modale et mystique — ses modes créent des couleurs harmoniques uniques évitant la résolution tonale conventionnelle",
     oeuvre: "Quatuor pour la fin du Temps · Catalogue d'Oiseaux · Turangalîla-Symphonie",
     oeuvreWhy: "Le Quatuor pour la fin du Temps (1941) a été composé en camp de prisonniers de guerre — spiritualité face à l'adversité absolue.",
-    // Mode 2 (octatonique) : 48,51,54,57 / 48,52,56,59 / 48,51,54,57
     demo: [["Do:3","Ré#:3","Fa#:3","La:3"],["Do:3","Mi:3","Sol#:3","Si:3"],["Do:3","Ré#:3","Fa#:3","La:3"]],
     demoLabel: "Mode 2 de Messiaen (gamme octatonique)",
   },
@@ -83,7 +79,6 @@ const COMPOSERS = [
     harmonie: "Naïvement sophistiquée — des accords de 7e majeure en mouvement parallèle, comme si les règles classiques n'avaient jamais existé",
     oeuvre: "Gymnopédies · Gnossiennes · Parade",
     oeuvreWhy: "Les 3 Gymnopédies (1888) anticipent de 30 ans le minimalisme et l'impressionnisme — une légèreté d'une révolution tranquille.",
-    // 7e maj parallèles : 50,54,57,61 / 52,56,59,63 / 50,54,57,61
     demo: [["Ré:3","Fa#:3","La:3","Do#:4"],["Mi:3","Sol#:3","Si:3","Ré#:4"],["Ré:3","Fa#:3","La:3","Do#:4"]],
     demoLabel: "Accords de 7e majeure parallèles (Gymnopédies)",
   },
@@ -95,7 +90,6 @@ const COMPOSERS = [
     harmonie: "Instinctive et révolutionnaire — les Beatles ont popularisé l'harmonie modale pour des centaines de millions d'auditeurs",
     oeuvre: "Hey Jude · Let It Be · Yesterday · A Day in the Life",
     oeuvreWhy: "A Day in the Life (Sgt. Pepper, 1967) mélange pop et crescendo orchestral — une avancée formelle jamais égalée dans la pop.",
-    // I–♭VII–IV–I en Do : 48,52,55,60 / 46,50,53,58 / 41,45,48,53 / 48,52,55,60
     demo: [["Do:3","Mi:3","Sol:3","Do:4"],["Sib:2","Ré:3","Fa:3","Sib:3"],["Fa:2","La:2","Do:3","Fa:3"],["Do:3","Mi:3","Sol:3","Do:4"]],
     demoLabel: "I–♭VII–IV–I (emprunt modal mixolydien Beatles)",
   },
@@ -107,7 +101,6 @@ const COMPOSERS = [
     harmonie: "Flottante et anxieuse — des accords qui refusent d'appartenir clairement à une tonalité, créant une tension permanente",
     oeuvre: "OK Computer · Kid A · Pyramid Song · In Rainbows",
     oeuvreWhy: "Kid A (2000) fusionne rock, électronique et Messiaen/Ligeti — Thom Yorke a étudié les avant-gardes classiques du XXe siècle.",
-    // Polytonalité douce : 48,52,55,58 / 45,48,52,55 / 50,53,57,60 / 55,59,62,65
     demo: [["Do:3","Mi:3","Sol:3","Sib:3"],["La:2","Do:3","Mi:3","Sol:3"],["Ré:3","Fa:3","La:3","Do:4"],["Sol:3","Si:3","Ré:4","Fa:4"]],
     demoLabel: "Harmonie ambiguë (polytonalité douce Radiohead)",
   },
@@ -119,7 +112,6 @@ const COMPOSERS = [
     harmonie: "Cinématographique — chaque accord est choisi pour son pouvoir narratif, chaque timbre pour son impact émotionnel immédiat",
     oeuvre: "Le Bon la Brute le Truand · Il était une fois en Amérique · La Mission",
     oeuvreWhy: "Le thème du Bon, la Brute et le Truand (1966) avec sifflement et chœurs crée une identité sonore immédiatement reconnaissable.",
-    // i–♭VII–♭VI–V (Aeolien) : 45,48,52,57 / 43,47,50,55 / 41,45,48,53 / 40,44,47,52
     demo: [["La:2","Do:3","Mi:3","La:3"],["Sol:2","Si:2","Ré:3","Sol:3"],["Fa:2","La:2","Do:3","Fa:3"],["Mi:2","Sol#:2","Si:2","Mi:3"]],
     demoLabel: "i–♭VII–♭VI–V (couleur narrative cinématographique)",
   },
@@ -132,9 +124,7 @@ const ANALYSES = [
     id: "a1",
     title: "Tonal vs Impressionniste : Bach ou Debussy ?",
     desc: "Bach résout sa dominante vers la tonique — la direction harmonique est inévitable. Debussy enchaîne des accords de 9e par mouvement parallèle sans jamais résoudre.",
-    // Bach I–V–I : 48,52,55,60 / 55,59,62,67 / 48,52,55,60
     demo: [["Do:3","Mi:3","Sol:3","Do:4"],["Sol:3","Si:3","Ré:4","Sol:4"],["Do:3","Mi:3","Sol:3","Do:4"]],
-    // Debussy 9e parallèles : 48,52,55,59,62 / 53,57,60,64,67 / 52,56,59,63
     demo2: [["Do:3","Mi:3","Sol:3","Si:3","Ré:4"],["Fa:3","La:3","Do:4","Mi:4","Sol:4"],["Mi:3","Sol#:3","Si:3","Ré#:4"]],
     question: "Laquelle de ces progressions illustre l'impressionnisme de Debussy ?",
     options: ["Version A — I–V–I (résolution tonale)", "Version B — 9e parallèles sans résolution", "Les deux sont identiques", "Ni l'une ni l'autre"],
@@ -145,9 +135,7 @@ const ANALYSES = [
     id: "a2",
     title: "Emprunt modal : Beatles vs progression classique",
     desc: "La progression I–IV–V–I résolve parfaitement dans la tonalité. Le I–♭VII–IV des Beatles emprunte le ♭VII au mode mixolydien — une couleur plus modale que tonale.",
-    // Classique I–IV–V–I : 48,52,55 / 53,57,60 / 55,59,62 / 48,52,55,60
     demo: [["Do:3","Mi:3","Sol:3"],["Fa:3","La:3","Do:4"],["Sol:3","Si:3","Ré:4"],["Do:3","Mi:3","Sol:3","Do:4"]],
-    // Beatles I–♭VII–IV–I : 48,52,55,60 / 46,50,53,58 / 41,45,48,53 / 48,52,55,60
     demo2: [["Do:3","Mi:3","Sol:3","Do:4"],["Sib:2","Ré:3","Fa:3","Sib:3"],["Fa:2","La:2","Do:3","Fa:3"],["Do:3","Mi:3","Sol:3","Do:4"]],
     question: "Laquelle utilise l'emprunt modal mixolydien des Beatles (I–♭VII–IV) ?",
     options: ["Version A — classique (I–IV–V–I)", "Version B — modal Beatles (I–♭VII–IV–I)", "Les deux sont modales", "Aucune des deux"],
@@ -158,9 +146,7 @@ const ANALYSES = [
     id: "a3",
     title: "Bitonalité Stravinsky vs tonalité simple",
     desc: "La bitonalité superpose deux tonalités. Stravinsky utilise Ré majeur + Mib majeur simultanément — une dissonance calculée au service de la violence rythmique.",
-    // Ré majeur simple : 50,54,57 / 57,61,64 / 50,54,57
     demo: [["Ré:3","Fa#:3","La:3"],["La:3","Do#:4","Mi:4"],["Ré:3","Fa#:3","La:3"]],
-    // Bitonalité : 38,42,45,51,55,58 / 39,43,46,50,54,57
     demo2: [["Ré:2","Fa#:2","La:2","Mib:3","Sol:3","Sib:3"],["Mib:2","Sol:2","Sib:2","Ré:3","Fa#:3","La:3"]],
     question: "Quelle version illustre la bitonalité de Stravinsky ?",
     options: ["Version A — Ré majeur seul", "Version B — Ré majeur + Mib majeur superposés", "Les deux sont bitonales", "Aucune des deux"],
@@ -242,10 +228,10 @@ const ALL_QUESTIONS = [
   { id:"q61", q:"Radiohead vient de :",                                             opts:["Manchester","Abingdon (Oxford)","Liverpool","Londres"],                                          ans:1, exp:"Abingdon, près d'Oxford — Thom Yorke, Jonny Greenwood, Colin Greenwood, Ed O'Brien et Phil Selway." },
   { id:"q62", q:"Pyramid Song (2001) est connue pour :",                           opts:["Sa mesure 4/4 régulière","Ses silences asymétriques créant une mesure perçue irrégulière","Sa fugue","Sa gamme par tons"], ans:1, exp:"La pulsation semble irrégulière — en réalité c'est une suite de noires et de croches créant une flottaison rythmique." },
   { id:"q63", q:"Kid A (2000) incorpore des influences de :",                      opts:["Chopin et Liszt","Messiaen, Ligeti et la musique électronique","Bach et Haendel","Mozart"],      ans:1, exp:"Thom Yorke a étudié Messiaen et Ligeti pour concevoir les harmonies flottantes de Kid A." },
-  { id:"q64", q:"L'harmonie 'ambiguë' de Radiohead signifie :",                   opts:["Des accords très simples","Des accords sans centre tonal clairement défini","Des fugues","De l'atonalité stricte"], ans:1, exp:"Les accords de Radiohead appartiennent souvent à plusieurs tonalités possibles — une ambiguité calculée." },
+  { id:"q64", q:"L'harmonie 'ambiguë' de Radiohead signifie :",                   opts:["Des accords très simples","Des accords sans centre tonal clairement défini","Des fugues","De l'atonalité stricte"], ans:1, exp:"Les accords de Radiohead appartiennent souvent à plusieurs tonalités possibles — une ambiguïté calculée." },
   { id:"q65", q:"Thom Yorke a étudié les œuvres de :",                            opts:["Bach et Haendel","Messiaen et Ligeti","Mozart uniquement","Brahms"],                             ans:1, exp:"Yorke cite Messiaen (modes) et Ligeti (micropolyphonie) comme influences directes sur l'écriture de Kid A." },
   { id:"q66", q:"OK Computer (1997) est souvent cité comme :",                    opts:["Une symphonie baroque","L'un des meilleurs albums rock de tous les temps","Un ballet","Un opéra classique"], ans:1, exp:"Régulièrement classé n°1 ou n°2 dans les listes des meilleurs albums de l'histoire — un monument du rock." },
-  { id:"q67", q:"La 'polytonalité douce' de Radiohead signifie :",               opts:["Deux tonalités complètement opposées","Une légère ambiguité entre deux tonalités proches","Un mode grec unique","Atonalité stricte"], ans:1, exp:"Pas la brutalité de Stravinsky — une douceur où l'accord hésite entre deux centres tonaux." },
+  { id:"q67", q:"La 'polytonalité douce' de Radiohead signifie :",               opts:["Deux tonalités complètement opposées","Une légère ambiguïté entre deux tonalités proches","Un mode grec unique","Atonalité stricte"], ans:1, exp:"Pas la brutalité de Stravinsky — une douceur où l'accord hésite entre deux centres tonaux." },
   { id:"q68", q:"In Rainbows (2007) a été distribué en premier en :",             opts:["CD en magasin uniquement","Prix libre sur internet (pay what you want)","Vinyle uniquement","Streaming uniquement"], ans:1, exp:"Radiohead a publié l'album en téléchargement à prix libre — une révolution dans le modèle musical de l'époque." },
   { id:"q69", q:"Jonny Greenwood (guitariste de Radiohead) incorpore dans son jeu :", opts:["Uniquement des accords pop simples","Des clusters, préparations et techniques de la musique contemporaine classique","La fugue baroque","Le contrepoint strict"], ans:1, exp:"Greenwood compose également de la musique contemporaine (Popcorn Superhet Receiver) et des bandes originales." },
   { id:"q70", q:"La fusion rock + classique + électronique de Radiohead préfigure :", opts:["Le Baroque","La musique post-rock et le genre néoclassique contemporain","Le jazz bop","L'opéra baroque"], ans:1, exp:"Radiohead ouvre la voie à tout un genre — Sigur Rós, Bon Iver, Arca — qui fusionne classique et électronique." },
@@ -280,6 +266,9 @@ const ALL_QUESTIONS = [
 function ComposerCard({ c, pianoRef }: { c: typeof COMPOSERS[0]; pianoRef: React.RefObject<PianoPlayerRef | null> }) {
   const [open, setOpen] = useState(false);
   const tr = useTerm();
+  const i18n = useCoursI18n("cours21");
+  const tc   = i18n.tc;
+  const n    = (key: string) => tc(`narrative.${key}` as any);
   return (
     <div style={{ border: `1.5px solid ${open ? c.color : "#e0dbd3"}`, borderRadius: 12, background: open ? c.bg : "#fff", transition: "all .2s", marginBottom: 12 }}>
       <button onClick={() => setOpen(!open)} style={{ width: "100%", padding: "18px 20px", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 14, textAlign: "left" }}>
@@ -305,23 +294,23 @@ function ComposerCard({ c, pianoRef }: { c: typeof COMPOSERS[0]; pianoRef: React
           </div>
 
           <div style={{ fontSize: 13, color: "#555", fontFamily: "system-ui", lineHeight: 1.6, marginBottom: 16, padding: "10px 14px", background: "rgba(255,255,255,0.7)", borderRadius: 8, borderLeft: `3px solid ${c.color}` }}>
-            <strong style={{ color: c.color }}>{tr("Couleur harmonique :")}</strong> {c.harmonie}
+            <strong style={{ color: c.color }}>{n("couleurHarmonique")}</strong> {c.harmonie}
           </div>
 
           <div style={{ marginBottom: 16 }}>
             <div style={{ fontSize: 11, fontWeight: 600, color: "#888", fontFamily: "system-ui", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 8 }}>
-              Progression emblématique — {c.demoLabel}
+              {n("progressionLabel").replace("{demoLabel}", c.demoLabel)}
             </div>
             <button
               onClick={() => playProg(pianoRef, c.demo, 650, 1.0)}
               style={{ padding: "8px 18px", borderRadius: 20, border: `1.5px solid ${c.color}`, background: "#fff", color: c.color, fontSize: 13, fontWeight: 500, cursor: "pointer", fontFamily: "system-ui" }}
             >
-              ▶ Écouter
+              {n("listenBtn")}
             </button>
           </div>
 
           <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 8, padding: "12px 14px" }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: c.color, fontFamily: "system-ui", marginBottom: 4 }}>Œuvre de référence</div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: c.color, fontFamily: "system-ui", marginBottom: 4 }}>{n("oeuvreTitle")}</div>
             <div style={{ fontSize: 14, fontWeight: 500, color: "#1a1a1a", marginBottom: 4 }}>{c.oeuvre}</div>
             <div style={{ fontSize: 13, color: "#666", lineHeight: 1.6, fontFamily: "system-ui" }}>{c.oeuvreWhy}</div>
           </div>
@@ -378,15 +367,18 @@ function AnalysisCard({ a, pianoRef }: { a: typeof ANALYSES[0]; pianoRef: React.
 
 export default function Cours21() {
   const { badge, title, subtitle } = useCoursI18n("cours21");
+  const i18n = useCoursI18n("cours21");
+  const tc   = i18n.tc;
+  const n    = (key: string) => tc(`narrative.${key}` as any);
   const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours21Content);
   const pianoRef = useRef<PianoPlayerRef | null>(null);
   const [section, setSection] = useState<"compositeurs"|"analyse"|"quiz">("compositeurs");
 
   const SECTIONS = [
-    { id: "compositeurs" as const, label: "Compositeurs" },
-    { id: "analyse"      as const, label: "Analyse comparative" },
-    { id: "quiz"         as const, label: "Quiz" },
+    { id: "compositeurs" as const, label: n("sectionCompositeursLabel") },
+    { id: "analyse"      as const, label: n("sectionAnalyseLabel") },
+    { id: "quiz"         as const, label: n("sectionQuizLabel") },
   ];
 
   const questions = useMemo(() => shuffle(ALL_QUESTIONS).slice(0, QUIZ_COUNT), []);
@@ -418,9 +410,9 @@ export default function Cours21() {
             composer="Claude Debussy"
             period="1862–1918"
             emoji="🎨"
-            concept="Accords comme couleurs — libérer l'harmonie de la résolution dominante-tonique"
-            anecdote="Debussy a été renvoyé plusieurs fois du Conservatoire de Paris pour avoir joué des accords 'incorrects'. Son professeur notait : 'Il fait ce qui lui plaît.' C'était exactement son but."
-            lesson="Debussy traite les accords comme des couleurs sur une toile — un accord de 9e n'a pas à résoudre, il peut flotter et créer une atmosphère, comme une tache de peinture impressionniste."
+            concept={n("maitreCardConcept")}
+            anecdote={n("maitreCardAnecdote")}
+            lesson={n("maitreCardLesson")}
             accentColor={PRIMARY}
           />
         </div>
@@ -443,10 +435,10 @@ export default function Cours21() {
         {section === "compositeurs" && (
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 20 }}>
-              8 COMPOSITEURS — De l'Impressionnisme au Rock contemporain
+              {n("composersHeading")}
             </div>
             <div style={{ fontSize: 13, color: "#666", fontFamily: "system-ui", marginBottom: 24, lineHeight: 1.7, padding: "12px 16px", background: PRIMARY_BG, borderRadius: 8, borderLeft: `3px solid ${PRIMARY}` }}>
-              De Debussy qui brise la tonalité par la couleur, à Radiohead qui fusionne Messiaen et l'électronique — le XXe siècle multiplie les langages harmoniques. Clique sur chaque carte pour explorer les techniques, écouter la progression et comprendre l'œuvre de référence.
+              {n("composersIntro")}
             </div>
             {COMPOSERS.map(c => <ComposerCard key={c.id} c={c} pianoRef={pianoRef} />)}
           </div>
@@ -456,10 +448,10 @@ export default function Cours21() {
         {section === "analyse" && (
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 20 }}>
-              TONAL · MODAL · BITONAL — Trois façons de penser l'harmonie
+              {n("analyseHeading")}
             </div>
             <div style={{ fontSize: 13, color: "#666", fontFamily: "system-ui", marginBottom: 24, lineHeight: 1.7, padding: "12px 16px", background: PRIMARY_BG, borderRadius: 8, borderLeft: `3px solid ${PRIMARY}` }}>
-              Compare les progressions, écoute les deux versions et identifie le style. L'oreille reconnaît avant le cerveau — fais confiance à ta première impression.
+              {n("analyseIntro")}
             </div>
             {ANALYSES.map(a => <AnalysisCard key={a.id} a={a} pianoRef={pianoRef} />)}
           </div>
@@ -469,14 +461,14 @@ export default function Cours21() {
         {section === "quiz" && (
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 20 }}>
-              QUIZ — {QUIZ_COUNT} QUESTIONS SUR {ALL_QUESTIONS.length} DISPONIBLES
+              {n("quizHeading").replace("{count}", String(QUIZ_COUNT)).replace("{total}", String(ALL_QUESTIONS.length))}
             </div>
 
             {!showResult ? (
               <div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, fontFamily: "system-ui" }}>
-                  <span style={{ fontSize: 12, color: "#888" }}>Question {qIdx + 1} / {QUIZ_COUNT}</span>
-                  <span style={{ fontSize: 12, color: PRIMARY }}>{answers.filter(a => a !== null).length} répondues</span>
+                  <span style={{ fontSize: 12, color: "#888" }}>{n("quizQuestionCounter").replace("{current}", String(qIdx + 1)).replace("{total}", String(QUIZ_COUNT))}</span>
+                  <span style={{ fontSize: 12, color: PRIMARY }}>{n("quizAnswered").replace("{count}", String(answers.filter(a => a !== null).length))}</span>
                 </div>
                 <div style={{ height: 4, background: "#e8e3db", borderRadius: 2, marginBottom: 24 }}>
                   <div style={{ height: "100%", width: `${((qIdx + 1) / QUIZ_COUNT) * 100}%`, background: PRIMARY, borderRadius: 2, transition: "width .3s" }} />
@@ -510,7 +502,7 @@ export default function Cours21() {
                   )}
 
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
-                    <button onClick={() => setQIdx(i => Math.max(0, i - 1))} disabled={qIdx === 0} style={{ padding: "10px 20px", borderRadius: 6, border: "1px solid #e0dbd3", background: "#fff", color: "#888", fontSize: 13, cursor: qIdx === 0 ? "not-allowed" : "pointer", fontFamily: "system-ui", opacity: qIdx === 0 ? 0.4 : 1 }}>← Précédente</button>
+                    <button onClick={() => setQIdx(i => Math.max(0, i - 1))} disabled={qIdx === 0} style={{ padding: "10px 20px", borderRadius: 6, border: "1px solid #e0dbd3", background: "#fff", color: "#888", fontSize: 13, cursor: qIdx === 0 ? "not-allowed" : "pointer", fontFamily: "system-ui", opacity: qIdx === 0 ? 0.4 : 1 }}>{n("quizPrevBtn")}</button>
                     {qIdx < QUIZ_COUNT - 1 ? (
                       <button onClick={() => setQIdx(i => i + 1)} disabled={!answered} style={{ padding: "10px 24px", borderRadius: 6, border: "none", background: answered ? PRIMARY : "#e0dbd3", color: "#fff", fontSize: 13, cursor: answered ? "pointer" : "not-allowed", fontFamily: "system-ui" }}>{tr("Suivante →")}</button>
                     ) : (
@@ -524,10 +516,10 @@ export default function Cours21() {
                 <div style={{ fontSize: 48, marginBottom: 16 }}>{score >= 8 ? "🎨" : score >= 5 ? "🎸" : "📡"}</div>
                 <div style={{ fontSize: 32, fontWeight: 400, color: PRIMARY, marginBottom: 8 }}>{score} / {QUIZ_COUNT}</div>
                 <div style={{ fontSize: 15, color: "#666", fontFamily: "system-ui", marginBottom: 28 }}>
-                  {score === QUIZ_COUNT ? "Parfait ! Les langages du XXe siècle n'ont plus de secrets." : score >= 7 ? "Très bien ! Quelques compositeurs à revoir." : "Continue à explorer — l'harmonie moderne se découvre à l'écoute."}
+                  {score === QUIZ_COUNT ? n("quizScoreMsg0") : score >= 7 ? n("quizScoreMsg1") : n("quizScoreMsg2")}
                 </div>
                 <button onClick={() => { setAnswers(Array(QUIZ_COUNT).fill(null)); setQIdx(0); setShowResult(false); }} style={{ padding: "12px 28px", borderRadius: 6, border: "none", background: PRIMARY, color: "#fff", fontSize: 14, cursor: "pointer", fontFamily: "system-ui" }}>
-                  Recommencer
+                  {n("quizRestartBtn")}
                 </button>
               </div>
             )}
