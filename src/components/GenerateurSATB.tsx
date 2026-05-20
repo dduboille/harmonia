@@ -8,6 +8,7 @@ import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { PROGRESSION_TEMPLATES, type ProgressionTemplate, type ProgressionCategory } from "@/data/progressions-templates";
 import { generateSATBExercise, type Doigte, type GeneratedExercise } from "@/lib/satb-generator";
 import type { Measure, NoteName, HarmoniaEditorProps } from "@/components/HarmoniaEditor";
+import { getKeyAccidentalHint } from "@/lib/key-accidentals";
 
 const HarmoniaEditor = dynamic(() => import("@/components/HarmoniaEditor"), {
   ssr: false,
@@ -71,6 +72,7 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
   const [playing, setPlaying]       = useState(false);
   const [results, setResults]       = useState<Measure[] | null>(null);
   const [score, setScore]           = useState<number | null>(null);
+  const [showKS, setShowKS]         = useState(true);
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 600;
   const isFree = !plan || plan === "free";
@@ -89,6 +91,7 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
     setExercise(ex);
     setResults(null);
     setScore(null);
+    setShowKS(true);
     setStep("exercise");
   }, [template, selectedKey, doigte]);
 
@@ -412,8 +415,47 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
           >
             ↺ Regénérer
           </button>
+
+          {/* Sans armure toggle */}
+          <div style={{ display:"flex", gap:4, background:"#f4f1ec", borderRadius:8, padding:3 }}>
+            {([true, false] as const).map(val => (
+              <button key={String(val)} onClick={() => setShowKS(val)}
+                style={{
+                  padding:"5px 11px", borderRadius:6, fontSize:11, fontWeight:600, cursor:"pointer",
+                  border:"none",
+                  background: showKS === val ? "#fff" : "transparent",
+                  color: showKS === val ? "#1a1a1a" : "#888",
+                  boxShadow: showKS === val ? "0 1px 4px rgba(0,0,0,0.1)" : "none",
+                  fontFamily:"system-ui, sans-serif",
+                }}>
+                {val ? "🎼 Avec armure" : "✏️ Sans armure"}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Sans armure warning + hint */}
+      {!showKS && (() => {
+        const hint = getKeyAccidentalHint(exercise.tonalite);
+        return (
+          <div style={{
+            marginBottom:"1rem", padding:"10px 16px", borderRadius:10,
+            background:"#FEF0D9", border:"0.5px solid #F5C77E",
+            fontSize:12, color:"#744210", lineHeight:1.65,
+            fontFamily:"system-ui, sans-serif",
+          }}>
+            <strong>Mode avancé — sans armure.</strong>{" "}
+            Placez vous-même les altérations accidentelles sur chaque note.
+            {hint && (
+              <div style={{ marginTop:4 }}>
+                Notes altérées en <strong>{keyLabel}</strong> :{" "}
+                <strong>{hint}</strong>
+              </div>
+            )}
+          </div>
+        );
+      })()}
 
       {/* Chord labels */}
       <div style={{ display: "flex", gap: 8, marginBottom: 16, flexWrap: "wrap" }}>
@@ -452,6 +494,7 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
           subtitle={`${exercise.template.nom} — ${keyLabel}`}
           measures={exercise.labels}
           keySignature={exercise.tonalite.replace("m","")}
+          showKeySignature={showKS}
           initialNotes={initialNotes}
           solution={exercise.solution.map(m => ({
             soprano: { name: m.soprano.name as NoteName, octave: m.soprano.octave },
