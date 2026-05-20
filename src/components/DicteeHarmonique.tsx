@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import PianoPlayer, { type PianoPlayerRef } from "@/components/PianoPlayer";
+import VisualisationNote from "@/components/VisualisationNote";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -191,6 +192,7 @@ export default function DicteeHarmonique() {
   const [allOptions, setAllOptions] = useState<CE[][]>([]);
   const [answers,    setAnswers]    = useState<Ans[]>([]);
   const [feedback,   setFeedback]   = useState<{ chosen: string; ok: boolean } | null>(null);
+  const [showViz,    setShowViz]    = useState(false);
 
   const piano     = useRef<PianoPlayerRef>(null);
   const timers    = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -231,6 +233,7 @@ export default function DicteeHarmonique() {
     answering.current = false;
     setAnswers([]);
     setFeedback(null);
+    setShowViz(false);
     setChordIdx(0);
 
     const pool = PROGRESSIONS.filter(p => p.level === level);
@@ -254,6 +257,19 @@ export default function DicteeHarmonique() {
     playChord(prog.chords[chordIdx]);
   }, [prog, chordIdx, playChord]);
 
+  const handleNext = useCallback(() => {
+    setShowViz(false);
+    setFeedback(null);
+    answering.current = false;
+    const next = chordIdx + 1;
+    if (next >= (prog?.chords.length ?? 0)) {
+      setPhase("complete");
+    } else {
+      setChordIdx(next);
+      playChord(prog!.chords[next]);
+    }
+  }, [chordIdx, prog, playChord]);
+
   const handleAnswer = useCallback((chosen: CE) => {
     if (!prog || answering.current) return;
     answering.current = true;
@@ -270,17 +286,8 @@ export default function DicteeHarmonique() {
       timers.current.push(t);
     }
 
-    const t = setTimeout(() => {
-      answering.current = false;
-      setFeedback(null);
-      const next = chordIdx + 1;
-      if (next >= prog.chords.length) {
-        setPhase("complete");
-      } else {
-        setChordIdx(next);
-        playChord(prog.chords[next]);
-      }
-    }, 1300);
+    // Show visualisation instead of auto-advancing
+    const t = setTimeout(() => setShowViz(true), 600);
     timers.current.push(t);
   }, [prog, chordIdx, playChord]);
 
@@ -355,6 +362,7 @@ export default function DicteeHarmonique() {
         alignItems: "center",
         justifyContent: "center",
         gap: "1.5rem",
+        overflow: "hidden",
       }}>
 
         {/* ── IDLE ── */}
@@ -529,6 +537,16 @@ export default function DicteeHarmonique() {
               Nouvelle dictée
             </button>
           </div>
+        )}
+
+        {/* ── VISUALISATION ── */}
+        {phase === "answering" && showViz && prog && (
+          <VisualisationNote
+            notes={prog.chords[chordIdx].notes}
+            label={prog.chords[chordIdx].label}
+            onNext={handleNext}
+            onReplay={() => playChord(prog.chords[chordIdx])}
+          />
         )}
       </div>
 
