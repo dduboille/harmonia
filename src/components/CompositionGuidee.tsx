@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation';
 import PianoPlayer, { PianoPlayerRef } from './PianoPlayer';
 import { evaluateHarmonization, getChordBassSpecs } from '@/lib/harmonization-engine';
 import { MELODIES } from '@/data/melodies-exercices';
-import type { MelodyExercise, HarmonizationScore } from '@/types/composition';
+import type { MelodyExercise, MelodyNote, HarmonizationScore } from '@/types/composition';
 
 // ── Staff rendering helpers ──────────────────────────────────────────────────
 
@@ -58,7 +58,7 @@ function MelodyStaff({ exercise }: { exercise: MelodyExercise }) {
       {STAFF_LINES.map(s => (
         <line key={s} x1={10} y1={STAFF_BOTTOM - s * HALF_STEP} x2={svgW - 10} y2={STAFF_BOTTOM - s * HALF_STEP} stroke="#999" strokeWidth="0.8" />
       ))}
-      <text x={14} y={STAFF_BOTTOM + 16} fontSize="95" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄞</text>
+      <text x={14} y={STAFF_BOTTOM + 6} fontSize="95" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄞</text>
       <line x1={CLEF_W} y1={STAFF_BOTTOM - 8 * HALF_STEP} x2={CLEF_W} y2={STAFF_BOTTOM} stroke="#999" strokeWidth="1" />
 
       {/* Bar lines between measures */}
@@ -213,6 +213,157 @@ function ChordGrid({
 
 // ── Score display ────────────────────────────────────────────────────────────
 
+// ── Harmonization hint panel ─────────────────────────────────────────────────
+
+const SEMITONES_H: Record<string, number> = {
+  C: 0, 'C#': 1, Db: 1, D: 2, 'D#': 3, Eb: 3,
+  E: 4, F: 5, 'F#': 6, Gb: 6, G: 7, 'G#': 8, Ab: 8,
+  A: 9, 'A#': 10, Bb: 10, B: 11,
+};
+
+function getChordTonesPc(chord: string): Set<number> {
+  const m = chord.match(/^([A-G][#b]?)(.*)$/);
+  if (!m) return new Set([0, 4, 7]);
+  const root = SEMITONES_H[m[1]] ?? 0;
+  const qual = m[2];
+  let ivls: number[];
+  if (qual === 'm' || qual === 'min') ivls = [0, 3, 7];
+  else if (qual === '7') ivls = [0, 4, 7, 10];
+  else if (qual === 'm7') ivls = [0, 3, 7, 10];
+  else if (qual === 'dim') ivls = [0, 3, 6];
+  else if (qual === 'Maj7' || qual === 'maj7') ivls = [0, 4, 7, 11];
+  else ivls = [0, 4, 7];
+  return new Set(ivls.map(i => (root + i) % 12));
+}
+
+function guessNonChordType(noteIdx: number, notes: MelodyNote[], chordTones: Set<number>): string {
+  const pc = (n: MelodyNote) => SEMITONES_H[n.note] ?? 0;
+  const prev = noteIdx > 0 ? notes[noteIdx - 1] : null;
+  const next = noteIdx < notes.length - 1 ? notes[noteIdx + 1] : null;
+  const cur = pc(notes[noteIdx]);
+
+  const prevIsChord = prev ? chordTones.has(pc(prev)) : false;
+  const nextIsChord = next ? chordTones.has(pc(next)) : false;
+
+  if (prevIsChord && nextIsChord) return 'broderie';
+  if (prevIsChord && next) {
+    const step = Math.abs(pc(next) - cur);
+    return step <= 2 ? 'passage' : 'échappée';
+  }
+  if (nextIsChord && prev) return 'retard';
+  return 'note étrangère';
+}
+
+const NCT_COLORS: Record<string, string> = {
+  broderie: '#185FA5', passage: '#2E8B57', retard: '#BA7517', échappée: '#7B3F9E', 'note étrangère': '#888',
+};
+const NCT_TIPS: Record<string, string> = {
+  broderie: 'Note encadrée par deux notes d\'accord (broderie ou voisine).',
+  passage: 'Relie deux notes d\'accord par degré conjoint.',
+  retard: 'Résout sur une note d\'accord suivante.',
+  échappée: 'S\'échappe de la note d\'accord par saut.',
+  'note étrangère': 'Note non liée à l\'accord par mouvement simple.',
+};
+
+function HarmonizationPanel({
+  exercise,
+  attempt,
+}: {
+  exercise: MelodyExercise;
+  attempt: string[][];
+}) {
+  const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
+  const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
+
+  // Split notes into measures
+  const measureNotes: MelodyNote[][] = [];
+  let cur: MelodyNote[] = [];
+  let beats = 0;
+  for (const note of exercise.notes) {
+    const dur = dBeats[note.duration] ?? 1;
+    cur.push(note);
+    beats += dur;
+    if (beats >= bpm - 0.01) { measureNotes.push(cur); cur = []; beats = 0; }
+  }
+  if (cur.length > 0) measureNotes.push(cur);
+
+  const anyAttempt = attempt.some(m => m.length > 0);
+
+  return (
+    <div style={{ background: '#fff', border: '0.5px solid #e8e3db', borderRadius: 10, padding: '16px 20px', marginBottom: '1rem' }}>
+      <div style={{ fontSize: 11, fontWeight: 700, color: '#888', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 12 }}>
+        Comment harmoniser ?
+      </div>
+
+      {!anyAttempt && (
+        <div style={{ fontSize: 12, color: '#aaa', fontStyle: 'italic', fontFamily: 'system-ui,sans-serif' }}>
+          Sélectionnez des accords ci-dessus pour voir l'analyse note par note.
+        </div>
+      )}
+
+      {anyAttempt && (
+        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${exercise.measures}, minmax(120px, 1fr))`, gap: 10, overflowX: 'auto' }}>
+          {Array.from({ length: exercise.measures }, (_, mi) => {
+            const chords = (attempt[mi] ?? []).filter(c => c !== '');
+            const notes = measureNotes[mi] ?? [];
+
+            return (
+              <div key={mi} style={{ fontSize: 11, fontFamily: 'system-ui,sans-serif' }}>
+                <div style={{ fontWeight: 700, color: '#BA7517', marginBottom: 6 }}>M {mi + 1}</div>
+                {chords.length === 0 && (
+                  <div style={{ color: '#ccc', fontStyle: 'italic' }}>— pas d'accord —</div>
+                )}
+                {chords.length > 0 && (() => {
+                  // Per-note analysis: determine which chord is active at each note
+                  let noteBeats = 0;
+                  return notes.map((n, ni) => {
+                    const dur = dBeats[n.duration] ?? 1;
+                    const chordIdx = chords.length === 2 && noteBeats >= bpm / 2 ? 1 : 0;
+                    const chord = chords[chordIdx];
+                    const tones = chord ? getChordTonesPc(chord) : new Set<number>();
+                    const pc = SEMITONES_H[n.note] ?? 0;
+                    const isChordTone = tones.has(pc);
+                    const nctType = !isChordTone ? guessNonChordType(ni, notes, tones) : null;
+                    noteBeats += dur;
+
+                    return (
+                      <div key={ni} style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 4 }}>
+                        <span style={{ fontWeight: 600, color: '#1a1a1a', minWidth: 28 }}>
+                          {EN_TO_FR[n.note] ?? n.note}
+                        </span>
+                        {isChordTone ? (
+                          <span style={{ color: '#2E8B57', fontSize: 10, fontWeight: 600 }}>✓ accord</span>
+                        ) : (
+                          <span
+                            title={nctType ? NCT_TIPS[nctType] : ''}
+                            style={{ color: NCT_COLORS[nctType ?? 'note étrangère'] ?? '#888', fontSize: 10, fontWeight: 600, cursor: 'help', borderBottom: '1px dotted currentColor' }}
+                          >
+                            {nctType}
+                          </span>
+                        )}
+                      </div>
+                    );
+                  });
+                })()}
+                {chords.length > 0 && (
+                  <div style={{ marginTop: 8, paddingTop: 6, borderTop: '0.5px solid #f0ece6' }}>
+                    <div style={{ color: '#888', fontSize: 10, marginBottom: 3 }}>Accord(s) compatible(s) :</div>
+                    {exercise.suggestedChords[mi]?.map(c => (
+                      <span key={c} style={{ display: 'inline-block', marginRight: 4, marginBottom: 2, padding: '1px 6px', background: '#E1F5EE', color: '#0F6E56', borderRadius: 4, fontSize: 10, fontWeight: 600 }}>
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ScoreBar({ label, value, color }: { label: string; value: number; color: string }) {
   return (
     <div>
@@ -296,9 +447,12 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
 
     // Build combined melody + chord root voicings per note
+    // Chord plays only on the first beat of each chord segment (not every note)
     const voicings: string[][] = [];
     let measureIdx = 0;
     let beatsInMeasure = 0;
+    let prevChordIdx = -1;
+    let prevMeasureIdx = -1;
 
     for (const note of exercise.notes) {
       const dur = dBeats[note.duration] ?? 1;
@@ -309,12 +463,14 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
       const melSpec = `${note.note}:${note.octave - 1}`;
       const voicing: string[] = [melSpec];
 
-      if (chord) {
-        const bassSpecs = getChordBassSpecs(chord, 1);
-        voicing.push(...bassSpecs);
+      const isFirstBeatOfChord = measureIdx !== prevMeasureIdx || chordIdx !== prevChordIdx;
+      if (chord && isFirstBeatOfChord) {
+        voicing.push(...getChordBassSpecs(chord, 1));
       }
 
       voicings.push(voicing);
+      prevChordIdx = chordIdx;
+      prevMeasureIdx = measureIdx;
 
       beatsInMeasure += dur;
       if (beatsInMeasure >= bpm - 0.01) {
@@ -335,6 +491,8 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
     const voicings: string[][] = [];
     let measureIdx = 0;
     let beatsInMeasure = 0;
+    let prevChordIdx = -1;
+    let prevMeasureIdx = -1;
 
     for (const note of exercise.notes) {
       const dur = dBeats[note.duration] ?? 1;
@@ -344,9 +502,13 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
 
       const melSpec = `${note.note}:${note.octave - 1}`;
       const voicing: string[] = [melSpec];
-      if (chord) voicing.push(...getChordBassSpecs(chord, 1));
+
+      const isFirstBeatOfChord = measureIdx !== prevMeasureIdx || chordIdx !== prevChordIdx;
+      if (chord && isFirstBeatOfChord) voicing.push(...getChordBassSpecs(chord, 1));
 
       voicings.push(voicing);
+      prevChordIdx = chordIdx;
+      prevMeasureIdx = measureIdx;
 
       beatsInMeasure += dur;
       if (beatsInMeasure >= bpm - 0.01) {
@@ -539,6 +701,9 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
               </div>
               <ChordGrid exercise={exercise} attempt={attempt} onChange={handleAttemptChange} />
             </div>
+
+            {/* Harmonization hint panel */}
+            <HarmonizationPanel exercise={exercise} attempt={attempt} />
 
             {/* Actions */}
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>

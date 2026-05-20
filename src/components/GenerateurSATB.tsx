@@ -35,10 +35,10 @@ const KEYS_BY_LEVEL: { key: string; level: 1|2|3 }[] = [
 ];
 
 const DOIGTE_INFO: { value: Doigte; label: string; desc: string }[] = [
-  { value:"1", label:"① Fondamentale", desc:"La fondamentale de l'accord au soprano." },
-  { value:"3", label:"③ Tierce",       desc:"La tierce de l'accord au soprano." },
-  { value:"5", label:"⑤ Quinte",       desc:"La quinte de l'accord au soprano." },
-  { value:"7", label:"⑦ Septième",     desc:"La septième de l'accord au soprano (si disponible)." },
+  { value:"1", label:"① Fondamentale", desc:"La fondamentale de l'accord à la basse (accord en position fondamentale)." },
+  { value:"3", label:"③ Tierce",       desc:"La tierce de l'accord à la basse (1er renversement)." },
+  { value:"5", label:"⑤ Quinte",       desc:"La quinte de l'accord à la basse (2e renversement)." },
+  { value:"7", label:"⑦ Septième",     desc:"La septième de l'accord à la basse (3e renversement, si disponible)." },
 ];
 
 const LEVEL_COLOR: Record<1|2|3, { bg: string; border: string; text: string }> = {
@@ -383,20 +383,27 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
           </button>
 
           {/* Mode selector */}
-          <div style={{ display: "flex", gap: 6, background: "#f4f1ec", borderRadius: 8, padding: 4 }}>
-            {(["chiffres","basse","dictee"] as ExerciseMode[]).map(m => (
-              <button key={m} onClick={() => setMode(m)}
-                style={{
-                  padding: "6px 12px", borderRadius: 6, fontSize: 11, fontWeight: 600, cursor: "pointer",
-                  border: "none",
-                  background: mode === m ? "#fff" : "transparent",
-                  color: mode === m ? "#1a1a1a" : "#888",
-                  boxShadow: mode === m ? "0 1px 4px rgba(0,0,0,0.1)" : "none",
-                }}
-              >
-                {m === "chiffres" ? "Chiffres romains" : m === "basse" ? "Basse donnée" : "Dictée SATB"}
-              </button>
-            ))}
+          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            <div style={{ display: "flex", gap: 6, background: "#f4f1ec", borderRadius: 8, padding: 4 }}>
+              {(["chiffres","basse","dictee"] as ExerciseMode[]).map(m => (
+                <button key={m} onClick={() => setMode(m)}
+                  style={{
+                    padding: "6px 12px", borderRadius: 6, fontSize: 11, fontWeight: 600, cursor: "pointer",
+                    border: "none",
+                    background: mode === m ? "#fff" : "transparent",
+                    color: mode === m ? "#1a1a1a" : "#888",
+                    boxShadow: mode === m ? "0 1px 4px rgba(0,0,0,0.1)" : "none",
+                  }}
+                >
+                  {m === "chiffres" ? "Chiffres romains" : m === "basse" ? "Basse donnée" : "Dictée SATB"}
+                </button>
+              ))}
+            </div>
+            <div style={{ fontSize: 10, color: "#999", fontFamily: "system-ui, sans-serif", paddingLeft: 2 }}>
+              {mode === "chiffres" && "Portée vide — réalisez les 4 voix à partir des symboles romains."}
+              {mode === "basse"    && "Basse notée — réalisez les 3 voix supérieures (S, A, T)."}
+              {mode === "dictee"   && "Dictée — écoutez chaque accord et placez les 4 voix de mémoire."}
+            </div>
           </div>
 
           <button
@@ -411,14 +418,29 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
       {/* Chord labels */}
       <div style={{ display: "flex", gap: 8, marginBottom: 16, flexWrap: "wrap" }}>
         {exercise.accords.map((acc, i) => (
-          <div key={i} style={{ textAlign: "center" }}>
-            <div style={{ fontSize: 11, color: "#888", marginBottom: 2 }}>{exercise.labels[i]}</div>
+          <div key={i} style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: 4 }}>
+            <div style={{ fontSize: 11, color: "#888" }}>{exercise.labels[i]}</div>
             <div style={{
               padding: "6px 14px", borderRadius: 8, fontSize: 13, fontWeight: 600,
               background: "#EBF3FD", color: "#185FA5", border: "0.5px solid #A8C7EE",
             }}>
-              {acc}
+              {mode === "dictee" ? "?" : acc}
             </div>
+            {mode === "dictee" && (
+              <button
+                onClick={() => {
+                  if (!pianoRef.current) return;
+                  pianoRef.current.playVoicingSequence([exercise.dotKeys[i]], { interval: 1.5, arp: true, arpDelay: 0.06 });
+                }}
+                style={{
+                  padding: "3px 8px", borderRadius: 6, fontSize: 10, fontWeight: 600, cursor: "pointer",
+                  background: "#fff", border: "0.5px solid #d5cfc6", color: "#555",
+                  fontFamily: "system-ui, sans-serif",
+                }}
+              >
+                ▶ Écouter
+              </button>
+            )}
           </div>
         ))}
       </div>

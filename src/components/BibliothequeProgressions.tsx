@@ -57,6 +57,7 @@ export default function BibliothequeProgressions() {
   const [playingId,     setPlayingId]     = useState<string | null>(null);
   const [activeChordIdx, setActiveChordIdx] = useState(-1);
   const [pendingPlay,   setPendingPlay]   = useState<Progression | null>(null);
+  const [arpMode,       setArpMode]       = useState<"plaque" | "arpege">("arpege");
 
   const detailProg = detailId ? (PROGRESSIONS.find(p => p.id === detailId) ?? null) : null;
 
@@ -89,7 +90,7 @@ export default function BibliothequeProgressions() {
     setPlayingId(prog.id);
     setActiveChordIdx(0);
     const interval = 1.8;
-    pianoRef.current.playVoicingSequence(prog.voicings, { interval, arp: true, arpDelay: 0.06 });
+    pianoRef.current.playVoicingSequence(prog.voicings, { interval, arp: arpMode === "arpege", arpDelay: 0.08 });
     prog.voicings.forEach((_, i) => {
       setTimeout(() => setActiveChordIdx(i), i * interval * 1000);
     });
@@ -178,6 +179,25 @@ export default function BibliothequeProgressions() {
               ✕ Réinitialiser
             </button>
           )}
+          {/* Arp toggle */}
+          <div style={{ display: "flex", alignItems: "center", gap: 0, border: "0.5px solid #d5cfc6", borderRadius: 8, overflow: "hidden", flexShrink: 0 }}>
+            {(["plaque", "arpege"] as const).map(m => (
+              <button
+                key={m}
+                onClick={() => setArpMode(m)}
+                style={{
+                  padding: "7px 12px", border: "none", cursor: "pointer",
+                  background: arpMode === m ? "#5C3D6E" : "#fff",
+                  color: arpMode === m ? "#fff" : "#555",
+                  fontSize: 11, fontWeight: 600,
+                  fontFamily: "system-ui, sans-serif",
+                  transition: "background .15s",
+                }}
+              >
+                {m === "plaque" ? "⊡ Plaqué" : "≋ Arpégé"}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* ── Count ── */}

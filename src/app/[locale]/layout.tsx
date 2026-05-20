@@ -10,6 +10,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { ConditionalAppNav } from "@/components/AppNav";
 import CookieBanner from "@/components/CookieBanner";
+import FeedbackWidget from "@/components/FeedbackWidget";
 
 const LOCALES = ["fr", "en", "es", "de", "pt", "it"] as const;
 
@@ -127,6 +128,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <NextIntlClientProvider messages={messages}>
             <ConditionalAppNav />
             {children}
+            <FeedbackWidget />
           </NextIntlClientProvider>
           <Analytics />
           <CookieBanner locale={locale} />

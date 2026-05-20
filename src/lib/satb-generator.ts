@@ -174,8 +174,8 @@ function buildChord(info: DegreeInfo, keyRoot: number, mode: "major"|"minor", ke
   // Bass tone (first inversion = 3rd, second = 5th)
   const bassTone = tones[info.inversion] ?? tones[0];
 
-  // Display name
-  const root = noteName(rootPc, key);
+  // Display name — flatted degrees always use flat spelling (bII = Db, not C#)
+  const root = info.flatted ? FLAT_NAMES[rootPc % 12] : noteName(rootPc, key);
   const qSuf = quality === "min" ? "m" : quality === "dim" ? "dim" : "";
   const eSuf =
     info.extension === "hdim7"   ? "m7b5" :
@@ -200,7 +200,6 @@ function voiceChord(
   tones: number[],
   bassTone: number,
   prev: MidiVoicing | null,
-  sopranoPC: number | null
 ): MidiVoicing {
   const pr = prev ?? { soprano: 67, alto: 64, tenor: 60, bass: 48 };
 
@@ -210,19 +209,12 @@ function voiceChord(
   // 2. Pad tones to 4 voices (double root for triads)
   const tones4 = tones.length < 4 ? [...tones, tones[0]] : [...tones];
 
-  // 3. Soprano
-  let sopPC: number;
-  let sopMidi: number;
-  if (sopranoPC !== null) {
-    sopPC = sopranoPC;
-    sopMidi = nearest(sopranoPC, RANGES.soprano, pr.soprano);
-  } else {
-    const best = tones4
-      .map(t => ({ t, m: nearest(t, RANGES.soprano, pr.soprano) }))
-      .reduce((b, c) => Math.abs(c.m - pr.soprano) < Math.abs(b.m - pr.soprano) ? c : b);
-    sopPC = best.t;
-    sopMidi = best.m;
-  }
+  // 3. Soprano (free — moves by nearest pitch)
+  const best = tones4
+    .map(t => ({ t, m: nearest(t, RANGES.soprano, pr.soprano) }))
+    .reduce((b, c) => Math.abs(c.m - pr.soprano) < Math.abs(b.m - pr.soprano) ? c : b);
+  const sopPC = best.t;
+  const sopMidi = best.m;
 
   // 4. Inner voices from remaining tones
   const remaining = [...tones4];
@@ -298,7 +290,7 @@ export function generateSATBExercise(
   const chords = template.symboles.map(deg => buildChord(parseDeg(deg), keyRoot, mode, tonalite));
 
   const DOIGTE_IDX: Record<Doigte, number> = { "1":0, "3":1, "5":2, "7":3 };
-  const sopIdx = DOIGTE_IDX[doigte];
+  const bassIdx = DOIGTE_IDX[doigte];
 
   const mesures: SATBMeasure[] = [];
   const dotKeys: string[][] = [];
@@ -307,8 +299,9 @@ export function generateSATBExercise(
 
   for (let i = 0; i < chords.length; i++) {
     const ch = chords[i];
-    const sopranoPC = i === 0 ? (ch.tones[sopIdx] ?? ch.tones[0]) : null;
-    const midi = voiceChord(ch.tones, ch.bassTone, prevMidi, sopranoPC);
+    // Doigté constrains which chord tone is in the BASS for the first chord
+    const bassPC = i === 0 ? (ch.tones[bassIdx] ?? ch.tones[0]) : ch.bassTone;
+    const midi = voiceChord(ch.tones, bassPC, prevMidi);
 
     const m: SATBMeasure = {
       soprano: midiToEntry(midi.soprano, tonalite),
