@@ -46,21 +46,10 @@ const BH = 60; // black key height px
 const WHITE_IDX: Record<string, number> = { Do:0, Ré:1, Mi:2, Fa:3, Sol:4, La:5, Si:6 };
 const WHITE_FR  = ["Do","Ré","Mi","Fa","Sol","La","Si"] as const;
 
-const BLACK_OFFSET: Record<string, number> = {
-  "Do#":0.58,"Réb":0.58,
-  "Ré#":1.60,"Mib":1.60,
-  "Fa#":3.58,"Solb":3.58,
-  "Sol#":4.58,"Lab":4.58,
-  "La#":5.60,"Sib":5.60,
-};
 const BLACK_CANONICAL = ["Do#","Ré#","Fa#","Sol#","La#"] as const;
 const BLACK_CANONICAL_OFFSETS: Record<string, number> = {
   "Do#":0.58,"Ré#":1.60,"Fa#":3.58,"Sol#":4.58,"La#":5.60,
 };
-void BLACK_OFFSET; // defined for completeness but lookup is done via BLACK_CANONICAL_OFFSETS
-
-function isBlack(fr: string) { return fr in BLACK_OFFSET; }
-void isBlack; // internal helper — not exported
 
 function whiteX(fr: string, oct: number) {
   return ((oct - 3) * 7 + WHITE_IDX[fr]) * WW;
@@ -262,6 +251,7 @@ export default function VisualisationNote({ notes, label, onNext, onReplay }: Vi
       borderRadius: "0 0 18px 18px",
       padding: "1rem 1.25rem 1.25rem",
       width: "100%",
+      overflow: "hidden",
     }}>
       <p style={{
         fontSize: 11, fontWeight: 700, letterSpacing: "0.08em",
