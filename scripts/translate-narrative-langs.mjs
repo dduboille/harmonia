@@ -66,49 +66,74 @@ All 4 language objects must have ALL the same keys as the French input.
 Escape double quotes inside values with \\".
 Do NOT add line breaks inside JSON values — use HTML <br /> for line breaks in content.`;
 
-// ── Process one cours ─────────────────────────────────────────────────────────
+const BATCH_SIZE = 75; // split large courses to avoid JSON parse errors
 
-async function processCours(num, msgs) {
+// ── JSON repair ───────────────────────────────────────────────────────────────
+// Fix unescaped double-quotes inside JSON string values.
+// When a " inside a string is NOT followed by , : ] } (i.e. it's not closing
+// the string), escape it as \".
+
+function repairJson(raw) {
+  let result = "";
+  let inString = false;
+  let escaped = false;
+
+  for (let i = 0; i < raw.length; i++) {
+    const ch = raw[i];
+
+    if (escaped) {
+      result += ch;
+      escaped = false;
+      continue;
+    }
+
+    if (ch === "\\") {
+      result += ch;
+      escaped = true;
+      continue;
+    }
+
+    if (ch === '"') {
+      if (!inString) {
+        inString = true;
+        result += ch;
+      } else {
+        // Look ahead past whitespace to decide if this " closes the string
+        let j = i + 1;
+        while (j < raw.length && (raw[j] === " " || raw[j] === "\t")) j++;
+        const next = raw[j];
+        const closes = !next || /[,:\]}\n]/.test(next);
+        if (closes) {
+          inString = false;
+          result += ch;
+        } else {
+          // Unescaped quote inside value — escape it
+          result += '\\"';
+        }
+      }
+      continue;
+    }
+
+    result += ch;
+  }
+
+  return result;
+}
+
+// ── Translate a batch of keys ─────────────────────────────────────────────────
+
+async function translateBatch(num, batchKeys, msgs, batchLabel) {
   const coursKey = `cours${num}`;
+  const frKeys   = msgs.fr[coursKey].narrative;
 
-  const frKeys = msgs.fr[coursKey]?.narrative;
-  if (!frKeys || Object.keys(frKeys).length === 0) {
-    console.log(`  ↷ cours${num} : aucune clé narrative`);
-    return;
-  }
-
-  // Check if already translated (all 4 langs have all keys)
-  const keyNames  = Object.keys(frKeys);
-  const keyCount  = keyNames.length;
-  const allDone   = ["es","de","it","pt"].every(lang =>
-    msgs[lang][coursKey]?.narrative &&
-    keyNames.every(k => msgs[lang][coursKey].narrative[k] !== undefined)
-  );
-  if (allDone) {
-    console.log(`  ↷ cours${num} : déjà traduit (${keyCount} clés)`);
-    return;
-  }
-
-  // Determine which keys are missing in at least one language
-  const missingKeys = keyNames.filter(k =>
-    ["es","de","it","pt"].some(lang => !msgs[lang][coursKey]?.narrative?.[k])
-  );
-  console.log(`  ${missingKeys.length}/${keyCount} clés à traduire`);
-
-  if (DRY) {
-    console.log("  [DRY_RUN] ignoré");
-    return;
-  }
-
-  // Build a compact JSON with fr + en for missing keys only
   const frSubset = {};
   const enSubset = {};
-  for (const k of missingKeys) {
+  for (const k of batchKeys) {
     frSubset[k] = frKeys[k];
     enSubset[k] = msgs.en[coursKey]?.narrative?.[k] ?? "";
   }
 
-  const userMsg = `Translate the following ${missingKeys.length} narrative keys for Cours ${num} into Spanish, German, Italian, and Brazilian Portuguese.
+  const userMsg = `Translate the following ${batchKeys.length} narrative keys for Cours ${num} into Spanish, German, Italian, and Brazilian Portuguese.
 
 French values:
 ${JSON.stringify(frSubset)}
@@ -116,9 +141,9 @@ ${JSON.stringify(frSubset)}
 English reference (same keys):
 ${JSON.stringify(enSubset)}
 
-Return ALL ${missingKeys.length} keys for ALL 4 languages in the single-line JSON format.`;
+Return ALL ${batchKeys.length} keys for ALL 4 languages in the single-line JSON format.
+IMPORTANT: Escape ALL double quotes inside string values with \\". Do not use literal unescaped " inside a JSON string value.`;
 
-  // ── Appel API (streaming pour éviter la limite 10 min) ───────────────────
   let raw = "";
   let inputTokens = 0, outputTokens = 0;
 
@@ -132,7 +157,7 @@ Return ALL ${missingKeys.length} keys for ALL 4 languages in the single-line JSO
         messages: [{ role: "user", content: userMsg }],
       });
 
-      process.stdout.write("  streaming");
+      process.stdout.write(`  streaming${batchLabel}`);
       for await (const chunk of stream) {
         if (chunk.type === "content_block_delta" && chunk.delta.type === "text_delta") {
           raw += chunk.delta.text;
@@ -156,42 +181,101 @@ Return ALL ${missingKeys.length} keys for ALL 4 languages in the single-line JSO
   const cost = (inputTokens * 3 + outputTokens * 15) / 1_000_000;
   console.log(`  tokens : ${inputTokens} in / ${outputTokens} out  →  ~$${cost.toFixed(3)}`);
 
-  // ── Parse JSON ────────────────────────────────────────────────────────────
-  // Strip accidental markdown fences
   raw = raw.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "").trim();
 
   let translations;
   try {
     translations = JSON.parse(raw);
-  } catch (e) {
-    console.error(`  ✗ JSON invalide : ${e.message}`);
-    console.error(`  Réponse brute : ${raw.slice(0, 200)}`);
-    return;
+  } catch {
+    // Attempt JSON repair: escape unescaped " inside string values
+    const repaired = repairJson(raw);
+    try {
+      translations = JSON.parse(repaired);
+      console.log("  ⚠ JSON réparé (guillemets non échappés corrigés)");
+    } catch (e2) {
+      console.error(`  ✗ JSON invalide (même après réparation) : ${e2.message}`);
+      console.error(`  Réponse brute : ${raw.slice(0, 300)}`);
+      return null;
+    }
   }
 
   for (const lang of ["es","de","it","pt"]) {
     if (!translations[lang] || typeof translations[lang] !== "object") {
       console.error(`  ✗ "${lang}" absent de la réponse`);
-      return;
+      return null;
     }
   }
 
-  // ── Inject into message files ─────────────────────────────────────────────
+  return translations;
+}
+
+// ── Process one cours ─────────────────────────────────────────────────────────
+
+async function processCours(num, msgs) {
+  const coursKey = `cours${num}`;
+
+  const frKeys = msgs.fr[coursKey]?.narrative;
+  if (!frKeys || Object.keys(frKeys).length === 0) {
+    console.log(`  ↷ cours${num} : aucune clé narrative`);
+    return;
+  }
+
+  const keyNames = Object.keys(frKeys);
+  const keyCount = keyNames.length;
+  const allDone  = ["es","de","it","pt"].every(lang =>
+    msgs[lang][coursKey]?.narrative &&
+    keyNames.every(k => msgs[lang][coursKey].narrative[k] !== undefined)
+  );
+  if (allDone) {
+    console.log(`  ↷ cours${num} : déjà traduit (${keyCount} clés)`);
+    return;
+  }
+
+  const missingKeys = keyNames.filter(k =>
+    ["es","de","it","pt"].some(lang => !msgs[lang][coursKey]?.narrative?.[k])
+  );
+  console.log(`  ${missingKeys.length}/${keyCount} clés à traduire`);
+
+  if (DRY) {
+    console.log("  [DRY_RUN] ignoré");
+    return;
+  }
+
+  // Ensure narrative objects exist
   for (const lang of ["es","de","it","pt"]) {
     if (!msgs[lang][coursKey]) {
       console.warn(`  ⚠ "${coursKey}" absent de ${lang}.json — ignoré`);
-      continue;
+      return;
     }
-    if (!msgs[lang][coursKey].narrative) {
-      msgs[lang][coursKey].narrative = {};
-    }
-    // Merge: keep existing, add/overwrite missing
-    Object.assign(msgs[lang][coursKey].narrative, translations[lang]);
+    if (!msgs[lang][coursKey].narrative) msgs[lang][coursKey].narrative = {};
   }
 
-  // Check completeness
-  const gotKeys = Object.keys(translations.es ?? {}).length;
-  console.log(`  ✓ ${gotKeys}/${missingKeys.length} clés traduites (4 langues)`);
+  // ── Split into batches if needed ───────────────────────────────────────────
+  const batches = [];
+  for (let i = 0; i < missingKeys.length; i += BATCH_SIZE) {
+    batches.push(missingKeys.slice(i, i + BATCH_SIZE));
+  }
+
+  let totalTranslated = 0;
+
+  for (let b = 0; b < batches.length; b++) {
+    const batchLabel = batches.length > 1 ? ` [lot ${b + 1}/${batches.length}]` : "";
+    const translations = await translateBatch(num, batches[b], msgs, batchLabel);
+    if (!translations) {
+      console.error(`  ✗ Abandon du cours${num} (lot ${b + 1} échoué)`);
+      return;
+    }
+
+    for (const lang of ["es","de","it","pt"]) {
+      Object.assign(msgs[lang][coursKey].narrative, translations[lang]);
+    }
+
+    totalTranslated += Object.keys(translations.es ?? {}).length;
+
+    if (b < batches.length - 1) await sleep(2000);
+  }
+
+  console.log(`  ✓ ${totalTranslated}/${missingKeys.length} clés traduites (4 langues)`);
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────

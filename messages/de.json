@@ -910,7 +910,8 @@
       "invDesc0": "Der Grundton liegt im Bass. Der Akkord klingt voll, stabil und geerdet.",
       "invDesc1": "Die Terz liegt im Bass. Der Akkord klingt leichter, offener — er verflüssigt die Basslinie.",
       "invDesc2": "Die Quinte liegt im Bass. Instabiler, oft als Durchgangsakkord verwendet.",
-      "invDesc3": "Die Septime liegt im Bass. Sehr schwebende Klangfarbe — drängt stark zur Auflösung."
+      "invDesc3": "Die Septime liegt im Bass. Sehr schwebende Klangfarbe — drängt stark zur Auflösung.",
+      "invNomsFondamental": "Grundstellung"
     }
   },
   "cours3": {

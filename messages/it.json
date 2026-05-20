@@ -910,7 +910,8 @@
       "invDesc0": "La fondamentale è al basso. L'accordo suona pieno, stabile, radicato.",
       "invDesc1": "La terza è al basso. L'accordo suona più leggero, aperto — fluidifica la linea di basso.",
       "invDesc2": "La quinta è al basso. Più instabile, spesso usato come accordo di passaggio.",
-      "invDesc3": "La settima è al basso. Colore molto sospeso — spinge con forza verso la risoluzione."
+      "invDesc3": "La settima è al basso. Colore molto sospeso — spinge con forza verso la risoluzione.",
+      "invNomsFondamental": "Stato fondamentale"
     }
   },
   "cours3": {

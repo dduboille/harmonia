@@ -910,7 +910,8 @@
       "invDesc0": "La fundamental está en el bajo. El acorde suena pleno, estable, anclado.",
       "invDesc1": "La tercera está en el bajo. El acorde suena más ligero, abierto — fluidifica la línea de bajo.",
       "invDesc2": "La quinta está en el bajo. Más inestable, frecuentemente utilizado como acorde de paso.",
-      "invDesc3": "La séptima está en el bajo. Color muy suspendido — empuja con fuerza hacia la resolución."
+      "invDesc3": "La séptima está en el bajo. Color muy suspendido — empuja con fuerza hacia la resolución.",
+      "invNomsFondamental": "Estado fundamental"
     }
   },
   "cours3": {

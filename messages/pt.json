@@ -910,7 +910,8 @@
       "invDesc0": "A fundamental está no baixo. O acorde soa pleno, estável, ancorado.",
       "invDesc1": "A terça está no baixo. O acorde soa mais leve, aberto — fluidifica a linha de baixo.",
       "invDesc2": "A quinta está no baixo. Mais instável, frequentemente usado como acorde de passagem.",
-      "invDesc3": "A sétima está no baixo. Cor muito suspensa — impulsiona fortemente em direção à resolução."
+      "invDesc3": "A sétima está no baixo. Cor muito suspensa — impulsiona fortemente em direção à resolução.",
+      "invNomsFondamental": "Estado fundamental"
     }
   },
   "cours3": {
