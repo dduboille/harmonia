@@ -129,7 +129,7 @@ function ChordGrid({
   const measures = exercise.measures;
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${measures}, 1fr)`, gap: 8 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${measures}, minmax(120px, 1fr))`, gap: 8, overflowX: 'auto' }}>
       {Array.from({ length: measures }, (_, mi) => {
         const selected = attempt[mi] ?? [];
         const pool = exercise.pool;
@@ -576,7 +576,8 @@ export default function CompositionGuidee() {
             {/* Your attempt recap */}
             <div style={{ background: '#fff', border: '0.5px solid #e8e3db', borderRadius: 10, padding: '14px 18px', marginBottom: '1rem' }}>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#888', letterSpacing: '0.08em', marginBottom: 10 }}>VOTRE HARMONISATION</div>
-              <div style={{ display: 'grid', gridTemplateColumns: `repeat(${exercise.measures}, 1fr)`, gap: 6 }}>
+              <div style={{ overflowX: 'auto' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: `repeat(${exercise.measures}, minmax(70px, 1fr))`, gap: 6 }}>
                 {attempt.map((chords, mi) => (
                   <div key={mi} style={{ textAlign: 'center', padding: '8px 4px', background: '#faf8f5', borderRadius: 6 }}>
                     <div style={{ fontSize: 10, color: '#bbb', marginBottom: 4 }}>M {mi + 1}</div>
@@ -585,6 +586,7 @@ export default function CompositionGuidee() {
                     </div>
                   </div>
                 ))}
+              </div>
               </div>
             </div>
 
@@ -631,7 +633,8 @@ export default function CompositionGuidee() {
               <div style={{ fontSize: 11, fontWeight: 700, color: '#888', letterSpacing: '0.08em', marginBottom: 14 }}>SOLUTION DE RÉFÉRENCE</div>
 
               {/* Suggested chords grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: `repeat(${exercise.measures}, 1fr)`, gap: 8, marginBottom: 16 }}>
+              <div style={{ overflowX: 'auto', marginBottom: 16 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: `repeat(${exercise.measures}, minmax(140px, 1fr))`, gap: 8 }}>
                 {exercise.suggestedChords.map((chords, mi) => (
                   <div key={mi} style={{ background: '#f0faf0', border: '0.5px solid #a8d8a8', borderRadius: 8, padding: '10px 12px' }}>
                     <div style={{ fontSize: 10, color: '#2E8B57', fontWeight: 700, marginBottom: 6 }}>M {mi + 1}</div>
@@ -643,6 +646,7 @@ export default function CompositionGuidee() {
                     </div>
                   </div>
                 ))}
+              </div>
               </div>
 
               {/* Concepts */}
@@ -667,7 +671,8 @@ export default function CompositionGuidee() {
             {score && (
               <div style={{ background: '#fff', border: '0.5px solid #e8e3db', borderRadius: 10, padding: '14px 18px', marginBottom: '1rem' }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: '#888', letterSpacing: '0.08em', marginBottom: 10 }}>COMPARAISON</div>
-                <div style={{ display: 'grid', gridTemplateColumns: `repeat(${exercise.measures}, 1fr)`, gap: 6 }}>
+                <div style={{ overflowX: 'auto' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: `repeat(${exercise.measures}, minmax(90px, 1fr))`, gap: 6 }}>
                   {exercise.suggestedChords.map((sug, mi) => {
                     const myChords = attempt[mi] ?? [];
                     const match = sug.some(s => myChords.includes(s));
@@ -684,6 +689,7 @@ export default function CompositionGuidee() {
                       </div>
                     );
                   })}
+                </div>
                 </div>
               </div>
             )}

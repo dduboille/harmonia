@@ -27,6 +27,7 @@ export default function ProfDashboard({ classes: initialClasses, totalEleves: in
   const [copied, setCopied] = useState<string | null>(null);
 
   const totalEleves = classes.reduce((s, c) => s + c.elevesCount, 0) || initialTotal;
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 600;
 
   async function createClasse() {
     if (!nom.trim()) { setError("Le nom est requis."); return; }
@@ -111,7 +112,7 @@ export default function ProfDashboard({ classes: initialClasses, totalEleves: in
       </div>
 
       {/* Stats */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14, marginBottom: 36 }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 14, marginBottom: 36 }}>
         {[
           { label: "Classes", value: classes.length },
           { label: "Élèves au total", value: totalEleves },

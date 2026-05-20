@@ -70,6 +70,8 @@ export default function GenerateurSATB() {
   const [results, setResults]       = useState<Measure[] | null>(null);
   const [score, setScore]           = useState<number | null>(null);
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 600;
+
   const filtered = PROGRESSION_TEMPLATES.filter(t => {
     if (filterCat  && t.categorie  !== filterCat)  return false;
     if (filterDiff && t.difficulte !== filterDiff) return false;
@@ -137,10 +139,10 @@ export default function GenerateurSATB() {
       </div>
 
       {/* 3-panel grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 20, marginBottom: "2rem" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 20, marginBottom: "2rem" }}>
 
         {/* Panel A — Progression */}
-        <div style={{ background: "#fff", border: "0.5px solid #e0dbd3", borderRadius: 12, padding: 20, gridColumn: "1/3" }}>
+        <div style={{ background: "#fff", border: "0.5px solid #e0dbd3", borderRadius: 12, padding: 20, gridColumn: isMobile ? undefined : "1/3" }}>
           <div style={{ fontWeight: 600, fontSize: 13, color: "#1a1a1a", marginBottom: 12 }}>
             A — Progression harmonique
           </div>

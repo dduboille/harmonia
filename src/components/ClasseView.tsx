@@ -146,6 +146,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
 
   const tabStyle = (t: Tab): React.CSSProperties => ({
     padding: "10px 22px",
+    minHeight: 44,
     borderRadius: "8px 8px 0 0",
     border: "none",
     background: tab === t ? "#fff" : "transparent",
@@ -266,7 +267,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                 style={{
                   background: ACCENT, color: "#fff",
                   border: "none", borderRadius: 8,
-                  padding: "9px 18px", fontSize: 13, fontWeight: 700, cursor: "pointer",
+                  padding: "9px 18px", minHeight: 44, fontSize: 13, fontWeight: 700, cursor: "pointer",
                 }}
               >
                 + Créer un devoir

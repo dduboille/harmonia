@@ -138,7 +138,8 @@ export default async function ConfidentialitePage({ params }: Props) {
         </Section>
 
         <Section title="3. Finalités du traitement">
-          <div style={{ display: "flex", flexDirection: "column" as const, gap: 0, border: "0.5px solid #e8e3db", borderRadius: 10, overflow: "hidden" }}>
+          <div style={{ overflowX: "auto" }}>
+          <div style={{ display: "flex", flexDirection: "column" as const, gap: 0, border: "0.5px solid #e8e3db", borderRadius: 10, overflow: "hidden", minWidth: 480 }}>
             {[
               { finalite: "Authentification", base: "Exécution du contrat", details: "Permettre la connexion et la gestion de votre compte" },
               { finalite: "Sauvegarde de progression", base: "Exécution du contrat", details: "Mémoriser vos scores et avancement dans les cours" },
@@ -160,6 +161,7 @@ export default async function ConfidentialitePage({ params }: Props) {
                 <span style={{ color: "#666" }}>{row.details}</span>
               </div>
             ))}
+          </div>
           </div>
         </Section>
 

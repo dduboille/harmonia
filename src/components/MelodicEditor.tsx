@@ -366,6 +366,8 @@ export default function MelodicEditor() {
   const [tempo, setTempo] = useState(100);
   const [showLilyPond, setShowLilyPond] = useState(false);
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 600;
+
   const pianoRef = useRef<PianoPlayerRef>(null);
   const { imageUrl, loading: lilyLoading, error: lilyError, render: lilyRender, reset: lilyReset } = useLilyPond({ format: 'svg' });
 
@@ -444,6 +446,7 @@ export default function MelodicEditor() {
                 onClick={() => setDuration(d)}
                 style={{
                   padding: '5px 10px',
+                  minHeight: 44,
                   borderRadius: 6,
                   border: '0.5px solid ' + (duration === d ? '#5C3D6E' : '#e0dbd3'),
                   background: duration === d ? '#5C3D6E' : '#fff',
@@ -490,6 +493,7 @@ export default function MelodicEditor() {
               disabled={melody.length === 0}
               style={{
                 padding: '6px 12px',
+                minHeight: 44,
                 borderRadius: 6,
                 border: '0.5px solid #e0dbd3',
                 background: '#fff',
@@ -507,6 +511,7 @@ export default function MelodicEditor() {
               disabled={melody.length === 0}
               style={{
                 padding: '6px 12px',
+                minHeight: 44,
                 borderRadius: 6,
                 border: '0.5px solid #e0dbd3',
                 background: '#fff',
@@ -524,6 +529,7 @@ export default function MelodicEditor() {
               disabled={melody.length === 0}
               style={{
                 padding: '6px 14px',
+                minHeight: 44,
                 borderRadius: 6,
                 border: '0.5px solid #185FA5',
                 background: melody.length === 0 ? '#f0ece6' : '#185FA5',
@@ -541,6 +547,7 @@ export default function MelodicEditor() {
               disabled={melody.length === 0}
               style={{
                 padding: '6px 14px',
+                minHeight: 44,
                 borderRadius: 6,
                 border: '0.5px solid #BA7517',
                 background: melody.length === 0 ? '#f0ece6' : '#BA7517',
@@ -563,7 +570,7 @@ export default function MelodicEditor() {
 
         {/* ── Analysis panel ──────────────────────────────── */}
         {melody.length >= 2 && (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: '1rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 10, marginBottom: '1rem' }}>
 
             {/* Intervals */}
             <div style={{ background: '#fff', border: '0.5px solid #e8e3db', borderRadius: 10, padding: '14px 18px' }}>
