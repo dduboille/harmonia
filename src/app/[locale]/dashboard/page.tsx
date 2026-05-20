@@ -10,6 +10,7 @@ import { getAllProgress, getCoursStats, getUserPlan, canAccessCours } from "@/li
 import { ALL_EXERCISES } from "@/exercises/all-exercises";
 import { supabaseAdmin } from "@/lib/supabase";
 import MaClasseSection from "@/components/MaClasseSection";
+import { getTranslations } from "next-intl/server";
 
 const COURS_META = [
   { id: 1,  title: "La gamme, les degrés et les intervalles" },
@@ -40,10 +41,10 @@ const COURS_META = [
 const COURS_NIVEAU_1 = COURS_META.filter(c => c.id <= 9);
 const COURS_NIVEAU_2 = COURS_META.filter(c => c.id >= 10);
 
-const PLAN_LABEL: Record<string, string> = {
-  free:   "Gratuit",
-  pro:    "Pro",
-  annual: "Annuel",
+const PLAN_LABEL_KEY: Record<string, string> = {
+  free:   "planFree",
+  pro:    "planPro",
+  annual: "planAnnual",
 };
 
 const PLAN_COLOR: Record<string, string> = {
@@ -62,6 +63,9 @@ export default async function DashboardPage({ params }: Props) {
 
   if (!userId) redirect(`/${locale}/sign-in`);
 
+  const t = await getTranslations({ locale, namespace: "dashboard" });
+  const tHub = await getTranslations({ locale, namespace: "coursHub" });
+
   const user = await currentUser();
   const plan = await getUserPlan(userId);
   const isPro = plan === "pro" || plan === "annual";
@@ -71,7 +75,8 @@ export default async function DashboardPage({ params }: Props) {
       const totalInCours = ALL_EXERCISES.filter(e => e.cours === cours.id).length;
       const stats = await getCoursStats(userId, cours.id, totalInCours);
       const accessible = canAccessCours(cours.id, plan);
-      return { ...cours, ...stats, accessible, totalInCours };
+      const title = tHub(`c${cours.id}` as Parameters<typeof tHub>[0]);
+      return { ...cours, title, ...stats, accessible, totalInCours };
     })
   );
 
@@ -120,10 +125,10 @@ export default async function DashboardPage({ params }: Props) {
         <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap" as const, gap: 12 }}>
           <div>
             <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", color: "#BA7517", textTransform: "uppercase" as const, marginBottom: 4 }}>
-              Tableau de bord
+              {t("title")}
             </div>
             <h1 style={{ fontSize: 26, fontWeight: 500, color: "#1a1a1a", margin: "0 0 4px" }}>
-              Bonjour, {user?.firstName ?? "Musicien"} 👋
+              {t("greeting", { name: user?.firstName ?? "Musicien" })}
             </h1>
             <p style={{ fontSize: 13, color: "#888", margin: 0 }}>
               {user?.emailAddresses[0]?.emailAddress}
@@ -140,10 +145,10 @@ export default async function DashboardPage({ params }: Props) {
               color: PLAN_COLOR[plan],
               border: `0.5px solid ${PLAN_COLOR[plan]}40`,
             }}>
-              Plan {PLAN_LABEL[plan]}
+              {t(PLAN_LABEL_KEY[plan] as Parameters<typeof t>[0])}
               {plan === "free" && (
                 <Link href={`/${locale}/upgrade`} style={{ marginLeft: 8, color: "#185FA5", textDecoration: "none" }}>
-                  Passer Pro →
+                  {t("upgradeCta")}
                 </Link>
               )}
             </div>
@@ -156,7 +161,7 @@ export default async function DashboardPage({ params }: Props) {
               background: "#fff",
               border: "0.5px solid #e0dbd3",
             }}>
-              Mon profil
+              {t("myProfile")}
             </Link>
           </div>
         </div>
@@ -164,9 +169,9 @@ export default async function DashboardPage({ params }: Props) {
         {/* ── Stats globales ──────────────────────────────────── */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12, marginBottom: "2rem" }}>
           {[
-            { label: "Exercices complétés", value: totalCompleted, suffix: `/ ${totalExercises}` },
-            { label: "Progression globale", value: `${globalPct}%`, suffix: "" },
-            { label: "Cours commencés", value: coursStarted, suffix: `/ ${COURS_META.length}` },
+            { label: t("statsExercises"), value: totalCompleted, suffix: `/ ${totalExercises}` },
+            { label: t("statsProgress"), value: `${globalPct}%`, suffix: "" },
+            { label: t("statsCourses"), value: coursStarted, suffix: `/ ${COURS_META.length}` },
           ].map(stat => (
             <div key={stat.label} style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "16px 20px" }}>
               <div style={{ fontSize: 28, fontWeight: 500, color: "#1a1a1a", lineHeight: 1 }}>
@@ -184,7 +189,7 @@ export default async function DashboardPage({ params }: Props) {
         {/* ── Outils d'entraînement ───────────────────────────── */}
         <div style={{ marginBottom: "2rem" }}>
           <div style={{ fontSize: 13, fontWeight: 600, color: "#1a1a1a", marginBottom: 12 }}>
-            Outils d'entraînement
+            {t("toolsSection")}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 10 }}>
 
@@ -202,13 +207,13 @@ export default async function DashboardPage({ params }: Props) {
               }}>
                 <div style={{ fontSize: 22, marginBottom: 8 }}>🎧</div>
                 <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a", marginBottom: 6 }}>
-                  Dictée harmonique
+                  {t("dicteeTitle")}
                 </div>
                 <div style={{ fontSize: 12, color: "#888", lineHeight: 1.5, marginBottom: 12 }}>
-                  Identifiez les accords et progressions à l'oreille. Entraînez votre écoute harmonique avec des exercices progressifs.
+                  {t("dicteeDesc")}
                 </div>
                 <div style={{ fontSize: 12, color: "#185FA5", fontWeight: 600 }}>
-                  Accéder →
+                  {t("dicteeLink")}
                 </div>
               </div>
             </Link>
@@ -226,13 +231,13 @@ export default async function DashboardPage({ params }: Props) {
               }}>
                 <div style={{ fontSize: 22, marginBottom: 8 }}>⟳</div>
                 <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a", marginBottom: 6 }}>
-                  Comparateur de styles
+                  {t("comparateurTitle")}
                 </div>
                 <div style={{ fontSize: 12, color: "#888", lineHeight: 1.5, marginBottom: 12 }}>
-                  Écoutez la même mélodie harmonisée dans 11 styles — jazz, baroque, romantique, modal. Comparez côte à côte.
+                  {t("comparateurDesc")}
                 </div>
                 <div style={{ fontSize: 12, color: "#185FA5", fontWeight: 600 }}>
-                  Comparer →
+                  {t("comparateurLink")}
                 </div>
               </div>
             </Link>
@@ -250,13 +255,13 @@ export default async function DashboardPage({ params }: Props) {
               }}>
                 <div style={{ fontSize: 22, marginBottom: 8 }}>♩</div>
                 <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a", marginBottom: 6 }}>
-                  Éditeur mélodique
+                  {t("editeurTitle")}
                 </div>
                 <div style={{ fontSize: 12, color: "#888", lineHeight: 1.5, marginBottom: 12 }}>
-                  Composez une mélodie au clavier, visualisez-la sur portée, analysez les intervalles et exportez en LilyPond.
+                  {t("editeurDesc")}
                 </div>
                 <div style={{ fontSize: 12, color: "#185FA5", fontWeight: 600 }}>
-                  Composer →
+                  {t("editeurLink")}
                 </div>
               </div>
             </Link>
@@ -274,13 +279,13 @@ export default async function DashboardPage({ params }: Props) {
               }}>
                 <div style={{ fontSize: 22, marginBottom: 8 }}>✎</div>
                 <div style={{ fontSize: 14, fontWeight: 600, color: "#3D1F7A", marginBottom: 6 }}>
-                  Composition guidée
+                  {t("compositionTitle")}
                 </div>
                 <div style={{ fontSize: 12, color: "#6B4FA0", lineHeight: 1.5, marginBottom: 12 }}>
-                  Harmonisez une mélodie imposée accord par accord et recevez un feedback détaillé sur vos choix.
+                  {t("compositionDesc")}
                 </div>
                 <div style={{ fontSize: 12, color: "#6B3FA0", fontWeight: 600 }}>
-                  Démarrer →
+                  {t("compositionLink")}
                 </div>
               </div>
             </Link>
@@ -298,13 +303,13 @@ export default async function DashboardPage({ params }: Props) {
               }}>
                 <div style={{ fontSize: 22, marginBottom: 8 }}>⊞</div>
                 <div style={{ fontSize: 14, fontWeight: 600, color: "#185FA5", marginBottom: 6 }}>
-                  Générateur d'exercices SATB
+                  {t("satbTitle")}
                 </div>
                 <div style={{ fontSize: 12, color: "#3A7CC7", lineHeight: 1.5, marginBottom: 12 }}>
-                  Créez vos propres exercices SATB dans les 24 tonalités. Le générateur calcule les 4 voix selon les règles de conduite.
+                  {t("satbDesc")}
                 </div>
                 <div style={{ fontSize: 12, color: "#185FA5", fontWeight: 600 }}>
-                  Générer →
+                  {t("satbLink")}
                 </div>
               </div>
             </Link>
@@ -314,7 +319,7 @@ export default async function DashboardPage({ params }: Props) {
         {/* ── Vos Accès Pro ───────────────────────────────────── */}
         <div style={{ marginBottom: "2rem" }}>
           <div style={{ fontSize: 13, fontWeight: 600, color: "#1a1a1a", marginBottom: 12 }}>
-            ✦ Vos accès Pro
+            {t("proSection")}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 10 }}>
 
@@ -331,11 +336,11 @@ export default async function DashboardPage({ params }: Props) {
                   boxSizing: "border-box" as const,
                 }}>
                   <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#E9C97E", textTransform: "uppercase" as const, marginBottom: 6 }}>Pro</div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 6 }}>✦ Assistant IA</div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 6 }}>{t("assistantTitle")}</div>
                   <div style={{ fontSize: 12, color: "rgba(255,255,255,0.75)", lineHeight: 1.5, marginBottom: 12 }}>
-                    Professeur virtuel 24h/24. Posez vos questions de théorie et obtenez des explications personnalisées.
+                    {t("assistantDesc")}
                   </div>
-                  <div style={{ fontSize: 12, color: "#E9C97E", fontWeight: 700 }}>Accéder →</div>
+                  <div style={{ fontSize: 12, color: "#E9C97E", fontWeight: 700 }}>{t("assistantLink")}</div>
                 </div>
               </Link>
             ) : (
@@ -349,12 +354,12 @@ export default async function DashboardPage({ params }: Props) {
               }}>
                 <div style={{ position: "absolute" as const, top: 12, right: 12, fontSize: 14 }}>🔒</div>
                 <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#BA7517", textTransform: "uppercase" as const, marginBottom: 6 }}>Pro</div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a", marginBottom: 6 }}>✦ Assistant IA</div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a", marginBottom: 6 }}>{t("assistantTitle")}</div>
                 <div style={{ fontSize: 12, color: "#888", lineHeight: 1.5, marginBottom: 12 }}>
-                  Professeur virtuel 24h/24. Posez vos questions de théorie et obtenez des explications personnalisées.
+                  {t("assistantDesc")}
                 </div>
                 <Link href={`/${locale}/upgrade`} style={{ fontSize: 12, color: "#BA7517", fontWeight: 600, textDecoration: "none" }}>
-                  Passer Pro →
+                  {t("upgradeCta")}
                 </Link>
               </div>
             )}
@@ -372,11 +377,11 @@ export default async function DashboardPage({ params }: Props) {
                   boxSizing: "border-box" as const,
                 }}>
                   <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#9fc8ef", textTransform: "uppercase" as const, marginBottom: 6 }}>Pro</div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 6 }}>♩ Bibliothèque</div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 6 }}>{t("bibliothequeTitle")}</div>
                   <div style={{ fontSize: 12, color: "rgba(255,255,255,0.75)", lineHeight: 1.5, marginBottom: 12 }}>
-                    200+ progressions classiques, jazz, modales. Écoutez, analysez, jouez sur piano.
+                    {t("bibliothequeDesc")}
                   </div>
-                  <div style={{ fontSize: 12, color: "#9fc8ef", fontWeight: 700 }}>Explorer →</div>
+                  <div style={{ fontSize: 12, color: "#9fc8ef", fontWeight: 700 }}>{t("bibliothequeLink")}</div>
                 </div>
               </Link>
             ) : (
@@ -390,12 +395,12 @@ export default async function DashboardPage({ params }: Props) {
               }}>
                 <div style={{ position: "absolute" as const, top: 12, right: 12, fontSize: 14 }}>🔒</div>
                 <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#185FA5", textTransform: "uppercase" as const, marginBottom: 6 }}>Pro</div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a", marginBottom: 6 }}>♩ Bibliothèque</div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a", marginBottom: 6 }}>{t("bibliothequeTitle")}</div>
                 <div style={{ fontSize: 12, color: "#888", lineHeight: 1.5, marginBottom: 12 }}>
-                  200+ progressions classiques, jazz, modales. Écoutez, analysez, jouez sur piano.
+                  {t("bibliothequeDesc")}
                 </div>
                 <Link href={`/${locale}/upgrade`} style={{ fontSize: 12, color: "#BA7517", fontWeight: 600, textDecoration: "none" }}>
-                  Passer Pro →
+                  {t("upgradeCta")}
                 </Link>
               </div>
             )}
@@ -413,11 +418,11 @@ export default async function DashboardPage({ params }: Props) {
                   boxSizing: "border-box" as const,
                 }}>
                   <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#6fd4b5", textTransform: "uppercase" as const, marginBottom: 6 }}>Pro</div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 6 }}>♬ Analyse de partition</div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 6 }}>{t("analyseTitle")}</div>
                   <div style={{ fontSize: 12, color: "rgba(255,255,255,0.75)", lineHeight: 1.5, marginBottom: 12 }}>
-                    Importez un fichier MusicXML ou MIDI et obtenez une analyse harmonique détaillée.
+                    {t("analyseDesc")}
                   </div>
-                  <div style={{ fontSize: 12, color: "#6fd4b5", fontWeight: 700 }}>Analyser →</div>
+                  <div style={{ fontSize: 12, color: "#6fd4b5", fontWeight: 700 }}>{t("analyseLink")}</div>
                 </div>
               </Link>
             ) : (
@@ -431,12 +436,12 @@ export default async function DashboardPage({ params }: Props) {
               }}>
                 <div style={{ position: "absolute" as const, top: 12, right: 12, fontSize: 14 }}>🔒</div>
                 <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#0F6E56", textTransform: "uppercase" as const, marginBottom: 6 }}>Pro</div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a", marginBottom: 6 }}>♬ Analyse de partition</div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a", marginBottom: 6 }}>{t("analyseTitle")}</div>
                 <div style={{ fontSize: 12, color: "#888", lineHeight: 1.5, marginBottom: 12 }}>
-                  Importez un fichier MusicXML ou MIDI et obtenez une analyse harmonique détaillée.
+                  {t("analyseDesc")}
                 </div>
                 <Link href={`/${locale}/upgrade`} style={{ fontSize: 12, color: "#BA7517", fontWeight: 600, textDecoration: "none" }}>
-                  Passer Pro →
+                  {t("upgradeCta")}
                 </Link>
               </div>
             )}
@@ -446,11 +451,11 @@ export default async function DashboardPage({ params }: Props) {
         {/* ── Cours Niveau 1 ──────────────────────────────────── */}
         <div style={{ marginBottom: "2rem" }}>
           <div style={{ fontSize: 13, fontWeight: 600, color: "#1a1a1a", marginBottom: 12 }}>
-            Niveau 1 — Fondements de l'harmonie
+            {t("level1Section")}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 10 }}>
             {coursStats.filter(c => c.id <= 9).map(cours => (
-              <CoursCard key={cours.id} cours={cours} locale={locale} />
+              <CoursCard key={cours.id} cours={cours} locale={locale} t={t} />
             ))}
           </div>
         </div>
@@ -458,11 +463,11 @@ export default async function DashboardPage({ params }: Props) {
         {/* ── Cours Niveau 2 ──────────────────────────────────── */}
         <div style={{ marginBottom: "2rem" }}>
           <div style={{ fontSize: 13, fontWeight: 600, color: "#1a1a1a", marginBottom: 12 }}>
-            Niveau 2 — Harmonie avancée
+            {t("level2Section")}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 10 }}>
             {coursStats.filter(c => c.id >= 10).map(cours => (
-              <CoursCard key={cours.id} cours={cours} locale={locale} />
+              <CoursCard key={cours.id} cours={cours} locale={locale} t={t} />
             ))}
           </div>
         </div>
@@ -471,7 +476,7 @@ export default async function DashboardPage({ params }: Props) {
         {recentExercises.length > 0 && (
           <div>
             <div style={{ fontSize: 13, fontWeight: 600, color: "#1a1a1a", marginBottom: 12 }}>
-              Activité récente
+              {t("recentActivity")}
             </div>
             <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, overflow: "hidden" }}>
               {recentExercises.map((p, i) => (
@@ -533,7 +538,10 @@ interface CoursCardData {
   accessible: boolean;
 }
 
-function CoursCard({ cours, locale }: { cours: CoursCardData; locale: string }) {
+type DashT = Awaited<ReturnType<typeof getTranslations<"dashboard">>>;
+
+function CoursCard({ cours, locale, t }: { cours: CoursCardData; locale: string; t: DashT }) {
+  const action = cours.completedExercises === 0 ? t("start") : cours.progressPct === 100 ? t("review") : t("continue");
   return (
     <div style={{
       background: "#fff",
@@ -548,7 +556,7 @@ function CoursCard({ cours, locale }: { cours: CoursCardData; locale: string }) 
       )}
 
       <div style={{ fontSize: 10, color: "#bbb", fontWeight: 600, marginBottom: 4 }}>
-        COURS {cours.id}
+        {t("cours")} {cours.id}
       </div>
       <div style={{ fontSize: 14, fontWeight: 500, color: "#1a1a1a", marginBottom: 10, lineHeight: 1.3 }}>
         {cours.title}
@@ -565,7 +573,7 @@ function CoursCard({ cours, locale }: { cours: CoursCardData; locale: string }) 
       </div>
 
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 11, color: "#aaa" }}>
-        <span>{cours.completedExercises} / {cours.totalInCours} exercices</span>
+        <span>{cours.completedExercises} / {cours.totalInCours} {t("exercises")}</span>
         <span style={{ fontWeight: 600, color: cours.progressPct > 0 ? "#185FA5" : "#bbb" }}>
           {cours.progressPct}%
         </span>
@@ -583,7 +591,7 @@ function CoursCard({ cours, locale }: { cours: CoursCardData; locale: string }) 
           textDecoration: "none",
           textAlign: "center" as const,
         }}>
-          {cours.completedExercises === 0 ? "Commencer" : cours.progressPct === 100 ? "Revoir" : "Continuer"} →
+          {action} →
         </Link>
       ) : (
         <Link href={`/${locale}/upgrade`} style={{
@@ -597,7 +605,7 @@ function CoursCard({ cours, locale }: { cours: CoursCardData; locale: string }) 
           textDecoration: "none",
           textAlign: "center" as const,
         }}>
-          Passer Pro pour accéder →
+          {t("upgradeAccess")}
         </Link>
       )}
     </div>

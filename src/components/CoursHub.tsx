@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 // ─── Données ──────────────────────────────────────────────────────────────────
 
@@ -42,7 +43,9 @@ const LEVEL_META = {
 
 // ─── Carte cours ─────────────────────────────────────────────────────────────
 
-function CoursCard({ cours, locale, level }: { cours: typeof COURS[0]; locale: string; level: 1 | 2 | 3 }) {
+type TFunc = ReturnType<typeof useTranslations<"coursHub">>;
+
+function CoursCard({ cours, locale, level, t }: { cours: typeof COURS[0]; locale: string; level: 1 | 2 | 3; t: TFunc }) {
   const meta = LEVEL_META[level];
   return (
     <Link href={`/${locale}/cours/${cours.num}`} style={{ textDecoration: "none" }}>
@@ -73,16 +76,16 @@ function CoursCard({ cours, locale, level }: { cours: typeof COURS[0]; locale: s
             padding: "2px 8px", borderRadius: 10,
             fontFamily: "system-ui, sans-serif",
           }}>
-            Disponible
+            {t("available")}
           </span>
         </div>
 
         <div style={{ fontSize: 15, fontWeight: 500, color: "#1a1a1a", lineHeight: 1.4, fontFamily: "Georgia, 'Times New Roman', serif" }}>
-          {cours.title}
+          {t(`c${cours.num}` as Parameters<TFunc>[0])}
         </div>
 
         <div style={{ fontSize: 13, color: "#888", lineHeight: 1.6, fontFamily: "system-ui, sans-serif" }}>
-          {cours.desc}
+          {t(`d${cours.num}` as Parameters<TFunc>[0])}
         </div>
 
         <div style={{ display: "flex", gap: 5, flexWrap: "wrap" as const }}>
@@ -98,7 +101,7 @@ function CoursCard({ cours, locale, level }: { cours: typeof COURS[0]; locale: s
         </div>
 
         <div style={{ fontSize: 12, color: meta.color, fontWeight: 500, fontFamily: "system-ui, sans-serif" }}>
-          Commencer →
+          {t("startArrow")}
         </div>
       </div>
     </Link>
@@ -114,8 +117,13 @@ interface Props {
 export default function CoursLevel({ level }: Props) {
   const params = useParams();
   const locale = (params?.locale as string) ?? "fr";
+  const t = useTranslations("coursHub");
   const meta = LEVEL_META[level];
   const cours = COURS.filter(c => c.level === level);
+
+  const sublabel = t(`sublabel${level}` as Parameters<TFunc>[0]);
+  const levelTitle = t(`level${level}Title` as Parameters<TFunc>[0]);
+  const levelDesc = t(`level${level}Desc` as Parameters<TFunc>[0]);
 
   return (
     <div style={{
@@ -128,7 +136,7 @@ export default function CoursLevel({ level }: Props) {
 
         {/* Fil d'Ariane */}
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: "2rem", fontFamily: "system-ui, sans-serif" }}>
-          <Link href={`/${locale}/cours`} style={{ fontSize: 12, color: "#888", textDecoration: "none" }}>Cours</Link>
+          <Link href={`/${locale}/cours`} style={{ fontSize: 12, color: "#888", textDecoration: "none" }}>{t("breadcrumb")}</Link>
           <span style={{ fontSize: 12, color: "#ccc" }}>›</span>
           <span style={{ fontSize: 12, color: meta.color, fontWeight: 600 }}>{meta.label}</span>
         </div>
@@ -143,17 +151,13 @@ export default function CoursLevel({ level }: Props) {
             fontFamily: "system-ui, sans-serif", marginBottom: 16, letterSpacing: "0.04em",
           }}>
             <span>✦</span>
-            {meta.label} · {meta.sublabel}
+            {meta.label} · {sublabel}
           </div>
           <h1 style={{ fontSize: "clamp(24px, 3.5vw, 36px)", fontWeight: 400, margin: "0 0 10px", letterSpacing: "-0.02em", color: "#1a1a1a" }}>
-            {level === 1 && "Fondamentaux de l'harmonie tonale"}
-            {level === 2 && "Jazz, modes et techniques avancées"}
-            {level === 3 && "Composition, analyse et maîtrise"}
+            {levelTitle}
           </h1>
           <p style={{ fontSize: 15, color: "#666", lineHeight: 1.7, margin: 0, fontFamily: "system-ui, sans-serif" }}>
-            {level === 1 && "9 cours pour bâtir une fondation solide — des origines de la gamme aux modulations. La base indispensable de toute l'harmonie."}
-            {level === 2 && "7 cours pour élargir le langage harmonique — modes, extensions, jazz, contrepoint. Sortir du cadre classique et explorer de nouvelles couleurs."}
-            {level === 3 && "7 cours pour atteindre la maîtrise — forme musicale, orchestration, analyse des grands compositeurs et composition dans leurs styles."}
+            {levelDesc}
           </p>
         </div>
 
@@ -164,7 +168,7 @@ export default function CoursLevel({ level }: Props) {
           gap: 12,
         }}>
           {cours.map(c => (
-            <CoursCard key={c.num} cours={c} locale={locale} level={level} />
+            <CoursCard key={c.num} cours={c} locale={locale} level={level} t={t} />
           ))}
         </div>
 
@@ -174,7 +178,7 @@ export default function CoursLevel({ level }: Props) {
             fontSize: 13, color: "#888", textDecoration: "none",
             fontFamily: "system-ui, sans-serif",
           }}>
-            ← Tous les niveaux
+            {t("backAll")}
           </Link>
         </div>
       </div>

@@ -201,11 +201,11 @@ function AppNav() {
         <NavItem href={`/${locale}/dictee`}       active={active("dictee")}       icon="♫" label={t("dictee").toUpperCase()} />
         <NavItem href={`/${locale}/comparateur`}   active={active("comparateur")}   icon="⟳" label={t("styles").toUpperCase()} />
         <NavItem    href={`/${locale}/progressions`}       active={active("progressions")}      icon="♬" label={t("progressions").toUpperCase()} />
-        <NavItem    href={`/${locale}/generateur-satb`}   active={active("generateur-satb")}   icon="⊞" label="GÉNÉRATEUR" />
+        <NavItem    href={`/${locale}/generateur-satb`}   active={active("generateur-satb")}   icon="⊞" label={t("generateur")} />
         <NavItemPro href={`/${locale}/analyse-partition`} active={active("analyse-partition")} icon="◎" label={t("analyser").toUpperCase()} />
         <NavItemPro href={`/${locale}/assistant`}         active={active("assistant")}         icon="✦" label={t("assistant").toUpperCase()} />
         {isSignedIn && (
-          <NavItem href={`/${locale}/prof`} active={active("prof")} icon="🎓" label="ÉCOLE" />
+          <NavItem href={`/${locale}/prof`} active={active("prof")} icon="🎓" label={t("ecole")} />
         )}
       </div>
     </div>
