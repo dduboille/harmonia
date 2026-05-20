@@ -313,6 +313,30 @@ export default async function DashboardPage({ params }: Props) {
                 </div>
               </div>
             </Link>
+
+            {/* Notes étrangères */}
+            <Link href={`/${locale}/notes-etrangeres`} style={{ textDecoration: "none" }}>
+              <div style={{
+                background: "linear-gradient(135deg, #FFF4E8 0%, #FFE8CC 100%)",
+                border: "0.5px solid #F5C77E",
+                borderRadius: 10,
+                padding: "18px 20px",
+                cursor: "pointer",
+                height: "100%",
+                boxSizing: "border-box" as const,
+              }}>
+                <div style={{ fontSize: 22, marginBottom: 8 }}>♪</div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#BA7517", marginBottom: 6 }}>
+                  Notes étrangères
+                </div>
+                <div style={{ fontSize: 12, color: "#8a5a10", lineHeight: 1.5, marginBottom: 12 }}>
+                  Identifiez notes de passage, broderies, retards et appoggiatures — prérequis à l'harmonisation.
+                </div>
+                <div style={{ fontSize: 12, color: "#BA7517", fontWeight: 600 }}>
+                  S'entraîner →
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
 

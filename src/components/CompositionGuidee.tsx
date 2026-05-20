@@ -603,6 +603,16 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
               ))}
             </div>
 
+            {/* Pre-requisite banner */}
+            <div style={{ background: '#FFF4E8', border: '0.5px solid #F5C77E', borderRadius: 10, padding: '12px 16px', marginBottom: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+              <div style={{ fontSize: 12, color: '#8a5a10', lineHeight: 1.5 }}>
+                <span style={{ fontWeight: 700 }}>♪ Prérequis —</span> Savez-vous identifier les notes étrangères ? Maîtrisez-les avant d'harmoniser.
+              </div>
+              <a href="notes-etrangeres" style={{ fontSize: 12, fontWeight: 700, color: '#BA7517', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                S'entraîner →
+              </a>
+            </div>
+
             {/* Exercise grid */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 10 }}>
               {filtered.map(ex => (

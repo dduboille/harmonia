@@ -4,6 +4,7 @@ import Link from "next/link";
 export const dynamic = 'force-dynamic';
 
 const SATB_COURS = new Set([3,4,5,6]);
+const NE_COURS = new Set([6]);
 import Cours1 from "@/components/Cours1";
 import Cours2 from "@/components/Cours2";
 import Cours3 from "@/components/Cours3";
@@ -62,6 +63,29 @@ export default async function CoursPage({ params }: { params: Promise<{ id: stri
                 </div>
               </div>
               <div style={{ fontSize: 13, fontWeight: 600, color: "#185FA5", whiteSpace: "nowrap" as const }}>
+                Accéder →
+              </div>
+            </div>
+          </Link>
+        </div>
+      )}
+      {NE_COURS.has(num) && (
+        <div style={{ maxWidth: 800, margin: "1rem auto 0", padding: "0 1rem" }}>
+          <Link href={`/${locale}/notes-etrangeres`} style={{ textDecoration: "none" }}>
+            <div style={{
+              display: "flex", justifyContent: "space-between", alignItems: "center",
+              background: "linear-gradient(135deg, #FFF4E8 0%, #FFE8CC 100%)",
+              border: "0.5px solid #F5C77E", borderRadius: 12, padding: "16px 20px",
+            }}>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: "#BA7517", marginBottom: 4 }}>
+                  ♪ S'entraîner sur les notes étrangères
+                </div>
+                <div style={{ fontSize: 12, color: "#8a5a10" }}>
+                  20 exercices interactifs — coloriez et identifiez notes de passage, broderies, retards et appoggiatures.
+                </div>
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "#BA7517", whiteSpace: "nowrap" as const }}>
                 Accéder →
               </div>
             </div>
