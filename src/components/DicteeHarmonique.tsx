@@ -177,7 +177,6 @@ function makeOptions(correct: CE, level: 1 | 2 | 3): CE[] {
 // ─── Styles ───────────────────────────────────────────────────────────────────
 
 const PURPLE = "#5C3D6E";
-const GOLD   = "#E9C97E";
 const GREEN  = "#16a34a";
 const RED    = "#dc2626";
 const BG     = "#faf8fc";
