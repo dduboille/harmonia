@@ -24,6 +24,7 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import { KEY_ACCIDENTALS } from "@/lib/key-accidentals";
 
 // VexFlow côté client uniquement
 const VexFlowScoreClient = dynamic(
@@ -52,6 +53,7 @@ export interface HarmoniaEditorProps {
   subtitle?: string;
   measures?: string[];          // labels ex: ["II","V","I"]
   keySignature?: string;        // ex: "C", "G", "F"
+  showKeySignature?: boolean;
   initialNotes?: Partial<Record<Voice, (NoteEntry | null)[]>>; // notes pré-remplies
   solution?: Record<Voice, NoteEntry>[]; // solution pour comparaison
   onComplete?: (measures: Measure[]) => void;
@@ -127,14 +129,14 @@ function noteName(name: string): string {
 // ─── Validation harmonique ────────────────────────────────────────────────────
 
 interface ValidationError {
-  type: "parallel_fifth" | "parallel_octave" | "spacing" | "range" | "crossing" | "leading_tone" | "seventh";
+  type: "parallel_fifth" | "parallel_octave" | "spacing" | "range" | "crossing" | "leading_tone" | "seventh" | "missing_accidental";
   voices?: [Voice, Voice];
   measure?: number;
   message: string;
   severity: "error" | "warning";
 }
 
-function validateSATB(measures: Measure[]): ValidationError[] {
+function validateSATB(measures: Measure[], keySignature?: string, checkAccidentals?: boolean): ValidationError[] {
   const errors: ValidationError[] = [];
 
   for (let m = 0; m < measures.length; m++) {
@@ -202,6 +204,30 @@ function validateSATB(measures: Measure[]): ValidationError[] {
           errors.push({ type:"parallel_octave", voices:[v1,v2], measure:m, message:`Octaves parallèles ${VOICE_LABELS[v1]}–${VOICE_LABELS[v2]} (m.${m}→${m+1})`, severity:"error" });
         }
       });
+    }
+
+    // 5. Altérations manquantes (mode sans armure)
+    if (checkAccidentals && keySignature) {
+      const accReqs = KEY_ACCIDENTALS[keySignature] ?? KEY_ACCIDENTALS[keySignature.replace(/m$/, "")] ?? [];
+      if (accReqs.length > 0) {
+        VOICES.forEach(v => {
+          const n = cur[v];
+          if (!n.name) return;
+          const baseLetter = n.name[0];
+          const accsInName = n.name.slice(1);
+          const req = accReqs.find(r => r.note === baseLetter);
+          if (!req) return;
+          const hasReqAcc = req.acc === "#" ? accsInName.includes("#") : accsInName.includes("b");
+          if (!hasReqAcc) {
+            errors.push({
+              type: "missing_accidental",
+              measure: m,
+              message: `${VOICE_LABELS[v]} : ${n.name}${n.octave} naturel — en mode sans armure, utilisez ${req.frName} (m.${m + 1})`,
+              severity: "warning",
+            });
+          }
+        });
+      }
     }
   }
 
@@ -293,6 +319,7 @@ export default function HarmoniaEditor({
   subtitle,
   measures: measureLabels = ["I", "IV", "V", "I"],
   keySignature = "C",
+  showKeySignature = true,
   initialNotes,
   solution,
   onComplete,
@@ -313,9 +340,9 @@ export default function HarmoniaEditor({
 
   // Validation à chaque changement
   useEffect(() => {
-    const errs = validateSATB(measures);
+    const errs = validateSATB(measures, keySignature, !showKeySignature);
     setErrors(errs);
-  }, [measures]);
+  }, [measures, keySignature, showKeySignature]);
 
   // ── Fix 3 : flèches clavier → demi-ton ──
   useEffect(() => {
@@ -521,7 +548,7 @@ export default function HarmoniaEditor({
           <VexFlowScoreClient
             treble={treble}
             bass={bass}
-            keySignature={keySignature}
+            keySignature={showKeySignature ? keySignature : undefined}
             width={700}
             label={measureLabels.map((l,i)=>`Mesure ${i+1}: ${l}`).join(" · ")}
           />
