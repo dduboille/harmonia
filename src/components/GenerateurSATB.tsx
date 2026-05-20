@@ -2,6 +2,8 @@
 
 import React, { useRef, useState, useCallback } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { PROGRESSION_TEMPLATES, type ProgressionTemplate, type ProgressionCategory } from "@/data/progressions-templates";
 import { generateSATBExercise, type Doigte, type GeneratedExercise } from "@/lib/satb-generator";
@@ -55,7 +57,7 @@ type ExerciseMode = "chiffres" | "basse" | "dictee";
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function GenerateurSATB() {
+export default function GenerateurSATB({ plan }: { plan?: string }) {
   const pianoRef = useRef<PianoPlayerRef>(null);
 
   const [step, setStep] = useState<"config" | "exercise">("config");
@@ -71,6 +73,9 @@ export default function GenerateurSATB() {
   const [score, setScore]           = useState<number | null>(null);
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 600;
+  const isFree = !plan || plan === "free";
+  const params = useParams();
+  const locale = (params?.locale as string) ?? "fr";
 
   const filtered = PROGRESSION_TEMPLATES.filter(t => {
     if (filterCat  && t.categorie  !== filterCat)  return false;
@@ -147,6 +152,20 @@ export default function GenerateurSATB() {
             A — Progression harmonique
           </div>
 
+          {/* Free user banner */}
+          {isFree && (
+            <div style={{
+              background: "#FAEEDA", border: "0.5px solid #F6AD55",
+              borderRadius: 8, padding: "8px 12px", marginBottom: 12,
+              fontSize: 12, color: "#744210", lineHeight: 1.5,
+            }}>
+              ✦ Mode gratuit — progression <strong>II–V–I</strong> uniquement.{" "}
+              <Link href={`/${locale}/upgrade`} style={{ color: "#BA7517", fontWeight: 700, textDecoration: "none" }}>
+                Passer Pro
+              </Link>{" "}pour accéder aux 22 progressions.
+            </div>
+          )}
+
           {/* Filters */}
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 14 }}>
             {([null,1,2,3] as (1|2|3|null)[]).map(d => (
@@ -182,15 +201,25 @@ export default function GenerateurSATB() {
             {filtered.map(t => {
               const lv = t.difficulte;
               const sel = template?.id === t.id;
+              const locked = isFree && t.id !== "ii-v-i";
               return (
-                <button key={t.id} onClick={() => setTemplate(t)}
+                <button key={t.id}
+                  onClick={() => !locked && setTemplate(t)}
                   style={{
-                    textAlign: "left", padding: "12px 14px", borderRadius: 10, cursor: "pointer",
+                    textAlign: "left", padding: "12px 14px", borderRadius: 10,
+                    cursor: locked ? "not-allowed" : "pointer",
                     border: sel ? "1.5px solid #185FA5" : "0.5px solid #e0dbd3",
-                    background: sel ? "#EBF3FD" : "#fafaf8",
+                    background: sel ? "#EBF3FD" : locked ? "#f5f5f5" : "#fafaf8",
+                    opacity: locked ? 0.6 : 1,
+                    position: "relative",
                     transition: "border-color .1s, background .1s",
                   }}
                 >
+                  {locked && (
+                    <div style={{ position: "absolute", top: 6, right: 8, fontSize: 10, fontWeight: 700, color: "#BA7517", background: "#FAEEDA", padding: "1px 5px", borderRadius: 4 }}>
+                      🔒 Pro
+                    </div>
+                  )}
                   <div style={{ fontSize: 13, fontWeight: 600, color: sel ? "#185FA5" : "#1a1a1a", marginBottom: 4 }}>
                     {t.nom}
                   </div>

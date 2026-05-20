@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import type { Classe, Eleve, Devoir } from "@/types/conservatoire";
 
 const ACCENT = "#2D5A8E";
@@ -71,6 +73,8 @@ interface Props {
 type Tab = "eleves" | "devoirs" | "progression";
 
 export default function ClasseView({ classe, eleves: initialEleves, devoirs: initialDevoirs, progression, exercises }: Props) {
+  const params = useParams();
+  const locale = (params?.locale as string) ?? "fr";
   const [tab, setTab] = useState<Tab>("eleves");
   const [devoirs, setDevoirs] = useState<Devoir[]>(initialDevoirs);
   const [showDevoirModal, setShowDevoirModal] = useState(false);
@@ -217,7 +221,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                   <thead>
                     <tr style={{ borderBottom: "2px solid #e8e2da", textAlign: "left" }}>
-                      {["Élève", "Cours complétés", "Score moyen", "Dernière activité"].map((h) => (
+                      {["Élève", "Cours complétés", "Score moyen", "Dernière activité", ""].map((h) => (
                         <th key={h} style={{ padding: "10px 14px", color: "#888", fontWeight: 600, fontSize: 12, letterSpacing: "0.04em", textTransform: "uppercase" }}>{h}</th>
                       ))}
                     </tr>
@@ -246,6 +250,14 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                               ? new Date(prog.derniereActivite).toLocaleDateString("fr-FR")
                               : "—"
                             }
+                          </td>
+                          <td style={{ padding: "12px 14px" }}>
+                            <Link
+                              href={`/${locale}/prof/eleve/${e.userId}?classeId=${classe.id}`}
+                              style={{ fontSize: 12, color: ACCENT, textDecoration: "none", fontWeight: 600, whiteSpace: "nowrap" }}
+                            >
+                              Voir le détail →
+                            </Link>
                           </td>
                         </tr>
                       );
