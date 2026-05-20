@@ -113,32 +113,13 @@ export default function AnalysePartition() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ analysis }),
       });
-      if (!res.ok || !res.body) {
+      if (!res.ok) {
         setCommentaire("Erreur lors de la génération du commentaire.");
         setIsGenerating(false);
         return;
       }
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = "";
-      let full = "";
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split("\n");
-        buffer = lines.pop() ?? "";
-        for (const line of lines) {
-          if (!line.startsWith("data: ")) continue;
-          const raw = line.slice(6).trim();
-          if (raw === "[DONE]") continue;
-          try {
-            const d = JSON.parse(raw);
-            if (d.text) { full += d.text; setCommentaire(full); }
-          } catch { /* ignore partial */ }
-        }
-      }
+      const data = await res.json();
+      setCommentaire(data.text ?? "");
     } catch {
       setCommentaire("Erreur réseau.");
     } finally {

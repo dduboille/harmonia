@@ -61,36 +61,9 @@ export default function AssistantIA() {
         throw new Error(err.error ?? "Erreur serveur");
       }
 
-      const reader = res.body!.getReader();
-      const decoder = new TextDecoder();
-      let buffer = "";
-      let fullText = "";
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split("\n");
-        buffer = lines.pop() ?? "";
-        for (const line of lines) {
-          if (!line.startsWith("data: ")) continue;
-          const raw = line.slice(6).trim();
-          if (raw === "[DONE]") continue;
-          try {
-            const data = JSON.parse(raw);
-            if (data.error) throw new Error(data.error);
-            if (data.text) {
-              fullText += data.text;
-              setStreamingContent(fullText);
-            }
-          } catch (parseErr: unknown) {
-            if (parseErr instanceof Error && parseErr.message !== "Erreur serveur") continue;
-            throw parseErr;
-          }
-        }
-      }
-
-      setMessages(prev => [...prev, { role: "assistant", content: fullText }]);
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setMessages(prev => [...prev, { role: "assistant", content: data.text ?? "" }]);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Erreur de connexion");
     } finally {

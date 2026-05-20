@@ -33,41 +33,17 @@ export async function POST(req: Request) {
   // Keep last 20 messages to limit context size
   const trimmedMessages = messages.slice(-20);
 
-  const stream = anthropic.messages.stream({
-    model: "claude-sonnet-4-6",
-    max_tokens: 1000,
-    system: SYSTEM_PROMPT,
-    messages: trimmedMessages,
-  });
+  try {
+    const message = await anthropic.messages.create({
+      model: "claude-sonnet-4-6",
+      max_tokens: 1000,
+      system: SYSTEM_PROMPT,
+      messages: trimmedMessages,
+    });
 
-  const readable = new ReadableStream({
-    async start(controller) {
-      const enc = new TextEncoder();
-      try {
-        for await (const chunk of stream) {
-          if (
-            chunk.type === "content_block_delta" &&
-            chunk.delta.type === "text_delta" &&
-            chunk.delta.text
-          ) {
-            const data = JSON.stringify({ text: chunk.delta.text });
-            controller.enqueue(enc.encode(`data: ${data}\n\n`));
-          }
-        }
-        controller.enqueue(enc.encode("data: [DONE]\n\n"));
-      } catch {
-        controller.enqueue(enc.encode(`data: ${JSON.stringify({ error: "Erreur du modèle" })}\n\n`));
-      } finally {
-        controller.close();
-      }
-    },
-  });
-
-  return new Response(readable, {
-    headers: {
-      "Content-Type": "text/event-stream",
-      "Cache-Control": "no-cache",
-      Connection: "keep-alive",
-    },
-  });
+    const text = message.content[0]?.type === "text" ? message.content[0].text : "";
+    return Response.json({ text });
+  } catch {
+    return Response.json({ error: "Erreur du modèle" }, { status: 500 });
+  }
 }
