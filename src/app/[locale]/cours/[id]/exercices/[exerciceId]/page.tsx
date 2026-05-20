@@ -6,8 +6,10 @@
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
 import ExerciceContent from "@/components/ExerciceContent";
 import { ALL_EXERCISES } from "@/exercises/all-exercises";
+import { getUserPlan } from "@/lib/progression";
 import { DIFFICULTY_LABEL, DIFFICULTY_COLOR, DIFFICULTY_BG } from "@/types/exercise";
 import type { IdentifyExercise, BuildExercise } from "@/types/exercise";
 
@@ -19,6 +21,8 @@ interface Props {
 export default async function ExercicePage({ params, searchParams }: Props) {
   const { locale, id, exerciceId } = await params;
   const { devoirId } = await searchParams;
+  const { userId } = await auth();
+  const plan = userId ? await getUserPlan(userId) : "free";
   const exercise = ALL_EXERCISES.find(
     e => e.id === exerciceId && e.cours === parseInt(id)
   );
@@ -81,6 +85,7 @@ export default async function ExercicePage({ params, searchParams }: Props) {
               solution={(exercise as any).solution}
               hint={(exercise as any).hint}
               devoirId={devoirId}
+              plan={plan}
             />
           ) : (
             <ExerciceContent
