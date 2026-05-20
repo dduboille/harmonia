@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import HarmoniaEditor from "@/components/HarmoniaEditor";
+import { getKeyAccidentalHint } from "@/lib/key-accidentals";
 import IdentificationQuiz from "@/components/IdentificationQuiz";
 import { useProgress } from "@/hooks/useProgress";
 import type { IdentifyExercise, BuildExercise } from "@/types/exercise";
@@ -17,6 +18,7 @@ interface SATBData {
   solution: any[];
   hint?: string;
   devoirId?: string;
+  plan?: string;
 }
 
 interface QuizData {
@@ -31,6 +33,7 @@ type ExerciceContentProps = SATBData | QuizData;
 
 export default function ExerciceContent(props: ExerciceContentProps) {
   const { saveProgress } = useProgress();
+  const [showKS, setShowKS] = useState(true);
 
   const handleComplete = async (score: number) => {
     saveProgress({
@@ -55,15 +58,47 @@ export default function ExerciceContent(props: ExerciceContentProps) {
   };
 
   if (props.type === "satb") {
+    const canToggle = props.plan && props.plan !== "free";
+    const hint = getKeyAccidentalHint(props.keySignature);
     return (
-      <HarmoniaEditor
-        title={props.title}
-        subtitle={props.subtitle}
-        measures={props.measures}
-        keySignature={props.keySignature}
-        solution={props.solution}
-        onComplete={() => handleComplete(100)}
-      />
+      <div>
+        {canToggle && (
+          <div style={{ display:"flex", justifyContent:"flex-end", gap:4, marginBottom:8, fontFamily:"system-ui, sans-serif" }}>
+            {([true, false] as const).map(val => (
+              <button key={String(val)} onClick={() => setShowKS(val)}
+                style={{
+                  padding:"5px 12px", borderRadius:20, fontSize:11, fontWeight:600, cursor:"pointer",
+                  border:`1.5px solid ${showKS === val ? "#5C3D6E" : "#e0dbd3"}`,
+                  background: showKS === val ? "#5C3D6E" : "#fff",
+                  color: showKS === val ? "#fff" : "#666",
+                }}>
+                {val ? "🎼 Avec armure" : "✏️ Sans armure"}
+              </button>
+            ))}
+          </div>
+        )}
+        {!showKS && hint && (
+          <div style={{
+            marginBottom:12, padding:"10px 14px", borderRadius:10,
+            background:"#FEF0D9", border:"0.5px solid #F5C77E",
+            fontSize:12, color:"#744210", lineHeight:1.65,
+            fontFamily:"system-ui, sans-serif",
+          }}>
+            <strong>Mode avancé — sans armure.</strong>{" "}
+            Placez vous-même les altérations sur chaque note.{" "}
+            Notes altérées : <strong>{hint}</strong>
+          </div>
+        )}
+        <HarmoniaEditor
+          title={props.title}
+          subtitle={props.subtitle}
+          measures={props.measures}
+          keySignature={props.keySignature}
+          showKeySignature={showKS}
+          solution={props.solution}
+          onComplete={() => handleComplete(100)}
+        />
+      </div>
     );
   }
 
