@@ -101,6 +101,36 @@ export async function POST(req: NextRequest) {
 
               <hr style="border:none;border-top:0.5px solid #e8e3db;margin:28px 0;">
 
+              <!-- Nouveaux outils -->
+              <p style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:#888;text-transform:uppercase;margin:0 0 16px;font-family:system-ui,sans-serif;">
+                Outils d'entraînement
+              </p>
+
+              <table width="100%" cellpadding="0" cellspacing="0">
+                ${[
+                  ["🎧", "Dictée harmonique", "Identifiez les accords et intervalles à l'oreille"],
+                  ["⊞", "Générateur SATB", "Exercices d'harmonisation à 4 voix avec validation temps réel"],
+                  ["✎", "Composition guidée", "Construisez une progression harmonique pas à pas"],
+                  ["♩", "Éditeur mélodique", "Composez et écoutez votre mélodie en temps réel"],
+                  ["♪", "Notes étrangères", "Notes de passage, broderies, retards et appoggiatures"],
+                ].map(([icon, title, desc]) => `
+                <tr>
+                  <td style="padding:8px 0;vertical-align:top;">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td width="36" style="font-size:18px;vertical-align:top;padding-top:2px;">${icon}</td>
+                        <td>
+                          <p style="margin:0;font-size:13px;font-weight:500;color:#1a1a1a;">${title}</p>
+                          <p style="margin:2px 0 0;font-size:12px;color:#888;font-family:system-ui,sans-serif;">${desc}</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>`).join("")}
+              </table>
+
+              <hr style="border:none;border-top:0.5px solid #e8e3db;margin:28px 0;">
+
               <!-- CTA -->
               <div style="text-align:center;">
                 <a href="https://www.getharmonia.app/fr/cours" 
