@@ -2,6 +2,18 @@ import type { Metadata } from "next";
 import ContactConservatoireForm from "@/components/ContactConservatoireForm";
 import Link from "next/link";
 
+export const metadata: Metadata = {
+  title: "Harmonia pour les conservatoires — Outil pédagogique musical",
+  description: "Plateforme d'harmonie tonale pour les conservatoires et écoles de musique. Suivez la progression de vos élèves en temps réel.",
+  openGraph: {
+    title: "Harmonia pour les conservatoires",
+    description: "Plateforme d'harmonie tonale pour les conservatoires et écoles de musique.",
+    url: "https://www.getharmonia.app/fr/conservatoire",
+    siteName: "Harmonia",
+    type: "website",
+  },
+};
+
 const ACCENT = "#2D5A8E";
 const BG = "#faf8f4";
 
