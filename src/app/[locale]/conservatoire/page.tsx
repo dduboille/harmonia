@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import ContactConservatoireForm from "@/components/ContactConservatoireForm";
 import Link from "next/link";
 
 const ACCENT = "#2D5A8E";
@@ -55,7 +57,7 @@ export default async function ConservatoirePage({ params }: Props) {
           </p>
           <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
             <a
-              href="mailto:contact@getharmonia.app"
+              href="#contact-form"
               style={{
                 background: "#fff",
                 color: ACCENT,
@@ -211,6 +213,27 @@ export default async function ConservatoirePage({ params }: Props) {
         }}>
           Paiement annuel. Facturation établissement disponible. TVA non incluse.
         </p>
+      </section>
+
+      {/* ── Formulaire de contact ─────────────────────────────── */}
+      <section id="contact-form" style={{ maxWidth: 680, margin: "0 auto", padding: "72px 24px" }}>
+        <h2 style={{
+          textAlign: "center",
+          fontSize: 28,
+          fontWeight: 800,
+          color: "#1a1a1a",
+          marginBottom: 12,
+          fontFamily: "Georgia, serif",
+        }}>
+          Demander une démonstration
+        </h2>
+        <p style={{
+          textAlign: "center", color: "#666", marginBottom: 40,
+          fontSize: 16, fontFamily: "system-ui, sans-serif",
+        }}>
+          Réponse sous 48 h ouvrées. Sans engagement.
+        </p>
+        <ContactConservatoireForm />
       </section>
 
       {/* ── CTA final ─────────────────────────────────────────── */}
