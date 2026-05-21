@@ -272,6 +272,53 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Outils d'entraînement */}
+      <section style={{ padding: "80px 2rem", background: "#fff", borderBottom: "0.5px solid #e8e3db" }}>
+        <div style={{ maxWidth: 960, margin: "0 auto" }}>
+          <div style={{ textAlign: "center" as const, marginBottom: 64 }}>
+            <div style={{
+              fontSize: 11, fontWeight: 600, letterSpacing: "0.15em",
+              color: "#5C3D6E", textTransform: "uppercase" as const,
+              fontFamily: "system-ui", marginBottom: 12,
+            }}>
+              Outils d'entraînement
+            </div>
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, letterSpacing: "-0.01em" }}>
+              5 outils pour pratiquer
+            </h2>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 16 }}>
+            {([
+              { icon: "🎧", title: "Dictée", desc: "Identifiez accords et intervalles à l'oreille", href: `/${locale}/dictee` },
+              { icon: "✎", title: "Composition guidée", desc: "Construisez une progression harmonique pas à pas", href: `/${locale}/composition` },
+              { icon: "⊞", title: "Générateur SATB", desc: "Harmonisation à 4 voix avec validation temps réel", href: `/${locale}/generateur-satb` },
+              { icon: "♩", title: "Éditeur mélodique", desc: "Composez et écoutez votre mélodie", href: `/${locale}/editeur-melodique` },
+              { icon: "♪", title: "Notes étrangères", desc: "Passes, broderies, retards, appoggiatures", href: `/${locale}/notes-etrangeres` },
+            ] as const).map(tool => (
+              <Link key={tool.title} href={tool.href} style={{ textDecoration: "none" }}>
+                <div style={{
+                  padding: "24px 20px",
+                  border: "0.5px solid #e8e3db",
+                  borderRadius: 10,
+                  background: "#faf8f4",
+                  height: "100%",
+                  boxSizing: "border-box" as const,
+                  cursor: "pointer",
+                }}>
+                  <div style={{ fontSize: 28, marginBottom: 12, lineHeight: 1 }}>{tool.icon}</div>
+                  <h3 style={{ fontSize: 14, fontWeight: 600, margin: "0 0 8px", color: "#1a1a1a", fontFamily: "system-ui, sans-serif" }}>
+                    {tool.title}
+                  </h3>
+                  <p style={{ fontSize: 12, color: "#888", lineHeight: 1.6, margin: 0, fontFamily: "system-ui, sans-serif" }}>
+                    {tool.desc}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Tarifs */}
       <section style={{ padding: "100px 2rem" }}>
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
