@@ -3,6 +3,14 @@ import { NextRequest, NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { nom, email, etablissement, nbEleves, message } = await req.json();
@@ -15,7 +23,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Email interne → contact@getharmonia.app
-    await resend.emails.send({
+    const { error: err1 } = await resend.emails.send({
       from: "Harmonia <bonjour@getharmonia.app>",
       to: "contact@getharmonia.app",
       replyTo: email,
@@ -25,11 +33,11 @@ export async function POST(req: NextRequest) {
   <h2 style="font-size:22px;font-weight:700;color:#1a1a1a;margin:0 0 24px;">Nouvelle demande de démonstration</h2>
   <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;">
     ${[
-      ["Nom", nom],
-      ["Email", email],
-      ["Établissement", etablissement],
-      ["Nombre d'élèves", nbEleves || "Non précisé"],
-      ["Message", message],
+      ["Nom", escapeHtml(nom)],
+      ["Email", escapeHtml(email)],
+      ["Établissement", escapeHtml(etablissement)],
+      ["Nombre d'élèves", escapeHtml(nbEleves || "Non précisé")],
+      ["Message", escapeHtml(message)],
     ].map(([label, val]) => `
     <tr>
       <td style="padding:10px 0;border-bottom:0.5px solid #e8e3db;font-size:13px;color:#888;width:140px;vertical-align:top;">${label}</td>
@@ -39,9 +47,13 @@ export async function POST(req: NextRequest) {
 </div>
       `,
     });
+    if (err1) {
+      console.error("Resend internal email error:", err1);
+      return NextResponse.json({ error: "Email failed" }, { status: 500 });
+    }
 
     // Email de confirmation → expéditeur
-    await resend.emails.send({
+    const { error: err2 } = await resend.emails.send({
       from: "Harmonia <bonjour@getharmonia.app>",
       to: email,
       subject: "Votre demande de démonstration Harmonia",
@@ -66,11 +78,11 @@ export async function POST(req: NextRequest) {
               Demande reçue
             </p>
             <h1 style="font-size:28px;font-weight:400;color:#1a1a1a;margin:0 0 20px;line-height:1.2;letter-spacing:-0.02em;">
-              Merci, ${nom} 🎵
+              Merci, ${escapeHtml(nom)} 🎵
             </h1>
             <p style="font-size:16px;color:#555;line-height:1.8;margin:0 0 24px;font-family:system-ui,sans-serif;">
               Nous avons bien reçu votre demande de démonstration pour
-              <strong>${etablissement}</strong>.
+              <strong>${escapeHtml(etablissement)}</strong>.
               Notre équipe reviendra vers vous sous 48 heures ouvrées.
             </p>
             <hr style="border:none;border-top:0.5px solid #e8e3db;margin:28px 0;">
@@ -95,6 +107,10 @@ export async function POST(req: NextRequest) {
 </html>
       `,
     });
+    if (err2) {
+      console.error("Resend confirmation email error:", err2);
+      return NextResponse.json({ error: "Email failed" }, { status: 500 });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
