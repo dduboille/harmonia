@@ -53,6 +53,18 @@ const PLAN_COLOR: Record<string, string> = {
   annual: "#BA7517",
 };
 
+const TOOL_CREATION_DATES: Record<string, Date> = {
+  "composition":      new Date("2026-05-15"),
+  "generateur-satb":  new Date("2026-05-15"),
+  "notes-etrangeres": new Date("2026-05-19"),
+};
+
+function isNew(toolPath: string): boolean {
+  const d = TOOL_CREATION_DATES[toolPath];
+  if (!d) return false;
+  return Date.now() - d.getTime() < 30 * 24 * 60 * 60 * 1000;
+}
+
 interface Props {
   params: Promise<{ locale: string }>;
 }
@@ -278,8 +290,13 @@ export default async function DashboardPage({ params }: Props) {
                 boxSizing: "border-box" as const,
               }}>
                 <div style={{ fontSize: 22, marginBottom: 8 }}>✎</div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: "#3D1F7A", marginBottom: 6 }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#3D1F7A", marginBottom: 6, display: "flex", alignItems: "center", gap: 8 }}>
                   {t("compositionTitle")}
+                  {isNew("composition") && (
+                    <span style={{ fontSize: 10, fontWeight: 700, background: "#EA580C", color: "#fff", padding: "2px 7px", borderRadius: 10, letterSpacing: "0.05em" }}>
+                      Nouveau
+                    </span>
+                  )}
                 </div>
                 <div style={{ fontSize: 12, color: "#6B4FA0", lineHeight: 1.5, marginBottom: 12 }}>
                   {t("compositionDesc")}
@@ -302,8 +319,13 @@ export default async function DashboardPage({ params }: Props) {
                 boxSizing: "border-box" as const,
               }}>
                 <div style={{ fontSize: 22, marginBottom: 8 }}>⊞</div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: "#185FA5", marginBottom: 6 }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#185FA5", marginBottom: 6, display: "flex", alignItems: "center", gap: 8 }}>
                   {t("satbTitle")}
+                  {isNew("generateur-satb") && (
+                    <span style={{ fontSize: 10, fontWeight: 700, background: "#EA580C", color: "#fff", padding: "2px 7px", borderRadius: 10, letterSpacing: "0.05em" }}>
+                      Nouveau
+                    </span>
+                  )}
                 </div>
                 <div style={{ fontSize: 12, color: "#3A7CC7", lineHeight: 1.5, marginBottom: 12 }}>
                   {t("satbDesc")}
@@ -326,8 +348,13 @@ export default async function DashboardPage({ params }: Props) {
                 boxSizing: "border-box" as const,
               }}>
                 <div style={{ fontSize: 22, marginBottom: 8 }}>♪</div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: "#BA7517", marginBottom: 6 }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#BA7517", marginBottom: 6, display: "flex", alignItems: "center", gap: 8 }}>
                   Notes étrangères
+                  {isNew("notes-etrangeres") && (
+                    <span style={{ fontSize: 10, fontWeight: 700, background: "#EA580C", color: "#fff", padding: "2px 7px", borderRadius: 10, letterSpacing: "0.05em" }}>
+                      Nouveau
+                    </span>
+                  )}
                 </div>
                 <div style={{ fontSize: 12, color: "#8a5a10", lineHeight: 1.5, marginBottom: 12 }}>
                   Identifiez notes de passage, broderies, retards et appoggiatures — prérequis à l'harmonisation.
