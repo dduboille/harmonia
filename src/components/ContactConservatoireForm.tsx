@@ -61,36 +61,36 @@ export default function ContactConservatoireForm() {
     <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
         <div>
-          <label style={labelStyle}>Nom *</label>
-          <input required value={form.nom} onChange={set("nom")}
+          <label htmlFor="cf-nom" style={labelStyle}>Nom *</label>
+          <input id="cf-nom" required value={form.nom} onChange={set("nom")}
             style={inputStyle} placeholder="Sophie Martin" />
         </div>
         <div>
-          <label style={labelStyle}>Email *</label>
-          <input required type="email" value={form.email} onChange={set("email")}
+          <label htmlFor="cf-email" style={labelStyle}>Email *</label>
+          <input id="cf-email" required type="email" value={form.email} onChange={set("email")}
             style={inputStyle} placeholder="sophie@conservatoire.fr" />
         </div>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
         <div>
-          <label style={labelStyle}>Établissement *</label>
-          <input required value={form.etablissement} onChange={set("etablissement")}
+          <label htmlFor="cf-etablissement" style={labelStyle}>Établissement *</label>
+          <input id="cf-etablissement" required value={form.etablissement} onChange={set("etablissement")}
             style={inputStyle} placeholder="Conservatoire de Lyon" />
         </div>
         <div>
-          <label style={labelStyle}>Nombre d'élèves</label>
-          <input value={form.nbEleves} onChange={set("nbEleves")}
+          <label htmlFor="cf-nbEleves" style={labelStyle}>Nombre d'élèves</label>
+          <input id="cf-nbEleves" value={form.nbEleves} onChange={set("nbEleves")}
             style={inputStyle} placeholder="45" />
         </div>
       </div>
       <div>
-        <label style={labelStyle}>Message *</label>
-        <textarea required value={form.message} onChange={set("message")}
+        <label htmlFor="cf-message" style={labelStyle}>Message *</label>
+        <textarea id="cf-message" required value={form.message} onChange={set("message")}
           rows={4} style={{ ...inputStyle, resize: "vertical" }}
           placeholder="Décrivez votre projet pédagogique..." />
       </div>
       {status === "error" && (
-        <p style={{ color: "#dc2626", fontSize: 13, fontFamily: "system-ui, sans-serif", margin: 0 }}>
+        <p role="alert" style={{ color: "#dc2626", fontSize: 13, fontFamily: "system-ui, sans-serif", margin: 0 }}>
           Une erreur est survenue. Réessayez ou écrivez à contact@getharmonia.app
         </p>
       )}
