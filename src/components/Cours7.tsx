@@ -16,6 +16,7 @@ import { SATB } from "@/lib/satb-voicings";
 import MaitreCard from "@/components/MaitreCard";
 import InversionQuiz from "@/components/InversionQuiz";
 import { INVERSION_EXERCISES } from "@/exercises/cours-inversion-exercises";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 interface Section { id: string; label: string; }
 
@@ -38,7 +39,7 @@ function playProg(ref: React.RefObject<PianoPlayerRef>, names: string[], gap = 1
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const SECTIONS_IDS = ["principe","secondaires","voisins","chaines","quiz"] as const;
+const SECTIONS_IDS = ["principe","secondaires","voisins","chaines","conservatoire","quiz"] as const;
 
 // Dominantes secondaires en C majeur
 const DOM_SEC = [
@@ -347,6 +348,8 @@ export default function Cours7() {
           ))}
         </div>
       )}
+
+      {sec === "conservatoire" && <VueConservatoire courseNum={7} />}
 
       {/* ══ QUIZ ══ */}
       {sec === "quiz" && (

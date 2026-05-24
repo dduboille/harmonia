@@ -16,6 +16,7 @@ import { SATB } from "@/lib/satb-voicings";
 import MaitreCard from "@/components/MaitreCard";
 import InversionQuiz from "@/components/InversionQuiz";
 import { INVERSION_EXERCISES } from "@/exercises/cours-inversion-exercises";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 interface Section { id: string; label: string; }
 
@@ -38,7 +39,7 @@ function playProg(ref: React.RefObject<PianoPlayerRef>, names: string[], gap = 1
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const SECTIONS_IDS = ["logique","pivot","outils","exemples","quiz"] as const;
+const SECTIONS_IDS = ["logique","pivot","outils","exemples","conservatoire","quiz"] as const;
 
 // Exemples de modulations par accord pivot
 const EXEMPLES_MOD = [
@@ -427,6 +428,8 @@ export default function Cours8() {
           ))}
         </div>
       )}
+
+      {sec === "conservatoire" && <VueConservatoire courseNum={8} />}
 
       {/* ══ QUIZ ══ */}
       {sec === "quiz" && (

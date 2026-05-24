@@ -25,6 +25,7 @@ import { SATB } from "@/lib/satb-voicings";
 import MaitreCard from "@/components/MaitreCard";
 import InversionQuiz from "@/components/InversionQuiz";
 import { INVERSION_EXERCISES } from "@/exercises/cours-inversion-exercises";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -51,7 +52,7 @@ function playProgression(ref: React.RefObject<PianoPlayerRef>, chordNames: strin
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const SECTIONS_IDS = ["mineur","emprunts","classiques","quiz"] as const;
+const SECTIONS_IDS = ["mineur","emprunts","classiques","conservatoire","quiz"] as const;
 
 // Accords de C mineur avec leur fonction
 const CM_ACCORDS = [
@@ -466,6 +467,8 @@ export default function Cours5() {
           ))}
         </div>
       )}
+      {activeSection === "conservatoire" && <VueConservatoire courseNum={5} />}
+
       {/* ══ QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>

@@ -16,6 +16,7 @@ import { useTerm } from "@/hooks/useTerm";
 import { cours9Content } from "@/data/cours9Content";
 import { SATB } from "@/lib/satb-voicings";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 interface Section { id: string; label: string; }
 
@@ -38,7 +39,7 @@ function playProg(ref: React.RefObject<PianoPlayerRef>, names: string[], gap = 9
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const SECTIONS_IDS = ["marche","notecom","minor","pedales","appog","quiz"] as const;
+const SECTIONS_IDS = ["marche","notecom","minor","pedales","appog","conservatoire","quiz"] as const;
 
 const TYPES_MARCHE = [
   {
@@ -536,6 +537,8 @@ export default function Cours9() {
           <div style={S.info} dangerouslySetInnerHTML={{ __html: n("appogInfoUsage") }} />
         </div>
       )}
+
+      {sec === "conservatoire" && <VueConservatoire courseNum={9} />}
 
       {sec === "quiz" && (
         <div>

@@ -25,6 +25,7 @@ import { SATB } from "@/lib/satb-voicings";
 import MaitreCard from "@/components/MaitreCard";
 import InversionQuiz from "@/components/InversionQuiz";
 import { INVERSION_EXERCISES } from "@/exercises/cours-inversion-exercises";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -60,7 +61,7 @@ function playProgression(
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const SECTIONS_IDS = ["cadences","progressions","quiz"] as const;
+const SECTIONS_IDS = ["cadences","progressions","conservatoire","quiz"] as const;
 
 interface CadenceDef {
   id: string;
@@ -501,6 +502,8 @@ export default function Cours4() {
           ))}
         </div>
       )}
+      {activeSection === "conservatoire" && <VueConservatoire courseNum={4} />}
+
       {activeSection === "quiz" && (
         <div>
           <h2 style={S.stitle}>{n("quizH2")}</h2>

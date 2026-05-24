@@ -6,13 +6,14 @@ import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
 import { cours1Content, type Degree, type IntervalDef } from "@/data/cours1Content";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 interface Section {
   id: string;
   label: string;
 }
 
-const SECTIONS_IDS = ["origines","degres","tons","intervalles","quiz"] as const;
+const SECTIONS_IDS = ["origines","degres","tons","intervalles","conservatoire","quiz"] as const;
 
 const GAMMES = [
   {
@@ -490,6 +491,8 @@ export default function Cours1() {
           </div>
         </div>
       )}
+
+      {activeSection === "conservatoire" && <VueConservatoire courseNum={1} />}
 
       {/* ══ SECTION 5 : QUIZ ══ */}
       {activeSection === "quiz" && (

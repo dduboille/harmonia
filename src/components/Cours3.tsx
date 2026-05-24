@@ -16,6 +16,7 @@ import { useTerm } from "@/hooks/useTerm";
 import { cours3Content } from "@/data/cours3Content";
 import { SATB } from "@/lib/satb-voicings";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 // ─── Audio ────────────────────────────────────────────────────────────────────
 
@@ -36,7 +37,7 @@ function playProg(ref: React.RefObject<PianoPlayerRef>, names: string[], gap = 1
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const SECTIONS_IDS = ["triton","fonctions","progressions","voix","quiz"] as const;
+const SECTIONS_IDS = ["triton","fonctions","progressions","voix","conservatoire","quiz"] as const;
 
 // Accords de C majeur avec leur fonction
 const ACCORDS_C = [
@@ -488,6 +489,8 @@ export default function Cours3() {
           </div>
         </div>
       )}
+
+      {sec === "conservatoire" && <VueConservatoire courseNum={3} />}
 
       {/* ══ QUIZ ══ */}
       {sec === "quiz" && (

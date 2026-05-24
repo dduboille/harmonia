@@ -14,6 +14,7 @@ import { useCoursContent } from "@/hooks/useCoursContent";
 import { useTerm } from "@/hooks/useTerm";
 import { cours2Content } from "@/data/cours2Content";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
 
@@ -284,7 +285,7 @@ export default function Cours2() {
     setQuizIdx(0); setQuizScore(0); setAnswered(false); setSelected(null); setDone(false);
   };
 
-  const SECTIONS_IDS = ["triades","gamme","tetrades","renversements","quiz"] as const;
+  const SECTIONS_IDS = ["triades","gamme","tetrades","renversements","conservatoire","quiz"] as const;
 
   const btnSel = (active: boolean, color = "#333"): React.CSSProperties => ({
     fontSize: 12, padding: "4px 10px",
@@ -661,6 +662,8 @@ export default function Cours2() {
           </div>
         </div>
       )}
+
+      {activeSection === "conservatoire" && <VueConservatoire courseNum={2} />}
 
       {/* ══ QUIZ ══ */}
       {activeSection === "quiz" && (

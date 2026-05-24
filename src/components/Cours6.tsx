@@ -14,6 +14,7 @@ import { cours6Content } from "@/data/cours6Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { SATB } from "@/lib/satb-voicings";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 interface Section { id: string; label: string; }
 
@@ -32,7 +33,7 @@ function playProg(ref: React.RefObject<PianoPlayerRef>, names: string[], gap = 1
   );
 }
 
-const SECTIONS_IDS = ["tonal","etrangeres","squelette","accomp","quiz"] as const;
+const SECTIONS_IDS = ["tonal","etrangeres","squelette","accomp","conservatoire","quiz"] as const;
 
 const DEMO_PROGS: Record<string, { chords: string[] }> = {
   fondamental: { chords:["C","F","G7","C"] },
@@ -330,6 +331,8 @@ export default function Cours6() {
           <div style={S.info} dangerouslySetInnerHTML={{ __html: n("accompInfo") }} />
         </div>
       )}
+
+      {sec === "conservatoire" && <VueConservatoire courseNum={6} />}
 
       {/* ══ QUIZ ══ */}
       {sec === "quiz" && (
