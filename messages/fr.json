@@ -97,6 +97,7 @@
     "sections": {
       "cadences": "Les cadences",
       "progressions": "Progressions",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Entraînement"
     },
     "quiz": {
@@ -177,6 +178,7 @@
       "mineur": "La gamme mineure",
       "emprunts": "Emprunts",
       "classiques": "Suites classiques",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Entraînement"
     },
     "quiz": {
@@ -261,6 +263,7 @@
       "etrangeres": "Notes étrangères",
       "squelette": "Squelette harmonique",
       "accomp": "Accompagnement",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Entraînement"
     },
     "quiz": {
@@ -432,6 +435,7 @@
       "secondaires": "Dominantes secondaires",
       "voisins": "Tons voisins",
       "chaines": "Chaînes",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Entraînement"
     },
     "quiz": {
@@ -504,6 +508,7 @@
       "pivot": "Accord pivot",
       "outils": "6/4 et sus4",
       "exemples": "Exemples",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Entraînement"
     },
     "quiz": {
@@ -618,6 +623,7 @@
       "minor": "Minorisation",
       "pedales": "Pédales",
       "appog": "Accords appogiaturés",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Entraînement"
     },
     "quiz": {
@@ -744,6 +750,7 @@
       "degres": "Les degrés",
       "tons": "Tons & demi-tons",
       "intervalles": "Intervalles",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Entraînement"
     },
     "quiz": {
@@ -833,6 +840,7 @@
       "gamme": "Gamme majeure",
       "tetrades": "Tétrades",
       "renversements": "Renversements",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Entraînement"
     },
     "quiz": {
@@ -922,6 +930,7 @@
       "fonctions": "Fonctions tonales",
       "progressions": "Progressions",
       "voix": "Conduite de voix",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Entraînement"
     },
     "quiz": {

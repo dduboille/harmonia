@@ -97,6 +97,7 @@
     "sections": {
       "cadences": "Cadences",
       "progressions": "Progressions",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -177,6 +178,7 @@
       "mineur": "Minor scale",
       "emprunts": "Borrowings",
       "classiques": "Classic progressions",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -261,6 +263,7 @@
       "etrangeres": "Non-chord tones",
       "squelette": "Harmonic skeleton",
       "accomp": "Accompaniment",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -432,6 +435,7 @@
       "secondaires": "Secondary dominants",
       "voisins": "Neighbouring keys",
       "chaines": "Chains",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -504,6 +508,7 @@
       "pivot": "Pivot chord",
       "outils": "6/4 and sus4",
       "exemples": "Examples",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -618,6 +623,7 @@
       "minor": "Minorisation",
       "pedales": "Pedal points",
       "appog": "Appoggiatura chords",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -744,6 +750,7 @@
       "degres": "Degrees",
       "tons": "Tones & semitones",
       "intervalles": "Intervals",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -833,6 +840,7 @@
       "gamme": "Major scale",
       "tetrades": "Seventh chords",
       "renversements": "Inversions",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -922,6 +930,7 @@
       "fonctions": "Tonal functions",
       "progressions": "Progressions",
       "voix": "Voice leading",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {

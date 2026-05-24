@@ -97,6 +97,7 @@
     "sections": {
       "cadences": "Le cadenze",
       "progressions": "Progressioni",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Esercitazione"
     },
     "quiz": {
@@ -177,6 +178,7 @@
       "mineur": "La scala minore",
       "emprunts": "Prestiti",
       "classiques": "Progressioni classiche",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Esercitazione"
     },
     "quiz": {
@@ -261,6 +263,7 @@
       "etrangeres": "Note estranee",
       "squelette": "Scheletro armonico",
       "accomp": "Accompagnamento",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Esercitazione"
     },
     "quiz": {
@@ -432,6 +435,7 @@
       "secondaires": "Dominanti secondarie",
       "voisins": "Tonalità vicine",
       "chaines": "Catene",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Esercitazione"
     },
     "quiz": {
@@ -504,6 +508,7 @@
       "pivot": "Accordo perno",
       "outils": "6/4 e sus4",
       "exemples": "Esempi",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Esercitazione"
     },
     "quiz": {
@@ -618,6 +623,7 @@
       "minor": "Minorizzazione",
       "pedales": "Pedalé",
       "appog": "Accordi di appoggiatúra",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Esercitazione"
     },
     "quiz": {
@@ -744,6 +750,7 @@
       "degres": "I gradi",
       "tons": "Toni e semitoni",
       "intervalles": "Intervalli",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Esercitazione"
     },
     "quiz": {
@@ -833,6 +840,7 @@
       "gamme": "Scala maggiore",
       "tetrades": "Tetradi",
       "renversements": "Rivolti",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Esercitazione"
     },
     "quiz": {
@@ -923,6 +931,7 @@
       "fonctions": "Funzioni tonali",
       "progressions": "Progressioni",
       "voix": "Conduzione delle voci",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Esercitazione"
     },
     "quiz": {

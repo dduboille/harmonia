@@ -97,6 +97,7 @@
     "sections": {
       "cadences": "Kadenzen",
       "progressions": "Progressionen",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Übung"
     },
     "quiz": {
@@ -177,6 +178,7 @@
       "mineur": "Molltonleiter",
       "emprunts": "Ausleihen",
       "classiques": "Klassische Progressionen",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Übung"
     },
     "quiz": {
@@ -261,6 +263,7 @@
       "etrangeres": "Nebentöne",
       "squelette": "Harmonisches Gerüst",
       "accomp": "Begleitung",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Übung"
     },
     "quiz": {
@@ -432,6 +435,7 @@
       "secondaires": "Sekundärdominanten",
       "voisins": "Nachbartonarten",
       "chaines": "Ketten",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Übung"
     },
     "quiz": {
@@ -504,6 +508,7 @@
       "pivot": "Pivot-Akkord",
       "outils": "6/4 und sus4",
       "exemples": "Beispiele",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Übung"
     },
     "quiz": {
@@ -618,6 +623,7 @@
       "minor": "Minorisation",
       "pedales": "Orgelpunkte",
       "appog": "Vorhaltsakkorde",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Übung"
     },
     "quiz": {
@@ -744,6 +750,7 @@
       "degres": "Stufen",
       "tons": "Töne & Halbtons",
       "intervalles": "Intervalle",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Übung"
     },
     "quiz": {
@@ -833,6 +840,7 @@
       "gamme": "Durtonleiter",
       "tetrades": "Vierklänge",
       "renversements": "Umkehrungen",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Übung"
     },
     "quiz": {
@@ -923,6 +931,7 @@
       "fonctions": "Tonale Funktionen",
       "progressions": "Progressionen",
       "voix": "Stimmführung",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Übung"
     },
     "quiz": {

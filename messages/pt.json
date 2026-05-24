@@ -97,6 +97,7 @@
     "sections": {
       "cadences": "As cadências",
       "progressions": "Progressões",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Prática"
     },
     "quiz": {
@@ -177,6 +178,7 @@
       "mineur": "A escala menor",
       "emprunts": "Empréstimos",
       "classiques": "Progressões clássicas",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Prática"
     },
     "quiz": {
@@ -261,6 +263,7 @@
       "etrangeres": "Notas estranhas",
       "squelette": "Esqueleto harmônico",
       "accomp": "Acompanhamento",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Prática"
     },
     "quiz": {
@@ -432,6 +435,7 @@
       "secondaires": "Dominantes secundárias",
       "voisins": "Tonalidades vizinhas",
       "chaines": "Cadeias",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Prática"
     },
     "quiz": {
@@ -504,6 +508,7 @@
       "pivot": "Acorde pivô",
       "outils": "6/4 e sus4",
       "exemples": "Exemplos",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Prática"
     },
     "quiz": {
@@ -618,6 +623,7 @@
       "minor": "Minorização",
       "pedales": "Pedais",
       "appog": "Acordes de apogiatura",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Prática"
     },
     "quiz": {
@@ -744,6 +750,7 @@
       "degres": "Os graus",
       "tons": "Tons e semitons",
       "intervalles": "Intervalos",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Prática"
     },
     "quiz": {
@@ -833,6 +840,7 @@
       "gamme": "Escala maior",
       "tetrades": "Tétrades",
       "renversements": "Inversões",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Prática"
     },
     "quiz": {
@@ -923,6 +931,7 @@
       "fonctions": "Funções tonais",
       "progressions": "Progressões",
       "voix": "Condução de vozes",
+      "conservatoire": "🎓 Conservatoire",
       "quiz": "Prática"
     },
     "quiz": {
