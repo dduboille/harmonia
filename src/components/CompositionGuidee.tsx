@@ -4,7 +4,7 @@ import React, { useState, useRef, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import PianoPlayer, { PianoPlayerRef } from './PianoPlayer';
-import { evaluateHarmonization, getChordBassSpecs } from '@/lib/harmonization-engine';
+import { evaluateHarmonization } from '@/lib/harmonization-engine';
 import { MELODIES } from '@/data/melodies-exercices';
 import type { MelodyExercise, MelodyNote, HarmonizationScore } from '@/types/composition';
 
@@ -49,36 +49,127 @@ const EN_TO_FR: Record<string, string> = {
 
 const STAFF_LINES = [0, 2, 4, 6, 8];
 
-function MelodyStaff({ exercise }: { exercise: MelodyExercise }) {
+// ── Bass staff infrastructure ────────────────────────────────────────────────
+
+const BASS_STAFF_BOTTOM = 248;
+const SVG_HEIGHT_WITH_BASS = 320;
+
+const BASS_PC_NAMES = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
+
+const BASS_SEMITONES: Record<string, number> = {
+  C: 0, 'C#': 1, Db: 1, D: 2, 'D#': 3, Eb: 3,
+  E: 4, F: 5, 'F#': 6, Gb: 6, G: 7, 'G#': 8, Ab: 8,
+  A: 9, 'A#': 10, Bb: 10, B: 11,
+};
+
+function parseBassQualIntervals(qual: string): number[] {
+  if (qual === 'm' || qual === 'min') return [0, 3, 7];
+  if (qual === '7') return [0, 4, 7, 10];
+  if (qual === 'm7' || qual === 'min7') return [0, 3, 7, 10];
+  if (qual === 'Maj7' || qual === 'maj7' || qual === 'M7') return [0, 4, 7, 11];
+  if (qual === 'm7b5' || qual === 'ø' || qual === 'Ø') return [0, 3, 6, 10];
+  if (qual === 'dim' || qual === 'o') return [0, 3, 6];
+  if (qual === 'dim7' || qual === 'o7') return [0, 3, 6, 9];
+  if (qual === 'aug' || qual === '+') return [0, 4, 8];
+  if (qual === 'sus4' || qual === 'sus') return [0, 5, 7];
+  if (qual === 'sus2') return [0, 2, 7];
+  if (qual.includes('9')) return [0, 4, 7, 10];
+  return [0, 4, 7];
+}
+
+// Returns notes for bass staff SVG + PianoPlayer (stdOctave is standard, pianoOctave = stdOctave-1)
+// Notes are in strictly increasing MIDI pitch order
+function getBassVoicingNotes(chord: string): Array<{ noteName: string; stdOctave: number }> {
+  const m = chord.match(/^([A-G][#b]?)(.*)$/);
+  if (!m) return [];
+  const rootPc = BASS_SEMITONES[m[1]] ?? 0;
+  const intervals = parseBassQualIntervals(m[2]);
+  // G–B (pc 7–11) → root in std octave 2; C–F# (pc 0–6) → std octave 3
+  const rootStdOct = rootPc >= 7 ? 2 : 3;
+  const result: Array<{ noteName: string; stdOctave: number }> = [];
+  let prevMidi = -1;
+  for (let i = 0; i < Math.min(intervals.length, 4); i++) {
+    const notePc = (rootPc + intervals[i]) % 12;
+    const noteName = BASS_PC_NAMES[notePc];
+    let stdOct = i === 0 ? rootStdOct : Math.floor(prevMidi / 12) - 1;
+    // MIDI = 12*(stdOct+1)+pc; advance octave until strictly greater
+    while (12 * (stdOct + 1) + notePc <= prevMidi) stdOct++;
+    prevMidi = 12 * (stdOct + 1) + notePc;
+    result.push({ noteName, stdOctave: stdOct });
+  }
+  return result;
+}
+
+// Bass clef staff step: G2(std)=0, B2=2, D3=4, F3=6, A3=8
+function bassStaffStep(note: string, stdOctave: number): number {
+  return noteStaffStep(note, stdOctave) + 12;
+}
+
+// ── Grand staff component ────────────────────────────────────────────────────
+
+function MelodyStaff({
+  exercise,
+  attempt,
+}: {
+  exercise: MelodyExercise;
+  attempt?: string[][];
+}) {
   const notes = exercise.notes;
+  const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
+  const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
+  const hasChords = Boolean(attempt?.some(m => m.length > 0));
   const svgW = Math.max(660, CLEF_W + 30 + notes.length * NOTE_SP + 40);
+  const svgH = hasChords ? SVG_HEIGHT_WITH_BASS : SVG_HEIGHT;
+
+  // Group notes by measure
+  const measureNoteIndices: number[][] = [];
+  {
+    let cur: number[] = [];
+    let cum = 0;
+    notes.forEach((n, i) => {
+      cur.push(i);
+      cum += dBeats[n.duration] ?? 1;
+      if (cum % bpm < 0.01) { measureNoteIndices.push([...cur]); cur = []; }
+    });
+    if (cur.length > 0) measureNoteIndices.push(cur);
+  }
+
+  // For each measure: index of the note at/after the half-measure beat
+  const measureMidIndices = measureNoteIndices.map(indices => {
+    let beats = 0;
+    for (const idx of indices) {
+      if (beats >= bpm / 2 - 0.01) return idx;
+      beats += dBeats[notes[idx].duration] ?? 1;
+    }
+    return indices[Math.floor(indices.length / 2)];
+  });
+
+  // Barline x positions
+  const barXs: number[] = [];
+  {
+    let cum = 0;
+    notes.forEach((n, i) => {
+      cum += dBeats[n.duration] ?? 1;
+      if (cum % bpm < 0.01 && i < notes.length - 1) {
+        barXs.push(CLEF_W + 14 + i * NOTE_SP + NOTE_SP);
+      }
+    });
+  }
+
+  const noteX = (i: number) => CLEF_W + 30 + i * NOTE_SP;
 
   return (
-    <svg width={svgW} height={SVG_HEIGHT} style={{ display: 'block', minWidth: svgW }}>
+    <svg width={svgW} height={svgH} style={{ display: 'block', minWidth: svgW }}>
+
+      {/* ── Treble staff ── */}
       {STAFF_LINES.map(s => (
         <line key={s} x1={10} y1={STAFF_BOTTOM - s * HALF_STEP} x2={svgW - 10} y2={STAFF_BOTTOM - s * HALF_STEP} stroke="#999" strokeWidth="0.8" />
       ))}
       <text x={14} y={STAFF_BOTTOM + 6} fontSize="95" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄞</text>
       <line x1={CLEF_W} y1={STAFF_BOTTOM - 8 * HALF_STEP} x2={CLEF_W} y2={STAFF_BOTTOM} stroke="#999" strokeWidth="1" />
-
-      {/* Bar lines between measures */}
-      {(() => {
-        const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
-        const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
-        const barXs: number[] = [];
-        let cum = 0;
-        notes.forEach((n, i) => {
-          const prevCum = cum;
-          cum += dBeats[n.duration] ?? 1;
-          if (cum % bpm < 0.01 && i < notes.length - 1) {
-            barXs.push(CLEF_W + 14 + i * NOTE_SP + NOTE_SP);
-          }
-          void prevCum;
-        });
-        return barXs.map((x, i) => (
-          <line key={i} x1={x} y1={STAFF_BOTTOM - 8 * HALF_STEP} x2={x} y2={STAFF_BOTTOM} stroke="#aaa" strokeWidth="0.7" />
-        ));
-      })()}
+      {barXs.map((x, i) => (
+        <line key={i} x1={x} y1={STAFF_BOTTOM - 8 * HALF_STEP} x2={x} y2={STAFF_BOTTOM} stroke="#aaa" strokeWidth="0.7" />
+      ))}
 
       {notes.map((n, i) => {
         const step = noteStaffStep(n.note, n.octave);
@@ -89,7 +180,7 @@ function MelodyStaff({ exercise }: { exercise: MelodyExercise }) {
         const ledgers = getLedgerLines(step);
         const isAccidental = n.note.length > 1;
         const accSymbol = n.note.endsWith('#') ? '♯' : '♭';
-        const x = CLEF_W + 30 + i * NOTE_SP;
+        const x = noteX(i);
 
         return (
           <g key={i}>
@@ -112,6 +203,68 @@ function MelodyStaff({ exercise }: { exercise: MelodyExercise }) {
 
       {notes.length === 0 && (
         <text x={CLEF_W + 30} y={STAFF_BOTTOM - 4 * HALF_STEP} fontSize="12" fontFamily="system-ui,sans-serif" fill="#bbb">Chargement…</text>
+      )}
+
+      {/* ── Bass staff (shown when chords are selected) ── */}
+      {hasChords && (
+        <>
+          {/* System bracket */}
+          <line x1={8} y1={STAFF_BOTTOM - 8 * HALF_STEP} x2={8} y2={BASS_STAFF_BOTTOM} stroke="#444" strokeWidth="3" />
+
+          {/* System connector between staves */}
+          <line x1={CLEF_W} y1={STAFF_BOTTOM} x2={CLEF_W} y2={BASS_STAFF_BOTTOM - 8 * HALF_STEP} stroke="#bbb" strokeWidth="0.6" />
+
+          {/* Bass staff lines */}
+          {STAFF_LINES.map(s => (
+            <line key={s} x1={10} y1={BASS_STAFF_BOTTOM - s * HALF_STEP} x2={svgW - 10} y2={BASS_STAFF_BOTTOM - s * HALF_STEP} stroke="#999" strokeWidth="0.8" />
+          ))}
+
+          {/* Bass clef symbol */}
+          <text x={15} y={BASS_STAFF_BOTTOM - HALF_STEP * 1 + 2} fontSize="54" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄢</text>
+          <line x1={CLEF_W} y1={BASS_STAFF_BOTTOM - 8 * HALF_STEP} x2={CLEF_W} y2={BASS_STAFF_BOTTOM} stroke="#999" strokeWidth="1" />
+
+          {/* Bass barlines */}
+          {barXs.map((x, i) => (
+            <line key={i} x1={x} y1={BASS_STAFF_BOTTOM - 8 * HALF_STEP} x2={x} y2={BASS_STAFF_BOTTOM} stroke="#aaa" strokeWidth="0.7" />
+          ))}
+
+          {/* Chord voicings per measure */}
+          {attempt && measureNoteIndices.map((indices, mi) => {
+            const chords = (attempt[mi] ?? []).filter(c => c !== '');
+            if (chords.length === 0) return null;
+
+            return chords.map((chord, ci) => {
+              const x = noteX(ci === 0 ? indices[0] : measureMidIndices[mi]);
+              const voicing = getBassVoicingNotes(chord);
+
+              return (
+                <g key={`${mi}-${ci}`}>
+                  {voicing.map((noteInfo, ni) => {
+                    const step = bassStaffStep(noteInfo.noteName, noteInfo.stdOctave);
+                    const y = BASS_STAFF_BOTTOM - step * HALF_STEP;
+                    const ledgers = getLedgerLines(step);
+                    return (
+                      <g key={ni}>
+                        {ledgers.map(ls => (
+                          <line key={ls}
+                            x1={x - 14} y1={BASS_STAFF_BOTTOM - ls * HALF_STEP}
+                            x2={x + 14} y2={BASS_STAFF_BOTTOM - ls * HALF_STEP}
+                            stroke="#555" strokeWidth="1.1" />
+                        ))}
+                        <ellipse cx={x} cy={y} rx={NOTE_RX + 1} ry={NOTE_RY + 1}
+                          fill="#fff" stroke="#1a1a1a" strokeWidth="1.4"
+                          transform={`rotate(-15,${x},${y})`} />
+                      </g>
+                    );
+                  })}
+                  {/* Chord label below bass staff */}
+                  <text x={x} y={BASS_STAFF_BOTTOM + 18} fontSize="10" fontFamily="system-ui,sans-serif"
+                    fill="#5C3D6E" fontWeight="700" textAnchor="middle">{chord}</text>
+                </g>
+              );
+            });
+          })}
+        </>
       )}
     </svg>
   );
@@ -442,82 +595,94 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
 
   const handlePlayVersion = useCallback(() => {
     if (!exercise || !pianoRef.current) return;
+    const piano = pianoRef.current;
     const beatSec = 60 / tempo;
     const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
 
-    // Build combined melody + chord root voicings per note
-    // Chord plays only on the first beat of each chord segment (not every note)
-    const voicings: string[][] = [];
+    let globalBeat = 0;
     let measureIdx = 0;
-    let beatsInMeasure = 0;
-    let prevChordIdx = -1;
-    let prevMeasureIdx = -1;
+    let measureBeat = 0;
+    const scheduled = new Set<string>();
 
     for (const note of exercise.notes) {
       const dur = dBeats[note.duration] ?? 1;
       const mChords = (attempt[measureIdx] ?? []).filter(c => c !== '');
-      const chordIdx = mChords.length === 2 && beatsInMeasure >= bpm / 2 ? 1 : 0;
+      const chordIdx = mChords.length === 2 && measureBeat >= bpm / 2 ? 1 : 0;
       const chord = mChords[chordIdx];
 
-      const melSpec = `${note.note}:${note.octave - 1}`;
-      const voicing: string[] = [melSpec];
+      // Melody note — duration proportional to its rhythmic value
+      piano.playVoicing([`${note.note}:${note.octave - 1}`], {
+        startTime: globalBeat * beatSec,
+        duration: dur * beatSec * 0.88,
+        velocity: 0.82,
+      });
 
-      const isFirstBeatOfChord = measureIdx !== prevMeasureIdx || chordIdx !== prevChordIdx;
-      if (chord && isFirstBeatOfChord) {
-        voicing.push(...getChordBassSpecs(chord, 1));
+      // Chord sustain — scheduled once per segment, lasts the whole segment
+      const segKey = `${measureIdx}-${chordIdx}`;
+      if (chord && !scheduled.has(segKey)) {
+        scheduled.add(segKey);
+        const segStartBeat = measureIdx * bpm + (chordIdx === 1 ? bpm / 2 : 0);
+        const segEndBeat = chordIdx === 0 && mChords.length === 2
+          ? measureIdx * bpm + bpm / 2
+          : (measureIdx + 1) * bpm;
+        const chordSpecs = getBassVoicingNotes(chord).map(v => `${v.noteName}:${v.stdOctave - 1}`);
+        piano.playVoicing(chordSpecs, {
+          startTime: segStartBeat * beatSec,
+          duration: (segEndBeat - segStartBeat) * beatSec * 0.96,
+          velocity: 0.52,
+        });
       }
 
-      voicings.push(voicing);
-      prevChordIdx = chordIdx;
-      prevMeasureIdx = measureIdx;
-
-      beatsInMeasure += dur;
-      if (beatsInMeasure >= bpm - 0.01) {
-        measureIdx++;
-        beatsInMeasure = 0;
-      }
+      measureBeat += dur;
+      globalBeat += dur;
+      if (measureBeat >= bpm - 0.01) { measureIdx++; measureBeat = 0; }
     }
-
-    pianoRef.current.playVoicingSequence(voicings, { interval: beatSec, duration: beatSec * 0.88 });
   }, [exercise, attempt, tempo]);
 
   const handlePlaySolution = useCallback(() => {
     if (!exercise || !pianoRef.current) return;
+    const piano = pianoRef.current;
     const beatSec = 60 / tempo;
     const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
 
-    const voicings: string[][] = [];
+    let globalBeat = 0;
     let measureIdx = 0;
-    let beatsInMeasure = 0;
-    let prevChordIdx = -1;
-    let prevMeasureIdx = -1;
+    let measureBeat = 0;
+    const scheduled = new Set<string>();
 
     for (const note of exercise.notes) {
       const dur = dBeats[note.duration] ?? 1;
-      const mChords = (exercise.suggestedChords[measureIdx] ?? []);
-      const chordIdx = mChords.length === 2 && beatsInMeasure >= bpm / 2 ? 1 : 0;
+      const mChords = exercise.suggestedChords[measureIdx] ?? [];
+      const chordIdx = mChords.length === 2 && measureBeat >= bpm / 2 ? 1 : 0;
       const chord = mChords[chordIdx];
 
-      const melSpec = `${note.note}:${note.octave - 1}`;
-      const voicing: string[] = [melSpec];
+      piano.playVoicing([`${note.note}:${note.octave - 1}`], {
+        startTime: globalBeat * beatSec,
+        duration: dur * beatSec * 0.88,
+        velocity: 0.82,
+      });
 
-      const isFirstBeatOfChord = measureIdx !== prevMeasureIdx || chordIdx !== prevChordIdx;
-      if (chord && isFirstBeatOfChord) voicing.push(...getChordBassSpecs(chord, 1));
-
-      voicings.push(voicing);
-      prevChordIdx = chordIdx;
-      prevMeasureIdx = measureIdx;
-
-      beatsInMeasure += dur;
-      if (beatsInMeasure >= bpm - 0.01) {
-        measureIdx++;
-        beatsInMeasure = 0;
+      const segKey = `${measureIdx}-${chordIdx}`;
+      if (chord && !scheduled.has(segKey)) {
+        scheduled.add(segKey);
+        const segStartBeat = measureIdx * bpm + (chordIdx === 1 ? bpm / 2 : 0);
+        const segEndBeat = chordIdx === 0 && mChords.length === 2
+          ? measureIdx * bpm + bpm / 2
+          : (measureIdx + 1) * bpm;
+        const chordSpecs = getBassVoicingNotes(chord).map(v => `${v.noteName}:${v.stdOctave - 1}`);
+        piano.playVoicing(chordSpecs, {
+          startTime: segStartBeat * beatSec,
+          duration: (segEndBeat - segStartBeat) * beatSec * 0.96,
+          velocity: 0.52,
+        });
       }
-    }
 
-    pianoRef.current.playVoicingSequence(voicings, { interval: beatSec, duration: beatSec * 0.88 });
+      measureBeat += dur;
+      globalBeat += dur;
+      if (measureBeat >= bpm - 0.01) { measureIdx++; measureBeat = 0; }
+    }
   }, [exercise, tempo]);
 
   const scoreColor = (v: number) => v >= 75 ? '#2E8B57' : v >= 50 ? '#BA7517' : '#c0392b';
@@ -692,7 +857,7 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
 
             {/* Melody staff */}
             <div style={{ background: '#fff', border: '0.5px solid #e8e3db', borderRadius: 10, padding: '16px 20px', marginBottom: '1rem', overflowX: 'auto' }}>
-              <MelodyStaff exercise={exercise} />
+              <MelodyStaff exercise={exercise} attempt={step === 'solution' ? exercise.suggestedChords : attempt} />
             </div>
 
             {/* Hint */}
