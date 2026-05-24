@@ -167,6 +167,7 @@ export default function LandingPage() {
           <Link href={`/${locale}/cours`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>{t("navCourses")}</Link>
           <Link href={`/${locale}/atelier`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>{t("navAtelier")}</Link>
           <Link href={`/${locale}/tonalites`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>{t("navScales")}</Link>
+          <Link href={`/${locale}/cursus`} style={{ fontSize: 13, color: "#666", textDecoration: "none" }}>Cursus</Link>
           <LanguageSwitcher currentLocale={locale} pathname={`/${locale}`} />
           {isSignedIn ? (
             <Link href={`/${locale}/dashboard`} style={{ fontSize: 13, fontWeight: 500, padding: "7px 18px", borderRadius: 20, background: "#1a1a1a", color: "#fff", textDecoration: "none" }}>Mon espace →</Link>
@@ -426,6 +427,7 @@ export default function LandingPage() {
               { label: "Cours", href: `/${locale}/cours` },
               { label: "Atelier", href: `/${locale}/atelier` },
               { label: "Tonalités", href: `/${locale}/tonalites` },
+              { label: "Cursus", href: `/${locale}/cursus` },
               { label: "Confidentialité", href: `/${locale}/confidentialite` },
               { label: "CGU", href: `/${locale}/conditions` },
               { label: "getharmonia.app", href: "https://getharmonia.app" },
