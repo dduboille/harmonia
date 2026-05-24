@@ -3,6 +3,7 @@
 import React, { useRef, useState, useCallback } from "react";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { NE_EXERCISES, type NEExercise, type NEType } from "@/data/notes-etrangeres-exercises";
+import NotesEtrangeresAdvanced from "@/components/NotesEtrangeresAdvanced";
 
 // ── Constantes staff ───────────────────────────────────────────────────────────
 
@@ -245,6 +246,7 @@ function StaffSVG({
 export default function NotesEtrangeresExercice() {
   const pianoRef = useRef<PianoPlayerRef>(null);
 
+  const [mode, setMode] = useState<"standard" | "avance">("standard");
   const [exIdx, setExIdx] = useState(0);
   const [filterDiff, setFilterDiff] = useState<1 | 2 | 3 | null>(null);
   const [noteStates, setNoteStates] = useState<NoteState[]>([]);
@@ -387,12 +389,38 @@ export default function NotesEtrangeresExercice() {
           <h1 style={{ fontSize: 28, fontWeight: 500, color: "#1a1a1a", margin: "0 0 6px", fontFamily: "Georgia,serif" }}>
             Notes réelles et notes étrangères
           </h1>
-          <p style={{ fontSize: 13, color: "#888", margin: 0, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 13, color: "#888", margin: "0 0 14px", lineHeight: 1.6 }}>
             Colorez chaque note en <span style={{ color: "#185FA5", fontWeight: 600 }}>bleu (réelle)</span> ou <span style={{ color: "#E07020", fontWeight: 600 }}>orange (étrangère)</span>, puis identifiez le type.
           </p>
+          {/* Switcher de mode */}
+          <div style={{ display: "inline-flex", background: "#f0ece6", borderRadius: 10, padding: 3, gap: 2 }}>
+            <button onClick={() => setMode("standard")}
+              style={{
+                padding: "6px 18px", borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: "pointer", border: "none",
+                background: mode === "standard" ? "#fff" : "transparent",
+                color: mode === "standard" ? "#1a1a1a" : "#888",
+                boxShadow: mode === "standard" ? "0 1px 3px rgba(0,0,0,0.12)" : "none",
+                transition: "all 0.15s",
+              }}>
+              Mode standard
+            </button>
+            <button onClick={() => setMode("avance")}
+              style={{
+                padding: "6px 18px", borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: "pointer", border: "none",
+                background: mode === "avance" ? "#5C3D6E" : "transparent",
+                color: mode === "avance" ? "#fff" : "#888",
+                boxShadow: mode === "avance" ? "0 1px 3px rgba(92,61,110,0.3)" : "none",
+                transition: "all 0.15s",
+              }}>
+              Mode avancé ★
+            </button>
+          </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 20, alignItems: "start" }}>
+        {/* Mode avancé */}
+        {mode === "avance" && <NotesEtrangeresAdvanced />}
+
+        {mode === "standard" && <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 20, alignItems: "start" }}>
 
           {/* ── Colonne gauche — Référence ───────────────────────────────── */}
           <div style={{ position: "sticky", top: 72 }}>
@@ -666,7 +694,7 @@ export default function NotesEtrangeresExercice() {
               </div>
             )}
           </div>
-        </div>
+        </div>}
 
         {/* Hidden piano player */}
         <div style={{ height: 0, overflow: "hidden", pointerEvents: "none" }}>
