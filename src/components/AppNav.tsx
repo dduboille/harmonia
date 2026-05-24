@@ -200,6 +200,7 @@ function AppNav() {
         <NavItem href={`/${locale}/composition`}      active={active("composition")}      icon="✎" label={t("composition").toUpperCase()} />
         <NavItem href={`/${locale}/dictee`}       active={active("dictee")}       icon="♫" label={t("dictee").toUpperCase()} />
         <NavItem href={`/${locale}/comparateur`}   active={active("comparateur")}   icon="⟳" label={t("styles").toUpperCase()} />
+        <NavItem href={`/${locale}/cursus`} active={active("cursus")} icon="🎓" label="CURSUS" />
         <NavItem    href={`/${locale}/progressions`}       active={active("progressions")}      icon="♬" label={t("progressions").toUpperCase()} />
         <NavItem    href={`/${locale}/generateur-satb`}     active={active("generateur-satb")}     icon="⊞" label={t("generateur")} />
         <NavItem    href={`/${locale}/notes-etrangeres`}   active={active("notes-etrangeres")}   icon="♪" label="NOTES ÉTR." />
