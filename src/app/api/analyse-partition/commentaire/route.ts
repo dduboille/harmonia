@@ -33,14 +33,16 @@ export async function POST(req: Request) {
 
   try {
     const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
+      model: "claude-sonnet-4-20250514",
       max_tokens: 1500,
       system: SYSTEM_PROMPT,
       messages: [{ role: "user", content: userMessage }],
     });
     const text = message.content[0]?.type === "text" ? message.content[0].text : "";
     return Response.json({ text });
-  } catch {
-    return Response.json({ error: "Erreur du modèle" }, { status: 500 });
+  } catch (error) {
+    console.error("Anthropic error:", error);
+    const msg = error instanceof Error ? error.message : String(error);
+    return Response.json({ error: msg }, { status: 500 });
   }
 }
