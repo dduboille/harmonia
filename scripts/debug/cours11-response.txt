@@ -1,0 +1,621 @@
+<NARRATIVE_KEYS>
+{"fr":{"navExtensions":"Les extensions","navApplication":"Application harmonique","navQuiz":"Entraînement","headerBadge":"Niveau 2 · Cours 11","headerTitle":"Les extensions d'accords","extSectionTitle":"Les extensions : 9e, 11e, 13e","extIntro":"Un accord de base (triade ou tétrade) peut être enrichi par des extensions : on continue d'empiler des tierces au-delà de la 7te. La 9te est la 2de à l'octave, la 11te est la 4te à l'octave, la 13te est la 6te à l'octave.","extInfoBox":"<strong>La série des tierces :</strong> fondamentale → 3ce → 5te → 7te → <strong>9te</strong> → <strong>11te</strong> → <strong>13te</strong>. Chaque étape ajoute une tierce. Un accord de 13e complet contient 7 notes — toute la gamme simultanément. En pratique, on en omet plusieurs pour garder la clarté.","extClickHint":"Cliquez sur une extension pour l'entendre et voir ses détails.","extDetailFormuleLabel":"Formule","extDetailCaracLabel":"Caractéristique","extDetailUtilLabel":"Utilisation","extRelistenBtn":"▶ Réécouter","extRecapTitle":"Récapitulatif","extTableHeaderExtension":"Extension","extTableHeaderNotation":"Notation","extTableHeaderFormule":"Formule","extTableHeaderCouleur":"Couleur","extTableHeaderDemitons":"Demi-tons","extRow9MajName":"9e majeure","extRow9MajColor":"Chaleureux","extRow9DomName":"9e dominante","extRow9DomColor":"Jazz ouvert","extRowb9Name":"♭9","extRowb9Color":"Très tendu","extRowSharp11Name":"#11","extRowSharp11Color":"Lydien","extRow13Name":"13e majeure","extRow13Color":"Riche, plein","maitreConceptLabel":"Extensions d'accords","maitreAnecdote":"Bill Evans avait étudié Ravel, Debussy et Chopin avant de rejoindre Miles Davis en 1958. Quand Kind of Blue est enregistré, Evans impose un style de voicings radicalement nouveau : 9tes en voix intérieures, 11tes dans les clusters, 13tes qui remplacent les 5tes. Son trio (avec Scott LaFaro et Paul Motian) redéfinit le jazz de chambre. Waltz for Debby (1961) est aujourd'hui le standard des extensions au piano.","maitreLesson":"Une 9te ne 'remplace' pas une note de l'accord — elle l'enrichit. La différence entre un accord et une couleur, c'est souvent une seule note à l'octave supérieure.","appSectionTitle":"Application harmonique","appIntro":"Les extensions s'appliquent sur les trois fonctions tonales (T, SD, D) sans changer leur rôle dans la progression. Dm9 reste sous-dominant, G13 reste dominant, CMaj9 reste tonique — mais chaque accord gagne en richesse et en couleur.","appIIVITitle":"II – V – I avec extensions (jazz)","appListenBtn":"▶ Écouter","appListenFullBtn":"▶ Écouter la progression complète","appJazzVsClassicTitle":"Extensions jazz vs classique","appClassicLabel":"Classique","appClassicLi1":"9te = appoggiature → résout vers 8ve","appClassicLi2":"Extensions toujours transitoires","appClassicLi3":"Elles appellent une résolution","appClassicLi4":"Conduites de voix strictes (règles)","appJazzLabel":"Jazz","appJazzLi1":"9te = tension disponible (reste)","appJazzLi2":"Extensions comme couleur permanente","appJazzLi3":"Pas de résolution obligatoire","appJazzLi4":"Tensions choisies selon la sonorité","appTensionsTitle":"Tensions disponibles par fonction","appTensionsInfoBox":"<strong>La règle des tensions disponibles :</strong> une extension est &laquo; disponible &raquo; si elle ne crée pas d'intervalle de ♭9 (demi-ton + octave) avec une note de l'accord. La ♭9 est la dissonance rédhibitoire — sauf quand elle est elle-même la tension recherchée.","appTableHeaderFonction":"Fonction","appTableHeaderAccord":"Accord type","appTableHeaderDispo":"Tensions disponibles","appTableHeaderEviter":"À éviter","appWarnBox":"<strong>Exception clé :</strong> la 11te juste est évitée sur les accords <em>majeurs</em> (elle crée un ♭9 avec la 3ce majeure), mais elle est disponible et très courante sur les accords <em>mineurs</em> (la ♭3 est à distance de ton de la 11te). C'est pourquoi Dm11 fonctionne, mais CMaj11 sonne mal.","appTipBox":"<strong>Voicing pratique :</strong> en jazz pianistique, gardez <strong>3ce + 7te</strong> comme noyau (shell voicing) et ajoutez la tension voulue en soprano ou en voix intérieure. La fondamentale est jouée par la contrebasse — inutile de la doubler au piano.","quizSectionTitle":"Entraînement","quizScoreLabel":"Score :","quizFeedbackExcellent":"Excellent — les extensions n'ont plus de secrets !","quizFeedbackGood":"Bien — encore quelques accords à pratiquer et ce sera parfait.","quizFeedbackKeepGoing":"Continue à écouter les extensions activement — l'oreille s'éduque !","quizResetBtn":"Nouveau quiz","quizQuestionCounter":"Question","quizPoolInfo":"questions dans le pool","quizNextBtn":"Question suivante →","quizFinishBtn":"Voir mon score"},"en":{"navExtensions":"Extensions","navApplication":"Harmonic Application","navQuiz":"Practice","headerBadge":"Level 2 · Lesson 11","headerTitle":"Chord Extensions","extSectionTitle":"Extensions: 9th, 11th, 13th","extIntro":"A basic chord (triad or tetrad) can be enriched by extensions: we continue stacking thirds beyond the 7th. The 9th is the 2nd an octave higher, the 11th is the 4th an octave higher, the 13th is the 6th an octave higher.","extInfoBox":"<strong>The chain of thirds:</strong> root → 3rd → 5th → 7th → <strong>9th</strong> → <strong>11th</strong> → <strong>13th</strong>. Each step adds a third. A complete 13th chord contains 7 notes — the entire scale at once. In practice, several are omitted to maintain clarity.","extClickHint":"Click an extension to hear it and see its details.","extDetailFormuleLabel":"Formula","extDetailCaracLabel":"Characteristic","extDetailUtilLabel":"Usage","extRelistenBtn":"▶ Listen again","extRecapTitle":"Summary","extTableHeaderExtension":"Extension","extTableHeaderNotation":"Symbol","extTableHeaderFormule":"Formula","extTableHeaderCouleur":"Color","extTableHeaderDemitons":"Semitones","extRow9MajName":"Major 9th","extRow9MajColor":"Warm","extRow9DomName":"Dominant 9th","extRow9DomColor":"Open jazz","extRowb9Name":"♭9","extRowb9Color":"Very tense","extRowSharp11Name":"#11","extRowSharp11Color":"Lydian","extRow13Name":"Major 13th","extRow13Color":"Rich, full","maitreConceptLabel":"Chord Extensions","maitreAnecdote":"Bill Evans had studied Ravel, Debussy, and Chopin before joining Miles Davis in 1958. When Kind of Blue was recorded, Evans introduced a radically new voicing style: 9ths in inner voices, 11ths in clusters, 13ths replacing 5ths. His trio (with Scott LaFaro and Paul Motian) redefined chamber jazz. Waltz for Debby (1961) remains the benchmark for piano extensions.","maitreLesson":"A 9th doesn't 'replace' a chord tone — it enriches it. The difference between a chord and a color is often just one note an octave higher.","appSectionTitle":"Harmonic Application","appIntro":"Extensions apply to all three tonal functions (T, SD, D) without changing their role in the progression. Dm9 remains subdominant, G13 remains dominant, CMaj9 remains tonic — but each chord gains richness and color.","appIIVITitle":"II – V – I with Extensions (jazz)","appListenBtn":"▶ Listen","appListenFullBtn":"▶ Listen to the full progression","appJazzVsClassicTitle":"Jazz vs Classical Extensions","appClassicLabel":"Classical","appClassicLi1":"9th = appoggiatura → resolves to 8ve","appClassicLi2":"Extensions always transitory","appClassicLi3":"They demand resolution","appClassicLi4":"Strict voice-leading rules","appJazzLabel":"Jazz","appJazzLi1":"9th = available tension (stays)","appJazzLi2":"Extensions as permanent color","appJazzLi3":"No obligatory resolution","appJazzLi4":"Tensions chosen by sound","appTensionsTitle":"Available Tensions by Function","appTensionsInfoBox":"<strong>The available tensions rule:</strong> an extension is &laquo; available &raquo; if it does not create a ♭9 interval (semitone + octave) with a chord tone. The ♭9 is the unacceptable dissonance — except when it is itself the desired tension.","appTableHeaderFonction":"Function","appTableHeaderAccord":"Chord type","appTableHeaderDispo":"Available tensions","appTableHeaderEviter":"Avoid","appWarnBox":"<strong>Key exception:</strong> the perfect 11th is avoided on <em>major</em> chords (it creates a ♭9 with the major 3rd), but it is available and very common on <em>minor</em> chords (the ♭3 is a whole tone away from the 11th). That is why Dm11 works, but CMaj11 sounds wrong.","appTipBox":"<strong>Practical voicing:</strong> in jazz piano, keep <strong>3rd + 7th</strong> as the core (shell voicing) and add the desired tension in the soprano or an inner voice. The root is played by the bass — no need to double it at the piano.","quizSectionTitle":"Practice","quizScoreLabel":"Score:","quizFeedbackExcellent":"Excellent — chord extensions hold no more secrets!","quizFeedbackGood":"Good — a few more chords to practice and you'll be perfect.","quizFeedbackKeepGoing":"Keep listening to extensions actively — the ear learns!","quizResetBtn":"New quiz","quizQuestionCounter":"Question","quizPoolInfo":"questions in the pool","quizNextBtn":"Next question →","quizFinishBtn":"See my score"}}
+</NARRATIVE_KEYS>
+
+<MODIFIED_TSX>
+"use client";
+
+/**
+ * Cours11.tsx
+ * Harmonia · Niveau 2 · Cours 11 — Les extensions d'accords (9e, 11e, 13e)
+ * Convention : affichage anglais, dotKeys PianoPlayer français
+ */
+
+import React, { useRef, useState } from "react";
+import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
+import { cours11Content } from "@/data/cours11Content";
+import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import MaitreCard from "@/components/MaitreCard";
+
+function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], duration = 2.5) {
+  keys.forEach(key => {
+    const [note, octStr] = key.split(":");
+    ref.current?.playNote(note, parseInt(octStr), { duration });
+  });
+}
+
+function playArpeggio(ref: React.RefObject<PianoPlayerRef>, keys: string[], gap = 140) {
+  keys.forEach((key, i) => {
+    const [note, octStr] = key.split(":");
+    setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration: 2.2 }), i * gap);
+  });
+}
+
+// ── Données extensions ────────────────────────────────────────────────────────
+
+interface Extension {
+  id: string;
+  name: string;
+  symbol: string;
+  example: string;
+  formula: string;
+  color: string;
+  bg: string;
+  description: string;
+  jazzContext: string;
+  notes: string[];
+  dotKeys: string[];
+}
+
+const EXTENSIONS: Extension[] = [
+  {
+    id: "maj9",
+    name: "9e majeure",
+    symbol: "Maj9",
+    example: "CMaj9",
+    formula: "1 – 3 – 5 – 7M – 9M",
+    color: "#0F6E56",
+    bg: "#E1F5EE",
+    description: "Ajoute la 9te majeure (= 2de à l'octave) à un accord Maj7. La 9te majeure est la tension la plus consonante — elle enrichit sans déstabiliser.",
+    jazzContext: "Accord de tonique par excellence. CMaj9 remplace CMaj7 dans la quasi-totalité du jazz et de la pop. La 9te donne de la chaleur et de la profondeur.",
+    notes: ["C", "E", "G", "B", "D"],
+    dotKeys: ["Do:3", "Mi:3", "Sol:3", "Si:3", "Ré:4"],
+  },
+  {
+    id: "dom9",
+    name: "9e (dominante)",
+    symbol: "9",
+    example: "G9, C9",
+    formula: "1 – 3 – 5 – ♭7 – 9M",
+    color: "#185FA5",
+    bg: "#E6F1FB",
+    description: "Ajoute la 9te majeure à un accord de dominante 7 (C7). Différence cruciale avec CMaj9 : la 7te est mineure (♭7). C9 sous-entend toujours une ♭7.",
+    jazzContext: "Accord de dominante enrichi. G9 → C : la 9te (La dans G9) résout naturellement vers Sol dans CMaj9. Très courant dans le jazz des années 50-60.",
+    notes: ["C", "E", "G", "B♭", "D"],
+    dotKeys: ["Do:3", "Mi:3", "Sol:3", "Sib:3", "Ré:4"],
+  },
+  {
+    id: "b9",
+    name: "♭9 (9e mineure)",
+    symbol: "7♭9",
+    example: "G7♭9, B7♭9",
+    formula: "1 – 3 – 5 – ♭7 – ♭9",
+    color: "#993C1D",
+    bg: "#FAECE7",
+    description: "La 9te est bémolisée : elle forme un demi-ton au-dessus de la fondamentale. Très tendue, elle appelle une résolution urgente. La ♭9 est à 13 demi-tons de la fondamentale.",
+    jazzContext: "Tension maximale sur la dominante. G7♭9 → Cm : le Lab crée une dissonance criante qui veut se résoudre. Caractéristique du jazz mineur, du bebop et du flamenco (E7♭9 → Am).",
+    notes: ["C", "E", "G", "B♭", "D♭"],
+    dotKeys: ["Do:3", "Mi:3", "Sol:3", "Sib:3", "Réb:4"],
+  },
+  {
+    id: "sharp11",
+    name: "#11 (11e augmentée)",
+    symbol: "7#11 / Maj7#11",
+    example: "C7#11, FMaj7#11",
+    formula: "1 – 3 – (5) – ♭7 – #11",
+    color: "#6B3FA0",
+    bg: "#F0EAFA",
+    description: "La 11te est augmentée (haussée d'un demi-ton). La #11 est le triton au-dessus de la fondamentale. On omet souvent la quinte juste pour éviter la dissonance avec #11. Couleur lydienne / lydienne-dominante.",
+    jazzContext: "Accord lydien-dominant (C7#11 = mode lydien-dominant). Très utilisé comme dominante de substitution ou comme accord statique avec couleur lydienne. Thelonious Monk en fait sa signature.",
+    notes: ["C", "E", "(G)", "B♭", "F#"],
+    dotKeys: ["Do:3", "Mi:3", "Sib:3", "Fa#:4"],
+  },
+  {
+    id: "13th",
+    name: "13e majeure",
+    symbol: "13",
+    example: "G13, C13",
+    formula: "1 – 3 – ♭7 – 13 (5, 9, 11 optionnels)",
+    color: "#BA7517",
+    bg: "#FAEEDA",
+    description: "La 13te = 6te majeure à l'octave. G13 = G B F E (fondamentale, 3ce, ♭7, 13te). En pratique, on omet 5te, 9te et 11te. La 13te est la tension la plus haute de la série.",
+    jazzContext: "G13 est l'accord de dominante le plus riche avant la résolution. La 13te (Mi dans G13) résout vers la 5te (Sol dans CMaj9). Caractéristique du jazz post-bop et de la musique soul.",
+    notes: ["G", "B", "F", "E"],
+    dotKeys: ["Sol:2", "Si:3", "Mi:4", "Fa:4"],
+  },
+];
+
+// ── Données II-V-I étendu ─────────────────────────────────────────────────────
+
+interface ChordDemo {
+  symbol: string;
+  function: string;
+  description: string;
+  dotKeys: string[];
+  color: string;
+}
+
+const II_V_I: ChordDemo[] = [
+  {
+    symbol: "Dm9",
+    function: "II — Sous-dominante",
+    description: "Ré Fa La Do Mi — le IIm9 ajoute la 9te majeure (Mi) au IIm7. La 9te est toujours disponible sur les accords mineurs.",
+    dotKeys: ["Ré:3", "Fa:3", "La:3", "Do:4", "Mi:4"],
+    color: "#185FA5",
+  },
+  {
+    symbol: "G13",
+    function: "V — Dominante",
+    description: "Sol Si Mi Fa — voicing jazz compact : fondamentale, 3ce, 13te, ♭7te. La 13te (Mi) résout vers Sol dans CMaj9.",
+    dotKeys: ["Sol:2", "Si:3", "Mi:4", "Fa:4"],
+    color: "#BA7517",
+  },
+  {
+    symbol: "CMaj9",
+    function: "I — Tonique",
+    description: "Do Mi Sol Si Ré — la résolution. La 9te (Ré) arrive depuis La (13te de G13) par mouvement descendant de quinte.",
+    dotKeys: ["Do:3", "Mi:3", "Sol:3", "Si:3", "Ré:4"],
+    color: "#0F6E56",
+  },
+];
+
+// ── Tensions disponibles ──────────────────────────────────────────────────────
+
+interface TensionRow {
+  function: string;
+  example: string;
+  available: string;
+  avoid: string;
+  color: string;
+}
+
+const TENSIONS: TensionRow[] = [
+  {
+    function: "Tonique Maj7",
+    example: "CMaj7",
+    available: "9M, #11, 13M",
+    avoid: "11 juste (Fa — ♭9 avec Mi)",
+    color: "#0F6E56",
+  },
+  {
+    function: "Sous-dominante IIm7",
+    example: "Dm7",
+    available: "9M, 11, 13M",
+    avoid: "♭9, #11",
+    color: "#185FA5",
+  },
+  {
+    function: "Dominante V7 (majeur)",
+    example: "G7",
+    available: "9M, #11, 13M",
+    avoid: "11 juste (Sol — ♭9 avec Fa#...)",
+    color: "#BA7517",
+  },
+  {
+    function: "Dominante V7 (mineur)",
+    example: "G7 → Cm",
+    available: "♭9, #9, #11, ♭13",
+    avoid: "9M, 13M naturelles",
+    color: "#993C1D",
+  },
+];
+
+// ── Quiz ──────────────────────────────────────────────────────────────────────
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const QUIZ_COUNT = 10;
+
+const S = {
+  wrap:     { fontFamily: "var(--font-sans, system-ui)", maxWidth: 720, margin: "0 auto", padding: "0 1rem 3rem" } as React.CSSProperties,
+  header:   { padding: "1.5rem 0 1rem", borderBottom: "0.5px solid #e5e5e5", marginBottom: "1.25rem" } as React.CSSProperties,
+  badge:    { display: "inline-block", background: "#F0EAFA", color: "#6B3FA0", fontSize: 11, fontWeight: 500, padding: "2px 10px", borderRadius: 20, marginBottom: 6 } as React.CSSProperties,
+  h1:       { fontSize: 26, fontWeight: 500, color: "#111", margin: 0 } as React.CSSProperties,
+  subtitle: { fontSize: 14, color: "#666", marginTop: 4, lineHeight: 1.6 } as React.CSSProperties,
+  nav:      { display: "flex", gap: 6, flexWrap: "wrap" as const, marginBottom: "1.5rem" },
+  pill:     (active: boolean): React.CSSProperties => ({
+    fontSize: 12, padding: "5px 14px",
+    border: `0.5px solid ${active ? "#333" : "#ddd"}`,
+    borderRadius: 20, cursor: "pointer",
+    background: active ? "#111" : "transparent",
+    color: active ? "#fff" : "#666",
+    transition: "all .15s",
+  }),
+  h2:       { fontSize: 17, fontWeight: 500, color: "#111", marginBottom: 8 } as React.CSSProperties,
+  h3:       { fontSize: 14, fontWeight: 500, margin: "20px 0 10px", color: "#111" } as React.CSSProperties,
+  p:        { fontSize: 14, color: "#555", lineHeight: 1.75, marginBottom: "1rem" } as React.CSSProperties,
+  infoBox:  { borderLeft: "2px solid #6B3FA0", padding: "8px 14px", background: "#F0EAFA", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#3B1F5A", lineHeight: 1.6 } as React.CSSProperties,
+  warnBox:  { borderLeft: "2px solid #BA7517", padding: "8px 14px", background: "#FAEEDA", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#633806", lineHeight: 1.6 } as React.CSSProperties,
+  tip:      { borderLeft: "2px solid #0F6E56", padding: "8px 14px", background: "#E1F5EE", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#085041", lineHeight: 1.6 } as React.CSSProperties,
+};
+
+export default function Cours11() {
+  const [activeSection, setActiveSection] = useState<string>("extensions");
+  const i18n = useCoursI18n("cours11");
+  const tc = i18n.tc;
+  const n = (key: string) => tc(`narrative.${key}` as any);
+  const tr = useTerm();
+  const { questions: ALL_QUESTIONS } = useCoursContent(cours11Content);
+  const [activeExt, setActiveExt] = useState<string | null>(null);
+
+  const [quizQuestions] = useState(() => shuffle(ALL_QUESTIONS).slice(0, QUIZ_COUNT));
+  const [quizIdx,      setQuizIdx]      = useState(0);
+  const [quizScore,    setQuizScore]    = useState(0);
+  const [quizAnswered, setQuizAnswered] = useState(false);
+  const [quizDone,     setQuizDone]     = useState(false);
+  const [selectedOpt,  setSelectedOpt]  = useState<number | null>(null);
+
+  const pianoRef = useRef<PianoPlayerRef>(null);
+
+  const answerQuiz = (optIdx: number) => {
+    if (quizAnswered) return;
+    setSelectedOpt(optIdx);
+    setQuizAnswered(true);
+    if (optIdx === quizQuestions[quizIdx].a) setQuizScore(s => s + 1);
+  };
+
+  const nextQuiz = () => {
+    if (quizIdx + 1 >= QUIZ_COUNT) setQuizDone(true);
+    else { setQuizIdx(i => i + 1); setQuizAnswered(false); setSelectedOpt(null); }
+  };
+
+  const resetQuiz = () => {
+    setQuizIdx(0); setQuizScore(0);
+    setQuizAnswered(false); setSelectedOpt(null); setQuizDone(false);
+  };
+
+  const sectionLabel = (id: string) => {
+    if (id === "extensions") return n("navExtensions");
+    if (id === "application") return n("navApplication");
+    return n("navQuiz");
+  };
+
+  return (
+    <div style={S.wrap}>
+      {/* Piano caché */}
+      <div style={{ position: "absolute", opacity: 0, pointerEvents: "none", height: 0, overflow: "hidden" }}>
+        <PianoPlayer ref={pianoRef} octaves={3} startOctave={2} showLabels={false} />
+      </div>
+
+      {/* Header */}
+      <div style={S.header}>
+        <span style={S.badge}>{n("headerBadge")}</span>
+        <h1 style={S.h1}>{n("headerTitle")}</h1>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
+      </div>
+
+      <MaitreCard
+        composer="Bill Evans"
+        period="1929–1980"
+        emoji="🎹"
+        concept={n("maitreConceptLabel")}
+        anecdote={n("maitreAnecdote")}
+        lesson={n("maitreLesson")}
+        accentColor="#6B3FA0"
+      />
+
+      {/* Navigation */}
+      <nav style={S.nav}>
+        {(["extensions", "application", "quiz"] as const).map(id => (
+          <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
+            {sectionLabel(id)}
+          </button>
+        ))}
+      </nav>
+
+      {/* ══ SECTION 1 : LES EXTENSIONS ══ */}
+      {activeSection === "extensions" && (
+        <div>
+          <h2 style={S.h2}>{n("extSectionTitle")}</h2>
+          <p style={S.p}>{n("extIntro")}</p>
+
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("extInfoBox") }} />
+
+          <p style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>
+            {n("extClickHint")}
+          </p>
+
+          {EXTENSIONS.map(ext => (
+            <div
+              key={ext.id}
+              onClick={() => {
+                const isActive = activeExt === ext.id;
+                setActiveExt(isActive ? null : ext.id);
+                if (ext.id === "13th") {
+                  playArpeggio(pianoRef as React.RefObject<PianoPlayerRef>, ext.dotKeys, 180);
+                } else {
+                  playChord(pianoRef as React.RefObject<PianoPlayerRef>, ext.dotKeys);
+                }
+              }}
+              style={{
+                border: `0.5px solid ${activeExt === ext.id ? ext.color : "#e5e5e5"}`,
+                borderRadius: 10,
+                marginBottom: 8,
+                overflow: "hidden",
+                cursor: "pointer",
+                background: activeExt === ext.id ? ext.bg : "#fff",
+                transition: "all .15s",
+              }}
+            >
+              {/* Header extension */}
+              <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px" }}>
+                <div style={{
+                  fontSize: 11, fontWeight: 700, color: ext.color,
+                  background: ext.bg, border: `0.5px solid ${ext.color}`,
+                  padding: "3px 10px", borderRadius: 6, fontFamily: "monospace",
+                  flexShrink: 0, whiteSpace: "nowrap" as const,
+                }}>
+                  {ext.symbol}
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 14, fontWeight: 500, color: "#111" }}>{ext.name}</div>
+                  <div style={{ fontSize: 12, color: "#888", marginTop: 2, fontFamily: "monospace" }}>
+                    Ex : <span style={{ color: ext.color }}>{ext.example}</span>
+                  </div>
+                </div>
+                <div style={{ fontSize: 11, color: "#bbb", fontFamily: "monospace", flexShrink: 0, textAlign: "right" as const }}>
+                  {ext.notes.join(" – ")}
+                </div>
+              </div>
+
+              {/* Détail si sélectionné */}
+              {activeExt === ext.id && (
+                <div style={{ padding: "0 16px 16px", borderTop: `0.5px solid ${ext.color}20` }}>
+                  {/* Formule */}
+                  <div style={{ marginTop: 12, marginBottom: 12 }}>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: ext.color, marginBottom: 6, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>
+                      {n("extDetailFormuleLabel")}
+                    </div>
+                    <div style={{ fontFamily: "monospace", fontSize: 13, color: "#444", background: "#f8f8f8", padding: "6px 10px", borderRadius: 6 }}>
+                      {ext.formula}
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <div style={{ marginBottom: 12 }}>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: ext.color, marginBottom: 4, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>
+                      {n("extDetailCaracLabel")}
+                    </div>
+                    <div style={{ fontSize: 13, color: "#444", lineHeight: 1.6 }}>{ext.description}</div>
+                  </div>
+
+                  {/* Contexte jazz */}
+                  <div style={{ marginBottom: 14 }}>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: ext.color, marginBottom: 4, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>
+                      {n("extDetailUtilLabel")}
+                    </div>
+                    <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>{ext.jazzContext}</div>
+                  </div>
+
+                  <button
+                    onClick={e => {
+                      e.stopPropagation();
+                      if (ext.id === "13th") playArpeggio(pianoRef as React.RefObject<PianoPlayerRef>, ext.dotKeys, 180);
+                      else playChord(pianoRef as React.RefObject<PianoPlayerRef>, ext.dotKeys);
+                    }}
+                    style={{ fontSize: 12, padding: "5px 14px", border: `0.5px solid ${ext.color}`, borderRadius: 20, cursor: "pointer", background: "transparent", color: ext.color }}
+                  >
+                    {n("extRelistenBtn")} {ext.name}
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+
+          {/* Tableau récap */}
+          <h3 style={S.h3}>{n("extRecapTitle")}</h3>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+              <thead>
+                <tr style={{ borderBottom: "0.5px solid #e5e5e5" }}>
+                  {[
+                    n("extTableHeaderExtension"),
+                    n("extTableHeaderNotation"),
+                    n("extTableHeaderFormule"),
+                    n("extTableHeaderCouleur"),
+                    n("extTableHeaderDemitons"),
+                  ].map(h => (
+                    <th key={h} style={{ textAlign: "left", padding: "6px 10px", fontWeight: 500, color: "#666", whiteSpace: "nowrap" as const }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { name: n("extRow9MajName"),  sym: "Maj9 / 9",      formula: "1–3–5–7M–9M",  color: n("extRow9MajColor"),   dt: "14" },
+                  { name: n("extRow9DomName"),  sym: "9",             formula: "1–3–5–♭7–9M",  color: n("extRow9DomColor"),   dt: "14" },
+                  { name: n("extRowb9Name"),    sym: "7♭9",           formula: "1–3–5–♭7–♭9",  color: n("extRowb9Color"),     dt: "13" },
+                  { name: n("extRowSharp11Name"), sym: "7#11 / Maj7#11", formula: "1–3–♭7–#11", color: n("extRowSharp11Color"), dt: "18" },
+                  { name: n("extRow13Name"),    sym: "13",            formula: "1–3–♭7–13",    color: n("extRow13Color"),     dt: "21" },
+                ].map((r, i) => (
+                  <tr key={r.name} style={{ borderBottom: "0.5px solid #f0f0f0", background: i % 2 === 0 ? "#fff" : "#fafafa" }}>
+                    <td style={{ padding: "7px 10px", fontWeight: 500 }}>{r.name}</td>
+                    <td style={{ padding: "7px 10px", fontFamily: "monospace", fontSize: 11, color: "#6B3FA0" }}>{r.sym}</td>
+                    <td style={{ padding: "7px 10px", fontFamily: "monospace", fontSize: 11, color: "#555" }}>{r.formula}</td>
+                    <td style={{ padding: "7px 10px", fontSize: 11, color: "#666", fontStyle: "italic" as const }}>{r.color}</td>
+                    <td style={{ padding: "7px 10px", fontFamily: "monospace", fontSize: 11, color: "#888" }}>{r.dt}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* ══ SECTION 2 : APPLICATION ══ */}
+      {activeSection === "application" && (
+        <div>
+          <h2 style={S.h2}>{n("appSectionTitle")}</h2>
+          <p style={S.p}>{n("appIntro")}</p>
+
+          {/* II-V-I étendu */}
+          <h3 style={S.h3}>{n("appIIVITitle")}</h3>
+
+          <div style={{ display: "flex", flexDirection: "column" as const, gap: 8, marginBottom: 20 }}>
+            {II_V_I.map((chord, i) => (
+              <div key={chord.symbol} style={{
+                border: `0.5px solid ${chord.color}40`,
+                borderRadius: 10,
+                padding: "14px 16px",
+                background: i === 0 ? "#E6F1FB" : i === 1 ? "#FAEEDA" : "#E1F5EE",
+              }}>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: 14, flexWrap: "wrap" as const }}>
+                  <div style={{ flexShrink: 0 }}>
+                    <div style={{ fontFamily: "monospace", fontSize: 20, fontWeight: 700, color: chord.color }}>{chord.symbol}</div>
+                    <div style={{ fontSize: 10, color: "#888", marginTop: 2, whiteSpace: "nowrap" as const }}>{chord.function}</div>
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 13, color: "#444", lineHeight: 1.6, marginBottom: 8 }}>{chord.description}</div>
+                    <button
+                      onClick={() => playChord(pianoRef as React.RefObject<PianoPlayerRef>, chord.dotKeys, 2.5)}
+                      style={{ fontSize: 11, padding: "4px 12px", border: `0.5px solid ${chord.color}`, borderRadius: 20, cursor: "pointer", background: "transparent", color: chord.color }}
+                    >
+                      {n("appListenBtn")}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={() => {
+              playChord(pianoRef as React.RefObject<PianoPlayerRef>, II_V_I[0].dotKeys, 2.0);
+              setTimeout(() => playChord(pianoRef as React.RefObject<PianoPlayerRef>, II_V_I[1].dotKeys, 2.0), 2200);
+              setTimeout(() => playChord(pianoRef as React.RefObject<PianoPlayerRef>, II_V_I[2].dotKeys, 3.0), 4400);
+            }}
+            style={{ fontSize: 13, padding: "8px 20px", border: "0.5px solid #333", borderRadius: 20, cursor: "pointer", background: "#111", color: "#fff", marginBottom: 24 }}
+          >
+            {n("appListenFullBtn")}
+          </button>
+
+          {/* Jazz vs classique */}
+          <h3 style={S.h3}>{n("appJazzVsClassicTitle")}</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 20 }}>
+            <div style={{ border: "0.5px solid #e5e5e5", borderRadius: 10, padding: "14px 16px", background: "#fafafa" }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: "#555", marginBottom: 8, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>{n("appClassicLabel")}</div>
+              <ul style={{ margin: 0, padding: "0 0 0 16px", fontSize: 13, color: "#555", lineHeight: 1.8 }}>
+                <li>{n("appClassicLi1")}</li>
+                <li>{n("appClassicLi2")}</li>
+                <li>{n("appClassicLi3")}</li>
+                <li>{n("appClassicLi4")}</li>
+              </ul>
+            </div>
+            <div style={{ border: "0.5px solid #6B3FA040", borderRadius: 10, padding: "14px 16px", background: "#F0EAFA" }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: "#6B3FA0", marginBottom: 8, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>{n("appJazzLabel")}</div>
+              <ul style={{ margin: 0, padding: "0 0 0 16px", fontSize: 13, color: "#3B1F5A", lineHeight: 1.8 }}>
+                <li>{n("appJazzLi1")}</li>
+                <li>{n("appJazzLi2")}</li>
+                <li>{n("appJazzLi3")}</li>
+                <li>{n("appJazzLi4")}</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Tensions disponibles */}
+          <h3 style={S.h3}>{n("appTensionsTitle")}</h3>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("appTensionsInfoBox") }} />
+
+          <div style={{ overflowX: "auto", marginBottom: 16 }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+              <thead>
+                <tr style={{ borderBottom: "0.5px solid #e5e5e5" }}>
+                  {[
+                    n("appTableHeaderFonction"),
+                    n("appTableHeaderAccord"),
+                    n("appTableHeaderDispo"),
+                    n("appTableHeaderEviter"),
+                  ].map(h => (
+                    <th key={h} style={{ textAlign: "left", padding: "8px 10px", fontWeight: 500, color: "#666" }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {TENSIONS.map((r, i) => (
+                  <tr key={r.function} style={{ borderBottom: "0.5px solid #f0f0f0", background: i % 2 === 0 ? "#fff" : "#fafafa" }}>
+                    <td style={{ padding: "8px 10px", fontWeight: 500, color: r.color, fontSize: 11 }}>{r.function}</td>
+                    <td style={{ padding: "8px 10px", fontFamily: "monospace", fontSize: 11 }}>{r.example}</td>
+                    <td style={{ padding: "8px 10px", color: "#0F6E56", fontSize: 11 }}>{r.available}</td>
+                    <td style={{ padding: "8px 10px", color: "#993C1D", fontSize: 11 }}>{r.avoid}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("appWarnBox") }} />
+
+          <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("appTipBox") }} />
+        </div>
+      )}
+
+      {/* ══ SECTION 3 : QUIZ ══ */}
+      {activeSection === "quiz" && (
+        <div>
+          <h2 style={S.h2}>{n("quizSectionTitle")}</h2>
+
+          {quizDone ? (
+            <div style={{ textAlign: "center", padding: "2rem 0" }}>
+              <div style={{ fontSize: 32, marginBottom: 8 }}>
+                {quizScore >= 8 ? "🎹" : quizScore >= 6 ? "👍" : "💪"}
+              </div>
+              <div style={{ fontSize: 20, fontWeight: 500, color: "#111", marginBottom: 4 }}>
+                {n("quizScoreLabel")} {quizScore} / {QUIZ_COUNT}
+              </div>
+              <div style={{ fontSize: 14, color: "#666", marginBottom: 20 }}>
+                {quizScore >= 8
+                  ? n("quizFeedbackExcellent")
+                  : quizScore >= 6
+                  ? n("quizFeedbackGood")
+                  : n("quizFeedbackKeepGoing")}
+              </div>
+              <button
+                onClick={resetQuiz}
+                style={{ fontSize: 13, padding: "8px 20px", border: "0.5px solid #6B3FA0", borderRadius: 20, cursor: "pointer", background: "#F0EAFA", color: "#6B3FA0" }}
+              >{n("quizResetBtn")}</button>
+            </div>
+          ) : (
+            <div>
+              <div style={{ fontSize: 12, color: "#999", marginBottom: 10 }}>
+                {n("quizQuestionCounter")} {quizIdx + 1} / {QUIZ_COUNT}
+                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} {n("quizPoolInfo")}</span>
+              </div>
+              <div style={{ fontSize: 15, fontWeight: 500, color: "#111", lineHeight: 1.6, marginBottom: 16 }}>
+                {quizQuestions[quizIdx].q}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" as const, gap: 8 }}>
+                {quizQuestions[quizIdx].opts.map((opt, i) => {
+                  const isCorrect  = i === quizQuestions[quizIdx].a;
+                  const isSelected = selectedOpt === i;
+                  let bg = "#fff", border = "#e5e5e5", color = "#333";
+                  if (quizAnswered) {
+                    if (isCorrect)       { bg = "#E1F5EE"; border = "#0F6E56"; color = "#085041"; }
+                    else if (isSelected) { bg = "#FCEBEB"; border = "#A32D2D"; color = "#501313"; }
+                  }
+                  return (
+                    <button key={i} onClick={() => answerQuiz(i)} disabled={quizAnswered}
+                      style={{ fontSize: 13, padding: "10px 14px", border: `0.5px solid ${border}`, borderRadius: 8, cursor: quizAnswered ? "default" : "pointer", background: bg, color, textAlign: "left" as const, transition: "all .12s" }}>
+                      {opt}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {quizAnswered && (
+                <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 8, background: selectedOpt === quizQuestions[quizIdx].a ? "#E1F5EE" : "#FCEBEB", fontSize: 13, color: selectedOpt === quizQuestions[quizIdx].a ? "#085041" : "#501313", lineHeight: 1.6 }}>
+                  {quizQuestions[quizIdx].fb}
+                </div>
+              )}
+
+              {quizAnswered && (
+                <button onClick={nextQuiz}
+                  style={{ marginTop: 12, fontSize: 13, padding: "7px 18px", border: "0.5px solid #333", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#333" }}>
+                  {quizIdx + 1 < QUIZ_COUNT ? n("quizNextBtn") : n("quizFinishBtn")}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+</MODIFIED_TSX>

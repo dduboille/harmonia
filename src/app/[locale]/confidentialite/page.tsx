@@ -51,7 +51,7 @@ export default async function ConfidentialitePage({ params }: Props) {
             <strong>Dany Duboille</strong>, opérant sous le nom commercial <strong>Harmonia</strong>.
           </p>
           <InfoGrid items={[
-            { label: "Contact", value: "contact@getharmonia.app" },
+            { label: "Contact", value: "appliharmonia@gmail.com" },
             { label: "Site web", value: "getharmonia.app" },
             { label: "Pays", value: "France" },
           ]} />
@@ -261,7 +261,7 @@ export default async function ConfidentialitePage({ params }: Props) {
             </div>
             <p style={{ ...bodyText, margin: 0, fontSize: 13 }}>
               Envoyez votre demande par e-mail à{" "}
-              <a href="mailto:contact@getharmonia.app" style={{ color: "#185FA5", fontWeight: 600 }}>contact@getharmonia.app</a>{" "}
+              <a href="mailto:appliharmonia@gmail.com" style={{ color: "#185FA5", fontWeight: 600 }}>appliharmonia@gmail.com</a>{" "}
               en précisant votre adresse e-mail de compte Harmonia. Nous répondrons dans un délai
               de <strong>30 jours</strong> maximum.
             </p>
@@ -325,7 +325,7 @@ export default async function ConfidentialitePage({ params }: Props) {
             <div style={{ display: "flex", flexDirection: "column" as const, gap: 8, fontFamily: "system-ui, sans-serif", fontSize: 14 }}>
               <div>
                 <span style={{ color: "#888", fontSize: 12, fontWeight: 600, display: "block", marginBottom: 2 }}>E-MAIL</span>
-                <a href="mailto:contact@getharmonia.app" style={{ color: "#185FA5", fontWeight: 600, textDecoration: "none" }}>contact@getharmonia.app</a>
+                <a href="mailto:appliharmonia@gmail.com" style={{ color: "#185FA5", fontWeight: 600, textDecoration: "none" }}>appliharmonia@gmail.com</a>
               </div>
               <div>
                 <span style={{ color: "#888", fontSize: 12, fontWeight: 600, display: "block", marginBottom: 2 }}>SITE WEB</span>

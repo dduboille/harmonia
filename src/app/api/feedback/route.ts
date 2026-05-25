@@ -1,4 +1,4 @@
-import { Resend } from 'resend';
+﻿import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseAdmin } from '@/lib/supabase';
 
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     // Send email via Resend
     await resend.emails.send({
       from: 'Harmonia Feedback <noreply@getharmonia.app>',
-      to: 'contact@getharmonia.app',
+      to: 'appliharmonia@gmail.com',
       replyTo: email?.trim() || undefined,
       subject: `[Feedback ${type}] — Harmonia`,
       html: `

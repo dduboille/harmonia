@@ -1,0 +1,468 @@
+<MODIFIED_TSX>
+"use client";
+
+/**
+ * Cours8.tsx
+ * Harmonia · Niveau 1 · Cours 8 — Modulation par accord pivot
+ * Convention : affichage anglais, dotKeys PianoPlayer français
+ */
+
+import React, { useRef, useState } from "react";
+import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
+import { cours8Content } from "@/data/cours8Content";
+import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import { SATB } from "@/lib/satb-voicings";
+import MaitreCard from "@/components/MaitreCard";
+import InversionQuiz from "@/components/InversionQuiz";
+import { INVERSION_EXERCISES } from "@/exercises/cours-inversion-exercises";
+
+interface Section { id: string; label: string; }
+
+// ─── Audio ────────────────────────────────────────────────────────────────────
+
+const CHORDS = SATB;
+
+function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], duration = 1.8) {
+  keys.forEach((key, i) => {
+    const [note, octStr] = key.split(":");
+    setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration }), 0);
+  });
+}
+
+function playProg(ref: React.RefObject<PianoPlayerRef>, names: string[], gap = 1000) {
+  names.forEach((name, i) =>
+    setTimeout(() => playChord(ref, CHORDS[name] ?? [], 1.5), i * gap)
+  );
+}
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+
+const SECTIONS_IDS = ["logique","pivot","outils","exemples","quiz"] as const;
+
+// ─── Quiz ─────────────────────────────────────────────────────────────────────
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const QUIZ_COUNT = 10;
+
+// ─── Styles ───────────────────────────────────────────────────────────────────
+
+const S = {
+  wrap:  { fontFamily:"var(--font-sans,system-ui)", maxWidth:720, margin:"0 auto", padding:"0 1rem 3rem" } as React.CSSProperties,
+  hdr:   { padding:"1.5rem 0 1rem", borderBottom:"0.5px solid #e5e5e5", marginBottom:"1.25rem" } as React.CSSProperties,
+  badge: { display:"inline-block", background:"#E6F1FB", color:"#185FA5", fontSize:11, fontWeight:500, padding:"2px 10px", borderRadius:20, marginBottom:6 } as React.CSSProperties,
+  h1:    { fontSize:26, fontWeight:500, color:"#111", margin:0 } as React.CSSProperties,
+  sub:   { fontSize:14, color:"#666", marginTop:4, lineHeight:1.6 } as React.CSSProperties,
+  nav:   { display:"flex", gap:6, flexWrap:"wrap" as const, marginBottom:"1.5rem" },
+  pill:  (a:boolean):React.CSSProperties => ({ fontSize:12, padding:"5px 14px", border:`0.5px solid ${a?"#333":"#ddd"}`, borderRadius:20, cursor:"pointer", background:a?"#111":"transparent", color:a?"#fff":"#666", transition:"all .15s" }),
+  h2:    { fontSize:17, fontWeight:500, color:"#111", marginBottom:8 } as React.CSSProperties,
+  p:     { fontSize:14, color:"#555", lineHeight:1.75, marginBottom:"1rem" } as React.CSSProperties,
+  info:  { borderLeft:"2px solid #185FA5", padding:"8px 14px", background:"#E6F1FB", borderRadius:"0 6px 6px 0", margin:"12px 0", fontSize:13, color:"#0C447C", lineHeight:1.6 } as React.CSSProperties,
+  warn:  { borderLeft:"2px solid #BA7517", padding:"8px 14px", background:"#FAEEDA", borderRadius:"0 6px 6px 0", margin:"12px 0", fontSize:13, color:"#633806", lineHeight:1.6 } as React.CSSProperties,
+  tip:   { borderLeft:"2px solid #0F6E56", padding:"8px 14px", background:"#E1F5EE", borderRadius:"0 6px 6px 0", margin:"12px 0", fontSize:13, color:"#085041", lineHeight:1.6 } as React.CSSProperties,
+};
+
+// ─── Composant ────────────────────────────────────────────────────────────────
+
+export default function Cours8() {
+  const [sec,    setSec]    = useState("logique");
+  const i18n = useCoursI18n("cours8");
+  const tc = i18n.tc;
+  const n = (key: string) => tc(`narrative.${key}` as any);
+  const tr = useTerm();
+  const { questions: ALL_QUESTIONS } = useCoursContent(cours8Content);
+  const [selAc,  setSelAc]  = useState<number|null>(null);
+  const [selEx,  setSelEx]  = useState<string|null>(null);
+
+  const [qs,   setQs]   = useState(() => shuffle(ALL_QUESTIONS).slice(0, QUIZ_COUNT));
+  const [qi,   setQi]   = useState(0);
+  const [scr,  setScr]  = useState(0);
+  const [ans,  setAns]  = useState(false);
+  const [ch,   setCh]   = useState<number|null>(null);
+  const [done, setDone] = useState(false);
+
+  const ref = useRef<PianoPlayerRef>(null);
+
+  const answer = (i:number) => { if (ans) return; setCh(i); setAns(true); if (i===qs[qi].a) setScr(s=>s+1); };
+  const next   = () => { if (qi+1>=QUIZ_COUNT) setDone(true); else { setQi(i=>i+1); setAns(false); setCh(null); } };
+  const reset  = () => { setQs(shuffle(ALL_QUESTIONS).slice(0,QUIZ_COUNT)); setQi(0); setScr(0); setAns(false); setCh(null); setDone(false); };
+
+  // Accords communs entre C et G majeur — using i18n keys
+  const ACCORDS_COMMUNS_CG = [
+    { accord:"C",  enC:n("pivotAccordCEnC"),  enG:n("pivotAccordCEnG"),  pivot:false, note:n("pivotAccordCGNote") },
+    { accord:"Em", enC:n("pivotAccordEmEnC"), enG:n("pivotAccordEmEnG"), pivot:true,  note:n("pivotAccordEmNote") },
+    { accord:"Am", enC:n("pivotAccordAmEnC"), enG:n("pivotAccordAmEnG"), pivot:true,  note:n("pivotAccordAmNote") },
+    { accord:"G",  enC:n("pivotAccordGEnC"),  enG:n("pivotAccordGEnG"),  pivot:false, note:n("pivotAccordGNote") },
+  ];
+
+  // Exemples de modulations par accord pivot
+  const EXEMPLES_MOD = [
+    {
+      id: "cg",
+      de: "C majeur", vers: "G majeur",
+      pivot: "Am",
+      roles: "VI en C / II en G",
+      prog: ["C","F","G7","C","Am","D7","G"],
+      progKeys: ["C","F/A","G7/B","C","Am_pivot","D7/C","G/B"],
+      desc: "Am est VI en C (tonique secondaire) et II en G (sous-dominante). Après Am, D7 est la dominante de G — la modulation est confirmée par la cadence D7–G.",
+      color: "#0F6E56", bg: "#E1F5EE",
+    },
+    {
+      id: "cf",
+      de: "C majeur", vers: "F majeur",
+      pivot: "Dm",
+      roles: "II en C / VI en F",
+      prog: ["C","Am","Dm","C7","F"],
+      progKeys: ["C","Am/C","Dm/F","C7","F/A"],
+      desc: "Dm est II en C (sous-dominante) et VI en F (tonique secondaire). C7 (V/IV en C = V de F) confirme la nouvelle tonalité. Cadence C7–F.",
+      color: "#534AB7", bg: "#EEEDFE",
+    },
+    {
+      id: "gd",
+      de: "G majeur", vers: "D majeur",
+      pivot: "Bm",
+      roles: "III en G / VI en D",
+      prog: ["G","Em","Bm","A7","D"],
+      progKeys: ["G","Em/B","Bm","A7/G","D/F#"],
+      desc: "Bm est III en G (tonique) et VI en D (tonique secondaire). A7 (V de D) confirme D majeur. Transition fluide entre tons voisins à distance de quinte.",
+      color: "#BA7517", bg: "#FAEEDA",
+    },
+  ];
+
+  return (
+    <div style={S.wrap}>
+      <div style={{ position:"absolute", opacity:0, pointerEvents:"none", height:0, overflow:"hidden" }}>
+        <PianoPlayer ref={ref} octaves={3} startOctave={2} showLabels={false} />
+      </div>
+
+      <div style={S.hdr}>
+        <span style={S.badge}>{i18n.badge}</span>
+        <h1 style={S.h1}>{i18n.title}</h1>
+        <p style={S.sub}>{i18n.subtitle}</p>
+      </div>
+
+      <MaitreCard
+        composer="Wolfgang Amadeus Mozart"
+        period={n("maitreCardPeriod")}
+        emoji="✨"
+        concept={n("maitreCardConcept")}
+        anecdote={n("maitreCardAnecdote")}
+        lesson={n("maitreCardLesson")}
+        accentColor="#185FA5"
+      />
+
+      <nav style={S.nav}>
+        {SECTIONS_IDS.map(id => <button key={id} style={S.pill(sec===id)} onClick={() => setSec(id)}>{i18n.sectionLabel(id)}</button>)}
+      </nav>
+
+      {/* ══ LOGIQUE ══ */}
+      {sec === "logique" && (
+        <div>
+          <h2 style={S.h2}>{tr("Logique d'une modulation")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("logiqueIntro") }} />
+
+          <div style={S.info} dangerouslySetInnerHTML={{ __html: n("logiqueInfoBox") }} />
+
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("logiqueConditionsH3")}</h3>
+          <div style={{ display:"flex", flexDirection:"column", gap:8, marginBottom:20 }}>
+            {[
+              { n:"1", tKey:"logiqueStep1Title", dKey:"logiqueStep1Desc", c:"#993C1D", bg:"#FAECE7" },
+              { n:"2", tKey:"logiqueStep2Title", dKey:"logiqueStep2Desc", c:"#0F6E56", bg:"#E1F5EE" },
+              { n:"3", tKey:"logiqueStep3Title", dKey:"logiqueStep3Desc", c:"#185FA5", bg:"#E6F1FB" },
+            ].map(step => (
+              <div key={step.n} style={{ border:`0.5px solid ${step.c}30`, borderRadius:10, padding:"12px 16px", background:step.bg, display:"flex", gap:12, alignItems:"flex-start" }}>
+                <div style={{ minWidth:26, height:26, borderRadius:"50%", background:step.c, color:"#fff", display:"flex", alignItems:"center", justifyContent:"center", fontSize:13, fontWeight:600, flexShrink:0 }}>{step.n}</div>
+                <div>
+                  <div style={{ fontSize:13, fontWeight:500, color:step.c, marginBottom:3 }}>{n(step.tKey)}</div>
+                  <p style={{ fontSize:13, color:"#444", lineHeight:1.6, margin:0 }}>{n(step.dKey)}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("logiqueTonsVoisinsH3")}</h3>
+          <p style={S.p}>{n("logiqueTonsVoisinsP")}</p>
+
+          <div style={{ overflowX:"auto" }}>
+            <table style={{ width:"100%", borderCollapse:"collapse", fontSize:13 }}>
+              <thead>
+                <tr style={{ borderBottom:"0.5px solid #e5e5e5" }}>
+                  {[n("logiqueTableHDest"), n("logiqueTableHRel"), n("logiqueTableHNotes"), n("logiqueTableHFac")].map(h => (
+                    <th key={h} style={{ textAlign:"left", padding:"6px 10px", fontWeight:500, color:"#666" }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { destKey:"logiqueDestGMaj", relKey:"logiqueRelDom",     notes:"6/7", facKey:"logiqueFacTresFacile" },
+                  { destKey:"logiqueDestFMaj", relKey:"logiqueRelSousDom", notes:"6/7", facKey:"logiqueFacTresFacile" },
+                  { destKey:"logiqueDestAMin", relKey:"logiqueRelRelMin",  notes:"7/7", facKey:"logiqueFacNaturelle"  },
+                  { destKey:"logiqueDestDMin", relKey:"logiqueRelII",      notes:"6/7", facKey:"logiqueFacFacile"     },
+                  { destKey:"logiqueDestEMin", relKey:"logiqueRelIII",     notes:"6/7", facKey:"logiqueFacFacile"     },
+                  { destKey:"logiqueDestEbMaj",relKey:"logiqueRelMed",     notes:"2-3/7", facKey:"logiqueFacDifficile" },
+                ].map((row, i) => {
+                  const fac = n(row.facKey);
+                  return (
+                    <tr key={row.destKey} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
+                      <td style={{ padding:"7px 10px", fontWeight:500 }}>{n(row.destKey)}</td>
+                      <td style={{ padding:"7px 10px", color:"#555" }}>{n(row.relKey)}</td>
+                      <td style={{ padding:"7px 10px", color:"#185FA5", fontWeight:500 }}>{row.notes}</td>
+                      <td style={{ padding:"7px 10px", color: fac === n("logiqueFacTresFacile") || fac === n("logiqueFacNaturelle") ? "#0F6E56" : fac === n("logiqueFacFacile") ? "#BA7517" : "#993C1D" }}>{fac}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* ══ ACCORD PIVOT ══ */}
+      {sec === "pivot" && (
+        <div>
+          <h2 style={S.h2}>{tr("L'accord pivot")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("pivotIntro") }} />
+
+          <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("pivotTipBox") }} />
+
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("pivotAccordsH3")}</h3>
+          <p style={{ fontSize:13, color:"#888", marginBottom:12 }}>{n("pivotClickHint")}</p>
+
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:8, marginBottom:12 }}>
+            {ACCORDS_COMMUNS_CG.map((ac, i) => (
+              <div key={ac.accord} onClick={() => setSelAc(selAc===i?null:i)}
+                style={{ border:`0.5px solid ${selAc===i?(ac.pivot?"#0F6E56":"#BA7517"):"#e5e5e5"}`, borderRadius:10, padding:"10px 8px", textAlign:"center", cursor:"pointer", background:selAc===i?(ac.pivot?"#E1F5EE":"#FAEEDA"):"#fff", transition:"all .15s" }}>
+                <div style={{ fontSize:16, fontWeight:700, color:"#111", marginBottom:4 }}>{ac.accord}</div>
+                <div style={{ fontSize:10, padding:"2px 6px", borderRadius:8, display:"inline-block", background:ac.pivot?"#E1F5EE":"#FAECE7", color:ac.pivot?"#0F6E56":"#993C1D", fontWeight:500 }}>
+                  {ac.pivot ? n("pivotGoodLabel") : n("pivotBadLabel")}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {selAc !== null && (
+            <div style={{ border:`0.5px solid ${ACCORDS_COMMUNS_CG[selAc].pivot?"#0F6E56":"#BA7517"}`, borderRadius:10, padding:"14px 16px", background:ACCORDS_COMMUNS_CG[selAc].pivot?"#E1F5EE":"#FAEEDA", marginBottom:16 }}>
+              <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12, marginBottom:10 }}>
+                <div>
+                  <div style={{ fontSize:11, color:"#999", marginBottom:3 }}>{n("pivotDetailLabelC")}</div>
+                  <div style={{ fontSize:13, fontWeight:500, color:"#111" }}>{ACCORDS_COMMUNS_CG[selAc].enC}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize:11, color:"#999", marginBottom:3 }}>{n("pivotDetailLabelG")}</div>
+                  <div style={{ fontSize:13, fontWeight:500, color:"#111" }}>{ACCORDS_COMMUNS_CG[selAc].enG}</div>
+                </div>
+              </div>
+              <p style={{ fontSize:13, color:"#444", lineHeight:1.6, margin:0 }}>{ACCORDS_COMMUNS_CG[selAc].note}</p>
+            </div>
+          )}
+
+          <div style={S.warn} dangerouslySetInnerHTML={{ __html: n("pivotWarnBox") }} />
+
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("pivotSchemaH3")}</h3>
+          <div style={{ background:"#fafafa", border:"0.5px solid #e5e5e5", borderRadius:10, padding:"14px 16px", marginBottom:12 }}>
+            <div style={{ fontSize:12, color:"#999", marginBottom:8 }}>{n("pivotSchemaAnnotation")}</div>
+            <div style={{ fontFamily:"monospace", fontSize:13, color:"#185FA5", letterSpacing:1, marginBottom:10 }}>
+              C → F → G7 → C → Am → D7 → G
+            </div>
+            <button onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ["C","F/A","G7/B","C","Am_pivot","D7/C","G/B"], 1000)}
+              style={{ fontSize:12, padding:"5px 14px", border:"0.5px solid #185FA5", borderRadius:20, cursor:"pointer", background:"transparent", color:"#185FA5" }}>
+              {n("pivotListenBtn")}
+            </button>
+            <div style={{ fontSize:12, color:"#888", marginTop:10, lineHeight:1.65 }}>
+              {n("pivotSchemaFootnote")}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ══ OUTILS ══ */}
+      {sec === "outils" && (
+        <div>
+          <h2 style={S.h2}>{n("outilsH2")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("outilsIntro") }} />
+
+          {/* 6/4 */}
+          <div style={{ border:"0.5px solid #185FA530", borderRadius:10, padding:"16px", background:"#E6F1FB", marginBottom:16 }}>
+            <h3 style={{ fontSize:15, fontWeight:500, color:"#185FA5", marginBottom:8 }}>{n("outilsQuarteSixteH3")}</h3>
+            <p style={{ fontSize:13, color:"#0C447C", lineHeight:1.65, marginBottom:12 }} dangerouslySetInnerHTML={{ __html: n("outilsQuarteSixteP") }} />
+            <div style={{ background:"rgba(255,255,255,0.7)", borderRadius:8, padding:"10px 14px", marginBottom:12 }}>
+              <div style={{ fontSize:12, color:"#999", marginBottom:6 }}>{n("outilsResolutionLabel64")}</div>
+              <div style={{ fontSize:13, color:"#185FA5", fontFamily:"monospace" }}>Do (quarte) → Si (tierce de G7) ↓</div>
+              <div style={{ fontSize:13, color:"#185FA5", fontFamily:"monospace" }}>Mi (sixte) → Ré (quinte de G7) ↓</div>
+              <div style={{ fontSize:13, color:"#185FA5", fontFamily:"monospace" }}>Sol (basse) → Sol (fondamentale de G7, reste)</div>
+            </div>
+            <button onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ["C/G","G7","C"], 900)}
+              style={{ fontSize:12, padding:"5px 14px", border:"0.5px solid #185FA5", borderRadius:20, cursor:"pointer", background:"transparent", color:"#185FA5" }}>
+              {n("outilsListenBtn64")}
+            </button>
+            <div style={{ fontSize:12, color:"#888", marginTop:10 }}>{n("outilsDoublureNote")}</div>
+          </div>
+
+          {/* V7sus4 */}
+          <div style={{ border:"0.5px solid #534AB730", borderRadius:10, padding:"16px", background:"#EEEDFE", marginBottom:16 }}>
+            <h3 style={{ fontSize:15, fontWeight:500, color:"#534AB7", marginBottom:8 }}>{n("outilsSusH3")}</h3>
+            <p style={{ fontSize:13, color:"#2E2A87", lineHeight:1.65, marginBottom:12 }} dangerouslySetInnerHTML={{ __html: n("outilsSusP") }} />
+            <div style={{ background:"rgba(255,255,255,0.7)", borderRadius:8, padding:"10px 14px", marginBottom:12 }}>
+              <div style={{ fontSize:12, color:"#999", marginBottom:6 }}>{n("outilsResolutionLabelSus")}</div>
+              <div style={{ fontSize:13, color:"#534AB7", fontFamily:"monospace" }}>Do (quarte) → Si (tierce) ↓  (libère la suspension)</div>
+              <div style={{ fontSize:13, color:"#534AB7", fontFamily:"monospace" }}>Sol–Ré–Fa restent inchangés</div>
+              <div style={{ fontSize:13, color:"#534AB7", fontFamily:"monospace" }}>Puis G7 → C : Si → Do ↑ et Fa → Mi ↓</div>
+            </div>
+            <button onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ["G7sus4","G7","C"], 950)}
+              style={{ fontSize:12, padding:"5px 14px", border:"0.5px solid #534AB7", borderRadius:20, cursor:"pointer", background:"transparent", color:"#534AB7" }}>
+              {n("outilsListenBtnSus")}
+            </button>
+          </div>
+
+          <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("outilsTipBox") }} />
+
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("outilsComparaisonH3")}</h3>
+          <div style={{ overflowX:"auto" }}>
+            <table style={{ width:"100%", borderCollapse:"collapse", fontSize:13 }}>
+              <thead>
+                <tr style={{ borderBottom:"0.5px solid #e5e5e5" }}>
+                  {[n("outilsTableHOutil"), n("outilsTableHStructure"), n("outilsTableHTension"), n("outilsTableHUsage")].map(h => (
+                    <th key={h} style={{ textAlign:"left", padding:"6px 10px", fontWeight:500, color:"#666" }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { o:"I6/4",      sKey:"outilsRow1Struct", tKey:"outilsRow1Tension", uKey:"outilsRow1Usage" },
+                  { o:"V7sus4",    sKey:"outilsRow2Struct", tKey:"outilsRow2Tension", uKey:"outilsRow2Usage" },
+                  { o:"I6/4+sus4", sKey:"outilsRow3Struct", tKey:"outilsRow3Tension", uKey:"outilsRow3Usage" },
+                ].map((row, i) => (
+                  <tr key={row.o} style={{ borderBottom:"0.5px solid #f0f0f0", background:i%2===0?"#fff":"#fafafa" }}>
+                    <td style={{ padding:"7px 10px", fontFamily:"monospace", fontWeight:500 }}>{row.o}</td>
+                    <td style={{ padding:"7px 10px", color:"#555", fontSize:12 }}>{n(row.sKey)}</td>
+                    <td style={{ padding:"7px 10px", color:"#BA7517" }}>{n(row.tKey)}</td>
+                    <td style={{ padding:"7px 10px", color:"#666", fontSize:12 }}>{n(row.uKey)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* ══ EXEMPLES ══ */}
+      {sec === "exemples" && (
+        <div>
+          <h2 style={S.h2}>{tr("Exemples de modulations par accord pivot")}</h2>
+          <p style={S.p}>{n("exemplesIntro")}</p>
+
+          {EXEMPLES_MOD.map(ex => (
+            <div key={ex.id} style={{ border:`0.5px solid ${selEx===ex.id?ex.color:"#e5e5e5"}`, borderRadius:10, marginBottom:12, overflow:"hidden", background:selEx===ex.id?ex.bg:"#fff", transition:"all .15s", cursor:"pointer" }}
+              onClick={() => setSelEx(selEx===ex.id?null:ex.id)}>
+              <div style={{ padding:"14px 16px" }}>
+                <div style={{ display:"flex", alignItems:"baseline", gap:10, marginBottom:4 }}>
+                  <span style={{ fontSize:15, fontWeight:500, color:selEx===ex.id?ex.color:"#111" }}>
+                    {ex.de} → {ex.vers}
+                  </span>
+                  <span style={{ fontSize:12, padding:"1px 8px", borderRadius:10, background:ex.bg, color:ex.color, border:`0.5px solid ${ex.color}`, fontFamily:"monospace" }}>
+                    pivot : {ex.pivot}
+                  </span>
+                </div>
+                <div style={{ fontSize:12, color:"#888", fontStyle:"italic" }}>{ex.roles}</div>
+              </div>
+
+              {selEx === ex.id && (
+                <div style={{ padding:"0 16px 16px", borderTop:`0.5px solid ${ex.color}20` }}>
+                  <p style={{ fontSize:13, color:"#444", lineHeight:1.65, margin:"10px 0 10px" }}>{ex.desc}</p>
+                  <div style={{ fontFamily:"monospace", fontSize:13, color:ex.color, letterSpacing:1, marginBottom:10 }}>
+                    {ex.prog.join(" → ")}
+                  </div>
+                  <button
+                    onClick={e => { e.stopPropagation(); playProg(ref as React.RefObject<PianoPlayerRef>, ex.progKeys, 1000); }}
+                    style={{ fontSize:12, padding:"5px 14px", border:`0.5px solid ${ex.color}`, borderRadius:20, cursor:"pointer", background:"transparent", color:ex.color }}>
+                    {n("exemplesListenBtn")}
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+
+          <h3 style={{ fontSize:14, fontWeight:500, margin:"24px 0 8px", color:"#111" }}>{n("exemplesModCompleteH3")}</h3>
+          <div style={{ background:"#fafafa", border:"0.5px solid #e5e5e5", borderRadius:10, padding:"14px 16px", marginBottom:12 }}>
+            <div style={{ fontSize:12, color:"#999", marginBottom:6 }}>{n("exemplesModCompleteAnnotation")}</div>
+            <div style={{ fontFamily:"monospace", fontSize:13, color:"#185FA5", letterSpacing:1, marginBottom:8 }}>
+              C – F – G7 – C – Am – D7 – G/D – D7 – G
+            </div>
+            <div style={{ fontSize:12, color:"#666", lineHeight:1.65, marginBottom:10 }}>
+              {n("exemplesModCompleteFootnote")}
+            </div>
+            <button
+              onClick={() => playProg(ref as React.RefObject<PianoPlayerRef>, ["C","F/A","G7/B","C","Am_pivot","D7/C","C/G","G7/B","G"], 950)}
+              style={{ fontSize:12, padding:"5px 14px", border:"0.5px solid #185FA5", borderRadius:20, cursor:"pointer", background:"transparent", color:"#185FA5" }}>
+              {n("exemplesModCompleteListenBtn")}
+            </button>
+          </div>
+
+          <div style={S.info} dangerouslySetInnerHTML={{ __html: n("exemplesInfoBox") }} />
+        </div>
+      )}
+
+      {/* Exercices de renversements */}
+      {sec !== "quiz" && (
+        <div style={{ marginTop: 32 }}>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>{tr("Choisir le bon renversement")}</h3>
+          <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7, marginBottom: 16, fontFamily: "system-ui, sans-serif" }}>
+            {n("inversionQuizP")}
+          </p>
+          {INVERSION_EXERCISES.filter(e => e.cours === 8).map(ex => (
+            <div key={ex.id} style={{ border: "0.5px solid #e5e5e5", borderRadius: 12, padding: "20px", marginBottom: 16, background: "#fff" }}>
+              <InversionQuiz exercise={ex} />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* ══ QUIZ ══ */}
+      {sec === "quiz" && (
+        <div>
+          <h2 style={S.h2}>{i18n.training}</h2>
+          {done ? (
+            <div style={{ textAlign:"center", padding:"2rem 0" }}>
+              <div style={{ fontSize:32, marginBottom:8 }}>{scr>=9?"🗺️":scr>=7?"🎹":"💪"}</div>
+              <div style={{ fontSize:20, fontWeight:500, color:"#111", marginBottom:4 }}>{i18n.t("score")} : {scr} / {QUIZ_COUNT}</div>
+              <div style={{ fontSize:14, color:"#666", marginBottom:20 }}>
+                {i18n.quizMessage(scr, QUIZ_COUNT)}
+              </div>
+              <button onClick={reset} style={{ fontSize:13, padding:"8px 20px", border:"0.5px solid #185FA5", borderRadius:20, cursor:"pointer", background:"#E6F1FB", color:"#185FA5" }}>
+                {i18n.newQ}
+              </button>
+            </div>
+          ) : (
+            <div>
+              <div style={{ fontSize:12, color:"#999", marginBottom:10 }}>
+                {i18n.t("question")} {qi+1} {i18n.t("of")} {QUIZ_COUNT}
+                <span style={{ marginLeft:12, color:"#ccc" }}>{ALL_QUESTIONS.length} {i18n.t("questionsPool")}</span>
+              </div>
+              <div style={{ fontSize:15, fontWeight:500, color:"#111", lineHeight:1.6, marginBottom:16 }}>{qs[qi].q}</div>
+              <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
+                {qs[qi].opts.map((opt, i) => {
+                  const correct=i===qs[qi].a, selected=ch===i;
+                  let bg="#fff", border="#e5e5e5", color="#333";
+                  if (ans) { if (correct) { bg="#E1F5EE"; border="#0F6E56"; color="#085041"; } else if (selected) { bg="#FCEBEB"; border="#A32D2D"; color="#501313"; } }
+                  return <button key={i} onClick={() => answer(i)} disabled={ans} style={{ fontSize:13, padding:"10px 14px", border:`0.5px solid ${border}`, borderRadius:8, cursor:ans?"default":"pointer", background:bg, color, textAlign:"left", transition:"all .12s" }}>{opt}</button>;
+                })}
+              </div>
+              {ans && <div style={{ marginTop:12, padding:"10px 14px", borderRadius:8, background:ch===qs[qi].a?"#E1F5EE":"#FCEBEB", fontSize:13, color:ch===qs[qi].a?"#085041":"#501313", lineHeight:1.6 }}>{qs[qi].fb}</div>}
+              {ans && <button onClick={next} style={{ marginTop:12, fontSize:13, padding:"7px 18px", border:"0.5px solid #333", borderRadius:20, cursor:"pointer", background:"transparent", color:"#333" }}>{qi+1<QUIZ_COUNT?i18n.nextQ:i18n.seeScore}</button>}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+</MODIFIED_TSX>

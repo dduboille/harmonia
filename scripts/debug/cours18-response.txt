@@ -1,0 +1,649 @@
+I'll systematically identify all hardcoded French strings in JSX, assign keys, and produce the modified TSX.
+
+**Strings to extract:**
+
+**Header/Nav:**
+- Badge: "Niveau 2 · Cours 18"
+- sectionLabel returns for "motif", "techniques", "quiz"
+
+**MaitreCard props:** period, concept, anecdote, lesson
+
+**Section 1 (motif):**
+- h2, p, demo box title, demo box description, buttons (Motif original, Renversement, Rétrograde), h3 (5 éléments), ELEMENTS data (name+desc ×5), warnBox, h3 (3 étapes), steps data (×3 name+desc), h3 (Exemples célèbres), EXEMPLES data (motif+desc ×3), infoBox
+
+**Section 2 (techniques):**
+- h2, p, order labels (Harmonie, Dynamique, Mélodie, Rythme), "moins radical → plus radical", FAMILIES data (name, order, desc, subs ×4, demoLabel, demo2Label), h3 Démos, arpège card title/desc/button, contrepoint card desc/button, tip box
+
+**Section 3 (quiz):**
+- h2, "Question X / N", "questions dans le pool", "Question suivante →", "Voir mon score"
+
+Note: ELEMENTS, EXEMPLES, FAMILIES contain hardcoded French — these are static data arrays defined outside the component. I'll replace their content with `n()` calls by moving the data construction inside the component or using index-based keys.
+
+Since the arrays are defined outside the component and contain many strings, I'll replace inline references to their string fields with `n()` calls by defining the arrays inside the component using the translation function, or by keeping the arrays outside and passing translated content differently. The cleanest approach: keep arrays outside but reference strings via keys, constructing them inside the component.
+
+<NARRATIVE_KEYS>
+{"fr":{"badgeLevel":"Niveau 2 · Cours 18","navMotif":"Le motif","navTechniques":"Techniques","navEntrainement":"Entraînement","maitreCardPeriod":"1770–1827","maitreCardConcept":"Développement motivique &amp; économie de moyens","maitreCardAnecdote":"En 1808, Beethoven présente sa 5e Symphonie. Le motif d'ouverture — Sol–Sol–Sol–Mib, quatre notes seulement — génère vingt minutes de musique. Un élève lui demande comment il a pu construire autant à partir de si peu. Beethoven répond : \u00abC'est exactement la question qu'il faut poser. La richesse n'est pas dans la quantité de matériel — elle est dans la profondeur avec laquelle on le développe.\u00bb","maitreCardLesson":"Avant de composer, pose-toi cette question : mon motif de départ est-il assez court pour être mémorisable ? Assez distinctif pour être reconnaissable ? Assez flexible pour être transformé ? Un motif qui répond oui aux trois peut générer une symphonie. Un motif trop complexe se développe difficilement ; trop simple, il s'épuise vite.","motifH2":"Le motif et ses transformations","motifP1":"Le <strong>motif</strong> est la plus petite unité musicale distincte et immédiatement reconnaissable. Il sert de fil conducteur au discours musical : répété et transformé, il donne cohérence et direction à une phrase, un mouvement ou une œuvre entière. Contrairement à la musique de support (qui accompagne une action extérieure), la <em>musique de discours</em> développe ses propres idées de façon autonome.","motifDemoTitle":"Le motif le plus célèbre : 5e Symphonie de Beethoven","motifDemoDesc":"4 notes seulement — 3 répétées + une chute de tierce mineure. Ce motif est fragmenté, transposé, augmenté et liquidé dans les 4 mouvements de la symphonie : 20 minutes de musique issues d'une cellule de 4 notes.","motifBtnOriginal":"▶ Motif original","motifBtnRenversement":"▶ Renversement","motifBtnRetrograde":"▶ Rétrograde","motifH3Elements":"Les 5 éléments constitutifs d'un motif","elem1Name":"Intervalles","elem1Desc":"Les sauts mélodiques caractéristiques — l'identité mélodique distinctive (tierce, quinte, triton). Le motif de Beethoven : une chute de tierce mineure Sol→Mib.","elem2Name":"Rythme","elem2Desc":"Le schéma rythmique distinctif — souvent plus identifiable que la mélodie. Trois notes courtes + une longue (ta-ta-ta-TAA) chez Beethoven.","elem3Name":"Harmonie","elem3Desc":"Les accords qui soutiennent et colorent le motif — déterminant si l'expression est tendue, résolue ou ambiguë.","elem4Name":"Accompagnement","elem4Desc":"La texture qui entoure le motif : arpèges, accords plaqués, ligne de basse indépendante, contrepoint.","elem5Name":"Dynamique","elem5Desc":"Nuances, articulation, attaque — le caractère expressif physique. Forte ou piano, legato ou staccato.","motifWarnBox":"<strong>Le paradoxe de la répétition :</strong> la répétition est <em>nécessaire</em> — sans elle, l'auditeur ne reconnaît rien et le discours musical perd toute cohérence. Mais elle est <em>dangereuse</em> si elle est trop pure : répéter identiquement plus de deux fois installe rapidement la monotonie. La solution est de <strong>répéter en transformant</strong> — maintenir la reconnaissance tout en renouvelant l'intérêt.","motifH3Rhetorique":"Le motif comme personnage : 3 étapes rhétoriques","step1Name":"Présentation","step1Desc":"Établir l'identité du motif — le présenter clairement, sans équivoque.","step2Name":"Répétition","step2Desc":"Ancrer le motif dans l'oreille de l'auditeur — répéter (transformé) pour confirmer l'identité.","step3Name":"Évolution","step3Desc":"Transformer, développer, combiner — le motif voyage et mûrit.","motifH3Exemples":"Exemples célèbres","ex1Motif":"Sol – Sol – Sol – Mib","ex1Desc":"Quatre notes seulement. Beethoven fragmente, transpose, augmente et liquide ce motif tout au long des quatre mouvements. Vingt minutes de symphonie issues d'une cellule de quatre notes.","ex2Motif":"Motif associé à un personnage ou une idée","ex2Desc":"Wagner associe un motif à chaque personnage (l'épée de Siegfried, la malédiction de l'Or). Le motif revient transformé selon l'état dramatique — un motif de gloire devient sinistre par changement harmonique.","ex3Motif":"Thème de la Force, marche impériale...","ex3Desc":"Williams hérite directement de Wagner : chaque personnage ou concept a son leitmotiv. Le thème de la Force est transformé en marche militaire pour Dark Vador — même contour, contexte harmonique radicalement différent.","motifInfoBox":"<strong>Le motif n'est pas un ornement</strong> — c'est le germe de toute la pensée musicale. Avant de composer une phrase, pose-toi : mon idée de base est-elle assez distincte pour être reconnaissable ? Assez flexible pour être transformée 10 façons différentes ? Une bonne idée génère une phrase ; une excellente idée génère une symphonie.","techH2":"Les 4 familles de techniques de développement","techP1":"Les techniques de développement sont organisées en 4 familles, classées du moins au plus radical. On commence par transformer le contexte (harmonie, dynamique) avant de toucher à la mélodie, et on modifie le rythme en dernier — car c'est souvent l'élément le plus identifiant du motif.","techOrderLabel":"moins radical → plus radical","techLabelHarmonie":"Harmonie","techLabelDynamique":"Dynamique","techLabelMelodie":"Mélodie","techLabelRythme":"Rythme","famAName":"Harmonie et accompagnement","famAOrder":"En premier — changements les moins radicaux. L'identité mélodique et rythmique du motif reste intacte.","famADesc":"Transformer le contexte harmonique ou la texture d'accompagnement. Le motif reste pleinement reconnaissable car sa mélodie et son rythme sont préservés — seule la 'couleur' change.","famASub1Name":"Substitution harmonique","famASub1Detail":"Remplacer I par VI (substitution diatonique), ou V7 par son substitut tritonique. Même mélodie, couleur harmonique différente.","famASub2Name":"Ligne de basse","famASub2Detail":"Transformer la basse en contrepoint indépendant — tierce ou sixte parallèle, ou mouvement contraire à la mélodie.","famASub3Name":"Arpèges","famASub3Detail":"Briser les accords en notes successives montantes ou descendantes. Transforme la texture sans toucher au motif mélodique.","famASub4Name":"Contrepoint","famASub4Detail":"Ajouter une voix indépendante qui répond ou imite le motif. Enrichit la densité polyphonique.","famADemoLabel":"▶ I–V7–I (original)","famADemo2Label":"▶ I–VI–I (substitution VI)","famBName":"Arrangement dynamique","famBOrder":"En deuxième — changements d'expression sans altérer notes ni rythme.","famBDesc":"Modifier les paramètres d'expression : nuances, articulation, tessiture, timbre. Le motif garde sa structure intacte — seule son 'énergie' ou son 'costume' change.","famBSub1Name":"Nuances","famBSub1Detail":"Forte → piano, crescendo, decrescendo. Même mélodie, contraste d'intensité dramatique radicalement différent.","famBSub2Name":"Articulation","famBSub2Detail":"Legato → staccato, accents sur des temps inattendus. Change le caractère sans toucher aux hauteurs ni aux durées.","famBSub3Name":"Tessiture","famBSub3Detail":"Transposer d'une octave : monter apporte luminosité et urgence ; descendre crée gravité et profondeur.","famBSub4Name":"Timbre","famBSub4Detail":"Changer l'instrument ou le registre : même motif aux violons, puis aux cuivres, puis au tutti — effets entièrement différents.","famCName":"Transformations mélodiques","famCOrder":"En troisième — les hauteurs changent, mais le rythme reste souvent reconnaissable.","famCDesc":"Modifier le contour mélodique du motif tout en maintenant souvent sa structure rythmique. L'oreille reconnaît le motif par son rythme même quand les hauteurs changent significativement.","famCSub1Name":"Renversement (inversion des intervalles)","famCSub1Detail":"Chaque intervalle est inversé : une montée de tierce devient une descente de tierce. Sol–Sol–Sol–Mib devient Sol–Sol–Sol–Sib.","famCSub2Name":"Rétrograde","famCSub2Detail":"Le motif est joué à l'envers — de la dernière note à la première. Mib–Sol–Sol–Sol (rétrograde du motif de Beethoven).","famCSub3Name":"Ajout/omission de notes","famCSub3Detail":"Insérer des notes de passage, ou supprimer une note du motif. Le contour reste reconnaissable, allégé ou enrichi.","famCSub4Name":"Transformation non rythmique","famCSub4Detail":"Les hauteurs changent selon la gamme (marche harmonique) mais le schéma rythmique reste identique.","famCDemoLabel":"▶ Motif original (↓ tierce min.)","famCDemo2Label":"▶ Renversement (↑ tierce min.)","famDName":"Altérations rythmiques","famDOrder":"En dernier — les changements les plus radicaux. Le motif peut devenir méconnaissable.","famDDesc":"Modifier la durée des notes ou la carrure métrique. Les altérations rythmiques sont les plus transformatrices : le rythme est souvent le trait le plus distinctif d'un motif — le toucher, c'est le risquer.","famDSub1Name":"Augmentation","famDSub1Detail":"Doubler (ou tripler) la durée de chaque note. Le motif ralentit, prend une ampleur solennelle — Beethoven l'utilise dans les développements de sonates.","famDSub2Name":"Diminution","famDSub2Detail":"Diviser la durée de chaque note. Le motif s'accélère, devient nerveux ou urgent — effet de liquidation en fin de phrase.","famDSub3Name":"Changement de carrure","famDSub3Detail":"Passer de 4/4 à 3/4 (ou inversement). Le même motif dans un mètre différent produit un sentiment de déséquilibre ou de légèreté.","famDSub4Name":"Régularisation/dérégulation","famDSub4Detail":"Transformer des syncopes en temps forts (régularisation) ou des temps forts en syncopes (dérégulation). Change l'énergie rythmique sans toucher aux hauteurs.","famDDemoLabel":"▶ Motif (tempo normal)","famDDemo2Label":"▶ Rétrograde (fam. C — écoute comparative)","techH3Demos":"Démos complémentaires","techArpegeTitle":"Arpège (fam. A)","techArpegeFormula":"Do – Mi – Sol – Do  (accord brisé ascendant)","techArpegeDesc":"L'accompagnement en arpèges transforme la texture sans toucher au motif mélodique.","techArpegeBtn":"▶ Arpège de Do","techContrepointTitle":"Contrepoint (fam. A)","techContrepointFormula":"Basse ↑ Do–Ré–Mi–Sol / Voix ↓ Sol–Fa–Mi–Do","techContrepointDesc":"Deux voix en mouvement contraire — la basse monte pendant que la voix supérieure descend.","techContrepointBtn":"▶ Contrepoint contraire","techTipBox":"<strong>Combinaisons :</strong> les 4 familles se combinent librement. Un motif peut simultanément recevoir une substitution harmonique (A), être joué pianissimo (B), et être légèrement transposé (C). Les combinaisons créent les transformations les plus riches — c'est exactement ce que fait Beethoven dans ses grands développements.","quizH2":"Entraînement","quizQuestion":"Question","quizOf":"/","quizPoolSize":"questions dans le pool","quizNextQuestion":"Question suivante →","quizSeeScore":"Voir mon score"},"en":{"badgeLevel":"Level 2 · Lesson 18","navMotif":"The Motif","navTechniques":"Techniques","navEntrainement":"Practice","maitreCardPeriod":"1770–1827","maitreCardConcept":"Motivic development &amp; economy of means","maitreCardAnecdote":"In 1808, Beethoven premiered his 5th Symphony. The opening motif — G–G–G–E♭, just four notes — generates twenty minutes of music. A student asked how he could build so much from so little. Beethoven replied: \u201cThat is exactly the right question. Richness lies not in the quantity of material — it lies in the depth with which you develop it.\u201d","maitreCardLesson":"Before composing, ask yourself: is my opening motif short enough to be memorable? Distinctive enough to be recognisable? Flexible enough to be transformed? A motif that answers yes to all three can generate a symphony. One that is too complex is hard to develop; too simple, it exhausts itself quickly.","motifH2":"The motif and its transformations","motifP1":"The <strong>motif</strong> is the smallest distinct and immediately recognisable musical unit. It serves as the guiding thread of musical discourse: repeated and transformed, it gives coherence and direction to a phrase, a movement, or an entire work. Unlike support music (which accompanies an external action), <em>discourse music</em> develops its own ideas autonomously.","motifDemoTitle":"The most famous motif: Beethoven's 5th Symphony","motifDemoDesc":"Just 4 notes — 3 repeated + a descending minor third. This motif is fragmented, transposed, augmented and liquidated across all 4 movements of the symphony: 20 minutes of music from a 4-note cell.","motifBtnOriginal":"▶ Original motif","motifBtnRenversement":"▶ Inversion","motifBtnRetrograde":"▶ Retrograde","motifH3Elements":"The 5 constituent elements of a motif","elem1Name":"Intervals","elem1Desc":"The characteristic melodic leaps — the distinctive melodic identity (third, fifth, tritone). Beethoven's motif: a descending minor third G→E♭.","elem2Name":"Rhythm","elem2Desc":"The distinctive rhythmic pattern — often more identifiable than the melody. Three short notes + one long (ta-ta-ta-TAA) in Beethoven.","elem3Name":"Harmony","elem3Desc":"The chords that support and colour the motif — determining whether the expression feels tense, resolved, or ambiguous.","elem4Name":"Accompaniment","elem4Desc":"The texture surrounding the motif: arpeggios, block chords, independent bass line, counterpoint.","elem5Name":"Dynamics","elem5Desc":"Nuance, articulation, attack — the physical expressive character. Forte or piano, legato or staccato.","motifWarnBox":"<strong>The paradox of repetition:</strong> repetition is <em>necessary</em> — without it, the listener recognises nothing and the musical discourse loses all coherence. But it is <em>dangerous</em> if too pure: repeating identically more than twice quickly breeds monotony. The solution is to <strong>repeat while transforming</strong> — maintain recognition while renewing interest.","motifH3Rhetorique":"The motif as character: 3 rhetorical stages","step1Name":"Presentation","step1Desc":"Establish the motif's identity — present it clearly and unambiguously.","step2Name":"Repetition","step2Desc":"Anchor the motif in the listener's ear — repeat (transformed) to confirm the identity.","step3Name":"Evolution","step3Desc":"Transform, develop, combine — the motif travels and matures.","motifH3Exemples":"Famous examples","ex1Motif":"G – G – G – E♭","ex1Desc":"Just four notes. Beethoven fragments, transposes, augments and liquidates this motif throughout all four movements. Twenty minutes of symphony from a four-note cell.","ex2Motif":"Motif associated with a character or idea","ex2Desc":"Wagner assigns a motif to each character (Siegfried's sword, the curse of the Gold). The motif returns transformed according to the dramatic state — a motif of glory becomes sinister through harmonic change.","ex3Motif":"The Force theme, Imperial March...","ex3Desc":"Williams inherits directly from Wagner: each character or concept has its leitmotif. The Force theme is transformed into a military march for Darth Vader — same contour, radically different harmonic context.","motifInfoBox":"<strong>The motif is not an ornament</strong> — it is the seed of all musical thought. Before composing a phrase, ask yourself: is my core idea distinctive enough to be recognisable? Flexible enough to be transformed in 10 different ways? A good idea generates a phrase; an excellent idea generates a symphony.","techH2":"The 4 families of development techniques","techP1":"Development techniques are organised into 4 families, ranked from least to most radical. We begin by transforming the context (harmony, dynamics) before touching the melody, and we modify rhythm last — as it is often the most identifying element of the motif.","techOrderLabel":"less radical → more radical","techLabelHarmonie":"Harmony","techLabelDynamique":"Dynamics","techLabelMelodie":"Melody","techLabelRythme":"Rhythm","famAName":"Harmony and accompaniment","famAOrder":"First — the least radical changes. The melodic and rhythmic identity of the motif remains intact.","famADesc":"Transforming the harmonic context or the accompanying texture. The motif remains fully recognisable because its melody and rhythm are preserved — only the 'colour' changes.","famASub1Name":"Harmonic substitution","famASub1Detail":"Replace I with VI (diatonic substitution), or V7 with its tritone substitute. Same melody, different harmonic colour.","famASub2Name":"Bass line","famASub2Detail":"Transform the bass into independent counterpoint — parallel thirds or sixths, or contrary motion to the melody.","famASub3Name":"Arpeggios","famASub3Detail":"Break chords into successive ascending or descending notes. Transforms the texture without touching the melodic motif.","famASub4Name":"Counterpoint","famASub4Detail":"Add an independent voice that answers or imitates the motif. Enriches polyphonic density.","famADemoLabel":"▶ I–V7–I (original)","famADemo2Label":"▶ I–VI–I (VI substitution)","famBName":"Dynamic arrangement","famBOrder":"Second — expressive changes without altering notes or rhythm.","famBDesc":"Modifying expressive parameters: dynamics, articulation, register, timbre. The motif keeps its structure intact — only its 'energy' or 'costume' changes.","famBSub1Name":"Dynamics","famBSub1Detail":"Forte → piano, crescendo, decrescendo. Same melody, radically different dramatic intensity contrast.","famBSub2Name":"Articulation","famBSub2Detail":"Legato → staccato, accents on unexpected beats. Changes the character without touching pitches or durations.","famBSub3Name":"Register","famBSub3Detail":"Transpose by an octave: going up brings brightness and urgency; going down creates gravity and depth.","famBSub4Name":"Timbre","famBSub4Detail":"Change the instrument or register: same motif in the strings, then brass, then tutti — entirely different effects.","famCName":"Melodic transformations","famCOrder":"Third — the pitches change, but the rhythm often remains recognisable.","famCDesc":"Modifying the melodic contour of the motif while often maintaining its rhythmic structure. The ear recognises the motif by its rhythm even when pitches change significantly.","famCSub1Name":"Inversion (interval inversion)","famCSub1Detail":"Each interval is inverted: an ascending third becomes a descending third. G–G–G–E♭ becomes G–G–G–B♭.","famCSub2Name":"Retrograde","famCSub2Detail":"The motif is played backwards — from the last note to the first. E♭–G–G–G (retrograde of Beethoven's motif).","famCSub3Name":"Addition/omission of notes","famCSub3Detail":"Insert passing notes, or remove a note from the motif. The contour remains recognisable, lightened or enriched.","famCSub4Name":"Non-rhythmic transformation","famCSub4Detail":"Pitches shift according to the scale (harmonic sequence) but the rhythmic pattern remains identical.","famCDemoLabel":"▶ Original motif (↓ minor 3rd)","famCDemo2Label":"▶ Inversion (↑ minor 3rd)","famDName":"Rhythmic alterations","famDOrder":"Last — the most radical changes. The motif may become unrecognisable.","famDDesc":"Modifying note durations or metric structure. Rhythmic alterations are the most transformative: rhythm is often the most distinctive feature of a motif — to touch it is to risk it.","famDSub1Name":"Augmentation","famDSub1Detail":"Double (or triple) the duration of each note. The motif slows down, takes on a solemn grandeur — Beethoven uses this in sonata developments.","famDSub2Name":"Diminution","famDSub2Detail":"Divide the duration of each note. The motif speeds up, becomes nervous or urgent — liquidation effect at the end of a phrase.","famDSub3Name":"Metric change","famDSub3Detail":"Moving from 4/4 to 3/4 (or vice versa). The same motif in a different metre creates a feeling of imbalance or lightness.","famDSub4Name":"Regularisation/deregulation","famDSub4Detail":"Transform syncopations into strong beats (regularisation) or strong beats into syncopations (deregulation). Changes rhythmic energy without touching pitches.","famDDemoLabel":"▶ Motif (normal tempo)","famDDemo2Label":"▶ Retrograde (fam. C — comparative listen)","techH3Demos":"Additional demos","techArpegeTitle":"Arpeggio (fam. A)","techArpegeFormula":"C – E – G – C  (ascending broken chord)","techArpegeDesc":"Accompanying with arpeggios transforms the texture without touching the melodic motif.","techArpegeBtn":"▶ C arpeggio","techContrepointTitle":"Counterpoint (fam. A)","techContrepointFormula":"Bass ↑ C–D–E–G / Voice ↓ G–F–E–C","techContrepointDesc":"Two voices in contrary motion — the bass ascends while the upper voice descends.","techContrepointBtn":"▶ Contrary counterpoint","techTipBox":"<strong>Combinations:</strong> the 4 families combine freely. A motif can simultaneously receive a harmonic substitution (A), be played pianissimo (B), and be slightly transposed (C). Combinations create the richest transformations — this is exactly what Beethoven does in his great developments.","quizH2":"Practice","quizQuestion":"Question","quizOf":"/","quizPoolSize":"questions in the pool","quizNextQuestion":"Next question →","quizSeeScore":"See my score"}}
+</NARRATIVE_KEYS>
+
+<MODIFIED_TSX>
+"use client";
+
+/**
+ * Cours18.tsx
+ * Harmonia · Niveau 2 · Cours 18 — Le développement motivique
+ * Convention : affichage anglais, dotKeys PianoPlayer français
+ */
+
+import React, { useRef, useState } from "react";
+import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
+import { cours18Content } from "@/data/cours18Content";
+import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import MaitreCard from "@/components/MaitreCard";
+
+// ── Audio helpers ─────────────────────────────────────────────────────────────
+
+function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], dur = 1.4) {
+  keys.forEach(key => {
+    const [n, o] = key.split(":");
+    ref.current?.playNote(n, parseInt(o), { duration: dur });
+  });
+}
+
+function playProg(
+  ref: React.RefObject<PianoPlayerRef>,
+  chords: string[][],
+  gapMs = 1100,
+  dur = 1.0,
+) {
+  chords.forEach((chord, i) => {
+    setTimeout(() => playChord(ref, chord, dur), i * gapMs);
+  });
+}
+
+// ── Audio demos (ascending pitch verified) ────────────────────────────────────
+
+// Beethoven 5th — motif original (Sol–Sol–Sol–Mib, descending minor 3rd)
+const MOTIF_ORIG: string[][] = [["Sol:4"],["Sol:4"],["Sol:4"],["Mib:4"]];
+
+// Renversement (inversion): ascending minor 3rd (Sol–Sol–Sol–Sib)
+const MOTIF_INV: string[][] = [["Sol:4"],["Sol:4"],["Sol:4"],["Sib:4"]];
+
+// Rétrograde: reversed motif (Mib–Sol–Sol–Sol)
+const MOTIF_RETRO: string[][] = [["Mib:4"],["Sol:4"],["Sol:4"],["Sol:4"]];
+
+// Arpège: C major broken chord ascending
+const ARPEGE_DEMO: string[][] = [["Do:4"],["Mi:4"],["Sol:4"],["Do:5"]];
+
+// Contrepoint: contrary motion — bass ascending, treble descending
+const CONTREPOINT_DEMO: string[][] = [
+  ["Do:3","Sol:4"],   // Do3=48, Sol4=67 ✓
+  ["Ré:3","Fa:4"],    // Ré3=50, Fa4=65 ✓
+  ["Mi:3","Mi:4"],    // Mi3=52, Mi4=64 ✓
+  ["Sol:3","Do:4"],   // Sol3=55, Do4=60 ✓
+];
+
+// Harmonic I–V7–I (original)
+const HARM_ORIG: string[][] = [
+  ["Do:3","Mi:3","Sol:3"],          // I   — CMaj  (48,52,55) ✓
+  ["Sol:3","Si:3","Ré:4","Fa:4"],   // V7  — G7    (55,59,62,65) ✓
+  ["Do:3","Mi:3","Sol:3"],          // I   — CMaj
+];
+
+// Harmonic I–VI–I (diatonic substitution: V → VI)
+const HARM_SUBST: string[][] = [
+  ["Do:3","Mi:3","Sol:3"],   // I  — CMaj  (48,52,55) ✓
+  ["La:3","Do:4","Mi:4"],    // VI — Am    (57,60,64) ✓
+  ["Do:3","Mi:3","Sol:3"],   // I  — CMaj
+];
+
+interface Family {
+  id: string;
+  letter: string;
+  name: string;
+  color: string;
+  bg: string;
+  order: string;
+  desc: string;
+  subs: { name: string; detail: string }[];
+  demo?: string[][];
+  demoLabel?: string;
+  demoGapMs?: number;
+  demoDur?: number;
+  demo2?: string[][];
+  demo2Label?: string;
+  demo2GapMs?: number;
+  demo2Dur?: number;
+}
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const QUIZ_COUNT = 10;
+const SECTIONS_IDS = ["motif", "techniques", "quiz"] as const;
+type SectionId = typeof SECTIONS_IDS[number];
+
+const PRIMARY    = "#6B3D00";
+const PRIMARY_BG = "#FDF2E0";
+
+const S = {
+  wrap:     { fontFamily: "var(--font-sans, system-ui)", maxWidth: 720, margin: "0 auto", padding: "0 1rem 3rem" } as React.CSSProperties,
+  header:   { padding: "1.5rem 0 1rem", borderBottom: "0.5px solid #e5e5e5", marginBottom: "1.25rem" } as React.CSSProperties,
+  badge:    { display: "inline-block", background: PRIMARY_BG, color: PRIMARY, fontSize: 11, fontWeight: 500, padding: "2px 10px", borderRadius: 20, marginBottom: 6 } as React.CSSProperties,
+  h1:       { fontSize: 26, fontWeight: 500, color: "#111", margin: 0 } as React.CSSProperties,
+  subtitle: { fontSize: 14, color: "#666", marginTop: 4, lineHeight: 1.6 } as React.CSSProperties,
+  nav:      { display: "flex", gap: 6, flexWrap: "wrap" as const, marginBottom: "1.5rem" },
+  pill:     (active: boolean): React.CSSProperties => ({
+    fontSize: 12, padding: "5px 14px",
+    border: `0.5px solid ${active ? "#333" : "#ddd"}`,
+    borderRadius: 20, cursor: "pointer",
+    background: active ? "#111" : "transparent",
+    color: active ? "#fff" : "#666",
+    transition: "all .15s",
+  }),
+  h2:       { fontSize: 17, fontWeight: 500, color: "#111", marginBottom: 8 } as React.CSSProperties,
+  h3:       { fontSize: 14, fontWeight: 500, color: "#111", margin: "20px 0 10px" } as React.CSSProperties,
+  p:        { fontSize: 14, color: "#555", lineHeight: 1.75, marginBottom: "1rem" } as React.CSSProperties,
+  infoBox:  { borderLeft: `2px solid ${PRIMARY}`, padding: "8px 14px", background: PRIMARY_BG, borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#3D2000", lineHeight: 1.6 } as React.CSSProperties,
+  warnBox:  { borderLeft: "2px solid #BA7517", padding: "8px 14px", background: "#FAEEDA", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#633806", lineHeight: 1.6 } as React.CSSProperties,
+  tip:      { borderLeft: "2px solid #0F6E56", padding: "8px 14px", background: "#E1F5EE", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#085041", lineHeight: 1.6 } as React.CSSProperties,
+};
+
+export default function Cours18() {
+  const [activeSection, setActiveSection] = useState<SectionId>("motif");
+  const i18n = useCoursI18n("cours18");
+  const tc = i18n.tc;
+  const n = (key: string) => tc(`narrative.${key}` as any);
+  const tr = useTerm();
+  const { questions: ALL_QUESTIONS } = useCoursContent(cours18Content);
+  const [activeFamily, setActiveFamily] = useState<string | null>(null);
+
+  const [quizQuestions] = useState(() => shuffle(ALL_QUESTIONS).slice(0, QUIZ_COUNT));
+  const [quizIdx,      setQuizIdx]      = useState(0);
+  const [quizScore,    setQuizScore]    = useState(0);
+  const [quizAnswered, setQuizAnswered] = useState(false);
+  const [quizDone,     setQuizDone]     = useState(false);
+  const [selectedOpt,  setSelectedOpt]  = useState<number | null>(null);
+
+  const pianoRef = useRef<PianoPlayerRef>(null);
+
+  // ── Translated data arrays ────────────────────────────────────────────────
+
+  const ELEMENTS = [
+    { n: "①", name: n("elem1Name"), desc: n("elem1Desc") },
+    { n: "②", name: n("elem2Name"), desc: n("elem2Desc") },
+    { n: "③", name: n("elem3Name"), desc: n("elem3Desc") },
+    { n: "④", name: n("elem4Name"), desc: n("elem4Desc") },
+    { n: "⑤", name: n("elem5Name"), desc: n("elem5Desc") },
+  ];
+
+  const EXEMPLES = [
+    {
+      name: "Beethoven — 5e Symphonie (1808)",
+      color: "#6B3D00",
+      bg: "#FDF2E0",
+      motif: n("ex1Motif"),
+      desc: n("ex1Desc"),
+    },
+    {
+      name: "Wagner — Leitmotiv (opéras, 1850–1882)",
+      color: "#185FA5",
+      bg: "#E6F1FB",
+      motif: n("ex2Motif"),
+      desc: n("ex2Desc"),
+    },
+    {
+      name: "John Williams — Star Wars (1977)",
+      color: "#0F6E56",
+      bg: "#E1F5EE",
+      motif: n("ex3Motif"),
+      desc: n("ex3Desc"),
+    },
+  ];
+
+  const FAMILIES: Family[] = [
+    {
+      id: "harmonie",
+      letter: "A",
+      name: n("famAName"),
+      color: "#185FA5",
+      bg: "#E6F1FB",
+      order: n("famAOrder"),
+      desc: n("famADesc"),
+      subs: [
+        { name: n("famASub1Name"), detail: n("famASub1Detail") },
+        { name: n("famASub2Name"), detail: n("famASub2Detail") },
+        { name: n("famASub3Name"), detail: n("famASub3Detail") },
+        { name: n("famASub4Name"), detail: n("famASub4Detail") },
+      ],
+      demo: HARM_ORIG,
+      demoLabel: n("famADemoLabel"),
+      demoGapMs: 1200,
+      demoDur: 1.1,
+      demo2: HARM_SUBST,
+      demo2Label: n("famADemo2Label"),
+      demo2GapMs: 1200,
+      demo2Dur: 1.1,
+    },
+    {
+      id: "dynamique",
+      letter: "B",
+      name: n("famBName"),
+      color: "#0F6E56",
+      bg: "#E1F5EE",
+      order: n("famBOrder"),
+      desc: n("famBDesc"),
+      subs: [
+        { name: n("famBSub1Name"), detail: n("famBSub1Detail") },
+        { name: n("famBSub2Name"), detail: n("famBSub2Detail") },
+        { name: n("famBSub3Name"), detail: n("famBSub3Detail") },
+        { name: n("famBSub4Name"), detail: n("famBSub4Detail") },
+      ],
+    },
+    {
+      id: "melodique",
+      letter: "C",
+      name: n("famCName"),
+      color: "#7B1F1F",
+      bg: "#FCEAEA",
+      order: n("famCOrder"),
+      desc: n("famCDesc"),
+      subs: [
+        { name: n("famCSub1Name"), detail: n("famCSub1Detail") },
+        { name: n("famCSub2Name"), detail: n("famCSub2Detail") },
+        { name: n("famCSub3Name"), detail: n("famCSub3Detail") },
+        { name: n("famCSub4Name"), detail: n("famCSub4Detail") },
+      ],
+      demo: MOTIF_ORIG,
+      demoLabel: n("famCDemoLabel"),
+      demoGapMs: 500,
+      demoDur: 0.4,
+      demo2: MOTIF_INV,
+      demo2Label: n("famCDemo2Label"),
+      demo2GapMs: 500,
+      demo2Dur: 0.4,
+    },
+    {
+      id: "rythmique",
+      letter: "D",
+      name: n("famDName"),
+      color: "#6B3FA0",
+      bg: "#F0EAFA",
+      order: n("famDOrder"),
+      desc: n("famDDesc"),
+      subs: [
+        { name: n("famDSub1Name"), detail: n("famDSub1Detail") },
+        { name: n("famDSub2Name"), detail: n("famDSub2Detail") },
+        { name: n("famDSub3Name"), detail: n("famDSub3Detail") },
+        { name: n("famDSub4Name"), detail: n("famDSub4Detail") },
+      ],
+      demo: MOTIF_ORIG,
+      demoLabel: n("famDDemoLabel"),
+      demoGapMs: 500,
+      demoDur: 0.4,
+      demo2: MOTIF_RETRO,
+      demo2Label: n("famDDemo2Label"),
+      demo2GapMs: 500,
+      demo2Dur: 0.4,
+    },
+  ];
+
+  const answerQuiz = (optIdx: number) => {
+    if (quizAnswered) return;
+    setSelectedOpt(optIdx);
+    setQuizAnswered(true);
+    if (optIdx === quizQuestions[quizIdx].a) setQuizScore(s => s + 1);
+  };
+
+  const nextQuiz = () => {
+    if (quizIdx + 1 >= QUIZ_COUNT) setQuizDone(true);
+    else { setQuizIdx(i => i + 1); setQuizAnswered(false); setSelectedOpt(null); }
+  };
+
+  const resetQuiz = () => {
+    setQuizIdx(0); setQuizScore(0);
+    setQuizAnswered(false); setSelectedOpt(null); setQuizDone(false);
+  };
+
+  const sectionLabel = (id: SectionId) => {
+    if (id === "motif")      return n("navMotif");
+    if (id === "techniques") return n("navTechniques");
+    return n("navEntrainement");
+  };
+
+  return (
+    <div style={S.wrap}>
+      {/* Piano caché */}
+      <div style={{ position: "absolute", opacity: 0, pointerEvents: "none", height: 0, overflow: "hidden" }}>
+        <PianoPlayer ref={pianoRef} octaves={3} startOctave={3} showLabels={false} />
+      </div>
+
+      {/* Header */}
+      <div style={S.header}>
+        <span style={S.badge}>{n("badgeLevel")}</span>
+        <h1 style={S.h1}>{tr("Le développement motivique")}</h1>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
+      </div>
+
+      <MaitreCard
+        composer="Ludwig van Beethoven"
+        period={n("maitreCardPeriod")}
+        emoji="🎼"
+        concept={n("maitreCardConcept")}
+        anecdote={n("maitreCardAnecdote")}
+        lesson={n("maitreCardLesson")}
+        accentColor={PRIMARY}
+      />
+
+      {/* Navigation */}
+      <nav style={S.nav}>
+        {SECTIONS_IDS.map(id => (
+          <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
+            {sectionLabel(id)}
+          </button>
+        ))}
+      </nav>
+
+      {/* ══ SECTION 1 : LE MOTIF ══ */}
+      {activeSection === "motif" && (
+        <div>
+          <h2 style={S.h2}>{n("motifH2")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("motifP1") }} />
+
+          {/* Beethoven demo */}
+          <div style={{ background: "#f8f8f8", border: "0.5px solid #e5e5e5", borderRadius: 10, padding: "14px 16px", marginBottom: "1.25rem" }}>
+            <div style={{ fontSize: 13, fontWeight: 500, color: "#111", marginBottom: 4 }}>
+              {n("motifDemoTitle")}
+            </div>
+            <div style={{ fontFamily: "monospace", fontSize: 14, color: PRIMARY, marginBottom: 6, letterSpacing: "0.04em" }}>
+              Sol – Sol – Sol – Mib  (ta-ta-ta-TAA)
+            </div>
+            <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6, marginBottom: 10 }}>
+              {n("motifDemoDesc")}
+            </div>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" as const }}>
+              <button
+                onClick={() => playProg(pianoRef as React.RefObject<PianoPlayerRef>, MOTIF_ORIG, 450, 0.4)}
+                style={{ fontSize: 12, padding: "5px 14px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: "transparent", color: PRIMARY }}
+              >
+                {n("motifBtnOriginal")}
+              </button>
+              <button
+                onClick={() => playProg(pianoRef as React.RefObject<PianoPlayerRef>, MOTIF_INV, 450, 0.4)}
+                style={{ fontSize: 12, padding: "5px 14px", border: "0.5px solid #185FA5", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#185FA5" }}
+              >
+                {n("motifBtnRenversement")}
+              </button>
+              <button
+                onClick={() => playProg(pianoRef as React.RefObject<PianoPlayerRef>, MOTIF_RETRO, 450, 0.4)}
+                style={{ fontSize: 12, padding: "5px 14px", border: "0.5px solid #7B1F1F", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#7B1F1F" }}
+              >
+                {n("motifBtnRetrograde")}
+              </button>
+            </div>
+          </div>
+
+          {/* 5 éléments */}
+          <h3 style={S.h3}>{n("motifH3Elements")}</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 8, marginBottom: "1.25rem" }}>
+            {ELEMENTS.map(({ n: num, name, desc }) => (
+              <div key={num} style={{ border: `0.5px solid ${PRIMARY}25`, borderRadius: 8, padding: "12px 14px", background: PRIMARY_BG }}>
+                <div style={{ fontSize: 20, fontWeight: 700, color: PRIMARY, marginBottom: 4, lineHeight: 1 }}>{num}</div>
+                <div style={{ fontSize: 13, fontWeight: 500, color: "#111", marginBottom: 3 }}>{name}</div>
+                <div style={{ fontSize: 12, color: "#666", lineHeight: 1.5 }}>{desc}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Paradoxe de la répétition */}
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("motifWarnBox") }} />
+
+          {/* Motif comme personnage */}
+          <h3 style={S.h3}>{n("motifH3Rhetorique")}</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginBottom: "1.25rem" }}>
+            {[
+              { step: "①", name: n("step1Name"), desc: n("step1Desc") },
+              { step: "②", name: n("step2Name"), desc: n("step2Desc") },
+              { step: "③", name: n("step3Name"), desc: n("step3Desc") },
+            ].map(({ step, name, desc }) => (
+              <div key={step} style={{ border: "0.5px solid #e5e5e5", borderRadius: 8, padding: "12px 14px", background: "#fff", textAlign: "center" as const }}>
+                <div style={{ fontSize: 22, fontWeight: 700, color: PRIMARY, marginBottom: 4 }}>{step}</div>
+                <div style={{ fontSize: 13, fontWeight: 500, color: "#111", marginBottom: 4 }}>{name}</div>
+                <div style={{ fontSize: 12, color: "#666", lineHeight: 1.5 }}>{desc}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Exemples célèbres */}
+          <h3 style={S.h3}>{n("motifH3Exemples")}</h3>
+          {EXEMPLES.map(({ name, color, bg, motif, desc }) => (
+            <div key={name} style={{ border: `0.5px solid ${color}30`, borderRadius: 10, padding: "12px 16px", background: bg, marginBottom: 8 }}>
+              <div style={{ fontSize: 13, fontWeight: 500, color, marginBottom: 3 }}>{name}</div>
+              <div style={{ fontFamily: "monospace", fontSize: 11, color, marginBottom: 6 }}>{motif}</div>
+              <div style={{ fontSize: 12, color: "#555", lineHeight: 1.6 }}>{desc}</div>
+            </div>
+          ))}
+
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("motifInfoBox") }} />
+        </div>
+      )}
+
+      {/* ══ SECTION 2 : TECHNIQUES ══ */}
+      {activeSection === "techniques" && (
+        <div>
+          <h2 style={S.h2}>{n("techH2")}</h2>
+          <p style={S.p}>{n("techP1")}</p>
+
+          {/* Ordre d'application */}
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: "1.5rem", flexWrap: "wrap" as const }}>
+            {[
+              { letter: "A", label: n("techLabelHarmonie"), color: "#185FA5" },
+              { letter: "B", label: n("techLabelDynamique"), color: "#0F6E56" },
+              { letter: "C", label: n("techLabelMelodie"), color: "#7B1F1F" },
+              { letter: "D", label: n("techLabelRythme"), color: "#6B3FA0" },
+            ].map(({ letter, label, color }, idx, arr) => (
+              <React.Fragment key={letter}>
+                <div style={{ textAlign: "center" as const }}>
+                  <div style={{ width: 36, height: 36, borderRadius: "50%", background: color, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700, margin: "0 auto 2px" }}>
+                    {letter}
+                  </div>
+                  <div style={{ fontSize: 10, color, fontWeight: 500 }}>{label}</div>
+                </div>
+                {idx < arr.length - 1 && (
+                  <div style={{ fontSize: 12, color: "#bbb", marginBottom: 14 }}>→</div>
+                )}
+              </React.Fragment>
+            ))}
+            <div style={{ fontSize: 11, color: "#999", marginLeft: 8, marginBottom: 14 }}>
+              {n("techOrderLabel")}
+            </div>
+          </div>
+
+          {/* 4 familles expandables */}
+          {FAMILIES.map(fam => (
+            <div
+              key={fam.id}
+              style={{
+                border: `0.5px solid ${activeFamily === fam.id ? fam.color : "#e5e5e5"}`,
+                borderRadius: 10,
+                marginBottom: 8,
+                overflow: "hidden",
+                cursor: "pointer",
+                background: activeFamily === fam.id ? fam.bg : "#fff",
+                transition: "all .15s",
+              }}
+              onClick={() => setActiveFamily(activeFamily === fam.id ? null : fam.id)}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px" }}>
+                <div style={{
+                  width: 28, height: 28, borderRadius: "50%",
+                  background: fam.color, color: "#fff",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 12, fontWeight: 700, flexShrink: 0,
+                }}>
+                  {fam.letter}
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 13, fontWeight: 500, color: "#111", marginBottom: 2 }}>{fam.name}</div>
+                  <div style={{ fontSize: 11, color: "#999" }}>{fam.order}</div>
+                </div>
+                <div style={{ fontSize: 11, color: "#bbb" }}>{activeFamily === fam.id ? "▲" : "▼"}</div>
+              </div>
+
+              {activeFamily === fam.id && (
+                <div style={{ padding: "0 16px 16px", borderTop: `0.5px solid ${fam.color}20` }}>
+                  <p style={{ ...S.p, marginTop: 12 }}>{fam.desc}</p>
+
+                  {/* Sous-techniques */}
+                  <div style={{ display: "flex", flexDirection: "column" as const, gap: 6, marginBottom: fam.demo ? 12 : 0 }}>
+                    {fam.subs.map(sub => (
+                      <div key={sub.name} style={{ borderLeft: `2px solid ${fam.color}`, paddingLeft: 10, paddingTop: 2, paddingBottom: 2 }}>
+                        <div style={{ fontSize: 12, fontWeight: 500, color: "#333", marginBottom: 1 }}>{sub.name}</div>
+                        <div style={{ fontSize: 12, color: "#666", lineHeight: 1.5 }}>{sub.detail}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Boutons audio */}
+                  {(fam.demo || fam.demo2) && (
+                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" as const, marginTop: 12 }}>
+                      {fam.demo && (
+                        <button
+                          onClick={e => {
+                            e.stopPropagation();
+                            playProg(pianoRef as React.RefObject<PianoPlayerRef>, fam.demo!, fam.demoGapMs ?? 1100, fam.demoDur ?? 1.0);
+                          }}
+                          style={{ fontSize: 11, padding: "4px 12px", border: `0.5px solid ${fam.color}`, borderRadius: 20, cursor: "pointer", background: "transparent", color: fam.color }}
+                        >
+                          {fam.demoLabel ?? "▶ Écouter"}
+                        </button>
+                      )}
+                      {fam.demo2 && (
+                        <button
+                          onClick={e => {
+                            e.stopPropagation();
+                            playProg(pianoRef as React.RefObject<PianoPlayerRef>, fam.demo2!, fam.demo2GapMs ?? 1100, fam.demo2Dur ?? 1.0);
+                          }}
+                          style={{ fontSize: 11, padding: "4px 12px", border: `0.5px solid ${fam.color}80`, borderRadius: 20, cursor: "pointer", background: fam.bg, color: fam.color }}
+                        >
+                          {fam.demo2Label ?? "▶ Écouter (variante)"}
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          ))}
+
+          {/* Démos supplémentaires */}
+          <h3 style={S.h3}>{n("techH3Demos")}</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+            <div style={{ border: "0.5px solid #185FA5", borderRadius: 10, padding: "14px 16px", background: "#E6F1FB" }}>
+              <div style={{ fontSize: 12, fontWeight: 500, color: "#185FA5", marginBottom: 4 }}>{n("techArpegeTitle")}</div>
+              <div style={{ fontFamily: "monospace", fontSize: 11, color: "#0D3C6E", marginBottom: 8 }}>
+                {n("techArpegeFormula")}
+              </div>
+              <div style={{ fontSize: 12, color: "#555", lineHeight: 1.5, marginBottom: 10 }}>
+                {n("techArpegeDesc")}
+              </div>
+              <button
+                onClick={() => playProg(pianoRef as React.RefObject<PianoPlayerRef>, ARPEGE_DEMO, 350, 0.3)}
+                style={{ fontSize: 11, padding: "4px 12px", border: "0.5px solid #185FA5", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#185FA5" }}
+              >
+                {n("techArpegeBtn")}
+              </button>
+            </div>
+            <div style={{ border: "0.5px solid #0F6E56", borderRadius: 10, padding: "14px 16px", background: "#E1F5EE" }}>
+              <div style={{ fontSize: 12, fontWeight: 500, color: "#0F6E56", marginBottom: 4 }}>{n("techContrepointTitle")}</div>
+              <div style={{ fontFamily: "monospace", fontSize: 11, color: "#085041", marginBottom: 8 }}>
+                {n("techContrepointFormula")}
+              </div>
+              <div style={{ fontSize: 12, color: "#555", lineHeight: 1.5, marginBottom: 10 }}>
+                {n("techContrepointDesc")}
+              </div>
+              <button
+                onClick={() => playProg(pianoRef as React.RefObject<PianoPlayerRef>, CONTREPOINT_DEMO, 700, 0.6)}
+                style={{ fontSize: 11, padding: "4px 12px", border: "0.5px solid #0F6E56", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#0F6E56" }}
+              >
+                {n("techContrepointBtn")}
+              </button>
+            </div>
+          </div>
+
+          <div style={{ ...S.tip, marginTop: "1.25rem" }} dangerouslySetInnerHTML={{ __html: n("techTipBox") }} />
+        </div>
+      )}
+
+      {/* ══ SECTION 3 : QUIZ ══ */}
+      {activeSection === "quiz" && (
+        <div>
+          <h2 style={S.h2}>{n("quizH2")}</h2>
+          {quizDone ? (
+            <div style={{ textAlign: "center", padding: "2rem 0" }}>
+              <div style={{ fontSize: 32, marginBottom: 8 }}>
+                {quizScore >= 8 ? "🎼" : quizScore >= 6 ? "👍" : "💪"}
+              </div>
+              <div style={{ fontSize: 20, fontWeight: 500, color: "#111", marginBottom: 4 }}>
+                Score : {quizScore} / {QUIZ_COUNT}
+              </div>
+              <div style={{ fontSize: 14, color: "#666", marginBottom: 20 }}>
+                {i18n.quizMessage(quizScore, QUIZ_COUNT)}
+              </div>
+              <button
+                onClick={resetQuiz}
+                style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: PRIMARY_BG, color: PRIMARY }}
+              >{tr("Nouveau quiz")}</button>
+            </div>
+          ) : (
+            <div>
+              <div style={{ fontSize: 12, color: "#999", marginBottom: 10 }}>
+                {n("quizQuestion")} {quizIdx + 1} {n("quizOf")} {QUIZ_COUNT}
+                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} {n("quizPoolSize")}</span>
+              </div>
+              <div style={{ fontSize: 15, fontWeight: 500, color: "#111", lineHeight: 1.6, marginBottom: 16 }}>
+                {quizQuestions[quizIdx].q}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" as const, gap: 8 }}>
+                {quizQuestions[quizIdx].opts.map((opt, i) => {
+                  const isCorrect  = i === quizQuestions[quizIdx].a;
+                  const isSelected = selectedOpt === i;
+                  let bg = "#fff", border = "#e5e5e5", color = "#333";
+                  if (quizAnswered) {
+                    if (isCorrect)       { bg = "#E1F5EE"; border = "#0F6E56"; color = "#085041"; }
+                    else if (isSelected) { bg = "#FCEBEB"; border = "#A32D2D"; color = "#501313"; }
+                  }
+                  return (
+                    <button key={i} onClick={() => answerQuiz(i)} disabled={quizAnswered}
+                      style={{ fontSize: 13, padding: "10px 14px", border: `0.5px solid ${border}`, borderRadius: 8, cursor: quizAnswered ? "default" : "pointer", background: bg, color, textAlign: "left" as const, transition: "all .12s" }}>
+                      {opt}
+                    </button>
+                  );
+                })}
+              </div>
+              {quizAnswered && (
+                <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 8, background: selectedOpt === quizQuestions[quizIdx].a ? "#E1F5EE" : "#FCEBEB", fontSize: 13, color: selectedOpt === quizQuestions[quizIdx].a ? "#085041" : "#501313", lineHeight: 1.6 }}>
+                  {quizQuestions[quizIdx].fb}
+                </div>
+              )}
+              {quizAnswered && (
+                <button onClick={nextQuiz}
+                  style={{ marginTop: 12, fontSize: 13, padding: "7px 18px", border: "0.5px solid #333", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#333" }}>
+                  {quizIdx + 1 < QUIZ_COUNT ? n("quizNextQuestion") : n("quizSeeScore")}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+</MODIFIED_TSX>

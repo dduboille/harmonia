@@ -1,0 +1,816 @@
+<NARRATIVE_KEYS>
+{"fr":{"maitreCardPeriod":"1833–1897","maitreCardConcept":"Style et maîtrise","maitreCardAnecdote":"Brahms passa des années à étudier Bach et Beethoven avant de publier sa première symphonie à 43 ans. Il disait entendre le pas de géants derrière lui. Pourtant son style est immédiatement reconnaissable : harmonie dense, rythmes syncopés, mélancolie nordique. Étudier les maîtres ne dilue pas le style — il le forge.","maitreCardLesson":"Connaître les styles des autres est le chemin le plus court vers le sien.","navStyles":"Les styles","navExercices":"Exercices","navEntrainement":"Entraînement","stylesH2":"7 signatures harmoniques","stylesIntro":"Chaque compositeur ou mouvement possède une <strong>signature harmonique</strong> — un ensemble de techniques, progressions et couleurs qui le rendent immédiatement reconnaissable. Cliquez sur un style pour écouter sa progression type.","stylesInfoBox":"<strong>Comment reconnaître un style ?</strong> Cherchez ces 3 indices : (1) quels accords sont utilisés (diatoniques ? empruntés ? extensions ?) ; (2) comment les accords se succèdent (par quintes ? par tierces ? parallèlement ?) ; (3) y a-t-il une résolution V7→I ou non ?","stylesClickHint":"Cliquez sur un style pour voir ses caractéristiques et écouter sa progression type.","stylesSignaturesLabel":"Signatures","stylesProgressionLabel":"Progression type","stylesListenBtn":"▶ Écouter","stylesRetenir":"À retenir :","stylesWarnBox":"<strong>Les styles ne sont pas des cases :</strong> un compositeur peut mélanger plusieurs styles dans une même pièce. Chopin emprunte à Bach (contrepoint) et anticipe Debussy (emprunts modaux). Reconnaître un style, c'est identifier le langage dominant, pas classer absolument.","exH2":"Exercices guidés — composer dans le style","exIntro":"Pour chaque style, choisissez la progression qui lui correspond. Écoutez chaque option avant de répondre — l'oreille guide la théorie.","exCorrect":"✓ Correct","exIncorrect":"✗ Incorrect","exChooseBtn":"Choisir","exTipBox":"<strong>Méthode :</strong> écoutez d'abord toutes les options (bouton ▶) avant de choisir. L'oreille reconnaît le style avant la théorie — faites confiance à votre écoute, puis vérifiez avec les explications.","quizQuestionCounter":"Question","quizPoolInfo":"questions dans le pool","quizScoreGood":"Excellent — les styles des maîtres n'ont plus de secrets !","quizScoreOk":"Bien — encore quelques écoutes comparées et ce sera parfait.","quizScoreLow":"Continue à écouter les progressions de chaque style — l'oreille s'éduque !","quizNextBtn":"Question suivante →","quizSeeScoreBtn":"Voir mon score"},"en":{"maitreCardPeriod":"1833–1897","maitreCardConcept":"Style and Mastery","maitreCardAnecdote":"Brahms spent years studying Bach and Beethoven before publishing his first symphony at age 43. He said he could hear the footsteps of giants behind him. Yet his style is immediately recognizable: dense harmonies, syncopated rhythms, Nordic melancholy. Studying the masters does not dilute one's style — it forges it.","maitreCardLesson":"Knowing the styles of others is the shortest path to finding your own.","navStyles":"The Styles","navExercices":"Exercises","navEntrainement":"Practice","stylesH2":"7 Harmonic Signatures","stylesIntro":"Every composer or movement has a <strong>harmonic signature</strong> — a set of techniques, progressions and colors that make it immediately recognizable. Click on a style to hear its typical progression.","stylesInfoBox":"<strong>How to recognize a style?</strong> Look for these 3 clues: (1) which chords are used (diatonic? borrowed? extensions?); (2) how the chords follow each other (by fifths? by thirds? in parallel?); (3) is there a V7→I resolution or not?","stylesClickHint":"Click on a style to see its characteristics and hear its typical progression.","stylesSignaturesLabel":"Signatures","stylesProgressionLabel":"Typical progression","stylesListenBtn":"▶ Listen","stylesRetenir":"Key takeaway:","stylesWarnBox":"<strong>Styles are not rigid boxes:</strong> a composer can blend several styles in a single piece. Chopin borrows from Bach (counterpoint) and anticipates Debussy (modal borrowings). Recognizing a style means identifying the dominant language, not making an absolute classification.","exH2":"Guided exercises — composing in style","exIntro":"For each style, choose the progression that matches it. Listen to each option before answering — the ear guides theory.","exCorrect":"✓ Correct","exIncorrect":"✗ Incorrect","exChooseBtn":"Choose","exTipBox":"<strong>Method:</strong> listen to all options first (▶ button) before choosing. The ear recognizes the style before the theory — trust your listening, then check with the explanations.","quizQuestionCounter":"Question","quizPoolInfo":"questions in the pool","quizScoreGood":"Excellent — the masters' styles hold no more secrets!","quizScoreOk":"Good — a few more comparative listens and you'll have it.","quizScoreLow":"Keep listening to the progressions of each style — the ear learns!","quizNextBtn":"Next question →","quizSeeScoreBtn":"See my score"}}
+</NARRATIVE_KEYS>
+
+<MODIFIED_TSX>
+"use client";
+
+/**
+ * Cours23.tsx
+ * Harmonia · Niveau 2 · Cours 23 — Composer dans le style des maîtres
+ * Convention : affichage anglais, dotKeys PianoPlayer français
+ */
+
+import React, { useRef, useState } from "react";
+import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
+import { cours23Content } from "@/data/cours23Content";
+import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import MaitreCard from "@/components/MaitreCard";
+
+const PRIMARY = "#5C3D6E";
+
+function playProgression(ref: React.RefObject<PianoPlayerRef>, chords: string[][], chordGap = 750) {
+  chords.forEach((chord, ci) => {
+    chord.forEach((key, ni) => {
+      const [note, octStr] = key.split(":");
+      setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration: 1.4 }), ci * chordGap + ni * 80);
+    });
+  });
+}
+
+// ── Données : 7 styles ─────────────────────────────────────────────────────────
+
+interface Style {
+  id: string;
+  name: string;
+  era: string;
+  emoji: string;
+  color: string;
+  bg: string;
+  signatures: string[];
+  progression: string[];
+  dotKeys: string[][];
+  progressionLabel: string;
+  tip: string;
+}
+
+const STYLES: Style[] = [
+  {
+    id: "bach",
+    name: "Style Bach",
+    era: "Baroque (1600–1750)",
+    emoji: "⚙️",
+    color: "#4A3520",
+    bg: "#F5EFE8",
+    signatures: [
+      "Contrepoint rigoureux — pas de quintes ni d'octaves parallèles",
+      "Cycle des quintes descendant : I–IV–VII–III–VI–II–V–I",
+      "Résolution systématique du triton (sensible montante, 7te descendante)",
+      "Basse continue active avec mouvement mélodique indépendant",
+      "Doublures à l'octave dans le choral SATB",
+    ],
+    progression: ["CMaj", "Am", "Dm7", "G7", "CMaj"],
+    dotKeys: [
+      ["Do:3","Mi:3","Sol:3","Do:4"],
+      ["La:2","Do:3","Mi:3","La:3"],
+      ["Ré:3","Fa:3","La:3","Do:4"],
+      ["Sol:2","Si:2","Ré:3","Fa:3"],
+      ["Do:3","Mi:3","Sol:3","Do:4"],
+    ],
+    progressionLabel: "I – VIm – IIm7 – V7 – I (C majeur)",
+    tip: "Cherchez la basse : chez Bach, elle est toujours mélodiquement intéressante. Si la basse fait des sauts, vérifiez qu'il n'y a pas de quintes parallèles avec la voix supérieure.",
+  },
+  {
+    id: "mozart",
+    name: "Style Mozart",
+    era: "Classique (1750–1820)",
+    emoji: "🎻",
+    color: "#185FA5",
+    bg: "#E6F1FB",
+    signatures: [
+      "Symétrie 4+4 mesures (antécédent + conséquent)",
+      "Harmonie économe : I, IV, V7, IIm — rarement plus",
+      "Cadences parfaites claires et affirmées à chaque phrase",
+      "Basse d'Alberti (gauche : bas–milieu–haut–milieu)",
+      "Pas d'emprunts modaux, pas de chromatisme gratuit",
+    ],
+    progression: ["CMaj", "FMaj", "G7", "CMaj"],
+    dotKeys: [
+      ["Do:3","Mi:3","Sol:3","Do:4"],
+      ["Fa:3","La:3","Do:4","Fa:4"],
+      ["Sol:2","Si:2","Ré:3","Fa:3"],
+      ["Do:3","Mi:3","Sol:3","Do:4"],
+    ],
+    progressionLabel: "I – IV – V7 – I (C majeur, cadence parfaite)",
+    tip: "La clarté est la règle absolue. Mozart dirait : si tu peux enlever un accord sans que la phrase souffre, enlève-le.",
+  },
+  {
+    id: "chopin",
+    name: "Style Chopin",
+    era: "Romantique (1810–1850)",
+    emoji: "🌙",
+    color: "#8B3A62",
+    bg: "#FAE8F3",
+    signatures: [
+      "Pédale de tonique longue à la basse (surtout dans les nocturnes)",
+      "Emprunt fréquent au mode mineur parallèle : IVm, ♭VI, ♭VII",
+      "Chromatisme expressif dans les voix intérieures",
+      "Cadences évitées (V → VI) et suspensions expressives (4–3)",
+      "Texture piano en arpèges étendus (main gauche) + mélodie chantante (droite)",
+    ],
+    progression: ["CMaj7", "Fm7", "A♭Maj7", "G7", "CMaj7"],
+    dotKeys: [
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+      ["Fa:3","La♭:3","Do:4","Mi♭:4"],
+      ["La♭:2","Do:3","Mi♭:3","Sol:3"],
+      ["Sol:2","Si:2","Ré:3","Fa:3"],
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+    ],
+    progressionLabel: "I – IVm – ♭VI – V7 – I (C majeur + emprunts mineurs)",
+    tip: "La signature Chopin : une progression belle en C majeur avec soudain Fm — l'emprunt IVm crée une ombre inattendue. Cherchez toujours les notes ♭ qui ne sont pas dans la gamme d'origine.",
+  },
+  {
+    id: "debussy",
+    name: "Style Debussy",
+    era: "Impressionnisme (1890–1920)",
+    emoji: "🌊",
+    color: "#2D8A7A",
+    bg: "#E6F5F3",
+    signatures: [
+      "Accords Maj7 (ou 9e) parallèles sans résolution",
+      "Gamme par tons (6 notes, demi-tons absents) ou pentatonique",
+      "Absence de dominante fonctionnelle V7→I",
+      "Mouvements par couleurs : les accords glissent, ils ne résolvent pas",
+      "Pédales de couleur : un accord tenu pendant que d'autres glissent",
+    ],
+    progression: ["CMaj7", "B♭Maj7", "A♭Maj7", "G♭Maj7"],
+    dotKeys: [
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+      ["Si♭:2","Ré:3","Fa:3","La:3"],
+      ["La♭:2","Do:3","Mi♭:3","Sol:3"],
+      ["Sol♭:2","Si♭:2","Ré♭:3","Fa:3"],
+    ],
+    progressionLabel: "CMaj7 – B♭Maj7 – A♭Maj7 – G♭Maj7 (parallélisme descendant par tons)",
+    tip: "Chez Debussy, posez-vous la question : 'est-ce que cet accord résout vers le suivant ?' Si oui, ce n'est probablement pas son style. Les accords glissent, ils ne tombent pas.",
+  },
+  {
+    id: "jazz",
+    name: "Style Jazz (Evans / post-bop)",
+    era: "Jazz modal (1955–aujourd'hui)",
+    emoji: "🎷",
+    color: "#BA7517",
+    bg: "#FAEEDA",
+    signatures: [
+      "II–V–I avec extensions : 9e, 11e (#4), 13e",
+      "Voicings serrés sans quinte — 3ce, 7te, extensions",
+      "Substitutions tritoniques fréquentes (V7 → ♭II7)",
+      "Rythme harmonique rapide (2 accords/mesure ou plus)",
+      "Emprunts modaux et turnarounds (I–VI–II–V cyclique)",
+    ],
+    progression: ["Dm9", "G13", "CMaj9"],
+    dotKeys: [
+      ["Ré:3","Fa:3","Do:4","Mi:4"],
+      ["Sol:2","Si:2","Fa:3","Mi:4"],
+      ["Do:3","Mi:3","Si:3","Ré:4"],
+    ],
+    progressionLabel: "IIm9 – V13 – IMaj9 (II–V–I jazz avec extensions)",
+    tip: "Le test du style jazz Evans : est-ce que les accords ont des extensions (9e, 13e) ? Est-ce que la quinte est absente des voicings ? Si oui, vous êtes sur la bonne voie.",
+  },
+  {
+    id: "rock",
+    name: "Style Rock modal (Beatles / Radiohead)",
+    era: "Rock modal (1965–aujourd'hui)",
+    emoji: "🎸",
+    color: "#993C1D",
+    bg: "#FAECE7",
+    signatures: [
+      "I–♭VII–IV–I : progression mixolydienne cyclique",
+      "Absence de dominante fonctionnelle V7→I",
+      "Emprunts modaux libres (♭VII, ♭VI, IVm)",
+      "Progressions cycliques sans résolution finale obligatoire",
+      "Riffs et ostinatos harmoniques répétitifs",
+    ],
+    progression: ["GMaj", "FMaj", "CMaj", "GMaj"],
+    dotKeys: [
+      ["Sol:3","Si:3","Ré:4","Sol:4"],
+      ["Fa:3","La:3","Do:4","Fa:4"],
+      ["Do:3","Mi:3","Sol:3","Do:4"],
+      ["Sol:3","Si:3","Ré:4","Sol:4"],
+    ],
+    progressionLabel: "I – ♭VII – IV – I (G mixolydien — Norwegian Wood, Creep...)",
+    tip: "La clé du rock modal : cherchez le ♭VII. En G, c'est F (pas F#). Si la progression utilise F naturel en G majeur, vous êtes en mode mixolydien — le mode rock par excellence.",
+  },
+  {
+    id: "romantique",
+    name: "Style Romantique (Rachmaninov / Tchaïkovski)",
+    era: "Romantisme tardif (1850–1910)",
+    emoji: "🌹",
+    color: PRIMARY,
+    bg: "#F0EAFA",
+    signatures: [
+      "Relations de tierces descendantes : I → ♭VI → IV",
+      "Pédales de dominante longues avant résolution dramatique",
+      "Emprunts dramatiques au mineur (♭VI, ♭III, ♭VII)",
+      "Densité harmonique maximale — beaucoup d'accords par mesure",
+      "Voix nombreuses, chromatisme généralisé dans les doublures",
+    ],
+    progression: ["CMaj7", "A♭Maj7", "FMaj7", "G7"],
+    dotKeys: [
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+      ["La♭:2","Do:3","Mi♭:3","Sol:3"],
+      ["Fa:3","La:3","Do:4","Mi:4"],
+      ["Sol:2","Si:2","Ré:3","Fa:3"],
+    ],
+    progressionLabel: "I – ♭VI – IV – V7 (relations de tierces, C majeur)",
+    tip: "Chez Rachmaninov, la densité est la règle. Comptez les voix, cherchez les accords à 5+ notes, les tierces qui descendent. Si c'est 'trop' pour Mozart, c'est probablement juste pour le romantisme tardif.",
+  },
+];
+
+// ── Données : 7 exercices guidés ───────────────────────────────────────────────
+
+interface ExerciceChoice {
+  chords: string[];
+  dotKeys: string[][];
+  isCorrect: boolean;
+  feedback: string;
+}
+interface Exercice {
+  id: string;
+  style: string;
+  emoji: string;
+  color: string;
+  bg: string;
+  context: string;
+  choices: ExerciceChoice[];
+}
+
+const EXERCICES: Exercice[] = [
+  {
+    id: "ex_bach",
+    style: "Style Bach",
+    emoji: "⚙️",
+    color: "#4A3520",
+    bg: "#F5EFE8",
+    context: "Vous harmonisez la mélodie Do–Ré–Mi–Do dans un choral à 4 voix. Quelle progression est dans le style de Bach ?",
+    choices: [
+      {
+        chords: ["GMaj", "FMaj", "CMaj", "GMaj"],
+        dotKeys: [["Sol:3","Si:3","Ré:4","Sol:4"],["Fa:3","La:3","Do:4","Fa:4"],["Do:3","Mi:3","Sol:3","Do:4"],["Sol:3","Si:3","Ré:4","Sol:4"]],
+        isCorrect: false,
+        feedback: "I–♭VII–IV–I est une progression rock modal (mixolydien) — F naturel en G est une 7te mineure. Bach n'utilise pas cette couleur modale dans ses chorals.",
+      },
+      {
+        chords: ["CMaj", "Am", "Dm7", "G7"],
+        dotKeys: [["Do:3","Mi:3","Sol:3","Do:4"],["La:2","Do:3","Mi:3","La:3"],["Ré:3","Fa:3","La:3","Do:4"],["Sol:2","Si:2","Ré:3","Fa:3"]],
+        isCorrect: true,
+        feedback: "Exactement ! I–VIm–IIm–V7 est le cycle des quintes descendant caractéristique de Bach. Chaque accord est à distance de quinte du suivant : C→Am→Dm→G7→C. La résolution G7→C résout le triton B–F. Style choral baroque authentique.",
+      },
+      {
+        chords: ["CMaj7", "B♭Maj7", "A♭Maj7", "G♭Maj7"],
+        dotKeys: [["Do:3","Mi:3","Sol:3","Si:3"],["Si♭:2","Ré:3","Fa:3","La:3"],["La♭:2","Do:3","Mi♭:3","Sol:3"],["Sol♭:2","Si♭:2","Ré♭:3","Fa:3"]],
+        isCorrect: false,
+        feedback: "Parallélisme Maj7 descendant par tons entiers — c'est la couleur impressionniste de Debussy, deux siècles après Bach ! Ce type de progression sans résolution est à l'opposé du contrepoint rigoureux baroque.",
+      },
+    ],
+  },
+  {
+    id: "ex_mozart",
+    style: "Style Mozart",
+    emoji: "🎻",
+    color: "#185FA5",
+    bg: "#E6F1FB",
+    context: "Dans une sonate de style Mozart, vous harmonisez Do–Mi–Sol–Mi en 4 mesures symétriques (2+2). Quelle progression choisissez-vous ?",
+    choices: [
+      {
+        chords: ["CMaj", "G7", "FMaj", "G7"],
+        dotKeys: [["Do:3","Mi:3","Sol:3","Do:4"],["Sol:2","Si:2","Ré:3","Fa:3"],["Fa:3","La:3","Do:4","Fa:4"],["Sol:2","Si:2","Ré:3","Fa:3"]],
+        isCorrect: true,
+        feedback: "Parfait style Mozart ! I–V–IV–V en 2+2 mesures : symétrie parfaite, trois accords seulement (I, IV, V), cadence intermédiaire sur V à mesure 2, cadence finale sur V→I implicite. Économie harmonique et clarté absolue.",
+      },
+      {
+        chords: ["CMaj7", "Fm7", "A♭Maj7", "G7"],
+        dotKeys: [["Do:3","Mi:3","Sol:3","Si:3"],["Fa:3","La♭:3","Do:4","Mi♭:4"],["La♭:2","Do:3","Mi♭:3","Sol:3"],["Sol:2","Si:2","Ré:3","Fa:3"]],
+        isCorrect: false,
+        feedback: "Fm7 et A♭Maj7 sont des emprunts au mode mineur parallèle — technique caractéristique de Chopin (romantisme), pas de Mozart. Mozart évite ces couleurs sombres au profit de la clarté diatonique.",
+      },
+      {
+        chords: ["CMaj7", "DMaj7", "EMaj7", "FMaj7"],
+        dotKeys: [["Do:3","Mi:3","Sol:3","Si:3"],["Ré:3","Fa♯:3","La:3","Do♯:4"],["Mi:3","Sol♯:3","Si:3","Ré♯:4"],["Fa:3","La:3","Do:4","Mi:4"]],
+        isCorrect: false,
+        feedback: "Parallélisme Maj7 ascendant — c'est Debussy (1862–1918), soit 70 ans après Mozart. Un anachronisme complet ! Mozart n'utilise pas d'accords de 7te majeure en parallèle.",
+      },
+    ],
+  },
+  {
+    id: "ex_chopin",
+    style: "Style Chopin",
+    emoji: "🌙",
+    color: "#8B3A62",
+    bg: "#FAE8F3",
+    context: "Dans un nocturne de style Chopin, vous harmonisez Mi–Ré–Do–Si avec une couleur mélancolique. Quelle progression convient ?",
+    choices: [
+      {
+        chords: ["CMaj", "FMaj", "G7", "CMaj"],
+        dotKeys: [["Do:3","Mi:3","Sol:3","Do:4"],["Fa:3","La:3","Do:4","Fa:4"],["Sol:2","Si:2","Ré:3","Fa:3"],["Do:3","Mi:3","Sol:3","Do:4"]],
+        isCorrect: false,
+        feedback: "I–IV–V–I est trop classique et symétrique pour Chopin — c'est du Mozart. Chopin cherche la surprise harmonique : l'emprunt modal, la cadence évitée, le chromatisme dans les voix intérieures.",
+      },
+      {
+        chords: ["CMaj7", "DMaj7", "EMaj7", "CMaj7"],
+        dotKeys: [["Do:3","Mi:3","Sol:3","Si:3"],["Ré:3","Fa♯:3","La:3","Do♯:4"],["Mi:3","Sol♯:3","Si:3","Ré♯:4"],["Do:3","Mi:3","Sol:3","Si:3"]],
+        isCorrect: false,
+        feedback: "Parallélisme Maj7 ascendant — c'est Debussy, pas Chopin. Chopin utilise encore des dominantes fonctionnelles et des emprunts modaux, il n'abandonne pas complètement la tonalité comme Debussy.",
+      },
+      {
+        chords: ["CMaj7", "Fm7", "A♭Maj7", "G7"],
+        dotKeys: [["Do:3","Mi:3","Sol:3","Si:3"],["Fa:3","La♭:3","Do:4","Mi♭:4"],["La♭:2","Do:3","Mi♭:3","Sol:3"],["Sol:2","Si:2","Ré:3","Fa:3"]],
+        isCorrect: true,
+        feedback: "Style Chopin authentique ! Fm7 (IVm) et A♭Maj7 (♭VI) sont empruntés au mode mineur parallèle — la couleur sombre caractéristique. La résolution G7→CMaj7 maintient la structure tonale. Ces ♭ dans Fm et A♭ créent un chromatisme expressif dans les voix intérieures.",
+      },
+    ],
+  },
+  {
+    id: "ex_debussy",
+    style: "Style Debussy",
+    emoji: "🌊",
+    color: "#2D8A7A",
+    bg: "#E6F5F3",
+    context: "Dans une pièce impressionniste, vous harmonisez Sol–La–Si–La. Quelle progression crée la couleur Debussy ?",
+    choices: [
+      {
+        chords: ["GMaj7", "FMaj7", "E♭Maj7", "D♭Maj7"],
+        dotKeys: [["Sol:3","Si:3","Ré:4","Fa♯:4"],["Fa:3","La:3","Do:4","Mi:4"],["Mi♭:3","Sol:3","Si♭:3","Ré:4"],["Ré♭:3","Fa:3","La♭:3","Do:4"]],
+        isCorrect: true,
+        feedback: "Couleur Debussy parfaite ! Quatre Maj7 descendant par tons entiers (G–F–Eb–Db) — parallélisme chromatique sans résolution de dominante. Chaque accord est une couleur autonome. La mélodie Sol–La–Si–La reste compatible comme 9te, 3ce, 4te augmentée des accords.",
+      },
+      {
+        chords: ["GMaj", "CMaj", "D7", "GMaj"],
+        dotKeys: [["Sol:3","Si:3","Ré:4","Sol:4"],["Do:3","Mi:3","Sol:3","Do:4"],["Ré:3","Fa♯:3","La:3","Do:4"],["Sol:3","Si:3","Ré:4","Sol:4"]],
+        isCorrect: false,
+        feedback: "I–IV–V7–I est une cadence parfaite classique — parfaitement fonctionnelle et résolue. Debussy fuit précisément cette cadence V7→I qu'il trouve trop prévisible. Il préfère les glissements parallèles sans résolution.",
+      },
+      {
+        chords: ["GMaj", "Em", "Am7", "D7"],
+        dotKeys: [["Sol:3","Si:3","Ré:4","Sol:4"],["Mi:3","Sol:3","Si:3","Mi:4"],["La:3","Do:4","Mi:4","Sol:4"],["Ré:3","Fa♯:3","La:3","Do:4"]],
+        isCorrect: false,
+        feedback: "I–VIm–IIm7–V7 est un cycle des quintes — style diatonique fonctionnel classique. Ce type de progression crée tension et résolution directionnelle, l'opposé de la pensée coloriste de Debussy.",
+      },
+    ],
+  },
+  {
+    id: "ex_jazz",
+    style: "Style Jazz Evans",
+    emoji: "🎷",
+    color: "#BA7517",
+    bg: "#FAEEDA",
+    context: "Dans le style jazz post-bop, vous harmonisez La–Si♭–Sol–Mi sur un II–V–I. Quelle version est la plus idiomatique ?",
+    choices: [
+      {
+        chords: ["Dm", "G7", "CMaj"],
+        dotKeys: [["Ré:3","Fa:3","La:3","Ré:4"],["Sol:2","Si:2","Ré:3","Fa:3"],["Do:3","Mi:3","Sol:3","Do:4"]],
+        isCorrect: false,
+        feedback: "II–V–I correct mais trop dépouillé pour le post-bop. Pas d'extensions (9e, 13e), pas de voicings sophistiqués. Ce serait acceptable pour une progression bebop simple, mais Bill Evans ou Brad Mehldau n'harmoniseraient pas ainsi.",
+      },
+      {
+        chords: ["Dm9", "G13", "CMaj9"],
+        dotKeys: [["Ré:3","Fa:3","Do:4","Mi:4"],["Sol:2","Si:2","Fa:3","Mi:4"],["Do:3","Mi:3","Si:3","Ré:4"]],
+        isCorrect: true,
+        feedback: "Style jazz post-bop parfait ! Dm9 (3ce+7te+9te, sans quinte), G13 (3ce+7te+13te, voicing shell), CMaj9 (3ce+7te+9te). Les extensions colorent sans alourdir. La 13te (A) sur G résout vers la 9te (D) de CMaj9 — voix intérieure lisse. Signature d'Evans.",
+      },
+      {
+        chords: ["CMaj", "FMaj", "GMaj", "CMaj"],
+        dotKeys: [["Do:3","Mi:3","Sol:3","Do:4"],["Fa:3","La:3","Do:4","Fa:4"],["Sol:3","Si:3","Ré:4","Sol:4"],["Do:3","Mi:3","Sol:3","Do:4"]],
+        isCorrect: false,
+        feedback: "I–IV–V–I n'est pas du tout un II–V–I, et n'utilise aucune des extensions caractéristiques du jazz. C'est une progression classique sans saveur jazz. Il manque le IIm7, les 7tes, et tout le vocabulaire post-bop.",
+      },
+    ],
+  },
+  {
+    id: "ex_rock",
+    style: "Style Rock modal",
+    emoji: "🎸",
+    color: "#993C1D",
+    bg: "#FAECE7",
+    context: "Dans une chanson rock modal (G mixolydien, style Beatles/Radiohead), vous harmonisez Sol–Fa–Mi–Ré. Quelle progression convient ?",
+    choices: [
+      {
+        chords: ["GMaj", "Am7", "D7", "GMaj"],
+        dotKeys: [["Sol:3","Si:3","Ré:4","Sol:4"],["La:2","Do:3","Mi:3","Sol:3"],["Ré:3","Fa♯:3","La:3","Do:4"],["Sol:3","Si:3","Ré:4","Sol:4"]],
+        isCorrect: false,
+        feedback: "D7 est une dominante fonctionnelle (V7 de G) — exactement ce que le rock modal évite. En G mixolydien, la 7te est F naturel (pas F#). D7 contient F#, qui détruit la couleur mixolydienne.",
+      },
+      {
+        chords: ["Gm7", "Cm7", "F7", "B♭Maj7"],
+        dotKeys: [["Sol:2","Si♭:2","Ré:3","Fa:3"],["Do:3","Mi♭:3","Sol:3","Si♭:3"],["Fa:3","La:3","Do:4","Mi♭:4"],["Si♭:2","Ré:3","Fa:3","La:3"]],
+        isCorrect: false,
+        feedback: "C'est un II–V–I en B♭ mineur — progression jazz fonctionnelle en mineur. Pas du tout du rock modal en G ! Le rock modal reste en G (majeur ou mixolydien) et évite les progressions de dominante.",
+      },
+      {
+        chords: ["GMaj", "FMaj", "CMaj", "GMaj"],
+        dotKeys: [["Sol:3","Si:3","Ré:4","Sol:4"],["Fa:3","La:3","Do:4","Fa:4"],["Do:3","Mi:3","Sol:3","Do:4"],["Sol:3","Si:3","Ré:4","Sol:4"]],
+        isCorrect: true,
+        feedback: "I–♭VII–IV–I mixolydien — la progression rock modal par excellence ! F naturel est le ♭VII de G mixolydien. Cette progression peut se répéter indéfiniment sans résolution V→I. Norwegian Wood (Beatles), Hey You (Pink Floyd), Creep (Radiohead) utilisent ce pattern.",
+      },
+    ],
+  },
+  {
+    id: "ex_romantique",
+    style: "Style Romantique",
+    emoji: "🌹",
+    color: PRIMARY,
+    bg: "#F0EAFA",
+    context: "Dans le style grand romantisme, vous harmonisez Do–Si♭–La♭–Sol (mélodie descendante). Quelle progression convient ?",
+    choices: [
+      {
+        chords: ["CMaj7", "A♭Maj7", "FMaj7", "G7"],
+        dotKeys: [["Do:3","Mi:3","Sol:3","Si:3"],["La♭:2","Do:3","Mi♭:3","Sol:3"],["Fa:3","La:3","Do:4","Mi:4"],["Sol:2","Si:2","Ré:3","Fa:3"]],
+        isCorrect: true,
+        feedback: "Style romantique tardif parfait ! I–♭VI–IV–V crée des relations de tierces (C→A♭→F = tierces majeures et mineures). A♭Maj7 est emprunté au mineur parallèle. La basse descend chromatiquement : C→A♭→F→G. Densité harmonique maximale, tension dramatique avant la résolution.",
+      },
+      {
+        chords: ["CMaj", "FMaj", "G7", "CMaj"],
+        dotKeys: [["Do:3","Mi:3","Sol:3","Do:4"],["Fa:3","La:3","Do:4","Fa:4"],["Sol:2","Si:2","Ré:3","Fa:3"],["Do:3","Mi:3","Sol:3","Do:4"]],
+        isCorrect: false,
+        feedback: "I–IV–V–I est trop simple et classique pour le romantisme tardif. Rachmaninov ou Tchaïkovski n'utiliseraient pas une harmonie aussi dépouillée — ils cherchent la densité, les emprunts dramatiques, les relations de tierces.",
+      },
+      {
+        chords: ["CMaj7", "Cm7", "Fm7", "CMaj7"],
+        dotKeys: [["Do:3","Mi:3","Sol:3","Si:3"],["Do:3","Mi♭:3","Sol:3","Si♭:3"],["Fa:3","La♭:3","Do:4","Mi♭:4"],["Do:3","Mi:3","Sol:3","Si:3"]],
+        isCorrect: false,
+        feedback: "CMaj7→Cm7→Fm7 est un emprunt modal style Chopin/Evans — trop léger pour le grand romantisme. Rachmaninov préfère les accords massifs, les relations de tierces et les pédales de dominante longues plutôt que les glissements modaux subtils.",
+      },
+    ],
+  },
+];
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const QUIZ_COUNT = 10;
+const SECTIONS_IDS = ["styles", "exercices", "quiz"] as const;
+
+const S = {
+  wrap:     { fontFamily: "var(--font-sans, system-ui)", maxWidth: 720, margin: "0 auto", padding: "0 1rem 3rem" } as React.CSSProperties,
+  header:   { padding: "1.5rem 0 1rem", borderBottom: "0.5px solid #e5e5e5", marginBottom: "1.25rem" } as React.CSSProperties,
+  badge:    { display: "inline-block", background: "#F0EAFA", color: PRIMARY, fontSize: 11, fontWeight: 500, padding: "2px 10px", borderRadius: 20, marginBottom: 6 } as React.CSSProperties,
+  h1:       { fontSize: 26, fontWeight: 500, color: "#111", margin: 0 } as React.CSSProperties,
+  subtitle: { fontSize: 14, color: "#666", marginTop: 4, lineHeight: 1.6 } as React.CSSProperties,
+  nav:      { display: "flex", gap: 6, flexWrap: "wrap" as const, marginBottom: "1.5rem" },
+  pill:     (active: boolean): React.CSSProperties => ({
+    fontSize: 12, padding: "5px 14px",
+    border: `0.5px solid ${active ? "#333" : "#ddd"}`,
+    borderRadius: 20, cursor: "pointer",
+    background: active ? "#111" : "transparent",
+    color: active ? "#fff" : "#666",
+    transition: "all .15s",
+  }),
+  h2:       { fontSize: 17, fontWeight: 500, color: "#111", marginBottom: 8 } as React.CSSProperties,
+  p:        { fontSize: 14, color: "#555", lineHeight: 1.75, marginBottom: "1rem" } as React.CSSProperties,
+  infoBox:  { borderLeft: `2px solid ${PRIMARY}`, padding: "8px 14px", background: "#F0EAFA", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#3D2450", lineHeight: 1.6 } as React.CSSProperties,
+  warnBox:  { borderLeft: "2px solid #BA7517", padding: "8px 14px", background: "#FAEEDA", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#633806", lineHeight: 1.6 } as React.CSSProperties,
+  tip:      { borderLeft: "2px solid #0F6E56", padding: "8px 14px", background: "#E1F5EE", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#085041", lineHeight: 1.6 } as React.CSSProperties,
+};
+
+export default function Cours23() {
+  const [activeSection, setActiveSection] = useState<string>("styles");
+  const i18n = useCoursI18n("cours23");
+  const tc = i18n.tc;
+  const n = (key: string) => tc(`narrative.${key}` as any);
+  const tr = useTerm();
+  const { questions: ALL_QUESTIONS } = useCoursContent(cours23Content);
+  const [activeStyle, setActiveStyle] = useState<string | null>(null);
+  const [activeEx,    setActiveEx]    = useState<number | null>(null);
+  const [exAnswers,   setExAnswers]   = useState<(number | null)[]>(Array(EXERCICES.length).fill(null));
+
+  const [quizQuestions] = useState(() => shuffle(ALL_QUESTIONS).slice(0, QUIZ_COUNT));
+  const [quizIdx,      setQuizIdx]      = useState(0);
+  const [quizScore,    setQuizScore]    = useState(0);
+  const [quizAnswered, setQuizAnswered] = useState(false);
+  const [quizDone,     setQuizDone]     = useState(false);
+  const [selectedOpt,  setSelectedOpt]  = useState<number | null>(null);
+
+  const pianoRef = useRef<PianoPlayerRef>(null);
+
+  const answerEx = (exIdx: number, choiceIdx: number) => {
+    if (exAnswers[exIdx] !== null) return;
+    setExAnswers(prev => { const n = [...prev]; n[exIdx] = choiceIdx; return n; });
+  };
+
+  const answerQuiz = (optIdx: number) => {
+    if (quizAnswered) return;
+    setSelectedOpt(optIdx);
+    setQuizAnswered(true);
+    if (optIdx === quizQuestions[quizIdx].a) setQuizScore(s => s + 1);
+  };
+
+  const nextQuiz = () => {
+    if (quizIdx + 1 >= QUIZ_COUNT) setQuizDone(true);
+    else { setQuizIdx(i => i + 1); setQuizAnswered(false); setSelectedOpt(null); }
+  };
+
+  const resetQuiz = () => {
+    setQuizIdx(0); setQuizScore(0);
+    setQuizAnswered(false); setSelectedOpt(null); setQuizDone(false);
+  };
+
+  const sectionLabel = (id: string) => {
+    if (id === "styles") return n("navStyles");
+    if (id === "exercices") return n("navExercices");
+    return n("navEntrainement");
+  };
+
+  return (
+    <div style={S.wrap}>
+      {/* Piano caché */}
+      <div style={{ position: "absolute", opacity: 0, pointerEvents: "none", height: 0, overflow: "hidden" }}>
+        <PianoPlayer ref={pianoRef} octaves={3} startOctave={2} showLabels={false} />
+      </div>
+
+      {/* Header */}
+      <div style={S.header}>
+        <span style={S.badge}>Niveau 2 · Cours 23</span>
+        <h1 style={S.h1}>{tr("Composer dans le style des maîtres")}</h1>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
+      </div>
+
+      <MaitreCard
+        composer="Johannes Brahms"
+        period={n("maitreCardPeriod")}
+        emoji="📚"
+        concept={n("maitreCardConcept")}
+        anecdote={n("maitreCardAnecdote")}
+        lesson={n("maitreCardLesson")}
+        accentColor={PRIMARY}
+      />
+
+      {/* Navigation */}
+      <nav style={S.nav}>
+        {SECTIONS_IDS.map(id => (
+          <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
+            {sectionLabel(id)}
+          </button>
+        ))}
+      </nav>
+
+      {/* ══ SECTION 1 : LES STYLES ══ */}
+      {activeSection === "styles" && (
+        <div>
+          <h2 style={S.h2}>{n("stylesH2")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("stylesIntro") }} />
+
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("stylesInfoBox") }} />
+
+          <p style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>
+            {n("stylesClickHint")}
+          </p>
+
+          {STYLES.map(style => (
+            <div
+              key={style.id}
+              onClick={() => setActiveStyle(activeStyle === style.id ? null : style.id)}
+              style={{
+                border: `0.5px solid ${activeStyle === style.id ? style.color : "#e5e5e5"}`,
+                borderRadius: 10, marginBottom: 8, overflow: "hidden", cursor: "pointer",
+                background: activeStyle === style.id ? style.bg : "#fff", transition: "all .15s",
+              }}
+            >
+              {/* Header style */}
+              <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px" }}>
+                <div style={{ fontSize: 22, flexShrink: 0 }}>{style.emoji}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" as const }}>
+                    <span style={{ fontSize: 14, fontWeight: 500, color: "#111" }}>{style.name}</span>
+                    <span style={{ fontSize: 11, color: "#aaa", fontStyle: "italic" }}>{style.era}</span>
+                  </div>
+                  <div style={{ fontSize: 12, color: "#888", marginTop: 2 }}>
+                    {style.progressionLabel}
+                  </div>
+                </div>
+                <div style={{ fontSize: 11, color: "#bbb", flexShrink: 0 }}>
+                  {activeStyle === style.id ? "▲" : "▼"}
+                </div>
+              </div>
+
+              {/* Détail */}
+              {activeStyle === style.id && (
+                <div style={{ padding: "0 16px 16px", borderTop: `0.5px solid ${style.color}20` }}>
+                  {/* Signatures */}
+                  <div style={{ marginTop: 12, marginBottom: 14 }}>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: style.color, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: 8 }}>
+                      {n("stylesSignaturesLabel")}
+                    </div>
+                    <ul style={{ margin: 0, padding: "0 0 0 16px" }}>
+                      {style.signatures.map((sig, i) => (
+                        <li key={i} style={{ fontSize: 13, color: "#444", lineHeight: 1.6, marginBottom: 2 }}>{sig}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Progression + bouton écouter */}
+                  <div style={{ background: style.bg, border: `0.5px solid ${style.color}40`, borderRadius: 8, padding: "10px 12px", marginBottom: 12 }}>
+                    <div style={{ fontSize: 10, fontWeight: 600, color: style.color, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: 8 }}>
+                      {n("stylesProgressionLabel")}
+                    </div>
+                    <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const, marginBottom: 8 }}>
+                      {style.progression.map((chord, ci) => (
+                        <span key={ci} style={{
+                          fontSize: 12, fontWeight: 600, color: style.color,
+                          background: "white", padding: "2px 8px", borderRadius: 6,
+                          border: `0.5px solid ${style.color}`, fontFamily: "monospace",
+                        }}>{chord}</span>
+                      ))}
+                    </div>
+                    <button
+                      onClick={e => { e.stopPropagation(); playProgression(pianoRef as React.RefObject<PianoPlayerRef>, style.dotKeys); }}
+                      style={{ fontSize: 11, padding: "4px 12px", border: `0.5px solid ${style.color}`, borderRadius: 20, cursor: "pointer", background: "white", color: style.color }}
+                    >
+                      {n("stylesListenBtn")}
+                    </button>
+                  </div>
+
+                  <div style={S.tip}><strong>{n("stylesRetenir")}</strong> {style.tip}</div>
+                </div>
+              )}
+            </div>
+          ))}
+
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("stylesWarnBox") }} />
+        </div>
+      )}
+
+      {/* ══ SECTION 2 : EXERCICES ══ */}
+      {activeSection === "exercices" && (
+        <div>
+          <h2 style={S.h2}>{n("exH2")}</h2>
+          <p style={S.p}>{n("exIntro")}</p>
+
+          {EXERCICES.map((ex, exIdx) => {
+            const answered = exAnswers[exIdx] !== null;
+            const selected = exAnswers[exIdx];
+            const style = STYLES.find(s => s.name === ex.style || s.id === ex.id.replace("ex_", ""))!;
+
+            return (
+              <div key={ex.id} style={{ border: `0.5px solid ${activeEx === exIdx ? ex.color : "#e5e5e5"}`, borderRadius: 10, marginBottom: 10, overflow: "hidden" }}>
+                {/* Header exercice */}
+                <div
+                  onClick={() => setActiveEx(activeEx === exIdx ? null : exIdx)}
+                  style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", cursor: "pointer", background: activeEx === exIdx ? ex.bg : "#fff" }}
+                >
+                  <div style={{ fontSize: 20, flexShrink: 0 }}>{ex.emoji}</div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <span style={{ fontSize: 13, fontWeight: 500, color: "#111" }}>{ex.style}</span>
+                      {answered && (
+                        <span style={{
+                          fontSize: 10, fontWeight: 600, padding: "1px 8px", borderRadius: 10,
+                          background: ex.choices[selected!].isCorrect ? "#E1F5EE" : "#FCEBEB",
+                          color: ex.choices[selected!].isCorrect ? "#0F6E56" : "#A32D2D",
+                        }}>
+                          {ex.choices[selected!].isCorrect ? n("exCorrect") : n("exIncorrect")}
+                        </span>
+                      )}
+                    </div>
+                    <div style={{ fontSize: 12, color: "#888", marginTop: 2 }}>
+                      {ex.context.substring(0, 60)}...
+                    </div>
+                  </div>
+                  <div style={{ fontSize: 11, color: "#bbb", flexShrink: 0 }}>
+                    {activeEx === exIdx ? "▲" : "▼"}
+                  </div>
+                </div>
+
+                {/* Contenu exercice */}
+                {activeEx === exIdx && (
+                  <div style={{ padding: "12px 16px 16px", borderTop: `0.5px solid ${ex.color}20`, background: ex.bg }}>
+                    <p style={{ ...S.p, marginBottom: 16, fontWeight: 500, color: "#111", fontSize: 13 }}>{ex.context}</p>
+
+                    <div style={{ display: "flex", flexDirection: "column" as const, gap: 10 }}>
+                      {ex.choices.map((choice, ci) => {
+                        let bg = "#fff", border = "#e5e5e5", color = "#333";
+                        if (answered) {
+                          if (choice.isCorrect)   { bg = "#E1F5EE"; border = "#0F6E56"; color = "#085041"; }
+                          else if (selected === ci) { bg = "#FCEBEB"; border = "#A32D2D"; color = "#501313"; }
+                          else                      { bg = "#f8f8f8"; border = "#e5e5e5"; color = "#aaa"; }
+                        } else if (selected === ci) {
+                          bg = ex.bg; border = ex.color; color = ex.color;
+                        }
+
+                        return (
+                          <div key={ci} style={{ border: `0.5px solid ${border}`, borderRadius: 8, overflow: "hidden", background: bg }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 12px" }}>
+                              {/* Chords */}
+                              <div style={{ flex: 1 }}>
+                                <div style={{ display: "flex", gap: 5, flexWrap: "wrap" as const, marginBottom: 6 }}>
+                                  {choice.chords.map((chord, k) => (
+                                    <span key={k} style={{
+                                      fontSize: 11, fontWeight: 600, fontFamily: "monospace",
+                                      padding: "1px 7px", borderRadius: 5,
+                                      background: answered ? (choice.isCorrect ? "#c8f0df" : selected === ci ? "#fdd" : "#eee") : "#f0f0f0",
+                                      color: answered ? (choice.isCorrect ? "#085041" : selected === ci ? "#501313" : "#aaa") : "#444",
+                                    }}>{chord}</span>
+                                  ))}
+                                </div>
+                                {answered && (
+                                  <div style={{ fontSize: 12, color: color, lineHeight: 1.55 }}>{choice.feedback}</div>
+                                )}
+                              </div>
+                              {/* Boutons */}
+                              <div style={{ display: "flex", gap: 6, flexShrink: 0, flexDirection: "column" as const }}>
+                                <button
+                                  onClick={e => { e.stopPropagation(); playProgression(pianoRef as React.RefObject<PianoPlayerRef>, choice.dotKeys); }}
+                                  style={{ fontSize: 11, padding: "3px 10px", border: "0.5px solid #ccc", borderRadius: 16, cursor: "pointer", background: "white", color: "#666" }}
+                                >
+                                  ▶
+                                </button>
+                                {!answered && (
+                                  <button
+                                    onClick={e => { e.stopPropagation(); answerEx(exIdx, ci); }}
+                                    style={{ fontSize: 11, padding: "3px 10px", border: `0.5px solid ${ex.color}`, borderRadius: 16, cursor: "pointer", background: ex.bg, color: ex.color }}
+                                  >
+                                    {n("exChooseBtn")}
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+
+          <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("exTipBox") }} />
+        </div>
+      )}
+
+      {/* ══ SECTION 3 : QUIZ ══ */}
+      {activeSection === "quiz" && (
+        <div>
+          <h2 style={S.h2}>{tr("Entraînement")}</h2>
+
+          {quizDone ? (
+            <div style={{ textAlign: "center", padding: "2rem 0" }}>
+              <div style={{ fontSize: 32, marginBottom: 8 }}>
+                {quizScore >= 8 ? "📚" : quizScore >= 6 ? "👍" : "💪"}
+              </div>
+              <div style={{ fontSize: 20, fontWeight: 500, color: "#111", marginBottom: 4 }}>
+                Score : {quizScore} / {QUIZ_COUNT}
+              </div>
+              <div style={{ fontSize: 14, color: "#666", marginBottom: 20 }}>
+                {quizScore >= 8 ? n("quizScoreGood") :
+                 quizScore >= 6 ? n("quizScoreOk") :
+                 n("quizScoreLow")}
+              </div>
+              <button
+                onClick={resetQuiz}
+                style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: "#F0EAFA", color: PRIMARY }}
+              >{tr("Nouveau quiz")}</button>
+            </div>
+          ) : (
+            <div>
+              <div style={{ fontSize: 12, color: "#999", marginBottom: 10 }}>
+                {n("quizQuestionCounter")} {quizIdx + 1} / {QUIZ_COUNT}
+                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} {n("quizPoolInfo")}</span>
+              </div>
+              <div style={{ fontSize: 15, fontWeight: 500, color: "#111", lineHeight: 1.6, marginBottom: 16 }}>
+                {quizQuestions[quizIdx].q}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" as const, gap: 8 }}>
+                {quizQuestions[quizIdx].opts.map((opt, i) => {
+                  const isCorrect  = i === quizQuestions[quizIdx].a;
+                  const isSelected = selectedOpt === i;
+                  let bg = "#fff", border = "#e5e5e5", color = "#333";
+                  if (quizAnswered) {
+                    if (isCorrect)       { bg = "#E1F5EE"; border = "#0F6E56"; color = "#085041"; }
+                    else if (isSelected) { bg = "#FCEBEB"; border = "#A32D2D"; color = "#501313"; }
+                  }
+                  return (
+                    <button key={i} onClick={() => answerQuiz(i)} disabled={quizAnswered}
+                      style={{ fontSize: 13, padding: "10px 14px", border: `0.5px solid ${border}`, borderRadius: 8, cursor: quizAnswered ? "default" : "pointer", background: bg, color, textAlign: "left" as const, transition: "all .12s" }}>
+                      {opt}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {quizAnswered && (
+                <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 8, background: selectedOpt === quizQuestions[quizIdx].a ? "#E1F5EE" : "#FCEBEB", fontSize: 13, color: selectedOpt === quizQuestions[quizIdx].a ? "#085041" : "#501313", lineHeight: 1.6 }}>
+                  {quizQuestions[quizIdx].fb}
+                </div>
+              )}
+
+              {quizAnswered && (
+                <button onClick={nextQuiz}
+                  style={{ marginTop: 12, fontSize: 13, padding: "7px 18px", border: "0.5px solid #333", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#333" }}>
+                  {quizIdx + 1 < QUIZ_COUNT ? n("quizNextBtn") : n("quizSeeScoreBtn")}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+</MODIFIED_TSX>

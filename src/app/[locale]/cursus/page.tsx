@@ -1181,7 +1181,7 @@ export default function CursusPage() {
                     margin: 0,
                   }}
                 >
-                  Une erreur est survenue. Réessayez ou écrivez à contact@getharmonia.app
+                  Une erreur est survenue. Réessayez ou écrivez à appliharmonia@gmail.com
                 </p>
               )}
 

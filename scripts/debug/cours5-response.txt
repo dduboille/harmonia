@@ -1,0 +1,531 @@
+<MODIFIED_TSX>
+"use client";
+
+/**
+ * Cours5.tsx
+ * Harmonia · Niveau 1 · Cours 5 — Emprunts et suites harmoniques classiques
+ *
+ * Sections :
+ * 1. La gamme mineure — naturelle vs harmonique
+ * 2. Emprunts à l'homonyme — C maj ↔ C min
+ * 3. Suites classiques — cycle descendant, chaconne, napolitain
+ * 4. Entraînement — quiz
+ *
+ * Convention Harmonia :
+ * - Affichage : noms anglais (C D E F G A B)
+ * - Audio (dotKeys PianoPlayer) : noms français (Do Ré Mi Fa Sol La Si)
+ */
+
+import React, { useRef, useState, useCallback } from "react";
+import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
+import { cours5Content } from "@/data/cours5Content";
+import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import { SATB } from "@/lib/satb-voicings";
+import MaitreCard from "@/components/MaitreCard";
+import InversionQuiz from "@/components/InversionQuiz";
+import { INVERSION_EXERCISES } from "@/exercises/cours-inversion-exercises";
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+interface Section { id: string; label: string; }
+
+// ─── Helpers audio ────────────────────────────────────────────────────────────
+
+// PianoPlayer attend des noms français
+const CHORDS = SATB;
+
+function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], duration = 1.8) {
+  keys.forEach((key, i) => {
+    const [note, octStr] = key.split(":");
+    setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration }), 0);
+  });
+}
+
+function playProgression(ref: React.RefObject<PianoPlayerRef>, chordNames: string[], gap = 950) {
+  chordNames.forEach((name, i) => {
+    const keys = CHORDS[name] ?? [];
+    setTimeout(() => playChord(ref, keys, 1.5), i * gap);
+  });
+}
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+
+const SECTIONS_IDS = ["mineur","emprunts","classiques","quiz"] as const;
+
+// Accords de C mineur avec leur fonction
+const CM_ACCORDS = [
+  { deg:"I",   chord:"Cm",    typeKey:"mineurTypeMineur",   fn:"Tonique",      fnColor:"#0F6E56", fnBg:"#E1F5EE", descKey:"mineurDegICmDesc",   keys:["Do:3","Mib:3","Sol:3"] },
+  { deg:"II",  chord:"Ddim",  typeKey:"mineurTypeDiminue",  fn:"Sous-dom.",    fnColor:"#534AB7", fnBg:"#EEEDFE", descKey:"mineurDegIIDdimDesc", keys:["Ré:3","Fa:3","Lab:3"] },
+  { deg:"III", chord:"Eb",    typeKey:"mineurTypeMajeur",   fn:"Tonique",      fnColor:"#0F6E56", fnBg:"#E1F5EE", descKey:"mineurDegIIIEbDesc",  keys:["Mib:3","Sol:3","Sib:3"] },
+  { deg:"IV",  chord:"Fm",    typeKey:"mineurTypeMineur",   fn:"Sous-dom.",    fnColor:"#534AB7", fnBg:"#EEEDFE", descKey:"mineurDegIVFmDesc",   keys:["Fa:3","Lab:3","Do:4"] },
+  { deg:"V",   chord:"G7",    typeKey:"mineurTypeDominante",fn:"Dominante",    fnColor:"#BA7517", fnBg:"#FAEEDA", descKey:"mineurDegVG7Desc",    keys:["Sol:3","Si:3","Ré:4","Fa:4"] },
+  { deg:"VI",  chord:"Ab",    typeKey:"mineurTypeMajeur",   fn:"Tonique",      fnColor:"#0F6E56", fnBg:"#E1F5EE", descKey:"mineurDegVIAbDesc",   keys:["Lab:3","Do:4","Mib:4"] },
+  { deg:"VII", chord:"Bdim",  typeKey:"mineurTypeDiminue",  fn:"Dominante",    fnColor:"#BA7517", fnBg:"#FAEEDA", descKey:"mineurDegVIIBdimDesc",keys:["Si:3","Ré:4","Fa:4"] },
+];
+
+// Emprunts : accords issus de C mineur utilisables en C majeur
+const EMPRUNTS = [
+  {
+    chord: "Cm",
+    from: "C minor",
+    fn: "Tonique",
+    replaces: "C",
+    descKey: "empruntsCmDesc",
+    usageKey: "empruntsCmUsage",
+    keys: ["Do:3","Mib:3","Sol:3"],
+    color: "#534AB7", bg: "#EEEDFE",
+  },
+  {
+    chord: "Fm",
+    from: "C minor",
+    fn: "Sous-dominante",
+    replaces: "F",
+    descKey: "empruntsFmDesc",
+    usageKey: "empruntsFmUsage",
+    keys: ["Fa:3","Lab:3","Do:4"],
+    color: "#993C1D", bg: "#FAECE7",
+  },
+  {
+    chord: "Ab",
+    from: "C minor",
+    fn: "Tonique",
+    replaces: "Am",
+    descKey: "empruntsAbDesc",
+    usageKey: "empruntsAbUsage",
+    keys: ["Lab:3","Do:4","Mib:4"],
+    color: "#3B6D11", bg: "#EAF3DE",
+  },
+  {
+    chord: "Eb",
+    from: "C minor",
+    fn: "Tonique",
+    replaces: "Em",
+    descKey: "empruntsEbDesc",
+    usageKey: "empruntsEbUsage",
+    keys: ["Mib:3","Sol:3","Sib:3"],
+    color: "#185FA5", bg: "#E6F1FB",
+  },
+];
+
+// Suites classiques
+const SUITES = [
+  {
+    id: "cycle",
+    nameKey: "classiqueCycleName",
+    subtitleKey: "classiqueCycleSubtitle",
+    descKey: "classiqueCycleDesc",
+    detailKey: "classiqueCycleDetail",
+    progression: ["Cm2","Fm7","Bdim7","EbMaj7","AbMaj7","Dm7b5","G7","Cm"],
+    color: "#0F6E56", bg: "#E1F5EE",
+  },
+  {
+    id: "chaconne",
+    nameKey: "classiqueChaconneName",
+    subtitleKey: "classiqueChaconneSubtitle",
+    descKey: "classiqueChaconneDesc",
+    detailKey: "classiqueChaconneDetail",
+    progression: ["Cm","Gm/Bb","Fm/Ab","G7"],
+    color: "#534AB7", bg: "#EEEDFE",
+  },
+  {
+    id: "napolitain",
+    nameKey: "classiqueNapolitainName",
+    subtitleKey: "classiqueNapolitainSubtitle",
+    descKey: "classiqueNapolitainDesc",
+    detailKey: "classiqueNapolitainDetail",
+    progression: ["Cm","Db","G7","Cm"],
+    color: "#BA7517", bg: "#FAEEDA",
+  },
+];
+
+// ─── Quiz ─────────────────────────────────────────────────────────────────────
+
+function shuffleArray<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const QUIZ_COUNT = 8;
+
+// ─── Styles ───────────────────────────────────────────────────────────────────
+
+const S = {
+  wrap:     { fontFamily: "var(--font-sans, system-ui)", maxWidth: 720, margin: "0 auto", padding: "0 1rem 3rem" } as React.CSSProperties,
+  header:   { padding: "1.5rem 0 1rem", borderBottom: "0.5px solid #e5e5e5", marginBottom: "1.25rem" } as React.CSSProperties,
+  badge:    { display: "inline-block", background: "#E6F1FB", color: "#185FA5", fontSize: 11, fontWeight: 500, padding: "2px 10px", borderRadius: 20, marginBottom: 6 } as React.CSSProperties,
+  h1:       { fontSize: 26, fontWeight: 500, color: "#111", margin: 0 } as React.CSSProperties,
+  subtitle: { fontSize: 14, color: "#666", marginTop: 4, lineHeight: 1.6 } as React.CSSProperties,
+  nav:      { display: "flex", gap: 6, flexWrap: "wrap" as const, marginBottom: "1.5rem" },
+  pill:     (active: boolean): React.CSSProperties => ({
+    fontSize: 12, padding: "5px 14px",
+    border: `0.5px solid ${active ? "#333" : "#ddd"}`,
+    borderRadius: 20, cursor: "pointer",
+    background: active ? "#111" : "transparent",
+    color: active ? "#fff" : "#666",
+    transition: "all .15s",
+  }),
+  stitle:   { fontSize: 17, fontWeight: 500, color: "#111", marginBottom: 8 } as React.CSSProperties,
+  sbody:    { fontSize: 14, color: "#555", lineHeight: 1.75, marginBottom: "1rem" } as React.CSSProperties,
+  infoBox:  { borderLeft: "2px solid #185FA5", padding: "8px 14px", background: "#E6F1FB", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#0C447C", lineHeight: 1.6 } as React.CSSProperties,
+  warnBox:  { borderLeft: "2px solid #BA7517", padding: "8px 14px", background: "#FAEEDA", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#633806", lineHeight: 1.6 } as React.CSSProperties,
+};
+
+// ─── Composant ────────────────────────────────────────────────────────────────
+
+export default function Cours5() {
+  const [activeSection, setActiveSection] = useState("mineur");
+  const i18n = useCoursI18n("cours5");
+  const tc = i18n.tc;
+  const n = (key: string) => tc(`narrative.${key}` as any);
+  const tr = useTerm();
+  const { questions: ALL_QUESTIONS } = useCoursContent(cours5Content);
+  const [selDeg,    setSelDeg]    = useState<number | null>(null);
+  const [selEmprunt, setSelEmprunt] = useState<number | null>(null);
+  const [selSuite,  setSelSuite]  = useState<string | null>(null);
+
+  const [quizQuestions, setQuizQuestions] = useState(() => shuffleArray(ALL_QUESTIONS).slice(0, QUIZ_COUNT));
+  const [quizIdx,      setQuizIdx]      = useState(0);
+  const [quizScore,    setQuizScore]    = useState(0);
+  const [quizAnswered, setQuizAnswered] = useState(false);
+  const [quizDone,     setQuizDone]     = useState(false);
+  const [selectedOpt,  setSelectedOpt]  = useState<number | null>(null);
+
+  const pianoRef = useRef<PianoPlayerRef>(null);
+
+  const answerQuiz = (i: number) => {
+    if (quizAnswered) return;
+    setSelectedOpt(i); setQuizAnswered(true);
+    if (i === quizQuestions[quizIdx].a) setQuizScore(s => s + 1);
+  };
+  const nextQuiz = () => {
+    if (quizIdx + 1 >= QUIZ_COUNT) { setQuizDone(true); }
+    else { setQuizIdx(i => i + 1); setQuizAnswered(false); setSelectedOpt(null); }
+  };
+  const resetQuiz = () => {
+    setQuizQuestions(shuffleArray(ALL_QUESTIONS).slice(0, QUIZ_COUNT));
+    setQuizIdx(0); setQuizScore(0); setQuizAnswered(false); setSelectedOpt(null); setQuizDone(false);
+  };
+
+  return (
+    <div style={S.wrap}>
+      <div style={{ position: "absolute", opacity: 0, pointerEvents: "none", height: 0, overflow: "hidden" }}>
+        <PianoPlayer ref={pianoRef} octaves={3} startOctave={2} showLabels={false} />
+      </div>
+
+      <div style={S.header}>
+        <span style={S.badge}>{i18n.badge}</span>
+        <h1 style={S.h1}>{i18n.title}</h1>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
+      </div>
+
+      <MaitreCard
+        composer="Frédéric Chopin"
+        period="1810–1849"
+        emoji="🌩️"
+        concept={n("maitreCardConcept")}
+        anecdote={n("maitreCardAnecdote")}
+        lesson={n("maitreCardLesson")}
+        accentColor="#534AB7"
+      />
+
+      <nav style={S.nav}>
+        {SECTIONS_IDS.map(id => (
+          <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
+            {i18n.sectionLabel(id)}
+          </button>
+        ))}
+      </nav>
+
+      {/* ══ MINEUR ══ */}
+      {activeSection === "mineur" && (
+        <div>
+          <h2 style={S.stitle}>{tr("La gamme mineure et ses deux formes")}</h2>
+          <p style={S.sbody}>{n("mineurBody1")}</p>
+
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("mineurWarnBox") }} />
+
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("mineurBody2") }} />
+
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("mineurInfoBox") }} />
+
+          {/* Tableau comparatif */}
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 8px", color: "#111" }}>
+            {n("mineurTableTitle")}
+          </h3>
+          <div style={{ overflowX: "auto", marginBottom: 20 }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+              <thead>
+                <tr style={{ borderBottom: "0.5px solid #e5e5e5" }}>
+                  {[n("mineurThGamme"), n("mineurThStructure"), n("mineurThNotes"), n("mineurThProbleme")].map(h => (
+                    <th key={h} style={{ textAlign: "left", padding: "6px 10px", fontWeight: 500, color: "#666" }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { gamme: n("mineurRowNaturelleLabel"),   struct:"T–½–T–T–½–T–T",   notes:"C D Eb F G Ab Bb", pb: n("mineurRowNaturellePb") },
+                  { gamme: n("mineurRowHarmoniqueLabel"),  struct:"T–½–T–T–½–1½–½",  notes:"C D Eb F G Ab B",  pb: n("mineurRowHarmoniquePb") },
+                ].map((row, i) => (
+                  <tr key={row.gamme} style={{ borderBottom: "0.5px solid #f0f0f0", background: i%2===0?"#fff":"#fafafa" }}>
+                    <td style={{ padding: "7px 10px", fontWeight: 500 }}>{row.gamme}</td>
+                    <td style={{ padding: "7px 10px", fontFamily: "monospace", fontSize: 12, color: "#185FA5" }}>{row.struct}</td>
+                    <td style={{ padding: "7px 10px", color: "#555" }}>{row.notes}</td>
+                    <td style={{ padding: "7px 10px", color: "#888", fontSize: 12 }}>{row.pb}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Accords de C mineur */}
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 8px", color: "#111" }}>{tr("Les 7 accords de C mineur")}</h3>
+          <p style={{ fontSize: 13, color: "#888", marginBottom: 12 }}>
+            {n("mineurClickDeg")}
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 5, marginBottom: 12 }}>
+            {CM_ACCORDS.map((d, i) => (
+              <div key={d.deg}
+                onClick={() => { setSelDeg(i); playChord(pianoRef as React.RefObject<PianoPlayerRef>, d.keys, 2); }}
+                style={{ border: `0.5px solid ${selDeg===i ? d.fnColor : "#e5e5e5"}`, borderRadius: 8, padding: "8px 4px", textAlign: "center", cursor: "pointer", background: selDeg===i ? d.fnBg : "#fff", transition: "all .15s" }}>
+                <div style={{ fontSize: 10, color: "#999", fontWeight: 500 }}>{d.deg}</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: "#111", margin: "2px 0" }}>{d.chord}</div>
+                <div style={{ fontSize: 10, color: "#888" }}>{n(d.typeKey)}</div>
+                <div style={{ fontSize: 9, marginTop: 3, padding: "1px 4px", borderRadius: 8, display: "inline-block", background: d.fnBg, color: d.fnColor, fontWeight: 500 }}>{tr(d.fn)}</div>
+              </div>
+            ))}
+          </div>
+
+          {selDeg !== null && (
+            <div style={{ border: `0.5px solid ${CM_ACCORDS[selDeg].fnColor}`, borderRadius: 10, padding: "12px 16px", background: CM_ACCORDS[selDeg].fnBg, marginBottom: 12 }}>
+              <div style={{ fontSize: 15, fontWeight: 500, color: CM_ACCORDS[selDeg].fnColor, marginBottom: 4 }}>
+                {CM_ACCORDS[selDeg].deg} — {CM_ACCORDS[selDeg].chord}
+              </div>
+              <p style={{ fontSize: 13, color: "#444", lineHeight: 1.6, margin: 0 }}>{n(CM_ACCORDS[selDeg].descKey)}</p>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ══ EMPRUNTS ══ */}
+      {activeSection === "emprunts" && (
+        <div>
+          <h2 style={S.stitle}>{tr("Emprunts à l'homonyme")}</h2>
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("empruntsBody1") }} />
+
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("empruntsInfoBox") }} />
+
+          <p style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>
+            {n("empruntsClickEmprunt")}
+          </p>
+
+          {EMPRUNTS.map((e, i) => (
+            <div
+              key={e.chord}
+              onClick={() => {
+                setSelEmprunt(selEmprunt === i ? null : i);
+                playChord(pianoRef as React.RefObject<PianoPlayerRef>, e.keys, 2);
+              }}
+              style={{
+                border: `0.5px solid ${selEmprunt === i ? e.color : "#e5e5e5"}`,
+                borderRadius: 10, marginBottom: 8, overflow: "hidden",
+                cursor: "pointer", background: selEmprunt === i ? e.bg : "#fff", transition: "all .15s",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px" }}>
+                <span style={{ fontSize: 16, fontWeight: 700, color: e.color, minWidth: 52, fontFamily: "monospace" }}>
+                  {e.chord}
+                </span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 13, fontWeight: 500, color: "#111" }}>
+                    {n("empruntsBorrowedFrom")} <em>{e.from}</em>
+                  </div>
+                  <div style={{ fontSize: 11, color: "#888", marginTop: 2 }}>
+                    {n("empruntsFunction")} {tr(e.fn)} — {n("empruntsReplaces")} {e.replaces}
+                  </div>
+                </div>
+                <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 10, background: e.bg, color: e.color, border: `0.5px solid ${e.color}` }}>
+                  {tr(e.fn)}
+                </span>
+              </div>
+
+              {selEmprunt === i && (
+                <div style={{ padding: "0 16px 14px", borderTop: `0.5px solid ${e.color}20` }}>
+                  <p style={{ fontSize: 13, color: "#444", lineHeight: 1.65, margin: "10px 0 6px" }}>{n(e.descKey)}</p>
+                  <p style={{ fontSize: 12, color: e.color, margin: "0 0 10px", fontStyle: "italic" }}>
+                    {n("empruntsUsagePrefix")} {n(e.usageKey)}
+                  </p>
+                  <button
+                    onClick={(ev) => { ev.stopPropagation(); playChord(pianoRef as React.RefObject<PianoPlayerRef>, e.keys, 2); }}
+                    style={{ fontSize: 12, padding: "5px 14px", border: `0.5px solid ${e.color}`, borderRadius: 20, cursor: "pointer", background: "transparent", color: e.color }}
+                  >
+                    {n("empruntsListenBtn")} {e.chord}
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+
+          {/* Tableau des fonctions en C maj / C min */}
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "24px 0 8px", color: "#111" }}>
+            {n("empruntsTableTitle")}
+          </h3>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+              <thead>
+                <tr style={{ borderBottom: "0.5px solid #e5e5e5" }}>
+                  {[n("empruntsThFonction"), n("empruntsThCMaj"), n("empruntsThCMin")].map(h => (
+                    <th key={h} style={{ textAlign: "left", padding: "6px 10px", fontWeight: 500, color: "#666" }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { fn:"Tonique",        maj:"C – Am",   min:"Cm – Eb – Ab" },
+                  { fn:"Sous-dominante", maj:"Dm – F",   min:"Ddim – Fm" },
+                  { fn:"Dominante",      maj:"G7 – Bdim",min:"G7 – Bdim" },
+                ].map((row, i) => (
+                  <tr key={tr(row.fn)} style={{ borderBottom: "0.5px solid #f0f0f0", background: i%2===0?"#fff":"#fafafa" }}>
+                    <td style={{ padding: "7px 10px", fontWeight: 500 }}>{tr(row.fn)}</td>
+                    <td style={{ padding: "7px 10px", color: "#185FA5", fontFamily: "monospace" }}>{row.maj}</td>
+                    <td style={{ padding: "7px 10px", color: "#993C1D", fontFamily: "monospace" }}>{row.min}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("empruntsWarnBox") }} />
+        </div>
+      )}
+
+      {/* ══ SUITES CLASSIQUES ══ */}
+      {activeSection === "classiques" && (
+        <div>
+          <h2 style={S.stitle}>{tr("Trois suites harmoniques incontournables")}</h2>
+          <p style={S.sbody}>{n("classiquesBody1")}</p>
+
+          {SUITES.map((suite) => (
+            <div
+              key={suite.id}
+              style={{
+                border: `0.5px solid ${selSuite === suite.id ? suite.color : "#e5e5e5"}`,
+                borderRadius: 10, marginBottom: 12, overflow: "hidden",
+                background: selSuite === suite.id ? suite.bg : "#fff", transition: "all .15s",
+              }}
+            >
+              <div
+                style={{ padding: "14px 16px", cursor: "pointer" }}
+                onClick={() => setSelSuite(selSuite === suite.id ? null : suite.id)}
+              >
+                <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 4 }}>
+                  <span style={{ fontSize: 15, fontWeight: 500, color: selSuite === suite.id ? suite.color : "#111" }}>
+                    {n(suite.nameKey)}
+                  </span>
+                </div>
+                <div style={{ fontSize: 12, color: "#888", fontStyle: "italic", marginBottom: 6 }}>{n(suite.subtitleKey)}</div>
+                <p style={{ fontSize: 13, color: "#555", lineHeight: 1.65, margin: 0 }}>{n(suite.descKey)}</p>
+              </div>
+
+              {selSuite === suite.id && (
+                <div style={{ padding: "0 16px 14px", borderTop: `0.5px solid ${suite.color}30` }}>
+                  <p style={{ fontSize: 13, color: "#444", lineHeight: 1.65, margin: "10px 0 10px" }}>{n(suite.detailKey)}</p>
+                  <div style={{
+                    fontFamily: "monospace", fontSize: 13, color: suite.color,
+                    background: "rgba(255,255,255,0.7)", padding: "8px 12px",
+                    borderRadius: 6, marginBottom: 12, letterSpacing: 1,
+                  }}>
+                    {suite.progression.join(" → ")}
+                  </div>
+                  <button
+                    onClick={() => playProgression(pianoRef as React.RefObject<PianoPlayerRef>, suite.progression, 1000)}
+                    style={{ fontSize: 12, padding: "5px 14px", border: `0.5px solid ${suite.color}`, borderRadius: 20, cursor: "pointer", background: "transparent", color: suite.color }}
+                  >
+                    {n("classiquesListenBtn")}
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+      {activeSection === "progressions" && (
+        <div style={{ marginTop: 32 }}>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>{tr("Choisir le bon renversement")}</h3>
+          <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7, marginBottom: 16, fontFamily: "system-ui, sans-serif" }}>
+            {n("progressionsBody1")}
+          </p>
+          {INVERSION_EXERCISES.filter(e => e.cours === 5).map(ex => (
+            <div key={ex.id} style={{ border: "0.5px solid #e5e5e5", borderRadius: 12, padding: "20px", marginBottom: 16, background: "#fff" }}>
+              <InversionQuiz exercise={ex} />
+            </div>
+          ))}
+        </div>
+      )}
+      {/* ══ QUIZ ══ */}
+      {activeSection === "quiz" && (
+        <div>
+          <h2 style={S.stitle}>{n("quizH2")}</h2>
+
+          {quizDone ? (
+            <div style={{ textAlign: "center", padding: "2rem 0" }}>
+              <div style={{ fontSize: 32, marginBottom: 8 }}>{quizScore>=7?"🎹":quizScore>=5?"👍":"💪"}</div>
+              <div style={{ fontSize: 20, fontWeight: 500, color: "#111", marginBottom: 4 }}>{i18n.t("score")} : {quizScore} / {QUIZ_COUNT}</div>
+              <div style={{ fontSize: 14, color: "#666", marginBottom: 20 }}>
+                {i18n.quizMessage(quizScore, QUIZ_COUNT)}
+              </div>
+              <button onClick={resetQuiz}
+                style={{ fontSize: 13, padding: "8px 20px", border: "0.5px solid #185FA5", borderRadius: 20, cursor: "pointer", background: "#E6F1FB", color: "#185FA5" }}>
+                {i18n.newQ}
+              </button>
+            </div>
+          ) : (
+            <div>
+              <div style={{ fontSize: 12, color: "#999", marginBottom: 10 }}>
+                {i18n.t("question")} {quizIdx + 1} {i18n.t("of")} {QUIZ_COUNT}
+                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} {i18n.t("questionsPool")}</span>
+              </div>
+              <div style={{ fontSize: 15, fontWeight: 500, color: "#111", lineHeight: 1.6, marginBottom: 16 }}>
+                {quizQuestions[quizIdx].q}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {quizQuestions[quizIdx].opts.map((opt, i) => {
+                  const isCorrect  = i === quizQuestions[quizIdx].a;
+                  const isSelected = selectedOpt === i;
+                  let bg="#fff", border="#e5e5e5", color="#333";
+                  if (quizAnswered) {
+                    if (isCorrect)       { bg="#E1F5EE"; border="#0F6E56"; color="#085041"; }
+                    else if (isSelected) { bg="#FCEBEB"; border="#A32D2D"; color="#501313"; }
+                  }
+                  return (
+                    <button key={i} onClick={() => answerQuiz(i)} disabled={quizAnswered}
+                      style={{ fontSize: 13, padding: "10px 14px", border: `0.5px solid ${border}`, borderRadius: 8, cursor: quizAnswered?"default":"pointer", background: bg, color, textAlign: "left", transition: "all .12s" }}>
+                      {opt}
+                    </button>
+                  );
+                })}
+              </div>
+              {quizAnswered && (
+                <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 8, background: selectedOpt===quizQuestions[quizIdx].a?"#E1F5EE":"#FCEBEB", fontSize: 13, color: selectedOpt===quizQuestions[quizIdx].a?"#085041":"#501313", lineHeight: 1.6 }}>
+                  {quizQuestions[quizIdx].fb}
+                </div>
+              )}
+              {quizAnswered && (
+                <button onClick={nextQuiz}
+                  style={{ marginTop: 12, fontSize: 13, padding: "7px 18px", border: "0.5px solid #333", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#333" }}>
+                  {quizIdx + 1 < QUIZ_COUNT ? i18n.nextQ : i18n.seeScore}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+</MODIFIED_TSX>

@@ -1,0 +1,599 @@
+<NARRATIVE_KEYS>
+{"fr":{"principeH2":"Les 4 techniques de réharmonisation","principeIntro":"Réharmoniser, c'est remplacer les accords d'une progression tout en conservant la mélodie intacte. La contrainte fondamentale : chaque note de mélodie doit rester <strong>consonante</strong> avec le nouvel accord.","principeInfoBox":"<strong>Principe :</strong> la mélodie est fixe — c'est \"le toit\". Les accords peuvent changer — c'est \"le sol\". Choisir un nouvel accord, c'est choisir sous quelle lumière la mélodie sera entendue.","principeClickHint":"Cliquez sur une technique pour voir et entendre les progressions.","techAvant":"Avant","techApres":"Après","techEcouter":"▶ Écouter","principeWarnBox":"<strong>Vérification mélodique :</strong> avant toute réharmonisation, identifiez les notes longues de la mélodie. Une note tenue qui crée un ½ ton avec une note de l'accord = dissonance forte. Vérifiez systématiquement.","applicationH2":"Réharmonisations célèbres analysées","applicationIntro":"Trois exemples issus du répertoire jazz, chacun illustrant une technique différente. Comparez les progressions originales et réharmonisées en les écoutant.","analyseOriginal":"Original","analyseReharmonise":"Réharmonisé","applicationTip":"<strong>Exercice :</strong> prenez un standard que vous connaissez (Autumn Leaves, All The Things You Are) et réharmonisez 2–3 accords avec les techniques de cette leçon. Commencez par la substitution diatonique — c'est la plus proche de l'original.","quizH2":"Entraînement","quizQuestion":"Question","quizPool":"questions dans le pool","quizScoreLabel":"Score :","quizFeedbackExcellent":"Excellent — la réharmonisation n'a plus de secrets !","quizFeedbackGood":"Bien — encore quelques progressions à écouter et ce sera parfait.","quizFeedbackKeepGoing":"Continue à écouter les progressions activement — l'oreille s'éduque !","quizNextQuestion":"Question suivante →","quizSeeScore":"Voir mon score","quizNewQuiz":"Nouveau quiz","navTechniques":"Les techniques","navAnalyses":"Analyses","navEntrainement":"Entraînement","maitreAnecdote":"En 1958, Bill Evans enregistre 'Peace Piece' en une seule prise. Pendant huit minutes, il explore les couleurs harmoniques possibles sur une seule pédale de basse — C. Il emprunte des accords au mode mineur, fait glisser des blocs de Maj7 chromatiquement, sans jamais quitter la fondamentale C. Cette pièce est un manifeste de la réharmonisation comme couleur.","maitreLesson":"Réharmoniser, c'est voir les mêmes notes sous des éclairages différents. La mélodie est le soliste — les accords sont la lumière que tu choisis pour l'éclairer.","conseilLabel":"Conseil :","analyseLabel":"Analyse :","exerciceLabel":"Exercice :","verificationLabel":"Vérification mélodique :","principeLabel":"Principe :"},"en":{"principeH2":"The 4 reharmonisation techniques","principeIntro":"Reharmonising means replacing the chords of a progression while keeping the melody intact. The fundamental constraint: every melody note must remain <strong>consonant</strong> with the new chord.","principeInfoBox":"<strong>Principle:</strong> the melody is fixed — it is \"the roof\". The chords can change — they are \"the floor\". Choosing a new chord means choosing the light under which the melody will be heard.","principeClickHint":"Click on a technique to see and hear the progressions.","techAvant":"Before","techApres":"After","techEcouter":"▶ Listen","principeWarnBox":"<strong>Melodic check:</strong> before any reharmonisation, identify the long notes of the melody. A held note that creates a half-step with a chord tone = strong dissonance. Check systematically.","applicationH2":"Famous reharmonisations analysed","applicationIntro":"Three examples from the jazz repertoire, each illustrating a different technique. Compare the original and reharmonised progressions by listening to them.","analyseOriginal":"Original","analyseReharmonise":"Reharmonised","applicationTip":"<strong>Exercise:</strong> take a standard you know (Autumn Leaves, All The Things You Are) and reharmonise 2–3 chords using the techniques from this lesson. Start with diatonic substitution — it is the closest to the original.","quizH2":"Practice","quizQuestion":"Question","quizPool":"questions in the pool","quizScoreLabel":"Score:","quizFeedbackExcellent":"Excellent — reharmonisation holds no more secrets!","quizFeedbackGood":"Good — just a few more progressions to listen to and it will be perfect.","quizFeedbackKeepGoing":"Keep listening to progressions actively — the ear learns!","quizNextQuestion":"Next question →","quizSeeScore":"See my score","quizNewQuiz":"New quiz","navTechniques":"Techniques","navAnalyses":"Analyses","navEntrainement":"Practice","maitreAnecdote":"In 1958, Bill Evans recorded 'Peace Piece' in a single take. For eight minutes, he explored every harmonic colour possible over a single bass pedal — C. He borrowed chords from the minor mode, slid chromatic Maj7 blocks down, never leaving the root C. This piece is a manifesto of reharmonisation as colour.","maitreLesson":"Reharmonising means seeing the same notes under different lights. The melody is the soloist — the chords are the light you choose to illuminate it.","conseilLabel":"Tip:","analyseLabel":"Analysis:","exerciceLabel":"Exercise:","verificationLabel":"Melodic check:","principeLabel":"Principle:"}}
+</NARRATIVE_KEYS>
+
+<MODIFIED_TSX>
+"use client";
+
+/**
+ * Cours22.tsx
+ * Harmonia · Niveau 2 · Cours 22 — La réharmonisation
+ * Convention : affichage anglais, dotKeys PianoPlayer français
+ */
+
+import React, { useRef, useState } from "react";
+import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
+import { cours22Content } from "@/data/cours22Content";
+import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import MaitreCard from "@/components/MaitreCard";
+
+const PRIMARY = "#2D5A8E";
+
+function playProgression(ref: React.RefObject<PianoPlayerRef>, chords: string[][], chordGap = 800) {
+  chords.forEach((chord, ci) => {
+    chord.forEach((key, ni) => {
+      const [note, octStr] = key.split(":");
+      setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration: 1.4 }), ci * chordGap + ni * 80);
+    });
+  });
+}
+
+// ── Techniques ────────────────────────────────────────────────────────────────
+
+interface Technique {
+  id: string;
+  name: string;
+  emoji: string;
+  color: string;
+  bg: string;
+  description: string;
+  rule: string;
+  before: string[];
+  after: string[];
+  dotKeysBefore: string[][];
+  dotKeysAfter: string[][];
+  tip: string;
+}
+
+const TECHNIQUES: Technique[] = [
+  {
+    id: "diatonique",
+    name: "Substitution diatonique",
+    emoji: "🔄",
+    color: "#0F6E56",
+    bg: "#E1F5EE",
+    description: "Remplacer un accord par un autre accord diatonique qui partage au moins 2 notes communes. Les accords à distance de tierce sont les meilleurs candidats — ils partagent 2 notes sur 3.",
+    rule: "Substitut = accord diatonique à distance de 3ce ou 6te (2 notes communes minimum).",
+    before: ["Dm7", "G7", "CMaj7"],
+    after: ["Fmaj7", "Em7", "CMaj7"],
+    dotKeysBefore: [
+      ["Ré:3","Fa:3","La:3","Do:4"],
+      ["Sol:3","Si:3","Ré:4","Fa:4"],
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+    ],
+    dotKeysAfter: [
+      ["Fa:3","La:3","Do:4","Mi:4"],
+      ["Mi:3","Sol:3","Si:3","Ré:4"],
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+    ],
+    tip: "Les substituts à tierce gardent 2 notes communes — la mélodie reste compatible. Fmaj7 substitue Dm7 : partagent F, A, C.",
+  },
+  {
+    id: "tritonique",
+    name: "Substitution tritonique",
+    emoji: "🔀",
+    color: "#993C1D",
+    bg: "#FAECE7",
+    description: "Remplacer V7 par l'accord de dominante situé un triton plus bas (6 demi-tons). Les deux accords partagent leur guide-tone (3ce et 7te permutées) et créent une basse chromatique descendante.",
+    rule: "Substitut tritonique de V7 = ♭II7 (triton = 6 demi-tons). G7 → D♭7.",
+    before: ["Dm7", "G7", "CMaj7"],
+    after: ["Dm7", "D♭7", "CMaj7"],
+    dotKeysBefore: [
+      ["Ré:3","Fa:3","La:3","Do:4"],
+      ["Sol:3","Si:3","Ré:4","Fa:4"],
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+    ],
+    dotKeysAfter: [
+      ["Ré:3","Fa:3","La:3","Do:4"],
+      ["Ré♭:3","Fa:3","La♭:3","Si:3"],
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+    ],
+    tip: "La basse D♭→C (demi-ton) crée un mouvement chromatique expressif — signature du bebop et du jazz moderne.",
+  },
+  {
+    id: "modal",
+    name: "Emprunt modal",
+    emoji: "🌓",
+    color: "#6B3FA0",
+    bg: "#F0EAFA",
+    description: "Emprunter un accord au mode parallèle (même tonique, mode différent). Fmaj7 → Fm7 : on emprunte le IVm du mode mineur parallèle, créant une couleur sombre inattendue.",
+    rule: "Emprunt modal = accord d'un mode parallèle (même tonique, couleur différente).",
+    before: ["CMaj7", "Fmaj7", "G7"],
+    after: ["CMaj7", "Fm7", "G7"],
+    dotKeysBefore: [
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+      ["Fa:3","La:3","Do:4","Mi:4"],
+      ["Sol:3","Si:3","Ré:4","Fa:4"],
+    ],
+    dotKeysAfter: [
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+      ["Fa:3","La♭:3","Do:4","Mi♭:4"],
+      ["Sol:3","Si:3","Ré:4","Fa:4"],
+    ],
+    tip: "L'emprunt modal introduit une note étrangère — vérifiez que la mélodie supporte le ♭ supplémentaire.",
+  },
+  {
+    id: "parallele",
+    name: "Harmonisation parallèle",
+    emoji: "⬇️",
+    color: "#BA7517",
+    bg: "#FAEEDA",
+    description: "Transposer un accord de même qualité par mouvement conjoint (demi-tons ou tons entiers). CMaj7 → BMaj7 → B♭Maj7 : trois Maj7 descendant chromatiquement sous une mélodie tenue.",
+    rule: "Parallélisme = même type d'accord transposé par mouvement conjoint.",
+    before: ["CMaj7", "Am7", "Fmaj7"],
+    after: ["CMaj7", "BMaj7", "B♭Maj7"],
+    dotKeysBefore: [
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+      ["La:2","Do:3","Mi:3","Sol:3"],
+      ["Fa:3","La:3","Do:4","Mi:4"],
+    ],
+    dotKeysAfter: [
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+      ["Si:2","Ré♯:3","Fa♯:3","La♯:3"],
+      ["Si♭:2","Ré:3","Fa:3","La:3"],
+    ],
+    tip: "Le parallélisme crée une couleur impressionniste. La mélodie peut rester sur une note tenue pendant que les accords descendent.",
+  },
+];
+
+// ── Analyses ──────────────────────────────────────────────────────────────────
+
+interface Analyse {
+  id: string;
+  title: string;
+  artist: string;
+  technique: string;
+  emoji: string;
+  color: string;
+  bg: string;
+  context: string;
+  before: string[];
+  after: string[];
+  dotKeysBefore: string[][];
+  dotKeysAfter: string[][];
+  insight: string;
+}
+
+const ANALYSES: Analyse[] = [
+  {
+    id: "peace",
+    title: "Peace Piece",
+    artist: "Bill Evans",
+    technique: "Emprunt modal",
+    emoji: "🕊️",
+    color: PRIMARY,
+    bg: "#E8EFF8",
+    context: "Peace Piece (1958) repose sur une pédale de basse C. Evans transforme la couleur harmonique en empruntant des accords au mode mineur parallèle — sans jamais quitter la fondamentale C.",
+    before: ["CMaj7", "G7", "CMaj7"],
+    after: ["CMaj7", "Cm7", "Fm7"],
+    dotKeysBefore: [
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+      ["Sol:3","Si:3","Ré:4","Fa:4"],
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+    ],
+    dotKeysAfter: [
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+      ["Do:3","Mi♭:3","Sol:3","Si♭:3"],
+      ["Fa:3","La♭:3","Do:4","Mi♭:4"],
+    ],
+    insight: "Cm7 et Fm7 (C mineur parallèle) transforment la clarté majeure en méditation sombre — même basse C, couleur radicalement différente.",
+  },
+  {
+    id: "autumn",
+    title: "Autumn Leaves (sub tritonique)",
+    artist: "Jazz standard",
+    technique: "Substitution tritonique",
+    emoji: "🍂",
+    color: "#993C1D",
+    bg: "#FAECE7",
+    context: "En Cm, la progression II–V–I (Dm7♭5–G7–Cm) est réharmonisée avec une substitution tritonique sur G7 → D♭7, créant la basse chromatique D–D♭–C.",
+    before: ["Dm7♭5", "G7", "Cm"],
+    after: ["Dm7♭5", "D♭7", "Cm"],
+    dotKeysBefore: [
+      ["Ré:3","Fa:3","La♭:3","Do:4"],
+      ["Sol:3","Si:3","Ré:4","Fa:4"],
+      ["Do:3","Mi♭:3","Sol:3"],
+    ],
+    dotKeysAfter: [
+      ["Ré:3","Fa:3","La♭:3","Do:4"],
+      ["Ré♭:3","Fa:3","La♭:3","Si:3"],
+      ["Do:3","Mi♭:3","Sol:3"],
+    ],
+    insight: "La basse D → D♭ → C descend chromatiquement — une des progressions les plus élégantes du jazz. D♭7 et G7 partagent leurs guide-tones (tierce et septième inversées).",
+  },
+  {
+    id: "mehldau",
+    title: "Harmonisation parallèle",
+    artist: "Brad Mehldau",
+    technique: "Harmonisation parallèle",
+    emoji: "🎹",
+    color: "#BA7517",
+    bg: "#FAEEDA",
+    context: "Mehldau utilise régulièrement des blocs d'accords Maj7 descendant chromatiquement — héritage de Bill Evans et de l'impressionnisme de Debussy. Une note de mélodie tenue crée une tension/relâchement unique.",
+    before: ["CMaj7", "Am7", "Fmaj7"],
+    after: ["CMaj7", "BMaj7", "B♭Maj7"],
+    dotKeysBefore: [
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+      ["La:2","Do:3","Mi:3","Sol:3"],
+      ["Fa:3","La:3","Do:4","Mi:4"],
+    ],
+    dotKeysAfter: [
+      ["Do:3","Mi:3","Sol:3","Si:3"],
+      ["Si:2","Ré♯:3","Fa♯:3","La♯:3"],
+      ["Si♭:2","Ré:3","Fa:3","La:3"],
+    ],
+    insight: "Trois Maj7 descendant chromatiquement — chaque accord est indépendant de la tonalité d'origine, mais l'ensemble sonne cohérent grâce au mouvement régulier de la basse.",
+  },
+];
+
+// ── Quiz ──────────────────────────────────────────────────────────────────────
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const QUIZ_COUNT = 10;
+const SECTIONS_IDS = ["principe", "application", "quiz"] as const;
+
+const S = {
+  wrap:     { fontFamily: "var(--font-sans, system-ui)", maxWidth: 720, margin: "0 auto", padding: "0 1rem 3rem" } as React.CSSProperties,
+  header:   { padding: "1.5rem 0 1rem", borderBottom: "0.5px solid #e5e5e5", marginBottom: "1.25rem" } as React.CSSProperties,
+  badge:    { display: "inline-block", background: "#E6F1FB", color: "#185FA5", fontSize: 11, fontWeight: 500, padding: "2px 10px", borderRadius: 20, marginBottom: 6 } as React.CSSProperties,
+  h1:       { fontSize: 26, fontWeight: 500, color: "#111", margin: 0 } as React.CSSProperties,
+  subtitle: { fontSize: 14, color: "#666", marginTop: 4, lineHeight: 1.6 } as React.CSSProperties,
+  nav:      { display: "flex", gap: 6, flexWrap: "wrap" as const, marginBottom: "1.5rem" },
+  pill:     (active: boolean): React.CSSProperties => ({
+    fontSize: 12, padding: "5px 14px",
+    border: `0.5px solid ${active ? "#333" : "#ddd"}`,
+    borderRadius: 20, cursor: "pointer",
+    background: active ? "#111" : "transparent",
+    color: active ? "#fff" : "#666",
+    transition: "all .15s",
+  }),
+  h2:       { fontSize: 17, fontWeight: 500, color: "#111", marginBottom: 8 } as React.CSSProperties,
+  p:        { fontSize: 14, color: "#555", lineHeight: 1.75, marginBottom: "1rem" } as React.CSSProperties,
+  infoBox:  { borderLeft: "2px solid #185FA5", padding: "8px 14px", background: "#E6F1FB", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#0C447C", lineHeight: 1.6 } as React.CSSProperties,
+  warnBox:  { borderLeft: "2px solid #BA7517", padding: "8px 14px", background: "#FAEEDA", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#633806", lineHeight: 1.6 } as React.CSSProperties,
+  tip:      { borderLeft: "2px solid #0F6E56", padding: "8px 14px", background: "#E1F5EE", borderRadius: "0 6px 6px 0", margin: "12px 0", fontSize: 13, color: "#085041", lineHeight: 1.6 } as React.CSSProperties,
+};
+
+export default function Cours22() {
+  const [activeSection, setActiveSection] = useState<string>("principe");
+  const i18n = useCoursI18n("cours22");
+  const tc = i18n.tc;
+  const n = (key: string) => tc(`narrative.${key}` as any);
+  const tr = useTerm();
+  const { questions: ALL_QUESTIONS } = useCoursContent(cours22Content);
+  const [activeTech,    setActiveTech]    = useState<string | null>(null);
+  const [activeAnalyse, setActiveAnalyse] = useState<string | null>(null);
+
+  const [quizQuestions] = useState(() => shuffle(ALL_QUESTIONS).slice(0, QUIZ_COUNT));
+  const [quizIdx,      setQuizIdx]      = useState(0);
+  const [quizScore,    setQuizScore]    = useState(0);
+  const [quizAnswered, setQuizAnswered] = useState(false);
+  const [quizDone,     setQuizDone]     = useState(false);
+  const [selectedOpt,  setSelectedOpt]  = useState<number | null>(null);
+
+  const pianoRef = useRef<PianoPlayerRef>(null);
+
+  const answerQuiz = (optIdx: number) => {
+    if (quizAnswered) return;
+    setSelectedOpt(optIdx);
+    setQuizAnswered(true);
+    if (optIdx === quizQuestions[quizIdx].a) setQuizScore(s => s + 1);
+  };
+
+  const nextQuiz = () => {
+    if (quizIdx + 1 >= QUIZ_COUNT) setQuizDone(true);
+    else { setQuizIdx(i => i + 1); setQuizAnswered(false); setSelectedOpt(null); }
+  };
+
+  const resetQuiz = () => {
+    setQuizIdx(0); setQuizScore(0);
+    setQuizAnswered(false); setSelectedOpt(null); setQuizDone(false);
+  };
+
+  const sectionLabel = (id: string) => {
+    if (id === "principe") return n("navTechniques");
+    if (id === "application") return n("navAnalyses");
+    return n("navEntrainement");
+  };
+
+  return (
+    <div style={S.wrap}>
+      {/* Piano caché */}
+      <div style={{ position: "absolute", opacity: 0, pointerEvents: "none", height: 0, overflow: "hidden" }}>
+        <PianoPlayer ref={pianoRef} octaves={3} startOctave={3} showLabels={false} />
+      </div>
+
+      {/* Header */}
+      <div style={S.header}>
+        <span style={S.badge}>Niveau 2 · Cours 22</span>
+        <h1 style={S.h1}>{tr("La réharmonisation")}</h1>
+        <p style={S.subtitle}>{i18n.subtitle}</p>
+      </div>
+
+      <MaitreCard
+        composer="Bill Evans"
+        period="1929–1980"
+        emoji="🎹"
+        concept="Réharmonisation"
+        anecdote={n("maitreAnecdote")}
+        lesson={n("maitreLesson")}
+        accentColor={PRIMARY}
+      />
+
+      {/* Navigation */}
+      <nav style={S.nav}>
+        {SECTIONS_IDS.map(id => (
+          <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
+            {sectionLabel(id)}
+          </button>
+        ))}
+      </nav>
+
+      {/* ══ SECTION 1 : LES TECHNIQUES ══ */}
+      {activeSection === "principe" && (
+        <div>
+          <h2 style={S.h2}>{n("principeH2")}</h2>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("principeIntro") }} />
+
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("principeInfoBox") }} />
+
+          <p style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>
+            {n("principeClickHint")}
+          </p>
+
+          {TECHNIQUES.map(tech => (
+            <div
+              key={tech.id}
+              onClick={() => setActiveTech(activeTech === tech.id ? null : tech.id)}
+              style={{
+                border: `0.5px solid ${activeTech === tech.id ? tech.color : "#e5e5e5"}`,
+                borderRadius: 10, marginBottom: 8, overflow: "hidden", cursor: "pointer",
+                background: activeTech === tech.id ? tech.bg : "#fff", transition: "all .15s",
+              }}
+            >
+              {/* Header technique */}
+              <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px" }}>
+                <div style={{ fontSize: 22, flexShrink: 0 }}>{tech.emoji}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 14, fontWeight: 500, color: "#111" }}>{tech.name}</div>
+                  <div style={{ fontSize: 12, color: "#888", marginTop: 2, fontStyle: "italic" }}>{tech.rule}</div>
+                </div>
+                <div style={{ fontSize: 11, color: "#bbb", flexShrink: 0 }}>
+                  {activeTech === tech.id ? "▲" : "▼"}
+                </div>
+              </div>
+
+              {/* Détail si sélectionné */}
+              {activeTech === tech.id && (
+                <div style={{ padding: "0 16px 16px", borderTop: `0.5px solid ${tech.color}20` }}>
+                  <p style={{ ...S.p, marginTop: 12 }}>{tech.description}</p>
+
+                  {/* Avant / Après */}
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 12 }}>
+                    {/* Avant */}
+                    <div style={{ background: "#f8f8f8", border: "0.5px solid #e5e5e5", borderRadius: 8, padding: "10px 12px" }}>
+                      <div style={{ fontSize: 10, fontWeight: 600, color: "#888", textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: 8 }}>
+                        {n("techAvant")}
+                      </div>
+                      <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const, marginBottom: 8 }}>
+                        {tech.before.map((chord, ci) => (
+                          <span key={ci} style={{
+                            fontSize: 12, fontWeight: 500, color: "#555",
+                            background: "#eee", padding: "2px 8px", borderRadius: 6,
+                            fontFamily: "monospace",
+                          }}>{chord}</span>
+                        ))}
+                      </div>
+                      <button
+                        onClick={e => { e.stopPropagation(); playProgression(pianoRef as React.RefObject<PianoPlayerRef>, tech.dotKeysBefore); }}
+                        style={{ fontSize: 11, padding: "4px 12px", border: "0.5px solid #ccc", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#666" }}
+                      >
+                        {n("techEcouter")}
+                      </button>
+                    </div>
+
+                    {/* Après */}
+                    <div style={{ background: tech.bg, border: `0.5px solid ${tech.color}40`, borderRadius: 8, padding: "10px 12px" }}>
+                      <div style={{ fontSize: 10, fontWeight: 600, color: tech.color, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: 8 }}>
+                        {n("techApres")}
+                      </div>
+                      <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const, marginBottom: 8 }}>
+                        {tech.after.map((chord, ci) => (
+                          <span key={ci} style={{
+                            fontSize: 12, fontWeight: 600, color: tech.color,
+                            background: "white", padding: "2px 8px", borderRadius: 6,
+                            border: `0.5px solid ${tech.color}`,
+                            fontFamily: "monospace",
+                          }}>{chord}</span>
+                        ))}
+                      </div>
+                      <button
+                        onClick={e => { e.stopPropagation(); playProgression(pianoRef as React.RefObject<PianoPlayerRef>, tech.dotKeysAfter); }}
+                        style={{ fontSize: 11, padding: "4px 12px", border: `0.5px solid ${tech.color}`, borderRadius: 20, cursor: "pointer", background: "transparent", color: tech.color }}
+                      >
+                        {n("techEcouter")}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div style={S.tip}><strong>{n("conseilLabel")}</strong> {tech.tip}</div>
+                </div>
+              )}
+            </div>
+          ))}
+
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("principeWarnBox") }} />
+        </div>
+      )}
+
+      {/* ══ SECTION 2 : ANALYSES ══ */}
+      {activeSection === "application" && (
+        <div>
+          <h2 style={S.h2}>{n("applicationH2")}</h2>
+          <p style={S.p}>
+            {n("applicationIntro")}
+          </p>
+
+          {ANALYSES.map(analyse => (
+            <div
+              key={analyse.id}
+              onClick={() => setActiveAnalyse(activeAnalyse === analyse.id ? null : analyse.id)}
+              style={{
+                border: `0.5px solid ${activeAnalyse === analyse.id ? analyse.color : "#e5e5e5"}`,
+                borderRadius: 10, marginBottom: 10, overflow: "hidden", cursor: "pointer",
+                background: activeAnalyse === analyse.id ? analyse.bg : "#fff",
+                transition: "all .15s",
+              }}
+            >
+              {/* Header */}
+              <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px" }}>
+                <div style={{ fontSize: 22, flexShrink: 0 }}>{analyse.emoji}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" as const }}>
+                    <span style={{ fontSize: 14, fontWeight: 500, color: "#111" }}>{analyse.title}</span>
+                    <span style={{ fontSize: 12, color: "#888" }}>— {analyse.artist}</span>
+                  </div>
+                  <div style={{ marginTop: 4 }}>
+                    <span style={{
+                      fontSize: 11, fontWeight: 600,
+                      color: analyse.color, background: "white",
+                      padding: "1px 8px", borderRadius: 6,
+                      border: `0.5px solid ${analyse.color}`,
+                    }}>
+                      {analyse.technique}
+                    </span>
+                  </div>
+                </div>
+                <div style={{ fontSize: 11, color: "#bbb", flexShrink: 0 }}>
+                  {activeAnalyse === analyse.id ? "▲" : "▼"}
+                </div>
+              </div>
+
+              {/* Détail */}
+              {activeAnalyse === analyse.id && (
+                <div style={{ padding: "0 16px 16px", borderTop: `0.5px solid ${analyse.color}20` }}>
+                  <p style={{ ...S.p, marginTop: 12 }}>{analyse.context}</p>
+
+                  {/* Avant / Après */}
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 12 }}>
+                    <div style={{ background: "#f8f8f8", border: "0.5px solid #e5e5e5", borderRadius: 8, padding: "10px 12px" }}>
+                      <div style={{ fontSize: 10, fontWeight: 600, color: "#888", textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: 8 }}>{n("analyseOriginal")}</div>
+                      <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const, marginBottom: 8 }}>
+                        {analyse.before.map((chord, ci) => (
+                          <span key={ci} style={{ fontSize: 12, fontWeight: 500, color: "#555", background: "#eee", padding: "2px 8px", borderRadius: 6, fontFamily: "monospace" }}>{chord}</span>
+                        ))}
+                      </div>
+                      <button
+                        onClick={e => { e.stopPropagation(); playProgression(pianoRef as React.RefObject<PianoPlayerRef>, analyse.dotKeysBefore); }}
+                        style={{ fontSize: 11, padding: "4px 12px", border: "0.5px solid #ccc", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#666" }}
+                      >
+                        {n("techEcouter")}
+                      </button>
+                    </div>
+
+                    <div style={{ background: analyse.bg, border: `0.5px solid ${analyse.color}40`, borderRadius: 8, padding: "10px 12px" }}>
+                      <div style={{ fontSize: 10, fontWeight: 600, color: analyse.color, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: 8 }}>{n("analyseReharmonise")}</div>
+                      <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const, marginBottom: 8 }}>
+                        {analyse.after.map((chord, ci) => (
+                          <span key={ci} style={{ fontSize: 12, fontWeight: 600, color: analyse.color, background: "white", padding: "2px 8px", borderRadius: 6, border: `0.5px solid ${analyse.color}`, fontFamily: "monospace" }}>{chord}</span>
+                        ))}
+                      </div>
+                      <button
+                        onClick={e => { e.stopPropagation(); playProgression(pianoRef as React.RefObject<PianoPlayerRef>, analyse.dotKeysAfter); }}
+                        style={{ fontSize: 11, padding: "4px 12px", border: `0.5px solid ${analyse.color}`, borderRadius: 20, cursor: "pointer", background: "transparent", color: analyse.color }}
+                      >
+                        {n("techEcouter")}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div style={S.infoBox}><strong>{n("analyseLabel")}</strong> {analyse.insight}</div>
+                </div>
+              )}
+            </div>
+          ))}
+
+          <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("applicationTip") }} />
+        </div>
+      )}
+
+      {/* ══ SECTION 3 : QUIZ ══ */}
+      {activeSection === "quiz" && (
+        <div>
+          <h2 style={S.h2}>{n("quizH2")}</h2>
+
+          {quizDone ? (
+            <div style={{ textAlign: "center", padding: "2rem 0" }}>
+              <div style={{ fontSize: 32, marginBottom: 8 }}>
+                {quizScore >= 8 ? "🎹" : quizScore >= 6 ? "👍" : "💪"}
+              </div>
+              <div style={{ fontSize: 20, fontWeight: 500, color: "#111", marginBottom: 4 }}>
+                {n("quizScoreLabel")} {quizScore} / {QUIZ_COUNT}
+              </div>
+              <div style={{ fontSize: 14, color: "#666", marginBottom: 20 }}>
+                {quizScore >= 8 ? n("quizFeedbackExcellent") :
+                 quizScore >= 6 ? n("quizFeedbackGood") :
+                 n("quizFeedbackKeepGoing")}
+              </div>
+              <button
+                onClick={resetQuiz}
+                style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${PRIMARY}`, borderRadius: 20, cursor: "pointer", background: "#E8EFF8", color: PRIMARY }}
+              >{n("quizNewQuiz")}</button>
+            </div>
+          ) : (
+            <div>
+              <div style={{ fontSize: 12, color: "#999", marginBottom: 10 }}>
+                {n("quizQuestion")} {quizIdx + 1} / {QUIZ_COUNT}
+                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} {n("quizPool")}</span>
+              </div>
+              <div style={{ fontSize: 15, fontWeight: 500, color: "#111", lineHeight: 1.6, marginBottom: 16 }}>
+                {quizQuestions[quizIdx].q}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" as const, gap: 8 }}>
+                {quizQuestions[quizIdx].opts.map((opt, i) => {
+                  const isCorrect  = i === quizQuestions[quizIdx].a;
+                  const isSelected = selectedOpt === i;
+                  let bg = "#fff", border = "#e5e5e5", color = "#333";
+                  if (quizAnswered) {
+                    if (isCorrect)       { bg = "#E1F5EE"; border = "#0F6E56"; color = "#085041"; }
+                    else if (isSelected) { bg = "#FCEBEB"; border = "#A32D2D"; color = "#501313"; }
+                  }
+                  return (
+                    <button key={i} onClick={() => answerQuiz(i)} disabled={quizAnswered}
+                      style={{ fontSize: 13, padding: "10px 14px", border: `0.5px solid ${border}`, borderRadius: 8, cursor: quizAnswered ? "default" : "pointer", background: bg, color, textAlign: "left" as const, transition: "all .12s" }}>
+                      {opt}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {quizAnswered && (
+                <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 8, background: selectedOpt === quizQuestions[quizIdx].a ? "#E1F5EE" : "#FCEBEB", fontSize: 13, color: selectedOpt === quizQuestions[quizIdx].a ? "#085041" : "#501313", lineHeight: 1.6 }}>
+                  {quizQuestions[quizIdx].fb}
+                </div>
+              )}
+
+              {quizAnswered && (
+                <button onClick={nextQuiz}
+                  style={{ marginTop: 12, fontSize: 13, padding: "7px 18px", border: "0.5px solid #333", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#333" }}>
+                  {quizIdx + 1 < QUIZ_COUNT ? n("quizNextQuestion") : n("quizSeeScore")}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+</MODIFIED_TSX>

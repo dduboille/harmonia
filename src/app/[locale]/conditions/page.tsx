@@ -149,10 +149,10 @@ export default async function ConditionsPage({ params }: Props) {
 
           <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, overflow: "hidden", marginBottom: 20 }}>
             {[
-              { q: "Quand puis-je annuler ?", a: "À tout moment, sans frais ni pénalité, depuis votre espace de gestion d'abonnement ou en contactant contact@getharmonia.app." },
+              { q: "Quand puis-je annuler ?", a: "À tout moment, sans frais ni pénalité, depuis votre espace de gestion d'abonnement ou en contactant appliharmonia@gmail.com." },
               { q: "Quand l'annulation prend-elle effet ?", a: "À la fin de la période de facturation en cours. Vous conservez l'accès au service jusqu'à cette date. Aucun remboursement partiel n'est accordé pour la période non consommée, sauf disposition légale contraire." },
               { q: "Abonnement annuel", a: "En cas d'annulation d'un abonnement annuel, l'accès est maintenu jusqu'à la fin de l'année déjà payée. Aucun remboursement proratisé n'est proposé, sauf dans les cas prévus par la législation applicable." },
-              { q: "Rétractation (14 jours)", a: "Conformément à l'article L.221-18 du Code de la consommation, vous disposez d'un droit de rétractation de 14 jours à compter de la souscription de votre premier abonnement payant, à condition de ne pas avoir commencé à utiliser les fonctionnalités payantes. Pour exercer ce droit, contactez contact@getharmonia.app." },
+              { q: "Rétractation (14 jours)", a: "Conformément à l'article L.221-18 du Code de la consommation, vous disposez d'un droit de rétractation de 14 jours à compter de la souscription de votre premier abonnement payant, à condition de ne pas avoir commencé à utiliser les fonctionnalités payantes. Pour exercer ce droit, contactez appliharmonia@gmail.com." },
             ].map((item, i) => (
               <div key={item.q} style={{
                 padding: "16px 20px",
@@ -296,7 +296,7 @@ export default async function ConditionsPage({ params }: Props) {
         <Section title="11. Résiliation du service">
           <p style={bodyText}>
             <strong>Par l'utilisateur :</strong> vous pouvez fermer votre compte à tout moment en
-            contactant contact@getharmonia.app. La résiliation entraîne la suppression de vos données
+            contactant appliharmonia@gmail.com. La résiliation entraîne la suppression de vos données
             de progression dans un délai de 30 jours, sous réserve des obligations légales de
             conservation (voir notre politique de confidentialité).
           </p>
@@ -330,7 +330,7 @@ export default async function ConditionsPage({ params }: Props) {
               {
                 icon: "🤝",
                 title: "Résolution amiable",
-                desc: "Avant toute procédure judiciaire, nous vous encourageons à nous contacter à contact@getharmonia.app. Nous nous engageons à répondre dans un délai de 15 jours ouvrés.",
+                desc: "Avant toute procédure judiciaire, nous vous encourageons à nous contacter à appliharmonia@gmail.com. Nous nous engageons à répondre dans un délai de 15 jours ouvrés.",
               },
             ].map(item => (
               <div key={item.title} style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "20px 22px" }}>
@@ -379,7 +379,7 @@ export default async function ConditionsPage({ params }: Props) {
             <div style={{ display: "flex", flexDirection: "column" as const, gap: 12, fontFamily: "system-ui, sans-serif" }}>
               <div>
                 <span style={{ color: "#888", fontSize: 11, fontWeight: 600, display: "block", marginBottom: 3, letterSpacing: "0.06em" }}>E-MAIL</span>
-                <a href="mailto:contact@getharmonia.app" style={{ color: "#185FA5", fontWeight: 600, textDecoration: "none", fontSize: 14 }}>contact@getharmonia.app</a>
+                <a href="mailto:appliharmonia@gmail.com" style={{ color: "#185FA5", fontWeight: 600, textDecoration: "none", fontSize: 14 }}>appliharmonia@gmail.com</a>
               </div>
               <div>
                 <span style={{ color: "#888", fontSize: 11, fontWeight: 600, display: "block", marginBottom: 3, letterSpacing: "0.06em" }}>RESPONSABLE</span>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 // src/components/ContactConservatoireForm.tsx
 import React, { useState } from "react";
 
@@ -91,7 +91,7 @@ export default function ContactConservatoireForm() {
       </div>
       {status === "error" && (
         <p role="alert" style={{ color: "#dc2626", fontSize: 13, fontFamily: "system-ui, sans-serif", margin: 0 }}>
-          Une erreur est survenue. Réessayez ou écrivez à contact@getharmonia.app
+          Une erreur est survenue. Réessayez ou écrivez à appliharmonia@gmail.com
         </p>
       )}
       <button type="submit" disabled={status === "loading"} style={{

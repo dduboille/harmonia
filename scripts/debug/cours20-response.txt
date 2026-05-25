@@ -1,0 +1,590 @@
+<NARRATIVE_KEYS>
+{"fr":{"compositeursHeading":"9 COMPOSITEURS — Du Baroque au Post-romantisme","compositeursIntro":"Chaque compositeur développe un langage harmonique reconnaissable. Clique sur chaque carte pour découvrir ses techniques, écouter sa progression emblématique et comprendre son œuvre de référence.","analyseHeading":"EXERCICES D'ANALYSE COMPARATIVE","analyseIntro":"Écoute les progressions, compare les versions et identifie le style de chaque compositeur. L'analyse auditive est la clé de la reconnaissance stylistique.","quizHeading":"QUIZ — {count} QUESTIONS SUR {total} DISPONIBLES","quizProgress":"Question {current} / {total}","quizAnswered":"{count} répondues","quizPrev":"← Précédente","quizNext":"Suivante →","quizSubmit":"Voir le résultat","quizPerfect":"Parfait ! Vous maîtrisez l'analyse stylistique.","quizGood":"Très bien ! Quelques compositeurs à revoir.","quizKeepGoing":"Continuez à explorer les compositeurs.","quizRestart":"Recommencer","composerProgLabel":"Progression emblématique — {label}","composerListenBtn":"▶ Écouter","composerOeuvreTitle":"Œuvre de référence","composerHarmonieLabel":"Couleur harmonique :","maitreCardConcept":"Modulations par tierce & couleurs romantiques naissantes","maitreCardAnecdote":"Schubert a composé plus de 600 lieder, dont plusieurs en une seule journée. Il est mort à 31 ans sans jamais avoir dirigé la plupart de ses grandes œuvres en public.","maitreCardLesson":"La modulation par tierce — glisser de Do majeur à Lab majeur sans transition — crée une couleur unique, comme un changement soudain d'éclairage sur la même scène.","sectionCompositeurs":"Compositeurs","sectionAnalyse":"Analyse comparative","sectionQuiz":"Quiz"},"en":{"compositeursHeading":"9 COMPOSERS — From Baroque to Post-Romanticism","compositeursIntro":"Each composer develops a recognisable harmonic language. Click on each card to discover their techniques, listen to their signature progression and understand their reference work.","analyseHeading":"COMPARATIVE ANALYSIS EXERCISES","analyseIntro":"Listen to the progressions, compare the versions and identify each composer's style. Ear-training analysis is the key to stylistic recognition.","quizHeading":"QUIZ — {count} QUESTIONS OUT OF {total} AVAILABLE","quizProgress":"Question {current} / {total}","quizAnswered":"{count} answered","quizPrev":"← Previous","quizNext":"Next →","quizSubmit":"See results","quizPerfect":"Perfect! You have mastered stylistic analysis.","quizGood":"Very good! A few composers to review.","quizKeepGoing":"Keep exploring the composers.","quizRestart":"Restart","composerProgLabel":"Signature progression — {label}","composerListenBtn":"▶ Listen","composerOeuvreTitle":"Reference work","composerHarmonieLabel":"Harmonic colour:","maitreCardConcept":"Modulations by third & nascent romantic colours","maitreCardAnecdote":"Schubert composed over 600 lieder, several in a single day. He died at 31 without ever having conducted most of his major works in public.","maitreCardLesson":"Modulation by third — sliding from C major to A-flat major without a transition — creates a unique colour, like a sudden change of lighting on the same scene.","sectionCompositeurs":"Composers","sectionAnalyse":"Comparative Analysis","sectionQuiz":"Quiz"}}
+</NARRATIVE_KEYS>
+
+<MODIFIED_TSX>
+"use client";
+/**
+ * src/components/Cours20.tsx
+ * Harmonia — Cours 20 : Analyse des grands compositeurs classiques
+ */
+import React, { useRef, useState, useMemo } from "react";
+import PianoPlayer, { PianoPlayerRef } from "./PianoPlayer";
+import MaitreCard from "./MaitreCard";
+import { useCoursI18n } from "@/hooks/useCoursI18n";
+import { useCoursContent } from "@/hooks/useCoursContent";
+import { useTerm } from "@/hooks/useTerm";
+import { cours20Content } from "@/data/cours20Content";
+
+const PRIMARY    = "#7B2055";
+const PRIMARY_BG = "#FAF0F5";
+const QUIZ_COUNT = 10;
+const startOctave = 2;
+
+function shuffle<T>(arr: T[]): T[] {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+function playChord(ref: React.RefObject<PianoPlayerRef | null>, keys: string[], dur = 1.2) {
+  ref.current?.playChord(keys, dur);
+}
+function playProg(ref: React.RefObject<PianoPlayerRef | null>, chords: string[][], gap = 700, dur = 1.0) {
+  let t = 0;
+  chords.forEach(ch => { setTimeout(() => ref.current?.playChord(ch, dur), t); t += gap; });
+}
+
+// ─── Compositeurs ────────────────────────────────────────────────────────────
+
+const COMPOSERS = [
+  {
+    id: "bach", name: "Bach", fullName: "Johann Sebastian Bach",
+    period: "1685–1750", era: "Baroque", emoji: "🎼",
+    color: "#1a3a5c", bg: "#E8F0F8",
+    techniques: ["Contrepoint rigoureux", "Fugue et imitation", "Choral SATB à 4 voix"],
+    harmonie: "Architecturale — chaque note justifiée par la logique contrapuntique et le cycle des quintes",
+    oeuvre: "Le Clavier Bien Tempéré",
+    oeuvreWhy: "48 préludes et fugues dans toutes les tonalités — le monument absolu du contrepoint tonal.",
+    demo: [["Do:3","Sol:3","Mi:4","Do:5"],["Sol:2","Si:3","Ré:4","Sol:4"],["Do:3","Mi:3","Sol:3","Do:4"]],
+    demoLabel: "Choral I–V–I",
+  },
+  {
+    id: "mozart", name: "Mozart", fullName: "Wolfgang Amadeus Mozart",
+    period: "1756–1791", era: "Classicisme", emoji: "🎹",
+    color: "#0F6E56", bg: "#E5F3EF",
+    techniques: ["Clarté et économie harmonique", "Forme sonate", "Périodes antécédent-conséquent"],
+    harmonie: "Élégante et symétrique — harmonie fonctionnelle au service d'une mélodie naturelle",
+    oeuvre: "Sonate K.331 · Symphonie n°40",
+    oeuvreWhy: "La K.331 illustre la perfection formelle : thème, variations, menuet, rondo alla turca.",
+    demo: [["Do:4","Mi:4","Sol:4"],["Fa:4","La:4","Do:5"],["Sol:4","Si:4","Ré:5"],["Do:4","Mi:4","Sol:4","Do:5"]],
+    demoLabel: "I–IV–V–I (période classique)",
+  },
+  {
+    id: "beethoven", name: "Beethoven", fullName: "Ludwig van Beethoven",
+    period: "1770–1827", era: "Classique-Romantique", emoji: "⚡",
+    color: "#6B3D00", bg: "#FDF2E0",
+    techniques: ["Développement motivique", "Sforzando et accents dramatiques", "Modulations vers tonalités éloignées"],
+    harmonie: "Tendue et dramatique — résolution différée au maximum pour un impact émotionnel maximal",
+    oeuvre: "5e Symphonie · Sonate Pathétique",
+    oeuvreWhy: "La 5e Symphonie (sol-sol-sol-mib) est l'archétype du développement motivique : 4 notes, toute une symphonie.",
+    demo: [["Do:3","Mib:3","Sol:3"],["Lab:2","Do:3","Mib:3","Lab:3"],["Fa:2","La:2","Do:3","Fa:3"],["Sol:2","Si:2","Ré:3","Sol:3"]],
+    demoLabel: "i–bVI–IV–V (tension dramatique)",
+  },
+  {
+    id: "schubert", name: "Schubert", fullName: "Franz Schubert",
+    period: "1797–1828", era: "Romantisme naissant", emoji: "🌙",
+    color: "#7B2055", bg: "#FAF0F5",
+    techniques: ["Modulations par tierce", "Emprunts au mode mineur", "Harmonie vocale des Lieder"],
+    harmonie: "Coloristique — les accords sont choisis pour leur couleur émotionnelle, pas seulement leur fonction",
+    oeuvre: "La Belle Meunière · Winterreise",
+    oeuvreWhy: "Winterreise (24 lieder) explore toutes les couleurs harmoniques de la mélancolie romantique.",
+    demo: [["Do:3","Mi:3","Sol:3","Do:4"],["Lab:2","Do:3","Mib:3","Lab:3"],["Do:3","Mi:3","Sol:3","Do:4"]],
+    demoLabel: "C → Lab → C (tierce basse)",
+  },
+  {
+    id: "berlioz", name: "Berlioz", fullName: "Hector Berlioz",
+    period: "1803–1869", era: "Romantisme français", emoji: "🔥",
+    color: "#C0392B", bg: "#FDEEEE",
+    techniques: ["Idée fixe et leitmotif", "Orchestration révolutionnaire", "Programme narratif"],
+    harmonie: "Romantique débridée — enchaînements qui défient les règles classiques au service du récit",
+    oeuvre: "Symphonie Fantastique",
+    oeuvreWhy: "Premier chef-d'œuvre de musique à programme : 5 mouvements narrant une histoire d'amour halluciné.",
+    demo: [["Do:3","Mi:3","Sol:3","Si:3"],["Mi:3","Sol#:3","Si:3","Ré:4"],["La:3","Do:4","Mi:4","Sol:4"],["Ré:3","Fa#:3","La:3","Do:4"]],
+    demoLabel: "Séquence ascendante romantique",
+  },
+  {
+    id: "chopin", name: "Chopin", fullName: "Frédéric Chopin",
+    period: "1810–1849", era: "Romantisme polonais", emoji: "🌹",
+    color: "#185FA5", bg: "#E6F1FB",
+    techniques: ["Chromatisme expressif", "Pédale de tonique", "Formes libres nocturnes"],
+    harmonie: "Pianistique — exploite les ressources uniques du piano pour des couleurs harmoniques inouïes",
+    oeuvre: "Nocturnes · Ballades · Préludes",
+    oeuvreWhy: "Les Nocturnes créent une atmosphère introspective sans équivalent — harmonie au service de la rêverie.",
+    demo: [["Do:3","Mi:3","Sol:3","Si:3"],["Si:2","Ré#:3","Fa#:3","La:3"],["La:2","Do#:3","Mi:3","Sol:3"],["Sol:2","Si:2","Ré:3","Fa#:3"],["Do:3","Mi:3","Sol:3","Do:4"]],
+    demoLabel: "Chromatisme descendant nocturne",
+  },
+  {
+    id: "liszt", name: "Liszt", fullName: "Franz Liszt",
+    period: "1811–1886", era: "Romantisme tardif", emoji: "⚗️",
+    color: "#6B4E00", bg: "#FEF8E7",
+    techniques: ["Transformation thématique", "Poème symphonique", "Chromatisme avancé"],
+    harmonie: "Virtuose — la difficulté technique et la complexité harmonique sont indissociables",
+    oeuvre: "Sonate en Si mineur · Études Transcendantes",
+    oeuvreWhy: "La Sonate en Si mineur — un seul mouvement de 30 min — révolutionne la conception formelle.",
+    demo: [["Do:3","Mi:3","Sol:3","Si:3"],["Ré:3","Fa#:3","La:3","Do:4"],["Mi:3","Sol#:3","Si:3","Ré:4"],["Fa:3","La:3","Do:4","Mib:4"]],
+    demoLabel: "Chromatisme ascendant (Liszt)",
+  },
+  {
+    id: "tchaiko", name: "Tchaïkovski", fullName: "Piotr Ilitch Tchaïkovski",
+    period: "1840–1893", era: "Romantisme russe", emoji: "🦢",
+    color: "#2A6050", bg: "#E5F3EF",
+    techniques: ["Lyrisme slave intense", "Emprunts au mineur harmonique", "Orchestration émotionnelle"],
+    harmonie: "Lyrique et dramatique — grands arcs mélodiques soutenus par une harmonie dense",
+    oeuvre: "Lac des Cygnes · Symphonie n°6 · Concerto pour piano n°1",
+    oeuvreWhy: "La Symphonie Pathétique se termine par un mouvement lent — innovation formelle bouleversante.",
+    demo: [["La:2","Do:3","Mi:3","La:3"],["Fa:2","La:2","Do:3","Fa:3"],["Mi:2","Sol#:2","Si:2","Mi:3"],["La:2","Do:3","Mi:3","La:3"]],
+    demoLabel: "i–VI–V–i (lyrisme slave)",
+  },
+  {
+    id: "rach", name: "Rachmaninov", fullName: "Sergueï Rachmaninov",
+    period: "1873–1943", era: "Post-romantisme", emoji: "🌊",
+    color: "#1a3a6c", bg: "#E8EEF8",
+    techniques: ["Progressions par tierces", "Pédales harmoniques longues", "Densité post-romantique"],
+    harmonie: "Dense et nostalgique — accords riches à 5-7 notes, lyrisme slave exacerbé",
+    oeuvre: "Concerto pour piano n°2 · Vocalise · Rhapsodie sur Paganini",
+    oeuvreWhy: "Le Concerto n°2 (Do mineur) est la quintessence du lyrisme post-romantique pour piano et orchestre.",
+    demo: [["La:2","Mi:3","Do:4","Mi:4"],["Ré:2","La:2","Fa:3","La:3"],["Sol:2","Si:2","Ré:3","Sol:3"],["Do:2","Sol:2","Mi:3","Sol:3","Do:4"]],
+    demoLabel: "Richesse post-romantique",
+  },
+];
+
+// ─── Exercices d'analyse comparative ─────────────────────────────────────────
+
+const ANALYSES = [
+  {
+    id: "a1",
+    title: "Quelle progression pour Bach ?",
+    desc: "Bach construit ses chorals autour de cadences fonctionnelles strictes. Cette progression descend le cycle des quintes.",
+    demo: [["Do:3","Mi:3","Sol:3","Do:4"],["Fa:3","La:3","Do:4","Fa:4"],["Sol:3","Si:3","Ré:4","Sol:4"],["Do:3","Mi:3","Sol:3","Do:4"]],
+    question: "Cette progression I–IV–V–I est typique de quel style ?",
+    options: ["Bach (choral baroque)", "Chopin (nocturne)", "Berlioz (programme)", "Rachmaninov (post-romantisme)"],
+    correct: 0,
+    explanation: "I–IV–V–I est la progression fonctionnelle par excellence du Baroque — Bach en fait la colonne vertébrale de ses chorals.",
+  },
+  {
+    id: "a2",
+    title: "Modulation par tierce ou par quinte ?",
+    desc: "Comparez deux façons de passer de Do majeur à une nouvelle tonalité. L'une est classique (Mozart), l'autre est romantique (Schubert).",
+    demo: [["Do:3","Mi:3","Sol:3","Do:4"],["Sol:3","Si:3","Ré:4","Sol:4"],["Do:3","Mi:3","Sol:3","Do:4"]],
+    demo2: [["Do:3","Mi:3","Sol:3","Do:4"],["Lab:2","Do:3","Mib:3","Lab:3"],["Do:3","Mi:3","Sol:3","Do:4"]],
+    question: "Laquelle de ces modulations est caractéristique de Schubert ?",
+    options: ["C → G (quinte — style Mozart)", "C → Ab (tierce basse — style Schubert)", "C → F (sous-dominante)", "C → Am (relative mineure)"],
+    correct: 1,
+    explanation: "Schubert glisse vers Lab majeur (tierce basse) avec une fluidité déconcertante. Mozart préférerait la dominante Sol (quinte).",
+  },
+  {
+    id: "a3",
+    title: "Beethoven ou Mozart sur le même thème ?",
+    desc: "Mozart harmonise simplement. Beethoven ajoute sforzando, modulations dramatiques et tension prolongée.",
+    demo: [["Do:4","Mi:4","Sol:4"],["Sol:3","Si:3","Ré:4","Fa:4"],["Do:4","Mi:4","Sol:4"]],
+    demo2: [["Do:3","Mib:3","Sol:3"],["Lab:2","Do:3","Mib:3","Lab:3"],["Sol:2","Si:2","Ré:3","Fa:3"],["Do:3","Mi:3","Sol:3","Do:4"]],
+    question: "Quelle version correspond au style de Beethoven ?",
+    options: ["Version A — I–V7–I simple", "Version B — i–bVI–V7–I avec détour dramatique", "Les deux sont identiques", "Aucune des deux"],
+    correct: 1,
+    explanation: "Beethoven détourne la résolution attendue via bVI (Lab) avant de revenir sur V7–I — la tension typiquement beethovénienne.",
+  },
+  {
+    id: "a4",
+    title: "Chromatisme : Chopin ou Liszt ?",
+    desc: "Chopin descend chromatiquement dans une atmosphère nocturne. Liszt monte chromatiquement avec virtuosité.",
+    demo: [["Do:3","Mi:3","Sol:3","Si:3"],["Si:2","Ré#:3","Fa#:3","La:3"],["La:2","Do#:3","Mi:3","Sol:3"]],
+    demo2: [["Do:3","Mi:3","Sol:3","Si:3"],["Ré:3","Fa#:3","La:3","Do:4"],["Mi:3","Sol#:3","Si:3","Ré:4"]],
+    question: "La version descendante (A) est caractéristique de quel compositeur ?",
+    options: ["Liszt — virtuosité ascendante", "Chopin — intériorité nocturne descendante", "Berlioz — programme narratif", "Bach — contrepoint strict"],
+    correct: 1,
+    explanation: "Chopin descend chromatiquement pour créer une intériorité mélancolique. Liszt monte pour exprimer une montée en puissance virtuose.",
+  },
+  {
+    id: "a5",
+    title: "Lyrisme slave : Tchaïkovski ou Rachmaninov ?",
+    desc: "Les deux exploitent le lyrisme slave, mais Rachmaninov ajoute une densité harmonique extrême avec des accords plus riches.",
+    demo: [["La:2","Do:3","Mi:3","La:3"],["Fa:2","La:2","Do:3","Fa:3"],["Mi:2","Sol#:2","Si:2","Mi:3"]],
+    demo2: [["La:2","Mi:3","Do:4","Mi:4"],["Ré:2","La:2","Fa:3","La:3"],["Sol:2","Si:2","Ré:3","Sol:3"]],
+    question: "Quelle version illustre la densité harmonique de Rachmaninov ?",
+    options: ["Version A — accords simples à 4 notes", "Version B — accords ouverts à large registre", "Les deux sont équivalents", "Ni l'un ni l'autre"],
+    correct: 1,
+    explanation: "Rachmaninov utilise des accords ouverts sur plusieurs octaves — La:2 + Mi:3 + Do:4 + Mi:4 — une richesse sonore propre au post-romantisme.",
+  },
+];
+
+// ─── Questions quiz (100 questions) ─────────────────────────────────────────
+
+const ALL_QUESTIONS = [
+  // ── Bach
+  { id:"q1",  q:"Johann Sebastian Bach est né en :",                            opts:["1650","1685","1710","1730"],           ans:1, exp:"Bach est né à Eisenach en 1685 et mort à Leipzig en 1750." },
+  { id:"q2",  q:"La technique fondamentale de Bach est :",                      opts:["Le lyrisme","La fugue et contrepoint","Le sforzando","Le poème symphonique"], ans:1, exp:"Bach est le maître du contrepoint — la fugue en est la forme suprême." },
+  { id:"q3",  q:"Le Clavier Bien Tempéré contient :",                          opts:["24 préludes","48 préludes et fugues","12 fugues","36 inventions"],     ans:1, exp:"48 préludes et fugues — 2 séries de 24, une dans chaque tonalité majeure et mineure." },
+  { id:"q4",  q:"Dans une fugue, le 'sujet' est :",                            opts:["La cadence finale","Le thème principal","La contre-exposition","La strette"], ans:1, exp:"Le sujet est le thème mélodique initial de la fugue, présenté seul puis imité." },
+  { id:"q5",  q:"La basse continue est caractéristique de :",                  opts:["Le Romantisme","Le Baroque","Le Classicisme","L'Impressionnisme"],     ans:1, exp:"La basse continue (basso continuo) est la texture harmonique typique du Baroque." },
+  { id:"q6",  q:"Bach organisait ses harmonies principalement autour de :",    opts:["La gamme pentatonique","Le cycle des quintes","La gamme par tons","Les modes grecs"], ans:1, exp:"Le cycle des quintes structure toute la logique harmonique du contrepoint de Bach." },
+  { id:"q7",  q:"Le choral à 4 voix de Bach respecte :",                      opts:["SATB (Soprano Alto Ténor Basse)","SSAB","TTBB","SATB avec doublures"], ans:0, exp:"SATB est la distribution standard — chaque voix a une tessiture et un rôle précis." },
+  { id:"q8",  q:"Les Inventions à 2 voix de Bach sont :",                     opts:["Des opéras","Des exercices pédagogiques contrapuntiques","Des symphonies","Des sonates"], ans:1, exp:"Bach les a écrites pour enseigner le contrepoint à 2 voix à son fils Wilhelm Friedemann." },
+  { id:"q9",  q:"Le principe de la fugue est :",                               opts:["Variation","Imitation entre voix","Improvisation","Ostinato"],         ans:1, exp:"Une fugue = un sujet imité successivement par toutes les voix — imitation stricte." },
+  { id:"q10", q:"Bach appartient à la période :",                              opts:["Classique","Baroque","Romantique","Renaissance"],                      ans:1, exp:"Bach (1685–1750) est le sommet du Baroque, contemporain de Haendel et Vivaldi." },
+  // ── Mozart
+  { id:"q11", q:"W.A. Mozart a vécu de :",                                     opts:["1732–1809","1756–1791","1770–1827","1685–1750"],                        ans:1, exp:"Mozart est né à Salzbourg en 1756 et mort à Vienne en 1791, à 35 ans seulement." },
+  { id:"q12", q:"La forme sonate comprend :",                                  opts:["Exposition–Développement–Réexposition","Thème–Variations","Fugue–Strette","Prélude–Fugue"], ans:0, exp:"Exposition (2 thèmes), Développement (travail motivique), Réexposition (retour)." },
+  { id:"q13", q:"La période 'antécédent-conséquent' est :",                   opts:["Un accord de 7e","Une phrase de 8 mesures en 2 sous-phrases","Une modulation","Une fugue"], ans:1, exp:"4 mesures de tension (antécédent) + 4 mesures de résolution (conséquent) = la symétrie classique." },
+  { id:"q14", q:"La Sonate K.331 de Mozart débute par :",                     opts:["Une fugue","Un thème et variations","Une sonate-allegro","Un rondo"],  ans:1, exp:"K.331 : Andante grazioso (thème et 6 variations), Menuetto, Alla turca." },
+  { id:"q15", q:"L'ère musicale de Mozart est :",                              opts:["Le Baroque","Le Classicisme","Le Romantisme","L'Impressionnisme"],     ans:1, exp:"Le Classicisme viennois (Haydn, Mozart, Beethoven) : clarté, forme et équilibre." },
+  { id:"q16", q:"La Symphonie n°40 de Mozart est en :",                       opts:["Do majeur","Sol mineur","Ré majeur","La mineur"],                      ans:1, exp:"Sol mineur — l'une des rares symphonies de Mozart dans une tonalité mineure sombre." },
+  { id:"q17", q:"L'économie harmonique de Mozart signifie :",                  opts:["Peu d'accords avec effet maximal","Beaucoup d'accords","Pas d'harmonie","Des accords complexes"], ans:0, exp:"Mozart obtient un maximum d'expression avec un minimum d'accords — la perfection classique." },
+  { id:"q18", q:"Le 'style galant' de Mozart se caractérise par :",           opts:["Contrepoint dense","Mélodies légères sur harmonie simple","Orchestre immense","Atonalité"], ans:1, exp:"Style galant : élégance, légèreté, clarté — en réaction au contrepoint 'lourd' du Baroque." },
+  { id:"q19", q:"Chez Mozart, les modulations sont généralement :",           opts:["Abruptyies par tierce","Préparées et progressives","Absentes","Chromatiques"], ans:1, exp:"Mozart prépare toujours ses modulations — la tonalité voisine (dominante/sous-dominante) est privilégiée." },
+  { id:"q20", q:"Mozart est mort à quel âge ?",                               opts:["25 ans","35 ans","45 ans","55 ans"],                                   ans:1, exp:"Mozart est mort à 35 ans en 1791, laissant le Requiem KV 626 inachevé." },
+  // ── Beethoven
+  { id:"q21", q:"Le développement motivique consiste à :",                    opts:["Répéter un accord","Travailler un court motif sur toute une œuvre","Improviser librement","Imiter Bach"], ans:1, exp:"Beethoven prend 4 notes (sol-sol-sol-mib) et construit une symphonie entière dessus." },
+  { id:"q22", q:"Le 'sforzando' (sfz) signifie :",                           opts:["Très doux","Accent brusque soudain","Diminuendo","Ritardando"],         ans:1, exp:"sfz = sforzando = accent soudain sur une note, typique du style dramatique de Beethoven." },
+  { id:"q23", q:"La 5e Symphonie de Beethoven débute par :",                  opts:["Un accord majeur","Le motif sol-sol-sol-mib","Un thème lyrique","Une fugue"], ans:1, exp:"Sol-sol-sol-mib : le motif le plus célèbre de l'histoire de la musique occidentale." },
+  { id:"q24", q:"Beethoven appartient à :",                                   opts:["Le pur Baroque","La transition Classique-Romantique","Le Romantisme tardif","L'Impressionnisme"], ans:1, exp:"Beethoven (1770–1827) est le pont entre l'équilibre classique et l'expression romantique." },
+  { id:"q25", q:"La Sonate Pathétique (Op. 13) est en :",                    opts:["Sol majeur","Do mineur","La mineur","Ré majeur"],                      ans:1, exp:"Do mineur — la tonalité dramatique par excellence chez Beethoven." },
+  { id:"q26", q:"L'extension des formes chez Beethoven signifie :",          opts:["Des formes plus courtes","Des développements bien plus longs que la norme classique","Des formes identiques à Mozart","Moins de mouvements"], ans:1, exp:"Les symphonies et sonates de Beethoven dépassent souvent le double de la durée classique standard." },
+  { id:"q27", q:"Beethoven a composé combien de symphonies ?",               opts:["5","7","9","12"],                                                       ans:2, exp:"9 symphonies — la 9e (Ode à la Joie) reste l'une des œuvres les plus jouées au monde." },
+  { id:"q28", q:"La technique de tension-résolution de Beethoven consiste à :",opts:["Résoudre immédiatement","Retarder la résolution au maximum","Éviter la résolution","Moduler sans résoudre"], ans:1, exp:"Beethoven fait durer la tension harmonique — la résolution n'en est que plus puissante." },
+  { id:"q29", q:"La 'Sonate au clair de lune' utilise :",                    opts:["Des arpèges descendants","Des triolets continus en ostinato","Une fugue","Des accords plaqués"], ans:1, exp:"Le 1er mouvement est entièrement construit sur des triolets réguliers — un voile harmonique hypnotique." },
+  { id:"q30", q:"Beethoven était connu pour ses :",                          opts:["Lieder romantiques","Modulations vers tonalités éloignées","Contrepoints stricts","Pièces de chambre légères"], ans:1, exp:"Beethoven module vers des tonalités inattendues (bVI, bVII) pour créer des effets dramatiques saisissants." },
+  // ── Schubert
+  { id:"q31", q:"Franz Schubert a vécu de :",                                opts:["1750–1810","1797–1828","1810–1856","1770–1827"],                        ans:1, exp:"Schubert est né à Vienne en 1797 et mort à 31 ans en 1828 — une vie courte, une œuvre immense." },
+  { id:"q32", q:"La modulation par tierce consiste à :",                     opts:["Aller à la dominante","Passer d'une tonalité à celle un tiers plus haut ou bas","Emprunter le mode mineur","Utiliser la pédale"],  ans:1, exp:"Do → Lab (tierce basse) ou Do → Mi (tierce haute) — la signature harmonique de Schubert." },
+  { id:"q33", q:"Schubert a composé plus de 600 :",                         opts:["Symphonies","Fugues","Lieder","Concertos"],                              ans:2, exp:"Plus de 600 lieder (mélodies pour voix et piano) — dont beaucoup composés en une journée." },
+  { id:"q34", q:"La 'Winterreise' est :",                                   opts:["Une symphonie","Un ballet","Un cycle de 24 lieder","Une fugue"],        ans:2, exp:"Winterreise (Voyage d'hiver) : 24 lieder sur des poèmes de Wilhelm Müller — un sommet du lyrisme." },
+  { id:"q35", q:"L'emprunt au mode mineur chez Schubert crée :",           opts:["Une tension résolue","Une couleur mélancolique soudaine","Un accord de dominante","Un contrepoint"], ans:1, exp:"Schubert glisse au mineur pour colorer émotionnellement un passage — sans véritable modulation." },
+  { id:"q36", q:"La modulation C→Lab est un exemple de :",                 opts:["Modulation par quinte","Modulation par tierce basse","Modulation chromatique","Emprunt"],       ans:1, exp:"Lab est la médiante bémolisée de Do (tierce basse) — signature romantique de Schubert." },
+  { id:"q37", q:"Schubert est une figure de transition entre :",           opts:["Baroque et Classique","Classique et Romantique","Romantique et Moderne","Renaissance et Baroque"], ans:1, exp:"Schubert (1797–1828) vit dans l'ombre de Beethoven mais ouvre la voie au Romantisme." },
+  { id:"q38", q:"Dans 'La Belle Meunière', le piano imite :",              opts:["La flûte","Le bruit du moulin","La voix","La pluie"],                    ans:1, exp:"Les triolets continus de la main droite imitent le bruit du moulin à eau — un ostinato poétique." },
+  { id:"q39", q:"Les 'couleurs romantiques' de Schubert désignent :",     opts:["Une harmonie purement fonctionnelle","Une harmonie choisie pour son effet expressif","L'atonalité","Le contrepoint"], ans:1, exp:"Schubert choisit ses accords pour leur couleur émotionnelle, pas seulement pour leur fonction tonale." },
+  { id:"q40", q:"Schubert est mort à quel âge ?",                         opts:["25 ans","31 ans","45 ans","50 ans"],                                      ans:1, exp:"Franz Schubert est mort à 31 ans en 1828 — à peine un an après Beethoven." },
+  // ── Berlioz
+  { id:"q41", q:"L''idée fixe' de Berlioz est :",                          opts:["Un accord chromatique","Un thème récurrent représentant un personnage","Une forme de fugue","Une pédale"], ans:1, exp:"L'idée fixe de la Symphonie Fantastique représente la bien-aimée — elle traverse tous les mouvements." },
+  { id:"q42", q:"La Symphonie Fantastique est un exemple de :",             opts:["Fugue baroque","Musique à programme narrative","Sonate classique","Lied romantique"], ans:1, exp:"Berlioz rédige un 'programme' littéraire décrivant une histoire — la musique l'illustre." },
+  { id:"q43", q:"Berlioz était de nationalité :",                          opts:["Autrichienne","Française","Allemande","Russe"],                          ans:1, exp:"Berlioz (1803–1869) est né à La Côte-Saint-André (Isère) — il représente le Romantisme français." },
+  { id:"q44", q:"La Symphonie Fantastique comporte :",                     opts:["3 mouvements","4 mouvements","5 mouvements","7 mouvements"],             ans:2, exp:"5 mouvements : Rêveries, Un bal, Scène aux champs, Marche au supplice, Songe d'une nuit de sabbat." },
+  { id:"q45", q:"L'orchestration de Berlioz est dite 'révolutionnaire' car :", opts:["Elle utilise peu d'instruments","Elle invente des combinaisons de timbres inouïes","Elle imite Bach","Elle supprime la section des cordes"], ans:1, exp:"Berlioz utilise des ophicléides, 4 harpes, cornet à pistons — une palette orchestrale immense et neuve." },
+  { id:"q46", q:"Le 'leitmotif' de Wagner est hérité de :",               opts:["Bach","Mozart","Berlioz (idée fixe)","Chopin"],                          ans:2, exp:"L'idée fixe de Berlioz préfigure le leitmotif wagnérien — un thème lié à un personnage ou une idée." },
+  { id:"q47", q:"L'harmonie 'romantique débridée' de Berlioz signifie :", opts:["Des règles strictes","Des enchaînements défiant les normes classiques","Un style Baroque","Une harmonie diatonique pure"], ans:1, exp:"Berlioz enchaîne des accords qu'aucun traité classique n'autoriserait — au service de la narration." },
+  { id:"q48", q:"Berlioz a écrit un traité célèbre sur :",                opts:["La fugue","L'orchestration","L'harmonie","La forme sonate"],              ans:1, exp:"Le Grand Traité d'instrumentation et d'orchestration modernes (1844) — une bible de l'orchestration." },
+  { id:"q49", q:"Dans la Symphonie Fantastique, l'artiste prend :",       opts:["De l'opium","Du vin","Un somnifère","Rien"],                             ans:0, exp:"Le programme de Berlioz décrit un artiste qui prend de l'opium — ses hallucinations sont la musique." },
+  { id:"q50", q:"Berlioz est un précurseur de :",                         opts:["Le Baroque tardif","La musique à programme et le Romantisme orchestral","L'atonalité","Le minimalisme"], ans:1, exp:"Sa Symphonie Fantastique (1830) ouvre la voie à Liszt (poème symphonique) et à Wagner." },
+  // ── Chopin
+  { id:"q51", q:"Frédéric Chopin a vécu de :",                            opts:["1770–1827","1810–1849","1797–1828","1756–1791"],                         ans:1, exp:"Chopin est né en Pologne en 1810 et mort à Paris en 1849, à 39 ans." },
+  { id:"q52", q:"Les Nocturnes de Chopin sont caractérisés par :",        opts:["Des fugues contrapuntiques","Une mélodie chantante sur arpèges lents","Des marches militaires","Des variations strictes"], ans:1, exp:"Main droite : mélodie ornementée et chantante. Main gauche : arpèges lents et enveloppants." },
+  { id:"q53", q:"La pédale de tonique consiste à :",                      opts:["Utiliser la pédale du piano","Maintenir la fondamentale en basse pendant des harmonies changeantes","Répéter le même accord","Modulation chromatique"], ans:1, exp:"La fondamentale (ex: Do) reste en basse pendant que les harmonies au-dessus changent librement." },
+  { id:"q54", q:"Chopin composait presque exclusivement pour :",          opts:["L'orchestre","Le piano","La voix","La guitare"],                         ans:1, exp:"98% de l'œuvre de Chopin est pour piano seul — il est LE compositeur du piano romantique." },
+  { id:"q55", q:"Les Préludes op. 28 de Chopin sont :",                  opts:["8 pièces","16 pièces","24 pièces dans toutes les tonalités","48 pièces"], ans:2, exp:"24 préludes — un dans chaque tonalité, organisés en cycle (comme le Clavier Bien Tempéré de Bach)." },
+  { id:"q56", q:"Les Ballades de Chopin s'inspirent de :",               opts:["La Bible","Des poèmes de Mickiewicz","Des contes de fées","Des peintures"], ans:1, exp:"Les 4 Ballades s'inspirent de poèmes épiques du poète polonais Adam Mickiewicz." },
+  { id:"q57", q:"Le chromatisme expressif de Chopin sert à :",           opts:["Suivre les règles tonales","Colorer émotionnellement la mélodie","Imiter Bach","Créer des fugues"], ans:1, exp:"Chopin utilise les demi-tons chromatiques non pas pour moduler, mais pour teinter l'expression." },
+  { id:"q58", q:"La 'forme libre' de Chopin signifie :",                 opts:["Aucune structure","Des structures non-conventionnelles adaptées à l'expression","Une fugue libre","La forme sonate traditionnelle"], ans:1, exp:"Chopin invente ses propres formes : ballade, nocturne, étude, barcarolle — adaptées à chaque œuvre." },
+  { id:"q59", q:"Chopin était originaire de :",                          opts:["Autriche","Pologne","France","Hongrie"],                                   ans:1, exp:"Chopin est né à Żelazowa Wola (Pologne) en 1810 et a passé la majeure partie de sa vie à Paris." },
+  { id:"q60", q:"La 'substitution nocturne' de Chopin consiste à :",    opts:["Remplacer un accord attendu par un accord plus coloré","Jouer sans pédale","Improviser","Citer Bach"],  ans:0, exp:"Là où on attend un V7, Chopin place un accord altéré ou une substitution plus expressive." },
+  // ── Liszt
+  { id:"q61", q:"Franz Liszt a vécu de :",                               opts:["1797–1828","1811–1886","1840–1893","1770–1827"],                          ans:1, exp:"Liszt (1811–1886) est hongrois, contemporain de Chopin, et survit 75 ans — une vie extraordinaire." },
+  { id:"q62", q:"La 'transformation thématique' de Liszt consiste à :",  opts:["Imiter Bach","Faire évoluer un même thème dans des caractères très différents","Répéter un motif","Moduler chromatiquement"], ans:1, exp:"Un même thème devient lent/rapide, sombre/triomphant — unité dans la diversité." },
+  { id:"q63", q:"Le 'poème symphonique' est une forme créée par :",      opts:["Berlioz","Wagner","Liszt","Brahms"],                                       ans:2, exp:"Liszt invente la forme du poème symphonique : une pièce orchestrale en un mouvement illustrant un sujet littéraire." },
+  { id:"q64", q:"La Sonate en Si mineur de Liszt est remarquable car :", opts:["Elle a 4 mouvements","Elle est en un seul mouvement continu de 30 min","Elle est pour 2 pianos","Elle imite Bach"], ans:1, exp:"Un seul mouvement ininterrompu — révolution formelle qui contient une sonate entière dans sa continuité." },
+  { id:"q65", q:"Liszt est considéré comme :",                           opts:["Le maître du contrepoint","Le plus grand pianiste virtuose de son époque","Le roi du lied","Le père de la fugue"], ans:1, exp:"Liszt était le premier 'superstar' de la musique classique — ses récitals provoquaient des hystéries collectives." },
+  { id:"q66", q:"Liszt a inventé le terme :",                           opts:["Symphonie","Récital (concert solo)","Nocturne","Lied"],                    ans:1, exp:"Liszt a inventé le format du récital solo : un pianiste seul sur scène, pendant toute une soirée." },
+  { id:"q67", q:"Le chromatisme avancé de Liszt :",                     opts:["Reste dans les règles classiques","Préfigure l'atonalité du XXe siècle","Imite Bach","Est entièrement diatonique"], ans:1, exp:"Les dernières pièces de Liszt (Nuages gris, Bagatelle sans tonalité) annoncent Debussy et Schoenberg." },
+  { id:"q68", q:"Liszt était de nationalité :",                         opts:["Autrichienne","Allemande","Hongroise","Française"],                        ans:2, exp:"Liszt est né à Doborján (Hongrie, alors Empire autrichien) en 1811 — il incarne le cosmopolitisme romantique." },
+  { id:"q69", q:"Les Études Transcendantes de Liszt sont :",            opts:["Des fugues","Des lieder","12 pièces techniques extrêmes pour piano","Des variations"], ans:2, exp:"12 études d'une difficulté transcendante — elles repoussent les limites de la technique pianistique." },
+  { id:"q70", q:"Liszt a influencé :",                                  opts:["Bach et Haendel","Wagner, Debussy et la musique moderne","Mozart et Haydn","Pachelbel"],  ans:1, exp:"Liszt a directement influencé Wagner (sa fille Cosima épousera Wagner), Debussy, et le XXe siècle entier." },
+  // ── Tchaïkovski
+  { id:"q71", q:"Piotr Tchaïkovski a vécu de :",                        opts:["1810–1849","1840–1893","1873–1943","1797–1828"],                          ans:1, exp:"Tchaïkovski (1840–1893) est le compositeur russe romantique le plus célèbre dans le monde." },
+  { id:"q72", q:"Le 'lyrisme slave' désigne :",                         opts:["Une technique de fugue","Des mélodies longues et intenses, souvent mélancoliques","Des accords diminués","Une forme sonate"], ans:1, exp:"Long cantabile, intensité émotionnelle, mélancolie — les mélodies de Tchaïkovski sont universellement reconnaissables." },
+  { id:"q73", q:"Le Lac des Cygnes est :",                              opts:["Une symphonie","Un opéra","Un ballet en 4 actes","Un concerto"],           ans:2, exp:"Ballet en 4 actes (1877) — l'un des 3 grands ballets de Tchaïkovski avec Belle au Bois Dormant et Casse-Noisette." },
+  { id:"q74", q:"La Symphonie n°6 'Pathétique' se termine par :",       opts:["Un finale triomphant","Un scherzo vif","Un mouvement lent (Adagio lamentoso)","Une fugue"], ans:2, exp:"Tchaïkovski bouleverse la convention en terminant par un Adagio lamentoso — inouï pour une symphonie." },
+  { id:"q75", q:"Le mineur harmonique chez Tchaïkovski crée :",         opts:["Une atmosphère joyeuse","Une sensible tendue, très expressive","Une harmonie modale","Un effet Baroque"], ans:1, exp:"La 7e élevée (sensible) du mineur harmonique crée une tension caractéristique du lyrisme slave de Tchaïkovski." },
+  { id:"q76", q:"Le Concerto pour piano n°1 de Tchaïkovski est en :",   opts:["Sol majeur","Do mineur","Si bémol mineur","La mineur"],                  ans:2, exp:"Sib mineur — il débute par les célèbres accords plaqués fortissimo, un des débuts les plus spectaculaires." },
+  { id:"q77", q:"Les 'emprunts au mineur' de Tchaïkovski créent :",     opts:["Une modulation définitive","Un assombrissement dramatique dans un passage majeur","Un retour à Bach","Une fugue"], ans:1, exp:"Tchaïkovski glisse au mineur momentanément pour dramatiser — puis revient au majeur, plus lumineux encore." },
+  { id:"q78", q:"Tchaïkovski représente :",                             opts:["Le Baroque russe","Le Romantisme russe tardif","Le Classicisme","Le Minimalisme"], ans:1, exp:"Tchaïkovski (1840–1893) incarne le Romantisme russe — lyrisme intense + grande forme orchestrale." },
+  { id:"q79", q:"L'orchestration 'émotionnelle' de Tchaïkovski signifie :", opts:["Tous les instruments jouent toujours","Chaque timbre est choisi pour son impact émotionnel","Pas de cordes","Peu d'instruments"], ans:1, exp:"Tchaïkovski confie ses thèmes lyriques aux cordes, les climax aux cuivres — chaque timbre a une valeur émotionnelle." },
+  { id:"q80", q:"Tchaïkovski est mort à :",                             opts:["43 ans","53 ans","63 ans","73 ans"],                                       ans:1, exp:"Tchaïkovski est mort à 53 ans en 1893, 9 jours après la création de sa 6e Symphonie Pathétique." },
+  // ── Rachmaninov
+  { id:"q81", q:"Sergueï Rachmaninov a vécu de :",                      opts:["1840–1893","1873–1943","1797–1828","1885–1957"],                          ans:1, exp:"Rachmaninov (1873–1943) est le dernier grand représentant du post-romantisme russe." },
+  { id:"q82", q:"Les 'progressions par tierces' de Rachmaninov :",      opts:["Suivent le cycle des quintes","Enchaînent des accords dont les fondamentales sont à une tierce","Imitent Bach","Sont entièrement chromatiques"], ans:1, exp:"Do → La (tierce majeure descendante), La → Fa (tierce mineure) — une signature de Rachmaninov." },
+  { id:"q83", q:"Le Concerto pour piano n°2 est en :",                  opts:["Sol majeur","Do mineur","La bémol majeur","Mi mineur"],                  ans:1, exp:"Do mineur — l'une des œuvres pour piano et orchestre les plus jouées au monde." },
+  { id:"q84", q:"La 'Vocalise' de Rachmaninov est :",                   opts:["Une pièce pour orgue","Une mélodie sans paroles pour voix et piano","Un ballet","Une fugue"], ans:1, exp:"La Vocalise op. 34 n°14 est chantée sur une voyelle — pureté mélodique absolue." },
+  { id:"q85", q:"La densité harmonique de Rachmaninov désigne :",       opts:["Des accords à 2 notes","Des accords très riches à 5-7 notes en pleine texture","Des harmonies simples","Une texture monophonique"], ans:1, exp:"Rachmaninov empile les notes — accords ouverts sur plusieurs octaves, textures d'une richesse extrême." },
+  { id:"q86", q:"Rachmaninov représente :",                             opts:["Le Baroque","Le Post-romantisme russe","Le Classicisme","L'Impressionnisme"], ans:1, exp:"Rachmaninov (1873–1943) prolonge le Romantisme au XXe siècle — à contre-courant des avant-gardes." },
+  { id:"q87", q:"La nostalgie de Rachmaninov est liée à :",             opts:["La mort de Schubert","Son exil de Russie après 1917","La perte de son piano","Un chagrin d'amour"], ans:1, exp:"Après la révolution russe (1917), Rachmaninov quitte la Russie — son œuvre tardive exprime cet exil." },
+  { id:"q88", q:"La Rhapsodie sur un thème de Paganini utilise :",      opts:["Le thème de la 5e de Beethoven","24 variations sur le Caprice n°24 de Paganini","Une fugue de Bach","Un thème de Schubert"], ans:1, exp:"Le Caprice n°24 de Paganini a inspiré Liszt, Brahms, Rachmaninov — 24 variations pour piano et orchestre." },
+  { id:"q89", q:"Les 'pédales longues' de Rachmaninov consistent à :",  opts:["Utiliser la pédale forte","Maintenir une note en basse pendant de nombreuses mesures","Accélérer le tempo","Jouer staccato"], ans:1, exp:"Une note tenue en basse (pédale de dominante ou de tonique) pendant que les harmonies changent au-dessus." },
+  { id:"q90", q:"Rachmaninov a d'abord renoncé à composer après :",     opts:["La mort de Schubert","L'échec de sa 1re Symphonie (1897)","La guerre","La révolution"], ans:1, exp:"L'échec cuisant de sa 1re Symphonie (1897) provoque une dépression. Il consulte un hypnothérapeute, puis compose le Concerto n°2." },
+  // ── Questions comparatives
+  { id:"q91", q:"Quelle principale différence entre Bach et Mozart ?",   opts:["Bach: plus court","Bach: contrepoint; Mozart: mélodie+accompagnement","Ils sont identiques","Mozart: plus complexe"], ans:1, exp:"Bach : polyphonie contrapuntique. Mozart : mélodie chantante sur une harmonie fonctionnelle simple." },
+  { id:"q92", q:"Qui a développé le plus intensément le 'développement motivique' ?", opts:["Bach","Mozart","Beethoven","Chopin"],                    ans:2, exp:"Beethoven est l'archétype du développement motivique : 4 notes = toute une symphonie." },
+  { id:"q93", q:"Le 'chromatisme' est particulièrement présent chez :",  opts:["Bach et Mozart","Chopin, Liszt et Rachmaninov","Berlioz uniquement","Tchaïkovski uniquement"], ans:1, exp:"Chopin (nocturne), Liszt (virtuosité) et Rachmaninov (densité) exploitent tous le chromatisme expressif." },
+  { id:"q94", q:"Quel compositeur a le plus influencé l'orchestration ?", opts:["Chopin","Berlioz","Bach","Schubert"],                               ans:1, exp:"Berlioz (traité d'orchestration 1844) a révolutionné la manière de penser l'orchestre comme une palette de timbres." },
+  { id:"q95", q:"La 'forme libre' est associée principalement à :",      opts:["Bach et Beethoven","Chopin et Liszt","Mozart et Haydn","Berlioz et Schubert"], ans:1, exp:"Chopin (nocturne, ballade) et Liszt (poème symphonique) inventent des formes non-conventionnelles." },
+  { id:"q96", q:"Qui a composé le plus de lieder ?",                     opts:["Mozart","Beethoven","Schubert","Brahms"],                              ans:2, exp:"Schubert dépasse 600 lieder — un record absolu dans l'histoire de la mélodie vocale." },
+  { id:"q97", q:"Le post-romantisme inclut :",                          opts:["Bach et Haendel","Rachmaninov et Tchaïkovski tardif","Mozart et Haydn","Berlioz uniquement"], ans:1, exp:"Rachmaninov (1873–1943) et Tchaïkovski tardif prolongent le langage romantique au-delà de 1900." },
+  { id:"q98", q:"Quel compositeur est le plus associé aux modulations par tierce ?", opts:["Bach","Mozart","Schubert","Liszt"],                      ans:2, exp:"La modulation par tierce (C→Ab, C→E) est la signature harmonique de Schubert — son innovation majeure." },
+  { id:"q99", q:"Mozart et Beethoven — lequel favorise la tension dramatique ?", opts:["Mozart","Beethoven","Les deux également","Aucun des deux"],  ans:1, exp:"Beethoven retarde, intensifie, explose. Mozart résout élégamment. La tension est l'âme de Beethoven." },
+  { id:"q100",q:"Le compositeur avec l'orchestre le plus large est :",   opts:["Bach","Mozart","Schubert","Berlioz"],                                 ans:3, exp:"Berlioz a parfois utilisé plus de 400 musiciens — un orchestre de taille inégalée à son époque." },
+];
+
+// ─── Sous-composant : carte compositeur ─────────────────────────────────────
+
+function ComposerCard({ c, pianoRef }: { c: typeof COMPOSERS[0]; pianoRef: React.RefObject<PianoPlayerRef | null> }) {
+  const [open, setOpen] = useState(false);
+  const tr = useTerm();
+  const i18n = useCoursI18n("cours20");
+  const tc   = i18n.tc;
+  const n    = (key: string) => tc(`narrative.${key}` as any);
+  return (
+    <div style={{ border: `1.5px solid ${open ? c.color : "#e0dbd3"}`, borderRadius: 12, background: open ? c.bg : "#fff", transition: "all .2s", marginBottom: 12 }}>
+      <button onClick={() => setOpen(!open)} style={{ width: "100%", padding: "18px 20px", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 14, textAlign: "left" }}>
+        <span style={{ fontSize: 26 }}>{c.emoji}</span>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 15, fontWeight: 600, color: "#1a1a1a" }}>{c.name}</div>
+          <div style={{ fontSize: 12, color: "#888", fontFamily: "system-ui" }}>{c.era} · {c.period}</div>
+        </div>
+        <div style={{ display: "flex", gap: 6 }}>
+          {c.techniques.map((t, i) => (
+            <span key={i} style={{ fontSize: 11, background: c.bg, border: `1px solid ${c.color}`, color: c.color, padding: "2px 8px", borderRadius: 8, fontFamily: "system-ui", display: i > 0 ? "none" : "inline" }}>
+              {i === 0 ? t : null}
+            </span>
+          ))}
+        </div>
+        <span style={{ fontSize: 18, color: c.color, transform: open ? "rotate(45deg)" : "none", transition: "transform .2s", marginLeft: 8 }}>+</span>
+      </button>
+
+      {open && (
+        <div style={{ padding: "0 20px 20px" }}>
+          {/* Techniques */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
+            {c.techniques.map(t => (
+              <span key={t} style={{ fontSize: 12, background: "#fff", border: `1px solid ${c.color}`, color: c.color, padding: "3px 10px", borderRadius: 10, fontFamily: "system-ui" }}>{t}</span>
+            ))}
+          </div>
+
+          {/* Harmonie */}
+          <div style={{ fontSize: 13, color: "#555", fontFamily: "system-ui", lineHeight: 1.6, marginBottom: 16, padding: "10px 14px", background: "rgba(255,255,255,0.7)", borderRadius: 8, borderLeft: `3px solid ${c.color}` }}>
+            <strong style={{ color: c.color }}>{n("composerHarmonieLabel")}</strong> {c.harmonie}
+          </div>
+
+          {/* Demo audio */}
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ fontSize: 11, fontWeight: 600, color: "#888", fontFamily: "system-ui", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 8 }}>
+              {n("composerProgLabel").replace("{label}", c.demoLabel)}
+            </div>
+            <button
+              onClick={() => playProg(pianoRef, c.demo, 650, 1.0)}
+              style={{ padding: "8px 18px", borderRadius: 20, border: `1.5px solid ${c.color}`, background: "#fff", color: c.color, fontSize: 13, fontWeight: 500, cursor: "pointer", fontFamily: "system-ui" }}
+            >
+              {n("composerListenBtn")}
+            </button>
+          </div>
+
+          {/* Œuvre de référence */}
+          <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 8, padding: "12px 14px" }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: c.color, fontFamily: "system-ui", marginBottom: 4 }}>
+              {n("composerOeuvreTitle")}
+            </div>
+            <div style={{ fontSize: 14, fontWeight: 500, color: "#1a1a1a", marginBottom: 4 }}>{c.oeuvre}</div>
+            <div style={{ fontSize: 13, color: "#666", lineHeight: 1.6, fontFamily: "system-ui" }}>{c.oeuvreWhy}</div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Sous-composant : exercice d'analyse ─────────────────────────────────────
+
+function AnalysisCard({ a, pianoRef }: { a: typeof ANALYSES[0]; pianoRef: React.RefObject<PianoPlayerRef | null> }) {
+  const [selected, setSelected] = useState<number | null>(null);
+  const answered = selected !== null;
+  return (
+    <div style={{ border: "1px solid #e0dbd3", borderRadius: 12, background: "#fff", padding: "24px", marginBottom: 16 }}>
+      <div style={{ fontSize: 16, fontWeight: 500, color: "#1a1a1a", marginBottom: 8 }}>{a.title}</div>
+      <div style={{ fontSize: 13, color: "#666", lineHeight: 1.6, fontFamily: "system-ui", marginBottom: 16 }}>{a.desc}</div>
+
+      {/* Audio demos */}
+      <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
+        <button onClick={() => playProg(pianoRef, a.demo, 650, 1.0)} style={{ padding: "7px 16px", borderRadius: 16, border: "1.5px solid #1a1a1a", background: "#fff", color: "#1a1a1a", fontSize: 12, fontWeight: 500, cursor: "pointer", fontFamily: "system-ui" }}>▶ Version A</button>
+        {(a as any).demo2 && (
+          <button onClick={() => playProg(pianoRef, (a as any).demo2, 650, 1.0)} style={{ padding: "7px 16px", borderRadius: 16, border: "1.5px solid #555", background: "#fff", color: "#555", fontSize: 12, fontWeight: 500, cursor: "pointer", fontFamily: "system-ui" }}>▶ Version B</button>
+        )}
+      </div>
+
+      <div style={{ fontSize: 14, fontWeight: 500, color: "#1a1a1a", marginBottom: 12, fontFamily: "system-ui" }}>{a.question}</div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {a.options.map((opt, i) => {
+          const isCorrect = i === a.correct;
+          const isSelected = selected === i;
+          let bg = "#faf8f4", border = "#e0dbd3", color = "#333";
+          if (answered) {
+            if (isCorrect) { bg = "#E5F3EF"; border = "#0F6E56"; color = "#0F6E56"; }
+            else if (isSelected) { bg = "#FFF5F5"; border = "#FC8181"; color = "#C53030"; }
+          }
+          return (
+            <button key={i} onClick={() => !answered && setSelected(i)} disabled={answered} style={{ padding: "10px 14px", border: `1.5px solid ${border}`, borderRadius: 8, background: bg, color, fontSize: 13, textAlign: "left", cursor: answered ? "default" : "pointer", fontFamily: "system-ui", lineHeight: 1.4 }}>
+              {answered && isCorrect && "✓ "}{answered && isSelected && !isCorrect && "✗ "}{opt}
+            </button>
+          );
+        })}
+      </div>
+      {answered && (
+        <div style={{ marginTop: 14, padding: "10px 14px", background: "#E5F3EF", borderRadius: 8, fontSize: 13, color: "#0F6E56", fontFamily: "system-ui", lineHeight: 1.6 }}>
+          {a.explanation}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Composant principal ─────────────────────────────────────────────────────
+
+export default function Cours20() {
+  const i18n = useCoursI18n("cours20");
+  const tc   = i18n.tc;
+  const n    = (key: string) => tc(`narrative.${key}` as any);
+  const { badge, title, subtitle } = i18n;
+  const tr = useTerm();
+  const { questions: ALL_QUESTIONS } = useCoursContent(cours20Content);
+  const pianoRef = useRef<PianoPlayerRef | null>(null);
+  const [section, setSection] = useState<"compositeurs"|"analyse"|"quiz">("compositeurs");
+
+  const SECTIONS = [
+    { id: "compositeurs" as const, label: n("sectionCompositeurs") },
+    { id: "analyse"      as const, label: n("sectionAnalyse") },
+    { id: "quiz"         as const, label: n("sectionQuiz") },
+  ];
+
+  // Quiz state
+  const questions = useMemo(() => shuffle(ALL_QUESTIONS).slice(0, QUIZ_COUNT), []);
+  const [qIdx, setQIdx]         = useState(0);
+  const [answers, setAnswers]   = useState<(number|null)[]>(Array(QUIZ_COUNT).fill(null));
+  const [showResult, setShowResult] = useState(false);
+
+  const currentQ  = questions[qIdx];
+  const answered  = answers[qIdx] !== null;
+  const score     = answers.filter((a, i) => a === questions[i].ans).length;
+
+  function handleAnswer(i: number) {
+    if (answered) return;
+    setAnswers(prev => { const n = [...prev]; n[qIdx] = i; return n; });
+  }
+
+  return (
+    <div style={{ fontFamily: "'Georgia', serif", background: "#faf8f4", minHeight: "100vh", color: "#1a1a1a" }}>
+      <PianoPlayer ref={pianoRef} startOctave={startOctave} />
+
+      {/* Hero */}
+      <div style={{ background: PRIMARY_BG, borderBottom: `1px solid ${PRIMARY}22`, padding: "3rem 1.5rem 2rem" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 10 }}>{badge}</div>
+          <h1 style={{ fontSize: "clamp(26px, 4vw, 42px)", fontWeight: 400, margin: "0 0 12px", letterSpacing: "-0.01em" }}>{title}</h1>
+          <p style={{ fontSize: 15, color: "#666", margin: "0 0 28px", lineHeight: 1.7, fontFamily: "system-ui" }}>{subtitle}</p>
+
+          <MaitreCard
+            composer="Franz Schubert"
+            period="1797–1828"
+            emoji="🌙"
+            concept={n("maitreCardConcept")}
+            anecdote={n("maitreCardAnecdote")}
+            lesson={n("maitreCardLesson")}
+            accentColor={PRIMARY}
+          />
+        </div>
+      </div>
+
+      {/* Navigation sections */}
+      <div style={{ borderBottom: "1px solid #e8e3db", background: "#fff", position: "sticky", top: 0, zIndex: 10 }}>
+        <div style={{ maxWidth: 800, margin: "0 auto", display: "flex", gap: 0 }}>
+          {SECTIONS.map(s => (
+            <button key={s.id} onClick={() => setSection(s.id)} style={{ padding: "14px 20px", background: "none", border: "none", borderBottom: section === s.id ? `2px solid ${PRIMARY}` : "2px solid transparent", color: section === s.id ? PRIMARY : "#888", fontSize: 14, fontWeight: section === s.id ? 600 : 400, cursor: "pointer", fontFamily: "system-ui", transition: "color .15s" }}>
+              {s.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ maxWidth: 800, margin: "0 auto", padding: "2rem 1.5rem" }}>
+
+        {/* ── Section Compositeurs ── */}
+        {section === "compositeurs" && (
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 20 }}>
+              {n("compositeursHeading")}
+            </div>
+            <div style={{ fontSize: 13, color: "#666", fontFamily: "system-ui", marginBottom: 24, lineHeight: 1.7, padding: "12px 16px", background: PRIMARY_BG, borderRadius: 8, borderLeft: `3px solid ${PRIMARY}` }}>
+              {n("compositeursIntro")}
+            </div>
+            {COMPOSERS.map(c => <ComposerCard key={c.id} c={c} pianoRef={pianoRef} />)}
+          </div>
+        )}
+
+        {/* ── Section Analyse ── */}
+        {section === "analyse" && (
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 20 }}>{n("analyseHeading")}</div>
+            <div style={{ fontSize: 13, color: "#666", fontFamily: "system-ui", marginBottom: 24, lineHeight: 1.7, padding: "12px 16px", background: PRIMARY_BG, borderRadius: 8, borderLeft: `3px solid ${PRIMARY}` }}>
+              {n("analyseIntro")}
+            </div>
+            {ANALYSES.map(a => <AnalysisCard key={a.id} a={a} pianoRef={pianoRef} />)}
+          </div>
+        )}
+
+        {/* ── Section Quiz ── */}
+        {section === "quiz" && (
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: PRIMARY, textTransform: "uppercase", fontFamily: "system-ui", marginBottom: 20 }}>
+              {n("quizHeading").replace("{count}", String(QUIZ_COUNT)).replace("{total}", String(ALL_QUESTIONS.length))}
+            </div>
+
+            {!showResult ? (
+              <div>
+                {/* Barre de progression */}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, fontFamily: "system-ui" }}>
+                  <span style={{ fontSize: 12, color: "#888" }}>{n("quizProgress").replace("{current}", String(qIdx + 1)).replace("{total}", String(QUIZ_COUNT))}</span>
+                  <span style={{ fontSize: 12, color: PRIMARY }}>{n("quizAnswered").replace("{count}", String(answers.filter(a => a !== null).length))}</span>
+                </div>
+                <div style={{ height: 4, background: "#e8e3db", borderRadius: 2, marginBottom: 24 }}>
+                  <div style={{ height: "100%", width: `${((qIdx + 1) / QUIZ_COUNT) * 100}%`, background: PRIMARY, borderRadius: 2, transition: "width .3s" }} />
+                </div>
+
+                <div style={{ background: "#fff", border: "1px solid #e8e3db", borderRadius: 12, padding: "24px" }}>
+                  <div style={{ fontSize: 16, fontWeight: 500, color: "#1a1a1a", marginBottom: 20, lineHeight: 1.5 }}>
+                    {currentQ.q}
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }}>
+                    {currentQ.opts.map((opt, i) => {
+                      const isCorrect  = i === currentQ.ans;
+                      const isSelected = answers[qIdx] === i;
+                      let bg = "#faf8f4", border = "#e0dbd3", color = "#333";
+                      if (answered) {
+                        if (isCorrect)          { bg = "#E5F3EF"; border = "#0F6E56"; color = "#0F6E56"; }
+                        else if (isSelected)    { bg = "#FFF5F5"; border = "#FC8181"; color = "#C53030"; }
+                      }
+                      return (
+                        <button key={i} onClick={() => handleAnswer(i)} disabled={answered} style={{ padding: "12px 16px", border: `1.5px solid ${border}`, borderRadius: 8, background: bg, color, fontSize: 14, textAlign: "left", cursor: answered ? "default" : "pointer", fontFamily: "system-ui", lineHeight: 1.4 }}>
+                          {answered && isCorrect && "✓ "}{answered && isSelected && !isCorrect && "✗ "}{opt}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {answered && (
+                    <div style={{ padding: "12px 16px", background: "#E5F3EF", borderRadius: 8, fontSize: 13, color: "#0F6E56", lineHeight: 1.7, marginBottom: 16, fontFamily: "system-ui" }}>
+                      {currentQ.exp}
+                    </div>
+                  )}
+
+                  <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
+                    <button onClick={() => setQIdx(i => Math.max(0, i - 1))} disabled={qIdx === 0} style={{ padding: "10px 20px", borderRadius: 6, border: "1px solid #e0dbd3", background: "#fff", color: "#888", fontSize: 13, cursor: qIdx === 0 ? "not-allowed" : "pointer", fontFamily: "system-ui", opacity: qIdx === 0 ? 0.4 : 1 }}>{n("quizPrev")}</button>
+                    {qIdx < QUIZ_COUNT - 1 ? (
+                      <button onClick={() => setQIdx(i => i + 1)} disabled={!answered} style={{ padding: "10px 24px", borderRadius: 6, border: "none", background: answered ? PRIMARY : "#e0dbd3", color: "#fff", fontSize: 13, cursor: answered ? "pointer" : "not-allowed", fontFamily: "system-ui" }}>{n("quizNext")}</button>
+                    ) : (
+                      <button onClick={() => setShowResult(true)} disabled={answers.filter(a => a !== null).length < QUIZ_COUNT} style={{ padding: "10px 24px", borderRadius: 6, border: "none", background: PRIMARY, color: "#fff", fontSize: 13, cursor: "pointer", fontFamily: "system-ui" }}>{n("quizSubmit")}</button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div style={{ background: "#fff", border: "1px solid #e8e3db", borderRadius: 12, padding: "32px", textAlign: "center" }}>
+                <div style={{ fontSize: 48, marginBottom: 16 }}>{score >= 8 ? "🎼" : score >= 5 ? "🎹" : "📚"}</div>
+                <div style={{ fontSize: 32, fontWeight: 400, color: PRIMARY, marginBottom: 8 }}>{score} / {QUIZ_COUNT}</div>
+                <div style={{ fontSize: 15, color: "#666", fontFamily: "system-ui", marginBottom: 28 }}>
+                  {score === QUIZ_COUNT ? n("quizPerfect") : score >= 7 ? n("quizGood") : n("quizKeepGoing")}
+                </div>
+                <button onClick={() => { setAnswers(Array(QUIZ_COUNT).fill(null)); setQIdx(0); setShowResult(false); }} style={{ padding: "12px 28px", borderRadius: 6, border: "none", background: PRIMARY, color: "#fff", fontSize: 14, cursor: "pointer", fontFamily: "system-ui" }}>
+                  {n("quizRestart")}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+</MODIFIED_TSX>

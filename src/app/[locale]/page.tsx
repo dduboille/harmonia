@@ -434,6 +434,7 @@ export default function LandingPage() {
             ].map(link => (
               <Link key={link.label} href={link.href} style={{ fontSize: 13, color: "#555", textDecoration: "none", fontFamily: "system-ui, sans-serif" }}>{link.label}</Link>
             ))}
+            <a href="mailto:appliharmonia@gmail.com" style={{ fontSize: 13, color: "#555", textDecoration: "none", fontFamily: "system-ui, sans-serif" }}>Contact</a>
           </div>
           <div style={{ fontSize: 12, color: "#333", fontFamily: "system-ui, sans-serif" }}>© 2026 Harmonia · All rights reserved</div>
         </div>

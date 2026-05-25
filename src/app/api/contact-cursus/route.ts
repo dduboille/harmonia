@@ -1,4 +1,4 @@
-import { Resend } from "resend";
+﻿import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
 
     const { error: err1 } = await resend.emails.send({
       from: "Harmonia <bonjour@getharmonia.app>",
-      to: "danyduboillepro@gmail.com",
+      to: "appliharmonia@gmail.com",
       replyTo: email,
       subject: `Demande accès cursus conservatoire — ${escapeHtml(etablissement)}`,
       html: `
