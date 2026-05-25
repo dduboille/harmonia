@@ -39,11 +39,24 @@ const LEVELS = [
     color: "#5C3D6E",
     bg: "#F0EBF8",
     border: "#C9B3DD",
-    coursRange: "Cours 17 à 23",
-    count: 7,
-    desc: "La phrase musicale, le développement motivique, l'orchestration, l'analyse des grands compositeurs et la composition dans les styles — Bach, Debussy, Jazz, Rock.",
-    topics: ["Forme musicale", "Orchestration", "Analyse", "Composition"],
+    coursRange: "Cours 17 à 29",
+    count: 13,
+    desc: "La phrase musicale, le développement motivique, l'orchestration, l'analyse des grands compositeurs, la composition dans les styles et l'analyse structurelle — Bach, Debussy, Jazz, Rock.",
+    topics: ["Forme musicale", "Orchestration", "Analyse", "Schenker"],
     href: "niveau-3",
+  },
+  {
+    num: 4 as const,
+    label: "Niveau 4",
+    sublabel: "Harmonie élargie",
+    color: "#2D6B7A",
+    bg: "#E3F3F7",
+    border: "#A8D8E2",
+    coursRange: "Cours 30 à 32",
+    count: 3,
+    desc: "Impressionnisme, polytonalité, harmonie quartale, extensions altérées, Coltrane — au-delà de la tonalité classique vers les langages du XXe siècle.",
+    topics: ["Impressionnisme", "Polytonalité", "Quartes", "Giant Steps"],
+    href: "niveau-4",
   },
 ];
 
@@ -81,7 +94,7 @@ export default function CoursHubPage() {
             fontSize: 16, color: "#666", lineHeight: 1.7, margin: 0,
             fontFamily: "system-ui, sans-serif", maxWidth: 540,
           }}>
-            23 cours organisés en 3 niveaux progressifs — des fondamentaux de l&apos;harmonie jusqu&apos;à la composition dans le style des maîtres.
+            32 cours organisés en 4 niveaux progressifs — des fondamentaux de l&apos;harmonie jusqu&apos;aux langages harmoniques du XXe siècle.
           </p>
         </div>
 

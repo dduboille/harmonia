@@ -36,7 +36,10 @@
     "level2Title": "Jazz, modes et techniques avancées",
     "level2Desc": "7 cours pour élargir le langage harmonique — modes, extensions, jazz, contrepoint. Sortir du cadre classique et explorer de nouvelles couleurs.",
     "level3Title": "Composition, analyse et maîtrise",
-    "level3Desc": "7 cours pour atteindre la maîtrise — forme musicale, orchestration, analyse des grands compositeurs et composition dans leurs styles.",
+    "level3Desc": "13 cours pour atteindre la maîtrise — forme musicale, orchestration, analyse des grands compositeurs, composition dans leurs styles et analyse structurelle profonde.",
+    "sublabel4": "Harmonie élargie",
+    "level4Title": "Harmonie élargie — au-delà de la tonalité",
+    "level4Desc": "3 cours pour explorer les langages du XXe siècle — impressionnisme, polytonalité, harmonie quartale et reharmonisation avancée à la Coltrane.",
     "c1": "La gamme, les degrés et les intervalles",
     "c2": "Les accords",
     "c3": "Fonctions tonales et conduites de voix",
@@ -94,7 +97,13 @@
     "c29": "Analyse comparative du répertoire",
     "d27": "Hiérarchies tonales, prolongation harmonique, réduction schenkérienne — voir la structure osseuse d'une œuvre au-delà de ses accords de surface.",
     "d28": "Binaire, ternaire, rondo, forme sonate — anatomie des grandes architectures musicales avec analyse guidée de Mozart, Bach et Beethoven.",
-    "d29": "Baroque, classique, romantique, impressionniste — 5 périodes, une même mélodie harmonisée 5 fois pour révéler l'évolution du langage musical."
+    "d29": "Baroque, classique, romantique, impressionniste — 5 périodes, une même mélodie harmonisée 5 fois pour révéler l'évolution du langage musical.",
+    "c30": "Harmonie impressionniste et modalité avancée",
+    "c31": "Polytonalité et harmonie quartale",
+    "c32": "Extensions jazz avancées et reharmonisation",
+    "d30": "Planing, gamme par tons, octatonique, pentatonique et modes de Messiaen — la couleur harmonique comme langage autonome.",
+    "d31": "Superposition de tonalités (Stravinsky), accords construits en quartes, So What chord — au-delà de la tonalité classique.",
+    "d32": "b9, #9, #11, b13 — tensions disponibles, Giant Steps de Coltrane, cycle de tierces et substitutions avancées."
   },
   "cours": {
     "level1": "Niveau 1",
@@ -2204,6 +2213,54 @@
       "keepGoing": "Continue à explorer le chromatisme — recommence quand tu es prêt."
     }
   },
+  "cours30": {
+    "badge": "Niveau 4 · Cours 30",
+    "title": "Harmonie impressionniste et modalité avancée",
+    "subtitle": "Planing, gamme par tons, gamme octatonique, pentatonique et modes de Messiaen — la couleur harmonique comme langage autonome.",
+    "sections": {
+      "impressionnisme": "Impressionnisme",
+      "modalite": "Modalité avancée",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises les techniques de l'harmonie impressionniste.",
+      "veryGood": "Très bien ! Quelques nuances à affiner sur les gammes spéciales et le planing.",
+      "keepGoing": "Continue à explorer l'impressionnisme — recommence quand tu es prêt."
+    }
+  },
+  "cours31": {
+    "badge": "Niveau 4 · Cours 31",
+    "title": "Polytonalité et harmonie quartale",
+    "subtitle": "Superposition de tonalités (Stravinsky, Pétrouchka), accords construits en quartes, So What chord — les langages au-delà de la tonalité classique.",
+    "sections": {
+      "polytonalite": "Polytonalité",
+      "quartale": "Harmonie quartale",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises la polytonalité et l'harmonie quartale.",
+      "veryGood": "Très bien ! Quelques points à consolider sur les voicings quartaux.",
+      "keepGoing": "Continue à explorer la polytonalité — recommence quand tu es prêt."
+    }
+  },
+  "cours32": {
+    "badge": "Niveau 4 · Cours 32",
+    "title": "Extensions jazz avancées et reharmonisation moderne",
+    "subtitle": "b9, #9, #11, b13 — tensions disponibles par degré, Giant Steps de Coltrane et substitutions avancées pour une reharmonisation créative.",
+    "sections": {
+      "extensions": "Extensions altérées",
+      "coltrane": "Changements de Coltrane",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises les extensions altérées et les changements de Coltrane.",
+      "veryGood": "Très bien ! Quelques tensions à affiner — b9 vs #9, et le cycle de Giant Steps.",
+      "keepGoing": "Continue à étudier Coltrane — recommence quand tu es prêt."
+    }
+  },
   "cours27": {
     "badge": "Niveau 3 · Cours 27",
     "title": "Analyse fonctionnelle profonde",
@@ -2292,6 +2349,8 @@
     "level2sub": "Approfondissement",
     "level3": "Niveau 3",
     "level3sub": "Maîtrise",
+    "level4": "Niveau 4",
+    "level4sub": "Harmonie élargie",
     "start": "Commencer →"
   },
   "landing": {

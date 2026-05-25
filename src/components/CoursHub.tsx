@@ -27,6 +27,9 @@ const COURS = [
   { num: 24, level: 2 as const, title: "Les accords de sixte augmentée",               desc: "It+6, Fr+6, Al+6 — les trois sixtes augmentées, leur résolution par mouvement contraire et leur lien avec la substitution tritonique.",    tags: ["Sixte augmentée", "Altéré", "Romantique"] },
   { num: 25, level: 2 as const, title: "Le chromatisme et l'harmonie chromatique avancée", desc: "Lignes chromatiques, accord de Tristan, modulation enharmonique — la tonalité poussée à ses limites expressives.",                    tags: ["Chromatisme", "Wagner", "Enharmonie"] },
   { num: 26, level: 2 as const, title: "Harmonisation DEM : basse donnée et soprano donné", desc: "Les deux exercices fondamentaux de l'examen DEM — méthode en 5 étapes, exercices guidés avec corrections.",                          tags: ["DEM", "Harmonisation", "Basse donnée"] },
+  { num: 30, level: 4 as const, title: "Harmonie impressionniste et modalité avancée", desc: "Planing, gamme par tons, octatonique, pentatonique et modes de Messiaen — la couleur harmonique comme langage autonome.",                  tags: ["Impressionnisme", "Messiaen", "Planing"] },
+  { num: 31, level: 4 as const, title: "Polytonalité et harmonie quartale",             desc: "Superposition de tonalités (Stravinsky), accords construits en quartes, So What chord — au-delà de la tonalité classique.",               tags: ["Polytonalité", "Stravinsky", "Quartes"] },
+  { num: 32, level: 4 as const, title: "Extensions jazz avancées et reharmonisation",   desc: "b9, #9, #11, b13 — tensions disponibles, Giant Steps de Coltrane, cycle de tierces et substitutions avancées.",                            tags: ["Coltrane", "Extensions altérées", "Reharmonisation"] },
   { num: 27, level: 3 as const, title: "Analyse fonctionnelle profonde",              desc: "Hiérarchies tonales, prolongation harmonique, réduction schenkérienne — voir la structure osseuse d'une œuvre au-delà de ses accords de surface.",          tags: ["Schenker", "Analyse", "Ursatz"] },
   { num: 28, level: 3 as const, title: "Formes musicales approfondies",              desc: "Binaire, ternaire, rondo, forme sonate — anatomie des grandes architectures musicales avec analyse guidée de Mozart, Bach et Beethoven.",                    tags: ["Forme sonate", "Analyse", "Beethoven"] },
   { num: 29, level: 3 as const, title: "Analyse comparative du répertoire",          desc: "Baroque, classique, romantique, impressionniste — 5 périodes, une même mélodie harmonisée 5 fois pour révéler l'évolution du langage musical.",             tags: ["Debussy", "Évolution", "Styles"] },
@@ -45,13 +48,14 @@ const LEVEL_META = {
   1: { label: "Niveau 1", sublabel: "Fondamentaux",      color: "#185FA5", bg: "#E6F1FB", border: "#C2D9F3", href: "niveau-1" },
   2: { label: "Niveau 2", sublabel: "Approfondissement", color: "#BA7517", bg: "#FAEEDA", border: "#F6AD55", href: "niveau-2" },
   3: { label: "Niveau 3", sublabel: "Maîtrise",          color: "#5C3D6E", bg: "#F0EBF8", border: "#C9B3DD", href: "niveau-3" },
+  4: { label: "Niveau 4", sublabel: "Harmonie élargie",  color: "#2D6B7A", bg: "#E3F3F7", border: "#A8D8E2", href: "niveau-4" },
 } as const;
 
 // ─── Carte cours ─────────────────────────────────────────────────────────────
 
 type TFunc = ReturnType<typeof useTranslations<"coursHub">>;
 
-function CoursCard({ cours, locale, level, t }: { cours: typeof COURS[0]; locale: string; level: 1 | 2 | 3; t: TFunc }) {
+function CoursCard({ cours, locale, level, t }: { cours: typeof COURS[0]; locale: string; level: 1 | 2 | 3 | 4; t: TFunc }) {
   const meta = LEVEL_META[level];
   return (
     <Link href={`/${locale}/cours/${cours.num}`} style={{ textDecoration: "none" }}>
@@ -117,7 +121,7 @@ function CoursCard({ cours, locale, level, t }: { cours: typeof COURS[0]; locale
 // ─── Composant principal ──────────────────────────────────────────────────────
 
 interface Props {
-  level: 1 | 2 | 3;
+  level: 1 | 2 | 3 | 4;
 }
 
 export default function CoursLevel({ level }: Props) {

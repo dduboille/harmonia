@@ -36,7 +36,10 @@
     "level2Title": "Jazz, Modes and Advanced Techniques",
     "level2Desc": "7 lessons to expand your harmonic language — modes, extensions, jazz, counterpoint. Step outside the classical framework and explore new colors.",
     "level3Title": "Composition, Analysis and Mastery",
-    "level3Desc": "7 lessons to reach mastery — musical form, orchestration, analysis of great composers and composition in their styles.",
+    "level3Desc": "13 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis.",
+    "sublabel4": "Extended Harmony",
+    "level4Title": "Extended Harmony — Beyond Tonality",
+    "level4Desc": "3 lessons to explore 20th-century musical languages — impressionism, polytonality, quartal harmony and advanced Coltrane-style reharmonization.",
     "c1": "Scales, Degrees and Intervals",
     "c2": "Chords",
     "c3": "Tonal Functions and Voice Leading",
@@ -94,7 +97,13 @@
     "c29": "Comparative Repertoire Analysis",
     "d27": "Tonal hierarchies, harmonic prolongation, Schenkerian reduction — learning to see the deep structure of a work beyond its surface chords.",
     "d28": "Binary, ternary, rondo, sonata form — anatomy of the great musical architectures with guided analysis of Mozart, Bach and Beethoven.",
-    "d29": "Baroque, Classical, Romantic, Impressionist — 5 historical periods, one melody harmonized 5 ways to reveal the evolution of musical language."
+    "d29": "Baroque, Classical, Romantic, Impressionist — 5 historical periods, one melody harmonized 5 ways to reveal the evolution of musical language.",
+    "c30": "Impressionist Harmony and Advanced Modality",
+    "c31": "Polytonality and Quartal Harmony",
+    "c32": "Advanced Jazz Extensions and Modern Reharmonization",
+    "d30": "Planing, whole-tone scale, octatonic, pentatonic and Messiaen modes — harmonic color as an autonomous language.",
+    "d31": "Superimposed tonalities (Stravinsky), quartal chords, the So What chord — beyond classical tonality.",
+    "d32": "b9, #9, #11, b13 — available tensions, Coltrane's Giant Steps, the thirds cycle and advanced substitutions."
   },
   "cours": {
     "level1": "Level 1",
@@ -2204,6 +2213,54 @@
       "keepGoing": "Keep exploring chromaticism — restart when you are ready."
     }
   },
+  "cours30": {
+    "badge": "Level 4 · Course 30",
+    "title": "Impressionist Harmony and Advanced Modality",
+    "subtitle": "Planing, whole-tone scale, octatonic, pentatonic and Messiaen modes — harmonic color as an autonomous musical language.",
+    "sections": {
+      "impressionnisme": "Impressionism",
+      "modalite": "Advanced modality",
+      "conservatoire": "Conservatory",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You have mastered impressionist harmony techniques.",
+      "veryGood": "Very good! A few nuances to refine on special scales and planing.",
+      "keepGoing": "Keep exploring impressionism — restart when you are ready."
+    }
+  },
+  "cours31": {
+    "badge": "Level 4 · Course 31",
+    "title": "Polytonality and Quartal Harmony",
+    "subtitle": "Superimposed tonalities (Stravinsky, Pétrouchka), quartal chords, the So What chord — musical languages beyond classical tonality.",
+    "sections": {
+      "polytonalite": "Polytonality",
+      "quartale": "Quartal harmony",
+      "conservatoire": "Conservatory",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You have mastered polytonality and quartal harmony.",
+      "veryGood": "Very good! A few points to consolidate on quartal voicings.",
+      "keepGoing": "Keep exploring polytonality — restart when you are ready."
+    }
+  },
+  "cours32": {
+    "badge": "Level 4 · Course 32",
+    "title": "Advanced Jazz Extensions and Modern Reharmonization",
+    "subtitle": "b9, #9, #11, b13 — available tensions by chord degree, Coltrane's Giant Steps and advanced substitutions for creative reharmonization.",
+    "sections": {
+      "extensions": "Altered extensions",
+      "coltrane": "Coltrane changes",
+      "conservatoire": "Conservatory",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You have mastered altered extensions and Coltrane changes.",
+      "veryGood": "Very good! A few tensions to refine — b9 vs #9, and the Giant Steps cycle.",
+      "keepGoing": "Keep studying Coltrane — restart when you are ready."
+    }
+  },
   "cours27": {
     "badge": "Level 3 · Course 27",
     "title": "Deep Functional Analysis",
@@ -2292,6 +2349,8 @@
     "level2sub": "Intermediate",
     "level3": "Level 3",
     "level3sub": "Advanced",
+    "level4": "Level 4",
+    "level4sub": "Extended Harmony",
     "start": "Start →"
   },
   "landing": {
