@@ -82,7 +82,13 @@
     "d20": "Bach, Mozart, Beethoven, Schubert, Chopin, Liszt, Berlioz, Tchaikovsky, Rachmaninov — harmonic signatures.",
     "d21": "Debussy, Ravel, Stravinsky, Messiaen, Satie, Beatles, Radiohead, Morricone — from Impressionism to rock.",
     "d22": "Transform a progression while preserving the melody — diatonic and tritone substitutions, modal borrowing, parallel harmonization.",
-    "d23": "Bach, Mozart, Chopin, Debussy, Jazz, Rock — identify and reproduce the harmonic signatures of the great composers."
+    "d23": "Bach, Mozart, Chopin, Debussy, Jazz, Rock — identify and reproduce the harmonic signatures of the great composers.",
+    "c24": "Augmented Sixth Chords",
+    "c25": "Chromaticism and Advanced Chromatic Harmony",
+    "c26": "DEM Harmonization: Given Bass and Given Soprano",
+    "d24": "It+6, Fr+6, Ger+6 — the three augmented sixths, their contrary-motion resolution, and their link to tritone substitution.",
+    "d25": "Chromatic lines, the Tristan chord, enharmonic modulation — tonality pushed to its expressive limits.",
+    "d26": "The two fundamental exercises of the DEM exam — 5-step method, guided exercises with detailed corrections."
   },
   "cours": {
     "level1": "Level 1",
@@ -2158,6 +2164,54 @@
       "quizScoreLow": "Keep listening to the progressions of each style — the ear learns!",
       "quizNextBtn": "Next question →",
       "quizSeeScoreBtn": "See my score"
+    }
+  },
+  "cours24": {
+    "badge": "Level 2 · Course 24",
+    "title": "Augmented Sixth Chords",
+    "subtitle": "It+6, Fr+6, Ger+6 — three Romantic altered chords, their contrary-motion resolution, and their use in 19th-century music.",
+    "sections": {
+      "types": "The 3 types",
+      "application": "Usage & context",
+      "conservatoire": "Conservatory",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You have mastered all three augmented sixths and their resolutions.",
+      "veryGood": "Very good! A few details to refine on resolutions and usage.",
+      "keepGoing": "Keep studying augmented sixth chords — restart when you are ready."
+    }
+  },
+  "cours25": {
+    "badge": "Level 2 · Course 25",
+    "title": "Chromaticism and Advanced Chromatic Harmony",
+    "subtitle": "Chromatic lines, the Tristan chord, enharmonic modulation — exploring the limits of tonality with Wagner and Liszt.",
+    "sections": {
+      "lignes": "Chromatic lines",
+      "ambiguite": "Tonal ambiguity",
+      "conservatoire": "Conservatory",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You have mastered chromaticism and tonal ambiguity.",
+      "veryGood": "Very good! A few nuances to refine on enharmony and resolutions.",
+      "keepGoing": "Keep exploring chromaticism — restart when you are ready."
+    }
+  },
+  "cours26": {
+    "badge": "Level 2 · Course 26",
+    "title": "DEM Harmonization: Given Bass and Given Soprano",
+    "subtitle": "The two fundamental exercises of the DEM exam — step-by-step method, guided exercises with detailed corrections.",
+    "sections": {
+      "basse": "Given bass",
+      "soprano": "Given soprano",
+      "conservatoire": "Conservatory",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You have mastered DEM harmonization techniques.",
+      "veryGood": "Very good! A few points to consolidate on bass or soprano.",
+      "keepGoing": "Keep practicing harmonization — restart when you are ready."
     }
   },
   "nav": {

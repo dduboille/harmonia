@@ -4,7 +4,7 @@ import React, { useRef, useCallback } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
-import { CONSERVATOIRE_DATA } from "@/data/conservatoireData";
+import { CONSERVATOIRE_DATA, type CoursConservatoireData } from "@/data/conservatoireData";
 
 const ACCENT = "#2D5A8E";
 const ACCENT_BG = "#EEF3FA";
@@ -14,10 +14,16 @@ function parseNote(s: string): [string, number] {
   return m ? [m[1], parseInt(m[2])] : ["C", 4];
 }
 
-export function VueConservatoire({ courseNum }: { courseNum: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 }) {
+export function VueConservatoire({
+  courseNum,
+  data: dataProp,
+}: {
+  courseNum?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+  data?: CoursConservatoireData;
+}) {
   const params = useParams();
   const locale = (params?.locale as string) ?? "fr";
-  const data = CONSERVATOIRE_DATA[`cours${courseNum}`];
+  const data = dataProp ?? CONSERVATOIRE_DATA[`cours${courseNum!}`];
   const pianoRef = useRef<PianoPlayerRef>(null);
 
   const playRepertoire = useCallback(() => {

@@ -82,7 +82,13 @@
     "d20": "Bach, Mozart, Beethoven, Schubert, Chopin, Liszt, Berlioz, Tchaïkovski, Rachmaninov — les signatures harmoniques.",
     "d21": "Debussy, Ravel, Stravinsky, Messiaen, Satie, Beatles, Radiohead, Morricone — de l'impressionnisme au rock.",
     "d22": "Transformer une progression en conservant la mélodie — substitutions diatonique et tritonique, emprunt modal, harmonisation parallèle.",
-    "d23": "Bach, Mozart, Chopin, Debussy, Jazz, Rock — identifier et reproduire les signatures harmoniques des grands compositeurs."
+    "d23": "Bach, Mozart, Chopin, Debussy, Jazz, Rock — identifier et reproduire les signatures harmoniques des grands compositeurs.",
+    "c24": "Les accords de sixte augmentée",
+    "c25": "Le chromatisme et l'harmonie chromatique avancée",
+    "c26": "Harmonisation DEM : basse donnée et soprano donné",
+    "d24": "It+6, Fr+6, Al+6 — les trois sixtes augmentées, leur résolution par mouvement contraire et leur lien avec la substitution tritonique.",
+    "d25": "Lignes chromatiques, accord de Tristan, modulation enharmonique — la tonalité poussée à ses limites expressives.",
+    "d26": "Les deux exercices fondamentaux de l'examen DEM — méthode en 5 étapes, exercices guidés avec corrections."
   },
   "cours": {
     "level1": "Niveau 1",
@@ -2158,6 +2164,54 @@
       "quizScoreLow": "Continue à écouter les progressions de chaque style — l'oreille s'éduque !",
       "quizNextBtn": "Question suivante →",
       "quizSeeScoreBtn": "Voir mon score"
+    }
+  },
+  "cours24": {
+    "badge": "Niveau 2 · Cours 24",
+    "title": "Les accords de sixte augmentée",
+    "subtitle": "It+6, Fr+6, Al+6 — trois accords altérés romantiques, leur résolution par mouvement contraire et leur usage dans la musique du XIXe siècle.",
+    "sections": {
+      "types": "Les 3 types",
+      "application": "Usage & contexte",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises les trois sixtes augmentées et leurs résolutions.",
+      "veryGood": "Très bien ! Quelques détails à affiner sur les résolutions et usages.",
+      "keepGoing": "Continue à étudier les sixtes augmentées — recommence quand tu es prêt."
+    }
+  },
+  "cours25": {
+    "badge": "Niveau 2 · Cours 25",
+    "title": "Le chromatisme et l'harmonie chromatique avancée",
+    "subtitle": "Lignes chromatiques, accord de Tristan, modulation enharmonique — explorer les limites de la tonalité avec Wagner et Liszt.",
+    "sections": {
+      "lignes": "Lignes chromatiques",
+      "ambiguite": "Ambiguïté tonale",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises le chromatisme et l'ambiguïté tonale.",
+      "veryGood": "Très bien ! Quelques nuances à affiner sur l'enharmonie et les résolutions.",
+      "keepGoing": "Continue à explorer le chromatisme — recommence quand tu es prêt."
+    }
+  },
+  "cours26": {
+    "badge": "Niveau 2 · Cours 26",
+    "title": "Harmonisation DEM : basse donnée et soprano donné",
+    "subtitle": "Les deux exercices fondamentaux de l'examen DEM — méthode pas à pas, exercices guidés et corrections détaillées.",
+    "sections": {
+      "basse": "Basse donnée",
+      "soprano": "Soprano donné",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises les techniques d'harmonisation DEM.",
+      "veryGood": "Très bien ! Quelques points à consolider sur la basse ou le soprano.",
+      "keepGoing": "Continue à pratiquer l'harmonisation — recommence quand tu es prêt."
     }
   },
   "nav": {

@@ -28,14 +28,18 @@ import Cours20 from "@/components/Cours20";
 import Cours21 from "@/components/Cours21";
 import Cours22 from "@/components/Cours22";
 import Cours23 from "@/components/Cours23";
+import Cours24 from "@/components/Cours24";
+import Cours25 from "@/components/Cours25";
+import Cours26 from "@/components/Cours26";
 
 const COURS: Record<number, React.ComponentType> = {
   1: Cours1, 2: Cours2, 3: Cours3, 4: Cours4, 5: Cours5,
   6: Cours6, 7: Cours7, 8: Cours8, 9: Cours9, 10: Cours10, 11: Cours11, 12: Cours12, 13: Cours13, 14: Cours14, 15: Cours15, 16: Cours16, 17: Cours17, 18: Cours18, 19: Cours19, 20: Cours20, 21: Cours21, 22: Cours22, 23: Cours23,
+  24: Cours24, 25: Cours25, 26: Cours26,
 };
 
 export function generateStaticParams() {
-  return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23].map(id => ({ id: String(id) }));
+  return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26].map(id => ({ id: String(id) }));
 }
 
 export default async function CoursPage({ params }: { params: Promise<{ id: string; locale: string }> }) {
