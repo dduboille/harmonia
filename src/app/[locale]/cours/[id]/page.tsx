@@ -37,6 +37,11 @@ import Cours29 from "@/components/Cours29";
 import Cours30 from "@/components/Cours30";
 import Cours31 from "@/components/Cours31";
 import Cours32 from "@/components/Cours32";
+import Cours33 from "@/components/Cours33";
+import Cours34 from "@/components/Cours34";
+import Cours35 from "@/components/Cours35";
+import Cours36 from "@/components/Cours36";
+import Cours37 from "@/components/Cours37";
 
 const COURS: Record<number, React.ComponentType> = {
   1: Cours1, 2: Cours2, 3: Cours3, 4: Cours4, 5: Cours5,
@@ -44,10 +49,11 @@ const COURS: Record<number, React.ComponentType> = {
   24: Cours24, 25: Cours25, 26: Cours26,
   27: Cours27, 28: Cours28, 29: Cours29,
   30: Cours30, 31: Cours31, 32: Cours32,
+  33: Cours33, 34: Cours34, 35: Cours35, 36: Cours36, 37: Cours37,
 };
 
 export function generateStaticParams() {
-  return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32].map(id => ({ id: String(id) }));
+  return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37].map(id => ({ id: String(id) }));
 }
 
 export default async function CoursPage({ params }: { params: Promise<{ id: string; locale: string }> }) {

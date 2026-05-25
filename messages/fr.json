@@ -103,7 +103,20 @@
     "c32": "Extensions jazz avancées et reharmonisation",
     "d30": "Planing, gamme par tons, octatonique, pentatonique et modes de Messiaen — la couleur harmonique comme langage autonome.",
     "d31": "Superposition de tonalités (Stravinsky), accords construits en quartes, So What chord — au-delà de la tonalité classique.",
-    "d32": "b9, #9, #11, b13 — tensions disponibles, Giant Steps de Coltrane, cycle de tierces et substitutions avancées."
+    "d32": "b9, #9, #11, b13 — tensions disponibles, Giant Steps de Coltrane, cycle de tierces et substitutions avancées.",
+    "sublabel5": "Parcours spécialisé",
+    "level5Title": "Cursus conservatoire — Les 5 spécialisations",
+    "level5Desc": "5 parcours spécialisés au sommet du cursus — Fugue & choral, Harmonie cinématographique, Jazz avancé, Impressionnisme, Analyse avancée. Choisissez votre spécialisation.",
+    "c33": "Écriture classique : Fugue et choral",
+    "c34": "Composition pour l'image : Harmonie cinématographique",
+    "c35": "Jazz avancé : Reharmonisation et improvisation",
+    "c36": "Harmonie de Debussy et Ravel : l'impressionnisme approfondi",
+    "c37": "Analyse avancée : Schenker et analyse motivique",
+    "d33": "Contrepoint strict, règles du choral à 4 voix, anatomie de la fugue — Bach et le sommet du contrepoint baroque.",
+    "d34": "Carte des émotions harmoniques, leitmotif et transformation — Morricone, Williams, Zimmer.",
+    "d35": "Substitutions avancées, chord scales et voicings professionnels — Miles Davis et Kind of Blue.",
+    "d36": "Gamme par tons, planing, polyaccords, modalité néoclassique — Debussy, Ravel, Satie.",
+    "d37": "Ursatz, Urlinie, analyse motivique, 4 niveaux de réduction — Schenker et Beethoven 5e."
   },
   "cours": {
     "level1": "Niveau 1",
@@ -2351,6 +2364,8 @@
     "level3sub": "Maîtrise",
     "level4": "Niveau 4",
     "level4sub": "Harmonie élargie",
+    "level5": "Niveau 5",
+    "level5sub": "Parcours spécialisé",
     "start": "Commencer →"
   },
   "landing": {
@@ -2424,5 +2439,85 @@
     "upgradeAccess": "Passer Pro pour accéder →",
     "exercises": "exercices",
     "cours": "Cours"
+  },
+  "cours33": {
+    "badge": "Niveau 5 · Cours 33",
+    "title": "Écriture classique : Fugue et choral",
+    "subtitle": "Le choral à 4 voix style Bach et la structure de la fugue — le sommet du contrepoint strict et de l'écriture polyphonique.",
+    "sections": {
+      "choral": "Le choral à 4 voix",
+      "fugue": "Introduction à la fugue",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises le choral Bach et la structure de la fugue.",
+      "veryGood": "Très bien ! Revois les règles du choral et l'anatomie de la fugue.",
+      "keepGoing": "Continue — recommence quand tu es prêt."
+    }
+  },
+  "cours34": {
+    "badge": "Niveau 5 · Cours 34",
+    "title": "Composition pour l'image : Harmonie cinématographique",
+    "subtitle": "Carte des émotions harmoniques, leitmotif et transformation — Morricone, Williams, Zimmer et l'art de guider l'émotion du spectateur.",
+    "sections": {
+      "emotions": "Émotions harmoniques",
+      "leitmotif": "Leitmotif",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises l'harmonie cinématographique et le leitmotif.",
+      "veryGood": "Très bien ! Revois la carte des émotions et les techniques de transformation.",
+      "keepGoing": "Continue — recommence quand tu es prêt."
+    }
+  },
+  "cours35": {
+    "badge": "Niveau 5 · Cours 35",
+    "title": "Jazz avancé : Reharmonisation et improvisation",
+    "subtitle": "Substitutions avancées, chord scales et voicings professionnels — Miles Davis, Bill Evans et l'art de la reharmonisation créative.",
+    "sections": {
+      "reharmonisation": "Reharmonisation",
+      "voicings": "Voicings avancés",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises la reharmonisation avancée et les voicings jazz.",
+      "veryGood": "Très bien ! Revois les substitutions et les chord scales.",
+      "keepGoing": "Continue — recommence quand tu es prêt."
+    }
+  },
+  "cours36": {
+    "badge": "Niveau 5 · Cours 36",
+    "title": "Harmonie de Debussy et Ravel : l'impressionnisme approfondi",
+    "subtitle": "Gamme par tons, planing, polyaccords, modalité néoclassique — les deux logiques opposées de l'impressionnisme français.",
+    "sections": {
+      "debussy": "Harmonie de Debussy",
+      "ravel": "Harmonie de Ravel",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises les techniques impressionnistes de Debussy et Ravel.",
+      "veryGood": "Très bien ! Revois le planing, la pédale longue et les polyaccords.",
+      "keepGoing": "Continue — recommence quand tu es prêt."
+    }
+  },
+  "cours37": {
+    "badge": "Niveau 5 · Cours 37",
+    "title": "Analyse avancée : Schenker et analyse motivique",
+    "subtitle": "Ursatz, Urlinie, 4 niveaux de réduction et analyse motivique — voir la structure profonde d'une œuvre au-delà de sa surface.",
+    "sections": {
+      "schenker": "Analyse schenkérienne",
+      "motivique": "Analyse motivique",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises l'analyse schenkérienne et l'analyse motivique.",
+      "veryGood": "Très bien ! Revois les 4 niveaux de réduction et les transformations motiviques.",
+      "keepGoing": "Continue — recommence quand tu es prêt."
+    }
   }
 }

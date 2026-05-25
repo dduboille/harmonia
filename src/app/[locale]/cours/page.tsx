@@ -58,6 +58,19 @@ const LEVELS = [
     topics: ["Impressionnisme", "Polytonalité", "Quartes", "Giant Steps"],
     href: "niveau-4",
   },
+  {
+    num: 5 as const,
+    label: "Niveau 5",
+    sublabel: "Parcours spécialisé",
+    color: "#4A2C6E",
+    bg: "#F0ECE4",
+    border: "#C9B8E0",
+    coursRange: "Cours 33 à 37",
+    count: 5,
+    desc: "5 mini-cursus spécialisés au sommet du cursus — Fugue & choral, Cinéma, Jazz avancé, Impressionnisme approfondi, Analyse avancée. Choisissez votre spécialisation.",
+    topics: ["Fugue & Choral", "Cinéma", "Jazz", "Impressionnisme", "Schenker"],
+    href: "niveau-5",
+  },
 ];
 
 export default function CoursHubPage() {
@@ -94,7 +107,7 @@ export default function CoursHubPage() {
             fontSize: 16, color: "#666", lineHeight: 1.7, margin: 0,
             fontFamily: "system-ui, sans-serif", maxWidth: 540,
           }}>
-            32 cours organisés en 4 niveaux progressifs — des fondamentaux de l&apos;harmonie jusqu&apos;aux langages harmoniques du XXe siècle.
+            37 cours organisés en 5 niveaux progressifs — des fondamentaux de l&apos;harmonie jusqu&apos;aux parcours spécialisés du conservatoire.
           </p>
         </div>
 

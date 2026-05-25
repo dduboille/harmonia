@@ -30,6 +30,11 @@ const COURS = [
   { num: 30, level: 4 as const, title: "Harmonie impressionniste et modalité avancée", desc: "Planing, gamme par tons, octatonique, pentatonique et modes de Messiaen — la couleur harmonique comme langage autonome.",                  tags: ["Impressionnisme", "Messiaen", "Planing"] },
   { num: 31, level: 4 as const, title: "Polytonalité et harmonie quartale",             desc: "Superposition de tonalités (Stravinsky), accords construits en quartes, So What chord — au-delà de la tonalité classique.",               tags: ["Polytonalité", "Stravinsky", "Quartes"] },
   { num: 32, level: 4 as const, title: "Extensions jazz avancées et reharmonisation",   desc: "b9, #9, #11, b13 — tensions disponibles, Giant Steps de Coltrane, cycle de tierces et substitutions avancées.",                            tags: ["Coltrane", "Extensions altérées", "Reharmonisation"] },
+  { num: 33, level: 5 as const, title: "Écriture classique : Fugue et choral",            desc: "Contrepoint strict, règles du choral à 4 voix, anatomie de la fugue — Bach et le sommet du contrepoint baroque.",                           tags: ["Fugue", "Choral", "Bach"] },
+  { num: 34, level: 5 as const, title: "Composition pour l'image : Harmonie cinématographique", desc: "Carte des émotions harmoniques, leitmotif et transformation — Morricone, Williams, Zimmer.",                                              tags: ["Cinéma", "Leitmotif", "Morricone"] },
+  { num: 35, level: 5 as const, title: "Jazz avancé : Reharmonisation et improvisation",  desc: "Substitutions avancées, chord scales et voicings professionnels — Miles Davis et Kind of Blue.",                                               tags: ["Jazz", "Voicings", "Miles Davis"] },
+  { num: 36, level: 5 as const, title: "Harmonie de Debussy et Ravel : l'impressionnisme approfondi", desc: "Gamme par tons, planing, polyaccords, modalité néoclassique — les deux logiques de l'impressionnisme français.",                  tags: ["Debussy", "Ravel", "Satie"] },
+  { num: 37, level: 5 as const, title: "Analyse avancée : Schenker et analyse motivique",  desc: "Ursatz, Urlinie, 4 niveaux de réduction et analyse motivique — voir la structure profonde d'une œuvre.",                                     tags: ["Schenker", "Motivique", "Beethoven"] },
   { num: 27, level: 3 as const, title: "Analyse fonctionnelle profonde",              desc: "Hiérarchies tonales, prolongation harmonique, réduction schenkérienne — voir la structure osseuse d'une œuvre au-delà de ses accords de surface.",          tags: ["Schenker", "Analyse", "Ursatz"] },
   { num: 28, level: 3 as const, title: "Formes musicales approfondies",              desc: "Binaire, ternaire, rondo, forme sonate — anatomie des grandes architectures musicales avec analyse guidée de Mozart, Bach et Beethoven.",                    tags: ["Forme sonate", "Analyse", "Beethoven"] },
   { num: 29, level: 3 as const, title: "Analyse comparative du répertoire",          desc: "Baroque, classique, romantique, impressionniste — 5 périodes, une même mélodie harmonisée 5 fois pour révéler l'évolution du langage musical.",             tags: ["Debussy", "Évolution", "Styles"] },
@@ -49,13 +54,14 @@ const LEVEL_META = {
   2: { label: "Niveau 2", sublabel: "Approfondissement", color: "#BA7517", bg: "#FAEEDA", border: "#F6AD55", href: "niveau-2" },
   3: { label: "Niveau 3", sublabel: "Maîtrise",          color: "#5C3D6E", bg: "#F0EBF8", border: "#C9B3DD", href: "niveau-3" },
   4: { label: "Niveau 4", sublabel: "Harmonie élargie",  color: "#2D6B7A", bg: "#E3F3F7", border: "#A8D8E2", href: "niveau-4" },
+  5: { label: "Niveau 5", sublabel: "Parcours spécialisé", color: "#4A2C6E", bg: "#F0ECE4", border: "#C9B8E0", href: "niveau-5" },
 } as const;
 
 // ─── Carte cours ─────────────────────────────────────────────────────────────
 
 type TFunc = ReturnType<typeof useTranslations<"coursHub">>;
 
-function CoursCard({ cours, locale, level, t }: { cours: typeof COURS[0]; locale: string; level: 1 | 2 | 3 | 4; t: TFunc }) {
+function CoursCard({ cours, locale, level, t }: { cours: typeof COURS[0]; locale: string; level: 1 | 2 | 3 | 4 | 5; t: TFunc }) {
   const meta = LEVEL_META[level];
   return (
     <Link href={`/${locale}/cours/${cours.num}`} style={{ textDecoration: "none" }}>
@@ -121,7 +127,7 @@ function CoursCard({ cours, locale, level, t }: { cours: typeof COURS[0]; locale
 // ─── Composant principal ──────────────────────────────────────────────────────
 
 interface Props {
-  level: 1 | 2 | 3 | 4;
+  level: 1 | 2 | 3 | 4 | 5;
 }
 
 export default function CoursLevel({ level }: Props) {
