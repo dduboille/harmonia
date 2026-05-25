@@ -200,14 +200,19 @@ export default function LandingPage() {
             {t("badge")}
           </div>
 
-          <h1 style={{ fontSize: "clamp(68px, 12vw, 108px)", fontWeight: 400, lineHeight: 1, letterSpacing: "-0.03em", margin: "0 0 28px" }}>
+          <h1 style={{ fontSize: "clamp(88px, 17vw, 148px)", fontWeight: 400, lineHeight: 1, letterSpacing: "-0.03em", margin: "0 0 32px" }}>
             <span style={{ color: "#1a1a1a" }}>harmon</span>
             <span style={{ color: "#5C3D6E" }}>ia</span>
             <span style={{ color: "#BA7517" }}>.</span>
           </h1>
 
-          <p style={{ fontSize: "clamp(18px, 2.2vw, 22px)", color: "#555", lineHeight: 1.5, margin: "0 auto 44px", fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: "italic", fontWeight: 400 }}>
+          <p style={{ fontSize: "clamp(22px, 3.2vw, 34px)", color: "#555", lineHeight: 1.45, margin: "0 auto 20px", fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: "italic", fontWeight: 400 }}>
             {t("sub")}
+          </p>
+
+          <p style={{ fontSize: "clamp(20px, 2.8vw, 30px)", color: "#666", lineHeight: 1.6, margin: "0 auto 48px", fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: "italic", fontWeight: 400 }}>
+            {t("sub2")}<br />
+            {t("sub3")}
           </p>
 
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" as const }}>
