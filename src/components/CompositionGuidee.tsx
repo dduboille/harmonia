@@ -54,55 +54,93 @@ const STAFF_LINES = [0, 2, 4, 6, 8];
 const BASS_STAFF_BOTTOM = 340;
 const SVG_HEIGHT_WITH_BASS = 430;
 
-const BASS_PC_NAMES = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
-
-const BASS_SEMITONES: Record<string, number> = {
-  C: 0, 'C#': 1, Db: 1, D: 2, 'D#': 3, Eb: 3,
-  E: 4, F: 5, 'F#': 6, Gb: 6, G: 7, 'G#': 8, Ab: 8,
-  A: 9, 'A#': 10, Bb: 10, B: 11,
-};
-
-function parseBassQualIntervals(qual: string): number[] {
-  if (qual === 'm' || qual === 'min') return [0, 3, 7];
-  if (qual === '7') return [0, 4, 7, 10];
-  if (qual === 'm7' || qual === 'min7') return [0, 3, 7, 10];
-  if (qual === 'Maj7' || qual === 'maj7' || qual === 'M7') return [0, 4, 7, 11];
-  if (qual === 'm7b5' || qual === 'ø' || qual === 'Ø') return [0, 3, 6, 10];
-  if (qual === 'dim' || qual === 'o') return [0, 3, 6];
-  if (qual === 'dim7' || qual === 'o7') return [0, 3, 6, 9];
-  if (qual === 'aug' || qual === '+') return [0, 4, 8];
-  if (qual === 'sus4' || qual === 'sus') return [0, 5, 7];
-  if (qual === 'sus2') return [0, 2, 7];
-  if (qual.includes('9')) return [0, 4, 7, 10];
-  return [0, 4, 7];
-}
-
-// Returns notes for bass staff SVG + PianoPlayer (stdOctave is standard, pianoOctave = stdOctave-1)
-// Notes are in strictly increasing MIDI pitch order
-function getBassVoicingNotes(chord: string): Array<{ noteName: string; stdOctave: number }> {
-  const m = chord.match(/^([A-G][#b]?)(.*)$/);
-  if (!m) return [];
-  const rootPc = BASS_SEMITONES[m[1]] ?? 0;
-  const intervals = parseBassQualIntervals(m[2]);
-  // G–B (pc 7–11) → root in std octave 2; C–F# (pc 0–6) → std octave 3
-  const rootStdOct = rootPc >= 7 ? 2 : 3;
-  const result: Array<{ noteName: string; stdOctave: number }> = [];
-  let prevMidi = -1;
-  for (let i = 0; i < Math.min(intervals.length, 4); i++) {
-    const notePc = (rootPc + intervals[i]) % 12;
-    const noteName = BASS_PC_NAMES[notePc];
-    let stdOct = i === 0 ? rootStdOct : Math.floor(prevMidi / 12) - 1;
-    // MIDI = 12*(stdOct+1)+pc; advance octave until strictly greater
-    while (12 * (stdOct + 1) + notePc <= prevMidi) stdOct++;
-    prevMidi = 12 * (stdOct + 1) + notePc;
-    result.push({ noteName, stdOctave: stdOct });
-  }
-  return result;
-}
-
 // Bass clef staff step: G2(std)=0, B2=2, D3=4, F3=6, A3=8
 function bassStaffStep(note: string, stdOctave: number): number {
   return noteStaffStep(note, stdOctave) + 12;
+}
+
+// ── SATB voice leading (soprano fixed = melody) ──────────────────────────────
+
+const ALL_SHARP_NAMES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+const PC_FROM_NAME: Record<string, number> = {
+  C:0,'C#':1,Db:1,D:2,'D#':3,Eb:3,E:4,F:5,'F#':6,Gb:6,
+  G:7,'G#':8,Ab:8,A:9,'A#':10,Bb:10,B:11,
+};
+
+function noteMidiValue(name: string, octave: number): number {
+  const pc = PC_FROM_NAME[name] ?? 0;
+  return (octave + 1) * 12 + pc;
+}
+
+function midiToNameOct(midi: number): { name: string; octave: number } {
+  return { name: ALL_SHARP_NAMES[midi % 12], octave: Math.floor(midi / 12) - 1 };
+}
+
+function allInVC(pc: number, lo: number, hi: number): number[] {
+  const r: number[] = [];
+  for (let m = lo; m <= hi; m++) if (m % 12 === pc) r.push(m);
+  return r;
+}
+
+function nearestVC(pc: number, lo: number, hi: number, pref: number): number {
+  const all = allInVC(pc, lo, hi);
+  if (!all.length) return lo;
+  return all.reduce((b, c) => Math.abs(c - pref) < Math.abs(b - pref) ? c : b);
+}
+
+function parseChordPCs(chord: string): number[] {
+  const m = chord.match(/^([A-G][#b]?)(.*)$/);
+  if (!m) return [0, 4, 7];
+  const root = PC_FROM_NAME[m[1]] ?? 0;
+  const q = m[2];
+  let ivs: number[];
+  if (q.match(/m7b5|[øØ]/))           ivs = [0,3,6,10];
+  else if (q.includes('dim7'))         ivs = [0,3,6,9];
+  else if (q.includes('dim'))          ivs = [0,3,6];
+  else if (q.includes('aug'))          ivs = [0,4,8];
+  else if (q.match(/[Mm]aj7/))        ivs = [0,4,7,11];
+  else if (q.match(/^m7|min7/))       ivs = [0,3,7,10];
+  else if (q.match(/^m(?!aj)/))       ivs = [0,3,7];
+  else if (q.includes('sus4'))        ivs = [0,5,7];
+  else if (q.includes('sus2'))        ivs = [0,2,7];
+  else if (q.includes('7'))           ivs = [0,4,7,10];
+  else                                 ivs = [0,4,7];
+  return ivs.map(i => (root + i) % 12);
+}
+
+interface ATBVoicing { alto: number; tenor: number; bass: number }
+
+// Compute alto, tenor, bass with voice leading given fixed soprano MIDI
+function computeATB(chord: string, sopMidi: number, prev: ATBVoicing | null): ATBVoicing {
+  const pr = prev ?? { alto: 64, tenor: 60, bass: 48 };
+  const pcs = parseChordPCs(chord);
+  const sopPC = sopMidi % 12;
+  const rootPC = pcs[0];
+
+  // Bass → root of chord, range E2(40)–C4(60)
+  const bassMidi = nearestVC(rootPC, 40, 60, pr.bass);
+
+  // Pad to 4 PCs (double root for triads)
+  const t4 = pcs.length < 4 ? [...pcs, pcs[0]] : [...pcs];
+  const rem = [...t4];
+  const drop = (pc: number) => { const i = rem.indexOf(pc); if (i >= 0) rem.splice(i, 1); };
+  drop(rootPC);
+  drop(sopPC);
+  while (rem.length < 2) rem.push(pcs[0]);
+
+  let bAlt = pr.alto, bTen = pr.tenor, bScore = Infinity;
+  for (const [aPC, tPC] of [[rem[0], rem[1]], [rem[1], rem[0]]] as [number,number][]) {
+    const aCands = allInVC(aPC, 55, 72).filter(m => m < sopMidi && m > bassMidi);
+    const tCands = allInVC(tPC, 48, 67).filter(m => m > bassMidi);
+    if (!aCands.length || !tCands.length) continue;
+    const aM = aCands.reduce((b, c) => Math.abs(c - pr.alto) < Math.abs(b - pr.alto) ? c : b);
+    const tF = tCands.filter(m => m <= aM);
+    if (!tF.length) continue;
+    const tM = tF.reduce((b, c) => Math.abs(c - pr.tenor) < Math.abs(b - pr.tenor) ? c : b);
+    const sc = Math.abs(aM - pr.alto) + Math.abs(tM - pr.tenor);
+    if (sc < bScore) { bScore = sc; bAlt = aM; bTen = tM; }
+  }
+  return { alto: bAlt, tenor: bTen, bass: bassMidi };
 }
 
 // ── Grand staff component ────────────────────────────────────────────────────
@@ -206,66 +244,123 @@ function MelodyStaff({
       )}
 
       {/* ── Bass staff (shown when chords are selected) ── */}
-      {hasChords && (
-        <>
-          {/* System bracket */}
-          <line x1={8} y1={STAFF_BOTTOM - 8 * HALF_STEP} x2={8} y2={BASS_STAFF_BOTTOM} stroke="#444" strokeWidth="3" />
+      {hasChords && (() => {
+        // Collect all chord positions and compute SATB voice leading sequentially
+        type ChordPos = { x: number; chord: string; sopIdx: number; twoPerBar: boolean };
+        const positions: ChordPos[] = [];
+        measureNoteIndices.forEach((indices, mi) => {
+          const chords = (attempt?.[mi] ?? []).filter(c => c !== '');
+          if (!chords.length) return;
+          const twoPerBar = chords.length === 2;
+          chords.forEach((chord, ci) => {
+            const sopIdx = ci === 0 ? indices[0] : measureMidIndices[mi];
+            positions.push({ x: noteX(sopIdx), chord, sopIdx, twoPerBar });
+          });
+        });
 
-          {/* System connector between staves */}
-          <line x1={CLEF_W} y1={STAFF_BOTTOM} x2={CLEF_W} y2={BASS_STAFF_BOTTOM - 8 * HALF_STEP} stroke="#bbb" strokeWidth="0.6" />
+        let prevATB: ATBVoicing | null = null;
+        const voicings: ATBVoicing[] = positions.map(pos => {
+          const sn = notes[pos.sopIdx];
+          const sopMidi = noteMidiValue(sn.note, sn.octave);
+          const atb = computeATB(pos.chord, sopMidi, prevATB);
+          prevATB = atb;
+          return atb;
+        });
 
-          {/* Bass staff lines */}
-          {STAFF_LINES.map(s => (
-            <line key={s} x1={10} y1={BASS_STAFF_BOTTOM - s * HALF_STEP} x2={svgW - 10} y2={BASS_STAFF_BOTTOM - s * HALF_STEP} stroke="#999" strokeWidth="0.8" />
-          ))}
+        function renderNote(
+          x: number, y: number, ledgerY: (ls: number) => number,
+          hasSharp: boolean, stemUp: boolean | null, /* null = whole note */
+          color: string, xOffset: number = 0
+        ) {
+          const cx = x + xOffset;
+          return (
+            <g>
+              {hasSharp && (
+                <text x={cx - 16} y={y + 5} fontSize="13" fontFamily="serif" fill={color} textAnchor="middle">♯</text>
+              )}
+              {stemUp !== null && (
+                <line x1={stemUp ? cx + NOTE_RX : cx - NOTE_RX} y1={y}
+                  x2={stemUp ? cx + NOTE_RX : cx - NOTE_RX} y2={stemUp ? y - 28 : y + 28}
+                  stroke={color} strokeWidth="1.4" />
+              )}
+              <ellipse cx={cx} cy={y} rx={NOTE_RX} ry={NOTE_RY}
+                fill="#fff" stroke={color} strokeWidth="1.3"
+                transform={`rotate(-15,${cx},${y})`} />
+            </g>
+          );
+        }
 
-          {/* Bass clef symbol */}
-          <text x={15} y={BASS_STAFF_BOTTOM - HALF_STEP * 1 + 2} fontSize="54" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄢</text>
-          <line x1={CLEF_W} y1={BASS_STAFF_BOTTOM - 8 * HALF_STEP} x2={CLEF_W} y2={BASS_STAFF_BOTTOM} stroke="#999" strokeWidth="1" />
+        return (
+          <>
+            {/* System bracket */}
+            <line x1={8} y1={STAFF_BOTTOM - 8 * HALF_STEP} x2={8} y2={BASS_STAFF_BOTTOM} stroke="#444" strokeWidth="3" />
+            {/* System connector between staves */}
+            <line x1={CLEF_W} y1={STAFF_BOTTOM} x2={CLEF_W} y2={BASS_STAFF_BOTTOM - 8 * HALF_STEP} stroke="#bbb" strokeWidth="0.6" />
+            {/* Bass staff lines */}
+            {STAFF_LINES.map(s => (
+              <line key={s} x1={10} y1={BASS_STAFF_BOTTOM - s * HALF_STEP} x2={svgW - 10} y2={BASS_STAFF_BOTTOM - s * HALF_STEP} stroke="#999" strokeWidth="0.8" />
+            ))}
+            <text x={15} y={BASS_STAFF_BOTTOM - HALF_STEP * 1 + 2} fontSize="54" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄢</text>
+            <line x1={CLEF_W} y1={BASS_STAFF_BOTTOM - 8 * HALF_STEP} x2={CLEF_W} y2={BASS_STAFF_BOTTOM} stroke="#999" strokeWidth="1" />
+            {barXs.map((bx, i) => (
+              <line key={i} x1={bx} y1={BASS_STAFF_BOTTOM - 8 * HALF_STEP} x2={bx} y2={BASS_STAFF_BOTTOM} stroke="#aaa" strokeWidth="0.7" />
+            ))}
 
-          {/* Bass barlines */}
-          {barXs.map((x, i) => (
-            <line key={i} x1={x} y1={BASS_STAFF_BOTTOM - 8 * HALF_STEP} x2={x} y2={BASS_STAFF_BOTTOM} stroke="#aaa" strokeWidth="0.7" />
-          ))}
+            {positions.map((pos, pi) => {
+              const { x, chord, twoPerBar } = pos;
+              const atb = voicings[pi];
+              const stemMode = twoPerBar ? true : null; // half notes get stem, whole notes don't
 
-          {/* Chord voicings per measure */}
-          {attempt && measureNoteIndices.map((indices, mi) => {
-            const chords = (attempt[mi] ?? []).filter(c => c !== '');
-            if (chords.length === 0) return null;
+              // Alto → treble staff (stem down, purple)
+              const altInfo = midiToNameOct(atb.alto);
+              const altStep = noteStaffStep(altInfo.name, altInfo.octave);
+              const altY = STAFF_BOTTOM - altStep * HALF_STEP;
+              const altLedgers = getLedgerLines(altStep);
 
-            return chords.map((chord, ci) => {
-              const x = noteX(ci === 0 ? indices[0] : measureMidIndices[mi]);
-              const voicing = getBassVoicingNotes(chord);
+              // Tenor → bass staff (stem up, purple), offset slightly right to avoid collision with bass
+              const tenInfo = midiToNameOct(atb.tenor);
+              const tenStep = bassStaffStep(tenInfo.name, tenInfo.octave);
+              const tenY = BASS_STAFF_BOTTOM - tenStep * HALF_STEP;
+              const tenLedgers = getLedgerLines(tenStep);
+
+              // Bass → bass staff (stem down, black)
+              const basInfo = midiToNameOct(atb.bass);
+              const basStep = bassStaffStep(basInfo.name, basInfo.octave);
+              const basY = BASS_STAFF_BOTTOM - basStep * HALF_STEP;
+              const basLedgers = getLedgerLines(basStep);
+
+              // Same pitch → offset tenor right so noteheads don't overlap
+              const tenXOffset = Math.abs(tenY - basY) < 7 ? NOTE_RX * 2 + 1 : 0;
 
               return (
-                <g key={`${mi}-${ci}`}>
-                  {voicing.map((noteInfo, ni) => {
-                    const step = bassStaffStep(noteInfo.noteName, noteInfo.stdOctave);
-                    const y = BASS_STAFF_BOTTOM - step * HALF_STEP;
-                    const ledgers = getLedgerLines(step);
-                    return (
-                      <g key={ni}>
-                        {ledgers.map(ls => (
-                          <line key={ls}
-                            x1={x - 14} y1={BASS_STAFF_BOTTOM - ls * HALF_STEP}
-                            x2={x + 14} y2={BASS_STAFF_BOTTOM - ls * HALF_STEP}
-                            stroke="#555" strokeWidth="1.1" />
-                        ))}
-                        <ellipse cx={x} cy={y} rx={NOTE_RX + 1} ry={NOTE_RY + 1}
-                          fill="#fff" stroke="#1a1a1a" strokeWidth="1.4"
-                          transform={`rotate(-15,${x},${y})`} />
-                      </g>
-                    );
-                  })}
-                  {/* Chord label below bass staff */}
+                <g key={pi}>
+                  {/* Alto ledger lines on treble staff */}
+                  {altLedgers.map(ls => (
+                    <line key={ls} x1={x - 14} y1={STAFF_BOTTOM - ls * HALF_STEP} x2={x + 14} y2={STAFF_BOTTOM - ls * HALF_STEP} stroke="#555" strokeWidth="1.1" />
+                  ))}
+                  {renderNote(x, altY, ls => STAFF_BOTTOM - ls * HALF_STEP, altInfo.name.includes('#'), stemMode === null ? null : false, '#5C3D6E')}
+
+                  {/* Tenor ledger lines on bass staff */}
+                  {tenLedgers.map(ls => (
+                    <line key={ls} x1={x + tenXOffset - 14} y1={BASS_STAFF_BOTTOM - ls * HALF_STEP} x2={x + tenXOffset + 14} y2={BASS_STAFF_BOTTOM - ls * HALF_STEP} stroke="#555" strokeWidth="1.1" />
+                  ))}
+                  {renderNote(x, tenY, ls => BASS_STAFF_BOTTOM - ls * HALF_STEP, tenInfo.name.includes('#'), stemMode === null ? null : true, '#5C3D6E', tenXOffset)}
+
+                  {/* Bass ledger lines on bass staff */}
+                  {basLedgers.map(ls => (
+                    <line key={ls} x1={x - 14} y1={BASS_STAFF_BOTTOM - ls * HALF_STEP} x2={x + 14} y2={BASS_STAFF_BOTTOM - ls * HALF_STEP} stroke="#555" strokeWidth="1.1" />
+                  ))}
+                  {renderNote(x, basY, ls => BASS_STAFF_BOTTOM - ls * HALF_STEP, basInfo.name.includes('#'), stemMode === null ? null : false, '#1a1a1a')}
+
+                  {/* Chord label */}
                   <text x={x} y={BASS_STAFF_BOTTOM + 18} fontSize="10" fontFamily="system-ui,sans-serif"
                     fill="#5C3D6E" fontWeight="700" textAnchor="middle">{chord}</text>
                 </g>
               );
-            });
-          })}
-        </>
-      )}
+            })}
+          </>
+        );
+      })()}
     </svg>
   );
 }
@@ -593,12 +688,50 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
     pianoRef.current.playVoicingSequence(voicings, { interval: beatSec, duration: beatSec * 0.88 });
   }, [exercise, tempo]);
 
+  // Pre-compute SATB voice leadings for a chord schedule, keyed by "measureIdx-chordIdx"
+  function buildATBMap(
+    exNotes: MelodyNote[],
+    chordsByMeasure: string[][],
+    bpm: number
+  ): Map<string, ATBVoicing> {
+    const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
+    const map = new Map<string, ATBVoicing>();
+    let prev: ATBVoicing | null = null;
+    let mi = 0, mb = 0;
+    const seen = new Set<string>();
+    for (const note of exNotes) {
+      const dur = dBeats[note.duration] ?? 1;
+      const mc = (chordsByMeasure[mi] ?? []).filter(c => c !== '');
+      const ci = mc.length === 2 && mb >= bpm / 2 ? 1 : 0;
+      const chord = mc[ci];
+      const key = `${mi}-${ci}`;
+      if (chord && !seen.has(key)) {
+        seen.add(key);
+        const sopMidi = noteMidiValue(note.note, note.octave);
+        const atb = computeATB(chord, sopMidi, prev);
+        map.set(key, atb);
+        prev = atb;
+      }
+      mb += dur;
+      if (mb >= bpm - 0.01) { mi++; mb = 0; }
+    }
+    return map;
+  }
+
+  function atbSpecs(atb: ATBVoicing): string[] {
+    return [atb.alto, atb.tenor, atb.bass].map(midi => {
+      const n = midiToNameOct(midi);
+      return `${n.name}:${n.octave - 1}`;
+    });
+  }
+
   const handlePlayVersion = useCallback(() => {
     if (!exercise || !pianoRef.current) return;
     const piano = pianoRef.current;
     const beatSec = 60 / tempo;
     const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
+    const atbMap = buildATBMap(exercise.notes, attempt.map(m => m ?? []), bpm);
 
     let globalBeat = 0;
     let measureIdx = 0;
@@ -611,14 +744,12 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
       const chordIdx = mChords.length === 2 && measureBeat >= bpm / 2 ? 1 : 0;
       const chord = mChords[chordIdx];
 
-      // Melody note — duration proportional to its rhythmic value
       piano.playVoicing([`${note.note}:${note.octave - 1}`], {
         startTime: globalBeat * beatSec,
         duration: dur * beatSec * 0.88,
         velocity: 0.82,
       });
 
-      // Chord sustain — scheduled once per segment, lasts the whole segment
       const segKey = `${measureIdx}-${chordIdx}`;
       if (chord && !scheduled.has(segKey)) {
         scheduled.add(segKey);
@@ -626,7 +757,8 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
         const segEndBeat = chordIdx === 0 && mChords.length === 2
           ? measureIdx * bpm + bpm / 2
           : (measureIdx + 1) * bpm;
-        const chordSpecs = getBassVoicingNotes(chord).map(v => `${v.noteName}:${v.stdOctave - 1}`);
+        const atb = atbMap.get(segKey);
+        const chordSpecs = atb ? atbSpecs(atb) : [];
         piano.playVoicing(chordSpecs, {
           startTime: segStartBeat * beatSec,
           duration: (segEndBeat - segStartBeat) * beatSec * 0.96,
@@ -646,6 +778,7 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
     const beatSec = 60 / tempo;
     const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
+    const atbMap = buildATBMap(exercise.notes, exercise.suggestedChords, bpm);
 
     let globalBeat = 0;
     let measureIdx = 0;
@@ -671,7 +804,8 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
         const segEndBeat = chordIdx === 0 && mChords.length === 2
           ? measureIdx * bpm + bpm / 2
           : (measureIdx + 1) * bpm;
-        const chordSpecs = getBassVoicingNotes(chord).map(v => `${v.noteName}:${v.stdOctave - 1}`);
+        const atb = atbMap.get(segKey);
+        const chordSpecs = atb ? atbSpecs(atb) : [];
         piano.playVoicing(chordSpecs, {
           startTime: segStartBeat * beatSec,
           duration: (segEndBeat - segStartBeat) * beatSec * 0.96,
