@@ -82,7 +82,41 @@
     "d20": "Bach, Mozart, Beethoven, Schubert, Chopin, Liszt, Berlioz, Tchaikovsky, Rachmaninov — las firmas armónicas.",
     "d21": "Debussy, Ravel, Stravinsky, Messiaen, Satie, Beatles, Radiohead, Morricone — del impresionismo al rock.",
     "d22": "Transformar una progresión conservando la melodía — sustituciones diatónica y por tritono, préstamo modal, armonización paralela.",
-    "d23": "Bach, Mozart, Chopin, Debussy, Jazz, Rock — identificar y reproducir las firmas armónicas de los grandes compositores."
+    "d23": "Bach, Mozart, Chopin, Debussy, Jazz, Rock — identificar y reproducir las firmas armónicas de los grandes compositores.",
+    "c24": "Los acordes de sexta aumentada",
+    "c25": "El cromatismo y la armonía cromática avanzada",
+    "c26": "Armonización DEM: bajo dado y soprano dado",
+    "d24": "It+6, Fr+6, Al+6 — las tres sextas aumentadas, su resolución por movimiento contrario y su vínculo con la sustitución de tritono.",
+    "d25": "Líneas cromáticas, el acorde de Tristán, modulación enarmónica — la tonalidad llevada a sus límites expresivos.",
+    "d26": "Los dos ejercicios fundamentales del examen DEM — método de 5 pasos, ejercicios guiados con correcciones detalladas.",
+    "c27": "Análisis funcional profundo",
+    "c28": "Las formas musicales en profundidad",
+    "c29": "Análisis comparativo del repertorio",
+    "d27": "Jerarquías tonales, prolongación armónica, reducción schenkeriana — aprender a ver la estructura profunda de una obra más allá de sus acordes de superficie.",
+    "d28": "Binario, ternario, rondó, forma sonata — anatomía de las grandes arquitecturas musicales con análisis guiado de Mozart, Bach y Beethoven.",
+    "d29": "Barroco, Clásico, Romántico, Impresionista — 5 períodos históricos, una melodía armonizada de 5 maneras para revelar la evolución del lenguaje musical.",
+    "sublabel4": "Armonía ampliada",
+    "level4Title": "Armonía ampliada — Más allá de la tonalidad",
+    "level4Desc": "3 lecciones para explorar los lenguajes musicales del siglo XX — impresionismo, politonalidad, armonía cuartal y rearmonización avanzada al estilo Coltrane.",
+    "c30": "Armonía impresionista y modalidad avanzada",
+    "c31": "Politonalidad y armonía cuartal",
+    "c32": "Extensiones de jazz avanzadas y rearmonización moderna",
+    "d30": "Planing, escala de tonos enteros, octatónica, pentatónica y modos de Messiaen — el color armónico como lenguaje autónomo.",
+    "d31": "Tonalidades superpuestas (Stravinski), acordes cuartales, el acorde So What — más allá de la tonalidad clásica.",
+    "d32": "b9, #9, #11, b13 — tensiones disponibles, Giant Steps de Coltrane, el ciclo de terceras y sustituciones avanzadas.",
+    "sublabel5": "Itinerario especializado",
+    "level5Title": "Cursus conservatorio — 5 especializaciones",
+    "level5Desc": "5 mini-itinerarios especializados en la cima del cursus — Fuga y Coral, Cine, Jazz avanzado, Impresionismo, Análisis avanzado. Elige tu especialización.",
+    "c33": "Escritura clásica: Fuga y coral",
+    "c34": "Componer para la imagen: Armonía cinematográfica",
+    "c35": "Jazz avanzado: Rearmonización e improvisación",
+    "c36": "Armonía de Debussy y Ravel: El impresionismo en profundidad",
+    "c37": "Análisis avanzado: Schenker y análisis motivico",
+    "d33": "Contrapunto estricto, reglas del coral a 4 voces, anatomía de la fuga — Bach y la cima del contrapunto barroco.",
+    "d34": "Mapa de emociones armónicas, leitmotiv y transformación — Morricone, Williams, Zimmer.",
+    "d35": "Sustituciones avanzadas, escalas de acordes y voicings profesionales — Miles Davis y Kind of Blue.",
+    "d36": "Escala de tonos enteros, planing, poliacordes, modalidad neoclásica — Debussy, Ravel, Satie.",
+    "d37": "Ursatz, Urlinie, análisis motivico, 4 niveles de reducción — Schenker y la 5ª de Beethoven."
   },
   "cours": {
     "level1": "Nivel 1",
@@ -2185,6 +2219,10 @@
     "level2sub": "Intermedio",
     "level3": "Nivel 3",
     "level3sub": "Avanzado",
+    "level4": "Nivel 4",
+    "level4sub": "Armonía ampliada",
+    "level5": "Nivel 5",
+    "level5sub": "Itinerario especializado",
     "start": "Empezar →"
   },
   "landing": {
@@ -2258,5 +2296,229 @@
     "upgradeAccess": "Pasarse a Pro para acceder →",
     "exercises": "ejercicios",
     "cours": "Lección"
+  },
+  "cours24": {
+    "badge": "Nivel 2 · Lección 24",
+    "title": "Los acordes de sexta aumentada",
+    "subtitle": "It+6, Fr+6, Al+6 — tres acordes alterados románticos, su resolución por movimiento contrario y su uso en la música del siglo XIX.",
+    "sections": {
+      "types": "Los 3 tipos",
+      "application": "Uso y contexto",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas las tres sextas aumentadas y sus resoluciones.",
+      "veryGood": "¡Muy bien! Algunos detalles por refinar sobre las resoluciones y el uso.",
+      "keepGoing": "Sigue estudiando las sextas aumentadas — vuelve a empezar cuando estés listo."
+    }
+  },
+  "cours25": {
+    "badge": "Nivel 2 · Lección 25",
+    "title": "El cromatismo y la armonía cromática avanzada",
+    "subtitle": "Líneas cromáticas, el acorde de Tristán, modulación enarmónica — explorando los límites de la tonalidad con Wagner y Liszt.",
+    "sections": {
+      "lignes": "Líneas cromáticas",
+      "ambiguite": "Ambigüedad tonal",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas el cromatismo y la ambigüedad tonal.",
+      "veryGood": "¡Muy bien! Algunos matices por refinar sobre la enarmonía y las resoluciones.",
+      "keepGoing": "Sigue explorando el cromatismo — vuelve a empezar cuando estés listo."
+    }
+  },
+  "cours26": {
+    "badge": "Nivel 2 · Lección 26",
+    "title": "Armonización DEM: bajo dado y soprano dado",
+    "subtitle": "Los dos ejercicios fundamentales del examen DEM — método paso a paso, ejercicios guiados con correcciones detalladas.",
+    "sections": {
+      "basse": "Bajo dado",
+      "soprano": "Soprano dado",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas las técnicas de armonización DEM.",
+      "veryGood": "¡Muy bien! Algunos puntos por consolidar en el bajo o el soprano.",
+      "keepGoing": "Sigue practicando la armonización — vuelve a empezar cuando estés listo."
+    }
+  },
+  "cours27": {
+    "badge": "Nivel 3 · Lección 27",
+    "title": "Análisis funcional profundo",
+    "subtitle": "Jerarquías tonales, prolongación armónica y reducción schenkeriana — aprender a ver la estructura profunda de una obra más allá de sus acordes de superficie.",
+    "sections": {
+      "hierarchies": "Jerarquías tonales",
+      "ursatz": "Reducción schenkeriana",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas el análisis funcional profundo y la reducción schenkeriana.",
+      "veryGood": "¡Muy bien! Algunos matices por refinar sobre el Ursatz y las prolongaciones.",
+      "keepGoing": "Sigue estudiando el análisis estructural — vuelve a empezar cuando estés listo."
+    }
+  },
+  "cours28": {
+    "badge": "Nivel 3 · Lección 28",
+    "title": "Las formas musicales en profundidad",
+    "subtitle": "Binario, ternario, rondó, forma sonata — anatomía de las grandes arquitecturas musicales, con análisis guiado de Mozart, Bach y Beethoven.",
+    "sections": {
+      "formes": "Las grandes formas",
+      "analyse": "Análisis comparativo",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas todas las grandes formas musicales.",
+      "veryGood": "¡Muy bien! Algunos puntos por consolidar sobre la forma sonata.",
+      "keepGoing": "Sigue estudiando las formas musicales — vuelve a empezar cuando estés listo."
+    }
+  },
+  "cours29": {
+    "badge": "Nivel 3 · Lección 29",
+    "title": "Análisis comparativo del repertorio",
+    "subtitle": "Barroco, Clásico, Romántico, Impresionista — 5 períodos históricos y sus firmas armónicas, ilustrados con una melodía armonizada de 5 maneras distintas.",
+    "sections": {
+      "evolution": "Evolución armónica",
+      "comparaison": "Misma melodía, 5 estilos",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Puedes identificar con precisión los estilos y los períodos armónicos históricos.",
+      "veryGood": "¡Muy bien! Algunos matices estilísticos por refinar.",
+      "keepGoing": "Sigue comparando los estilos — vuelve a empezar cuando estés listo."
+    }
+  },
+  "cours30": {
+    "badge": "Nivel 4 · Lección 30",
+    "title": "Armonía impresionista y modalidad avanzada",
+    "subtitle": "Planing, escala de tonos enteros, octatónica, pentatónica y modos de Messiaen — el color armónico como lenguaje musical autónomo.",
+    "sections": {
+      "impressionnisme": "Impresionismo",
+      "modalite": "Modalidad avanzada",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas las técnicas de la armonía impresionista.",
+      "veryGood": "¡Muy bien! Algunos matices por refinar sobre las escalas especiales y el planing.",
+      "keepGoing": "Sigue explorando el impresionismo — vuelve a empezar cuando estés listo."
+    }
+  },
+  "cours31": {
+    "badge": "Nivel 4 · Lección 31",
+    "title": "Politonalidad y armonía cuartal",
+    "subtitle": "Tonalidades superpuestas (Stravinski, Petrushka), acordes cuartales, el acorde So What — lenguajes musicales más allá de la tonalidad clásica.",
+    "sections": {
+      "polytonalite": "Politonalidad",
+      "quartale": "Armonía cuartal",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas la politonalidad y la armonía cuartal.",
+      "veryGood": "¡Muy bien! Algunos puntos por consolidar sobre los voicings cuartales.",
+      "keepGoing": "Sigue explorando la politonalidad — vuelve a empezar cuando estés listo."
+    }
+  },
+  "cours32": {
+    "badge": "Nivel 4 · Lección 32",
+    "title": "Extensiones de jazz avanzadas y rearmonización moderna",
+    "subtitle": "b9, #9, #11, b13 — tensiones disponibles por grado de acorde, Giant Steps de Coltrane y sustituciones avanzadas para una rearmonización creativa.",
+    "sections": {
+      "extensions": "Extensiones alteradas",
+      "coltrane": "Cambios Coltrane",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas las extensiones alteradas y los cambios Coltrane.",
+      "veryGood": "¡Muy bien! Algunas tensiones por refinar — b9 vs #9, y el ciclo de Giant Steps.",
+      "keepGoing": "Sigue estudiando a Coltrane — vuelve a empezar cuando estés listo."
+    }
+  },
+  "cours33": {
+    "badge": "Nivel 5 · Lección 33",
+    "title": "Escritura clásica: Fuga y coral",
+    "subtitle": "Coral a 4 voces al estilo Bach y estructura de la fuga — la cima del contrapunto estricto y la escritura polifónica.",
+    "sections": {
+      "choral": "Coral a 4 voces",
+      "fugue": "Introducción a la fuga",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas el coral de Bach y la estructura de la fuga.",
+      "veryGood": "¡Muy bien! Repasa las reglas del coral y la anatomía de la fuga.",
+      "keepGoing": "Sigue adelante — inténtalo de nuevo cuando estés listo."
+    }
+  },
+  "cours34": {
+    "badge": "Nivel 5 · Lección 34",
+    "title": "Componer para la imagen: Armonía cinematográfica",
+    "subtitle": "Mapa de emociones armónicas, leitmotiv y transformación — Morricone, Williams, Zimmer y el arte de guiar la emoción del espectador.",
+    "sections": {
+      "emotions": "Emociones armónicas",
+      "leitmotif": "Leitmotiv",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas la armonía cinematográfica y el leitmotiv.",
+      "veryGood": "¡Muy bien! Repasa el mapa de emociones y las técnicas de transformación.",
+      "keepGoing": "Sigue adelante — inténtalo de nuevo cuando estés listo."
+    }
+  },
+  "cours35": {
+    "badge": "Nivel 5 · Lección 35",
+    "title": "Jazz avanzado: Rearmonización e improvisación",
+    "subtitle": "Sustituciones avanzadas, escalas de acordes y voicings profesionales — Miles Davis, Bill Evans y el arte de la rearmonización creativa.",
+    "sections": {
+      "reharmonisation": "Rearmonización",
+      "voicings": "Voicings avanzados",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas la rearmonización avanzada y los voicings de jazz.",
+      "veryGood": "¡Muy bien! Repasa las sustituciones y las escalas de acordes.",
+      "keepGoing": "Sigue adelante — inténtalo de nuevo cuando estés listo."
+    }
+  },
+  "cours36": {
+    "badge": "Nivel 5 · Lección 36",
+    "title": "Armonía de Debussy y Ravel: El impresionismo en profundidad",
+    "subtitle": "Escala de tonos enteros, planing, poliacordes, modalidad neoclásica — las dos lógicas opuestas del impresionismo francés.",
+    "sections": {
+      "debussy": "Armonía de Debussy",
+      "ravel": "Armonía de Ravel",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas las técnicas impresionistas de Debussy y Ravel.",
+      "veryGood": "¡Muy bien! Repasa el planing, la pedal larga y los poliacordes.",
+      "keepGoing": "Sigue adelante — inténtalo de nuevo cuando estés listo."
+    }
+  },
+  "cours37": {
+    "badge": "Nivel 5 · Lección 37",
+    "title": "Análisis avanzado: Schenker y análisis motivico",
+    "subtitle": "Ursatz, Urlinie, 4 niveles de reducción y análisis motivico — ver la estructura profunda de una obra más allá de su superficie.",
+    "sections": {
+      "schenker": "Análisis schenkeriano",
+      "motivique": "Análisis motivico",
+      "conservatoire": "Conservatorio",
+      "quiz": "Práctica"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas el análisis schenkeriano y el análisis motivico.",
+      "veryGood": "¡Muy bien! Repasa los 4 niveles de reducción y las transformaciones motivicas.",
+      "keepGoing": "Sigue adelante — inténtalo de nuevo cuando estés listo."
+    }
   }
 }
