@@ -51,8 +51,8 @@ const STAFF_LINES = [0, 2, 4, 6, 8];
 
 // ── Bass staff infrastructure ────────────────────────────────────────────────
 
-const BASS_STAFF_BOTTOM = 248;
-const SVG_HEIGHT_WITH_BASS = 320;
+const BASS_STAFF_BOTTOM = 340;
+const SVG_HEIGHT_WITH_BASS = 430;
 
 const BASS_PC_NAMES = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
 
