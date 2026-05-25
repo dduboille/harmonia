@@ -200,13 +200,13 @@ export default function LandingPage() {
             {t("badge")}
           </div>
 
-          <h1 style={{ fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.02em", margin: "0 0 24px", color: "#1a1a1a" }}>
-            {t("h1")}
-            <br />
-            <em style={{ color: "#BA7517", fontStyle: "italic" }}>{t("h1em")}</em>
+          <h1 style={{ fontSize: "clamp(68px, 12vw, 108px)", fontWeight: 400, lineHeight: 1, letterSpacing: "-0.03em", margin: "0 0 28px" }}>
+            <span style={{ color: "#1a1a1a" }}>harmon</span>
+            <span style={{ color: "#5C3D6E" }}>ia</span>
+            <span style={{ color: "#BA7517" }}>.</span>
           </h1>
 
-          <p style={{ fontSize: "clamp(16px, 2.5vw, 20px)", color: "#444", lineHeight: 1.7, maxWidth: 560, margin: "0 auto 40px", fontFamily: "system-ui, sans-serif", fontWeight: 400 }}>
+          <p style={{ fontSize: "clamp(18px, 2.2vw, 22px)", color: "#555", lineHeight: 1.5, margin: "0 auto 44px", fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: "italic", fontWeight: 400 }}>
             {t("sub")}
           </p>
 
