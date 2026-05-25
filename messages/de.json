@@ -2209,7 +2209,9 @@
     "analyser": "Analysieren",
     "assistant": "Assistent",
     "generateur": "GENERATOR",
-    "ecole": "SCHULE"
+    "ecole": "SCHULE",
+    "training": "Training",
+    "creation": "Erstellen"
   },
   "hub": {
     "chooseLevel": "Wähle dein Niveau",

@@ -193,19 +193,31 @@ function AppNav() {
           <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.07em" }}>{t("back").toUpperCase()}</span>
         </button>
 
-        <NavItem href={`/${locale}/dashboard`}    active={active("dashboard")}    icon="⌂" label={t("home").toUpperCase()} />
-        <NavItem href={`/${locale}/cours`}        active={active("cours")}        icon="♩" label={t("courses").toUpperCase()} />
-        <NavItem href={`/${locale}/atelier`}      active={active("atelier")}      icon="✎" label={t("atelier").toUpperCase()} />
-        <NavItem href={`/${locale}/editeur-melodique`} active={active("editeur-melodique")} icon="♩" label={t("melodie").toUpperCase()} />
-        <NavItem href={`/${locale}/composition`}      active={active("composition")}      icon="✎" label={t("composition").toUpperCase()} />
-        <NavItem href={`/${locale}/dictee`}       active={active("dictee")}       icon="♫" label={t("dictee").toUpperCase()} />
-        <NavItem href={`/${locale}/comparateur`}   active={active("comparateur")}   icon="⟳" label={t("styles").toUpperCase()} />
-        <NavItem href={`/${locale}/cursus`} active={active("cursus")} icon="🎓" label="CURSUS" />
-        <NavItem    href={`/${locale}/progressions`}       active={active("progressions")}      icon="♬" label={t("progressions").toUpperCase()} />
-        <NavItem    href={`/${locale}/generateur-satb`}     active={active("generateur-satb")}     icon="⊞" label={t("generateur")} />
-        <NavItem    href={`/${locale}/notes-etrangeres`}   active={active("notes-etrangeres")}   icon="♪" label="NOTES ÉTR." />
-        <NavItemPro href={`/${locale}/analyse-partition`} active={active("analyse-partition")} icon="◎" label={t("analyser").toUpperCase()} />
-        <NavItemPro href={`/${locale}/assistant`}         active={active("assistant")}         icon="✦" label={t("assistant").toUpperCase()} />
+        <NavItem href={`/${locale}/dashboard`} active={active("dashboard")} icon="⌂" label={t("home").toUpperCase()} />
+        <NavItem
+          href={`/${locale}/cours`}
+          active={active("cours") || active("cursus")}
+          icon="♩"
+          label={t("courses").toUpperCase()}
+        />
+        <NavItem
+          href={`/${locale}/entrainement`}
+          active={active("entrainement") || active("atelier") || active("dictee") || active("editeur-melodique") || active("notes-etrangeres")}
+          icon="✎"
+          label={t("training").toUpperCase()}
+        />
+        <NavItem
+          href={`/${locale}/creation`}
+          active={active("creation") || active("composition") || active("comparateur") || active("progressions") || active("generateur-satb")}
+          icon="♬"
+          label={t("creation").toUpperCase()}
+        />
+        <NavItemPro
+          href={`/${locale}/analyse`}
+          active={active("analyse") || active("analyse-partition") || active("assistant")}
+          icon="◎"
+          label={t("analyser").toUpperCase()}
+        />
         {isSignedIn && (
           <NavItem href={`/${locale}/prof`} active={active("prof")} icon="🎓" label={t("ecole")} />
         )}

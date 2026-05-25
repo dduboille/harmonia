@@ -2209,7 +2209,9 @@
     "analyser": "Analizar",
     "assistant": "Asistente",
     "generateur": "GENERADOR",
-    "ecole": "ESCUELA"
+    "ecole": "ESCUELA",
+    "training": "Entrenamiento",
+    "creation": "Creación"
   },
   "hub": {
     "chooseLevel": "Elige tu nivel",
