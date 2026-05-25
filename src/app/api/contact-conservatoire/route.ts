@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     // Email interne → contact@getharmonia.app
     const { error: err1 } = await resend.emails.send({
       from: "Harmonia <bonjour@getharmonia.app>",
-      to: "contact@getharmonia.app",
+      to: "danyduboillepro@gmail.com",
       replyTo: email,
       subject: `Demande démo conservatoire — ${etablissement}`,
       html: `
