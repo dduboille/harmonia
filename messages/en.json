@@ -88,7 +88,13 @@
     "c26": "DEM Harmonization: Given Bass and Given Soprano",
     "d24": "It+6, Fr+6, Ger+6 — the three augmented sixths, their contrary-motion resolution, and their link to tritone substitution.",
     "d25": "Chromatic lines, the Tristan chord, enharmonic modulation — tonality pushed to its expressive limits.",
-    "d26": "The two fundamental exercises of the DEM exam — 5-step method, guided exercises with detailed corrections."
+    "d26": "The two fundamental exercises of the DEM exam — 5-step method, guided exercises with detailed corrections.",
+    "c27": "Deep Functional Analysis",
+    "c28": "Musical Forms in Depth",
+    "c29": "Comparative Repertoire Analysis",
+    "d27": "Tonal hierarchies, harmonic prolongation, Schenkerian reduction — learning to see the deep structure of a work beyond its surface chords.",
+    "d28": "Binary, ternary, rondo, sonata form — anatomy of the great musical architectures with guided analysis of Mozart, Bach and Beethoven.",
+    "d29": "Baroque, Classical, Romantic, Impressionist — 5 historical periods, one melody harmonized 5 ways to reveal the evolution of musical language."
   },
   "cours": {
     "level1": "Level 1",
@@ -2196,6 +2202,54 @@
       "perfect": "Perfect! You have mastered chromaticism and tonal ambiguity.",
       "veryGood": "Very good! A few nuances to refine on enharmony and resolutions.",
       "keepGoing": "Keep exploring chromaticism — restart when you are ready."
+    }
+  },
+  "cours27": {
+    "badge": "Level 3 · Course 27",
+    "title": "Deep Functional Analysis",
+    "subtitle": "Tonal hierarchies, harmonic prolongation and Schenkerian reduction — learning to see the deep structure of a work behind its surface chords.",
+    "sections": {
+      "hierarchies": "Tonal hierarchies",
+      "ursatz": "Schenkerian reduction",
+      "conservatoire": "Conservatory",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You have mastered deep functional analysis and Schenkerian reduction.",
+      "veryGood": "Very good! A few nuances to refine on the Ursatz and prolongations.",
+      "keepGoing": "Keep studying structural analysis — restart when you are ready."
+    }
+  },
+  "cours28": {
+    "badge": "Level 3 · Course 28",
+    "title": "Musical Forms in Depth",
+    "subtitle": "Binary, ternary, rondo, sonata form — anatomy of the great musical architectures, with guided analysis of Mozart, Bach and Beethoven.",
+    "sections": {
+      "formes": "The major forms",
+      "analyse": "Comparative analysis",
+      "conservatoire": "Conservatory",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You have mastered all the major musical forms.",
+      "veryGood": "Very good! A few points to consolidate on sonata form.",
+      "keepGoing": "Keep studying musical forms — restart when you are ready."
+    }
+  },
+  "cours29": {
+    "badge": "Level 3 · Course 29",
+    "title": "Comparative Repertoire Analysis",
+    "subtitle": "Baroque, Classical, Romantic, Impressionist — 5 historical periods and their harmonic signatures, illustrated by one melody harmonized 5 different ways.",
+    "sections": {
+      "evolution": "Harmonic evolution",
+      "comparaison": "Same melody, 5 styles",
+      "conservatoire": "Conservatory",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You can precisely identify styles and historical harmonic periods.",
+      "veryGood": "Very good! A few stylistic nuances to refine.",
+      "keepGoing": "Keep comparing styles — restart when you are ready."
     }
   },
   "cours26": {

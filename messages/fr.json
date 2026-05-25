@@ -88,7 +88,13 @@
     "c26": "Harmonisation DEM : basse donnée et soprano donné",
     "d24": "It+6, Fr+6, Al+6 — les trois sixtes augmentées, leur résolution par mouvement contraire et leur lien avec la substitution tritonique.",
     "d25": "Lignes chromatiques, accord de Tristan, modulation enharmonique — la tonalité poussée à ses limites expressives.",
-    "d26": "Les deux exercices fondamentaux de l'examen DEM — méthode en 5 étapes, exercices guidés avec corrections."
+    "d26": "Les deux exercices fondamentaux de l'examen DEM — méthode en 5 étapes, exercices guidés avec corrections.",
+    "c27": "Analyse fonctionnelle profonde",
+    "c28": "Formes musicales approfondies",
+    "c29": "Analyse comparative du répertoire",
+    "d27": "Hiérarchies tonales, prolongation harmonique, réduction schenkérienne — voir la structure osseuse d'une œuvre au-delà de ses accords de surface.",
+    "d28": "Binaire, ternaire, rondo, forme sonate — anatomie des grandes architectures musicales avec analyse guidée de Mozart, Bach et Beethoven.",
+    "d29": "Baroque, classique, romantique, impressionniste — 5 périodes, une même mélodie harmonisée 5 fois pour révéler l'évolution du langage musical."
   },
   "cours": {
     "level1": "Niveau 1",
@@ -2196,6 +2202,54 @@
       "perfect": "Parfait ! Tu maîtrises le chromatisme et l'ambiguïté tonale.",
       "veryGood": "Très bien ! Quelques nuances à affiner sur l'enharmonie et les résolutions.",
       "keepGoing": "Continue à explorer le chromatisme — recommence quand tu es prêt."
+    }
+  },
+  "cours27": {
+    "badge": "Niveau 3 · Cours 27",
+    "title": "Analyse fonctionnelle profonde",
+    "subtitle": "Hiérarchies tonales, prolongation harmonique et réduction schenkérienne — apprendre à voir la structure profonde d'une œuvre derrière ses accords de surface.",
+    "sections": {
+      "hierarchies": "Hiérarchies tonales",
+      "ursatz": "Réduction schenkérienne",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises l'analyse fonctionnelle profonde et la réduction schenkérienne.",
+      "veryGood": "Très bien ! Quelques nuances à affiner sur la Ursatz et les prolongations.",
+      "keepGoing": "Continue à étudier l'analyse structurelle — recommence quand tu es prêt."
+    }
+  },
+  "cours28": {
+    "badge": "Niveau 3 · Cours 28",
+    "title": "Formes musicales approfondies",
+    "subtitle": "Binaire, ternaire, rondo, forme sonate — anatomie des grandes architectures musicales, analyse guidée de Mozart, Bach et Beethoven.",
+    "sections": {
+      "formes": "Les grandes formes",
+      "analyse": "Analyse comparative",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises toutes les grandes formes musicales.",
+      "veryGood": "Très bien ! Quelques points à consolider sur la forme sonate.",
+      "keepGoing": "Continue à étudier les formes — recommence quand tu es prêt."
+    }
+  },
+  "cours29": {
+    "badge": "Niveau 3 · Cours 29",
+    "title": "Analyse comparative du répertoire",
+    "subtitle": "Baroque, classique, romantique, impressionniste — 5 périodes historiques et leurs signatures harmoniques, illustrées par une même mélodie harmonisée 5 fois.",
+    "sections": {
+      "evolution": "Évolution harmonique",
+      "comparaison": "Même mélodie, 5 styles",
+      "conservatoire": "Conservatoire",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu identifies avec précision les styles et les périodes harmoniques.",
+      "veryGood": "Très bien ! Quelques nuances stylistiques à affiner.",
+      "keepGoing": "Continue à comparer les styles — recommence quand tu es prêt."
     }
   },
   "cours26": {
