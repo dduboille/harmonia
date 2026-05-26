@@ -12,7 +12,7 @@ import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 const FEATURES = [
-  { icon: "𝄞", title: "23 cours structurés", desc: "Des origines acoustiques de la gamme aux techniques des grands compositeurs — deux niveaux progressifs couvrant l'harmonie classique, le jazz et la composition." },
+  { icon: "𝄞", title: "37 cours structurés", desc: "Des origines acoustiques de la gamme aux techniques des grands compositeurs — cinq niveaux progressifs couvrant l'harmonie classique, le jazz, l'impressionnisme et la composition." },
   { icon: "🎹", title: "Exercices SATB interactifs", desc: "Placez les notes sur les portées voix par voix. La validation harmonique détecte en temps réel les quintes parallèles, croisements et erreurs de tessiture." },
   { icon: "✓", title: "Feedback immédiat", desc: "Chaque note placée est analysée selon les règles du contrepoint tonal. Vous apprenez de vos erreurs au moment où elles se produisent." },
   { icon: "🔊", title: "Audio haute qualité", desc: "Piano samplé en haute fidélité. Écoutez chaque accord, chaque progression, chaque voicing — des cadences de Bach aux substitutions tritoniques jazz." },
@@ -24,7 +24,7 @@ const STEPS = [
   { num: "01", title: "Étudie le cours", desc: "Chaque cours explique les concepts avec des exemples audio, des tableaux récapitulatifs et des anecdotes sur les grands compositeurs." },
   { num: "02", title: "Entraîne-toi au quiz", desc: "Des questions aléatoires piochées dans un pool de 90+ questions par cours — identification, construction, analyse de Bach à Radiohead." },
   { num: "03", title: "Réalise les exercices", desc: "Place les notes sur les portées SATB, choisis les bons renversements, analyse les styles des maîtres. Le moteur valide instantanément tes choix." },
-  { num: "04", title: "Progresse", desc: "23 cours, 24 tonalités, niveaux 1 et 2. De la gamme de base aux techniques de composition des grands maîtres." },
+  { num: "04", title: "Progresse", desc: "37 cours, 24 tonalités, 5 niveaux. De la gamme de base aux techniques de composition des grands maîtres." },
 ];
 
 const PLANS = [
@@ -32,12 +32,12 @@ const PLANS = [
     name: "Gratuit", href: "cours", price: "0€", period: "", desc: "Pour découvrir l'harmonie tonale",
     color: "#555", bg: "#fff", border: "#e0dbd3", cta: "Commencer gratuitement", ctaStyle: "outline",
     features: ["Cours 1 à 3 complets", "Quiz illimité (cours 1–3)", "Exercices SATB niveau 1", "Dictée harmonique", "Page des 24 tonalités", "Audio haute qualité"],
-    notIncluded: ["Cours 4 à 23", "Exercices niveaux 2–3", "Fonctionnalités IA"],
+    notIncluded: ["Cours 4 à 37", "Exercices niveaux 2–5", "Fonctionnalités IA"],
   },
   {
     name: "Étudiant", href: "upgrade", price: "9€", period: "/mois", desc: "Tous les cours et exercices",
     color: "#fff", bg: "#1a1a1a", border: "#1a1a1a", cta: "Choisir Étudiant", ctaStyle: "solid", badge: "Le plus populaire",
-    features: ["Tous les cours (1 à 23)", "Quiz illimité sur tous les cours", "700+ exercices SATB", "24 tonalités × 4 positions", "Tous les niveaux de difficulté", "Mises à jour continues"],
+    features: ["Tous les cours (1 à 37)", "Quiz illimité sur tous les cours", "700+ exercices SATB", "24 tonalités × 4 positions", "Tous les niveaux de difficulté", "Mises à jour continues"],
     notIncluded: ["Fonctionnalités IA"],
   },
   {
