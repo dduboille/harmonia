@@ -271,15 +271,15 @@ function RestEl({ x, bot, duration, color }: { x: number; bot: number; duration:
 
 // ── Grand Staff SVG ────────────────────────────────────────────────────────────
 
-function GrandStaff({ slots, activeVoice, cursorSlot, errors, bpm }: {
+function GrandStaff({ slots, activeVoice, cursorSlot, errors, bpm, totalMeasures }: {
   slots: BeatSlot[]; activeVoice: Voice; cursorSlot: number;
-  errors: VError[]; bpm: number;
+  errors: VError[]; bpm: number; totalMeasures: number;
 }) {
   let cum = 0;
   const xs: number[] = [];
   for (const s of slots) { xs.push(HEAD_W + 20 + cum * BEAT_W); cum += DURATION_BEATS[s.duration]; }
 
-  const totalBeats = Math.max(bpm * 4, cum);
+  const totalBeats = Math.max(totalMeasures * bpm, cum);
   const W = Math.max(700, HEAD_W + 20 + totalBeats * BEAT_W + 60);
   const barXs: number[] = [];
   for (let m = 1; m <= Math.ceil(totalBeats / bpm); m++) {
@@ -310,8 +310,8 @@ function GrandStaff({ slots, activeVoice, cursorSlot, errors, bpm }: {
       <ellipse cx={4} cy={T_BOT - 8 * HS} rx={6} ry={10} fill="#555" />
       <ellipse cx={4} cy={B_BOT} rx={6} ry={10} fill="#555" />
 
-      {/* Clef — treble: baseline at G4 line (2nd from bottom) */}
-      <text x={14} y={T_BOT - 2 * HS} fontSize="95" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄞</text>
+      {/* Clef — treble */}
+      <text x={14} y={T_BOT - HS} fontSize="95" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄞</text>
       {/* Clef — bass: baseline at 3rd line so dots bracket F3 (4th line) */}
       <text x={15} y={B_BOT - 4 * HS} fontSize="54" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄢</text>
 
@@ -425,8 +425,9 @@ export default function MelodicEditor() {
   const [octaves, setOctaves]         = useState<Record<Voice, number>>({
     soprano: 5, alto: 4, tenor: 4, bass: 3,
   });
-  const [bpm, setBpm]     = useState(4);
-  const [tempo, setTempo] = useState(80);
+  const [bpm, setBpm]               = useState(4);
+  const [totalMeasures, setTotalMeasures] = useState(4);
+  const [tempo, setTempo]           = useState(80);
 
   const pianoRef = useRef<PianoPlayerRef>(null);
 
@@ -545,6 +546,13 @@ export default function MelodicEditor() {
         {/* ── Controls bar ───────────────────────────────────────────── */}
         <div style={{ background: '#fff', border: '0.5px solid #e8e3db', borderRadius: 10, padding: '12px 16px', marginBottom: 12, display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center' }}>
           <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
+            <span style={{ fontSize: 11, fontWeight: 600, color: '#888', marginRight: 4 }}>MESURES</span>
+            {([1, 2, 4, 8] as const).map(m => (
+              <button key={m} onClick={() => setTotalMeasures(m)} style={totalMeasures === m ? btnOn : btn}>{m}</button>
+            ))}
+          </div>
+          <div style={{ width: 1, height: 28, background: '#e0dbd3' }} />
+          <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
             <span style={{ fontSize: 11, fontWeight: 600, color: '#888', marginRight: 4 }}>CHIFFRAGE</span>
             {([4, 3, 2] as const).map(b => (
               <button key={b} onClick={() => setBpm(b)} style={bpm === b ? btnOn : btn}>{b}/4</button>
@@ -569,7 +577,7 @@ export default function MelodicEditor() {
 
         {/* ── Grand staff ────────────────────────────────────────────── */}
         <div style={{ background: '#fff', border: '0.5px solid #e8e3db', borderRadius: 10, padding: '16px', marginBottom: 12, overflowX: 'auto' }}>
-          <GrandStaff slots={slots} activeVoice={activeVoice} cursorSlot={cursorSlot} errors={errors} bpm={bpm} />
+          <GrandStaff slots={slots} activeVoice={activeVoice} cursorSlot={cursorSlot} errors={errors} bpm={bpm} totalMeasures={totalMeasures} />
         </div>
 
         {/* Hidden audio engine */}
