@@ -159,6 +159,8 @@ const S = {
 export default function Cours37() {
   const [activeSection, setActiveSection] = useState<string>("schenker");
   const i18n = useCoursI18n("cours37");
+  const { tc } = i18n;
+  const n = (key: string) => tc(`narrative.${key}` as any);
   const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours37Content);
 
@@ -203,11 +205,11 @@ export default function Cours37() {
 
       <MaitreCard
         composer="Arnold Schoenberg"
-        period="1874–1951"
+        period={n("maitreCardPeriod")}
         emoji="🎼"
-        concept="Analyse motivique et structure profonde"
-        anecdote="Schoenberg est célèbre pour le dodécaphonisme, mais il était aussi un analyste et théoricien majeur. Il a développé le concept de Grundgestalt (forme fondamentale) — un motif de 2 à 6 notes dont toute l'œuvre est une extension. Son manuel 'Fundamentals of Musical Composition' est encore utilisé dans les conservatoires. Paradoxe : le père de l'atonalité était obsédé par la cohérence motivique que seul le tonal peut établir clairement."
-        lesson="L'analyse n'explique pas pourquoi la musique est belle — elle montre la charpente sous la peau. C'est un outil, pas une valeur."
+        concept={n("maitreCardConcept")}
+        anecdote={n("maitreCardAnecdote")}
+        lesson={n("maitreCardLesson")}
         accentColor={ACCENT}
       />
 

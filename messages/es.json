@@ -14,7 +14,14 @@
     "perfect": "Perfecto",
     "veryGood": "¡Muy bien!",
     "keepGoing": "Sigue explorando las secciones — inténtalo de nuevo cuando estés listo.",
-    "training": "Práctica"
+    "training": "Práctica",
+    "conservatoireIntuition": "Intuición musical",
+    "conservatoireVoix": "Conducción de voces · Reglas DEM",
+    "conservatoireRepertoire": "Ejemplo del repertorio",
+    "conservatoireEcouter": "▶ Escuchar",
+    "conservatoireCursus": "Ver el currículo del conservatorio →",
+    "conservatoirePieges": "Errores frecuentes",
+    "conservatoireResume": "Resumen del conservatorio"
   },
   "coursHub": {
     "title": "Lecciones de teoría musical",
@@ -2541,6 +2548,12 @@
       "perfect": "¡Perfecto! Dominas el análisis schenkeriano y el análisis motivico.",
       "veryGood": "¡Muy bien! Repasa los 4 niveles de reducción y las transformaciones motivicas.",
       "keepGoing": "Sigue adelante — inténtalo de nuevo cuando estés listo."
+    },
+    "narrative": {
+      "maitreCardPeriod": "1874–1951",
+      "maitreCardConcept": "Análisis motívico y estructura profunda",
+      "maitreCardAnecdote": "Schoenberg es famoso por el dodecafonismo, pero también fue un gran analista y teórico. Desarrolló el concepto de Grundgestalt (forma básica) — un motivo de 2 a 6 notas del que se desarrolla toda la obra. Su manual 'Fundamentals of Musical Composition' sigue usándose en los conservatorios. Paradoja: el padre de la atonalidad estaba obsesionado con la coherencia motívica que solo la música tonal puede establecer claramente.",
+      "maitreCardLesson": "El análisis no explica por qué la música es bella — muestra la estructura bajo la superficie. Es una herramienta, no un valor."
     }
   }
 }

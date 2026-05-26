@@ -14,7 +14,14 @@
     "perfect": "Perfect",
     "veryGood": "Very good",
     "keepGoing": "Keep exploring the sections — try again when ready.",
-    "training": "Practice"
+    "training": "Practice",
+    "conservatoireIntuition": "Musical intuition",
+    "conservatoireVoix": "Voice leading · DEM rules",
+    "conservatoireRepertoire": "Repertoire example",
+    "conservatoireEcouter": "▶ Listen",
+    "conservatoireCursus": "View conservatory curriculum →",
+    "conservatoirePieges": "Common pitfalls",
+    "conservatoireResume": "Conservatory summary"
   },
   "coursHub": {
     "title": "Music Theory Lessons",
@@ -2540,6 +2547,12 @@
       "perfect": "Perfect! You have mastered Schenkerian analysis and motivic analysis.",
       "veryGood": "Very good! Review the 4 reduction levels and motivic transformations.",
       "keepGoing": "Keep going — try again when you're ready."
+    },
+    "narrative": {
+      "maitreCardPeriod": "1874–1951",
+      "maitreCardConcept": "Motivic analysis and deep structure",
+      "maitreCardAnecdote": "Schoenberg is famous for twelve-tone music, but he was also a major analyst and theorist. He developed the concept of Grundgestalt (basic shape) — a 2-to-6-note motif from which an entire work unfolds. His manual 'Fundamentals of Musical Composition' is still used in conservatories. Paradox: the father of atonality was obsessed with the motivic coherence that only tonal music can establish clearly.",
+      "maitreCardLesson": "Analysis does not explain why music is beautiful — it reveals the framework beneath the surface. It is a tool, not a value."
     }
   }
 }

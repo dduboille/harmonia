@@ -3,6 +3,7 @@
 import React, { useRef, useCallback } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { CONSERVATOIRE_DATA, type CoursConservatoireData } from "@/data/conservatoireData";
 
@@ -40,6 +41,7 @@ export function VueConservatoire({
   const locale = (params?.locale as string) ?? "fr";
   const data = dataProp ?? CONSERVATOIRE_DATA[`cours${courseNum!}`];
   const pianoRef = useRef<PianoPlayerRef>(null);
+  const tc = useTranslations("common");
 
   const playRepertoire = useCallback(() => {
     data.repertoire.notes.forEach((n, i) => {
@@ -58,7 +60,7 @@ export function VueConservatoire({
       {/* 1. Intuition musicale */}
       <div style={{ background: ACCENT_BG, borderRadius: 10, padding: "16px 20px", marginBottom: 12 }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: ACCENT, letterSpacing: "0.1em", marginBottom: 8, textTransform: "uppercase" as const }}>
-          Intuition musicale
+          {tc("conservatoireIntuition")}
         </div>
         <p style={{ fontSize: 14, color: "#1a1a1a", lineHeight: 1.75, margin: 0 }}>
           {data.intuition}
@@ -75,14 +77,14 @@ export function VueConservatoire({
         </p>
         <p style={{ fontSize: 12, color: "#888", margin: "0 0 10px" }}>— {data.reference.auteur}</p>
         <Link href={`/${locale}/cursus`} style={{ fontSize: 12, color: ACCENT, textDecoration: "none", fontWeight: 600 }}>
-          Voir le cursus conservatoire →
+          {tc("conservatoireCursus")}
         </Link>
       </div>
 
       {/* 3. Conduite des voix */}
       <div style={{ background: "#fff", border: "0.5px solid #e0dbd3", borderRadius: 10, padding: "16px 20px", marginBottom: 12 }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: ACCENT, letterSpacing: "0.1em", marginBottom: 10, textTransform: "uppercase" as const }}>
-          Conduite des voix · Règles DEM
+          {tc("conservatoireVoix")}
         </div>
         <ul style={{ margin: 0, paddingLeft: 18 }}>
           {data.voix.map((rule, i) => (
@@ -96,7 +98,7 @@ export function VueConservatoire({
       {/* 4. Exemple du répertoire */}
       <div style={{ background: "#fff", border: "0.5px solid #e0dbd3", borderRadius: 10, padding: "16px 20px", marginBottom: 12 }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: ACCENT, letterSpacing: "0.1em", marginBottom: 10, textTransform: "uppercase" as const }}>
-          Exemple du répertoire
+          {tc("conservatoireRepertoire")}
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" as const, gap: 10 }}>
           <div>
@@ -107,7 +109,7 @@ export function VueConservatoire({
             onClick={playRepertoire}
             style={{ fontSize: 12, padding: "6px 16px", border: `0.5px solid ${ACCENT}`, borderRadius: 20, cursor: "pointer", background: ACCENT_BG, color: ACCENT, fontFamily: "system-ui, sans-serif" }}
           >
-            ▶ Écouter
+            {tc("conservatoireEcouter")}
           </button>
         </div>
       </div>
@@ -115,7 +117,7 @@ export function VueConservatoire({
       {/* 5. Pièges fréquents */}
       <div style={{ background: "#fff", border: "0.5px solid #e0dbd3", borderRadius: 10, padding: "16px 20px", marginBottom: 12 }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: ACCENT, letterSpacing: "0.1em", marginBottom: 10, textTransform: "uppercase" as const }}>
-          Pièges fréquents
+          {tc("conservatoirePieges")}
         </div>
         {data.pieges.map((p, i) => (
           <div key={i} style={{ marginBottom: i < data.pieges.length - 1 ? 12 : 0 }}>
@@ -134,7 +136,7 @@ export function VueConservatoire({
       {/* 6. Résumé conservatoire */}
       <div style={{ background: "#1a1a1a", borderRadius: 10, padding: "16px 20px" }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: "#BA7517", letterSpacing: "0.1em", marginBottom: 10, textTransform: "uppercase" as const }}>
-          Résumé conservatoire
+          {tc("conservatoireResume")}
         </div>
         <ul style={{ margin: 0, paddingLeft: 18 }}>
           {data.resume.map((point, i) => (

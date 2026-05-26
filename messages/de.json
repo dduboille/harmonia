@@ -14,7 +14,14 @@
     "perfect": "Perfekt",
     "veryGood": "Sehr gut",
     "keepGoing": "Erkunde die Abschnitte weiter — versuche es erneut, wenn du bereit bist.",
-    "training": "Übung"
+    "training": "Übung",
+    "conservatoireIntuition": "Musikalische Intuition",
+    "conservatoireVoix": "Stimmführung · DEM-Regeln",
+    "conservatoireRepertoire": "Repertoire-Beispiel",
+    "conservatoireEcouter": "▶ Anhören",
+    "conservatoireCursus": "Konservatorium-Curriculum ansehen →",
+    "conservatoirePieges": "Häufige Fallen",
+    "conservatoireResume": "Konservatorium-Zusammenfassung"
   },
   "coursHub": {
     "title": "Musiktheorie-Lektionen",
@@ -2541,6 +2548,12 @@
       "perfect": "Perfekt! Sie beherrschen die Schenkerian-Analyse und die motivische Analyse.",
       "veryGood": "Sehr gut! Wiederholen Sie die 4 Reduktionsstufen und die motivischen Transformationen.",
       "keepGoing": "Weiter so — versuchen Sie es erneut, wenn Sie bereit sind."
+    },
+    "narrative": {
+      "maitreCardPeriod": "1874–1951",
+      "maitreCardConcept": "Motivische Analyse und Tiefenstruktur",
+      "maitreCardAnecdote": "Schönberg ist berühmt für die Zwölftonmusik, war aber auch ein bedeutender Analytiker und Theoretiker. Er entwickelte das Konzept der Grundgestalt — ein 2-bis-6-Töne-Motiv, aus dem sich das gesamte Werk entfaltet. Sein Handbuch 'Fundamentals of Musical Composition' wird noch heute in Konservatorien verwendet. Paradoxon: Der Vater der Atonalität war besessen von der motivischen Kohärenz, die nur die tonale Musik klar herstellen kann.",
+      "maitreCardLesson": "Analyse erklärt nicht, warum Musik schön ist — sie zeigt das Gerüst unter der Oberfläche. Sie ist ein Werkzeug, kein Wert."
     }
   }
 }
