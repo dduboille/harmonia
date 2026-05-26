@@ -13,10 +13,10 @@ interface VNote { name: string; octave: number }
 interface BeatSlot {
   id: string;
   duration: Duration;
-  soprano: VNote;
-  alto:    VNote | null;
-  tenor:   VNote | null;
-  bass:    VNote | null;
+  soprano: VNote | 'rest';
+  alto:    VNote | 'rest' | null;
+  tenor:   VNote | 'rest' | null;
+  bass:    VNote | 'rest' | null;
 }
 
 // ── Music constants ────────────────────────────────────────────────────────────
@@ -117,25 +117,25 @@ function validateSlots(slots: BeatSlot[]): VError[] {
     const prev = i > 0 ? slots[i - 1] : null;
 
     // Crossing
-    if (s.soprano && s.alto && toMidi(s.soprano.name, s.soprano.octave) < toMidi(s.alto.name, s.alto.octave))
+    if (s.soprano && s.soprano !== 'rest' && s.alto && s.alto !== 'rest' && toMidi(s.soprano.name, s.soprano.octave) < toMidi(s.alto.name, s.alto.octave))
       errs.push({ slot: i, type: 'crossing', msg: 'Soprano sous l\'alto' });
-    if (s.alto && s.tenor && toMidi(s.alto.name, s.alto.octave) < toMidi(s.tenor.name, s.tenor.octave))
+    if (s.alto && s.alto !== 'rest' && s.tenor && s.tenor !== 'rest' && toMidi(s.alto.name, s.alto.octave) < toMidi(s.tenor.name, s.tenor.octave))
       errs.push({ slot: i, type: 'crossing', msg: 'Alto sous le ténor' });
-    if (s.tenor && s.bass && toMidi(s.tenor.name, s.tenor.octave) < toMidi(s.bass.name, s.bass.octave))
+    if (s.tenor && s.tenor !== 'rest' && s.bass && s.bass !== 'rest' && toMidi(s.tenor.name, s.tenor.octave) < toMidi(s.bass.name, s.bass.octave))
       errs.push({ slot: i, type: 'crossing', msg: 'Ténor sous la basse' });
 
     // Spacing > octave (S–A, A–T)
     const spacePairs: [Voice, Voice][] = [['soprano', 'alto'], ['alto', 'tenor']];
     for (const [u, l] of spacePairs) {
       const un = s[u], ln = s[l];
-      if (un && ln && toMidi(un.name, un.octave) - toMidi(ln.name, ln.octave) > 12)
+      if (un && un !== 'rest' && ln && ln !== 'rest' && toMidi(un.name, un.octave) - toMidi(ln.name, ln.octave) > 12)
         errs.push({ slot: i, type: 'spacing', msg: `${VOICE_CONFIG[u].fullLabel}–${VOICE_CONFIG[l].fullLabel} > octave` });
     }
 
     // Range
     for (const v of ['soprano', 'alto', 'tenor', 'bass'] as Voice[]) {
       const n = s[v];
-      if (n) {
+      if (n && n !== 'rest') {
         const midi = toMidi(n.name, n.octave);
         const { rangeMin, rangeMax, fullLabel } = VOICE_CONFIG[v];
         if (midi < rangeMin || midi > rangeMax)
@@ -151,7 +151,7 @@ function validateSlots(slots: BeatSlot[]): VError[] {
     ];
     for (const [v1, v2] of vPairs) {
       const p1 = prev[v1], p2 = prev[v2], c1 = s[v1], c2 = s[v2];
-      if (!p1 || !p2 || !c1 || !c2) continue;
+      if (!p1 || p1 === 'rest' || !p2 || p2 === 'rest' || !c1 || c1 === 'rest' || !c2 || c2 === 'rest') continue;
       const pi = Math.abs(toMidi(p1.name, p1.octave) - toMidi(p2.name, p2.octave)) % 12;
       const ci = Math.abs(toMidi(c1.name, c1.octave) - toMidi(c2.name, c2.octave)) % 12;
       const d1 = toMidi(c1.name, c1.octave) - toMidi(p1.name, p1.octave);
@@ -170,7 +170,7 @@ function validateSlots(slots: BeatSlot[]): VError[] {
 // ── Melodic analysis (soprano) ────────────────────────────────────────────────
 
 function sopranoAnalysis(slots: BeatSlot[]) {
-  const mel = slots.map(s => s.soprano);
+  const mel = slots.map(s => s.soprano).filter((s): s is VNote => s !== 'rest');
   if (mel.length < 2) return { intervals: [] as string[], scale: null as string | null, ambitus: null as { low: string; high: string } | null };
 
   const intervals = mel.slice(1).map((n, i) => {
@@ -253,6 +253,22 @@ function VoiceNoteEl({ x, bot, step, note, voice, isCursor, duration }: {
   );
 }
 
+// ── Rest SVG ──────────────────────────────────────────────────────────────────
+
+function RestEl({ x, bot, duration, color }: { x: number; bot: number; duration: Duration; color: string }) {
+  const RW = 16;
+  switch (duration) {
+    case 'whole':
+      return <rect x={x - RW / 2} y={bot - 6 * HS} width={RW} height={HS - 2} fill={color} />;
+    case 'half':
+      return <rect x={x - RW / 2} y={bot - 4 * HS - (HS - 2)} width={RW} height={HS - 2} fill={color} />;
+    case 'quarter':
+      return <text x={x} y={bot - 3 * HS + 8} fontSize="22" fontFamily="'Times New Roman',serif" fill={color} textAnchor="middle">𝄽</text>;
+    case 'eighth':
+      return <text x={x} y={bot - 3 * HS + 8} fontSize="22" fontFamily="'Times New Roman',serif" fill={color} textAnchor="middle">𝄾</text>;
+  }
+}
+
 // ── Grand Staff SVG ────────────────────────────────────────────────────────────
 
 function GrandStaff({ slots, activeVoice, cursorSlot, errors, bpm }: {
@@ -294,10 +310,10 @@ function GrandStaff({ slots, activeVoice, cursorSlot, errors, bpm }: {
       <ellipse cx={4} cy={T_BOT - 8 * HS} rx={6} ry={10} fill="#555" />
       <ellipse cx={4} cy={B_BOT} rx={6} ry={10} fill="#555" />
 
-      {/* Clef — treble */}
-      <text x={14} y={T_BOT + 16} fontSize="95" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄞</text>
-      {/* Clef — bass */}
-      <text x={15} y={B_BOT - HS + 2} fontSize="54" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄢</text>
+      {/* Clef — treble: baseline at G4 line (2nd from bottom) */}
+      <text x={14} y={T_BOT - 2 * HS} fontSize="95" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄞</text>
+      {/* Clef — bass: baseline at 3rd line so dots bracket F3 (4th line) */}
+      <text x={15} y={B_BOT - 4 * HS} fontSize="54" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄢</text>
 
       {/* Time signatures */}
       {[T_BOT, B_BOT].map((bot, bi) => (
@@ -346,36 +362,42 @@ function GrandStaff({ slots, activeVoice, cursorSlot, errors, bpm }: {
             {/* Error dot */}
             {hasErr && <circle cx={x} cy={T_BOT - 8 * HS - 14} r={4} fill="#dc2626" />}
 
-            {/* Soprano (treble, stems up) */}
-            <VoiceNoteEl x={x} bot={T_BOT} step={trebleStep(slot.soprano.name, slot.soprano.octave)}
-              note={slot.soprano} voice="soprano" isCursor={i === cursorSlot && activeVoice === 'soprano'}
-              duration={slot.duration} />
+            {/* Soprano (treble) */}
+            {slot.soprano === 'rest'
+              ? <RestEl x={x} bot={T_BOT} duration={slot.duration} color={VOICE_CONFIG.soprano.color} />
+              : <VoiceNoteEl x={x} bot={T_BOT} step={trebleStep(slot.soprano.name, slot.soprano.octave)}
+                  note={slot.soprano} voice="soprano" isCursor={i === cursorSlot && activeVoice === 'soprano'}
+                  duration={slot.duration} />
+            }
 
-            {/* Alto (treble, stems down) */}
-            {slot.alto && (
-              <VoiceNoteEl x={x} bot={T_BOT} step={trebleStep(slot.alto.name, slot.alto.octave)}
-                note={slot.alto} voice="alto" isCursor={i === cursorSlot && activeVoice === 'alto'}
-                duration={slot.duration} />
-            )}
+            {/* Alto (treble) */}
+            {slot.alto === 'rest'
+              ? <RestEl x={x} bot={T_BOT} duration={slot.duration} color={VOICE_CONFIG.alto.color} />
+              : slot.alto && <VoiceNoteEl x={x} bot={T_BOT} step={trebleStep(slot.alto.name, slot.alto.octave)}
+                  note={slot.alto} voice="alto" isCursor={i === cursorSlot && activeVoice === 'alto'}
+                  duration={slot.duration} />
+            }
 
-            {/* Tenor (bass, stems up) */}
-            {slot.tenor && (
-              <VoiceNoteEl x={x} bot={B_BOT} step={bassStep(slot.tenor.name, slot.tenor.octave)}
-                note={slot.tenor} voice="tenor" isCursor={i === cursorSlot && activeVoice === 'tenor'}
-                duration={slot.duration} />
-            )}
+            {/* Tenor (bass) */}
+            {slot.tenor === 'rest'
+              ? <RestEl x={x} bot={B_BOT} duration={slot.duration} color={VOICE_CONFIG.tenor.color} />
+              : slot.tenor && <VoiceNoteEl x={x} bot={B_BOT} step={bassStep(slot.tenor.name, slot.tenor.octave)}
+                  note={slot.tenor} voice="tenor" isCursor={i === cursorSlot && activeVoice === 'tenor'}
+                  duration={slot.duration} />
+            }
 
-            {/* Bass (bass, stems down) */}
-            {slot.bass && (
-              <VoiceNoteEl x={x} bot={B_BOT} step={bassStep(slot.bass.name, slot.bass.octave)}
-                note={slot.bass} voice="bass" isCursor={i === cursorSlot && activeVoice === 'bass'}
-                duration={slot.duration} />
-            )}
+            {/* Bass (bass) */}
+            {slot.bass === 'rest'
+              ? <RestEl x={x} bot={B_BOT} duration={slot.duration} color={VOICE_CONFIG.bass.color} />
+              : slot.bass && <VoiceNoteEl x={x} bot={B_BOT} step={bassStep(slot.bass.name, slot.bass.octave)}
+                  note={slot.bass} voice="bass" isCursor={i === cursorSlot && activeVoice === 'bass'}
+                  duration={slot.duration} />
+            }
 
             {/* Completion dots below bass staff */}
             <text x={x} y={B_BOT + 28} fontSize="8" fontFamily="system-ui" fill="#ccc" textAnchor="middle">
               {(['soprano', 'alto', 'tenor', 'bass'] as Voice[]).map(v =>
-                slot[v] ? VOICE_CONFIG[v].label : '·'
+                slot[v] === 'rest' ? '-' : slot[v] ? VOICE_CONFIG[v].label : '·'
               ).join(' ')}
             </text>
           </g>
@@ -438,6 +460,25 @@ export default function MelodicEditor() {
     pianoRef.current?.playVoicing([`${noteName}:${octave - 1}`], { duration: 0.45, velocity: 0.8 });
   }, [activeVoice, accidental, duration, octaves, cursorSlot, slots.length]);
 
+  const handleRestClick = useCallback(() => {
+    if (activeVoice === 'soprano') {
+      const id = `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+      setSlots(prev => {
+        const next: BeatSlot[] = [...prev, { id, duration, soprano: 'rest', alto: null, tenor: null, bass: null }];
+        setCursorSlot(next.length - 1);
+        return next;
+      });
+    } else {
+      setSlots(prev => {
+        if (cursorSlot < 0 || cursorSlot >= prev.length) return prev;
+        const next = [...prev];
+        next[cursorSlot] = { ...next[cursorSlot], [activeVoice]: 'rest' };
+        return next;
+      });
+      if (activeVoice === 'bass') setCursorSlot(c => Math.min(c + 1, slots.length - 1));
+    }
+  }, [activeVoice, duration, cursorSlot, slots.length]);
+
   const handleClearVoice = useCallback(() => {
     if (activeVoice === 'soprano') return;
     setSlots(prev => {
@@ -463,10 +504,10 @@ export default function MelodicEditor() {
     for (const s of slots) {
       const dur = DURATION_BEATS[s.duration] * beatSec;
       const keys: string[] = [];
-      if (s.soprano) keys.push(`${s.soprano.name}:${s.soprano.octave - 1}`);
-      if (s.alto)    keys.push(`${s.alto.name}:${s.alto.octave - 1}`);
-      if (s.tenor)   keys.push(`${s.tenor.name}:${s.tenor.octave - 1}`);
-      if (s.bass)    keys.push(`${s.bass.name}:${s.bass.octave - 1}`);
+      if (s.soprano && s.soprano !== 'rest') keys.push(`${s.soprano.name}:${s.soprano.octave - 1}`);
+      if (s.alto    && s.alto    !== 'rest') keys.push(`${s.alto.name}:${s.alto.octave - 1}`);
+      if (s.tenor   && s.tenor   !== 'rest') keys.push(`${s.tenor.name}:${s.tenor.octave - 1}`);
+      if (s.bass    && s.bass    !== 'rest') keys.push(`${s.bass.name}:${s.bass.octave - 1}`);
       if (keys.length) pianoRef.current.playVoicing(keys, { startTime: t, duration: dur * 0.9, velocity: 0.75 });
       t += dur;
     }
@@ -611,7 +652,7 @@ export default function MelodicEditor() {
             ))}
           </div>
 
-          {/* 7 natural keys */}
+          {/* 7 natural keys + rest */}
           <div style={{ display: 'flex', gap: 6, marginBottom: 14 }}>
             {NATURAL_KEYS.map(k => (
               <button key={k} onClick={() => handleKeyClick(k)} style={{
@@ -624,6 +665,16 @@ export default function MelodicEditor() {
                 {EN_TO_FR[k] ?? k}
               </button>
             ))}
+            <button onClick={handleRestClick} style={{
+              flex: 1, padding: '14px 0', borderRadius: 8, fontSize: 20, fontWeight: 700,
+              border: '1.5px solid #999',
+              background: '#f0ede8',
+              color: '#666', cursor: 'pointer',
+              fontFamily: "'Times New Roman', serif",
+              letterSpacing: 0,
+            }} title="Insérer un silence">
+              𝄽
+            </button>
           </div>
 
           {/* Octave + action buttons */}
