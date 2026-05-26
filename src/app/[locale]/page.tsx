@@ -278,49 +278,99 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Outils d'entraînement */}
+      {/* 5 niveaux du cursus */}
       <section style={{ padding: "80px 2rem", background: "#fff", borderBottom: "0.5px solid #e8e3db" }}>
-        <div style={{ maxWidth: 960, margin: "0 auto" }}>
-          <div style={{ textAlign: "center" as const, marginBottom: 64 }}>
-            <div style={{
-              fontSize: 11, fontWeight: 600, letterSpacing: "0.15em",
-              color: "#5C3D6E", textTransform: "uppercase" as const,
-              fontFamily: "system-ui", marginBottom: 12,
-            }}>
-              Outils d'entraînement
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ textAlign: "center" as const, marginBottom: 56 }}>
+            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", color: "#BA7517", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>
+              Cursus conservatoire
             </div>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, letterSpacing: "-0.01em" }}>
-              5 outils pour pratiquer
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: "0 0 12px", letterSpacing: "-0.01em" }}>
+              5 niveaux progressifs
             </h2>
+            <p style={{ fontSize: 14, color: "#888", margin: 0, fontFamily: "system-ui, sans-serif" }}>
+              Des fondements tonals à l'harmonie contemporaine — inspiré des grands traités (Dubois, Piston, Schönberg, Aldwell)
+            </p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 16 }}>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 2 }}>
             {([
-              { icon: "🎧", title: "Dictée", desc: "Identifiez accords et intervalles à l'oreille", href: `/${locale}/dictee` },
-              { icon: "✎", title: "Composition guidée", desc: "Construisez une progression harmonique pas à pas", href: `/${locale}/composition` },
-              { icon: "⊞", title: "Générateur SATB", desc: "Harmonisation à 4 voix avec validation temps réel", href: `/${locale}/generateur-satb` },
-              { icon: "♩", title: "Éditeur mélodique", desc: "Composez et écoutez votre mélodie", href: `/${locale}/editeur-melodique` },
-              { icon: "♪", title: "Notes étrangères", desc: "Passes, broderies, retards, appoggiatures", href: `/${locale}/notes-etrangeres` },
-            ] as const).map(tool => (
-              <Link key={tool.title} href={tool.href} style={{ textDecoration: "none" }}>
-                <div style={{
-                  padding: "24px 20px",
+              {
+                n: 1,
+                title: "Fondements tonals",
+                target: "Entrée DEM",
+                refs: "Dubois · Piston",
+                modules: ["Gammes & degrés", "Construction des accords", "Fonctions harmoniques", "Cadences & ponctuation"],
+              },
+              {
+                n: 2,
+                title: "Écriture avancée",
+                target: "DEM · Licence",
+                refs: "Koechlin · Aldwell",
+                modules: ["Modulations avancées", "Dominantes secondaires", "Accords altérés", "Chromatisme"],
+              },
+              {
+                n: 3,
+                title: "Analyse structurelle",
+                target: "Licence · Master",
+                refs: "Schönberg · Riemann",
+                modules: ["Analyse fonctionnelle", "Formes musicales", "Réduction schenkérienne", "Bach → Wagner"],
+              },
+              {
+                n: 4,
+                title: "Harmonie élargie",
+                target: "Master",
+                refs: "Messiaen · Levine",
+                modules: ["Modalité", "Impressionnisme", "Polytonalité", "Extensions jazz"],
+              },
+              {
+                n: 5,
+                title: "Spécialisations",
+                target: "Tous niveaux avancés",
+                refs: "5 parcours au choix",
+                modules: ["Fugue & style Bach", "Musique à l'image", "Jazz avancé", "Analyse Schenker"],
+              },
+            ] as const).map((level, i) => (
+              <div
+                key={level.n}
+                style={{
+                  padding: "28px 22px",
+                  background: i === 2 ? "#1a1a1a" : i % 2 === 0 ? "#fff" : "#faf8f4",
                   border: "0.5px solid #e8e3db",
-                  borderRadius: 10,
-                  background: "#faf8f4",
-                  height: "100%",
-                  boxSizing: "border-box" as const,
-                  cursor: "pointer",
-                }}>
-                  <div style={{ fontSize: 28, marginBottom: 12, lineHeight: 1 }}>{tool.icon}</div>
-                  <h3 style={{ fontSize: 14, fontWeight: 600, margin: "0 0 8px", color: "#1a1a1a", fontFamily: "system-ui, sans-serif" }}>
-                    {tool.title}
-                  </h3>
-                  <p style={{ fontSize: 12, color: "#888", lineHeight: 1.6, margin: 0, fontFamily: "system-ui, sans-serif" }}>
-                    {tool.desc}
-                  </p>
+                  borderRadius: i === 0 ? "8px 0 0 8px" : i === 4 ? "0 8px 8px 0" : 0,
+                  display: "flex",
+                  flexDirection: "column" as const,
+                  gap: 0,
+                }}
+              >
+                <div style={{ fontSize: 10, fontWeight: 700, color: i === 2 ? "#E9C97E" : "#BA7517", letterSpacing: "0.14em", fontFamily: "monospace", marginBottom: 10 }}>
+                  NIVEAU {level.n}
                 </div>
-              </Link>
+                <h3 style={{ fontSize: 15, fontWeight: 500, margin: "0 0 6px", lineHeight: 1.3, color: i === 2 ? "#fff" : "#1a1a1a", letterSpacing: "-0.01em" }}>
+                  {level.title}
+                </h3>
+                <div style={{ fontSize: 11, color: i === 2 ? "rgba(255,255,255,0.4)" : "#bbb", fontFamily: "system-ui", marginBottom: 18 }}>
+                  {level.refs}
+                </div>
+                <div style={{ display: "inline-block", background: i === 2 ? "rgba(186,117,23,0.2)" : "#FAEEDA", color: i === 2 ? "#E9C97E" : "#BA7517", fontSize: 10, fontWeight: 600, padding: "3px 9px", borderRadius: 20, marginBottom: 20, fontFamily: "system-ui", letterSpacing: "0.05em" }}>
+                  {level.target}
+                </div>
+                <ul style={{ margin: 0, paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column" as const, gap: 7 }}>
+                  {level.modules.map((m, j) => (
+                    <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: 7, fontSize: 12, color: i === 2 ? "rgba(255,255,255,0.7)" : "#555", fontFamily: "system-ui, sans-serif", lineHeight: 1.5 }}>
+                      <span style={{ color: i === 2 ? "#E9C97E" : "#BA7517", flexShrink: 0, fontWeight: 700 }}>→</span>
+                      {m}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
+          </div>
+
+          <div style={{ textAlign: "center" as const, marginTop: 32 }}>
+            <Link href={`/${locale}/cursus`} style={{ fontSize: 13, color: "#BA7517", textDecoration: "none", fontWeight: 600, fontFamily: "system-ui, sans-serif" }}>
+              Voir le cursus complet — programme, tarifs et accès établissement →
+            </Link>
           </div>
         </div>
       </section>
