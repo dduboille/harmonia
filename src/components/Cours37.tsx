@@ -15,16 +15,31 @@ import MaitreCard from "@/components/MaitreCard";
 import { VueConservatoire } from "@/components/VueConservatoire";
 import { CONSERVATOIRE_DATA_37 } from "@/data/conservatoireData37";
 
+const FR37: Record<string, string> = {
+  Do: "C", Ré: "D", Re: "D", Mi: "E", Fa: "F", Sol: "G", La: "A", Si: "B",
+};
+const FLAT37: Record<string, string> = {
+  Cb: "B", Db: "C#", Eb: "D#", Fb: "E", Gb: "F#", Ab: "G#", Bb: "A#",
+};
+function frNote37(raw: string): string {
+  const m = raw.match(/^(Do|Ré|Re|Mi|Fa|Sol|La|Si)([#b]?)$/);
+  if (!m) return raw;
+  const en = (FR37[m[1]] ?? m[1]) + m[2];
+  return FLAT37[en] ?? en;
+}
+
 function playScale(ref: React.RefObject<PianoPlayerRef>, notes: string[], gap = 400) {
   notes.forEach((key, i) => {
-    const [note, octStr] = key.split(":");
+    const [rawNote, octStr] = key.split(":");
+    const note = frNote37(rawNote);
     setTimeout(() => ref.current?.playNote(note, parseInt(octStr), { duration: 1.4 }), i * gap);
   });
 }
 
 function playChord(ref: React.RefObject<PianoPlayerRef>, notes: string[]) {
   notes.forEach((key) => {
-    const [note, octStr] = key.split(":");
+    const [rawNote, octStr] = key.split(":");
+    const note = frNote37(rawNote);
     ref.current?.playNote(note, parseInt(octStr), { duration: 2.0 });
   });
 }
@@ -156,12 +171,6 @@ export default function Cours37() {
 
   const pianoRef = useRef<PianoPlayerRef>(null);
 
-  const sectionLabel = (id: string) => {
-    if (id === "schenker") return "Analyse schenkérienne";
-    if (id === "motivique") return "Analyse motivique";
-    if (id === "conservatoire") return "🎓 Conservatoire";
-    return "Quiz";
-  };
 
   const answerQuiz = (optIdx: number) => {
     if (quizAnswered) return;
@@ -187,8 +196,8 @@ export default function Cours37() {
       </div>
 
       <div style={S.header}>
-        <span style={S.badge}>Niveau 5 · Cours 37</span>
-        <h1 style={S.h1}>{tr("Analyse avancée : Schenker et analyse motivique")}</h1>
+        <span style={S.badge}>{i18n.badge}</span>
+        <h1 style={S.h1}>{i18n.title}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
 
@@ -205,7 +214,7 @@ export default function Cours37() {
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => (
           <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
-            {sectionLabel(id)}
+            {i18n.sectionLabel(id)}
           </button>
         ))}
       </nav>

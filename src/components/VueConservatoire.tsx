@@ -9,9 +9,24 @@ import { CONSERVATOIRE_DATA, type CoursConservatoireData } from "@/data/conserva
 const ACCENT = "#2D5A8E";
 const ACCENT_BG = "#EEF3FA";
 
+const FR_NOTE: Record<string, string> = {
+  Do: "C", Ré: "D", Re: "D", Mi: "E", Fa: "F", Sol: "G", La: "A", Si: "B",
+};
+const FLAT_TO_SHARP: Record<string, string> = {
+  Cb: "B", Db: "C#", Eb: "D#", Fb: "E", Gb: "F#", Ab: "G#", Bb: "A#",
+};
+
 function parseNote(s: string): [string, number] {
-  const m = s.match(/^([A-G]#?)(\d)$/);
-  return m ? [m[1], parseInt(m[2])] : ["C", 4];
+  // French solfège: "Do:3", "Ré#:4", "Mib:3"
+  const frM = s.match(/^(Do|Ré|Re|Mi|Fa|Sol|La|Si)([#b]?):(\d)$/);
+  if (frM) {
+    const raw = (FR_NOTE[frM[1]] ?? "C") + frM[2];
+    return [FLAT_TO_SHARP[raw] ?? raw, parseInt(frM[3])];
+  }
+  // English: "C4", "F#3", "G#5"
+  const enM = s.match(/^([A-G][#b]?)(\d)$/);
+  if (enM) return [FLAT_TO_SHARP[enM[1]] ?? enM[1], parseInt(enM[2])];
+  return ["C", 4];
 }
 
 export function VueConservatoire({
