@@ -36,14 +36,6 @@ function playScale(ref: React.RefObject<PianoPlayerRef>, notes: string[], gap = 
   });
 }
 
-function playChord(ref: React.RefObject<PianoPlayerRef>, notes: string[]) {
-  notes.forEach((key) => {
-    const [rawNote, octStr] = key.split(":");
-    const note = frNote37(rawNote);
-    ref.current?.playNote(note, parseInt(octStr), { duration: 2.0 });
-  });
-}
-
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -52,82 +44,6 @@ function shuffle<T>(arr: T[]): T[] {
   }
   return a;
 }
-
-// ── Niveaux schenkériens ─────────────────────────────────────────────────────
-
-const NIVEAUX_SCHENKER = [
-  {
-    niveau: "Niveau 4",
-    nom: "Vordergrund (premier plan)",
-    description: "La surface musicale complète : tous les accords, ornements, mélodies, notes de passage, broderies, arpèges. C'est la musique telle qu'elle est jouée.",
-    contenu: "Chaque accord mesure par mesure",
-    exemple: "CMaj–Am7–Dm7–G7–Em–Am–F–G7–CMaj",
-  },
-  {
-    niveau: "Niveau 3",
-    nom: "Mittelgrund (plan intermédiaire proche)",
-    description: "Réduction éliminant les ornements de surface. Restent les fonctions harmoniques principales et les prolongations.",
-    contenu: "Fonctions harmoniques essentielles",
-    exemple: "I–VI–II–V–I (cadences principales)",
-  },
-  {
-    niveau: "Niveau 2",
-    nom: "Mittelgrund (plan intermédiaire profond)",
-    description: "Réduction montrant uniquement les régions tonales et les prolongations harmoniques majeures.",
-    contenu: "Régions tonales et prolongations",
-    exemple: "I (prolongé sur 16 mesures) → V → I",
-  },
-  {
-    niveau: "Niveau 1",
-    nom: "Hintergrund (arrière-plan)",
-    description: "La structure fondamentale (Ursatz) : Urlinie + Bassbrechung. La charpente harmonique de toute l'œuvre en quelques notes.",
-    contenu: "Urlinie (5̂–4̂–3̂–2̂–1̂) + Basse (I–V–I)",
-    exemple: "Sol–Fa–Mi–Ré–Do / Do–Sol–Do",
-  },
-];
-
-// ── Transformations motiviques ────────────────────────────────────────────────
-
-interface Transformation {
-  nom: string;
-  description: string;
-  original: string[];
-  transforme: string[];
-  exemple?: string;
-}
-
-const TRANSFORMATIONS_MOTIVIQUES: Transformation[] = [
-  {
-    nom: "Transposition",
-    description: "Le motif transposé à un autre degré — les intervalles sont conservés",
-    original: ["Sol:3","Sol:3","Sol:3","Mib:3"],
-    transforme: ["La:3","La:3","La:3","Fa:3"],
-    exemple: "Beethoven 5e : motif répété dès la 2e mesure un ton plus bas",
-  },
-  {
-    nom: "Inversion",
-    description: "Les intervalles retournés — ce qui montait descend et vice versa",
-    original: ["Do:3","Mi:3","Sol:3"],
-    transforme: ["Do:3","Lab:2","Fa:2"],
-    exemple: "Bach : inversions du sujet dans les fugues",
-  },
-  {
-    nom: "Augmentation",
-    description: "Le motif en valeurs doubles — plus lent, plus solennel",
-    original: ["Sol:3","Fa:3","Mi:3","Ré:3"],
-    transforme: ["Sol:4","Fa:4","Mi:4","Ré:4"],
-    exemple: "Dans un registre plus aigu pour marquer l'augmentation",
-  },
-  {
-    nom: "Fragmentation",
-    description: "Seulement les 2-3 premières notes du motif — crée l'inquiétude et l'urgence",
-    original: ["Sol:3","Sol:3","Sol:3","Mib:3"],
-    transforme: ["Sol:4","Sol:4"],
-    exemple: "Beethoven 5e : développement fragmente les 4 notes en 2 + 2",
-  },
-];
-
-// ── Navigation ─────────────────────────────────────────────────────────────────
 
 const SECTIONS_IDS = ["schenker", "motivique", "conservatoire", "quiz"] as const;
 const QUIZ_COUNT = 10;
@@ -173,7 +89,36 @@ export default function Cours37() {
 
   const pianoRef = useRef<PianoPlayerRef>(null);
 
+  // ── Translated data arrays ──────────────────────────────────────────────────
+  const NIVEAUX = [
+    { badge: n("n0badge"), nom: n("n0nom"), desc: n("n0desc"), ex: n("n0ex") },
+    { badge: n("n1badge"), nom: n("n1nom"), desc: n("n1desc"), ex: n("n1ex") },
+    { badge: n("n2badge"), nom: n("n2nom"), desc: n("n2desc"), ex: n("n2ex") },
+    { badge: n("n3badge"), nom: n("n3nom"), desc: n("n3desc"), ex: n("n3ex") },
+  ];
 
+  const TRANSFORMATIONS = [
+    { nom: n("t0nom"), desc: n("t0desc"), ex: n("t0ex"), original: ["Sol:3","Sol:3","Sol:3","Mib:3"], transforme: ["La:3","La:3","La:3","Fa:3"] },
+    { nom: n("t1nom"), desc: n("t1desc"), ex: n("t1ex"), original: ["Do:3","Mi:3","Sol:3"], transforme: ["Do:3","Lab:2","Fa:2"] },
+    { nom: n("t2nom"), desc: n("t2desc"), ex: n("t2ex"), original: ["Sol:3","Fa:3","Mi:3","Ré:3"], transforme: ["Sol:4","Fa:4","Mi:4","Ré:4"] },
+    { nom: n("t3nom"), desc: n("t3desc"), ex: n("t3ex"), original: ["Sol:3","Sol:3","Sol:3","Mib:3"], transforme: ["Sol:4","Sol:4"] },
+  ];
+
+  const ORNEMENTS = [
+    { nom: n("o0nom"), desc: n("o0desc") },
+    { nom: n("o1nom"), desc: n("o1desc") },
+    { nom: n("o2nom"), desc: n("o2desc") },
+    { nom: n("o3nom"), desc: n("o3desc") },
+  ];
+
+  const METHODE_STEPS = [
+    { n: "1", label: n("s1label"), desc: n("s1desc") },
+    { n: "2", label: n("s2label"), desc: n("s2desc") },
+    { n: "3", label: n("s3label"), desc: n("s3desc") },
+    { n: "4", label: n("s4label"), desc: n("s4desc") },
+  ];
+
+  // ── Quiz handlers ───────────────────────────────────────────────────────────
   const answerQuiz = (optIdx: number) => {
     if (quizAnswered) return;
     setSelectedOpt(optIdx);
@@ -224,51 +169,47 @@ export default function Cours37() {
       {/* ══ SECTION 1 : SCHENKER ══ */}
       {activeSection === "schenker" && (
         <div>
-          <h2 style={S.h2}>L'analyse schenkérienne</h2>
-          <p style={S.p}>
-            Heinrich Schenker (1868–1935) a développé une théorie selon laquelle toute musique tonale est une ornementalisation d'une structure fondamentale simple — l'Ursatz. Son approche révèle les couches de signification cachées sous la surface de la musique.
-          </p>
+          <h2 style={S.h2}>{n("schenkerH2")}</h2>
+          <p style={S.p}>{n("schenkerP")}</p>
 
-          <div style={S.infoBox}>
-            <strong>L'Ursatz :</strong> L'Urlinie (ligne mélodique descendante du 5e, 3e ou 8e degré vers la tonique) soutenue par le Bassbrechung (basse qui arpège I–V–I). Toute la musique tonale est une prolongation et ornementalisation de cet Ursatz. En Do majeur : Sol–Fa–Mi–Ré–Do (dessus) / Do–Sol–Do (basse).
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("schenkerInfoBox") }} />
 
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" as const, marginBottom: 20 }}>
             <div style={{ flex: 1, minWidth: 200, border: `0.5px solid ${ACCENT}`, borderRadius: 10, padding: "12px 14px", background: ACCENT_BG }}>
-              <div style={{ fontSize: 12, color: ACCENT, fontWeight: 600, marginBottom: 4 }}>Urlinie 5̂→1̂ (Do majeur)</div>
-              <div style={{ fontFamily: "monospace", fontSize: 11, color: ACCENT, marginBottom: 8 }}>Sol–Fa–Mi–Ré–Do</div>
+              <div style={{ fontSize: 12, color: ACCENT, fontWeight: 600, marginBottom: 4 }}>{n("urlinieLabel")}</div>
+              <div style={{ fontFamily: "monospace", fontSize: 11, color: ACCENT, marginBottom: 8 }}>{n("urlinieNotes")}</div>
               <button onClick={() => playScale(pianoRef as React.RefObject<PianoPlayerRef>, ["Sol:4","Fa:4","Mi:4","Ré:4","Do:4"], 400)}
                 style={{ fontSize: 11, padding: "3px 10px", border: `0.5px solid ${ACCENT}`, borderRadius: 14, cursor: "pointer", background: "transparent", color: ACCENT }}>
-                ▶ Écouter l'Urlinie
+                {n("urlinieBtn")}
               </button>
             </div>
             <div style={{ flex: 1, minWidth: 200, border: "0.5px solid #e5e5e5", borderRadius: 10, padding: "12px 14px", background: "#fff" }}>
-              <div style={{ fontSize: 12, color: "#555", fontWeight: 600, marginBottom: 4 }}>Bassbrechung I–V–I</div>
-              <div style={{ fontFamily: "monospace", fontSize: 11, color: "#555", marginBottom: 8 }}>Do–Sol–Do (basse)</div>
+              <div style={{ fontSize: 12, color: "#555", fontWeight: 600, marginBottom: 4 }}>{n("bassLabel")}</div>
+              <div style={{ fontFamily: "monospace", fontSize: 11, color: "#555", marginBottom: 8 }}>{n("bassNotes")}</div>
               <button onClick={() => playScale(pianoRef as React.RefObject<PianoPlayerRef>, ["Do:2","Sol:2","Do:3"], 600)}
                 style={{ fontSize: 11, padding: "3px 10px", border: "0.5px solid #aaa", borderRadius: 14, cursor: "pointer", background: "transparent", color: "#555" }}>
-                ▶ Écouter la basse
+                {n("bassBtn")}
               </button>
             </div>
           </div>
 
           <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 12px", color: "#111" }}>
-            4 niveaux de réduction
+            {n("niveauxH3")}
           </h3>
           <div style={{ display: "flex", flexDirection: "column" as const, gap: 8, marginBottom: 24 }}>
-            {NIVEAUX_SCHENKER.map((niv, i) => (
+            {NIVEAUX.map((niv, i) => (
               <div key={i} style={{ border: "0.5px solid #e5e5e5", borderRadius: 10, padding: "14px 16px", background: "#fff" }}>
                 <div style={{ display: "flex", alignItems: "flex-start", gap: 12, flexWrap: "wrap" as const }}>
                   <div style={{ minWidth: 60, flexShrink: 0 }}>
                     <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", background: ACCENT, borderRadius: 6, padding: "2px 8px", textAlign: "center" as const }}>
-                      {niv.niveau}
+                      {niv.badge}
                     </div>
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 13, fontWeight: 600, color: "#111", marginBottom: 4 }}>{niv.nom}</div>
-                    <div style={{ fontSize: 12, color: "#555", lineHeight: 1.6, marginBottom: 4 }}>{niv.description}</div>
+                    <div style={{ fontSize: 12, color: "#555", lineHeight: 1.6, marginBottom: 4 }}>{niv.desc}</div>
                     <div style={{ fontFamily: "monospace", fontSize: 11, color: ACCENT, background: ACCENT_BG, padding: "2px 8px", borderRadius: 4, display: "inline-block" }}>
-                      {niv.exemple}
+                      {niv.ex}
                     </div>
                   </div>
                 </div>
@@ -277,78 +218,64 @@ export default function Cours37() {
           </div>
 
           <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 12px", color: "#111" }}>
-            Types d'ornementalisation (notes non structurelles)
+            {n("ornementsH3")}
           </h3>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 8, marginBottom: 20 }}>
-            {[
-              { nom: "Note de passage", desc: "Relie deux notes structurelles par mouvement conjoint : Do–Ré–Mi, le Ré disparaît à la réduction" },
-              { nom: "Note de broderie", desc: "Part d'une note structurelle, s'éloigne d'un degré, revient : Do–Ré–Do, le Ré est une broderie" },
-              { nom: "Appogiature", desc: "Note étrangère non préparée sur un temps fort, résolue par mouvement conjoint descendant" },
-              { nom: "Retard", desc: "La résolution d'une note est retardée — la note non structurelle tient sur le temps fort et se résout ensuite" },
-            ].map((t, i) => (
+            {ORNEMENTS.map((o, i) => (
               <div key={i} style={{ border: "0.5px solid #e5e5e5", borderRadius: 10, padding: "12px 14px", background: "#fff" }}>
-                <div style={{ fontSize: 13, fontWeight: 600, color: "#111", marginBottom: 4 }}>{t.nom}</div>
-                <div style={{ fontSize: 12, color: "#666", lineHeight: 1.55 }}>{t.desc}</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: "#111", marginBottom: 4 }}>{o.nom}</div>
+                <div style={{ fontSize: 12, color: "#666", lineHeight: 1.55 }}>{o.desc}</div>
               </div>
             ))}
           </div>
 
-          <div style={S.warnBox}>
-            <strong>Erreur classique :</strong> Confondre réduction schenkérienne et simplification. La réduction ne supprime pas des notes "au hasard" — elle identifie les notes structurelles selon des critères précis (position métrique, durée, rôle harmonique). Les notes ornementales ne sont pas moins importantes : elles sont la surface expressive. La réduction révèle la structure, elle ne juge pas la valeur.
-          </div>
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("schenkerWarn") }} />
         </div>
       )}
 
       {/* ══ SECTION 2 : MOTIVIQUE ══ */}
       {activeSection === "motivique" && (
         <div>
-          <h2 style={S.h2}>Analyse motivique</h2>
-          <p style={S.p}>
-            L'analyse motivique identifie les cellules mélodiques de 2 à 6 notes qui constituent la matière première d'une œuvre, puis suit leurs transformations. Ce niveau d'analyse révèle l'unité organique d'une composition — comment tout est dérivé de peu.
-          </p>
+          <h2 style={S.h2}>{n("motiviqueH2")}</h2>
+          <p style={S.p}>{n("motiviqueP")}</p>
 
-          <div style={S.infoBox}>
-            <strong>Beethoven — 5e Symphonie :</strong> Le motif initial (Sol–Sol–Sol–Mib) n'est pas seulement le début du premier mouvement. Ce motif rythmique (3 croches + noire) et mélodique (tierce mineure descendante) organise les 4 mouvements entiers — dans le thème du 2e mouvement, dans les fanfares du 3e, dans la transition finale du 4e. C'est la définition même de l'unité organique.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("beethInfoBox") }} />
 
           <div style={{ border: "0.5px solid #e5e5e5", borderRadius: 10, padding: "16px 18px", background: "#fff", marginBottom: 20 }}>
-            <div style={{ fontSize: 14, fontWeight: 600, color: "#111", marginBottom: 8 }}>Motif Beethoven 5e — Sol–Sol–Sol–Mib</div>
-            <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6, marginBottom: 10 }}>
-              Deux dimensions simultanées : <strong>rythme</strong> (court–court–court–long) et <strong>mélodie</strong> (tierce mineure descendante). Les deux sont inséparables dans l'analyse. Dans le 2e mouvement, le rythme est transformé mais la tierce mélodique persiste.
-            </div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: "#111", marginBottom: 8 }}>{n("beethCard")}</div>
+            <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6, marginBottom: 10 }}
+              dangerouslySetInnerHTML={{ __html: n("beethDesc") }} />
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" as const }}>
               <button onClick={() => playScale(pianoRef as React.RefObject<PianoPlayerRef>, ["Sol:3","Sol:3","Sol:3","Mib:3"], 250)}
                 style={{ fontSize: 11, padding: "5px 14px", border: `0.5px solid ${ACCENT}`, borderRadius: 16, cursor: "pointer", background: ACCENT_BG, color: ACCENT }}>
-                ▶ Motif original
+                {n("motifOrigBtn")}
               </button>
               <button onClick={() => playScale(pianoRef as React.RefObject<PianoPlayerRef>, ["Fa:3","Fa:3","Fa:3","Ré:3"], 250)}
                 style={{ fontSize: 11, padding: "5px 14px", border: "0.5px solid #aaa", borderRadius: 16, cursor: "pointer", background: "transparent", color: "#555" }}>
-                ▶ Transposé (même rythme)
+                {n("motifTransBtn")}
               </button>
             </div>
           </div>
 
           <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 12px", color: "#111" }}>
-            4 transformations motiviques fondamentales
+            {n("transformH3")}
           </h3>
           <div style={{ display: "flex", flexDirection: "column" as const, gap: 10, marginBottom: 24 }}>
-            {TRANSFORMATIONS_MOTIVIQUES.map((t, i) => (
+            {TRANSFORMATIONS.map((t, i) => (
               <div key={i} style={{ border: "0.5px solid #e5e5e5", borderRadius: 10, padding: "14px 16px", background: "#fff" }}>
                 <div style={{ fontSize: 14, fontWeight: 600, color: ACCENT, marginBottom: 4 }}>{t.nom}</div>
-                <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6, marginBottom: 8 }}>{t.description}</div>
-                {t.exemple && (
-                  <div style={{ fontSize: 12, color: "#888", fontStyle: "italic", marginBottom: 10 }}>Exemple : {t.exemple}</div>
-                )}
+                <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6, marginBottom: 8 }}>{t.desc}</div>
+                <div style={{ fontSize: 12, color: "#888", fontStyle: "italic", marginBottom: 10 }}>{n("labelExemple")} {t.ex}</div>
                 <div style={{ display: "flex", gap: 10, flexWrap: "wrap" as const }}>
                   <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ fontSize: 11, color: "#888" }}>Original :</span>
+                    <span style={{ fontSize: 11, color: "#888" }}>{n("labelOriginal")}</span>
                     <button onClick={() => playScale(pianoRef as React.RefObject<PianoPlayerRef>, t.original, 300)}
                       style={{ fontSize: 11, padding: "3px 10px", border: "0.5px solid #ccc", borderRadius: 12, cursor: "pointer", background: "transparent", color: "#555" }}>
                       ▶
                     </button>
                   </div>
                   <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <span style={{ fontSize: 11, color: ACCENT }}>Transformé :</span>
+                    <span style={{ fontSize: 11, color: ACCENT }}>{n("labelTransforme")}</span>
                     <button onClick={() => playScale(pianoRef as React.RefObject<PianoPlayerRef>, t.transforme, 300)}
                       style={{ fontSize: 11, padding: "3px 10px", border: `0.5px solid ${ACCENT}`, borderRadius: 12, cursor: "pointer", background: ACCENT_BG, color: ACCENT }}>
                       ▶
@@ -360,15 +287,10 @@ export default function Cours37() {
           </div>
 
           <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 12px", color: "#111" }}>
-            Méthode d'analyse motivique
+            {n("methodeH3")}
           </h3>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 8, marginBottom: 20 }}>
-            {[
-              { n: "1", label: "Identifier le motif générateur", desc: "2 à 6 notes qui apparaissent au début et se répètent. Un intervalle ou un rythme distinctif est la clé." },
-              { n: "2", label: "Cartographier les occurrences", desc: "Marquer chaque apparition du motif dans la partition — transpositons, transformations incluses." },
-              { n: "3", label: "Analyser les transformations", desc: "Inversion, augmentation, diminution, fragmentation, séquence. Comment le motif se développe-t-il ?" },
-              { n: "4", label: "Identifier la fonction structurelle", desc: "Le motif crée-t-il l'exposition, le développement, le climax ? Quel rôle narratif joue-t-il ?" },
-            ].map(step => (
+            {METHODE_STEPS.map(step => (
               <div key={step.n} style={{ border: "0.5px solid #e5e5e5", borderRadius: 10, padding: "12px 14px", background: "#fff" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
                   <div style={{ width: 24, height: 24, borderRadius: "50%", background: ACCENT, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, flexShrink: 0 }}>
@@ -381,13 +303,8 @@ export default function Cours37() {
             ))}
           </div>
 
-          <div style={S.infoBox}>
-            <strong>Brahms et l'unité motivique :</strong> Dans ses quatuors et symphonies, Brahms dérive souvent toute l'œuvre d'un seul intervalle (une seconde ou une tierce). Cet intervalle générateur apparaît dans la mélodie, la basse, les transitions, les contre-mélodies — toujours reconnaissable, toujours transformé. L'analyse motivique de Brahms révèle une densité thématique comparable à celle de Bach.
-          </div>
-
-          <div style={S.warnBox}>
-            <strong>Erreur courante :</strong> Analyser chaque accord de surface sans chercher la structure profonde. Dire "Do–Sol–Fa–Do" ne dit rien sur la signification structurelle. L'analyse motivique complète l'analyse harmonique : d'un côté la structure verticale (accords), de l'autre la structure horizontale (motif et sa destinée). Les deux ensemble révèlent la logique compositionnelle.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("brahmsInfoBox") }} />
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("motiviqueWarn") }} />
         </div>
       )}
 
@@ -397,29 +314,27 @@ export default function Cours37() {
       {/* ══ SECTION 4 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Quiz — Schenker et analyse motivique</h2>
+          <h2 style={S.h2}>{n("quizH2")}</h2>
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
               <div style={{ fontSize: 32, marginBottom: 8 }}>
                 {quizScore >= 8 ? "🎼" : quizScore >= 6 ? "👍" : "💪"}
               </div>
               <div style={{ fontSize: 20, fontWeight: 500, color: "#111", marginBottom: 4 }}>
-                Score : {quizScore} / {QUIZ_COUNT}
+                {i18n.t("score")} : {quizScore} / {QUIZ_COUNT}
               </div>
               <div style={{ fontSize: 14, color: "#666", marginBottom: 20 }}>
-                {quizScore >= 8 ? "Excellent ! Vous maîtrisez l'analyse schenkérienne et l'analyse motivique." :
-                 quizScore >= 6 ? "Bien ! Revoyez les 4 niveaux de réduction et les transformations motiviques." :
-                 "Continuez — relisez les sections Analyse schenkérienne et Analyse motivique."}
+                {i18n.quizMessage(quizScore, QUIZ_COUNT)}
               </div>
               <button onClick={resetQuiz} style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${ACCENT}`, borderRadius: 20, cursor: "pointer", background: ACCENT_BG, color: ACCENT }}>
-                Nouvelles questions
+                {i18n.newQ}
               </button>
             </div>
           ) : (
             <div>
               <div style={{ fontSize: 12, color: "#999", marginBottom: 10 }}>
-                Question {quizIdx + 1} / {QUIZ_COUNT}
-                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} questions dans la banque</span>
+                {i18n.t("question")} {quizIdx + 1} / {QUIZ_COUNT}
+                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} {i18n.t("questionsPool")}</span>
               </div>
               <div style={{ fontSize: 15, fontWeight: 500, color: "#111", lineHeight: 1.6, marginBottom: 16 }}>
                 {quizQuestions[quizIdx].q}
@@ -448,7 +363,7 @@ export default function Cours37() {
               )}
               {quizAnswered && (
                 <button onClick={nextQuiz} style={{ marginTop: 12, fontSize: 13, padding: "7px 18px", border: "0.5px solid #333", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#333" }}>
-                  {quizIdx + 1 < QUIZ_COUNT ? "Question suivante →" : "Voir mon score"}
+                  {quizIdx + 1 < QUIZ_COUNT ? i18n.nextQ : i18n.seeScore}
                 </button>
               )}
             </div>
