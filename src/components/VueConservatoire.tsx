@@ -39,9 +39,38 @@ export function VueConservatoire({
 }) {
   const params = useParams();
   const locale = (params?.locale as string) ?? "fr";
-  const data = dataProp ?? CONSERVATOIRE_DATA[`cours${courseNum!}`];
   const pianoRef = useRef<PianoPlayerRef>(null);
   const tc = useTranslations("common");
+  const tcons = useTranslations("conservatoire");
+
+  const ck = `cours${courseNum}` as const;
+  const data: CoursConservatoireData = courseNum ? {
+    intuition: tcons(`${ck}.intuition` as any),
+    reference: {
+      badge: tcons(`${ck}.badge` as any),
+      citation: tcons(`${ck}.citation` as any),
+      auteur: tcons(`${ck}.auteur` as any),
+    },
+    voix: [
+      tcons(`${ck}.voix0` as any),
+      tcons(`${ck}.voix1` as any),
+      tcons(`${ck}.voix2` as any),
+    ].filter(Boolean),
+    repertoire: {
+      titre: tcons(`${ck}.titre` as any),
+      compositeur: tcons(`${ck}.compositeur` as any),
+      notes: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9}`].repertoire.notes,
+    },
+    pieges: [{
+      erreur: tcons(`${ck}.piege0erreur` as any),
+      correction: tcons(`${ck}.piege0correction` as any),
+    }],
+    resume: [
+      tcons(`${ck}.resume0` as any),
+      tcons(`${ck}.resume1` as any),
+      tcons(`${ck}.resume2` as any),
+    ].filter(Boolean),
+  } : (dataProp ?? CONSERVATOIRE_DATA[`cours${courseNum!}` as `cours${1|2|3|4|5|6|7|8|9}`]);
 
   const playRepertoire = useCallback(() => {
     data.repertoire.notes.forEach((n, i) => {
