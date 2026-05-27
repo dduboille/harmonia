@@ -38,124 +38,6 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-// ── Gammes spéciales ───────────────────────────────────────────────────────────
-
-interface GammeSpeciale {
-  id: string;
-  nom: string;
-  structure: string;
-  notes: string;
-  description: string;
-  couleur: string;
-  dotKeys: string[];
-  accord: string;
-}
-
-const GAMMES: GammeSpeciale[] = [
-  {
-    id: "tons",
-    nom: "Gamme par tons",
-    structure: "T–T–T–T–T–T (6 tons entiers)",
-    notes: "Do–Ré–Mi–Fa#–Sol#–La#",
-    description: "Aucune note directrice — le flottement tonal est total. Debussy en est le maître. Tous les accords sont augmentés.",
-    couleur: "Mystère, dissolution, flottement onirique",
-    dotKeys: ["Do:3","Ré:3","Mi:3","Fa#:3","Sol#:3","La#:3"],
-    accord: "Do augmenté : Do–Mi–Sol#",
-  },
-  {
-    id: "octatonique",
-    nom: "Gamme octatonique",
-    structure: "T–½T–T–½T–T–½T–T–½T (alternance)",
-    notes: "Do–Ré–Mib–Fa–Fa#–Sol#–La–Si",
-    description: "Alternance ton/demi-ton. Contient 3 accords diminués 7e. Stravinsky et Messiaen l'adoraient.",
-    couleur: "Tension symétrique, mystère slave",
-    dotKeys: ["Do:3","Ré:3","Mib:3","Fa:3","Fa#:3","Sol#:3","La:3","Si:3"],
-    accord: "Dim7 : Do–Mib–Fa#–La",
-  },
-  {
-    id: "pentatonique",
-    nom: "Gamme pentatonique",
-    structure: "T–T–T½–T–T½ (5 notes sans demi-ton)",
-    notes: "Do–Ré–Mi–Sol–La",
-    description: "5 notes sans aucun demi-ton, donc sans tension directrice. Utilisée dans le jazz, le folk et l'impressionnisme oriental.",
-    couleur: "Simplicité, sérénité, couleur orientale",
-    dotKeys: ["Do:3","Ré:3","Mi:3","Sol:3","La:3"],
-    accord: "Pas d'accord de dominante",
-  },
-  {
-    id: "augmente",
-    nom: "Accord augmenté",
-    structure: "Tierce majeure + tierce majeure",
-    notes: "Do–Mi–Sol#",
-    description: "Accord à 3 demi-tons égaux. Symétrique — peut résoudre vers 3 tonalités différentes. Caractéristique de l'harmonie impressionniste.",
-    couleur: "Flottement, ambiguïté, couleur mystique",
-    dotKeys: ["Do:3","Mi:3","Sol#:3","Do:4","Mi:4","Sol#:4"],
-    accord: "= 3 accords augmentés identiques (enharmonie)",
-  },
-];
-
-// ── Planing exemple ────────────────────────────────────────────────────────────
-
-const PLANING = [
-  { label: "Accord 1 (Do Maj7)", dotKeys: ["Do:3","Mi:3","Sol:3","Si:3"] },
-  { label: "Accord 2 (Ré Maj7)", dotKeys: ["Ré:3","Fa#:3","La:3","Do#:4"] },
-  { label: "Accord 3 (Mi Maj7)", dotKeys: ["Mi:3","Sol#:3","Si:3","Ré#:4"] },
-];
-
-// ── Modes de Messiaen ──────────────────────────────────────────────────────────
-
-interface ModeMessiaen {
-  num: number;
-  nom: string;
-  notes: string;
-  transpositions: number;
-  structure: string;
-  couleur: string;
-  exemple: string;
-  dotKeys: string[];
-}
-
-const MODES_MESSIAEN: ModeMessiaen[] = [
-  {
-    num: 1,
-    nom: "Mode 1 — Gamme par tons",
-    notes: "Do–Ré–Mi–Fa#–Sol#–La#",
-    transpositions: 2,
-    structure: "T–T–T–T–T–T",
-    couleur: "Flottement total, dissolution de la tonalité",
-    exemple: "Debussy, 'Voiles'",
-    dotKeys: ["Do:4","Ré:4","Mi:4","Fa#:4","Sol#:4","La#:4"],
-  },
-  {
-    num: 2,
-    nom: "Mode 2 — Octatonique",
-    notes: "Do–Ré–Mib–Fa–Fa#–Sol#–La–Si",
-    transpositions: 3,
-    structure: "T–½T–T–½T–T–½T–T–½T",
-    couleur: "Tension symétrique, mystère, flamboyance",
-    exemple: "Messiaen, 'Quartet pour la fin du Temps'",
-    dotKeys: ["Do:4","Ré:4","Mib:4","Fa:4","Fa#:4","Sol#:4","La:4","Si:4"],
-  },
-  {
-    num: 3,
-    nom: "Mode 3",
-    notes: "Do–Ré–Mib–Mi–Fa#–Sol–Sol#–La#–Si",
-    transpositions: 4,
-    structure: "T–½T–½T–T–½T–½T–T–½T–½T",
-    couleur: "Richesse chromatique dense",
-    exemple: "Messiaen, 'Les Corps Glorieux'",
-    dotKeys: ["Do:4","Ré:4","Mib:4","Mi:4","Fa#:4","Sol:4","Sol#:4","La#:4","Si:4"],
-  },
-];
-
-// ── Modal interchange ──────────────────────────────────────────────────────────
-
-const MODAL_INTERCHANGE = [
-  { accord: "IVm (Fam en Do)", origine: "Do éolien / Do mineur", dotKeys: ["Fa:3","Lab:3","Do:4"], effet: "Couleur sombre soudaine — le IVm emprunté est le plus expressif" },
-  { accord: "bVII (Sib en Do)", origine: "Do mixolydien", dotKeys: ["Sib:2","Ré:3","Fa:3"], effet: "Son 'rock' — dominant sans résolution fonctionnelle" },
-  { accord: "bVI (Lab en Do)", origine: "Do éolien", dotKeys: ["Lab:2","Do:3","Mib:3"], effet: "Couleur romantique — emprunt très expressif" },
-];
-
 // ── Navigation ─────────────────────────────────────────────────────────────────
 
 const SECTIONS_IDS = ["impressionnisme", "modalite", "conservatoire", "quiz"] as const;
@@ -188,6 +70,8 @@ const S = {
 export default function Cours30() {
   const [activeSection, setActiveSection] = useState<string>("impressionnisme");
   const i18n = useCoursI18n("cours30");
+  const { tc } = i18n;
+  const n = (key: string) => tc(`narrative.${key}` as any);
   const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours30Content);
 
@@ -200,12 +84,119 @@ export default function Cours30() {
 
   const pianoRef = useRef<PianoPlayerRef>(null);
 
-  const sectionLabel = (id: string) => {
-    if (id === "impressionnisme") return "Impressionnisme";
-    if (id === "modalite") return "Modalité avancée";
-    if (id === "conservatoire") return "🎓 Conservatoire";
-    return "Quiz";
-  };
+  // ── Translated data arrays ──────────────────────────────────────────────────
+
+  interface GammeSpeciale {
+    id: string;
+    nom: string;
+    structure: string;
+    notes: string;
+    description: string;
+    couleur: string;
+    dotKeys: string[];
+    accord: string;
+  }
+
+  const GAMMES: GammeSpeciale[] = [
+    {
+      id: "tons",
+      nom: n("gamme0nom"),
+      structure: "T–T–T–T–T–T (6 tons entiers)",
+      notes: "Do–Ré–Mi–Fa#–Sol#–La#",
+      description: n("gamme0description"),
+      couleur: n("gamme0couleur"),
+      dotKeys: ["Do:3","Ré:3","Mi:3","Fa#:3","Sol#:3","La#:3"],
+      accord: "Do augmenté : Do–Mi–Sol#",
+    },
+    {
+      id: "octatonique",
+      nom: n("gamme1nom"),
+      structure: "T–½T–T–½T–T–½T–T–½T (alternance)",
+      notes: "Do–Ré–Mib–Fa–Fa#–Sol#–La–Si",
+      description: n("gamme1description"),
+      couleur: n("gamme1couleur"),
+      dotKeys: ["Do:3","Ré:3","Mib:3","Fa:3","Fa#:3","Sol#:3","La:3","Si:3"],
+      accord: "Dim7 : Do–Mib–Fa#–La",
+    },
+    {
+      id: "pentatonique",
+      nom: n("gamme2nom"),
+      structure: "T–T–T½–T–T½ (5 notes sans demi-ton)",
+      notes: "Do–Ré–Mi–Sol–La",
+      description: n("gamme2description"),
+      couleur: n("gamme2couleur"),
+      dotKeys: ["Do:3","Ré:3","Mi:3","Sol:3","La:3"],
+      accord: n("gamme2accord"),
+    },
+    {
+      id: "augmente",
+      nom: n("gamme3nom"),
+      structure: "Tierce majeure + tierce majeure",
+      notes: "Do–Mi–Sol#",
+      description: n("gamme3description"),
+      couleur: n("gamme3couleur"),
+      dotKeys: ["Do:3","Mi:3","Sol#:3","Do:4","Mi:4","Sol#:4"],
+      accord: "= 3 accords augmentés identiques (enharmonie)",
+    },
+  ];
+
+  const PLANING = [
+    { label: n("planingLabel0"), dotKeys: ["Do:3","Mi:3","Sol:3","Si:3"] },
+    { label: n("planingLabel1"), dotKeys: ["Ré:3","Fa#:3","La:3","Do#:4"] },
+    { label: n("planingLabel2"), dotKeys: ["Mi:3","Sol#:3","Si:3","Ré#:4"] },
+  ];
+
+  interface ModeMessiaen {
+    num: number;
+    nom: string;
+    notes: string;
+    transpositions: number;
+    structure: string;
+    couleur: string;
+    exemple: string;
+    dotKeys: string[];
+  }
+
+  const MODES_MESSIAEN: ModeMessiaen[] = [
+    {
+      num: 1,
+      nom: n("mode1nom"),
+      notes: "Do–Ré–Mi–Fa#–Sol#–La#",
+      transpositions: 2,
+      structure: "T–T–T–T–T–T",
+      couleur: n("mode1couleur"),
+      exemple: n("mode1exemple"),
+      dotKeys: ["Do:4","Ré:4","Mi:4","Fa#:4","Sol#:4","La#:4"],
+    },
+    {
+      num: 2,
+      nom: n("mode2nom"),
+      notes: "Do–Ré–Mib–Fa–Fa#–Sol#–La–Si",
+      transpositions: 3,
+      structure: "T–½T–T–½T–T–½T–T–½T",
+      couleur: n("mode2couleur"),
+      exemple: n("mode2exemple"),
+      dotKeys: ["Do:4","Ré:4","Mib:4","Fa:4","Fa#:4","Sol#:4","La:4","Si:4"],
+    },
+    {
+      num: 3,
+      nom: n("mode3nom"),
+      notes: "Do–Ré–Mib–Mi–Fa#–Sol–Sol#–La#–Si",
+      transpositions: 4,
+      structure: "T–½T–½T–T–½T–½T–T–½T–½T",
+      couleur: n("mode3couleur"),
+      exemple: n("mode3exemple"),
+      dotKeys: ["Do:4","Ré:4","Mib:4","Mi:4","Fa#:4","Sol:4","Sol#:4","La#:4","Si:4"],
+    },
+  ];
+
+  const MODAL_INTERCHANGE = [
+    { accord: n("mi0accord"), origine: n("mi0origine"), dotKeys: ["Fa:3","Lab:3","Do:4"], effet: n("mi0effet") },
+    { accord: n("mi1accord"), origine: n("mi1origine"), dotKeys: ["Sib:2","Ré:3","Fa:3"], effet: n("mi1effet") },
+    { accord: n("mi2accord"), origine: n("mi2origine"), dotKeys: ["Lab:2","Do:3","Mib:3"], effet: n("mi2effet") },
+  ];
+
+  // ── Quiz handlers ───────────────────────────────────────────────────────────
 
   const answerQuiz = (optIdx: number) => {
     if (quizAnswered) return;
@@ -233,7 +224,7 @@ export default function Cours30() {
 
       {/* Header */}
       <div style={S.header}>
-        <span style={S.badge}>Niveau 4 · Cours 30</span>
+        <span style={S.badge}>{i18n.badge}</span>
         <h1 style={S.h1}>{tr("Harmonie impressionniste et modalité avancée")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
@@ -242,9 +233,9 @@ export default function Cours30() {
         composer="Maurice Ravel"
         period="1875–1937"
         emoji="💧"
-        concept="Couleur harmonique pure"
-        anecdote="Ravel disait qu'il ne cherchait pas à exprimer des émotions mais des couleurs sonores. Son Boléro — un seul accord de Do majeur pendant 15 minutes — prouve que la couleur peut remplacer la fonction. Debussy l'appelait 'l'horloger du son'."
-        lesson="Quand l'accord devient couleur, la tension n'est plus fonctionnelle — elle est sensorielle."
+        concept={n("maitreCardConcept")}
+        anecdote={n("maitreCardAnecdote")}
+        lesson={n("maitreCardLesson")}
         accentColor={ACCENT}
       />
 
@@ -252,7 +243,7 @@ export default function Cours30() {
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => (
           <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
-            {sectionLabel(id)}
+            {i18n.sectionLabel(id)}
           </button>
         ))}
       </nav>
@@ -260,18 +251,14 @@ export default function Cours30() {
       {/* ══ SECTION 1 : IMPRESSIONNISME ══ */}
       {activeSection === "impressionnisme" && (
         <div>
-          <h2 style={S.h2}>Techniques de l'harmonie impressionniste</h2>
-          <p style={S.p}>
-            L'harmonie impressionniste rompt avec la logique tension-résolution du système tonal. Debussy et Ravel substituent à la fonction harmonique la couleur sonore — chaque accord est une nuance, non un rôle.
-          </p>
+          <h2 style={S.h2}>{n("h2Impressionnisme")}</h2>
+          <p style={S.p}>{n("pImpressionnisme")}</p>
 
-          <div style={S.infoBox}>
-            <strong>Le planing :</strong> déplacement d'un accord entier en mouvement parallèle. Les quintes et octaves parallèles sont intentionnelles — elles créent l'effet de bloc sonore glissant. Ne pas analyser avec les fonctions T/SD/D.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("infoBoxPlaning") }} />
 
           {/* Gammes spéciales */}
           <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 12px", color: "#111" }}>
-            Gammes et accords caractéristiques
+            {n("h3Gammes")}
           </h3>
           <div style={{ display: "flex", flexDirection: "column" as const, gap: 10, marginBottom: 24 }}>
             {GAMMES.map(g => (
@@ -284,14 +271,14 @@ export default function Cours30() {
                         {g.structure}
                       </div>
                       <div style={{ fontSize: 13, color: "#444", marginBottom: 4 }}>
-                        <strong>Notes :</strong> {g.notes}
+                        <strong>{n("notesLabel")}</strong> {g.notes}
                       </div>
                       <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6, marginBottom: 4 }}>{g.description}</div>
                       <div style={{ fontSize: 12, color: "#777", fontStyle: "italic" }}>
-                        Couleur : {g.couleur}
+                        {n("couleurLabel")} {g.couleur}
                       </div>
                       <div style={{ fontSize: 12, color: ACCENT, marginTop: 4 }}>
-                        Accord type : {g.accord}
+                        {n("accordTypeLabel")} {g.accord}
                       </div>
                     </div>
                   </div>
@@ -300,7 +287,7 @@ export default function Cours30() {
                       onClick={() => playScale(pianoRef as React.RefObject<PianoPlayerRef>, g.dotKeys, 350)}
                       style={{ fontSize: 12, padding: "5px 14px", border: `0.5px solid ${ACCENT}`, borderRadius: 20, cursor: "pointer", background: "transparent", color: ACCENT }}
                     >
-                      ▶ Écouter la gamme
+                      {n("ecouterGamme")}
                     </button>
                   </div>
                 </div>
@@ -310,11 +297,9 @@ export default function Cours30() {
 
           {/* Planing exemple */}
           <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 12px", color: "#111" }}>
-            Exemple de planing chromatique (Maj7 montant)
+            {n("h3Planing")}
           </h3>
-          <p style={S.p}>
-            Trois accords Maj7 successifs transposés chromatiquement d'un ton vers le haut — aucune résolution, pure couleur glissante.
-          </p>
+          <p style={S.p}>{n("pPlaning")}</p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" as const, marginBottom: 20 }}>
             {PLANING.map((pl, idx) => (
               <div key={idx} style={{ border: "0.5px solid #e5e5e5", borderRadius: 10, padding: "12px 14px", background: "#fff", minWidth: 160 }}>
@@ -326,33 +311,27 @@ export default function Cours30() {
                   onClick={() => playChord(pianoRef as React.RefObject<PianoPlayerRef>, pl.dotKeys)}
                   style={{ fontSize: 11, padding: "4px 12px", border: `0.5px solid ${ACCENT}`, borderRadius: 16, cursor: "pointer", background: ACCENT_BG, color: ACCENT }}
                 >
-                  ▶ Écouter
+                  {n("ecouterAccord")}
                 </button>
               </div>
             ))}
           </div>
 
-          <div style={S.warnBox}>
-            <strong>Erreur fréquente :</strong> Analyser l'harmonie de Debussy avec les fonctions T/SD/D. Les accords impressionnistes n'ont pas de rôle fonctionnel — chercher une dominante dans "Voiles" c'est chercher la mauvaise chose. Analyser par couleur et registre.
-          </div>
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("warnBoxImpressionnisme") }} />
         </div>
       )}
 
       {/* ══ SECTION 2 : MODALITÉ AVANCÉE ══ */}
       {activeSection === "modalite" && (
         <div>
-          <h2 style={S.h2}>Modalité avancée et modes de Messiaen</h2>
-          <p style={S.p}>
-            Messiaen a théorisé les modes à transpositions limitées — des gammes dont la symétrie interne réduit le nombre de transpositions distinctes possibles. Chaque mode possède une couleur unique et reconnaissable.
-          </p>
+          <h2 style={S.h2}>{n("h2Modalite")}</h2>
+          <p style={S.p}>{n("pModalite")}</p>
 
-          <div style={S.infoBox}>
-            <strong>Transpositions limitées :</strong> Un mode à transpositions limitées est une gamme dont la symétrie interne fait que certaines transpositions reproduisent la même collection de notes. Mode 1 : 2 transpositions. Mode 2 : 3 transpositions. Plus le chiffre est bas, plus la symétrie est forte.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("infoBoxTranspositions") }} />
 
           {/* Modes de Messiaen */}
           <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 12px", color: "#111" }}>
-            Modes à transpositions limitées
+            {n("h3ModesMessiaen")}
           </h3>
           <div style={{ display: "flex", flexDirection: "column" as const, gap: 10, marginBottom: 24 }}>
             {MODES_MESSIAEN.map(m => (
@@ -364,7 +343,7 @@ export default function Cours30() {
                   <div>
                     <div style={{ fontSize: 14, fontWeight: 600, color: "#111" }}>{m.nom}</div>
                     <div style={{ fontSize: 12, color: "#888", marginTop: 1 }}>
-                      {m.transpositions} transpositions · {m.exemple}
+                      {m.transpositions} {n("transpositionsLabel")} · {m.exemple}
                     </div>
                   </div>
                 </div>
@@ -372,16 +351,16 @@ export default function Cours30() {
                   {m.structure}
                 </div>
                 <div style={{ fontSize: 13, color: "#444", marginBottom: 4 }}>
-                  <strong>Notes :</strong> {m.notes}
+                  <strong>{n("notesLabel")}</strong> {m.notes}
                 </div>
                 <div style={{ fontSize: 13, color: "#555", fontStyle: "italic", marginBottom: 8 }}>
-                  Couleur : {m.couleur}
+                  {n("couleurLabel")} {m.couleur}
                 </div>
                 <button
                   onClick={() => playScale(pianoRef as React.RefObject<PianoPlayerRef>, m.dotKeys, 300)}
                   style={{ fontSize: 12, padding: "5px 14px", border: `0.5px solid ${ACCENT}`, borderRadius: 20, cursor: "pointer", background: "transparent", color: ACCENT }}
                 >
-                  ▶ Écouter le mode
+                  {n("ecouterMode")}
                 </button>
               </div>
             ))}
@@ -389,11 +368,9 @@ export default function Cours30() {
 
           {/* Modal interchange */}
           <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 12px", color: "#111" }}>
-            Modal interchange (emprunts modaux en Do majeur)
+            {n("h3ModalInterchange")}
           </h3>
-          <p style={S.p}>
-            L'emprunt modal consiste à utiliser ponctuellement un accord d'un mode parallèle (même tonique, mode différent) sans réellement moduler. Do reste le centre tonal.
-          </p>
+          <p style={S.p}>{n("pModalInterchange")}</p>
           <div style={{ display: "flex", flexDirection: "column" as const, gap: 8, marginBottom: 20 }}>
             {MODAL_INTERCHANGE.map((mi, idx) => (
               <div key={idx} style={{ border: "0.5px solid #e5e5e5", borderRadius: 10, padding: "12px 16px", background: "#fff" }}>
@@ -401,7 +378,7 @@ export default function Cours30() {
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 13, fontWeight: 600, color: "#111", marginBottom: 3 }}>{mi.accord}</div>
                     <div style={{ fontSize: 12, color: "#888", marginBottom: 3 }}>
-                      Emprunté au : <em>{mi.origine}</em>
+                      {n("emprunteLabel")} <em>{mi.origine}</em>
                     </div>
                     <div style={{ fontSize: 13, color: "#555", lineHeight: 1.55 }}>{mi.effet}</div>
                   </div>
@@ -409,16 +386,14 @@ export default function Cours30() {
                     onClick={() => playChord(pianoRef as React.RefObject<PianoPlayerRef>, mi.dotKeys)}
                     style={{ fontSize: 11, padding: "4px 12px", border: `0.5px solid ${ACCENT}`, borderRadius: 16, cursor: "pointer", background: ACCENT_BG, color: ACCENT, flexShrink: 0 }}
                   >
-                    ▶ Écouter
+                    {n("ecouterAccord")}
                   </button>
                 </div>
               </div>
             ))}
           </div>
 
-          <div style={S.warnBox}>
-            <strong>Modal interchange ≠ modulation :</strong> L'emprunt modal est ponctuel — la tonique ne change pas. En Do majeur, emprunter Lab (bVI) crée une couleur, mais Do reste le centre. Une modulation implique un changement de centre tonal confirmé par une cadence.
-          </div>
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("warnBoxModalInterchange") }} />
         </div>
       )}
 
@@ -428,32 +403,30 @@ export default function Cours30() {
       {/* ══ SECTION 4 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Quiz — Harmonie impressionniste et modalité avancée</h2>
+          <h2 style={S.h2}>{n("h2Quiz")}</h2>
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
               <div style={{ fontSize: 32, marginBottom: 8 }}>
                 {quizScore >= 8 ? "🎨" : quizScore >= 6 ? "👍" : "💪"}
               </div>
               <div style={{ fontSize: 20, fontWeight: 500, color: "#111", marginBottom: 4 }}>
-                Score : {quizScore} / {QUIZ_COUNT}
+                {i18n.t("score")} : {quizScore} / {QUIZ_COUNT}
               </div>
               <div style={{ fontSize: 14, color: "#666", marginBottom: 20 }}>
-                {quizScore >= 8 ? "Excellent ! Vous maîtrisez l'harmonie impressionniste." :
-                 quizScore >= 6 ? "Bien ! Revoyez les modes de Messiaen et le planing." :
-                 "Continuez — relisez les sections Impressionnisme et Modalité avancée."}
+                {i18n.quizMessage(quizScore, QUIZ_COUNT)}
               </div>
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${ACCENT}`, borderRadius: 20, cursor: "pointer", background: ACCENT_BG, color: ACCENT }}
               >
-                Nouvelles questions
+                {i18n.newQ}
               </button>
             </div>
           ) : (
             <div>
               <div style={{ fontSize: 12, color: "#999", marginBottom: 10 }}>
-                Question {quizIdx + 1} / {QUIZ_COUNT}
-                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} questions dans la banque</span>
+                {i18n.t("question")} {quizIdx + 1} / {QUIZ_COUNT}
+                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} {i18n.t("questionsPool")}</span>
               </div>
               <div style={{ fontSize: 15, fontWeight: 500, color: "#111", lineHeight: 1.6, marginBottom: 16 }}>
                 {quizQuestions[quizIdx].q}
@@ -483,7 +456,7 @@ export default function Cours30() {
               {quizAnswered && (
                 <button onClick={nextQuiz}
                   style={{ marginTop: 12, fontSize: 13, padding: "7px 18px", border: "0.5px solid #333", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#333" }}>
-                  {quizIdx + 1 < QUIZ_COUNT ? "Question suivante →" : "Voir mon score"}
+                  {quizIdx + 1 < QUIZ_COUNT ? i18n.nextQ : i18n.seeScore}
                 </button>
               )}
             </div>

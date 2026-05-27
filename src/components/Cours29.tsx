@@ -31,7 +31,15 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-// ── Données périodes ───────────────────────────────────────────────────────────
+// ── Config ────────────────────────────────────────────────────────────────────
+
+const SECTIONS_IDS = ["evolution", "comparaison", "conservatoire", "quiz"] as const;
+const QUIZ_COUNT = 10;
+
+const ACCENT = "#2D5C3A";
+const ACCENT_BG = "#E8F5EE";
+
+// ── Interfaces ────────────────────────────────────────────────────────────────
 
 interface Periode {
   id: string;
@@ -45,91 +53,6 @@ interface Periode {
   dotKeys: string[];
 }
 
-const PERIODES: Periode[] = [
-  {
-    id: "baroque",
-    nom: "Baroque",
-    annees: "1600–1750",
-    compositeurs: "Bach, Haendel",
-    couleur: "#7B4F00",
-    bg: "#FDF3E7",
-    caracteristiques: [
-      "Basse continue",
-      "Fonctions tonales claires",
-      "Contrepoint rigoureux",
-      "Cadences fréquentes et affirmées",
-    ],
-    progression: "I–V6–I (cadence baroque simple)",
-    dotKeys: ["Do:3", "Mi:3", "Sol:3", "Sol:2", "Si:2", "Sol:3", "Do:3", "Mi:3", "Sol:3"],
-  },
-  {
-    id: "classique",
-    nom: "Classique",
-    annees: "1750–1820",
-    compositeurs: "Mozart, Haydn",
-    couleur: "#185FA5",
-    bg: "#E6F1FB",
-    caracteristiques: [
-      "Phrases symétriques (4+4 mesures)",
-      "Harmonie économe et claire",
-      "Cadences parfaites affirmées",
-      "Basse d'Alberti",
-    ],
-    progression: "I–IV–V7–I (classique économe)",
-    dotKeys: ["Do:3", "Mi:3", "Sol:3", "Fa:2", "La:2", "Do:3", "Sol:2", "Si:2", "Ré:3", "Fa:3", "Do:3", "Mi:3", "Sol:3"],
-  },
-  {
-    id: "romantique",
-    nom: "Romantique",
-    annees: "1820–1900",
-    compositeurs: "Schubert, Chopin, Wagner",
-    couleur: "#993C1D",
-    bg: "#FAECE7",
-    caracteristiques: [
-      "Chromatisme envahissant",
-      "Modulations par tierce",
-      "Accords altérés expressifs",
-      "Ambiguïté tonale croissante",
-    ],
-    progression: "Im–bVI–III–VI (modulation par tierces)",
-    dotKeys: ["Do:3", "Mib:3", "Sol:3", "Lab:2", "Do:3", "Mib:3", "Mi:2", "Sol#:2", "Si:2", "La:2", "Do:3", "Mi:3"],
-  },
-  {
-    id: "postromantique",
-    nom: "Post-romantique",
-    annees: "1880–1920",
-    compositeurs: "Wagner tardif, Mahler, Strauss",
-    couleur: "#5C3D6E",
-    bg: "#F0EBF8",
-    caracteristiques: [
-      "Tonalité élargie mais présente",
-      "Chromatisme total",
-      "Accords de 9e, 11e, 13e",
-      "Tension maintenue longtemps",
-    ],
-    progression: "I–III–bVII–I (ambiguïté harmonique)",
-    dotKeys: ["Do:3", "Mi:3", "Sol:3", "Mi:3", "Sol:3", "Si:3", "Sib:2", "Ré:3", "Fa:3", "Do:3", "Mi:3", "Sol:3"],
-  },
-  {
-    id: "impressionniste",
-    nom: "Impressionniste",
-    annees: "1890–1930",
-    compositeurs: "Debussy, Ravel",
-    couleur: "#0F6E56",
-    bg: "#E1F5EE",
-    caracteristiques: [
-      "Accords par couleur non par fonction",
-      "Modes, pentatonique, gamme par tons",
-      "Parallélismes (planing)",
-      "Fonctions flottantes",
-    ],
-    progression: "Planing Maj7 ascendant (sans résolution)",
-    dotKeys: ["Do:4", "Mi:4", "Sol:4", "Si:4", "Ré:4", "Fa#:4", "La:4", "Do#:5", "Mi:4", "Sol#:4", "Si:4", "Ré#:5"],
-  },
-];
-
-// ── Données harmonisations ──────────────────────────────────────────────────
-
 interface Harmonisation {
   nom: string;
   dotKeys: string[];
@@ -137,52 +60,6 @@ interface Harmonisation {
   accent: string;
   bg: string;
 }
-
-const HARMONISATIONS: Harmonisation[] = [
-  {
-    nom: "Baroque (Bach)",
-    dotKeys: ["Do:3", "Mi:3", "Sol:3", "Sol:2", "Si:2", "Sol:3", "Do:3"],
-    description: "Contrepoint strict, cadence V7–I affirmée. La mélodie est soutenue par un contrepoint indépendant.",
-    accent: "#7B4F00",
-    bg: "#FDF3E7",
-  },
-  {
-    nom: "Classique (Mozart)",
-    dotKeys: ["Do:3", "Mi:3", "Sol:3", "Fa:2", "La:2", "Do:3", "Sol:2", "Si:2", "Ré:3", "Do:3", "Mi:3", "Sol:3"],
-    description: "I–IV–V–I économe et clair. La basse d'Alberti accompagne discrètement.",
-    accent: "#185FA5",
-    bg: "#E6F1FB",
-  },
-  {
-    nom: "Romantique (Chopin)",
-    dotKeys: ["Do:3", "Mi:3", "Sol:3", "Lab:2", "Do:3", "Mib:3", "Sol:2", "Si:2", "Ré:3", "Do:3", "Mi:3", "Sol:3"],
-    description: "I–bVI–V–I avec chromatisme. L'emprunt au mineur crée une couleur sombre inattendue.",
-    accent: "#993C1D",
-    bg: "#FAECE7",
-  },
-  {
-    nom: "Post-romantique (Wagner)",
-    dotKeys: ["Do:3", "Mi:3", "Sol:3", "Mi:3", "Sol#:3", "Si:3", "Sib:2", "Ré:3", "Fa:3", "Do:3", "Mi:3", "Sol:3"],
-    description: "I–III–bVII–I avec ambiguïté tonale. La tonique arrive mais après un détour inattendu.",
-    accent: "#5C3D6E",
-    bg: "#F0EBF8",
-  },
-  {
-    nom: "Impressionniste (Debussy)",
-    dotKeys: ["Do:4", "Mi:4", "Sol:4", "Si:4", "Ré:4", "Fa#:4", "La:4", "Do#:5", "Do:4", "Mi:4", "Sol:4", "Si:4"],
-    description: "Accords de 9e en parallèles. Pas de résolution fonctionnelle — la couleur prime sur la tension.",
-    accent: "#0F6E56",
-    bg: "#E1F5EE",
-  },
-];
-
-// ── Config ────────────────────────────────────────────────────────────────────
-
-const SECTIONS_IDS = ["evolution", "comparaison", "conservatoire", "quiz"] as const;
-const QUIZ_COUNT = 10;
-
-const ACCENT = "#2D5C3A";
-const ACCENT_BG = "#E8F5EE";
 
 // ── Styles ────────────────────────────────────────────────────────────────────
 
@@ -211,6 +88,8 @@ const S = {
 export default function Cours29() {
   const [activeSection, setActiveSection] = useState<string>("evolution");
   const i18n = useCoursI18n("cours29");
+  const { tc } = i18n;
+  const n = (key: string) => tc(`narrative.${key}` as any);
   const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours29Content);
 
@@ -230,12 +109,130 @@ export default function Cours29() {
 
   const pianoRef = useRef<PianoPlayerRef>(null);
 
-  const sectionLabel = (id: string) => {
-    if (id === "evolution")     return "Évolution harmonique";
-    if (id === "comparaison")   return "Même mélodie, 5 styles";
-    if (id === "conservatoire") return "🎓 Conservatoire";
-    return "Quiz";
-  };
+  // ── Translated data arrays ──────────────────────────────────────────────────
+
+  const PERIODES: Periode[] = [
+    {
+      id: "baroque",
+      nom: n("periodeBaroqueNom"),
+      annees: "1600–1750",
+      compositeurs: "Bach, Haendel",
+      couleur: "#7B4F00",
+      bg: "#FDF3E7",
+      caracteristiques: [
+        n("periodeBaroqueCarac1"),
+        n("periodeBaroqueCarac2"),
+        n("periodeBaroqueCarac3"),
+        n("periodeBaroqueCarac4"),
+      ],
+      progression: "I–V6–I (cadence baroque simple)",
+      dotKeys: ["Do:3", "Mi:3", "Sol:3", "Sol:2", "Si:2", "Sol:3", "Do:3", "Mi:3", "Sol:3"],
+    },
+    {
+      id: "classique",
+      nom: n("periodeClassiqueNom"),
+      annees: "1750–1820",
+      compositeurs: "Mozart, Haydn",
+      couleur: "#185FA5",
+      bg: "#E6F1FB",
+      caracteristiques: [
+        n("periodeClassiqueCarac1"),
+        n("periodeClassiqueCarac2"),
+        n("periodeClassiqueCarac3"),
+        n("periodeClassiqueCarac4"),
+      ],
+      progression: "I–IV–V7–I (classique économe)",
+      dotKeys: ["Do:3", "Mi:3", "Sol:3", "Fa:2", "La:2", "Do:3", "Sol:2", "Si:2", "Ré:3", "Fa:3", "Do:3", "Mi:3", "Sol:3"],
+    },
+    {
+      id: "romantique",
+      nom: n("periodeRomantiqueNom"),
+      annees: "1820–1900",
+      compositeurs: "Schubert, Chopin, Wagner",
+      couleur: "#993C1D",
+      bg: "#FAECE7",
+      caracteristiques: [
+        n("periodeRomantiqueCarac1"),
+        n("periodeRomantiqueCarac2"),
+        n("periodeRomantiqueCarac3"),
+        n("periodeRomantiqueCarac4"),
+      ],
+      progression: "Im–bVI–III–VI (modulation par tierces)",
+      dotKeys: ["Do:3", "Mib:3", "Sol:3", "Lab:2", "Do:3", "Mib:3", "Mi:2", "Sol#:2", "Si:2", "La:2", "Do:3", "Mi:3"],
+    },
+    {
+      id: "postromantique",
+      nom: n("periodePostRomantiqueNom"),
+      annees: "1880–1920",
+      compositeurs: "Wagner tardif, Mahler, Strauss",
+      couleur: "#5C3D6E",
+      bg: "#F0EBF8",
+      caracteristiques: [
+        n("periodePostRomantiqueCarac1"),
+        n("periodePostRomantiqueCarac2"),
+        n("periodePostRomantiqueCarac3"),
+        n("periodePostRomantiqueCarac4"),
+      ],
+      progression: "I–III–bVII–I (ambiguïté harmonique)",
+      dotKeys: ["Do:3", "Mi:3", "Sol:3", "Mi:3", "Sol:3", "Si:3", "Sib:2", "Ré:3", "Fa:3", "Do:3", "Mi:3", "Sol:3"],
+    },
+    {
+      id: "impressionniste",
+      nom: n("periodeImpressNom"),
+      annees: "1890–1930",
+      compositeurs: "Debussy, Ravel",
+      couleur: "#0F6E56",
+      bg: "#E1F5EE",
+      caracteristiques: [
+        n("periodeImpressCarac1"),
+        n("periodeImpressCarac2"),
+        n("periodeImpressCarac3"),
+        n("periodeImpressCarac4"),
+      ],
+      progression: "Planing Maj7 ascendant (sans résolution)",
+      dotKeys: ["Do:4", "Mi:4", "Sol:4", "Si:4", "Ré:4", "Fa#:4", "La:4", "Do#:5", "Mi:4", "Sol#:4", "Si:4", "Ré#:5"],
+    },
+  ];
+
+  const HARMONISATIONS: Harmonisation[] = [
+    {
+      nom: n("harmonisationBaroqueNom"),
+      dotKeys: ["Do:3", "Mi:3", "Sol:3", "Sol:2", "Si:2", "Sol:3", "Do:3"],
+      description: n("harmonisationBaroqueDesc"),
+      accent: "#7B4F00",
+      bg: "#FDF3E7",
+    },
+    {
+      nom: n("harmonisationClassiqueNom"),
+      dotKeys: ["Do:3", "Mi:3", "Sol:3", "Fa:2", "La:2", "Do:3", "Sol:2", "Si:2", "Ré:3", "Do:3", "Mi:3", "Sol:3"],
+      description: n("harmonisationClassiqueDesc"),
+      accent: "#185FA5",
+      bg: "#E6F1FB",
+    },
+    {
+      nom: n("harmonisationRomantiqueNom"),
+      dotKeys: ["Do:3", "Mi:3", "Sol:3", "Lab:2", "Do:3", "Mib:3", "Sol:2", "Si:2", "Ré:3", "Do:3", "Mi:3", "Sol:3"],
+      description: n("harmonisationRomantiqueDesc"),
+      accent: "#993C1D",
+      bg: "#FAECE7",
+    },
+    {
+      nom: n("harmonisationPostRomNom"),
+      dotKeys: ["Do:3", "Mi:3", "Sol:3", "Mi:3", "Sol#:3", "Si:3", "Sib:2", "Ré:3", "Fa:3", "Do:3", "Mi:3", "Sol:3"],
+      description: n("harmonisationPostRomDesc"),
+      accent: "#5C3D6E",
+      bg: "#F0EBF8",
+    },
+    {
+      nom: n("harmonisationImpressNom"),
+      dotKeys: ["Do:4", "Mi:4", "Sol:4", "Si:4", "Ré:4", "Fa#:4", "La:4", "Do#:5", "Do:4", "Mi:4", "Sol:4", "Si:4"],
+      description: n("harmonisationImpressDesc"),
+      accent: "#0F6E56",
+      bg: "#E1F5EE",
+    },
+  ];
+
+  // ── Quiz handlers ───────────────────────────────────────────────────────────
 
   const answerQuiz = (optIdx: number) => {
     if (quizAnswered) return;
@@ -263,7 +260,7 @@ export default function Cours29() {
 
       {/* Header */}
       <div style={S.header}>
-        <span style={S.badge}>Niveau 3 · Cours 29</span>
+        <span style={S.badge}>{i18n.badge}</span>
         <h1 style={S.h1}>{tr("Analyse comparative du répertoire")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
@@ -272,9 +269,9 @@ export default function Cours29() {
         composer="Claude Debussy"
         period="1862–1918"
         emoji="🎨"
-        concept="Évolution du langage harmonique"
-        anecdote="Debussy refusait d'être appelé 'impressionniste'. Il préférait 'musicien français'. Mais quand on lui demandait ses règles harmoniques, il répondait : 'Mon plaisir est ma règle.' Paradoxalement, sa liberté apparente repose sur une connaissance parfaite de tout ce qu'il transgressait."
-        lesson="Pour s'affranchir des règles, il faut d'abord les maîtriser parfaitement."
+        concept={n("maitreCardConcept")}
+        anecdote={n("maitreCardAnecdote")}
+        lesson={n("maitreCardLesson")}
         accentColor={ACCENT}
       />
 
@@ -282,7 +279,7 @@ export default function Cours29() {
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => (
           <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
-            {sectionLabel(id)}
+            {i18n.sectionLabel(id)}
           </button>
         ))}
       </nav>
@@ -290,10 +287,8 @@ export default function Cours29() {
       {/* ══ SECTION 1 : ÉVOLUTION HARMONIQUE ══ */}
       {activeSection === "evolution" && (
         <div>
-          <h2 style={S.h2}>L'évolution du langage harmonique</h2>
-          <p style={S.p}>
-            Du baroque à l'impressionnisme, le langage harmonique a traversé 5 grandes périodes stylistiques. Chacune redéfinit le rapport à la dissonance, à la résolution et aux fonctions tonales. Cliquez sur une période pour l'explorer.
-          </p>
+          <h2 style={S.h2}>{n("h2Evolution")}</h2>
+          <p style={S.p}>{n("pEvolution")}</p>
 
           <div style={{ display: "flex", flexDirection: "column" as const, gap: 10, marginBottom: 24 }}>
             {PERIODES.map(periode => {
@@ -326,7 +321,7 @@ export default function Cours29() {
                     <div style={{ padding: "0 16px 16px", background: periode.bg }}>
                       {/* Caractéristiques */}
                       <div style={{ marginBottom: 14 }}>
-                        <div style={{ fontSize: 11, fontWeight: 700, color: periode.couleur, letterSpacing: "0.08em", marginBottom: 8 }}>CARACTÉRISTIQUES</div>
+                        <div style={{ fontSize: 11, fontWeight: 700, color: periode.couleur, letterSpacing: "0.08em", marginBottom: 8 }}>{n("caracteristiquesLabel")}</div>
                         <div style={{ display: "flex", flexWrap: "wrap" as const, gap: 6 }}>
                           {periode.caracteristiques.map((c, i) => (
                             <span key={i} style={{ fontSize: 12, padding: "3px 10px", background: "#fff", border: `0.5px solid ${periode.couleur}`, borderRadius: 20, color: periode.couleur }}>
@@ -338,7 +333,7 @@ export default function Cours29() {
 
                       {/* Progression */}
                       <div style={{ marginBottom: 14 }}>
-                        <div style={{ fontSize: 11, fontWeight: 700, color: periode.couleur, letterSpacing: "0.08em", marginBottom: 6 }}>PROGRESSION TYPE</div>
+                        <div style={{ fontSize: 11, fontWeight: 700, color: periode.couleur, letterSpacing: "0.08em", marginBottom: 6 }}>{n("progressionTypeLabel")}</div>
                         <div style={{ fontFamily: "monospace", fontSize: 13, color: "#333", background: "#fff", padding: "6px 12px", borderRadius: 6 }}>
                           {periode.progression}
                         </div>
@@ -349,7 +344,7 @@ export default function Cours29() {
                         onClick={() => playScale(pianoRef as React.RefObject<PianoPlayerRef>, periode.dotKeys, 380)}
                         style={{ fontSize: 12, padding: "5px 14px", border: `0.5px solid ${periode.couleur}`, borderRadius: 20, cursor: "pointer", background: "#fff", color: periode.couleur }}
                       >
-                        ▶ Écouter la progression
+                        {n("btnEcouterProgression")}
                       </button>
                     </div>
                   )}
@@ -358,24 +353,19 @@ export default function Cours29() {
             })}
           </div>
 
-          <div style={S.infoBox}>
-            <strong>Critère d'identification :</strong> quelle est la relation à la dominante ?
-            Bach : obligatoire — Mozart : affirmée et économe — Schubert : enrichie — Wagner : suspendue — Debussy : inexistante.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("infoBoxCritere") }} />
         </div>
       )}
 
       {/* ══ SECTION 2 : MÊME MÉLODIE, 5 STYLES ══ */}
       {activeSection === "comparaison" && (
         <div>
-          <h2 style={S.h2}>Même mélodie, 5 harmonisations</h2>
-          <p style={S.p}>
-            La mélodie Do–Mi–Sol–Do est harmonisée ici dans 5 styles différents. Même mélodie, univers harmoniques radicalement distincts. Comparez le traitement de la dominante, des dissonances et des couleurs selon chaque période.
-          </p>
+          <h2 style={S.h2}>{n("h2Comparaison")}</h2>
+          <p style={S.p}>{n("pComparaison")}</p>
 
           {/* Mélodie commune */}
           <div style={{ marginBottom: 20, padding: "12px 16px", background: "#f8f8f8", borderRadius: 10, border: "0.5px solid #e5e5e5" }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: "0.08em", marginBottom: 6 }}>MÉLODIE COMMUNE</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: "0.08em", marginBottom: 6 }}>{n("melodieLabel")}</div>
             <div style={{ fontFamily: "monospace", fontSize: 15, color: "#333", letterSpacing: "0.05em" }}>Do — Mi — Sol — Do</div>
           </div>
 
@@ -402,7 +392,7 @@ export default function Cours29() {
                       }}
                       style={{ fontSize: 12, padding: "4px 12px", border: `0.5px solid ${h.accent}`, borderRadius: 20, cursor: "pointer", background: "#fff", color: h.accent, flexShrink: 0 }}
                     >
-                      ▶ Écouter
+                      {n("btnEcouter")}
                     </button>
                   </div>
 
@@ -417,9 +407,7 @@ export default function Cours29() {
             })}
           </div>
 
-          <div style={{ ...S.infoBox, marginTop: 20 }}>
-            <strong>À observer :</strong> comparez la basse sur le 2e accord de chaque harmonisation. Bach descend vers la dominante Sol. Debussy monte en parallèle. La différence est là — dans la logique de mouvement de la basse.
-          </div>
+          <div style={{ ...S.infoBox, marginTop: 20 }} dangerouslySetInnerHTML={{ __html: n("infoBoxObserver") }} />
         </div>
       )}
 
@@ -429,34 +417,30 @@ export default function Cours29() {
       {/* ══ SECTION 4 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
-          <h2 style={S.h2}>Quiz — Analyse comparative du répertoire</h2>
+          <h2 style={S.h2}>{n("h2Quiz")}</h2>
           {quizDone ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
               <div style={{ fontSize: 32, marginBottom: 8 }}>
                 {quizScore >= 8 ? "🎨" : quizScore >= 6 ? "👍" : "💪"}
               </div>
               <div style={{ fontSize: 20, fontWeight: 500, color: "#111", marginBottom: 4 }}>
-                Score : {quizScore} / {QUIZ_COUNT}
+                {i18n.t("score")} : {quizScore} / {QUIZ_COUNT}
               </div>
               <div style={{ fontSize: 14, color: "#666", marginBottom: 20 }}>
-                {quizScore >= 8
-                  ? "Excellent ! Vous identifiez les styles harmoniques avec précision."
-                  : quizScore >= 6
-                  ? "Bien ! Revoyez les critères d'identification des périodes romantique et impressionniste."
-                  : "Continuez — relisez les 5 périodes et leurs critères distinctifs."}
+                {i18n.quizMessage(quizScore, QUIZ_COUNT)}
               </div>
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: `0.5px solid ${ACCENT}`, borderRadius: 20, cursor: "pointer", background: ACCENT_BG, color: ACCENT }}
               >
-                Nouvelles questions
+                {i18n.newQ}
               </button>
             </div>
           ) : (
             <div>
               <div style={{ fontSize: 12, color: "#999", marginBottom: 10 }}>
-                Question {quizIdx + 1} / {QUIZ_COUNT}
-                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} questions dans la banque</span>
+                {i18n.t("question")} {quizIdx + 1} / {QUIZ_COUNT}
+                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} {i18n.t("questionsPool")}</span>
               </div>
               <div style={{ fontSize: 15, fontWeight: 500, color: "#111", lineHeight: 1.6, marginBottom: 16 }}>
                 {quizQuestions[quizIdx].q}
@@ -486,7 +470,7 @@ export default function Cours29() {
               {quizAnswered && (
                 <button onClick={nextQuiz}
                   style={{ marginTop: 12, fontSize: 13, padding: "7px 18px", border: "0.5px solid #333", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#333" }}>
-                  {quizIdx + 1 < QUIZ_COUNT ? "Question suivante →" : "Voir mon score"}
+                  {quizIdx + 1 < QUIZ_COUNT ? i18n.nextQ : i18n.seeScore}
                 </button>
               )}
             </div>

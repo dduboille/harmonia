@@ -49,45 +49,6 @@ interface Sixte {
   resolution: string;
 }
 
-const SIXTES: Sixte[] = [
-  {
-    id: "italienne",
-    nom: "Sixte italienne",
-    abrev: "It+6",
-    notes: "Lab – Do – Fa#",
-    structure: "bVI – I – #IV",
-    desc: "La plus simple des trois — 3 voix seulement. La sixte augmentée est à l'état le plus pur.",
-    color: "#5C3D6E",
-    bg: "#F0EBF8",
-    dotKeys: ["Lab:3", "Do:4", "Fa#:4"],
-    resolution: "Lab↓Sol / Fa#↑Sol (quinte de dominante)",
-  },
-  {
-    id: "francaise",
-    nom: "Sixte française",
-    abrev: "Fr+6",
-    notes: "Lab – Do – Ré – Fa#",
-    structure: "bVI – I – II – #IV",
-    desc: "Contient la 9e de la dominante (Ré). Plus colorée que l'italienne, elle annonce déjà la sonorité de V9.",
-    color: "#185FA5",
-    bg: "#E6F1FB",
-    dotKeys: ["Lab:3", "Do:4", "Ré:4", "Fa#:4"],
-    resolution: "Résout sur V7 (Sol–Si–Ré–Fa)",
-  },
-  {
-    id: "allemande",
-    nom: "Sixte allemande",
-    abrev: "Al+6",
-    notes: "Lab – Do – Mib – Fa#",
-    structure: "bVI – I – bIII – #IV",
-    desc: "La plus riche et la plus utilisée. Enharmoniquement identique à un accord de dominante 7e (Lab7), mais sa résolution est différente.",
-    color: "#993C1D",
-    bg: "#FAECE7",
-    dotKeys: ["Lab:3", "Do:4", "Mib:4", "Fa#:4"],
-    resolution: "Résout sur V avec doublure de quinte (pour éviter les quintes parallèles)",
-  },
-];
-
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const QUIZ_COUNT = 10;
@@ -121,6 +82,8 @@ const S = {
 export default function Cours24() {
   const [activeSection, setActiveSection] = useState<string>("types");
   const i18n = useCoursI18n("cours24");
+  const { tc } = i18n;
+  const n = (key: string) => tc(`narrative.${key}` as any);
   const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours24Content);
 
@@ -134,6 +97,47 @@ export default function Cours24() {
   const [selectedOpt, setSelectedOpt] = useState<number | null>(null);
 
   const pianoRef = useRef<PianoPlayerRef>(null);
+
+  // ── Translated data arrays ──────────────────────────────────────────────────
+
+  const SIXTES: Sixte[] = [
+    {
+      id: "italienne",
+      nom: n("sixteItNom"),
+      abrev: "It+6",
+      notes: "Lab – Do – Fa#",
+      structure: "bVI – I – #IV",
+      desc: n("sixteItDesc"),
+      color: "#5C3D6E",
+      bg: "#F0EBF8",
+      dotKeys: ["Lab:3", "Do:4", "Fa#:4"],
+      resolution: n("sixteItResolution"),
+    },
+    {
+      id: "francaise",
+      nom: n("sixtefrNom"),
+      abrev: "Fr+6",
+      notes: "Lab – Do – Ré – Fa#",
+      structure: "bVI – I – II – #IV",
+      desc: n("sixtefrDesc"),
+      color: "#185FA5",
+      bg: "#E6F1FB",
+      dotKeys: ["Lab:3", "Do:4", "Ré:4", "Fa#:4"],
+      resolution: n("sixtefrResolution"),
+    },
+    {
+      id: "allemande",
+      nom: n("sixteAlNom"),
+      abrev: "Al+6",
+      notes: "Lab – Do – Mib – Fa#",
+      structure: "bVI – I – bIII – #IV",
+      desc: n("sixteAlDesc"),
+      color: "#993C1D",
+      bg: "#FAECE7",
+      dotKeys: ["Lab:3", "Do:4", "Mib:4", "Fa#:4"],
+      resolution: n("sixteAlResolution"),
+    },
+  ];
 
   const handlePlaySixte = (sixte: Sixte) => {
     playScale(pianoRef as React.RefObject<PianoPlayerRef>, sixte.dotKeys, 320);
@@ -156,13 +160,6 @@ export default function Cours24() {
     setQuizAnswered(false); setSelectedOpt(null); setQuizDone(false);
   };
 
-  const sectionLabel = (id: string) => {
-    if (id === "types") return "Les 3 types";
-    if (id === "application") return "Usage & contexte";
-    if (id === "conservatoire") return "🎓 Conservatoire";
-    return "Quiz";
-  };
-
   return (
     <div style={S.wrap}>
       {/* Piano caché */}
@@ -172,7 +169,7 @@ export default function Cours24() {
 
       {/* Header */}
       <div style={S.header}>
-        <span style={S.badge}>Niveau 2 · Cours 24</span>
+        <span style={S.badge}>{i18n.badge}</span>
         <h1 style={S.h1}>{tr("Les accords de sixte augmentée")}</h1>
         <p style={S.subtitle}>{i18n.subtitle}</p>
       </div>
@@ -181,9 +178,9 @@ export default function Cours24() {
         composer="Franz Liszt"
         period="1811–1886"
         emoji="🎹"
-        concept="Accords altérés expressifs"
-        anecdote="Liszt utilisait la sixte augmentée allemande comme signature harmonique — un accord qui concentre toute la tension romantique en 3 ou 4 notes."
-        lesson="Un accord altéré bien placé vaut mieux que dix accords ordinaires."
+        concept={n("maitreCardConcept")}
+        anecdote={n("maitreCardAnecdote")}
+        lesson={n("maitreCardLesson")}
         accentColor="#5C3D6E"
       />
 
@@ -191,7 +188,7 @@ export default function Cours24() {
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => (
           <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
-            {sectionLabel(id)}
+            {i18n.sectionLabel(id)}
           </button>
         ))}
       </nav>
@@ -199,20 +196,13 @@ export default function Cours24() {
       {/* ══ SECTION 1 : LES 3 TYPES ══ */}
       {activeSection === "types" && (
         <div>
-          <h2 style={S.h2}>Les trois sixtes augmentées</h2>
-          <p style={S.p}>
-            La sixte augmentée est un accord pré-dominant altéré caractérisé par l'intervalle de sixte augmentée
-            entre le bVI (à la basse) et le #IV. Il en existe trois variantes — italienne, française et allemande —
-            chacune avec sa construction et sa couleur propres.
-          </p>
+          <h2 style={S.h2}>{n("h2Types")}</h2>
+          <p style={S.p}>{n("pTypes")}</p>
 
-          <div style={S.infoBox}>
-            <strong>Contexte en Do majeur :</strong> Dans tous les exemples ci-dessous, nous sommes en Do majeur.
-            Le bVI = Lab, le I = Do, le #IV = Fa#. Ces trois notes constituent le noyau commun à toutes les sixtes augmentées.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("infoBoxContext") }} />
 
           <p style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>
-            Cliquez sur un accord pour le développer et l'écouter.
+            {n("clickHint")}
           </p>
 
           {SIXTES.map(sixte => (
@@ -262,7 +252,7 @@ export default function Cours24() {
                   {/* Notes */}
                   <div style={{ marginTop: 12, marginBottom: 12 }}>
                     <div style={{ fontSize: 11, fontWeight: 600, color: sixte.color, marginBottom: 6, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>
-                      NOTES (Do majeur)
+                      {n("notesLabel")}
                     </div>
                     <div style={{ fontFamily: "monospace", fontSize: 14, color: "#444", background: "#f8f8f8", padding: "6px 10px", borderRadius: 6 }}>
                       {sixte.notes}
@@ -272,7 +262,7 @@ export default function Cours24() {
                   {/* Structure */}
                   <div style={{ marginBottom: 12 }}>
                     <div style={{ fontSize: 11, fontWeight: 600, color: sixte.color, marginBottom: 4, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>
-                      STRUCTURE DEGRÉS
+                      {n("structureLabel")}
                     </div>
                     <div style={{ fontFamily: "monospace", fontSize: 13, color: "#444" }}>{sixte.structure}</div>
                   </div>
@@ -280,7 +270,7 @@ export default function Cours24() {
                   {/* Description */}
                   <div style={{ marginBottom: 12 }}>
                     <div style={{ fontSize: 11, fontWeight: 600, color: sixte.color, marginBottom: 4, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>
-                      CARACTÉRISTIQUE
+                      {n("caracLabel")}
                     </div>
                     <div style={{ fontSize: 13, color: "#444", lineHeight: 1.6 }}>{sixte.desc}</div>
                   </div>
@@ -288,7 +278,7 @@ export default function Cours24() {
                   {/* Résolution */}
                   <div style={{ marginBottom: 14 }}>
                     <div style={{ fontSize: 11, fontWeight: 600, color: sixte.color, marginBottom: 4, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>
-                      RÉSOLUTION
+                      {n("resolutionLabel")}
                     </div>
                     <div style={{ fontSize: 13, color: "#444", lineHeight: 1.6, fontFamily: "monospace" }}>{sixte.resolution}</div>
                   </div>
@@ -297,7 +287,7 @@ export default function Cours24() {
                     onClick={e => { e.stopPropagation(); handlePlaySixte(sixte); }}
                     style={{ fontSize: 12, padding: "5px 14px", border: `0.5px solid ${sixte.color}`, borderRadius: 20, cursor: "pointer", background: "transparent", color: sixte.color }}
                   >
-                    ▶ Réécouter {sixte.abrev}
+                    {n("reecouterBtn")} {sixte.abrev}
                   </button>
                 </div>
               )}
@@ -305,48 +295,35 @@ export default function Cours24() {
           ))}
 
           {/* Règle universelle */}
-          <div style={S.infoBox}>
-            <strong>Règle universelle des sixtes augmentées :</strong> Quel que soit le type (It+6, Fr+6, Al+6),
-            l'intervalle de sixte augmentée (bVI–#IV) résout toujours par mouvement contraire vers la quinte de dominante.
-            En Do majeur : Lab descend vers Sol, Fa# monte vers Sol. Cette convergence est <em>obligatoire</em>.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("infoBoxRegle") }} />
         </div>
       )}
 
       {/* ══ SECTION 2 : USAGE & CONTEXTE ══ */}
       {activeSection === "application" && (
         <div>
-          <h2 style={S.h2}>Usage et contexte</h2>
-          <p style={S.p}>
-            Les sixtes augmentées n'apparaissent pas au hasard — elles s'inscrivent dans un schéma harmonique précis
-            et révèlent leur pleine puissance dans la musique baroque tardive, classique et romantique.
-          </p>
+          <h2 style={S.h2}>{n("h2Application")}</h2>
+          <p style={S.p}>{n("pApplication")}</p>
 
           {/* Sous-section A : Contexte d'apparition */}
           <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 10px", color: "#111" }}>
-            Contexte d'apparition
+            {n("h3Contexte")}
           </h3>
 
-          <div style={S.infoBox}>
-            <strong>Schéma classique :</strong>{" "}
-            <span style={{ fontFamily: "monospace" }}>IVm → It+6/Fr+6/Al+6 → V → I</span>
-            <br />
-            La sixte augmentée est un accord <em>pré-dominant</em> : elle s'inscrit toujours avant V (ou I6/4–V).
-            Le IVm (sous-dominante mineure) la prépare en douceur.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("infoBoxSchema") }} />
 
           <div style={{ marginBottom: 16 }}>
             <div style={{ fontSize: 13, fontWeight: 500, color: "#555", marginBottom: 8 }}>
-              Toujours en premier renversement — basse sur bVI :
+              {n("bassePremierRenversement")}
             </div>
             <div style={{ fontFamily: "monospace", fontSize: 13, background: "#f8f8f8", padding: "8px 12px", borderRadius: 6, color: "#333" }}>
-              Lab (bVI) est invariablement à la basse → il descend par demi-ton vers Sol (quinte de V)
+              {n("bassePremierRenversementDesc")}
             </div>
           </div>
 
           {/* Exemples d'œuvres */}
           <h3 style={{ fontSize: 14, fontWeight: 500, margin: "20px 0 10px", color: "#111" }}>
-            Exemples dans le répertoire
+            {n("h3Exemples")}
           </h3>
 
           {[
@@ -357,7 +334,7 @@ export default function Cours24() {
               color: "#993C1D",
               bg: "#FAECE7",
               dotKeys: ["Lab:3", "Do:4", "Mib:4", "Fa#:4"],
-              comment: "Schubert utilise Al+6 pour créer un moment d'intense mélancolie avant la résolution. La richesse harmonique de l'accord amplifie la couleur sombre du lied.",
+              comment: n("commentSchubert"),
             },
             {
               titre: "Sonate op.57 « Appassionata »",
@@ -366,7 +343,7 @@ export default function Cours24() {
               color: "#5C3D6E",
               bg: "#F0EBF8",
               dotKeys: ["Lab:3", "Do:4", "Fa#:4"],
-              comment: "Beethoven utilise la sixte italienne (3 voix, pureté absolue) pour un effet dramatique ciblé. La sobriété de l'accord renforce l'intensité du moment.",
+              comment: n("commentBeethoven"),
             },
             {
               titre: "Intermezzo op.118 n°2",
@@ -375,7 +352,7 @@ export default function Cours24() {
               color: "#185FA5",
               bg: "#E6F1FB",
               dotKeys: ["Lab:3", "Do:4", "Ré:4", "Fa#:4"],
-              comment: "Brahms exploite la Fr+6 pour sa couleur particulière : le Ré (IIe degré = 9e de dominante) préfigure la couleur de V9 et enrichit la cadence finale.",
+              comment: n("commentBrahms"),
             },
           ].map(ex => (
             <div key={ex.titre} style={{
@@ -399,7 +376,7 @@ export default function Cours24() {
                   onClick={() => playScale(pianoRef as React.RefObject<PianoPlayerRef>, ex.dotKeys, 320)}
                   style={{ fontSize: 12, padding: "5px 12px", border: `0.5px solid ${ex.color}`, borderRadius: 20, cursor: "pointer", background: "rgba(255,255,255,0.8)", color: ex.color, flexShrink: 0 }}
                 >
-                  ▶ Écouter
+                  ▶ {i18n.listen}
                 </button>
               </div>
               <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6, marginTop: 10 }}>{ex.comment}</div>
@@ -408,7 +385,7 @@ export default function Cours24() {
 
           {/* Sous-section B : Utilisation stylistique */}
           <h3 style={{ fontSize: 14, fontWeight: 500, margin: "24px 0 10px", color: "#111" }}>
-            Utilisation stylistique à travers les époques
+            {n("h3Stylistique")}
           </h3>
 
           {[
@@ -416,25 +393,25 @@ export default function Cours24() {
               epoque: "Baroque tardif",
               icone: "🪔",
               color: "#BA7517",
-              desc: "Bach et Haendel utilisent la sixte augmentée aux cadences importantes. L'accord est fonctionnel, sans excès expressif — purement structurel.",
+              desc: n("epoqueBaroque"),
             },
             {
               epoque: "Classique",
               icone: "🏛️",
               color: "#185FA5",
-              desc: "Mozart et Beethoven codifient la formule Al+6 → I6/4 → V → I comme cadence finale par excellence. La sixte augmentée acquiert son rôle rhétorique.",
+              desc: n("epoqueClassique"),
             },
             {
               epoque: "Romantique",
               icone: "🌹",
               color: "#5C3D6E",
-              desc: "Schubert, Schumann, Brahms et Liszt l'utilisent de façon expressionniste : modulations via l'enharmonie, enchaînements inattendus, retardements dramatiques.",
+              desc: n("epoqueRomantique"),
             },
             {
               epoque: "Jazz (substitution tritonique)",
               icone: "🎷",
               color: "#0F6E56",
-              desc: "Le jazz redécouvre l'équivalence Al+6 ↔ bII7 sous le nom de substitution tritonique. Réb7 en Do = Lab7 enharmonique = Al+6 fonctionnel — même tension, autre langage.",
+              desc: n("epoqueJazz"),
             },
           ].map(item => (
             <div key={item.epoque} style={{
@@ -455,20 +432,9 @@ export default function Cours24() {
           ))}
 
           {/* InfoBox Jazz */}
-          <div style={S.infoBox}>
-            <strong>Al+6 et la substitution tritonique :</strong> La sixte allemande Lab–Do–Mib–Fa# est
-            enharmoniquement identique à Lab7 (Lab–Do–Mib–Sol♭). En jazz en Do majeur, Lab7 = bII7
-            (« Réb7 » orthographié différemment). Les jazzmen utilisent cette ambiguïté pour la substitution tritonique :
-            remplacer Sol7 (V7) par Réb7 (bII7) fonctionne <em>exactement</em> pour la même raison que Al+6 crée
-            de la tension vers V.
-          </div>
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("infoBoxJazz") }} />
 
-          <div style={S.warnBox}>
-            <strong>Piège fréquent :</strong> Ne pas confondre Al+6 et V7/IV (même accord, fonctions opposées).
-            Al+6 résout vers V (Lab et Fa# convergent vers Sol par mvt contraire).
-            V7/IV (Lab7) résout vers IV = Réb majeur (résolution normale de dominante).
-            La même combinaison de notes peut mener dans deux directions totalement différentes selon le contexte.
-          </div>
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("warnBox") }} />
         </div>
       )}
 
@@ -488,27 +454,23 @@ export default function Cours24() {
                 {quizScore >= 8 ? "🎹" : quizScore >= 6 ? "👍" : "💪"}
               </div>
               <div style={{ fontSize: 20, fontWeight: 500, color: "#111", marginBottom: 4 }}>
-                Score : {quizScore} / {QUIZ_COUNT}
+                {i18n.t("score")} : {quizScore} / {QUIZ_COUNT}
               </div>
               <div style={{ fontSize: 14, color: "#666", marginBottom: 20 }}>
-                {quizScore >= 8
-                  ? "Excellent ! Vous maîtrisez les sixtes augmentées."
-                  : quizScore >= 6
-                  ? "Bon travail — relisez les types et les règles de résolution."
-                  : "Continuez — la construction et la résolution demandent de la pratique."}
+                {i18n.quizMessage(quizScore, QUIZ_COUNT)}
               </div>
               <button
                 onClick={resetQuiz}
                 style={{ fontSize: 13, padding: "8px 20px", border: "0.5px solid #5C3D6E", borderRadius: 20, cursor: "pointer", background: "#F0EBF8", color: "#5C3D6E" }}
               >
-                Nouveau quiz
+                {i18n.newQ}
               </button>
             </div>
           ) : (
             <div>
               <div style={{ fontSize: 12, color: "#999", marginBottom: 10 }}>
                 Question {quizIdx + 1} / {QUIZ_COUNT}
-                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} questions dans le pool</span>
+                <span style={{ marginLeft: 12, color: "#bbb" }}>{ALL_QUESTIONS.length} {i18n.t("questionsPool")}</span>
               </div>
               <div style={{ fontSize: 15, fontWeight: 500, color: "#111", lineHeight: 1.6, marginBottom: 16 }}>
                 {quizQuestions[quizIdx].q}
@@ -540,7 +502,7 @@ export default function Cours24() {
               {quizAnswered && (
                 <button onClick={nextQuiz}
                   style={{ marginTop: 12, fontSize: 13, padding: "7px 18px", border: "0.5px solid #333", borderRadius: 20, cursor: "pointer", background: "transparent", color: "#333" }}>
-                  {quizIdx + 1 < QUIZ_COUNT ? "Question suivante →" : "Voir mon score"}
+                  {quizIdx + 1 < QUIZ_COUNT ? i18n.nextQ : i18n.seeScore}
                 </button>
               )}
             </div>
