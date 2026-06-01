@@ -4,9 +4,15 @@
  * pour tous les fichiers src/data/coursNContent.ts.
  *
  * Usage:
- *   node scripts/translate-content.mjs           → tous les cours
- *   node scripts/translate-content.mjs 2         → cours 2 uniquement
- *   node scripts/translate-content.mjs 2 5       → cours 2 à 5
+ *   node scripts/translate-content.mjs           → cours 1-37 (tous)
+ *   node scripts/translate-content.mjs 18        → cours 18 uniquement
+ *   node scripts/translate-content.mjs 18 37     → cours 18 à 37
+ *
+ * Stratégie anti-token-limit :
+ *   - Découpage en batches de BATCH_SIZE questions par appel API
+ *   - Chaque batch = 1 appel indépendant, résultats concaténés
+ *   - Idempotent : saute les langues déjà traduites complètement
+ *   - Force re-traduction si le nb de questions < nb FR (traduction partielle)
  */
 
 import Anthropic from "@anthropic-ai/sdk";
@@ -27,30 +33,78 @@ const LANGS = {
   pt: "Brazilian Portuguese",
 };
 
+// Nombre de questions par appel API — ajuste si tu as des timeouts
+const BATCH_SIZE = 15;
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 function varName(lang) {
   return `questions${lang[0].toUpperCase()}${lang.slice(1)}`;
 }
 
-/** Extract the raw content of `const questionsFr: Question[] = [ ... ];` */
+/** Extrait le contenu brut de `const questionsFr: Question[] = [ ... ];` */
 function extractFrBlock(content) {
   const m = content.match(/const questionsFr:\s*Question\[\]\s*=\s*\[([\s\S]*?)\n\];/);
   if (!m) throw new Error("questionsFr not found");
   return m[1];
 }
 
-/** True if questionsXx already exists as a real declaration (not just an alias to questionsFr) */
-function isTranslated(content, lang) {
-  const v = varName(lang);
-  // Look for `const questionsXx: Question[] = [` (real array, not `= questionsFr`)
-  return new RegExp(`const ${v}:\\s*Question\\[\\]\\s*=\\s*\\[`).test(content);
+/** Découpe le bloc FR en lignes de questions individuelles. */
+function splitIntoQuestions(frBlock) {
+  const lines = frBlock.split("\n");
+  const questions = [];
+  let current = "";
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("//")) {
+      if (current.trim()) {
+        questions.push(current.trim());
+        current = "";
+      }
+      continue;
+    }
+    if (trimmed.startsWith("{ q:")) {
+      if (current.trim()) questions.push(current.trim());
+      current = trimmed;
+    } else {
+      current += " " + trimmed;
+    }
+  }
+  if (current.trim()) questions.push(current.trim());
+
+  return questions.filter(q => q.startsWith("{ q:"));
 }
 
-// ── Claude translation ────────────────────────────────────────────────────────
+/** Compte les questions dans un bloc brut. */
+function countQuestions(block) {
+  return (block.match(/\{ q:/g) || []).length;
+}
 
-async function translateBlock(frBlock, lang) {
+/**
+ * True si la langue est déjà traduite ET avec autant de questions que le FR.
+ * Si la traduction est partielle (moins de questions), on la refait.
+ */
+function isTranslatedCompletely(content, lang, frCount) {
+  const v = varName(lang);
+  if (!new RegExp(`const ${v}:\\s*Question\\[\\]\\s*=\\s*\\[`).test(content)) {
+    return false;
+  }
+  const m = content.match(new RegExp(`const ${v}:\\s*Question\\[\\]\\s*=\\s*\\[([\\s\\S]*?)\\n\\];`));
+  if (!m) return false;
+  const existingCount = countQuestions(m[1]);
+  if (existingCount < frCount) {
+    console.log(`    ⚠ ${lang}: ${existingCount}/${frCount} questions — re-traduction`);
+    return false;
+  }
+  return true;
+}
+
+// ── Traduction via Claude ─────────────────────────────────────────────────────
+
+async function translateBatch(batch, lang, batchNum, total) {
   const langName = LANGS[lang];
+  const batchText = batch.join("\n");
 
   const prompt = `You are translating French music-theory quiz questions into ${langName}.
 
@@ -65,11 +119,12 @@ Translation rules:
 - Keep Roman numerals unchanged: I, II, III, IV, V, VI, VII
 - Keep function symbols unchanged: T, SD, D, V→I, ii–V–I, etc.
 - Keep numeric intervals when used as identifiers: "3 dt", "4 dt", etc.
-- Output ONLY the translated array items in exactly the same TypeScript format
+- Output ONLY the translated items in exactly the same TypeScript single-line format
+- One item per line, each starting with { q:
 - No markdown, no code fences, no comments, no explanation
 
-French items to translate:
-${frBlock}`;
+Batch ${batchNum}/${total} — French items to translate:
+${batchText}`;
 
   const resp = await client.messages.create({
     model: "claude-sonnet-4-6",
@@ -78,12 +133,30 @@ ${frBlock}`;
   });
 
   let text = resp.content[0].text.trim();
-  // Strip accidental code fences
   text = text.replace(/^```(?:typescript|ts|json)?\n?/, "").replace(/\n?```$/, "").trim();
   return text;
 }
 
-// ── File processing ───────────────────────────────────────────────────────────
+async function translateAllBatches(frQuestions, lang) {
+  const chunks = [];
+  for (let i = 0; i < frQuestions.length; i += BATCH_SIZE) {
+    chunks.push(frQuestions.slice(i, i + BATCH_SIZE));
+  }
+
+  const results = [];
+  for (let i = 0; i < chunks.length; i++) {
+    process.stdout.write(`       batch ${i + 1}/${chunks.length}...`);
+    const translated = await translateBatch(chunks[i], lang, i + 1, chunks.length);
+    results.push(translated);
+    process.stdout.write(` ✓\n`);
+    // Throttle entre batches
+    if (i < chunks.length - 1) await new Promise(r => setTimeout(r, 500));
+  }
+
+  return results.join("\n");
+}
+
+// ── Traitement d'un fichier ───────────────────────────────────────────────────
 
 async function processCours(num) {
   const filePath = resolve(ROOT, `src/data/cours${num}Content.ts`);
@@ -91,7 +164,7 @@ async function processCours(num) {
   try {
     content = readFileSync(filePath, "utf-8");
   } catch {
-    console.log(`  cours${num}Content.ts not found, skipping`);
+    console.log(`  cours${num}Content.ts introuvable, ignoré`);
     return;
   }
 
@@ -99,72 +172,72 @@ async function processCours(num) {
   try {
     frBlock = extractFrBlock(content);
   } catch {
-    console.log(`  No questionsFr found in cours${num}, skipping`);
+    console.log(`  Pas de questionsFr dans cours${num}, ignoré`);
     return;
   }
 
-  const missing = Object.keys(LANGS).filter(l => !isTranslated(content, l));
+  const frCount = countQuestions(frBlock);
+  if (frCount === 0) {
+    console.log(`  questionsFr vide dans cours${num}, ignoré`);
+    return;
+  }
+
+  const missing = Object.keys(LANGS).filter(l => !isTranslatedCompletely(content, l, frCount));
   if (missing.length === 0) {
-    console.log(`  All languages already translated.`);
+    console.log(`  Toutes les langues sont complètes (${frCount}q).`);
     return;
   }
 
-  console.log(`  Missing: ${missing.join(", ")}`);
+  console.log(`  FR: ${frCount} questions | À traduire: ${missing.join(", ")}`);
+  const frQuestions = splitIntoQuestions(frBlock);
 
   let modified = false;
 
   for (const lang of missing) {
     const v = varName(lang);
-    console.log(`  → ${LANGS[lang]}...`);
+    console.log(`  → ${LANGS[lang]} (${frCount}q en ${Math.ceil(frCount / BATCH_SIZE)} batch${frCount > BATCH_SIZE ? "es" : ""}):`);
 
     try {
-      const translated = await translateBlock(frBlock, lang);
+      const translated = await translateAllBatches(frQuestions, lang);
 
-      // Build the TypeScript declaration
-      const declaration = `const ${v}: Question[] = [${translated}\n];`;
-
-      // Insert before "// ─── Export ───" or "export const"
-      if (content.includes("// ─── Export ───")) {
-        content = content.replace(
-          /(\/\/ ─── Export ───)/,
-          `${declaration}\n\n$1`
-        );
-      } else {
-        content = content.replace(
-          /(export const cours\d+Content)/,
-          `${declaration}\n\n$1`
-        );
-      }
-
-      // Replace `questions: questionsFr` → `questions: questionsXx` for this lang's entry
-      // Handles both inline and multiline export entries
+      // Supprime l'ancienne déclaration partielle si elle existe
       content = content.replace(
-        new RegExp(
-          `(${lang}\\s*:\\s*\\{[^}]*?)questions\\s*:\\s*questionsFr`,
-          "s"
-        ),
-        `$1questions: ${v}`
+        new RegExp(`const ${v}:\\s*Question\\[\\]\\s*=\\s*\\[[\\s\\S]*?\\n\\];\\s*`),
+        ""
       );
-
-      // Also replace alias `const questionsXx: Question[] = questionsFr;` if present
+      // Supprime l'alias `const questionsXx: Question[] = questionsFr;` si présent
       content = content.replace(
-        new RegExp(`const ${v}:\\s*Question\\[\\]\\s*=\\s*questionsFr;`),
+        new RegExp(`const ${v}:\\s*Question\\[\\]\\s*=\\s*questionsFr;\\s*`),
         ""
       );
 
+      const declaration = `const ${v}: Question[] = [\n${translated}\n];`;
+
+      // Insère avant l'export
+      if (content.includes("// ─── Export ───")) {
+        content = content.replace(/(\/\/ ─── Export ───)/, `${declaration}\n\n$1`);
+      } else {
+        content = content.replace(/(export const cours\d+Content)/, `${declaration}\n\n$1`);
+      }
+
+      // Remplace `questions: questionsFr` → `questions: questionsXx` dans l'entrée de cette langue
+      content = content.replace(
+        new RegExp(`(${lang}\\s*:\\s*\\{[^}]*?)questions\\s*:\\s*questionsFr`, "s"),
+        `$1questions: ${v}`
+      );
+
       modified = true;
-      console.log(`     ✓ done`);
     } catch (e) {
-      console.error(`     ✗ failed: ${e.message}`);
+      console.error(`     ✗ échec: ${e.message}`);
     }
 
-    // Throttle to avoid hitting rate limits
+    // Throttle entre langues
     await new Promise(r => setTimeout(r, 400));
   }
 
   if (modified) {
     writeFileSync(filePath, content, "utf-8");
-    console.log(`  Saved.`);
+    console.log(`  ✓ Sauvegardé.`);
   }
 }
 
@@ -173,7 +246,7 @@ async function processCours(num) {
 const args = process.argv.slice(2);
 let nums;
 if (args.length === 0) {
-  nums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+  nums = Array.from({ length: 37 }, (_, i) => i + 1); // cours 1 → 37
 } else if (args.length === 1) {
   nums = [parseInt(args[0])];
 } else {
@@ -181,11 +254,16 @@ if (args.length === 0) {
   nums = Array.from({ length: to - from + 1 }, (_, i) => from + i);
 }
 
-console.log(`Translating cours: ${nums.join(", ")}\n`);
+if (!process.env.ANTHROPIC_API_KEY) {
+  console.error("❌  ANTHROPIC_API_KEY non définie. Lance : ANTHROPIC_API_KEY=sk-... node scripts/translate-content.mjs");
+  process.exit(1);
+}
+
+console.log(`Traduction des cours : ${nums[0]}–${nums[nums.length - 1]}\n`);
 
 for (const n of nums) {
   console.log(`\n=== Cours ${n} ===`);
   await processCours(n);
 }
 
-console.log("\n✓ All done.");
+console.log("\n✓ Terminé.");
