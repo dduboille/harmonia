@@ -12,6 +12,50 @@
 
 ---
 
+## AMENDEMENT 2026-06-13 (après checkpoint cours 38) — exigences renforcées
+
+Décisions utilisateur en cours d'exécution, applicables à **TOUS** les cours (38–41) :
+
+1. **Pool de quiz : 80 à 110 questions par cours** (au lieu de 6-8), de difficulté
+   progressive, couvrant tous les modules du cours. **Traduit intégralement dans
+   les 6 langues** (pas d'héritage du FR) : chaque locale du content file possède
+   son propre tableau `questions` traduit. Un sous-ensemble (ex. 10) est tiré par
+   session de quiz, comme dans les cours existants.
+
+2. **Exercices reliés au générateur SATB**, 3 à 5 par cours, **adaptés au sujet** :
+   - Cours 38 (notes étrangères) → exercices `identify` / `build` (repérer/identifier les notes étrangères).
+   - Cours 39 (7èmes d'espèces) → exercices `satb` à 4 voix (réaliser des progressions avec 7e sur divers degrés).
+   - Cours 40 (invention à 2 voix) → exercices `identify` / `build` (analyser sujet/réponse, repérer l'imitation).
+   - Cours 41 (écriture de style) → exercices `satb` à 4 voix (réalisations de style).
+
+   Intégration via le système existant :
+   - Ajouter les objets exercice (types `SATBExercise` / `IdentifyExercise` /
+     `BuildExercise` de `src/types/exercise.ts`) dans un nouveau fichier
+     `src/exercises/cours38-41-exercises.ts`, agrégé dans
+     `src/exercises/all-exercises.ts` (`ALL_EXERCISES`).
+   - Ajouter l'entrée du cours dans `COURS_META` de
+     `src/app/[locale]/cours/[id]/exercices/page.tsx` (titre + badge).
+   - Les solutions SATB (`solution: SATBMeasure[]`) doivent être **musicalement
+     correctes** (4 voix, tessitures S=C4-G5/A=G3-C5/T=C3-G4/B=E2-C4, pas de
+     quintes/octaves parallèles, sensible résolue, 7e préparée/résolue) — point de
+     vigilance majeur pour le reviewer et l'utilisateur.
+
+3. **Citations :** citer précisément les références (au minimum **Dubois** ET
+   **Gallon** pour le cours 38 ; références propres à chaque cours sinon).
+
+### Conséquence sur le déroulé de chaque tâche cours
+
+Ordre révisé par cours : (a) build FR — composant + 80-110 questions FR + narrative
++ exercices ; (b) vérif `tsc`/`lint` ; (c) **CHECKPOINT utilisateur** (valide le
+contenu FR ET les exercices/solutions) ; (d) traduction intégrale 6 langues du quiz
++ namespaces messages ; (e) `node scripts/check-cours-i18n.mjs N` + `tsc` ; (f) commit.
+
+Le volume du quiz (80-110 × 6 langues) justifie de **scinder la traduction par
+langue** (un sous-agent par langue, ou par lots), pour rester dans les limites de
+contexte.
+
+---
+
 ## Référence partagée (à lire avant toute tâche)
 
 ### Anatomie d'un cours existant
