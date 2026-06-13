@@ -400,6 +400,8 @@ export default function Cours38() {
           <div style={S.warn} dangerouslySetInnerHTML={{ __html: n("emploiWarnBox") }} />
 
           <p style={S.p} dangerouslySetInnerHTML={{ __html: n("emploiP2") }} />
+
+          <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("emploiGallonBox") }} />
         </div>
       )}
 
