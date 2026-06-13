@@ -159,6 +159,7 @@ const SALAMANDER_URLS: Record<string, string> = {
 };
 
 let _sampler: any = null;
+let _reverb: any = null;
 let _tone: any = null;
 let _audioCtx: AudioContext | null = null;
 let _loading = false;
@@ -172,31 +173,31 @@ function getInstrument(): Promise<void> {
     if (_loading) return;
     _loading = true;
 
-    import("tone").then(async (Tone) => {
-      _tone = Tone;
-      await Tone.start();
-      _sampler = new Tone.Sampler({
-        urls: SALAMANDER_URLS,
-        baseUrl: "https://tonejs.github.io/audio/salamander/",
-        onload: () => {
-          _ready = true;
-          _loading = false;
-          _cbs.forEach((cb) => cb());
-          _cbs = [];
-        },
-        onerror: () => {
-          _ready = true;
-          _loading = false;
-          _cbs.forEach((cb) => cb());
-          _cbs = [];
-        },
-      }).toDestination();
-    }).catch(() => {
+    const settle = () => {
       _ready = true;
       _loading = false;
       _cbs.forEach((cb) => cb());
       _cbs = [];
-    });
+    };
+
+    import("tone").then(async (Tone) => {
+      _tone = Tone;
+      await Tone.start();
+
+      // Chaîne d'effets « salle de concert » : reverb chaleureuse → sortie.
+      // La reverb enveloppe les voix SATB pour qu'elles se fondent ensemble.
+      _reverb = new Tone.Reverb({ decay: 2.2, wet: 0.28 });
+      await _reverb.generate();
+      _reverb.toDestination();
+
+      _sampler = new Tone.Sampler({
+        urls: SALAMANDER_URLS,
+        baseUrl: "https://tonejs.github.io/audio/salamander/",
+        release: 1.4, // laisse les notes s'éteindre naturellement dans la reverb
+        onload: settle,
+        onerror: settle,
+      }).connect(_reverb);
+    }).catch(settle);
   });
 }
 
