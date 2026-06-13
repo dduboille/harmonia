@@ -1,0 +1,89 @@
+<h2>Design du Paywall — l'écran qui génère les revenus</h2>
+<p class="subtitle">Quel approche de conversion veux-tu adopter ?</p>
+
+<div class="cards">
+
+  <!-- Paywall A: Soft Gate -->
+  <div class="card" data-choice="A" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f0f23;padding:20px;display:flex;justify-content:center">
+      <div style="width:155px;background:#12091f;border-radius:22px;border:1.5px solid #3d1f6e;overflow:hidden;font-family:system-ui;box-shadow:0 0 30px rgba(124,58,237,0.3)">
+        <div style="padding:14px">
+          <!-- Lock banner -->
+          <div style="background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.4);border-radius:10px;padding:10px;text-align:center;margin-bottom:10px">
+            <div style="font-size:18px;margin-bottom:3px">🔒</div>
+            <div style="font-size:9px;font-weight:700;color:#e2d9f3">Contenu Pro</div>
+            <div style="font-size:7px;color:#9d7fea;margin-top:2px">Débloque 22 progressions,<br>24 tonalités et tous les cours</div>
+          </div>
+          <!-- Features list -->
+          <div style="margin-bottom:10px">
+            <div style="font-size:7px;color:#c4b5fd;margin-bottom:4px;display:flex;align-items:center;gap:4px"><span style="color:#a855f7">✓</span> 22 progressions harmoniques</div>
+            <div style="font-size:7px;color:#c4b5fd;margin-bottom:4px;display:flex;align-items:center;gap:4px"><span style="color:#a855f7">✓</span> 24 tonalités majeures/mineures</div>
+            <div style="font-size:7px;color:#c4b5fd;margin-bottom:4px;display:flex;align-items:center;gap:4px"><span style="color:#a855f7">✓</span> Cours complets avec audio</div>
+            <div style="font-size:7px;color:#c4b5fd;display:flex;align-items:center;gap:4px"><span style="color:#a855f7">✓</span> Accès illimité</div>
+          </div>
+          <!-- Pricing -->
+          <div style="background:linear-gradient(90deg,#7c3aed,#a855f7);border-radius:8px;padding:8px;text-align:center;margin-bottom:5px">
+            <div style="font-size:8px;color:rgba(255,255,255,0.7)">Annuel — meilleure valeur</div>
+            <div style="font-size:13px;font-weight:800;color:white">19,99€ <span style="font-size:8px;font-weight:400">/an</span></div>
+            <div style="font-size:7px;color:rgba(255,255,255,0.6)">= 1,67€/mois</div>
+          </div>
+          <div style="background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);border-radius:8px;padding:6px;text-align:center;margin-bottom:5px">
+            <div style="font-size:8px;color:#c4b5fd">Mensuel · 2,99€/mois</div>
+          </div>
+          <div style="text-align:center;font-size:7px;color:#64748b">Essai gratuit 7 jours · Annuler à tout moment</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Soft Gate contextuel</h3>
+      <p>Apparaît <strong>dans le flux</strong> quand l'utilisateur tente d'accéder à une progression verrouillée. Friction minimale — on montre exactement ce qu'il rate. Essai gratuit 7 jours pour lever les dernières résistances.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pour</h4><ul><li>Conversion au bon moment</li><li>Essai gratuit = moins de friction</li><li>Clair et honnête</li></ul></div>
+        <div class="cons"><h4>Contre</h4><ul><li>L'utilisateur doit toucher un verrou pour voir le paywall</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paywall B: Onboarding -->
+  <div class="card" data-choice="B" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f0f23;padding:20px;display:flex;justify-content:center">
+      <div style="width:155px;background:#12091f;border-radius:22px;border:1.5px solid #3d1f6e;overflow:hidden;font-family:system-ui;box-shadow:0 0 30px rgba(124,58,237,0.3)">
+        <div style="padding:14px;text-align:center">
+          <div style="font-size:24px;margin-bottom:6px">🎼</div>
+          <div style="font-size:11px;font-weight:800;color:#e2d9f3;margin-bottom:3px">Passe au niveau supérieur</div>
+          <div style="font-size:7px;color:#9d7fea;margin-bottom:10px">7 jours gratuits, sans engagement</div>
+          <!-- Value props as pills -->
+          <div style="display:flex;flex-wrap:wrap;gap:3px;justify-content:center;margin-bottom:10px">
+            <div style="background:rgba(124,58,237,0.2);border-radius:20px;padding:3px 7px;font-size:7px;color:#c4b5fd">22 progressions</div>
+            <div style="background:rgba(124,58,237,0.2);border-radius:20px;padding:3px 7px;font-size:7px;color:#c4b5fd">24 tonalités</div>
+            <div style="background:rgba(124,58,237,0.2);border-radius:20px;padding:3px 7px;font-size:7px;color:#c4b5fd">Tous les cours</div>
+            <div style="background:rgba(124,58,237,0.2);border-radius:20px;padding:3px 7px;font-size:7px;color:#c4b5fd">Audio HD</div>
+          </div>
+          <!-- Toggle annual/monthly -->
+          <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:2px;display:flex;margin-bottom:8px">
+            <div style="flex:1;background:linear-gradient(90deg,#7c3aed,#a855f7);border-radius:6px;padding:4px;font-size:7px;color:white;font-weight:700;text-align:center">Annuel</div>
+            <div style="flex:1;padding:4px;font-size:7px;color:#64748b;text-align:center">Mensuel</div>
+          </div>
+          <div style="background:linear-gradient(90deg,#7c3aed,#a855f7);border-radius:10px;padding:10px;margin-bottom:6px">
+            <div style="font-size:7px;color:rgba(255,255,255,0.7)">Économise 44%</div>
+            <div style="font-size:14px;font-weight:800;color:white">19,99€/an</div>
+            <div style="font-size:7px;color:rgba(255,255,255,0.6)">puis 1,67€/mois</div>
+          </div>
+          <div style="font-size:7px;color:#7c3aed;margin-bottom:4px">Commencer l'essai gratuit →</div>
+          <div style="font-size:6px;color:#475569">Puis 19,99€/an · Annuler à tout moment</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Paywall à l'onboarding</h3>
+      <p>S'affiche <strong>après la 1ère session</strong>, quand l'utilisateur a vu la valeur. Présente l'offre annuelle par défaut (mise en avant du prix/mois le plus bas). Style "app de méditation premium" — très éprouvé.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pour</h4><ul><li>Conversion maximale (standard industrie)</li><li>Annuel mis en avant = meilleur LTV</li><li>Design émotionnel fort</li></ul></div>
+        <div class="cons"><h4>Contre</h4><ul><li>Peut surprendre les nouveaux users</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:16px">💡 Les deux <strong>ne sont pas exclusifs</strong> — la meilleure stratégie est B (onboarding) + A (contextuel sur chaque verrou). C'est ce que font Calm, Headspace, Simply Piano.</p>

@@ -36,6 +36,11 @@ const BOT_PAD  = 36;
 const CLEF_W   = 50; // largeur réservée à la clef
 const KEY_W    = 0;  // pas d'armure par défaut
 
+// Charte Harmonia — or sur fond sombre
+const GOLD = "#C9A84C";
+const INK  = "#0E0B08";
+const GOLD_STYLE = { fillStyle: GOLD, strokeStyle: GOLD };
+
 export default function VexFlowScore({ staves, width = 520, height, label }: VexFlowScoreProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const totalH = height ?? TOP_PAD + staves.length * STAVE_H + BOT_PAD;
@@ -54,13 +59,26 @@ export default function VexFlowScore({ staves, width = 520, height, label }: Vex
       renderer.resize(width, totalH);
       const ctx = renderer.getContext();
 
+      // Charte : or sur fond sombre
+      ctx.setFillStyle(GOLD);
+      ctx.setStrokeStyle(GOLD);
+
       const numMeasures = Math.max(...staves.map((s) => s.measures.length));
       // Largeur disponible après la clef, divisée par nombre de mesures
       const measureW = Math.floor((width - CLEF_W - 20) / numMeasures);
 
+      // Collecte par portée : staves + voices, pour formatage unifié et connecteurs
+      type Row = {
+        clef: string;
+        staves: InstanceType<typeof VF.Stave>[];
+        voices: InstanceType<typeof VF.Voice>[];
+      };
+      const rows: Row[] = [];
+
       staves.forEach((staveDef, si) => {
         const clef = staveDef.clef ?? (si === 0 ? "treble" : "bass");
         const y = TOP_PAD + si * STAVE_H;
+        const row: Row = { clef, staves: [], voices: [] };
 
         staveDef.measures.forEach((measureStr, mi) => {
           const isFirst = mi === 0;
@@ -71,6 +89,7 @@ export default function VexFlowScore({ staves, width = 520, height, label }: Vex
           const w = isFirst ? CLEF_W + measureW : measureW;
 
           const stave = new VF.Stave(x, y, w);
+          stave.setStyle(GOLD_STYLE);
 
           if (isFirst) {
             stave.addClef(clef);
@@ -86,14 +105,64 @@ export default function VexFlowScore({ staves, width = 520, height, label }: Vex
 
           // Notes de la mesure
           const notes = parseNotes(VF, measureStr.trim(), clef);
+          notes.forEach((n) => n.setStyle(GOLD_STYLE));
           const voice = new VF.Voice({ numBeats: 4, beatValue: 4 });
           voice.setMode(2); // SOFT
           voice.addTickables(notes);
 
-          new VF.Formatter().joinVoices([voice]).format([voice], w - 20);
-          voice.draw(ctx, stave);
+          row.staves.push(stave);
+          row.voices.push(voice);
+        });
+
+        rows.push(row);
+      });
+
+      // Formatage : chaque mesure formatée à la largeur de sa portée, en
+      // joignant verticalement la voix Sol et la voix Fa de même index.
+      for (let mi = 0; mi < numMeasures; mi++) {
+        const colVoices = rows
+          .map((r) => r.voices[mi])
+          .filter((v): v is InstanceType<typeof VF.Voice> => !!v);
+        const stave = rows[0]?.staves[mi];
+        if (colVoices.length === 0 || !stave) continue;
+        const formatter = new VF.Formatter();
+        colVoices.forEach((v) => formatter.joinVoices([v]));
+        const fmtW = (stave.getWidth?.() ?? measureW) - 20;
+        formatter.format(colVoices, Math.max(40, fmtW));
+      }
+
+      // Dessin des voix
+      rows.forEach((r) => {
+        r.voices.forEach((v, i) => {
+          const s = r.staves[i];
+          if (s) v.draw(ctx, s);
         });
       });
+
+      // ── Grand staff : accolade + barres système (si ≥ 2 portées) ──
+      const trebleStaves = rows[0]?.staves ?? [];
+      const bassStaves   = rows[1]?.staves ?? [];
+      if (trebleStaves.length > 0 && bassStaves.length > 0) {
+        const top = trebleStaves[0];
+        const bot = bassStaves[0];
+
+        const brace = new VF.StaveConnector(top, bot)
+          .setType(VF.StaveConnector.type.BRACE);
+        brace.setStyle(GOLD_STYLE);
+        brace.setContext(ctx).draw();
+
+        const leftBar = new VF.StaveConnector(top, bot)
+          .setType(VF.StaveConnector.type.SINGLE_LEFT);
+        leftBar.setStyle(GOLD_STYLE);
+        leftBar.setContext(ctx).draw();
+
+        const lastT = trebleStaves[trebleStaves.length - 1];
+        const lastB = bassStaves[bassStaves.length - 1];
+        const rightBar = new VF.StaveConnector(lastT, lastB)
+          .setType(VF.StaveConnector.type.BOLD_DOUBLE_RIGHT);
+        rightBar.setStyle(GOLD_STYLE);
+        rightBar.setContext(ctx).draw();
+      }
 
     }).catch((e) => console.error("[VexFlowScore]", e));
 
@@ -112,12 +181,12 @@ export default function VexFlowScore({ staves, width = 520, height, label }: Vex
         aria-label={label ?? "Partition"}
         style={{
           width, height: totalH, maxWidth: "100%", overflowX: "auto",
-          background: "#fff", borderRadius: 8,
-          border: "0.5px solid #e8e8e8", boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
+          background: INK, borderRadius: 8,
+          border: `0.5px solid ${GOLD}33`, boxShadow: "0 1px 6px rgba(0,0,0,0.25)",
         }}
       />
       {label && (
-        <p style={{ fontSize: 12, color: "#888", marginTop: 8, fontStyle: "italic", textAlign: "center" }}>
+        <p style={{ fontSize: 12, color: GOLD, opacity: 0.7, marginTop: 8, fontStyle: "italic", textAlign: "center" }}>
           {label}
         </p>
       )}

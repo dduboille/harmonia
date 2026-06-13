@@ -23,7 +23,7 @@
 
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
-import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import PianoPlayer, { PianoPlayerRef, getInstrument } from "@/components/PianoPlayer";
 import { KEY_ACCIDENTALS } from "@/lib/key-accidentals";
 
 // VexFlow côté client uniquement
@@ -124,6 +124,23 @@ function noteName(name: string): string {
   // Normalize flats to sharps for midi
   const map: Record<string,string> = { "Db":"C#","Eb":"D#","Gb":"F#","Ab":"G#","Bb":"A#" };
   return map[name] || name;
+}
+
+/**
+ * Convertit une note interne (nom anglais + octave) au format attendu par
+ * Tone/@tonejs/piano, ex. "C4", "Bb3", "F#4". Les doubles altérations sont
+ * réduites à un demi-ton chromatique simple via noteToMidi → nom dièse.
+ */
+function noteToToneFormat(name: NoteName, octave: number): string {
+  // Tone gère nativement #, b et naturel. Les doubles altérations (##, bb) ne
+  // sont pas comprises : on les normalise via l'index chromatique.
+  if (name.includes("##") || name.includes("bb")) {
+    const midi = noteToMidi(noteName(name), octave);
+    const pc = ((midi % 12) + 12) % 12;
+    const oct = Math.floor(midi / 12) - 1;
+    return `${CHROMATIC_ORDER[pc]}${oct}`;
+  }
+  return `${name}${octave}`;
 }
 
 // ─── Validation harmonique ────────────────────────────────────────────────────
@@ -427,20 +444,34 @@ export default function HarmoniaEditor({
     });
   }, [activeMeasure, activeVoice]);
 
-  // Jouer tout
-  const playAll = useCallback(() => {
+  // Jouer tout — planifié via l'horloge Tone.Transport (synchronisation précise)
+  const playAll = useCallback(async () => {
+    await getInstrument();
+    const Tone = await import("tone");
+    await Tone.start();
+
+    const T = Tone.getTransport();
+    T.stop();
+    T.cancel();
+
+    const interval = 1.2; // secondes par mesure
+    const voices: Voice[] = ["bass", "tenor", "alto", "soprano"];
+
     measures.forEach((m, i) => {
-      const delay = i * 1200;
-      const voices: Voice[] = ["bass","tenor","alto","soprano"];
-      voices.forEach(v => {
+      const when = i * interval;
+      voices.forEach((v) => {
         const n = m[v];
         if (!n.name) return;
         const fr = NOTE_TO_FR[n.name] || n.name;
-        setTimeout(() => {
-          pianoRef.current?.playNote(fr, n.octave, { duration: 1.5 });
-        }, delay);
+        // Planifie le déclenchement de la voix à l'instant de la mesure.
+        // Le PianoPlayer gère la lecture (+ feedback visuel des touches).
+        T.schedule(() => {
+          pianoRef.current?.playNote(fr, n.octave, { duration: interval * 0.9 });
+        }, when);
       });
     });
+
+    T.start();
   }, [measures]);
 
   // Vexflow strings

@@ -1,0 +1,112 @@
+<h2>Structure de navigation — quelle option te parle le plus ?</h2>
+<p class="subtitle">Les deux options utilisent une barre de tabs en bas — la différence est dans l'organisation des écrans</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="A" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f172a;padding:20px;display:flex;justify-content:center">
+      <!-- Phone mockup A -->
+      <div style="width:160px;background:#1e293b;border-radius:24px;border:2px solid #334155;overflow:hidden;font-family:system-ui">
+        <!-- Status bar -->
+        <div style="background:#0f172a;padding:8px 16px 4px;display:flex;justify-content:space-between;font-size:9px;color:#64748b">
+          <span>9:41</span><span>●●●</span>
+        </div>
+        <!-- Screen content -->
+        <div style="padding:12px;min-height:220px">
+          <div style="font-size:11px;font-weight:700;color:#f1f5f9;margin-bottom:4px">Générateur SATB</div>
+          <div style="font-size:9px;color:#94a3b8;margin-bottom:10px">II – V – I · Do majeur</div>
+          <!-- Staff placeholder -->
+          <div style="background:#0f172a;border-radius:8px;height:70px;margin-bottom:8px;display:flex;align-items:center;justify-content:center">
+            <div style="color:#7c3aed;font-size:9px;text-align:center">𝄞 Partition SATB<br><span style="color:#64748b">S A T B</span></div>
+          </div>
+          <!-- Controls -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px">
+            <div style="background:#1e3a5f;border-radius:6px;padding:5px;font-size:8px;color:#93c5fd;text-align:center">II-V-I</div>
+            <div style="background:#1e3a5f;border-radius:6px;padding:5px;font-size:8px;color:#93c5fd;text-align:center">Do maj</div>
+          </div>
+          <div style="background:#7c3aed;border-radius:8px;padding:6px;text-align:center;font-size:9px;color:white;font-weight:600">▶ Écouter</div>
+        </div>
+        <!-- Tab bar -->
+        <div style="background:#0f172a;border-top:1px solid #334155;display:flex;justify-content:space-around;padding:8px 4px">
+          <div style="text-align:center;font-size:7px;color:#7c3aed">
+            <div style="font-size:14px">🎵</div>Générer
+          </div>
+          <div style="text-align:center;font-size:7px;color:#64748b">
+            <div style="font-size:14px">📖</div>Cours
+          </div>
+          <div style="text-align:center;font-size:7px;color:#64748b">
+            <div style="font-size:14px">⭐</div>Pro
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Option A — 3 onglets simples</h3>
+      <p><strong>Générer · Cours · Pro</strong><br>
+      Navigation directe, aucune friction. L'utilisateur arrive sur le générateur, accède aux cours en 1 tap, et voit l'offre Pro clairement. Idéal pour un MVP rapide et pour les stores.</p>
+      <div class="pros-cons" style="margin-top:8px">
+        <div class="pros"><h4>Pour</h4><ul><li>Le plus simple à implémenter</li><li>Navigation intuitive</li><li>Onglet Pro = vitrine constante</li></ul></div>
+        <div class="cons"><h4>Contre</h4><ul><li>Moins de place pour grandir</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="B" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f172a;padding:20px;display:flex;justify-content:center">
+      <!-- Phone mockup B -->
+      <div style="width:160px;background:#1e293b;border-radius:24px;border:2px solid #334155;overflow:hidden;font-family:system-ui">
+        <!-- Status bar -->
+        <div style="background:#0f172a;padding:8px 16px 4px;display:flex;justify-content:space-between;font-size:9px;color:#64748b">
+          <span>9:41</span><span>●●●</span>
+        </div>
+        <!-- Screen content -->
+        <div style="padding:12px;min-height:220px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div style="font-size:11px;font-weight:700;color:#f1f5f9">Accueil</div>
+            <div style="font-size:8px;background:#7c3aed;color:white;padding:2px 6px;border-radius:10px">Pro ⭐</div>
+          </div>
+          <!-- Home cards -->
+          <div style="background:#0f172a;border-radius:8px;padding:8px;margin-bottom:6px;border-left:3px solid #7c3aed">
+            <div style="font-size:9px;font-weight:600;color:#f1f5f9">🎵 Générateur SATB</div>
+            <div style="font-size:8px;color:#64748b">Créer une progression</div>
+          </div>
+          <div style="background:#0f172a;border-radius:8px;padding:8px;margin-bottom:6px;border-left:3px solid #0ea5e9">
+            <div style="font-size:9px;font-weight:600;color:#f1f5f9">📖 Cours du jour</div>
+            <div style="font-size:8px;color:#64748b">Les quintes parallèles</div>
+          </div>
+          <div style="background:#0f172a;border-radius:8px;padding:8px;border-left:3px solid #10b981">
+            <div style="font-size:9px;font-weight:600;color:#f1f5f9">📊 Ma progression</div>
+            <div style="font-size:8px;color:#64748b">5 exercices complétés</div>
+          </div>
+        </div>
+        <!-- Tab bar -->
+        <div style="background:#0f172a;border-top:1px solid #334155;display:flex;justify-content:space-around;padding:8px 4px">
+          <div style="text-align:center;font-size:7px;color:#7c3aed">
+            <div style="font-size:14px">🏠</div>Accueil
+          </div>
+          <div style="text-align:center;font-size:7px;color:#64748b">
+            <div style="font-size:14px">🎵</div>SATB
+          </div>
+          <div style="text-align:center;font-size:7px;color:#64748b">
+            <div style="font-size:14px">📖</div>Cours
+          </div>
+          <div style="text-align:center;font-size:7px;color:#64748b">
+            <div style="font-size:14px">👤</div>Profil
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Option B — 4 onglets avec Accueil hub</h3>
+      <p><strong>Accueil · SATB · Cours · Profil</strong><br>
+      L'écran d'accueil agrège tout : cours du jour, accès rapide au générateur, progression de l'utilisateur. Ressemble plus à une vraie app éducative premium. Meilleure rétention.</p>
+      <div class="pros-cons" style="margin-top:8px">
+        <div class="pros"><h4>Pour</h4><ul><li>Sentiment d'app complète</li><li>Meilleure rétention (engagement quotidien)</li><li>Scalable pour futures fonctionnalités</li></ul></div>
+        <div class="cons"><h4>Contre</h4><ul><li>Plus de travail à développer</li><li>Écran d'accueil à alimenter</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:16px">💡 Je recommande <strong>Option B</strong> — la structure hub crée de l'engagement quotidien, ce qui est clé pour la rétention et la conversion en abonnement Pro.</p>

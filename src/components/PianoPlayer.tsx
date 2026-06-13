@@ -1,8 +1,9 @@
 "use client";
 
 /**
- * PianoPlayer v4 — Harmonia
- * @tonejs/piano (Salamander Grand Piano, 5 couches de vélocité, sustain)
+ * PianoPlayer v5 — Harmonia
+ * @tonejs/piano (Salamander Grand Piano, 4 couches de vélocité) + reverb léger
+ * Singleton partagé (getInstrument / playChordNow) réutilisé par StaffNotation.
  * Fallback : synthèse WebAudio triangle si le chargement échoue
  */
 
@@ -136,33 +137,16 @@ function toSharp(note: string): string {
   return EN_TO_FR[note] ?? note;
 }
 
-// ─── Singleton Tone.Sampler (Salamander Grand Piano) ─────────────────────────
+// ─── Singleton @tonejs/piano (Salamander Grand Piano + reverb) ───────────────
 
-// Filenames on tonejs.github.io use "Ds" / "Fs" for sharps, not "#"
-const SALAMANDER_URLS: Record<string, string> = {
-  A0: "A0.mp3",
-  C1: "C1.mp3", "D#1": "Ds1.mp3", "F#1": "Fs1.mp3",
-  A1: "A1.mp3",
-  C2: "C2.mp3", "D#2": "Ds2.mp3", "F#2": "Fs2.mp3",
-  A2: "A2.mp3",
-  C3: "C3.mp3", "D#3": "Ds3.mp3", "F#3": "Fs3.mp3",
-  A3: "A3.mp3",
-  C4: "C4.mp3", "D#4": "Ds4.mp3", "F#4": "Fs4.mp3",
-  A4: "A4.mp3",
-  C5: "C5.mp3", "D#5": "Ds5.mp3", "F#5": "Fs5.mp3",
-  A5: "A5.mp3",
-  C6: "C6.mp3", "D#6": "Ds6.mp3", "F#6": "Fs6.mp3",
-  A6: "A6.mp3",
-  C7: "C7.mp3", "D#7": "Ds7.mp3", "F#7": "Fs7.mp3",
-  A7: "A7.mp3",
-  C8: "C8.mp3",
-};
-
-let _sampler: any = null;
-let _tone: any = null;
+// `_piano` est une instance de Piano (@tonejs/piano) quand le chargement réussit.
+// Si le chargement échoue, la synthèse WebAudio (synthNote) prend le relais.
+let _piano: any = null;          // Piano (@tonejs/piano)
+let _tone: any = null;           // module "tone"
 let _audioCtx: AudioContext | null = null;
 let _loading = false;
-let _ready = false;
+let _ready = false;              // résolu (piano chargé OU fallback synth prêt)
+let _pianoLoaded = false;        // true uniquement si le sampler piano est utilisable
 let _cbs: Array<() => void> = [];
 
 function getInstrument(): Promise<void> {
@@ -172,30 +156,57 @@ function getInstrument(): Promise<void> {
     if (_loading) return;
     _loading = true;
 
-    import("tone").then(async (Tone) => {
-      _tone = Tone;
-      await Tone.start();
-      _sampler = new Tone.Sampler({
-        urls: SALAMANDER_URLS,
-        baseUrl: "https://tonejs.github.io/audio/salamander/",
-        onload: () => {
-          _ready = true;
-          _cbs.forEach((cb) => cb());
-          _cbs = [];
-        },
-        onerror: () => {
-          _ready = true; // will use synth fallback
-          _cbs.forEach((cb) => cb());
-          _cbs = [];
-        },
-      }).toDestination();
-    }).catch(() => {
+    const settle = () => {
       _ready = true;
+      _loading = false;
       _cbs.forEach((cb) => cb());
       _cbs = [];
-    });
+    };
+
+    // Import du chemin profond `…/piano/Piano` plutôt que de l'index : ce
+    // dernier réexporte MidiInput → webmidi, qui casse le bundle Turbopack
+    // (import default inexistant). On n'a besoin que de la classe Piano.
+    Promise.all([import("tone"), import("@tonejs/piano/build/piano/Piano")])
+      .then(async ([Tone, piano]) => {
+        _tone = Tone;
+        await Tone.start();
+
+        const Piano = (piano as any).Piano;
+        const inst = new Piano({ velocities: 4 });
+
+        // Chaîne d'effets : reverb léger → destination
+        const reverb = new Tone.Reverb({ decay: 1.8, wet: 0.18 });
+        await reverb.generate();
+        inst.connect(reverb);
+        reverb.toDestination();
+
+        await inst.load(); // charge les échantillons depuis le CDN @tonejs/piano
+        _piano = inst;
+        _pianoLoaded = true;
+        settle();
+      })
+      .catch((err) => {
+        // Échec du chargement du piano → fallback synthèse WebAudio
+        console.warn("[PianoPlayer] @tonejs/piano indisponible, fallback synth", err);
+        _pianoLoaded = false;
+        settle();
+      });
   });
 }
+
+/**
+ * Joue un accord immédiatement via le piano singleton (notes au format Tone
+ * "C4", "G#3", …). Sans effet si le piano n'est pas chargé.
+ */
+export function playChordNow(notes: string[], duration = "2n") {
+  if (!_pianoLoaded || !_piano || !_tone) return;
+  const now = _tone.now();
+  notes.forEach((n) => _piano.keyDown({ note: n, time: now, velocity: 0.75 }));
+  const relAt = now + _tone.Time(duration).toSeconds();
+  notes.forEach((n) => _piano.keyUp({ note: n, time: relAt }));
+}
+
+export { getInstrument };
 
 // ─── Fallback WebAudio synth ──────────────────────────────────────────────────
 
@@ -303,11 +314,12 @@ const PianoPlayer = forwardRef<PianoPlayerRef, PianoPlayerProps>(({
       setTimeout(() => setPressed((p) => { const s = new Set(p); s.delete(id); return s; }), 280);
     }, startTime * 1000);
 
-    if (_ready && _sampler && _tone) {
+    if (_ready && _pianoLoaded && _piano && _tone) {
       const midiNote = toMidiNote(note, octave);
       const lookahead = 0.05;
       const when = _tone.now() + startTime + lookahead;
-      _sampler.triggerAttackRelease(midiNote, duration, when, velocity);
+      _piano.keyDown({ note: midiNote, time: when, velocity });
+      _piano.keyUp({ note: midiNote, time: when + duration });
     } else {
       synthNote(note, octave, startTime, duration, velocity);
     }
