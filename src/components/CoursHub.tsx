@@ -45,6 +45,7 @@ const COURS = [
   { num: 21, level: 3 as const, title: "Analyse des compositeurs modernes",            desc: "Debussy, Ravel, Stravinsky, Messiaen, Satie, Beatles, Radiohead, Morricone — de l'impressionnisme au rock.",                             tags: ["Moderne", "Contemporain", "Impressionnisme"] },
   { num: 22, level: 3 as const, title: "La réharmonisation avancée",                   desc: "Transformer une progression en conservant la mélodie — substitutions diatonique et tritonique, emprunt modal, harmonisation parallèle.", tags: ["Réharmonisation", "Substitution", "Jazz"] },
   { num: 23, level: 3 as const, title: "Composer dans le style des maîtres",           desc: "Bach, Mozart, Chopin, Debussy, Jazz, Rock — identifier et reproduire les signatures harmoniques des grands compositeurs.",                tags: ["Style", "Composition", "Analyse"] },
+  { num: 38, level: 1 as const, title: "Les notes étrangères", desc: "Retard, appogiature, broderie, note de passage, échappée, anticipation et pédale — l'ornementation mélodique de l'harmonie.", tags: ["Notes étrangères", "Retard", "Appogiature"] },
 ];
 
 // ─── Méta par niveau ─────────────────────────────────────────────────────────

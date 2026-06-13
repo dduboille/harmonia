@@ -123,7 +123,9 @@
     "d34": "Carte des émotions harmoniques, leitmotif et transformation — Morricone, Williams, Zimmer.",
     "d35": "Substitutions avancées, chord scales et voicings professionnels — Miles Davis et Kind of Blue.",
     "d36": "Gamme par tons, planing, polyaccords, modalité néoclassique — Debussy, Ravel, Satie.",
-    "d37": "Ursatz, Urlinie, analyse motivique, 4 niveaux de réduction — Schenker et Beethoven 5e."
+    "d37": "Ursatz, Urlinie, analyse motivique, 4 niveaux de réduction — Schenker et Beethoven 5e.",
+    "c38": "Les notes étrangères",
+    "d38": "Retard, appogiature, broderie, note de passage, échappée, anticipation et pédale — l'ornementation mélodique de l'harmonie."
   },
   "cours": {
     "level1": "Niveau 1",
@@ -3377,6 +3379,100 @@
       "brahmsInfoBox": "<strong>Brahms et l'unité motivique :</strong> Dans ses quatuors et symphonies, Brahms dérive souvent toute l'œuvre d'un seul intervalle (une seconde ou une tierce). Cet intervalle générateur apparaît dans la mélodie, la basse, les transitions, les contre-mélodies — toujours reconnaissable, toujours transformé. L'analyse motivique de Brahms révèle une densité thématique comparable à celle de Bach.",
       "motiviqueWarn": "<strong>Erreur courante :</strong> Analyser chaque accord de surface sans chercher la structure profonde. Dire \"Do–Sol–Fa–Do\" ne dit rien sur la signification structurelle. L'analyse motivique complète l'analyse harmonique : d'un côté la structure verticale (accords), de l'autre la structure horizontale (motif et sa destinée). Les deux ensemble révèlent la logique compositionnelle.",
       "quizH2": "Quiz — Schenker et analyse motivique"
+    }
+  },
+  "cours38": {
+    "badge": "Niveau 1 · Cours 38",
+    "title": "Les notes étrangères",
+    "subtitle": "Note de passage, broderie, appogiature, retard, échappée, anticipation et pédale — l'ornementation mélodique de l'harmonie.",
+    "sections": {
+      "definition": "Définition",
+      "types": "Les types",
+      "retard": "Le retard",
+      "pedale": "La pédale",
+      "emploi": "Emploi (DEM)",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu identifies et emploies toutes les notes étrangères.",
+      "veryGood": "Très bien ! Quelques nuances à consolider (retard, échappée, appogiature).",
+      "keepGoing": "Continue — relis les définitions et réécoute les exemples avant de recommencer."
+    },
+    "narrative": {
+      "maitreCardConcept": "Les notes étrangères",
+      "maitreCardAnecdote": "Théodore Dubois, directeur du Conservatoire de Paris et auteur d'un Traité d'harmonie qui forma des générations de musiciens, classait les notes étrangères avec une rigueur d'horloger. Pour lui, distinguer une appogiature d'un retard ou une broderie d'une note de passage n'était pas un jeu d'étiquettes : c'était comprendre comment une seule note, étrangère à l'accord, pouvait à elle seule colorer, tendre ou adoucir toute une phrase. Ses élèves apprenaient d'abord à les repérer dans Bach avant d'oser en écrire eux-mêmes.",
+      "maitreCardLesson": "Une note étrangère n'est jamais une faute : c'est l'accord qui décide, et l'oreille qui tranche.",
+
+      "defH2": "Qu'est-ce qu'une note étrangère ?",
+      "defP1": "Une <strong>note étrangère</strong> est une note qui <strong>n'appartient pas à l'accord</strong> entendu à ce moment précis. Elle orne la ligne mélodique, crée du mouvement et de l'expression, sans modifier l'harmonie réelle.",
+      "defInfoBox": "<strong>Le principe :</strong> à chaque instant, certaines notes sont <em>réelles</em> (elles constituent l'accord), d'autres sont <em>étrangères</em> (elles l'ornent). Reconnaître les unes des autres est la clé de toute analyse harmonique.",
+      "defP2": "On distingue les notes étrangères selon trois critères : le <strong>temps</strong> où elles tombent (fort ou faible), la façon dont on <strong>y arrive</strong> (par degré conjoint ou par saut) et la façon dont on en <strong>repart</strong> (résolution). Ces trois critères suffisent à nommer chaque note étrangère.",
+      "defTipBox": "<strong>À retenir :</strong> la plupart des notes étrangères sont <em>non préparées</em> et tombent sur un <em>temps faible</em>. Deux exceptions majeures : l'<strong>appogiature</strong> (temps fort) et le <strong>retard</strong> (temps fort ET préparé).",
+
+      "typesH2": "Les principales notes étrangères",
+      "typesP1": "Voici les notes étrangères les plus courantes, hormis le retard (traité dans sa propre section). Chacune se définit par sa place sur le temps et par sa manière d'arriver et de résoudre.",
+      "typesClickHint": "Cliquez sur une note étrangère pour l'entendre et lire sa définition.",
+      "typesListenBtn": "▶ Réécouter l'exemple",
+      "tempsFaible": "temps faible",
+      "tempsFort": "temps fort",
+      "typePassageName": "Note de passage",
+      "typePassageDesc": "Elle relie deux notes différentes de l'accord par degrés conjoints, sur un temps faible. Elle peut être diatonique ou chromatique. Exemple : Do → Ré → Mi, où le Ré (étranger) relie Do et Mi (notes de l'accord).",
+      "typeBroderieName": "Broderie (supérieure ou inférieure)",
+      "typeBroderieDesc": "Elle quitte une note de l'accord par degré conjoint, puis y revient, sur un temps faible. La broderie supérieure monte d'un degré ; l'inférieure descend. Exemple : Mi → Fa → Mi (broderie supérieure du Mi).",
+      "typeAppogiatureName": "Appogiature",
+      "typeAppogiatureDesc": "Note étrangère placée sur le temps fort, attaquée par saut ou par degré, puis résolue par degré conjoint (le plus souvent descendant) sur une note de l'accord. Elle n'est pas préparée — c'est ce qui la distingue du retard. Exemple : Fa (sur le temps fort) → Mi.",
+      "typeEchappeeName": "Échappée",
+      "typeEchappeeDesc": "Elle quitte une note de l'accord par degré conjoint, puis « s'échappe » par un saut en sens contraire vers une note de l'accord suivant. Exemple : Do → Ré (conjoint) → Si (saut descendant en sens contraire).",
+      "typePassageAccName": "Note de passage accentuée",
+      "typePassageAccDesc": "C'est une note de passage qui, exceptionnellement, tombe sur le temps fort. Reliée par mouvement conjoint des deux côtés, elle se rapproche de l'appogiature mais conserve sa nature de note de passage.",
+      "typeAnticipationName": "Anticipation",
+      "typeAnticipationDesc": "Elle fait entendre par avance une note qui appartiendra à l'accord suivant : elle arrive trop tôt, sur l'accord encore en cours, créant une brève dissonance avant le changement d'harmonie.",
+      "typesWarnBox": "<strong>Ne pas confondre :</strong> la <em>broderie</em> revient à sa note de départ, alors que la <em>note de passage</em> relie deux notes différentes. L'<em>appogiature</em> arrive par saut sur le temps fort ; l'<em>échappée</em> repart par saut.",
+
+      "retardH2": "Le retard",
+      "retardP1": "Le retard est la <strong>seule note étrangère qui exige une préparation</strong>. Une note consonante de l'accord est maintenue (liée ou répétée) au moment où l'harmonie change : elle devient alors dissonante sur le temps fort, avant de se résoudre par degré conjoint descendant.",
+      "retardInfoBox": "<strong>Ce qui distingue le retard de l'appogiature :</strong> les deux frappent sur le temps fort et résolvent par degré conjoint descendant. Mais le retard est <em>préparé</em> (entendu d'abord comme consonance), tandis que l'appogiature est attaquée librement.",
+      "retardStepsH3": "Les trois temps du retard",
+      "retardStepsHint": "Cliquez sur chaque étape pour la détailler.",
+      "retardStepPrepLabel": "1 · Préparation",
+      "retardStepPrepDesc": "La note est d'abord entendue comme consonance, à la même voix, dans l'accord précédent. C'est cette préparation qui « légitime » la dissonance à venir.",
+      "retardStepPercLabel": "2 · Percussion",
+      "retardStepPercDesc": "L'harmonie change, mais la note est maintenue : elle devient dissonante et frappe sur le temps fort. C'est le sommet de tension du retard.",
+      "retardStepResLabel": "3 · Résolution",
+      "retardStepResDesc": "La note dissonante descend par degré conjoint sur une note de l'accord. La résolution est presque toujours descendante.",
+      "retardAudioLabel": "Écouter un retard 4-3 sur l'accord de Do",
+      "retardBtnPrep": "▶ Préparation",
+      "retardBtnPerc": "▶ Percussion (dissonance)",
+      "retardBtnRes": "▶ Résolution",
+      "retardAudioDesc": "Sur l'accord de Do (Do–Mi–Sol), le Fa retardé frappe à la place du Mi (dissonance de quarte), puis descend conjointement sur le Mi : c'est le retard 4-3.",
+      "retardFormulesH3": "Les formules classiques",
+      "retardThFormule": "Formule",
+      "retardThDesc": "Description",
+      "retard43Desc": "La quarte (dissonante) descend conjointement sur la tierce de l'accord. La formule de retard la plus fréquente.",
+      "retard76Desc": "La septième (dissonante) descend conjointement sur la sixte (consonante).",
+      "retard98Desc": "La neuvième (dissonante) descend conjointement sur l'octave (la fondamentale).",
+      "retard23Desc": "Retard à la basse : la basse retardée forme une seconde avec une voix supérieure, puis descend d'un degré pour donner une tierce (ou dixième) consonante.",
+
+      "pedaleH2": "La pédale",
+      "pedaleP1": "La <strong>pédale</strong> est une note tenue — le plus souvent la <strong>tonique</strong> ou la <strong>dominante</strong>, à la basse — maintenue pendant que l'harmonie évolue au-dessus d'elle. Elle peut devenir momentanément dissonante avec les accords qui passent, sans jamais bouger.",
+      "pedaleInfoBox": "<strong>Pédale de tonique :</strong> souvent en fin de pièce, elle ancre la conclusion. <strong>Pédale de dominante :</strong> souvent avant une reprise, elle crée une longue tension et une forte attente de résolution.",
+      "pedaleP2": "À la différence des autres notes étrangères, la pédale n'orne pas une seule note mais <strong>tient sous toute une progression</strong>. C'est une note étrangère par sa durée et par les dissonances passagères qu'elle engendre.",
+      "pedaleAudioLabel": "Écouter une pédale de tonique (Do)",
+      "pedaleListenBtn": "▶ Écouter la pédale",
+      "pedaleAudioDesc": "Le Do grave est tenu pendant que les voix supérieures passent de Mi–Sol à Fa–La puis reviennent à Mi–Sol : l'harmonie change, la pédale reste.",
+
+      "emploiH2": "Emploi : analyse et réalisation (DEM)",
+      "emploiP1": "Au DEM, les notes étrangères interviennent dans deux exercices fondamentaux : <strong>repérer</strong> les notes étrangères pour analyser une œuvre, et les <strong>employer</strong> pour réaliser un chant donné ou une basse donnée avec naturel et style.",
+      "emploiTipBox": "<strong>Méthode de repérage :</strong> pour chaque note, demandez-vous si elle appartient à l'accord. Si non, regardez le temps (fort / faible), l'arrivée (conjoint / saut) et la résolution. Ces trois indices la nomment.",
+      "emploiStepsH3": "Repérer une note étrangère en quatre questions",
+      "emploiStep1": "<strong>Appartient-elle à l'accord ?</strong> Si oui, c'est une note réelle — pas une note étrangère.",
+      "emploiStep2": "<strong>Sur quel temps tombe-t-elle ?</strong> Temps fort → appogiature ou retard. Temps faible → passage, broderie, échappée, anticipation.",
+      "emploiStep3": "<strong>Comment y arrive-t-on ?</strong> Par degré conjoint (passage, broderie, retard, appogiature conjointe) ou par saut (appogiature, anticipation).",
+      "emploiStep4": "<strong>Est-elle préparée ?</strong> Si oui, et sur temps fort avec résolution descendante : c'est un retard.",
+      "emploiWarnBox": "<strong>À la réalisation :</strong> n'ajoutez pas de notes étrangères au hasard. Chaque ornement doit respecter sa règle de résolution, et le retard doit toujours être préparé. Une appogiature mal résolue ou un retard non préparé est sanctionné.",
+      "emploiP2": "Le répertoire de référence reste le <strong>choral de J.S. Bach</strong> : on y trouve, en quelques mesures, des notes de passage, des broderies, des retards 4-3 et 7-6, et des pédales — toujours conduites avec rigueur. C'est le modèle à imiter pour le DEM.",
+
+      "quizH2": "Entraînement"
     }
   },
   "conservatoire": {
