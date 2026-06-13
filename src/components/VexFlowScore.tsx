@@ -36,11 +36,6 @@ const BOT_PAD  = 36;
 const CLEF_W   = 50; // largeur réservée à la clef
 const KEY_W    = 0;  // pas d'armure par défaut
 
-// Charte Harmonia — or sur fond sombre
-const GOLD = "#C9A84C";
-const INK  = "#0E0B08";
-const GOLD_STYLE = { fillStyle: GOLD, strokeStyle: GOLD };
-
 export default function VexFlowScore({ staves, width = 520, height, label }: VexFlowScoreProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const totalH = height ?? TOP_PAD + staves.length * STAVE_H + BOT_PAD;
@@ -58,10 +53,6 @@ export default function VexFlowScore({ staves, width = 520, height, label }: Vex
       const renderer = new VF.Renderer(container, VF.Renderer.Backends.SVG);
       renderer.resize(width, totalH);
       const ctx = renderer.getContext();
-
-      // Charte : or sur fond sombre
-      ctx.setFillStyle(GOLD);
-      ctx.setStrokeStyle(GOLD);
 
       const numMeasures = Math.max(...staves.map((s) => s.measures.length));
       // Largeur disponible après la clef, divisée par nombre de mesures
@@ -89,7 +80,6 @@ export default function VexFlowScore({ staves, width = 520, height, label }: Vex
           const w = isFirst ? CLEF_W + measureW : measureW;
 
           const stave = new VF.Stave(x, y, w);
-          stave.setStyle(GOLD_STYLE);
 
           if (isFirst) {
             stave.addClef(clef);
@@ -105,7 +95,6 @@ export default function VexFlowScore({ staves, width = 520, height, label }: Vex
 
           // Notes de la mesure
           const notes = parseNotes(VF, measureStr.trim(), clef);
-          notes.forEach((n) => n.setStyle(GOLD_STYLE));
           const voice = new VF.Voice({ numBeats: 4, beatValue: 4 });
           voice.setMode(2); // SOFT
           voice.addTickables(notes);
@@ -148,19 +137,16 @@ export default function VexFlowScore({ staves, width = 520, height, label }: Vex
 
         const brace = new VF.StaveConnector(top, bot)
           .setType(VF.StaveConnector.type.BRACE);
-        brace.setStyle(GOLD_STYLE);
         brace.setContext(ctx).draw();
 
         const leftBar = new VF.StaveConnector(top, bot)
           .setType(VF.StaveConnector.type.SINGLE_LEFT);
-        leftBar.setStyle(GOLD_STYLE);
         leftBar.setContext(ctx).draw();
 
         const lastT = trebleStaves[trebleStaves.length - 1];
         const lastB = bassStaves[bassStaves.length - 1];
         const rightBar = new VF.StaveConnector(lastT, lastB)
           .setType(VF.StaveConnector.type.BOLD_DOUBLE_RIGHT);
-        rightBar.setStyle(GOLD_STYLE);
         rightBar.setContext(ctx).draw();
       }
 
@@ -181,12 +167,12 @@ export default function VexFlowScore({ staves, width = 520, height, label }: Vex
         aria-label={label ?? "Partition"}
         style={{
           width, height: totalH, maxWidth: "100%", overflowX: "auto",
-          background: INK, borderRadius: 8,
-          border: `0.5px solid ${GOLD}33`, boxShadow: "0 1px 6px rgba(0,0,0,0.25)",
+          background: "#fff", borderRadius: 8,
+          border: "0.5px solid #e8e8e8", boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
         }}
       />
       {label && (
-        <p style={{ fontSize: 12, color: GOLD, opacity: 0.7, marginTop: 8, fontStyle: "italic", textAlign: "center" }}>
+        <p style={{ fontSize: 12, color: "#888", marginTop: 8, fontStyle: "italic", textAlign: "center" }}>
           {label}
         </p>
       )}
