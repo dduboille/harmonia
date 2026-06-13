@@ -14,6 +14,7 @@ const COURS_META: Record<number, { title: string; badge: string }> = {
   7: { title: "La tonicisation", badge: "Cours 7" },
   8: { title: "Modulation par accord pivot", badge: "Cours 8" },
   9: { title: "Modulations avancees et pedales", badge: "Cours 9" },
+  38: { title: "Les notes étrangères", badge: "Cours 38" },
 };
 
 export default async function ExercicesPage({
