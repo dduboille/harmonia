@@ -54,7 +54,8 @@ export type CoursKey =
   | "cours36"
   | "cours37"
   | "cours38"
-  | "cours39";
+  | "cours39"
+  | "cours40";
 
 export function useCoursI18n(coursKey: CoursKey) {
   const t  = useTranslations("common");
