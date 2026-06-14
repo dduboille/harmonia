@@ -185,3 +185,80 @@ export const COURS39_EXERCISES: SATBExercise[] = [
     concepts: ["septième diminuée", "VII°7", "mineur harmonique", "septième préparée", "sensible", "résolution par demi-tons"],
   },
 ];
+
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 40 — L'invention à 2 voix
+// ════════════════════════════════════════════════════════════════════════════
+
+export const COURS40_EXERCISES: (IdentifyExercise | BuildExercise)[] = [
+  {
+    id: "c40-imitation-octave",
+    type: "identify",
+    cours: 40,
+    difficulty: 1,
+    tags: ["invention à 2 voix", "imitation", "contrepoint", "octave"],
+    concepts: ["imitation", "intervalle d'imitation", "conséquent à l'octave"],
+    question:
+      "À la voix supérieure, le sujet énonce C – D – E – F. Une mesure plus tard, la voix inférieure reprend exactement le même dessin C – D – E – F, mais une octave plus bas. À quel intervalle se fait cette imitation ?",
+    context: "Sujet (dessus) : C4 – D4 – E4 – F4. Réponse (basse) : C3 – D3 – E3 – F3.",
+    options: [
+      { id: "a", label: "À l'unisson", isCorrect: false },
+      { id: "b", label: "À l'octave", isCorrect: true },
+      { id: "c", label: "À la quinte", isCorrect: false },
+      { id: "d", label: "À la quarte", isCorrect: false },
+    ],
+    explanation:
+      "La seconde voix reprend le sujet sans aucune transformation d'intervalles, exactement huit degrés plus bas : c'est une imitation à l'octave (la forme d'imitation la plus simple et la plus fréquente dans l'invention à 2 voix de Bach). Les noms de notes sont conservés (C, D, E, F), seule l'octave change. On parle d'imitation rigoureuse car le profil mélodique est reproduit à l'identique.",
+    hint: "Les deux voix jouent les mêmes noms de notes (C–D–E–F) ; comparez seulement la hauteur de registre.",
+  },
+  {
+    id: "c40-procede-melodique",
+    type: "identify",
+    cours: 40,
+    difficulty: 2,
+    tags: ["invention à 2 voix", "procédés motiviques", "augmentation", "contrepoint"],
+    concepts: ["augmentation", "diminution", "renversement", "transformation du motif"],
+    question:
+      "Le motif initial est exposé en croches : C – D – E – F. Plus loin, la même succession de hauteurs C – D – E – F réapparaît, mais cette fois en blanches (valeurs deux fois plus longues), les intervalles et l'ordre des notes restant inchangés. De quel procédé d'écriture s'agit-il ?",
+    context: "Motif : C–D–E–F en croches. Reprise : C–D–E–F en blanches (valeurs doublées).",
+    options: [
+      { id: "a", label: "Le renversement (inversion mélodique)", isCorrect: false },
+      { id: "b", label: "L'augmentation", isCorrect: true },
+      { id: "c", label: "La diminution", isCorrect: false },
+      { id: "d", label: "La marche (séquence)", isCorrect: false },
+    ],
+    explanation:
+      "Les hauteurs et les intervalles sont identiques ; seules les durées sont allongées (ici multipliées par deux). Allonger les valeurs rythmiques d'un motif s'appelle l'augmentation. Le procédé inverse — raccourcir les valeurs — est la diminution. Le renversement transformerait les intervalles (chaque mouvement ascendant deviendrait descendant), et la marche transposerait le motif à des degrés successifs : ce n'est ici ni l'un ni l'autre, puisque les notes ne changent pas.",
+    hint: "Les notes ne changent pas, seules les durées sont modifiées. Sont-elles plus longues ou plus courtes ?",
+  },
+  {
+    id: "c40-build-renversement",
+    type: "build",
+    cours: 40,
+    difficulty: 2,
+    tags: ["invention à 2 voix", "renversement", "inversion mélodique", "contrepoint"],
+    concepts: ["renversement", "inversion mélodique", "axe de symétrie", "intervalles diatoniques"],
+    question:
+      "Soit le sujet ascendant C – D – E – F (trois secondes ascendantes) en Do majeur. Construis son RENVERSEMENT (inversion mélodique) en gardant la première note C comme axe : chaque seconde ascendante devient une seconde descendante diatonique. Sélectionne les quatre notes du sujet renversé.",
+    correctNotes: ["C", "B", "A", "G"],
+    keySignature: "C",
+    explanation:
+      "Renversement (miroir) du sujet autour de sa première note C, qui sert d'axe. Le sujet monte par degrés conjoints : C → D (2de↑), D → E (2de↑), E → F (2de↑). Dans le renversement, chaque intervalle est reproduit en sens inverse, par degré conjoint diatonique descendant : C → B (2de↓), B → A (2de↓), A → G (2de↓). On obtient donc C – B – A – G. C'est une inversion diatonique (on respecte le nombre de degrés dans la gamme de Do, sans accident), procédé courant chez Bach pour répondre au sujet par son miroir.",
+    hint: "Gardez C, puis descendez par degrés conjoints de la gamme de Do autant de fois que le sujet montait.",
+  },
+  {
+    id: "c40-build-imitation-octave",
+    type: "build",
+    cours: 40,
+    difficulty: 3,
+    tags: ["invention à 2 voix", "imitation", "octave", "conséquent"],
+    concepts: ["imitation à l'octave", "transposition à l'octave", "conservation des noms de notes"],
+    question:
+      "La tête de sujet, à la voix supérieure, est G4 – A4 – B4 – C5. Construis sa réponse en imitation à l'octave inférieure, à la voix de basse. Sélectionne les quatre notes (noms) de la réponse.",
+    correctNotes: ["G", "A", "B", "C"],
+    keySignature: "C",
+    explanation:
+      "L'imitation à l'octave transpose le sujet huit degrés plus bas (ou plus haut) sans modifier les intervalles. Transposer d'une octave juste conserve la classe de hauteur : les noms de notes restent identiques (G – A – B – C), seul le registre change (G3 – A3 – B3 – C4 à la basse). C'est pourquoi l'imitation à l'octave est la plus simple : elle ne demande aucun ajustement des hauteurs, contrairement à l'imitation à la quinte qui modifierait certains intervalles (réponse tonale).",
+    hint: "Une octave juste plus bas, les notes gardent exactement le même nom : seul le chiffre d'octave change.",
+  },
+];
