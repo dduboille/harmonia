@@ -125,7 +125,9 @@
     "d36": "Ganztonleiter, Planing, Polychorde, neoklassische Modalität — Debussy, Ravel, Satie.",
     "d37": "Ursatz, Urlinie, motivische Analyse, 4 Reduktionsstufen — Schenker und Beethovens 5. Sinfonie.",
     "c38": "Die harmoniefremden Töne",
-    "d38": "Vorhalt, Vorhalt (betont), Wechselnote, Durchgangsnote, Wechselnote, Antizipation und Orgelpunkt — die melodische Verzierung der Harmonie."
+    "d38": "Vorhalt, Vorhalt (betont), Wechselnote, Durchgangsnote, Wechselnote, Antizipation und Orgelpunkt — die melodische Verzierung der Harmonie.",
+    "c39": "Die Septakkorde auf jeder Stufe",
+    "d39": "Über den V7 hinaus: der Septakkord auf jeder Tonleiterstufe — seine Art, seine Vorbereitung, seine Auflösung, seine Umkehrungen und die Septakkordkette."
   },
   "cours": {
     "level1": "Niveau 1",
@@ -3469,6 +3471,64 @@
       "emploiP2": "Das Referenzrepertoire bleibt der <strong>Choral von J.S. Bach</strong>: in wenigen Takten findet man dort Durchgangsnoten, Wechselnoten, 4-3- und 7-6-Vorhalte und Orgelpunkte — stets mit Strenge geführt. Es ist das Vorbild, das es beim DEM nachzuahmen gilt.",
       "emploiGallonBox": "<strong>Eine Schule der Stimmführung:</strong> neben der <em>Harmonielehre</em> von Théodore Dubois ist die Lehre von <strong>Noël Gallon</strong>, Harmonielehrer am Pariser Conservatoire, eine Referenz für die Verwendung der harmoniefremden Töne. Seine Arbeit über die <em>Sequenzen</em> und die <em>Stimmführung</em> erinnert daran, dass eine Verzierung nur durch die melodische Linie Wert hat, die sie zeichnet: jeder harmoniefremde Ton muss der Melodie dienen, sie nie überladen.",
       "quizH2": "Übung"
+    }
+  },
+  "cours39": {
+    "badge": "Stufe 2 · Kurs 39",
+    "title": "Die Septakkorde auf jeder Stufe",
+    "subtitle": "Über den V7 hinaus: der Septakkord auf jeder Tonleiterstufe — seine Art, seine Vorbereitung, seine Auflösung, seine Umkehrungen und die Septakkordkette.",
+    "sections": {
+      "degres": "Die Stufen",
+      "ecriture": "Der Satz",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt! Du beherrschst die Art, die Vorbereitung und die Auflösung der Septakkorde.",
+      "veryGood": "Sehr gut! Einige Punkte zu festigen (Umkehrungen, Septakkordkette).",
+      "keepGoing": "Weiter so — wiederhole die Art jeder Septime und die abwärts gerichtete Auflösung, bevor du erneut beginnst."
+    },
+    "narrative": {
+      "navDegres": "Die Stufen",
+      "navEcriture": "Der Satz",
+      "navQuiz": "Übung",
+      "headerBadge": "Stufe 2 · Kurs 39",
+      "headerTitle": "Die Septakkorde auf jeder Stufe",
+      "maitreConceptLabel": "Die Septakkordkette",
+      "maitreAnecdote": "Arcangelo Corelli, Meister der römischen Violine und Vater der barocken Sonate, legte für ganze Generationen die Behandlung der Dissonanzen fest. Seine Sonaten und Concerti grossi sind voll von langen Septakkordketten, die mit uhrwerkartiger Regelmäßigkeit vorbereitet, angeschlagen und aufgelöst werden — die berühmte „Corelli-Kadenz“. Jede Septime wird als Konsonanz angekündigt, bevor sie zur Dissonanz wird, und fällt dann um eine Stufe: ein Satzmodell, das Bach und danach alle Lehrbücher übernehmen sollten, ohne ihm zu widersprechen.",
+      "maitreLesson": "Eine Septime ist nie ein bloßer Effekt: Sie wird vorbereitet, sie wird angeschlagen, dann steigt sie zur Auflösung ab. Diese Disziplin macht die Dissonanz musikalisch.",
+      "degSectionTitle": "Eine Septime auf jeder Stufe",
+      "degIntro": "Bisher war die einzige untersuchte Septime der <strong>V7</strong>, der Dominantseptakkord. Doch wenn man drei Terzen auf <strong>irgendeiner Stufe</strong> der Tonleiter übereinanderschichtet, erhält man einen Septakkord. Es gibt also sieben davon (I7 bis VII7), und sie haben nicht alle dieselbe Art: alles hängt von den Intervallen ab, die die Tonleiter bereitstellt.",
+      "degInfoBox": "<strong>Die Septakkorde auf jeder Stufe</strong> sind alle Septakkorde <em>außer</em> dem V7. Jeder gehört zu einer Intervallart (große Septime, kleine Septime, halbverminderte Septime, verminderte Septime) je nach der Stufe, auf der er aufgebaut ist.",
+      "degClickHint": "Klicke auf eine Stufe, um sie zu hören und ihre Art zu lesen.",
+      "degDegreLabel": "Stufe",
+      "degRelistenBtn": "▶ Erneut hören",
+      "degMineurBox": "<strong>In Moll:</strong> die Arten ändern sich. Die VII. Stufe der harmonischen Tonleiter (mit Leitton) ergibt einen <strong>verminderten Septakkord (VII°7)</strong> — eine Schichtung von drei kleinen Terzen, Farbe intensiver Spannung — anstelle des halbverminderten Septakkords in Dur. Die II. Stufe wird halbvermindert (IIø7), und die VI. eine große Septime. Prüfe die Art stets an der Tonleiter der tatsächlichen Tonart.",
+      "ecrSectionTitle": "Septakkorde setzen: Vorbereitung, Auflösung, Umkehrungen, Kette",
+      "ecrIntro": "Jede Septime ist eine <strong>Dissonanz</strong>: sie gehorcht daher genauen Satzregeln. In der strengen Harmonielehre wird sie <em>vorbereitet</em>, sie wird abwärts <em>aufgelöst</em>, und man kennt ihre <em>Bezifferung</em> in jeder Umkehrung. Aneinandergereiht bilden diese Septimen die berühmte <strong>Septakkordkette</strong>.",
+      "ecrPrepTitle": "Vorbereitung der Septime",
+      "ecrPrepText": "Die Septime vorzubereiten bedeutet, den Ton, der dissonant werden wird, zuerst als <strong>konsonanten Ton</strong> erklingen zu lassen, in <strong>derselben Stimme</strong>, im vorangehenden Akkord. Die Dissonanz wird so dem Ohr „angekündigt“, bevor sie anschlägt. <strong>Nur der V7 bildet eine Ausnahme</strong>: seine Dominantfunktion erlaubt es seiner Septime, ohne Vorbereitung einzutreten.",
+      "ecrResolBox": "<strong>Auflösung:</strong> die Septime löst sich fast immer <em>um eine Sekunde abwärts</em> auf. Sie „fällt“ auf den unteren Nachbarton, der zum folgenden Akkord gehört. Typisches Beispiel: in V7 → I (C-Dur) sinkt die Septime <em>f</em> auf <em>e</em>, während der Leitton <em>H</em> auf <em>c</em> steigt.",
+      "ecrResolListenBtn": "▶ V7 → I anhören (die Septime f sinkt auf e)",
+      "ecrInvTitle": "Umkehrungen und Bezifferung",
+      "ecrInvText": "Ein Septakkord umfasst vier Töne: er lässt daher <strong>vier Lagen</strong> zu. Jeder Umkehrung entspricht eine klassische Bezifferung, die vom Generalbass übernommen ist. In der dritten Umkehrung liegt die dissonante Septime selbst im Bass — sie muss dann absteigen, um sich aufzulösen.",
+      "ecrTableHeaderEtat": "Lage",
+      "ecrTableHeaderBasse": "Ton im Bass",
+      "ecrTableHeaderChiffrage": "Bezifferung",
+      "ecrMarcheTitle": "Die Septakkordkette",
+      "ecrMarcheText": "Die <strong>Septakkordkette</strong> ist eine Fortschreitung, in der jeder Akkord eine Septime ist und die Grundtöne in <strong>Quinten</strong> absteigen (absteigender Quintenzirkel). Die Septime eines Akkords bereitet die Septime des nächsten vor: es ist ein Mechanismus aneinandergereihter Vorbereitungen und Auflösungen, ein Satzmodell par excellence.",
+      "ecrMarcheBox": "<strong>Quintenzirkel:</strong> I7 – IV7 – VII7 – III7 – VI7 – II7 – V7 – I. Um die Stimmen fehlerfrei zu führen, wechselt man <em>vollständige</em> Akkorde (4 Töne) und <em>unvollständige</em> (ohne die Quinte) ab: so ist die Septime jedes Akkords stets durch eine Konsonanz des vorangehenden Akkords vorbereitet.",
+      "ecrMarcheListenBtn": "▶ Eine Septakkordkette anhören (absteigende Quinten)",
+      "ecrVoixBox": "<strong>Stimmführung:</strong> niemals die Septime verdoppeln noch sie aufsteigen lassen. Jede Septime sinkt, jeder Leitton steigt. Es ist der Wechsel von vollständigen / unvollständigen Akkorden, der Quintparallelen in der Kette vermeidet — eine Regel, die man bereits bei Corelli und Bach beobachtet.",
+      "quizSectionTitle": "Übung",
+      "quizScoreLabel": "Punktzahl:",
+      "quizFeedbackExcellent": "Perfekt! Du beherrschst die Art, die Vorbereitung und die Auflösung der Septakkorde.",
+      "quizFeedbackGood": "Sehr gut! Einige Punkte zu festigen (Umkehrungen, Septakkordkette).",
+      "quizFeedbackKeepGoing": "Weiter so — wiederhole die Art jeder Septime und die abwärts gerichtete Auflösung, bevor du erneut beginnst.",
+      "quizResetBtn": "↻ Neu beginnen",
+      "quizQuestionCounter": "Frage",
+      "quizPoolInfo": "Fragen insgesamt",
+      "quizNextBtn": "Nächste Frage →",
+      "quizFinishBtn": "Punktzahl ansehen →"
     }
   },
   "conservatoire": {

@@ -125,7 +125,9 @@
     "d36": "Escala de tonos enteros, planing, poliacordes, modalidad neoclásica — Debussy, Ravel, Satie.",
     "d37": "Ursatz, Urlinie, análisis motivico, 4 niveles de reducción — Schenker y la 5ª de Beethoven.",
     "c38": "Las notas extrañas",
-    "d38": "Retardo, apoyatura, bordadura, nota de paso, escapada, anticipación y pedal — la ornamentación melódica de la armonía."
+    "d38": "Retardo, apoyatura, bordadura, nota de paso, escapada, anticipación y pedal — la ornamentación melódica de la armonía.",
+    "c39": "Los acordes de séptima por grados",
+    "d39": "Más allá del V7: el acorde de séptima sobre cada grado, su naturaleza, su preparación, su resolución, sus inversiones y la marcha de séptimas."
   },
   "cours": {
     "level1": "Nivel 1",
@@ -3469,6 +3471,64 @@
       "emploiP2": "El repertorio de referencia sigue siendo el <strong>coral de J.S. Bach</strong>: en él se encuentran, en pocos compases, notas de paso, bordaduras, retardos 4-3 y 7-6, y pedales — siempre conducidos con rigor. Es el modelo a imitar para el DEM.",
       "emploiGallonBox": "<strong>Una escuela de la conducción de las voces:</strong> junto al <em>Tratado</em> de Théodore Dubois, la enseñanza de <strong>Noël Gallon</strong>, profesor de armonía en el Conservatorio de París, es una referencia para el empleo de las notas extrañas. Su trabajo sobre las <em>marchas de armonía</em> y la <em>conducción de las voces</em> recuerda que un ornamento solo tiene valor por la línea melódica que dibuja: cada nota extraña debe servir al canto, nunca recargarlo.",
       "quizH2": "Práctica"
+    }
+  },
+  "cours39": {
+    "badge": "Nivel 2 · Curso 39",
+    "title": "Los acordes de séptima por grados",
+    "subtitle": "Más allá del V7: el acorde de séptima sobre cada grado, su naturaleza, su preparación, su resolución, sus inversiones y la marcha de séptimas.",
+    "sections": {
+      "degres": "Los grados",
+      "ecriture": "La escritura",
+      "quiz": "Entrenamiento"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Dominas la naturaleza, la preparación y la resolución de los acordes de séptima.",
+      "veryGood": "¡Muy bien! Algunos puntos por consolidar (inversiones, marcha de séptimas).",
+      "keepGoing": "Sigue así — repasa la naturaleza de cada séptima y revisa la resolución descendente antes de volver a empezar."
+    },
+    "narrative": {
+      "navDegres": "Los grados",
+      "navEcriture": "La escritura",
+      "navQuiz": "Entrenamiento",
+      "headerBadge": "Nivel 2 · Curso 39",
+      "headerTitle": "Los acordes de séptima por grados",
+      "maitreConceptLabel": "La cadena de séptimas",
+      "maitreAnecdote": "Arcangelo Corelli, maestro del violín romano y padre de la sonata barroca, fijó para generaciones enteras la conducción de las disonancias. Sus Sonatas y Concerti grossi rebosan de largas cadenas de séptimas que se preparan, se atacan y se resuelven con una regularidad de reloj — la famosa «cadencia de Corelli». Cada séptima se anuncia como consonancia antes de convertirse en disonancia, y luego cae un grado: un modelo de escritura que Bach, y después todos los tratados, retomarían sin desmentirlo.",
+      "maitreLesson": "Una séptima nunca es un efecto gratuito: se prepara, se ataca y luego desciende para resolverse. Es esta disciplina la que vuelve musical la disonancia.",
+      "degSectionTitle": "Una séptima sobre cada grado",
+      "degIntro": "Hasta ahora, la única séptima estudiada era el <strong>V7</strong>, el acorde de séptima de dominante. Pero superponiendo tres terceras sobre <strong>cualquier grado</strong> de la escala, se obtiene un acorde de séptima. Hay, pues, siete (de I7 a VII7), y no todos tienen la misma naturaleza: todo depende de los intervalos que la escala pone a disposición.",
+      "degInfoBox": "<strong>Los acordes de séptima por grados</strong> son todos los acordes de séptima <em>distintos</em> del V7. Cada uno pertenece a una especie de intervalo (séptima mayor, menor, semidisminuida, disminuida) según el grado sobre el que se construye.",
+      "degClickHint": "Haz clic en un grado para escucharlo y leer su naturaleza.",
+      "degDegreLabel": "Grado",
+      "degRelistenBtn": "▶ Volver a escuchar",
+      "degMineurBox": "<strong>En modo menor:</strong> las naturalezas cambian. El VII de la escala armónica (con sensible) da una <strong>séptima disminuida (VII°7)</strong> — superposición de tres terceras menores, color de tensión intensa — en lugar de la séptima semidisminuida del mayor. El II grado se vuelve semidisminuido (IIø7), y el VI una séptima mayor. Verifica siempre la naturaleza sobre la escala de la tonalidad real.",
+      "ecrSectionTitle": "Escribir las séptimas: preparación, resolución, inversiones, marcha",
+      "ecrIntro": "Toda séptima es una <strong>disonancia</strong>: obedece, por tanto, a reglas de escritura precisas. En armonía rigurosa, se la <em>prepara</em>, se la <em>resuelve</em> descendiendo y se conoce su <em>cifrado</em> en cada inversión. Encadenadas, estas séptimas forman la célebre <strong>marcha de séptimas</strong>.",
+      "ecrPrepTitle": "Preparación de la séptima",
+      "ecrPrepText": "Preparar la séptima consiste en hacer oír la nota que va a volverse disonante primero como <strong>nota consonante</strong>, en la <strong>misma voz</strong>, en el acorde precedente. La disonancia queda así «anunciada» al oído antes de atacar. <strong>Solo el V7 es la excepción</strong>: su función de dominante permite que su séptima entre sin preparación.",
+      "ecrResolBox": "<strong>Resolución:</strong> la séptima se resuelve casi siempre <em>descendiendo un grado conjunto</em>. «Cae» sobre la nota vecina inferior, que pertenece al acorde siguiente. Ejemplo típico: en V7 → I (do mayor), la séptima <em>fa</em> desciende a <em>mi</em>, mientras la sensible <em>si</em> sube a <em>do</em>.",
+      "ecrResolListenBtn": "▶ Escuchar V7 → I (la séptima fa desciende a mi)",
+      "ecrInvTitle": "Inversiones y cifrado",
+      "ecrInvText": "Un acorde de séptima consta de cuatro sonidos: admite, por tanto, <strong>cuatro estados</strong>. A cada inversión corresponde un cifrado clásico, heredado del bajo continuo. En la tercera inversión, es la propia séptima disonante la que se encuentra en el bajo — deberá entonces descender para resolverse.",
+      "ecrTableHeaderEtat": "Estado",
+      "ecrTableHeaderBasse": "Nota en el bajo",
+      "ecrTableHeaderChiffrage": "Cifrado",
+      "ecrMarcheTitle": "La marcha de séptimas",
+      "ecrMarcheText": "La <strong>marcha de séptimas</strong> es una progresión en la que cada acorde es una séptima y las fundamentales descienden por <strong>quintas</strong> (círculo de quintas descendente). La séptima de un acorde prepara la séptima del siguiente: es una mecánica de preparaciones-resoluciones encadenadas, modelo de escritura por excelencia.",
+      "ecrMarcheBox": "<strong>Círculo de quintas:</strong> I7 – IV7 – VII7 – III7 – VI7 – II7 – V7 – I. Para conducir las voces sin faltas, se alternan acordes <em>completos</em> (4 sonidos) e <em>incompletos</em> (sin la quinta): así la séptima de cada acorde siempre está preparada por una consonancia del acorde precedente.",
+      "ecrMarcheListenBtn": "▶ Escuchar una cadena de séptimas (quintas descendentes)",
+      "ecrVoixBox": "<strong>Conducción de voces:</strong> nunca doblar la séptima ni hacerla subir. Cada séptima desciende, cada sensible sube. Es la alternancia de acordes completos / incompletos la que evita las quintas paralelas en la marcha — regla que ya se observa en Corelli y Bach.",
+      "quizSectionTitle": "Entrenamiento",
+      "quizScoreLabel": "Puntuación:",
+      "quizFeedbackExcellent": "¡Perfecto! Dominas la naturaleza, la preparación y la resolución de los acordes de séptima.",
+      "quizFeedbackGood": "¡Muy bien! Algunos puntos por consolidar (inversiones, marcha de séptimas).",
+      "quizFeedbackKeepGoing": "Sigue así — repasa la naturaleza de cada séptima y revisa la resolución descendente antes de volver a empezar.",
+      "quizResetBtn": "↻ Volver a empezar",
+      "quizQuestionCounter": "Pregunta",
+      "quizPoolInfo": "preguntas en total",
+      "quizNextBtn": "Pregunta siguiente →",
+      "quizFinishBtn": "Ver la puntuación →"
     }
   },
   "conservatoire": {

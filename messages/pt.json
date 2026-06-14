@@ -125,7 +125,9 @@
     "d36": "Escala de tons inteiros, planing, poliacordes, modalidade neoclássica — Debussy, Ravel, Satie.",
     "d37": "Ursatz, Urlinie, análise motivica, 4 níveis de redução — Schenker e a 5ª de Beethoven.",
     "c38": "As notas estranhas",
-    "d38": "Retardo, apojatura, bordadura, nota de passagem, escapada, antecipação e pedal — a ornamentação melódica da harmonia."
+    "d38": "Retardo, apojatura, bordadura, nota de passagem, escapada, antecipação e pedal — a ornamentação melódica da harmonia.",
+    "c39": "Os acordes de sétima por graus",
+    "d39": "Para além do V7: o acorde de sétima sobre cada grau, a sua natureza, a sua preparação, a sua resolução, as suas inversões e a marcha de sétimas."
   },
   "cours": {
     "level1": "Nível 1",
@@ -3469,6 +3471,64 @@
       "emploiP2": "O repertório de referência continua a ser o <strong>coral de J.S. Bach</strong>: nele encontram-se, em poucos compassos, notas de passagem, bordaduras, retardos 4-3 e 7-6, e pedais — sempre conduzidos com rigor. É o modelo a imitar para o DEM.",
       "emploiGallonBox": "<strong>Uma escola da condução das vozes:</strong> ao lado do <em>Tratado</em> de Théodore Dubois, o ensino de <strong>Noël Gallon</strong>, professor de harmonia no Conservatório de Paris, é uma referência para o emprego das notas estranhas. O seu trabalho sobre as <em>marchas de harmonia</em> e a <em>condução das vozes</em> recorda que um ornamento só tem valor pela linha melódica que desenha: cada nota estranha deve servir o canto, nunca o sobrecarregar.",
       "quizH2": "Treino"
+    }
+  },
+  "cours39": {
+    "badge": "Nível 2 · Curso 39",
+    "title": "Os acordes de sétima por graus",
+    "subtitle": "Para além do V7: o acorde de sétima sobre cada grau, a sua natureza, a sua preparação, a sua resolução, as suas inversões e a marcha de sétimas.",
+    "sections": {
+      "degres": "Os graus",
+      "ecriture": "A escrita",
+      "quiz": "Treino"
+    },
+    "quiz": {
+      "perfect": "Perfeito! Domina a natureza, a preparação e a resolução dos acordes de sétima.",
+      "veryGood": "Muito bem! Alguns pontos a consolidar (inversões, marcha de sétimas).",
+      "keepGoing": "Continue — releia a natureza de cada sétima e reveja a resolução descendente antes de recomeçar."
+    },
+    "narrative": {
+      "navDegres": "Os graus",
+      "navEcriture": "A escrita",
+      "navQuiz": "Treino",
+      "headerBadge": "Nível 2 · Curso 39",
+      "headerTitle": "Os acordes de sétima por graus",
+      "maitreConceptLabel": "A cadeia de sétimas",
+      "maitreAnecdote": "Arcangelo Corelli, mestre do violino romano e pai da sonata barroca, fixou para gerações inteiras a condução das dissonâncias. As suas Sonatas e Concerti grossi transbordam de longas cadeias de sétimas que se preparam, se atacam e se resolvem com uma regularidade de relógio — a famosa «cadência de Corelli». Cada sétima é aí anunciada como consonância antes de se tornar dissonância, e depois cai um grau: um modelo de escrita que Bach, e depois todos os tratados, retomariam sem o desmentir.",
+      "maitreLesson": "Uma sétima nunca é um efeito gratuito: prepara-se, ataca-se e depois desce para se resolver. É esta disciplina que torna musical a dissonância.",
+      "degSectionTitle": "Uma sétima sobre cada grau",
+      "degIntro": "Até aqui, a única sétima estudada era o <strong>V7</strong>, o acorde de sétima da dominante. Mas, sobrepondo três terceiras sobre <strong>qualquer grau</strong> da escala, obtém-se um acorde de sétima. Há, portanto, sete (de I7 a VII7), e nem todos têm a mesma natureza: tudo depende dos intervalos que a escala põe à disposição.",
+      "degInfoBox": "<strong>Os acordes de sétima por graus</strong> são todos os acordes de sétima <em>diferentes</em> do V7. Cada um pertence a uma espécie de intervalo (sétima maior, menor, meio-diminuta, diminuta) consoante o grau sobre o qual é construído.",
+      "degClickHint": "Clique num grau para o ouvir e ler a sua natureza.",
+      "degDegreLabel": "Grau",
+      "degRelistenBtn": "▶ Ouvir de novo",
+      "degMineurBox": "<strong>No modo menor:</strong> as naturezas mudam. O VII da escala harmónica (com sensível) dá uma <strong>sétima diminuta (VII°7)</strong> — sobreposição de três terceiras menores, cor de tensão intensa — em vez da sétima meio-diminuta do maior. O II grau torna-se meio-diminuto (IIø7), e o VI uma sétima maior. Verifique sempre a natureza sobre a escala da tonalidade real.",
+      "ecrSectionTitle": "Escrever as sétimas: preparação, resolução, inversões, marcha",
+      "ecrIntro": "Toda a sétima é uma <strong>dissonância</strong>: obedece, portanto, a regras de escrita precisas. Na harmonia rigorosa, prepara-se, <em>resolve-se</em> descendo, e conhece-se a sua <em>cifragem</em> em cada inversão. Encadeadas, estas sétimas formam a célebre <strong>marcha de sétimas</strong>.",
+      "ecrPrepTitle": "Preparação da sétima",
+      "ecrPrepText": "Preparar a sétima é fazer ouvir a nota que se vai tornar dissonante primeiro como <strong>nota consonante</strong>, na <strong>mesma voz</strong>, no acorde precedente. A dissonância fica assim «anunciada» ao ouvido antes de atacar. <strong>Só o V7 é exceção</strong>: a sua função de dominante permite que a sua sétima entre sem preparação.",
+      "ecrResolBox": "<strong>Resolução:</strong> a sétima resolve-se quase sempre <em>descendo um grau conjunto</em>. «Cai» sobre a nota vizinha inferior, que pertence ao acorde seguinte. Exemplo típico: em V7 → I (dó maior), a sétima <em>fá</em> desce para <em>mi</em>, enquanto a sensível <em>si</em> sobe para <em>dó</em>.",
+      "ecrResolListenBtn": "▶ Ouvir V7 → I (a sétima fá desce para mi)",
+      "ecrInvTitle": "Inversões e cifragem",
+      "ecrInvText": "Um acorde de sétima comporta quatro sons: admite, portanto, <strong>quatro estados</strong>. A cada inversão corresponde uma cifragem clássica, herdada do baixo contínuo. Na terceira inversão, é a própria sétima dissonante que se encontra no baixo — terá então de descer para se resolver.",
+      "ecrTableHeaderEtat": "Estado",
+      "ecrTableHeaderBasse": "Nota no baixo",
+      "ecrTableHeaderChiffrage": "Cifragem",
+      "ecrMarcheTitle": "A marcha de sétimas",
+      "ecrMarcheText": "A <strong>marcha de sétimas</strong> é uma progressão em que cada acorde é uma sétima e as fundamentais descem por <strong>quintas</strong> (círculo de quintas descendente). A sétima de um acorde prepara a sétima do seguinte: é uma mecânica de preparações-resoluções encadeadas, modelo de escrita por excelência.",
+      "ecrMarcheBox": "<strong>Círculo de quintas:</strong> I7 – IV7 – VII7 – III7 – VI7 – II7 – V7 – I. Para conduzir as vozes sem faltas, alternam-se acordes <em>completos</em> (4 sons) e <em>incompletos</em> (sem a quinta): assim a sétima de cada acorde está sempre preparada por uma consonância do acorde precedente.",
+      "ecrMarcheListenBtn": "▶ Ouvir uma cadeia de sétimas (quintas descendentes)",
+      "ecrVoixBox": "<strong>Condução de vozes:</strong> nunca duplicar a sétima nem fazê-la subir. Cada sétima desce, cada sensível sobe. É a alternância de acordes completos / incompletos que evita as quintas paralelas na marcha — regra que já se observa em Corelli e Bach.",
+      "quizSectionTitle": "Treino",
+      "quizScoreLabel": "Pontuação:",
+      "quizFeedbackExcellent": "Perfeito! Domina a natureza, a preparação e a resolução dos acordes de sétima.",
+      "quizFeedbackGood": "Muito bem! Alguns pontos a consolidar (inversões, marcha de sétimas).",
+      "quizFeedbackKeepGoing": "Continue — releia a natureza de cada sétima e reveja a resolução descendente antes de recomeçar.",
+      "quizResetBtn": "↻ Recomeçar",
+      "quizQuestionCounter": "Pergunta",
+      "quizPoolInfo": "perguntas no total",
+      "quizNextBtn": "Pergunta seguinte →",
+      "quizFinishBtn": "Ver a pontuação →"
     }
   },
   "conservatoire": {

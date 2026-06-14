@@ -125,7 +125,9 @@
     "d36": "Whole-tone scale, planing, polychords, neoclassical modality — Debussy, Ravel, Satie.",
     "d37": "Ursatz, Urlinie, motivic analysis, 4 reduction levels — Schenker and Beethoven's 5th.",
     "c38": "Non-Chord Tones",
-    "d38": "Suspension, appoggiatura, neighbor tone, passing tone, escape tone, anticipation and pedal point — the melodic ornamentation of harmony."
+    "d38": "Suspension, appoggiatura, neighbor tone, passing tone, escape tone, anticipation and pedal point — the melodic ornamentation of harmony.",
+    "c39": "Seventh Chords on Each Degree",
+    "d39": "Beyond V7: the seventh chord on every scale degree — its quality, its preparation, its resolution, its inversions, and the chain of sevenths."
   },
   "cours": {
     "level1": "Level 1",
@@ -3468,6 +3470,64 @@
       "emploiP2": "The reference repertoire remains the <strong>J.S. Bach chorale</strong>: within a few bars you find passing tones, neighbor tones, 4-3 and 7-6 suspensions, and pedal points — always led with rigor. It is the model to imitate for the DEM.",
       "emploiGallonBox": "<strong>A school of voice leading:</strong> alongside Théodore Dubois's <em>Treatise</em>, the teaching of <strong>Noël Gallon</strong>, professor of harmony at the Paris Conservatoire, is a benchmark for the use of non-chord tones. His work on <em>harmonic sequences</em> and <em>voice leading</em> reminds us that an ornament has value only through the melodic line it draws: every non-chord tone must serve the melody, never overload it.",
       "quizH2": "Practice"
+    }
+  },
+  "cours39": {
+    "badge": "Level 2 · Course 39",
+    "title": "Seventh Chords on Each Degree",
+    "subtitle": "Beyond V7: the seventh chord on every scale degree — its quality, its preparation, its resolution, its inversions, and the chain of sevenths.",
+    "sections": {
+      "degres": "The degrees",
+      "ecriture": "Writing",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You have mastered the quality, preparation, and resolution of seventh chords.",
+      "veryGood": "Very good! A few points to consolidate (inversions, chain of sevenths).",
+      "keepGoing": "Keep going — review the quality of each seventh and the downward resolution before starting again."
+    },
+    "narrative": {
+      "navDegres": "The degrees",
+      "navEcriture": "Writing",
+      "navQuiz": "Practice",
+      "headerBadge": "Level 2 · Course 39",
+      "headerTitle": "Seventh Chords on Each Degree",
+      "maitreConceptLabel": "The chain of sevenths",
+      "maitreAnecdote": "Arcangelo Corelli, master of the Roman violin and father of the Baroque sonata, set the handling of dissonance for entire generations. His Sonatas and Concerti grossi overflow with long chains of sevenths that are prepared, struck, and resolved with clockwork regularity — the famous \"Corelli cadence.\" Each seventh is announced as a consonance before becoming a dissonance, then falls by a step: a model of voice leading that Bach, and every treatise after him, would take up without question.",
+      "maitreLesson": "A seventh is never a gratuitous effect: it is prepared, it is struck, then it descends to resolve. This discipline is what makes dissonance musical.",
+      "degSectionTitle": "A seventh on every degree",
+      "degIntro": "Until now, the only seventh studied was the <strong>V7</strong>, the dominant seventh chord. But by stacking three thirds on <strong>any degree</strong> of the scale, we obtain a seventh chord. There are therefore seven of them (I7 to VII7), and they do not all have the same quality: it all depends on the intervals the scale makes available.",
+      "degInfoBox": "<strong>Seventh chords on each degree</strong> are all the seventh chords <em>other</em> than the V7. Each belongs to an interval species (major seventh, minor seventh, half-diminished seventh, diminished seventh) according to the degree on which it is built.",
+      "degClickHint": "Click a degree to hear it and read its quality.",
+      "degDegreLabel": "Degree",
+      "degRelistenBtn": "▶ Replay",
+      "degMineurBox": "<strong>In minor mode:</strong> the qualities change. The VII of the harmonic scale (with leading tone) gives a <strong>diminished seventh (VII°7)</strong> — a stack of three minor thirds, a color of intense tension — instead of the half-diminished seventh of major. The second degree becomes half-diminished (IIø7), and the VI a major seventh. Always check the quality against the scale of the actual key.",
+      "ecrSectionTitle": "Writing sevenths: preparation, resolution, inversions, the chain",
+      "ecrIntro": "Every seventh is a <strong>dissonance</strong>: it therefore obeys precise rules of writing. In strict harmony, it is <em>prepared</em>, it is <em>resolved</em> downward, and its <em>figuring</em> is known in each inversion. Chained together, these sevenths form the famous <strong>chain of sevenths</strong>.",
+      "ecrPrepTitle": "Preparation of the seventh",
+      "ecrPrepText": "Preparing the seventh means sounding the note that will become dissonant first as a <strong>consonant note</strong>, in the <strong>same voice</strong>, in the preceding chord. The dissonance is thus \"announced\" to the ear before it strikes. <strong>Only the V7 is an exception</strong>: its dominant function allows its seventh to enter without preparation.",
+      "ecrResolBox": "<strong>Resolution:</strong> the seventh almost always resolves by <em>descending one step</em>. It \"falls\" onto the lower neighbor note, which belongs to the following chord. Typical example: in V7 → I (C major), the seventh <em>F</em> descends to <em>E</em>, while the leading tone <em>B</em> rises to <em>C</em>.",
+      "ecrResolListenBtn": "▶ Listen to V7 → I (the seventh F descends to E)",
+      "ecrInvTitle": "Inversions and figuring",
+      "ecrInvText": "A seventh chord contains four notes: it therefore admits <strong>four positions</strong>. Each inversion corresponds to a classical figuring, inherited from the figured bass. In the third inversion, it is the dissonant seventh itself that lies in the bass — it will then have to descend in order to resolve.",
+      "ecrTableHeaderEtat": "Position",
+      "ecrTableHeaderBasse": "Note in the bass",
+      "ecrTableHeaderChiffrage": "Figuring",
+      "ecrMarcheTitle": "The chain of sevenths",
+      "ecrMarcheText": "The <strong>chain of sevenths</strong> is a progression in which each chord is a seventh and the roots descend by <strong>fifths</strong> (descending circle of fifths). The seventh of one chord prepares the seventh of the next: it is a mechanism of linked preparations and resolutions, a model of writing par excellence.",
+      "ecrMarcheBox": "<strong>Circle of fifths:</strong> I7 – IV7 – VII7 – III7 – VI7 – II7 – V7 – I. To lead the voices without errors, one alternates <em>complete</em> chords (4 notes) and <em>incomplete</em> ones (without the fifth): in this way the seventh of each chord is always prepared by a consonance of the preceding chord.",
+      "ecrMarcheListenBtn": "▶ Listen to a chain of sevenths (descending fifths)",
+      "ecrVoixBox": "<strong>Voice leading:</strong> never double the seventh nor let it rise. Each seventh descends, each leading tone rises. It is the alternation of complete / incomplete chords that avoids parallel fifths in the chain — a rule already observed in Corelli and Bach.",
+      "quizSectionTitle": "Practice",
+      "quizScoreLabel": "Score:",
+      "quizFeedbackExcellent": "Perfect! You have mastered the quality, preparation, and resolution of seventh chords.",
+      "quizFeedbackGood": "Very good! A few points to consolidate (inversions, chain of sevenths).",
+      "quizFeedbackKeepGoing": "Keep going — review the quality of each seventh and the downward resolution before starting again.",
+      "quizResetBtn": "↻ Start over",
+      "quizQuestionCounter": "Question",
+      "quizPoolInfo": "questions in total",
+      "quizNextBtn": "Next question →",
+      "quizFinishBtn": "See score →"
     }
   },
   "conservatoire": {

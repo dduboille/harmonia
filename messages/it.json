@@ -125,7 +125,9 @@
     "d36": "Scala per toni interi, planing, poliacchorde, modalità neoclassica — Debussy, Ravel, Satie.",
     "d37": "Ursatz, Urlinie, analisi motivica, 4 livelli di riduzione — Schenker e la 5ª di Beethoven.",
     "c38": "Le note estranee",
-    "d38": "Ritardo, appoggiatura, nota di volta, nota di passaggio, sfuggita, anticipazione e pedale — l'ornamentazione melodica dell'armonia."
+    "d38": "Ritardo, appoggiatura, nota di volta, nota di passaggio, sfuggita, anticipazione e pedale — l'ornamentazione melodica dell'armonia.",
+    "c39": "Gli accordi di settima sui gradi",
+    "d39": "Oltre il V7: l'accordo di settima su ogni grado, la sua natura, la sua preparazione, la sua risoluzione, i suoi rivolti e la marcia di settime."
   },
   "cours": {
     "level1": "Livello 1",
@@ -3469,6 +3471,64 @@
       "emploiP2": "Il repertorio di riferimento resta il <strong>corale di J.S. Bach</strong>: vi si trovano, in poche battute, note di passaggio, note di volta, ritardi 4-3 e 7-6, e pedali — sempre condotti con rigore. È il modello da imitare per il DEM.",
       "emploiGallonBox": "<strong>Una scuola della condotta delle voci:</strong> accanto al <em>Trattato</em> di Théodore Dubois, l'insegnamento di <strong>Noël Gallon</strong>, professore d'armonia al Conservatorio di Parigi, è un riferimento per l'impiego delle note estranee. Il suo lavoro sui <em>progressioni armoniche</em> e sulla <em>condotta delle voci</em> ricorda che un ornamento ha valore solo per la linea melodica che disegna: ogni nota estranea deve servire il canto, mai sovraccaricarlo.",
       "quizH2": "Esercitazione"
+    }
+  },
+  "cours39": {
+    "badge": "Livello 2 · Corso 39",
+    "title": "Gli accordi di settima sui gradi",
+    "subtitle": "Oltre il V7: l'accordo di settima su ogni grado, la sua natura, la sua preparazione, la sua risoluzione, i suoi rivolti e la marcia di settime.",
+    "sections": {
+      "degres": "I gradi",
+      "ecriture": "La scrittura",
+      "quiz": "Allenamento"
+    },
+    "quiz": {
+      "perfect": "Perfetto! Padroneggi la natura, la preparazione e la risoluzione degli accordi di settima.",
+      "veryGood": "Molto bene! Alcuni punti da consolidare (rivolti, marcia di settime).",
+      "keepGoing": "Continua — rivedi la natura di ogni settima e ripassa la risoluzione discendente prima di ricominciare."
+    },
+    "narrative": {
+      "navDegres": "I gradi",
+      "navEcriture": "La scrittura",
+      "navQuiz": "Allenamento",
+      "headerBadge": "Livello 2 · Corso 39",
+      "headerTitle": "Gli accordi di settima sui gradi",
+      "maitreConceptLabel": "La catena di settime",
+      "maitreAnecdote": "Arcangelo Corelli, maestro del violino romano e padre della sonata barocca, fissò per intere generazioni la condotta delle dissonanze. Le sue Sonate e i Concerti grossi traboccano di lunghe catene di settime che si preparano, si attaccano e si risolvono con una regolarità da orologio — la celebre «cadenza di Corelli». Ogni settima vi è annunciata come consonanza prima di diventare dissonanza, poi ricade di un grado: un modello di scrittura che Bach, e poi tutti i trattati, riprenderanno senza smentirlo.",
+      "maitreLesson": "Una settima non è mai un effetto gratuito: si prepara, si attacca, poi scende a risolversi. È questa disciplina a rendere musicale la dissonanza.",
+      "degSectionTitle": "Una settima su ogni grado",
+      "degIntro": "Finora, l'unica settima studiata era il <strong>V7</strong>, l'accordo di settima di dominante. Ma sovrapponendo tre terze su <strong>qualsiasi grado</strong> della scala, si ottiene un accordo di settima. Se ne contano dunque sette (da I7 a VII7), e non hanno tutti la stessa natura: tutto dipende dagli intervalli che la scala mette a disposizione.",
+      "degInfoBox": "<strong>Gli accordi di settima sui gradi</strong> sono tutti gli accordi di settima <em>diversi</em> dal V7. Ciascuno appartiene a una specie d'intervallo (settima maggiore, minore, semidiminuita, diminuita) secondo il grado sul quale è costruito.",
+      "degClickHint": "Clicca su un grado per ascoltarlo e leggerne la natura.",
+      "degDegreLabel": "Grado",
+      "degRelistenBtn": "▶ Riascolta",
+      "degMineurBox": "<strong>In modo minore:</strong> le nature cambiano. Il VII della scala armonica (con sensibile) dà una <strong>settima diminuita (VII°7)</strong> — sovrapposizione di tre terze minori, colore di tensione intensa — al posto della settima semidiminuita del maggiore. Il II grado diventa semidiminuito (IIø7), e il VI una settima maggiore. Verifica sempre la natura sulla scala della tonalità reale.",
+      "ecrSectionTitle": "Scrivere le settime: preparazione, risoluzione, rivolti, marcia",
+      "ecrIntro": "Ogni settima è una <strong>dissonanza</strong>: obbedisce dunque a regole di scrittura precise. Nell'armonia rigorosa, la si <em>prepara</em>, la si <em>risolve</em> discendendo, e se ne conosce la <em>cifratura</em> in ogni rivolto. Concatenate, queste settime formano la celebre <strong>marcia di settime</strong>.",
+      "ecrPrepTitle": "Preparazione della settima",
+      "ecrPrepText": "Preparare la settima significa far udire la nota che diventerà dissonante prima come <strong>nota consonante</strong>, alla <strong>stessa voce</strong>, nell'accordo precedente. La dissonanza è così «annunciata» all'orecchio prima di attaccare. <strong>Solo il V7 fa eccezione</strong>: la sua funzione di dominante consente alla sua settima di entrare senza preparazione.",
+      "ecrResolBox": "<strong>Risoluzione:</strong> la settima si risolve quasi sempre <em>scendendo di un grado congiunto</em>. «Cade» sulla nota vicina inferiore, che appartiene all'accordo seguente. Esempio tipico: in V7 → I (do maggiore), la settima <em>fa</em> scende su <em>mi</em>, mentre la sensibile <em>si</em> sale su <em>do</em>.",
+      "ecrResolListenBtn": "▶ Ascolta V7 → I (la settima fa scende su mi)",
+      "ecrInvTitle": "Rivolti e cifratura",
+      "ecrInvText": "Un accordo di settima comprende quattro suoni: ammette dunque <strong>quattro stati</strong>. A ogni rivolto corrisponde una cifratura classica, ereditata dal basso continuo. Nel terzo rivolto, è la settima dissonante stessa a trovarsi al basso — dovrà allora scendere per risolversi.",
+      "ecrTableHeaderEtat": "Stato",
+      "ecrTableHeaderBasse": "Nota al basso",
+      "ecrTableHeaderChiffrage": "Cifratura",
+      "ecrMarcheTitle": "La marcia di settime",
+      "ecrMarcheText": "La <strong>marcia di settime</strong> è una progressione in cui ogni accordo è una settima e le fondamentali scendono per <strong>quinte</strong> (circolo delle quinte discendente). La settima di un accordo prepara la settima del successivo: è una meccanica di preparazioni-risoluzioni concatenate, modello di scrittura per eccellenza.",
+      "ecrMarcheBox": "<strong>Circolo delle quinte:</strong> I7 – IV7 – VII7 – III7 – VI7 – II7 – V7 – I. Per condurre le parti senza errori, si alternano accordi <em>completi</em> (4 suoni) e <em>incompleti</em> (senza la quinta): così la settima di ogni accordo è sempre preparata da una consonanza dell'accordo precedente.",
+      "ecrMarcheListenBtn": "▶ Ascolta una catena di settime (quinte discendenti)",
+      "ecrVoixBox": "<strong>Condotta delle parti:</strong> non raddoppiare mai la settima né farla salire. Ogni settima scende, ogni sensibile sale. È l'alternanza di accordi completi / incompleti a evitare le quinte parallele nella marcia — regola che si osserva già in Corelli e Bach.",
+      "quizSectionTitle": "Allenamento",
+      "quizScoreLabel": "Punteggio:",
+      "quizFeedbackExcellent": "Perfetto! Padroneggi la natura, la preparazione e la risoluzione degli accordi di settima.",
+      "quizFeedbackGood": "Molto bene! Alcuni punti da consolidare (rivolti, marcia di settime).",
+      "quizFeedbackKeepGoing": "Continua — rivedi la natura di ogni settima e ripassa la risoluzione discendente prima di ricominciare.",
+      "quizResetBtn": "↻ Ricomincia",
+      "quizQuestionCounter": "Domanda",
+      "quizPoolInfo": "domande in totale",
+      "quizNextBtn": "Domanda successiva →",
+      "quizFinishBtn": "Vedi il punteggio →"
     }
   },
   "conservatoire": {
