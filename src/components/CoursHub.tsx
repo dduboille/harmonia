@@ -46,6 +46,7 @@ const COURS = [
   { num: 22, level: 3 as const, title: "La réharmonisation avancée",                   desc: "Transformer une progression en conservant la mélodie — substitutions diatonique et tritonique, emprunt modal, harmonisation parallèle.", tags: ["Réharmonisation", "Substitution", "Jazz"] },
   { num: 23, level: 3 as const, title: "Composer dans le style des maîtres",           desc: "Bach, Mozart, Chopin, Debussy, Jazz, Rock — identifier et reproduire les signatures harmoniques des grands compositeurs.",                tags: ["Style", "Composition", "Analyse"] },
   { num: 38, level: 1 as const, title: "Les notes étrangères", desc: "Retard, appogiature, broderie, note de passage, échappée, anticipation et pédale — l'ornementation mélodique de l'harmonie.", tags: ["Notes étrangères", "Retard", "Appogiature"] },
+  { num: 39, level: 2 as const, title: "Les 7èmes d'espèces", desc: "Au-delà du V7 : l'accord de septième sur chaque degré, sa nature, sa préparation, sa résolution, ses renversements et la marche de 7èmes.", tags: ["Septièmes", "Préparation", "Résolution"] },
 ];
 
 // ─── Méta par niveau ─────────────────────────────────────────────────────────

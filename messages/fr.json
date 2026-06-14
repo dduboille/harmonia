@@ -125,7 +125,9 @@
     "d36": "Gamme par tons, planing, polyaccords, modalité néoclassique — Debussy, Ravel, Satie.",
     "d37": "Ursatz, Urlinie, analyse motivique, 4 niveaux de réduction — Schenker et Beethoven 5e.",
     "c38": "Les notes étrangères",
-    "d38": "Retard, appogiature, broderie, note de passage, échappée, anticipation et pédale — l'ornementation mélodique de l'harmonie."
+    "d38": "Retard, appogiature, broderie, note de passage, échappée, anticipation et pédale — l'ornementation mélodique de l'harmonie.",
+    "c39": "Les 7èmes d'espèces",
+    "d39": "Au-delà du V7 : l'accord de septième sur chaque degré, sa nature, sa préparation, sa résolution, ses renversements et la marche de 7èmes."
   },
   "cours": {
     "level1": "Niveau 1",
@@ -3474,6 +3476,72 @@
       "emploiGallonBox": "<strong>Une école de la conduite des voix :</strong> aux côtés du <em>Traité</em> de Théodore Dubois, l'enseignement de <strong>Noël Gallon</strong>, professeur d'harmonie au Conservatoire de Paris, fait référence pour l'emploi des notes étrangères. Son travail sur les <em>marches d'harmonie</em> et la <em>conduite des voix</em> rappelle qu'un ornement n'a de valeur que par la ligne mélodique qu'il dessine : chaque note étrangère doit servir le chant, jamais le surcharger.",
 
       "quizH2": "Entraînement"
+    }
+  },
+  "cours39": {
+    "badge": "Niveau 2 · Cours 39",
+    "title": "Les 7èmes d'espèces",
+    "subtitle": "Au-delà du V7 : l'accord de septième sur chaque degré, sa nature, sa préparation, sa résolution, ses renversements et la marche de 7èmes.",
+    "sections": {
+      "degres": "Les degrés",
+      "ecriture": "L'écriture",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu maîtrises la nature, la préparation et la résolution des 7èmes d'espèces.",
+      "veryGood": "Très bien ! Quelques points à consolider (renversements, marche de 7èmes).",
+      "keepGoing": "Continue — relis la nature de chaque 7e et révise la résolution descendante avant de recommencer."
+    },
+    "narrative": {
+      "navDegres": "Les degrés",
+      "navEcriture": "L'écriture",
+      "navQuiz": "Entraînement",
+
+      "headerBadge": "Niveau 2 · Cours 39",
+      "headerTitle": "Les 7èmes d'espèces",
+
+      "maitreConceptLabel": "La chaîne de 7èmes",
+      "maitreAnecdote": "Arcangelo Corelli, maître du violon romain et père de la sonate baroque, a fixé pour des générations entières la conduite des dissonances. Ses Sonates et Concertos grossos regorgent de longues chaînes de septièmes qui se préparent, se frappent et se résolvent avec une régularité d'horloge — la fameuse « marche de Corelli ». Chaque septième y est annoncée comme consonance avant de devenir dissonance, puis retombe d'un degré : un modèle d'écriture que Bach, puis tous les traités, reprendront sans le démentir.",
+      "maitreLesson": "Une 7e n'est jamais un effet gratuit : elle se prépare, elle se frappe, puis elle descend se résoudre. C'est cette discipline qui rend la dissonance musicale.",
+
+      "degSectionTitle": "Une 7e sur chaque degré",
+      "degIntro": "Jusqu'ici, la seule septième étudiée était le <strong>V7</strong>, l'accord de 7e de dominante. Mais en superposant trois tierces sur <strong>n'importe quel degré</strong> de la gamme, on obtient un accord de septième. On en compte donc sept (I7 à VII7), et tous n'ont pas la même nature : tout dépend des intervalles que la gamme met à disposition.",
+      "degInfoBox": "<strong>Les 7èmes d'espèces</strong> sont tous les accords de septième <em>autres</em> que le V7. On les appelle « d'espèces » parce que chacun appartient à une espèce d'intervalle (7e majeure, mineure, mi-diminuée, diminuée) selon le degré sur lequel il est bâti.",
+      "degClickHint": "Cliquez sur un degré pour l'entendre et lire sa nature.",
+      "degDegreLabel": "Degré",
+      "degRelistenBtn": "▶ Réécouter",
+      "degMineurBox": "<strong>En mode mineur :</strong> les natures changent. Le VII de la gamme harmonique (avec sensible) donne une <strong>7e diminuée (VII°7)</strong> — empilement de trois tierces mineures, couleur de tension intense — au lieu de la 7e mi-diminuée du majeur. Le IIe degré y devient mi-diminué (IIø7), et le VI une 7e majeure. Toujours vérifier la nature sur la gamme de la tonalité réelle.",
+
+      "ecrSectionTitle": "Écrire les 7èmes : préparation, résolution, renversements, marche",
+      "ecrIntro": "Toute septième est une <strong>dissonance</strong> : elle obéit donc à des règles d'écriture précises. En harmonie rigoureuse, on la <em>prépare</em>, on la <em>résout</em> en descendant, et on connaît son <em>chiffrage</em> dans chaque renversement. Enchaînées, ces septièmes forment la célèbre <strong>marche de 7èmes</strong>.",
+
+      "ecrPrepTitle": "Préparation de la 7e",
+      "ecrPrepText": "Préparer la 7e, c'est faire entendre la note qui va devenir dissonante d'abord comme <strong>note consonante</strong>, à la <strong>même voix</strong>, dans l'accord précédent. La dissonance est ainsi « annoncée » à l'oreille avant de frapper. <strong>Seul le V7 fait exception</strong> : sa fonction de dominante autorise sa 7e à entrer sans préparation.",
+      "ecrResolBox": "<strong>Résolution :</strong> la 7e se résout presque toujours en <em>descendant d'un degré conjoint</em>. Elle « tombe » sur la note voisine inférieure, qui appartient à l'accord suivant. Exemple type : dans V7 → I (do majeur), la 7e <em>fa</em> descend sur <em>mi</em>, tandis que la sensible <em>si</em> monte sur <em>do</em>.",
+      "ecrResolListenBtn": "▶ Écouter V7 → I (la 7e fa descend sur mi)",
+
+      "ecrInvTitle": "Renversements et chiffrage",
+      "ecrInvText": "Un accord de septième comporte quatre sons : il admet donc <strong>quatre états</strong>. À chaque renversement correspond un chiffrage classique, hérité de la basse continue. Au 3e renversement, c'est la 7e dissonante elle-même qui se trouve à la basse — elle devra alors descendre pour se résoudre.",
+      "ecrTableHeaderEtat": "État",
+      "ecrTableHeaderBasse": "Note à la basse",
+      "ecrTableHeaderChiffrage": "Chiffrage",
+
+      "ecrMarcheTitle": "La marche de 7èmes",
+      "ecrMarcheText": "La <strong>marche de 7èmes</strong> est une progression où chaque accord est une septième et où les fondamentales descendent par <strong>quintes</strong> (cycle des quintes descendant). La 7e d'un accord prépare la 7e du suivant : c'est une mécanique de préparations-résolutions enchaînées, modèle d'écriture par excellence.",
+      "ecrMarcheBox": "<strong>Cycle des quintes :</strong> I7 – IV7 – VII7 – III7 – VI7 – II7 – V7 – I. Pour conduire les voix sans fautes, on alterne accords <em>complets</em> (4 sons) et <em>incomplets</em> (sans la quinte) : ainsi la 7e de chaque accord est toujours préparée par une consonance de l'accord précédent.",
+      "ecrMarcheListenBtn": "▶ Écouter une chaîne de 7èmes (quintes descendantes)",
+      "ecrVoixBox": "<strong>Conduite des voix :</strong> ne jamais doubler la 7e ni la faire monter. Chaque 7e descend, chaque sensible monte. C'est l'alternance accords complets / incomplets qui évite les quintes parallèles dans la marche — règle que l'on observe déjà chez Corelli et Bach.",
+
+      "quizSectionTitle": "Entraînement",
+      "quizScoreLabel": "Score :",
+      "quizFeedbackExcellent": "Parfait ! Tu maîtrises la nature, la préparation et la résolution des 7èmes d'espèces.",
+      "quizFeedbackGood": "Très bien ! Quelques points à consolider (renversements, marche de 7èmes).",
+      "quizFeedbackKeepGoing": "Continue — relis la nature de chaque 7e et révise la résolution descendante avant de recommencer.",
+      "quizResetBtn": "↻ Recommencer",
+      "quizQuestionCounter": "Question",
+      "quizPoolInfo": "questions au total",
+      "quizNextBtn": "Question suivante →",
+      "quizFinishBtn": "Voir le score →"
     }
   },
   "conservatoire": {
