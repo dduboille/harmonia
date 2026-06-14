@@ -262,3 +262,101 @@ export const COURS40_EXERCISES: (IdentifyExercise | BuildExercise)[] = [
     hint: "Une octave juste plus bas, les notes gardent exactement le même nom : seul le chiffre d'octave change.",
   },
 ];
+
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 41 — L'écriture de style (pastiche stylistique)
+// ════════════════════════════════════════════════════════════════════════════
+
+export const COURS41_EXERCISES: SATBExercise[] = [
+  {
+    id: "c41-classique-cadence-parfaite",
+    type: "satb",
+    cours: 41,
+    title: "Écriture classique en Do majeur",
+    subtitle: "Style Mozart / Haydn — phrase homophonique",
+    difficulty: 1,
+    tags: ["écriture de style", "classicisme", "Mozart", "Haydn", "Do majeur", "cadence parfaite"],
+    keySignature: "C",
+    measures: ["I · C", "V⁶⁵ · G7/B", "I · C", "IV · F", "I⁶⁴ · C/G", "V · G", "I · C"],
+    solution: [
+      { soprano: n("G", 4), alto: n("E", 4), tenor: n("C", 4), bass: n("C", 3) },
+      { soprano: n("G", 4), alto: n("F", 4), tenor: n("D", 4), bass: n("B", 2) },
+      { soprano: n("G", 4), alto: n("E", 4), tenor: n("C", 4), bass: n("C", 3) },
+      { soprano: n("A", 4), alto: n("F", 4), tenor: n("C", 4), bass: n("F", 2) },
+      { soprano: n("G", 4), alto: n("E", 4), tenor: n("C", 4), bass: n("G", 2) },
+      { soprano: n("G", 4), alto: n("D", 4), tenor: n("B", 3), bass: n("G", 2) },
+      { soprano: n("G", 4), alto: n("E", 4), tenor: n("C", 4), bass: n("C", 3) },
+    ],
+    hint: "Texture homophonique limpide : la basse fait l'ossature (C–B–C–F–G–G–C), les voix supérieures bougent au plus court. La septième du V⁶⁵ (F, alto) descend vers E ; le 6/4 de cadence (sur basse G) résout 6→5 et 4→3 avant le V.",
+    explanation:
+      "Signature classique (Mozart, Haydn) : progression diatonique claire I – V⁶⁵ – I – IV – I⁶⁴ – V – I, conduite homophonique sans chromatisme. Le V⁶⁵ (premier renversement de G7, sensible B à la basse) ramène la tonique par mouvement de basse conjoint ; sa septième F (alto) se résout par degré conjoint descendant sur E. La cadence parfaite est ornée du 6/4 de cadence (C/G) sur pédale de dominante : la sixte E descend vers D (6→5) et la quarte C descend vers B (4→3, sensible) au-dessus de la basse G immobile, puis V résout sur I. Vérification des parallèles : aucune quinte ni octave parallèle entre paires de voix adjacentes (vérifié paire par paire) ; la sensible B est ici à une voix intérieure (ténor) et monte vers C.",
+    concepts: ["écriture classique", "homophonie", "V⁶⁵", "6/4 de cadence", "cadence parfaite", "résolution de la septième"],
+  },
+  {
+    id: "c41-classique-64-cadentiel",
+    type: "satb",
+    cours: 41,
+    title: "Le 6/4 cadentiel d'école",
+    subtitle: "Style classique — II⁶ – I⁶⁴ – V⁷ – I",
+    difficulty: 2,
+    tags: ["écriture de style", "classicisme", "6/4 de cadence", "II6", "Do majeur", "cadence parfaite"],
+    keySignature: "C",
+    measures: ["II⁶ · Dm/F", "I⁶⁴ · C/G", "V⁷ · G7", "I · C"],
+    solution: [
+      { soprano: n("F", 4), alto: n("D", 4), tenor: n("A", 3), bass: n("F", 3) },
+      { soprano: n("C", 5), alto: n("G", 4), tenor: n("E", 4), bass: n("G", 2) },
+      { soprano: n("B", 4), alto: n("F", 4), tenor: n("D", 4), bass: n("G", 2) },
+      { soprano: n("C", 5), alto: n("E", 4), tenor: n("G", 3), bass: n("C", 3) },
+    ],
+    hint: "Formule cadentielle d'école : la sous-dominante II⁶ (premier renversement de Dm) prépare le 6/4 cadentiel. Au-dessus de la basse G tenue, la quarte C (soprano) descend vers B (sensible) et la sixte E descend vers D : c'est le V⁷ déguisé.",
+    explanation:
+      "Le 6/4 cadentiel d'école — la formule la plus enseignée du langage classique. Sur la basse de dominante G, le I⁶⁴ (C/G) n'est pas une vraie tonique mais un retard double du V : la quarte C et la sixte E sont des appogiatures qui résolvent sur la tierce B (sensible) et la quinte D du V⁷. La basse reste sur G pendant deux mesures (6/4 puis V⁷). La sensible B est ici au soprano (voix extérieure) et monte vers C à la cadence ; la septième F (alto) descend vers E. La tonique finale est complète (C–E–G–C). Vérification des parallèles : aucune quinte ni octave parallèle (vérifié paire par paire).",
+    concepts: ["6/4 de cadence", "double appogiature", "II⁶", "V⁷", "cadence parfaite", "sensible au soprano"],
+  },
+  {
+    id: "c41-romantique-sixte-allemande",
+    type: "satb",
+    cours: 41,
+    title: "Écriture romantique en Do majeur",
+    subtitle: "Style Schumann / Brahms — emprunt & sixte allemande",
+    difficulty: 3,
+    tags: ["écriture de style", "romantisme", "Schumann", "Brahms", "sixte augmentée", "sixte allemande", "emprunt"],
+    keySignature: "C",
+    measures: ["I · C", "VI · Am", "iv · Fm", "Ger⁺⁶ · A♭7", "I⁶⁴ · C/G", "V · G", "I · C"],
+    solution: [
+      { soprano: n("C", 4), alto: n("G", 3), tenor: n("E", 3), bass: n("C", 3) },
+      { soprano: n("C", 4), alto: n("A", 3), tenor: n("E", 3), bass: n("A", 2) },
+      { soprano: n("C", 4), alto: n("Ab", 3), tenor: n("F", 3), bass: n("F", 2) },
+      { soprano: n("F#", 4), alto: n("Eb", 4), tenor: n("C", 4), bass: n("Ab", 2) },
+      { soprano: n("G", 4), alto: n("E", 4), tenor: n("C", 4), bass: n("G", 2) },
+      { soprano: n("G", 4), alto: n("D", 4), tenor: n("B", 3), bass: n("G", 2) },
+      { soprano: n("G", 4), alto: n("E", 4), tenor: n("C", 4), bass: n("C", 3) },
+    ],
+    hint: "Couleur romantique : le iv emprunté (Fm, avec Ab) annonce la sixte allemande Ab–C–Eb–F#. La sixte augmentée Ab (basse) ↔ F# (soprano) s'écarte vers l'octave G–G. Le F# monte, le Ab descend : mouvement contraire vers le V (via le 6/4 cadentiel).",
+    explanation:
+      "Signature romantique (Schumann, Brahms) : emprunt au mode mineur (le iv, Fm, avec son Ab expressif) puis sixte augmentée allemande (Ger⁺⁶ = Ab–C–Eb–F#). La sixte augmentée se résout par mouvement contraire et écartement vers l'octave sur la dominante : Ab (basse) descend chromatiquement vers G, F# (soprano) monte vers G — les deux notes de la ⁺6 s'ouvrent vers l'octave G–G. Pour éviter les quintes parallèles classiques de la sixte allemande (Ab–Eb → G–D), la sixte allemande résout d'abord sur le 6/4 cadentiel (C/G) : la quinte Eb monte chromatiquement vers E (sixte du 6/4) au lieu de descendre vers D. Ensuite I⁶⁴ → V (6→5, 4→3) → I parfait. Vérification des parallèles : aucune quinte ni octave parallèle (vérifié paire par paire), grâce à la résolution Eb→E via le 6/4.",
+    concepts: ["sixte augmentée", "sixte allemande", "emprunt au mode mineur", "iv emprunté", "résolution par écartement", "romantisme", "6/4 de cadence"],
+  },
+  {
+    id: "c41-debut-xxe-planing",
+    type: "satb",
+    cours: 41,
+    title: "Couleur début XXe en Do",
+    subtitle: "Style Fauré / Ravel — accords parallèles & 9e ajoutée",
+    difficulty: 3,
+    tags: ["écriture de style", "début XXe", "Fauré", "Ravel", "planing", "accords parallèles", "neuvième ajoutée", "modal"],
+    keySignature: "C",
+    measures: ["IV · F", "V · G", "vi · Am", "V · G", "IM9 · CMaj9"],
+    solution: [
+      { soprano: n("F", 4), alto: n("C", 4), tenor: n("A", 3), bass: n("F", 3) },
+      { soprano: n("G", 4), alto: n("D", 4), tenor: n("B", 3), bass: n("G", 3) },
+      { soprano: n("A", 4), alto: n("E", 4), tenor: n("C", 4), bass: n("A", 3) },
+      { soprano: n("G", 4), alto: n("D", 4), tenor: n("B", 3), bass: n("G", 3) },
+      { soprano: n("D", 5), alto: n("G", 4), tenor: n("E", 4), bass: n("C", 3) },
+    ],
+    hint: "Esthétique Fauré / Ravel : les triades diatoniques glissent en blocs parallèles (planing) — les quintes et octaves parallèles sont VOULUES, c'est la couleur. L'accord final ajoute une 9e (D) non résolue par-dessus la tonique.",
+    explanation:
+      "Signature début XXe (Fauré, Ravel) : technique du planing (accords parallèles) — les triades diatoniques F – G – Am – G glissent en mouvement parallèle strict, toutes les voix montant ou descendant du même intervalle. ATTENTION : ici les quintes et octaves parallèles sont STYLISTIQUEMENT INTENTIONNELLES — elles ne constituent PAS une faute mais le procédé même qui crée la couleur impressionniste (le bloc sonore se déplace comme un objet rigide). L'accord final CMaj9 (C–E–G–D) ajoute une neuvième (D, au soprano) laissée en suspension, non résolue, comme note de couleur ajoutée — autre marque du langage modal/impressionniste où la dissonance devient timbre. Les « règles » du contrepoint tonal (interdiction des parallèles, résolution des dissonances) sont ici délibérément relâchées au profit de la couleur harmonique. Tessitures et ordre S≥A≥T≥B respectés.",
+    concepts: ["planing", "accords parallèles", "parallélisme intentionnel", "neuvième ajoutée", "couleur modale", "impressionnisme", "Fauré", "Ravel"],
+  },
+];

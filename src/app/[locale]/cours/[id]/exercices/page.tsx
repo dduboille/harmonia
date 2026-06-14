@@ -17,6 +17,7 @@ const COURS_META: Record<number, { title: string; badge: string }> = {
   38: { title: "Les notes étrangères", badge: "Cours 38" },
   39: { title: "Les 7èmes d'espèces", badge: "Cours 39" },
   40: { title: "L'invention à 2 voix", badge: "Cours 40" },
+  41: { title: "L'écriture de style", badge: "Cours 41" },
 };
 
 export default async function ExercicesPage({
