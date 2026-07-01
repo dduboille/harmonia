@@ -45,7 +45,9 @@ interface SoumissionInfo {
   devoirId: string;
   eleveId: string;
   note: number | null;
+  commentaire?: string | null;
   submittedAt: string;
+  correctedAt?: string | null;
 }
 
 interface DetailCell {
@@ -86,6 +88,52 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
   const [soumissions, setSoumissions] = useState<SoumissionInfo[]>([]);
   const [loadingSoumissions, setLoadingSoumissions] = useState(false);
   const [detailCell, setDetailCell] = useState<DetailCell | null>(null);
+
+  // Correction (note + commentaire) du modal de détail
+  const [editNote, setEditNote] = useState<string>("");
+  const [editComment, setEditComment] = useState<string>("");
+  const [savingCorrection, setSavingCorrection] = useState(false);
+  const [correctionError, setCorrectionError] = useState("");
+
+  // Ouvre le modal de détail en pré-remplissant le formulaire de correction
+  function openDetail(cell: DetailCell) {
+    setDetailCell(cell);
+    setEditNote(cell.soumission.note != null ? String(cell.soumission.note) : "");
+    setEditComment(cell.soumission.commentaire ?? "");
+    setCorrectionError("");
+  }
+
+  async function saveCorrection() {
+    if (!detailCell) return;
+    const noteNum = Number(editNote);
+    if (editNote.trim() === "" || Number.isNaN(noteNum) || noteNum < 0 || noteNum > 100) {
+      setCorrectionError("Entrez une note entre 0 et 100.");
+      return;
+    }
+    setSavingCorrection(true);
+    setCorrectionError("");
+    try {
+      const res = await fetch(`/api/conservatoire/soumissions/${detailCell.soumission.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ note: noteNum, commentaire: editComment.trim() || undefined }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setCorrectionError(data.error ?? "Erreur"); return; }
+      const correctedAt = data.soumission?.correctedAt ?? new Date().toISOString();
+      // Met à jour la matrice locale
+      setSoumissions(prev => prev.map(s =>
+        s.id === detailCell.soumission.id
+          ? { ...s, note: noteNum, commentaire: editComment.trim() || null, correctedAt }
+          : s
+      ));
+      setDetailCell(null);
+    } catch {
+      setCorrectionError("Erreur réseau");
+    } finally {
+      setSavingCorrection(false);
+    }
+  }
 
   useEffect(() => {
     if (tab === "devoirs") {
@@ -383,7 +431,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                                       key={e.userId}
                                       style={{ textAlign: "center", padding: "10px 8px", cursor: "pointer" }}
                                       title={`${e.nom || e.email}: ${soum.note != null ? soum.note + "%" : "soumis"}`}
-                                      onClick={() => setDetailCell({
+                                      onClick={() => openDetail({
                                         devoirTitre: d.titre,
                                         eleveNom: e.nom || e.email,
                                         soumission: soum,
@@ -684,9 +732,9 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
             boxShadow: "0 12px 48px rgba(0,0,0,0.18)",
           }}>
             <h3 style={{ fontSize: 17, fontWeight: 700, margin: "0 0 16px", fontFamily: "Georgia, serif" }}>
-              Soumission
+              Corriger la soumission
             </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10, fontSize: 14, color: "#444" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, fontSize: 14, color: "#444" }}>
               <div>
                 <span style={{ fontWeight: 600, color: "#888", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em" }}>Devoir</span>
                 <div style={{ marginTop: 2 }}>{detailCell.devoirTitre}</div>
@@ -696,24 +744,60 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                 <div style={{ marginTop: 2 }}>{detailCell.eleveNom}</div>
               </div>
               <div>
-                <span style={{ fontWeight: 600, color: "#888", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em" }}>Note</span>
-                <div style={{ marginTop: 2, fontWeight: 700, fontSize: 20, color: (detailCell.soumission.note ?? 0) >= 70 ? "#0F6E56" : "#E53E3E" }}>
-                  {detailCell.soumission.note != null ? `${detailCell.soumission.note}%` : "—"}
-                </div>
-              </div>
-              <div>
                 <span style={{ fontWeight: 600, color: "#888", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em" }}>Remis le</span>
                 <div style={{ marginTop: 2, color: "#666" }}>
                   {new Date(detailCell.soumission.submittedAt).toLocaleString("fr-FR")}
                 </div>
               </div>
+
+              <label style={{ display: "block" }}>
+                <span style={{ fontWeight: 600, color: "#444", fontSize: 13, display: "block", marginBottom: 6 }}>Note (0–100) *</span>
+                <input
+                  type="number"
+                  min={0}
+                  max={100}
+                  autoFocus
+                  value={editNote}
+                  onChange={(e) => setEditNote(e.target.value)}
+                  placeholder="Ex : 85"
+                  style={{ width: "100%", boxSizing: "border-box", padding: "10px 12px", border: "1px solid #ccc", borderRadius: 8, fontSize: 14, outline: "none" }}
+                />
+              </label>
+
+              <label style={{ display: "block" }}>
+                <span style={{ fontWeight: 600, color: "#444", fontSize: 13, display: "block", marginBottom: 6 }}>Commentaire (optionnel)</span>
+                <textarea
+                  value={editComment}
+                  onChange={(e) => setEditComment(e.target.value)}
+                  rows={4}
+                  placeholder="Ex : Attention aux quintes parallèles entre basse et ténor à la mesure 3."
+                  style={{ width: "100%", boxSizing: "border-box", padding: "10px 12px", border: "1px solid #ccc", borderRadius: 8, fontSize: 14, resize: "vertical", outline: "none" }}
+                />
+              </label>
+
+              {detailCell.soumission.correctedAt && (
+                <div style={{ fontSize: 12, color: "#0F6E56" }}>
+                  ✓ Déjà corrigé le {new Date(detailCell.soumission.correctedAt).toLocaleDateString("fr-FR")}
+                </div>
+              )}
+              {correctionError && <p style={{ color: "#c0392b", fontSize: 13, margin: 0 }}>{correctionError}</p>}
             </div>
-            <button
-              onClick={() => setDetailCell(null)}
-              style={{ marginTop: 20, width: "100%", padding: "10px", border: "1px solid #ccc", borderRadius: 8, background: "#fff", fontSize: 14, cursor: "pointer", color: "#444" }}
-            >
-              Fermer
-            </button>
+
+            <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
+              <button
+                onClick={() => setDetailCell(null)}
+                style={{ flex: 1, padding: "10px", border: "1px solid #ccc", borderRadius: 8, background: "#fff", fontSize: 14, cursor: "pointer", color: "#444" }}
+              >
+                Annuler
+              </button>
+              <button
+                onClick={saveCorrection}
+                disabled={savingCorrection}
+                style={{ flex: 2, padding: "10px", border: "none", borderRadius: 8, background: ACCENT, color: "#fff", fontSize: 14, fontWeight: 700, cursor: savingCorrection ? "default" : "pointer", opacity: savingCorrection ? 0.7 : 1 }}
+              >
+                {savingCorrection ? "Enregistrement…" : "Enregistrer la correction"}
+              </button>
+            </div>
           </div>
         </div>
       )}

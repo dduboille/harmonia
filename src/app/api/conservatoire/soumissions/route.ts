@@ -35,20 +35,23 @@ export async function GET(req: NextRequest) {
 
     const { data: soumissions, error } = await supabaseAdmin
       .from("soumissions")
-      .select("id, devoir_id, eleve_id, note, submitted_at")
+      .select("id, devoir_id, eleve_id, note, commentaire, submitted_at, corrected_at")
       .in("devoir_id", devoirIds);
 
     if (error) throw error;
 
     return NextResponse.json({
       soumissions: (soumissions ?? []).map((s: {
-        id: string; devoir_id: string; eleve_id: string; note: number | null; submitted_at: string;
+        id: string; devoir_id: string; eleve_id: string; note: number | null;
+        commentaire: string | null; submitted_at: string; corrected_at: string | null;
       }) => ({
         id: s.id,
         devoirId: s.devoir_id,
         eleveId: s.eleve_id,
         note: s.note,
+        commentaire: s.commentaire ?? null,
         submittedAt: s.submitted_at,
+        correctedAt: s.corrected_at ?? null,
       })),
     });
   } catch (err) {
