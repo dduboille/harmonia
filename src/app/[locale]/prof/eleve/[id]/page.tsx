@@ -4,6 +4,8 @@ import { redirect, notFound } from "next/navigation";
 import Link from "next/link";
 import { supabaseAdmin } from "@/lib/supabase";
 import { ALL_EXERCISES } from "@/exercises/all-exercises";
+import EleveBilanButton from "@/components/EleveBilanButton";
+import type { EleveBilanData } from "@/lib/pdf-bilan";
 
 const COURS_NOMS: Record<number, string> = {
   1: "La gamme, les degrés et les intervalles",
@@ -141,7 +143,7 @@ export default async function ElevePage({ params, searchParams }: Props) {
   // Fetch soumissions (conservatoire devoirs)
   const { data: soumissions } = await supabaseAdmin
     .from("soumissions")
-    .select("id, devoir_id, note, submitted_at, devoirs(titre, type, reference_id)")
+    .select("id, devoir_id, note, commentaire, submitted_at, devoirs(titre, type, reference_id)")
     .eq("eleve_id", eleveId)
     .order("submitted_at", { ascending: false })
     .limit(20);
@@ -150,6 +152,7 @@ export default async function ElevePage({ params, searchParams }: Props) {
     id: string;
     devoir_id: string;
     note: number | null;
+    commentaire: string | null;
     submitted_at: string;
     devoirs: { titre: string; type: string; reference_id: string | null } | null;
   }>;
@@ -172,6 +175,32 @@ export default async function ElevePage({ params, searchParams }: Props) {
   const erreurMax = erreurList.length > 0 ? erreurList[0][1] : 0;
 
   const ACCENT = "#2D5A8E";
+
+  // Données du bilan PDF de l'élève
+  const bilanData: EleveBilanData = {
+    eleveNom: eleveNom,
+    eleveEmail: eleveEmail,
+    classeNom: classeNom || undefined,
+    stats: {
+      coursCompletes: coursIds.filter(c => byCours[c].completed > 0).length,
+      exercicesReussis: totalExercices,
+      scoreMoyen,
+    },
+    progression: coursIds.map(coursId => {
+      const d = byCours[coursId];
+      const totalInCours = ALL_EXERCISES.filter(e => e.cours === coursId).length;
+      const pct = totalInCours > 0 ? Math.round((d.completed / totalInCours) * 100) : 0;
+      const avg = d.scores.length > 0 ? Math.round(d.scores.reduce((a, b) => a + b, 0) / d.scores.length) : 0;
+      return { cours: coursId, nom: COURS_NOMS[coursId] ?? "", completed: d.completed, total: totalInCours, pct, avg };
+    }),
+    difficultes: erreurList.map(([type, n]) => ({ label: ERROR_LABELS[type] ?? type, count: n })),
+    devoirs: soumissionsRows.map(s => ({
+      titre: s.devoirs?.titre ?? "—",
+      note: s.note,
+      date: new Date(s.submitted_at).toLocaleDateString("fr-FR"),
+      commentaire: s.commentaire ?? null,
+    })),
+  };
 
   return (
     <main style={{ minHeight: "100vh", background: "#f4f1ec", padding: "2rem 1rem", fontFamily: "system-ui, sans-serif" }}>
@@ -200,7 +229,8 @@ export default async function ElevePage({ params, searchParams }: Props) {
               <h1 style={{ fontSize: 22, fontWeight: 700, color: "#1a1a1a", margin: "0 0 4px", fontFamily: "Georgia, serif" }}>
                 {eleveNom || "—"}
               </h1>
-              <div style={{ fontSize: 13, color: "#888" }}>{eleveEmail}</div>
+              <div style={{ fontSize: 13, color: "#888", marginBottom: 12 }}>{eleveEmail}</div>
+              <EleveBilanButton data={bilanData} />
             </div>
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
               {[

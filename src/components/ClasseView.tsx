@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import type { Classe, Eleve, Devoir } from "@/types/conservatoire";
+import { downloadClasseBilan } from "@/lib/pdf-bilan";
 
 const ACCENT = "#2D5A8E";
 
@@ -230,6 +231,25 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
     return Math.floor(diff / (1000 * 60 * 60 * 24));
   }
 
+  // ── Bilan PDF de la classe ──
+  function exportBilanPDF() {
+    downloadClasseBilan({
+      classeNom: classe.nom,
+      eleves: initialEleves.map((e) => {
+        const p = progMap[e.userId];
+        return {
+          nom: e.nom || "",
+          email: e.email || "",
+          coursCompletes: p?.coursCompletés ?? 0,
+          exercicesReussis: p?.exercicesReussis ?? 0,
+          scoreMoyen: p?.scoreMoyen ?? 0,
+          derniereActivite: p?.derniereActivite ? new Date(p.derniereActivite).toLocaleDateString("fr-FR") : "—",
+        };
+      }),
+      erreurs: erreursClasse.map((e) => ({ label: ERROR_LABELS[e.type] ?? e.type, count: e.count })),
+    });
+  }
+
   // ── Export CSV des résultats de la classe ──
   function exportCSV() {
     const headers = ["Nom", "Email", "Cours complétés", "Exercices réussis", "Score moyen (%)", "Dernière activité"];
@@ -313,6 +333,19 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
           <span style={{ fontSize: 13, color: "#999" }}>
             {classe.elevesCount} élève{classe.elevesCount !== 1 ? "s" : ""}
           </span>
+          {initialEleves.length > 0 && (
+            <button
+              onClick={exportBilanPDF}
+              style={{
+                marginLeft: "auto",
+                background: "#fff", color: ACCENT,
+                border: `1px solid ${ACCENT}55`, borderRadius: 8,
+                padding: "7px 14px", fontSize: 13, fontWeight: 600, cursor: "pointer",
+              }}
+            >
+              📄 Bilan PDF
+            </button>
+          )}
         </div>
       </div>
 
