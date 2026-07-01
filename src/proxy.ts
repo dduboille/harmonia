@@ -17,6 +17,7 @@ const isPublicRoute = createRouteMatcher([
   "/:locale/landing-conservatoire",
   "/:locale/sign-in(.*)",
   "/:locale/sign-up(.*)",
+  "/:locale/rejoindre(.*)",
   "/api/stripe/webhook",
   "/api/webhooks/clerk",
   "/api/admin/(.*)",

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import QRCode from "qrcode";
 import type { Classe } from "@/types/conservatoire";
 
 const ACCENT = "#2D5A8E";
@@ -26,8 +27,36 @@ export default function ProfDashboard({ classes: initialClasses, totalEleves: in
   const [error, setError] = useState("");
   const [copied, setCopied] = useState<string | null>(null);
 
+  // Invitation (lien + QR)
+  const [inviteClasse, setInviteClasse] = useState<Classe | null>(null);
+  const [qrDataUrl, setQrDataUrl] = useState<string>("");
+  const [linkCopied, setLinkCopied] = useState(false);
+
   const totalEleves = classes.reduce((s, c) => s + c.elevesCount, 0) || initialTotal;
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 600;
+
+  function inviteUrl(code: string): string {
+    const origin = typeof window !== "undefined" ? window.location.origin : "https://getharmonia.app";
+    return `${origin}/${locale}/rejoindre?code=${code}`;
+  }
+
+  async function openInvite(c: Classe) {
+    setInviteClasse(c);
+    setLinkCopied(false);
+    setQrDataUrl("");
+    try {
+      const url = await QRCode.toDataURL(inviteUrl(c.codeAcces), { width: 240, margin: 1 });
+      setQrDataUrl(url);
+    } catch {
+      setQrDataUrl("");
+    }
+  }
+
+  function copyLink(code: string) {
+    navigator.clipboard.writeText(inviteUrl(code));
+    setLinkCopied(true);
+    setTimeout(() => setLinkCopied(false), 2000);
+  }
 
   async function createClasse() {
     if (!nom.trim()) { setError("Le nom est requis."); return; }
@@ -207,6 +236,21 @@ export default function ProfDashboard({ classes: initialClasses, totalEleves: in
                   >
                     {copied === c.codeAcces ? "✓ Copié" : "Copier le code"}
                   </button>
+                  <button
+                    onClick={() => openInvite(c)}
+                    style={{
+                      background: "transparent",
+                      border: `1px solid ${ACCENT}55`,
+                      borderRadius: 6,
+                      padding: "2px 10px",
+                      fontSize: 12,
+                      cursor: "pointer",
+                      color: ACCENT,
+                      fontWeight: 600,
+                    }}
+                  >
+                    Inviter (lien / QR)
+                  </button>
                   <span style={{ fontSize: 13, color: "#999" }}>
                     {c.elevesCount} élève{c.elevesCount !== 1 ? "s" : ""}
                   </span>
@@ -314,6 +358,70 @@ export default function ProfDashboard({ classes: initialClasses, totalEleves: in
                 }}
               >
                 {creating ? "Création…" : "Créer la classe"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Invite modal (lien + QR) */}
+      {inviteClasse && (
+        <div style={{
+          position: "fixed", inset: 0,
+          background: "rgba(0,0,0,0.45)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          zIndex: 500, padding: 16,
+        }}
+          onClick={(e) => { if (e.target === e.currentTarget) setInviteClasse(null); }}
+        >
+          <div style={{
+            background: "#fff", borderRadius: 16, padding: "32px 28px",
+            width: "100%", maxWidth: 420, textAlign: "center",
+            boxShadow: "0 16px 60px rgba(0,0,0,0.2)",
+          }}>
+            <h2 style={{ fontSize: 20, fontWeight: 800, margin: "0 0 6px", color: "#1a1a1a", fontFamily: "Georgia, serif" }}>
+              Inviter des élèves
+            </h2>
+            <p style={{ fontSize: 13, color: "#888", margin: "0 0 20px" }}>{inviteClasse.nom}</p>
+
+            {qrDataUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={qrDataUrl}
+                alt="QR code d'invitation"
+                width={200}
+                height={200}
+                style={{ borderRadius: 12, border: "1px solid #e8e2da", marginBottom: 16 }}
+              />
+            ) : (
+              <div style={{ height: 200, display: "flex", alignItems: "center", justifyContent: "center", color: "#bbb", fontSize: 13 }}>
+                Génération du QR code…
+              </div>
+            )}
+
+            <p style={{ fontSize: 12, color: "#888", marginBottom: 6 }}>
+              Les élèves scannent le QR code, ou ouvrent ce lien :
+            </p>
+            <div style={{
+              fontSize: 12, color: "#5C3D6E", background: "#f7f5fb",
+              border: "1px solid #e8e2da", borderRadius: 8, padding: "10px 12px",
+              wordBreak: "break-all", marginBottom: 12, fontFamily: "monospace",
+            }}>
+              {inviteUrl(inviteClasse.codeAcces)}
+            </div>
+
+            <div style={{ display: "flex", gap: 10 }}>
+              <button
+                onClick={() => copyLink(inviteClasse.codeAcces)}
+                style={{ flex: 2, padding: "11px", border: "none", borderRadius: 8, background: ACCENT, color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer" }}
+              >
+                {linkCopied ? "✓ Lien copié" : "Copier le lien"}
+              </button>
+              <button
+                onClick={() => setInviteClasse(null)}
+                style={{ flex: 1, padding: "11px", border: "1px solid #ccc", borderRadius: 8, background: "#fff", fontSize: 14, cursor: "pointer", color: "#444" }}
+              >
+                Fermer
               </button>
             </div>
           </div>
