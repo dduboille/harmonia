@@ -124,6 +124,29 @@ export default async function DashboardPage({ params }: Props) {
     });
   }
 
+  // Fetch this student's corrected submissions (teacher feedback) for the class
+  let classeCorrections: Array<{ devoirTitre: string; note: number | null; commentaire: string | null; correctedAt: string }> = [];
+  if (classeMembership?.classe_id) {
+    const { data: soumData } = await supabaseAdmin
+      .from("soumissions")
+      .select("note, commentaire, corrected_at, devoirs(titre, classe_id)")
+      .eq("eleve_id", userId)
+      .not("corrected_at", "is", null)
+      .order("corrected_at", { ascending: false });
+
+    classeCorrections = ((soumData ?? []) as unknown as Array<{
+      note: number | null; commentaire: string | null; corrected_at: string;
+      devoirs: { titre: string; classe_id: string } | null;
+    }>)
+      .filter(s => s.devoirs?.classe_id === classeMembership.classe_id)
+      .map(s => ({
+        devoirTitre: s.devoirs?.titre ?? "—",
+        note: s.note,
+        commentaire: s.commentaire ?? null,
+        correctedAt: s.corrected_at,
+      }));
+  }
+
   const totalCompleted = coursStats.reduce((s, c) => s + c.completedExercises, 0);
   const totalExercises = ALL_EXERCISES.length;
   const globalPct = totalExercises > 0 ? Math.round((totalCompleted / totalExercises) * 100) : 0;
@@ -196,7 +219,7 @@ export default async function DashboardPage({ params }: Props) {
         </div>
 
         {/* ── Ma classe (conservatoire) ───────────────────────── */}
-        <MaClasseSection locale={locale} membership={classeMembership as any} devoirs={classeDevoirs} />
+        <MaClasseSection locale={locale} membership={classeMembership as any} devoirs={classeDevoirs} corrections={classeCorrections} />
 
         {/* ── Outils d'entraînement ───────────────────────────── */}
         <div style={{ marginBottom: "2rem" }}>

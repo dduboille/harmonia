@@ -20,13 +20,21 @@ interface ClasseInfo {
   code_acces: string;
 }
 
+interface Correction {
+  devoirTitre: string;
+  note: number | null;
+  commentaire: string | null;
+  correctedAt: string;
+}
+
 interface Props {
   locale: string;
   membership: { classe_id: string; classes: ClasseInfo | ClasseInfo[] | null } | null;
   devoirs: Devoir[];
+  corrections?: Correction[];
 }
 
-export default function MaClasseSection({ locale, membership, devoirs }: Props) {
+export default function MaClasseSection({ locale, membership, devoirs, corrections = [] }: Props) {
   const [showJoin, setShowJoin] = useState(false);
   const [code, setCode] = useState("");
   const [joining, setJoining] = useState(false);
@@ -239,6 +247,39 @@ export default function MaClasseSection({ locale, membership, devoirs }: Props) 
         </div>
       ) : (
         <div style={{ color: "#999", fontSize: 13 }}>Aucun devoir assigné pour l'instant.</div>
+      )}
+
+      {corrections.length > 0 && (
+        <div style={{ borderTop: "1px solid #f0ebe3", paddingTop: 14, marginTop: 16 }}>
+          <div style={{ fontSize: 12, fontWeight: 600, color: "#888", marginBottom: 10, letterSpacing: "0.05em", textTransform: "uppercase" }}>
+            Retours du professeur
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {corrections.map((c, i) => {
+              const ok = (c.note ?? 0) >= 70;
+              return (
+                <div key={i} style={{
+                  padding: "10px 14px",
+                  background: "#fafafa",
+                  borderRadius: 8,
+                  border: "0.5px solid #e8e3db",
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
+                    <span style={{ fontSize: 14, color: "#1a1a1a", fontWeight: 600 }}>{c.devoirTitre}</span>
+                    {c.note != null && (
+                      <span style={{ fontSize: 14, fontWeight: 700, color: ok ? "#0F6E56" : "#E53E3E" }}>{c.note}%</span>
+                    )}
+                  </div>
+                  {c.commentaire && (
+                    <div style={{ fontSize: 13, color: "#555", marginTop: 6, lineHeight: 1.6, fontStyle: "italic" }}>
+                      « {c.commentaire} »
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
       )}
     </div>
   );
