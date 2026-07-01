@@ -10,6 +10,16 @@ const ACCENT = "#2D5A8E";
 const BETA_BG = "#FAEEDA";
 const BETA_COLOR = "#BA7517";
 
+// Modèles de classes pré-paramétrés par cursus (pré-remplissent nom + description)
+const CLASSE_TEMPLATES: Array<{ label: string; nom: string; description: string }> = [
+  { label: "Éveil musical", nom: "Éveil musical", description: "Découverte : oreille, rythme, premières notions." },
+  { label: "Cycle I — FM", nom: "Formation musicale — Cycle I", description: "Solfège, lecture, intervalles et gammes." },
+  { label: "Cycle II — FM", nom: "Formation musicale — Cycle II", description: "Approfondissement : accords, cadences, tonalités." },
+  { label: "Cycle II — Harmonie", nom: "Harmonie — Cycle II", description: "Écriture à 4 voix, fonctions tonales, conduite des voix." },
+  { label: "Cycle III / DEM — Écriture", nom: "Écriture — Cycle III (DEM)", description: "Harmonisation, contrepoint, préparation DEM." },
+  { label: "Préparation DEM", nom: "Préparation DEM — Harmonisation", description: "Basse donnée, chant donné, méthode d'examen." },
+];
+
 interface Props {
   classes: Classe[];
   totalEleves: number;
@@ -294,9 +304,44 @@ export default function ProfDashboard({ classes: initialClasses, totalEleves: in
             maxWidth: 440,
             boxShadow: "0 16px 60px rgba(0,0,0,0.2)",
           }}>
-            <h2 style={{ fontSize: 20, fontWeight: 800, margin: "0 0 24px", color: "#1a1a1a", fontFamily: "Georgia, serif" }}>
+            <h2 style={{ fontSize: 20, fontWeight: 800, margin: "0 0 20px", color: "#1a1a1a", fontFamily: "Georgia, serif" }}>
               Créer une classe
             </h2>
+
+            <div style={{ marginBottom: 18 }}>
+              <span style={{ fontSize: 13, fontWeight: 600, color: "#444", display: "block", marginBottom: 8 }}>
+                Modèle (optionnel)
+              </span>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                {CLASSE_TEMPLATES.map((tpl) => (
+                  <button
+                    key={tpl.label}
+                    type="button"
+                    onClick={() => { setNom(tpl.nom); setDescription(tpl.description); }}
+                    style={{
+                      background: nom === tpl.nom ? ACCENT : "#f4f1ec",
+                      color: nom === tpl.nom ? "#fff" : "#555",
+                      border: `1px solid ${nom === tpl.nom ? ACCENT : "#e0dbd3"}`,
+                      borderRadius: 20, padding: "5px 12px",
+                      fontSize: 12, fontWeight: 600, cursor: "pointer",
+                    }}
+                  >
+                    {tpl.label}
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => { setNom(""); setDescription(""); }}
+                  style={{
+                    background: "#fff", color: "#888",
+                    border: "1px dashed #ccc", borderRadius: 20, padding: "5px 12px",
+                    fontSize: 12, fontWeight: 600, cursor: "pointer",
+                  }}
+                >
+                  Vierge
+                </button>
+              </div>
+            </div>
 
             <label style={{ display: "block", marginBottom: 16 }}>
               <span style={{ fontSize: 13, fontWeight: 600, color: "#444", display: "block", marginBottom: 6 }}>
