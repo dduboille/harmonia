@@ -187,6 +187,44 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
   const progMap: Record<string, ProgressionEntry> = {};
   for (const p of progression) progMap[p.userId] = p;
 
+  // ── Alerte de décrochage : inactivité > 14 jours ──
+  const INACTIVITE_JOURS = 14;
+  function joursInactif(userId: string): number | null {
+    const p = progMap[userId];
+    if (!p?.derniereActivite) return null; // jamais connecté / aucune activité
+    const diff = Date.now() - new Date(p.derniereActivite).getTime();
+    return Math.floor(diff / (1000 * 60 * 60 * 24));
+  }
+
+  // ── Export CSV des résultats de la classe ──
+  function exportCSV() {
+    const headers = ["Nom", "Email", "Cours complétés", "Exercices réussis", "Score moyen (%)", "Dernière activité"];
+    const rows = initialEleves.map((e) => {
+      const p = progMap[e.userId];
+      return [
+        e.nom || "",
+        e.email || "",
+        String(p?.coursCompletés ?? 0),
+        String(p?.exercicesReussis ?? 0),
+        p?.scoreMoyen ? String(p.scoreMoyen) : "",
+        p?.derniereActivite ? new Date(p.derniereActivite).toLocaleDateString("fr-FR") : "",
+      ];
+    });
+    const esc = (v: string) => `"${v.replace(/"/g, '""')}"`;
+    const csv = [headers, ...rows].map((r) => r.map(esc).join(";")).join("\r\n");
+    // BOM UTF-8 pour un affichage correct des accents dans Excel
+    const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    const safeName = classe.nom.replace(/[^\p{L}\p{N}]+/gu, "_").replace(/^_+|_+$/g, "");
+    a.download = `harmonia_${safeName || "classe"}_${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
   const top3 = [...progression]
     .sort((a, b) => b.exercicesReussis - a.exercicesReussis)
     .slice(0, 3);
@@ -265,6 +303,22 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                 </p>
               </div>
             ) : (
+              <>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, gap: 10, flexWrap: "wrap" }}>
+                <span style={{ fontSize: 13, color: "#888" }}>
+                  {initialEleves.length} élève{initialEleves.length !== 1 ? "s" : ""}
+                </span>
+                <button
+                  onClick={exportCSV}
+                  style={{
+                    background: "#fff", color: ACCENT,
+                    border: `1px solid ${ACCENT}55`, borderRadius: 8,
+                    padding: "8px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer",
+                  }}
+                >
+                  ⬇ Exporter en CSV
+                </button>
+              </div>
               <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                   <thead>
@@ -294,10 +348,24 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                             }
                           </td>
                           <td style={{ padding: "12px 14px", color: "#888", fontSize: 13 }}>
-                            {prog?.derniereActivite
-                              ? new Date(prog.derniereActivite).toLocaleDateString("fr-FR")
-                              : "—"
-                            }
+                            {(() => {
+                              const jours = joursInactif(e.userId);
+                              if (jours === null) {
+                                return (
+                                  <span style={{ color: "#E53E3E", fontWeight: 600 }} title="Aucune activité enregistrée">
+                                    ⚠ Jamais connecté
+                                  </span>
+                                );
+                              }
+                              const decroche = jours >= INACTIVITE_JOURS;
+                              return (
+                                <span style={{ color: decroche ? "#BA7517" : "#888", fontWeight: decroche ? 600 : 400 }}
+                                  title={decroche ? `Inactif depuis ${jours} jours` : undefined}>
+                                  {decroche && "⚠ "}
+                                  {new Date(prog!.derniereActivite).toLocaleDateString("fr-FR")}
+                                </span>
+                              );
+                            })()}
                           </td>
                           <td style={{ padding: "12px 14px" }}>
                             <Link
@@ -313,6 +381,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                   </tbody>
                 </table>
               </div>
+              </>
             )}
           </>
         )}
