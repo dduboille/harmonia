@@ -146,7 +146,7 @@ function noteToToneFormat(name: NoteName, octave: number): string {
 // ─── Validation harmonique ────────────────────────────────────────────────────
 
 interface ValidationError {
-  type: "parallel_fifth" | "parallel_octave" | "spacing" | "range" | "crossing" | "leading_tone" | "seventh" | "missing_accidental";
+  type: "parallel_fifth" | "parallel_octave" | "spacing" | "range" | "crossing" | "leading_tone" | "seventh" | "missing_accidental" | "cross_relation";
   voices?: [Voice, Voice];
   measure?: number;
   message: string;
@@ -220,6 +220,32 @@ function validateSATB(measures: Measure[], keySignature?: string, checkAccidenta
         if (prevInterval === 0 && curInterval === 0 && p1.name !== c1.name) {
           errors.push({ type:"parallel_octave", voices:[v1,v2], measure:m, message:`Octaves parallèles ${VOICE_LABELS[v1]}–${VOICE_LABELS[v2]} (m.${m}→${m+1})`, severity:"error" });
         }
+      });
+
+      // 4b. Fausses relations : même lettre de note à des voix DIFFÉRENTES
+      // entre deux accords successifs, mais avec une altération différente
+      // (le chromatisme conduit à la même voix reste autorisé).
+      const flagged = new Set<string>();
+      VOICES.forEach(va => {
+        VOICES.forEach(vb => {
+          if (va === vb) return;
+          const a = prev[va], b = cur[vb];
+          if (!a.name || !b.name) return;
+          if (a.name[0].toUpperCase() !== b.name[0].toUpperCase()) return;
+          const pcA = ((noteToMidi(noteName(a.name), 0) % 12) + 12) % 12;
+          const pcB = ((noteToMidi(noteName(b.name), 0) % 12) + 12) % 12;
+          if (pcA === pcB) return; // même hauteur → pas de contradiction
+          const key = [va, vb].sort().join("-");
+          if (flagged.has(key)) return;
+          flagged.add(key);
+          errors.push({
+            type: "cross_relation",
+            voices: [va, vb],
+            measure: m,
+            message: `Fausse relation ${VOICE_LABELS[va]}↔${VOICE_LABELS[vb]} (${a.name}→${b.name}, m.${m}→${m + 1})`,
+            severity: "warning",
+          });
+        });
       });
     }
 
@@ -355,11 +381,46 @@ export default function HarmoniaEditor({
 
   const pianoRef = useRef<PianoPlayerRef>(null);
 
+  // ── Suivi des erreurs récurrentes ──
+  // Accumule les types d'erreurs rencontrés pendant toute la session de travail
+  // (même corrigés avant la remise), puis les envoie une seule fois.
+  const errorTypesSeen = useRef<Set<string>>(new Set());
+  const errorsFlushed = useRef(false);
+
+  function flushHarmonyErrors(useBeacon: boolean) {
+    if (errorsFlushed.current) return;
+    const types = Array.from(errorTypesSeen.current);
+    if (types.length === 0) return;
+    errorsFlushed.current = true;
+    const erreurs: Record<string, number> = {};
+    for (const t of types) erreurs[t] = 1;
+    const payload = JSON.stringify({ erreurs });
+    try {
+      if (useBeacon && typeof navigator !== "undefined" && navigator.sendBeacon) {
+        navigator.sendBeacon("/api/harmony-errors", new Blob([payload], { type: "application/json" }));
+      } else {
+        fetch("/api/harmony-errors", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: payload,
+          keepalive: true,
+        }).catch(() => {});
+      }
+    } catch { /* silencieux */ }
+  }
+
   // Validation à chaque changement
   useEffect(() => {
     const errs = validateSATB(measures, keySignature, !showKeySignature);
     setErrors(errs);
+    for (const e of errs) errorTypesSeen.current.add(e.type);
   }, [measures, keySignature, showKeySignature]);
+
+  // Envoi au démontage (l'élève quitte la page sans forcément terminer)
+  useEffect(() => {
+    return () => { flushHarmonyErrors(true); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // ── Fix 3 : flèches clavier → demi-ton ──
   useEffect(() => {
@@ -819,6 +880,7 @@ export default function HarmoniaEditor({
             onClick={() => {
               if (placedNotes === totalNotes) {
                 setCompleted(true);
+                flushHarmonyErrors(false);
                 onComplete?.(measures);
               }
             }}

@@ -141,5 +141,24 @@ export default async function ClassePage({ params }: Props) {
 
   const exercises = ALL_EXERCISES.map(e => ({ id: e.id, title: e.title ?? "", cours: e.cours, type: e.type }));
 
-  return <ClasseView classe={classe} eleves={eleves} devoirs={devoirs} progression={progression} exercises={exercises} />;
+  // Erreurs d'écriture SATB agrégées sur la classe (top types)
+  const erreurEleveIds = eleves.map(e => e.userId);
+  let erreursClasse: Array<{ type: string; count: number }> = [];
+  if (erreurEleveIds.length > 0) {
+    const { data: errRows } = await supabaseAdmin
+      .from("eleve_erreurs")
+      .select("erreurs")
+      .in("eleve_id", erreurEleveIds);
+    const totals: Record<string, number> = {};
+    for (const r of (errRows ?? []) as Array<{ erreurs: Record<string, number> | null }>) {
+      for (const [t, n] of Object.entries(r.erreurs ?? {})) totals[t] = (totals[t] ?? 0) + Number(n || 0);
+    }
+    erreursClasse = Object.entries(totals)
+      .filter(([, n]) => n > 0)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 4)
+      .map(([type, count]) => ({ type, count }));
+  }
+
+  return <ClasseView classe={classe} eleves={eleves} devoirs={devoirs} progression={progression} exercises={exercises} erreursClasse={erreursClasse} />;
 }

@@ -7,6 +7,18 @@ import type { Classe, Eleve, Devoir } from "@/types/conservatoire";
 
 const ACCENT = "#2D5A8E";
 
+const ERROR_LABELS: Record<string, string> = {
+  parallel_fifth: "Quintes parallèles",
+  parallel_octave: "Octaves parallèles",
+  cross_relation: "Fausses relations",
+  leading_tone: "Sensible non résolue",
+  seventh: "Septième mal traitée",
+  spacing: "Espacement excessif",
+  crossing: "Croisement de voix",
+  range: "Note hors tessiture",
+  missing_accidental: "Altération manquante",
+};
+
 const COURS_NOMS: Record<number, string> = {
   1: "La gamme, les degrés et les intervalles",
   2: "Les accords",
@@ -70,11 +82,12 @@ interface Props {
   devoirs: Devoir[];
   progression: ProgressionEntry[];
   exercises: ExerciseOption[];
+  erreursClasse?: Array<{ type: string; count: number }>;
 }
 
 type Tab = "eleves" | "devoirs" | "progression";
 
-export default function ClasseView({ classe, eleves: initialEleves, devoirs: initialDevoirs, progression, exercises }: Props) {
+export default function ClasseView({ classe, eleves: initialEleves, devoirs: initialDevoirs, progression, exercises, erreursClasse = [] }: Props) {
   const params = useParams();
   const locale = (params?.locale as string) ?? "fr";
   const [tab, setTab] = useState<Tab>("eleves");
@@ -581,6 +594,26 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
         {tab === "progression" && (
           <>
             <h2 style={{ fontSize: 17, fontWeight: 700, marginBottom: 24 }}>Progression globale de la classe</h2>
+
+            {erreursClasse.length > 0 && (
+              <div style={{ marginBottom: 32 }}>
+                <h3 style={{ fontSize: 14, fontWeight: 700, color: "#888", marginBottom: 14, letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                  ⚠ Erreurs d'écriture les plus fréquentes
+                </h3>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                  {erreursClasse.map(({ type, count }) => (
+                    <div key={type} style={{
+                      display: "flex", alignItems: "center", gap: 8,
+                      background: "#FFF5F5", border: "1px solid #FC818155",
+                      borderRadius: 10, padding: "8px 14px",
+                    }}>
+                      <span style={{ fontSize: 13, color: "#333" }}>{ERROR_LABELS[type] ?? type}</span>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: "#C53030" }}>{count}×</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {progression.length === 0 ? (
               <div style={{ textAlign: "center", padding: "36px 0", color: "#999" }}>

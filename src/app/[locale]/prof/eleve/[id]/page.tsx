@@ -31,6 +31,18 @@ const COURS_NOMS: Record<number, string> = {
   23: "Composer dans le style des maîtres",
 };
 
+const ERROR_LABELS: Record<string, string> = {
+  parallel_fifth: "Quintes parallèles",
+  parallel_octave: "Octaves parallèles",
+  cross_relation: "Fausses relations",
+  leading_tone: "Sensible non résolue",
+  seventh: "Septième mal traitée",
+  spacing: "Espacement excessif",
+  crossing: "Croisement de voix",
+  range: "Note hors tessiture",
+  missing_accidental: "Altération manquante",
+};
+
 interface Props {
   params: Promise<{ locale: string; id: string }>;
   searchParams: Promise<{ classeId?: string }>;
@@ -142,6 +154,23 @@ export default async function ElevePage({ params, searchParams }: Props) {
     devoirs: { titre: string; type: string; reference_id: string | null } | null;
   }>;
 
+  // Erreurs récurrentes d'écriture SATB (agrégées sur tout le travail de l'élève)
+  const { data: erreursRows } = await supabaseAdmin
+    .from("eleve_erreurs")
+    .select("erreurs")
+    .eq("eleve_id", eleveId);
+
+  const erreurTotals: Record<string, number> = {};
+  for (const r of (erreursRows ?? []) as Array<{ erreurs: Record<string, number> | null }>) {
+    for (const [type, n] of Object.entries(r.erreurs ?? {})) {
+      erreurTotals[type] = (erreurTotals[type] ?? 0) + Number(n || 0);
+    }
+  }
+  const erreurList = Object.entries(erreurTotals)
+    .filter(([, n]) => n > 0)
+    .sort((a, b) => b[1] - a[1]);
+  const erreurMax = erreurList.length > 0 ? erreurList[0][1] : 0;
+
   const ACCENT = "#2D5A8E";
 
   return (
@@ -242,6 +271,32 @@ export default async function ElevePage({ params, searchParams }: Props) {
           </div>
         )}
 
+        {/* Erreurs récurrentes (écriture SATB) */}
+        {erreurList.length > 0 && (
+          <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 14, padding: "24px 28px", marginBottom: "1.5rem" }}>
+            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#1a1a1a", margin: "0 0 6px" }}>Difficultés récurrentes</h2>
+            <p style={{ fontSize: 12, color: "#999", margin: "0 0 18px" }}>
+              Erreurs d'écriture à 4 voix rencontrées (nombre d'exercices concernés).
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {erreurList.map(([type, n]) => {
+                const pct = erreurMax > 0 ? Math.round((n / erreurMax) * 100) : 0;
+                return (
+                  <div key={type}>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                      <span style={{ fontSize: 13, color: "#333" }}>{ERROR_LABELS[type] ?? type}</span>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: "#C53030" }}>{n}×</span>
+                    </div>
+                    <div style={{ height: 6, background: "#f0ece6", borderRadius: 4, overflow: "hidden" }}>
+                      <div style={{ height: "100%", width: `${pct}%`, background: "#E53E3E", borderRadius: 4 }} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Devoir submissions */}
         {soumissionsRows.length > 0 && (
           <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 14, padding: "24px 28px", marginBottom: "1.5rem" }}>
@@ -289,7 +344,7 @@ export default async function ElevePage({ params, searchParams }: Props) {
           </div>
         )}
 
-        {coursIds.length === 0 && soumissionsRows.length === 0 && (
+        {coursIds.length === 0 && soumissionsRows.length === 0 && erreurList.length === 0 && (
           <div style={{
             background: "#fff", border: "0.5px solid #e8e3db",
             borderRadius: 14, padding: "48px 28px",
