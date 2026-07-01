@@ -100,12 +100,12 @@ export default async function ClassePage({ params }: Props) {
   // Fetch devoirs
   const { data: devoirsRaw } = await supabaseAdmin
     .from("devoirs")
-    .select("id, classe_id, titre, type, reference_id, date_limite")
+    .select("id, classe_id, titre, type, reference_id, date_limite, date_debut, statut, eleve_id")
     .eq("classe_id", id)
     .order("created_at", { ascending: false });
 
   const devoirs: Devoir[] = await Promise.all(
-    (devoirsRaw ?? []).map(async (d: { id: string; classe_id: string; titre: string; type: string; reference_id: string | null; date_limite: string | null }) => {
+    (devoirsRaw ?? []).map(async (d: { id: string; classe_id: string; titre: string; type: string; reference_id: string | null; date_limite: string | null; date_debut: string | null; statut: string | null; eleve_id: string | null }) => {
       const { count: total } = await supabaseAdmin
         .from("soumissions")
         .select("*", { count: "exact", head: true })
@@ -122,6 +122,9 @@ export default async function ClassePage({ params }: Props) {
         type: d.type as Devoir["type"],
         referenceId: d.reference_id ?? undefined,
         dateLimite: d.date_limite ?? undefined,
+        dateDebut: d.date_debut ?? undefined,
+        statut: (d.statut ?? "publie") as "brouillon" | "publie",
+        eleveId: d.eleve_id ?? null,
         soumissionsCount: total ?? 0,
         corrigésCount: corriges ?? 0,
       };

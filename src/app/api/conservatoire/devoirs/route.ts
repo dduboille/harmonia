@@ -13,14 +13,14 @@ export async function GET(req: NextRequest) {
 
     const { data: devoirs, error } = await supabaseAdmin
       .from("devoirs")
-      .select("id, classe_id, titre, type, reference_id, date_limite, created_at")
+      .select("id, classe_id, titre, type, reference_id, date_limite, date_debut, statut, eleve_id, created_at")
       .eq("classe_id", classeId)
       .order("created_at", { ascending: false });
 
     if (error) throw error;
 
     const enriched = await Promise.all(
-      (devoirs ?? []).map(async (d: { id: string; classe_id: string; titre: string; type: string; reference_id: string | null; date_limite: string | null; created_at: string }) => {
+      (devoirs ?? []).map(async (d: { id: string; classe_id: string; titre: string; type: string; reference_id: string | null; date_limite: string | null; date_debut: string | null; statut: string | null; eleve_id: string | null; created_at: string }) => {
         const { count: total } = await supabaseAdmin
           .from("soumissions")
           .select("*", { count: "exact", head: true })
@@ -37,6 +37,9 @@ export async function GET(req: NextRequest) {
           type: d.type,
           referenceId: d.reference_id ?? undefined,
           dateLimite: d.date_limite ?? undefined,
+          dateDebut: d.date_debut ?? undefined,
+          statut: (d.statut ?? "publie") as "brouillon" | "publie",
+          eleveId: d.eleve_id ?? null,
           soumissionsCount: total ?? 0,
           corrigésCount: corriges ?? 0,
         };
@@ -56,11 +59,13 @@ export async function POST(req: NextRequest) {
     if (!userId) return NextResponse.json({ error: "Non authentifié" }, { status: 401 });
 
     const body = await req.json();
-    const { classeId, titre, type, referenceId, dateLimite } = body;
+    const { classeId, titre, type, referenceId, dateLimite, dateDebut, statut, eleveId } = body;
 
     if (!classeId || !titre?.trim() || !type) {
       return NextResponse.json({ error: "Données manquantes" }, { status: 400 });
     }
+
+    const statutValide = statut === "brouillon" ? "brouillon" : "publie";
 
     // Verify the requester is the prof
     const { data: classe } = await supabaseAdmin
@@ -73,6 +78,19 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Accès refusé" }, { status: 403 });
     }
 
+    // If an individual student is targeted, verify they belong to the class
+    if (eleveId) {
+      const { data: membership } = await supabaseAdmin
+        .from("classe_eleves")
+        .select("eleve_id")
+        .eq("classe_id", classeId)
+        .eq("eleve_id", eleveId)
+        .maybeSingle();
+      if (!membership) {
+        return NextResponse.json({ error: "Élève introuvable dans cette classe" }, { status: 400 });
+      }
+    }
+
     const { data, error } = await supabaseAdmin
       .from("devoirs")
       .insert({
@@ -82,6 +100,9 @@ export async function POST(req: NextRequest) {
         type,
         reference_id: referenceId ?? null,
         date_limite: dateLimite ?? null,
+        date_debut: dateDebut ?? null,
+        statut: statutValide,
+        eleve_id: eleveId ?? null,
       })
       .select()
       .single();
@@ -96,6 +117,9 @@ export async function POST(req: NextRequest) {
         type: data.type,
         referenceId: data.reference_id ?? undefined,
         dateLimite: data.date_limite ?? undefined,
+        dateDebut: data.date_debut ?? undefined,
+        statut: (data.statut ?? "publie") as "brouillon" | "publie",
+        eleveId: data.eleve_id ?? null,
         soumissionsCount: 0,
         corrigésCount: 0,
       },

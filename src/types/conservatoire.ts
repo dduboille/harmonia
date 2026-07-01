@@ -27,6 +27,9 @@ export interface Devoir {
   type: "cours" | "exercice" | "composition";
   referenceId?: string;
   dateLimite?: string;
+  dateDebut?: string;
+  statut: "brouillon" | "publie";
+  eleveId?: string | null;
   soumissionsCount: number;
   corrigésCount: number;
 }

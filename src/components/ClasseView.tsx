@@ -80,7 +80,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
   const [tab, setTab] = useState<Tab>("eleves");
   const [devoirs, setDevoirs] = useState<Devoir[]>(initialDevoirs);
   const [showDevoirModal, setShowDevoirModal] = useState(false);
-  const [newDevoir, setNewDevoir] = useState({ titre: "", type: "cours" as Devoir["type"], referenceId: "", dateLimite: "" });
+  const [newDevoir, setNewDevoir] = useState({ titre: "", type: "cours" as Devoir["type"], referenceId: "", dateLimite: "", dateDebut: "", statut: "publie" as "brouillon" | "publie", eleveId: "" });
   const [creating, setCreating] = useState(false);
   const [devoirError, setDevoirError] = useState("");
   const [exerciseSearch, setExerciseSearch] = useState("");
@@ -168,19 +168,40 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
           type: newDevoir.type,
           referenceId: newDevoir.referenceId || undefined,
           dateLimite: newDevoir.dateLimite || undefined,
+          dateDebut: newDevoir.dateDebut || undefined,
+          statut: newDevoir.statut,
+          eleveId: newDevoir.eleveId || undefined,
         }),
       });
       const data = await res.json();
       if (!res.ok) { setDevoirError(data.error ?? "Erreur"); return; }
       setDevoirs(prev => [data.devoir, ...prev]);
       setShowDevoirModal(false);
-      setNewDevoir({ titre: "", type: "cours", referenceId: "", dateLimite: "" });
+      setNewDevoir({ titre: "", type: "cours", referenceId: "", dateLimite: "", dateDebut: "", statut: "publie", eleveId: "" });
       setExerciseSearch("");
     } catch {
       setDevoirError("Erreur réseau");
     } finally {
       setCreating(false);
     }
+  }
+
+  async function publishDevoir(devoirId: string) {
+    try {
+      const res = await fetch(`/api/conservatoire/devoirs/${devoirId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ statut: "publie" }),
+      });
+      if (!res.ok) return;
+      setDevoirs(prev => prev.map(d => d.id === devoirId ? { ...d, statut: "publie" } : d));
+    } catch { /* silencieux */ }
+  }
+
+  // Nom d'un élève à partir de son id
+  function eleveNomById(id: string): string {
+    const e = initialEleves.find(x => x.userId === id);
+    return e ? (e.nom || e.email) : id.slice(0, 8);
   }
 
   // Build progression map by userId
@@ -423,14 +444,31 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                       gap: 10,
                     }}>
                       <div>
-                        <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4 }}>{d.titre}</div>
-                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
+                          <span style={{ fontWeight: 700, fontSize: 15 }}>{d.titre}</span>
+                          {d.statut === "brouillon" && (
+                            <span style={{ background: "#fdf0d5", color: "#BA7517", padding: "1px 8px", borderRadius: 6, fontSize: 11, fontWeight: 700, border: "1px solid #f0c98055" }}>
+                              Brouillon
+                            </span>
+                          )}
+                        </div>
+                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
                           <span style={{
                             background: "#f0eaf8", color: "#5C3D6E",
                             padding: "2px 8px", borderRadius: 6, fontSize: 12, fontWeight: 600,
                           }}>
                             {d.type}
                           </span>
+                          {d.eleveId && (
+                            <span style={{ background: "#E6F1FB", color: "#185FA5", padding: "2px 8px", borderRadius: 6, fontSize: 12, fontWeight: 600 }}>
+                              👤 {eleveNomById(d.eleveId)}
+                            </span>
+                          )}
+                          {d.dateDebut && (
+                            <span style={{ fontSize: 13, color: "#888" }}>
+                              Début : {new Date(d.dateDebut).toLocaleDateString("fr-FR")}
+                            </span>
+                          )}
                           {d.dateLimite && (
                             <span style={{ fontSize: 13, color: "#888" }}>
                               Limite : {new Date(d.dateLimite).toLocaleDateString("fr-FR")}
@@ -439,13 +477,24 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                         </div>
                       </div>
                       <div style={{ textAlign: "right" }}>
-                        <div style={{ fontSize: 13, color: "#666" }}>
-                          {d.soumissionsCount} soumission{d.soumissionsCount !== 1 ? "s" : ""}
-                        </div>
-                        <div style={{ fontSize: 13, color: d.corrigésCount < d.soumissionsCount ? "#BA7517" : "#27ae60" }}>
-                          {d.corrigésCount} corrigé{d.corrigésCount !== 1 ? "s" : ""}
-                          {d.corrigésCount < d.soumissionsCount && " ⚠"}
-                        </div>
+                        {d.statut === "brouillon" ? (
+                          <button
+                            onClick={() => publishDevoir(d.id)}
+                            style={{ background: ACCENT, color: "#fff", border: "none", borderRadius: 8, padding: "7px 14px", fontSize: 12, fontWeight: 700, cursor: "pointer" }}
+                          >
+                            Publier
+                          </button>
+                        ) : (
+                          <>
+                            <div style={{ fontSize: 13, color: "#666" }}>
+                              {d.soumissionsCount} soumission{d.soumissionsCount !== 1 ? "s" : ""}
+                            </div>
+                            <div style={{ fontSize: 13, color: d.corrigésCount < d.soumissionsCount ? "#BA7517" : "#27ae60" }}>
+                              {d.corrigésCount} corrigé{d.corrigésCount !== 1 ? "s" : ""}
+                              {d.corrigésCount < d.soumissionsCount && " ⚠"}
+                            </div>
+                          </>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -754,14 +803,51 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
               </div>
             )}
 
-            <label style={{ display: "block", marginBottom: 20 }}>
-              <span style={{ fontSize: 13, fontWeight: 600, color: "#444", display: "block", marginBottom: 6 }}>Date limite (optionnel)</span>
+            <div style={{ display: "flex", gap: 12, marginBottom: 14 }}>
+              <label style={{ display: "block", flex: 1 }}>
+                <span style={{ fontSize: 13, fontWeight: 600, color: "#444", display: "block", marginBottom: 6 }}>Date de début (optionnel)</span>
+                <input
+                  type="date"
+                  value={newDevoir.dateDebut}
+                  onChange={(e) => setNewDevoir(p => ({ ...p, dateDebut: e.target.value }))}
+                  style={{ width: "100%", boxSizing: "border-box", padding: "10px 12px", border: "1px solid #ccc", borderRadius: 8, fontSize: 14, outline: "none" }}
+                />
+              </label>
+              <label style={{ display: "block", flex: 1 }}>
+                <span style={{ fontSize: 13, fontWeight: 600, color: "#444", display: "block", marginBottom: 6 }}>Date limite (optionnel)</span>
+                <input
+                  type="date"
+                  value={newDevoir.dateLimite}
+                  onChange={(e) => setNewDevoir(p => ({ ...p, dateLimite: e.target.value }))}
+                  style={{ width: "100%", boxSizing: "border-box", padding: "10px 12px", border: "1px solid #ccc", borderRadius: 8, fontSize: 14, outline: "none" }}
+                />
+              </label>
+            </div>
+
+            <label style={{ display: "block", marginBottom: 14 }}>
+              <span style={{ fontSize: 13, fontWeight: 600, color: "#444", display: "block", marginBottom: 6 }}>Assigner à</span>
+              <select
+                value={newDevoir.eleveId}
+                onChange={(e) => setNewDevoir(p => ({ ...p, eleveId: e.target.value }))}
+                style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: 8, fontSize: 14, outline: "none", background: "#fff" }}
+              >
+                <option value="">Toute la classe</option>
+                {initialEleves.map(e => (
+                  <option key={e.userId} value={e.userId}>{e.nom || e.email}</option>
+                ))}
+              </select>
+            </label>
+
+            <label style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20, cursor: "pointer" }}>
               <input
-                type="date"
-                value={newDevoir.dateLimite}
-                onChange={(e) => setNewDevoir(p => ({ ...p, dateLimite: e.target.value }))}
-                style={{ width: "100%", boxSizing: "border-box", padding: "10px 12px", border: "1px solid #ccc", borderRadius: 8, fontSize: 14, outline: "none" }}
+                type="checkbox"
+                checked={newDevoir.statut === "brouillon"}
+                onChange={(e) => setNewDevoir(p => ({ ...p, statut: e.target.checked ? "brouillon" : "publie" }))}
+                style={{ width: 16, height: 16, cursor: "pointer" }}
               />
+              <span style={{ fontSize: 13, color: "#444" }}>
+                Enregistrer comme <strong>brouillon</strong> (non visible par les élèves)
+              </span>
             </label>
 
             {devoirError && <p style={{ color: "#c0392b", fontSize: 13, marginBottom: 12 }}>{devoirError}</p>}
@@ -778,7 +864,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                 disabled={creating}
                 style={{ flex: 2, padding: "11px", border: "none", borderRadius: 8, background: ACCENT, color: "#fff", fontSize: 14, fontWeight: 700, cursor: creating ? "default" : "pointer", opacity: creating ? 0.7 : 1 }}
               >
-                {creating ? "Création…" : "Créer le devoir"}
+                {creating ? "Création…" : newDevoir.statut === "brouillon" ? "Créer le brouillon" : "Créer et publier"}
               </button>
             </div>
           </div>

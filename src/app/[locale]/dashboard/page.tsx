@@ -108,11 +108,18 @@ export default async function DashboardPage({ params }: Props) {
   if (classeMembership?.classe_id) {
     const { data: devoirsData } = await supabaseAdmin
       .from("devoirs")
-      .select("id, titre, date_limite, type, reference_id")
+      .select("id, titre, date_limite, date_debut, statut, eleve_id, type, reference_id")
       .eq("classe_id", classeMembership.classe_id)
-      .order("created_at", { ascending: false })
-      .limit(5);
-    classeDevoirs = (devoirsData ?? []).map((d: { id: string; titre: string; date_limite: string | null; type: string; reference_id: string | null }) => {
+      .order("created_at", { ascending: false });
+
+    const nowIso = new Date().toISOString();
+    const visibles = (devoirsData ?? []).filter((d: { statut: string | null; date_debut: string | null; eleve_id: string | null }) =>
+      (d.statut ?? "publie") === "publie"                          // publié
+      && (!d.date_debut || d.date_debut <= nowIso)                 // démarré
+      && (!d.eleve_id || d.eleve_id === userId)                    // toute la classe ou moi
+    ).slice(0, 5);
+
+    classeDevoirs = visibles.map((d: { id: string; titre: string; date_limite: string | null; type: string; reference_id: string | null }) => {
       let exerciseUrl: string | null = null;
       if (d.type === "exercice" && d.reference_id) {
         const ex = ALL_EXERCISES.find(e => e.id === d.reference_id);
