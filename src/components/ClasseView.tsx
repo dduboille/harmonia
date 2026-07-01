@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import type { Classe, Eleve, Devoir } from "@/types/conservatoire";
 import { downloadClasseBilan } from "@/lib/pdf-bilan";
 
@@ -90,8 +90,67 @@ type Tab = "eleves" | "devoirs" | "progression";
 
 export default function ClasseView({ classe, eleves: initialEleves, devoirs: initialDevoirs, progression, exercises, erreursClasse = [] }: Props) {
   const params = useParams();
+  const router = useRouter();
   const locale = (params?.locale as string) ?? "fr";
   const [tab, setTab] = useState<Tab>("eleves");
+
+  // Import CSV / invitations
+  const [showImport, setShowImport] = useState(false);
+  const [importing, setImporting] = useState(false);
+  const [importError, setImportError] = useState("");
+  const [importResult, setImportResult] = useState<{ rattaches: number; invites: number; dejaMembres: number; total: number } | null>(null);
+  const [pendingCount, setPendingCount] = useState(0);
+
+  useEffect(() => {
+    fetch(`/api/conservatoire/invitations?classeId=${classe.id}`)
+      .then(r => r.json())
+      .then(d => setPendingCount((d.invitations ?? []).length))
+      .catch(() => {});
+  }, [classe.id]);
+
+  // Parse un CSV simple (email[,;]nom), en-tête optionnel
+  function parseCSV(text: string): Array<{ email: string; nom: string }> {
+    const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    const out: Array<{ email: string; nom: string }> = [];
+    for (let i = 0; i < lines.length; i++) {
+      const parts = lines[i].split(/[,;\t]/).map(p => p.trim());
+      const emailIdx = parts.findIndex(p => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p));
+      if (emailIdx === -1) continue; // ligne d'en-tête ou invalide
+      const email = parts[emailIdx];
+      const nom = parts.filter((_, j) => j !== emailIdx).join(" ").trim();
+      out.push({ email, nom });
+    }
+    return out;
+  }
+
+  async function handleImportFile(file: File) {
+    setImporting(true);
+    setImportError("");
+    setImportResult(null);
+    try {
+      const text = await file.text();
+      const eleves = parseCSV(text);
+      if (eleves.length === 0) { setImportError("Aucun e-mail valide trouvé dans le fichier."); return; }
+      const res = await fetch("/api/conservatoire/invitations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ classeId: classe.id, eleves, locale }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setImportError(data.error ?? "Erreur"); return; }
+      setImportResult(data);
+      // Rafraîchit le compteur d'invitations et la liste des élèves (SSR)
+      fetch(`/api/conservatoire/invitations?classeId=${classe.id}`)
+        .then(r => r.json())
+        .then(d => setPendingCount((d.invitations ?? []).length))
+        .catch(() => {});
+      router.refresh();
+    } catch {
+      setImportError("Erreur de lecture du fichier.");
+    } finally {
+      setImporting(false);
+    }
+  }
   const [devoirs, setDevoirs] = useState<Devoir[]>(initialDevoirs);
   const [showDevoirModal, setShowDevoirModal] = useState(false);
   const [newDevoir, setNewDevoir] = useState({ titre: "", type: "cours" as Devoir["type"], referenceId: "", dateLimite: "", dateDebut: "", statut: "publie" as "brouillon" | "publie", eleveId: "" });
@@ -361,6 +420,34 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
         {/* ── ONGLET ÉLÈVES ──────────────────────────────────────── */}
         {tab === "eleves" && (
           <>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, gap: 10, flexWrap: "wrap" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+                <span style={{ fontSize: 13, color: "#888" }}>
+                  {initialEleves.length} élève{initialEleves.length !== 1 ? "s" : ""}
+                </span>
+                {pendingCount > 0 && (
+                  <span style={{ fontSize: 12, color: "#BA7517", background: "#fdf0d5", border: "1px solid #f0c98055", borderRadius: 8, padding: "2px 10px", fontWeight: 600 }}>
+                    {pendingCount} invitation{pendingCount !== 1 ? "s" : ""} en attente
+                  </span>
+                )}
+              </div>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                <button
+                  onClick={() => { setShowImport(true); setImportResult(null); setImportError(""); }}
+                  style={{ background: ACCENT, color: "#fff", border: "none", borderRadius: 8, padding: "8px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer" }}
+                >
+                  ⬆ Importer (CSV)
+                </button>
+                {initialEleves.length > 0 && (
+                  <button
+                    onClick={exportCSV}
+                    style={{ background: "#fff", color: ACCENT, border: `1px solid ${ACCENT}55`, borderRadius: 8, padding: "8px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
+                  >
+                    ⬇ Exporter en CSV
+                  </button>
+                )}
+              </div>
+            </div>
             {initialEleves.length === 0 ? (
               <div style={{ textAlign: "center", padding: "40px 0", color: "#999" }}>
                 <div style={{ fontSize: 36, marginBottom: 12 }}>👥</div>
@@ -371,21 +458,6 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
               </div>
             ) : (
               <>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, gap: 10, flexWrap: "wrap" }}>
-                <span style={{ fontSize: 13, color: "#888" }}>
-                  {initialEleves.length} élève{initialEleves.length !== 1 ? "s" : ""}
-                </span>
-                <button
-                  onClick={exportCSV}
-                  style={{
-                    background: "#fff", color: ACCENT,
-                    border: `1px solid ${ACCENT}55`, borderRadius: 8,
-                    padding: "8px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer",
-                  }}
-                >
-                  ⬇ Exporter en CSV
-                </button>
-              </div>
               <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                   <thead>
@@ -1017,6 +1089,65 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                 style={{ flex: 2, padding: "10px", border: "none", borderRadius: 8, background: ACCENT, color: "#fff", fontSize: 14, fontWeight: 700, cursor: savingCorrection ? "default" : "pointer", opacity: savingCorrection ? 0.7 : 1 }}
               >
                 {savingCorrection ? "Enregistrement…" : "Enregistrer la correction"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Import CSV modal ──────────────────────────────────────── */}
+      {showImport && (
+        <div style={{
+          position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)",
+          display: "flex", alignItems: "center", justifyContent: "center", zIndex: 500, padding: 16,
+        }}
+          onClick={(e) => { if (e.target === e.currentTarget) setShowImport(false); }}
+        >
+          <div style={{ background: "#fff", borderRadius: 16, padding: "32px 28px", width: "100%", maxWidth: 460, boxShadow: "0 16px 60px rgba(0,0,0,0.2)" }}>
+            <h2 style={{ fontSize: 20, fontWeight: 800, margin: "0 0 8px", fontFamily: "Georgia, serif" }}>
+              Importer des élèves (CSV)
+            </h2>
+            <p style={{ fontSize: 13, color: "#666", lineHeight: 1.6, margin: "0 0 18px" }}>
+              Fichier CSV avec une adresse e-mail par ligne (colonnes <strong>email</strong> et <strong>nom</strong> optionnel,
+              séparateur <code>,</code> ou <code>;</code>). Chaque élève reçoit une invitation et rejoint
+              automatiquement la classe en créant son compte avec cette adresse.
+            </p>
+
+            {importResult ? (
+              <div style={{ background: "#e8f5e9", border: "1px solid #a5d6a7", borderRadius: 10, padding: "14px 16px", fontSize: 14, color: "#2e7d32", marginBottom: 18 }}>
+                ✓ Import terminé : <strong>{importResult.rattaches}</strong> rattaché(s) immédiatement,{" "}
+                <strong>{importResult.invites}</strong> invité(s) par e-mail
+                {importResult.dejaMembres > 0 && <>, {importResult.dejaMembres} déjà membre(s)</>}.
+              </div>
+            ) : (
+              <>
+                <label style={{
+                  display: "block", border: "1.5px dashed #c8bfa8", borderRadius: 10,
+                  padding: "24px 16px", textAlign: "center", cursor: importing ? "default" : "pointer",
+                  background: "#faf8f4", marginBottom: 14,
+                }}>
+                  <input
+                    type="file"
+                    accept=".csv,text/csv,text/plain"
+                    disabled={importing}
+                    onChange={(e) => { const f = e.target.files?.[0]; if (f) handleImportFile(f); }}
+                    style={{ display: "none" }}
+                  />
+                  <div style={{ fontSize: 28, marginBottom: 6 }}>📄</div>
+                  <div style={{ fontSize: 14, color: "#555", fontWeight: 600 }}>
+                    {importing ? "Import en cours…" : "Choisir un fichier CSV"}
+                  </div>
+                </label>
+                {importError && <p style={{ color: "#c0392b", fontSize: 13, margin: "0 0 12px" }}>{importError}</p>}
+              </>
+            )}
+
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <button
+                onClick={() => setShowImport(false)}
+                style={{ padding: "10px 18px", border: "1px solid #ccc", borderRadius: 8, background: "#fff", fontSize: 14, cursor: "pointer", color: "#444" }}
+              >
+                {importResult ? "Fermer" : "Annuler"}
               </button>
             </div>
           </div>

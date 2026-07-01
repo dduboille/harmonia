@@ -5,6 +5,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { supabaseAdmin } from "@/lib/supabase";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -22,6 +23,32 @@ export async function POST(req: NextRequest) {
       if (!email) {
         console.error("No email found in user.created event");
         return NextResponse.json({ error: "No email" }, { status: 400 });
+      }
+
+      // Auto-rattachement : ajoute le nouvel élève aux classes où son e-mail
+      // a une invitation en attente (import CSV du professeur).
+      try {
+        const newUserId = data.id;
+        const lowerEmail = String(email).toLowerCase();
+        const { data: invits } = await supabaseAdmin
+          .from("classe_invitations")
+          .select("classe_id")
+          .eq("email", lowerEmail)
+          .eq("status", "pending");
+        for (const inv of invits ?? []) {
+          await supabaseAdmin
+            .from("classe_eleves")
+            .upsert({ classe_id: inv.classe_id, eleve_id: newUserId }, { onConflict: "classe_id,eleve_id" });
+        }
+        if ((invits ?? []).length > 0) {
+          await supabaseAdmin
+            .from("classe_invitations")
+            .update({ status: "joined" })
+            .eq("email", lowerEmail)
+            .eq("status", "pending");
+        }
+      } catch (e) {
+        console.error("Auto-join on user.created failed:", e);
       }
 
       console.log("Sending welcome email to:", email);

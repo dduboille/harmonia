@@ -95,6 +95,29 @@ export default async function DashboardPage({ params }: Props) {
   const allProgress = await getAllProgress(userId);
   const recentExercises = allProgress.slice(0, 5);
 
+  // Secours : rattachement automatique si l'élève a été invité (import CSV du
+  // prof) avant d'avoir un compte, ou si le webhook n'a pas fait le rattachement.
+  const myEmail = user?.emailAddresses?.[0]?.emailAddress?.toLowerCase();
+  if (myEmail) {
+    const { data: pendingInvits } = await supabaseAdmin
+      .from("classe_invitations")
+      .select("classe_id")
+      .eq("email", myEmail)
+      .eq("status", "pending");
+    if ((pendingInvits ?? []).length > 0) {
+      for (const inv of pendingInvits!) {
+        await supabaseAdmin
+          .from("classe_eleves")
+          .upsert({ classe_id: inv.classe_id, eleve_id: userId }, { onConflict: "classe_id,eleve_id" });
+      }
+      await supabaseAdmin
+        .from("classe_invitations")
+        .update({ status: "joined" })
+        .eq("email", myEmail)
+        .eq("status", "pending");
+    }
+  }
+
   // Fetch student's class membership (conservatoire feature)
   const { data: classeMembership } = await supabaseAdmin
     .from("classe_eleves")
