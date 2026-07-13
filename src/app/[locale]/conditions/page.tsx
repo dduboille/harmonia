@@ -445,10 +445,10 @@ export default async function ConditionsPage({ params }: Props) {
             Harmonia<span style={{ color: "#BA7517" }}>.</span>
           </div>
           <div style={{ display: "flex", gap: 20, flexWrap: "wrap" as const }}>
-            <Link href={`/${locale}/confidentialite`} style={{ fontSize: 12, color: "#aaa", textDecoration: "none", fontFamily: "system-ui, sans-serif" }}>Confidentialité</Link>
+            <Link href={`/${locale}/confidentialite`} style={{ fontSize: 12, color: "#767676", textDecoration: "none", fontFamily: "system-ui, sans-serif" }}>Confidentialité</Link>
             <Link href={`/${locale}/conditions`} style={{ fontSize: 12, color: "#185FA5", textDecoration: "none", fontFamily: "system-ui, sans-serif", fontWeight: 600 }}>CGU</Link>
           </div>
-          <div style={{ fontSize: 12, color: "#aaa", fontFamily: "system-ui, sans-serif" }}>
+          <div style={{ fontSize: 12, color: "#767676", fontFamily: "system-ui, sans-serif" }}>
             © 2026 Harmonia · Tous droits réservés
           </div>
         </div>

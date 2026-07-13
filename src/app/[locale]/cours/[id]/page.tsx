@@ -1,74 +1,146 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import nextDynamic from "next/dynamic";
+import type { Metadata } from "next";
+import { auth } from "@clerk/nextjs/server";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { getUserPlan } from "@/lib/progression";
+import { getCours, isFreeCours } from "@/lib/catalogue";
+import { CoursPaywall } from "@/components/Paywall";
 
-export const dynamic = 'force-dynamic';
+/**
+ * Rendu à la demande : la page lit la session pour décider si elle sert le cours
+ * ou l'aperçu payant. Elle ne peut donc pas être prérendue statiquement — le HTML
+ * diffère selon le plan. Le rendu serveur reste parfaitement indexable.
+ */
+export const dynamic = "force-dynamic";
 
-const SATB_COURS = new Set([3,4,5,6]);
+const SATB_COURS = new Set([3, 4, 5, 6]);
 const NE_COURS = new Set([6]);
-import Cours1 from "@/components/Cours1";
-import Cours2 from "@/components/Cours2";
-import Cours3 from "@/components/Cours3";
-import Cours4 from "@/components/Cours4";
-import Cours5 from "@/components/Cours5";
-import Cours6 from "@/components/Cours6";
-import Cours7 from "@/components/Cours7";
-import Cours8 from "@/components/Cours8";
-import Cours9 from "@/components/Cours9";
-import Cours10 from "@/components/Cours10";
-import Cours11 from "@/components/Cours11";
-import Cours12 from "@/components/Cours12";
-import Cours13 from "@/components/Cours13";
-import Cours14 from "@/components/Cours14";
-import Cours15 from "@/components/Cours15";
-import Cours16 from "@/components/Cours16";
-import Cours17 from "@/components/Cours17";
-import Cours18 from "@/components/Cours18";
-import Cours19 from "@/components/Cours19";
-import Cours20 from "@/components/Cours20";
-import Cours21 from "@/components/Cours21";
-import Cours22 from "@/components/Cours22";
-import Cours23 from "@/components/Cours23";
-import Cours24 from "@/components/Cours24";
-import Cours25 from "@/components/Cours25";
-import Cours26 from "@/components/Cours26";
-import Cours27 from "@/components/Cours27";
-import Cours28 from "@/components/Cours28";
-import Cours29 from "@/components/Cours29";
-import Cours30 from "@/components/Cours30";
-import Cours31 from "@/components/Cours31";
-import Cours32 from "@/components/Cours32";
-import Cours33 from "@/components/Cours33";
-import Cours34 from "@/components/Cours34";
-import Cours35 from "@/components/Cours35";
-import Cours36 from "@/components/Cours36";
-import Cours37 from "@/components/Cours37";
-import Cours38 from "@/components/Cours38";
-import Cours39 from "@/components/Cours39";
-import Cours40 from "@/components/Cours40";
-import Cours41 from "@/components/Cours41";
 
-const COURS: Record<number, React.ComponentType> = {
-  1: Cours1, 2: Cours2, 3: Cours3, 4: Cours4, 5: Cours5,
-  6: Cours6, 7: Cours7, 8: Cours8, 9: Cours9, 10: Cours10, 11: Cours11, 12: Cours12, 13: Cours13, 14: Cours14, 15: Cours15, 16: Cours16, 17: Cours17, 18: Cours18, 19: Cours19, 20: Cours20, 21: Cours21, 22: Cours22, 23: Cours23,
-  24: Cours24, 25: Cours25, 26: Cours26,
-  27: Cours27, 28: Cours28, 29: Cours29,
-  30: Cours30, 31: Cours31, 32: Cours32,
-  33: Cours33, 34: Cours34, 35: Cours35, 36: Cours36, 37: Cours37,
-  38: Cours38, 39: Cours39, 40: Cours40, 41: Cours41,
+/**
+ * Chargement paresseux : les 41 cours étaient importés statiquement, ce qui
+ * réunissait tout leur contenu dans un seul chunk de ~2 Mo gzippé — ouvrir le
+ * cours 1 téléchargeait le JavaScript des 40 autres. Chaque cours est désormais
+ * son propre chunk.
+ */
+const COURS_COMPONENTS: Record<number, React.ComponentType> = {
+  1: nextDynamic(() => import("@/components/Cours1")),
+  2: nextDynamic(() => import("@/components/Cours2")),
+  3: nextDynamic(() => import("@/components/Cours3")),
+  4: nextDynamic(() => import("@/components/Cours4")),
+  5: nextDynamic(() => import("@/components/Cours5")),
+  6: nextDynamic(() => import("@/components/Cours6")),
+  7: nextDynamic(() => import("@/components/Cours7")),
+  8: nextDynamic(() => import("@/components/Cours8")),
+  9: nextDynamic(() => import("@/components/Cours9")),
+  10: nextDynamic(() => import("@/components/Cours10")),
+  11: nextDynamic(() => import("@/components/Cours11")),
+  12: nextDynamic(() => import("@/components/Cours12")),
+  13: nextDynamic(() => import("@/components/Cours13")),
+  14: nextDynamic(() => import("@/components/Cours14")),
+  15: nextDynamic(() => import("@/components/Cours15")),
+  16: nextDynamic(() => import("@/components/Cours16")),
+  17: nextDynamic(() => import("@/components/Cours17")),
+  18: nextDynamic(() => import("@/components/Cours18")),
+  19: nextDynamic(() => import("@/components/Cours19")),
+  20: nextDynamic(() => import("@/components/Cours20")),
+  21: nextDynamic(() => import("@/components/Cours21")),
+  22: nextDynamic(() => import("@/components/Cours22")),
+  23: nextDynamic(() => import("@/components/Cours23")),
+  24: nextDynamic(() => import("@/components/Cours24")),
+  25: nextDynamic(() => import("@/components/Cours25")),
+  26: nextDynamic(() => import("@/components/Cours26")),
+  27: nextDynamic(() => import("@/components/Cours27")),
+  28: nextDynamic(() => import("@/components/Cours28")),
+  29: nextDynamic(() => import("@/components/Cours29")),
+  30: nextDynamic(() => import("@/components/Cours30")),
+  31: nextDynamic(() => import("@/components/Cours31")),
+  32: nextDynamic(() => import("@/components/Cours32")),
+  33: nextDynamic(() => import("@/components/Cours33")),
+  34: nextDynamic(() => import("@/components/Cours34")),
+  35: nextDynamic(() => import("@/components/Cours35")),
+  36: nextDynamic(() => import("@/components/Cours36")),
+  37: nextDynamic(() => import("@/components/Cours37")),
+  38: nextDynamic(() => import("@/components/Cours38")),
+  39: nextDynamic(() => import("@/components/Cours39")),
+  40: nextDynamic(() => import("@/components/Cours40")),
+  41: nextDynamic(() => import("@/components/Cours41")),
 };
 
-export function generateStaticParams() {
-  return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41].map(id => ({ id: String(id) }));
+export async function generateMetadata({ params }: { params: Promise<{ id: string; locale: string }> }): Promise<Metadata> {
+  const { id, locale } = await params;
+  const cours = getCours(parseInt(id));
+  if (!cours) return {};
+
+  const title = `${cours.title} — Cours ${cours.num} | Harmonia`;
+  const url = `https://www.getharmonia.app/${locale}/cours/${cours.num}`;
+
+  return {
+    title,
+    description: cours.desc,
+    alternates: { canonical: url },
+    openGraph: { title, description: cours.desc, url, type: "article" },
+    twitter: { card: "summary_large_image", title, description: cours.desc },
+  };
 }
 
 export default async function CoursPage({ params }: { params: Promise<{ id: string; locale: string }> }) {
   const { id, locale } = await params;
   const num = parseInt(id);
-  const C = COURS[num];
-  if (!C) return notFound();
+  const cours = getCours(num);
+  const C = COURS_COMPONENTS[num];
+  if (!cours || !C) return notFound();
+
+  const { userId } = await auth();
+  const plan = userId ? await getUserPlan(userId) : "free";
+
+  // Déclaré que le cours soit servi ou verrouillé : l'aperçu payant reste une
+  // page de cours légitime aux yeux d'un moteur.
+  const courseJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: cours.title,
+    description: cours.desc,
+    inLanguage: locale,
+    url: `https://www.getharmonia.app/${locale}/cours/${cours.num}`,
+    provider: { "@type": "Organization", name: "Harmonia", url: "https://www.getharmonia.app" },
+    isAccessibleForFree: isFreeCours(num),
+    hasCourseInstance: { "@type": "CourseInstance", courseMode: "online" },
+  };
+  const jsonLdTag = (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+    />
+  );
+
+  if (plan === "free" && !isFreeCours(num)) {
+    return (
+      <>
+        {jsonLdTag}
+        <CoursPaywall locale={locale} cours={cours} signedIn={Boolean(userId)} />
+      </>
+    );
+  }
+
+  // Le layout ne fournit que les namespaces partagés : on ajoute ici celui du
+  // seul cours affiché, au lieu d'embarquer les 41 sur chaque page.
+  // Le provider imbriqué remplace le contexte parent : il doit donc reprendre
+  // les namespaces partagés (dont `common`, utilisé par useCoursI18n).
+  const allMessages = (await getMessages()) as Record<string, unknown>;
+  const coursKey = `cours${num}`;
+  const coursMessages = Object.fromEntries(
+    Object.entries(allMessages).filter(([key]) => !/^cours\d+$/.test(key) || key === coursKey)
+  );
+
   return (
-    <main style={{ minHeight:"100vh", padding:"2rem 1rem" }}>
-      <C />
+    <main style={{ minHeight: "100vh", padding: "2rem 1rem" }}>
+      {jsonLdTag}
+      <NextIntlClientProvider messages={coursMessages}>
+        <C />
+      </NextIntlClientProvider>
       {SATB_COURS.has(num) && (
         <div style={{ maxWidth: 800, margin: "2rem auto 0", padding: "0 1rem" }}>
           <Link href={`/${locale}/generateur-satb`} style={{ textDecoration: "none" }}>
@@ -81,7 +153,7 @@ export default async function CoursPage({ params }: { params: Promise<{ id: stri
                 <div style={{ fontSize: 13, fontWeight: 600, color: "#185FA5", marginBottom: 4 }}>
                   ⊞ Pratiquer avec le Générateur SATB
                 </div>
-                <div style={{ fontSize: 12, color: "#3A7CC7" }}>
+                <div style={{ fontSize: 12, color: "#2E6BAE" }}>
                   Créez vos propres exercices de conduite des voix dans les 24 tonalités.
                 </div>
               </div>
@@ -102,7 +174,7 @@ export default async function CoursPage({ params }: { params: Promise<{ id: stri
             }}>
               <div>
                 <div style={{ fontSize: 13, fontWeight: 600, color: "#BA7517", marginBottom: 4 }}>
-                  ♪ S'entraîner sur les notes étrangères
+                  ♪ S&apos;entraîner sur les notes étrangères
                 </div>
                 <div style={{ fontSize: 12, color: "#8a5a10" }}>
                   20 exercices interactifs — coloriez et identifiez notes de passage, broderies, retards et appoggiatures.

@@ -84,7 +84,7 @@ function RejoindreInner() {
             </div>
 
             {!isLoaded ? (
-              <p style={{ color: "#bbb", fontSize: 14 }}>Chargement…</p>
+              <p style={{ color: "#767676", fontSize: 14 }}>Chargement…</p>
             ) : isSignedIn ? (
               <>
                 {error && <p style={{ color: "#c0392b", fontSize: 13, marginBottom: 12 }}>{error}</p>}

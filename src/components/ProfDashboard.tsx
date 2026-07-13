@@ -439,7 +439,7 @@ export default function ProfDashboard({ classes: initialClasses, totalEleves: in
                 style={{ borderRadius: 12, border: "1px solid #e8e2da", marginBottom: 16 }}
               />
             ) : (
-              <div style={{ height: 200, display: "flex", alignItems: "center", justifyContent: "center", color: "#bbb", fontSize: 13 }}>
+              <div style={{ height: 200, display: "flex", alignItems: "center", justifyContent: "center", color: "#767676", fontSize: 13 }}>
                 Génération du QR code…
               </div>
             )}

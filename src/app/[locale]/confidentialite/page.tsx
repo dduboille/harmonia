@@ -359,7 +359,7 @@ export default async function ConfidentialitePage({ params }: Props) {
           <div style={{ fontSize: 15, fontWeight: 700, color: "#1a1a1a", letterSpacing: "-0.02em" }}>
             Harmonia<span style={{ color: "#BA7517" }}>.</span>
           </div>
-          <div style={{ fontSize: 12, color: "#aaa", fontFamily: "system-ui, sans-serif" }}>
+          <div style={{ fontSize: 12, color: "#767676", fontFamily: "system-ui, sans-serif" }}>
             © 2026 Harmonia · Tous droits réservés
           </div>
         </div>

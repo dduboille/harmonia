@@ -448,7 +448,7 @@ export default function NotesEtrangeresExercice() {
                     >▶</button>
                   </div>
                   <div style={{ fontSize: 11, color: "#666", lineHeight: 1.5, marginBottom: 3 }}>{rt.def}</div>
-                  <div style={{ fontSize: 10, color: "#aaa", fontStyle: "italic" }}>{rt.exemple}</div>
+                  <div style={{ fontSize: 10, color: "#6b6b6b", fontStyle: "italic" }}>{rt.exemple}</div>
                 </div>
               ))}
             </div>
@@ -582,14 +582,14 @@ export default function NotesEtrangeresExercice() {
                   const { note } = parsePitch(n.pitch);
                   const fr = EN_TO_FR[note] ?? note;
                   return (
-                    <div key={i} style={{ width: NOTE_SP, textAlign: "center", fontSize: 10, color: "#aaa", fontFamily: "system-ui,sans-serif" }}>
+                    <div key={i} style={{ width: NOTE_SP, textAlign: "center", fontSize: 10, color: "#6b6b6b", fontFamily: "system-ui,sans-serif" }}>
                       {fr}
                     </div>
                   );
                 })}
               </div>
 
-              <div style={{ fontSize: 11, color: "#aaa", marginTop: 10, fontStyle: "italic" }}>
+              <div style={{ fontSize: 11, color: "#6b6b6b", marginTop: 10, fontStyle: "italic" }}>
                 Clic 1 → bleu (réelle) · Clic 2 → orange (étrangère) · Clic 3 → gris (réinitialiser)
               </div>
             </div>

@@ -61,7 +61,7 @@ export default function MaitreCard({
             Pause Culture · {concept}
           </div>
           <div style={{ fontSize: 15, fontWeight: 500, color: "#1a1a1a" }}>
-            {composer} <span style={{ fontSize: 12, color: "#aaa", fontWeight: 400 }}>({period})</span>
+            {composer} <span style={{ fontSize: 12, color: "#767676", fontWeight: 400 }}>({period})</span>
           </div>
         </div>
       </div>

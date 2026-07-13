@@ -87,7 +87,7 @@ export default function ExerciseCard({ exercise: ex, locale, showCours = false }
             {showCours && (
               <span style={{
                 fontSize: 10,
-                color: "#aaa",
+                color: "#767676",
                 background: "#f5f5f5",
                 padding: "2px 8px",
                 borderRadius: 8,
@@ -160,7 +160,7 @@ export default function ExerciseCard({ exercise: ex, locale, showCours = false }
             </span>
           ))}
           {(ex.concepts ?? []).length > 3 && (
-            <span style={{ fontSize: 10, color: "#bbb" }}>+{(ex.concepts ?? []).length - 3}</span>
+            <span style={{ fontSize: 10, color: "#767676" }}>+{(ex.concepts ?? []).length - 3}</span>
           )}
         </div>
 

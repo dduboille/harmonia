@@ -514,7 +514,7 @@ export default function DicteeHarmonique() {
                     {a.expected}
                   </span>
                   {!a.correct && (
-                    <span style={{ color: "#aaa", fontSize: "0.8rem" }}>
+                    <span style={{ color: "#767676", fontSize: "0.8rem" }}>
                       (tu as dit : {a.chosen})
                     </span>
                   )}

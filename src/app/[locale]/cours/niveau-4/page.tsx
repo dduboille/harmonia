@@ -1,5 +1,9 @@
+import { auth } from "@clerk/nextjs/server";
 import CoursLevel from "@/components/CoursHub";
+import { getUserPlan } from "@/lib/progression";
 
-export default function Niveau4Page() {
-  return <CoursLevel level={4} />;
+export default async function Niveau4Page() {
+  const { userId } = await auth();
+  const plan = userId ? await getUserPlan(userId) : "free";
+  return <CoursLevel level={4} plan={plan} />;
 }

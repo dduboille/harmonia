@@ -1,5 +1,6 @@
 ﻿import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
+import { rateLimit, clientIp, tooManyRequests } from "@/lib/rate-limit";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -12,6 +13,11 @@ function escapeHtml(s: string): string {
 }
 
 export async function POST(req: NextRequest) {
+  // Route publique : sans plafond, un script peut inonder la boîte de réception
+  // et épuiser le quota Resend.
+  const limit = rateLimit(`contact-cursus:${clientIp(req)}`, 3, 60 * 60 * 1000);
+  if (!limit.ok) return tooManyRequests(limit.retryAfter);
+
   try {
     const { prenom, nom, email, etablissement, ville, pays, fonction, nbEleves, message } =
       await req.json();

@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { CONSENT_KEY, CONSENT_EVENT } from "@/components/ConsentGatedAnalytics";
 
-const STORAGE_KEY = "harmonia_cookie_consent";
+const STORAGE_KEY = CONSENT_KEY;
 
 interface Props {
   locale: string;
@@ -54,14 +55,20 @@ export default function CookieBanner({ locale }: Props) {
     }
   }, [show]);
 
-  function accept() {
-    localStorage.setItem(STORAGE_KEY, "all");
+  function setConsent(value: "all" | "essential") {
+    localStorage.setItem(STORAGE_KEY, value);
+    // Prévient ConsentGatedAnalytics, qui monte (ou non) les scripts de mesure
+    // sans attendre un rechargement de page.
+    window.dispatchEvent(new Event(CONSENT_EVENT));
     dismiss();
   }
 
+  function accept() {
+    setConsent("all");
+  }
+
   function refuse() {
-    localStorage.setItem(STORAGE_KEY, "essential");
-    dismiss();
+    setConsent("essential");
   }
 
   function dismiss() {
@@ -139,7 +146,7 @@ export default function CookieBanner({ locale }: Props) {
             margin: "0 0 16px",
           }}>
             Nous utilisons des cookies pour faire fonctionner le service et, avec votre accord,
-            mesurer l'audience et sécuriser les paiements.{" "}
+            mesurer l&apos;audience et sécuriser les paiements.{" "}
             <Link
               href={`/${locale}/confidentialite`}
               style={{ color: "#185FA5", textDecoration: "none", fontWeight: 600 }}

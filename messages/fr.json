@@ -131,7 +131,8 @@
     "c40": "L'invention à 2 voix",
     "d40": "Sujet, imitation à l'octave, contre-sujet, épisodes et plan tonal — l'écriture de l'invention dans le style de Bach.",
     "c41": "L'écriture de style",
-    "d41": "Pasticher le classique, le romantique et le début du XXe — la discipline d'écriture stylistique du DEM."
+    "d41": "Pasticher le classique, le romantique et le début du XXe — la discipline d'écriture stylistique du DEM.",
+    "locked": "Abonnement requis"
   },
   "cours": {
     "level1": "Niveau 1",
@@ -2900,7 +2901,7 @@
   "landing": {
     "topbar": "Cours 37 disponible — Schenker et analyse motivique",
     "topbarCta": "Découvrir →",
-    "badge": "5 niveaux · 37 cours · 700+ exercices",
+    "badge": "5 niveaux · {count} cours · 700+ exercices",
     "h1": "Maîtrisez l'harmonie tonale.",
     "h1em": "Vraiment.",
     "sub": "L'harmonie tonale. Rigoureusement.",
@@ -2922,7 +2923,197 @@
     "ctaH2": "Commencez à comprendre",
     "ctaEm": "la musique",
     "ctaSub": "3 cours gratuits. Aucune carte de crédit. Commencez maintenant.",
-    "ctaBtn": "Commencer gratuitement →"
+    "ctaBtn": "Commencer gratuitement →",
+    "navCursus": "Cursus",
+    "navDashboard": "Mon espace →",
+    "navSignIn": "Se connecter →",
+    "features": [
+      {
+        "title": "{count} cours structurés",
+        "desc": "Des origines acoustiques de la gamme aux techniques des grands compositeurs — cinq niveaux progressifs couvrant l'harmonie classique, le jazz, l'impressionnisme et la composition."
+      },
+      {
+        "title": "Exercices SATB interactifs",
+        "desc": "Placez les notes sur les portées voix par voix. La validation harmonique détecte en temps réel les quintes parallèles, croisements et erreurs de tessiture."
+      },
+      {
+        "title": "Feedback immédiat",
+        "desc": "Chaque note placée est analysée selon les règles du contrepoint tonal. Vous apprenez de vos erreurs au moment où elles se produisent."
+      },
+      {
+        "title": "Audio haute qualité",
+        "desc": "Piano samplé en haute fidélité. Écoutez chaque accord, chaque progression, chaque voicing — des cadences de Bach aux substitutions tritoniques jazz."
+      },
+      {
+        "title": "24 tonalités",
+        "desc": "Page de référence complète : gammes, armures, accords diatoniques, tritons fonctionnels et astuces mnémotechniques pour les 12 majeures et 12 mineures."
+      },
+      {
+        "title": "6 langues",
+        "desc": "Français, English, Español, Deutsch, Português, Italiano. Harmonia est conçu pour les musiciens du monde entier."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Étudiez le cours",
+        "desc": "Chaque cours explique les concepts avec des exemples audio, des tableaux récapitulatifs et des anecdotes sur les grands compositeurs."
+      },
+      {
+        "title": "Entraînez-vous au quiz",
+        "desc": "Des questions aléatoires piochées dans un pool de 90+ questions par cours — identification, construction, analyse de Bach à Radiohead."
+      },
+      {
+        "title": "Réalisez les exercices",
+        "desc": "Placez les notes sur les portées SATB, choisissez les bons renversements, analysez les styles des maîtres. Le moteur valide instantanément vos choix."
+      },
+      {
+        "title": "Progressez",
+        "desc": "{count} cours, 24 tonalités, 5 niveaux. De la gamme de base aux techniques de composition des grands maîtres."
+      }
+    ],
+    "cursusLabel": "Cursus conservatoire",
+    "cursusH2": "5 niveaux progressifs",
+    "cursusSub": "Des fondements tonals à l'harmonie contemporaine — inspiré des grands traités (Dubois, Piston, Schönberg, Aldwell)",
+    "cursusCta": "Voir le cursus complet — programme, tarifs et accès établissement →",
+    "levelLabel": "NIVEAU",
+    "levels": [
+      {
+        "title": "Fondements tonals",
+        "target": "Entrée DEM",
+        "refs": "Dubois · Piston",
+        "modules": [
+          "Gammes & degrés",
+          "Construction des accords",
+          "Fonctions harmoniques",
+          "Cadences & ponctuation"
+        ]
+      },
+      {
+        "title": "Écriture avancée",
+        "target": "DEM · Licence",
+        "refs": "Koechlin · Aldwell",
+        "modules": [
+          "Modulations avancées",
+          "Dominantes secondaires",
+          "Accords altérés",
+          "Chromatisme"
+        ]
+      },
+      {
+        "title": "Analyse structurelle",
+        "target": "Licence · Master",
+        "refs": "Schönberg · Riemann",
+        "modules": [
+          "Analyse fonctionnelle",
+          "Formes musicales",
+          "Réduction schenkérienne",
+          "Bach → Wagner"
+        ]
+      },
+      {
+        "title": "Harmonie élargie",
+        "target": "Master",
+        "refs": "Messiaen · Levine",
+        "modules": [
+          "Modalité",
+          "Impressionnisme",
+          "Polytonalité",
+          "Extensions jazz"
+        ]
+      },
+      {
+        "title": "Spécialisations",
+        "target": "Tous niveaux avancés",
+        "refs": "5 parcours au choix",
+        "modules": [
+          "Fugue & style Bach",
+          "Musique à l'image",
+          "Jazz avancé",
+          "Analyse Schenker"
+        ]
+      }
+    ],
+    "plans": [
+      {
+        "name": "Gratuit",
+        "desc": "Pour découvrir l'harmonie tonale",
+        "cta": "Commencer gratuitement",
+        "badge": "",
+        "features": [
+          "Cours 1 à {free} complets",
+          "Quiz illimité (cours 1–{free})",
+          "Exercices SATB niveau 1",
+          "Dictée harmonique",
+          "Page des 24 tonalités",
+          "Audio haute qualité"
+        ],
+        "notIncluded": [
+          "Cours {freePlus} à {count}",
+          "Exercices niveaux 2–5",
+          "Fonctionnalités IA"
+        ]
+      },
+      {
+        "name": "Étudiant",
+        "desc": "Tous les cours et exercices",
+        "cta": "Choisir Étudiant",
+        "badge": "Le plus populaire",
+        "features": [
+          "Tous les cours (1 à {count})",
+          "Quiz illimité sur tous les cours",
+          "700+ exercices SATB",
+          "24 tonalités × 4 positions",
+          "Tous les niveaux de difficulté",
+          "Mises à jour continues"
+        ],
+        "notIncluded": [
+          "Fonctionnalités IA"
+        ]
+      },
+      {
+        "name": "Pro",
+        "desc": "Étudiant + fonctionnalités IA",
+        "cta": "Choisir Pro",
+        "badge": "Meilleure valeur",
+        "features": [
+          "Tout le plan Étudiant",
+          "Assistant IA conversationnel",
+          "Analyse de partition MusicXML",
+          "Bibliothèque de 110 progressions",
+          "Comparateur de 11 styles harmoniques",
+          "Support prioritaire"
+        ],
+        "notIncluded": []
+      }
+    ],
+    "faqLabel": "Questions fréquentes",
+    "faqH2": "Tout ce que vous voulez savoir",
+    "faq": [
+      {
+        "q": "Faut-il avoir des bases en théorie musicale ?",
+        "a": "Non. Le cours 1 commence depuis les origines acoustiques de la gamme — aucun prérequis n'est nécessaire. Harmonia convient aussi bien aux débutants qu'aux musiciens qui veulent formaliser leurs connaissances."
+      },
+      {
+        "q": "En combien de temps maîtrise-t-on le programme ?",
+        "a": "Le niveau 1 (9 cours) représente environ 30 à 50 heures de travail selon votre rythme et votre niveau de départ. Avec une pratique régulière d'une heure par jour, comptez 6 à 8 semaines."
+      },
+      {
+        "q": "Les exercices sont-ils adaptés à tous les instruments ?",
+        "a": "Oui. L'harmonie tonale est un langage universel. Les exercices travaillent la compréhension harmonique abstraite — applicable à n'importe quel instrument ou à la composition."
+      },
+      {
+        "q": "Puis-je annuler mon abonnement à tout moment ?",
+        "a": "Oui, sans engagement. L'annulation prend effet à la fin de la période en cours. Pour le plan annuel, vous conservez l'accès jusqu'à la fin de l'année payée."
+      },
+      {
+        "q": "Le contenu est-il régulièrement mis à jour ?",
+        "a": "Oui. Harmonia est en développement actif — de nouveaux exercices, cours et fonctionnalités sont ajoutés régulièrement. Les abonnés Pro bénéficient de toutes les mises à jour."
+      }
+    ],
+    "ctaNote": "Cours 1 à {free} · Quiz illimité · Exercices SATB",
+    "footerPrivacy": "Confidentialité",
+    "footerTerms": "CGU",
+    "footerContact": "Contact"
   },
   "dashboard": {
     "title": "Tableau de bord",
@@ -3832,5 +4023,47 @@
       "titre": "Chaconne BWV 1004",
       "compositeur": "J.S. Bach"
     }
+  },
+  "satb": {
+    "voices": {
+      "bass": "Basse",
+      "tenor": "Ténor",
+      "alto": "Alto",
+      "soprano": "Soprano"
+    },
+    "accidentals": {
+      "bb": "Double bémol",
+      "b": "Bémol",
+      "n": "Naturel",
+      "sharp": "Dièse",
+      "x": "Double dièse"
+    },
+    "analysisTitle": "ANALYSE HARMONIQUE",
+    "noError": "Aucune erreur pour les notes placées.",
+    "complete": "Progression complète — aucune erreur harmonique détectée.",
+    "range": "Tessiture {voice} :",
+    "octave": "Octave",
+    "clear": "Effacer la note",
+    "play": "Écouter",
+    "showSolution": "Voir la solution proposée",
+    "hideSolution": "Masquer la solution proposée",
+    "reset": "Recommencer",
+    "measure": "Mesure",
+    "errors": {
+      "range": "{voice} hors tessiture (m.{from})",
+      "spacing": "{v1}–{v2} : plus d'une octave (m.{from})",
+      "crossing": "Croisement {v1} > {v2} (m.{from})",
+      "parallel_fifth": "Quintes parallèles {v1}–{v2} (m.{from}→{to})",
+      "parallel_octave": "Octaves parallèles {v1}–{v2} (m.{from}→{to})",
+      "cross_relation": "Fausse relation {v1}↔{v2} ({note}, m.{from}→{to})",
+      "missing_accidental": "{voice} : {note} naturel — en mode sans armure, utilisez {expected} (m.{from})",
+      "leading_tone": "Sensible mal résolue (m.{from})",
+      "seventh": "Septième mal résolue (m.{from})"
+    },
+    "exerciseDone": "Exercice terminé avec succès !",
+    "exercisePerfect": "Aucune erreur harmonique — excellent travail.",
+    "defaultTitle": "Exercice de conduite de voix",
+    "loadingScore": "Chargement de la partition…",
+    "accidentalLabel": "Altération :"
   }
 }

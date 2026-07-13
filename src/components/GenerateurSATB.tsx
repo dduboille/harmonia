@@ -236,7 +236,7 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
                     }}>
                       {"●".repeat(lv)} Niv. {lv}
                     </span>
-                    <span style={{ fontSize: 9, color: "#aaa", padding: "2px 0" }}>
+                    <span style={{ fontSize: 9, color: "#767676", padding: "2px 0" }}>
                       {CAT_LABELS[t.categorie]}
                     </span>
                   </div>
@@ -326,7 +326,7 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
         </button>
       </div>
       {!template && (
-        <p style={{ textAlign: "center", fontSize: 12, color: "#aaa", marginTop: 8 }}>
+        <p style={{ textAlign: "center", fontSize: 12, color: "#767676", marginTop: 8 }}>
           Sélectionnez d'abord une progression harmonique
         </p>
       )}
@@ -550,7 +550,7 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
                   background: v === "soprano" ? "#F0F6FF" : v === "alto" ? "#F0F6FF" : v === "tenor" ? "#F0F9F4" : "#F9F3E6",
                   color: "#333",
                 }}>
-                  <span style={{ fontSize: 9, color: "#aaa", marginRight: 3 }}>
+                  <span style={{ fontSize: 9, color: "#767676", marginRight: 3 }}>
                     {v === "soprano" ? "S" : v === "alto" ? "A" : v === "tenor" ? "T" : "B"}
                   </span>
                   {m[v].name}{m[v].octave}

@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { COURS_COUNT, FREE_COURS } from "@/lib/catalogue";
 
 const FEATURES = [
   { icon: "𝄞", title: "23 cours structurés", desc: "Des origines acoustiques de la gamme aux techniques des grands compositeurs — deux niveaux progressifs couvrant l'harmonie classique, le jazz et la composition." },
@@ -28,33 +29,37 @@ const STEPS = [
   { num: "04", title: "Progresse", desc: "23 cours, 24 tonalités, niveaux 1 et 2. De la gamme de base aux techniques de composition des grands maîtres." },
 ];
 
+// Comme sur la landing, chaque plan porte ses propres couleurs de texte : elles
+// étaient dérivées d'un ternaire `plan.name === "Pro"` qui appliquait le thème
+// sombre à la carte crème et inversement, rendant les arguments des deux plans
+// payants illisibles (1,4:1 et 2,3:1 de contraste).
 const PLANS = [
   {
     name: "Gratuit", href: "cours", price: "0€", period: "", desc: "Pour découvrir l'harmonie tonale",
-    color: "#555", bg: "#fff", border: "#e0dbd3", cta: "Commencer gratuitement", ctaStyle: "outline",
-    features: ["Cours 1 à 3 complets", "Quiz illimité (cours 1–3)", "Exercices SATB niveau 1", "Page des 24 tonalités", "Audio Salamander"],
-    notIncluded: ["Cours 4 à 23", "Exercices niveaux 2–3", "Fonctionnalités IA"],
+    color: "#1a1a1a", bg: "#fff", border: "#e0dbd3", cta: "Commencer gratuitement", ctaStyle: "outline",
+    labelColor: "#6b6b6b", periodColor: "#6b6b6b", descColor: "#6b6b6b",
+    checkColor: "#0F6E56", featureColor: "#444", mutedColor: "#767676",
+    features: [`Cours 1 à ${FREE_COURS.length} complets`, `Quiz illimité (cours 1–${FREE_COURS.length})`, "Exercices SATB niveau 1", "Page des 24 tonalités", "Audio haute qualité"],
+    notIncluded: [`Cours ${FREE_COURS.length + 1} à ${COURS_COUNT}`, "Exercices niveaux 2–5", "Fonctionnalités IA"],
   },
   {
     name: "Étudiant", href: "upgrade", price: "9€", period: "/mois", desc: "Tous les cours et exercices",
     color: "#fff", bg: "#1a1a1a", border: "#1a1a1a", cta: "Choisir Étudiant", ctaStyle: "solid", badge: "Le plus populaire",
-    features: ["Tous les cours (1 à 23)", "Quiz illimité sur tous les cours", "700+ exercices SATB", "24 tonalités × 4 positions", "Tous les niveaux de difficulté", "Mises à jour continues"],
-    notIncluded: ["Fonctionnalités IA (bientôt)"],
+    labelColor: "#bdbdbd", periodColor: "#bdbdbd", descColor: "#bdbdbd",
+    checkColor: "#9AE6B4", featureColor: "#e8e8e8", mutedColor: "#9a9a9a",
+    features: [`Tous les cours (1 à ${COURS_COUNT})`, "Quiz illimité sur tous les cours", "700+ exercices SATB", "24 tonalités × 4 positions", "Tous les niveaux de difficulté", "Mises à jour continues"],
+    notIncluded: ["Fonctionnalités IA"],
   },
   {
     name: "Pro", href: "upgrade", price: "19€", period: "/mois", desc: "Étudiant + fonctionnalités IA",
-    color: "#BA7517", bg: "#FAEEDA", border: "#F6AD55", cta: "Choisir Pro", ctaStyle: "amber", badge: "Meilleure valeur",
-    features: ["Tout le plan Étudiant", "Analyse MusicXML automatique (bientôt)", "Assistant IA conversationnel (bientôt)", "Dictée harmonique (bientôt)", "Bibliothèque 500+ progressions (bientôt)", "Support prioritaire"],
+    color: "#1a1a1a", bg: "#FAEEDA", border: "#F6AD55", cta: "Choisir Pro", ctaStyle: "amber", badge: "Meilleure valeur",
+    labelColor: "#8a5a10", periodColor: "#8a5a10", descColor: "#6b4a00",
+    checkColor: "#0F6E56", featureColor: "#4a3800", mutedColor: "#7a6a52",
+    features: ["Tout le plan Étudiant", "Assistant IA conversationnel", "Analyse de partition MusicXML", "Bibliothèque de 110 progressions", "Comparateur de 11 styles harmoniques", "Support prioritaire"],
     notIncluded: [],
-    aiNote: "Fonctionnalités IA bientôt disponibles",
   },
 ];
 
-const TESTIMONIALS = [
-  { text: "J'ai essayé plusieurs méthodes d'harmonie en ligne. Harmonia est la première où je comprends vraiment pourquoi les règles existent — pas juste comment les appliquer.", author: "Marc D.", role: "Guitariste jazz, 3 ans de pratique", stars: 5 },
-  { text: "Le feedback en temps réel sur les quintes parallèles m'a appris plus en deux semaines que 6 mois de cours magistraux. Le placement des notes sur la portée est intuitif.", author: "Sofia R.", role: "Étudiante en conservatoire", stars: 5 },
-  { text: "La page des 24 tonalités est une référence que je consulte constamment. Et avoir tout en 6 langues me permet de comparer avec mes élèves italiens.", author: "Thomas K.", role: "Professeur de piano, Berlin", stars: 5 },
-];
 
 const FAQ = [
   { q: "Faut-il avoir des bases en théorie musicale ?", a: "Non. Le cours 1 commence depuis les origines acoustiques de la gamme — aucun prérequis n'est nécessaire. Harmonia convient aussi bien aux débutants qu'aux musiciens qui veulent formaliser leurs connaissances." },
@@ -65,16 +70,6 @@ const FAQ = [
 ];
 
 const BANNER_H = 38;
-
-function StarRating({ n }: { n: number }) {
-  return (
-    <div style={{ display: "flex", gap: 2 }}>
-      {Array.from({ length: n }).map((_, i) => (
-        <span key={i} style={{ color: "#BA7517", fontSize: 14 }}>★</span>
-      ))}
-    </div>
-  );
-}
 
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
@@ -110,7 +105,7 @@ function LanguageSwitcher({ currentLocale, pathname }: { currentLocale: string; 
       <button onClick={() => setOpen(!open)} style={{ display: "flex", alignItems: "center", gap: 6, background: "none", border: "0.5px solid #e0dbd3", borderRadius: 20, padding: "5px 12px", cursor: "pointer", fontSize: 12, fontWeight: 600, color: "#555", fontFamily: "system-ui, sans-serif" }}>
         <span>{current.flag}</span>
         <span>{current.label}</span>
-        <span style={{ fontSize: 8, color: "#aaa" }}>▼</span>
+        <span style={{ fontSize: 8, color: "#767676" }}>▼</span>
       </button>
       {open && (
         <div style={{ position: "absolute" as const, top: "calc(100% + 8px)", right: 0, background: "#fff", border: "0.5px solid #e0dbd3", borderRadius: 10, boxShadow: "0 4px 20px rgba(0,0,0,0.08)", overflow: "hidden", zIndex: 200, minWidth: 120 }}>
@@ -233,7 +228,7 @@ export default function LandingPreview() {
             </Link>
           </div>
 
-          <p style={{ marginTop: 28, fontSize: 12, color: "#bbb", fontFamily: "system-ui, sans-serif" }}>
+          <p style={{ marginTop: 28, fontSize: 12, color: "#767676", fontFamily: "system-ui, sans-serif" }}>
             Gratuit pour commencer · Aucune carte requise · 6 langues
           </p>
         </div>
@@ -304,12 +299,12 @@ export default function LandingPreview() {
                   </div>
                 )}
                 <div style={{ marginBottom: 24 }}>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: plan.name === "Pro" ? "#aaa" : "#888", fontFamily: "system-ui", marginBottom: 8 }}>{plan.name}</div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: plan.labelColor, fontFamily: "system-ui", marginBottom: 8 }}>{plan.name}</div>
                   <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 6 }}>
                     <span style={{ fontSize: 40, fontWeight: 400, color: plan.color, letterSpacing: "-0.03em" }}>{plan.price}</span>
-                    <span style={{ fontSize: 14, color: plan.name === "Pro" ? "#666" : "#aaa", fontFamily: "system-ui" }}>{plan.period}</span>
+                    <span style={{ fontSize: 14, color: plan.periodColor, fontFamily: "system-ui" }}>{plan.period}</span>
                   </div>
-                  <p style={{ fontSize: 13, color: plan.name === "Pro" ? "#888" : "#999", margin: 0, fontFamily: "system-ui, sans-serif" }}>{plan.desc}</p>
+                  <p style={{ fontSize: 13, color: plan.descColor, margin: 0, fontFamily: "system-ui, sans-serif" }}>{plan.desc}</p>
                 </div>
                 <Link href={`/${locale}/${plan.href}`} style={{ display: "block", width: "100%", padding: "12px", borderRadius: 6, textAlign: "center" as const, textDecoration: "none", fontSize: 14, fontWeight: 500, fontFamily: "system-ui, sans-serif", background: plan.ctaStyle === "solid" ? "#fff" : plan.ctaStyle === "amber" ? "#BA7517" : "transparent", color: plan.ctaStyle === "solid" ? "#1a1a1a" : plan.ctaStyle === "amber" ? "#fff" : "#1a1a1a", border: plan.ctaStyle === "outline" ? "1px solid #c8c4bc" : plan.ctaStyle === "solid" ? "1px solid #fff" : "none", marginBottom: 24, boxSizing: "border-box" as const }}>
                   {plan.cta}
@@ -317,37 +312,16 @@ export default function LandingPreview() {
                 <div style={{ display: "flex", flexDirection: "column" as const, gap: 8 }}>
                   {plan.features.map(f => (
                     <div key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "system-ui, sans-serif" }}>
-                      <span style={{ color: plan.name === "Pro" ? "#9AE6B4" : "#0F6E56", flexShrink: 0 }}>✓</span>
-                      <span style={{ color: plan.name === "Pro" ? "#ccc" : "#555" }}>{f}</span>
+                      <span style={{ color: plan.checkColor, flexShrink: 0 }}>✓</span>
+                      <span style={{ color: plan.featureColor }}>{f}</span>
                     </div>
                   ))}
                   {plan.notIncluded.map(f => (
-                    <div key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "system-ui, sans-serif", opacity: 0.4 }}>
-                      <span style={{ color: "#aaa", flexShrink: 0 }}>✗</span>
-                      <span style={{ color: "#aaa" }}>{f}</span>
+                    <div key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "system-ui, sans-serif",  }}>
+                      <span style={{ color: plan.mutedColor, flexShrink: 0 }}>✗</span>
+                      <span style={{ color: plan.mutedColor }}>{f}</span>
                     </div>
                   ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Témoignages */}
-      <section style={{ padding: "80px 2rem", background: "#1a1a1a", borderTop: "0.5px solid #333" }}>
-        <div style={{ maxWidth: 960, margin: "0 auto" }}>
-          <div style={{ textAlign: "center" as const, marginBottom: 56 }}>
-            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", color: "#BA7517", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>Témoignages</div>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, color: "#fff", letterSpacing: "-0.01em" }}>Ce qu&apos;en disent les musiciens</h2>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
-            {TESTIMONIALS.map((t, i) => (
-              <div key={i} style={{ padding: "28px", background: "#252525", border: "0.5px solid #333", borderRadius: 10 }}>
-                <StarRating n={t.stars} />
-                <p style={{ fontSize: 14, color: "#ccc", lineHeight: 1.75, margin: "16px 0 20px", fontFamily: "system-ui, sans-serif", fontStyle: "italic" }}>&ldquo;{t.text}&rdquo;</p>
-                <div style={{ fontSize: 13, color: "#888", fontFamily: "system-ui, sans-serif" }}>
-                  <span style={{ color: "#ddd", fontWeight: 500 }}>{t.author}</span>{" · "}{t.role}
                 </div>
               </div>
             ))}

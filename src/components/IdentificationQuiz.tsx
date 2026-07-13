@@ -144,7 +144,7 @@ function IdentifyQuestion({
       {/* Indice */}
       {!answered && exercise.hint && (
         <div style={{
-          marginTop: 10, fontSize: 12, color: "#aaa",
+          marginTop: 10, fontSize: 12, color: "#767676",
           fontStyle: "italic",
         }}>
           💡 {exercise.hint}
@@ -196,7 +196,7 @@ function BuildQuestion({
       </div>
 
       {exercise.hint && !answered && (
-        <div style={{ fontSize: 12, color: "#aaa", fontStyle: "italic", marginBottom: 12 }}>
+        <div style={{ fontSize: 12, color: "#767676", fontStyle: "italic", marginBottom: 12 }}>
           💡 {exercise.hint}
         </div>
       )}
@@ -374,7 +374,7 @@ export default function IdentificationQuiz({
       }}>
         <div style={{ fontSize: 12, color: "#888" }}>
           Question {current + 1} / {session.length}
-          <span style={{ marginLeft: 12, fontSize: 11, color: "#bbb" }}>
+          <span style={{ marginLeft: 12, fontSize: 11, color: "#767676" }}>
             {exercises.length} dans le pool
           </span>
         </div>

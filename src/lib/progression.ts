@@ -166,9 +166,10 @@ export async function getUserPlan(
 
 // ── Cours accessibles selon le plan ──────────────────────────
 
-const TOTAL_COURS = 23;
-export const FREE_COURS = [1, 2, 3];
-export const PRO_COURS  = Array.from({ length: TOTAL_COURS }, (_, i) => i + 1);
+import { COURS, FREE_COURS as CATALOGUE_FREE_COURS } from "@/lib/catalogue";
+
+export const FREE_COURS = CATALOGUE_FREE_COURS;
+export const PRO_COURS  = COURS.map(c => c.num);
 
 export function getAccessibleCours(plan: "free" | "pro" | "annual"): number[] {
   return plan === "free" ? FREE_COURS : PRO_COURS;

@@ -10,6 +10,8 @@ import { auth } from "@clerk/nextjs/server";
 import ExerciceContent from "@/components/ExerciceContent";
 import { ALL_EXERCISES } from "@/exercises/all-exercises";
 import { getUserPlan } from "@/lib/progression";
+import { getCours, isFreeCours } from "@/lib/catalogue";
+import { CoursPaywall } from "@/components/Paywall";
 import { DIFFICULTY_LABEL, DIFFICULTY_COLOR, DIFFICULTY_BG } from "@/types/exercise";
 import type { IdentifyExercise, BuildExercise } from "@/types/exercise";
 
@@ -23,11 +25,19 @@ export default async function ExercicePage({ params, searchParams }: Props) {
   const { devoirId } = await searchParams;
   const { userId } = await auth();
   const plan = userId ? await getUserPlan(userId) : "free";
+  const coursId = parseInt(id);
   const exercise = ALL_EXERCISES.find(
-    e => e.id === exerciceId && e.cours === parseInt(id)
+    e => e.id === exerciceId && e.cours === coursId
   );
 
   if (!exercise) return notFound();
+
+  // Le plan n'était consulté que pour autoriser l'affichage de la solution :
+  // l'exercice lui-même, y compris pour les cours payants, était servi à tous.
+  const cours = getCours(coursId);
+  if (cours && plan === "free" && !isFreeCours(coursId)) {
+    return <CoursPaywall locale={locale} cours={cours} signedIn={Boolean(userId)} subject="exercices" />;
+  }
 
   const allForCours = ALL_EXERCISES.filter(e => e.cours === exercise.cours);
   const currentIdx  = allForCours.findIndex(e => e.id === exerciceId);
@@ -43,12 +53,12 @@ export default async function ExercicePage({ params, searchParams }: Props) {
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
 
         {/* Breadcrumb */}
-        <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: "1.5rem", fontSize: 12, color: "#aaa", flexWrap: "wrap" as const }}>
-          <Link href={`/${locale}/cours`} style={{ color: "#aaa", textDecoration: "none" }}>Cours</Link>
+        <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: "1.5rem", fontSize: 12, color: "#767676", flexWrap: "wrap" as const }}>
+          <Link href={`/${locale}/cours`} style={{ color: "#767676", textDecoration: "none" }}>Cours</Link>
           <span>·</span>
-          <Link href={`/${locale}/cours/${id}`} style={{ color: "#aaa", textDecoration: "none" }}>Cours {id}</Link>
+          <Link href={`/${locale}/cours/${id}`} style={{ color: "#767676", textDecoration: "none" }}>Cours {id}</Link>
           <span>·</span>
-          <Link href={`/${locale}/cours/${id}/exercices`} style={{ color: "#aaa", textDecoration: "none" }}>Exercices</Link>
+          <Link href={`/${locale}/cours/${id}/exercices`} style={{ color: "#767676", textDecoration: "none" }}>Exercices</Link>
           <span>·</span>
           <span style={{ color: "#666" }}>{exercise.title}</span>
         </div>
@@ -61,7 +71,7 @@ export default async function ExercicePage({ params, searchParams }: Props) {
           {(exercise.tags ?? []).slice(0, 3).map(t => (
             <span key={t} style={{ fontSize: 10, color: "#666", background: "#f0ece6", padding: "3px 10px", borderRadius: 10 }}>{t}</span>
           ))}
-          <span style={{ fontSize: 11, color: "#bbb", marginLeft: "auto" }}>{currentIdx + 1} / {allForCours.length}</span>
+          <span style={{ fontSize: 11, color: "#767676", marginLeft: "auto" }}>{currentIdx + 1} / {allForCours.length}</span>
         </div>
 
         {/* Indice SATB */}
@@ -100,7 +110,7 @@ export default async function ExercicePage({ params, searchParams }: Props) {
 
         {/* Concepts */}
         <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 12, padding: "16px 20px", marginBottom: "1.5rem" }}>
-          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#aaa", marginBottom: 10 }}>CONCEPTS</div>
+          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#767676", marginBottom: 10 }}>CONCEPTS</div>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const }}>
             {(exercise.concepts ?? []).map(c => (
               <span key={c} style={{ fontSize: 12, color: "#185FA5", background: "#E6F1FB", padding: "4px 12px", borderRadius: 8 }}>{c}</span>
@@ -115,7 +125,7 @@ export default async function ExercicePage({ params, searchParams }: Props) {
               ← {(prevEx.title ?? "").slice(0, 28)}
             </Link>
           ) : <div />}
-          <Link href={`/${locale}/cours/${id}/exercices`} style={{ fontSize: 12, color: "#aaa", textDecoration: "none" }}>Tous les exercices</Link>
+          <Link href={`/${locale}/cours/${id}/exercices`} style={{ fontSize: 12, color: "#767676", textDecoration: "none" }}>Tous les exercices</Link>
           {nextEx ? (
             <Link href={`/${locale}/cours/${id}/exercices/${nextEx.id}`} style={{ padding: "9px 18px", borderRadius: 10, border: "0.5px solid #185FA5", background: "#185FA5", color: "#fff", fontSize: 13, textDecoration: "none" }}>
               {(nextEx.title ?? "").slice(0, 28)} →

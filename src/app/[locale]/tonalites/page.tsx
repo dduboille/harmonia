@@ -137,7 +137,7 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
 
       {/* Gamme */}
       <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "16px 20px" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#aaa", marginBottom: 12 }}>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#767676", marginBottom: 12 }}>
           GAMME {t.mode === "major" ? "MAJEURE" : "MINEURE HARMONIQUE"}
         </div>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const }}>
@@ -162,7 +162,7 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
                 }}>
                   {note}
                 </div>
-                <div style={{ fontSize: 9, color: "#bbb", fontWeight: 500 }}>
+                <div style={{ fontSize: 9, color: "#767676", fontWeight: 500 }}>
                   {["I","II","III","IV","V","VI","VII"][i]}
                 </div>
               </div>
@@ -185,7 +185,7 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
 
       {/* Accords diatoniques */}
       <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "16px 20px" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#aaa", marginBottom: 12 }}>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#767676", marginBottom: 12 }}>
           ACCORDS DIATONIQUES
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 6 }}>
@@ -193,7 +193,7 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
             <div key={chord.degree} style={{
               display: "flex", flexDirection: "column" as const, alignItems: "center", gap: 4,
             }}>
-              <div style={{ fontSize: 10, color: "#aaa", fontWeight: 500 }}>{chord.degree}</div>
+              <div style={{ fontSize: 10, color: "#767676", fontWeight: 500 }}>{chord.degree}</div>
               <div style={{
                 width: "100%",
                 padding: "6px 4px",
@@ -233,7 +233,7 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
 
       {/* Tétrades */}
       <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "16px 20px" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#aaa", marginBottom: 12 }}>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#767676", marginBottom: 12 }}>
           TETRADES (ACCORDS DE SEPTIEME)
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 6 }}>
@@ -243,7 +243,7 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
               <div key={chord.degree} style={{
                 display: "flex", flexDirection: "column" as const, alignItems: "center", gap: 4,
               }}>
-                <div style={{ fontSize: 10, color: "#aaa", fontWeight: 500 }}>{chord.degree}</div>
+                <div style={{ fontSize: 10, color: "#767676", fontWeight: 500 }}>{chord.degree}</div>
                 <div style={{
                   width: "100%",
                   padding: "4px 2px",
@@ -282,7 +282,7 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
             <thead>
               <tr style={{ borderBottom: "0.5px solid #e8e3db" }}>
                 {["Degré","Accord","Structure","Fonction"].map(h => (
-                  <th key={h} style={{ textAlign: "left" as const, padding: "4px 8px", fontWeight: 500, color: "#aaa", fontSize: 10, letterSpacing: "0.04em" }}>{h}</th>
+                  <th key={h} style={{ textAlign: "left" as const, padding: "4px 8px", fontWeight: 500, color: "#767676", fontSize: 10, letterSpacing: "0.04em" }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -322,7 +322,7 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
         {/* Armure */}
         <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "14px 16px" }}>
-          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#aaa", marginBottom: 8 }}>
+          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#767676", marginBottom: 8 }}>
             ARMURE
           </div>
           {t.keySignatureNotes.length === 0 ? (
@@ -345,7 +345,7 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
 
         {/* Triton + tonalité relative */}
         <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "14px 16px" }}>
-          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#aaa", marginBottom: 8 }}>
+          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#767676", marginBottom: 8 }}>
             TRITON FONCTIONNEL
           </div>
           {(() => {
@@ -369,7 +369,7 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
       {/* Relative + parallèle */}
       {relative && (
         <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "14px 16px" }}>
-          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#aaa", marginBottom: 8 }}>
+          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#767676", marginBottom: 8 }}>
             TONALITES LIEES
           </div>
           <div style={{ display: "flex", gap: 10 }}>
@@ -378,7 +378,7 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
               background: relative.mode === "major" ? "#E6F1FB" : "#EEEDFE",
               fontSize: 13,
             }}>
-              <div style={{ fontSize: 10, color: "#aaa", marginBottom: 2 }}>RELATIVE</div>
+              <div style={{ fontSize: 10, color: "#767676", marginBottom: 2 }}>RELATIVE</div>
               <div style={{ fontWeight: 600, color: relative.mode === "major" ? "#185FA5" : "#534AB7" }}>
                 {relative.label}
               </div>
@@ -390,7 +390,7 @@ function TonaliteDetail({ t }: { t: Tonalite }) {
                 background: "#f4f1ec",
                 fontSize: 13,
               }}>
-                <div style={{ fontSize: 10, color: "#aaa", marginBottom: 2 }}>HOMONYME</div>
+                <div style={{ fontSize: 10, color: "#767676", marginBottom: 2 }}>HOMONYME</div>
                 <div style={{ fontWeight: 600, color: "#555" }}>
                   {ALL_KEYS.find(k => k.id === t.parallel)?.label ?? t.parallel}
                 </div>

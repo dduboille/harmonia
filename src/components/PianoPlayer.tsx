@@ -158,6 +158,14 @@ const SALAMANDER_URLS: Record<string, string> = {
   C8: "C8.mp3",
 };
 
+/**
+ * Les samples sont servis depuis notre propre domaine.
+ * Ils étaient chargés depuis tonejs.github.io : une dépendance tierce non
+ * maîtrisée sur le cœur du produit — si GitHub Pages tombe ou déplace ses
+ * fichiers, tout l'audio bascule silencieusement sur le synthé de secours.
+ */
+const SAMPLE_BASE_URL = "/audio/piano/";
+
 let _sampler: any = null;
 let _reverb: any = null;
 let _tone: any = null;
@@ -192,7 +200,7 @@ function getInstrument(): Promise<void> {
 
       _sampler = new Tone.Sampler({
         urls: SALAMANDER_URLS,
-        baseUrl: "https://tonejs.github.io/audio/salamander/",
+        baseUrl: SAMPLE_BASE_URL,
         release: 1.4, // laisse les notes s'éteindre naturellement dans la reverb
         onload: settle,
         onerror: settle,

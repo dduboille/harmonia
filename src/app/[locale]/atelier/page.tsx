@@ -146,7 +146,7 @@ export default function AtelierPage() {
 
           {/* Cours */}
           <div style={{ marginBottom: 12 }}>
-            <div style={{ fontSize: 10, color: "#aaa", letterSpacing: "0.06em", marginBottom: 6 }}>COURS</div>
+            <div style={{ fontSize: 10, color: "#767676", letterSpacing: "0.06em", marginBottom: 6 }}>COURS</div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const }}>
               <button onClick={() => setFilterCours(null)}
                 style={pillStyle(filterCours === null, "#185FA5")}>
@@ -163,7 +163,7 @@ export default function AtelierPage() {
 
           {/* Difficulté */}
           <div style={{ marginBottom: 12 }}>
-            <div style={{ fontSize: 10, color: "#aaa", letterSpacing: "0.06em", marginBottom: 6 }}>DIFFICULTÉ</div>
+            <div style={{ fontSize: 10, color: "#767676", letterSpacing: "0.06em", marginBottom: 6 }}>DIFFICULTÉ</div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const }}>
               <button onClick={() => setFilterDifficulty(null)}
                 style={pillStyle(filterDifficulty === null, "#555")}>
@@ -180,7 +180,7 @@ export default function AtelierPage() {
 
           {/* Type */}
           <div>
-            <div style={{ fontSize: 10, color: "#aaa", letterSpacing: "0.06em", marginBottom: 6 }}>TYPE</div>
+            <div style={{ fontSize: 10, color: "#767676", letterSpacing: "0.06em", marginBottom: 6 }}>TYPE</div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const }}>
               <button onClick={() => setFilterType(null)}
                 style={pillStyle(filterType === null, "#555")}>
@@ -197,7 +197,7 @@ export default function AtelierPage() {
         </div>
 
         {/* Résultats */}
-        <div style={{ marginBottom: 12, fontSize: 12, color: "#aaa" }}>
+        <div style={{ marginBottom: 12, fontSize: 12, color: "#767676" }}>
           {filtered.length} exercice{filtered.length > 1 ? "s" : ""}
           {search && ` pour "${search}"`}
         </div>
@@ -209,7 +209,7 @@ export default function AtelierPage() {
             borderRadius: 12,
             padding: "3rem",
             textAlign: "center" as const,
-            color: "#bbb",
+            color: "#767676",
             fontSize: 14,
           }}>
             Aucun exercice ne correspond à ces filtres.

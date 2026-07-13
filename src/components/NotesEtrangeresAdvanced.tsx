@@ -422,7 +422,7 @@ export default function NotesEtrangeresAdvanced() {
                 const { note } = parsePitch(n.pitch);
                 const fr = EN_TO_FR[note] ?? note;
                 return (
-                  <div key={ni} style={{ width: NOTE_SP, textAlign: "center", fontSize: 9, color: "#bbb", fontFamily: "system-ui,sans-serif" }}>
+                  <div key={ni} style={{ width: NOTE_SP, textAlign: "center", fontSize: 9, color: "#767676", fontFamily: "system-ui,sans-serif" }}>
                     {fr}
                   </div>
                 );
