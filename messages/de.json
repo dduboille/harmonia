@@ -2449,25 +2449,6 @@
         "notIncluded": []
       }
     ],
-    "testimonialsLabel": "Stimmen",
-    "testimonialsH2": "Was Musiker sagen",
-    "testimonials": [
-      {
-        "text": "Ich habe mehrere Harmonielehre-Methoden im Netz ausprobiert. Harmonia ist die erste, bei der ich wirklich verstehe, warum die Regeln existieren — nicht nur, wie man sie anwendet.",
-        "author": "Marc D.",
-        "role": "Jazzgitarrist, 3 Jahre Praxis"
-      },
-      {
-        "text": "Das Echtzeit-Feedback zu Parallelquinten hat mir in zwei Wochen mehr beigebracht als sechs Monate Vorlesung. Das Setzen der Noten ins System ist intuitiv.",
-        "author": "Sofia R.",
-        "role": "Studentin am Konservatorium"
-      },
-      {
-        "text": "Die Seite mit den 24 Tonarten ist ein Nachschlagewerk, das ich ständig benutze. Und dass alles in 6 Sprachen vorliegt, hilft mir beim Vergleich mit meinen italienischen Schülern.",
-        "author": "Thomas K.",
-        "role": "Klavierlehrer, Berlin"
-      }
-    ],
     "faqLabel": "Häufige Fragen",
     "faqH2": "Alles, was Sie wissen möchten",
     "faq": [

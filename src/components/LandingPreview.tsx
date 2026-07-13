@@ -50,11 +50,6 @@ const PLANS = [
   },
 ];
 
-const TESTIMONIALS = [
-  { text: "J'ai essayé plusieurs méthodes d'harmonie en ligne. Harmonia est la première où je comprends vraiment pourquoi les règles existent — pas juste comment les appliquer.", author: "Marc D.", role: "Guitariste jazz, 3 ans de pratique", stars: 5 },
-  { text: "Le feedback en temps réel sur les quintes parallèles m'a appris plus en deux semaines que 6 mois de cours magistraux. Le placement des notes sur la portée est intuitif.", author: "Sofia R.", role: "Étudiante en conservatoire", stars: 5 },
-  { text: "La page des 24 tonalités est une référence que je consulte constamment. Et avoir tout en 6 langues me permet de comparer avec mes élèves italiens.", author: "Thomas K.", role: "Professeur de piano, Berlin", stars: 5 },
-];
 
 const FAQ = [
   { q: "Faut-il avoir des bases en théorie musicale ?", a: "Non. Le cours 1 commence depuis les origines acoustiques de la gamme — aucun prérequis n'est nécessaire. Harmonia convient aussi bien aux débutants qu'aux musiciens qui veulent formaliser leurs connaissances." },
@@ -65,16 +60,6 @@ const FAQ = [
 ];
 
 const BANNER_H = 38;
-
-function StarRating({ n }: { n: number }) {
-  return (
-    <div style={{ display: "flex", gap: 2 }}>
-      {Array.from({ length: n }).map((_, i) => (
-        <span key={i} style={{ color: "#BA7517", fontSize: 14 }}>★</span>
-      ))}
-    </div>
-  );
-}
 
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
@@ -327,27 +312,6 @@ export default function LandingPreview() {
                       <span style={{ color: "#aaa" }}>{f}</span>
                     </div>
                   ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Témoignages */}
-      <section style={{ padding: "80px 2rem", background: "#1a1a1a", borderTop: "0.5px solid #333" }}>
-        <div style={{ maxWidth: 960, margin: "0 auto" }}>
-          <div style={{ textAlign: "center" as const, marginBottom: 56 }}>
-            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", color: "#BA7517", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>Témoignages</div>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, color: "#fff", letterSpacing: "-0.01em" }}>Ce qu&apos;en disent les musiciens</h2>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
-            {TESTIMONIALS.map((t, i) => (
-              <div key={i} style={{ padding: "28px", background: "#252525", border: "0.5px solid #333", borderRadius: 10 }}>
-                <StarRating n={t.stars} />
-                <p style={{ fontSize: 14, color: "#ccc", lineHeight: 1.75, margin: "16px 0 20px", fontFamily: "system-ui, sans-serif", fontStyle: "italic" }}>&ldquo;{t.text}&rdquo;</p>
-                <div style={{ fontSize: 13, color: "#888", fontFamily: "system-ui, sans-serif" }}>
-                  <span style={{ color: "#ddd", fontWeight: 500 }}>{t.author}</span>{" · "}{t.role}
                 </div>
               </div>
             ))}

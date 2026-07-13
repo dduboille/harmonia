@@ -65,18 +65,7 @@ interface Feature { title: string; desc: string }
 interface Step { title: string; desc: string }
 interface Level { title: string; target: string; refs: string; modules: string[] }
 interface Plan { name: string; desc: string; cta: string; badge: string; features: string[]; notIncluded: string[] }
-interface Testimonial { text: string; author: string; role: string }
 interface Faq { q: string; a: string }
-
-function StarRating({ n }: { n: number }) {
-  return (
-    <div style={{ display: "flex", gap: 2 }} aria-label={`${n} / 5`}>
-      {Array.from({ length: n }).map((_, i) => (
-        <span key={i} aria-hidden="true" style={{ color: "#E9C97E", fontSize: 14 }}>★</span>
-      ))}
-    </div>
-  );
-}
 
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
@@ -151,7 +140,6 @@ export default function LandingPage() {
   const steps = t.raw("steps") as Step[];
   const levels = t.raw("levels") as Level[];
   const plans = t.raw("plans") as Plan[];
-  const testimonials = t.raw("testimonials") as Testimonial[];
   const faq = t.raw("faq") as Faq[];
 
   const navLinks = [
@@ -460,29 +448,6 @@ export default function LandingPage() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Témoignages */}
-      <section style={{ padding: "80px 1.5rem", background: "#1a1a1a", borderTop: "0.5px solid #333" }}>
-        <div style={{ maxWidth: 960, margin: "0 auto" }}>
-          <div style={{ textAlign: "center" as const, marginBottom: 56 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", color: "#E9C97E", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>{t("testimonialsLabel")}</div>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: 0, color: "#fff", letterSpacing: "-0.01em" }}>{t("testimonialsH2")}</h2>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: 16 }}>
-            {testimonials.map(item => (
-              <figure key={item.author} style={{ margin: 0, padding: "28px", background: "#252525", border: "0.5px solid #3a3a3a", borderRadius: 10 }}>
-                <StarRating n={5} />
-                <blockquote style={{ margin: "16px 0 20px", padding: 0 }}>
-                  <p style={{ fontSize: 14, color: "#d6d6d6", lineHeight: 1.75, margin: 0, fontFamily: "system-ui, sans-serif", fontStyle: "italic" }}>« {item.text} »</p>
-                </blockquote>
-                <figcaption style={{ fontSize: 13, color: "#a5a5a5", fontFamily: "system-ui, sans-serif" }}>
-                  <span style={{ color: "#e8e8e8", fontWeight: 500 }}>{item.author}</span>{" · "}{item.role}
-                </figcaption>
-              </figure>
-            ))}
           </div>
         </div>
       </section>

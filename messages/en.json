@@ -3086,25 +3086,6 @@
         "notIncluded": []
       }
     ],
-    "testimonialsLabel": "Testimonials",
-    "testimonialsH2": "What musicians say",
-    "testimonials": [
-      {
-        "text": "I've tried several harmony methods online. Harmonia is the first where I actually understand why the rules exist — not just how to apply them.",
-        "author": "Marc D.",
-        "role": "Jazz guitarist, 3 years of practice"
-      },
-      {
-        "text": "The real-time feedback on parallel fifths taught me more in two weeks than six months of lectures. Placing notes on the staff feels intuitive.",
-        "author": "Sofia R.",
-        "role": "Conservatory student"
-      },
-      {
-        "text": "The 24-keys page is a reference I keep coming back to. And having everything in 6 languages lets me compare with my Italian students.",
-        "author": "Thomas K.",
-        "role": "Piano teacher, Berlin"
-      }
-    ],
     "faqLabel": "Frequently asked questions",
     "faqH2": "Everything you want to know",
     "faq": [

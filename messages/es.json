@@ -2449,25 +2449,6 @@
         "notIncluded": []
       }
     ],
-    "testimonialsLabel": "Testimonios",
-    "testimonialsH2": "Lo que dicen los músicos",
-    "testimonials": [
-      {
-        "text": "He probado varios métodos de armonía en línea. Harmonia es el primero en el que entiendo de verdad por qué existen las reglas — no solo cómo aplicarlas.",
-        "author": "Marc D.",
-        "role": "Guitarrista de jazz, 3 años de práctica"
-      },
-      {
-        "text": "El feedback en tiempo real sobre las quintas paralelas me enseñó más en dos semanas que seis meses de clases magistrales. Colocar las notas en el pentagrama es intuitivo.",
-        "author": "Sofia R.",
-        "role": "Estudiante de conservatorio"
-      },
-      {
-        "text": "La página de las 24 tonalidades es una referencia que consulto constantemente. Y tenerlo todo en 6 idiomas me permite compararlo con mis alumnos italianos.",
-        "author": "Thomas K.",
-        "role": "Profesor de piano, Berlín"
-      }
-    ],
     "faqLabel": "Preguntas frecuentes",
     "faqH2": "Todo lo que quiere saber",
     "faq": [
