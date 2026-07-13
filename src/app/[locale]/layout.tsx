@@ -7,10 +7,11 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/react";
 import { ConditionalAppNav } from "@/components/AppNav";
 import CookieBanner from "@/components/CookieBanner";
 import FeedbackWidget from "@/components/FeedbackWidget";
+import ConsentGatedAnalytics from "@/components/ConsentGatedAnalytics";
+import { COURS_COUNT } from "@/lib/catalogue";
 
 const LOCALES = ["fr", "en", "es", "de", "pt", "it"] as const;
 
@@ -112,17 +113,75 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+/**
+ * Les traductions sont découpées par cours (cours1…cours41) et pèsent 274 Ko
+ * à elles seules. Elles étaient toutes sérialisées dans le HTML de chaque page :
+ * la landing embarquait le texte des 41 cours. On ne fournit ici que les
+ * namespaces partagés (~30 Ko) ; la page d'un cours injecte le sien.
+ */
+function sharedMessages(all: Record<string, unknown>): Record<string, unknown> {
+  return Object.fromEntries(
+    Object.entries(all).filter(([key]) => !/^cours\d+$/.test(key))
+  );
+}
+
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
-  if (!LOCALES.includes(locale as any)) notFound();
+  if (!LOCALES.includes(locale as (typeof LOCALES)[number])) notFound();
   setRequestLocale(locale);
-  const messages = await getMessages();
+  const messages = sharedMessages(await getMessages());
+  const meta = META[locale] ?? META.fr;
+
+  // Données structurées : le site n'en exposait aucune, alors que Course et
+  // Organization sont directement exploitables en rich snippets.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.getharmonia.app/#organization",
+        name: "Harmonia",
+        url: "https://www.getharmonia.app",
+        logo: "https://www.getharmonia.app/og-image.png",
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.getharmonia.app/#website",
+        url: `https://www.getharmonia.app/${locale}`,
+        name: "Harmonia",
+        description: meta.description,
+        inLanguage: locale,
+        publisher: { "@id": "https://www.getharmonia.app/#organization" },
+      },
+      {
+        "@type": "Course",
+        name: meta.title,
+        description: meta.description,
+        inLanguage: locale,
+        url: `https://www.getharmonia.app/${locale}/cours`,
+        provider: { "@id": "https://www.getharmonia.app/#organization" },
+        hasCourseInstance: {
+          "@type": "CourseInstance",
+          courseMode: "online",
+          courseWorkload: `PT${COURS_COUNT * 2}H`,
+        },
+        offers: [
+          { "@type": "Offer", category: "Free", price: "0", priceCurrency: "EUR" },
+          { "@type": "Offer", category: "Subscription", price: "9", priceCurrency: "EUR" },
+          { "@type": "Offer", category: "Subscription", price: "19", priceCurrency: "EUR" },
+        ],
+      },
+    ],
+  };
 
   return (
-    <ClerkProvider afterSignOutUrl="/fr">
+    <ClerkProvider afterSignOutUrl={`/${locale}`}>
       <html lang={locale}>
         <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
         </head>
         <body>
           <NextIntlClientProvider messages={messages}>
@@ -130,7 +189,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             {children}
             <FeedbackWidget />
           </NextIntlClientProvider>
-          <Analytics />
+          <ConsentGatedAnalytics />
           <CookieBanner locale={locale} />
         </body>
       </html>

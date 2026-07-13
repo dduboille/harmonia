@@ -5,7 +5,16 @@
 
 import { SignUp } from "@clerk/nextjs";
 
-export default function SignUpPage() {
+interface Props {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ redirect_url?: string }>;
+}
+
+export default async function SignUpPage({ params, searchParams }: Props) {
+  const { locale } = await params;
+  const { redirect_url } = await searchParams;
+  const target = redirect_url ?? `/${locale}/dashboard`;
+
   return (
     <main style={{
       minHeight: "100vh",
@@ -25,7 +34,7 @@ export default function SignUpPage() {
         }}>
           Harmonia<span style={{ color: "#BA7517" }}>.</span>
         </div>
-        <SignUp forceRedirectUrl="/fr/dashboard" />
+        <SignUp forceRedirectUrl={target} signInUrl={`/${locale}/sign-in`} />
       </div>
     </main>
   );

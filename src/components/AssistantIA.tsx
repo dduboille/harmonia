@@ -61,9 +61,22 @@ export default function AssistantIA() {
         throw new Error(err.error ?? "Erreur serveur");
       }
 
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
-      setMessages(prev => [...prev, { role: "assistant", content: data.text ?? "" }]);
+      // La réponse arrive en flux : on affiche le texte au fil de sa génération
+      // plutôt que de laisser l'utilisateur devant un écran figé.
+      const reader = res.body?.getReader();
+      if (!reader) throw new Error("Réponse illisible");
+
+      const decoder = new TextDecoder();
+      let full = "";
+
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        full += decoder.decode(value, { stream: true });
+        setStreamingContent(full);
+      }
+
+      setMessages(prev => [...prev, { role: "assistant", content: full }]);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Erreur de connexion");
     } finally {

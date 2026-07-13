@@ -131,7 +131,8 @@
     "c40": "The Two-Voice Invention",
     "d40": "Subject, imitation at the octave, countersubject, episodes and tonal plan — writing the invention in Bach's style.",
     "c41": "Stylistic Writing",
-    "d41": "Pastiching the Classical, the Romantic and the early 20th century — the DEM’s stylistic-writing discipline."
+    "d41": "Pastiching the Classical, the Romantic and the early 20th century — the DEM’s stylistic-writing discipline.",
+    "locked": "Subscription required"
   },
   "cours": {
     "level1": "Level 1",
@@ -2900,7 +2901,7 @@
   "landing": {
     "topbar": "Course 37 available — Schenker and motivic analysis",
     "topbarCta": "Discover →",
-    "badge": "5 levels · 37 courses · 700+ exercises",
+    "badge": "5 levels · {count} lessons · 700+ exercises",
     "h1": "Master tonal harmony.",
     "h1em": "Really.",
     "sub": "Tonal harmony. Rigorously.",
@@ -2922,7 +2923,216 @@
     "ctaH2": "Start understanding",
     "ctaEm": "music",
     "ctaSub": "3 free courses. No credit card. Start now.",
-    "ctaBtn": "Start for free →"
+    "ctaBtn": "Start for free →",
+    "navCursus": "Curriculum",
+    "navDashboard": "My space →",
+    "navSignIn": "Sign in →",
+    "features": [
+      {
+        "title": "{count} structured lessons",
+        "desc": "From the acoustic origins of the scale to the techniques of the great composers — five progressive levels covering classical harmony, jazz, impressionism and composition."
+      },
+      {
+        "title": "Interactive SATB exercises",
+        "desc": "Place notes on the staves voice by voice. Harmonic validation detects parallel fifths, voice crossings and range errors in real time."
+      },
+      {
+        "title": "Immediate feedback",
+        "desc": "Every note you place is analysed against the rules of tonal counterpoint. You learn from your mistakes the moment you make them."
+      },
+      {
+        "title": "High-quality audio",
+        "desc": "High-fidelity sampled piano. Hear every chord, every progression, every voicing — from Bach's cadences to jazz tritone substitutions."
+      },
+      {
+        "title": "24 keys",
+        "desc": "A complete reference page: scales, key signatures, diatonic chords, functional tritones and mnemonics for all 12 major and 12 minor keys."
+      },
+      {
+        "title": "6 languages",
+        "desc": "Français, English, Español, Deutsch, Português, Italiano. Harmonia is built for musicians everywhere."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Study the lesson",
+        "desc": "Each lesson explains the concepts with audio examples, summary tables and stories about the great composers."
+      },
+      {
+        "title": "Practise with the quiz",
+        "desc": "Random questions drawn from a pool of 90+ per lesson — identification, construction, analysis from Bach to Radiohead."
+      },
+      {
+        "title": "Complete the exercises",
+        "desc": "Place notes on the SATB staves, choose the right inversions, analyse the masters' styles. The engine validates your choices instantly."
+      },
+      {
+        "title": "Progress",
+        "desc": "{count} lessons, 24 keys, 5 levels. From the basic scale to the compositional techniques of the great masters."
+      }
+    ],
+    "cursusLabel": "Conservatory curriculum",
+    "cursusH2": "5 progressive levels",
+    "cursusSub": "From tonal foundations to contemporary harmony — informed by the major treatises (Dubois, Piston, Schoenberg, Aldwell)",
+    "cursusCta": "See the full curriculum — syllabus, pricing and institutional access →",
+    "levelLabel": "LEVEL",
+    "levels": [
+      {
+        "title": "Tonal foundations",
+        "target": "Diploma entry",
+        "refs": "Dubois · Piston",
+        "modules": [
+          "Scales & degrees",
+          "Building chords",
+          "Harmonic functions",
+          "Cadences & punctuation"
+        ]
+      },
+      {
+        "title": "Advanced writing",
+        "target": "Diploma · Bachelor",
+        "refs": "Koechlin · Aldwell",
+        "modules": [
+          "Advanced modulation",
+          "Secondary dominants",
+          "Altered chords",
+          "Chromaticism"
+        ]
+      },
+      {
+        "title": "Structural analysis",
+        "target": "Bachelor · Master",
+        "refs": "Schoenberg · Riemann",
+        "modules": [
+          "Functional analysis",
+          "Musical forms",
+          "Schenkerian reduction",
+          "Bach → Wagner"
+        ]
+      },
+      {
+        "title": "Extended harmony",
+        "target": "Master",
+        "refs": "Messiaen · Levine",
+        "modules": [
+          "Modality",
+          "Impressionism",
+          "Polytonality",
+          "Jazz extensions"
+        ]
+      },
+      {
+        "title": "Specialisations",
+        "target": "All advanced levels",
+        "refs": "5 tracks to choose from",
+        "modules": [
+          "Fugue & Bach style",
+          "Music for picture",
+          "Advanced jazz",
+          "Schenkerian analysis"
+        ]
+      }
+    ],
+    "plans": [
+      {
+        "name": "Free",
+        "desc": "To discover tonal harmony",
+        "cta": "Start for free",
+        "badge": "",
+        "features": [
+          "Lessons 1 to {free}, in full",
+          "Unlimited quiz (lessons 1–{free})",
+          "Level 1 SATB exercises",
+          "Harmonic dictation",
+          "The 24 keys reference page",
+          "High-quality audio"
+        ],
+        "notIncluded": [
+          "Lessons {freePlus} to {count}",
+          "Level 2–5 exercises",
+          "AI features"
+        ]
+      },
+      {
+        "name": "Student",
+        "desc": "All lessons and exercises",
+        "cta": "Choose Student",
+        "badge": "Most popular",
+        "features": [
+          "All lessons (1 to {count})",
+          "Unlimited quiz on every lesson",
+          "700+ SATB exercises",
+          "24 keys × 4 positions",
+          "Every difficulty level",
+          "Continuous updates"
+        ],
+        "notIncluded": [
+          "AI features"
+        ]
+      },
+      {
+        "name": "Pro",
+        "desc": "Student + AI features",
+        "cta": "Choose Pro",
+        "badge": "Best value",
+        "features": [
+          "Everything in Student",
+          "Conversational AI assistant",
+          "MusicXML score analysis",
+          "Library of 110 progressions",
+          "Comparator of 11 harmonic styles",
+          "Priority support"
+        ],
+        "notIncluded": []
+      }
+    ],
+    "testimonialsLabel": "Testimonials",
+    "testimonialsH2": "What musicians say",
+    "testimonials": [
+      {
+        "text": "I've tried several harmony methods online. Harmonia is the first where I actually understand why the rules exist — not just how to apply them.",
+        "author": "Marc D.",
+        "role": "Jazz guitarist, 3 years of practice"
+      },
+      {
+        "text": "The real-time feedback on parallel fifths taught me more in two weeks than six months of lectures. Placing notes on the staff feels intuitive.",
+        "author": "Sofia R.",
+        "role": "Conservatory student"
+      },
+      {
+        "text": "The 24-keys page is a reference I keep coming back to. And having everything in 6 languages lets me compare with my Italian students.",
+        "author": "Thomas K.",
+        "role": "Piano teacher, Berlin"
+      }
+    ],
+    "faqLabel": "Frequently asked questions",
+    "faqH2": "Everything you want to know",
+    "faq": [
+      {
+        "q": "Do I need a background in music theory?",
+        "a": "No. Lesson 1 starts from the acoustic origins of the scale — no prerequisites required. Harmonia suits complete beginners as well as musicians who want to formalise what they already know."
+      },
+      {
+        "q": "How long does the programme take to master?",
+        "a": "Level 1 (9 lessons) represents roughly 30 to 50 hours of work depending on your pace and starting point. With an hour of regular practice a day, expect 6 to 8 weeks."
+      },
+      {
+        "q": "Are the exercises suitable for every instrument?",
+        "a": "Yes. Tonal harmony is a universal language. The exercises train abstract harmonic understanding — applicable to any instrument, or to composition."
+      },
+      {
+        "q": "Can I cancel my subscription at any time?",
+        "a": "Yes, with no commitment. Cancellation takes effect at the end of the current period. On the annual plan you keep access until the end of the year you paid for."
+      },
+      {
+        "q": "Is the content updated regularly?",
+        "a": "Yes. Harmonia is under active development — new exercises, lessons and features are added regularly. Pro subscribers get every update."
+      }
+    ],
+    "ctaNote": "Lessons 1 to {free} · Unlimited quiz · SATB exercises",
+    "footerPrivacy": "Privacy",
+    "footerTerms": "Terms",
+    "footerContact": "Contact"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -3534,159 +3744,159 @@
       "quizFinishBtn": "See score →"
     }
   },
-    "cours40": {
-      "badge": "Level 2 · Course 40",
-      "title": "The Two-Voice Invention",
-      "subtitle": "Subject, imitation at the octave, countersubject, episodes and tonal plan — writing the invention in Bach's style, toward the DEM counterpoint.",
-      "sections": {
-        "structure": "Structure",
-        "developpement": "Development",
-        "quiz": "Practice"
-      },
-      "quiz": {
-        "perfect": "Perfect! You've mastered the subject, imitation at the octave and the tonal plan of the invention.",
-        "veryGood": "Very good! A few points to consolidate (motivic devices, episodes in sequence).",
-        "keepGoing": "Keep going — review the role of the subject, the imitation and the episodes before trying again."
-      },
-      "narrative": {
-        "navStructure": "Structure",
-        "navDeveloppement": "Development",
-        "navQuiz": "Practice",
-        "headerBadge": "Level 2 · Course 40",
-        "headerTitle": "The Two-Voice Invention",
-        "maitreConceptLabel": "The two-voice invention",
-        "maitreAnecdote": "In 1723, Johann Sebastian Bach gathered fifteen short pieces (BWV 772–786) which he called “Inventions” for the use of his pupils — foremost among them his son Wilhelm Friedemann. In the preface he set a twofold aim: to learn to play cleanly in two voices, but above all to “have good ideas (inventiones) and to develop them.” Each invention grows from a single motive: a cell of a few notes that Bach imitates, inverts, fragments and carries through the neighbouring keys. The whole art lies in this economy — to bring forth an entire piece from a tiny idea.",
-        "maitreLesson": "An invention is a motive brought to life: you state it, imitate it at the octave, develop it in episodes, and bring it back to the tonic. A single well-chosen subject is enough to build the whole piece.",
-        "structSectionTitle": "The subject, the imitation and the countersubject",
-        "structIntro": "A <strong>two-voice invention</strong> is a contrapuntal piece in which two independent voices converse from a <strong>single motive</strong>, the subject. It is the direct ancestor of the fugue and the first step toward the Bach counterpoint required at the DEM.",
-        "structInfoBox": "<strong>The principle:</strong> all the material of the piece — melody, accompaniment, transitions — derives from a single motive. Nothing is gratuitous: every figure is a transformation of the subject or its countersubject.",
-        "structSujetTitle": "The subject (generating motive)",
-        "structSujetText": "The <strong>subject</strong> is the opening melodic motive. Its <strong>head-motive</strong> (incipit) — its first notes, its rhythm and its characteristic contour — gives the piece its recognisable identity. A good subject is <em>short</em> and <em>memorable</em>.",
-        "structSujetListenBtn": "▶ Listen to the subject (C major)",
-        "structImitTitle": "The imitation",
-        "structImitText": "The <strong>second voice</strong> repeats the subject after a short delay. Most often the imitation is <strong>at the octave</strong> (sometimes at the fifth). It is the imitation that creates the two-voice dialogue.",
-        "structImitBox": "<strong>At the octave:</strong> the answer faithfully reproduces the subject, an octave lower (or higher). At the <em>fifth</em>, we approach the subject/answer principle of the fugue, but the invention most often stays at the octave.",
-        "structImitListenBtn": "▶ Listen to subject + imitation at the octave",
-        "structCsTitle": "The countersubject (free voice)",
-        "structCsText": "While the 2nd voice states the imitated subject, the 1st voice continues with a <strong>countersubject</strong> — a recurring melodic figure that accompanies the subject — or with a <strong>free voice</strong>. The two voices must remain genuinely independent (counterpoint).",
-        "structCsBox": "<strong>Independence of the voices:</strong> the countersubject must not merely double the subject in chords. It converses with it: complementary rhythms, contrary motion, staggered entries. Therein lies the whole difficulty of two-voice counterpoint.",
-        "devSectionTitle": "Episodes, motivic devices, tonal plan and method",
-        "devIntro": "Once the subject has been stated and imitated, the invention unfolds: <strong>episodes</strong> provide the links and the modulations, while the motive is constantly <strong>developed</strong> through a series of devices. The whole follows a precise <strong>tonal plan</strong>.",
-        "devEpisodesTitle": "The episodes (divertimenti)",
-        "devEpisodesText": "The <strong>episodes</strong> (or divertimenti) are linking passages based on <strong>fragments of the motive</strong>. They are often treated as a <strong>sequence</strong>: a fragment is repeated at successive pitches, which causes <em>modulation</em> and leads from one key to the next.",
-        "devProcedesTitle": "The devices of motivic development",
-        "devProcedesClickHint": "Click on a device to hear it (motive then its transformation).",
-        "devProcedeReplayBtn": "▶ Play again",
-        "devStretteBox": "<strong>The stretto:</strong> a very close imitation in which the 2nd voice enters <em>before</em> the 1st has finished stating the subject. The entries overlap, tightening the texture. In an invention one mostly encounters <em>light strettos</em>; it becomes systematic in the fugue.",
-        "devPlanTitle": "The tonal plan",
-        "devPlanText": "An invention is not a free succession: it follows a <strong>tonal course</strong>. In major: exposition in the <strong>tonic</strong>, modulation to the <strong>dominant</strong>, development through the <strong>neighbouring keys</strong>, then return to the tonic to conclude.",
-        "devPlanZone1": "Exposition",
-        "devPlanZone2": "Modulation",
-        "devPlanZone3": "Development",
-        "devPlanZone4": "Conclusion",
-        "devPlanTon1": "Tonic (I)",
-        "devPlanTon2": "Dominant (V)",
-        "devPlanTon3": "Neighbouring keys",
-        "devPlanTon4": "Return to the tonic (I)",
-        "devPlanMineurBox": "<strong>In the minor mode:</strong> after the exposition, the modulation most often goes to the <em>relative major</em> (key of the third degree), sometimes to the minor dominant — the equivalent of the tonic → dominant move in major.",
-        "devMethodeTitle": "Method: composing a short invention (8 to 16 bars)",
-        "devMethodeIntro": "Four steps to build a complete invention from scratch:",
-        "devMethodeStep1": "Invent a short, characteristic subject (a few notes with a recognisable contour and rhythm).",
-        "devMethodeStep2": "Imitate it at the octave in the second voice, accompanying the imitated subject with a countersubject (or a free voice).",
-        "devMethodeStep3": "Build episodes in sequence on fragments of the motive, modulating to the dominant and then to the neighbouring keys.",
-        "devMethodeStep4": "Bring the subject back to the tonic and conclude with a perfect cadence (concluding cadence; intermediate cadences punctuate the tonal articulations).",
-        "devGedalgeBox": "<strong>Toward the DEM:</strong> the rigour of motivic work — subject, countersubject, entries, sequences — is codified by André Gédalge in his <em>Traité de la fugue</em> (1901). Mastering the two-voice invention prepares directly for the DEM counterpoint test in Bach's style.",
-        "quizSectionTitle": "Practice",
-        "quizScoreLabel": "Score:",
-        "quizFeedbackExcellent": "Perfect! You've mastered the subject, imitation at the octave and the tonal plan of the invention.",
-        "quizFeedbackGood": "Very good! A few points to consolidate (motivic devices, episodes in sequence).",
-        "quizFeedbackKeepGoing": "Keep going — review the role of the subject, the imitation and the episodes before trying again.",
-        "quizResetBtn": "↻ Restart",
-        "quizQuestionCounter": "Question",
-        "quizPoolInfo": "questions in total",
-        "quizNextBtn": "Next question →",
-        "quizFinishBtn": "See the score →"
-      }
+  "cours40": {
+    "badge": "Level 2 · Course 40",
+    "title": "The Two-Voice Invention",
+    "subtitle": "Subject, imitation at the octave, countersubject, episodes and tonal plan — writing the invention in Bach's style, toward the DEM counterpoint.",
+    "sections": {
+      "structure": "Structure",
+      "developpement": "Development",
+      "quiz": "Practice"
     },
-    "cours41": {
-      "badge": "Level 5 · Course 41",
-      "title": "Stylistic Writing",
-      "subtitle": "Pastiching the Classical, the Romantic and the early 20th century — the stylistic-writing discipline of the DEM (specialised cycle / CPES): identify the signatures of a style, then reproduce them.",
-      "sections": {
-        "styles": "The styles",
-        "methode": "Method & worked answers",
-        "quiz": "Practice"
-      },
-      "quiz": {
-        "perfect": "Perfect! You unhesitatingly identify the signatures of the Classical, the Romantic and the early 20th century.",
-        "veryGood": "Very good! A few stylistic traits still need refining (Romantic altered chords, Debussyan planing).",
-        "keepGoing": "Keep going — review the signatures of each style before attempting the pastiche."
-      },
-      "narrative": {
-        "navStyles": "The styles",
-        "navMethode": "Method & worked answers",
-        "navQuiz": "Practice",
-        "headerBadge": "Level 5 · Course 41",
-        "headerTitle": "Stylistic Writing",
-        "maitreConceptLabel": "Stylistic pastiche",
-        "maitreAnecdote": "At the Paris Conservatoire, Maurice Ravel was the most subtle pasticheur of his generation: his <em>Menuet sur le nom d'Haydn</em> or his <em>À la manière de…</em> (Borodin, Chabrier) reveal a composer able to adopt another's writing down to its smallest harmonic mannerisms. To reproduce a style is not to copy it: it is to have taken apart its mechanisms — harmonic language, rhythm, texture, voice leading — to the point of being able to write fresh “Mozart” or “Brahms”. That is exactly what the DEM's stylistic-writing unit demands.",
-        "maitreLesson": "To write in a style is first to analyse it: you spot the signatures of a model (harmony, harmonic rhythm, texture, voice leading, cadences), then reproduce them — without ever committing an anachronism.",
-        "stylesSectionTitle": "Three styles, three harmonic languages",
-        "stylesIntro": "Stylistic writing — <strong>pastiche</strong> — is a central discipline of the <strong>DEM in writing</strong> (specialised cycle / CPES, e.g. at the CRR of Lyon). You are asked to harmonise a given melody or to complete a page <em>in the language of a precise era</em>. Each style has its <strong>signatures</strong>: a recognisable way of treating harmony, rhythm, texture and voice leading.",
-        "stylesInfoBox": "<strong>The principle:</strong> you can only pastiche well what you have analysed. Before writing, you identify the characteristic traits of the target style; you then reproduce them faithfully, without mixing in devices from another era.",
-        "stylesClickHint": "Click a style to expand its description and its signatures.",
-        "stylesSignaturesLabel": "STYLISTIC SIGNATURES",
-        "style_classique_period": "Classical",
-        "style_classique_name": "Classical style — Mozart, Haydn",
-        "style_classique_desc": "The Classical style aims for <strong>clarity</strong>. A given melody is readily harmonised for <strong>string quartet</strong>, in <strong>homophonic</strong> texture: a clear melody supported by a transparent accompaniment (often an <em>Alberti bass</em>). The harmony is diatonic, the cadences clear-cut.",
-        "style_classique_sig1": "Clear <strong>homophonic texture</strong> (string quartet: 2 violins, viola, cello).",
-        "style_classique_sig2": "<strong>Diatonic</strong> harmony, transparent tonal function.",
-        "style_classique_sig3": "<strong>Regular harmonic rhythm</strong> (chord change per beat or per bar).",
-        "style_classique_sig4": "Clear-cut cadences (<strong>perfect</strong>, <strong>half cadence</strong>); <strong>Alberti</strong> accompaniment.",
-        "style_romantique_period": "Romantic",
-        "style_romantique_name": "Romantic style — Schumann, Brahms",
-        "style_romantique_desc": "Romanticism intensifies expression. <strong>Chromaticism</strong> becomes pervasive, the harmony grows <strong>richer</strong> (ninths, modal borrowings, augmented sixths, altered chords). The <strong>voice leading</strong> thickens, tonality becomes ambiguous, and the phrasing calls for <em>rubato</em>.",
-        "style_romantique_sig1": "<strong>Expressive chromaticism</strong> and delayed resolutions.",
-        "style_romantique_sig2": "<strong>Enriched</strong> harmony: 9ths, borrowings, <strong>augmented sixths</strong>, altered chords.",
-        "style_romantique_sig3": "<strong>Dense voice leading</strong>; <strong>tonal ambiguity</strong> (pivot chords, enharmony).",
-        "style_romantique_sig4": "Supple phrasing calling for <strong>rubato</strong>.",
-        "style_xxe_period": "Early 20th c.",
-        "style_xxe_name": "Early-20th-century style — Ravel, Debussy, Fauré",
-        "style_xxe_desc": "At the turn of the century, <strong>colour</strong> prevails over function. Composers turn to <strong>modality</strong>, to <strong>parallel chords</strong> (<em>planing</em>), to <strong>unresolved 9ths and 11ths</strong>, to the <strong>whole-tone scale</strong> and to <strong>pedals</strong>. A chord counts for its harmonic timbre more than for its tension.",
-        "style_xxe_sig1": "<strong>Modality</strong> (old modes) escaping the leading tone.",
-        "style_xxe_sig2": "<strong>Parallel chords</strong> (planing); <strong>unresolved 9ths/11ths</strong>.",
-        "style_xxe_sig3": "<strong>Whole-tone scale</strong>; coloured <strong>pedals</strong>.",
-        "style_xxe_sig4": "<strong>Colour prevails over</strong> tonal function.",
-        "stylesPiegeBox": "<strong>The trap to avoid — harmonic anachronism:</strong> each device belongs to an era. A “Brahms-style” augmented sixth in a Mozart pastiche, or Debussyan planing on a Classical page, immediately “break” the style. It is the error most severely penalised at the DEM.",
-        "methodeSectionTitle": "Pastiche method and annotated worked answers",
-        "methodeIntro": "Pastiching is not improvising: it is a <strong>methodical</strong> process. You analyse a model, extract its signatures, then write by reproducing them faithfully. Here is the procedure.",
-        "methodeStepsTitle": "The four steps of the pastiche",
-        "methodeStep1": "<strong>Analyse a model</strong> from the target era: spot its harmonic language, its harmonic rhythm, its texture and its voice leading before writing a single note.",
-        "methodeStep2": "<strong>List the signatures</strong>: which chords, which cadences, which texture, which devices characterise this style and set it apart from the others?",
-        "methodeStep3": "<strong>Write by reproducing these signatures</strong>: harmonise the given melody (or complete the page) drawing only on the resources of the chosen language.",
-        "methodeStep4": "<strong>Reread hunting for anachronisms</strong>: check that no device foreign to the era has slipped into the writing.",
-        "methodeAnachroBox": "<strong>Harmonic anachronism, once again:</strong> it is the no. 1 trap of the pastiche. Reproducing a style requires a negative discipline — <em>forbidding</em> yourself everything that does not belong to the era (no whole-tone scale in Mozart, no Alberti bass in Debussy).",
-        "corrigesTitle": "Annotated worked answers — one example per style",
-        "corrigesIntro": "On one and the same <em>given melody</em>, here is how the chosen language shapes the realisation. Each worked answer highlights the signatures to reproduce.",
-        "corrige_classique_title": "Worked answer — Classical harmonisation (Mozart/Haydn)",
-        "corrige_classique_text": "The given melody is harmonised for <strong>string quartet</strong> in homophonic texture. Diatonic harmony, regular harmonic rhythm (one chord per strong beat), accompaniment in <strong>Alberti bass</strong> in the second violin and viola. The phrase closes on a <strong>perfect cadence</strong>, prepared by a II–V–I or a half cadence at the midpoint. No superfluous chromaticism: clarity prevails.",
-        "corrige_romantique_title": "Worked answer — Romantic harmonisation (Schumann/Brahms)",
-        "corrige_romantique_text": "The same melody is coloured with <strong>chromaticism</strong>: <strong>ninth</strong> chords, <strong>borrowings</strong> from the minor mode, an <strong>augmented sixth</strong> leading to the dominant. The <strong>voice leading</strong> becomes dense, with expressive inner lines; a resolution is <strong>delayed</strong> to create <strong>tonal ambiguity</strong>. The phrasing, ample, implies rubato.",
-        "corrige_xxe_title": "Worked answer — early-20th-century harmonisation (Ravel/Debussy/Fauré)",
-        "corrige_xxe_text": "Here harmony becomes <strong>colour</strong>: one uses <strong>parallel chords</strong> (planing) of ninths, a coloured <strong>pedal</strong> in the bass, <strong>modal</strong> inflections (e.g. Dorian or Mixolydian) and, occasionally, the <strong>whole-tone scale</strong>. The dissonances do not resolve: they sound for themselves. Tonal function fades in favour of sensation.",
-        "methodeDemBox": "<strong>Towards the DEM:</strong> the stylistic-writing unit (DEM / CPES cursus, e.g. CRR of Lyon) assesses precisely this ability to write “in the style of”. Practising the three languages — Classical, Romantic, early 20th century — and banishing anachronism is the key to the exam.",
-        "quizSectionTitle": "Practice",
-        "quizScoreLabel": "Score:",
-        "quizFeedbackExcellent": "Perfect! You unhesitatingly identify the signatures of the Classical, the Romantic and the early 20th century.",
-        "quizFeedbackGood": "Very good! A few stylistic traits still need refining (Romantic altered chords, Debussyan planing).",
-        "quizFeedbackKeepGoing": "Keep going — review the signatures of each style before attempting the pastiche.",
-        "quizResetBtn": "↻ Restart",
-        "quizQuestionCounter": "Question",
-        "quizPoolInfo": "questions in total",
-        "quizNextBtn": "Next question →",
-        "quizFinishBtn": "See score →"
-      }
+    "quiz": {
+      "perfect": "Perfect! You've mastered the subject, imitation at the octave and the tonal plan of the invention.",
+      "veryGood": "Very good! A few points to consolidate (motivic devices, episodes in sequence).",
+      "keepGoing": "Keep going — review the role of the subject, the imitation and the episodes before trying again."
     },
+    "narrative": {
+      "navStructure": "Structure",
+      "navDeveloppement": "Development",
+      "navQuiz": "Practice",
+      "headerBadge": "Level 2 · Course 40",
+      "headerTitle": "The Two-Voice Invention",
+      "maitreConceptLabel": "The two-voice invention",
+      "maitreAnecdote": "In 1723, Johann Sebastian Bach gathered fifteen short pieces (BWV 772–786) which he called “Inventions” for the use of his pupils — foremost among them his son Wilhelm Friedemann. In the preface he set a twofold aim: to learn to play cleanly in two voices, but above all to “have good ideas (inventiones) and to develop them.” Each invention grows from a single motive: a cell of a few notes that Bach imitates, inverts, fragments and carries through the neighbouring keys. The whole art lies in this economy — to bring forth an entire piece from a tiny idea.",
+      "maitreLesson": "An invention is a motive brought to life: you state it, imitate it at the octave, develop it in episodes, and bring it back to the tonic. A single well-chosen subject is enough to build the whole piece.",
+      "structSectionTitle": "The subject, the imitation and the countersubject",
+      "structIntro": "A <strong>two-voice invention</strong> is a contrapuntal piece in which two independent voices converse from a <strong>single motive</strong>, the subject. It is the direct ancestor of the fugue and the first step toward the Bach counterpoint required at the DEM.",
+      "structInfoBox": "<strong>The principle:</strong> all the material of the piece — melody, accompaniment, transitions — derives from a single motive. Nothing is gratuitous: every figure is a transformation of the subject or its countersubject.",
+      "structSujetTitle": "The subject (generating motive)",
+      "structSujetText": "The <strong>subject</strong> is the opening melodic motive. Its <strong>head-motive</strong> (incipit) — its first notes, its rhythm and its characteristic contour — gives the piece its recognisable identity. A good subject is <em>short</em> and <em>memorable</em>.",
+      "structSujetListenBtn": "▶ Listen to the subject (C major)",
+      "structImitTitle": "The imitation",
+      "structImitText": "The <strong>second voice</strong> repeats the subject after a short delay. Most often the imitation is <strong>at the octave</strong> (sometimes at the fifth). It is the imitation that creates the two-voice dialogue.",
+      "structImitBox": "<strong>At the octave:</strong> the answer faithfully reproduces the subject, an octave lower (or higher). At the <em>fifth</em>, we approach the subject/answer principle of the fugue, but the invention most often stays at the octave.",
+      "structImitListenBtn": "▶ Listen to subject + imitation at the octave",
+      "structCsTitle": "The countersubject (free voice)",
+      "structCsText": "While the 2nd voice states the imitated subject, the 1st voice continues with a <strong>countersubject</strong> — a recurring melodic figure that accompanies the subject — or with a <strong>free voice</strong>. The two voices must remain genuinely independent (counterpoint).",
+      "structCsBox": "<strong>Independence of the voices:</strong> the countersubject must not merely double the subject in chords. It converses with it: complementary rhythms, contrary motion, staggered entries. Therein lies the whole difficulty of two-voice counterpoint.",
+      "devSectionTitle": "Episodes, motivic devices, tonal plan and method",
+      "devIntro": "Once the subject has been stated and imitated, the invention unfolds: <strong>episodes</strong> provide the links and the modulations, while the motive is constantly <strong>developed</strong> through a series of devices. The whole follows a precise <strong>tonal plan</strong>.",
+      "devEpisodesTitle": "The episodes (divertimenti)",
+      "devEpisodesText": "The <strong>episodes</strong> (or divertimenti) are linking passages based on <strong>fragments of the motive</strong>. They are often treated as a <strong>sequence</strong>: a fragment is repeated at successive pitches, which causes <em>modulation</em> and leads from one key to the next.",
+      "devProcedesTitle": "The devices of motivic development",
+      "devProcedesClickHint": "Click on a device to hear it (motive then its transformation).",
+      "devProcedeReplayBtn": "▶ Play again",
+      "devStretteBox": "<strong>The stretto:</strong> a very close imitation in which the 2nd voice enters <em>before</em> the 1st has finished stating the subject. The entries overlap, tightening the texture. In an invention one mostly encounters <em>light strettos</em>; it becomes systematic in the fugue.",
+      "devPlanTitle": "The tonal plan",
+      "devPlanText": "An invention is not a free succession: it follows a <strong>tonal course</strong>. In major: exposition in the <strong>tonic</strong>, modulation to the <strong>dominant</strong>, development through the <strong>neighbouring keys</strong>, then return to the tonic to conclude.",
+      "devPlanZone1": "Exposition",
+      "devPlanZone2": "Modulation",
+      "devPlanZone3": "Development",
+      "devPlanZone4": "Conclusion",
+      "devPlanTon1": "Tonic (I)",
+      "devPlanTon2": "Dominant (V)",
+      "devPlanTon3": "Neighbouring keys",
+      "devPlanTon4": "Return to the tonic (I)",
+      "devPlanMineurBox": "<strong>In the minor mode:</strong> after the exposition, the modulation most often goes to the <em>relative major</em> (key of the third degree), sometimes to the minor dominant — the equivalent of the tonic → dominant move in major.",
+      "devMethodeTitle": "Method: composing a short invention (8 to 16 bars)",
+      "devMethodeIntro": "Four steps to build a complete invention from scratch:",
+      "devMethodeStep1": "Invent a short, characteristic subject (a few notes with a recognisable contour and rhythm).",
+      "devMethodeStep2": "Imitate it at the octave in the second voice, accompanying the imitated subject with a countersubject (or a free voice).",
+      "devMethodeStep3": "Build episodes in sequence on fragments of the motive, modulating to the dominant and then to the neighbouring keys.",
+      "devMethodeStep4": "Bring the subject back to the tonic and conclude with a perfect cadence (concluding cadence; intermediate cadences punctuate the tonal articulations).",
+      "devGedalgeBox": "<strong>Toward the DEM:</strong> the rigour of motivic work — subject, countersubject, entries, sequences — is codified by André Gédalge in his <em>Traité de la fugue</em> (1901). Mastering the two-voice invention prepares directly for the DEM counterpoint test in Bach's style.",
+      "quizSectionTitle": "Practice",
+      "quizScoreLabel": "Score:",
+      "quizFeedbackExcellent": "Perfect! You've mastered the subject, imitation at the octave and the tonal plan of the invention.",
+      "quizFeedbackGood": "Very good! A few points to consolidate (motivic devices, episodes in sequence).",
+      "quizFeedbackKeepGoing": "Keep going — review the role of the subject, the imitation and the episodes before trying again.",
+      "quizResetBtn": "↻ Restart",
+      "quizQuestionCounter": "Question",
+      "quizPoolInfo": "questions in total",
+      "quizNextBtn": "Next question →",
+      "quizFinishBtn": "See the score →"
+    }
+  },
+  "cours41": {
+    "badge": "Level 5 · Course 41",
+    "title": "Stylistic Writing",
+    "subtitle": "Pastiching the Classical, the Romantic and the early 20th century — the stylistic-writing discipline of the DEM (specialised cycle / CPES): identify the signatures of a style, then reproduce them.",
+    "sections": {
+      "styles": "The styles",
+      "methode": "Method & worked answers",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You unhesitatingly identify the signatures of the Classical, the Romantic and the early 20th century.",
+      "veryGood": "Very good! A few stylistic traits still need refining (Romantic altered chords, Debussyan planing).",
+      "keepGoing": "Keep going — review the signatures of each style before attempting the pastiche."
+    },
+    "narrative": {
+      "navStyles": "The styles",
+      "navMethode": "Method & worked answers",
+      "navQuiz": "Practice",
+      "headerBadge": "Level 5 · Course 41",
+      "headerTitle": "Stylistic Writing",
+      "maitreConceptLabel": "Stylistic pastiche",
+      "maitreAnecdote": "At the Paris Conservatoire, Maurice Ravel was the most subtle pasticheur of his generation: his <em>Menuet sur le nom d'Haydn</em> or his <em>À la manière de…</em> (Borodin, Chabrier) reveal a composer able to adopt another's writing down to its smallest harmonic mannerisms. To reproduce a style is not to copy it: it is to have taken apart its mechanisms — harmonic language, rhythm, texture, voice leading — to the point of being able to write fresh “Mozart” or “Brahms”. That is exactly what the DEM's stylistic-writing unit demands.",
+      "maitreLesson": "To write in a style is first to analyse it: you spot the signatures of a model (harmony, harmonic rhythm, texture, voice leading, cadences), then reproduce them — without ever committing an anachronism.",
+      "stylesSectionTitle": "Three styles, three harmonic languages",
+      "stylesIntro": "Stylistic writing — <strong>pastiche</strong> — is a central discipline of the <strong>DEM in writing</strong> (specialised cycle / CPES, e.g. at the CRR of Lyon). You are asked to harmonise a given melody or to complete a page <em>in the language of a precise era</em>. Each style has its <strong>signatures</strong>: a recognisable way of treating harmony, rhythm, texture and voice leading.",
+      "stylesInfoBox": "<strong>The principle:</strong> you can only pastiche well what you have analysed. Before writing, you identify the characteristic traits of the target style; you then reproduce them faithfully, without mixing in devices from another era.",
+      "stylesClickHint": "Click a style to expand its description and its signatures.",
+      "stylesSignaturesLabel": "STYLISTIC SIGNATURES",
+      "style_classique_period": "Classical",
+      "style_classique_name": "Classical style — Mozart, Haydn",
+      "style_classique_desc": "The Classical style aims for <strong>clarity</strong>. A given melody is readily harmonised for <strong>string quartet</strong>, in <strong>homophonic</strong> texture: a clear melody supported by a transparent accompaniment (often an <em>Alberti bass</em>). The harmony is diatonic, the cadences clear-cut.",
+      "style_classique_sig1": "Clear <strong>homophonic texture</strong> (string quartet: 2 violins, viola, cello).",
+      "style_classique_sig2": "<strong>Diatonic</strong> harmony, transparent tonal function.",
+      "style_classique_sig3": "<strong>Regular harmonic rhythm</strong> (chord change per beat or per bar).",
+      "style_classique_sig4": "Clear-cut cadences (<strong>perfect</strong>, <strong>half cadence</strong>); <strong>Alberti</strong> accompaniment.",
+      "style_romantique_period": "Romantic",
+      "style_romantique_name": "Romantic style — Schumann, Brahms",
+      "style_romantique_desc": "Romanticism intensifies expression. <strong>Chromaticism</strong> becomes pervasive, the harmony grows <strong>richer</strong> (ninths, modal borrowings, augmented sixths, altered chords). The <strong>voice leading</strong> thickens, tonality becomes ambiguous, and the phrasing calls for <em>rubato</em>.",
+      "style_romantique_sig1": "<strong>Expressive chromaticism</strong> and delayed resolutions.",
+      "style_romantique_sig2": "<strong>Enriched</strong> harmony: 9ths, borrowings, <strong>augmented sixths</strong>, altered chords.",
+      "style_romantique_sig3": "<strong>Dense voice leading</strong>; <strong>tonal ambiguity</strong> (pivot chords, enharmony).",
+      "style_romantique_sig4": "Supple phrasing calling for <strong>rubato</strong>.",
+      "style_xxe_period": "Early 20th c.",
+      "style_xxe_name": "Early-20th-century style — Ravel, Debussy, Fauré",
+      "style_xxe_desc": "At the turn of the century, <strong>colour</strong> prevails over function. Composers turn to <strong>modality</strong>, to <strong>parallel chords</strong> (<em>planing</em>), to <strong>unresolved 9ths and 11ths</strong>, to the <strong>whole-tone scale</strong> and to <strong>pedals</strong>. A chord counts for its harmonic timbre more than for its tension.",
+      "style_xxe_sig1": "<strong>Modality</strong> (old modes) escaping the leading tone.",
+      "style_xxe_sig2": "<strong>Parallel chords</strong> (planing); <strong>unresolved 9ths/11ths</strong>.",
+      "style_xxe_sig3": "<strong>Whole-tone scale</strong>; coloured <strong>pedals</strong>.",
+      "style_xxe_sig4": "<strong>Colour prevails over</strong> tonal function.",
+      "stylesPiegeBox": "<strong>The trap to avoid — harmonic anachronism:</strong> each device belongs to an era. A “Brahms-style” augmented sixth in a Mozart pastiche, or Debussyan planing on a Classical page, immediately “break” the style. It is the error most severely penalised at the DEM.",
+      "methodeSectionTitle": "Pastiche method and annotated worked answers",
+      "methodeIntro": "Pastiching is not improvising: it is a <strong>methodical</strong> process. You analyse a model, extract its signatures, then write by reproducing them faithfully. Here is the procedure.",
+      "methodeStepsTitle": "The four steps of the pastiche",
+      "methodeStep1": "<strong>Analyse a model</strong> from the target era: spot its harmonic language, its harmonic rhythm, its texture and its voice leading before writing a single note.",
+      "methodeStep2": "<strong>List the signatures</strong>: which chords, which cadences, which texture, which devices characterise this style and set it apart from the others?",
+      "methodeStep3": "<strong>Write by reproducing these signatures</strong>: harmonise the given melody (or complete the page) drawing only on the resources of the chosen language.",
+      "methodeStep4": "<strong>Reread hunting for anachronisms</strong>: check that no device foreign to the era has slipped into the writing.",
+      "methodeAnachroBox": "<strong>Harmonic anachronism, once again:</strong> it is the no. 1 trap of the pastiche. Reproducing a style requires a negative discipline — <em>forbidding</em> yourself everything that does not belong to the era (no whole-tone scale in Mozart, no Alberti bass in Debussy).",
+      "corrigesTitle": "Annotated worked answers — one example per style",
+      "corrigesIntro": "On one and the same <em>given melody</em>, here is how the chosen language shapes the realisation. Each worked answer highlights the signatures to reproduce.",
+      "corrige_classique_title": "Worked answer — Classical harmonisation (Mozart/Haydn)",
+      "corrige_classique_text": "The given melody is harmonised for <strong>string quartet</strong> in homophonic texture. Diatonic harmony, regular harmonic rhythm (one chord per strong beat), accompaniment in <strong>Alberti bass</strong> in the second violin and viola. The phrase closes on a <strong>perfect cadence</strong>, prepared by a II–V–I or a half cadence at the midpoint. No superfluous chromaticism: clarity prevails.",
+      "corrige_romantique_title": "Worked answer — Romantic harmonisation (Schumann/Brahms)",
+      "corrige_romantique_text": "The same melody is coloured with <strong>chromaticism</strong>: <strong>ninth</strong> chords, <strong>borrowings</strong> from the minor mode, an <strong>augmented sixth</strong> leading to the dominant. The <strong>voice leading</strong> becomes dense, with expressive inner lines; a resolution is <strong>delayed</strong> to create <strong>tonal ambiguity</strong>. The phrasing, ample, implies rubato.",
+      "corrige_xxe_title": "Worked answer — early-20th-century harmonisation (Ravel/Debussy/Fauré)",
+      "corrige_xxe_text": "Here harmony becomes <strong>colour</strong>: one uses <strong>parallel chords</strong> (planing) of ninths, a coloured <strong>pedal</strong> in the bass, <strong>modal</strong> inflections (e.g. Dorian or Mixolydian) and, occasionally, the <strong>whole-tone scale</strong>. The dissonances do not resolve: they sound for themselves. Tonal function fades in favour of sensation.",
+      "methodeDemBox": "<strong>Towards the DEM:</strong> the stylistic-writing unit (DEM / CPES cursus, e.g. CRR of Lyon) assesses precisely this ability to write “in the style of”. Practising the three languages — Classical, Romantic, early 20th century — and banishing anachronism is the key to the exam.",
+      "quizSectionTitle": "Practice",
+      "quizScoreLabel": "Score:",
+      "quizFeedbackExcellent": "Perfect! You unhesitatingly identify the signatures of the Classical, the Romantic and the early 20th century.",
+      "quizFeedbackGood": "Very good! A few stylistic traits still need refining (Romantic altered chords, Debussyan planing).",
+      "quizFeedbackKeepGoing": "Keep going — review the signatures of each style before attempting the pastiche.",
+      "quizResetBtn": "↻ Restart",
+      "quizQuestionCounter": "Question",
+      "quizPoolInfo": "questions in total",
+      "quizNextBtn": "Next question →",
+      "quizFinishBtn": "See score →"
+    }
+  },
   "conservatoire": {
     "cours1": {
       "intuition": "Before any theory, the scale is a physical experience — feeling the tension of semitones and the resolution toward the tonic.",

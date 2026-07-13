@@ -815,9 +815,12 @@ export default function HarmoniaEditor({
         </div>
 
         {/* ── Feedback erreurs ── */}
+        {/* aria-live : le verdict harmonique s'affichait visuellement mais
+            n'était jamais annoncé — le cœur pédagogique du produit restait
+            muet pour un lecteur d'écran. */}
         {errors.length > 0 && (
-          <div style={{ marginBottom:20 }}>
-            <div style={{ fontSize:11, color:"#aaa", letterSpacing:"0.06em", marginBottom:8 }}>ANALYSE HARMONIQUE</div>
+          <div style={{ marginBottom:20 }} role="status" aria-live="polite">
+            <div style={{ fontSize:11, color:"#6b6b6b", letterSpacing:"0.06em", marginBottom:8 }}>ANALYSE HARMONIQUE</div>
             <div style={{ display:"flex", flexDirection:"column" as const, gap:6 }}>
               {errors.map((err, i) => (
                 <div key={i} style={{
@@ -841,7 +844,7 @@ export default function HarmoniaEditor({
 
         {/* Pas d'erreurs et notes placées */}
         {errors.length === 0 && placedNotes > 0 && (
-          <div style={{
+          <div role="status" aria-live="polite" style={{
             marginBottom:20, padding:"8px 12px", borderRadius:8,
             background:"#F0FFF4", border:"0.5px solid #9AE6B4",
             fontSize:12, color:"#276749", display:"flex", alignItems:"center", gap:8,

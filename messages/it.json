@@ -131,7 +131,8 @@
     "c40": "L'invenzione a due voci",
     "d40": "Soggetto, imitazione all'ottava, controsoggetto, episodi e piano tonale — la scrittura dell'invenzione nello stile di Bach.",
     "c41": "La scrittura di stile",
-    "d41": "Pasticciare il classico, il romantico e il primo Novecento — la disciplina di scrittura di stile del DEM."
+    "d41": "Pasticciare il classico, il romantico e il primo Novecento — la disciplina di scrittura di stile del DEM.",
+    "locked": "Richiede abbonamento"
   },
   "cours": {
     "level1": "Livello 1",
@@ -2263,7 +2264,7 @@
   "landing": {
     "topbar": "Lezione 37 disponibile — Schenker e analisi motivica",
     "topbarCta": "Scopri →",
-    "badge": "5 livelli · 37 lezioni · 700+ esercizi",
+    "badge": "5 livelli · {count} corsi · 700+ esercizi",
     "h1": "Padroneggia l'armonia tonale.",
     "h1em": "Davvero.",
     "sub": "L'armonia tonale. Rigorosamente.",
@@ -2285,7 +2286,216 @@
     "ctaH2": "Inizia a capire",
     "ctaEm": "la musica",
     "ctaSub": "3 lezioni gratuite. Nessuna carta di credito. Inizia ora.",
-    "ctaBtn": "Inizia gratuitamente →"
+    "ctaBtn": "Inizia gratuitamente →",
+    "navCursus": "Percorso",
+    "navDashboard": "Il mio spazio →",
+    "navSignIn": "Accedi →",
+    "features": [
+      {
+        "title": "{count} corsi strutturati",
+        "desc": "Dalle origini acustiche della scala alle tecniche dei grandi compositori — cinque livelli progressivi che coprono l'armonia classica, il jazz, l'impressionismo e la composizione."
+      },
+      {
+        "title": "Esercizi SATB interattivi",
+        "desc": "Collochi le note sui pentagrammi voce per voce. La validazione armonica rileva in tempo reale quinte parallele, incroci ed errori di tessitura."
+      },
+      {
+        "title": "Feedback immediato",
+        "desc": "Ogni nota collocata viene analizzata secondo le regole del contrappunto tonale. Impara dai propri errori nel momento in cui si producono."
+      },
+      {
+        "title": "Audio di alta qualità",
+        "desc": "Pianoforte campionato in alta fedeltà. Ascolti ogni accordo, ogni progressione, ogni voicing — dalle cadenze di Bach alle sostituzioni di tritono del jazz."
+      },
+      {
+        "title": "24 tonalità",
+        "desc": "Pagina di riferimento completa: scale, armature, accordi diatonici, tritoni funzionali e regole mnemoniche per le 12 maggiori e le 12 minori."
+      },
+      {
+        "title": "6 lingue",
+        "desc": "Français, English, Español, Deutsch, Português, Italiano. Harmonia è pensata per i musicisti di tutto il mondo."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Studi il corso",
+        "desc": "Ogni corso spiega i concetti con esempi audio, tabelle riepilogative e aneddoti sui grandi compositori."
+      },
+      {
+        "title": "Si eserciti con il quiz",
+        "desc": "Domande casuali estratte da un insieme di oltre 90 per corso — identificazione, costruzione e analisi, da Bach ai Radiohead."
+      },
+      {
+        "title": "Svolga gli esercizi",
+        "desc": "Collochi le note sui pentagrammi SATB, scelga i rivolti giusti, analizzi lo stile dei maestri. Il motore convalida le sue scelte all'istante."
+      },
+      {
+        "title": "Progredisca",
+        "desc": "{count} corsi, 24 tonalità, 5 livelli. Dalla scala di base alle tecniche compositive dei grandi maestri."
+      }
+    ],
+    "cursusLabel": "Percorso di conservatorio",
+    "cursusH2": "5 livelli progressivi",
+    "cursusSub": "Dai fondamenti tonali all'armonia contemporanea — ispirato ai grandi trattati (Dubois, Piston, Schönberg, Aldwell)",
+    "cursusCta": "Vedi il percorso completo — programma, prezzi e accesso per istituti →",
+    "levelLabel": "LIVELLO",
+    "levels": [
+      {
+        "title": "Fondamenti tonali",
+        "target": "Accesso al diploma",
+        "refs": "Dubois · Piston",
+        "modules": [
+          "Scale e gradi",
+          "Costruzione degli accordi",
+          "Funzioni armoniche",
+          "Cadenze e punteggiatura"
+        ]
+      },
+      {
+        "title": "Scrittura avanzata",
+        "target": "Diploma · Laurea",
+        "refs": "Koechlin · Aldwell",
+        "modules": [
+          "Modulazioni avanzate",
+          "Dominanti secondarie",
+          "Accordi alterati",
+          "Cromatismo"
+        ]
+      },
+      {
+        "title": "Analisi strutturale",
+        "target": "Laurea · Magistrale",
+        "refs": "Schönberg · Riemann",
+        "modules": [
+          "Analisi funzionale",
+          "Forme musicali",
+          "Riduzione schenkeriana",
+          "Bach → Wagner"
+        ]
+      },
+      {
+        "title": "Armonia estesa",
+        "target": "Magistrale",
+        "refs": "Messiaen · Levine",
+        "modules": [
+          "Modalità",
+          "Impressionismo",
+          "Politonalità",
+          "Estensioni jazz"
+        ]
+      },
+      {
+        "title": "Specializzazioni",
+        "target": "Tutti i livelli avanzati",
+        "refs": "5 percorsi a scelta",
+        "modules": [
+          "Fuga e stile Bach",
+          "Musica per immagini",
+          "Jazz avanzato",
+          "Analisi Schenker"
+        ]
+      }
+    ],
+    "plans": [
+      {
+        "name": "Gratuito",
+        "desc": "Per scoprire l'armonia tonale",
+        "cta": "Inizia gratuitamente",
+        "badge": "",
+        "features": [
+          "Corsi da 1 a {free} completi",
+          "Quiz illimitato (corsi 1–{free})",
+          "Esercizi SATB di livello 1",
+          "Dettato armonico",
+          "Pagina delle 24 tonalità",
+          "Audio di alta qualità"
+        ],
+        "notIncluded": [
+          "Corsi da {freePlus} a {count}",
+          "Esercizi di livello 2–5",
+          "Funzionalità IA"
+        ]
+      },
+      {
+        "name": "Studente",
+        "desc": "Tutti i corsi e gli esercizi",
+        "cta": "Scegli Studente",
+        "badge": "Il più popolare",
+        "features": [
+          "Tutti i corsi (da 1 a {count})",
+          "Quiz illimitato su tutti i corsi",
+          "700+ esercizi SATB",
+          "24 tonalità × 4 posizioni",
+          "Tutti i livelli di difficoltà",
+          "Aggiornamenti continui"
+        ],
+        "notIncluded": [
+          "Funzionalità IA"
+        ]
+      },
+      {
+        "name": "Pro",
+        "desc": "Studente + funzionalità IA",
+        "cta": "Scegli Pro",
+        "badge": "Miglior rapporto qualità-prezzo",
+        "features": [
+          "Tutto il piano Studente",
+          "Assistente IA conversazionale",
+          "Analisi di partiture MusicXML",
+          "Biblioteca di 110 progressioni",
+          "Comparatore di 11 stili armonici",
+          "Supporto prioritario"
+        ],
+        "notIncluded": []
+      }
+    ],
+    "testimonialsLabel": "Testimonianze",
+    "testimonialsH2": "Cosa dicono i musicisti",
+    "testimonials": [
+      {
+        "text": "Ho provato diversi metodi di armonia online. Harmonia è il primo in cui capisco davvero perché le regole esistono — non solo come applicarle.",
+        "author": "Marc D.",
+        "role": "Chitarrista jazz, 3 anni di pratica"
+      },
+      {
+        "text": "Il feedback in tempo reale sulle quinte parallele mi ha insegnato più in due settimane che sei mesi di lezioni frontali. Collocare le note sul pentagramma è intuitivo.",
+        "author": "Sofia R.",
+        "role": "Studentessa di conservatorio"
+      },
+      {
+        "text": "La pagina delle 24 tonalità è un riferimento che consulto di continuo. E avere tutto in 6 lingue mi permette di confrontarmi con i miei allievi italiani.",
+        "author": "Thomas K.",
+        "role": "Insegnante di pianoforte, Berlino"
+      }
+    ],
+    "faqLabel": "Domande frequenti",
+    "faqH2": "Tutto quello che vuole sapere",
+    "faq": [
+      {
+        "q": "Servono basi di teoria musicale?",
+        "a": "No. Il corso 1 parte dalle origini acustiche della scala — non è richiesto alcun prerequisito. Harmonia è adatta sia ai principianti sia ai musicisti che vogliono formalizzare ciò che già sanno."
+      },
+      {
+        "q": "Quanto tempo serve per padroneggiare il programma?",
+        "a": "Il livello 1 (9 corsi) rappresenta circa 30-50 ore di lavoro, a seconda del ritmo e del punto di partenza. Con un'ora di pratica regolare al giorno, conti 6-8 settimane."
+      },
+      {
+        "q": "Gli esercizi vanno bene per qualsiasi strumento?",
+        "a": "Sì. L'armonia tonale è un linguaggio universale. Gli esercizi allenano la comprensione armonica astratta — applicabile a qualsiasi strumento o alla composizione."
+      },
+      {
+        "q": "Posso disdire l'abbonamento in qualsiasi momento?",
+        "a": "Sì, senza vincoli. La disdetta ha effetto alla fine del periodo in corso. Con il piano annuale mantiene l'accesso fino alla fine dell'anno pagato."
+      },
+      {
+        "q": "I contenuti vengono aggiornati regolarmente?",
+        "a": "Sì. Harmonia è in sviluppo attivo — nuovi esercizi, corsi e funzionalità vengono aggiunti con regolarità. Gli abbonati Pro ricevono tutti gli aggiornamenti."
+      }
+    ],
+    "ctaNote": "Corsi da 1 a {free} · Quiz illimitato · Esercizi SATB",
+    "footerPrivacy": "Privacy",
+    "footerTerms": "Termini",
+    "footerContact": "Contatti"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -3535,159 +3745,159 @@
       "quizFinishBtn": "Vedi il punteggio →"
     }
   },
-    "cours40": {
-      "badge": "Livello 2 · Corso 40",
-      "title": "L'invenzione a due voci",
-      "subtitle": "Soggetto, imitazione all'ottava, controsoggetto, episodi e piano tonale — la scrittura dell'invenzione nello stile di Bach, verso il contrappunto del DEM.",
-      "sections": {
-        "structure": "La struttura",
-        "developpement": "Lo sviluppo",
-        "quiz": "Allenamento"
-      },
-      "quiz": {
-        "perfect": "Perfetto! Padroneggi il soggetto, l'imitazione all'ottava e il piano tonale dell'invenzione.",
-        "veryGood": "Molto bene! Qualche punto da consolidare (procedimenti motivici, episodi in marcia).",
-        "keepGoing": "Continua — rileggi il ruolo del soggetto, dell'imitazione e degli episodi prima di ricominciare."
-      },
-      "narrative": {
-        "navStructure": "La struttura",
-        "navDeveloppement": "Lo sviluppo",
-        "navQuiz": "Allenamento",
-        "headerBadge": "Livello 2 · Corso 40",
-        "headerTitle": "L'invenzione a due voci",
-        "maitreConceptLabel": "L'invenzione a due voci",
-        "maitreAnecdote": "Nel 1723, Johann Sebastian Bach riunì quindici brevi pezzi (BWV 772–786) che chiamò «Invenzioni» a uso dei suoi allievi — primo fra tutti il figlio Wilhelm Friedemann. Nella prefazione assegnò loro un duplice scopo: imparare a suonare con pulizia a due voci, ma soprattutto ad «avere buone idee (inventiones) e a svilupparle». Ogni invenzione nasce da un solo motivo: una cellula di poche note che Bach imita, rovescia, frammenta e conduce attraverso le tonalità vicine. Tutta l'arte sta in questa economia — far sorgere un intero pezzo da un'idea minuscola.",
-        "maitreLesson": "Un'invenzione è un motivo a cui si dà vita: lo si enuncia, lo si imita all'ottava, lo si sviluppa in episodi e lo si riporta alla tonica. Un solo soggetto ben scelto basta a costruire tutto il pezzo.",
-        "structSectionTitle": "Il soggetto, l'imitazione e il controsoggetto",
-        "structIntro": "Un'<strong>invenzione a due voci</strong> è un brano contrappuntistico in cui due voci indipendenti dialogano a partire da un <strong>motivo unico</strong>, il soggetto. È l'antenata diretta della fuga e il primo passo verso il contrappunto di Bach richiesto al DEM.",
-        "structInfoBox": "<strong>Il principio:</strong> tutto il materiale del brano — melodia, accompagnamento, transizioni — deriva da un solo motivo. Nulla è gratuito: ogni disegno è una trasformazione del soggetto o del suo controsoggetto.",
-        "structSujetTitle": "Il soggetto (motivo generatore)",
-        "structSujetText": "Il <strong>soggetto</strong> è il motivo melodico di partenza. La sua <strong>testa del soggetto</strong> (incipit) — le sue prime note, il suo ritmo e il suo profilo caratteristici — dà al brano la sua identità riconoscibile. Un buon soggetto è <em>breve</em> e <em>memorizzabile</em>.",
-        "structSujetListenBtn": "▶ Ascoltare il soggetto (do maggiore)",
-        "structImitTitle": "L'imitazione",
-        "structImitText": "La <strong>seconda voce</strong> ripete il soggetto dopo un breve ritardo. Il più delle volte l'imitazione avviene <strong>all'ottava</strong> (talvolta alla quinta). È l'imitazione a creare il dialogo a due voci.",
-        "structImitBox": "<strong>All'ottava:</strong> la risposta riproduce fedelmente il soggetto, un'ottava più in basso (o più in alto). Alla <em>quinta</em>, ci si avvicina al principio soggetto/risposta della fuga, ma l'invenzione resta il più delle volte all'ottava.",
-        "structImitListenBtn": "▶ Ascoltare soggetto + imitazione all'ottava",
-        "structCsTitle": "Il controsoggetto (voce libera)",
-        "structCsText": "Mentre la 2ª voce enuncia il soggetto imitato, la 1ª voce prosegue con un <strong>controsoggetto</strong> — un disegno melodico ricorrente che accompagna il soggetto — o con una <strong>voce libera</strong>. Le due voci devono restare realmente indipendenti (contrappunto).",
-        "structCsBox": "<strong>Indipendenza delle voci:</strong> il controsoggetto non deve limitarsi a raddoppiare il soggetto in accordi. Dialoga con esso: ritmi complementari, moto contrario, entrate sfalsate. Qui sta tutta la difficoltà del contrappunto a due voci.",
-        "devSectionTitle": "Episodi, procedimenti motivici, piano tonale e metodo",
-        "devIntro": "Una volta esposto e imitato il soggetto, l'invenzione si dispiega: degli <strong>episodi</strong> assicurano i collegamenti e le modulazioni, mentre il motivo viene incessantemente <strong>sviluppato</strong> attraverso una serie di procedimenti. Il tutto segue un preciso <strong>piano tonale</strong>.",
-        "devEpisodesTitle": "Gli episodi (divertimenti)",
-        "devEpisodesText": "Gli <strong>episodi</strong> (o divertimenti) sono passaggi di collegamento fondati su <strong>frammenti del motivo</strong>. Spesso sono trattati in <strong>marcia</strong> (sequenza): un frammento viene ripetuto ad altezze successive, il che fa <em>modulare</em> e conduce da una tonalità alla successiva.",
-        "devProcedesTitle": "I procedimenti di sviluppo motivico",
-        "devProcedesClickHint": "Clicca su un procedimento per ascoltarlo (motivo poi la sua trasformazione).",
-        "devProcedeReplayBtn": "▶ Riascoltare",
-        "devStretteBox": "<strong>Lo stretto:</strong> imitazione molto ravvicinata in cui la 2ª voce entra <em>prima</em> che la 1ª abbia finito di enunciare il soggetto. Le entrate si sovrappongono, stringendo il tessuto. In un'invenzione si incontrano soprattutto <em>stretti leggeri</em>; diventa sistematico nella fuga.",
-        "devPlanTitle": "Il piano tonale",
-        "devPlanText": "Un'invenzione non è una successione libera: segue un <strong>percorso tonale</strong>. In maggiore: esposizione alla <strong>tonica</strong>, modulazione alla <strong>dominante</strong>, sviluppo attraverso le <strong>tonalità vicine</strong>, poi ritorno alla tonica per concludere.",
-        "devPlanZone1": "Esposizione",
-        "devPlanZone2": "Modulazione",
-        "devPlanZone3": "Sviluppo",
-        "devPlanZone4": "Conclusione",
-        "devPlanTon1": "Tonica (I)",
-        "devPlanTon2": "Dominante (V)",
-        "devPlanTon3": "Tonalità vicine",
-        "devPlanTon4": "Ritorno alla tonica (I)",
-        "devPlanMineurBox": "<strong>In modo minore:</strong> dopo l'esposizione, la modulazione avviene il più delle volte verso il <em>relativo maggiore</em> (tonalità del III grado), talvolta verso la dominante minore — l'equivalente del passaggio tonica → dominante del maggiore.",
-        "devMethodeTitle": "Metodo: comporre una piccola invenzione (da 8 a 16 battute)",
-        "devMethodeIntro": "Quattro tappe per costruire un'invenzione completa partendo da zero:",
-        "devMethodeStep1": "Inventare un soggetto breve e caratteristico (poche note dal profilo e dal ritmo riconoscibili).",
-        "devMethodeStep2": "Imitarlo all'ottava alla seconda voce, accompagnando il soggetto imitato con un controsoggetto (o con una voce libera).",
-        "devMethodeStep3": "Costruire episodi in marcia su frammenti del motivo, che modulino verso la dominante e poi verso le tonalità vicine.",
-        "devMethodeStep4": "Riportare il soggetto alla tonica e concludere con una cadenza perfetta (cadenza conclusiva; alcune cadenze intermedie punteggiano le articolazioni tonali).",
-        "devGedalgeBox": "<strong>Verso il DEM:</strong> il rigore del lavoro motivico — soggetto, controsoggetto, entrate, marce — è codificato da André Gédalge nel suo <em>Traité de la fugue</em> (1901). Padroneggiare l'invenzione a due voci prepara direttamente alla prova di contrappunto nello stile di Bach del DEM.",
-        "quizSectionTitle": "Allenamento",
-        "quizScoreLabel": "Punteggio:",
-        "quizFeedbackExcellent": "Perfetto! Padroneggi il soggetto, l'imitazione all'ottava e il piano tonale dell'invenzione.",
-        "quizFeedbackGood": "Molto bene! Qualche punto da consolidare (procedimenti motivici, episodi in marcia).",
-        "quizFeedbackKeepGoing": "Continua — rileggi il ruolo del soggetto, dell'imitazione e degli episodi prima di ricominciare.",
-        "quizResetBtn": "↻ Ricominciare",
-        "quizQuestionCounter": "Domanda",
-        "quizPoolInfo": "domande in totale",
-        "quizNextBtn": "Domanda successiva →",
-        "quizFinishBtn": "Vedere il punteggio →"
-      }
+  "cours40": {
+    "badge": "Livello 2 · Corso 40",
+    "title": "L'invenzione a due voci",
+    "subtitle": "Soggetto, imitazione all'ottava, controsoggetto, episodi e piano tonale — la scrittura dell'invenzione nello stile di Bach, verso il contrappunto del DEM.",
+    "sections": {
+      "structure": "La struttura",
+      "developpement": "Lo sviluppo",
+      "quiz": "Allenamento"
     },
-    "cours41": {
-      "badge": "Livello 5 · Corso 41",
-      "title": "La scrittura di stile",
-      "subtitle": "Pasticciare il classico, il romantico e il primo Novecento — la disciplina di scrittura di stile del DEM (ciclo specializzato / CPES): individuare le firme di uno stile e poi riprodurle.",
-      "sections": {
-        "styles": "Gli stili",
-        "methode": "Metodo e svolgimenti commentati",
-        "quiz": "Allenamento"
-      },
-      "quiz": {
-        "perfect": "Perfetto! Individui senza esitazione le firme del classico, del romantico e del primo Novecento.",
-        "veryGood": "Molto bene! Restano da affinare alcuni tratti stilistici (accordi alterati romantici, planing debussiano).",
-        "keepGoing": "Continua — rileggi le firme di ciascuno stile prima di lanciarti nel pastiche."
-      },
-      "narrative": {
-        "navStyles": "Gli stili",
-        "navMethode": "Metodo e svolgimenti commentati",
-        "navQuiz": "Allenamento",
-        "headerBadge": "Livello 5 · Corso 41",
-        "headerTitle": "La scrittura di stile",
-        "maitreConceptLabel": "Il pastiche stilistico",
-        "maitreAnecdote": "Al Conservatorio di Parigi, Maurice Ravel fu il pasticheur più sottile della sua generazione: il suo <em>Menuet sur le nom d'Haydn</em> o il suo <em>À la manière de…</em> (Borodin, Chabrier) mostrano un compositore capace di indossare una scrittura altrui fin nei minimi tic armonici. Riprodurre uno stile non significa copiarlo: significa averne smontato i meccanismi — linguaggio armonico, ritmo, tessitura, condotta delle parti — al punto da poter scrivere «del Mozart» o «del Brahms» inediti. È esattamente ciò che richiede l'esame di scrittura di stile del DEM.",
-        "maitreLesson": "Scrivere in uno stile significa anzitutto analizzarlo: si individuano le firme di un modello (armonia, ritmo armonico, tessitura, condotta delle parti, cadenze), poi le si riproduce — senza mai commettere un anacronismo.",
-        "stylesSectionTitle": "Tre stili, tre linguaggi armonici",
-        "stylesIntro": "La scrittura di stile — il <strong>pastiche</strong> — è una disciplina centrale del <strong>DEM di scrittura</strong> (ciclo specializzato / CPES, p. es. al CRR di Lione). Si chiede di armonizzare un canto dato o di completare una pagina <em>nel linguaggio di un'epoca precisa</em>. Ogni stile possiede le sue <strong>firme</strong>: un modo riconoscibile di trattare l'armonia, il ritmo, la tessitura e la condotta delle parti.",
-        "stylesInfoBox": "<strong>Il principio:</strong> si pasticcia bene solo ciò che si è analizzato. Prima di scrivere, si individuano i tratti caratteristici dello stile mirato; poi li si riproduce fedelmente, senza mescolarvi procedimenti di un'altra epoca.",
-        "stylesClickHint": "Clicca su uno stile per espandere la sua descrizione e le sue firme.",
-        "stylesSignaturesLabel": "FIRME STILISTICHE",
-        "style_classique_period": "Classico",
-        "style_classique_name": "Stile classico — Mozart, Haydn",
-        "style_classique_desc": "Lo stile classico mira alla <strong>chiarezza</strong>. Un canto dato vi si armonizza volentieri per <strong>quartetto d'archi</strong>, in tessitura <strong>omofonica</strong>: una melodia nitida, sostenuta da un accompagnamento trasparente (spesso un <em>basso albertino</em>). L'armonia è diatonica, le cadenze nette.",
-        "style_classique_sig1": "Tessitura <strong>omofonica chiara</strong> (quartetto d'archi: 2 violini, viola, violoncello).",
-        "style_classique_sig2": "Armonia <strong>diatonica</strong>, funzione tonale limpida.",
-        "style_classique_sig3": "<strong>Ritmo armonico regolare</strong> (cambio d'accordo per tempo o per battuta).",
-        "style_classique_sig4": "Cadenze nette (<strong>perfetta</strong>, <strong>semicadenza</strong>); accompagnamento <strong>albertino</strong>.",
-        "style_romantique_period": "Romantico",
-        "style_romantique_name": "Stile romantico — Schumann, Brahms",
-        "style_romantique_desc": "Il romanticismo intensifica l'espressione. Il <strong>cromatismo</strong> si generalizza, l'armonia si <strong>arricchisce</strong> (none, misture modali, seste eccedenti, accordi alterati). La <strong>condotta delle parti</strong> si infittisce, la tonalità diventa ambigua e il fraseggio richiama il <em>rubato</em>.",
-        "style_romantique_sig1": "<strong>Cromatismo espressivo</strong> e risoluzioni differite.",
-        "style_romantique_sig2": "Armonia <strong>arricchita</strong>: 9e, misture, <strong>seste eccedenti</strong>, accordi alterati.",
-        "style_romantique_sig3": "<strong>Condotta delle parti densa</strong>; <strong>ambiguità tonale</strong> (accordi pivot, enarmonia).",
-        "style_romantique_sig4": "Fraseggio flessibile che richiama il <strong>rubato</strong>.",
-        "style_xxe_period": "Primo Novecento",
-        "style_xxe_name": "Stile primo Novecento — Ravel, Debussy, Fauré",
-        "style_xxe_desc": "Al volgere del secolo, il <strong>colore</strong> prevale sulla funzione. Si ricorre alla <strong>modalità</strong>, agli <strong>accordi paralleli</strong> (<em>planing</em>), alle <strong>9e e 11e non risolte</strong>, alla <strong>scala esatonale</strong> e ai <strong>pedali</strong>. L'accordo vale per il suo timbro armonico più che per la sua tensione.",
-        "style_xxe_sig1": "<strong>Modalità</strong> (modi antichi) che sfugge alla sensibile.",
-        "style_xxe_sig2": "<strong>Accordi paralleli</strong> (planing); <strong>9e/11e non risolte</strong>.",
-        "style_xxe_sig3": "<strong>Scala esatonale</strong>; <strong>pedali</strong> colorati.",
-        "style_xxe_sig4": "<strong>Il colore prevale sulla funzione</strong> tonale.",
-        "stylesPiegeBox": "<strong>La trappola da evitare — l'anacronismo armonico:</strong> ogni procedimento appartiene a un'epoca. Una sesta eccedente «alla Brahms» in un pastiche di Mozart, o un planing debussiano in una pagina classica, «rompono» immediatamente lo stile. È l'errore più severamente penalizzato al DEM.",
-        "methodeSectionTitle": "Metodo di pastiche e svolgimenti commentati",
-        "methodeIntro": "Pasticciare non è improvvisare: è un procedimento <strong>metodico</strong>. Si analizza un modello, se ne estraggono le firme, poi si scrive riproducendole fedelmente. Ecco la procedura da seguire.",
-        "methodeStepsTitle": "Le quattro tappe del pastiche",
-        "methodeStep1": "<strong>Analizzare un modello</strong> dell'epoca mirata: individuarne il linguaggio armonico, il ritmo armonico, la tessitura e la condotta delle parti prima di scrivere la minima nota.",
-        "methodeStep2": "<strong>Elencare le firme</strong>: quali accordi, quali cadenze, quale tessitura, quali procedimenti caratterizzano questo stile e lo distinguono dagli altri?",
-        "methodeStep3": "<strong>Scrivere riproducendo queste firme</strong>: armonizzare il canto dato (o completare la pagina) mobilitando unicamente le risorse del linguaggio scelto.",
-        "methodeStep4": "<strong>Rileggere a caccia di anacronismi</strong>: verificare che nessun procedimento estraneo all'epoca si sia insinuato nella scrittura.",
-        "methodeAnachroBox": "<strong>L'anacronismo armonico, ancora una volta:</strong> è la trappola n. 1 del pastiche. Riprodurre uno stile presuppone una disciplina negativa — <em>vietarsi</em> tutto ciò che non appartiene all'epoca (niente scala esatonale in Mozart, niente basso albertino in Debussy).",
-        "corrigesTitle": "Svolgimenti commentati — un esempio per stile",
-        "corrigesIntro": "Su uno stesso <em>canto dato</em>, ecco come il linguaggio scelto orienta la realizzazione. Ogni svolgimento mette in evidenza le firme da riprodurre.",
-        "corrige_classique_title": "Svolgimento — armonizzazione classica (Mozart/Haydn)",
-        "corrige_classique_text": "Si armonizza il canto dato per <strong>quartetto d'archi</strong> in tessitura omofonica. Armonia diatonica, ritmo armonico regolare (un accordo per tempo forte), accompagnamento in <strong>basso albertino</strong> al secondo violino e alla viola. La frase si chiude su una <strong>cadenza perfetta</strong>, preparata da un II–V–I o da una semicadenza a metà percorso. Nessun cromatismo superfluo: prevale la chiarezza.",
-        "corrige_romantique_title": "Svolgimento — armonizzazione romantica (Schumann/Brahms)",
-        "corrige_romantique_text": "Lo stesso canto si colora di <strong>cromatismo</strong>: accordi di <strong>nona</strong>, <strong>misture</strong> dal modo minore, una <strong>sesta eccedente</strong> che conduce alla dominante. La <strong>condotta delle parti</strong> si fa densa, con linee interne espressive; una risoluzione viene <strong>differita</strong> per creare l'<strong>ambiguità tonale</strong>. Il fraseggio, ampio, presuppone il rubato.",
-        "corrige_xxe_title": "Svolgimento — armonizzazione primo Novecento (Ravel/Debussy/Fauré)",
-        "corrige_xxe_text": "Qui l'armonia diventa <strong>colore</strong>: si impiegano <strong>accordi paralleli</strong> (planing) di none, un <strong>pedale</strong> colorato al basso, inflessioni <strong>modali</strong> (p. es. dorico o misolidio) e, puntualmente, la <strong>scala esatonale</strong>. Le dissonanze non si risolvono: suonano per se stesse. La funzione tonale si dissolve a favore della sensazione.",
-        "methodeDemBox": "<strong>Verso il DEM:</strong> l'esame di scrittura di stile (cursus DEM / CPES, p. es. CRR di Lione) valuta precisamente questa capacità di scrivere «nello stile di». Allenarsi sui tre linguaggi — classico, romantico, primo Novecento — e bandire l'anacronismo è la chiave della prova.",
-        "quizSectionTitle": "Allenamento",
-        "quizScoreLabel": "Punteggio:",
-        "quizFeedbackExcellent": "Perfetto! Individui senza esitazione le firme del classico, del romantico e del primo Novecento.",
-        "quizFeedbackGood": "Molto bene! Restano da affinare alcuni tratti stilistici (accordi alterati romantici, planing debussiano).",
-        "quizFeedbackKeepGoing": "Continua — rileggi le firme di ciascuno stile prima di lanciarti nel pastiche.",
-        "quizResetBtn": "↻ Ricomincia",
-        "quizQuestionCounter": "Domanda",
-        "quizPoolInfo": "domande in totale",
-        "quizNextBtn": "Domanda successiva →",
-        "quizFinishBtn": "Vedi il punteggio →"
-      }
+    "quiz": {
+      "perfect": "Perfetto! Padroneggi il soggetto, l'imitazione all'ottava e il piano tonale dell'invenzione.",
+      "veryGood": "Molto bene! Qualche punto da consolidare (procedimenti motivici, episodi in marcia).",
+      "keepGoing": "Continua — rileggi il ruolo del soggetto, dell'imitazione e degli episodi prima di ricominciare."
     },
+    "narrative": {
+      "navStructure": "La struttura",
+      "navDeveloppement": "Lo sviluppo",
+      "navQuiz": "Allenamento",
+      "headerBadge": "Livello 2 · Corso 40",
+      "headerTitle": "L'invenzione a due voci",
+      "maitreConceptLabel": "L'invenzione a due voci",
+      "maitreAnecdote": "Nel 1723, Johann Sebastian Bach riunì quindici brevi pezzi (BWV 772–786) che chiamò «Invenzioni» a uso dei suoi allievi — primo fra tutti il figlio Wilhelm Friedemann. Nella prefazione assegnò loro un duplice scopo: imparare a suonare con pulizia a due voci, ma soprattutto ad «avere buone idee (inventiones) e a svilupparle». Ogni invenzione nasce da un solo motivo: una cellula di poche note che Bach imita, rovescia, frammenta e conduce attraverso le tonalità vicine. Tutta l'arte sta in questa economia — far sorgere un intero pezzo da un'idea minuscola.",
+      "maitreLesson": "Un'invenzione è un motivo a cui si dà vita: lo si enuncia, lo si imita all'ottava, lo si sviluppa in episodi e lo si riporta alla tonica. Un solo soggetto ben scelto basta a costruire tutto il pezzo.",
+      "structSectionTitle": "Il soggetto, l'imitazione e il controsoggetto",
+      "structIntro": "Un'<strong>invenzione a due voci</strong> è un brano contrappuntistico in cui due voci indipendenti dialogano a partire da un <strong>motivo unico</strong>, il soggetto. È l'antenata diretta della fuga e il primo passo verso il contrappunto di Bach richiesto al DEM.",
+      "structInfoBox": "<strong>Il principio:</strong> tutto il materiale del brano — melodia, accompagnamento, transizioni — deriva da un solo motivo. Nulla è gratuito: ogni disegno è una trasformazione del soggetto o del suo controsoggetto.",
+      "structSujetTitle": "Il soggetto (motivo generatore)",
+      "structSujetText": "Il <strong>soggetto</strong> è il motivo melodico di partenza. La sua <strong>testa del soggetto</strong> (incipit) — le sue prime note, il suo ritmo e il suo profilo caratteristici — dà al brano la sua identità riconoscibile. Un buon soggetto è <em>breve</em> e <em>memorizzabile</em>.",
+      "structSujetListenBtn": "▶ Ascoltare il soggetto (do maggiore)",
+      "structImitTitle": "L'imitazione",
+      "structImitText": "La <strong>seconda voce</strong> ripete il soggetto dopo un breve ritardo. Il più delle volte l'imitazione avviene <strong>all'ottava</strong> (talvolta alla quinta). È l'imitazione a creare il dialogo a due voci.",
+      "structImitBox": "<strong>All'ottava:</strong> la risposta riproduce fedelmente il soggetto, un'ottava più in basso (o più in alto). Alla <em>quinta</em>, ci si avvicina al principio soggetto/risposta della fuga, ma l'invenzione resta il più delle volte all'ottava.",
+      "structImitListenBtn": "▶ Ascoltare soggetto + imitazione all'ottava",
+      "structCsTitle": "Il controsoggetto (voce libera)",
+      "structCsText": "Mentre la 2ª voce enuncia il soggetto imitato, la 1ª voce prosegue con un <strong>controsoggetto</strong> — un disegno melodico ricorrente che accompagna il soggetto — o con una <strong>voce libera</strong>. Le due voci devono restare realmente indipendenti (contrappunto).",
+      "structCsBox": "<strong>Indipendenza delle voci:</strong> il controsoggetto non deve limitarsi a raddoppiare il soggetto in accordi. Dialoga con esso: ritmi complementari, moto contrario, entrate sfalsate. Qui sta tutta la difficoltà del contrappunto a due voci.",
+      "devSectionTitle": "Episodi, procedimenti motivici, piano tonale e metodo",
+      "devIntro": "Una volta esposto e imitato il soggetto, l'invenzione si dispiega: degli <strong>episodi</strong> assicurano i collegamenti e le modulazioni, mentre il motivo viene incessantemente <strong>sviluppato</strong> attraverso una serie di procedimenti. Il tutto segue un preciso <strong>piano tonale</strong>.",
+      "devEpisodesTitle": "Gli episodi (divertimenti)",
+      "devEpisodesText": "Gli <strong>episodi</strong> (o divertimenti) sono passaggi di collegamento fondati su <strong>frammenti del motivo</strong>. Spesso sono trattati in <strong>marcia</strong> (sequenza): un frammento viene ripetuto ad altezze successive, il che fa <em>modulare</em> e conduce da una tonalità alla successiva.",
+      "devProcedesTitle": "I procedimenti di sviluppo motivico",
+      "devProcedesClickHint": "Clicca su un procedimento per ascoltarlo (motivo poi la sua trasformazione).",
+      "devProcedeReplayBtn": "▶ Riascoltare",
+      "devStretteBox": "<strong>Lo stretto:</strong> imitazione molto ravvicinata in cui la 2ª voce entra <em>prima</em> che la 1ª abbia finito di enunciare il soggetto. Le entrate si sovrappongono, stringendo il tessuto. In un'invenzione si incontrano soprattutto <em>stretti leggeri</em>; diventa sistematico nella fuga.",
+      "devPlanTitle": "Il piano tonale",
+      "devPlanText": "Un'invenzione non è una successione libera: segue un <strong>percorso tonale</strong>. In maggiore: esposizione alla <strong>tonica</strong>, modulazione alla <strong>dominante</strong>, sviluppo attraverso le <strong>tonalità vicine</strong>, poi ritorno alla tonica per concludere.",
+      "devPlanZone1": "Esposizione",
+      "devPlanZone2": "Modulazione",
+      "devPlanZone3": "Sviluppo",
+      "devPlanZone4": "Conclusione",
+      "devPlanTon1": "Tonica (I)",
+      "devPlanTon2": "Dominante (V)",
+      "devPlanTon3": "Tonalità vicine",
+      "devPlanTon4": "Ritorno alla tonica (I)",
+      "devPlanMineurBox": "<strong>In modo minore:</strong> dopo l'esposizione, la modulazione avviene il più delle volte verso il <em>relativo maggiore</em> (tonalità del III grado), talvolta verso la dominante minore — l'equivalente del passaggio tonica → dominante del maggiore.",
+      "devMethodeTitle": "Metodo: comporre una piccola invenzione (da 8 a 16 battute)",
+      "devMethodeIntro": "Quattro tappe per costruire un'invenzione completa partendo da zero:",
+      "devMethodeStep1": "Inventare un soggetto breve e caratteristico (poche note dal profilo e dal ritmo riconoscibili).",
+      "devMethodeStep2": "Imitarlo all'ottava alla seconda voce, accompagnando il soggetto imitato con un controsoggetto (o con una voce libera).",
+      "devMethodeStep3": "Costruire episodi in marcia su frammenti del motivo, che modulino verso la dominante e poi verso le tonalità vicine.",
+      "devMethodeStep4": "Riportare il soggetto alla tonica e concludere con una cadenza perfetta (cadenza conclusiva; alcune cadenze intermedie punteggiano le articolazioni tonali).",
+      "devGedalgeBox": "<strong>Verso il DEM:</strong> il rigore del lavoro motivico — soggetto, controsoggetto, entrate, marce — è codificato da André Gédalge nel suo <em>Traité de la fugue</em> (1901). Padroneggiare l'invenzione a due voci prepara direttamente alla prova di contrappunto nello stile di Bach del DEM.",
+      "quizSectionTitle": "Allenamento",
+      "quizScoreLabel": "Punteggio:",
+      "quizFeedbackExcellent": "Perfetto! Padroneggi il soggetto, l'imitazione all'ottava e il piano tonale dell'invenzione.",
+      "quizFeedbackGood": "Molto bene! Qualche punto da consolidare (procedimenti motivici, episodi in marcia).",
+      "quizFeedbackKeepGoing": "Continua — rileggi il ruolo del soggetto, dell'imitazione e degli episodi prima di ricominciare.",
+      "quizResetBtn": "↻ Ricominciare",
+      "quizQuestionCounter": "Domanda",
+      "quizPoolInfo": "domande in totale",
+      "quizNextBtn": "Domanda successiva →",
+      "quizFinishBtn": "Vedere il punteggio →"
+    }
+  },
+  "cours41": {
+    "badge": "Livello 5 · Corso 41",
+    "title": "La scrittura di stile",
+    "subtitle": "Pasticciare il classico, il romantico e il primo Novecento — la disciplina di scrittura di stile del DEM (ciclo specializzato / CPES): individuare le firme di uno stile e poi riprodurle.",
+    "sections": {
+      "styles": "Gli stili",
+      "methode": "Metodo e svolgimenti commentati",
+      "quiz": "Allenamento"
+    },
+    "quiz": {
+      "perfect": "Perfetto! Individui senza esitazione le firme del classico, del romantico e del primo Novecento.",
+      "veryGood": "Molto bene! Restano da affinare alcuni tratti stilistici (accordi alterati romantici, planing debussiano).",
+      "keepGoing": "Continua — rileggi le firme di ciascuno stile prima di lanciarti nel pastiche."
+    },
+    "narrative": {
+      "navStyles": "Gli stili",
+      "navMethode": "Metodo e svolgimenti commentati",
+      "navQuiz": "Allenamento",
+      "headerBadge": "Livello 5 · Corso 41",
+      "headerTitle": "La scrittura di stile",
+      "maitreConceptLabel": "Il pastiche stilistico",
+      "maitreAnecdote": "Al Conservatorio di Parigi, Maurice Ravel fu il pasticheur più sottile della sua generazione: il suo <em>Menuet sur le nom d'Haydn</em> o il suo <em>À la manière de…</em> (Borodin, Chabrier) mostrano un compositore capace di indossare una scrittura altrui fin nei minimi tic armonici. Riprodurre uno stile non significa copiarlo: significa averne smontato i meccanismi — linguaggio armonico, ritmo, tessitura, condotta delle parti — al punto da poter scrivere «del Mozart» o «del Brahms» inediti. È esattamente ciò che richiede l'esame di scrittura di stile del DEM.",
+      "maitreLesson": "Scrivere in uno stile significa anzitutto analizzarlo: si individuano le firme di un modello (armonia, ritmo armonico, tessitura, condotta delle parti, cadenze), poi le si riproduce — senza mai commettere un anacronismo.",
+      "stylesSectionTitle": "Tre stili, tre linguaggi armonici",
+      "stylesIntro": "La scrittura di stile — il <strong>pastiche</strong> — è una disciplina centrale del <strong>DEM di scrittura</strong> (ciclo specializzato / CPES, p. es. al CRR di Lione). Si chiede di armonizzare un canto dato o di completare una pagina <em>nel linguaggio di un'epoca precisa</em>. Ogni stile possiede le sue <strong>firme</strong>: un modo riconoscibile di trattare l'armonia, il ritmo, la tessitura e la condotta delle parti.",
+      "stylesInfoBox": "<strong>Il principio:</strong> si pasticcia bene solo ciò che si è analizzato. Prima di scrivere, si individuano i tratti caratteristici dello stile mirato; poi li si riproduce fedelmente, senza mescolarvi procedimenti di un'altra epoca.",
+      "stylesClickHint": "Clicca su uno stile per espandere la sua descrizione e le sue firme.",
+      "stylesSignaturesLabel": "FIRME STILISTICHE",
+      "style_classique_period": "Classico",
+      "style_classique_name": "Stile classico — Mozart, Haydn",
+      "style_classique_desc": "Lo stile classico mira alla <strong>chiarezza</strong>. Un canto dato vi si armonizza volentieri per <strong>quartetto d'archi</strong>, in tessitura <strong>omofonica</strong>: una melodia nitida, sostenuta da un accompagnamento trasparente (spesso un <em>basso albertino</em>). L'armonia è diatonica, le cadenze nette.",
+      "style_classique_sig1": "Tessitura <strong>omofonica chiara</strong> (quartetto d'archi: 2 violini, viola, violoncello).",
+      "style_classique_sig2": "Armonia <strong>diatonica</strong>, funzione tonale limpida.",
+      "style_classique_sig3": "<strong>Ritmo armonico regolare</strong> (cambio d'accordo per tempo o per battuta).",
+      "style_classique_sig4": "Cadenze nette (<strong>perfetta</strong>, <strong>semicadenza</strong>); accompagnamento <strong>albertino</strong>.",
+      "style_romantique_period": "Romantico",
+      "style_romantique_name": "Stile romantico — Schumann, Brahms",
+      "style_romantique_desc": "Il romanticismo intensifica l'espressione. Il <strong>cromatismo</strong> si generalizza, l'armonia si <strong>arricchisce</strong> (none, misture modali, seste eccedenti, accordi alterati). La <strong>condotta delle parti</strong> si infittisce, la tonalità diventa ambigua e il fraseggio richiama il <em>rubato</em>.",
+      "style_romantique_sig1": "<strong>Cromatismo espressivo</strong> e risoluzioni differite.",
+      "style_romantique_sig2": "Armonia <strong>arricchita</strong>: 9e, misture, <strong>seste eccedenti</strong>, accordi alterati.",
+      "style_romantique_sig3": "<strong>Condotta delle parti densa</strong>; <strong>ambiguità tonale</strong> (accordi pivot, enarmonia).",
+      "style_romantique_sig4": "Fraseggio flessibile che richiama il <strong>rubato</strong>.",
+      "style_xxe_period": "Primo Novecento",
+      "style_xxe_name": "Stile primo Novecento — Ravel, Debussy, Fauré",
+      "style_xxe_desc": "Al volgere del secolo, il <strong>colore</strong> prevale sulla funzione. Si ricorre alla <strong>modalità</strong>, agli <strong>accordi paralleli</strong> (<em>planing</em>), alle <strong>9e e 11e non risolte</strong>, alla <strong>scala esatonale</strong> e ai <strong>pedali</strong>. L'accordo vale per il suo timbro armonico più che per la sua tensione.",
+      "style_xxe_sig1": "<strong>Modalità</strong> (modi antichi) che sfugge alla sensibile.",
+      "style_xxe_sig2": "<strong>Accordi paralleli</strong> (planing); <strong>9e/11e non risolte</strong>.",
+      "style_xxe_sig3": "<strong>Scala esatonale</strong>; <strong>pedali</strong> colorati.",
+      "style_xxe_sig4": "<strong>Il colore prevale sulla funzione</strong> tonale.",
+      "stylesPiegeBox": "<strong>La trappola da evitare — l'anacronismo armonico:</strong> ogni procedimento appartiene a un'epoca. Una sesta eccedente «alla Brahms» in un pastiche di Mozart, o un planing debussiano in una pagina classica, «rompono» immediatamente lo stile. È l'errore più severamente penalizzato al DEM.",
+      "methodeSectionTitle": "Metodo di pastiche e svolgimenti commentati",
+      "methodeIntro": "Pasticciare non è improvvisare: è un procedimento <strong>metodico</strong>. Si analizza un modello, se ne estraggono le firme, poi si scrive riproducendole fedelmente. Ecco la procedura da seguire.",
+      "methodeStepsTitle": "Le quattro tappe del pastiche",
+      "methodeStep1": "<strong>Analizzare un modello</strong> dell'epoca mirata: individuarne il linguaggio armonico, il ritmo armonico, la tessitura e la condotta delle parti prima di scrivere la minima nota.",
+      "methodeStep2": "<strong>Elencare le firme</strong>: quali accordi, quali cadenze, quale tessitura, quali procedimenti caratterizzano questo stile e lo distinguono dagli altri?",
+      "methodeStep3": "<strong>Scrivere riproducendo queste firme</strong>: armonizzare il canto dato (o completare la pagina) mobilitando unicamente le risorse del linguaggio scelto.",
+      "methodeStep4": "<strong>Rileggere a caccia di anacronismi</strong>: verificare che nessun procedimento estraneo all'epoca si sia insinuato nella scrittura.",
+      "methodeAnachroBox": "<strong>L'anacronismo armonico, ancora una volta:</strong> è la trappola n. 1 del pastiche. Riprodurre uno stile presuppone una disciplina negativa — <em>vietarsi</em> tutto ciò che non appartiene all'epoca (niente scala esatonale in Mozart, niente basso albertino in Debussy).",
+      "corrigesTitle": "Svolgimenti commentati — un esempio per stile",
+      "corrigesIntro": "Su uno stesso <em>canto dato</em>, ecco come il linguaggio scelto orienta la realizzazione. Ogni svolgimento mette in evidenza le firme da riprodurre.",
+      "corrige_classique_title": "Svolgimento — armonizzazione classica (Mozart/Haydn)",
+      "corrige_classique_text": "Si armonizza il canto dato per <strong>quartetto d'archi</strong> in tessitura omofonica. Armonia diatonica, ritmo armonico regolare (un accordo per tempo forte), accompagnamento in <strong>basso albertino</strong> al secondo violino e alla viola. La frase si chiude su una <strong>cadenza perfetta</strong>, preparata da un II–V–I o da una semicadenza a metà percorso. Nessun cromatismo superfluo: prevale la chiarezza.",
+      "corrige_romantique_title": "Svolgimento — armonizzazione romantica (Schumann/Brahms)",
+      "corrige_romantique_text": "Lo stesso canto si colora di <strong>cromatismo</strong>: accordi di <strong>nona</strong>, <strong>misture</strong> dal modo minore, una <strong>sesta eccedente</strong> che conduce alla dominante. La <strong>condotta delle parti</strong> si fa densa, con linee interne espressive; una risoluzione viene <strong>differita</strong> per creare l'<strong>ambiguità tonale</strong>. Il fraseggio, ampio, presuppone il rubato.",
+      "corrige_xxe_title": "Svolgimento — armonizzazione primo Novecento (Ravel/Debussy/Fauré)",
+      "corrige_xxe_text": "Qui l'armonia diventa <strong>colore</strong>: si impiegano <strong>accordi paralleli</strong> (planing) di none, un <strong>pedale</strong> colorato al basso, inflessioni <strong>modali</strong> (p. es. dorico o misolidio) e, puntualmente, la <strong>scala esatonale</strong>. Le dissonanze non si risolvono: suonano per se stesse. La funzione tonale si dissolve a favore della sensazione.",
+      "methodeDemBox": "<strong>Verso il DEM:</strong> l'esame di scrittura di stile (cursus DEM / CPES, p. es. CRR di Lione) valuta precisamente questa capacità di scrivere «nello stile di». Allenarsi sui tre linguaggi — classico, romantico, primo Novecento — e bandire l'anacronismo è la chiave della prova.",
+      "quizSectionTitle": "Allenamento",
+      "quizScoreLabel": "Punteggio:",
+      "quizFeedbackExcellent": "Perfetto! Individui senza esitazione le firme del classico, del romantico e del primo Novecento.",
+      "quizFeedbackGood": "Molto bene! Restano da affinare alcuni tratti stilistici (accordi alterati romantici, planing debussiano).",
+      "quizFeedbackKeepGoing": "Continua — rileggi le firme di ciascuno stile prima di lanciarti nel pastiche.",
+      "quizResetBtn": "↻ Ricomincia",
+      "quizQuestionCounter": "Domanda",
+      "quizPoolInfo": "domande in totale",
+      "quizNextBtn": "Domanda successiva →",
+      "quizFinishBtn": "Vedi il punteggio →"
+    }
+  },
   "conservatoire": {
     "cours1": {
       "intuition": "Prima di qualsiasi teoria, la scala è un'esperienza fisica — sentire la tensione dei semitoni e la risoluzione verso la tonica.",

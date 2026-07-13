@@ -3,6 +3,9 @@
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { COURS_COUNT, FREE_COURS } from "@/lib/catalogue";
+
+const FREE_COUNT = FREE_COURS.length;
 
 const PLANS = [
   {
@@ -14,12 +17,13 @@ const PLANS = [
     desc: "Pour découvrir l'harmonie tonale",
     bg: "#fff",
     border: "#e0dbd3",
-    labelColor: "#888",
+    labelColor: "#6b6b6b",
     priceColor: "#1a1a1a",
-    periodColor: "#aaa",
-    descColor: "#999",
+    periodColor: "#6b6b6b",
+    descColor: "#6b6b6b",
     checkColor: "#0F6E56",
     featureColor: "#555",
+    mutedColor: "#767676",
     cta: "Commencer gratuitement",
     ctaBg: "transparent",
     ctaColor: "#1a1a1a",
@@ -27,15 +31,15 @@ const PLANS = [
     badge: null,
     badgeBg: "",
     features: [
-      "Cours 1 à 3 complets",
-      "Quiz illimité (cours 1–3)",
+      `Cours 1 à ${FREE_COUNT} complets`,
+      `Quiz illimité (cours 1–${FREE_COUNT})`,
       "Exercices niveau 1",
       "Page des 24 tonalités",
-      "Audio Salamander",
+      "Audio haute qualité",
     ],
     notIncluded: [
-      "Cours 4 à 19",
-      "Exercices niveaux 2–3",
+      `Cours ${FREE_COUNT + 1} à ${COURS_COUNT}`,
+      "Exercices niveaux 2–5",
       "Fonctionnalités IA",
     ],
   },
@@ -51,28 +55,29 @@ const PLANS = [
     desc: "Tous les cours et exercices",
     bg: "#1a1a1a",
     border: "#1a1a1a",
-    labelColor: "#aaa",
+    labelColor: "#bdbdbd",
     priceColor: "#fff",
-    periodColor: "#666",
-    descColor: "#888",
+    periodColor: "#bdbdbd",
+    descColor: "#bdbdbd",
     checkColor: "#9AE6B4",
-    featureColor: "#ccc",
+    featureColor: "#e8e8e8",
+    mutedColor: "#9a9a9a",
     cta: "Choisir Étudiant",
-    ctaBg: "#BA7517",
+    ctaBg: "#9A5F12",
     ctaColor: "#fff",
     ctaBorder: "none",
     badge: "Le plus populaire",
-    badgeBg: "#BA7517",
+    badgeBg: "#9A5F12",
     features: [
-      "Tous les cours (1 à 19)",
+      `Tous les cours (1 à ${COURS_COUNT})`,
       "Quiz illimité sur tous les cours",
-      "Tous les exercices SATB",
+      "700+ exercices SATB",
       "24 tonalités × 4 positions",
       "Tous les niveaux de difficulté",
       "Mises à jour continues",
     ],
     notIncluded: [
-      "Fonctionnalités IA (bientôt)",
+      "Fonctionnalités IA",
     ],
   },
   {
@@ -87,27 +92,31 @@ const PLANS = [
     desc: "Étudiant + fonctionnalités IA",
     bg: "#FAEEDA",
     border: "#F6AD55",
-    labelColor: "#BA7517",
+    labelColor: "#8a5a10",
     priceColor: "#1a1a1a",
-    periodColor: "#BA7517",
+    periodColor: "#8a5a10",
     descColor: "#8a5c00",
-    checkColor: "#BA7517",
+    checkColor: "#0F6E56",
     featureColor: "#5c3d00",
+    mutedColor: "#7a6a52",
     cta: "Choisir Pro",
     ctaBg: "#1a1a1a",
     ctaColor: "#fff",
     ctaBorder: "none",
     badge: "Meilleure valeur",
     badgeBg: "#1a1a1a",
+    // Ces fonctionnalités sont livrées (/assistant, /analyse-partition,
+    // /progressions, /comparateur) : la page annonçait « bientôt disponibles »
+    // sur le seul différenciateur du plan à 19 €, au moment même du paiement.
     features: [
       "Tout le plan Étudiant",
-      "Correction IA de vos harmonisations",
-      "Analyse stylistique automatique",
-      "Suggestions contextuelles",
-      "Accès prioritaire aux nouvelles IA",
+      "Assistant IA conversationnel",
+      "Analyse de partition MusicXML",
+      "Bibliothèque de 110 progressions",
+      "Comparateur de 11 styles harmoniques",
+      "Support prioritaire",
     ],
     notIncluded: [],
-    aiNote: "Fonctionnalités IA bientôt disponibles",
   },
 ];
 
@@ -129,12 +138,14 @@ export default function UpgradePage() {
       });
       const data = await res.json();
       if (data.url) {
-        window.location.href = data.url;
+        window.location.assign(data.url);
+      } else if (res.status === 401) {
+        window.location.assign(`/${locale}/sign-in?redirect_url=/${locale}/upgrade`);
       } else {
-        setError("Erreur lors de la création de la session.");
+        setError(data.error ?? "Impossible de démarrer le paiement. Réessayez dans un instant.");
       }
     } catch {
-      setError("Erreur réseau. Réessaie.");
+      setError("Erreur réseau. Vérifiez votre connexion et réessayez.");
     } finally {
       setLoading(null);
     }
@@ -146,27 +157,27 @@ export default function UpgradePage() {
 
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", color: "#BA7517", textTransform: "uppercase", marginBottom: 8, fontFamily: "system-ui" }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: "#9A5F12", textTransform: "uppercase", marginBottom: 8, fontFamily: "system-ui" }}>
             Tarifs
           </div>
-          <h1 style={{ fontSize: 36, fontWeight: 400, fontFamily: "Georgia, serif", color: "#1a1a1a", margin: "0 0 12px" }}>
+          <h1 style={{ fontSize: "clamp(28px, 5vw, 36px)", fontWeight: 400, fontFamily: "Georgia, serif", color: "#1a1a1a", margin: "0 0 12px" }}>
             Choisissez votre rythme
           </h1>
-          <p style={{ fontSize: 15, color: "#888", margin: "0 0 28px", lineHeight: 1.7, fontFamily: "system-ui" }}>
-            19 cours · 700+ exercices · Feedback harmonique en temps réel
+          <p style={{ fontSize: 15, color: "#5f5f5f", margin: "0 0 28px", lineHeight: 1.7, fontFamily: "system-ui" }}>
+            {COURS_COUNT} cours · 700+ exercices · Feedback harmonique en temps réel
           </p>
 
           {/* Toggle mensuel/annuel */}
           <div style={{ display: "inline-flex", alignItems: "center", gap: 12, background: "#fff", border: "0.5px solid #e0dbd3", borderRadius: 30, padding: "6px 8px", fontFamily: "system-ui" }}>
             <button
               onClick={() => setAnnual(false)}
-              style={{ padding: "7px 20px", borderRadius: 24, border: "none", background: !annual ? "#1a1a1a" : "transparent", color: !annual ? "#fff" : "#888", fontSize: 13, fontWeight: 500, cursor: "pointer", transition: "all .15s" }}
+              style={{ padding: "7px 20px", borderRadius: 24, border: "none", background: !annual ? "#1a1a1a" : "transparent", color: !annual ? "#fff" : "#5f5f5f", fontSize: 13, fontWeight: 500, cursor: "pointer", transition: "all .15s", minHeight: 44 }}
             >
               Mensuel
             </button>
             <button
               onClick={() => setAnnual(true)}
-              style={{ padding: "7px 20px", borderRadius: 24, border: "none", background: annual ? "#1a1a1a" : "transparent", color: annual ? "#fff" : "#888", fontSize: 13, fontWeight: 500, cursor: "pointer", transition: "all .15s", display: "flex", alignItems: "center", gap: 8 }}
+              style={{ padding: "7px 20px", borderRadius: 24, border: "none", background: annual ? "#1a1a1a" : "transparent", color: annual ? "#fff" : "#5f5f5f", fontSize: 13, fontWeight: 500, cursor: "pointer", transition: "all .15s", display: "flex", alignItems: "center", gap: 8, minHeight: 44 }}
             >
               Annuel
               <span style={{ background: "#0F6E56", color: "#fff", fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: 10, letterSpacing: "0.05em" }}>
@@ -177,7 +188,7 @@ export default function UpgradePage() {
         </div>
 
         {/* Plans */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: "2rem", alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: 16, marginBottom: "2rem", alignItems: "start" }}>
           {PLANS.map(plan => {
             const priceKey = plan.key
               ? (annual ? (plan as any).annualKey : (plan as any).monthlyKey)
@@ -241,19 +252,13 @@ export default function UpgradePage() {
                     </div>
                   ))}
                   {plan.notIncluded.map(f => (
-                    <div key={f} style={{ display: "flex", gap: 9, fontSize: 13, alignItems: "flex-start", fontFamily: "system-ui", opacity: 0.4 }}>
-                      <span style={{ color: "#aaa", flexShrink: 0, marginTop: 1 }}>✗</span>
-                      <span style={{ color: "#aaa", lineHeight: 1.4 }}>{f}</span>
+                    <div key={f} style={{ display: "flex", gap: 9, fontSize: 13, alignItems: "flex-start", fontFamily: "system-ui" }}>
+                      <span style={{ color: plan.mutedColor, flexShrink: 0, marginTop: 1 }}>✗</span>
+                      <span style={{ color: plan.mutedColor, lineHeight: 1.4 }}>{f}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* AI note */}
-                {"aiNote" in plan && plan.aiNote && (
-                  <div style={{ marginTop: 20, padding: "10px 12px", background: "rgba(186,117,23,0.12)", borderRadius: 8, fontSize: 12, color: "#8a5c00", fontFamily: "system-ui", lineHeight: 1.4, fontStyle: "italic" }}>
-                    ✦ {plan.aiNote}
-                  </div>
-                )}
               </div>
             );
           })}

@@ -4,6 +4,8 @@ import { getUserPlan } from "@/lib/progression";
 
 const SYSTEM_PROMPT = `Tu es un professeur expert en théorie musicale et harmonie tonale pour la plateforme Harmonia (getharmonia.app). Tu enseignes de la gamme aux modes, du contrepoint au jazz. Tu réponds toujours en français sauf si l'élève écrit dans une autre langue. Tes réponses sont claires, pédagogiques et illustrées d'exemples musicaux concrets. Tu utilises les noms d'accords en anglais (C, Dm7, G7) et les noms de notes en français (Do, Ré, Mi). Tu te réfères aux cours Harmonia quand c'est pertinent. Sois concis : max 4-5 paragraphes par réponse.`;
 
+const MODEL = "claude-sonnet-5";
+
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
@@ -30,22 +32,62 @@ export async function POST(req: Request) {
     return Response.json({ error: "Corps de requête invalide" }, { status: 400 });
   }
 
-  // Keep last 20 messages to limit context size
-  const trimmedMessages = messages.slice(-20);
+  // On borne le contexte envoyé au modèle.
+  const trimmedMessages = messages.slice(-20).map(m => ({
+    role: m.role,
+    content: String(m.content ?? "").slice(0, 4000),
+  }));
 
+  /**
+   * Réponse en flux : l'appel était bloquant et l'utilisateur Pro attendait
+   * 5 à 15 secondes devant une interface figée — sur la fonctionnalité même qui
+   * justifie le passage de 9 € à 19 €.
+   */
   try {
-    const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-20250514",
+    const stream = anthropic.messages.stream({
+      model: MODEL,
       max_tokens: 1000,
       system: SYSTEM_PROMPT,
       messages: trimmedMessages,
     });
 
-    const text = message.content[0]?.type === "text" ? message.content[0].text : "";
-    return Response.json({ text });
+    const encoder = new TextEncoder();
+    const body = new ReadableStream<Uint8Array>({
+      async start(controller) {
+        try {
+          for await (const event of stream) {
+            if (
+              event.type === "content_block_delta" &&
+              event.delta.type === "text_delta"
+            ) {
+              controller.enqueue(encoder.encode(event.delta.text));
+            }
+          }
+          controller.close();
+        } catch (error) {
+          console.error("Anthropic stream error:", error);
+          controller.error(error);
+        }
+      },
+      cancel() {
+        stream.abort();
+      },
+    });
+
+    return new Response(body, {
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "no-store",
+        "X-Accel-Buffering": "no",
+      },
+    });
   } catch (error) {
+    // Le détail de l'erreur fournisseur reste dans les logs : il était jusqu'ici
+    // renvoyé tel quel au client.
     console.error("Anthropic error:", error);
-    const msg = error instanceof Error ? error.message : String(error);
-    return Response.json({ error: msg }, { status: 500 });
+    return Response.json(
+      { error: "L'assistant est momentanément indisponible. Réessayez dans un instant." },
+      { status: 502 }
+    );
   }
 }
