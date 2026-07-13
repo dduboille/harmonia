@@ -4023,5 +4023,47 @@
       "titre": "Chaconne BWV 1004",
       "compositeur": "J.S. Bach"
     }
+  },
+  "satb": {
+    "voices": {
+      "bass": "Basse",
+      "tenor": "Ténor",
+      "alto": "Alto",
+      "soprano": "Soprano"
+    },
+    "accidentals": {
+      "bb": "Double bémol",
+      "b": "Bémol",
+      "n": "Naturel",
+      "sharp": "Dièse",
+      "x": "Double dièse"
+    },
+    "analysisTitle": "ANALYSE HARMONIQUE",
+    "noError": "Aucune erreur pour les notes placées.",
+    "complete": "Progression complète — aucune erreur harmonique détectée.",
+    "range": "Tessiture {voice} :",
+    "octave": "Octave",
+    "clear": "Effacer la note",
+    "play": "Écouter",
+    "showSolution": "Voir la solution proposée",
+    "hideSolution": "Masquer la solution proposée",
+    "reset": "Recommencer",
+    "measure": "Mesure",
+    "errors": {
+      "range": "{voice} hors tessiture (m.{from})",
+      "spacing": "{v1}–{v2} : plus d'une octave (m.{from})",
+      "crossing": "Croisement {v1} > {v2} (m.{from})",
+      "parallel_fifth": "Quintes parallèles {v1}–{v2} (m.{from}→{to})",
+      "parallel_octave": "Octaves parallèles {v1}–{v2} (m.{from}→{to})",
+      "cross_relation": "Fausse relation {v1}↔{v2} ({note}, m.{from}→{to})",
+      "missing_accidental": "{voice} : {note} naturel — en mode sans armure, utilisez {expected} (m.{from})",
+      "leading_tone": "Sensible mal résolue (m.{from})",
+      "seventh": "Septième mal résolue (m.{from})"
+    },
+    "exerciseDone": "Exercice terminé avec succès !",
+    "exercisePerfect": "Aucune erreur harmonique — excellent travail.",
+    "defaultTitle": "Exercice de conduite de voix",
+    "loadingScore": "Chargement de la partition…",
+    "accidentalLabel": "Altération :"
   }
 }

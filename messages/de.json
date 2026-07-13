@@ -4024,5 +4024,47 @@
       "titre": "Chaconne BWV 1004",
       "compositeur": "J.S. Bach"
     }
+  },
+  "satb": {
+    "voices": {
+      "bass": "Bass",
+      "tenor": "Tenor",
+      "alto": "Alt",
+      "soprano": "Sopran"
+    },
+    "accidentals": {
+      "bb": "Doppel-B",
+      "b": "B (Erniedrigung)",
+      "n": "Auflösungszeichen",
+      "sharp": "Kreuz",
+      "x": "Doppelkreuz"
+    },
+    "analysisTitle": "HARMONISCHE ANALYSE",
+    "noError": "Keine Fehler in den gesetzten Noten.",
+    "complete": "Progression vollständig — keine harmonischen Fehler gefunden.",
+    "range": "Ambitus {voice}:",
+    "octave": "Oktave",
+    "clear": "Note löschen",
+    "play": "Anhören",
+    "showSolution": "Musterlösung anzeigen",
+    "hideSolution": "Musterlösung ausblenden",
+    "reset": "Neu beginnen",
+    "measure": "Takt",
+    "errors": {
+      "range": "{voice} außerhalb des Ambitus (T. {from})",
+      "spacing": "{v1}–{v2}: mehr als eine Oktave Abstand (T. {from})",
+      "crossing": "Stimmkreuzung: {v1} über {v2} (T. {from})",
+      "parallel_fifth": "Parallelquinten {v1}–{v2} (T. {from}→{to})",
+      "parallel_octave": "Parallel-Oktaven {v1}–{v2} (T. {from}→{to})",
+      "cross_relation": "Querstand {v1}↔{v2} ({note}, T. {from}→{to})",
+      "missing_accidental": "{voice}: {note} ohne Vorzeichen — ohne Generalvorzeichen bitte {expected} verwenden (T. {from})",
+      "leading_tone": "Leitton falsch aufgelöst (T. {from})",
+      "seventh": "Septime falsch aufgelöst (T. {from})"
+    },
+    "exerciseDone": "Übung erfolgreich abgeschlossen!",
+    "exercisePerfect": "Keine harmonischen Fehler — ausgezeichnete Arbeit.",
+    "defaultTitle": "Übung zur Stimmführung",
+    "loadingScore": "Partitur wird geladen…",
+    "accidentalLabel": "Vorzeichen:"
   }
 }

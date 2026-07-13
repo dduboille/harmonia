@@ -4023,5 +4023,47 @@
       "titre": "Chaconne BWV 1004",
       "compositeur": "J.S. Bach"
     }
+  },
+  "satb": {
+    "voices": {
+      "bass": "Bass",
+      "tenor": "Tenor",
+      "alto": "Alto",
+      "soprano": "Soprano"
+    },
+    "accidentals": {
+      "bb": "Double flat",
+      "b": "Flat",
+      "n": "Natural",
+      "sharp": "Sharp",
+      "x": "Double sharp"
+    },
+    "analysisTitle": "HARMONIC ANALYSIS",
+    "noError": "No errors in the notes placed so far.",
+    "complete": "Progression complete — no harmonic errors found.",
+    "range": "{voice} range:",
+    "octave": "Octave",
+    "clear": "Clear note",
+    "play": "Listen",
+    "showSolution": "Show the model answer",
+    "hideSolution": "Hide the model answer",
+    "reset": "Start over",
+    "measure": "Bar",
+    "errors": {
+      "range": "{voice} out of range (bar {from})",
+      "spacing": "{v1}–{v2}: more than an octave apart (bar {from})",
+      "crossing": "Voice crossing {v1} above {v2} (bar {from})",
+      "parallel_fifth": "Parallel fifths {v1}–{v2} (bars {from}→{to})",
+      "parallel_octave": "Parallel octaves {v1}–{v2} (bars {from}→{to})",
+      "cross_relation": "False relation {v1}↔{v2} ({note}, bars {from}→{to})",
+      "missing_accidental": "{voice}: {note} natural — without a key signature, use {expected} (bar {from})",
+      "leading_tone": "Leading note incorrectly resolved (bar {from})",
+      "seventh": "Seventh incorrectly resolved (bar {from})"
+    },
+    "exerciseDone": "Exercise completed!",
+    "exercisePerfect": "No harmonic errors — excellent work.",
+    "defaultTitle": "Voice-leading exercise",
+    "loadingScore": "Loading score…",
+    "accidentalLabel": "Accidental:"
   }
 }

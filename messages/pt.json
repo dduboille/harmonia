@@ -4024,5 +4024,47 @@
       "titre": "Chacona BWV 1004",
       "compositeur": "J.S. Bach"
     }
+  },
+  "satb": {
+    "voices": {
+      "bass": "Baixo",
+      "tenor": "Tenor",
+      "alto": "Contralto",
+      "soprano": "Soprano"
+    },
+    "accidentals": {
+      "bb": "Dobrado bemol",
+      "b": "Bemol",
+      "n": "Bequadro",
+      "sharp": "Sustenido",
+      "x": "Dobrado sustenido"
+    },
+    "analysisTitle": "ANÁLISE HARMÓNICA",
+    "noError": "Sem erros nas notas colocadas.",
+    "complete": "Progressão completa — nenhum erro harmónico detetado.",
+    "range": "Tessitura de {voice}:",
+    "octave": "Oitava",
+    "clear": "Apagar a nota",
+    "play": "Ouvir",
+    "showSolution": "Ver a solução proposta",
+    "hideSolution": "Ocultar a solução proposta",
+    "reset": "Recomeçar",
+    "measure": "Compasso",
+    "errors": {
+      "range": "{voice} fora da tessitura (c. {from})",
+      "spacing": "{v1}–{v2}: mais de uma oitava (c. {from})",
+      "crossing": "Cruzamento de vozes: {v1} acima de {v2} (c. {from})",
+      "parallel_fifth": "Quintas paralelas {v1}–{v2} (c. {from}→{to})",
+      "parallel_octave": "Oitavas paralelas {v1}–{v2} (c. {from}→{to})",
+      "cross_relation": "Falsa relação {v1}↔{v2} ({note}, c. {from}→{to})",
+      "missing_accidental": "{voice}: {note} natural — sem armação de clave, utilize {expected} (c. {from})",
+      "leading_tone": "Sensível mal resolvida (c. {from})",
+      "seventh": "Sétima mal resolvida (c. {from})"
+    },
+    "exerciseDone": "Exercício concluído com sucesso!",
+    "exercisePerfect": "Sem erros harmónicos — excelente trabalho.",
+    "defaultTitle": "Exercício de condução de vozes",
+    "loadingScore": "A carregar a partitura…",
+    "accidentalLabel": "Alteração:"
   }
 }

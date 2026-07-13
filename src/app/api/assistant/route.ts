@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { getUserPlan } from "@/lib/progression";
+import { rateLimit, tooManyRequests } from "@/lib/rate-limit";
 
 const SYSTEM_PROMPT = `Tu es un professeur expert en théorie musicale et harmonie tonale pour la plateforme Harmonia (getharmonia.app). Tu enseignes de la gamme aux modes, du contrepoint au jazz. Tu réponds toujours en français sauf si l'élève écrit dans une autre langue. Tes réponses sont claires, pédagogiques et illustrées d'exemples musicaux concrets. Tu utilises les noms d'accords en anglais (C, Dm7, G7) et les noms de notes en français (Do, Ré, Mi). Tu te réfères aux cours Harmonia quand c'est pertinent. Sois concis : max 4-5 paragraphes par réponse.`;
 
@@ -22,6 +23,11 @@ export async function POST(req: Request) {
   if (plan === "free") {
     return Response.json({ error: "Réservé au plan Pro" }, { status: 403 });
   }
+
+  // Chaque appel consomme des tokens facturés : un abonné pouvait solliciter
+  // l'assistant sans aucun plafond. La limite est par utilisateur, pas par IP.
+  const limit = rateLimit(`assistant:${userId}`, 30, 10 * 60 * 1000);
+  if (!limit.ok) return tooManyRequests(limit.retryAfter);
 
   let messages: ChatMessage[];
   try {

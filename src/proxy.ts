@@ -27,14 +27,23 @@ const isPublicRoute = createRouteMatcher([
   "/:locale/cursus",
   "/:locale/conditions",
   "/:locale/confidentialite",
-  "/:locale/preview",
+  // /preview n'est PAS ici : c'est le bac à sable de la landing (son en-tête dit
+  // « jamais en production »). Il était pourtant public et indexable, avec des
+  // chiffres périmés et des fonctionnalités annoncées « bientôt » alors qu'elles
+  // sont livrées. Il exige désormais un compte.
   "/:locale/landing-conservatoire",
   "/:locale/sign-in(.*)",
   "/:locale/sign-up(.*)",
   "/:locale/rejoindre(.*)",
+  // Ces deux formulaires sont servis depuis des pages publiques (/cursus,
+  // /landing-conservatoire) : sans cela le visiteur reçoit une redirection HTML
+  // et l'envoi échoue silencieusement.
+  //
+  // /api/subscribe n'est délibérément PAS ici : la route envoie un e-mail à
+  // l'adresse fournie dans le corps de la requête. Ouverte, elle constituerait
+  // un relais d'envoi anonyme au nom du domaine.
   "/api/stripe/webhook",
   "/api/webhooks/clerk",
-  "/api/subscribe",
   "/api/contact-cursus",
   "/api/contact-conservatoire",
 ]);

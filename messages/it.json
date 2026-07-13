@@ -4024,5 +4024,47 @@
       "titre": "Ciaccona BWV 1004",
       "compositeur": "J.S. Bach"
     }
+  },
+  "satb": {
+    "voices": {
+      "bass": "Basso",
+      "tenor": "Tenore",
+      "alto": "Contralto",
+      "soprano": "Soprano"
+    },
+    "accidentals": {
+      "bb": "Doppio bemolle",
+      "b": "Bemolle",
+      "n": "Bequadro",
+      "sharp": "Diesis",
+      "x": "Doppio diesis"
+    },
+    "analysisTitle": "ANALISI ARMONICA",
+    "noError": "Nessun errore nelle note collocate.",
+    "complete": "Progressione completa — nessun errore armonico rilevato.",
+    "range": "Estensione di {voice}:",
+    "octave": "Ottava",
+    "clear": "Cancella la nota",
+    "play": "Ascolta",
+    "showSolution": "Mostra la soluzione proposta",
+    "hideSolution": "Nascondi la soluzione proposta",
+    "reset": "Ricomincia",
+    "measure": "Battuta",
+    "errors": {
+      "range": "{voice} fuori estensione (b. {from})",
+      "spacing": "{v1}–{v2}: più di un'ottava di distanza (b. {from})",
+      "crossing": "Incrocio di voci: {v1} sopra {v2} (b. {from})",
+      "parallel_fifth": "Quinte parallele {v1}–{v2} (b. {from}→{to})",
+      "parallel_octave": "Ottave parallele {v1}–{v2} (b. {from}→{to})",
+      "cross_relation": "Falsa relazione {v1}↔{v2} ({note}, b. {from}→{to})",
+      "missing_accidental": "{voice}: {note} naturale — senza armatura di chiave, usare {expected} (b. {from})",
+      "leading_tone": "Sensibile risolta male (b. {from})",
+      "seventh": "Settima risolta male (b. {from})"
+    },
+    "exerciseDone": "Esercizio completato!",
+    "exercisePerfect": "Nessun errore armonico — ottimo lavoro.",
+    "defaultTitle": "Esercizio di condotta delle voci",
+    "loadingScore": "Caricamento della partitura…",
+    "accidentalLabel": "Alterazione:"
   }
 }

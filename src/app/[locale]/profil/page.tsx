@@ -110,7 +110,7 @@ export default async function ProfilPage({ params }: Props) {
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
             <div style={{ background: "#f4f1ec", borderRadius: 8, padding: "12px 16px" }}>
-              <div style={{ fontSize: 11, color: "#aaa", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: 4 }}>
+              <div style={{ fontSize: 11, color: "#6b6b6b", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: 4 }}>
                 Membre depuis
               </div>
               <div style={{ fontSize: 14, color: "#1a1a1a", fontWeight: 500 }}>
@@ -118,7 +118,7 @@ export default async function ProfilPage({ params }: Props) {
               </div>
             </div>
             <div style={{ background: "#f4f1ec", borderRadius: 8, padding: "12px 16px" }}>
-              <div style={{ fontSize: 11, color: "#aaa", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: 4 }}>
+              <div style={{ fontSize: 11, color: "#6b6b6b", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: 4 }}>
                 Identifiant
               </div>
               <div style={{ fontSize: 11, color: "#888", fontFamily: "monospace", wordBreak: "break-all" as const }}>
@@ -172,7 +172,7 @@ export default async function ProfilPage({ params }: Props) {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
               {periodEnd && (
                 <div style={{ background: "#f4f1ec", borderRadius: 8, padding: "12px 16px" }}>
-                  <div style={{ fontSize: 11, color: "#aaa", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: 4 }}>
+                  <div style={{ fontSize: 11, color: "#6b6b6b", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: 4 }}>
                     Renouvellement
                   </div>
                   <div style={{ fontSize: 14, color: "#1a1a1a", fontWeight: 500 }}>
@@ -181,7 +181,7 @@ export default async function ProfilPage({ params }: Props) {
                 </div>
               )}
               <div style={{ background: "#f4f1ec", borderRadius: 8, padding: "12px 16px" }}>
-                <div style={{ fontSize: 11, color: "#aaa", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: 4 }}>
+                <div style={{ fontSize: 11, color: "#6b6b6b", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: 4 }}>
                   Accès
                 </div>
                 <div style={{ fontSize: 14, color: "#1a1a1a", fontWeight: 500 }}>
@@ -192,7 +192,7 @@ export default async function ProfilPage({ params }: Props) {
           )}
 
           {plan !== "free" && (
-            <div style={{ marginTop: 16, padding: "12px 16px", background: "#f9f7f4", borderRadius: 8, fontSize: 12, color: "#aaa" }}>
+            <div style={{ marginTop: 16, padding: "12px 16px", background: "#f9f7f4", borderRadius: 8, fontSize: 12, color: "#6b6b6b" }}>
               Pour annuler ou gérer ton abonnement, contacte-nous à{" "}
               <a href="mailto:bonjour@getharmonia.app" style={{ color: "#185FA5" }}>
                 bonjour@getharmonia.app
@@ -220,7 +220,7 @@ export default async function ProfilPage({ params }: Props) {
               justifyContent: "space-between",
             }}>
               <span>📊 Voir ma progression</span>
-              <span style={{ color: "#bbb" }}>→</span>
+              <span style={{ color: "#767676" }}>→</span>
             </Link>
 
             <Link href={`/${locale}/cours`} style={{
@@ -235,7 +235,7 @@ export default async function ProfilPage({ params }: Props) {
               justifyContent: "space-between",
             }}>
               <span>📚 Continuer les cours</span>
-              <span style={{ color: "#bbb" }}>→</span>
+              <span style={{ color: "#767676" }}>→</span>
             </Link>
 
             <SignOutButton redirectUrl="/fr">

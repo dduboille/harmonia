@@ -23,8 +23,8 @@
 
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import PianoPlayer, { PianoPlayerRef, getInstrument } from "@/components/PianoPlayer";
-import { KEY_ACCIDENTALS } from "@/lib/key-accidentals";
 
 // VexFlow côté client uniquement
 const VexFlowScoreClient = dynamic(
@@ -34,19 +34,19 @@ const VexFlowScoreClient = dynamic(
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type NoteName = "C" | "D" | "E" | "F" | "G" | "A" | "B"
-  | "C#" | "Db" | "D#" | "Eb" | "F#" | "Gb" | "G#" | "Ab" | "A#" | "Bb"
-  | "Cbb" | "Dbb" | "Ebb" | "Fbb" | "Gbb" | "Abb" | "Bbb"
-  | "C##" | "D##" | "E##" | "F##" | "G##" | "A##" | "B##";
+// Les règles d'écriture et le vocabulaire SATB vivent dans lib/satb-rules.ts :
+// ils étaient définis ici, dans le composant, ce qui les rendait intestables.
+import type { NoteName, Voice, NoteEntry, Measure, ValidationError } from "@/lib/satb-rules";
+import {
+  VOICES,
+  VOICE_RANGES,
+  CHROMATIC_ORDER,
+  noteToMidi,
+  noteName,
+  validateSATB,
+} from "@/lib/satb-rules";
 
-export type Voice = "bass" | "tenor" | "alto" | "soprano";
-
-export interface NoteEntry {
-  name: NoteName | null; // null = vide
-  octave: number;
-}
-
-export type Measure = Record<Voice, NoteEntry>;
+export type { NoteName, Voice, NoteEntry, Measure, ValidationError };
 
 export interface HarmoniaEditorProps {
   title?: string;
@@ -59,23 +59,9 @@ export interface HarmoniaEditorProps {
   onComplete?: (measures: Measure[]) => void;
 }
 
-// ─── Constantes ───────────────────────────────────────────────────────────────
-
-const VOICES: Voice[] = ["bass", "tenor", "alto", "soprano"];
-
-const VOICE_LABELS: Record<Voice, string> = {
-  bass:    "Basse",
-  tenor:   "Ténor",
-  alto:    "Alto",
-  soprano: "Soprano",
-};
-
-const VOICE_RANGES: Record<Voice, { min: [NoteName, number]; max: [NoteName, number] }> = {
-  bass:    { min: ["E", 2], max: ["C", 4] },
-  tenor:   { min: ["C", 3], max: ["G", 4] },
-  alto:    { min: ["G", 3], max: ["C", 5] },
-  soprano: { min: ["C", 4], max: ["G", 5] },
-};
+// ─── Constantes d'interface ───────────────────────────────────────────────────
+// (VOICES, VOICE_LABELS, VOICE_RANGES, CHROMATIC_ORDER, noteToMidi et noteName
+//  proviennent désormais de lib/satb-rules.)
 
 const DEFAULT_OCTAVES: Record<Voice, number> = {
   bass: 2, tenor: 3, alto: 4, soprano: 4,
@@ -92,18 +78,17 @@ const NATURAL_KEYS: { name: NoteName; color: string }[] = [
   { name: "B", color: "#D53F8C" },
 ];
 
-// Modificateurs d'altération
+// Modificateurs d'altération. Le libellé est traduit à l'affichage : `labelKey`
+// pointe vers messages/*.json → satb.accidentals.
 type Accidental = "bb" | "b" | "n" | "#" | "##";
-const ACCIDENTALS: { symbol: string; value: Accidental; label: string }[] = [
-  { symbol: "𝄫", value: "bb", label: "Double bémol" },
-  { symbol: "♭", value: "b",  label: "Bémol" },
-  { symbol: "♮", value: "n",  label: "Naturel" },
-  { symbol: "♯", value: "#",  label: "Dièse" },
-  { symbol: "𝄪", value: "##", label: "Double dièse" },
+const ACCIDENTALS: { symbol: string; value: Accidental; labelKey: string }[] = [
+  { symbol: "𝄫", value: "bb", labelKey: "bb" },
+  { symbol: "♭", value: "b",  labelKey: "b" },
+  { symbol: "♮", value: "n",  labelKey: "n" },
+  { symbol: "♯", value: "#",  labelKey: "sharp" },
+  { symbol: "𝄪", value: "##", labelKey: "x" },
 ];
 
-// Ordre chromatique pour les demi-tons (flèches clavier) et comparaisons MIDI
-const CHROMATIC_ORDER = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
 const NOTE_TO_FR: Record<string, string> = {
   "C": "Do", "C#": "Do#", "Db": "Réb",
   "D": "Ré", "D#": "Ré#", "Eb": "Mib",
@@ -113,169 +98,6 @@ const NOTE_TO_FR: Record<string, string> = {
   "A": "La", "A#": "La#", "Bb": "Sib",
   "B": "Si",
 };
-
-function noteToMidi(name: string, octave: number): number {
-  const base = CHROMATIC_ORDER.indexOf(name.replace("b", "#").replace("Db","C#")
-    .replace("Eb","D#").replace("Gb","F#").replace("Ab","G#").replace("Bb","A#"));
-  return (octave + 1) * 12 + (base === -1 ? 0 : base);
-}
-
-function noteName(name: string): string {
-  // Normalize flats to sharps for midi
-  const map: Record<string,string> = { "Db":"C#","Eb":"D#","Gb":"F#","Ab":"G#","Bb":"A#" };
-  return map[name] || name;
-}
-
-/**
- * Convertit une note interne (nom anglais + octave) au format attendu par
- * Tone/@tonejs/piano, ex. "C4", "Bb3", "F#4". Les doubles altérations sont
- * réduites à un demi-ton chromatique simple via noteToMidi → nom dièse.
- */
-function noteToToneFormat(name: NoteName, octave: number): string {
-  // Tone gère nativement #, b et naturel. Les doubles altérations (##, bb) ne
-  // sont pas comprises : on les normalise via l'index chromatique.
-  if (name.includes("##") || name.includes("bb")) {
-    const midi = noteToMidi(noteName(name), octave);
-    const pc = ((midi % 12) + 12) % 12;
-    const oct = Math.floor(midi / 12) - 1;
-    return `${CHROMATIC_ORDER[pc]}${oct}`;
-  }
-  return `${name}${octave}`;
-}
-
-// ─── Validation harmonique ────────────────────────────────────────────────────
-
-interface ValidationError {
-  type: "parallel_fifth" | "parallel_octave" | "spacing" | "range" | "crossing" | "leading_tone" | "seventh" | "missing_accidental" | "cross_relation";
-  voices?: [Voice, Voice];
-  measure?: number;
-  message: string;
-  severity: "error" | "warning";
-}
-
-function validateSATB(measures: Measure[], keySignature?: string, checkAccidentals?: boolean): ValidationError[] {
-  const errors: ValidationError[] = [];
-
-  for (let m = 0; m < measures.length; m++) {
-    const cur = measures[m];
-
-    // 1. Tessitures
-    VOICES.forEach(v => {
-      const n = cur[v];
-      if (!n.name) return;
-      const midi = noteToMidi(noteName(n.name), n.octave);
-      const [minN, minO] = VOICE_RANGES[v].min;
-      const [maxN, maxO] = VOICE_RANGES[v].max;
-      const midiMin = noteToMidi(noteName(minN), minO);
-      const midiMax = noteToMidi(noteName(maxN), maxO);
-      if (midi < midiMin || midi > midiMax) {
-        errors.push({ type:"range", measure:m, message:`${VOICE_LABELS[v]} hors tessiture (m.${m+1})`, severity:"error" });
-      }
-    });
-
-    // 2. Espacements (S-A et A-T : max 1 octave)
-    const pairs: [Voice, Voice][] = [["soprano","alto"],["alto","tenor"]];
-    pairs.forEach(([v1, v2]) => {
-      const n1 = cur[v1], n2 = cur[v2];
-      if (!n1.name || !n2.name) return;
-      const diff = Math.abs(noteToMidi(noteName(n1.name), n1.octave) - noteToMidi(noteName(n2.name), n2.octave));
-      if (diff > 12) {
-        errors.push({ type:"spacing", voices:[v1,v2], measure:m, message:`${VOICE_LABELS[v1]}–${VOICE_LABELS[v2]} : plus d'une octave (m.${m+1})`, severity:"error" });
-      }
-    });
-
-    // 3. Croisements (voix inférieure > voix supérieure)
-    const order: Voice[] = ["soprano","alto","tenor","bass"];
-    for (let i = 0; i < order.length - 1; i++) {
-      const upper = cur[order[i]], lower = cur[order[i+1]];
-      if (!upper.name || !lower.name) continue;
-      const midiUpper = noteToMidi(noteName(upper.name), upper.octave);
-      const midiLower = noteToMidi(noteName(lower.name), lower.octave);
-      if (midiLower > midiUpper) {
-        errors.push({ type:"crossing", voices:[order[i],order[i+1]], measure:m, message:`Croisement ${VOICE_LABELS[order[i+1]]} > ${VOICE_LABELS[order[i]]} (m.${m+1})`, severity:"error" });
-      }
-    }
-
-    // 4. Quintes et octaves parallèles (entre mesures successives)
-    if (m > 0) {
-      const prev = measures[m - 1];
-      const allPairs: [Voice, Voice][] = [
-        ["soprano","alto"],["soprano","tenor"],["soprano","bass"],
-        ["alto","tenor"],["alto","bass"],["tenor","bass"]
-      ];
-      allPairs.forEach(([v1, v2]) => {
-        const p1 = prev[v1], p2 = prev[v2];
-        const c1 = cur[v1],  c2 = cur[v2];
-        if (!p1.name || !p2.name || !c1.name || !c2.name) return;
-        const prevInterval = Math.abs(noteToMidi(noteName(p1.name),p1.octave) - noteToMidi(noteName(p2.name),p2.octave)) % 12;
-        const curInterval  = Math.abs(noteToMidi(noteName(c1.name),c1.octave) - noteToMidi(noteName(c2.name),c2.octave)) % 12;
-        // Même direction?
-        const dir1 = noteToMidi(noteName(c1.name),c1.octave) - noteToMidi(noteName(p1.name),p1.octave);
-        const dir2 = noteToMidi(noteName(c2.name),c2.octave) - noteToMidi(noteName(p2.name),p2.octave);
-        const sameDir = (dir1 > 0 && dir2 > 0) || (dir1 < 0 && dir2 < 0);
-        if (!sameDir) return;
-        if (prevInterval === 7 && curInterval === 7) {
-          errors.push({ type:"parallel_fifth", voices:[v1,v2], measure:m, message:`Quintes parallèles ${VOICE_LABELS[v1]}–${VOICE_LABELS[v2]} (m.${m}→${m+1})`, severity:"error" });
-        }
-        if (prevInterval === 0 && curInterval === 0 && p1.name !== c1.name) {
-          errors.push({ type:"parallel_octave", voices:[v1,v2], measure:m, message:`Octaves parallèles ${VOICE_LABELS[v1]}–${VOICE_LABELS[v2]} (m.${m}→${m+1})`, severity:"error" });
-        }
-      });
-
-      // 4b. Fausses relations : même lettre de note à des voix DIFFÉRENTES
-      // entre deux accords successifs, mais avec une altération différente
-      // (le chromatisme conduit à la même voix reste autorisé).
-      const flagged = new Set<string>();
-      VOICES.forEach(va => {
-        VOICES.forEach(vb => {
-          if (va === vb) return;
-          const a = prev[va], b = cur[vb];
-          if (!a.name || !b.name) return;
-          if (a.name[0].toUpperCase() !== b.name[0].toUpperCase()) return;
-          const pcA = ((noteToMidi(noteName(a.name), 0) % 12) + 12) % 12;
-          const pcB = ((noteToMidi(noteName(b.name), 0) % 12) + 12) % 12;
-          if (pcA === pcB) return; // même hauteur → pas de contradiction
-          const key = [va, vb].sort().join("-");
-          if (flagged.has(key)) return;
-          flagged.add(key);
-          errors.push({
-            type: "cross_relation",
-            voices: [va, vb],
-            measure: m,
-            message: `Fausse relation ${VOICE_LABELS[va]}↔${VOICE_LABELS[vb]} (${a.name}→${b.name}, m.${m}→${m + 1})`,
-            severity: "warning",
-          });
-        });
-      });
-    }
-
-    // 5. Altérations manquantes (mode sans armure)
-    if (checkAccidentals && keySignature) {
-      const accReqs = KEY_ACCIDENTALS[keySignature] ?? KEY_ACCIDENTALS[keySignature.replace(/m$/, "")] ?? [];
-      if (accReqs.length > 0) {
-        VOICES.forEach(v => {
-          const n = cur[v];
-          if (!n.name) return;
-          const baseLetter = n.name[0];
-          const accsInName = n.name.slice(1);
-          const req = accReqs.find(r => r.note === baseLetter);
-          if (!req) return;
-          const hasReqAcc = req.acc === "#" ? accsInName.includes("#") : accsInName.includes("b");
-          if (!hasReqAcc) {
-            errors.push({
-              type: "missing_accidental",
-              measure: m,
-              message: `${VOICE_LABELS[v]} : ${n.name}${n.octave} naturel — en mode sans armure, utilisez ${req.frName} (m.${m + 1})`,
-              severity: "warning",
-            });
-          }
-        });
-      }
-    }
-  }
-
-  return errors;
-}
 
 // ─── Conversion vers format VexFlow ──────────────────────────────────────────
 
@@ -358,7 +180,7 @@ const styles = {
 // ─── Composant principal ──────────────────────────────────────────────────────
 
 export default function HarmoniaEditor({
-  title = "Exercice de conduite de voix",
+  title,
   subtitle,
   measures: measureLabels = ["I", "IV", "V", "I"],
   keySignature = "C",
@@ -367,6 +189,28 @@ export default function HarmoniaEditor({
   solution,
   onComplete,
 }: HarmoniaEditorProps) {
+  const t = useTranslations("satb");
+
+  /** Nom traduit d'une voix. */
+  const voiceLabel = useCallback((v: Voice) => t(`voices.${v}` as never), [t]);
+
+  /**
+   * Met en mots une faute renvoyée par le moteur. Le moteur ne fabrique plus de
+   * phrase : il renvoie un code et ses paramètres, seule façon de rendre le
+   * feedback traduisible.
+   */
+  const errorMessage = useCallback((err: ValidationError): string => {
+    const [v1, v2] = err.voices ?? [];
+    return t(`errors.${err.type}` as never, {
+      voice: err.params.voice ? voiceLabel(err.params.voice) : "",
+      v1: v1 ? voiceLabel(v1) : "",
+      v2: v2 ? voiceLabel(v2) : "",
+      from: err.params.from ?? "",
+      to: err.params.to ?? "",
+      note: err.params.note ?? "",
+      expected: err.params.expected ?? "",
+    } as never);
+  }, [t, voiceLabel]);
 
   // State
   const [measures, setMeasures] = useState<Measure[]>(() =>
@@ -579,7 +423,7 @@ export default function HarmoniaEditor({
               Exercice SATB
             </div>
             <h2 style={{ fontSize:18, fontWeight:500, color:"#1a1a1a", margin:0, lineHeight:1.3 }}>
-              {title}
+              {title ?? t("defaultTitle")}
             </h2>
             {subtitle && <p style={{ fontSize:13, color:"#888", margin:"4px 0 0", lineHeight:1.5 }}>{subtitle}</p>}
           </div>
@@ -682,12 +526,12 @@ export default function HarmoniaEditor({
                 cursor: "pointer",
                 transition: "all .15s",
               }}>
-              {VOICE_LABELS[v]}
+              {voiceLabel(v)}
             </button>
           ))}
           <button onClick={clearNote}
             style={{ marginLeft:"auto", padding:"6px 12px", borderRadius:8, border:"0.5px solid #e0dbd3", background:"transparent", color: "#767676", fontSize:11, cursor:"pointer" }}>
-            × Effacer
+            × {t("clear")}
           </button>
         </div>
 
@@ -704,7 +548,7 @@ export default function HarmoniaEditor({
           gap:8,
         }}>
           <span style={{ color: "#767676" }}>Voix :</span>
-          <strong style={{ color:"#185FA5" }}>{VOICE_LABELS[activeVoice]}</strong>
+          <strong style={{ color:"#185FA5" }}>{voiceLabel(activeVoice)}</strong>
           <span style={{ color:"#e0dbd3" }}>·</span>
           <span style={{ color: "#767676" }}>Mesure :</span>
           <strong>{activeMeasure + 1} ({measureLabels[activeMeasure]})</strong>
@@ -721,10 +565,11 @@ export default function HarmoniaEditor({
 
           {/* Modificateurs d'altération */}
           <div style={{ display:"flex", gap:6, marginBottom:10, alignItems:"center" }}>
-            <span style={{ fontSize:11, color: "#767676", marginRight:4 }}>Altération :</span>
+            <span style={{ fontSize:11, color: "#767676", marginRight:4 }}>{t("accidentalLabel")}</span>
             {ACCIDENTALS.map(acc => (
               <button key={acc.value} onClick={() => setAccidental(acc.value)}
-                title={acc.label}
+                title={t(`accidentals.${acc.labelKey}` as never)}
+                aria-label={t(`accidentals.${acc.labelKey}` as never)}
                 style={{
                   width: 38, height: 38,
                   borderRadius: 8,
@@ -741,7 +586,7 @@ export default function HarmoniaEditor({
               </button>
             ))}
             <span style={{ fontSize:11, color: "#767676", marginLeft:4 }}>
-              {ACCIDENTALS.find(a => a.value === accidental)?.label}
+              {t(`accidentals.${ACCIDENTALS.find(a => a.value === accidental)?.labelKey}` as never)}
             </span>
           </div>
 
@@ -810,7 +655,7 @@ export default function HarmoniaEditor({
             +
           </button>
           <span style={{ fontSize:11, color: "#767676", marginLeft:4 }}>
-            Tessiture {activeVoice}: {VOICE_RANGES[activeVoice].min[0]}{VOICE_RANGES[activeVoice].min[1]}–{VOICE_RANGES[activeVoice].max[0]}{VOICE_RANGES[activeVoice].max[1]}
+            {t("range", { voice: voiceLabel(activeVoice) })} {VOICE_RANGES[activeVoice].min[0]}{VOICE_RANGES[activeVoice].min[1]}–{VOICE_RANGES[activeVoice].max[0]}{VOICE_RANGES[activeVoice].max[1]}
           </span>
         </div>
 
@@ -820,7 +665,7 @@ export default function HarmoniaEditor({
             muet pour un lecteur d'écran. */}
         {errors.length > 0 && (
           <div style={{ marginBottom:20 }} role="status" aria-live="polite">
-            <div style={{ fontSize:11, color:"#6b6b6b", letterSpacing:"0.06em", marginBottom:8 }}>ANALYSE HARMONIQUE</div>
+            <div style={{ fontSize:11, color:"#6b6b6b", letterSpacing:"0.06em", marginBottom:8 }}>{t("analysisTitle")}</div>
             <div style={{ display:"flex", flexDirection:"column" as const, gap:6 }}>
               {errors.map((err, i) => (
                 <div key={i} style={{
@@ -835,7 +680,7 @@ export default function HarmoniaEditor({
                   gap:8,
                 }}>
                   <span style={{ fontSize:14 }}>{err.severity === "error" ? "✗" : "⚠"}</span>
-                  {err.message}
+                  {errorMessage(err)}
                 </div>
               ))}
             </div>
@@ -850,7 +695,7 @@ export default function HarmoniaEditor({
             fontSize:12, color:"#276749", display:"flex", alignItems:"center", gap:8,
           }}>
             <span>✓</span>
-            {placedNotes === totalNotes ? "Progression complète — aucune erreur harmonique détectée." : "Aucune erreur pour les notes placées."}
+            {placedNotes === totalNotes ? t("complete") : t("noError")}
           </div>
         )}
 
@@ -864,7 +709,7 @@ export default function HarmoniaEditor({
               fontSize:13, fontWeight:500, cursor:"pointer",
               display:"flex", alignItems:"center", gap:8,
             }}>
-            ▶ Écouter
+            ▶ {t("play")}
           </button>
 
           {solution && (
@@ -875,7 +720,7 @@ export default function HarmoniaEditor({
                 background:showSolution?"#f0ece6":"#fff",
                 color:"#666", fontSize:13, cursor:"pointer",
               }}>
-              {showSolution ? "Masquer la solution proposée" : "Voir une solution proposée"}
+              {showSolution ? t("hideSolution") : t("showSolution")}
             </button>
           )}
 
@@ -909,7 +754,7 @@ export default function HarmoniaEditor({
             background:"#F0FFF4", border:"1px solid #9AE6B4",
             fontSize:14, color:"#276749",
           }}>
-            🎹 Exercice terminé avec succès ! {errors.length === 0 ? "Aucune erreur harmonique — excellent travail." : ""}
+            🎹 {t("exerciseDone")} {errors.length === 0 ? t("exercisePerfect") : ""}
           </div>
         )}
       </div>
