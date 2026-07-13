@@ -55,7 +55,7 @@ export default function EditeurPage() {
 
         {/* Exercice 1 */}
         <div style={{ marginBottom:"2rem" }}>
-          <div style={{ fontSize:11, color:"#bbb", letterSpacing:"0.08em", marginBottom:12 }}>
+          <div style={{ fontSize:11, color: "#767676", letterSpacing:"0.08em", marginBottom:12 }}>
             EXERCICE 1 · CONDUITE MINIMALISTE
           </div>
           <HarmoniaEditor
@@ -69,7 +69,7 @@ export default function EditeurPage() {
 
         {/* Exercice 2 */}
         <div style={{ marginBottom:"2rem" }}>
-          <div style={{ fontSize:11, color:"#bbb", letterSpacing:"0.08em", marginBottom:12 }}>
+          <div style={{ fontSize:11, color: "#767676", letterSpacing:"0.08em", marginBottom:12 }}>
             EXERCICE 2 · PROGRESSION FONDAMENTALE
           </div>
           <HarmoniaEditor
@@ -83,7 +83,7 @@ export default function EditeurPage() {
 
         {/* Exercice libre */}
         <div style={{ marginBottom:"2rem" }}>
-          <div style={{ fontSize:11, color:"#bbb", letterSpacing:"0.08em", marginBottom:12 }}>
+          <div style={{ fontSize:11, color: "#767676", letterSpacing:"0.08em", marginBottom:12 }}>
             EXERCICE LIBRE
           </div>
           <HarmoniaEditor

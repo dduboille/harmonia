@@ -72,9 +72,11 @@ export default clerkMiddleware(async (auth, req) => {
 
 export const config = {
   matcher: [
-    // `xml` et `txt` sont exclus : sans cela, next-intl préfixe /sitemap.xml et
-    // /robots.txt d'une locale et les moteurs ne peuvent plus les lire.
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|xml|txt|docx?|xlsx?|zip|webmanifest)).*)",
+    // Toute extension absente de cette liste est happée par next-intl, qui lui
+    // colle un préfixe de locale et renvoie un 307. C'est ce qui rendait
+    // /robots.txt et /sitemap.xml illisibles (xml, txt) ; les samples de piano
+    // servis depuis /audio/piano tomberaient dans le même piège (mp3).
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|xml|txt|mp3|wav|ogg|mp4|musicxml|mxl|docx?|xlsx?|zip|webmanifest)).*)",
     "/(api|trpc)(.*)",
   ],
 };

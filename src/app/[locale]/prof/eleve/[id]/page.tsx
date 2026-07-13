@@ -207,12 +207,12 @@ export default async function ElevePage({ params, searchParams }: Props) {
       <div style={{ maxWidth: 900, margin: "0 auto" }}>
 
         {/* Breadcrumb */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: "1.5rem", fontSize: 12, color: "#aaa" }}>
-          <Link href={`/${locale}/prof`} style={{ color: "#aaa", textDecoration: "none" }}>Prof</Link>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: "1.5rem", fontSize: 12, color: "#767676" }}>
+          <Link href={`/${locale}/prof`} style={{ color: "#767676", textDecoration: "none" }}>Prof</Link>
           <span>›</span>
           {classeId && (
             <>
-              <Link href={`/${locale}/prof/classe/${classeId}`} style={{ color: "#aaa", textDecoration: "none" }}>{classeNom}</Link>
+              <Link href={`/${locale}/prof/classe/${classeId}`} style={{ color: "#767676", textDecoration: "none" }}>{classeNom}</Link>
               <span>›</span>
             </>
           )}
@@ -364,7 +364,7 @@ export default async function ElevePage({ params, searchParams }: Props) {
                           {s.note}%
                         </span>
                       ) : (
-                        <span style={{ fontSize: 12, color: "#bbb" }}>Non noté</span>
+                        <span style={{ fontSize: 12, color: "#767676" }}>Non noté</span>
                       )}
                     </div>
                   </div>
@@ -378,7 +378,7 @@ export default async function ElevePage({ params, searchParams }: Props) {
           <div style={{
             background: "#fff", border: "0.5px solid #e8e3db",
             borderRadius: 14, padding: "48px 28px",
-            textAlign: "center", color: "#bbb", fontSize: 14,
+            textAlign: "center", color: "#767676", fontSize: 14,
           }}>
             Cet élève n'a pas encore d'activité enregistrée.
           </div>

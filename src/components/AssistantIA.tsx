@@ -273,7 +273,7 @@ export default function AssistantIA() {
         </div>
 
         {/* Footer note */}
-        <div style={{ fontSize: 11, color: "#bbb", textAlign: "center", marginTop: 10, fontFamily: "system-ui, sans-serif" }}>
+        <div style={{ fontSize: 11, color: "#767676", textAlign: "center", marginTop: 10, fontFamily: "system-ui, sans-serif" }}>
           Propulsé par Claude (Anthropic) · Les réponses peuvent contenir des erreurs — vérifiez les informations importantes.
         </div>
       </div>

@@ -241,7 +241,7 @@ export default async function DashboardPage({ params }: Props) {
             <div key={stat.label} style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "16px 20px" }}>
               <div style={{ fontSize: 28, fontWeight: 500, color: "#1a1a1a", lineHeight: 1 }}>
                 {stat.value}
-                {stat.suffix && <span style={{ fontSize: 14, color: "#bbb", fontWeight: 400 }}> {stat.suffix}</span>}
+                {stat.suffix && <span style={{ fontSize: 14, color: "#767676", fontWeight: 400 }}> {stat.suffix}</span>}
               </div>
               <div style={{ fontSize: 12, color: "#888", marginTop: 4 }}>{stat.label}</div>
             </div>
@@ -659,7 +659,7 @@ function CoursCard({ cours, locale, t }: { cours: CoursCardData; locale: string;
         <div style={{ position: "absolute" as const, top: 12, right: 12, fontSize: 14 }}>🔒</div>
       )}
 
-      <div style={{ fontSize: 10, color: "#bbb", fontWeight: 600, marginBottom: 4 }}>
+      <div style={{ fontSize: 10, color: "#767676", fontWeight: 600, marginBottom: 4 }}>
         {t("cours")} {cours.id}
       </div>
       <div style={{ fontSize: 14, fontWeight: 500, color: "#1a1a1a", marginBottom: 10, lineHeight: 1.3 }}>
@@ -676,7 +676,7 @@ function CoursCard({ cours, locale, t }: { cours: CoursCardData; locale: string;
         }} />
       </div>
 
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 11, color: "#aaa" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 11, color: "#767676" }}>
         <span>{cours.completedExercises} / {cours.totalInCours} {t("exercises")}</span>
         <span style={{ fontWeight: 600, color: cours.progressPct > 0 ? "#185FA5" : "#bbb" }}>
           {cours.progressPct}%

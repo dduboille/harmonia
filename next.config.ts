@@ -8,7 +8,10 @@ const CSP = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https: https://img.clerk.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://clerk.com https://*.clerk.com https://*.clerk.accounts.dev wss://*.clerk.accounts.dev https://gleitz.github.io https://tonejs.github.io https://clerk-telemetry.com https://clerk.getharmonia.app",
+  // Les samples de piano sont désormais servis depuis /audio/piano : les deux
+  // domaines GitHub Pages qui figuraient ici ne sont plus sollicités.
+  "connect-src 'self' https://clerk.com https://*.clerk.com https://*.clerk.accounts.dev wss://*.clerk.accounts.dev https://clerk-telemetry.com https://clerk.getharmonia.app https://api.stripe.com",
+  "media-src 'self'",
   "frame-src 'self' https://challenges.cloudflare.com https://*.clerk.accounts.dev https://clerk.getharmonia.app https://*.clerk.com https://js.stripe.com",
   // Interdit l'inclusion du site dans une iframe tierce (clickjacking).
   "frame-ancestors 'none'",

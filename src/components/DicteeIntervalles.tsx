@@ -390,7 +390,7 @@ export default function DicteeIntervalles() {
                   </span>
                   <span style={{ color: "#555", flex: 1 }}>{a.expected}</span>
                   {!a.correct && (
-                    <span style={{ color: "#aaa", fontSize: "0.78rem" }}>
+                    <span style={{ color: "#767676", fontSize: "0.78rem" }}>
                       (tu as dit : {a.chosen})
                     </span>
                   )}

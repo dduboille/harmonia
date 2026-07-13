@@ -11,9 +11,9 @@ import { ConditionalAppNav } from "@/components/AppNav";
 import CookieBanner from "@/components/CookieBanner";
 import FeedbackWidget from "@/components/FeedbackWidget";
 import ConsentGatedAnalytics from "@/components/ConsentGatedAnalytics";
-import { COURS_COUNT } from "@/lib/catalogue";
 
 const LOCALES = ["fr", "en", "es", "de", "pt", "it"] as const;
+const SITE_URL = "https://www.getharmonia.app";
 
 const META: Record<string, { title: string; description: string; lang: string }> = {
   fr: {
@@ -132,44 +132,28 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = sharedMessages(await getMessages());
   const meta = META[locale] ?? META.fr;
 
-  // Données structurées : le site n'en exposait aucune, alors que Course et
-  // Organization sont directement exploitables en rich snippets.
+  // Données structurées d'identité du site — le site n'en exposait aucune.
+  // Les entités propres à une page (FAQPage sur la landing, Course sur chaque
+  // cours) sont déclarées par ces pages, pas ici : un Course sur /profil ou
+  // /upgrade serait faux.
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://www.getharmonia.app/#organization",
+        "@id": `${SITE_URL}/#organization`,
         name: "Harmonia",
-        url: "https://www.getharmonia.app",
-        logo: "https://www.getharmonia.app/og-image.png",
+        url: SITE_URL,
+        logo: `${SITE_URL}/og-image.png`,
       },
       {
         "@type": "WebSite",
-        "@id": "https://www.getharmonia.app/#website",
-        url: `https://www.getharmonia.app/${locale}`,
+        "@id": `${SITE_URL}/#website`,
+        url: `${SITE_URL}/${locale}`,
         name: "Harmonia",
         description: meta.description,
         inLanguage: locale,
-        publisher: { "@id": "https://www.getharmonia.app/#organization" },
-      },
-      {
-        "@type": "Course",
-        name: meta.title,
-        description: meta.description,
-        inLanguage: locale,
-        url: `https://www.getharmonia.app/${locale}/cours`,
-        provider: { "@id": "https://www.getharmonia.app/#organization" },
-        hasCourseInstance: {
-          "@type": "CourseInstance",
-          courseMode: "online",
-          courseWorkload: `PT${COURS_COUNT * 2}H`,
-        },
-        offers: [
-          { "@type": "Offer", category: "Free", price: "0", priceCurrency: "EUR" },
-          { "@type": "Offer", category: "Subscription", price: "9", priceCurrency: "EUR" },
-          { "@type": "Offer", category: "Subscription", price: "19", priceCurrency: "EUR" },
-        ],
+        publisher: { "@id": `${SITE_URL}/#organization` },
       },
     ],
   };

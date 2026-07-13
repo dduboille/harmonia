@@ -280,7 +280,7 @@ export default function UpgradePage() {
         </div>
 
         <div style={{ textAlign: "center", marginTop: 20 }}>
-          <Link href={`/${locale}/dashboard`} style={{ fontSize: 12, color: "#bbb", textDecoration: "none", fontFamily: "system-ui" }}>
+          <Link href={`/${locale}/dashboard`} style={{ fontSize: 12, color: "#767676", textDecoration: "none", fontFamily: "system-ui" }}>
             ← Retour au dashboard
           </Link>
         </div>

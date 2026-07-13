@@ -1,24 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
 import ExerciseCard from "@/components/ExerciseCard";
 import { ALL_EXERCISES } from "@/exercises/all-exercises";
 import { DIFFICULTY_LABEL, DIFFICULTY_COLOR } from "@/types/exercise";
+import { getUserPlan } from "@/lib/progression";
+import { getCours, isFreeCours } from "@/lib/catalogue";
+import { CoursPaywall } from "@/components/Paywall";
 
-const COURS_META: Record<number, { title: string; badge: string }> = {
-  1: { title: "Gamme et intervalles", badge: "Cours 1" },
-  2: { title: "Les accords", badge: "Cours 2" },
-  3: { title: "Fonctions tonales et conduites de voix", badge: "Cours 3" },
-  4: { title: "Cadences et progressions", badge: "Cours 4" },
-  5: { title: "Emprunts et suites classiques", badge: "Cours 5" },
-  6: { title: "Construire une harmonisation", badge: "Cours 6" },
-  7: { title: "La tonicisation", badge: "Cours 7" },
-  8: { title: "Modulation par accord pivot", badge: "Cours 8" },
-  9: { title: "Modulations avancees et pedales", badge: "Cours 9" },
-  38: { title: "Les notes étrangères", badge: "Cours 38" },
-  39: { title: "Les 7èmes d'espèces", badge: "Cours 39" },
-  40: { title: "L'invention à 2 voix", badge: "Cours 40" },
-  41: { title: "L'écriture de style", badge: "Cours 41" },
-};
+export const dynamic = "force-dynamic";
 
 export default async function ExercicesPage({
   params,
@@ -27,18 +17,30 @@ export default async function ExercicesPage({
 }) {
   const { locale, id } = await params;
   const coursId = parseInt(id);
-  const meta = COURS_META[coursId];
-  if (!meta) return notFound();
+  // Les titres viennent du catalogue : cette page en tenait sa propre copie,
+  // qui ne couvrait que 13 cours sur 41.
+  const cours = getCours(coursId);
+  if (!cours) return notFound();
+
+  const meta = { title: cours.title, badge: `Cours ${cours.num}` };
+
+  // Les exercices d'un cours payant étaient accessibles à tout compte gratuit :
+  // seul le bouton « voir la solution » consultait le plan.
+  const { userId } = await auth();
+  const plan = userId ? await getUserPlan(userId) : "free";
+  if (plan === "free" && !isFreeCours(coursId)) {
+    return <CoursPaywall locale={locale} cours={cours} signedIn={Boolean(userId)} subject="exercices" />;
+  }
 
   const exercises = ALL_EXERCISES.filter((e) => e.cours === coursId);
 
   return (
     <main style={{ minHeight: "100vh", background: "#f4f1ec", padding: "3rem 1rem" }}>
       <div style={{ maxWidth: 760, margin: "0 auto" }}>
-        <div style={{ marginBottom: "1.5rem", fontSize: 12, color: "#aaa" }}>
-          <Link href={`/${locale}/cours`} style={{ color: "#aaa", textDecoration: "none" }}>Cours</Link>
+        <div style={{ marginBottom: "1.5rem", fontSize: 12, color: "#767676" }}>
+          <Link href={`/${locale}/cours`} style={{ color: "#767676", textDecoration: "none" }}>Cours</Link>
           {" · "}
-          <Link href={`/${locale}/cours/${coursId}`} style={{ color: "#aaa", textDecoration: "none" }}>{meta.badge}</Link>
+          <Link href={`/${locale}/cours/${coursId}`} style={{ color: "#767676", textDecoration: "none" }}>{meta.badge}</Link>
           {" · Exercices"}
         </div>
 
@@ -54,7 +56,7 @@ export default async function ExercicesPage({
 
         <div style={{ marginBottom: "1rem" }}>
           <Link href={`/${locale}/atelier`} style={{ fontSize: 12, color: "#185FA5" }}>
-            Voir tous les exercices dans l'Atelier →
+            Voir tous les exercices dans l&apos;Atelier →
           </Link>
         </div>
 

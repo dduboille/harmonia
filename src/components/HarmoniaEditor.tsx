@@ -351,7 +351,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     fontSize: 13,
-    color: "#bbb",
+    color: "#767676",
   } as React.CSSProperties,
 };
 
@@ -585,7 +585,7 @@ export default function HarmoniaEditor({
           </div>
           {/* Progression */}
           <div style={{ textAlign:"right" as const, flexShrink:0 }}>
-            <div style={{ fontSize:11, color:"#bbb", marginBottom:4 }}>{placedNotes}/{totalNotes} notes</div>
+            <div style={{ fontSize:11, color: "#767676", marginBottom:4 }}>{placedNotes}/{totalNotes} notes</div>
             <div style={{ width:80, height:4, background:"#f0ece6", borderRadius:4, overflow:"hidden" }}>
               <div style={{ height:"100%", width:`${progress}%`, background:hasErrors?"#E53E3E":"#185FA5", borderRadius:4, transition:"width .3s" }} />
             </div>
@@ -634,7 +634,7 @@ export default function HarmoniaEditor({
       <div style={{ padding:"20px 24px", background:"#fff", borderBottom:"0.5px solid #e8e3db" }}>
         <div style={{ background:"#fdfcfa", borderRadius:10, border:"0.5px solid #ede8e0", padding:"16px 12px", overflow:"auto" }}>
           {/* Labels voix */}
-          <div style={{ display:"flex", justifyContent:"space-between", fontSize:10, color:"#bbb", letterSpacing:"0.08em", marginBottom:8, padding:"0 8px" }}>
+          <div style={{ display:"flex", justifyContent:"space-between", fontSize:10, color: "#767676", letterSpacing:"0.08em", marginBottom:8, padding:"0 8px" }}>
             <span>SOPRANO · ALTO</span>
           </div>
           <VexFlowScoreClient
@@ -644,7 +644,7 @@ export default function HarmoniaEditor({
             width={700}
             label={measureLabels.map((l,i)=>`Mesure ${i+1}: ${l}`).join(" · ")}
           />
-          <div style={{ fontSize:10, color:"#bbb", letterSpacing:"0.08em", marginTop:6, padding:"0 8px" }}>
+          <div style={{ fontSize:10, color: "#767676", letterSpacing:"0.08em", marginTop:6, padding:"0 8px" }}>
             TÉNOR · BASSE
           </div>
         </div>
@@ -668,7 +668,7 @@ export default function HarmoniaEditor({
 
         {/* Sélecteur de voix */}
         <div style={{ display:"flex", gap:8, marginBottom:16, alignItems:"center" }}>
-          <span style={{ fontSize:11, color:"#aaa", letterSpacing:"0.06em", marginRight:4 }}>VOIX</span>
+          <span style={{ fontSize:11, color: "#767676", letterSpacing:"0.06em", marginRight:4 }}>VOIX</span>
           {VOICES.map(v => (
             <button key={v} onClick={() => setActiveVoice(v)}
               style={{
@@ -686,7 +686,7 @@ export default function HarmoniaEditor({
             </button>
           ))}
           <button onClick={clearNote}
-            style={{ marginLeft:"auto", padding:"6px 12px", borderRadius:8, border:"0.5px solid #e0dbd3", background:"transparent", color:"#aaa", fontSize:11, cursor:"pointer" }}>
+            style={{ marginLeft:"auto", padding:"6px 12px", borderRadius:8, border:"0.5px solid #e0dbd3", background:"transparent", color: "#767676", fontSize:11, cursor:"pointer" }}>
             × Effacer
           </button>
         </div>
@@ -703,13 +703,13 @@ export default function HarmoniaEditor({
           alignItems:"center",
           gap:8,
         }}>
-          <span style={{ color:"#aaa" }}>Voix :</span>
+          <span style={{ color: "#767676" }}>Voix :</span>
           <strong style={{ color:"#185FA5" }}>{VOICE_LABELS[activeVoice]}</strong>
           <span style={{ color:"#e0dbd3" }}>·</span>
-          <span style={{ color:"#aaa" }}>Mesure :</span>
+          <span style={{ color: "#767676" }}>Mesure :</span>
           <strong>{activeMeasure + 1} ({measureLabels[activeMeasure]})</strong>
           <span style={{ color:"#e0dbd3" }}>·</span>
-          <span style={{ color:"#aaa" }}>Note :</span>
+          <span style={{ color: "#767676" }}>Note :</span>
           <strong style={{ color: currentNote?.name ? "#1a1a1a" : "#bbb", fontFamily:"monospace" }}>
             {currentNote?.name ? `${currentNote.name}${currentNote.octave}` : "—"}
           </strong>
@@ -717,11 +717,11 @@ export default function HarmoniaEditor({
 
         {/* Clavier — 7 touches naturelles + modificateurs */}
         <div style={{ marginBottom:16 }}>
-          <div style={{ fontSize:11, color:"#bbb", letterSpacing:"0.06em", marginBottom:10 }}>NOTES</div>
+          <div style={{ fontSize:11, color: "#767676", letterSpacing:"0.06em", marginBottom:10 }}>NOTES</div>
 
           {/* Modificateurs d'altération */}
           <div style={{ display:"flex", gap:6, marginBottom:10, alignItems:"center" }}>
-            <span style={{ fontSize:11, color:"#aaa", marginRight:4 }}>Altération :</span>
+            <span style={{ fontSize:11, color: "#767676", marginRight:4 }}>Altération :</span>
             {ACCIDENTALS.map(acc => (
               <button key={acc.value} onClick={() => setAccidental(acc.value)}
                 title={acc.label}
@@ -740,7 +740,7 @@ export default function HarmoniaEditor({
                 {acc.symbol}
               </button>
             ))}
-            <span style={{ fontSize:11, color:"#bbb", marginLeft:4 }}>
+            <span style={{ fontSize:11, color: "#767676", marginLeft:4 }}>
               {ACCIDENTALS.find(a => a.value === accidental)?.label}
             </span>
           </div>
@@ -797,7 +797,7 @@ export default function HarmoniaEditor({
 
         {/* Octave */}
         <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:20 }}>
-          <span style={{ fontSize:11, color:"#aaa", letterSpacing:"0.06em" }}>OCTAVE</span>
+          <span style={{ fontSize:11, color: "#767676", letterSpacing:"0.06em" }}>OCTAVE</span>
           <button onClick={() => changeOctave(-1)}
             style={{ width:32, height:32, borderRadius:8, border:"0.5px solid #e0dbd3", background:"#fff", color:"#555", fontSize:16, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}>
             −
@@ -809,7 +809,7 @@ export default function HarmoniaEditor({
             style={{ width:32, height:32, borderRadius:8, border:"0.5px solid #e0dbd3", background:"#fff", color:"#555", fontSize:16, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}>
             +
           </button>
-          <span style={{ fontSize:11, color:"#bbb", marginLeft:4 }}>
+          <span style={{ fontSize:11, color: "#767676", marginLeft:4 }}>
             Tessiture {activeVoice}: {VOICE_RANGES[activeVoice].min[0]}{VOICE_RANGES[activeVoice].min[1]}–{VOICE_RANGES[activeVoice].max[0]}{VOICE_RANGES[activeVoice].max[1]}
           </span>
         </div>

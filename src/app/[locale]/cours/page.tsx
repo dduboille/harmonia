@@ -94,7 +94,7 @@ export default function CoursHubPage() {
                     }}>
                       {t(`level${lvl.num}sub`)}
                     </span>
-                    <span style={{ fontSize: 11, color: "#bbb", fontFamily: "system-ui" }}>
+                    <span style={{ fontSize: 11, color: "#767676", fontFamily: "system-ui" }}>
                       {t(`level${lvl.num}range`)} · {lvl.count} {t("lessons")}
                     </span>
                   </div>
@@ -126,7 +126,7 @@ export default function CoursHubPage() {
 
         {/* Note bas de page */}
         <p style={{
-          marginTop: "2.5rem", fontSize: 12, color: "#bbb",
+          marginTop: "2.5rem", fontSize: 12, color: "#767676",
           textAlign: "center" as const, fontFamily: "system-ui, sans-serif",
         }}>
           {t("freeNote")}

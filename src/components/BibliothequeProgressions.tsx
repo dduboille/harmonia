@@ -141,8 +141,8 @@ export default function BibliothequeProgressions() {
           <h1 style={{ fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 8px", fontFamily: "Georgia, serif" }}>
             Progressions harmoniques
           </h1>
-          <p style={{ fontSize: 14, color: "#666", margin: 0, lineHeight: 1.6, maxWidth: 620 }}>
-            10 progressions fondamentales classées par style, époque et émotion.
+          <p style={{ fontSize: 14, color: "#5f5f5f", margin: 0, lineHeight: 1.6, maxWidth: 620 }}>
+            {PROGRESSIONS.length} progressions fondamentales classées par style, époque et émotion.
             Écoutez, comparez et analysez les structures qui ont façonné la musique occidentale.
           </p>
         </div>
@@ -201,13 +201,13 @@ export default function BibliothequeProgressions() {
         </div>
 
         {/* ── Count ── */}
-        <div style={{ fontSize: 12, color: "#aaa", marginBottom: "1rem" }}>
+        <div style={{ fontSize: 12, color: "#767676", marginBottom: "1rem" }}>
           {filtered.length} progression{filtered.length !== 1 ? "s" : ""}{hasFilters ? " filtrées" : ""}
         </div>
 
         {/* ── Grid ── */}
         {filtered.length === 0 ? (
-          <div style={{ textAlign: "center", padding: "3rem 0", color: "#aaa", fontSize: 14 }}>
+          <div style={{ textAlign: "center", padding: "3rem 0", color: "#767676", fontSize: 14 }}>
             Aucune progression ne correspond à ces filtres.
           </div>
         ) : (
@@ -360,7 +360,7 @@ export default function BibliothequeProgressions() {
                 <div>
                   {detailProg.compositeur && (
                     <div style={{ marginBottom: 14 }}>
-                      <div style={{ fontSize: 10, color: "#bbb", fontWeight: 700, letterSpacing: "0.1em", marginBottom: 3 }}>COMPOSITEUR</div>
+                      <div style={{ fontSize: 10, color: "#767676", fontWeight: 700, letterSpacing: "0.1em", marginBottom: 3 }}>COMPOSITEUR</div>
                       <div style={{ fontSize: 14, fontWeight: 500, color: "#1a1a1a" }}>{detailProg.compositeur}</div>
                     </div>
                   )}
@@ -368,7 +368,7 @@ export default function BibliothequeProgressions() {
                     {detailProg.description}
                   </div>
                   <div style={{ marginBottom: 14 }}>
-                    <div style={{ fontSize: 10, color: "#bbb", fontWeight: 700, letterSpacing: "0.1em", marginBottom: 4 }}>EXEMPLES MUSICAUX</div>
+                    <div style={{ fontSize: 10, color: "#767676", fontWeight: 700, letterSpacing: "0.1em", marginBottom: 4 }}>EXEMPLES MUSICAUX</div>
                     <div style={{ fontSize: 12, color: "#777", fontStyle: "italic", lineHeight: 1.5 }}>{detailProg.exempleMusical}</div>
                   </div>
                   <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -391,10 +391,10 @@ export default function BibliothequeProgressions() {
 
                 {/* Right: harmonic analysis table */}
                 <div>
-                  <div style={{ fontSize: 10, color: "#bbb", fontWeight: 700, letterSpacing: "0.1em", marginBottom: 10 }}>ANALYSE HARMONIQUE</div>
+                  <div style={{ fontSize: 10, color: "#767676", fontWeight: 700, letterSpacing: "0.1em", marginBottom: 10 }}>ANALYSE HARMONIQUE</div>
                   <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: "system-ui, sans-serif" }}>
                     <thead>
-                      <tr style={{ fontSize: 10, color: "#bbb", textAlign: "left" }}>
+                      <tr style={{ fontSize: 10, color: "#767676", textAlign: "left" }}>
                         <th style={{ padding: "4px 10px 8px 10px", fontWeight: 600 }}>Accord</th>
                         <th style={{ padding: "4px 10px 8px 10px", fontWeight: 600 }}>Degré</th>
                         <th style={{ padding: "4px 10px 8px 10px", fontWeight: 600 }}>Fonction</th>
@@ -432,7 +432,7 @@ export default function BibliothequeProgressions() {
 
               {/* Full-width piano + play button */}
               <div style={{ borderTop: "0.5px solid #f0ece6", paddingTop: 20 }}>
-                <div style={{ fontSize: 10, color: "#bbb", fontWeight: 700, letterSpacing: "0.1em", marginBottom: 8 }}>
+                <div style={{ fontSize: 10, color: "#767676", fontWeight: 700, letterSpacing: "0.1em", marginBottom: 8 }}>
                   PIANO — {activeChordIdx >= 0 && detailProg.accords[activeChordIdx]
                     ? detailProg.accords[activeChordIdx]
                     : "Cliquez ▶ Écouter pour visualiser les accords"}

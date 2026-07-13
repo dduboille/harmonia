@@ -104,7 +104,7 @@ export default function FeedbackWidget() {
           >
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
               <span style={{ fontSize: 14, fontWeight: 700, color: "#1a1a1a" }}>Votre avis</span>
-              <button onClick={handleClose} style={{ background: "none", border: "none", fontSize: 18, cursor: "pointer", color: "#aaa", lineHeight: 1 }}>✕</button>
+              <button onClick={handleClose} style={{ background: "none", border: "none", fontSize: 18, cursor: "pointer", color: "#767676", lineHeight: 1 }}>✕</button>
             </div>
 
             {sent ? (

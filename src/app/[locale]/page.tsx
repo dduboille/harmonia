@@ -161,8 +161,24 @@ export default function LandingPage() {
     { href: `/${locale}/cursus`, label: t("navCursus") },
   ];
 
+  // La FAQ est le seul contenu de la page directement éligible à un rich snippet.
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: locale,
+    mainEntity: faq.map(item => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
   return (
     <div style={{ fontFamily: "'Georgia', 'Times New Roman', serif", background: "#faf8f4", color: "#1a1a1a", overflowX: "hidden" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <style>{`
         @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
         .h-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }

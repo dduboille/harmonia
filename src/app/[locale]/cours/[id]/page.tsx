@@ -6,7 +6,8 @@ import { auth } from "@clerk/nextjs/server";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { getUserPlan } from "@/lib/progression";
-import { COURS, getCours, isFreeCours } from "@/lib/catalogue";
+import { getCours, isFreeCours } from "@/lib/catalogue";
+import { CoursPaywall } from "@/components/Paywall";
 
 /**
  * Rendu à la demande : la page lit la session pour décider si elle sert le cours
@@ -85,61 +86,6 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   };
 }
 
-/** Aperçu indexable + invitation à s'abonner, servi à la place d'un cours verrouillé. */
-function Paywall({ locale, cours, signedIn }: { locale: string; cours: { num: number; title: string; desc: string; tags: string[] }; signedIn: boolean }) {
-  return (
-    <main style={{ minHeight: "100vh", background: "#faf8f4", padding: "3rem 1rem" }}>
-      <article style={{ maxWidth: 680, margin: "0 auto" }}>
-        <div style={{ fontSize: 12, color: "#6b6b6b", fontFamily: "system-ui, sans-serif", marginBottom: 16 }}>
-          <Link href={`/${locale}/cours`} style={{ color: "#6b6b6b", textDecoration: "none" }}>Cours</Link>
-          {" › "}
-          <span>Cours {cours.num}</span>
-        </div>
-
-        <h1 style={{ fontSize: "clamp(26px, 4vw, 36px)", fontWeight: 400, fontFamily: "Georgia, serif", color: "#1a1a1a", margin: "0 0 12px", lineHeight: 1.25 }}>
-          {cours.title}
-        </h1>
-        <p style={{ fontSize: 16, color: "#555", lineHeight: 1.7, fontFamily: "system-ui, sans-serif", margin: "0 0 20px" }}>
-          {cours.desc}
-        </p>
-
-        <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 36 }}>
-          {cours.tags.map(tag => (
-            <span key={tag} style={{ fontSize: 11, color: "#555", background: "#f0ece4", padding: "3px 10px", borderRadius: 6, fontFamily: "system-ui, sans-serif" }}>
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div style={{ border: "1px solid #F6AD55", background: "#FAEEDA", borderRadius: 14, padding: "32px 28px", textAlign: "center" }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>🔒</div>
-          <h2 style={{ fontSize: 20, fontWeight: 500, fontFamily: "Georgia, serif", color: "#1a1a1a", margin: "0 0 10px" }}>
-            Ce cours fait partie de l&apos;abonnement
-          </h2>
-          <p style={{ fontSize: 14, color: "#5c3d00", lineHeight: 1.7, fontFamily: "system-ui, sans-serif", margin: "0 0 24px" }}>
-            Les cours 1 à 3 sont en accès libre. Débloquez les {COURS.length} cours,
-            les exercices SATB de tous niveaux et le suivi de progression.
-          </p>
-          <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link
-              href={`/${locale}/upgrade`}
-              style={{ display: "inline-block", padding: "13px 28px", borderRadius: 6, background: "#1a1a1a", color: "#fff", textDecoration: "none", fontSize: 14, fontWeight: 500, fontFamily: "system-ui, sans-serif" }}
-            >
-              Voir les abonnements
-            </Link>
-            <Link
-              href={signedIn ? `/${locale}/cours/1` : `/${locale}/sign-up`}
-              style={{ display: "inline-block", padding: "13px 28px", borderRadius: 6, background: "transparent", color: "#1a1a1a", textDecoration: "none", fontSize: 14, fontFamily: "system-ui, sans-serif", border: "1px solid #c8992c" }}
-            >
-              {signedIn ? "Commencer par le cours 1" : "Essayer gratuitement"}
-            </Link>
-          </div>
-        </div>
-      </article>
-    </main>
-  );
-}
-
 export default async function CoursPage({ params }: { params: Promise<{ id: string; locale: string }> }) {
   const { id, locale } = await params;
   const num = parseInt(id);
@@ -150,8 +96,33 @@ export default async function CoursPage({ params }: { params: Promise<{ id: stri
   const { userId } = await auth();
   const plan = userId ? await getUserPlan(userId) : "free";
 
+  // Déclaré que le cours soit servi ou verrouillé : l'aperçu payant reste une
+  // page de cours légitime aux yeux d'un moteur.
+  const courseJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: cours.title,
+    description: cours.desc,
+    inLanguage: locale,
+    url: `https://www.getharmonia.app/${locale}/cours/${cours.num}`,
+    provider: { "@type": "Organization", name: "Harmonia", url: "https://www.getharmonia.app" },
+    isAccessibleForFree: isFreeCours(num),
+    hasCourseInstance: { "@type": "CourseInstance", courseMode: "online" },
+  };
+  const jsonLdTag = (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+    />
+  );
+
   if (plan === "free" && !isFreeCours(num)) {
-    return <Paywall locale={locale} cours={cours} signedIn={Boolean(userId)} />;
+    return (
+      <>
+        {jsonLdTag}
+        <CoursPaywall locale={locale} cours={cours} signedIn={Boolean(userId)} />
+      </>
+    );
   }
 
   // Le layout ne fournit que les namespaces partagés : on ajoute ici celui du
@@ -166,6 +137,7 @@ export default async function CoursPage({ params }: { params: Promise<{ id: stri
 
   return (
     <main style={{ minHeight: "100vh", padding: "2rem 1rem" }}>
+      {jsonLdTag}
       <NextIntlClientProvider messages={coursMessages}>
         <C />
       </NextIntlClientProvider>

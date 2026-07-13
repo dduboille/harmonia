@@ -164,7 +164,7 @@ export default function AnalysePartition() {
       }}>
         .mxl · .xml · .musicxml
       </div>
-      <div style={{ marginTop: 10, fontSize: 11, color: "#aaa", fontFamily: "system-ui, sans-serif" }}>
+      <div style={{ marginTop: 10, fontSize: 11, color: "#767676", fontFamily: "system-ui, sans-serif" }}>
         Max 5 Mo
       </div>
       <input
@@ -376,7 +376,7 @@ export default function AnalysePartition() {
                       <td style={{ padding: "10px 16px", color: "#888", fontSize: 13, fontWeight: 600 }}>
                         {ci === 0 ? m.numero : ""}
                       </td>
-                      <td style={{ padding: "10px 16px", color: "#bbb", fontSize: 12, fontWeight: 600 }}>
+                      <td style={{ padding: "10px 16px", color: "#767676", fontSize: 12, fontWeight: 600 }}>
                         {chord.beat !== undefined ? `T${chord.beat}` : ""}
                       </td>
                       <td style={{ padding: "10px 16px", fontSize: 14, fontWeight: 700, color: "#1a1a1a" }}>
@@ -426,7 +426,7 @@ export default function AnalysePartition() {
         {activeTab === "cadences" && (
           <div>
             {analysis.cadences.length === 0 ? (
-              <div style={{ textAlign: "center", padding: "48px 0", color: "#aaa", fontFamily: "system-ui, sans-serif", fontSize: 14 }}>
+              <div style={{ textAlign: "center", padding: "48px 0", color: "#767676", fontFamily: "system-ui, sans-serif", fontSize: 14 }}>
                 Aucune cadence détectée dans cette partition.
               </div>
             ) : (
@@ -451,7 +451,7 @@ export default function AnalysePartition() {
                       <span style={{ fontSize: 13, color: "#1a1a1a", fontFamily: "Georgia, serif", fontWeight: 600 }}>
                         {cad.chords[0]} → {cad.chords[1]}
                       </span>
-                      <span style={{ marginLeft: "auto", fontSize: 12, color: "#aaa", fontFamily: "system-ui, sans-serif" }}>
+                      <span style={{ marginLeft: "auto", fontSize: 12, color: "#767676", fontFamily: "system-ui, sans-serif" }}>
                         mesure {cad.measure}
                       </span>
                     </div>
@@ -494,7 +494,7 @@ export default function AnalysePartition() {
                 minHeight: 200,
               }}>
                 {isGenerating && !commentaire && (
-                  <span style={{ color: "#aaa", fontFamily: "system-ui, sans-serif", fontSize: 13 }}>
+                  <span style={{ color: "#767676", fontFamily: "system-ui, sans-serif", fontSize: 13 }}>
                     Génération en cours…
                   </span>
                 )}

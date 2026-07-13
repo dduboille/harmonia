@@ -625,7 +625,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                       Matrice des soumissions
                     </div>
                     {loadingSoumissions ? (
-                      <div style={{ fontSize: 13, color: "#bbb" }}>Chargement…</div>
+                      <div style={{ fontSize: 13, color: "#767676" }}>Chargement…</div>
                     ) : (
                       <div style={{ overflowX: "auto" }}>
                         <table style={{ borderCollapse: "collapse", fontSize: 12, width: "100%" }}>
@@ -683,7 +683,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                             ))}
                           </tbody>
                         </table>
-                        <div style={{ marginTop: 10, fontSize: 11, color: "#bbb" }}>
+                        <div style={{ marginTop: 10, fontSize: 11, color: "#767676" }}>
                           ✓ rendu ≥ 70% · ✗ rendu &lt; 70% · ○ pas encore rendu — cliquez sur une cellule pour les détails
                         </div>
                       </div>
@@ -748,7 +748,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                       );
                     })}
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4, fontSize: 10, color: "#bbb" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4, fontSize: 10, color: "#767676" }}>
                     <span>0 cours</span>
                     <span>23 cours</span>
                   </div>
@@ -915,7 +915,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                   background: "#fafafa",
                 }}>
                   {filteredExercises.length === 0 ? (
-                    <div style={{ padding: "12px 14px", fontSize: 13, color: "#bbb" }}>Aucun résultat</div>
+                    <div style={{ padding: "12px 14px", fontSize: 13, color: "#767676" }}>Aucun résultat</div>
                   ) : filteredExercises.map(ex => (
                     <div
                       key={ex.id}
@@ -934,7 +934,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                         C{ex.cours}
                       </span>
                       <span style={{ fontSize: 13, color: "#1a1a1a" }}>{ex.title}</span>
-                      <span style={{ fontSize: 10, color: "#bbb", marginLeft: "auto" }}>{ex.type}</span>
+                      <span style={{ fontSize: 10, color: "#767676", marginLeft: "auto" }}>{ex.type}</span>
                     </div>
                   ))}
                 </div>
