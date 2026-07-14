@@ -1,6 +1,13 @@
 import { describe, it, expect } from "vitest";
 import { parseMusicXML, TPQ, type ParsedNote } from "./musicxml-parse";
-import { notesSoundingAt, sliceByBeat, mergeSlices, type Slice } from "./harmony-segmentation";
+import {
+  notesSoundingAt,
+  notesSoundingDuring,
+  sliceByBeat,
+  mergeSlices,
+  spansParTemps,
+  type Slice,
+} from "./harmony-segmentation";
 
 function n(midi: number, onset: number, duration: number): ParsedNote {
   return {
@@ -19,6 +26,51 @@ describe("notesSoundingAt", () => {
 
   it("une note éteinte ne sonne plus (borne de fin exclusive)", () => {
     expect(notesSoundingAt([n(60, 0, TPQ)], TPQ)).toHaveLength(0);
+  });
+});
+
+describe("notesSoundingDuring — tout ce qui sonne PENDANT le segment", () => {
+  it("voit la croche de passage, que sliceByBeat ne voyait pas", () => {
+    const tenue = n(60, 0, 4 * TPQ);                 // ronde
+    const croche = n(62, TPQ + TPQ / 2, TPQ / 2);    // croche sur le « et » du 2
+    const notes = [tenue, croche];
+
+    // Le segment du temps 2 : de TPQ à 2·TPQ.
+    const pendant = notesSoundingDuring(notes, TPQ, 2 * TPQ);
+    expect(pendant.map((x) => x.midi).sort()).toEqual([60, 62]);
+
+    // Alors qu'à l'ATTAQUE du temps 2, la croche ne sonne pas encore.
+    expect(notesSoundingAt(notes, TPQ).map((x) => x.midi)).toEqual([60]);
+  });
+
+  it("une note qui s'éteint pile au début du segment n'y sonne pas", () => {
+    expect(notesSoundingDuring([n(60, 0, TPQ)], TPQ, 2 * TPQ)).toHaveLength(0);
+  });
+
+  it("une note qui attaque pile à la fin du segment n'y sonne pas", () => {
+    expect(notesSoundingDuring([n(60, 2 * TPQ, TPQ)], TPQ, 2 * TPQ)).toHaveLength(0);
+  });
+});
+
+describe("spansParTemps", () => {
+  it("un span par temps, avec toutes les notes sonnantes et la note d'attaque", () => {
+    const xml =
+      `<score-partwise><part-list><score-part id="P1"/></part-list>` +
+      `<part id="P1"><measure number="1">` +
+      `<attributes><divisions>2</divisions><key><fifths>0</fifths></key>` +
+      `<time><beats>2</beats><beat-type>4</beat-type></time></attributes>` +
+      // Temps 1 : Do et Ré en croches. Temps 2 : Mi en noire.
+      `<note><pitch><step>C</step><octave>4</octave></pitch><duration>1</duration></note>` +
+      `<note><pitch><step>D</step><octave>4</octave></pitch><duration>1</duration></note>` +
+      `<note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration></note>` +
+      `</measure></part></score-partwise>`;
+
+    const spans = spansParTemps(parseMusicXML(xml));
+    expect(spans).toHaveLength(2);
+    expect(spans[0]).toMatchObject({ measure: 1, beat: 1 });
+    // Le Ré, croche du contretemps, EST vu par le span du temps 1.
+    expect(spans[0].notes.map((x) => x.step).sort()).toEqual(["C", "D"]);
+    expect(spans[1].notes.map((x) => x.step)).toEqual(["E"]);
   });
 });
 

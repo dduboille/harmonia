@@ -75,3 +75,53 @@ export function mergeSlices(slices: Slice[], signature: (s: Slice) => string): S
 
   return out;
 }
+
+/**
+ * Notes sonnant à un moment QUELCONQUE de l'intervalle `[debut, fin[`.
+ *
+ * `notesSoundingAt` ne regarde qu'un instant : elle ne voit pas la croche de
+ * passage attaquée sur le contretemps, qui n'existe qu'ENTRE deux temps. C'était
+ * commode tant qu'on ignorait les notes étrangères — c'est exactement ce qu'il faut
+ * cesser d'ignorer.
+ */
+export function notesSoundingDuring(
+  notes: ParsedNote[], debut: number, fin: number,
+): ParsedNote[] {
+  return notes.filter((n) => n.onset < fin && debut < n.onset + n.duration);
+}
+
+/**
+ * Un SPAN par temps : la durée sur laquelle une harmonie est décidée.
+ *
+ * DEUX ÉCHELLES, à ne pas confondre : la VISIBILITÉ descend à chaque attaque (le
+ * span voit toutes les notes qui sonnent pendant sa durée), mais la DÉCISION
+ * HARMONIQUE reste prise au temps. L'harmonie change rarement plus vite que la
+ * pulsation, et une croche de passage n'a pas à réclamer son propre accord.
+ */
+export interface Span {
+  measure: number;
+  beat: number;       // 1-based
+  debut: number;      // ticks absolus
+  fin: number;        // ticks absolus (exclusif)
+  notes: ParsedNote[];
+}
+
+export function spansParTemps(score: ParsedScore): Span[] {
+  const out: Span[] = [];
+
+  for (const m of score.measures) {
+    const nbTemps = Math.max(1, Math.ceil(m.length / TPQ));
+    for (let beat = 1; beat <= nbTemps; beat++) {
+      const debut = m.start + (beat - 1) * TPQ;
+      if (debut >= m.start + m.length) break;
+      const fin = Math.min(debut + TPQ, m.start + m.length);
+
+      const notes = notesSoundingDuring(score.notes, debut, fin);
+      if (notes.length === 0) continue;
+
+      out.push({ measure: m.numero, beat, debut, fin, notes });
+    }
+  }
+
+  return out;
+}
