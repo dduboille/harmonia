@@ -1,10 +1,26 @@
 import { describe, it, expect } from "vitest";
-import { identifyChord, analyzeChord, PC } from "./harmonic-analysis";
+import {
+  identifyChord,
+  analyzeChord,
+  annotateResolutions,
+  buildChromaEvents,
+  PC,
+} from "./harmonic-analysis";
 
 // Aide : analyse un accord donné par ses classes de hauteurs, dans une tonalité.
 function an(pcs: number[], tonicPc: number, mode: "major" | "minor") {
   const chord = identifyChord(pcs)!;
   return analyzeChord(chord, tonicPc, mode);
+}
+
+// Construit une séquence analysée à partir de listes de pcs, résolutions comprises.
+function seq(chords: number[][], tonicPc: number, mode: "major" | "minor") {
+  const s = chords.map((pcs, i) => ({
+    result: analyzeChord(identifyChord(pcs)!, tonicPc, mode),
+    measure: i + 1,
+  }));
+  annotateResolutions(s.map((x) => x.result), tonicPc, mode);
+  return s;
 }
 
 describe("identifyChord", () => {
@@ -191,5 +207,113 @@ describe("résidu chromatique", () => {
     const r = an([3, 7, 11], PC.Do, "major");
     expect(r.categorie).toBe("chromatique");
     expect(r.fonction).toBe("?");
+  });
+});
+
+describe("résolution des dominantes secondaires", () => {
+  it("La7 → Rém : résolue", () => {
+    const s = seq([[9, 1, 4, 7], [2, 5, 9]], PC.Do, "major");
+    expect(s[0].result.resolue).toBe(true);
+  });
+
+  it("La7 → Fa : non résolue", () => {
+    const s = seq([[9, 1, 4, 7], [5, 9, 0]], PC.Do, "major");
+    expect(s[0].result.resolue).toBe(false);
+  });
+
+  it("Mi7 → La7 → Rém : chaîne de dominantes (Mi7 résolue)", () => {
+    const s = seq([[4, 8, 11, 2], [9, 1, 4, 7], [2, 5, 9]], PC.Do, "major");
+    expect(s[0].result.degree).toBe("V7/vi");
+    expect(s[0].result.resolue).toBe(true);
+    expect(s[1].result.degree).toBe("V7/ii");
+    expect(s[1].result.resolue).toBe(true);
+  });
+});
+
+// CORRECTION B(b) — c'est la RÉSOLUTION qui désigne la cible d'une 7e diminuée.
+describe("désambiguïsation du °7 par la résolution", () => {
+  it("Do#°7 → Rém est vii°7/ii (résolu)", () => {
+    const s = seq([[1, 4, 7, 10], [2, 5, 9]], PC.Do, "major");
+    expect(s[0].result.degree).toBe("vii°7/ii");
+    expect(s[0].result.cible).toBe("ii");
+    expect(s[0].result.rootFr).toBe("Do#");
+    expect(s[0].result.resolue).toBe(true);
+  });
+
+  it("le MÊME accord, résolu sur Fa, devient vii°7/IV", () => {
+    // Accord identique (Do#-Mi-Sol-La#), résolution différente : le Mi est alors
+    // la sensible, et la cible est le IV.
+    const s = seq([[1, 4, 7, 10], [5, 9, 0]], PC.Do, "major");
+    expect(s[0].result.degree).toBe("vii°7/IV");
+    expect(s[0].result.cible).toBe("IV");
+    expect(s[0].result.rootFr).toBe("Mi");
+    expect(s[0].result.resolue).toBe(true);
+  });
+
+  it("Fa#°7 → Sol est vii°7/V (résolu)", () => {
+    const s = seq([[6, 9, 0, 3], [7, 11, 2]], PC.Do, "major");
+    expect(s[0].result.degree).toBe("vii°7/V");
+    expect(s[0].result.cible).toBe("V");
+    expect(s[0].result.resolue).toBe(true);
+  });
+
+  it("l'arbitrage par la résolution ne dépend pas de l'ordre des notes", () => {
+    // Les 4 rotations du même °7, toutes résolues sur Fa : toutes vii°7/IV.
+    const etiquettes = [
+      [1, 4, 7, 10],
+      [4, 7, 10, 1],
+      [7, 10, 1, 4],
+      [10, 1, 4, 7],
+    ].map((pcs) => {
+      const s = seq([pcs, [5, 9, 0]], PC.Do, "major");
+      const r = s[0].result;
+      return `${r.degree}|${r.rootFr}|${r.resolue}`;
+    });
+    expect(new Set(etiquettes).size).toBe(1);
+    expect(etiquettes[0]).toBe("vii°7/IV|Mi|true");
+  });
+
+  it("sans résolution reconnaissable, la priorité des cibles s'applique", () => {
+    // Do#°7 → Do : aucune des cibles possibles (ii, IV) n'est atteinte.
+    const s = seq([[1, 4, 7, 10], [0, 4, 7]], PC.Do, "major");
+    expect(s[0].result.degree).toBe("vii°7/ii");
+    expect(s[0].result.resolue).toBe(false);
+  });
+});
+
+describe("événements chromatiques", () => {
+  it("produit un événement expliqué pour La7 → Rém", () => {
+    const s = seq([[9, 1, 4, 7], [2, 5, 9]], PC.Do, "major");
+    const events = buildChromaEvents(s, PC.Do, "major");
+    expect(events).toHaveLength(1);
+    expect(events[0].degree).toBe("V7/ii");
+    expect(events[0].measure).toBe(1);
+    expect(events[0].explication).toContain("Tonicise");
+  });
+
+  it("ne produit aucun événement pour une suite diatonique", () => {
+    const s = seq([[7, 11, 2], [0, 4, 7]], PC.Do, "major"); // Sol → Do
+    expect(buildChromaEvents(s, PC.Do, "major")).toHaveLength(0);
+  });
+
+  it("signale une dominante secondaire non résolue", () => {
+    const s = seq([[9, 1, 4, 7], [5, 9, 0]], PC.Do, "major"); // La7 → Fa
+    const events = buildChromaEvents(s, PC.Do, "major");
+    expect(events[0].resolue).toBe(false);
+    expect(events[0].explication).toContain("Non résolue");
+  });
+
+  it("signale la chaîne de dominantes", () => {
+    const s = seq([[4, 8, 11, 2], [9, 1, 4, 7], [2, 5, 9]], PC.Do, "major");
+    const events = buildChromaEvents(s, PC.Do, "major");
+    expect(events).toHaveLength(2);
+    expect(events[0].explication).toContain("chaîne de dominantes");
+  });
+
+  it("explique un emprunt modal", () => {
+    const s = seq([[5, 8, 0], [0, 4, 7]], PC.Do, "major"); // Fam → Do
+    const events = buildChromaEvents(s, PC.Do, "major");
+    expect(events[0].degree).toBe("iv");
+    expect(events[0].explication).toContain("homonyme");
   });
 });

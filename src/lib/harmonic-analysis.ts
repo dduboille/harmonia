@@ -25,6 +25,12 @@ export interface ChordResult {
   rootPc: number;
   rootFr: string;
   quality: string;
+  /**
+   * Les classes de hauteurs de l'accord. Conservées car l'analyse d'un accord
+   * isolé peut devoir être RÉVISÉE au vu de la séquence : la cible d'une 7e
+   * diminuée n'est tranchée que par sa résolution (cf. `annotateResolutions`).
+   */
+  pcs: number[];
   degree: string;
   degreeNum: number;
   fonction: Fonction;
@@ -241,6 +247,7 @@ export function analyzeChord(
     rootPc: chord.rootPc,
     rootFr: chord.rootFr,
     quality: chord.quality,
+    pcs: chord.pcs,
   };
 
   // ── Règle 1 : diatonique = TOUTES les notes dans la gamme ──
@@ -331,4 +338,113 @@ export function analyzeChord(
     fonction: "?",
     categorie: "chromatique",
   };
+}
+
+// ── Analyse de séquence ───────────────────────────────────────────────────────
+
+export interface ChromaEvent {
+  measure: number;
+  beat?: number;
+  accord: string;
+  degree: string;
+  categorie: Categorie;
+  cible?: string;
+  resolue?: boolean;
+  explication: string;
+}
+
+/** Numéro de degré à partir de son étiquette ("ii", "IV"…). */
+function numOfLabel(label: string): number {
+  const idx = ROMANS.findIndex((r) => r.toLowerCase() === label.toLowerCase());
+  return idx + 1;
+}
+
+/**
+ * Renseigne `resolue` sur chaque accord porteur d'une cible, en regardant
+ * l'accord suivant. Mutation en place (la séquence est l'unité d'analyse).
+ *
+ * Au passage, ARBITRE la cible des 7es diminuées : cet accord étant symétrique,
+ * plusieurs de ses notes peuvent viser une cible tonicisable valide, et
+ * `analyzeChord` — qui ne voit qu'un accord isolé — a dû se rabattre sur un
+ * ordre de priorité. Or c'est la résolution qui désigne la cible : un °7 suivi
+ * de Rém est un vii°7/ii, le même accord suivi de Fa est un vii°7/IV. Si
+ * l'accord suivant correspond à l'une des cibles possibles, on l'adopte.
+ */
+export function annotateResolutions(
+  chords: ChordResult[], tonicPc: number, mode: "major" | "minor",
+): void {
+  for (let i = 0; i < chords.length; i++) {
+    const c = chords[i];
+    const next = chords[i + 1];
+
+    // Révision de la cible d'une 7e diminuée au vu de sa résolution réelle.
+    if (next && c.categorie === "sensible_degre" && c.quality === "°7") {
+      const lectures = leadingCandidates(c.pcs, c.quality, c.rootPc, tonicPc, mode);
+      const confirmee = lectures.find(
+        (l) => next.rootPc === pcOfDegree(l.target.num, tonicPc, mode),
+      );
+      if (confirmee) {
+        c.rootPc = confirmee.root;
+        c.rootFr = NOTE_FR[confirmee.root] ?? c.rootFr;
+        c.cible = confirmee.target.label;
+        c.degree = leadingPrefix(c.quality) + "/" + confirmee.target.label;
+      }
+      // Sinon : aucune résolution reconnaissable, on garde la cible prioritaire.
+    }
+
+    if (!c.cible) continue;
+    const targetPc = pcOfDegree(numOfLabel(c.cible), tonicPc, mode);
+    c.resolue = !!next && next.rootPc === targetPc;
+  }
+}
+
+/** Construit les événements chromatiques expliqués (pour l'onglet dédié). */
+export function buildChromaEvents(
+  seq: Array<{ result: ChordResult; measure: number }>,
+  tonicPc: number,
+  mode: "major" | "minor",
+): ChromaEvent[] {
+  const events: ChromaEvent[] = [];
+
+  for (let i = 0; i < seq.length; i++) {
+    const { result: c, measure } = seq[i];
+    if (c.categorie === "diatonique") continue;
+
+    const next = seq[i + 1]?.result;
+    const chaine = !!c.resolue && !!next &&
+      (next.categorie === "dominante_secondaire" || next.categorie === "sensible_degre");
+
+    let explication: string;
+    if (c.categorie === "dominante_secondaire" || c.categorie === "sensible_degre") {
+      const targetPc = pcOfDegree(numOfLabel(c.cible!), tonicPc, mode);
+      const cibleNom = NOTE_FR[targetPc];
+      const suite = c.resolue
+        ? (chaine
+            ? "Enchaîne sur une autre dominante secondaire (chaîne de dominantes)."
+            : "Résolue sur sa cible à l'accord suivant.")
+        : "Non résolue (rompue secondaire).";
+      explication = `Tonicise le ${c.cible} (${cibleNom}). ${suite}`;
+    } else if (c.categorie === "emprunt") {
+      const homonyme = mode === "major" ? "mineur" : "majeur";
+      explication = `Emprunt au mode homonyme (${homonyme}).`;
+    } else if (c.categorie === "napolitain") {
+      explication =
+        "Accord napolitain (bII). Le renversement (sixte) sera confirmé lorsque la basse sera suivie.";
+    } else {
+      explication = "Accord chromatique non identifié.";
+    }
+
+    events.push({
+      measure,
+      beat: c.beat,
+      accord: `${c.rootFr}${c.quality}`,
+      degree: c.degree,
+      categorie: c.categorie,
+      cible: c.cible,
+      resolue: c.resolue,
+      explication,
+    });
+  }
+
+  return events;
 }
