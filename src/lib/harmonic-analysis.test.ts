@@ -79,3 +79,21 @@ describe("dominantes secondaires", () => {
     expect(r.degree).toBe("V7");
   });
 });
+
+describe("sensibles de degré", () => {
+  it("Do#°7 en Do majeur est vii°7/ii", () => {
+    // Do#-Mi-Sol-La# (7e diminuée sur Do#), un demi-ton sous Ré (ii)
+    const r = an([1, 4, 7, 10], PC.Do, "major");
+    expect(r.degree).toBe("vii°7/ii");
+    expect(r.categorie).toBe("sensible_degre");
+    expect(r.cible).toBe("ii");
+    expect(r.fonction).toBe("D");
+  });
+
+  it("Fa#°7 en Do majeur est vii°7/V", () => {
+    // Fa#-La-Do-Mi♭ : un demi-ton sous Sol (V)
+    const r = an([6, 9, 0, 3], PC.Do, "major");
+    expect(r.degree).toBe("vii°7/V");
+    expect(r.cible).toBe("V");
+  });
+});

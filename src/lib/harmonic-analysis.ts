@@ -135,6 +135,14 @@ export function tonicizableTargets(mode: "major" | "minor"): Array<{ num: number
 
 const DOMINANT_QUALITIES = new Set(["", "7"]);
 
+const LEADING_QUALITIES = new Set(["°", "°7", "ø7"]);
+
+function leadingPrefix(quality: string): string {
+  if (quality === "°7") return "vii°7";
+  if (quality === "ø7") return "viiø7";
+  return "vii°";
+}
+
 // ── Analyse d'un accord ───────────────────────────────────────────────────────
 
 export function analyzeChord(
@@ -178,7 +186,34 @@ export function analyzeChord(
     }
   }
 
-  // Règles 3 à 5 ajoutées aux tâches suivantes.
+  // ── Règle 3 : sensible de degré ──
+  if (LEADING_QUALITIES.has(chord.quality)) {
+    // ATTENTION : la 7e diminuée est SYMÉTRIQUE (empilement de tierces mineures).
+    // Ses quatre notes peuvent chacune être la fondamentale, et `identifyChord`
+    // en choisit une arbitrairement (la première rencontrée). On teste donc
+    // chaque note de l'accord comme fondamentale potentielle, et on retient
+    // celle qui désigne une cible tonicisable valide.
+    const candidats = chord.quality === "°7" ? chord.pcs : [chord.rootPc];
+    for (const cand of candidats) {
+      for (const t of tonicizableTargets(mode)) {
+        const targetPc = pcOfDegree(t.num, tonicPc, mode);
+        if (cand === (targetPc + 11) % 12) { // un demi-ton sous la cible
+          return {
+            ...base,
+            rootPc: cand,
+            rootFr: NOTE_FR[cand] ?? chord.rootFr,
+            degree: leadingPrefix(chord.quality) + "/" + t.label,
+            degreeNum: 0,
+            fonction: "D",
+            categorie: "sensible_degre",
+            cible: t.label,
+          };
+        }
+      }
+    }
+  }
+
+  // Règles 4 et 5 ajoutées à la tâche suivante.
   return {
     ...base,
     degree: "chr",
