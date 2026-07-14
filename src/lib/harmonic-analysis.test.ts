@@ -786,21 +786,44 @@ describe("identifyChordFromNotes — la basse arbitre", () => {
   });
 });
 
+// Le « + » du chiffrage français désigne la SENSIBLE de la tonalité, à
+// l'intervalle où elle se trouve au-dessus de la basse. Le chiffre dépend donc de
+// la TONALITÉ, et pas seulement de l'accord : c'est ce qui distingue la « sixte
+// sensible » (+6) du « triton » (+4).
 describe("inversionOf / figureOf — chiffrage français", () => {
-  it("triades", () => {
+  const DO = 0;
+
+  it("triades — aucun +, jamais", () => {
     expect(inversionOf(0, "", 0)).toBe(0);
     expect(inversionOf(0, "", 4)).toBe(1);
     expect(inversionOf(0, "", 7)).toBe(2);
-    expect(figureOf("", 0)).toBe("");
-    expect(figureOf("", 1)).toBe("6");
-    expect(figureOf("", 2)).toBe("6/4");
+    expect(figureOf(0, "", 0, DO)).toBe("");
+    expect(figureOf(0, "", 1, DO)).toBe("6");
+    expect(figureOf(0, "", 2, DO)).toBe("6/4");
   });
 
-  it("septièmes", () => {
-    expect(figureOf("7", 0)).toBe("7");
-    expect(figureOf("7", 1)).toBe("6/5");
-    expect(figureOf("7", 2)).toBe("+4");
-    expect(figureOf("7", 3)).toBe("+2");
+  it("7e de dominante en Do : la sensible (Si) est la tierce de l'accord", () => {
+    // Basse Ré (la quinte) → Si est à la 6te : sixte sensible. Basse Fa (la 7e) →
+    // Si est à la 4te augmentée : triton.
+    expect(figureOf(7, "7", 0, DO)).toBe("7");
+    expect(figureOf(7, "7", 1, DO)).toBe("6/5");
+    expect(figureOf(7, "7", 2, DO)).toBe("+6");
+    expect(figureOf(7, "7", 3, DO)).toBe("+4");
+  });
+
+  it("7e diminuée en Do : la sensible (Si) est la fondamentale de l'accord", () => {
+    expect(figureOf(11, "°7", 0, DO)).toBe("7");
+    expect(figureOf(11, "°7", 1, DO)).toBe("+6/5");
+    expect(figureOf(11, "°7", 2, DO)).toBe("+4");
+    expect(figureOf(11, "°7", 3, DO)).toBe("+2");
+  });
+
+  it("sans sensible dans l'accord (ii7), les chiffres sont NUS", () => {
+    // Ré-Fa-La-Do en Do majeur : aucun Si. Rien à marquer d'un +.
+    expect(figureOf(2, "m7", 0, DO)).toBe("7");
+    expect(figureOf(2, "m7", 1, DO)).toBe("6/5");
+    expect(figureOf(2, "m7", 2, DO)).toBe("4/3");
+    expect(figureOf(2, "m7", 3, DO)).toBe("2");
   });
 
   it("une basse ÉTRANGÈRE à l'accord (pédale) n'invente pas de renversement", () => {
@@ -823,13 +846,24 @@ describe("analyzeChord — le degré porte le chiffrage", () => {
     expect(deg(7)).toBe("I6/4");
   });
 
-  it("V7, V6/5, V+4, V+2", () => {
+  it("V7, V6/5, V+6, V+4", () => {
+    // Basses Sol, Si, Ré, Fa. Le + suit la SENSIBLE (Si) : 6te sensible sur Ré,
+    // triton sur Fa.
     const deg = (bass: number) =>
       analyzeChord(identifyChordFromNotes([7, 11, 2, 5], bass)!, DO, "major").degree;
     expect(deg(7)).toBe("V7");
     expect(deg(11)).toBe("V6/5");
-    expect(deg(2)).toBe("V+4");
-    expect(deg(5)).toBe("V+2");
+    expect(deg(2)).toBe("V+6");
+    expect(deg(5)).toBe("V+4");
+  });
+
+  it("le ii7, sans sensible, porte des chiffres nus", () => {
+    const deg = (bass: number) =>
+      analyzeChord(identifyChordFromNotes([2, 5, 9, 0], bass)!, DO, "major").degree;
+    expect(deg(2)).toBe("ii7");
+    expect(deg(5)).toBe("ii6/5");
+    expect(deg(9)).toBe("ii4/3");
+    expect(deg(0)).toBe("ii2");
   });
 
   it("vi7 et vi6/5 — Do-Mi-Sol-La selon la basse", () => {
@@ -840,10 +874,12 @@ describe("analyzeChord — le degré porte le chiffrage", () => {
   });
 
   it("le vii°7 emprunté garde son symbole et prend son chiffrage", () => {
+    // Sa fondamentale EST la sensible : au 1er renversement, elle se retrouve à
+    // la 6te de la basse — d'où le + de la sixte sensible.
     const c = identifyChordFromNotes([11, 2, 5, 8], 11)!;
     expect(analyzeChord(c, DO, "major").degree).toBe("vii°7");
     const c6 = identifyChordFromNotes([11, 2, 5, 8], 2)!;
-    expect(analyzeChord(c6, DO, "major").degree).toBe("vii°6/5");
+    expect(analyzeChord(c6, DO, "major").degree).toBe("vii°+6/5");
   });
 
   it("la dominante secondaire est chiffrée elle aussi", () => {
@@ -857,5 +893,54 @@ describe("analyzeChord — le degré porte le chiffrage", () => {
   it("la basse est rendue", () => {
     const r = analyzeChord(identifyChordFromNotes([0, 4, 7], 4)!, DO, "major");
     expect(r.bassPc).toBe(4);
+  });
+});
+
+// La note de PÉDALE est ÉTRANGÈRE à l'harmonie : elle ne doit jamais devenir la
+// fondamentale d'un sus2/sus4 de circonstance. Sinon la FONCTION TONALE s'inverse
+// sur la texture la plus banale du répertoire — le ii deviendrait dominante, le V
+// deviendrait tonique.
+describe("pédale — la basse étrangère ne vole pas la fondamentale", () => {
+  const DO = 0;
+
+  it("ii sur pédale de dominante reste ii (SD), et non « Vsus2 » (D)", () => {
+    // Ré-Fa-La sur une basse de Sol tenue.
+    const r = analyzeChord(identifyChordFromNotes([2, 5, 9, 7], 7)!, DO, "major");
+    expect(r.degree).toBe("ii");
+    expect(r.fonction).toBe("SD");
+  });
+
+  it("V sur pédale de tonique reste V (D), et non « Isus2 » (T)", () => {
+    // Sol-Si-Ré sur une basse de Do tenue.
+    const r = analyzeChord(identifyChordFromNotes([7, 11, 2, 0], 0)!, DO, "major");
+    expect(r.degree).toBe("V");
+    expect(r.fonction).toBe("D");
+  });
+});
+
+// L'ellipse de la QUINTE est l'usage courant de l'écriture à quatre voix : tout
+// choral de Bach en est plein. Un accord ainsi allégé doit être identifié, faute
+// de quoi le segment disparaît purement et simplement de l'analyse.
+describe("accords incomplets — la quinte, et elle seule, peut manquer", () => {
+  const DO = 0;
+
+  it("7e de dominante sans quinte : Sol-Si-Fa est un V7", () => {
+    const r = analyzeChord(identifyChordFromNotes([7, 11, 5], 7)!, DO, "major");
+    expect(r.degree).toBe("V7");
+    expect(r.fonction).toBe("D");
+  });
+
+  it("triade sans quinte : Do-Mi est un I", () => {
+    expect(analyzeChord(identifyChordFromNotes([0, 4], 0)!, DO, "major").degree).toBe("I");
+  });
+
+  it("la TIERCE, elle, ne peut pas manquer : une quinte à vide n'est pas un accord", () => {
+    expect(identifyChordFromNotes([0, 7], 0)).toBeNull();
+  });
+
+  it("une lecture complète l'emporte toujours sur une lecture à quinte manquante", () => {
+    const c = identifyChordFromNotes([7, 11, 2, 5], 7)!; // Sol-Si-Ré-Fa, complet
+    expect(c.rootPc).toBe(7);
+    expect(c.quality).toBe("7");
   });
 });
