@@ -6,13 +6,35 @@ import React, { useCallback, useRef, useState } from "react";
 
 type Fonction = "T" | "SD" | "D" | "?";
 
+type Categorie =
+  | "diatonique"
+  | "dominante_secondaire"
+  | "sensible_degre"
+  | "emprunt"
+  | "napolitain"
+  | "chromatique";
+
 interface ChordResult {
   rootFr: string;
   quality: string;
   degree: string;
   degreeNum: number;
   fonction: Fonction;
+  categorie: Categorie;
+  cible?: string;
+  resolue?: boolean;
   beat?: number;
+}
+
+interface ChromaEvent {
+  measure: number;
+  beat?: number;
+  accord: string;
+  degree: string;
+  categorie: Categorie;
+  cible?: string;
+  resolue?: boolean;
+  explication: string;
 }
 
 interface CadenceResult {
@@ -37,6 +59,13 @@ interface AnalysisResult {
   mesures: MesureResult[];
   cadences: CadenceResult[];
   nombreChromatiques: number;
+  chromatisme: {
+    tonicisations: number;
+    emprunts: number;
+    napolitains: number;
+    inexpliques: number;
+    evenements: ChromaEvent[];
+  };
 }
 
 // ── Style helpers ─────────────────────────────────────────────────────────────
@@ -48,6 +77,15 @@ const FONC_STYLE: Record<Fonction, { bg: string; color: string; label: string }>
   "?": { bg: "#F5F5F5", color: "#777",    label: "?" },
 };
 
+const CAT_STYLE: Record<Categorie, { bg: string; color: string; label: string }> = {
+  diatonique:           { bg: "#f0ece6", color: "#888",    label: "diatonique" },
+  dominante_secondaire: { bg: "#FAEEDA", color: "#BA7517", label: "dominante secondaire" },
+  sensible_degre:       { bg: "#FAEEDA", color: "#BA7517", label: "sensible de degré" },
+  emprunt:              { bg: "#F0EBF8", color: "#5C3D6E", label: "emprunt" },
+  napolitain:           { bg: "#E6F1FB", color: "#185FA5", label: "napolitain" },
+  chromatique:          { bg: "#FCEBEB", color: "#A32D2D", label: "chromatique" },
+};
+
 const CADENCE_COLOR: Record<string, { bg: string; color: string }> = {
   parfaite: { bg: "#E1F5EE", color: "#0F6E56" },
   plagale:  { bg: "#E3F2FD", color: "#1565C0" },
@@ -57,7 +95,7 @@ const CADENCE_COLOR: Record<string, { bg: string; color: string }> = {
 
 // ── Main Component ────────────────────────────────────────────────────────────
 
-type Tab = "resume" | "mesures" | "cadences" | "commentaire";
+type Tab = "resume" | "mesures" | "cadences" | "chromatisme" | "commentaire";
 
 export default function AnalysePartition() {
   const [isDragging, setIsDragging] = useState(false);
@@ -230,6 +268,7 @@ export default function AnalysePartition() {
     { id: "resume",      label: "Résumé" },
     { id: "mesures",     label: `Mesures (${analysis.nombreMesures})` },
     { id: "cadences",    label: `Cadences (${analysis.cadences.length})` },
+    { id: "chromatisme", label: `Chromatisme (${analysis.chromatisme.evenements.length})` },
     { id: "commentaire", label: "✦ Commentaire IA" },
   ];
 
@@ -296,7 +335,9 @@ export default function AnalysePartition() {
               { label: "Signature", value: analysis.signature },
               { label: "Mesures",   value: String(analysis.nombreMesures) },
               { label: "Cadences",  value: String(analysis.cadences.length) },
-              { label: "Accords chromatiques", value: String(analysis.nombreChromatiques) },
+              { label: "Tonicisations", value: String(analysis.chromatisme.tonicisations) },
+              { label: "Emprunts", value: String(analysis.chromatisme.emprunts + analysis.chromatisme.napolitains) },
+              { label: "Chromatismes inexpliqués", value: String(analysis.chromatisme.inexpliques) },
             ].map(card => (
               <div key={card.label} style={{
                 background: "#fff", borderRadius: 12, padding: "16px 20px",
@@ -393,26 +434,40 @@ export default function AnalysePartition() {
                         </span>
                       </td>
                       <td style={{ padding: "10px 16px" }}>
-                        {chord.fonction !== "?" ? (
-                          <span style={{
-                            display: "inline-block",
-                            background: FONC_STYLE[chord.fonction].bg,
-                            color: FONC_STYLE[chord.fonction].color,
-                            padding: "2px 10px", borderRadius: 12,
-                            fontSize: 12, fontWeight: 700,
-                          }}>
-                            {FONC_STYLE[chord.fonction].label}
-                          </span>
-                        ) : (
-                          <span style={{
-                            display: "inline-block",
-                            background: "#F5F5F5", color: "#999",
-                            padding: "2px 10px", borderRadius: 12,
-                            fontSize: 12, fontWeight: 700,
-                          }}>
-                            chr
-                          </span>
-                        )}
+                        <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+                          {chord.fonction !== "?" ? (
+                            <span style={{
+                              display: "inline-block",
+                              background: FONC_STYLE[chord.fonction].bg,
+                              color: FONC_STYLE[chord.fonction].color,
+                              padding: "2px 10px", borderRadius: 12,
+                              fontSize: 12, fontWeight: 700,
+                            }}>
+                              {FONC_STYLE[chord.fonction].label}
+                            </span>
+                          ) : (
+                            <span style={{
+                              display: "inline-block",
+                              background: "#F5F5F5", color: "#999",
+                              padding: "2px 10px", borderRadius: 12,
+                              fontSize: 12, fontWeight: 700,
+                            }}>
+                              chr
+                            </span>
+                          )}
+                          {chord.categorie !== "diatonique" && (
+                            <span style={{
+                              display: "inline-block",
+                              fontSize: 10, padding: "2px 7px", borderRadius: 6, fontWeight: 600,
+                              background: CAT_STYLE[chord.categorie].bg,
+                              color: CAT_STYLE[chord.categorie].color,
+                              whiteSpace: "nowrap",
+                            }}>
+                              {CAT_STYLE[chord.categorie].label}
+                              {chord.resolue !== undefined && (chord.resolue ? " ✓" : " ✗")}
+                            </span>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ));
@@ -457,6 +512,50 @@ export default function AnalysePartition() {
                     </div>
                   );
                 })}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── Chromatisme ── */}
+        {activeTab === "chromatisme" && (
+          <div>
+            {analysis.chromatisme.evenements.length === 0 ? (
+              <div style={{ textAlign: "center", padding: "48px 0", color: "#767676", fontFamily: "system-ui, sans-serif", fontSize: 14 }}>
+                Aucun chromatisme détecté — la partition est entièrement diatonique.
+              </div>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {analysis.chromatisme.evenements.map((e, i) => (
+                  <div key={i} style={{
+                    background: "#fff", borderRadius: 12,
+                    padding: "16px 20px", boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
+                    fontFamily: "system-ui, sans-serif",
+                  }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 8 }}>
+                      <span style={{ fontSize: 12, color: "#888", whiteSpace: "nowrap" }}>
+                        m.{e.measure}{e.beat !== undefined ? ` · T${e.beat}` : ""}
+                      </span>
+                      <strong style={{ fontSize: 15, color: "#1a1a1a", fontFamily: "Georgia, serif" }}>
+                        {e.accord}
+                      </strong>
+                      <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 14, color: "#1a1a1a" }}>
+                        {e.degree}
+                      </span>
+                      <span style={{
+                        fontSize: 10, padding: "2px 7px", borderRadius: 6, fontWeight: 600,
+                        background: CAT_STYLE[e.categorie].bg,
+                        color: CAT_STYLE[e.categorie].color,
+                        whiteSpace: "nowrap",
+                      }}>
+                        {CAT_STYLE[e.categorie].label}
+                      </span>
+                    </div>
+                    <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>
+                      {e.explication}
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
           </div>
