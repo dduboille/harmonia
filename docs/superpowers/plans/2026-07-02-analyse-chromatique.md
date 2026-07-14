@@ -43,6 +43,30 @@ seule la reconnaissance du 7e degré accepte 10 **ou** 11.
 - Mineur : degrés 3 (`III`), 4 (`iv`), 5 (`V`), 6 (`VI`), 7 (`VII`).
 - On exclut la tonique (ce serait le V réel) et les degrés diminués.
 
+### AMENDEMENT (après Task 4) — deux corrections musicales
+
+L'exécution des tâches 2-4 a révélé deux défauts que la rédaction initiale n'avait pas anticipés.
+Ils sont corrigés dans la **Task 5**.
+
+**1. La 7e diminuée reste ambiguë même en testant les 4 fondamentales.**
+Plusieurs notes d'un `°7` peuvent se trouver un demi-ton sous une cible tonicisable *valide* :
+`Do#°7 {1,4,7,10}` → Do# vise `ii`, **mais** Mi vise `IV`. Le code retient la première dans
+l'ordre des notes ; or cet ordre vient du MusicXML. **L'étiquette dépendait donc de l'ordre
+d'écriture des notes** — inacceptable.
+
+*Correction :* c'est **la résolution qui désigne la cible**. Un `°7` suivi de Rém est un
+`vii°7/ii` ; suivi de Sol, un `vii°7/V`. La cible est donc arbitrée **au niveau de la séquence**
+(Task 5), avec un **ordre de priorité en repli** quand la résolution ne tranche pas :
+majeur `V, ii, vi, IV, iii` · mineur `V, iv, VI, III, VII`.
+
+**2. L'ensemble du mode homonyme est trop large.**
+`parallelSet` réutilisait `diatonicSet(..., "minor")`, qui inclut la **7e élevée** (nécessaire
+pour que le V de mineur reste diatonique, mais hors sujet ici). Conséquence : un **Mi♭ augmenté**
+`{3,7,11}` en Do majeur passait pour un « emprunt bIII ».
+
+*Correction :* l'emprunt modal se réfère au **mineur naturel** (sans 7e élevée). `parallelSet`
+doit être construit sur les degrés bruts, pas sur `diatonicSet`.
+
 ### Commandes de vérification
 
 - Tests : `npx vitest run`
