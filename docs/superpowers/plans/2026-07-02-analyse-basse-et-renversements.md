@@ -679,6 +679,35 @@ git commit -m "feat(analyse): segmentation par notes sonnantes et rythme harmoni
 
 ## Task 3 : Basse, renversements et chiffrage français
 
+> ### ⚠️ CORRECTION DU 2026-07-02 — lire avant d'implémenter
+>
+> Les tables `FIGURES_TRIADE` / `FIGURES_SEPTIEME` ci-dessous sont **fausses**, et les tests
+> qui affirment `V+4` / `V+2` avec elles le sont aussi. `["7", "6/5", "+4", "+2"]` est la table
+> de la 7e **diminuée**, appliquée à tort à toutes les septièmes.
+>
+> **La règle française : le `+` désigne la SENSIBLE de la tonalité**, à l'intervalle où elle se
+> trouve au-dessus de la basse. Le chiffre dépend donc de la **tonalité**, pas seulement de
+> l'accord :
+>
+> | Renversement | V7 (Sol-Si-Ré-Fa en Do) | vii°7 (Si-Ré-Fa-Lab) | ii7 (aucune sensible) |
+> |---|---|---|---|
+> | fondamental | `7` | `7` | `7` |
+> | 1er | `6/5` | `+6/5` | `6/5` |
+> | 2e | `+6` *(sixte sensible)* | `+4` | `4/3` |
+> | 3e | `+4` *(triton)* | `+2` | `2` |
+>
+> `figureOf` prend donc `(rootPc, quality, inversion, tonicPc)`, et **tous les sites
+> d'étiquetage doivent faire remonter `tonicPc`**. Les triades gardent `"" / 6 / 6/4` : le `+`
+> est réservé aux septièmes, où la tradition l'emploie.
+>
+> Deux autres correctifs, découverts à la relecture :
+> - **la pédale ne doit pas capturer la fondamentale** : ordonner le départage
+>   `manquantes → restes → rang → fondAuBasse` (et non la basse avant le rang), sans quoi un
+>   ii sur pédale de dominante se lit `Vsus2` (fonction D au lieu de SD) ;
+> - **les accords incomplets doivent être identifiés** : tolérer UNE note manquante, et
+>   seulement la QUINTE (Sol-Si-Fa → `V7`, Do-Mi → `I`, Do-Sol → `null`). Sans cela, toute
+>   ellipse de quinte — omniprésente dans les chorals — sort de l'analyse.
+
 **Files:**
 - Modify: `src/lib/harmonic-analysis.ts`
 - Test: `src/lib/harmonic-analysis.test.ts` (ajouts + mise à jour)

@@ -132,10 +132,28 @@ export function identifyChord(pcs: number[]): Chord | null {
 const QUINTE_OMISSIBLE = new Set(["", "m", "7", "m7", "Maj7"]);
 
 /**
+ * Les accords « sus » NE SONT PAS des accords de l'harmonie tonale : ce sont des
+ * RETARDS — une note qui tarde à rejoindre la tierce. Ils n'ont donc leur mot à
+ * dire que là où AUCUNE lecture en tierces n'existe.
+ *
+ * Sans cette barrière, la moindre pédale ou le moindre retard de cadence
+ * renverse la fonction tonale : Sol-Si-Fa sur une basse de Do (V7 à quinte omise
+ * au-dessus d'une pédale de tonique) se lit « Isus4 » — fonction T là où il faut
+ * D — parce que le sus4 est COMPLET quand la 7e de dominante est incomplète.
+ */
+const RETARDS = new Set(["sus4", "sus2"]);
+
+/**
  * Score d'une lecture, par ordre de priorité DÉCROISSANTE. Comparaison
  * lexicographique : le plus petit gagne.
  */
-type ScoreLecture = [manquantes: number, restes: number, rang: number, pasFondAuBasse: number];
+type ScoreLecture = [
+  retard: number,
+  manquantes: number,
+  restes: number,
+  rang: number,
+  pasFondAuBasse: number,
+];
 
 function scoreInferieur(a: ScoreLecture, b: ScoreLecture): boolean {
   for (let i = 0; i < a.length; i++) {
@@ -151,11 +169,13 @@ function scoreInferieur(a: ScoreLecture, b: ScoreLecture): boolean {
  * l'ordre du tableau décidait de l'analyse. On énumère ici toutes les lectures
  * (motif × fondamentale candidate) et on retient la meilleure, dans cet ordre :
  *
- *  1. `manquantes` — une lecture COMPLÈTE bat toujours une lecture à quinte omise
+ *  1. `retard` — toute lecture EN TIERCES bat un sus2 / sus4, fût-elle incomplète
+ *     (cf. `RETARDS`) : un retard n'est pas un accord ;
+ *  2. `manquantes` — une lecture COMPLÈTE bat toujours une lecture à quinte omise
  *     (cf. `QUINTE_OMISSIBLE`) ;
- *  2. `restes` — le moins de notes INEXPLIQUÉES : la 7e de dominante explique le
+ *  3. `restes` — le moins de notes INEXPLIQUÉES : la 7e de dominante explique le
  *     Fa que la triade laisserait de côté ;
- *  3. `rang` — l'ordre de `CHORD_PATTERNS`. Il DOIT passer avant la basse. Sinon
+ *  4. `rang` — l'ordre de `CHORD_PATTERNS`. Il DOIT passer avant la basse. Sinon
  *     une note de PÉDALE, étrangère à l'harmonie, se fait fondamentale du sus2 /
  *     sus4 qu'elle forme avec l'accord réel, et la FONCTION TONALE s'inverse sur
  *     la texture la plus banale du répertoire : le ii sur pédale de dominante
@@ -163,7 +183,7 @@ function scoreInferieur(a: ScoreLecture, b: ScoreLecture): boolean {
  *     sous-dominante ; le V sur pédale de tonique, « Isus2 ». Les accords sus
  *     étant derniers dans `CHORD_PATTERNS`, le rang les écarte au profit du vrai
  *     accord ;
- *  4. `fondAuBasse` — à rang égal, la basse tranche : c'est le cas de la 7e
+ *  5. `fondAuBasse` — à rang égal, la basse tranche : c'est le cas de la 7e
  *     diminuée, dont les quatre lectures relèvent du MÊME motif symétrique et ne
  *     se départagent donc pas par le rang. L'état fondamental prime alors sur le
  *     renversement.
@@ -196,6 +216,7 @@ export function identifyChordFromNotes(pcs: number[], bassPc?: number): Chord | 
       }
 
       const score: ScoreLecture = [
+        RETARDS.has(pattern.quality) ? 1 : 0,
         manquantes,
         unique.length - presents.length,
         rang,

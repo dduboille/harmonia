@@ -51,8 +51,17 @@ identiques), et fait afficher des noms de notes faux.
 ## Décisions de cadrage (validées)
 
 - **Périmètre :** modèle de notes complet — durées, tenues, octave **et** orthographe.
-- **Chiffrage :** convention **française / conservatoire** — `I`, `I6`, `I6/4` ; `V7`, `V6/5`,
-  `V+4`, `V+2`.
+- **Chiffrage :** convention **française / conservatoire**, où le **`+` désigne la SENSIBLE**
+  de la tonalité, à l'intervalle où elle se trouve au-dessus de la basse.
+  Triades : `I`, `I6`, `I6/4`. Septièmes : `V7`, `V6/5`, `V+6` (sixte sensible), `V+4` (triton).
+  Le chiffre dépend donc de la **tonalité**, pas seulement de l'accord : un `ii7`, qui ne
+  contient pas la sensible, se chiffre `7 / 6/5 / 4/3 / 2`, sans aucun `+`.
+
+  > *Correction du 2026-07-02.* Une première version de cette spec annonçait `V+4` / `V+2` pour
+  > les 2e et 3e renversements de la 7e de dominante. C'était **faux** : cette table est celle
+  > de la 7e **diminuée**. Sur Sol-Si-Ré-Fa en Do, basse Ré, la sensible Si est à la **sixte**
+  > (`+6`) ; basse Fa, elle est à la **quarte augmentée** (`+4`). Le `+2` n'existe que pour la
+  > 7e diminuée (Lab à la basse, sensible à la seconde augmentée).
 - **Granularité :** annotation **aux changements d'harmonie** (les temps consécutifs portant le
   même accord sont fusionnés en un segment), comme le ferait un musicien.
 - **Sixtes augmentées :** détectées **par l'orthographe** (6te augmentée entre le ♭6 à la basse
@@ -111,17 +120,28 @@ Fini le « premier motif trouvé » de `identifyChord`. **Sélection par score**
 - la **basse** départage : elle détermine le **renversement**, et tranche Do6 / Am7.
 
 Sortie enrichie : `{ rootPc, quality, inversion, figure }` où `figure` est le **chiffrage
-français** :
+français**.
 
-| Renversement | Triade | Septième |
-|---|---|---|
-| état fondamental | *(rien)* | `7` |
-| 1er renversement | `6` | `6/5` |
-| 2e renversement | `6/4` | `+4` |
-| 3e renversement | — | `+2` |
+Triades — le chiffre ne dépend que du renversement :
 
-Le degré affiché combine chiffre romain + chiffrage : `I`, `I6`, `I6/4`, `V7`, `V6/5`, `V+4`,
-`V+2`.
+| Renversement | Chiffre |
+|---|---|
+| état fondamental | *(rien)* |
+| 1er | `6` |
+| 2e | `6/4` |
+
+Septièmes — le chiffre dépend de **l'endroit où tombe la sensible** au-dessus de la basse
+(c'est elle que le `+` désigne). Sans sensible dans l'accord, chiffres nus :
+
+| Renversement | 7e de dominante (V7) | 7e diminuée (vii°7) | Sans sensible (ii7, IΔ7) |
+|---|---|---|---|
+| état fondamental | `7` | `7` | `7` |
+| 1er | `6/5` | `+6/5` | `6/5` |
+| 2e | `+6` *(sixte sensible)* | `+4` | `4/3` |
+| 3e | `+4` *(triton)* | `+2` | `2` |
+
+Le degré affiché combine chiffre romain + chiffrage : `I`, `I6`, `I6/4`, `V7`, `V6/5`, `V+6`,
+`V+4`, `vii°+2`, `ii4/3`.
 
 ### 4. Ce que la basse et l'orthographe débloquent
 
@@ -150,9 +170,14 @@ Le parseur est le cœur du risque. Tests sur des extraits MusicXML réels :
   attaque.
 - **Basse tenue** : une ronde à la basse sous des voix mobiles reste présente aux temps 2, 3 et 4.
 - **Basse et renversement** : Do-Mi-Sol avec Mi à la basse → `I6` ; avec Sol à la basse → `I6/4`.
-- **Do6 vs Am7** : le même ensemble de notes donne `I6`... selon la basse (Do → accord de Do ;
-  La → Am7).
-- **Septièmes renversées** : `V6/5`, `V+4`, `V+2`.
+- **Do-Mi-Sol-La** : c'est un **La m7 dans les deux cas** — la basse ne change pas la
+  fondamentale, elle change le renversement (`vi7` avec La à la basse, `vi6/5` avec Do).
+- **Septièmes renversées** : `V6/5`, `V+6`, `V+4` ; `vii°+2` ; `ii4/3` (sans `+`, faute de sensible).
+- **Pédale** : une basse ÉTRANGÈRE à l'accord (ii sur pédale de dominante, V sur pédale de
+  tonique) ne doit pas capturer la fondamentale — la fonction tonale s'en trouverait inversée.
+- **Accords incomplets** : la 7e de dominante sans quinte (Sol-Si-Fa) et la triade sans quinte
+  (Do-Mi) sont les deux ellipses les plus courantes de l'écriture à quatre voix. Elles doivent
+  être identifiées. La quinte à vide (Do-Sol), elle, n'a pas de qualité : elle reste `null`.
 - **Napolitain** : Réb-Fa-Lab avec Fa à la basse → `bII6`.
 - **Sixte allemande vs V7** : Lab-Do-Mib-Fa# (6te augm. allemande) ≠ Lab-Do-Mib-Solb (V7 de Réb),
   distingués par l'orthographe.
@@ -178,8 +203,9 @@ Le parseur est le cœur du risque. Tests sur des extraits MusicXML réels :
 
 - Un **choral à 4 voix** est analysé avec les bons accords verticaux (le bug `<backup>` est mort).
 - Une **basse tenue** reste présente sur toute sa durée.
-- Les **renversements et le chiffrage français** apparaissent (`I6`, `V6/5`, `V+2`…).
-- Do6 et Am7 sont **distingués par la basse**.
+- Les **renversements et le chiffrage français** apparaissent (`I6`, `V6/5`, `V+6`, `V+4`…),
+  le `+` tombant sur la sensible.
+- Le **renversement** est déduit de la basse réelle ; une pédale ne capture pas la fondamentale.
 - Le **napolitain** est confirmé en `bII6`, les **sixtes augmentées** sont reconnues.
 - Le parseur et la segmentation sont des modules purs, couverts par des tests vitest.
 - Aucune régression sur les 95 tests du sous-projet A ; le build passe.

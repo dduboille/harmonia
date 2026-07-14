@@ -916,6 +916,19 @@ describe("pédale — la basse étrangère ne vole pas la fondamentale", () => {
     expect(r.degree).toBe("V");
     expect(r.fonction).toBe("D");
   });
+
+  it("un sus4 COMPLET ne bat pas une 7e de dominante à quinte omise", () => {
+    // Sol-Si-Fa (V7 sans quinte) sur une basse de Do : Do-Fa-Sol forme un sus4
+    // complet, mais un retard n'est pas un accord — la fonction reste dominante.
+    const r = analyzeChord(identifyChordFromNotes([7, 11, 5, 0], 0)!, DO, "major");
+    expect(r.degree).toBe("V7");
+    expect(r.fonction).toBe("D");
+  });
+
+  it("faute de toute lecture en tierces, le sus4 est retenu", () => {
+    // Do-Fa-Sol seul : aucune tierce ne peut le qualifier.
+    expect(identifyChordFromNotes([0, 5, 7], 0)?.quality).toBe("sus4");
+  });
 });
 
 // L'ellipse de la QUINTE est l'usage courant de l'écriture à quatre voix : tout
