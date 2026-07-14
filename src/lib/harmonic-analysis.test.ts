@@ -1,6 +1,9 @@
 import { describe, it, expect } from "vitest";
 import {
   identifyChord,
+  identifyChordFromNotes,
+  inversionOf,
+  figureOf,
   analyzeChord,
   annotateResolutions,
   buildChromaEvents,
@@ -480,7 +483,7 @@ describe("vii°7 diatonique du mineur — fondamentale canonique, jamais l'ordre
 // ── CORRECTION 2 — la qualité de l'accord emprunté doit être écrite ───────────
 //
 // Un chiffrage « ii7 » se lit Rém7 : ce n'est PAS l'accord Ré-Fa-Lab-Do. Un
-// « bVI7 » se lit Lab7 (7e de dominante) : ce n'est PAS Lab Maj7.
+// « bVI7 » se lit Lab7 (7e de dominante) : ce n'est PAS Lab Maj7 (bVIΔ7).
 describe("emprunts — le symbole de qualité est obligatoire", () => {
   it("Ré ø7 en Do majeur est iiø7 (et non ii7)", () => {
     const r = an([2, 5, 8, 0], PC.Do, "major"); // Ré-Fa-Lab-Do
@@ -496,16 +499,19 @@ describe("emprunts — le symbole de qualité est obligatoire", () => {
     expect(r.fonction).toBe("SD");
   });
 
-  it("Lab Maj7 en Do majeur est bVIΔ (et non bVI7)", () => {
+  // Le Δ dit la 7e MAJEURE, le 7 dit l'ÉTAT FONDAMENTAL (renversement 0) : les
+  // deux se cumulent, comme « V7 ». Un « bVIΔ » sans chiffre ne dirait pas dans
+  // quel renversement l'accord se présente.
+  it("Lab Maj7 en Do majeur est bVIΔ7 (et non bVI7)", () => {
     const r = an([8, 0, 3, 7], PC.Do, "major"); // Lab-Do-Mib-Sol
-    expect(r.degree).toBe("bVIΔ");
+    expect(r.degree).toBe("bVIΔ7");
     expect(r.categorie).toBe("emprunt");
     expect(r.fonction).toBe("SD");
   });
 
-  it("Mib Maj7 en Do majeur est bIIIΔ", () => {
+  it("Mib Maj7 en Do majeur est bIIIΔ7", () => {
     const r = an([3, 7, 10, 2], PC.Do, "major"); // Mib-Sol-Sib-Ré
-    expect(r.degree).toBe("bIIIΔ");
+    expect(r.degree).toBe("bIIIΔ7");
     expect(r.categorie).toBe("emprunt");
     expect(r.fonction).toBe("T");
   });
@@ -587,9 +593,9 @@ describe("casse des chiffrages — majuscule = majeur, minuscule = mineur/diminu
     expect(r.categorie).toBe("diatonique");
   });
 
-  it("le IΔ diatonique de Do majeur (Do Maj7) est bien IΔ", () => {
+  it("le IΔ7 diatonique de Do majeur (Do Maj7) est bien IΔ7", () => {
     const r = an([0, 4, 7, 11], PC.Do, "major"); // Do-Mi-Sol-Si
-    expect(r.degree).toBe("IΔ");
+    expect(r.degree).toBe("IΔ7");
     expect(r.categorie).toBe("diatonique");
     expect(r.fonction).toBe("T");
   });
@@ -749,5 +755,107 @@ describe("robustesse", () => {
     const events = buildChromaEvents(s, PC.Do, "major");
     expect(events[0].explication).toContain("chaîne de dominantes");
     expect(events[0].explication).not.toContain("une autre dominante secondaire");
+  });
+});
+
+// ── BASSE, RENVERSEMENTS ET CHIFFRAGE FRANÇAIS ────────────────────────────────
+
+describe("identifyChordFromNotes — la basse arbitre", () => {
+  it("Do-Mi-Sol-La est un La m7, quelle que soit la basse", () => {
+    const pcs = [0, 4, 7, 9];
+    expect(identifyChordFromNotes(pcs, 9)?.rootPc).toBe(9); // La à la basse
+    expect(identifyChordFromNotes(pcs, 0)?.rootPc).toBe(9); // Do à la basse
+    expect(identifyChordFromNotes(pcs, 0)?.quality).toBe("m7");
+  });
+
+  it("préfère la lecture qui n'abandonne aucune note", () => {
+    // Sol-Si-Ré-Fa : la 7e de dominante explique tout ; la triade laisserait le Fa.
+    const c = identifyChordFromNotes([7, 11, 2, 5], 7);
+    expect(c?.rootPc).toBe(7);
+    expect(c?.quality).toBe("7");
+  });
+
+  it("à égalité, préfère la fondamentale à la basse (état fondamental)", () => {
+    // 7e diminuée : les quatre notes sont candidates. La basse tranche.
+    expect(identifyChordFromNotes([11, 2, 5, 8], 5)?.rootPc).toBe(5);
+    expect(identifyChordFromNotes([11, 2, 5, 8], 11)?.rootPc).toBe(11);
+  });
+
+  it("conserve la basse dans l'accord rendu", () => {
+    expect(identifyChordFromNotes([0, 4, 7], 4)?.bassPc).toBe(4);
+  });
+});
+
+describe("inversionOf / figureOf — chiffrage français", () => {
+  it("triades", () => {
+    expect(inversionOf(0, "", 0)).toBe(0);
+    expect(inversionOf(0, "", 4)).toBe(1);
+    expect(inversionOf(0, "", 7)).toBe(2);
+    expect(figureOf("", 0)).toBe("");
+    expect(figureOf("", 1)).toBe("6");
+    expect(figureOf("", 2)).toBe("6/4");
+  });
+
+  it("septièmes", () => {
+    expect(figureOf("7", 0)).toBe("7");
+    expect(figureOf("7", 1)).toBe("6/5");
+    expect(figureOf("7", 2)).toBe("+4");
+    expect(figureOf("7", 3)).toBe("+2");
+  });
+
+  it("une basse ÉTRANGÈRE à l'accord (pédale) n'invente pas de renversement", () => {
+    expect(inversionOf(0, "", 2)).toBe(0);
+  });
+
+  it("sans basse connue, on présume l'état fondamental", () => {
+    expect(inversionOf(0, "", undefined)).toBe(0);
+  });
+});
+
+describe("analyzeChord — le degré porte le chiffrage", () => {
+  const DO = 0;
+
+  it("I, I6, I6/4", () => {
+    const deg = (bass: number) =>
+      analyzeChord(identifyChordFromNotes([0, 4, 7], bass)!, DO, "major").degree;
+    expect(deg(0)).toBe("I");
+    expect(deg(4)).toBe("I6");
+    expect(deg(7)).toBe("I6/4");
+  });
+
+  it("V7, V6/5, V+4, V+2", () => {
+    const deg = (bass: number) =>
+      analyzeChord(identifyChordFromNotes([7, 11, 2, 5], bass)!, DO, "major").degree;
+    expect(deg(7)).toBe("V7");
+    expect(deg(11)).toBe("V6/5");
+    expect(deg(2)).toBe("V+4");
+    expect(deg(5)).toBe("V+2");
+  });
+
+  it("vi7 et vi6/5 — Do-Mi-Sol-La selon la basse", () => {
+    const deg = (bass: number) =>
+      analyzeChord(identifyChordFromNotes([0, 4, 7, 9], bass)!, DO, "major").degree;
+    expect(deg(9)).toBe("vi7");
+    expect(deg(0)).toBe("vi6/5");
+  });
+
+  it("le vii°7 emprunté garde son symbole et prend son chiffrage", () => {
+    const c = identifyChordFromNotes([11, 2, 5, 8], 11)!;
+    expect(analyzeChord(c, DO, "major").degree).toBe("vii°7");
+    const c6 = identifyChordFromNotes([11, 2, 5, 8], 2)!;
+    expect(analyzeChord(c6, DO, "major").degree).toBe("vii°6/5");
+  });
+
+  it("la dominante secondaire est chiffrée elle aussi", () => {
+    // La7 (La-Do#-Mi-Sol) en Do majeur → V7/ii ; avec Do# à la basse → V6/5/ii.
+    const deg = (bass: number) =>
+      analyzeChord(identifyChordFromNotes([9, 1, 4, 7], bass)!, DO, "major").degree;
+    expect(deg(9)).toBe("V7/ii");
+    expect(deg(1)).toBe("V6/5/ii");
+  });
+
+  it("la basse est rendue", () => {
+    const r = analyzeChord(identifyChordFromNotes([0, 4, 7], 4)!, DO, "major");
+    expect(r.bassPc).toBe(4);
   });
 });

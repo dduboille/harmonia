@@ -13,11 +13,22 @@ export type Categorie =
   | "napolitain"
   | "chromatique";
 
+/** Une note telle qu'ÉCRITE — l'orthographe seule distingue un Fa# d'un Solb. */
+export interface SpelledNote {
+  step: string;
+  alter: number;
+  pc: number;
+}
+
 export interface Chord {
   rootPc: number;
   rootFr: string;
   quality: string;
   pcs: number[];
+  /** Hauteur de la note la plus GRAVE. C'est elle qui donne le renversement. */
+  bassPc?: number;
+  /** Notes du segment avec leur orthographe (pour les sixtes augmentées). */
+  spelled?: SpelledNote[];
 }
 
 export interface ChordResult {
@@ -30,6 +41,9 @@ export interface ChordResult {
    * diminuée n'est tranchée que par sa résolution (cf. `annotateResolutions`).
    */
   pcs: number[];
+  bassPc?: number;
+  /** Nom français de la basse, orthographe comprise ("Lab", pas "Sol#"). */
+  bassFr?: string;
   degree: string;
   degreeNum: number;
   fonction: Fonction;
@@ -96,6 +110,67 @@ export function identifyChord(pcs: number[]): Chord | null {
     }
   }
   return null;
+}
+
+/**
+ * Identification d'accord par SCORE, la BASSE en arbitre.
+ *
+ * `identifyChord` rendait le PREMIER motif de `CHORD_PATTERNS` qui collait :
+ * l'ordre du tableau décidait de l'analyse. On énumère ici toutes les lectures
+ * (motif × fondamentale candidate) et on retient la meilleure :
+ *  1. le moins de notes INEXPLIQUÉES — une 7e complète bat la triade + une note
+ *     en trop ;
+ *  2. à égalité, la lecture dont la fondamentale est à la BASSE : entre plusieurs
+ *     lectures aussi complètes (7e diminuée, accord symétrique), l'état
+ *     fondamental prime sur le renversement ;
+ *  3. à égalité encore, l'ordre de `CHORD_PATTERNS`.
+ *
+ * (La fondamentale d'une 7e diminuée reste ensuite soumise à `canonicalRootPc`
+ * puis à la résolution : voir `annotateResolutions`.)
+ */
+export function identifyChordFromNotes(pcs: number[], bassPc?: number): Chord | null {
+  const unique = [...new Set(pcs.map((p) => ((p % 12) + 12) % 12))];
+  if (unique.length < 2) return null;
+
+  let meilleur: { chord: Chord; restes: number; fondAuBasse: boolean; rang: number } | null = null;
+
+  for (let rang = 0; rang < CHORD_PATTERNS.length; rang++) {
+    const pattern = CHORD_PATTERNS[rang];
+    if (pattern.intervals.length > unique.length) continue;
+
+    for (const root of unique) {
+      const norm = unique.map((p) => (p - root + 12) % 12);
+      if (!pattern.intervals.every((iv) => norm.includes(iv))) continue;
+
+      const restes = unique.length - pattern.intervals.length;
+      const fondAuBasse = bassPc !== undefined && root === bassPc;
+
+      const mieux =
+        meilleur === null ||
+        restes < meilleur.restes ||
+        (restes === meilleur.restes && fondAuBasse && !meilleur.fondAuBasse) ||
+        (restes === meilleur.restes &&
+          fondAuBasse === meilleur.fondAuBasse &&
+          rang < meilleur.rang);
+
+      if (mieux) {
+        meilleur = {
+          chord: {
+            rootPc: root,
+            rootFr: NOTE_FR[root] ?? "?",
+            quality: pattern.quality,
+            pcs: unique,
+            bassPc,
+          },
+          restes,
+          fondAuBasse,
+          rang,
+        };
+      }
+    }
+  }
+
+  return meilleur ? meilleur.chord : null;
 }
 
 // ── Helpers tonalité ──────────────────────────────────────────────────────────
@@ -244,10 +319,8 @@ export function dominantCandidates(
   );
 }
 
-function leadingPrefix(quality: string): string {
-  if (quality === "°7") return "vii°7";
-  if (quality === "ø7") return "viiø7";
-  return "vii°";
+function leadingPrefix(quality: string, inversion: number): string {
+  return "vii" + chiffrage(quality, inversion);
 }
 
 /**
@@ -302,36 +375,77 @@ function isMinorish(quality: string): boolean {
          quality === "°7" || quality === "ø7";
 }
 
+const INTERVALS_OF: Record<string, number[]> = Object.fromEntries(
+  CHORD_PATTERNS.map((p): [string, number[]] => [p.quality, p.intervals]),
+);
+
 /**
- * Symbole de qualité accolé au chiffre romain.
+ * Renversement d'après la BASSE RÉELLE : 0 = état fondamental, 1/2/3 = 1er, 2e, 3e.
  *
- * La casse du chiffre dit déjà « majeur » ou « mineur » ; le symbole dit le
- * RESTE — et il n'est jamais facultatif : « ii7 » se lit Rém7, ce n'est pas
- * l'accord Ré-Fa-Lab-Do (iiø7) ; « bVI7 » se lit Lab7, ce n'est pas Lab Maj7
- * (bVIΔ). Un symbole manquant, c'est un autre accord.
+ * Si la basse n'appartient pas à l'accord (pédale, note étrangère, basse
+ * inconnue), on ne chiffre pas au jugé : état fondamental. Un chiffrage inventé
+ * serait pire que pas de chiffrage — il se lit comme une affirmation.
  */
-const QUALITY_SUFFIX: Record<string, string> = {
+export function inversionOf(rootPc: number, quality: string, bassPc?: number): number {
+  if (bassPc === undefined) return 0;
+  const intervals = INTERVALS_OF[quality];
+  if (!intervals) return 0;
+  const idx = intervals.indexOf((((bassPc - rootPc) % 12) + 12) % 12);
+  return idx === -1 ? 0 : idx;
+}
+
+/**
+ * Symbole de QUALITÉ accolé au chiffre romain.
+ *
+ * La casse du chiffre dit déjà « majeur » ou « mineur » ; ce symbole dit le
+ * RESTE (diminué, demi-diminué, augmenté, 7e majeure) — et il n'est jamais
+ * facultatif : « ii7 » se lit Rém7, ce n'est pas l'accord Ré-Fa-Lab-Do (iiø7) ;
+ * « bVI7 » se lit Lab7, ce n'est pas Lab Maj7 (bVIΔ7). Un symbole manquant,
+ * c'est un autre accord.
+ *
+ * Le chiffre, lui, ne vient plus d'ici : il dit le RENVERSEMENT (cf. `figureOf`).
+ */
+const QUALITY_MARK: Record<string, string> = {
   "":     "",     // parfait majeur   → I
   "m":    "",     // parfait mineur   → i
   "°":    "°",    // diminué          → vii°
-  "°7":   "°7",   // 7e diminuée      → vii°7
-  "ø7":   "ø7",   // 7e de sensible   → iiø7
-  "7":    "7",    // 7e de dominante  → V7
-  "m7":   "7",    // 7e mineure       → ii7 (la minuscule dit « mineur »)
-  "Maj7": "Δ",    // 7e majeure       → IΔ
   "aug":  "+",    // augmenté         → III+
+  "7":    "",     // 7e de dominante  → V7   (le « 7 » est le chiffrage)
+  "m7":   "",     // 7e mineure       → ii7  (la minuscule dit « mineur »)
+  "Maj7": "Δ",    // 7e majeure       → IΔ7
+  "°7":   "°",    // 7e diminuée      → vii°7
+  "ø7":   "ø",    // 7e de sensible   → iiø7
   "sus4": "sus4",
   "sus2": "sus2",
 };
 
-function qualitySuffix(quality: string): string {
-  return QUALITY_SUFFIX[quality] ?? quality;
+/**
+ * Chiffrage FRANÇAIS (convention conservatoire), par renversement.
+ *
+ * Les septièmes ne se chiffrent PAS comme les triades : le 2e renversement d'une
+ * 7e est « +4 » (la quarte augmentée sur la basse) et le 3e « +2 », là où l'on
+ * écrit « 6/4 » pour une triade.
+ */
+const FIGURES_TRIADE = ["", "6", "6/4"];
+const FIGURES_SEPTIEME = ["7", "6/5", "+4", "+2"];
+
+const SEVENTHS = new Set(["7", "m7", "Maj7", "°7", "ø7"]);
+
+/** "" | "6" | "6/4" pour les triades ; "7" | "6/5" | "+4" | "+2" pour les 7es. */
+export function figureOf(quality: string, inversion: number): string {
+  const table = SEVENTHS.has(quality) ? FIGURES_SEPTIEME : FIGURES_TRIADE;
+  return table[inversion] ?? table[0];
+}
+
+/** Suffixe complet d'un chiffre romain : symbole de qualité + chiffrage. */
+function chiffrage(quality: string, inversion: number): string {
+  return (QUALITY_MARK[quality] ?? quality) + figureOf(quality, inversion);
 }
 
 /** Chiffre romain d'un degré : MAJUSCULE = majeur/augmenté, minuscule = mineur/diminué. */
-function romanOfDegree(deg: number, quality: string): string {
+function romanOfDegree(deg: number, quality: string, inversion: number): string {
   const roman = ROMANS[deg - 1];
-  return (isMinorish(quality) ? roman.toLowerCase() : roman) + qualitySuffix(quality);
+  return (isMinorish(quality) ? roman.toLowerCase() : roman) + chiffrage(quality, inversion);
 }
 
 /**
@@ -362,15 +476,17 @@ export function canonicalRootPc(chord: Chord, tonicPc: number): number {
  * l'accord « emprunt » sans savoir de quel degré il s'agit.
  */
 function empruntLabel(
-  chord: { rootPc: number; quality: string }, tonicPc: number, mode: "major" | "minor",
+  chord: { rootPc: number; quality: string; bassPc?: number },
+  tonicPc: number,
+  mode: "major" | "minor",
 ): { label: string; fonction: Fonction } | null {
   const deg = degreeOfRoot(chord.rootPc, tonicPc, mode);
-  const suffix = qualitySuffix(chord.quality);
+  const inv = inversionOf(chord.rootPc, chord.quality, chord.bassPc);
 
   if (deg !== null) {
     // Fondamentale diatonique, seule la qualité est empruntée (ex. Fa mineur → iv)
     return {
-      label: romanOfDegree(deg, chord.quality),
+      label: romanOfDegree(deg, chord.quality, inv),
       fonction: fonctionOfDegree(deg, chord.rootPc, tonicPc, mode),
     };
   }
@@ -381,7 +497,7 @@ function empruntLabel(
   if (alt === undefined) return null;
 
   const roman = isMinorish(chord.quality) ? alt.roman.toLowerCase() : alt.roman;
-  return { label: alt.prefix + roman + suffix, fonction: alt.fonction };
+  return { label: alt.prefix + roman + chiffrage(chord.quality, inv), fonction: alt.fonction };
 }
 
 /**
@@ -403,10 +519,14 @@ function empruntLabel(
 function leadingReading(
   quality: string, pcs: number[], root: number,
   target: { num: number; label: string }, tonicPc: number, mode: "major" | "minor",
+  bassPc?: number,
 ): {
   rootPc: number; rootFr: string; degree: string;
   degreeNum: number; fonction: Fonction; categorie: Categorie; cible?: string;
 } {
+  // Le renversement dépend de la fondamentale que l'on vient de retenir : pour une
+  // 7e diminuée, elle peut changer d'une lecture à l'autre. On le recalcule ici.
+  const inv = inversionOf(root, quality, bassPc);
   const commun = {
     rootPc: root,
     rootFr: NOTE_FR[root] ?? "?",
@@ -417,7 +537,7 @@ function leadingReading(
     const dia = diatonicSet(tonicPc, mode);
     return {
       ...commun,
-      degree: leadingPrefix(quality),
+      degree: leadingPrefix(quality, inv),
       degreeNum: 7,
       categorie: pcs.every((pc) => dia.has(pc)) ? "diatonique" : "emprunt",
     };
@@ -425,7 +545,7 @@ function leadingReading(
 
   return {
     ...commun,
-    degree: leadingPrefix(quality) + "/" + target.label,
+    degree: leadingPrefix(quality, inv) + "/" + target.label,
     degreeNum: 0,
     categorie: "sensible_degre",
     cible: target.label,
@@ -439,12 +559,15 @@ export function analyzeChord(
 ): ChordResult {
   // La fondamentale d'une 7e diminuée ne se lit PAS dans l'ordre des notes.
   const rootPc = canonicalRootPc(chord, tonicPc);
+  const inv = inversionOf(rootPc, chord.quality, chord.bassPc);
 
   const base = {
     rootPc,
     rootFr: NOTE_FR[rootPc] ?? chord.rootFr,
     quality: chord.quality,
     pcs: chord.pcs,
+    bassPc: chord.bassPc,
+    bassFr: chord.bassPc === undefined ? undefined : NOTE_FR[chord.bassPc],
   };
 
   // ── Règle 1 : diatonique = TOUTES les notes dans la gamme ──
@@ -459,7 +582,7 @@ export function analyzeChord(
   if (toutesDiatoniques && deg !== null) {
     return {
       ...base,
-      degree: romanOfDegree(deg, chord.quality),
+      degree: romanOfDegree(deg, chord.quality, inv),
       degreeNum: deg,
       fonction: fonctionOfDegree(deg, rootPc, tonicPc, mode),
       categorie: "diatonique",
@@ -480,7 +603,7 @@ export function analyzeChord(
     if (t) {
       return {
         ...base,
-        degree: (chord.quality === "7" ? "V7/" : "V/") + t.label,
+        degree: "V" + chiffrage(chord.quality, inv) + "/" + t.label,
         degreeNum: 0,
         fonction: "D",
         categorie: "dominante_secondaire",
@@ -507,6 +630,7 @@ export function analyzeChord(
         ...base,
         ...leadingReading(
           chord.quality, chord.pcs, meilleur.root, meilleur.target, tonicPc, mode,
+          chord.bassPc,
         ),
       };
     }
@@ -533,7 +657,7 @@ export function analyzeChord(
   if (chord.quality === "" && rootPc === (tonicPc + 1) % 12) {
     return {
       ...base,
-      degree: "bII",
+      degree: "bII" + figureOf("", inv),
       degreeNum: 0,
       fonction: "SD",
       categorie: "napolitain",
@@ -605,7 +729,7 @@ function reviseLeadingReading(
   delete c.resolue;
   Object.assign(
     c,
-    leadingReading(c.quality, c.pcs, confirmee.root, confirmee.target, tonicPc, mode),
+    leadingReading(c.quality, c.pcs, confirmee.root, confirmee.target, tonicPc, mode, c.bassPc),
   );
   return true;
 }
@@ -636,7 +760,8 @@ function promoteIfTonicizing(
       (t) => next.rootPc === pcOfDegree(t.num, tonicPc, mode),
     );
     if (t) {
-      c.degree = "V7/" + t.label;
+      c.degree =
+        "V" + chiffrage(c.quality, inversionOf(c.rootPc, c.quality, c.bassPc)) + "/" + t.label;
       c.degreeNum = 0;
       c.fonction = "D";
       c.categorie = "dominante_secondaire";
