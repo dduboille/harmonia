@@ -141,8 +141,12 @@ const QUINTE_OMISSIBLE = new Set(["", "m", "7", "m7", "Maj7"]);
  * renverse la fonction tonale : Sol-Si-Fa sur une basse de Do (V7 à quinte omise
  * au-dessus d'une pédale de tonique) se lit « Isus4 » — fonction T là où il faut
  * D — parce que le sus4 est COMPLET quand la 7e de dominante est incomplète.
+ *
+ * EXPORTÉ car `chord-choice` doit poser la MÊME barrière : `lecturesAccord` rend
+ * toutes les lectures sans les hiérarchiser, la barrière ne peut donc plus vivre
+ * ici seule. Une seconde copie de cette liste finirait par diverger de celle-ci.
  */
-const RETARDS = new Set(["sus4", "sus2"]);
+export const RETARDS = new Set(["sus4", "sus2"]);
 
 /**
  * Score d'une lecture, par ordre de priorité DÉCROISSANTE. Comparaison
