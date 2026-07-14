@@ -124,13 +124,51 @@ export function fonctionOfDegree(num: number): Fonction {
   return "?";
 }
 
-/** Cibles tonicisables : ni la tonique, ni un degré diminué. */
+/**
+ * Cibles tonicisables : ni la tonique, ni un degré diminué.
+ *
+ * L'ordre est celui de la PRIORITÉ de tonicisation, et non celui de la gamme :
+ * il sert d'arbitre en repli quand plusieurs cibles sont possibles (cas de la
+ * 7e diminuée, symétrique — cf. `analyzeChord`, règle 3). La dominante est de
+ * loin la cible la plus fréquente, viennent ensuite les degrés du relatif.
+ * Quand la séquence fournit une résolution, c'est elle qui tranche
+ * (cf. `annotateResolutions`) — cette priorité ne s'applique qu'à défaut.
+ */
 export function tonicizableTargets(mode: "major" | "minor"): Array<{ num: number; label: string }> {
   return mode === "major"
-    ? [{ num: 2, label: "ii" }, { num: 3, label: "iii" }, { num: 4, label: "IV" },
-       { num: 5, label: "V" }, { num: 6, label: "vi" }]
-    : [{ num: 3, label: "III" }, { num: 4, label: "iv" }, { num: 5, label: "V" },
-       { num: 6, label: "VI" }, { num: 7, label: "VII" }];
+    ? [{ num: 5, label: "V" }, { num: 2, label: "ii" }, { num: 6, label: "vi" },
+       { num: 4, label: "IV" }, { num: 3, label: "iii" }]
+    : [{ num: 5, label: "V" }, { num: 4, label: "iv" }, { num: 6, label: "VI" },
+       { num: 3, label: "III" }, { num: 7, label: "VII" }];
+}
+
+/**
+ * Toutes les lectures possibles d'un accord de sensible : couples
+ * (fondamentale candidate, cible visée), rendus dans l'ordre de priorité des
+ * cibles.
+ *
+ * La 7e diminuée est SYMÉTRIQUE (empilement de tierces mineures) : ses quatre
+ * notes peuvent chacune être la fondamentale, et donc viser quatre cibles
+ * différentes. `identifyChord` en choisit une arbitrairement (la première
+ * rencontrée dans l'ordre du MusicXML) : on ne peut pas s'y fier.
+ * Pour les autres qualités (° et ø7), la fondamentale est univoque.
+ */
+export function leadingCandidates(
+  pcs: number[], quality: string, rootPc: number,
+  tonicPc: number, mode: "major" | "minor",
+): Array<{ root: number; target: { num: number; label: string } }> {
+  const candidats = quality === "°7" ? pcs : [rootPc];
+  const out: Array<{ root: number; target: { num: number; label: string } }> = [];
+
+  // Boucle externe sur les CIBLES (par priorité) : le résultat ne dépend donc
+  // pas de l'ordre des notes de l'accord.
+  for (const target of tonicizableTargets(mode)) {
+    const targetPc = pcOfDegree(target.num, tonicPc, mode);
+    for (const root of candidats) {
+      if (root === (targetPc + 11) % 12) out.push({ root, target }); // demi-ton sous la cible
+    }
+  }
+  return out;
 }
 
 const DOMINANT_QUALITIES = new Set(["", "7"]);
@@ -143,9 +181,19 @@ function leadingPrefix(quality: string): string {
   return "vii°";
 }
 
-/** Ensemble diatonique du mode HOMONYME (pour détecter les emprunts). */
+/**
+ * Ensemble diatonique du mode HOMONYME (pour détecter les emprunts).
+ *
+ * ATTENTION : on construit cet ensemble sur les degrés BRUTS, et non via
+ * `diatonicSet`. L'homonyme du majeur est le mineur NATUREL, sans 7e élevée.
+ * `diatonicSet(_, "minor")` inclut la 7e élevée — c'est indispensable pour que
+ * le V du mode mineur reste diatonique, mais c'est bien trop permissif ici :
+ * avec elle, un Mi♭ AUGMENTÉ (Mi♭-Sol-Si♮) en Do majeur passait pour un
+ * « emprunt bIII », alors que le Si♮ n'appartient pas au Do mineur naturel.
+ */
 function parallelSet(tonicPc: number, mode: "major" | "minor"): Set<number> {
-  return diatonicSet(tonicPc, mode === "major" ? "minor" : "major");
+  const base = mode === "major" ? MINOR_DEGREES : MAJOR_DEGREES;
+  return new Set(base.map((s) => (tonicPc + s) % 12));
 }
 
 /** Étiquette d'un degré chromatique (fondamentale hors gamme). */
@@ -229,28 +277,23 @@ export function analyzeChord(
 
   // ── Règle 3 : sensible de degré ──
   if (LEADING_QUALITIES.has(chord.quality)) {
-    // ATTENTION : la 7e diminuée est SYMÉTRIQUE (empilement de tierces mineures).
-    // Ses quatre notes peuvent chacune être la fondamentale, et `identifyChord`
-    // en choisit une arbitrairement (la première rencontrée). On teste donc
-    // chaque note de l'accord comme fondamentale potentielle, et on retient
-    // celle qui désigne une cible tonicisable valide.
-    const candidats = chord.quality === "°7" ? chord.pcs : [chord.rootPc];
-    for (const cand of candidats) {
-      for (const t of tonicizableTargets(mode)) {
-        const targetPc = pcOfDegree(t.num, tonicPc, mode);
-        if (cand === (targetPc + 11) % 12) { // un demi-ton sous la cible
-          return {
-            ...base,
-            rootPc: cand,
-            rootFr: NOTE_FR[cand] ?? chord.rootFr,
-            degree: leadingPrefix(chord.quality) + "/" + t.label,
-            degreeNum: 0,
-            fonction: "D",
-            categorie: "sensible_degre",
-            cible: t.label,
-          };
-        }
-      }
+    // La 7e diminuée peut désigner plusieurs cibles valides. En l'absence de
+    // contexte, on retient la plus prioritaire ; la séquence pourra corriger ce
+    // choix au vu de la résolution réelle (cf. `annotateResolutions`).
+    const [meilleur] = leadingCandidates(
+      chord.pcs, chord.quality, chord.rootPc, tonicPc, mode,
+    );
+    if (meilleur) {
+      return {
+        ...base,
+        rootPc: meilleur.root,
+        rootFr: NOTE_FR[meilleur.root] ?? chord.rootFr,
+        degree: leadingPrefix(chord.quality) + "/" + meilleur.target.label,
+        degreeNum: 0,
+        fonction: "D",
+        categorie: "sensible_degre",
+        cible: meilleur.target.label,
+      };
     }
   }
 

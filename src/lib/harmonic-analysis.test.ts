@@ -98,6 +98,46 @@ describe("sensibles de degré", () => {
   });
 });
 
+// CORRECTION B(a) — la 7e diminuée est symétrique : plusieurs de ses notes
+// peuvent viser une cible tonicisable valide. L'étiquette ne doit JAMAIS
+// dépendre de l'ordre d'écriture des notes dans le MusicXML.
+describe("désambiguïsation du °7 — indépendance à l'ordre des notes", () => {
+  const ROTATIONS_DO_DIESE = [
+    [1, 4, 7, 10],
+    [4, 7, 10, 1],
+    [7, 10, 1, 4],
+    [10, 1, 4, 7],
+  ];
+
+  it("Do#°7 donne la même étiquette quelle que soit la rotation des notes", () => {
+    const etiquettes = ROTATIONS_DO_DIESE.map((pcs) => {
+      const r = an(pcs, PC.Do, "major");
+      return `${r.degree}|${r.rootFr}|${r.cible}`;
+    });
+    expect(new Set(etiquettes).size).toBe(1);
+    // À défaut de résolution, la priorité des cibles tranche : V, ii, vi, IV, iii.
+    // Do# ne vise pas V ; il vise ii — qui l'emporte sur IV (visé par le Mi).
+    expect(etiquettes[0]).toBe("vii°7/ii|Do#|ii");
+  });
+
+  const ROTATIONS_FA_DIESE = [
+    [6, 9, 0, 3],
+    [9, 0, 3, 6],
+    [0, 3, 6, 9],
+    [3, 6, 9, 0],
+  ];
+
+  it("Fa#°7 donne la même étiquette quelle que soit la rotation des notes", () => {
+    const etiquettes = ROTATIONS_FA_DIESE.map((pcs) => {
+      const r = an(pcs, PC.Do, "major");
+      return `${r.degree}|${r.rootFr}|${r.cible}`;
+    });
+    expect(new Set(etiquettes).size).toBe(1);
+    // Fa# vise V (prioritaire) ; le Mi♭ viserait iii, moins prioritaire.
+    expect(etiquettes[0]).toBe("vii°7/V|Fa#|V");
+  });
+});
+
 describe("emprunts modaux", () => {
   it("Fa mineur en Do majeur est iv (emprunt, SD)", () => {
     const r = an([5, 8, 0], PC.Do, "major"); // Fa-Lab-Do
@@ -139,6 +179,16 @@ describe("résidu chromatique", () => {
   it("Do augmenté en Do majeur reste chromatique (inclassable)", () => {
     // Do-Mi-Sol# : ni dominante secondaire, ni sensible, ni emprunt, ni napolitain
     const r = an([0, 4, 8], PC.Do, "major");
+    expect(r.categorie).toBe("chromatique");
+    expect(r.fonction).toBe("?");
+  });
+
+  // CORRECTION A — l'emprunt se réfère au mode homonyme NATUREL (sans 7e élevée).
+  it("Mib augmenté en Do majeur reste chromatique (et non un emprunt bIII)", () => {
+    // Mib-Sol-Si♮ : le Si♮ n'appartient PAS au Do mineur naturel.
+    // Il n'y figure que par la 7e élevée du mineur harmonique, qui n'a rien à
+    // faire dans la définition de l'emprunt modal.
+    const r = an([3, 7, 11], PC.Do, "major");
     expect(r.categorie).toBe("chromatique");
     expect(r.fonction).toBe("?");
   });
