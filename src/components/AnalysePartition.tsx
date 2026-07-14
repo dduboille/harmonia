@@ -12,11 +12,14 @@ type Categorie =
   | "sensible_degre"
   | "emprunt"
   | "napolitain"
+  | "sixte_augmentee"
   | "chromatique";
 
 interface ChordResult {
   rootFr: string;
   quality: string;
+  /** Nom français de la basse réelle, orthographe comprise ("Lab", pas "Sol#"). */
+  bassFr?: string;
   degree: string;
   degreeNum: number;
   fonction: Fonction;
@@ -63,9 +66,26 @@ interface AnalysisResult {
     tonicisations: number;
     emprunts: number;
     napolitains: number;
+    sixtesAugmentees: number;
     inexpliques: number;
     evenements: ChromaEvent[];
   };
+}
+
+// ── Affichage du nom d'accord ─────────────────────────────────────────────────
+
+/**
+ * Nom d'accord AFFICHABLE, ou `null` quand il ne faut rien montrer.
+ *
+ * Une sixte augmentée est, aux classes de hauteurs près, une 7e de dominante : le
+ * moteur identifie Lab-Do-Mib-Fa# comme un « Lab7 » (rendu « Sol#7 », faute
+ * d'orthographe côté moteur). Afficher ce nom à côté du degré « +6 all. »
+ * entretiendrait précisément la confusion que cette analyse sert à dissiper — et
+ * il serait faux, puisque le Fa# n'est pas un Solb. On ne l'affiche donc pas : le
+ * DEGRÉ, lui, est juste, et la basse (colonne dédiée) dit le reste.
+ */
+function nomAccordAffichable(categorie: Categorie, nom: string): string | null {
+  return categorie === "sixte_augmentee" ? null : nom;
 }
 
 // ── Style helpers ─────────────────────────────────────────────────────────────
@@ -83,6 +103,7 @@ const CAT_STYLE: Record<Categorie, { bg: string; color: string; label: string }>
   sensible_degre:       { bg: "#FAEEDA", color: "#BA7517", label: "sensible de degré" },
   emprunt:              { bg: "#F0EBF8", color: "#5C3D6E", label: "emprunt" },
   napolitain:           { bg: "#E6F1FB", color: "#185FA5", label: "napolitain" },
+  sixte_augmentee:      { bg: "#FDF0E6", color: "#A85416", label: "sixte augmentée" },
   chromatique:          { bg: "#FCEBEB", color: "#A32D2D", label: "chromatique" },
 };
 
@@ -337,6 +358,7 @@ export default function AnalysePartition() {
               { label: "Cadences",  value: String(analysis.cadences.length) },
               { label: "Tonicisations", value: String(analysis.chromatisme.tonicisations) },
               { label: "Emprunts", value: String(analysis.chromatisme.emprunts + analysis.chromatisme.napolitains) },
+              { label: "Sixtes augmentées", value: String(analysis.chromatisme.sixtesAugmentees) },
               { label: "Chromatismes inexpliqués", value: String(analysis.chromatisme.inexpliques) },
             ].map(card => (
               <div key={card.label} style={{
@@ -386,7 +408,7 @@ export default function AnalysePartition() {
             <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: "system-ui, sans-serif" }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid #e8e3ed" }}>
-                  {["Mesure", "Temps", "Accord", "Degré", "Fonction"].map(h => (
+                  {["Mesure", "Temps", "Accord", "Basse", "Degré", "Fonction"].map(h => (
                     <th key={h} style={{
                       padding: "12px 16px", textAlign: "left",
                       fontSize: 10, fontWeight: 700, letterSpacing: "0.08em",
@@ -405,7 +427,7 @@ export default function AnalysePartition() {
                       <tr key={`${m.numero}-empty`} style={{ borderBottom: "1px solid #f0ebe8", background: rowBg }}>
                         <td style={{ padding: "10px 16px", color: "#888", fontSize: 13, fontWeight: 600 }}>{m.numero}</td>
                         <td style={{ padding: "10px 16px", color: "#ccc", fontSize: 12 }}>—</td>
-                        <td colSpan={3} style={{ padding: "10px 16px", color: "#ccc", fontSize: 13 }}>—</td>
+                        <td colSpan={4} style={{ padding: "10px 16px", color: "#ccc", fontSize: 13 }}>—</td>
                       </tr>
                     )];
                   }
@@ -421,7 +443,13 @@ export default function AnalysePartition() {
                         {chord.beat !== undefined ? `T${chord.beat}` : ""}
                       </td>
                       <td style={{ padding: "10px 16px", fontSize: 14, fontWeight: 700, color: "#1a1a1a" }}>
-                        {`${chord.rootFr}${chord.quality}`}
+                        {/* Rien pour une sixte augmentée : son nom d'accord est une
+                            enharmonie trompeuse (cf. `nomAccordAffichable`). La basse
+                            et le degré, à côté, disent tout. */}
+                        {nomAccordAffichable(chord.categorie, `${chord.rootFr}${chord.quality}`) ?? "—"}
+                      </td>
+                      <td style={{ padding: "10px 16px", fontSize: 13, color: "#767676", fontFamily: "Georgia, serif" }}>
+                        {chord.bassFr ?? "—"}
                       </td>
                       <td style={{ padding: "10px 16px" }}>
                         <span style={{
@@ -536,9 +564,15 @@ export default function AnalysePartition() {
                       <span style={{ fontSize: 12, color: "#888", whiteSpace: "nowrap" }}>
                         m.{e.measure}{e.beat !== undefined ? ` · T${e.beat}` : ""}
                       </span>
-                      <strong style={{ fontSize: 15, color: "#1a1a1a", fontFamily: "Georgia, serif" }}>
-                        {e.accord}
-                      </strong>
+                      {/* Une sixte augmentée n'a pas de nom d'accord montrable : celui
+                          que porte l'événement est l'enharmonie (une 7e de dominante)
+                          dont l'analyse sert justement à la distinguer. On s'en tient
+                          au degré, qui est juste. Cf. `nomAccordAffichable`. */}
+                      {nomAccordAffichable(e.categorie, e.accord) !== null && (
+                        <strong style={{ fontSize: 15, color: "#1a1a1a", fontFamily: "Georgia, serif" }}>
+                          {e.accord}
+                        </strong>
+                      )}
                       <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 14, color: "#1a1a1a" }}>
                         {e.degree}
                       </span>
