@@ -100,32 +100,44 @@ function parsePart(content: string, partId: string): {
   const notes: RawNote[] = [];
   const lengths = new Map<number, number>();
 
-  let divisions = 1; // divisions par noire, en vigueur (peut changer en cours de route)
-  let seq = 0;
+  // Les <divisions> valent jusqu'à nouvel ordre : elles traversent les mesures, et
+  // peuvent changer EN COURS de mesure — d'où la lecture au fil du parcours, et non
+  // une fois pour toutes en tête de mesure (ce qui les appliquerait rétroactivement
+  // aux notes précédant le changement).
+  let divisions = 1;
+  const toTicks = (d: number) => Math.round((d * TPQ) / divisions);
 
-  const measureRe = /<measure\b([^>]*)>([\s\S]*?)<\/measure>/g;
+  let seq = 0;
+  const measureRe = /<measure\s+([^>]*)>([\s\S]*?)<\/measure>/g;
   let mm: RegExpExecArray | null;
 
   while ((mm = measureRe.exec(content)) !== null) {
     seq++;
-    const numero = parseInt(/number="(\d+)"/.exec(mm[1])?.[1] ?? "", 10) || seq;
+    // ATTENTION : 0 est un numéro de mesure LÉGITIME — c'est la convention de
+    // l'anacrouse (<measure number="0" implicit="yes">), par laquelle commence la
+    // quasi-totalité des chorals. Un test de vérité (`|| seq`) le confondrait avec
+    // la mesure 1 : les deux partageraient le même départ et la levée se plaquerait
+    // sur le premier temps. D'où le test de NULLITÉ explicite.
+    const lu = parseInt(/number=["'](\d+)["']/.exec(mm[1])?.[1] ?? "", 10);
+    const numero = Number.isFinite(lu) ? lu : seq;
     const body = mm[2];
-
-    const div = intTag(body, "divisions", 0);
-    if (div > 0) divisions = div;
-    const toTicks = (d: number) => Math.round((d * TPQ) / divisions);
 
     let cursor = 0;    // ticks
     let prevOnset = 0; // onset de la dernière note NON-<chord/>
     let maxCursor = 0;
 
     const elemRe =
-      /<note\b[^>]*>([\s\S]*?)<\/note>|<backup\b[^>]*>([\s\S]*?)<\/backup>|<forward\b[^>]*>([\s\S]*?)<\/forward>/g;
+      /<note\b[^>]*>([\s\S]*?)<\/note>|<backup\b[^>]*>([\s\S]*?)<\/backup>|<forward\b[^>]*>([\s\S]*?)<\/forward>|<attributes\b[^>]*>([\s\S]*?)<\/attributes>/g;
     let em: RegExpExecArray | null;
 
     while ((em = elemRe.exec(body)) !== null) {
-      const [, noteBody, backupBody, forwardBody] = em;
+      const [, noteBody, backupBody, forwardBody, attrBody] = em;
 
+      if (attrBody !== undefined) {
+        const div = intTag(attrBody, "divisions", 0);
+        if (div > 0) divisions = div;
+        continue;
+      }
       if (backupBody !== undefined) {
         cursor = Math.max(0, cursor - toTicks(intTag(backupBody, "duration")));
         continue;
@@ -150,7 +162,12 @@ function parsePart(content: string, partId: string): {
         maxCursor = Math.max(maxCursor, cursor);
       }
 
-      if (/<rest\b/.test(noteBody)) continue;
+      // Une note de REPÈRE (<cue/>) n'est pas jouée : elle rappelle au musicien ce
+      // que fait une autre partie. Contrairement à l'ornement, elle a une durée et
+      // occupe le temps — on avance donc le curseur, comme pour un silence, mais on
+      // n'émet aucune note : la faire sonner injecterait une hauteur fantôme dans
+      // l'accord vertical.
+      if (/<rest\b/.test(noteBody) || /<cue\b/.test(noteBody)) continue;
 
       const pitch = getTag(noteBody, "pitch");
       if (!pitch) continue;
@@ -171,8 +188,9 @@ function parsePart(content: string, partId: string): {
         dur,
         voice: getTag(noteBody, "voice") || "1",
         part: partId,
-        tieStart: /<tie\b[^>]*type="start"/.test(noteBody),
-        tieStop: /<tie\b[^>]*type="stop"/.test(noteBody),
+        // XML autorise indifféremment les guillemets doubles et simples.
+        tieStart: /<tie\b[^>]*type=["']start["']/.test(noteBody),
+        tieStop: /<tie\b[^>]*type=["']stop["']/.test(noteBody),
       });
     }
 
@@ -196,21 +214,40 @@ function mergeTies(raws: RawNote[]): RawNote[] {
     const cle = `${n.part}|${n.voice}|${n.midi}`;
     const tenue = ouvertes.get(cle);
 
-    if (n.tieStop && tenue && tenue.abs + tenue.dur === n.abs) {
-      tenue.dur += n.dur;
+    // Adjacence RELÂCHÉE : on exige seulement que la note liée ne commence pas AVANT
+    // la fin de la tenue. Une égalité stricte (`fin === début`) serait juste en
+    // théorie mais se casse en pratique : la longueur d'une mesure est celle de la
+    // partie qui la lit le plus longue, si bien qu'une partie qui remplit sa mesure
+    // plus court (encodage approximatif, arrondi de toTicks) voit sa liaison
+    // par-dessus la barre ne plus se refermer — et la note SE RÉATTAQUE, ce que ce
+    // module existe précisément pour empêcher. On étire donc la tenue jusqu'à la fin
+    // réelle de la note liée, en absorbant l'écart.
+    if (n.tieStop && tenue && n.abs >= tenue.abs + tenue.dur) {
+      tenue.dur = n.abs + n.dur - tenue.abs;
       if (!n.tieStart) ouvertes.delete(cle);
       continue; // pas de nouvelle attaque
     }
 
     out.push(n);
-    if (n.tieStart) ouvertes.set(cle, n);
-    else ouvertes.delete(cle);
+    if (n.tieStart) {
+      ouvertes.set(cle, n);
+    } else if (!tenue || n.abs !== tenue.abs) {
+      // Une note NON liée referme la tenue de même hauteur : c'est une réattaque.
+      // Sauf si elle commence au MÊME onset que la tenue — ce n'est alors pas une
+      // réattaque mais un DOUBLEMENT à l'unisson dans le même accord (deux fois la
+      // même hauteur, une seule liée) : refermer ici tuerait la liaison de l'autre.
+      ouvertes.delete(cle);
+    }
   }
 
   return out;
 }
 
-export function parseMusicXML(xml: string): ParsedScore {
+export function parseMusicXML(source: string): ParsedScore {
+  // Un <note> mis en commentaire n'existe pas : le parser le ferait sonner ET
+  // avancer le curseur, décalant tout le reste de la mesure. On les retire d'entrée.
+  const xml = source.replace(/<!--[\s\S]*?-->/g, "");
+
   const fifths = intTag(xml, "fifths", 0);
   const mode: "major" | "minor" = getTag(xml, "mode") === "minor" ? "minor" : "major";
   const beats = getTag(xml, "beats");
@@ -220,13 +257,17 @@ export function parseMusicXML(xml: string): ParsedScore {
   const raws: RawNote[] = [];
   const lengths = new Map<number, number>();
 
-  const partRe = /<part\b([^>]*)>([\s\S]*?)<\/part>/g;
+  // `\s+` et non `\b` : « - » est une frontière de mot, si bien que `<part\b` matche
+  // aussi <part-list> — le catalogue des parties, présent dans TOUT fichier réel.
+  // La première vraie partie y perdait son id et retombait sur le repli « P1 », or
+  // `part` est une clé de fusion des liaisons.
+  const partRe = /<part\s+([^>]*)>([\s\S]*?)<\/part>/g;
   let pm: RegExpExecArray | null;
   let idx = 0;
 
   while ((pm = partRe.exec(xml)) !== null) {
     idx++;
-    const partId = /id="([^"]+)"/.exec(pm[1])?.[1] ?? `P${idx}`;
+    const partId = /id=["']([^"']+)["']/.exec(pm[1])?.[1] ?? `P${idx}`;
     const lu = parsePart(pm[2], partId);
     raws.push(...lu.notes);
     // Les parties d'un MusicXML valide ont les mêmes mesures ; on retient la
