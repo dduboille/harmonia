@@ -15,6 +15,15 @@ type Categorie =
   | "sixte_augmentee"
   | "chromatique";
 
+/** Une note qui SONNE sans appartenir à l'accord. */
+interface NoteEtrangere {
+  /** L'orthographe réelle ("Lab", pas "Sol#"). */
+  nom: string;
+  /** Libellé du type, ou `null` : étrangère reconnue, mais qu'aucune règle ne nomme. */
+  type: string | null;
+  voix: string;
+}
+
 interface ChordResult {
   rootFr: string;
   quality: string;
@@ -27,6 +36,7 @@ interface ChordResult {
   cible?: string;
   resolue?: boolean;
   beat?: number;
+  notesEtrangeres?: NoteEtrangere[];
 }
 
 interface ChromaEvent {
@@ -86,6 +96,18 @@ interface AnalysisResult {
  */
 function nomAccordAffichable(categorie: Categorie, nom: string): string | null {
   return categorie === "sixte_augmentee" ? null : nom;
+}
+
+/**
+ * Une note étrangère, telle qu'on l'écrit : « Ré (note de passage) ».
+ *
+ * Sans type, on écrit « (étrangère) » — et surtout pas un nom au jugé. Le moteur
+ * n'a pas su la classer (une voix en accords plaqués n'a pas de ligne mélodique, et
+ * l'on ne devine pas quelle note en précède laquelle) : le dire est plus utile à
+ * l'élève que de faire semblant.
+ */
+function libelleEtrangere(e: NoteEtrangere): string {
+  return `${e.nom} (${e.type ?? "étrangère"})`;
 }
 
 // ── Style helpers ─────────────────────────────────────────────────────────────
@@ -404,11 +426,13 @@ export default function AnalysePartition() {
 
         {/* ── Mesures ── */}
         {activeTab === "mesures" && (
-          <div style={{ background: "#fff", borderRadius: 12, boxShadow: "0 1px 4px rgba(0,0,0,0.07)", overflow: "hidden" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: "system-ui, sans-serif" }}>
+          <div style={{ background: "#fff", borderRadius: 12, boxShadow: "0 1px 4px rgba(0,0,0,0.07)", overflow: "hidden", overflowX: "auto" }}>
+            {/* La colonne des notes étrangères a rendu le tableau plus large que l'écran
+                d'un téléphone : il défile latéralement plutôt que de s'écraser. */}
+            <table style={{ width: "100%", minWidth: 760, borderCollapse: "collapse", fontFamily: "system-ui, sans-serif" }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid #e8e3ed" }}>
-                  {["Mesure", "Temps", "Accord", "Basse", "Degré", "Fonction"].map(h => (
+                  {["Mesure", "Temps", "Accord", "Basse", "Degré", "Fonction", "Notes étrangères"].map(h => (
                     <th key={h} style={{
                       padding: "12px 16px", textAlign: "left",
                       fontSize: 10, fontWeight: 700, letterSpacing: "0.08em",
@@ -427,7 +451,7 @@ export default function AnalysePartition() {
                       <tr key={`${m.numero}-empty`} style={{ borderBottom: "1px solid #f0ebe8", background: rowBg }}>
                         <td style={{ padding: "10px 16px", color: "#888", fontSize: 13, fontWeight: 600 }}>{m.numero}</td>
                         <td style={{ padding: "10px 16px", color: "#ccc", fontSize: 12 }}>—</td>
-                        <td colSpan={4} style={{ padding: "10px 16px", color: "#ccc", fontSize: 13 }}>—</td>
+                        <td colSpan={5} style={{ padding: "10px 16px", color: "#ccc", fontSize: 13 }}>—</td>
                       </tr>
                     )];
                   }
@@ -496,6 +520,32 @@ export default function AnalysePartition() {
                             </span>
                           )}
                         </div>
+                      </td>
+                      {/* Les notes qui SONNENT sans faire partie de l'accord. Elles ne
+                          changent ni le degré ni la basse : elles sont de l'écriture,
+                          et c'est à ce titre qu'on les nomme. */}
+                      <td style={{ padding: "10px 16px" }}>
+                        {chord.notesEtrangeres === undefined || chord.notesEtrangeres.length === 0 ? (
+                          <span style={{ color: "#ccc", fontSize: 13 }}>—</span>
+                        ) : (
+                          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                            {chord.notesEtrangeres.map((e, ei) => (
+                              <span
+                                key={ei}
+                                title={`voix ${e.voix}`}
+                                style={{
+                                  display: "inline-block",
+                                  background: "#FDF3E3", color: "#8A5A12",
+                                  padding: "2px 8px", borderRadius: 6,
+                                  fontSize: 11, fontWeight: 600,
+                                  whiteSpace: "nowrap",
+                                }}
+                              >
+                                {libelleEtrangere(e)}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </td>
                     </tr>
                   ));

@@ -1,11 +1,13 @@
 import { auth } from "@clerk/nextjs/server";
 import { getUserPlan } from "@/lib/progression";
 import { unzipSync, strFromU8 } from "fflate";
-import { parseMusicXML, noteNameFr } from "@/lib/musicxml-parse";
-import { sliceByBeat, mergeSlices, type Slice } from "@/lib/harmony-segmentation";
+import { parseMusicXML } from "@/lib/musicxml-parse";
 import {
-  identifyChordFromNotes,
-  analyzeChord,
+  analyserHarmonie,
+  type AccordAnalyse,
+  type NoteEtrangere,
+} from "@/lib/analyse-chaine";
+import {
   annotateResolutions,
   buildChromaEvents,
   NOTE_FR,
@@ -16,9 +18,10 @@ import {
 } from "@/lib/harmonic-analysis";
 
 // La théorie harmonique vit dans `@/lib/harmonic-analysis`, la lecture du MusicXML
-// dans `@/lib/musicxml-parse` et la segmentation dans `@/lib/harmony-segmentation`
-// — tous testés unitairement. Cette route n'orchestre que le HTTP.
-export type { Fonction, Categorie, ChordResult, ChromaEvent };
+// dans `@/lib/musicxml-parse`, et la CHAÎNE (segmentation → choix de l'accord par le
+// coût → notes étrangères) dans `@/lib/analyse-chaine` — tous testés unitairement et
+// de bout en bout. Cette route n'orchestre que le HTTP.
+export type { Fonction, Categorie, ChordResult, ChromaEvent, AccordAnalyse, NoteEtrangere };
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -31,7 +34,8 @@ export interface CadenceResult {
 
 export interface MesureResult {
   numero: number;
-  accords: ChordResult[];
+  /** Chaque accord porte, le cas échéant, les notes qu'il ÉCARTE (cf. `AccordAnalyse`). */
+  accords: AccordAnalyse[];
 }
 
 export interface AnalysisResult {
@@ -71,37 +75,20 @@ function analyze(xml: string, filename: string): AnalysisResult {
   const tonicFr = NOTE_FR[tonicPc] ?? "Do";
   const tonalite = `${tonicFr} ${mode === "major" ? "majeur" : "mineur"}`;
 
-  // Identité harmonique d'une tranche : c'est elle qui définit le RYTHME
-  // HARMONIQUE. Deux temps consécutifs de même identité ne font qu'un segment —
-  // on n'annote qu'aux changements d'accord, comme le ferait un musicien.
-  const identite = (s: Slice): string => {
-    const c = identifyChordFromNotes(s.pcs, s.bass.pc);
-    return c ? `${c.rootPc}:${c.quality}:${s.bass.pc}` : "";
-  };
-  const segments = mergeSlices(sliceByBeat(score), identite);
+  // LA CHAÎNE. Elle segmente au temps mais VOIT toute note qui sonne, choisit chaque
+  // accord par le coût de ce qu'il explique contre ce qu'il écarte, fusionne les temps
+  // de même harmonie (le rythme harmonique), et nomme les notes étrangères.
+  // Cf. `@/lib/analyse-chaine` — toute la théorie y est, et elle y est testée.
+  const segments = analyserHarmonie(score, tonicPc, mode);
 
-  const accordsParMesure = new Map<number, ChordResult[]>();
+  const accordsParMesure = new Map<number, AccordAnalyse[]>();
   const chordSequence: Array<{ result: ChordResult; measure: number }> = [];
 
-  for (const s of segments) {
-    if (s.pcs.length < 2) continue;
-    const chord = identifyChordFromNotes(s.pcs, s.bass.pc);
-    if (!chord) continue;
-
-    // L'orthographe des notes du segment : sans elle, pas de sixte augmentée
-    // (un Fa# et un Solb sonnent la même hauteur, mais ne s'analysent pas pareil).
-    chord.spelled = s.notes.map((n) => ({ step: n.step, alter: n.alter, pc: n.pc }));
-
-    const result = analyzeChord(chord, tonicPc, mode);
-    result.beat = s.beat;
-    // La basse est nommée d'après ce qui est ÉCRIT : « Lab », jamais « Sol# ». Le
-    // moteur, qui ne connaît que des classes de hauteurs, n'a pu poser qu'un repli.
-    result.bassFr = noteNameFr(s.bass.step, s.bass.alter);
-
-    const liste = accordsParMesure.get(s.measure) ?? [];
+  for (const { measure, result } of segments) {
+    const liste = accordsParMesure.get(measure) ?? [];
     liste.push(result);
-    accordsParMesure.set(s.measure, liste);
-    chordSequence.push({ result, measure: s.measure });
+    accordsParMesure.set(measure, liste);
+    chordSequence.push({ result, measure });
   }
 
   const mesures: MesureResult[] = score.measures.map((m) => ({
