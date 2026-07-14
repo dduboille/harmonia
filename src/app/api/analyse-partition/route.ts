@@ -1,19 +1,23 @@
 import { auth } from "@clerk/nextjs/server";
 import { getUserPlan } from "@/lib/progression";
 import { unzipSync, strFromU8 } from "fflate";
+import {
+  identifyChord,
+  analyzeChord,
+  annotateResolutions,
+  buildChromaEvents,
+  NOTE_FR,
+  type Fonction,
+  type Categorie,
+  type ChordResult,
+  type ChromaEvent,
+} from "@/lib/harmonic-analysis";
+
+// La théorie harmonique vit tout entière dans `@/lib/harmonic-analysis` (testée
+// unitairement). Cette route ne garde que le parsing MusicXML et le HTTP.
+export type { Fonction, Categorie, ChordResult, ChromaEvent };
 
 // ── Types ─────────────────────────────────────────────────────────────────────
-
-export type Fonction = "T" | "SD" | "D" | "?";
-
-export interface ChordResult {
-  rootFr: string;
-  quality: string;
-  degree: string;
-  degreeNum: number;
-  fonction: Fonction;
-  beat?: number;
-}
 
 export interface CadenceResult {
   type: "parfaite" | "plagale" | "rompue" | "demi";
@@ -37,6 +41,13 @@ export interface AnalysisResult {
   mesures: MesureResult[];
   cadences: CadenceResult[];
   nombreChromatiques: number;
+  chromatisme: {
+    tonicisations: number;
+    emprunts: number;
+    napolitains: number;
+    inexpliques: number;
+    evenements: ChromaEvent[];
+  };
 }
 
 // ── XML Helpers ───────────────────────────────────────────────────────────────
@@ -46,12 +57,7 @@ function getTag(xml: string, tag: string): string {
   return m ? m[1].trim() : "";
 }
 
-// ── Music Theory Constants ────────────────────────────────────────────────────
-
-const NOTE_FR: Record<number, string> = {
-  0: "Do", 1: "Do#", 2: "Ré", 3: "Ré#", 4: "Mi",
-  5: "Fa", 6: "Fa#", 7: "Sol", 8: "Sol#", 9: "La", 10: "La#", 11: "Si",
-};
+// ── Constantes de parsing MusicXML ────────────────────────────────────────────
 
 const FIFTHS_PC = new Map<number, number>([
   [0, 0], [1, 7], [2, 2], [3, 9], [4, 4], [5, 11], [6, 6], [7, 1],
@@ -59,74 +65,6 @@ const FIFTHS_PC = new Map<number, number>([
 ]);
 
 const STEP_PC: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
-
-const CHORD_PATTERNS: Array<{ quality: string; name: string; intervals: number[] }> = [
-  { quality: "Maj7", name: "maj7", intervals: [0, 4, 7, 11] },
-  { quality: "7",    name: "dom7", intervals: [0, 4, 7, 10] },
-  { quality: "m7",   name: "min7", intervals: [0, 3, 7, 10] },
-  { quality: "°7",   name: "dim7", intervals: [0, 3, 6, 9]  },
-  { quality: "ø7",   name: "m7b5", intervals: [0, 3, 6, 10] },
-  { quality: "aug",  name: "aug",  intervals: [0, 4, 8]     },
-  { quality: "",     name: "maj",  intervals: [0, 4, 7]     },
-  { quality: "m",    name: "min",  intervals: [0, 3, 7]     },
-  { quality: "°",    name: "dim",  intervals: [0, 3, 6]     },
-  { quality: "sus4", name: "sus4", intervals: [0, 5, 7]     },
-  { quality: "sus2", name: "sus2", intervals: [0, 2, 7]     },
-];
-
-const MAJOR_SCALE = [0, 2, 4, 5, 7, 9, 11];
-const MINOR_SCALE = [0, 2, 3, 5, 7, 8, 10];
-const ROMANS = ["I", "II", "III", "IV", "V", "VI", "VII"];
-
-// ── Chord Identification ──────────────────────────────────────────────────────
-
-function identifyChord(pcs: number[]): {
-  rootPc: number; rootFr: string; quality: string; qualityName: string;
-} | null {
-  const unique = [...new Set(pcs.map(p => ((p % 12) + 12) % 12))];
-  if (unique.length < 2) return null;
-
-  for (const pattern of CHORD_PATTERNS) {
-    if (pattern.intervals.length > unique.length + 1) continue;
-    for (const root of unique) {
-      const norm = unique.map(p => ((p - root + 12) % 12));
-      if (pattern.intervals.every(iv => norm.includes(iv))) {
-        return {
-          rootPc: root,
-          rootFr: NOTE_FR[root] ?? "?",
-          quality: pattern.quality,
-          qualityName: pattern.name,
-        };
-      }
-    }
-  }
-  return null;
-}
-
-function analyzeChord(
-  chord: { rootPc: number; rootFr: string; quality: string; qualityName: string },
-  tonicPc: number,
-  mode: "major" | "minor",
-): ChordResult {
-  const scale = mode === "major" ? MAJOR_SCALE : MINOR_SCALE;
-  const interval = ((chord.rootPc - tonicPc + 12) % 12);
-  const idx = scale.indexOf(interval);
-
-  if (idx === -1) {
-    return { rootFr: chord.rootFr, quality: chord.quality, degree: "chr", degreeNum: 0, fonction: "?" };
-  }
-
-  const num = idx + 1;
-  const degree = ROMANS[idx] + chord.quality;
-
-  let fonction: Fonction;
-  if ([1, 3, 6].includes(num)) fonction = "T";
-  else if ([2, 4].includes(num)) fonction = "SD";
-  else if ([5, 7].includes(num)) fonction = "D";
-  else fonction = "?";
-
-  return { rootFr: chord.rootFr, quality: chord.quality, degree, degreeNum: num, fonction };
-}
 
 // ── MusicXML Parser ───────────────────────────────────────────────────────────
 
@@ -230,7 +168,6 @@ function analyze(xml: string, filename: string): AnalysisResult {
   const tonicFr = NOTE_FR[tonicPc] ?? "Do";
   const tonalite = `${tonicFr} ${mode === "major" ? "majeur" : "mineur"}`;
 
-  let nombreChromatiques = 0;
   const mesures: MesureResult[] = [];
   const chordSequence: Array<{ result: ChordResult; measure: number }> = [];
 
@@ -247,13 +184,39 @@ function analyze(xml: string, filename: string): AnalysisResult {
       if (!chord) continue;
       const result = analyzeChord(chord, tonicPc, mode);
       result.beat = beat;
-      if (result.fonction === "?") nombreChromatiques++;
       accordsMesure.push(result);
       chordSequence.push({ result, measure: numero });
     }
 
     mesures.push({ numero, accords: accordsMesure });
   }
+
+  // ── Arbitrage par la résolution (analyse au niveau de la SÉQUENCE) ──
+  //
+  // Cet appel peut CHANGER le degré, la catégorie, la cible et même la
+  // fondamentale d'un accord (promotion en dominante secondaire, rétrogradation
+  // en emprunt, révision de la cible d'une 7e diminuée). Il doit donc précéder
+  // tout ce qui lit ces étiquettes : le comptage du chromatisme comme la
+  // détection des cadences.
+  annotateResolutions(chordSequence.map((c) => c.result), tonicPc, mode);
+
+  const evenements = buildChromaEvents(chordSequence, tonicPc, mode);
+
+  const chromatisme = {
+    tonicisations: evenements.filter(
+      (e) => e.categorie === "dominante_secondaire" || e.categorie === "sensible_degre",
+    ).length,
+    emprunts: evenements.filter((e) => e.categorie === "emprunt").length,
+    napolitains: evenements.filter((e) => e.categorie === "napolitain").length,
+    inexpliques: evenements.filter((e) => e.categorie === "chromatique").length,
+    evenements,
+  };
+
+  // Tout accord non diatonique compte pour le chromatisme (et plus seulement
+  // ceux dont la fonction est inconnue : une dominante secondaire a une fonction).
+  const nombreChromatiques = chordSequence.filter(
+    ({ result }) => result.categorie !== "diatonique",
+  ).length;
 
   // Cadence detection on the chord sequence
   const cadences: CadenceResult[] = [];
@@ -288,6 +251,7 @@ function analyze(xml: string, filename: string): AnalysisResult {
     mesures,
     cadences,
     nombreChromatiques,
+    chromatisme,
   };
 }
 
