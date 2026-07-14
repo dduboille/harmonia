@@ -17,6 +17,7 @@ import {
   annotateResolutions,
   type ChordResult,
 } from "./harmonic-analysis";
+import { analyserHarmonie } from "./analyse-chaine";
 
 // ── Fabrique de MusicXML ──────────────────────────────────────────────────────
 
@@ -145,5 +146,176 @@ describe("chaîne complète — un choral à quatre voix", () => {
 
   it("la basse tenue ne disparaît pas : elle porte encore le dernier accord", () => {
     expect(analyse.at(-1)).toMatchObject({ mesure: 2, temps: 2, basse: "Do" });
+  });
+});
+
+// ══ LE CHORAL ORNÉ ═══════════════════════════════════════════════════════════
+//
+// Même harmonie que le choral nu — I → V6/5 → I → V7/V ‖ V → I — mais habillée
+// de trois notes étrangères, une par famille :
+//
+//  - une NOTE DE PASSAGE à l'alto (Mi–Ré–Do, le Ré en croche du contretemps),
+//    que l'ancienne segmentation ne VOYAIT même pas ;
+//  - un RETARD 4-3 sur la cadence : le Do de l'alto, préparé sur le V7/V, se tient
+//    par-dessus la barre et ne rejoint le Si qu'au temps suivant ;
+//  - une PÉDALE de tonique à la basse, sous les deux derniers accords.
+//
+// LE CONTRÔLE : l'harmonie ne bouge pas d'un iota, et les trois ornements sont
+// nommés. C'est toute la thèse du chantier — l'ornement n'est pas l'accord.
+
+/** Note du choral orné : durées en CROCHES (divisions = 2), liaison de tenue possible. */
+type NO = [step: string, alter: number, octave: number, croches: number, tie?: "start" | "stop"];
+
+function noteOrnee([step, alter, octave, croches, tie]: NO, voice: string): string {
+  const alt = alter === 0 ? "" : `<alter>${alter}</alter>`;
+  const liaison = tie === undefined ? "" : `<tie type="${tie}"/>`;
+  return (
+    `<note><pitch><step>${step}</step>${alt}<octave>${octave}</octave></pitch>` +
+    `<duration>${croches}</duration>${liaison}<voice>${voice}</voice></note>`
+  );
+}
+
+function mesureOrnee(numero: number, haut: NO[], bas: NO[], attributs = ""): string {
+  const duree = haut.reduce((t, n) => t + n[3], 0);
+  return (
+    `<measure number="${numero}">${attributs}` +
+    haut.map((n) => noteOrnee(n, "1")).join("") +
+    `<backup><duration>${duree}</duration></backup>` +
+    bas.map((n) => noteOrnee(n, "2")).join("") +
+    `</measure>`
+  );
+}
+
+/** Divisions à la CROCHE : sans elles, pas de note de passage à écrire. */
+const ATTRS_ORNE =
+  `<attributes><divisions>2</divisions><key><fifths>0</fifths><mode>major</mode></key>` +
+  `<time><beats>4</beats><beat-type>4</beat-type></time></attributes>`;
+
+/**
+ *   temps    1        2        3          4    ‖    1         2        3-4
+ *   S       Do5      Sol4     Mi5        Fa#4  ‖   Ré5 ─────────────  Do5
+ *   A       Mi4      Ré4      Mi4 [Ré4]  Do4 ──‖── Do4      Si3       Mi4
+ *   T       Sol3     Fa3      Sol3       La3   ‖   Sol3 ────────────────────
+ *   B       Do3      Si2      Do3        Ré3   ‖   Do3 ─────────────────────
+ *           I       V6/5      I          V7/V  ‖    V  (retard 4-3)    I
+ *                                  ↑ passage        ↑ pédale de tonique
+ */
+const CHORAL_ORNE =
+  `<score-partwise><part-list><score-part id="P1"/><score-part id="P2"/></part-list>` +
+  `<part id="P1">` +
+  mesureOrnee(
+    1,
+    [["C", 0, 5, 2], ["G", 0, 4, 2], ["E", 0, 5, 2], ["F", 1, 4, 2]],
+    // Le Ré de passage entre les deux Mi et le Do ; puis le Do, PRÉPARÉ (consonant
+    // au V7/V, dont il est la 7e) et lié par-dessus la barre : c'est le retard.
+    [["E", 0, 4, 2], ["D", 0, 4, 2], ["E", 0, 4, 1], ["D", 0, 4, 1], ["C", 0, 4, 2, "start"]],
+    ATTRS_ORNE,
+  ) +
+  mesureOrnee(
+    2,
+    [["D", 0, 5, 4], ["C", 0, 5, 4]],
+    [["C", 0, 4, 2, "stop"], ["B", 0, 3, 2], ["E", 0, 4, 4]],
+  ) +
+  `</part>` +
+  `<part id="P2">` +
+  mesureOrnee(
+    1,
+    [["G", 0, 3, 2], ["F", 0, 3, 2], ["G", 0, 3, 2], ["A", 0, 3, 2]],
+    [["C", 0, 3, 2], ["B", 0, 2, 2], ["C", 0, 3, 2], ["D", 0, 3, 2]],
+    ATTRS_ORNE,
+  ) +
+  // La pédale : le Do de basse tient sous le V comme sous le I.
+  mesureOrnee(2, [["G", 0, 3, 8]], [["C", 0, 3, 8]]) +
+  `</part></score-partwise>`;
+
+// ── La NOUVELLE chaîne, celle que la route assemble désormais ─────────────────
+
+interface AnalyseOrnee extends Analyse {
+  etrangeres: Array<{ nom: string; type: string | null }>;
+}
+
+function analyserNouvelle(xml: string, tonicPc: number): AnalyseOrnee[] {
+  const score = parseMusicXML(xml);
+  const segments = analyserHarmonie(score, tonicPc, score.mode);
+
+  annotateResolutions(segments.map((s) => s.result), tonicPc, score.mode);
+
+  return segments.map(({ measure, beat, result }) => ({
+    mesure: measure,
+    temps: beat,
+    degre: result.degree,
+    fonction: result.fonction,
+    basse: result.bassFr ?? "?",
+    etrangeres: (result.notesEtrangeres ?? []).map((e) => ({ nom: e.nom, type: e.type })),
+  }));
+}
+
+/** L'accord seul, sans le TEMPS où il tombe : c'est lui qui doit être identique
+ *  d'un choral à l'autre. L'ornement, lui, déplace la cadence d'un temps — c'est
+ *  son droit, ce n'est pas de l'harmonie. */
+function harmonie(a: Analyse[]): Array<Omit<Analyse, "temps">> {
+  return a.map(({ mesure, degre, fonction, basse }) => ({ mesure, degre, fonction, basse }));
+}
+
+/** L'analyse de l'ancienne chaîne, mise au format de la nouvelle pour comparaison. */
+function sansEtrangeres(a: AnalyseOrnee[]): Analyse[] {
+  return a.map((x) => ({
+    mesure: x.mesure, temps: x.temps, degre: x.degre, fonction: x.fonction, basse: x.basse,
+  }));
+}
+
+describe("nouvelle chaîne — le choral NU n'a pas bougé", () => {
+  it("rend exactement les mêmes accords que l'ancienne chaîne", () => {
+    // Le garde-fou du chantier : les notes étrangères ne se paient pas d'une
+    // régression sur l'écriture sans ornement.
+    expect(sansEtrangeres(analyserNouvelle(CHORAL, 0))).toEqual(analyser(CHORAL, 0));
+  });
+
+  it("n'invente aucune note étrangère là où il n'y en a pas", () => {
+    expect(analyserNouvelle(CHORAL, 0).flatMap((a) => a.etrangeres)).toEqual([]);
+  });
+});
+
+describe("nouvelle chaîne — le choral ORNÉ", () => {
+  const orne = analyserNouvelle(CHORAL_ORNE, 0);
+
+  it("L'ORNEMENT NE TROUBLE PAS L'HARMONIE : la même que celle du choral nu", () => {
+    expect(harmonie(orne)).toEqual(harmonie(analyserNouvelle(CHORAL, 0)));
+  });
+
+  it("nomme la NOTE DE PASSAGE de l'alto (la croche du contretemps, jadis invisible)", () => {
+    const t3 = orne.find((a) => a.mesure === 1 && a.temps === 3)!;
+    expect(t3.degre).toBe("I");
+    expect(t3.etrangeres).toEqual([{ nom: "Ré", type: "note de passage" }]);
+  });
+
+  it("nomme le RETARD 4-3 et la PÉDALE de tonique sous la cadence", () => {
+    const v = orne.find((a) => a.mesure === 2 && a.temps === 1)!;
+    expect(v.etrangeres).toEqual([
+      { nom: "Do", type: "retard" },
+      { nom: "Do", type: "pédale" },
+    ]);
+  });
+
+  it("LE PIÈGE DU 4-3 : la suspension occupe tout le temps, et l'accord reste V", () => {
+    // Pendant que le Do sonne, la tierce du V est RÉELLEMENT absente : la seule
+    // lecture du temps 1 est un « Gsus4 ». Aucune barrière des sus ne peut trancher
+    // — il n'y a rien d'autre à choisir. C'est la FUSION des temps qui le résout :
+    // le temps suivant porte le même accord, retard résolu, et les deux ne font
+    // qu'une harmonie — celle du temps suivant.
+    const v = orne.find((a) => a.mesure === 2 && a.temps === 1)!;
+    expect(v.degre).toBe("V");
+    expect(v.fonction).toBe("D");
+    expect(orne.map((a) => a.degre)).not.toContain("Vsus4");
+  });
+
+  it("LA PÉDALE NE FAUSSE PAS LE RENVERSEMENT : la basse du V est Sol, pas Do", () => {
+    // Le Do de basse est la note la plus GRAVE entendue, mais il n'appartient pas à
+    // l'accord : la basse qui chiffre est le plus grave de SES sons.
+    expect(orne.find((a) => a.mesure === 2 && a.temps === 1)!.basse).toBe("Sol");
+  });
+
+  it("l'accord final tenu n'est annoté qu'une fois (rythme harmonique)", () => {
+    expect(orne.filter((a) => a.mesure === 2)).toHaveLength(2);
   });
 });
