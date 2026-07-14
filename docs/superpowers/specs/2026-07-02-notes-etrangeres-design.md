@@ -39,6 +39,11 @@ retient celle qui explique le mieux ce qu'il entend.
   là, consonant, dans l'accord précédent ; l'appoggiature est attaquée. Les deux tombent sur le
   temps fort et se résolvent par degré conjoint : c'est la seule différence qui tienne.
 
+  Et **la préparation suffit** : l'écriture ne la défait pas. Un retard peut être **tenu** par
+  liaison ou **réattaqué** à l'identique — c'est la même figure, la même dissonance, la même
+  résolution ; seule change la plume. Exiger la liaison livrerait la moitié du répertoire à
+  l'appoggiature, sur un détail de notation.
+
 ## Architecture
 
 ### 1. Voir toutes les notes — `harmony-segmentation.ts`

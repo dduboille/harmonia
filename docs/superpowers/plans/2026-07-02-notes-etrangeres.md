@@ -482,6 +482,33 @@ git commit -m "feat(analyse): exposer toutes les lectures d'un accord"
 
 **Pourquoi avant `chord-choice` :** le coût d'un abandon dépend de la LÉGITIMITÉ mélodique de la note abandonnée. Il faut donc savoir juger un comportement mélodique avant de pouvoir chiffrer un coût.
 
+> ### ⚠️ AJOUT — la garde de CONTIGUÏTÉ (découvert à l'implémentation des Tasks 1-3)
+>
+> `carteMelodique` rend la note suivante **de la voix**, fût-elle deux mesures plus loin après un
+> long silence. Rien ne le borne. Une note quelconque suivie, dix temps plus tard, d'une note un
+> ton au-dessus serait donc lue « quittée par degré conjoint » — donc classée `passage` ou
+> `appoggiature`, et jugée « légitime » (coût réduit) par `chord-choice`. C'est absurde : une
+> note de passage passe *vers* la note qui la suit **immédiatement**.
+>
+> `notes-etrangeres.ts` doit donc exporter, et utiliser partout :
+>
+> ```ts
+> /**
+>  * Deux notes se SUIVENT dans le discours si la seconde attaque au plus tard là où
+>  * la première s'éteint. Sans cette garde, une note et sa voisine séparées par deux
+>  * mesures de silence passeraient pour un mouvement mélodique — et une note isolée
+>  * se ferait classer « note de passage » vers un futur lointain.
+>  */
+> export function contigues(premiere: ParsedNote, seconde: ParsedNote): boolean {
+>   return seconde.onset <= premiere.onset + premiere.duration;
+> }
+> ```
+>
+> Dans `classer`, une `precedente` ne compte que si `contigues(precedente, note)`, et une
+> `suivante` que si `contigues(note, suivante)`. Une voisine non contiguë est traitée comme
+> **absente**. Ajoute un test : une note dont la suivante est un ton au-dessus mais deux mesures
+> plus loin n'est **pas** une note de passage.
+
 **Files:**
 - Create: `src/lib/notes-etrangeres.ts`
 - Test: `src/lib/notes-etrangeres.test.ts`
@@ -842,6 +869,35 @@ git commit -m "feat(analyse): taxonomie des notes etrangeres"
 ## Task 5 : Choisir l'accord par le coût (`chord-choice.ts`)
 
 **Le cœur du sous-projet.** Un accord qui laisse trois notes de côté ne perd pas contre un accord qui les explique toutes, **si ces trois notes se comportent en notes de passage**.
+
+> ### ⚠️ TROIS AJOUTS (découverts à l'implémentation des Tasks 1-3)
+>
+> **1. `lecturesAccord` ne hiérarchise rien — les accords `sus` compris.** Elle n'a pas le
+> garde-fou `RETARDS` d'`identifyChordFromNotes`, qui empêche une pédale de retourner la fonction
+> tonale : sur Sol-Si-Fa au-dessus d'une pédale de Do, le `Csus4` est **complet** là où le `V7`
+> est à quinte omise. `choisirAccord` doit **reproduire cette barrière** : si une lecture EN
+> TIERCES existe, les lectures `sus2`/`sus4` sont **écartées d'office**, avant même de calculer
+> un coût. Un retard n'est pas un accord. (Exporte `RETARDS` depuis `harmonic-analysis.ts`
+> plutôt que d'en refaire une copie.) Sans cela, le test « la pédale n'entre pas dans l'accord »
+> échouera — et il échouera pour la **bonne** raison, pas par un réglage trop mou : ne le règle
+> pas au score, pose la barrière.
+>
+> **2. Un troisième tarif : la LIGNE INCONNUE.** Dans une main gauche de piano en accords plaqués
+> continus, `carteMelodique` rend `null` pour **toute** la voix. Facturer `COUT_ANOMALIE` à
+> chacun de ces abandons ferait payer plein tarif à une texture parfaitement normale. Il faut
+> trois tarifs, et non deux :
+>
+> ```ts
+> const COUT_LEGITIME = 0.3;   // elle se comporte en étrangère : c'est de l'écriture
+> const COUT_INCONNU  = 1.0;   // aucune ligne mélodique : on ne sait pas, on ne punit pas
+> const COUT_ANOMALIE = 2.5;   // ligne connue, et le comportement est aberrant
+> ```
+>
+> `COUT_INCONNU` s'applique quand `carte.voisinage(note) === null`. On ne sait pas : on ne
+> récompense pas, mais on ne condamne pas non plus.
+>
+> **3. `coutAbandon` doit utiliser `contigues`** (cf. la garde ajoutée en Task 4) pour juger le
+> mouvement mélodique — sinon une voisine lointaine rendrait n'importe quel abandon « légitime ».
 
 **Files:**
 - Create: `src/lib/chord-choice.ts`
