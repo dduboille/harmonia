@@ -1,10 +1,15 @@
 import { describe, it, expect } from "vitest";
 import {
   identifyChord,
+  identifyChordFromNotes,
+  inversionOf,
+  figureOf,
+  augmentedSixth,
   analyzeChord,
   annotateResolutions,
   buildChromaEvents,
   PC,
+  type SpelledNote,
 } from "./harmonic-analysis";
 
 // Aide : analyse un accord donné par ses classes de hauteurs, dans une tonalité.
@@ -480,7 +485,7 @@ describe("vii°7 diatonique du mineur — fondamentale canonique, jamais l'ordre
 // ── CORRECTION 2 — la qualité de l'accord emprunté doit être écrite ───────────
 //
 // Un chiffrage « ii7 » se lit Rém7 : ce n'est PAS l'accord Ré-Fa-Lab-Do. Un
-// « bVI7 » se lit Lab7 (7e de dominante) : ce n'est PAS Lab Maj7.
+// « bVI7 » se lit Lab7 (7e de dominante) : ce n'est PAS Lab Maj7 (bVIΔ7).
 describe("emprunts — le symbole de qualité est obligatoire", () => {
   it("Ré ø7 en Do majeur est iiø7 (et non ii7)", () => {
     const r = an([2, 5, 8, 0], PC.Do, "major"); // Ré-Fa-Lab-Do
@@ -496,16 +501,19 @@ describe("emprunts — le symbole de qualité est obligatoire", () => {
     expect(r.fonction).toBe("SD");
   });
 
-  it("Lab Maj7 en Do majeur est bVIΔ (et non bVI7)", () => {
+  // Le Δ dit la 7e MAJEURE, le 7 dit l'ÉTAT FONDAMENTAL (renversement 0) : les
+  // deux se cumulent, comme « V7 ». Un « bVIΔ » sans chiffre ne dirait pas dans
+  // quel renversement l'accord se présente.
+  it("Lab Maj7 en Do majeur est bVIΔ7 (et non bVI7)", () => {
     const r = an([8, 0, 3, 7], PC.Do, "major"); // Lab-Do-Mib-Sol
-    expect(r.degree).toBe("bVIΔ");
+    expect(r.degree).toBe("bVIΔ7");
     expect(r.categorie).toBe("emprunt");
     expect(r.fonction).toBe("SD");
   });
 
-  it("Mib Maj7 en Do majeur est bIIIΔ", () => {
+  it("Mib Maj7 en Do majeur est bIIIΔ7", () => {
     const r = an([3, 7, 10, 2], PC.Do, "major"); // Mib-Sol-Sib-Ré
-    expect(r.degree).toBe("bIIIΔ");
+    expect(r.degree).toBe("bIIIΔ7");
     expect(r.categorie).toBe("emprunt");
     expect(r.fonction).toBe("T");
   });
@@ -587,9 +595,9 @@ describe("casse des chiffrages — majuscule = majeur, minuscule = mineur/diminu
     expect(r.categorie).toBe("diatonique");
   });
 
-  it("le IΔ diatonique de Do majeur (Do Maj7) est bien IΔ", () => {
+  it("le IΔ7 diatonique de Do majeur (Do Maj7) est bien IΔ7", () => {
     const r = an([0, 4, 7, 11], PC.Do, "major"); // Do-Mi-Sol-Si
-    expect(r.degree).toBe("IΔ");
+    expect(r.degree).toBe("IΔ7");
     expect(r.categorie).toBe("diatonique");
     expect(r.fonction).toBe("T");
   });
@@ -749,5 +757,333 @@ describe("robustesse", () => {
     const events = buildChromaEvents(s, PC.Do, "major");
     expect(events[0].explication).toContain("chaîne de dominantes");
     expect(events[0].explication).not.toContain("une autre dominante secondaire");
+  });
+});
+
+// ── BASSE, RENVERSEMENTS ET CHIFFRAGE FRANÇAIS ────────────────────────────────
+
+describe("identifyChordFromNotes — la basse arbitre", () => {
+  it("Do-Mi-Sol-La est un La m7, quelle que soit la basse", () => {
+    const pcs = [0, 4, 7, 9];
+    expect(identifyChordFromNotes(pcs, 9)?.rootPc).toBe(9); // La à la basse
+    expect(identifyChordFromNotes(pcs, 0)?.rootPc).toBe(9); // Do à la basse
+    expect(identifyChordFromNotes(pcs, 0)?.quality).toBe("m7");
+  });
+
+  it("préfère la lecture qui n'abandonne aucune note", () => {
+    // Sol-Si-Ré-Fa : la 7e de dominante explique tout ; la triade laisserait le Fa.
+    const c = identifyChordFromNotes([7, 11, 2, 5], 7);
+    expect(c?.rootPc).toBe(7);
+    expect(c?.quality).toBe("7");
+  });
+
+  it("à égalité, préfère la fondamentale à la basse (état fondamental)", () => {
+    // 7e diminuée : les quatre notes sont candidates. La basse tranche.
+    expect(identifyChordFromNotes([11, 2, 5, 8], 5)?.rootPc).toBe(5);
+    expect(identifyChordFromNotes([11, 2, 5, 8], 11)?.rootPc).toBe(11);
+  });
+
+  it("conserve la basse dans l'accord rendu", () => {
+    expect(identifyChordFromNotes([0, 4, 7], 4)?.bassPc).toBe(4);
+  });
+});
+
+// Le « + » du chiffrage français désigne la SENSIBLE de la tonalité, à
+// l'intervalle où elle se trouve au-dessus de la basse. Le chiffre dépend donc de
+// la TONALITÉ, et pas seulement de l'accord : c'est ce qui distingue la « sixte
+// sensible » (+6) du « triton » (+4).
+describe("inversionOf / figureOf — chiffrage français", () => {
+  const DO = 0;
+
+  it("triades — aucun +, jamais", () => {
+    expect(inversionOf(0, "", 0)).toBe(0);
+    expect(inversionOf(0, "", 4)).toBe(1);
+    expect(inversionOf(0, "", 7)).toBe(2);
+    expect(figureOf(0, "", 0, DO)).toBe("");
+    expect(figureOf(0, "", 1, DO)).toBe("6");
+    expect(figureOf(0, "", 2, DO)).toBe("6/4");
+  });
+
+  it("7e de dominante en Do : la sensible (Si) est la tierce de l'accord", () => {
+    // Basse Ré (la quinte) → Si est à la 6te : sixte sensible. Basse Fa (la 7e) →
+    // Si est à la 4te augmentée : triton.
+    expect(figureOf(7, "7", 0, DO)).toBe("7");
+    expect(figureOf(7, "7", 1, DO)).toBe("6/5");
+    expect(figureOf(7, "7", 2, DO)).toBe("+6");
+    expect(figureOf(7, "7", 3, DO)).toBe("+4");
+  });
+
+  it("7e diminuée en Do : la sensible (Si) est la fondamentale de l'accord", () => {
+    expect(figureOf(11, "°7", 0, DO)).toBe("7");
+    expect(figureOf(11, "°7", 1, DO)).toBe("+6/5");
+    expect(figureOf(11, "°7", 2, DO)).toBe("+4");
+    expect(figureOf(11, "°7", 3, DO)).toBe("+2");
+  });
+
+  it("sans sensible dans l'accord (ii7), les chiffres sont NUS", () => {
+    // Ré-Fa-La-Do en Do majeur : aucun Si. Rien à marquer d'un +.
+    expect(figureOf(2, "m7", 0, DO)).toBe("7");
+    expect(figureOf(2, "m7", 1, DO)).toBe("6/5");
+    expect(figureOf(2, "m7", 2, DO)).toBe("4/3");
+    expect(figureOf(2, "m7", 3, DO)).toBe("2");
+  });
+
+  it("une basse ÉTRANGÈRE à l'accord (pédale) n'invente pas de renversement", () => {
+    expect(inversionOf(0, "", 2)).toBe(0);
+  });
+
+  it("sans basse connue, on présume l'état fondamental", () => {
+    expect(inversionOf(0, "", undefined)).toBe(0);
+  });
+});
+
+describe("analyzeChord — le degré porte le chiffrage", () => {
+  const DO = 0;
+
+  it("I, I6, I6/4", () => {
+    const deg = (bass: number) =>
+      analyzeChord(identifyChordFromNotes([0, 4, 7], bass)!, DO, "major").degree;
+    expect(deg(0)).toBe("I");
+    expect(deg(4)).toBe("I6");
+    expect(deg(7)).toBe("I6/4");
+  });
+
+  it("V7, V6/5, V+6, V+4", () => {
+    // Basses Sol, Si, Ré, Fa. Le + suit la SENSIBLE (Si) : 6te sensible sur Ré,
+    // triton sur Fa.
+    const deg = (bass: number) =>
+      analyzeChord(identifyChordFromNotes([7, 11, 2, 5], bass)!, DO, "major").degree;
+    expect(deg(7)).toBe("V7");
+    expect(deg(11)).toBe("V6/5");
+    expect(deg(2)).toBe("V+6");
+    expect(deg(5)).toBe("V+4");
+  });
+
+  it("le ii7, sans sensible, porte des chiffres nus", () => {
+    const deg = (bass: number) =>
+      analyzeChord(identifyChordFromNotes([2, 5, 9, 0], bass)!, DO, "major").degree;
+    expect(deg(2)).toBe("ii7");
+    expect(deg(5)).toBe("ii6/5");
+    expect(deg(9)).toBe("ii4/3");
+    expect(deg(0)).toBe("ii2");
+  });
+
+  it("vi7 et vi6/5 — Do-Mi-Sol-La selon la basse", () => {
+    const deg = (bass: number) =>
+      analyzeChord(identifyChordFromNotes([0, 4, 7, 9], bass)!, DO, "major").degree;
+    expect(deg(9)).toBe("vi7");
+    expect(deg(0)).toBe("vi6/5");
+  });
+
+  it("le vii°7 emprunté garde son symbole et prend son chiffrage", () => {
+    // Sa fondamentale EST la sensible : au 1er renversement, elle se retrouve à
+    // la 6te de la basse — d'où le + de la sixte sensible.
+    const c = identifyChordFromNotes([11, 2, 5, 8], 11)!;
+    expect(analyzeChord(c, DO, "major").degree).toBe("vii°7");
+    const c6 = identifyChordFromNotes([11, 2, 5, 8], 2)!;
+    expect(analyzeChord(c6, DO, "major").degree).toBe("vii°+6/5");
+  });
+
+  it("la dominante secondaire est chiffrée elle aussi", () => {
+    // La7 (La-Do#-Mi-Sol) en Do majeur → V7/ii ; avec Do# à la basse → V6/5/ii.
+    const deg = (bass: number) =>
+      analyzeChord(identifyChordFromNotes([9, 1, 4, 7], bass)!, DO, "major").degree;
+    expect(deg(9)).toBe("V7/ii");
+    expect(deg(1)).toBe("V6/5/ii");
+  });
+
+  it("la basse est rendue", () => {
+    const r = analyzeChord(identifyChordFromNotes([0, 4, 7], 4)!, DO, "major");
+    expect(r.bassPc).toBe(4);
+  });
+});
+
+// La note de PÉDALE est ÉTRANGÈRE à l'harmonie : elle ne doit jamais devenir la
+// fondamentale d'un sus2/sus4 de circonstance. Sinon la FONCTION TONALE s'inverse
+// sur la texture la plus banale du répertoire — le ii deviendrait dominante, le V
+// deviendrait tonique.
+describe("pédale — la basse étrangère ne vole pas la fondamentale", () => {
+  const DO = 0;
+
+  it("ii sur pédale de dominante reste ii (SD), et non « Vsus2 » (D)", () => {
+    // Ré-Fa-La sur une basse de Sol tenue.
+    const r = analyzeChord(identifyChordFromNotes([2, 5, 9, 7], 7)!, DO, "major");
+    expect(r.degree).toBe("ii");
+    expect(r.fonction).toBe("SD");
+  });
+
+  it("V sur pédale de tonique reste V (D), et non « Isus2 » (T)", () => {
+    // Sol-Si-Ré sur une basse de Do tenue.
+    const r = analyzeChord(identifyChordFromNotes([7, 11, 2, 0], 0)!, DO, "major");
+    expect(r.degree).toBe("V");
+    expect(r.fonction).toBe("D");
+  });
+
+  it("un sus4 COMPLET ne bat pas une 7e de dominante à quinte omise", () => {
+    // Sol-Si-Fa (V7 sans quinte) sur une basse de Do : Do-Fa-Sol forme un sus4
+    // complet, mais un retard n'est pas un accord — la fonction reste dominante.
+    const r = analyzeChord(identifyChordFromNotes([7, 11, 5, 0], 0)!, DO, "major");
+    expect(r.degree).toBe("V7");
+    expect(r.fonction).toBe("D");
+  });
+
+  it("faute de toute lecture en tierces, le sus4 est retenu", () => {
+    // Do-Fa-Sol seul : aucune tierce ne peut le qualifier.
+    expect(identifyChordFromNotes([0, 5, 7], 0)?.quality).toBe("sus4");
+  });
+});
+
+// L'ellipse de la QUINTE est l'usage courant de l'écriture à quatre voix : tout
+// choral de Bach en est plein. Un accord ainsi allégé doit être identifié, faute
+// de quoi le segment disparaît purement et simplement de l'analyse.
+describe("accords incomplets — la quinte, et elle seule, peut manquer", () => {
+  const DO = 0;
+
+  it("7e de dominante sans quinte : Sol-Si-Fa est un V7", () => {
+    const r = analyzeChord(identifyChordFromNotes([7, 11, 5], 7)!, DO, "major");
+    expect(r.degree).toBe("V7");
+    expect(r.fonction).toBe("D");
+  });
+
+  it("triade sans quinte : Do-Mi est un I", () => {
+    expect(analyzeChord(identifyChordFromNotes([0, 4], 0)!, DO, "major").degree).toBe("I");
+  });
+
+  it("la TIERCE, elle, ne peut pas manquer : une quinte à vide n'est pas un accord", () => {
+    expect(identifyChordFromNotes([0, 7], 0)).toBeNull();
+  });
+
+  it("une lecture complète l'emporte toujours sur une lecture à quinte manquante", () => {
+    const c = identifyChordFromNotes([7, 11, 2, 5], 7)!; // Sol-Si-Ré-Fa, complet
+    expect(c.rootPc).toBe(7);
+    expect(c.quality).toBe("7");
+  });
+});
+
+/** Fabrique des notes orthographiées à partir de couples (lettre, altération). */
+const STEP_PC_T: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+function sp(...notes: Array<[string, number]>): SpelledNote[] {
+  return notes.map(([step, alter]) => ({
+    step,
+    alter,
+    pc: (((STEP_PC_T[step] + alter) % 12) + 12) % 12,
+  }));
+}
+
+/** Accord identifié à partir de notes ÉCRITES : pcs + basse + orthographe. */
+function accordEcrit(notes: SpelledNote[], bassPc: number) {
+  const chord = identifyChordFromNotes(notes.map((n) => n.pc), bassPc)!;
+  chord.spelled = notes;
+  return chord;
+}
+
+describe("sixtes augmentées — l'orthographe seule les distingue d'un V7", () => {
+  const DO = 0;
+
+  it("6te allemande : Lab-Do-Mib-Fa# (basse Lab)", () => {
+    const c = accordEcrit(sp(["A", -1], ["C", 0], ["E", -1], ["F", 1]), 8);
+    const r = analyzeChord(c, DO, "major");
+    expect(r.categorie).toBe("sixte_augmentee");
+    expect(r.degree).toBe("+6 all.");
+    expect(r.fonction).toBe("SD");
+  });
+
+  it("le MÊME son écrit Solb est une 7e de dominante, pas une 6te augmentée", () => {
+    // Lab-Do-Mib-Solb : les MÊMES hauteurs que la 6te allemande ci-dessus. Le
+    // triton y est une quinte ABAISSÉE, pas un 4e degré élevé : c'est le V7 de Réb.
+    const c = accordEcrit(sp(["A", -1], ["C", 0], ["E", -1], ["G", -1]), 8);
+    expect(analyzeChord(c, DO, "major").categorie).not.toBe("sixte_augmentee");
+  });
+
+  it("6te italienne : Lab-Do-Fa#", () => {
+    const c = accordEcrit(sp(["A", -1], ["C", 0], ["F", 1]), 8);
+    expect(analyzeChord(c, DO, "major").degree).toBe("+6 it.");
+  });
+
+  it("6te française : Lab-Do-Ré-Fa#", () => {
+    const c = accordEcrit(sp(["A", -1], ["C", 0], ["D", 0], ["F", 1]), 8);
+    expect(analyzeChord(c, DO, "major").degree).toBe("+6 fr.");
+  });
+
+  it("en mineur aussi (le b6 y est diatonique, le #4 non)", () => {
+    const c = accordEcrit(sp(["A", -1], ["C", 0], ["E", -1], ["F", 1]), 8);
+    expect(analyzeChord(c, DO, "minor").degree).toBe("+6 all.");
+  });
+
+  it("sans basse au b6, ce n'est pas une sixte augmentée", () => {
+    const c = accordEcrit(sp(["A", -1], ["C", 0], ["E", -1], ["F", 1]), 0);
+    expect(analyzeChord(c, DO, "major").categorie).not.toBe("sixte_augmentee");
+  });
+
+  it("augmentedSixth rend null sans orthographe", () => {
+    expect(
+      augmentedSixth(
+        { rootPc: 8, rootFr: "Lab", quality: "7", pcs: [8, 0, 3, 6], bassPc: 8 },
+        0,
+      ),
+    ).toBeNull();
+  });
+
+  it("sans la tonique, le socle de la sixte augmentée n'est pas constitué", () => {
+    // Lab-Mib-Fa# : le b6 et le #4 sans le degré qui les tend l'un vers l'autre.
+    const c = accordEcrit(sp(["A", -1], ["E", -1], ["F", 1]), 8);
+    expect(analyzeChord(c, DO, "major").categorie).not.toBe("sixte_augmentee");
+  });
+
+  it("la sixte augmentée n'est pas rétrogradée ni promue par la séquence", () => {
+    // +6 all. → V : la catégorie doit survivre à `annotateResolutions`, qui ne
+    // connaît que les dominantes, les emprunts et les accords de sensible.
+    const six = analyzeChord(
+      accordEcrit(sp(["A", -1], ["C", 0], ["E", -1], ["F", 1]), 8), DO, "major",
+    );
+    const dom = analyzeChord(identifyChordFromNotes([7, 11, 2], 7)!, DO, "major");
+    annotateResolutions([six, dom], DO, "major");
+    expect(six.categorie).toBe("sixte_augmentee");
+    expect(six.degree).toBe("+6 all.");
+  });
+
+  it("buildChromaEvents explique la sixte augmentée", () => {
+    const six = analyzeChord(
+      accordEcrit(sp(["A", -1], ["C", 0], ["E", -1], ["F", 1]), 8), DO, "major",
+    );
+    const events = buildChromaEvents([{ result: six, measure: 1 }], DO, "major");
+    expect(events).toHaveLength(1);
+    expect(events[0].categorie).toBe("sixte_augmentee");
+    expect(events[0].explication).toContain("Sixte augmentée");
+  });
+
+  // Le chiffrage d'une triade AUGMENTÉE renversée accole "+" (QUALITY_MARK["aug"])
+  // au chiffre "6" du 1er renversement : « III+6 ». Typographiquement proche de
+  // l'étiquette « +6 all. » d'une sixte augmentée — mais sans collision possible :
+  // le chiffre romain PRÉFIXE toujours la première, jamais la seconde.
+  it("« III+6 » (triade augmentée renversée) ne se confond pas avec « +6 all. »", () => {
+    // Mib augmenté (Mib-Sol-Si) en Do mineur, Sol à la basse. La triade augmentée
+    // est SYMÉTRIQUE : on force ici la fondamentale, que le score attribuerait sinon
+    // à la basse (cf. le test suivant).
+    const r = analyzeChord(
+      { rootPc: 3, rootFr: "Ré#", quality: "aug", pcs: [3, 7, 11], bassPc: 7 },
+      0, "minor",
+    );
+    expect(r.degree).toBe("III+6");
+    expect(r.degree).not.toBe("+6 all.");
+    expect(r.categorie).not.toBe("sixte_augmentee");
+  });
+
+  it("en pratique, une triade augmentée n'est jamais renversée par le moteur", () => {
+    // Elle est symétrique : `identifyChordFromNotes` élit toujours la basse pour
+    // fondamentale (départage `fondAuBasse`). Le chiffre "6" n'apparaît donc pas,
+    // et « +6 » nu n'est produit par AUCUN chemin réel.
+    const c = identifyChordFromNotes([3, 7, 11], 7)!;
+    expect(c.quality).toBe("aug");
+    expect(c.rootPc).toBe(7); // la basse
+    expect(analyzeChord(c, 0, "minor").degree).toBe("V+");
+  });
+});
+
+describe("napolitain — la basse confirme la sixte", () => {
+  it("Réb-Fa-Lab avec Fa à la basse → bII6", () => {
+    const r = analyzeChord(identifyChordFromNotes([1, 5, 8], 5)!, 0, "major");
+    expect(r.categorie).toBe("napolitain");
+    expect(r.degree).toBe("bII6");
   });
 });

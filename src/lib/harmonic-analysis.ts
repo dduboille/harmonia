@@ -11,13 +11,25 @@ export type Categorie =
   | "sensible_degre"
   | "emprunt"
   | "napolitain"
+  | "sixte_augmentee"
   | "chromatique";
+
+/** Une note telle qu'ÉCRITE — l'orthographe seule distingue un Fa# d'un Solb. */
+export interface SpelledNote {
+  step: string;
+  alter: number;
+  pc: number;
+}
 
 export interface Chord {
   rootPc: number;
   rootFr: string;
   quality: string;
   pcs: number[];
+  /** Hauteur de la note la plus GRAVE. C'est elle qui donne le renversement. */
+  bassPc?: number;
+  /** Notes du segment avec leur orthographe (pour les sixtes augmentées). */
+  spelled?: SpelledNote[];
 }
 
 export interface ChordResult {
@@ -30,6 +42,14 @@ export interface ChordResult {
    * diminuée n'est tranchée que par sa résolution (cf. `annotateResolutions`).
    */
   pcs: number[];
+  bassPc?: number;
+  /**
+   * Nom français de la basse. Le moteur ne connaît que des CLASSES DE HAUTEURS :
+   * il ne pose ici qu'un repli (`NOTE_FR`), qui rend "Sol#" là où la partition
+   * écrit peut-être "Lab". L'appelant qui dispose de l'orthographe réelle
+   * (`Chord.spelled`) doit écraser cette valeur.
+   */
+  bassFr?: string;
   degree: string;
   degreeNum: number;
   fonction: Fonction;
@@ -96,6 +116,130 @@ export function identifyChord(pcs: number[]): Chord | null {
     }
   }
   return null;
+}
+
+/**
+ * Qualités dont la QUINTE peut manquer.
+ *
+ * L'ellipse de la quinte est l'usage courant de l'écriture à quatre voix — tout
+ * choral de Bach en est plein — mais elle ne se conçoit que pour une quinte
+ * JUSTE. Dans un accord diminué, augmenté ou de sensible, la quinte EST la
+ * qualité : l'ôter ne l'ellipse pas, elle le détruit. Les accords sus, eux, n'ont
+ * pas de tierce : privés de leur quinte, il ne resterait rien qui les qualifie.
+ *
+ * La TIERCE, elle, ne manque jamais : sans elle l'accord n'a pas de qualité, et
+ * une quinte à vide (Do-Sol) doit rester non identifiée plutôt que d'être devinée.
+ */
+const QUINTE_OMISSIBLE = new Set(["", "m", "7", "m7", "Maj7"]);
+
+/**
+ * Les accords « sus » NE SONT PAS des accords de l'harmonie tonale : ce sont des
+ * RETARDS — une note qui tarde à rejoindre la tierce. Ils n'ont donc leur mot à
+ * dire que là où AUCUNE lecture en tierces n'existe.
+ *
+ * Sans cette barrière, la moindre pédale ou le moindre retard de cadence
+ * renverse la fonction tonale : Sol-Si-Fa sur une basse de Do (V7 à quinte omise
+ * au-dessus d'une pédale de tonique) se lit « Isus4 » — fonction T là où il faut
+ * D — parce que le sus4 est COMPLET quand la 7e de dominante est incomplète.
+ */
+const RETARDS = new Set(["sus4", "sus2"]);
+
+/**
+ * Score d'une lecture, par ordre de priorité DÉCROISSANTE. Comparaison
+ * lexicographique : le plus petit gagne.
+ */
+type ScoreLecture = [
+  retard: number,
+  manquantes: number,
+  restes: number,
+  rang: number,
+  pasFondAuBasse: number,
+];
+
+function scoreInferieur(a: ScoreLecture, b: ScoreLecture): boolean {
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) return a[i] < b[i];
+  }
+  return false;
+}
+
+/**
+ * Identification d'accord par SCORE, la BASSE en arbitre.
+ *
+ * `identifyChord` rendait le PREMIER motif de `CHORD_PATTERNS` qui collait :
+ * l'ordre du tableau décidait de l'analyse. On énumère ici toutes les lectures
+ * (motif × fondamentale candidate) et on retient la meilleure, dans cet ordre :
+ *
+ *  1. `retard` — toute lecture EN TIERCES bat un sus2 / sus4, fût-elle incomplète
+ *     (cf. `RETARDS`) : un retard n'est pas un accord ;
+ *  2. `manquantes` — une lecture COMPLÈTE bat toujours une lecture à quinte omise
+ *     (cf. `QUINTE_OMISSIBLE`) ;
+ *  3. `restes` — le moins de notes INEXPLIQUÉES : la 7e de dominante explique le
+ *     Fa que la triade laisserait de côté ;
+ *  4. `rang` — l'ordre de `CHORD_PATTERNS`. Il DOIT passer avant la basse. Sinon
+ *     une note de PÉDALE, étrangère à l'harmonie, se fait fondamentale du sus2 /
+ *     sus4 qu'elle forme avec l'accord réel, et la FONCTION TONALE s'inverse sur
+ *     la texture la plus banale du répertoire : le ii sur pédale de dominante
+ *     (Ré-Fa-La sur Sol) se lirait « Vsus2 » — dominante au lieu de
+ *     sous-dominante ; le V sur pédale de tonique, « Isus2 ». Les accords sus
+ *     étant derniers dans `CHORD_PATTERNS`, le rang les écarte au profit du vrai
+ *     accord ;
+ *  5. `fondAuBasse` — à rang égal, la basse tranche : c'est le cas de la 7e
+ *     diminuée, dont les quatre lectures relèvent du MÊME motif symétrique et ne
+ *     se départagent donc pas par le rang. L'état fondamental prime alors sur le
+ *     renversement.
+ *
+ * (La fondamentale d'une 7e diminuée reste ensuite soumise à `canonicalRootPc`
+ * puis à la résolution : voir `annotateResolutions`.)
+ */
+export function identifyChordFromNotes(pcs: number[], bassPc?: number): Chord | null {
+  const unique = [...new Set(pcs.map((p) => ((p % 12) + 12) % 12))];
+  if (unique.length < 2) return null;
+
+  let meilleur: { chord: Chord; score: ScoreLecture } | null = null;
+
+  for (let rang = 0; rang < CHORD_PATTERNS.length; rang++) {
+    const pattern = CHORD_PATTERNS[rang];
+    // Un motif peut compter UNE note de plus que l'effectif entendu : la quinte omise.
+    if (pattern.intervals.length > unique.length + 1) continue;
+
+    for (const root of unique) {
+      const norm = new Set(unique.map((p) => (p - root + 12) % 12));
+      const presents = pattern.intervals.filter((iv) => norm.has(iv));
+      const manquantes = pattern.intervals.length - presents.length;
+
+      if (manquantes > 1) continue;
+      // La seule note tolérée absente est la QUINTE (`intervals[2]`), et seulement
+      // là où elle est juste.
+      if (manquantes === 1 &&
+          (!QUINTE_OMISSIBLE.has(pattern.quality) || norm.has(pattern.intervals[2]))) {
+        continue;
+      }
+
+      const score: ScoreLecture = [
+        RETARDS.has(pattern.quality) ? 1 : 0,
+        manquantes,
+        unique.length - presents.length,
+        rang,
+        bassPc !== undefined && root === bassPc ? 0 : 1,
+      ];
+
+      if (meilleur === null || scoreInferieur(score, meilleur.score)) {
+        meilleur = {
+          chord: {
+            rootPc: root,
+            rootFr: NOTE_FR[root] ?? "?",
+            quality: pattern.quality,
+            pcs: unique,
+            bassPc,
+          },
+          score,
+        };
+      }
+    }
+  }
+
+  return meilleur ? meilleur.chord : null;
 }
 
 // ── Helpers tonalité ──────────────────────────────────────────────────────────
@@ -244,10 +388,10 @@ export function dominantCandidates(
   );
 }
 
-function leadingPrefix(quality: string): string {
-  if (quality === "°7") return "vii°7";
-  if (quality === "ø7") return "viiø7";
-  return "vii°";
+function leadingPrefix(
+  rootPc: number, quality: string, inversion: number, tonicPc: number,
+): string {
+  return "vii" + chiffrage(rootPc, quality, inversion, tonicPc);
 }
 
 /**
@@ -302,36 +446,114 @@ function isMinorish(quality: string): boolean {
          quality === "°7" || quality === "ø7";
 }
 
+const INTERVALS_OF: Record<string, number[]> = Object.fromEntries(
+  CHORD_PATTERNS.map((p): [string, number[]] => [p.quality, p.intervals]),
+);
+
 /**
- * Symbole de qualité accolé au chiffre romain.
+ * Renversement d'après la BASSE RÉELLE : 0 = état fondamental, 1/2/3 = 1er, 2e, 3e.
  *
- * La casse du chiffre dit déjà « majeur » ou « mineur » ; le symbole dit le
- * RESTE — et il n'est jamais facultatif : « ii7 » se lit Rém7, ce n'est pas
- * l'accord Ré-Fa-Lab-Do (iiø7) ; « bVI7 » se lit Lab7, ce n'est pas Lab Maj7
- * (bVIΔ). Un symbole manquant, c'est un autre accord.
+ * Si la basse n'appartient pas à l'accord (pédale, note étrangère, basse
+ * inconnue), on ne chiffre pas au jugé : état fondamental. Un chiffrage inventé
+ * serait pire que pas de chiffrage — il se lit comme une affirmation.
  */
-const QUALITY_SUFFIX: Record<string, string> = {
+export function inversionOf(rootPc: number, quality: string, bassPc?: number): number {
+  if (bassPc === undefined) return 0;
+  const intervals = INTERVALS_OF[quality];
+  if (!intervals) return 0;
+  const idx = intervals.indexOf((((bassPc - rootPc) % 12) + 12) % 12);
+  return idx === -1 ? 0 : idx;
+}
+
+/**
+ * Symbole de QUALITÉ accolé au chiffre romain.
+ *
+ * La casse du chiffre dit déjà « majeur » ou « mineur » ; ce symbole dit le
+ * RESTE (diminué, demi-diminué, augmenté, 7e majeure) — et il n'est jamais
+ * facultatif : « ii7 » se lit Rém7, ce n'est pas l'accord Ré-Fa-Lab-Do (iiø7) ;
+ * « bVI7 » se lit Lab7, ce n'est pas Lab Maj7 (bVIΔ7). Un symbole manquant,
+ * c'est un autre accord.
+ *
+ * Le chiffre, lui, ne vient plus d'ici : il dit le RENVERSEMENT (cf. `figureOf`).
+ */
+const QUALITY_MARK: Record<string, string> = {
   "":     "",     // parfait majeur   → I
   "m":    "",     // parfait mineur   → i
   "°":    "°",    // diminué          → vii°
-  "°7":   "°7",   // 7e diminuée      → vii°7
-  "ø7":   "ø7",   // 7e de sensible   → iiø7
-  "7":    "7",    // 7e de dominante  → V7
-  "m7":   "7",    // 7e mineure       → ii7 (la minuscule dit « mineur »)
-  "Maj7": "Δ",    // 7e majeure       → IΔ
   "aug":  "+",    // augmenté         → III+
+  "7":    "",     // 7e de dominante  → V7   (le « 7 » est le chiffrage)
+  "m7":   "",     // 7e mineure       → ii7  (la minuscule dit « mineur »)
+  "Maj7": "Δ",    // 7e majeure       → IΔ7
+  "°7":   "°",    // 7e diminuée      → vii°7
+  "ø7":   "ø",    // 7e de sensible   → iiø7
   "sus4": "sus4",
   "sus2": "sus2",
 };
 
-function qualitySuffix(quality: string): string {
-  return QUALITY_SUFFIX[quality] ?? quality;
+/** Chiffrage des triades — aucune n'a jamais porté de « + ». */
+const FIGURES_TRIADE = ["", "6", "6/4"];
+
+const SEVENTHS = new Set(["7", "m7", "Maj7", "°7", "ø7"]);
+
+/** Degrés d'échelle des sons de l'accord (fondamentale, 3ce, 5te, 7e). */
+const DEGRES_ACCORD = [0, 2, 4, 6];
+
+/**
+ * Intervalle (1..7) auquel se trouve la SENSIBLE de la tonalité au-dessus de la
+ * basse, ou `null` si l'accord ne la contient pas. 1 = la sensible EST la basse.
+ */
+function intervalleSensible(
+  rootPc: number, quality: string, inversion: number, tonicPc: number,
+): number | null {
+  const intervals = INTERVALS_OF[quality];
+  if (!intervals) return null;
+  const j = intervals.indexOf(((((tonicPc + 11) - rootPc) % 12) + 12) % 12);
+  if (j === -1 || inversion >= DEGRES_ACCORD.length) return null;
+  return ((((DEGRES_ACCORD[j] - DEGRES_ACCORD[inversion]) % 7) + 7) % 7) + 1;
+}
+
+/**
+ * Chiffrage FRANÇAIS. Le « + » marque la SENSIBLE de la tonalité, à l'intervalle
+ * où elle se trouve au-dessus de la basse : c'est lui qui NOMME l'accord (« sixte
+ * sensible » = +6, « triton » = +4). Le chiffre dépend donc de la TONALITÉ, et
+ * pas seulement de l'accord : Sol-Si-Ré-Fa sur une basse de Ré porte la sensible
+ * (Si) à la 6te — +6 ; sur une basse de Fa, à la quarte augmentée — +4.
+ *
+ * Sans sensible dans l'accord — un ii7, un IΔ7 —, il n'y a rien à marquer :
+ * chiffres nus (6/5, 4/3, 2).
+ *
+ * Le « + » est réservé aux SEPTIÈMES : c'est là que la tradition l'emploie (7e de
+ * dominante, 7e diminuée, 7e de sensible). Les triades gardent "", "6", "6/4".
+ */
+export function figureOf(
+  rootPc: number, quality: string, inversion: number, tonicPc: number,
+): string {
+  if (!SEVENTHS.has(quality)) return FIGURES_TRIADE[inversion] ?? "";
+
+  const sens = intervalleSensible(rootPc, quality, inversion, tonicPc);
+  switch (inversion) {
+    case 0: return "7";
+    case 1: return sens === 6 ? "+6/5" : "6/5";
+    case 2: return sens === 6 ? "+6" : sens === 4 ? "+4" : "4/3";
+    case 3: return sens === 4 ? "+4" : sens === 2 ? "+2" : "2";
+    default: return "7";
+  }
+}
+
+/** Suffixe complet d'un chiffre romain : symbole de qualité + chiffrage. */
+function chiffrage(
+  rootPc: number, quality: string, inversion: number, tonicPc: number,
+): string {
+  return (QUALITY_MARK[quality] ?? quality) + figureOf(rootPc, quality, inversion, tonicPc);
 }
 
 /** Chiffre romain d'un degré : MAJUSCULE = majeur/augmenté, minuscule = mineur/diminué. */
-function romanOfDegree(deg: number, quality: string): string {
+function romanOfDegree(
+  deg: number, rootPc: number, quality: string, inversion: number, tonicPc: number,
+): string {
   const roman = ROMANS[deg - 1];
-  return (isMinorish(quality) ? roman.toLowerCase() : roman) + qualitySuffix(quality);
+  return (isMinorish(quality) ? roman.toLowerCase() : roman) +
+    chiffrage(rootPc, quality, inversion, tonicPc);
 }
 
 /**
@@ -362,15 +584,17 @@ export function canonicalRootPc(chord: Chord, tonicPc: number): number {
  * l'accord « emprunt » sans savoir de quel degré il s'agit.
  */
 function empruntLabel(
-  chord: { rootPc: number; quality: string }, tonicPc: number, mode: "major" | "minor",
+  chord: { rootPc: number; quality: string; bassPc?: number },
+  tonicPc: number,
+  mode: "major" | "minor",
 ): { label: string; fonction: Fonction } | null {
   const deg = degreeOfRoot(chord.rootPc, tonicPc, mode);
-  const suffix = qualitySuffix(chord.quality);
+  const inv = inversionOf(chord.rootPc, chord.quality, chord.bassPc);
 
   if (deg !== null) {
     // Fondamentale diatonique, seule la qualité est empruntée (ex. Fa mineur → iv)
     return {
-      label: romanOfDegree(deg, chord.quality),
+      label: romanOfDegree(deg, chord.rootPc, chord.quality, inv, tonicPc),
       fonction: fonctionOfDegree(deg, chord.rootPc, tonicPc, mode),
     };
   }
@@ -381,7 +605,10 @@ function empruntLabel(
   if (alt === undefined) return null;
 
   const roman = isMinorish(chord.quality) ? alt.roman.toLowerCase() : alt.roman;
-  return { label: alt.prefix + roman + suffix, fonction: alt.fonction };
+  return {
+    label: alt.prefix + roman + chiffrage(chord.rootPc, chord.quality, inv, tonicPc),
+    fonction: alt.fonction,
+  };
 }
 
 /**
@@ -403,10 +630,14 @@ function empruntLabel(
 function leadingReading(
   quality: string, pcs: number[], root: number,
   target: { num: number; label: string }, tonicPc: number, mode: "major" | "minor",
+  bassPc?: number,
 ): {
   rootPc: number; rootFr: string; degree: string;
   degreeNum: number; fonction: Fonction; categorie: Categorie; cible?: string;
 } {
+  // Le renversement dépend de la fondamentale que l'on vient de retenir : pour une
+  // 7e diminuée, elle peut changer d'une lecture à l'autre. On le recalcule ici.
+  const inv = inversionOf(root, quality, bassPc);
   const commun = {
     rootPc: root,
     rootFr: NOTE_FR[root] ?? "?",
@@ -417,7 +648,7 @@ function leadingReading(
     const dia = diatonicSet(tonicPc, mode);
     return {
       ...commun,
-      degree: leadingPrefix(quality),
+      degree: leadingPrefix(root, quality, inv, tonicPc),
       degreeNum: 7,
       categorie: pcs.every((pc) => dia.has(pc)) ? "diatonique" : "emprunt",
     };
@@ -425,11 +656,59 @@ function leadingReading(
 
   return {
     ...commun,
-    degree: leadingPrefix(quality) + "/" + target.label,
+    degree: leadingPrefix(root, quality, inv, tonicPc) + "/" + target.label,
     degreeNum: 0,
     categorie: "sensible_degre",
     cible: target.label,
   };
+}
+
+// ── Sixte augmentée ───────────────────────────────────────────────────────────
+
+/**
+ * Les trois sixtes augmentées se distinguent par ce qu'elles AJOUTENT au socle
+ * commun (b6 à la basse + tonique + #4). L'ordre compte : l'allemande contient un
+ * b3 que la française n'a pas, la française un 2 que l'italienne n'a pas — on
+ * cherche donc du plus fourni au plus dépouillé, l'italienne n'étant retenue que
+ * faute des deux autres.
+ */
+const SIXTES_AUGMENTEES: Array<{ ajout: number | null; label: string }> = [
+  { ajout: 3, label: "+6 all." },   // b3 (Mib en Do) — 6te allemande
+  { ajout: 2, label: "+6 fr." },    // 2  (Ré en Do)  — 6te française
+  { ajout: null, label: "+6 it." }, // rien de plus   — 6te italienne
+];
+
+/**
+ * SIXTE AUGMENTÉE — reconnue à l'ORTHOGRAPHE, seul moyen de la distinguer d'une
+ * 7e de dominante ENHARMONIQUE : Lab-Do-Mib-Fa# (6te allemande en Do) et
+ * Lab-Do-Mib-Solb (V7 de Réb) sonnent EXACTEMENT les mêmes hauteurs. Le triton y
+ * est écrit #4 dans un cas (note ÉLEVÉE, `alter > 0`), b5 dans l'autre (note
+ * ABAISSÉE). Cette différence est invisible aux classes de hauteurs : sans
+ * `Chord.spelled`, aucun arbitrage n'est possible, et l'on rend `null` plutôt que
+ * de deviner.
+ *
+ * Critères : la BASSE est le 6e degré abaissé (b6), la tonique est présente, et le
+ * triton du degré est écrit comme un 4e degré ÉLEVÉ. Ce sont b6 et #4 qui forment
+ * l'intervalle de sixte augmentée — d'où le nom, et d'où l'exigence que le b6 soit
+ * bien à la BASSE : renversé, l'intervalle serait une tierce diminuée.
+ *
+ * Fonction : PRÉDOMINANTE (SD) — la sixte augmentée s'épanouit vers la dominante,
+ * ses deux notes extrêmes convergeant par demi-tons contraires sur l'octave de V.
+ */
+export function augmentedSixth(chord: Chord, tonicPc: number): { degree: string } | null {
+  const { bassPc, pcs, spelled } = chord;
+  if (bassPc === undefined || !spelled) return null;
+  if (bassPc !== (tonicPc + 8) % 12) return null; // basse = b6
+  if (!pcs.includes(tonicPc)) return null;        // la tonique
+
+  const quarte = spelled.find((n) => n.pc === (tonicPc + 6) % 12);
+  if (!quarte || quarte.alter <= 0) return null;  // #4, et non b5
+
+  for (const s of SIXTES_AUGMENTEES) {
+    if (s.ajout === null) return { degree: s.label };
+    if (pcs.includes((tonicPc + s.ajout) % 12)) return { degree: s.label };
+  }
+  return null;
 }
 
 // ── Analyse d'un accord ───────────────────────────────────────────────────────
@@ -439,12 +718,15 @@ export function analyzeChord(
 ): ChordResult {
   // La fondamentale d'une 7e diminuée ne se lit PAS dans l'ordre des notes.
   const rootPc = canonicalRootPc(chord, tonicPc);
+  const inv = inversionOf(rootPc, chord.quality, chord.bassPc);
 
   const base = {
     rootPc,
     rootFr: NOTE_FR[rootPc] ?? chord.rootFr,
     quality: chord.quality,
     pcs: chord.pcs,
+    bassPc: chord.bassPc,
+    bassFr: chord.bassPc === undefined ? undefined : NOTE_FR[chord.bassPc],
   };
 
   // ── Règle 1 : diatonique = TOUTES les notes dans la gamme ──
@@ -459,14 +741,33 @@ export function analyzeChord(
   if (toutesDiatoniques && deg !== null) {
     return {
       ...base,
-      degree: romanOfDegree(deg, chord.quality),
+      degree: romanOfDegree(deg, rootPc, chord.quality, inv, tonicPc),
       degreeNum: deg,
       fonction: fonctionOfDegree(deg, rootPc, tonicPc, mode),
       categorie: "diatonique",
     };
   }
 
-  // ── Règle 2 : dominante secondaire (lecture PROVISOIRE) ──
+  // ── Règle 2 : sixte augmentée (l'ORTHOGRAPHE tranche) ──
+  //
+  // Placée AVANT la dominante secondaire : une 6te allemande est enharmoniquement
+  // une 7e de dominante (Lab-Do-Mib-Fa# = Lab7), et se ferait happer par une règle
+  // qui ne lit que les classes de hauteurs — en Do, elle ressortirait tôt ou tard
+  // en dominante d'un degré qu'elle ne vise pas. Elle n'est jamais diatonique (le
+  // #4 n'appartient à aucune des deux gammes), donc la règle 1 n'a pas pu la
+  // prendre : cette place est la première où elle puisse être vue.
+  const sixte = augmentedSixth(chord, tonicPc);
+  if (sixte) {
+    return {
+      ...base,
+      degree: sixte.degree,
+      degreeNum: 0,
+      fonction: "SD",
+      categorie: "sixte_augmentee",
+    };
+  }
+
+  // ── Règle 3 : dominante secondaire (lecture PROVISOIRE) ──
   //
   // ATTENTION : sur un accord isolé, cette lecture n'est qu'une HYPOTHÈSE. En
   // mineur, la tonique est une quinte juste au-dessus du iv ((t+5)+7 ≡ t) :
@@ -480,7 +781,7 @@ export function analyzeChord(
     if (t) {
       return {
         ...base,
-        degree: (chord.quality === "7" ? "V7/" : "V/") + t.label,
+        degree: "V" + chiffrage(rootPc, chord.quality, inv, tonicPc) + "/" + t.label,
         degreeNum: 0,
         fonction: "D",
         categorie: "dominante_secondaire",
@@ -489,11 +790,11 @@ export function analyzeChord(
     }
   }
 
-  // ── Règle 3 : accord de sensible (tonique OU autre degré) ──
+  // ── Règle 4 : accord de sensible (tonique OU autre degré) ──
   //
   // La cible peut être la TONIQUE : le chiffrage est alors vii°7, sans barre
   // (cf. `leadingReading`). En majeur, cet accord n'est pas diatonique — il
-  // emprunte au mineur homonyme — et c'est ici, et non à la règle 4, qu'il est
+  // emprunte au mineur homonyme — et c'est ici, et non à la règle 5, qu'il est
   // pris : sa fondamentale est la sensible, pas la 6te abaissée.
   if (LEADING_QUALITIES.has(chord.quality)) {
     // La 7e diminuée peut désigner plusieurs cibles valides. En l'absence de
@@ -507,12 +808,13 @@ export function analyzeChord(
         ...base,
         ...leadingReading(
           chord.quality, chord.pcs, meilleur.root, meilleur.target, tonicPc, mode,
+          chord.bassPc,
         ),
       };
     }
   }
 
-  // ── Règle 4 : emprunt modal (toutes les notes dans le mode homonyme) ──
+  // ── Règle 5 : emprunt modal (toutes les notes dans le mode homonyme) ──
   const par = parallelSet(tonicPc, mode);
   if (chord.pcs.every((pc) => par.has(pc))) {
     const emprunt = empruntLabel(base, tonicPc, mode);
@@ -529,18 +831,18 @@ export function analyzeChord(
     }
   }
 
-  // ── Règle 5 : napolitain (accord majeur sur le 2e degré abaissé) ──
+  // ── Règle 6 : napolitain (accord majeur sur le 2e degré abaissé) ──
   if (chord.quality === "" && rootPc === (tonicPc + 1) % 12) {
     return {
       ...base,
-      degree: "bII",
+      degree: "bII" + figureOf(rootPc, "", inv, tonicPc),
       degreeNum: 0,
       fonction: "SD",
       categorie: "napolitain",
     };
   }
 
-  // ── Règle 6 : chromatisme non classé ──
+  // ── Règle 7 : chromatisme non classé ──
   return {
     ...base,
     degree: "chr",
@@ -605,7 +907,7 @@ function reviseLeadingReading(
   delete c.resolue;
   Object.assign(
     c,
-    leadingReading(c.quality, c.pcs, confirmee.root, confirmee.target, tonicPc, mode),
+    leadingReading(c.quality, c.pcs, confirmee.root, confirmee.target, tonicPc, mode, c.bassPc),
   );
   return true;
 }
@@ -636,7 +938,8 @@ function promoteIfTonicizing(
       (t) => next.rootPc === pcOfDegree(t.num, tonicPc, mode),
     );
     if (t) {
-      c.degree = "V7/" + t.label;
+      const inv = inversionOf(c.rootPc, c.quality, c.bassPc);
+      c.degree = "V" + chiffrage(c.rootPc, c.quality, inv, tonicPc) + "/" + t.label;
       c.degreeNum = 0;
       c.fonction = "D";
       c.categorie = "dominante_secondaire";
@@ -766,8 +1069,16 @@ export function buildChromaEvents(
       const homonyme = mode === "major" ? "mineur" : "majeur";
       explication = `Emprunt au mode homonyme (${homonyme}).`;
     } else if (c.categorie === "napolitain") {
+      // La basse est désormais connue : on ne renvoie plus le renversement à plus
+      // tard, on le lit. Le napolitain est presque toujours à l'état de sixte.
       explication =
-        "Accord napolitain (bII). Le renversement (sixte) sera confirmé lorsque la basse sera suivie.";
+        c.degree === "bII6"
+          ? "Accord napolitain (bII6), à l'état de sixte — prédominante expressive."
+          : "Accord napolitain (bII). Rare hors du 1er renversement.";
+    } else if (c.categorie === "sixte_augmentee") {
+      explication =
+        "Sixte augmentée : la basse (6e degré abaissé) et le 4e degré élevé forment " +
+        "l'intervalle de sixte augmentée, qui s'épanouit sur la dominante. Prédominante chromatique.";
     } else {
       explication = "Accord chromatique non identifié.";
     }

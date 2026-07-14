@@ -1,8 +1,10 @@
 import { auth } from "@clerk/nextjs/server";
 import { getUserPlan } from "@/lib/progression";
 import { unzipSync, strFromU8 } from "fflate";
+import { parseMusicXML, noteNameFr } from "@/lib/musicxml-parse";
+import { sliceByBeat, mergeSlices, type Slice } from "@/lib/harmony-segmentation";
 import {
-  identifyChord,
+  identifyChordFromNotes,
   analyzeChord,
   annotateResolutions,
   buildChromaEvents,
@@ -13,8 +15,9 @@ import {
   type ChromaEvent,
 } from "@/lib/harmonic-analysis";
 
-// La théorie harmonique vit tout entière dans `@/lib/harmonic-analysis` (testée
-// unitairement). Cette route ne garde que le parsing MusicXML et le HTTP.
+// La théorie harmonique vit dans `@/lib/harmonic-analysis`, la lecture du MusicXML
+// dans `@/lib/musicxml-parse` et la segmentation dans `@/lib/harmony-segmentation`
+// — tous testés unitairement. Cette route n'orchestre que le HTTP.
 export type { Fonction, Categorie, ChordResult, ChromaEvent };
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -45,151 +48,66 @@ export interface AnalysisResult {
     tonicisations: number;
     emprunts: number;
     napolitains: number;
+    sixtesAugmentees: number;
     inexpliques: number;
     evenements: ChromaEvent[];
   };
 }
 
-// ── XML Helpers ───────────────────────────────────────────────────────────────
-
-function getTag(xml: string, tag: string): string {
-  const m = new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`).exec(xml);
-  return m ? m[1].trim() : "";
-}
-
-// ── Constantes de parsing MusicXML ────────────────────────────────────────────
+// ── Constantes ────────────────────────────────────────────────────────────────
 
 const FIFTHS_PC = new Map<number, number>([
   [0, 0], [1, 7], [2, 2], [3, 9], [4, 4], [5, 11], [6, 6], [7, 1],
   [-1, 5], [-2, 10], [-3, 3], [-4, 8], [-5, 1], [-6, 6], [-7, 11],
 ]);
 
-const STEP_PC: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
-
-// ── MusicXML Parser ───────────────────────────────────────────────────────────
-
-function parseMusicXML(xml: string): {
-  fifths: number;
-  mode: "major" | "minor";
-  signature: string;
-  measureBeats: Array<{ numero: number; onsets: Array<{ beat: number; pcs: number[] }> }>;
-} {
-  const fifths = parseInt(getTag(xml, "fifths") || "0", 10);
-  const mode: "major" | "minor" = getTag(xml, "mode") === "minor" ? "minor" : "major";
-
-  const beatsStr = getTag(xml, "beats");
-  const beatTypeStr = getTag(xml, "beat-type");
-  const signature = beatsStr && beatTypeStr ? `${beatsStr}/${beatTypeStr}` : "4/4";
-
-  // measureBeatMap: measure# -> Map<beat#, Set<pc>>
-  const measureBeatMap = new Map<number, Map<number, Set<number>>>();
-  const measureDivMap = new Map<number, number>();
-
-  const partRe = /<part\b([^>]*)>([\s\S]*?)<\/part>/g;
-  let pMatch: RegExpExecArray | null;
-
-  while ((pMatch = partRe.exec(xml)) !== null) {
-    const partContent = pMatch[2];
-    const measureRe = /<measure\b([^>]*)>([\s\S]*?)<\/measure>/g;
-    let mMatch: RegExpExecArray | null;
-    let seqCounter = 0;
-    let currentDivisions = 1;
-
-    while ((mMatch = measureRe.exec(partContent)) !== null) {
-      seqCounter++;
-      const attrs = mMatch[1];
-      const measureContent = mMatch[2];
-      const numM = attrs.match(/number="(\d+)"/);
-      const measureNum = numM ? parseInt(numM[1], 10) : seqCounter;
-
-      const divStr = getTag(measureContent, "divisions");
-      if (divStr) currentDivisions = Math.max(1, parseInt(divStr, 10) || 1);
-
-      if (!measureBeatMap.has(measureNum)) {
-        measureBeatMap.set(measureNum, new Map());
-        measureDivMap.set(measureNum, currentDivisions);
-      }
-      const beatMap = measureBeatMap.get(measureNum)!;
-
-      const noteRe = /<note\b[^>]*>([\s\S]*?)<\/note>/g;
-      let nMatch: RegExpExecArray | null;
-      let currentOnset = 0;
-      let lastDuration = 0;
-
-      while ((nMatch = noteRe.exec(measureContent)) !== null) {
-        const noteContent = nMatch[1];
-        // <chord/> means this note is simultaneous with the previous note
-        const isChord = /<chord[\s/>]/.test(noteContent);
-        const dur = parseInt(getTag(noteContent, "duration") || "0", 10);
-
-        if (!isChord) {
-          currentOnset += lastDuration;
-          lastDuration = dur;
-        }
-
-        if (noteContent.includes("<rest")) continue;
-
-        const pitchXml = getTag(noteContent, "pitch");
-        if (!pitchXml) continue;
-
-        const step = getTag(pitchXml, "step");
-        const alterStr = getTag(pitchXml, "alter");
-        const alter = alterStr ? parseFloat(alterStr) : 0;
-        const basePc = STEP_PC[step];
-        if (basePc === undefined) continue;
-        const pc = ((basePc + Math.round(alter)) % 12 + 12) % 12;
-
-        const beat = Math.floor(currentOnset / currentDivisions) + 1;
-        if (!beatMap.has(beat)) beatMap.set(beat, new Set());
-        beatMap.get(beat)!.add(pc);
-      }
-    }
-  }
-
-  const measureBeats = [...measureBeatMap.keys()]
-    .sort((a, b) => a - b)
-    .map(num => {
-      const beatMap = measureBeatMap.get(num)!;
-      const onsets = [...beatMap.keys()]
-        .sort((a, b) => a - b)
-        .map(beat => ({ beat, pcs: [...beatMap.get(beat)!] }));
-      return { numero: num, onsets };
-    });
-
-  return { fifths, mode, signature, measureBeats };
-}
-
 // ── Main Analysis ─────────────────────────────────────────────────────────────
 
 function analyze(xml: string, filename: string): AnalysisResult {
-  const { fifths, mode, signature, measureBeats } = parseMusicXML(xml);
+  const score = parseMusicXML(xml);
+  const { mode, signature } = score;
 
-  const tonicPc = FIFTHS_PC.get(fifths) ?? 0;
+  const tonicPc = FIFTHS_PC.get(score.fifths) ?? 0;
   const tonicFr = NOTE_FR[tonicPc] ?? "Do";
   const tonalite = `${tonicFr} ${mode === "major" ? "majeur" : "mineur"}`;
 
-  const mesures: MesureResult[] = [];
+  // Identité harmonique d'une tranche : c'est elle qui définit le RYTHME
+  // HARMONIQUE. Deux temps consécutifs de même identité ne font qu'un segment —
+  // on n'annote qu'aux changements d'accord, comme le ferait un musicien.
+  const identite = (s: Slice): string => {
+    const c = identifyChordFromNotes(s.pcs, s.bass.pc);
+    return c ? `${c.rootPc}:${c.quality}:${s.bass.pc}` : "";
+  };
+  const segments = mergeSlices(sliceByBeat(score), identite);
+
+  const accordsParMesure = new Map<number, ChordResult[]>();
   const chordSequence: Array<{ result: ChordResult; measure: number }> = [];
 
-  for (const { numero, onsets } of measureBeats) {
-    if (onsets.length === 0) {
-      mesures.push({ numero, accords: [] });
-      continue;
-    }
+  for (const s of segments) {
+    if (s.pcs.length < 2) continue;
+    const chord = identifyChordFromNotes(s.pcs, s.bass.pc);
+    if (!chord) continue;
 
-    const accordsMesure: ChordResult[] = [];
-    for (const { beat, pcs } of onsets) {
-      if (pcs.length < 2) continue;
-      const chord = identifyChord(pcs);
-      if (!chord) continue;
-      const result = analyzeChord(chord, tonicPc, mode);
-      result.beat = beat;
-      accordsMesure.push(result);
-      chordSequence.push({ result, measure: numero });
-    }
+    // L'orthographe des notes du segment : sans elle, pas de sixte augmentée
+    // (un Fa# et un Solb sonnent la même hauteur, mais ne s'analysent pas pareil).
+    chord.spelled = s.notes.map((n) => ({ step: n.step, alter: n.alter, pc: n.pc }));
 
-    mesures.push({ numero, accords: accordsMesure });
+    const result = analyzeChord(chord, tonicPc, mode);
+    result.beat = s.beat;
+    // La basse est nommée d'après ce qui est ÉCRIT : « Lab », jamais « Sol# ». Le
+    // moteur, qui ne connaît que des classes de hauteurs, n'a pu poser qu'un repli.
+    result.bassFr = noteNameFr(s.bass.step, s.bass.alter);
+
+    const liste = accordsParMesure.get(s.measure) ?? [];
+    liste.push(result);
+    accordsParMesure.set(s.measure, liste);
+    chordSequence.push({ result, measure: s.measure });
   }
+
+  const mesures: MesureResult[] = score.measures.map((m) => ({
+    numero: m.numero,
+    accords: accordsParMesure.get(m.numero) ?? [],
+  }));
 
   // ── Arbitrage par la résolution (analyse au niveau de la SÉQUENCE) ──
   //
@@ -208,6 +126,7 @@ function analyze(xml: string, filename: string): AnalysisResult {
     ).length,
     emprunts: evenements.filter((e) => e.categorie === "emprunt").length,
     napolitains: evenements.filter((e) => e.categorie === "napolitain").length,
+    sixtesAugmentees: evenements.filter((e) => e.categorie === "sixte_augmentee").length,
     inexpliques: evenements.filter((e) => e.categorie === "chromatique").length,
     evenements,
   };
@@ -246,7 +165,7 @@ function analyze(xml: string, filename: string): AnalysisResult {
     tonalite,
     tonicFr,
     mode,
-    nombreMesures: measureBeats.length,
+    nombreMesures: score.measures.length,
     signature,
     mesures,
     cadences,
