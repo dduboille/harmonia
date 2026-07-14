@@ -281,6 +281,117 @@ describe("désambiguïsation du °7 par la résolution", () => {
   });
 });
 
+// CORRECTION M1/M2/M4 — un accord isolé ne suffit pas à trancher : c'est la
+// RÉSOLUTION qui décide. Le mode mineur est le terrain de tous les pièges, car
+// la tonique y est une quinte juste au-dessus du IV, et le VII y est une 7e de
+// dominante entièrement diatonique.
+describe("mineur — arbitrage des dominantes secondaires par la résolution", () => {
+  const DO_M = [0, 4, 7];       // Do majeur
+  const DO_m = [0, 3, 7];       // Do mineur
+  const DO_7 = [0, 4, 7, 10];   // Do7
+  const FA_M = [5, 9, 0];       // Fa majeur
+  const FA_m = [5, 8, 0];       // Fa mineur
+  const SOL_M = [7, 11, 2];     // Sol majeur
+  const SIB_M = [10, 2, 5];     // Sib majeur
+  const SIB_7 = [10, 2, 5, 8];  // Sib7
+  const MIB_M = [3, 7, 10];     // Mib majeur
+
+  // M1 — la tierce picarde n'est PAS un V/iv.
+  it("tierce picarde : Do majeur en dernier accord de Do mineur est un I emprunté (T)", () => {
+    const s = seq([SOL_M, DO_M], PC.Do, "minor"); // Sol → Do majeur (final)
+    const picarde = s[1].result;
+    expect(picarde.categorie).toBe("emprunt");
+    expect(picarde.degree).toBe("I");
+    expect(picarde.fonction).toBe("T");
+    expect(picarde.cible).toBeUndefined();
+  });
+
+  it("V/iv légitime : Do majeur → Fa mineur en Do mineur", () => {
+    const s = seq([DO_M, FA_m], PC.Do, "minor");
+    expect(s[0].result.degree).toBe("V/iv");
+    expect(s[0].result.categorie).toBe("dominante_secondaire");
+    expect(s[0].result.cible).toBe("iv");
+    expect(s[0].result.resolue).toBe(true);
+  });
+
+  it("V7/iv : Do7 → Fa mineur en Do mineur (inchangé)", () => {
+    const s = seq([DO_7, FA_m], PC.Do, "minor");
+    expect(s[0].result.degree).toBe("V7/iv");
+    expect(s[0].result.categorie).toBe("dominante_secondaire");
+    expect(s[0].result.resolue).toBe(true);
+  });
+
+  // M2 — le Sib7, pourtant entièrement diatonique du Do mineur naturel, est la
+  // dominante du relatif majeur dès lors qu'il s'y résout.
+  it("Sib7 → Mib en Do mineur est V7/III (promotion)", () => {
+    const s = seq([SIB_7, MIB_M], PC.Do, "minor");
+    expect(s[0].result.categorie).toBe("dominante_secondaire");
+    expect(s[0].result.degree).toBe("V7/III");
+    expect(s[0].result.cible).toBe("III");
+    expect(s[0].result.fonction).toBe("D");
+    expect(s[0].result.resolue).toBe(true);
+  });
+
+  it("Sib7 → Sol en Do mineur reste diatonique (VII7) : la promotion est conditionnelle", () => {
+    const s = seq([SIB_7, SOL_M], PC.Do, "minor");
+    expect(s[0].result.categorie).toBe("diatonique");
+    expect(s[0].result.degree).toBe("VII7");
+    expect(s[0].result.cible).toBeUndefined();
+  });
+
+  // M4 — Fa majeur n'est un V/VII que s'il va vraiment sur Sib.
+  it("Fa → Sol → Do mineur : le Fa majeur est un IV emprunté (SD), pas un V/VII", () => {
+    const s = seq([FA_M, SOL_M, DO_m], PC.Do, "minor");
+    expect(s[0].result.categorie).toBe("emprunt");
+    expect(s[0].result.degree).toBe("IV");
+    expect(s[0].result.fonction).toBe("SD");
+    expect(s[0].result.cible).toBeUndefined();
+    expect(s[1].result.categorie).toBe("diatonique"); // Sol = V
+    expect(s[1].result.degreeNum).toBe(5);
+  });
+
+  it("V/VII légitime : Fa → Sib en Do mineur", () => {
+    const s = seq([FA_M, SIB_M], PC.Do, "minor");
+    expect(s[0].result.categorie).toBe("dominante_secondaire");
+    expect(s[0].result.degree).toBe("V/VII");
+    expect(s[0].result.resolue).toBe(true);
+  });
+
+  it("une 7e de dominante non résolue N'EST PAS rétrogradée : La7 → Fa en Do majeur", () => {
+    const s = seq([[9, 1, 4, 7], FA_M], PC.Do, "major");
+    expect(s[0].result.categorie).toBe("dominante_secondaire");
+    expect(s[0].result.degree).toBe("V7/ii");
+    expect(s[0].result.resolue).toBe(false); // rompue secondaire
+  });
+
+  // Garde-fou : la promotion exige la tension d'un triton. Un accord PARFAIT
+  // diatonique n'est jamais une dominante secondaire, même suivi du degré situé
+  // une quinte plus bas — sinon toute marche de quintes (I→IV, VII→III→VI…)
+  // serait relue en chaîne de dominantes.
+  it("I → IV en Do majeur reste diatonique (et non V/IV → IV)", () => {
+    const s = seq([DO_M, FA_M], PC.Do, "major");
+    expect(s[0].result.categorie).toBe("diatonique");
+    expect(s[0].result.degree).toBe("I");
+    expect(s[1].result.categorie).toBe("diatonique");
+    expect(s[1].result.degree).toBe("IV");
+  });
+
+  it("Sib (accord parfait) → Mib en Do mineur reste diatonique (VII) : pas de triton", () => {
+    const s = seq([SIB_M, MIB_M], PC.Do, "minor");
+    expect(s[0].result.categorie).toBe("diatonique");
+    expect(s[0].result.degree).toBe("VII");
+  });
+
+  it("la tierce picarde produit un événement d'emprunt expliqué", () => {
+    const s = seq([SOL_M, DO_M], PC.Do, "minor");
+    const events = buildChromaEvents(s, PC.Do, "minor");
+    expect(events).toHaveLength(1);
+    expect(events[0].degree).toBe("I");
+    expect(events[0].categorie).toBe("emprunt");
+    expect(events[0].explication).toContain("homonyme");
+  });
+});
+
 describe("événements chromatiques", () => {
   it("produit un événement expliqué pour La7 → Rém", () => {
     const s = seq([[9, 1, 4, 7], [2, 5, 9]], PC.Do, "major");

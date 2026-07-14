@@ -181,6 +181,18 @@ const DOMINANT_QUALITIES = new Set(["", "7"]);
 
 const LEADING_QUALITIES = new Set(["°", "°7", "ø7"]);
 
+/**
+ * Cibles tonicisables situées une quinte juste SOUS la fondamentale : lectures
+ * « dominante secondaire » plausibles de l'accord, par ordre de priorité.
+ */
+export function dominantCandidates(
+  rootPc: number, tonicPc: number, mode: "major" | "minor",
+): Array<{ num: number; label: string }> {
+  return tonicizableTargets(mode).filter(
+    (t) => rootPc === (pcOfDegree(t.num, tonicPc, mode) + 7) % 12,
+  );
+}
+
 function leadingPrefix(quality: string): string {
   if (quality === "°7") return "vii°7";
   if (quality === "ø7") return "viiø7";
@@ -218,7 +230,7 @@ function isMinorish(quality: string): boolean {
 
 /** Étiquette d'un accord emprunté : "iv", "bVI", "bVII7"… */
 function empruntLabel(
-  chord: Chord, tonicPc: number, mode: "major" | "minor",
+  chord: { rootPc: number; quality: string }, tonicPc: number, mode: "major" | "minor",
 ): { label: string; fonction: Fonction } {
   const deg = degreeOfRoot(chord.rootPc, tonicPc, mode);
   const suffix = chord.quality.includes("7") ? "7" : "";
@@ -265,20 +277,26 @@ export function analyzeChord(
     };
   }
 
-  // ── Règle 2 : dominante secondaire ──
+  // ── Règle 2 : dominante secondaire (lecture PROVISOIRE) ──
+  //
+  // ATTENTION : sur un accord isolé, cette lecture n'est qu'une HYPOTHÈSE. En
+  // mineur, la tonique est une quinte juste au-dessus du iv ((t+5)+7 ≡ t) :
+  // tout accord majeur sur la tonique — une tierce picarde — tombe ici et
+  // ressortirait en « V/iv », ce qui est absurde. De même le Fa majeur en Do
+  // mineur (IV emprunté) est une quinte au-dessus du VII.
+  // Seule la RÉSOLUTION tranche : `annotateResolutions` rétrograde en emprunt
+  // les accords PARFAITS qui ne rejoignent pas leur cible (cf. « Rétrogradation »).
   if (DOMINANT_QUALITIES.has(chord.quality)) {
-    for (const t of tonicizableTargets(mode)) {
-      const targetPc = pcOfDegree(t.num, tonicPc, mode);
-      if (chord.rootPc === (targetPc + 7) % 12) {
-        return {
-          ...base,
-          degree: (chord.quality === "7" ? "V7/" : "V/") + t.label,
-          degreeNum: 0,
-          fonction: "D",
-          categorie: "dominante_secondaire",
-          cible: t.label,
-        };
-      }
+    const [t] = dominantCandidates(chord.rootPc, tonicPc, mode);
+    if (t) {
+      return {
+        ...base,
+        degree: (chord.quality === "7" ? "V7/" : "V/") + t.label,
+        degreeNum: 0,
+        fonction: "D",
+        categorie: "dominante_secondaire",
+        cible: t.label,
+      };
     }
   }
 
@@ -360,15 +378,125 @@ function numOfLabel(label: string): number {
 }
 
 /**
- * Renseigne `resolue` sur chaque accord porteur d'une cible, en regardant
- * l'accord suivant. Mutation en place (la séquence est l'unité d'analyse).
+ * Applique à un accord la lecture « sensible de degré » désignée par sa
+ * résolution, si l'accord suivant est bien l'une de ses cibles possibles.
+ */
+function reviseLeadingReading(
+  c: ChordResult, next: ChordResult, tonicPc: number, mode: "major" | "minor",
+): boolean {
+  const lectures = leadingCandidates(c.pcs, c.quality, c.rootPc, tonicPc, mode);
+  const confirmee = lectures.find(
+    (l) => next.rootPc === pcOfDegree(l.target.num, tonicPc, mode),
+  );
+  if (!confirmee) return false;
+
+  c.rootPc = confirmee.root;
+  c.rootFr = NOTE_FR[confirmee.root] ?? c.rootFr;
+  c.degree = leadingPrefix(c.quality) + "/" + confirmee.target.label;
+  c.degreeNum = 0;
+  c.fonction = "D";
+  c.categorie = "sensible_degre";
+  c.cible = confirmee.target.label;
+  return true;
+}
+
+/**
+ * PROMOTION — un accord provisoirement lu comme diatonique (ou emprunté) peut
+ * être, en réalité, la dominante du degré qui le suit.
  *
- * Au passage, ARBITRE la cible des 7es diminuées : cet accord étant symétrique,
- * plusieurs de ses notes peuvent viser une cible tonicisable valide, et
- * `analyzeChord` — qui ne voit qu'un accord isolé — a dû se rabattre sur un
- * ordre de priorité. Or c'est la résolution qui désigne la cible : un °7 suivi
- * de Rém est un vii°7/ii, le même accord suivi de Fa est un vii°7/IV. Si
- * l'accord suivant correspond à l'une des cibles possibles, on l'adopte.
+ * Cas d'école : en Do mineur, Sib7 (Sib-Ré-Fa-Lab) appartient tout entier au
+ * mineur naturel ; la règle 1 le happe donc en « VII7 ». Mais Sib7 → Mib est la
+ * tonicisation du relatif majeur : c'est un V7/III. Sans cet arbitrage, la
+ * cible III serait à jamais inatteignable pour une 7e de dominante.
+ *
+ * CONDITION DE TRITON — on ne promeut QUE les accords porteurs d'un triton
+ * (7e de dominante, ou accord de sensible ° / °7 / ø7), jamais un accord
+ * PARFAIT diatonique. Un accord parfait n'a aucune tension dominante : sans
+ * altération chromatique ni 7e, ce n'est pas une dominante secondaire, c'est le
+ * degré qu'il est. Promouvoir les accords parfaits relirait toute marche de
+ * quintes comme une chaîne de dominantes (en Do majeur, I → IV deviendrait
+ * V/IV → IV ; en Do mineur, VII → III → VI deviendrait V/III → V/VI → …).
+ */
+function promoteIfTonicizing(
+  c: ChordResult, next: ChordResult, tonicPc: number, mode: "major" | "minor",
+): boolean {
+  // Voie de la quinte : seule la 7e de dominante (triton 3ce–7e) qualifie.
+  if (c.quality === "7") {
+    const t = dominantCandidates(c.rootPc, tonicPc, mode).find(
+      (t) => next.rootPc === pcOfDegree(t.num, tonicPc, mode),
+    );
+    if (t) {
+      c.degree = "V7/" + t.label;
+      c.degreeNum = 0;
+      c.fonction = "D";
+      c.categorie = "dominante_secondaire";
+      c.cible = t.label;
+      return true;
+    }
+  }
+
+  // Voie du demi-ton : accord de sensible diatonique visant un autre degré
+  // (en Do mineur, Ré° → Mib est le vii° du relatif majeur).
+  if (LEADING_QUALITIES.has(c.quality)) {
+    return reviseLeadingReading(c, next, tonicPc, mode);
+  }
+
+  return false;
+}
+
+/**
+ * RÉTROGRADATION — une dominante secondaire provisoire portée par un accord
+ * PARFAIT (sans 7e) n'est pas confirmée si la cible ne vient pas.
+ *
+ * C'est ce qui sauve la tierce picarde : en Do mineur, la tonique est une quinte
+ * juste au-dessus du iv, donc TOUT accord majeur de tonique est capté par la
+ * règle 2 en « V/iv ». S'il ne va pas sur Fa mineur, ce n'est pas une dominante :
+ * c'est un I emprunté au majeur homonyme (fonction T). Idem pour Fa majeur en Do
+ * mineur : « V/VII » s'il va sur Sib, IV emprunté (SD) sinon.
+ *
+ * On ne rétrograde JAMAIS une 7e de dominante : une dominante secondaire non
+ * résolue existe bel et bien (rompue secondaire), et le triton la trahit.
+ */
+function demoteIfUnconfirmed(
+  c: ChordResult, next: ChordResult | undefined, tonicPc: number, mode: "major" | "minor",
+): void {
+  const targetPc = pcOfDegree(numOfLabel(c.cible!), tonicPc, mode);
+  if (next && next.rootPc === targetPc) return; // cible atteinte : lecture confirmée
+
+  // La cible n'arrive pas. L'accord est-il tout entier dans le mode homonyme
+  // NATUREL ? Alors c'est un emprunt modal, et non une dominante.
+  const par = parallelSet(tonicPc, mode);
+  if (!c.pcs.every((pc) => par.has(pc))) return; // sinon : V/x non résolu
+
+  const { label, fonction } = empruntLabel(c, tonicPc, mode);
+  if (label === "chr") return;
+
+  c.degree = label;
+  c.degreeNum = degreeOfRoot(c.rootPc, tonicPc, mode) ?? 0;
+  c.fonction = fonction;
+  c.categorie = "emprunt";
+  delete c.cible;
+  delete c.resolue;
+}
+
+/**
+ * Arbitre chaque accord au vu de sa RÉSOLUTION, puis renseigne `resolue`.
+ * Mutation en place (la séquence est l'unité d'analyse).
+ *
+ * `analyzeChord` ne voit qu'un accord isolé : sa lecture est PROVISOIRE. Trois
+ * arbitrages sont ici rendus, tous fondés sur le même principe — c'est l'accord
+ * suivant qui décide :
+ *
+ *  1. PROMOTION (cf. `promoteIfTonicizing`) : un accord diatonique porteur d'un
+ *     triton et suivi de la cible qu'il annonce devient dominante secondaire
+ *     (Sib7 → Mib = V7/III).
+ *  2. RÉTROGRADATION (cf. `demoteIfUnconfirmed`) : une dominante secondaire
+ *     provisoire sur accord parfait, privée de sa cible, redevient un emprunt
+ *     (tierce picarde = I ; Fa majeur en Do mineur = IV).
+ *  3. RÉVISION DE CIBLE des 7es diminuées : cet accord est SYMÉTRIQUE, ses
+ *     quatre notes peuvent viser quatre cibles ; `analyzeChord` s'est rabattu
+ *     sur un ordre de priorité. Un °7 suivi de Rém est un vii°7/ii, le même
+ *     accord suivi de Fa est un vii°7/IV.
  */
 export function annotateResolutions(
   chords: ChordResult[], tonicPc: number, mode: "major" | "minor",
@@ -377,19 +505,14 @@ export function annotateResolutions(
     const c = chords[i];
     const next = chords[i + 1];
 
-    // Révision de la cible d'une 7e diminuée au vu de sa résolution réelle.
     if (next && c.categorie === "sensible_degre" && c.quality === "°7") {
-      const lectures = leadingCandidates(c.pcs, c.quality, c.rootPc, tonicPc, mode);
-      const confirmee = lectures.find(
-        (l) => next.rootPc === pcOfDegree(l.target.num, tonicPc, mode),
-      );
-      if (confirmee) {
-        c.rootPc = confirmee.root;
-        c.rootFr = NOTE_FR[confirmee.root] ?? c.rootFr;
-        c.cible = confirmee.target.label;
-        c.degree = leadingPrefix(c.quality) + "/" + confirmee.target.label;
-      }
-      // Sinon : aucune résolution reconnaissable, on garde la cible prioritaire.
+      // Révision de la cible au vu de la résolution réelle. Sinon : aucune
+      // résolution reconnaissable, on garde la cible prioritaire.
+      reviseLeadingReading(c, next, tonicPc, mode);
+    } else if (next && (c.categorie === "diatonique" || c.categorie === "emprunt")) {
+      promoteIfTonicizing(c, next, tonicPc, mode);
+    } else if (c.categorie === "dominante_secondaire" && c.quality === "") {
+      demoteIfUnconfirmed(c, next, tonicPc, mode);
     }
 
     if (!c.cible) continue;
