@@ -4,10 +4,12 @@ import {
   identifyChordFromNotes,
   inversionOf,
   figureOf,
+  augmentedSixth,
   analyzeChord,
   annotateResolutions,
   buildChromaEvents,
   PC,
+  type SpelledNote,
 } from "./harmonic-analysis";
 
 // Aide : analyse un accord donné par ses classes de hauteurs, dans une tonalité.
@@ -955,5 +957,133 @@ describe("accords incomplets — la quinte, et elle seule, peut manquer", () => 
     const c = identifyChordFromNotes([7, 11, 2, 5], 7)!; // Sol-Si-Ré-Fa, complet
     expect(c.rootPc).toBe(7);
     expect(c.quality).toBe("7");
+  });
+});
+
+/** Fabrique des notes orthographiées à partir de couples (lettre, altération). */
+const STEP_PC_T: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+function sp(...notes: Array<[string, number]>): SpelledNote[] {
+  return notes.map(([step, alter]) => ({
+    step,
+    alter,
+    pc: (((STEP_PC_T[step] + alter) % 12) + 12) % 12,
+  }));
+}
+
+/** Accord identifié à partir de notes ÉCRITES : pcs + basse + orthographe. */
+function accordEcrit(notes: SpelledNote[], bassPc: number) {
+  const chord = identifyChordFromNotes(notes.map((n) => n.pc), bassPc)!;
+  chord.spelled = notes;
+  return chord;
+}
+
+describe("sixtes augmentées — l'orthographe seule les distingue d'un V7", () => {
+  const DO = 0;
+
+  it("6te allemande : Lab-Do-Mib-Fa# (basse Lab)", () => {
+    const c = accordEcrit(sp(["A", -1], ["C", 0], ["E", -1], ["F", 1]), 8);
+    const r = analyzeChord(c, DO, "major");
+    expect(r.categorie).toBe("sixte_augmentee");
+    expect(r.degree).toBe("+6 all.");
+    expect(r.fonction).toBe("SD");
+  });
+
+  it("le MÊME son écrit Solb est une 7e de dominante, pas une 6te augmentée", () => {
+    // Lab-Do-Mib-Solb : les MÊMES hauteurs que la 6te allemande ci-dessus. Le
+    // triton y est une quinte ABAISSÉE, pas un 4e degré élevé : c'est le V7 de Réb.
+    const c = accordEcrit(sp(["A", -1], ["C", 0], ["E", -1], ["G", -1]), 8);
+    expect(analyzeChord(c, DO, "major").categorie).not.toBe("sixte_augmentee");
+  });
+
+  it("6te italienne : Lab-Do-Fa#", () => {
+    const c = accordEcrit(sp(["A", -1], ["C", 0], ["F", 1]), 8);
+    expect(analyzeChord(c, DO, "major").degree).toBe("+6 it.");
+  });
+
+  it("6te française : Lab-Do-Ré-Fa#", () => {
+    const c = accordEcrit(sp(["A", -1], ["C", 0], ["D", 0], ["F", 1]), 8);
+    expect(analyzeChord(c, DO, "major").degree).toBe("+6 fr.");
+  });
+
+  it("en mineur aussi (le b6 y est diatonique, le #4 non)", () => {
+    const c = accordEcrit(sp(["A", -1], ["C", 0], ["E", -1], ["F", 1]), 8);
+    expect(analyzeChord(c, DO, "minor").degree).toBe("+6 all.");
+  });
+
+  it("sans basse au b6, ce n'est pas une sixte augmentée", () => {
+    const c = accordEcrit(sp(["A", -1], ["C", 0], ["E", -1], ["F", 1]), 0);
+    expect(analyzeChord(c, DO, "major").categorie).not.toBe("sixte_augmentee");
+  });
+
+  it("augmentedSixth rend null sans orthographe", () => {
+    expect(
+      augmentedSixth(
+        { rootPc: 8, rootFr: "Lab", quality: "7", pcs: [8, 0, 3, 6], bassPc: 8 },
+        0,
+      ),
+    ).toBeNull();
+  });
+
+  it("sans la tonique, le socle de la sixte augmentée n'est pas constitué", () => {
+    // Lab-Mib-Fa# : le b6 et le #4 sans le degré qui les tend l'un vers l'autre.
+    const c = accordEcrit(sp(["A", -1], ["E", -1], ["F", 1]), 8);
+    expect(analyzeChord(c, DO, "major").categorie).not.toBe("sixte_augmentee");
+  });
+
+  it("la sixte augmentée n'est pas rétrogradée ni promue par la séquence", () => {
+    // +6 all. → V : la catégorie doit survivre à `annotateResolutions`, qui ne
+    // connaît que les dominantes, les emprunts et les accords de sensible.
+    const six = analyzeChord(
+      accordEcrit(sp(["A", -1], ["C", 0], ["E", -1], ["F", 1]), 8), DO, "major",
+    );
+    const dom = analyzeChord(identifyChordFromNotes([7, 11, 2], 7)!, DO, "major");
+    annotateResolutions([six, dom], DO, "major");
+    expect(six.categorie).toBe("sixte_augmentee");
+    expect(six.degree).toBe("+6 all.");
+  });
+
+  it("buildChromaEvents explique la sixte augmentée", () => {
+    const six = analyzeChord(
+      accordEcrit(sp(["A", -1], ["C", 0], ["E", -1], ["F", 1]), 8), DO, "major",
+    );
+    const events = buildChromaEvents([{ result: six, measure: 1 }], DO, "major");
+    expect(events).toHaveLength(1);
+    expect(events[0].categorie).toBe("sixte_augmentee");
+    expect(events[0].explication).toContain("Sixte augmentée");
+  });
+
+  // Le chiffrage d'une triade AUGMENTÉE renversée accole "+" (QUALITY_MARK["aug"])
+  // au chiffre "6" du 1er renversement : « III+6 ». Typographiquement proche de
+  // l'étiquette « +6 all. » d'une sixte augmentée — mais sans collision possible :
+  // le chiffre romain PRÉFIXE toujours la première, jamais la seconde.
+  it("« III+6 » (triade augmentée renversée) ne se confond pas avec « +6 all. »", () => {
+    // Mib augmenté (Mib-Sol-Si) en Do mineur, Sol à la basse. La triade augmentée
+    // est SYMÉTRIQUE : on force ici la fondamentale, que le score attribuerait sinon
+    // à la basse (cf. le test suivant).
+    const r = analyzeChord(
+      { rootPc: 3, rootFr: "Ré#", quality: "aug", pcs: [3, 7, 11], bassPc: 7 },
+      0, "minor",
+    );
+    expect(r.degree).toBe("III+6");
+    expect(r.degree).not.toBe("+6 all.");
+    expect(r.categorie).not.toBe("sixte_augmentee");
+  });
+
+  it("en pratique, une triade augmentée n'est jamais renversée par le moteur", () => {
+    // Elle est symétrique : `identifyChordFromNotes` élit toujours la basse pour
+    // fondamentale (départage `fondAuBasse`). Le chiffre "6" n'apparaît donc pas,
+    // et « +6 » nu n'est produit par AUCUN chemin réel.
+    const c = identifyChordFromNotes([3, 7, 11], 7)!;
+    expect(c.quality).toBe("aug");
+    expect(c.rootPc).toBe(7); // la basse
+    expect(analyzeChord(c, 0, "minor").degree).toBe("V+");
+  });
+});
+
+describe("napolitain — la basse confirme la sixte", () => {
+  it("Réb-Fa-Lab avec Fa à la basse → bII6", () => {
+    const r = analyzeChord(identifyChordFromNotes([1, 5, 8], 5)!, 0, "major");
+    expect(r.categorie).toBe("napolitain");
+    expect(r.degree).toBe("bII6");
   });
 });

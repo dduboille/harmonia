@@ -11,6 +11,7 @@ export type Categorie =
   | "sensible_degre"
   | "emprunt"
   | "napolitain"
+  | "sixte_augmentee"
   | "chromatique";
 
 /** Une note telle qu'ÉCRITE — l'orthographe seule distingue un Fa# d'un Solb. */
@@ -662,6 +663,54 @@ function leadingReading(
   };
 }
 
+// ── Sixte augmentée ───────────────────────────────────────────────────────────
+
+/**
+ * Les trois sixtes augmentées se distinguent par ce qu'elles AJOUTENT au socle
+ * commun (b6 à la basse + tonique + #4). L'ordre compte : l'allemande contient un
+ * b3 que la française n'a pas, la française un 2 que l'italienne n'a pas — on
+ * cherche donc du plus fourni au plus dépouillé, l'italienne n'étant retenue que
+ * faute des deux autres.
+ */
+const SIXTES_AUGMENTEES: Array<{ ajout: number | null; label: string }> = [
+  { ajout: 3, label: "+6 all." },   // b3 (Mib en Do) — 6te allemande
+  { ajout: 2, label: "+6 fr." },    // 2  (Ré en Do)  — 6te française
+  { ajout: null, label: "+6 it." }, // rien de plus   — 6te italienne
+];
+
+/**
+ * SIXTE AUGMENTÉE — reconnue à l'ORTHOGRAPHE, seul moyen de la distinguer d'une
+ * 7e de dominante ENHARMONIQUE : Lab-Do-Mib-Fa# (6te allemande en Do) et
+ * Lab-Do-Mib-Solb (V7 de Réb) sonnent EXACTEMENT les mêmes hauteurs. Le triton y
+ * est écrit #4 dans un cas (note ÉLEVÉE, `alter > 0`), b5 dans l'autre (note
+ * ABAISSÉE). Cette différence est invisible aux classes de hauteurs : sans
+ * `Chord.spelled`, aucun arbitrage n'est possible, et l'on rend `null` plutôt que
+ * de deviner.
+ *
+ * Critères : la BASSE est le 6e degré abaissé (b6), la tonique est présente, et le
+ * triton du degré est écrit comme un 4e degré ÉLEVÉ. Ce sont b6 et #4 qui forment
+ * l'intervalle de sixte augmentée — d'où le nom, et d'où l'exigence que le b6 soit
+ * bien à la BASSE : renversé, l'intervalle serait une tierce diminuée.
+ *
+ * Fonction : PRÉDOMINANTE (SD) — la sixte augmentée s'épanouit vers la dominante,
+ * ses deux notes extrêmes convergeant par demi-tons contraires sur l'octave de V.
+ */
+export function augmentedSixth(chord: Chord, tonicPc: number): { degree: string } | null {
+  const { bassPc, pcs, spelled } = chord;
+  if (bassPc === undefined || !spelled) return null;
+  if (bassPc !== (tonicPc + 8) % 12) return null; // basse = b6
+  if (!pcs.includes(tonicPc)) return null;        // la tonique
+
+  const quarte = spelled.find((n) => n.pc === (tonicPc + 6) % 12);
+  if (!quarte || quarte.alter <= 0) return null;  // #4, et non b5
+
+  for (const s of SIXTES_AUGMENTEES) {
+    if (s.ajout === null) return { degree: s.label };
+    if (pcs.includes((tonicPc + s.ajout) % 12)) return { degree: s.label };
+  }
+  return null;
+}
+
 // ── Analyse d'un accord ───────────────────────────────────────────────────────
 
 export function analyzeChord(
@@ -699,7 +748,26 @@ export function analyzeChord(
     };
   }
 
-  // ── Règle 2 : dominante secondaire (lecture PROVISOIRE) ──
+  // ── Règle 2 : sixte augmentée (l'ORTHOGRAPHE tranche) ──
+  //
+  // Placée AVANT la dominante secondaire : une 6te allemande est enharmoniquement
+  // une 7e de dominante (Lab-Do-Mib-Fa# = Lab7), et se ferait happer par une règle
+  // qui ne lit que les classes de hauteurs — en Do, elle ressortirait tôt ou tard
+  // en dominante d'un degré qu'elle ne vise pas. Elle n'est jamais diatonique (le
+  // #4 n'appartient à aucune des deux gammes), donc la règle 1 n'a pas pu la
+  // prendre : cette place est la première où elle puisse être vue.
+  const sixte = augmentedSixth(chord, tonicPc);
+  if (sixte) {
+    return {
+      ...base,
+      degree: sixte.degree,
+      degreeNum: 0,
+      fonction: "SD",
+      categorie: "sixte_augmentee",
+    };
+  }
+
+  // ── Règle 3 : dominante secondaire (lecture PROVISOIRE) ──
   //
   // ATTENTION : sur un accord isolé, cette lecture n'est qu'une HYPOTHÈSE. En
   // mineur, la tonique est une quinte juste au-dessus du iv ((t+5)+7 ≡ t) :
@@ -722,11 +790,11 @@ export function analyzeChord(
     }
   }
 
-  // ── Règle 3 : accord de sensible (tonique OU autre degré) ──
+  // ── Règle 4 : accord de sensible (tonique OU autre degré) ──
   //
   // La cible peut être la TONIQUE : le chiffrage est alors vii°7, sans barre
   // (cf. `leadingReading`). En majeur, cet accord n'est pas diatonique — il
-  // emprunte au mineur homonyme — et c'est ici, et non à la règle 4, qu'il est
+  // emprunte au mineur homonyme — et c'est ici, et non à la règle 5, qu'il est
   // pris : sa fondamentale est la sensible, pas la 6te abaissée.
   if (LEADING_QUALITIES.has(chord.quality)) {
     // La 7e diminuée peut désigner plusieurs cibles valides. En l'absence de
@@ -746,7 +814,7 @@ export function analyzeChord(
     }
   }
 
-  // ── Règle 4 : emprunt modal (toutes les notes dans le mode homonyme) ──
+  // ── Règle 5 : emprunt modal (toutes les notes dans le mode homonyme) ──
   const par = parallelSet(tonicPc, mode);
   if (chord.pcs.every((pc) => par.has(pc))) {
     const emprunt = empruntLabel(base, tonicPc, mode);
@@ -763,7 +831,7 @@ export function analyzeChord(
     }
   }
 
-  // ── Règle 5 : napolitain (accord majeur sur le 2e degré abaissé) ──
+  // ── Règle 6 : napolitain (accord majeur sur le 2e degré abaissé) ──
   if (chord.quality === "" && rootPc === (tonicPc + 1) % 12) {
     return {
       ...base,
@@ -774,7 +842,7 @@ export function analyzeChord(
     };
   }
 
-  // ── Règle 6 : chromatisme non classé ──
+  // ── Règle 7 : chromatisme non classé ──
   return {
     ...base,
     degree: "chr",
@@ -1001,8 +1069,16 @@ export function buildChromaEvents(
       const homonyme = mode === "major" ? "mineur" : "majeur";
       explication = `Emprunt au mode homonyme (${homonyme}).`;
     } else if (c.categorie === "napolitain") {
+      // La basse est désormais connue : on ne renvoie plus le renversement à plus
+      // tard, on le lit. Le napolitain est presque toujours à l'état de sixte.
       explication =
-        "Accord napolitain (bII). Le renversement (sixte) sera confirmé lorsque la basse sera suivie.";
+        c.degree === "bII6"
+          ? "Accord napolitain (bII6), à l'état de sixte — prédominante expressive."
+          : "Accord napolitain (bII). Rare hors du 1er renversement.";
+    } else if (c.categorie === "sixte_augmentee") {
+      explication =
+        "Sixte augmentée : la basse (6e degré abaissé) et le 4e degré élevé forment " +
+        "l'intervalle de sixte augmentée, qui s'épanouit sur la dominante. Prédominante chromatique.";
     } else {
       explication = "Accord chromatique non identifié.";
     }
