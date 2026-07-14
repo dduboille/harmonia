@@ -50,3 +50,32 @@ describe("chromatisme non encore classé", () => {
     expect(r.categorie).not.toBe("diatonique");
   });
 });
+
+describe("dominantes secondaires", () => {
+  it("La7 en Do majeur est V7/ii", () => {
+    const r = an([9, 1, 4, 7], PC.Do, "major"); // La-Do#-Mi-Sol
+    expect(r.degree).toBe("V7/ii");
+    expect(r.categorie).toBe("dominante_secondaire");
+    expect(r.cible).toBe("ii");
+    expect(r.fonction).toBe("D");
+  });
+
+  it("Ré7 en Do majeur est V7/V", () => {
+    const r = an([2, 6, 9, 0], PC.Do, "major"); // Ré-Fa#-La-Do
+    expect(r.degree).toBe("V7/V");
+    expect(r.cible).toBe("V");
+  });
+
+  it("Mi majeur en Do majeur est V/vi", () => {
+    const r = an([4, 8, 11], PC.Do, "major"); // Mi-Sol#-Si
+    expect(r.degree).toBe("V/vi");
+    expect(r.cible).toBe("vi");
+    expect(r.categorie).toBe("dominante_secondaire");
+  });
+
+  it("Sol7 en Do majeur reste V7 diatonique (et non V7/I)", () => {
+    const r = an([7, 11, 2, 5], PC.Do, "major");
+    expect(r.categorie).toBe("diatonique");
+    expect(r.degree).toBe("V7");
+  });
+});

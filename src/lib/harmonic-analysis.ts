@@ -124,6 +124,17 @@ export function fonctionOfDegree(num: number): Fonction {
   return "?";
 }
 
+/** Cibles tonicisables : ni la tonique, ni un degré diminué. */
+export function tonicizableTargets(mode: "major" | "minor"): Array<{ num: number; label: string }> {
+  return mode === "major"
+    ? [{ num: 2, label: "ii" }, { num: 3, label: "iii" }, { num: 4, label: "IV" },
+       { num: 5, label: "V" }, { num: 6, label: "vi" }]
+    : [{ num: 3, label: "III" }, { num: 4, label: "iv" }, { num: 5, label: "V" },
+       { num: 6, label: "VI" }, { num: 7, label: "VII" }];
+}
+
+const DOMINANT_QUALITIES = new Set(["", "7"]);
+
 // ── Analyse d'un accord ───────────────────────────────────────────────────────
 
 export function analyzeChord(
@@ -150,8 +161,24 @@ export function analyzeChord(
     };
   }
 
-  // Les règles chromatiques (dominantes secondaires, sensibles de degré,
-  // emprunts, napolitain) sont ajoutées aux tâches 2 à 4.
+  // ── Règle 2 : dominante secondaire ──
+  if (DOMINANT_QUALITIES.has(chord.quality)) {
+    for (const t of tonicizableTargets(mode)) {
+      const targetPc = pcOfDegree(t.num, tonicPc, mode);
+      if (chord.rootPc === (targetPc + 7) % 12) {
+        return {
+          ...base,
+          degree: (chord.quality === "7" ? "V7/" : "V/") + t.label,
+          degreeNum: 0,
+          fonction: "D",
+          categorie: "dominante_secondaire",
+          cible: t.label,
+        };
+      }
+    }
+  }
+
+  // Règles 3 à 5 ajoutées aux tâches suivantes.
   return {
     ...base,
     degree: "chr",
