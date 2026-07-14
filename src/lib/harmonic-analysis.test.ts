@@ -43,8 +43,9 @@ describe("analyse diatonique (majeur)", () => {
     expect(r.categorie).toBe("diatonique");
   });
 
-  it("Rém en Do majeur est IIm (fonction SD)", () => {
+  it("Rém en Do majeur est ii (fonction SD)", () => {
     const r = an([2, 5, 9], PC.Do, "major"); // Ré-Fa-La
+    expect(r.degree).toBe("ii");
     expect(r.degreeNum).toBe(2);
     expect(r.fonction).toBe("SD");
     expect(r.categorie).toBe("diatonique");
@@ -426,5 +427,187 @@ describe("événements chromatiques", () => {
     const events = buildChromaEvents(s, PC.Do, "major");
     expect(events[0].degree).toBe("iv");
     expect(events[0].explication).toContain("homonyme");
+  });
+});
+
+// ── CORRECTION 1 — le vii°7 DIATONIQUE du mineur harmonique ───────────────────
+//
+// Si-Ré-Fa-Lab en Do mineur est l'accord chromatique le plus courant du choral
+// en mineur. C'est une 7e diminuée : un empilement de tierces mineures, donc un
+// accord SYMÉTRIQUE. `identifyChord` en choisit la fondamentale au hasard (la
+// première note rencontrée dans le MusicXML). L'étiquette et la FONCTION ne
+// doivent en aucun cas dépendre de cet ordre : la fondamentale est la sensible
+// de la tonalité (Si), un point c'est tout.
+describe("vii°7 diatonique du mineur — fondamentale canonique, jamais l'ordre des notes", () => {
+  const ROTATIONS_SI = [
+    [11, 2, 5, 8], // Si-Ré-Fa-Lab
+    [2, 5, 8, 11], // Ré-Fa-Lab-Si
+    [5, 8, 11, 2], // Fa-Lab-Si-Ré
+    [8, 11, 2, 5], // Lab-Si-Ré-Fa
+  ];
+
+  it("les 4 rotations donnent le même chiffrage vii°7 (degré 7, fonction D, diatonique)", () => {
+    const lus = ROTATIONS_SI.map((pcs) => {
+      const r = an(pcs, PC.Do, "minor");
+      return `${r.degree}|${r.degreeNum}|${r.fonction}|${r.categorie}|${r.rootFr}`;
+    });
+    expect(new Set(lus).size).toBe(1);
+    expect(lus[0]).toBe("vii°7|7|D|diatonique|Si");
+  });
+
+  it("Si°7 → Do mineur : l'accord reste vii°7 (D), quelle que soit la rotation", () => {
+    for (const pcs of ROTATIONS_SI) {
+      const s = seq([pcs, [0, 3, 7]], PC.Do, "minor"); // °7 → i
+      expect(s[0].result.degree).toBe("vii°7");
+      expect(s[0].result.fonction).toBe("D");
+      expect(s[0].result.categorie).toBe("diatonique");
+      expect(s[0].result.rootFr).toBe("Si");
+      expect(s[1].result.degree).toBe("i"); // Do mineur
+    }
+  });
+
+  it("la résolution peut toujours désigner une autre cible : Si°7 → Mib = vii°7/III", () => {
+    // Ré-Fa-Lab-Si est aussi la 7e diminuée de la sensible de Mib (relatif majeur).
+    const s = seq([[11, 2, 5, 8], [3, 7, 10]], PC.Do, "minor");
+    expect(s[0].result.categorie).toBe("sensible_degre");
+    expect(s[0].result.degree).toBe("vii°7/III");
+    expect(s[0].result.cible).toBe("III");
+    expect(s[0].result.rootFr).toBe("Ré");
+    expect(s[0].result.resolue).toBe(true);
+  });
+});
+
+// ── CORRECTION 2 — la qualité de l'accord emprunté doit être écrite ───────────
+//
+// Un chiffrage « ii7 » se lit Rém7 : ce n'est PAS l'accord Ré-Fa-Lab-Do. Un
+// « bVI7 » se lit Lab7 (7e de dominante) : ce n'est PAS Lab Maj7.
+describe("emprunts — le symbole de qualité est obligatoire", () => {
+  it("Ré ø7 en Do majeur est iiø7 (et non ii7)", () => {
+    const r = an([2, 5, 8, 0], PC.Do, "major"); // Ré-Fa-Lab-Do
+    expect(r.degree).toBe("iiø7");
+    expect(r.categorie).toBe("emprunt");
+    expect(r.fonction).toBe("SD");
+  });
+
+  it("Ré ° en Do majeur est ii° (et non ii)", () => {
+    const r = an([2, 5, 8], PC.Do, "major"); // Ré-Fa-Lab
+    expect(r.degree).toBe("ii°");
+    expect(r.categorie).toBe("emprunt");
+    expect(r.fonction).toBe("SD");
+  });
+
+  it("Lab Maj7 en Do majeur est bVIΔ (et non bVI7)", () => {
+    const r = an([8, 0, 3, 7], PC.Do, "major"); // Lab-Do-Mib-Sol
+    expect(r.degree).toBe("bVIΔ");
+    expect(r.categorie).toBe("emprunt");
+    expect(r.fonction).toBe("SD");
+  });
+
+  it("Mib Maj7 en Do majeur est bIIIΔ", () => {
+    const r = an([3, 7, 10, 2], PC.Do, "major"); // Mib-Sol-Sib-Ré
+    expect(r.degree).toBe("bIIIΔ");
+    expect(r.categorie).toBe("emprunt");
+    expect(r.fonction).toBe("T");
+  });
+
+  it("Sib7 (7e de dominante) en Do majeur reste bVII7", () => {
+    const r = an([10, 2, 5, 8], PC.Do, "major"); // Sib-Ré-Fa-Lab
+    expect(r.degree).toBe("bVII7");
+    expect(r.categorie).toBe("emprunt");
+  });
+
+  it("Fam7 en Do majeur est iv7 (la minuscule dit déjà « mineur »)", () => {
+    const r = an([5, 8, 0, 3], PC.Do, "major"); // Fa-Lab-Do-Mib
+    expect(r.degree).toBe("iv7");
+    expect(r.categorie).toBe("emprunt");
+    expect(r.fonction).toBe("SD");
+  });
+});
+
+// ── CORRECTION 3(a) — la fonction du 7e degré en mineur ───────────────────────
+//
+// En mineur, il y a DEUX 7es degrés. La sensible (Si♮) est dominante — c'est la
+// tierce du V. La sous-tonique naturelle (Sib) ne l'est pas : le même Sib majeur
+// est un emprunt bVII / SD en Do majeur ; il ne peut pas devenir dominante au
+// seul motif que la tonalité est mineure.
+describe("fonction du 7e degré en mineur — sensible vs sous-tonique", () => {
+  it("Sib majeur en Do mineur (sous-tonique) est VII de fonction SD", () => {
+    const r = an([10, 2, 5], PC.Do, "minor"); // Sib-Ré-Fa
+    expect(r.categorie).toBe("diatonique");
+    expect(r.degree).toBe("VII");
+    expect(r.degreeNum).toBe(7);
+    expect(r.fonction).toBe("SD");
+  });
+
+  it("Si°7 en Do mineur (sensible) est vii°7 de fonction D", () => {
+    const r = an([11, 2, 5, 8], PC.Do, "minor");
+    expect(r.degreeNum).toBe(7);
+    expect(r.fonction).toBe("D");
+  });
+
+  it("Si° (triade) en Do mineur est vii° de fonction D", () => {
+    const r = an([11, 2, 5], PC.Do, "minor"); // Si-Ré-Fa
+    expect(r.degree).toBe("vii°");
+    expect(r.fonction).toBe("D");
+    expect(r.categorie).toBe("diatonique");
+  });
+
+  it("en majeur, le 7e degré reste dominante", () => {
+    const r = an([11, 2, 5], PC.Do, "major"); // Si-Ré-Fa
+    expect(r.degree).toBe("vii°");
+    expect(r.fonction).toBe("D");
+  });
+});
+
+// ── CORRECTION 3(b) — la casse du chiffre romain porte la qualité ─────────────
+describe("casse des chiffrages — majuscule = majeur, minuscule = mineur/diminué", () => {
+  it("les 7 degrés de Do majeur : I ii iii IV V vi vii°", () => {
+    const degres = [
+      [0, 4, 7], [2, 5, 9], [4, 7, 11], [5, 9, 0],
+      [7, 11, 2], [9, 0, 4], [11, 2, 5],
+    ].map((pcs) => an(pcs, PC.Do, "major").degree);
+    expect(degres).toEqual(["I", "ii", "iii", "IV", "V", "vi", "vii°"]);
+  });
+
+  it("les degrés de Do mineur (harmonique) : i ii° III iv V VI vii°", () => {
+    const degres = [
+      [0, 3, 7], [2, 5, 8], [3, 7, 10], [5, 8, 0],
+      [7, 11, 2], [8, 0, 3], [11, 2, 5],
+    ].map((pcs) => an(pcs, PC.Do, "minor").degree);
+    expect(degres).toEqual(["i", "ii°", "III", "iv", "V", "VI", "vii°"]);
+  });
+
+  it("la 7e de dominante diatonique garde son chiffrage V7", () => {
+    expect(an([7, 11, 2, 5], PC.Do, "major").degree).toBe("V7");
+  });
+
+  it("le ii7 diatonique de Do majeur (Rém7) est bien ii7", () => {
+    const r = an([2, 5, 9, 0], PC.Do, "major"); // Ré-Fa-La-Do
+    expect(r.degree).toBe("ii7");
+    expect(r.categorie).toBe("diatonique");
+  });
+
+  it("le IΔ diatonique de Do majeur (Do Maj7) est bien IΔ", () => {
+    const r = an([0, 4, 7, 11], PC.Do, "major"); // Do-Mi-Sol-Si
+    expect(r.degree).toBe("IΔ");
+    expect(r.categorie).toBe("diatonique");
+    expect(r.fonction).toBe("T");
+  });
+});
+
+// ── Nettoyages ────────────────────────────────────────────────────────────────
+describe("robustesse", () => {
+  it("l'explication d'une chaîne reste juste quand la suite est un accord de sensible", () => {
+    // Si7 (V7/iii) → Mi° (vii°/IV) → Fa : l'accord qui suit n'est pas une
+    // dominante SECONDAIRE mais une sensible de degré. L'explication doit rester
+    // vraie dans les deux cas.
+    const s = seq([[11, 3, 6, 9], [4, 7, 10], [5, 9, 0]], PC.Do, "major");
+    expect(s[0].result.degree).toBe("V7/iii");
+    expect(s[0].result.resolue).toBe(true);
+    expect(s[1].result.categorie).toBe("sensible_degre");
+
+    const events = buildChromaEvents(s, PC.Do, "major");
+    expect(events[0].explication).toContain("chaîne de dominantes");
+    expect(events[0].explication).not.toContain("une autre dominante secondaire");
   });
 });

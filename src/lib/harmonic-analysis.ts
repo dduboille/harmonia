@@ -17,7 +17,6 @@ export interface Chord {
   rootPc: number;
   rootFr: string;
   quality: string;
-  qualityName: string;
   pcs: number[];
 }
 
@@ -50,18 +49,18 @@ export const NOTE_FR: Record<number, string> = {
 /** Raccourci lisible pour les tests. */
 export const PC = { Do: 0, Ré: 2, Mi: 4, Fa: 5, Sol: 7, La: 9, Si: 11 } as const;
 
-export const CHORD_PATTERNS: Array<{ quality: string; name: string; intervals: number[] }> = [
-  { quality: "Maj7", name: "maj7", intervals: [0, 4, 7, 11] },
-  { quality: "7",    name: "dom7", intervals: [0, 4, 7, 10] },
-  { quality: "m7",   name: "min7", intervals: [0, 3, 7, 10] },
-  { quality: "°7",   name: "dim7", intervals: [0, 3, 6, 9]  },
-  { quality: "ø7",   name: "m7b5", intervals: [0, 3, 6, 10] },
-  { quality: "aug",  name: "aug",  intervals: [0, 4, 8]     },
-  { quality: "",     name: "maj",  intervals: [0, 4, 7]     },
-  { quality: "m",    name: "min",  intervals: [0, 3, 7]     },
-  { quality: "°",    name: "dim",  intervals: [0, 3, 6]     },
-  { quality: "sus4", name: "sus4", intervals: [0, 5, 7]     },
-  { quality: "sus2", name: "sus2", intervals: [0, 2, 7]     },
+export const CHORD_PATTERNS: Array<{ quality: string; intervals: number[] }> = [
+  { quality: "Maj7", intervals: [0, 4, 7, 11] },
+  { quality: "7",    intervals: [0, 4, 7, 10] },
+  { quality: "m7",   intervals: [0, 3, 7, 10] },
+  { quality: "°7",   intervals: [0, 3, 6, 9]  },
+  { quality: "ø7",   intervals: [0, 3, 6, 10] },
+  { quality: "aug",  intervals: [0, 4, 8]     },
+  { quality: "",     intervals: [0, 4, 7]     },
+  { quality: "m",    intervals: [0, 3, 7]     },
+  { quality: "°",    intervals: [0, 3, 6]     },
+  { quality: "sus4", intervals: [0, 5, 7]     },
+  { quality: "sus2", intervals: [0, 2, 7]     },
 ];
 
 /** Intervalles des 7 degrés (pour la numérotation romaine). */
@@ -72,12 +71,18 @@ export const ROMANS = ["I", "II", "III", "IV", "V", "VI", "VII"];
 
 // ── Identification d'accord ───────────────────────────────────────────────────
 
+/**
+ * ATTENTION — pour la 7e DIMINUÉE (empilement de tierces mineures, accord
+ * SYMÉTRIQUE), la fondamentale renvoyée ici est ARBITRAIRE : c'est la première
+ * note rencontrée dans l'ordre d'écriture. Elle ne doit jamais servir telle
+ * quelle à chiffrer l'accord — cf. `canonicalRootPc`.
+ */
 export function identifyChord(pcs: number[]): Chord | null {
   const unique = [...new Set(pcs.map((p) => ((p % 12) + 12) % 12))];
   if (unique.length < 2) return null;
 
   for (const pattern of CHORD_PATTERNS) {
-    if (pattern.intervals.length > unique.length + 1) continue;
+    if (pattern.intervals.length > unique.length) continue;
     for (const root of unique) {
       const norm = unique.map((p) => (p - root + 12) % 12);
       if (pattern.intervals.every((iv) => norm.includes(iv))) {
@@ -85,7 +90,6 @@ export function identifyChord(pcs: number[]): Chord | null {
           rootPc: root,
           rootFr: NOTE_FR[root] ?? "?",
           quality: pattern.quality,
-          qualityName: pattern.name,
           pcs: unique,
         };
       }
@@ -123,10 +127,27 @@ export function pcOfDegree(num: number, tonicPc: number, mode: "major" | "minor"
   return (tonicPc + degrees[num - 1]) % 12;
 }
 
-export function fonctionOfDegree(num: number): Fonction {
+/**
+ * Fonction tonale d'un degré.
+ *
+ * LE MINEUR A DEUX 7es DEGRÉS, et ils n'ont pas la même fonction :
+ *  - la SENSIBLE (7e élevée, `tonic+11`) est la tierce du V : fonction D ;
+ *  - la SOUS-TONIQUE naturelle (`tonic+10`) n'a rien d'une dominante — elle ne
+ *    conduit pas à la tonique. Le même Sib majeur est un emprunt bVII de
+ *    fonction SD en Do majeur : il ne peut pas devenir dominante au seul motif
+ *    que la tonalité est mineure. Fonction SD.
+ * En majeur, le 7e degré est la sensible : fonction D.
+ */
+export function fonctionOfDegree(
+  num: number, rootPc: number, tonicPc: number, mode: "major" | "minor",
+): Fonction {
   if ([1, 3, 6].includes(num)) return "T";
   if ([2, 4].includes(num)) return "SD";
-  if ([5, 7].includes(num)) return "D";
+  if (num === 5) return "D";
+  if (num === 7) {
+    if (mode === "major") return "D";
+    return (rootPc - tonicPc + 12) % 12 === 11 ? "D" : "SD";
+  }
   return "?";
 }
 
@@ -214,13 +235,19 @@ function parallelSet(tonicPc: number, mode: "major" | "minor"): Set<number> {
   return new Set(base.map((s) => (tonicPc + s) % 12));
 }
 
-/** Étiquette d'un degré chromatique (fondamentale hors gamme). */
+/**
+ * Étiquette d'un degré chromatique (fondamentale hors gamme).
+ *
+ * Seuls b3, b6 et b7 sont atteignables par la règle de l'emprunt : ce sont les
+ * seules fondamentales à la fois HORS de la gamme et DANS le mode homonyme.
+ * (Le napolitain bII a sa propre règle — il n'est pas un emprunt modal.)
+ */
 const FLAT_LABEL: Record<number, string> = {
-  1: "bII", 3: "bIII", 6: "bV", 8: "bVI", 10: "bVII",
+  3: "bIII", 8: "bVI", 10: "bVII",
 };
 
 const FLAT_FONCTION: Record<number, Fonction> = {
-  1: "SD", 3: "T", 6: "SD", 8: "SD", 10: "SD",
+  3: "T", 8: "SD", 10: "SD",
 };
 
 function isMinorish(quality: string): boolean {
@@ -228,26 +255,79 @@ function isMinorish(quality: string): boolean {
          quality === "°7" || quality === "ø7";
 }
 
-/** Étiquette d'un accord emprunté : "iv", "bVI", "bVII7"… */
+/**
+ * Symbole de qualité accolé au chiffre romain.
+ *
+ * La casse du chiffre dit déjà « majeur » ou « mineur » ; le symbole dit le
+ * RESTE — et il n'est jamais facultatif : « ii7 » se lit Rém7, ce n'est pas
+ * l'accord Ré-Fa-Lab-Do (iiø7) ; « bVI7 » se lit Lab7, ce n'est pas Lab Maj7
+ * (bVIΔ). Un symbole manquant, c'est un autre accord.
+ */
+const QUALITY_SUFFIX: Record<string, string> = {
+  "":     "",     // parfait majeur   → I
+  "m":    "",     // parfait mineur   → i
+  "°":    "°",    // diminué          → vii°
+  "°7":   "°7",   // 7e diminuée      → vii°7
+  "ø7":   "ø7",   // 7e de sensible   → iiø7
+  "7":    "7",    // 7e de dominante  → V7
+  "m7":   "7",    // 7e mineure       → ii7 (la minuscule dit « mineur »)
+  "Maj7": "Δ",    // 7e majeure       → IΔ
+  "aug":  "+",    // augmenté         → III+
+  "sus4": "sus4",
+  "sus2": "sus2",
+};
+
+function qualitySuffix(quality: string): string {
+  return QUALITY_SUFFIX[quality] ?? quality;
+}
+
+/** Chiffre romain d'un degré : MAJUSCULE = majeur/augmenté, minuscule = mineur/diminué. */
+function romanOfDegree(deg: number, quality: string): string {
+  const roman = ROMANS[deg - 1];
+  return (isMinorish(quality) ? roman.toLowerCase() : roman) + qualitySuffix(quality);
+}
+
+/**
+ * Fondamentale CANONIQUE — indépendante de l'ordre d'écriture des notes.
+ *
+ * La 7e diminuée est symétrique : ses quatre notes sont candidates à la
+ * fondamentale, et `identifyChord` en choisit une au hasard. Or, si l'une
+ * d'elles est la SENSIBLE de la tonalité, le doute n'existe pas : l'accord est
+ * le vii°7 du degré, la fondamentale est la sensible. C'est le seul °7 que la
+ * gamme mineure harmonique contienne (Si-Ré-Fa-Lab en Do mineur), et sans cela
+ * son chiffrage — et sa fonction ! — dépendraient de l'ordre du MusicXML :
+ * II°7 (SD), IV°7 (SD) ou VI°7 (T) selon la note écrite en premier.
+ *
+ * Pour toute autre 7e diminuée, on ne tranche pas ici : c'est la règle 3
+ * (sensible de degré) puis la RÉSOLUTION qui désignent la fondamentale, par une
+ * logique déjà indépendante de l'ordre des notes.
+ */
+export function canonicalRootPc(chord: Chord, tonicPc: number): number {
+  if (chord.quality !== "°7") return chord.rootPc;
+  const sensible = (tonicPc + 11) % 12;
+  return chord.pcs.includes(sensible) ? sensible : chord.rootPc;
+}
+
+/** Étiquette d'un accord emprunté : "iv", "bVI", "bVII7", "iiø7", "bVIΔ"… */
 function empruntLabel(
   chord: { rootPc: number; quality: string }, tonicPc: number, mode: "major" | "minor",
 ): { label: string; fonction: Fonction } {
   const deg = degreeOfRoot(chord.rootPc, tonicPc, mode);
-  const suffix = chord.quality.includes("7") ? "7" : "";
+  const suffix = qualitySuffix(chord.quality);
 
   if (deg !== null) {
     // Fondamentale diatonique, seule la qualité est empruntée (ex. Fa mineur → iv)
-    const roman = ROMANS[deg - 1];
-    const label = isMinorish(chord.quality) ? roman.toLowerCase() : roman;
-    return { label: label + suffix, fonction: fonctionOfDegree(deg) };
+    return {
+      label: romanOfDegree(deg, chord.quality),
+      fonction: fonctionOfDegree(deg, chord.rootPc, tonicPc, mode),
+    };
   }
 
   // Fondamentale chromatique (ex. Lab en Do → bVI)
   const iv = (chord.rootPc - tonicPc + 12) % 12;
-  return {
-    label: (FLAT_LABEL[iv] ?? "chr") + suffix,
-    fonction: FLAT_FONCTION[iv] ?? "?",
-  };
+  const flat = FLAT_LABEL[iv];
+  if (flat === undefined) return { label: "chr", fonction: "?" };
+  return { label: flat + suffix, fonction: FLAT_FONCTION[iv] };
 }
 
 // ── Analyse d'un accord ───────────────────────────────────────────────────────
@@ -255,24 +335,31 @@ function empruntLabel(
 export function analyzeChord(
   chord: Chord, tonicPc: number, mode: "major" | "minor",
 ): ChordResult {
+  // La fondamentale d'une 7e diminuée ne se lit PAS dans l'ordre des notes.
+  const rootPc = canonicalRootPc(chord, tonicPc);
+
   const base = {
-    rootPc: chord.rootPc,
-    rootFr: chord.rootFr,
+    rootPc,
+    rootFr: NOTE_FR[rootPc] ?? chord.rootFr,
     quality: chord.quality,
     pcs: chord.pcs,
   };
 
   // ── Règle 1 : diatonique = TOUTES les notes dans la gamme ──
+  //
+  // En mineur harmonique, la seule 7e diminuée entièrement diatonique est celle
+  // bâtie sur la sensible (Si-Ré-Fa-Lab en Do mineur) : `canonicalRootPc` lui a
+  // donc déjà rendu sa vraie fondamentale, et elle est chiffrée vii°7 (D).
   const dia = diatonicSet(tonicPc, mode);
   const toutesDiatoniques = chord.pcs.every((pc) => dia.has(pc));
-  const deg = degreeOfRoot(chord.rootPc, tonicPc, mode);
+  const deg = degreeOfRoot(rootPc, tonicPc, mode);
 
   if (toutesDiatoniques && deg !== null) {
     return {
       ...base,
-      degree: ROMANS[deg - 1] + chord.quality,
+      degree: romanOfDegree(deg, chord.quality),
       degreeNum: deg,
-      fonction: fonctionOfDegree(deg),
+      fonction: fonctionOfDegree(deg, rootPc, tonicPc, mode),
       categorie: "diatonique",
     };
   }
@@ -287,7 +374,7 @@ export function analyzeChord(
   // Seule la RÉSOLUTION tranche : `annotateResolutions` rétrograde en emprunt
   // les accords PARFAITS qui ne rejoignent pas leur cible (cf. « Rétrogradation »).
   if (DOMINANT_QUALITIES.has(chord.quality)) {
-    const [t] = dominantCandidates(chord.rootPc, tonicPc, mode);
+    const [t] = dominantCandidates(rootPc, tonicPc, mode);
     if (t) {
       return {
         ...base,
@@ -306,7 +393,7 @@ export function analyzeChord(
     // contexte, on retient la plus prioritaire ; la séquence pourra corriger ce
     // choix au vu de la résolution réelle (cf. `annotateResolutions`).
     const [meilleur] = leadingCandidates(
-      chord.pcs, chord.quality, chord.rootPc, tonicPc, mode,
+      chord.pcs, chord.quality, rootPc, tonicPc, mode,
     );
     if (meilleur) {
       return {
@@ -325,12 +412,12 @@ export function analyzeChord(
   // ── Règle 4 : emprunt modal (toutes les notes dans le mode homonyme) ──
   const par = parallelSet(tonicPc, mode);
   if (chord.pcs.every((pc) => par.has(pc))) {
-    const { label, fonction } = empruntLabel(chord, tonicPc, mode);
+    const { label, fonction } = empruntLabel(base, tonicPc, mode);
     if (label !== "chr") {
       return {
         ...base,
         degree: label,
-        degreeNum: degreeOfRoot(chord.rootPc, tonicPc, mode) ?? 0,
+        degreeNum: deg ?? 0,
         fonction,
         categorie: "emprunt",
       };
@@ -338,7 +425,7 @@ export function analyzeChord(
   }
 
   // ── Règle 5 : napolitain (accord majeur sur le 2e degré abaissé) ──
-  if (chord.quality === "" && chord.rootPc === (tonicPc + 1) % 12) {
+  if (chord.quality === "" && rootPc === (tonicPc + 1) % 12) {
     return {
       ...base,
       degree: "bII",
@@ -371,10 +458,23 @@ export interface ChromaEvent {
   explication: string;
 }
 
-/** Numéro de degré à partir de son étiquette ("ii", "IV"…). */
-function numOfLabel(label: string): number {
+/**
+ * Numéro de degré à partir de son étiquette ("ii", "IV"…), ou `null` si
+ * l'étiquette n'est pas un chiffre romain connu. Renvoyer 0 en cas d'échec —
+ * comme auparavant — produisait silencieusement un `NaN` de hauteur, donc une
+ * cible fantôme jamais atteinte : mieux vaut l'absence explicite.
+ */
+function numOfLabel(label: string): number | null {
   const idx = ROMANS.findIndex((r) => r.toLowerCase() === label.toLowerCase());
-  return idx + 1;
+  return idx === -1 ? null : idx + 1;
+}
+
+/** Hauteur de la cible désignée par une étiquette de degré, ou `null`. */
+function targetPcOfLabel(
+  label: string, tonicPc: number, mode: "major" | "minor",
+): number | null {
+  const num = numOfLabel(label);
+  return num === null ? null : pcOfDegree(num, tonicPc, mode);
 }
 
 /**
@@ -460,7 +560,8 @@ function promoteIfTonicizing(
 function demoteIfUnconfirmed(
   c: ChordResult, next: ChordResult | undefined, tonicPc: number, mode: "major" | "minor",
 ): void {
-  const targetPc = pcOfDegree(numOfLabel(c.cible!), tonicPc, mode);
+  const targetPc = c.cible ? targetPcOfLabel(c.cible, tonicPc, mode) : null;
+  if (targetPc === null) return;
   if (next && next.rootPc === targetPc) return; // cible atteinte : lecture confirmée
 
   // La cible n'arrive pas. L'accord est-il tout entier dans le mode homonyme
@@ -516,7 +617,8 @@ export function annotateResolutions(
     }
 
     if (!c.cible) continue;
-    const targetPc = pcOfDegree(numOfLabel(c.cible), tonicPc, mode);
+    const targetPc = targetPcOfLabel(c.cible, tonicPc, mode);
+    if (targetPc === null) continue;
     c.resolue = !!next && next.rootPc === targetPc;
   }
 }
@@ -539,11 +641,14 @@ export function buildChromaEvents(
 
     let explication: string;
     if (c.categorie === "dominante_secondaire" || c.categorie === "sensible_degre") {
-      const targetPc = pcOfDegree(numOfLabel(c.cible!), tonicPc, mode);
-      const cibleNom = NOTE_FR[targetPc];
+      const targetPc = c.cible ? targetPcOfLabel(c.cible, tonicPc, mode) : null;
+      const cibleNom = targetPc === null ? "?" : NOTE_FR[targetPc];
+      // « chaîne de dominantes » : l'accord suivant peut être une dominante
+      // SECONDAIRE (V7/x) ou une SENSIBLE de degré (vii°7/x) — dans les deux cas
+      // un accord de fonction dominante, jamais une « autre dominante secondaire ».
       const suite = c.resolue
         ? (chaine
-            ? "Enchaîne sur une autre dominante secondaire (chaîne de dominantes)."
+            ? "Enchaîne sur un autre accord de fonction dominante (chaîne de dominantes)."
             : "Résolue sur sa cible à l'accord suivant.")
         : "Non résolue (rompue secondaire).";
       explication = `Tonicise le ${c.cible} (${cibleNom}). ${suite}`;
