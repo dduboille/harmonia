@@ -143,6 +143,47 @@ function leadingPrefix(quality: string): string {
   return "vii°";
 }
 
+/** Ensemble diatonique du mode HOMONYME (pour détecter les emprunts). */
+function parallelSet(tonicPc: number, mode: "major" | "minor"): Set<number> {
+  return diatonicSet(tonicPc, mode === "major" ? "minor" : "major");
+}
+
+/** Étiquette d'un degré chromatique (fondamentale hors gamme). */
+const FLAT_LABEL: Record<number, string> = {
+  1: "bII", 3: "bIII", 6: "bV", 8: "bVI", 10: "bVII",
+};
+
+const FLAT_FONCTION: Record<number, Fonction> = {
+  1: "SD", 3: "T", 6: "SD", 8: "SD", 10: "SD",
+};
+
+function isMinorish(quality: string): boolean {
+  return quality === "m" || quality === "m7" || quality === "°" ||
+         quality === "°7" || quality === "ø7";
+}
+
+/** Étiquette d'un accord emprunté : "iv", "bVI", "bVII7"… */
+function empruntLabel(
+  chord: Chord, tonicPc: number, mode: "major" | "minor",
+): { label: string; fonction: Fonction } {
+  const deg = degreeOfRoot(chord.rootPc, tonicPc, mode);
+  const suffix = chord.quality.includes("7") ? "7" : "";
+
+  if (deg !== null) {
+    // Fondamentale diatonique, seule la qualité est empruntée (ex. Fa mineur → iv)
+    const roman = ROMANS[deg - 1];
+    const label = isMinorish(chord.quality) ? roman.toLowerCase() : roman;
+    return { label: label + suffix, fonction: fonctionOfDegree(deg) };
+  }
+
+  // Fondamentale chromatique (ex. Lab en Do → bVI)
+  const iv = (chord.rootPc - tonicPc + 12) % 12;
+  return {
+    label: (FLAT_LABEL[iv] ?? "chr") + suffix,
+    fonction: FLAT_FONCTION[iv] ?? "?",
+  };
+}
+
 // ── Analyse d'un accord ───────────────────────────────────────────────────────
 
 export function analyzeChord(
@@ -213,7 +254,33 @@ export function analyzeChord(
     }
   }
 
-  // Règles 4 et 5 ajoutées à la tâche suivante.
+  // ── Règle 4 : emprunt modal (toutes les notes dans le mode homonyme) ──
+  const par = parallelSet(tonicPc, mode);
+  if (chord.pcs.every((pc) => par.has(pc))) {
+    const { label, fonction } = empruntLabel(chord, tonicPc, mode);
+    if (label !== "chr") {
+      return {
+        ...base,
+        degree: label,
+        degreeNum: degreeOfRoot(chord.rootPc, tonicPc, mode) ?? 0,
+        fonction,
+        categorie: "emprunt",
+      };
+    }
+  }
+
+  // ── Règle 5 : napolitain (accord majeur sur le 2e degré abaissé) ──
+  if (chord.quality === "" && chord.rootPc === (tonicPc + 1) % 12) {
+    return {
+      ...base,
+      degree: "bII",
+      degreeNum: 0,
+      fonction: "SD",
+      categorie: "napolitain",
+    };
+  }
+
+  // ── Règle 6 : chromatisme non classé ──
   return {
     ...base,
     degree: "chr",

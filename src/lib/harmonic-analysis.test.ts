@@ -97,3 +97,49 @@ describe("sensibles de degré", () => {
     expect(r.cible).toBe("V");
   });
 });
+
+describe("emprunts modaux", () => {
+  it("Fa mineur en Do majeur est iv (emprunt, SD)", () => {
+    const r = an([5, 8, 0], PC.Do, "major"); // Fa-Lab-Do
+    expect(r.degree).toBe("iv");
+    expect(r.categorie).toBe("emprunt");
+    expect(r.fonction).toBe("SD");
+  });
+
+  it("Lab majeur en Do majeur est bVI (emprunt)", () => {
+    const r = an([8, 0, 3], PC.Do, "major"); // Lab-Do-Mib
+    expect(r.degree).toBe("bVI");
+    expect(r.categorie).toBe("emprunt");
+    expect(r.fonction).toBe("SD");
+  });
+
+  it("Sib majeur en Do majeur est bVII (emprunt)", () => {
+    const r = an([10, 2, 5], PC.Do, "major"); // Sib-Ré-Fa
+    expect(r.degree).toBe("bVII");
+    expect(r.categorie).toBe("emprunt");
+  });
+
+  it("Mib majeur en Do majeur est bIII (emprunt, T)", () => {
+    const r = an([3, 7, 10], PC.Do, "major"); // Mib-Sol-Sib
+    expect(r.degree).toBe("bIII");
+    expect(r.fonction).toBe("T");
+  });
+});
+
+describe("napolitain", () => {
+  it("Réb majeur en Do majeur est bII (napolitain, SD)", () => {
+    const r = an([1, 5, 8], PC.Do, "major"); // Réb-Fa-Lab
+    expect(r.degree).toBe("bII");
+    expect(r.categorie).toBe("napolitain");
+    expect(r.fonction).toBe("SD");
+  });
+});
+
+describe("résidu chromatique", () => {
+  it("Do augmenté en Do majeur reste chromatique (inclassable)", () => {
+    // Do-Mi-Sol# : ni dominante secondaire, ni sensible, ni emprunt, ni napolitain
+    const r = an([0, 4, 8], PC.Do, "major");
+    expect(r.categorie).toBe("chromatique");
+    expect(r.fonction).toBe("?");
+  });
+});
