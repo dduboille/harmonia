@@ -103,7 +103,15 @@ export function classer(
   // Ce qui le définit, et le sépare de l'appoggiature, c'est la PRÉPARATION : la
   // note était DÉJÀ là, et elle y était CONSONANTE. Elle ne fait que tarder à
   // rejoindre le son de l'accord, un degré plus bas.
-  const preparee = note.onset < ctx.debutSegment;
+  //
+  // La préparation SUFFIT — l'écriture ne la défait pas. Un retard peut être TENU
+  // par-dessus la barre harmonique, ou RÉATTAQUÉ à l'identique : c'est la même
+  // figure, la même dissonance, la même résolution ; seule change la plume. Exiger
+  // la liaison livrerait la moitié du répertoire à l'appoggiature, sur un détail de
+  // notation.
+  const tenue = note.onset < ctx.debutSegment;
+  const repetee = precedente !== undefined && precedente.midi === note.midi;
+  const preparee = tenue || repetee;
   const consonanteAvant = ctx.pcsAccordPrecedent?.includes(note.pc) ?? false;
   const resoutEnDescendant =
     suivante !== undefined &&

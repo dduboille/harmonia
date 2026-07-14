@@ -131,6 +131,25 @@ describe("classer — retard et appoggiature : SEULE la préparation les sépare
     expect(t).toBe("appoggiature");
   });
 
+  it("RETARD RÉATTAQUÉ : la préparation suffit, la liaison n'y change rien", () => {
+    // Le même Do, préparé par un Do consonant à l'accord précédent, mais RÉPÉTÉ
+    // au lieu d'être lié. C'est la même figure, la même dissonance, la même
+    // résolution : seule change la plume. Exiger la liaison livrerait la moitié
+    // du répertoire à l'appoggiature, sur un détail de notation.
+    const doRepete = n(72, 0, TPQ);
+    const t = classer(
+      doRepete,
+      { precedente: n(72, -TPQ, TPQ), suivante: n(71, TPQ) },
+      ctx({
+        pcsAccord: solMajeur,
+        pcsAccordPrecedent: [0, 4, 7],
+        debutSegment: 0,
+        finSegment: TPQ,
+      }),
+    );
+    expect(t).toBe("retard");
+  });
+
   it("pas de retard si la note n'était PAS consonante à l'accord précédent", () => {
     const doTenu = n(72, -TPQ, 2 * TPQ);
     const t = classer(
