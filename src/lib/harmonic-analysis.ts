@@ -242,6 +242,52 @@ export function identifyChordFromNotes(pcs: number[], bassPc?: number): Chord | 
   return meilleur ? meilleur.chord : null;
 }
 
+/**
+ * TOUTES les lectures possibles d'un ensemble de hauteurs — et non la meilleure.
+ *
+ * `identifyChordFromNotes` tranche seule, sur un score qui ne connaît ni la DURÉE
+ * des notes, ni leur POIDS MÉTRIQUE, ni leur COMPORTEMENT MÉLODIQUE. Elle ne peut
+ * donc pas savoir qu'un Ré de passage vaut moins qu'un Sol tenu sur le temps fort.
+ * C'est `chord-choice` qui arbitre désormais, et il lui faut le champ complet.
+ *
+ * Chaque lecture ne porte dans `pcs` que LES SONS DE L'ACCORD : les notes qu'elle
+ * laisse de côté sont, précisément, celles dont l'appelant devra payer le prix.
+ * (`identifyChordFromNotes`, elle, y met toutes les hauteurs entendues — l'ancien
+ * contrat, dont dépendent `analyzeChord` et ses règles.)
+ *
+ * Les mêmes garde-fous qu'à l'identification : la quinte seule peut manquer
+ * (cf. `QUINTE_OMISSIBLE`), et jamais la tierce.
+ */
+export function lecturesAccord(pcs: number[]): Chord[] {
+  const unique = [...new Set(pcs.map((p) => ((p % 12) + 12) % 12))];
+  if (unique.length < 2) return [];
+
+  const out: Chord[] = [];
+
+  for (const pattern of CHORD_PATTERNS) {
+    for (const root of unique) {
+      const norm = new Set(unique.map((p) => (p - root + 12) % 12));
+      const presents = pattern.intervals.filter((iv) => norm.has(iv));
+      const manquantes = pattern.intervals.length - presents.length;
+
+      if (manquantes > 1) continue;
+      if (manquantes === 1 &&
+          (!QUINTE_OMISSIBLE.has(pattern.quality) || norm.has(pattern.intervals[2]))) {
+        continue;
+      }
+
+      out.push({
+        rootPc: root,
+        rootFr: NOTE_FR[root] ?? "?",
+        quality: pattern.quality,
+        pcs: presents.map((iv) => (root + iv) % 12),
+      });
+    }
+  }
+
+  return out;
+}
+
 // ── Helpers tonalité ──────────────────────────────────────────────────────────
 
 /**

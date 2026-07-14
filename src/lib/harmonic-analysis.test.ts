@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   identifyChord,
   identifyChordFromNotes,
+  lecturesAccord,
   inversionOf,
   figureOf,
   augmentedSixth,
@@ -1085,5 +1086,37 @@ describe("napolitain — la basse confirme la sixte", () => {
     const r = analyzeChord(identifyChordFromNotes([1, 5, 8], 5)!, 0, "major");
     expect(r.categorie).toBe("napolitain");
     expect(r.degree).toBe("bII6");
+  });
+});
+
+describe("lecturesAccord — toutes les lectures, pas la meilleure", () => {
+  it("rend plusieurs lectures d'un même ensemble de notes", () => {
+    // Do-Mi-Sol-La : La m7 complet, ou Do majeur laissant tomber le La.
+    const lectures = lecturesAccord([0, 4, 7, 9]);
+    const signatures = lectures.map((l) => `${l.rootPc}:${l.quality}`);
+    expect(signatures).toContain("9:m7");
+    expect(signatures).toContain("0:");
+  });
+
+  it("les quatre lectures d'une 7e diminuée sont toutes rendues", () => {
+    const lectures = lecturesAccord([11, 2, 5, 8]).filter((l) => l.quality === "°7");
+    expect(new Set(lectures.map((l) => l.rootPc))).toEqual(new Set([11, 2, 5, 8]));
+  });
+
+  it("chaque lecture dit quels sons sont les SIENS", () => {
+    const doMajeur = lecturesAccord([0, 4, 7, 9]).find(
+      (l) => l.rootPc === 0 && l.quality === "",
+    )!;
+    // `pcs` ne contient QUE les sons de l'accord : le La n'en est pas.
+    expect(doMajeur.pcs.sort((a, b) => a - b)).toEqual([0, 4, 7]);
+  });
+
+  it("la 7e de dominante à quinte omise est une lecture valide", () => {
+    const lectures = lecturesAccord([7, 11, 5]); // Sol-Si-Fa
+    expect(lectures.some((l) => l.rootPc === 7 && l.quality === "7")).toBe(true);
+  });
+
+  it("une quinte à vide n'a aucune lecture", () => {
+    expect(lecturesAccord([0, 7])).toHaveLength(0);
   });
 });
