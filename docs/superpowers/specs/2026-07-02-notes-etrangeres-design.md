@@ -41,11 +41,18 @@ retient celle qui explique le mieux ce qu'il entend.
 
 ## Architecture
 
-### 1. Découpage sur les attaques — `harmony-segmentation.ts`
+### 1. Voir toutes les notes — `harmony-segmentation.ts`
 
-`sliceByBeat` (grille à la noire) est complété par **`sliceByOnsets(score)`** : une tranche à
-chaque instant où une note attaque. Aucune note n'échappe à l'analyse, et aucune grille arbitraire
-n'est imposée à une musique qui ne la respecte pas.
+Le sous-projet B n'échantillonnait qu'**au début** de chaque temps : une croche de passage entre
+deux temps était purement invisible. Le segment retient désormais **toutes les notes qui sonnent
+à un moment quelconque de sa durée**, et non les seules notes présentes à son attaque.
+
+**Deux échelles, à ne pas confondre :**
+- la **visibilité** descend à chaque attaque réelle — aucune note n'échappe à l'analyse ;
+- la **décision harmonique** reste prise **au temps**. L'harmonie change rarement plus vite que
+  la pulsation, et une croche de passage n'a pas à réclamer son propre accord.
+
+Les temps consécutifs portant le même accord continuent d'être fusionnés (rythme harmonique).
 
 ### 2. Les voix deviennent des lignes — `voice-lines.ts` (NOUVEAU)
 
@@ -85,9 +92,16 @@ Pour une note étrangère `N`, de précédente `P` et de suivante `S` dans sa vo
 | **Anticipation** | — | — | c'est un son de l'accord **suivant** |
 | **Pédale** | tenue ou répétée à travers plusieurs accords | — | étrangère à **au moins un** d'eux |
 
-**L'ordre d'examen compte** : retard (il exige l'accord précédent), puis anticipation (elle exige
-le suivant), puis les règles de degré conjoint, puis la pédale. Une note qu'aucune règle
-n'explique reste **« étrangère non classée »** : le moteur ne devine pas.
+**L'ordre d'examen compte**, et il n'est pas celui du tableau :
+
+1. **retard** — il exige l'accord précédent, et il est lui aussi tenu par-dessus la barre
+   harmonique : il doit passer **avant** la pédale, qui l'avalerait ;
+2. **pédale** — elle doit passer **avant** les règles de degré conjoint, qui la prendraient pour
+   une échappée sur la foi de la note qui la suit, très loin, dans sa voix ;
+3. **anticipation** — elle exige l'accord suivant ;
+4. les règles de **degré conjoint** (passage, broderie, échappée, appoggiature).
+
+Une note qu'aucune règle n'explique reste **« étrangère non classée »** : le moteur ne devine pas.
 
 ### 5. La pédale corrige le chiffrage
 
