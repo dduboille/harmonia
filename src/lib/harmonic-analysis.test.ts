@@ -595,6 +595,146 @@ describe("casse des chiffrages — majuscule = majeur, minuscule = mineur/diminu
   });
 });
 
+// ── CORRECTION A — le vii°7 EMPRUNTÉ du majeur ───────────────────────────────
+//
+// Si-Ré-Fa-Lab en Do MAJEUR est la 7e diminuée de sensible empruntée au mineur
+// homonyme (le Lab en est la 6e abaissée). Elle a fonction de DOMINANTE et se
+// résout sur la tonique : le musicien écrit « vii°7 », SANS barre. Ce n'est pas
+// une tonicisation du vi au seul motif que le Lab est la sensible de La.
+describe("vii°7 emprunté en majeur — la tonique est une cible d'accord de sensible", () => {
+  const SI_DIM7 = [11, 2, 5, 8]; // Si-Ré-Fa-Lab
+  const DO_M = [0, 4, 7];
+  const DO_m = [0, 3, 7];
+
+  const ROTATIONS_SI = [
+    [11, 2, 5, 8],
+    [2, 5, 8, 11],
+    [5, 8, 11, 2],
+    [8, 11, 2, 5],
+  ];
+
+  it("Si-Ré-Fa-Lab en Do majeur est vii°7 (D, emprunt) — et non vii°7/vi", () => {
+    const r = an(SI_DIM7, PC.Do, "major");
+    expect(r.degree).toBe("vii°7");
+    expect(r.degreeNum).toBe(7);
+    expect(r.fonction).toBe("D");
+    expect(r.categorie).toBe("emprunt");
+    expect(r.cible).toBeUndefined();
+    expect(r.rootFr).toBe("Si");
+  });
+
+  it("Si°7 → Do majeur : l'accord reste vii°7 (jamais vii°7/vi)", () => {
+    const s = seq([SI_DIM7, DO_M], PC.Do, "major");
+    const r = s[0].result;
+    expect(r.degree).toBe("vii°7");
+    expect(r.degree).not.toBe("vii°7/vi");
+    expect(r.categorie).toBe("emprunt");
+    expect(r.fonction).toBe("D");
+    expect(r.cible).toBeUndefined();
+  });
+
+  it("les 4 rotations donnent le même chiffrage en Do majeur", () => {
+    const lus = ROTATIONS_SI.map((pcs) => {
+      const r = an(pcs, PC.Do, "major");
+      return `${r.degree}|${r.degreeNum}|${r.fonction}|${r.categorie}|${r.rootFr}|${r.cible}`;
+    });
+    expect(new Set(lus).size).toBe(1);
+    expect(lus[0]).toBe("vii°7|7|D|emprunt|Si|undefined");
+  });
+
+  it("les 4 rotations restent vii°7 une fois résolues sur Do majeur", () => {
+    for (const pcs of ROTATIONS_SI) {
+      const s = seq([pcs, DO_M], PC.Do, "major");
+      expect(s[0].result.degree).toBe("vii°7");
+      expect(s[0].result.categorie).toBe("emprunt");
+      expect(s[0].result.cible).toBeUndefined();
+      expect(s[0].result.rootFr).toBe("Si");
+    }
+  });
+
+  it("l'événement produit est un emprunt au mode homonyme", () => {
+    const s = seq([SI_DIM7, DO_M], PC.Do, "major");
+    const events = buildChromaEvents(s, PC.Do, "major");
+    expect(events).toHaveLength(1);
+    expect(events[0].degree).toBe("vii°7");
+    expect(events[0].categorie).toBe("emprunt");
+    expect(events[0].cible).toBeUndefined();
+  });
+
+  // Non-régressions : le vii°7 du mineur reste DIATONIQUE, et une 7e diminuée
+  // qui tonicise vraiment un autre degré garde sa barre.
+  it("non-régression : le même accord en Do mineur reste vii°7 diatonique", () => {
+    const r = an(SI_DIM7, PC.Do, "minor");
+    expect(r.degree).toBe("vii°7");
+    expect(r.fonction).toBe("D");
+    expect(r.categorie).toBe("diatonique");
+  });
+
+  it("non-régression : Si°7 → Do mineur reste vii°7 diatonique", () => {
+    const s = seq([SI_DIM7, DO_m], PC.Do, "minor");
+    expect(s[0].result.degree).toBe("vii°7");
+    expect(s[0].result.categorie).toBe("diatonique");
+    expect(s[0].result.fonction).toBe("D");
+  });
+
+  it("non-régression : Si°7 → Mib en Do mineur reste vii°7/III", () => {
+    const s = seq([SI_DIM7, [3, 7, 10]], PC.Do, "minor");
+    expect(s[0].result.degree).toBe("vii°7/III");
+    expect(s[0].result.cible).toBe("III");
+    expect(s[0].result.categorie).toBe("sensible_degre");
+  });
+
+  it("non-régression : Do#°7 → Rém en Do majeur reste vii°7/ii", () => {
+    const s = seq([[1, 4, 7, 10], [2, 5, 9]], PC.Do, "major");
+    expect(s[0].result.degree).toBe("vii°7/ii");
+    expect(s[0].result.cible).toBe("ii");
+    expect(s[0].result.categorie).toBe("sensible_degre");
+    expect(s[0].result.resolue).toBe(true);
+  });
+
+  it("un V de la tonique reste le V : Sol7 → Do majeur n'est pas « V7/I »", () => {
+    const s = seq([[7, 11, 2, 5], DO_M], PC.Do, "major");
+    expect(s[0].result.degree).toBe("V7");
+    expect(s[0].result.categorie).toBe("diatonique");
+  });
+});
+
+// ── CORRECTION B — les emprunts au MAJEUR homonyme dans une tonalité mineure ──
+//
+// Le mode mineur emprunte au majeur ses degrés ÉLEVÉS : la 3ce (#III) et la 6te
+// (#VI, inflexion dorienne). Sans étiquette pour ces fondamentales, la règle de
+// l'emprunt abandonnait et l'accord retombait en « chromatique / ? ».
+describe("emprunts au majeur homonyme en mode mineur", () => {
+  it("La mineur en Do mineur est #vi (emprunt, SD)", () => {
+    const r = an([9, 0, 4], PC.Do, "minor"); // La-Do-Mi : 6te élevée (dorien)
+    expect(r.categorie).toBe("emprunt");
+    expect(r.degree).toBe("#vi");
+    expect(r.fonction).toBe("SD");
+  });
+
+  it("Mi mineur en Do mineur est #iii (emprunt, T)", () => {
+    const r = an([4, 7, 11], PC.Do, "minor"); // Mi-Sol-Si
+    expect(r.categorie).toBe("emprunt");
+    expect(r.degree).toBe("#iii");
+    expect(r.fonction).toBe("T");
+  });
+
+  it("La7 en Do mineur reste chromatique : le Do# sort du majeur homonyme", () => {
+    // Garde-fou : l'étiquette #VI ne s'applique qu'aux accords TOUT ENTIERS dans
+    // le majeur homonyme. La-Do#-Mi-Sol n'y est pas (Do#).
+    const r = an([9, 1, 4, 7], PC.Do, "minor");
+    expect(r.categorie).toBe("chromatique");
+  });
+
+  it("non-régression : Fa majeur en Do mineur reste un IV emprunté (SD)", () => {
+    const s = seq([[5, 9, 0], [0, 3, 7]], PC.Do, "minor"); // Fa → Do mineur
+    expect(s[0].result.categorie).toBe("emprunt");
+    expect(s[0].result.degree).toBe("IV");
+    expect(s[0].result.fonction).toBe("SD");
+    expect(s[0].result.cible).toBeUndefined();
+  });
+});
+
 // ── Nettoyages ────────────────────────────────────────────────────────────────
 describe("robustesse", () => {
   it("l'explication d'une chaîne reste juste quand la suite est un accord de sensible", () => {

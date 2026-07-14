@@ -152,7 +152,12 @@ export function fonctionOfDegree(
 }
 
 /**
- * Cibles tonicisables : ni la tonique, ni un degré diminué.
+ * Cibles TONICISABLES : ni la tonique, ni un degré diminué.
+ *
+ * La tonique en est exclue à dessein, et cette exclusion vaut pour les
+ * dominantes secondaires : un « V de la tonique », c'est le V — il n'y a rien à
+ * toniciser. (Les accords de SENSIBLE, eux, peuvent viser la tonique : ils ont
+ * leur propre liste, cf. `leadingTargets`.)
  *
  * L'ordre est celui de la PRIORITÉ de tonicisation, et non celui de la gamme :
  * il sert d'arbitre en repli quand plusieurs cibles sont possibles (cas de la
@@ -167,6 +172,31 @@ export function tonicizableTargets(mode: "major" | "minor"): Array<{ num: number
        { num: 4, label: "IV" }, { num: 3, label: "iii" }]
     : [{ num: 5, label: "V" }, { num: 4, label: "iv" }, { num: 6, label: "VI" },
        { num: 3, label: "III" }, { num: 7, label: "VII" }];
+}
+
+/** Le degré visé est-il la TONIQUE ? (chiffrage sans barre — cf. `leadingReading`) */
+function isTonicTarget(target: { num: number }): boolean {
+  return target.num === 1;
+}
+
+/**
+ * Cibles d'un accord de SENSIBLE (° / °7 / ø7) : la TONIQUE d'abord, puis les
+ * degrés tonicisables.
+ *
+ * La tonique n'est pas « tonicisable » — mais un accord de sensible qui s'y
+ * résout n'est pas une tonicisation : c'est le vii° de la tonalité, tout
+ * simplement. Lui refuser la tonique pour cible condamnait Si-Ré-Fa-Lab en Do
+ * MAJEUR — la 7e diminuée de sensible, l'accord chromatique le plus banal du
+ * répertoire — à se faire lire « vii°7/vi » sur son seul Lab (sensible de La),
+ * alors qu'il porte la dominante et résout sur Do. Il est premier dans l'ordre
+ * de priorité : la tonique est la résolution de loin la plus probable d'un
+ * accord bâti sur la sensible de la tonalité.
+ */
+export function leadingTargets(mode: "major" | "minor"): Array<{ num: number; label: string }> {
+  return [
+    { num: 1, label: mode === "major" ? "I" : "i" },
+    ...tonicizableTargets(mode),
+  ];
 }
 
 /**
@@ -189,7 +219,7 @@ export function leadingCandidates(
 
   // Boucle externe sur les CIBLES (par priorité) : le résultat ne dépend donc
   // pas de l'ordre des notes de l'accord.
-  for (const target of tonicizableTargets(mode)) {
+  for (const target of leadingTargets(mode)) {
     const targetPc = pcOfDegree(target.num, tonicPc, mode);
     for (const root of candidats) {
       if (root === (targetPc + 11) % 12) out.push({ root, target }); // demi-ton sous la cible
@@ -236,18 +266,35 @@ function parallelSet(tonicPc: number, mode: "major" | "minor"): Set<number> {
 }
 
 /**
- * Étiquette d'un degré chromatique (fondamentale hors gamme).
+ * Étiquettes des degrés ALTÉRÉS atteignables par la règle de l'emprunt :
+ * fondamentales à la fois HORS de la gamme et DANS le mode homonyme.
  *
- * Seuls b3, b6 et b7 sont atteignables par la règle de l'emprunt : ce sont les
- * seules fondamentales à la fois HORS de la gamme et DANS le mode homonyme.
+ *  - en MAJEUR, l'homonyme est le mineur : il apporte les degrés ABAISSÉS
+ *    b3, b6, b7 (Mib, Lab, Sib en Do majeur) ;
+ *  - en MINEUR, l'homonyme est le majeur : il apporte les degrés ÉLEVÉS #3 et
+ *    #6 (Mi♮, La♮ en Do mineur — la 6te élevée est l'inflexion dorienne). La 7e
+ *    élevée n'y figure pas : `degreeOfRoot` la reconnaît déjà comme la sensible,
+ *    7e degré à part entière du mineur harmonique.
+ *
  * (Le napolitain bII a sa propre règle — il n'est pas un emprunt modal.)
+ *
+ * L'altération est un PRÉFIXE (bVI, #VI) ; la CASSE du chiffre romain dit la
+ * qualité (majeur / mineur), et le symbole de qualité est accolé comme partout
+ * ailleurs — cf. `empruntLabel`.
  */
-const FLAT_LABEL: Record<number, string> = {
-  3: "bIII", 8: "bVI", 10: "bVII",
-};
-
-const FLAT_FONCTION: Record<number, Fonction> = {
-  3: "T", 8: "SD", 10: "SD",
+const ALTERED_DEGREES: Record<
+  "major" | "minor",
+  Record<number, { prefix: string; roman: string; fonction: Fonction }>
+> = {
+  major: {
+    3:  { prefix: "b", roman: "III", fonction: "T"  },
+    8:  { prefix: "b", roman: "VI",  fonction: "SD" },
+    10: { prefix: "b", roman: "VII", fonction: "SD" },
+  },
+  minor: {
+    4: { prefix: "#", roman: "III", fonction: "T"  },
+    9: { prefix: "#", roman: "VI",  fonction: "SD" },
+  },
 };
 
 function isMinorish(quality: string): boolean {
@@ -308,10 +355,15 @@ export function canonicalRootPc(chord: Chord, tonicPc: number): number {
   return chord.pcs.includes(sensible) ? sensible : chord.rootPc;
 }
 
-/** Étiquette d'un accord emprunté : "iv", "bVI", "bVII7", "iiø7", "bVIΔ"… */
+/**
+ * Étiquette d'un accord emprunté : "iv", "bVI", "bVII7", "iiø7", "#vi", "bVIΔ"…
+ * `null` si la fondamentale n'a pas d'étiquette d'emprunt connue — l'appelant
+ * doit alors laisser la suite des règles trancher, et surtout ne pas chiffrer
+ * l'accord « emprunt » sans savoir de quel degré il s'agit.
+ */
 function empruntLabel(
   chord: { rootPc: number; quality: string }, tonicPc: number, mode: "major" | "minor",
-): { label: string; fonction: Fonction } {
+): { label: string; fonction: Fonction } | null {
   const deg = degreeOfRoot(chord.rootPc, tonicPc, mode);
   const suffix = qualitySuffix(chord.quality);
 
@@ -323,11 +375,61 @@ function empruntLabel(
     };
   }
 
-  // Fondamentale chromatique (ex. Lab en Do → bVI)
+  // Fondamentale altérée (ex. Lab en Do majeur → bVI ; La♮ en Do mineur → #vi)
   const iv = (chord.rootPc - tonicPc + 12) % 12;
-  const flat = FLAT_LABEL[iv];
-  if (flat === undefined) return { label: "chr", fonction: "?" };
-  return { label: flat + suffix, fonction: FLAT_FONCTION[iv] };
+  const alt = ALTERED_DEGREES[mode][iv];
+  if (alt === undefined) return null;
+
+  const roman = isMinorish(chord.quality) ? alt.roman.toLowerCase() : alt.roman;
+  return { label: alt.prefix + roman + suffix, fonction: alt.fonction };
+}
+
+/**
+ * Chiffrage d'un accord de sensible, une fois désignés sa fondamentale et le
+ * degré qu'il vise.
+ *
+ * Deux lectures, et une seule différence — la CIBLE :
+ *  - un autre degré → tonicisation : chiffrage à BARRE (vii°7/ii), catégorie
+ *    « sensible de degré », `cible` renseignée (la résolution sera vérifiée) ;
+ *  - la TONIQUE → ce n'est pas une tonicisation, c'est le vii° de la tonalité :
+ *    chiffrage SANS barre (vii°7), degré 7, fonction D, AUCUNE cible — il n'y a
+ *    rien à « résoudre » au sens des accords secondaires.
+ *
+ * La catégorie du vii° de la tonalité suit sa composition, non son mode d'emploi :
+ * il est DIATONIQUE en mineur harmonique (Si-Ré-Fa-Lab est tout entier dans la
+ * gamme de Do mineur), et EMPRUNTÉ au mineur homonyme en majeur (le Lab y est la
+ * 6te abaissée).
+ */
+function leadingReading(
+  quality: string, pcs: number[], root: number,
+  target: { num: number; label: string }, tonicPc: number, mode: "major" | "minor",
+): {
+  rootPc: number; rootFr: string; degree: string;
+  degreeNum: number; fonction: Fonction; categorie: Categorie; cible?: string;
+} {
+  const commun = {
+    rootPc: root,
+    rootFr: NOTE_FR[root] ?? "?",
+    fonction: "D" as Fonction,
+  };
+
+  if (isTonicTarget(target)) {
+    const dia = diatonicSet(tonicPc, mode);
+    return {
+      ...commun,
+      degree: leadingPrefix(quality),
+      degreeNum: 7,
+      categorie: pcs.every((pc) => dia.has(pc)) ? "diatonique" : "emprunt",
+    };
+  }
+
+  return {
+    ...commun,
+    degree: leadingPrefix(quality) + "/" + target.label,
+    degreeNum: 0,
+    categorie: "sensible_degre",
+    cible: target.label,
+  };
 }
 
 // ── Analyse d'un accord ───────────────────────────────────────────────────────
@@ -387,7 +489,12 @@ export function analyzeChord(
     }
   }
 
-  // ── Règle 3 : sensible de degré ──
+  // ── Règle 3 : accord de sensible (tonique OU autre degré) ──
+  //
+  // La cible peut être la TONIQUE : le chiffrage est alors vii°7, sans barre
+  // (cf. `leadingReading`). En majeur, cet accord n'est pas diatonique — il
+  // emprunte au mineur homonyme — et c'est ici, et non à la règle 4, qu'il est
+  // pris : sa fondamentale est la sensible, pas la 6te abaissée.
   if (LEADING_QUALITIES.has(chord.quality)) {
     // La 7e diminuée peut désigner plusieurs cibles valides. En l'absence de
     // contexte, on retient la plus prioritaire ; la séquence pourra corriger ce
@@ -398,13 +505,9 @@ export function analyzeChord(
     if (meilleur) {
       return {
         ...base,
-        rootPc: meilleur.root,
-        rootFr: NOTE_FR[meilleur.root] ?? chord.rootFr,
-        degree: leadingPrefix(chord.quality) + "/" + meilleur.target.label,
-        degreeNum: 0,
-        fonction: "D",
-        categorie: "sensible_degre",
-        cible: meilleur.target.label,
+        ...leadingReading(
+          chord.quality, chord.pcs, meilleur.root, meilleur.target, tonicPc, mode,
+        ),
       };
     }
   }
@@ -412,13 +515,15 @@ export function analyzeChord(
   // ── Règle 4 : emprunt modal (toutes les notes dans le mode homonyme) ──
   const par = parallelSet(tonicPc, mode);
   if (chord.pcs.every((pc) => par.has(pc))) {
-    const { label, fonction } = empruntLabel(base, tonicPc, mode);
-    if (label !== "chr") {
+    const emprunt = empruntLabel(base, tonicPc, mode);
+    // Fondamentale sans étiquette d'emprunt connue : on ne chiffre pas au jugé,
+    // on laisse la suite des règles (napolitain, puis chromatisme) trancher.
+    if (emprunt) {
       return {
         ...base,
-        degree: label,
+        degree: emprunt.label,
         degreeNum: deg ?? 0,
-        fonction,
+        fonction: emprunt.fonction,
         categorie: "emprunt",
       };
     }
@@ -478,8 +583,12 @@ function targetPcOfLabel(
 }
 
 /**
- * Applique à un accord la lecture « sensible de degré » désignée par sa
- * résolution, si l'accord suivant est bien l'une de ses cibles possibles.
+ * Applique à un accord de sensible la lecture désignée par sa RÉSOLUTION, si
+ * l'accord suivant est bien l'une de ses cibles possibles.
+ *
+ * La cible confirmée peut être la TONIQUE : l'accord est alors (re)chiffré
+ * vii°7, sans barre et sans cible (cf. `leadingReading`) — c'est le cas du
+ * Si-Ré-Fa-Lab → Do, en majeur comme en mineur.
  */
 function reviseLeadingReading(
   c: ChordResult, next: ChordResult, tonicPc: number, mode: "major" | "minor",
@@ -490,13 +599,14 @@ function reviseLeadingReading(
   );
   if (!confirmee) return false;
 
-  c.rootPc = confirmee.root;
-  c.rootFr = NOTE_FR[confirmee.root] ?? c.rootFr;
-  c.degree = leadingPrefix(c.quality) + "/" + confirmee.target.label;
-  c.degreeNum = 0;
-  c.fonction = "D";
-  c.categorie = "sensible_degre";
-  c.cible = confirmee.target.label;
+  // La lecture précédente est intégralement remplacée : une cible héritée d'un
+  // chiffrage abandonné ferait vérifier une résolution qui n'a plus de sens.
+  delete c.cible;
+  delete c.resolue;
+  Object.assign(
+    c,
+    leadingReading(c.quality, c.pcs, confirmee.root, confirmee.target, tonicPc, mode),
+  );
   return true;
 }
 
@@ -569,12 +679,12 @@ function demoteIfUnconfirmed(
   const par = parallelSet(tonicPc, mode);
   if (!c.pcs.every((pc) => par.has(pc))) return; // sinon : V/x non résolu
 
-  const { label, fonction } = empruntLabel(c, tonicPc, mode);
-  if (label === "chr") return;
+  const emprunt = empruntLabel(c, tonicPc, mode);
+  if (!emprunt) return; // fondamentale sans étiquette d'emprunt : on ne touche à rien
 
-  c.degree = label;
+  c.degree = emprunt.label;
   c.degreeNum = degreeOfRoot(c.rootPc, tonicPc, mode) ?? 0;
-  c.fonction = fonction;
+  c.fonction = emprunt.fonction;
   c.categorie = "emprunt";
   delete c.cible;
   delete c.resolue;
