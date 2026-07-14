@@ -49,6 +49,11 @@ export async function POST(req: NextRequest) {
       customer: customerId,
       mode: "subscription",
       payment_method_types: ["card"],
+      // Sans ce drapeau, Stripe n'affiche AUCUN champ de code promo : le client
+      // n'a que le bouton « Payer », et un bon de réduction est inutilisable.
+      // (Le code saisi doit être un « promotion code » Stripe — un coupon seul
+      // n'est pas saisissable par le client.)
+      allow_promotion_codes: true,
       line_items: [{ price: plan.priceId, quantity: 1 }],
       success_url: `${baseUrl}/${loc}/dashboard?upgrade=success`,
       cancel_url: `${baseUrl}/${loc}/upgrade?canceled=true`,

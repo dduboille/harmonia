@@ -75,18 +75,26 @@ export interface CoursStats {
   progressPct: number;
 }
 
-export async function getCoursStats(
-  userId: string,
-  coursId: number,
-  totalExercisesInCours: number
-): Promise<CoursStats> {
-  const { data, error } = await supabaseAdmin
-    .from("user_progress")
-    .select("completed, score, last_seen_at")
-    .eq("user_id", userId)
-    .eq("cours_id", coursId);
+/** Les seules colonnes dont le calcul des stats a besoin. */
+type LigneProgression = Pick<UserProgress, "completed" | "score" | "last_seen_at">;
 
-  if (error || !data || data.length === 0) {
+/**
+ * Calcul PUR des stats d'un cours, à partir de lignes DÉJÀ chargées.
+ *
+ * Le tableau de bord affiche les 23 cours. En appelant `getCoursStats` pour
+ * chacun, il lançait 23 requêtes sur `user_progress` — puis une 24e, via
+ * `getAllProgress`, qui ramenait EXACTEMENT les mêmes lignes (toutes celles de
+ * l'utilisateur). Chaque requête est un aller-retour vers Supabase : la page
+ * mettait plusieurs secondes à s'afficher, au point de passer pour bloquée.
+ *
+ * Une seule lecture suffit : ces stats sont un simple regroupement par cours.
+ */
+export function coursStatsFromRows(
+  rows: LigneProgression[],
+  coursId: number,
+  totalExercisesInCours: number,
+): CoursStats {
+  if (rows.length === 0) {
     return {
       coursId,
       totalExercises: totalExercisesInCours,
@@ -97,9 +105,9 @@ export async function getCoursStats(
     };
   }
 
-  const completed = data.filter(d => d.completed).length;
-  const avgScore  = Math.round(data.reduce((s, d) => s + d.score, 0) / data.length);
-  const lastActivity = data
+  const completed = rows.filter(d => d.completed).length;
+  const avgScore  = Math.round(rows.reduce((s, d) => s + d.score, 0) / rows.length);
+  const lastActivity = rows
     .map(d => d.last_seen_at)
     .filter(Boolean)
     .sort()
@@ -111,8 +119,30 @@ export async function getCoursStats(
     completedExercises: completed,
     avgScore,
     lastActivity,
-    progressPct: Math.round((completed / totalExercisesInCours) * 100),
+    // Un cours sans exercice donnerait une division par zéro — donc un NaN, qui
+    // traverse le JSON et s'affiche tel quel.
+    progressPct: totalExercisesInCours > 0
+      ? Math.round((completed / totalExercisesInCours) * 100)
+      : 0,
   };
+}
+
+export async function getCoursStats(
+  userId: string,
+  coursId: number,
+  totalExercisesInCours: number
+): Promise<CoursStats> {
+  const { data, error } = await supabaseAdmin
+    .from("user_progress")
+    .select("completed, score, last_seen_at")
+    .eq("user_id", userId)
+    .eq("cours_id", coursId);
+
+  return coursStatsFromRows(
+    error || !data ? [] : (data as LigneProgression[]),
+    coursId,
+    totalExercisesInCours,
+  );
 }
 
 // ── Progression globale (tous les cours) ──────────────────────

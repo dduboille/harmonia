@@ -6,7 +6,7 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { getAllProgress, getCoursStats, getUserPlan, canAccessCours } from "@/lib/progression";
+import { getAllProgress, coursStatsFromRows, getUserPlan, canAccessCours } from "@/lib/progression";
 import { ALL_EXERCISES } from "@/exercises/all-exercises";
 import { supabaseAdmin } from "@/lib/supabase";
 import MaClasseSection from "@/components/MaClasseSection";
@@ -78,21 +78,34 @@ export default async function DashboardPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "dashboard" });
   const tHub = await getTranslations({ locale, namespace: "coursHub" });
 
-  const user = await currentUser();
-  const plan = await getUserPlan(userId);
+  // Ces trois lectures ne dépendent pas les unes des autres : les enchaîner en
+  // `await` successifs additionnait leurs latences pour rien.
+  const [user, plan, allProgress] = await Promise.all([
+    currentUser(),
+    getUserPlan(userId),
+    getAllProgress(userId),
+  ]);
   const isPro = plan === "pro" || plan === "annual";
 
-  const coursStats = await Promise.all(
-    COURS_META.map(async cours => {
-      const totalInCours = ALL_EXERCISES.filter(e => e.cours === cours.id).length;
-      const stats = await getCoursStats(userId, cours.id, totalInCours);
-      const accessible = canAccessCours(cours.id, plan);
-      const title = tHub(`c${cours.id}` as Parameters<typeof tHub>[0]);
-      return { ...cours, title, ...stats, accessible, totalInCours };
-    })
-  );
+  // Les stats des 23 cours se déduisent des lignes DÉJÀ chargées ci-dessus. La
+  // page lançait auparavant une requête Supabase par cours — 23 allers-retours
+  // qui ramenaient un sous-ensemble de ce que `getAllProgress` ramène en une
+  // seule. C'est ce qui la faisait passer pour bloquée.
+  const parCours = new Map<number, typeof allProgress>();
+  for (const p of allProgress) {
+    const liste = parCours.get(p.cours_id) ?? [];
+    liste.push(p);
+    parCours.set(p.cours_id, liste);
+  }
 
-  const allProgress = await getAllProgress(userId);
+  const coursStats = COURS_META.map(cours => {
+    const totalInCours = ALL_EXERCISES.filter(e => e.cours === cours.id).length;
+    const stats = coursStatsFromRows(parCours.get(cours.id) ?? [], cours.id, totalInCours);
+    const accessible = canAccessCours(cours.id, plan);
+    const title = tHub(`c${cours.id}` as Parameters<typeof tHub>[0]);
+    return { ...cours, title, ...stats, accessible, totalInCours };
+  });
+
   const recentExercises = allProgress.slice(0, 5);
 
   // Secours : rattachement automatique si l'élève a été invité (import CSV du
