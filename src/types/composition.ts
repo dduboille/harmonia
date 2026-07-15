@@ -20,7 +20,6 @@ export interface MelodyExercise {
   notes: MelodyNote[];
   measures: number;        // always 4 for now
   suggestedChords: string[][];   // [["C","Em"],["F","G"],...] per measure
-  pool: string[];          // chords available to the student
   hint: string;
   concepts: string[];
   solutionExplanation: string[];  // one explanation per measure
