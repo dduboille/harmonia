@@ -39,12 +39,21 @@ export interface ParsedMeasure {
   length: number;  // ticks
 }
 
+/** Un changement de tempo, à un instant donné, en NOIRES par minute. */
+export interface TempoEvent {
+  onset: number; // ticks depuis le début de la pièce
+  bpm: number;   // noires par minute
+}
+
 export interface ParsedScore {
   fifths: number;
   mode: "major" | "minor";
   signature: string;
   notes: ParsedNote[];
   measures: ParsedMeasure[];
+  /** Les changements de tempo écrits (Grave, Allegro…), triés par instant. Vide si
+   *  le fichier n'en porte aucun. Sert à la lecture à tempo variable du studio. */
+  tempos: TempoEvent[];
 }
 
 const STEP_PC: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
@@ -68,6 +77,42 @@ function getTag(xml: string, tag: string): string {
 function intTag(xml: string, tag: string, fallback = 0): number {
   const n = parseInt(getTag(xml, tag), 10);
   return Number.isFinite(n) ? n : fallback;
+}
+
+/** Combien de NOIRES vaut une unité de battement métronomique. */
+const BATTEMENT_EN_NOIRES: Record<string, number> = {
+  whole: 4, half: 2, quarter: 1, eighth: 0.5, "16th": 0.25, "32nd": 0.125,
+};
+
+/**
+ * Tempo (en NOIRES par minute) porté par une direction ou un `<sound>`, ou `null`.
+ *
+ * `<sound tempo="X">` fait autorité : X est déjà en noires par minute, c'est la
+ * valeur de LECTURE. À défaut, on lit la marque métronomique `<beat-unit>` +
+ * `<per-minute>` et on la convertit en noires (une blanche à 60 = la noire à 120).
+ */
+function tempoDe(body: string): number | null {
+  const s = /<sound\b[^>]*\btempo=["']([\d.]+)["']/.exec(body);
+  if (s) {
+    const t = parseFloat(s[1]);
+    return Number.isFinite(t) && t > 0 ? t : null;
+  }
+  const unite = getTag(body, "beat-unit");
+  const parMinute = parseFloat(getTag(body, "per-minute"));
+  if (unite && Number.isFinite(parMinute) && parMinute > 0) {
+    let noires = BATTEMENT_EN_NOIRES[unite];
+    if (noires === undefined) return null;
+    if (/<beat-unit-dot\b/.test(body)) noires *= 1.5; // battement pointé
+    return parMinute * noires;
+  }
+  return null;
+}
+
+/** Tempo tel que lu dans une mesure : onset RELATIF à la mesure. */
+interface RawTempo {
+  measure: number;
+  rel: number;
+  bpm: number;
 }
 
 /** Note telle que lue dans une mesure : onset RELATIF à la mesure. */
@@ -96,9 +141,11 @@ interface RawNote {
 function parsePart(content: string, partId: string): {
   notes: RawNote[];
   lengths: Map<number, number>;
+  tempos: RawTempo[];
 } {
   const notes: RawNote[] = [];
   const lengths = new Map<number, number>();
+  const tempos: RawTempo[] = [];
 
   // Les <divisions> valent jusqu'à nouvel ordre : elles traversent les mesures, et
   // peuvent changer EN COURS de mesure — d'où la lecture au fil du parcours, et non
@@ -127,15 +174,27 @@ function parsePart(content: string, partId: string): {
     let maxCursor = 0;
 
     const elemRe =
-      /<note\b[^>]*>([\s\S]*?)<\/note>|<backup\b[^>]*>([\s\S]*?)<\/backup>|<forward\b[^>]*>([\s\S]*?)<\/forward>|<attributes\b[^>]*>([\s\S]*?)<\/attributes>/g;
+      /<note\b[^>]*>([\s\S]*?)<\/note>|<backup\b[^>]*>([\s\S]*?)<\/backup>|<forward\b[^>]*>([\s\S]*?)<\/forward>|<attributes\b[^>]*>([\s\S]*?)<\/attributes>|<direction\b[^>]*>([\s\S]*?)<\/direction>|<sound\b[^>]*?\/?>/g;
     let em: RegExpExecArray | null;
 
     while ((em = elemRe.exec(body)) !== null) {
-      const [, noteBody, backupBody, forwardBody, attrBody] = em;
+      const [full, noteBody, backupBody, forwardBody, attrBody, directionBody] = em;
 
       if (attrBody !== undefined) {
         const div = intTag(attrBody, "divisions", 0);
         if (div > 0) divisions = div;
+        continue;
+      }
+      // Une direction (Allegro, marque métronomique) ou un <sound> isolé ne fait pas
+      // sonner et n'avance PAS le curseur : il fixe le tempo à l'instant courant.
+      if (directionBody !== undefined) {
+        const bpm = tempoDe(directionBody);
+        if (bpm !== null) tempos.push({ measure: numero, rel: cursor, bpm });
+        continue;
+      }
+      if (full.startsWith("<sound")) {
+        const bpm = tempoDe(full);
+        if (bpm !== null) tempos.push({ measure: numero, rel: cursor, bpm });
         continue;
       }
       if (backupBody !== undefined) {
@@ -197,7 +256,7 @@ function parsePart(content: string, partId: string): {
     lengths.set(numero, Math.max(lengths.get(numero) ?? 0, maxCursor));
   }
 
-  return { notes, lengths };
+  return { notes, lengths, tempos };
 }
 
 /**
@@ -255,6 +314,7 @@ export function parseMusicXML(source: string): ParsedScore {
   const signature = beats && beatType ? `${beats}/${beatType}` : "4/4";
 
   const raws: RawNote[] = [];
+  const rawTempos: RawTempo[] = [];
   const lengths = new Map<number, number>();
 
   // `\s+` et non `\b` : « - » est une frontière de mot, si bien que `<part\b` matche
@@ -270,6 +330,7 @@ export function parseMusicXML(source: string): ParsedScore {
     const partId = /id=["']([^"']+)["']/.exec(pm[1])?.[1] ?? `P${idx}`;
     const lu = parsePart(pm[2], partId);
     raws.push(...lu.notes);
+    rawTempos.push(...lu.tempos);
     // Les parties d'un MusicXML valide ont les mêmes mesures ; on retient la
     // lecture la plus longue de chacune, pour rester robuste aux parties creuses.
     for (const [numero, len] of lu.lengths) {
@@ -304,5 +365,17 @@ export function parseMusicXML(source: string): ParsedScore {
     }))
     .sort((a, b) => a.onset - b.onset || a.midi - b.midi);
 
-  return { fifths, mode, signature, notes, measures };
+  // Tempos : rel → absolu, puis on ne garde qu'un tempo par instant (deux parties
+  // peuvent porter la même indication) et on trie. Un exportateur place le tempo
+  // sur la portée du haut ; en lire plusieurs et dédoublonner reste robuste.
+  const parOnset = new Map<number, number>();
+  for (const t of rawTempos) {
+    const onset = (startOf.get(t.measure) ?? 0) + t.rel;
+    if (!parOnset.has(onset)) parOnset.set(onset, t.bpm);
+  }
+  const tempos: TempoEvent[] = [...parOnset.entries()]
+    .map(([onset, bpm]) => ({ onset, bpm }))
+    .sort((a, b) => a.onset - b.onset);
+
+  return { fifths, mode, signature, notes, measures, tempos };
 }

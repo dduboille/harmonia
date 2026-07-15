@@ -5,7 +5,7 @@ import StudioScore from "@/components/StudioScore";
 import StudioAnalyse from "@/components/StudioAnalyse";
 import PianoPlayer, { type PianoPlayerRef } from "@/components/PianoPlayer";
 import { extraireMusicXML } from "@/lib/lire-musicxml";
-import { parseMusicXML, TPQ, type ParsedScore } from "@/lib/musicxml-parse";
+import { parseMusicXML, type ParsedScore } from "@/lib/musicxml-parse";
 import { planifierLecture } from "@/lib/studio-playback";
 import type { AnalysisResult } from "@/app/api/analyse-partition/route";
 
@@ -29,7 +29,7 @@ import type { AnalysisResult } from "@/app/api/analyse-partition/route";
  */
 
 const MAX_OCTETS = 5 * 1024 * 1024; // 5 Mo, comme l'analyseur.
-const TEMPO_DEFAUT = 90;
+const VITESSE_DEFAUT = 100; // en pourcentage : 100 % = les tempos tels qu'écrits.
 
 /** Analyse d'un fichier par la route ; lève une Error au message affichable. */
 async function analyserFichier(file: File): Promise<AnalysisResult> {
@@ -52,7 +52,7 @@ export default function Studio() {
   const [error, setError] = useState<string | null>(null);
   const [xml, setXml] = useState<string | null>(null);
   const [analyse, setAnalyse] = useState<AnalysisResult | null>(null);
-  const [tempo, setTempo] = useState(TEMPO_DEFAUT);
+  const [vitesse, setVitesse] = useState(VITESSE_DEFAUT);
   const [isPlaying, setIsPlaying] = useState(false);
   const [mesureActive, setMesureActive] = useState<number | null>(null);
 
@@ -82,7 +82,10 @@ export default function Studio() {
       return;
     }
 
-    const evenements = planifierLecture(score, tempo);
+    // La planification suit les CHANGEMENTS DE TEMPO du fichier ; la vitesse (en %)
+    // n'est qu'un facteur global d'étude. Elle rend aussi les débuts de mesure et la
+    // durée totale, calés sur ce même tempo variable — d'où l'unique source de temps.
+    const { evenements, mesures, dureeTotale } = planifierLecture(score, vitesse / 100);
     if (evenements.length === 0) return;
 
     const ids: ReturnType<typeof setTimeout>[] = [];
@@ -96,20 +99,17 @@ export default function Studio() {
       }, e.startTime * 1000));
     }
 
-    // Surlignage : un timeout au début de chaque mesure. `measure.start` est en ticks.
-    const secondesParTick = 60 / tempo / TPQ;
-    for (const m of score.measures) {
-      const debutSec = m.start * secondesParTick;
-      ids.push(setTimeout(() => setMesureActive(m.numero), debutSec * 1000));
+    // Surlignage : un timeout au début de chaque mesure, déjà minuté par la lecture.
+    for (const m of mesures) {
+      ids.push(setTimeout(() => setMesureActive(m.numero), m.debutSec * 1000));
     }
 
     // Fin de la pièce (dernière note relâchée) → on remet tout à zéro.
-    const finSec = Math.max(...evenements.map((e) => e.startTime + e.duration));
-    ids.push(setTimeout(() => arreterLecture(), finSec * 1000 + 200));
+    ids.push(setTimeout(() => arreterLecture(), dureeTotale * 1000 + 200));
 
     timeoutsRef.current = ids;
     setIsPlaying(true);
-  }, [xml, tempo, isPlaying, arreterLecture]);
+  }, [xml, vitesse, isPlaying, arreterLecture]);
 
   // À la disparition du composant, ne laisser aucun timeout orphelin.
   useEffect(() => () => { timeoutsRef.current.forEach(clearTimeout); }, []);
@@ -340,20 +340,22 @@ export default function Studio() {
                 </button>
 
                 <label style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: 13, color: "#555" }}>
-                  Tempo
+                  Vitesse
                   <input
                     type="range"
-                    min={40}
-                    max={200}
-                    step={1}
-                    value={tempo}
-                    // Changer le tempo pendant la lecture désynchroniserait les timeouts déjà
-                    // programmés : on le fige tant que ça joue.
+                    min={50}
+                    max={150}
+                    step={5}
+                    value={vitesse}
+                    // La pièce suit ses propres tempos ; ce curseur ne fait que
+                    // ralentir/accélérer l'ensemble (utile pour étudier). On le fige
+                    // pendant la lecture : le changer désynchroniserait les timeouts déjà
+                    // programmés.
                     disabled={isPlaying}
-                    onChange={e => setTempo(Number(e.target.value))}
+                    onChange={e => setVitesse(Number(e.target.value))}
                     style={{ accentColor: "#5C3D6E" }}
                   />
-                  <span style={{ minWidth: 56, fontWeight: 700, color: "#1a1a1a" }}>{tempo} BPM</span>
+                  <span style={{ minWidth: 48, fontWeight: 700, color: "#1a1a1a" }}>{vitesse} %</span>
                 </label>
 
                 {mesureActive !== null && (

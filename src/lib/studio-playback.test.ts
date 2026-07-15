@@ -1,18 +1,19 @@
 import { describe, it, expect } from "vitest";
-import { TPQ, type ParsedNote, type ParsedScore } from "./musicxml-parse";
+import { TPQ, type ParsedNote, type ParsedScore, type TempoEvent } from "./musicxml-parse";
 import { planifierLecture, specDepuisMidi } from "./studio-playback";
 
-function note(midi: number, onset: number, duration: number, voice = "1"): ParsedNote {
+function note(midi: number, onset: number, duration: number, measure = 1, voice = "1"): ParsedNote {
   return {
     step: "C", alter: 0, octave: 4, pc: ((midi % 12) + 12) % 12, midi,
-    onset, duration, measure: 1, beat: 1, voice, part: "P1",
+    onset, duration, measure, beat: 1, voice, part: "P1",
   };
 }
 
-function score(notes: ParsedNote[]): ParsedScore {
-  return { fifths: 0, mode: "major", signature: "4/4", notes, measures: [
-    { numero: 1, start: 0, length: 4 * TPQ },
-  ] };
+function score(notes: ParsedNote[], tempos: TempoEvent[] = [], measures?: ParsedScore["measures"]): ParsedScore {
+  return {
+    fifths: 0, mode: "major", signature: "4/4", notes, tempos,
+    measures: measures ?? [{ numero: 1, start: 0, length: 4 * TPQ }],
+  };
 }
 
 describe("specDepuisMidi — convention PianoPlayer (octave = standard − 1)", () => {
@@ -24,38 +25,78 @@ describe("specDepuisMidi — convention PianoPlayer (octave = standard − 1)", 
   });
 });
 
-describe("planifierLecture — onsets et durées en secondes", () => {
-  it("à 60 BPM, une noire dure 1 s et commence à son onset réel", () => {
-    // Une noire (TPQ ticks) qui attaque au 2e temps (onset = TPQ).
-    const ev = planifierLecture(score([note(60, TPQ, TPQ)]), 60);
-    expect(ev).toHaveLength(1);
-    expect(ev[0].startTime).toBeCloseTo(1, 5);
-    expect(ev[0].duration).toBeCloseTo(1, 5);
-    expect(ev[0].spec).toBe("C:3");
-  });
-
-  it("le tempo change l'échelle de temps (120 BPM : deux fois plus vite)", () => {
-    const ev = planifierLecture(score([note(60, TPQ, TPQ)]), 120);
-    expect(ev[0].startTime).toBeCloseTo(0.5, 5);
-    expect(ev[0].duration).toBeCloseTo(0.5, 5);
-  });
-
-  it("les voix simultanées produisent des événements au même instant", () => {
-    const ev = planifierLecture(
-      score([note(72, 0, 4 * TPQ, "1"), note(48, 0, 4 * TPQ, "2")]),
-      60,
+describe("planifierLecture — tempo écrit et onsets en secondes", () => {
+  it("à 60 noires/min, une noire dure 1 s et commence à son onset réel", () => {
+    const { evenements } = planifierLecture(
+      score([note(60, TPQ, TPQ)], [{ onset: 0, bpm: 60 }]),
+      1,
     );
-    expect(ev).toHaveLength(2);
-    expect(ev.every((e) => e.startTime === 0)).toBe(true);
-    // La ronde de basse dure bien 4 s.
-    expect(ev[1].duration).toBeCloseTo(4, 5);
+    expect(evenements).toHaveLength(1);
+    expect(evenements[0].startTime).toBeCloseTo(1, 5);
+    expect(evenements[0].duration).toBeCloseTo(1, 5);
+    expect(evenements[0].spec).toBe("C:3");
+  });
+
+  it("la vitesse est un facteur global : 2 = deux fois plus vite", () => {
+    const { evenements } = planifierLecture(
+      score([note(60, TPQ, TPQ)], [{ onset: 0, bpm: 60 }]),
+      2,
+    );
+    expect(evenements[0].startTime).toBeCloseTo(0.5, 5);
+    expect(evenements[0].duration).toBeCloseTo(0.5, 5);
+  });
+
+  it("sans tempo écrit, replie sur 90 noires/min", () => {
+    const { evenements } = planifierLecture(score([note(60, 0, TPQ)]), 1);
+    expect(evenements[0].duration).toBeCloseTo(60 / 90, 5);
+  });
+});
+
+describe("planifierLecture — CHANGEMENT de tempo (Grave puis Allegro)", () => {
+  const mesures = [
+    { numero: 1, start: 0, length: 4 * TPQ },
+    { numero: 2, start: 4 * TPQ, length: 4 * TPQ },
+  ];
+  // Grave à 60 pour la mesure 1, Allegro à 120 dès la mesure 2.
+  const tempos: TempoEvent[] = [
+    { onset: 0, bpm: 60 },
+    { onset: 4 * TPQ, bpm: 120 },
+  ];
+
+  it("chaque segment garde sa propre échelle de temps", () => {
+    const notes = [
+      note(60, 0, TPQ, 1),          // noire en mesure 1 (60) → 1 s
+      note(62, 4 * TPQ, TPQ, 2),    // noire en mesure 2 (120) → 0,5 s
+    ];
+    const { evenements } = planifierLecture(score(notes, tempos, mesures), 1);
+    expect(evenements[0].duration).toBeCloseTo(1, 5);
+    expect(evenements[1].duration).toBeCloseTo(0.5, 5);
+    // La mesure 1 dure 4 noires à 60 = 4 s : la note de mesure 2 commence à t=4 s.
+    expect(evenements[1].startTime).toBeCloseTo(4, 5);
+  });
+
+  it("les débuts de mesure suivent aussi le tempo variable", () => {
+    const { mesures: m } = planifierLecture(score([note(60, 0, TPQ, 1)], tempos, mesures), 1);
+    expect(m.find((x) => x.numero === 1)!.debutSec).toBeCloseTo(0, 5);
+    expect(m.find((x) => x.numero === 2)!.debutSec).toBeCloseTo(4, 5);
+  });
+});
+
+describe("planifierLecture — mesures et durée totale", () => {
+  it("rend les débuts de mesure et la durée totale", () => {
+    const { mesures, dureeTotale } = planifierLecture(
+      score([note(60, 0, 4 * TPQ)], [{ onset: 0, bpm: 60 }]),
+      1,
+    );
+    expect(mesures[0]).toMatchObject({ numero: 1, debutSec: 0 });
+    expect(dureeTotale).toBeCloseTo(4, 5); // une ronde à 60 = 4 s
   });
 
   it("les événements sont triés par instant de début", () => {
-    const ev = planifierLecture(
-      score([note(60, 2 * TPQ, TPQ), note(64, 0, TPQ), note(67, TPQ, TPQ)]),
-      60,
+    const { evenements } = planifierLecture(
+      score([note(60, 2 * TPQ, TPQ), note(64, 0, TPQ), note(67, TPQ, TPQ)], [{ onset: 0, bpm: 60 }]),
+      1,
     );
-    expect(ev.map((e) => e.startTime)).toEqual([0, 1, 2]);
+    expect(evenements.map((e) => e.startTime)).toEqual([0, 1, 2]);
   });
 });

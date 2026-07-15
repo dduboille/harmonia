@@ -24,6 +24,42 @@ describe("parseMusicXML — en-tête", () => {
   });
 });
 
+describe("parseMusicXML — tempos", () => {
+  it("lit <sound tempo> (autorité de lecture)", () => {
+    const s = parseMusicXML(partition(
+      `<measure number="1">@ATTR@<sound tempo="66"/>${note("C", 4, 4)}</measure>`,
+    ));
+    expect(s.tempos).toEqual([{ onset: 0, bpm: 66 }]);
+  });
+
+  it("lit une direction avec <sound tempo> et la place à l'instant courant", () => {
+    // Grave à 60 en tête, Allegro à 132 au début de la mesure 2.
+    const s = parseMusicXML(partition(
+      `<measure number="1">@ATTR@<direction><sound tempo="60"/></direction>${note("C", 4, 4)}</measure>` +
+      `<measure number="2"><direction><sound tempo="132"/></direction>${note("D", 4, 4)}</measure>`,
+    ));
+    expect(s.tempos).toEqual([
+      { onset: 0, bpm: 60 },
+      { onset: 4 * TPQ, bpm: 132 },
+    ]);
+  });
+
+  it("convertit une marque métronomique sans <sound> en noires/minute", () => {
+    // La blanche à 60 = la noire à 120.
+    const s = parseMusicXML(partition(
+      `<measure number="1">@ATTR@` +
+      `<direction><direction-type><metronome><beat-unit>half</beat-unit><per-minute>60</per-minute></metronome></direction-type></direction>` +
+      `${note("C", 4, 4)}</measure>`,
+    ));
+    expect(s.tempos).toEqual([{ onset: 0, bpm: 120 }]);
+  });
+
+  it("un fichier sans tempo rend une liste vide", () => {
+    const s = parseMusicXML(partition(`<measure number="1">@ATTR@${note("C", 4, 4)}</measure>`));
+    expect(s.tempos).toEqual([]);
+  });
+});
+
 describe("parseMusicXML — <backup> (LE bug)", () => {
   it("place les deux voix EN MÊME TEMPS, pas l'une après l'autre", () => {
     const xml = partition(
