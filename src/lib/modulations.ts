@@ -74,10 +74,19 @@ export function estDiatoniqueEn(r: ChordResult, t: Tonalite): boolean {
   return r.pcs.every((pc) => dia.has(pc));
 }
 
-/** L'accord est-il la DOMINANTE du ton (5e degré, fonction D) ? */
+/**
+ * L'accord est-il la DOMINANTE du ton (5e degré, fonction D) ?
+ *
+ * Le 5e degré ne suffit pas : en mineur, le `v` NATUREL (Mi-Sol-Si en La mineur,
+ * sans Sol#) porte le degré 5 mais ne cadence pas — il ne conduit pas à la tonique.
+ * Seul le V AVEC SENSIBLE cadence. On exige donc la sensible du ton — `tonicPc+11` —
+ * dans l'accord : le V majeur et le V7 la contiennent, le v mineur non.
+ */
 export function estDominanteDe(r: ChordResult, t: Tonalite): boolean {
   const lu = analyseEn(r, t);
-  return lu.degreeNum === 5 && lu.fonction === "D";
+  if (lu.degreeNum !== 5 || lu.fonction !== "D") return false;
+  const sensible = (t.tonicPc + 11) % 12;
+  return r.pcs.includes(sensible);
 }
 
 /** L'accord est-il la TONIQUE du ton (1er degré, fonction T) ? */
@@ -96,13 +105,21 @@ export function estToniqueDe(r: ChordResult, t: Tonalite): boolean {
  * légitimement entre la prédominante et la dominante : on la traverse. Le premier
  * accord ÉTRANGER au ton rompt la cellule.
  *
- * Toute la difficulté tient à un piège d'homonymie de degré : le ii et le vi du
- * nouveau ton sont des prédominantes sans ambiguïté, mais son IV/iv ne l'est pas.
- * Le I d'un ton est le IV de sa dominante : dans « I V/V V » en Do, le Do de
- * départ SE RELIT « IV de Sol » sans rien préparer du tout — c'est le degré 4
- * fantôme du V/V isolé. On ne l'accepte donc comme prédominante que s'il est
- * LUI-MÊME abordé depuis un autre accord du nouveau ton : une cellule installée,
- * pas la tonique de départ filant vers une dominante secondaire.
+ * Toute la difficulté tient à un piège d'homonymie de degré : seul le ii du nouveau
+ * ton est une prédominante sans ambiguïté. Le IV/iv comme le vi sont des degrés
+ * FANTÔMES, car le I d'un ton emprunte leur numéro dans deux tons voisins :
+ *  - le I est le IV de sa dominante — « I V/V V » en Do : le Do se relit « IV de Sol » ;
+ *  - le I est le VI de son médiant mineur — « I V7/iii iii » en Do : le Do se relit
+ *    « VI de Mi mineur ».
+ * Dans les deux cas, la tonique de départ file vers une dominante secondaire sans
+ * rien installer. On n'accepte donc ces deux degrés comme prédominante que s'ils
+ * sont LUI-MÊME adossés, à gauche, à un autre accord du nouveau ton : une cellule
+ * installée. Le vi est de surcroît de fonction TONIQUE : la plus faible des
+ * prétendantes, jamais recevable seule.
+ *
+ * Limite connue et VALIDÉE : un IV en TÊTE de cellule (« Sib Do7 Fa » vers Fa) n'a
+ * pas d'accord antérieur du ton et n'est donc pas détecté. Compromis assumé : mieux
+ * vaut manquer ce cas rare que déclarer des modulations sur des tonicisations banales.
  */
 export function aPredominantePreparee(
   seq: ChordResult[], indexDominante: number, t: Tonalite, borneGauche: number,
@@ -111,10 +128,11 @@ export function aPredominantePreparee(
     const r = seq[j];
     if (!estDiatoniqueEn(r, t)) return false; // la cellule est rompue
     const deg = analyseEn(r, t).degreeNum;
-    if (deg === 2 || deg === 6) return true; // ii ou vi : prédominante non ambiguë
-    if (deg === 4) {
-      // IV/iv : n'ouvre une vraie cellule que s'il est adossé, à gauche, à un
-      // autre accord du ton — sinon c'est le degré 4 fantôme du V/V isolé.
+    if (deg === 2) return true; // ii : seule prédominante non ambiguë
+    if (deg === 4 || deg === 6) {
+      // IV/iv et vi : n'ouvrent une vraie cellule que s'ils sont adossés, à gauche,
+      // à un autre accord du ton — sinon ce sont les degrés 4/6 fantômes du V/V ou
+      // du V/iii isolés.
       const precedent = j - 1;
       return precedent >= borneGauche && estDiatoniqueEn(seq[precedent], t);
     }

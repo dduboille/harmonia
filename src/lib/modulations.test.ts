@@ -67,6 +67,13 @@ describe("estDominanteDe / estToniqueDe", () => {
   it("Sol7 n'est pas la tonique de Sol (c'est sa dominante à lui)", () => {
     expect(estToniqueDe(acc([7, 11, 2, 5]), SOL)).toBe(false);
   });
+
+  it("le v mineur naturel n'est PAS une dominante : seule la sensible cadence", () => {
+    // Mi mineur (Mi-Sol-Si, SANS Sol#) en La mineur : un iii de passage, pas un V.
+    expect(estDominanteDe(acc([4, 7, 11]), LAm)).toBe(false);
+    // Mi majeur (Mi-Sol#-Si) porte la sensible de La : vraie dominante.
+    expect(estDominanteDe(acc([4, 8, 11]), LAm)).toBe(true);
+  });
 });
 
 describe("aPredominantePreparee — la cellule cadentielle du nouveau ton", () => {
@@ -105,6 +112,17 @@ describe("aPredominantePreparee — la cellule cadentielle du nouveau ton", () =
 
   it("ne remonte pas au-delà de la borne gauche (début de région)", () => {
     expect(aPredominantePreparee(seqVersSol, 2, SOL, 2)).toBe(false);
+  });
+
+  it("refuse le VI phantom du degré 6 (I V7/iii iii, tonicisation du médiant)", () => {
+    // Do Si7 Mim = I V7/iii iii en Do : le Do initial se relit VI de Mi mineur,
+    // mais aucun accord de Mi mineur ne le précède — ce n'est pas une cellule.
+    const versMim: ChordResult[] = [
+      acc([0, 4, 7]),      // 0 Do  (VI de Mi mineur : phantom)
+      acc([11, 3, 6, 9]),  // 1 Si7 (V de Mi mineur)
+      acc([4, 7, 11]),     // 2 Mim
+    ];
+    expect(aPredominantePreparee(versMim, 1, { tonicPc: 4, mode: "minor" }, 0)).toBe(false);
   });
 });
 
