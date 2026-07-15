@@ -40,6 +40,24 @@ describe("corrigerHarmonisation — notes étrangères par le classifieur C1", (
     expect(types).toContain("note de passage");
     expect(r.notesMelodie.filter((n) => n.type === null).length).toBeGreaterThan(0); // les notes d'accord
   });
+
+  it("distingue une note d'accord d'une étrangère innommée", () => {
+    // Do (accord) – Fa# (hors accord, abordé ET quitté par saut : rien ne la nomme)
+    // – Do – Mi, sur un accord de Do tenu.
+    const melody = exo([
+      { note: "C", octave: 4, duration: "quarter" },
+      { note: "F#", octave: 4, duration: "quarter" },
+      { note: "C", octave: 4, duration: "quarter" },
+      { note: "E", octave: 4, duration: "quarter" },
+    ]);
+    const r = corrigerHarmonisation(melody, [["I"], []]);
+    // La note d'accord : estAccord true, type null.
+    expect(r.notesMelodie[0].estAccord).toBe(true);
+    expect(r.notesMelodie[0].type).toBeNull();
+    // L'étrangère innommée : estAccord false, type null — mais distincte de la note d'accord.
+    expect(r.notesMelodie[1].estAccord).toBe(false);
+    expect(r.notesMelodie[1].type).toBeNull();
+  });
 });
 
 describe("corrigerHarmonisation — score fonctionnel", () => {

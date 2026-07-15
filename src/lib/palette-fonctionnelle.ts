@@ -139,6 +139,24 @@ export function construirePalette(
   candidats.push(accordDiatonique(2, tonicPc, mode, true, 0)); // ii7
   candidats.push(accordDiatonique(7, tonicPc, mode, true, 0)); // vii°7 (en mineur) / viiø7 (majeur)
 
+  // En mineur, `accordDiatonique` bâtit tout sur le mineur NATUREL : le 5e degré
+  // sort en accord mineur (v), sans la SENSIBLE. Or la dominante tonale EXIGE la
+  // sensible (7e haussée). Sans ces candidats, la colonne « Dominante » n'offrirait
+  // aucun accord conclusif — aucune cadence parfaite en mineur — et `resoudreAccord`
+  // rendrait `null` pour les ids "V"/"V7". On bâtit donc V, V7 (+ V6/5) et vii°7 sur
+  // la sensible ; le moteur les étiquette (aucune théorie écrite ici). Le v naturel
+  // reste dans la palette : il n'est pas faux, il n'est simplement pas conclusif.
+  if (mode === "minor") {
+    const sensible = (tonicPc + 11) % 12;
+    const V = [(tonicPc + 7) % 12, sensible, (tonicPc + 2) % 12];      // Mi majeur en La mineur
+    const V7 = [...V, (tonicPc + 5) % 12];                             // E7
+    const vii7 = [sensible, (tonicPc + 2) % 12, (tonicPc + 5) % 12, (tonicPc + 8) % 12]; // Sol#°7
+    candidats.push({ pcs: V, bassPc: V[0] });
+    candidats.push({ pcs: V7, bassPc: V7[0] });
+    candidats.push({ pcs: V7, bassPc: V7[1] });   // V6/5 : sensible à la basse
+    candidats.push({ pcs: vii7, bassPc: vii7[0] });
+  }
+
   candidats.push(...candidatsChromatiques(tonicPc, mode));
 
   const autorisees = categoriesAutorisees(niveau);

@@ -43,7 +43,16 @@ export interface AccordCorrige {
 export interface NoteMelodieCorrigee {
   nom: string;       // "Do", "Ré"…
   mesure: number;
-  type: string | null; // null = note de l'accord ; sinon libellé C1
+  /**
+   * La note appartient-elle à l'accord actif ? Ce booléen lève l'ambiguïté de
+   * `type: null`, qui servait à la fois pour « note de l'accord » et pour une
+   * étrangère que le classifieur ne sait pas nommer. Désormais :
+   *   estAccord=true               → note de l'accord (type null) ;
+   *   estAccord=false, type=null   → étrangère INNOMMÉE (dissonance non expliquée) ;
+   *   estAccord=false, type="…"    → étrangère nommée par C1.
+   */
+  estAccord: boolean;
+  type: string | null; // libellé C1 d'une étrangère nommée, sinon null
 }
 
 export interface CorrectionResult {
@@ -169,7 +178,10 @@ export function corrigerHarmonisation(
           pcsAccordSuivant: segments[idx + 1]?.pcs,
           debutSegment: Math.round(seg.startBeat * TPQ),
           finSegment: Math.round(seg.endBeat * TPQ),
-          tempsFort: onsetBeat === seg.startBeat,
+          // Le temps fort est MÉTRIQUE (1er temps de la MESURE), et non le début du
+          // segment : sur le 2e accord d'une mesure (temps 3 en 4/4), la note d'attaque
+          // n'est pas sur un temps fort. C'est la lecture de C1 (`span.beat === 1`).
+          tempsFort: note.beat === 1,
           traverseAccords:
             note.onset < Math.round(seg.startBeat * TPQ) ||
             note.onset + note.duration > Math.round(seg.endBeat * TPQ),
@@ -183,6 +195,7 @@ export function corrigerHarmonisation(
     notesMelodie.push({
       nom: NOTE_FR[note.pc] ?? "?",
       mesure: note.measure,
+      estAccord,
       type: estAccord ? null : typeEtr !== null ? LIBELLE_ETRANGERE[typeEtr] : null,
     });
   }
@@ -199,7 +212,11 @@ export function corrigerHarmonisation(
   // Syntaxe fonctionnelle : la marche prédominante → dominante → tonique est
   // récompensée, le recul dominante → prédominante pénalisé. On lit les fonctions
   // RÉELLES rendues par le moteur, jamais une théorie parallèle.
-  let fonctions = 60;
+  //
+  // Base délibérément BASSE (50) : une harmonisation immobile (I–I–I–I) n'engrange
+  // aucun bonus de marche fonctionnelle et doit plafonner bas — l'immobilisme n'est
+  // pas une syntaxe. Seuls les enchaînements gagnent des points.
+  let fonctions = 50;
   for (let i = 0; i < segments.length - 1; i++) {
     const a = segments[i].result.fonction;
     const b = segments[i + 1].result.fonction;

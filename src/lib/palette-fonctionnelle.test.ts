@@ -38,6 +38,30 @@ describe("construirePalette — groupes fonctionnels", () => {
   });
 });
 
+describe("construirePalette — la dominante avec sensible existe en mineur", () => {
+  const LA = 9; // La mineur : sensible = Sol# (8)
+
+  it("le groupe Dominante contient V, V7, vii°7 (bâtis sur la sensible)", () => {
+    const groupes = construirePalette(LA, "minor", 3);
+    const dominante = groupes.find((g) => g.titre === "Dominante")!;
+    const degres = dominante.accords.map((a) => a.degree);
+    expect(degres).toEqual(expect.arrayContaining(["V", "V7", "vii°7"]));
+  });
+
+  it("resoudreAccord('V') rend la dominante MAJEURE (Mi), fonction D", () => {
+    const v = resoudreAccord("V", LA, "minor")!;
+    expect(v).not.toBeNull();
+    expect(v.fonction).toBe("D");
+    expect(v.bassPc).toBe(4); // Mi
+  });
+
+  it("resoudreAccord('V7') rend bien un V7 en mineur", () => {
+    const v7 = resoudreAccord("V7", LA, "minor")!;
+    expect(v7).not.toBeNull();
+    expect(v7.degree).toBe("V7");
+  });
+});
+
 describe("resoudreAccord — id de palette OU nom d'accord", () => {
   it("résout un id de palette en pcs + basse", () => {
     const a = resoudreAccord("V6/5", DO, "major")!;
