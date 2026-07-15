@@ -12,6 +12,13 @@ const TOOLS = [
     pro: true,
   },
   {
+    href: "studio",
+    icon: "✎",
+    title: "Studio de composition",
+    desc: "Importez votre composition MusicXML — partition gravée, lecture audio et analyse harmonique.",
+    pro: true,
+  },
+  {
     href: "assistant",
     icon: "✦",
     title: "Assistant IA",

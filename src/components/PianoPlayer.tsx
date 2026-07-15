@@ -42,6 +42,8 @@ export interface PianoPlayerRef {
   playVoicing: (specs: string[], opts?: PlayOptions) => void;
   /** Play a sequence of voicings, each element an array of "Note:octave" specs. */
   playVoicingSequence: (voicings: string[][], opts?: PlaySequenceOptions) => void;
+  /** Coupe immédiatement toute note en train de sonner (relâche l'échantillonneur). */
+  stopAll: () => void;
   isReady: boolean;
 }
 
@@ -376,6 +378,14 @@ const PianoPlayer = forwardRef<PianoPlayerRef, PianoPlayerProps>(({
           });
         });
       });
+    },
+    stopAll: () => {
+      // Le studio programme les notes une à une (setTimeout) : à l'arrêt, il annule
+      // les timeouts encore en attente, mais la note DÉJÀ déclenchée continuerait de
+      // sonner sa durée entière. `releaseAll` la relâche tout de suite, pour un
+      // silence net. Le synthé de secours, lui, s'éteint seul (pas de note tenue).
+      if (_sampler) _sampler.releaseAll();
+      setPressed(new Set());
     },
   }), [isReady, playNoteInternal]);
 
