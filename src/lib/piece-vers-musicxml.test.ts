@@ -73,6 +73,20 @@ describe("pieceVersMusicXML — aller-retour par le parseur", () => {
     expect(score.notes.find((x) => x.midi === 77)!.onset).toBe(TPQ);
   });
 
+  it("un triolet porte le CROCHET (tuplet start/stop) sur ses bornes", () => {
+    const triolet = (l: Hauteur["lettre"]): Note => ({
+      type: "note", hauteurs: [{ lettre: l, alteration: 0, octave: 5 }],
+      duree: { base: "croche", points: 0, nolet: { reelles: 3, normales: 2 } },
+    });
+    const xml = pieceVersMusicXML(piece1(
+      [triolet("C"), triolet("D"), triolet("E"), n("F", 5, "noire"), n("G", 5, "noire"), n("A", 5, "noire")],
+      [{ type: "silence", duree: { base: "ronde", points: 0 }, mesureEntiere: true }],
+    ));
+    // Un seul crochet ouvert et un seul fermé pour le groupe de trois.
+    expect((xml.match(/<tuplet type="start"\/>/g) ?? []).length).toBe(1);
+    expect((xml.match(/<tuplet type="stop"\/>/g) ?? []).length).toBe(1);
+  });
+
   it("un ACCORD empile ses hauteurs au même instant", () => {
     const accord: Note = {
       type: "note",

@@ -32,7 +32,10 @@ function hauteurXML(h: Hauteur): string {
  * ferme une liaison venue de la note précédente ; `note.liee` en ouvre une vers la
  * suivante. La liaison est à la fois SONORE (`<tie>`) et GRAPHIQUE (`<tied>`).
  */
-function noteXML(note: Note, voix: string, portee: number, tenueEntrante: boolean): string {
+function noteXML(
+  note: Note, voix: string, portee: number,
+  tenueEntrante: boolean, tupletDebut: boolean, tupletFin: boolean,
+): string {
   const duree = dureeEnDivisions(note.duree);
   const type = TYPE_XML[note.duree.base];
   const points = "<dot/>".repeat(note.duree.points);
@@ -46,11 +49,18 @@ function noteXML(note: Note, voix: string, portee: number, tenueEntrante: boolea
     (tenueEntrante ? `<tie type="stop"/>` : "") + (debut ? `<tie type="start"/>` : "");
   const tied =
     (tenueEntrante ? `<tied type="stop"/>` : "") + (debut ? `<tied type="start"/>` : "");
-  const notations = tied ? `<notations>${tied}</notations>` : "";
+  // Le CROCHET de n-olet est porté par la première et la dernière note du groupe.
+  // Sans lui, le graveur ne dessine ni le crochet ni le chiffre « 3 » : la seule
+  // `time-modification` donne la bonne durée mais pas la notation. Le crochet ne
+  // vaut que pour la première hauteur d'un accord.
+  const tuplet =
+    (tupletDebut ? `<tuplet type="start"/>` : "") + (tupletFin ? `<tuplet type="stop"/>` : "");
 
   return note.hauteurs
     .map((h, i) => {
       const chord = i > 0 ? "<chord/>" : "";
+      const contenu = tied + (i === 0 ? tuplet : "");
+      const notations = contenu ? `<notations>${contenu}</notations>` : "";
       return (
         `<note>${chord}${hauteurXML(h)}<duration>${duree}</duration>${ties}` +
         `<voice>${voix}</voice><type>${type}</type>${points}${modif}` +
@@ -75,12 +85,27 @@ function silenceXML(s: Silence, voix: string, portee: number, ticksMesure: numbe
 function voixXML(voix: Voix, numeroVoix: string, portee: number, ticksMesure: number): string {
   let out = "";
   let tenueEntrante = false;
+  // Position dans le n-olet courant : les notes de n-olet consécutives se groupent
+  // par paquets de `reelles` (3 pour un triolet) ; le premier ouvre le crochet, le
+  // dernier le ferme.
+  let posNolet = 0;
   for (const ev of voix) {
     if (ev.type === "silence") {
       out += silenceXML(ev, numeroVoix, portee, ticksMesure);
       tenueEntrante = false;
+      posNolet = 0;
     } else {
-      out += noteXML(ev, numeroVoix, portee, tenueEntrante);
+      const nolet = ev.duree.nolet;
+      let debut = false;
+      let fin = false;
+      if (nolet) {
+        if (posNolet === 0) debut = true;
+        posNolet += 1;
+        if (posNolet >= nolet.reelles) { fin = true; posNolet = 0; }
+      } else {
+        posNolet = 0;
+      }
+      out += noteXML(ev, numeroVoix, portee, tenueEntrante, debut, fin);
       tenueEntrante = !!ev.liee;
     }
   }
