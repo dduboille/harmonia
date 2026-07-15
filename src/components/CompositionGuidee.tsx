@@ -361,9 +361,10 @@ function PaletteGrid({
 
   // Quels groupes sont repliés — état PARTAGÉ par toutes les mesures : replier un
   // groupe dans une mesure le replie partout, pour garder une palette homogène.
-  // « Chromatisme » est replié par défaut : c'est le groupe le plus fourni, et un
-  // débutant n'en a pas besoin d'emblée.
-  const [replies, setReplies] = useState<Set<string>>(() => new Set(['Chromatisme']));
+  // RIEN n'est replié par défaut : replier « Chromatisme » d'office cachait l'accord
+  // même dont un exercice chromatique a besoin (un emprunt bVI introuvable). Les
+  // groupes restent repliables pour désencombrer, mais tout est visible d'entrée.
+  const [replies, setReplies] = useState<Set<string>>(() => new Set());
   const basculer = (titre: string) => setReplies(prev => {
     const n = new Set(prev);
     if (n.has(titre)) n.delete(titre); else n.add(titre);
