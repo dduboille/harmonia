@@ -16,6 +16,28 @@ function resolvePlan(priceId: string): string {
   return "pro";
 }
 
+/**
+ * Fin de la période en cours.
+ *
+ * Depuis la version d'API `2025-03-31`, Stripe a DÉPLACÉ `current_period_end` :
+ * le champ n'existe plus sur l'abonnement, il vit sur ses LIGNES. Or nous sommes
+ * en `2026-04-22.dahlia`. L'ancienne lecture (`subscription.current_period_end`)
+ * rendait donc `undefined` — et le `as any` qui traînait ici empêchait TypeScript
+ * de le dire. La date partait à `null`, l'abonnement n'expirait jamais… quand
+ * l'écriture ne se cassait pas franchement.
+ *
+ * On lit les lignes d'abord, et on retombe sur l'ancien emplacement pour rester
+ * compatible avec les abonnements créés sous une version antérieure.
+ */
+function finDePeriode(subscription: Stripe.Subscription): string | null {
+  const surLaLigne = subscription.items?.data?.[0]?.current_period_end;
+  const surLAbonnement = (subscription as unknown as { current_period_end?: number })
+    .current_period_end;
+
+  const ts = surLaLigne ?? surLAbonnement;
+  return typeof ts === "number" ? new Date(ts * 1000).toISOString() : null;
+}
+
 export async function POST(req: NextRequest) {
   const stripe = getStripe();
   const body = await req.text();
@@ -41,15 +63,24 @@ export async function POST(req: NextRequest) {
         const userId  = session.metadata?.clerk_user_id;
         if (!userId) break;
 
+        // Un abonnement 100 % offert (bon de réduction) n'en est pas moins un
+        // abonnement : Stripe le crée et le rattache à la session. Mais si le
+        // rattachement manque, mieux vaut le dire que d'échouer en silence.
+        if (!session.subscription) {
+          console.error("Webhook checkout.session.completed sans abonnement", {
+            sessionId: session.id,
+            userId,
+          });
+          break;
+        }
+
         const subscription = await stripe.subscriptions.retrieve(
           session.subscription as string
-        ) as any;
+        );
 
         const priceId = subscription.items.data[0].price.id;
         const plan = resolvePlan(priceId);
-        const periodEnd = subscription.current_period_end
-          ? new Date(subscription.current_period_end * 1000).toISOString()
-          : null;
+        const periodEnd = finDePeriode(subscription);
 
         const { error } = await supabaseAdmin
           .from("user_subscriptions")
@@ -71,15 +102,16 @@ export async function POST(req: NextRequest) {
       }
 
       case "customer.subscription.updated": {
-        const subscription = event.data.object as any;
+        const subscription = event.data.object as Stripe.Subscription;
         const userId = subscription.metadata?.clerk_user_id;
         if (!userId) break;
 
         const priceId = subscription.items.data[0].price.id;
-        const plan    = subscription.status === "active" ? resolvePlan(priceId) : "free";
-        const periodEnd = subscription.current_period_end
-          ? new Date(subscription.current_period_end * 1000).toISOString()
-          : null;
+        // « trialing » est un état actif : un abonnement en période d'essai donne
+        // accès. Le refuser rétrogradait l'abonné en « free » dès la mise à jour.
+        const actif = subscription.status === "active" || subscription.status === "trialing";
+        const plan  = actif ? resolvePlan(priceId) : "free";
+        const periodEnd = finDePeriode(subscription);
 
         const { error } = await supabaseAdmin
           .from("user_subscriptions")
@@ -99,7 +131,7 @@ export async function POST(req: NextRequest) {
       }
 
       case "customer.subscription.deleted": {
-        const subscription = event.data.object as any;
+        const subscription = event.data.object as Stripe.Subscription;
         const userId = subscription.metadata?.clerk_user_id;
         if (!userId) break;
 
