@@ -16,6 +16,7 @@ import {
   type ChordResult,
   type ChromaEvent,
 } from "@/lib/harmonic-analysis";
+import { construirePlanTonal, type PlanTonal } from "@/lib/modulations";
 
 // La théorie harmonique vit dans `@/lib/harmonic-analysis`, la lecture du MusicXML
 // dans `@/lib/musicxml-parse`, et la CHAÎNE (segmentation → choix de l'accord par le
@@ -56,6 +57,7 @@ export interface AnalysisResult {
     inexpliques: number;
     evenements: ChromaEvent[];
   };
+  planTonal: PlanTonal;
 }
 
 // ── Constantes ────────────────────────────────────────────────────────────────
@@ -104,6 +106,14 @@ function analyze(xml: string, filename: string): AnalysisResult {
   // tout ce qui lit ces étiquettes : le comptage du chromatisme comme la
   // détection des cadences.
   annotateResolutions(chordSequence.map((c) => c.result), tonicPc, mode);
+
+  // ── Plan tonal (les MODULATIONS) ──
+  //
+  // On construit le plan tonal APRÈS `annotateResolutions` : la détection des
+  // modulations relit chaque accord dans une tonalité candidate, et cette lecture
+  // n'a de sens que sur des degrés déjà stabilisés (dominantes secondaires promues,
+  // cibles révisées). Couche PURE au-dessus de la séquence, cf. `@/lib/modulations`.
+  const planTonal = construirePlanTonal(chordSequence, { tonicPc, mode });
 
   const evenements = buildChromaEvents(chordSequence, tonicPc, mode);
 
@@ -158,6 +168,7 @@ function analyze(xml: string, filename: string): AnalysisResult {
     cadences,
     nombreChromatiques,
     chromatisme,
+    planTonal,
   };
 }
 

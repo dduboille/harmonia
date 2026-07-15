@@ -62,6 +62,21 @@ interface MesureResult {
   accords: ChordResult[];
 }
 
+// ── Plan tonal (modulations) — miroir de `@/lib/modulations` ───────────────────
+
+interface RegionTonale {
+  nom: string;
+  mesureDebut: number;
+  mesureFin: number;
+  /** L'accord charnière — absent pour la région initiale. `index` = position dans
+   *  la séquence globale des accords (même ordre que `chordSequence` côté route). */
+  pivot?: { index: number; etiquetteAncienne: string; etiquetteNouvelle: string };
+  /** La cadence qui a confirmé cette région — absente pour la région initiale. */
+  cadence?: { mesure: number };
+}
+interface DegreRelu { index: number; degree: string; tonalite: string; }
+interface PlanTonal { regions: RegionTonale[]; degresRelus: DegreRelu[]; }
+
 interface AnalysisResult {
   fichier: string;
   tonalite: string;
@@ -80,6 +95,7 @@ interface AnalysisResult {
     inexpliques: number;
     evenements: ChromaEvent[];
   };
+  planTonal: PlanTonal;
 }
 
 // ── Affichage du nom d'accord ─────────────────────────────────────────────────
@@ -138,7 +154,7 @@ const CADENCE_COLOR: Record<string, { bg: string; color: string }> = {
 
 // ── Main Component ────────────────────────────────────────────────────────────
 
-type Tab = "resume" | "mesures" | "cadences" | "chromatisme" | "commentaire";
+type Tab = "resume" | "mesures" | "cadences" | "chromatisme" | "plan" | "commentaire";
 
 export default function AnalysePartition() {
   const [isDragging, setIsDragging] = useState(false);
@@ -312,6 +328,7 @@ export default function AnalysePartition() {
     { id: "mesures",     label: `Mesures (${analysis.nombreMesures})` },
     { id: "cadences",    label: `Cadences (${analysis.cadences.length})` },
     { id: "chromatisme", label: `Chromatisme (${analysis.chromatisme.evenements.length})` },
+    { id: "plan",        label: `Plan tonal (${analysis.planTonal.regions.length})` },
     { id: "commentaire", label: "✦ Commentaire IA" },
   ];
 
@@ -319,6 +336,30 @@ export default function AnalysePartition() {
     acc[c.type] = (acc[c.type] ?? 0) + 1;
     return acc;
   }, {});
+
+  // ── Index du plan tonal, par position GLOBALE d'accord ──
+  //
+  // Le tableau des mesures itère `mesures[].accords[]` sans indice global, alors que
+  // le plan tonal repère chaque accord par sa position dans la séquence. On établit
+  // donc la correspondance AVANT le rendu — plutôt que de muter un compteur pendant
+  // le JSX, où se glissent les décalages : `indexDebutMesure[mi]` est l'index global
+  // du premier accord de la mesure `mi`, et l'accord `ci` de cette mesure porte
+  // l'index `indexDebutMesure[mi] + ci`. L'ordre de `mesures[].accords[]` est celui
+  // de `chordSequence` (construit mesure par mesure, accord par accord, côté route).
+  const reluParIndex = new Map(analysis.planTonal.degresRelus.map((d) => [d.index, d]));
+  const pivotParIndex = new Map(
+    analysis.planTonal.regions
+      .filter((r) => r.pivot)
+      .map((r) => [r.pivot!.index, r]),
+  );
+  const indexDebutMesure: number[] = [];
+  {
+    let n = 0;
+    for (const m of analysis.mesures) {
+      indexDebutMesure.push(n);
+      n += m.accords.length;
+    }
+  }
 
   return (
     <main style={{ minHeight: "100vh", background: "#f4f1ec", padding: "2rem 1rem" }}>
@@ -455,7 +496,12 @@ export default function AnalysePartition() {
                       </tr>
                     )];
                   }
-                  return m.accords.map((chord, ci) => (
+                  return m.accords.map((chord, ci) => {
+                    // Position globale de l'accord dans la séquence (cf. `indexDebutMesure`).
+                    const idxAccord = indexDebutMesure[mi] + ci;
+                    const pivot = pivotParIndex.get(idxAccord);
+                    const relu = reluParIndex.get(idxAccord);
+                    return (
                     <tr
                       key={`${m.numero}-${ci}`}
                       style={{ borderBottom: "1px solid #f0ebe8", background: rowBg }}
@@ -476,14 +522,34 @@ export default function AnalysePartition() {
                         {chord.bassFr ?? "—"}
                       </td>
                       <td style={{ padding: "10px 16px" }}>
-                        <span style={{
-                          display: "inline-block",
-                          background: "#F0EBF8", color: "#5C3D6E",
-                          padding: "2px 10px", borderRadius: 12,
-                          fontSize: 12, fontWeight: 700,
-                        }}>
-                          {chord.degree}
-                        </span>
+                        {pivot ? (
+                          // Le PIVOT porte une double étiquette : son degré dans le ton
+                          // quitté = son degré dans le ton rejoint. C'est la charnière
+                          // de la modulation, mise en évidence par une couleur ambrée.
+                          <span
+                            title={`Pivot : ${pivot.pivot!.etiquetteAncienne} (ton précédent) = ${pivot.pivot!.etiquetteNouvelle} (${pivot.nom})`}
+                            style={{
+                              display: "inline-block",
+                              background: "#FAEEDA", color: "#BA7517",
+                              padding: "2px 10px", borderRadius: 12,
+                              fontSize: 12, fontWeight: 700, whiteSpace: "nowrap",
+                            }}
+                          >
+                            {pivot.pivot!.etiquetteAncienne} = {pivot.pivot!.etiquetteNouvelle}
+                          </span>
+                        ) : (
+                          // Hors pivot, on affiche le degré RELU dans le ton de la région
+                          // (une dominante secondaire du ton principal peut devenir un V
+                          // de la région modulée) ; à défaut, le degré d'origine.
+                          <span style={{
+                            display: "inline-block",
+                            background: "#F0EBF8", color: "#5C3D6E",
+                            padding: "2px 10px", borderRadius: 12,
+                            fontSize: 12, fontWeight: 700,
+                          }}>
+                            {relu ? relu.degree : chord.degree}
+                          </span>
+                        )}
                       </td>
                       <td style={{ padding: "10px 16px" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
@@ -548,7 +614,8 @@ export default function AnalysePartition() {
                         )}
                       </td>
                     </tr>
-                  ));
+                    );
+                  });
                 })}
               </tbody>
             </table>
@@ -638,6 +705,34 @@ export default function AnalysePartition() {
                     <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>
                       {e.explication}
                     </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── Plan tonal ── */}
+        {activeTab === "plan" && (
+          <div>
+            {analysis.planTonal.regions.length <= 1 ? (
+              <div style={{ textAlign: "center", padding: "48px 0", color: "#767676", fontFamily: "system-ui, sans-serif", fontSize: 14 }}>
+                Pas de modulation détectée — la pièce reste dans sa tonalité.
+              </div>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {analysis.planTonal.regions.map((r, i) => (
+                  <div key={i} style={{ background: "#fff", borderRadius: 12, padding: "16px 20px", boxShadow: "0 1px 4px rgba(0,0,0,0.07)", fontFamily: "system-ui, sans-serif" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+                      <span style={{ fontSize: 15, fontWeight: 700, color: "#5C3D6E", fontFamily: "Georgia, serif" }}>{r.nom}</span>
+                      <span style={{ fontSize: 12, color: "#767676" }}>mesures {r.mesureDebut}–{r.mesureFin}</span>
+                    </div>
+                    {r.pivot && (
+                      <div style={{ fontSize: 13, color: "#555", marginTop: 8 }}>
+                        Pivot : <strong>{r.pivot.etiquetteAncienne}</strong> (ton précédent) = <strong>{r.pivot.etiquetteNouvelle}</strong> ({r.nom})
+                        {r.cadence && <> · confirmé par la cadence à la mesure {r.cadence.mesure}</>}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

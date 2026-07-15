@@ -18,6 +18,7 @@ import {
   type ChordResult,
 } from "./harmonic-analysis";
 import { analyserHarmonie } from "./analyse-chaine";
+import { construirePlanTonal, type AccordSequence } from "./modulations";
 
 // ── Fabrique de MusicXML ──────────────────────────────────────────────────────
 
@@ -317,5 +318,94 @@ describe("nouvelle chaîne — le choral ORNÉ", () => {
 
   it("l'accord final tenu n'est annoté qu'une fois (rythme harmonique)", () => {
     expect(orne.filter((a) => a.mesure === 2)).toHaveLength(2);
+  });
+});
+
+// ══ LE PLAN TONAL, DE BOUT EN BOUT ═══════════════════════════════════════════
+//
+// C2 (les modulations) est une couche au-dessus de la suite d'accords. Les tests
+// unitaires de `modulations.ts` la prouvent sur des séquences fabriquées à la main ;
+// ici on la branche sur la CHAÎNE RÉELLE — MusicXML → accords → plan tonal — comme
+// la route le fait. Deux contrôles complémentaires :
+//   1. le choral NU ne module pas : une seule région (le garde-fou anti-fausse-
+//      modulation — sa tonicisation V7/V ne doit PAS être prise pour un départ vers
+//      Sol) ;
+//   2. un choral qui module vraiment de Do vers Sol : deux régions, avec pivot et
+//      cadence confirmant la bascule.
+
+/** La séquence d'accords telle que la route l'assemble pour `construirePlanTonal` :
+ *  chaîne complète, puis stabilisation des degrés par la résolution. */
+function sequenceAccords(xml: string, tonicPc: number): AccordSequence[] {
+  const score = parseMusicXML(xml);
+  const segments = analyserHarmonie(score, tonicPc, score.mode);
+  annotateResolutions(segments.map((s) => s.result), tonicPc, score.mode);
+  return segments.map((s) => ({ result: s.result, measure: s.measure }));
+}
+
+/**
+ *   temps    1        2        3        4     ‖    1          2          3-4
+ *   S       Do5      Do5      Ré5      Mi5    ‖   Mi5        La4       Si4  Ré5
+ *   A       Mi4      Fa4      Sol4     Sol4   ‖   La4        Fa#4      Sol4 Sol4
+ *   T       Sol3     La3      Si3      Do4    ‖   Do4        Do4       Ré4  Si3
+ *   B       Do3      Fa3      Sol2     Do3    ‖   La2        Ré3       Sol2 Sol2
+ *           I        IV       V        I      ‖   vi(=ii Sol) V7/V→V Sol  Sol I(Sol)
+ *                                                 ↑ pivot     ↑ dominante ↑ cadence
+ *
+ * Mesure 1 : une cadence I–IV–V–I qui INSTALLE Do. Mesure 2 : le La mineur (vi de Do,
+ * mais ii de Sol) sert de PIVOT, la dominante Ré7 (V de Sol) le confirme, et Sol
+ * majeur cadence — la modulation est installée, ce n'est pas une tonicisation.
+ */
+const CHORAL_MODULANT =
+  `<score-partwise><part-list><score-part id="P1"/><score-part id="P2"/></part-list>` +
+  `<part id="P1">` +
+  mesure(
+    1,
+    [["C", 0, 5, 1], ["C", 0, 5, 1], ["D", 0, 5, 1], ["E", 0, 5, 1]],
+    [["E", 0, 4, 1], ["F", 0, 4, 1], ["G", 0, 4, 1], ["G", 0, 4, 1]],
+    ATTRS,
+  ) +
+  mesure(
+    2,
+    [["E", 0, 5, 1], ["A", 0, 4, 1], ["B", 0, 4, 1], ["D", 0, 5, 1]],
+    [["A", 0, 4, 1], ["F", 1, 4, 1], ["G", 0, 4, 1], ["G", 0, 4, 1]],
+  ) +
+  `</part>` +
+  `<part id="P2">` +
+  mesure(
+    1,
+    [["G", 0, 3, 1], ["A", 0, 3, 1], ["B", 0, 3, 1], ["C", 0, 4, 1]],
+    [["C", 0, 3, 1], ["F", 0, 3, 1], ["G", 0, 2, 1], ["C", 0, 3, 1]],
+    ATTRS,
+  ) +
+  mesure(
+    2,
+    [["C", 0, 4, 1], ["C", 0, 4, 1], ["D", 0, 4, 1], ["B", 0, 3, 1]],
+    [["A", 0, 2, 1], ["D", 0, 3, 1], ["G", 0, 2, 1], ["G", 0, 2, 1]],
+  ) +
+  `</part></score-partwise>`;
+
+describe("plan tonal — de bout en bout sur la chaîne réelle", () => {
+  it("le choral NU ne module pas : une seule région (garde-fou anti-fausse-modulation)", () => {
+    // Sa tonicisation V7/V ne doit PAS être lue comme un départ vers Sol : le V6/5
+    // (un Sol7, avec Fa bécarre) n'est pas diatonique en Sol et rompt la cellule.
+    const plan = construirePlanTonal(sequenceAccords(CHORAL, 0), { tonicPc: 0, mode: "major" });
+    expect(plan.regions).toHaveLength(1);
+    expect(plan.regions[0].nom).toBe("Do majeur");
+  });
+
+  it("un choral qui module de Do vers Sol : deux régions, pivot et cadence", () => {
+    const plan = construirePlanTonal(sequenceAccords(CHORAL_MODULANT, 0), { tonicPc: 0, mode: "major" });
+
+    expect(plan.regions.map((r) => r.nom)).toEqual(["Do majeur", "Sol majeur"]);
+
+    const sol = plan.regions[1];
+    // Le pivot est le dernier accord commun aux deux tons avant la dominante : le
+    // La mineur, vi de Do ET ii de Sol.
+    expect(sol.pivot).toBeDefined();
+    expect(sol.pivot!.etiquetteAncienne).toBe("vi"); // en Do
+    expect(sol.pivot!.etiquetteNouvelle).toBe("ii");  // en Sol
+    // La bascule est confirmée par la cadence Ré7 → Sol, en mesure 2.
+    expect(sol.cadence).toBeDefined();
+    expect(sol.cadence!.mesure).toBe(2);
   });
 });
