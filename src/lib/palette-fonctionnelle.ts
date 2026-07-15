@@ -87,11 +87,23 @@ function candidatsChromatiques(tonicPc: number, mode: "major" | "minor"): Candid
   return out;
 }
 
-/** Nom français simple d'un accord, d'après sa fondamentale et sa qualité (via le moteur). */
-function nomAccord(pcs: number[], bassPc: number): string {
-  const chord = identifyChordFromNotes(pcs, bassPc);
-  if (!chord) return "?";
-  return (NOTE_FR[chord.rootPc] ?? "?") + chord.quality;
+/** Noms français en BÉMOLS — pour les degrés abaissés (bVI, bII, bIII, bVII). */
+const NOTE_FR_BEMOL: Record<number, string> = {
+  0: "Do", 1: "Réb", 2: "Ré", 3: "Mib", 4: "Mi", 5: "Fa",
+  6: "Solb", 7: "Sol", 8: "Lab", 9: "La", 10: "Sib", 11: "Si",
+};
+
+/**
+ * Nom français d'un accord de palette, ORTHOGRAPHE COMPRISE.
+ *
+ * L'orthographe suit l'altération du degré : un emprunt bVI ou un napolitain bII
+ * s'écrit en BÉMOLS (Lab, Réb), jamais en dièses (Sol#, Do#). Le chiffre romain
+ * porte cette information — une table toute en dièses trahissait le nom, et l'élève
+ * qui cherchait « Lab » ne trouvait qu'un « Sol# » méconnaissable.
+ */
+function nomAccord(rootPc: number, quality: string, degree: string): string {
+  const table = degree.startsWith("b") ? NOTE_FR_BEMOL : NOTE_FR;
+  return (table[rootPc] ?? "?") + quality;
 }
 
 const CHROMATIQUES: Set<Categorie> = new Set([
@@ -113,7 +125,7 @@ function etiqueter(c: Candidat, tonicPc: number, mode: "major" | "minor"): Accor
   const r = analyzeChord(chord, tonicPc, mode);
   return {
     id: r.degree,
-    nom: nomAccord(c.pcs, c.bassPc),
+    nom: nomAccord(r.rootPc, r.quality, r.degree),
     pcs: r.pcs,
     bassPc: c.bassPc,
     degree: r.degree,

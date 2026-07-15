@@ -36,6 +36,13 @@ describe("construirePalette — groupes fonctionnels", () => {
     const v65 = groupes.flatMap((g) => g.accords).find((a) => a.degree === "V6/5")!;
     expect(v65.bassPc).toBe(11);
   });
+
+  it("les degrés abaissés sont nommés en BÉMOLS, pas en dièses", () => {
+    const accords = construirePalette(DO, "major", 3).flatMap((g) => g.accords);
+    // bVI = Lab majeur (et non « Sol# »), bII6 = napolitain Réb (et non « Do# »).
+    expect(accords.find((a) => a.degree === "bVI")!.nom).toBe("Lab");
+    expect(accords.find((a) => a.degree === "bII6")!.nom).toBe("Réb");
+  });
 });
 
 describe("construirePalette — la dominante avec sensible existe en mineur", () => {
