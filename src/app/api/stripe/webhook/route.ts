@@ -95,7 +95,14 @@ export async function POST(req: NextRequest) {
 
         if (error) {
           console.error("Supabase upsert error (checkout):", error);
-          return NextResponse.json({ error: "DB error" }, { status: 500 });
+          // On fait remonter le message réel de Postgres dans la réponse : seul
+          // Stripe (donc le titulaire du compte) la voit, et c'est ce qui permet
+          // de diagnostiquer sans accès aux logs de production. Diagnostic
+          // temporaire — à retirer une fois la cause traitée.
+          return NextResponse.json(
+            { error: "DB error", detail: error.message, code: error.code, hint: error.hint },
+            { status: 500 },
+          );
         }
 
         break;
