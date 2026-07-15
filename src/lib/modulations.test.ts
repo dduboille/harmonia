@@ -7,6 +7,7 @@ import {
 } from "./modulations";
 import { estDominanteDe, estToniqueDe, aPredominantePreparee } from "./modulations";
 import { trouvePivot } from "./modulations";
+import { construirePlanTonal, type AccordSequence } from "./modulations";
 import { identifyChordFromNotes, analyzeChord, type ChordResult } from "./harmonic-analysis";
 
 const DO: Tonalite = { tonicPc: 0, mode: "major" };
@@ -151,5 +152,87 @@ describe("trouvePivot — le dernier accord commun aux deux tons", () => {
 
   it("ne remonte pas au-delà de la borne gauche", () => {
     expect(trouvePivot(seq, 2, DO, SOL, 2)).toBeNull();
+  });
+});
+
+/** Fabrique une séquence {result, measure} à partir de pcs et d'un numéro de mesure. */
+function sq(items: Array<{ pcs: number[]; bass?: number; m: number }>): AccordSequence[] {
+  return items.map((it) => ({ result: acc(it.pcs, it.bass), measure: it.m }));
+}
+
+describe("construirePlanTonal", () => {
+  it("Do → Sol par pivot, confirmée par la cadence", () => {
+    // Do  Sol  Do | Lam(=ii Sol)  Ré7(=V Sol)  Sol(cadence)
+    const seq = sq([
+      { pcs: [0, 4, 7], m: 1 },   // Do   I
+      { pcs: [7, 11, 2], m: 1 },  // Sol  (V en Do)
+      { pcs: [0, 4, 7], m: 2 },   // Do   I
+      { pcs: [9, 0, 4], m: 2 },   // Lam  vi en Do = ii en Sol  ← pivot
+      { pcs: [2, 6, 9, 0], m: 3 },// Ré7  V en Sol
+      { pcs: [7, 11, 2], m: 3 },  // Sol  I en Sol (cadence)
+    ]);
+    const plan = construirePlanTonal(seq, { tonicPc: 0, mode: "major" });
+
+    expect(plan.regions.map((r) => r.nom)).toEqual(["Do majeur", "Sol majeur"]);
+    const sol = plan.regions[1];
+    expect(sol.pivot).toBeDefined();
+    // Le pivot est le DERNIER accord commun aux deux tons (contrat validé de
+    // `trouvePivot`, cf. test Task 3) : ici Lam, vi de Do et ii de Sol — un pivot
+    // vi=ii tout à fait canonique. Le plan attendait Do (I=IV), mais Lam, également
+    // commun et postérieur, l'emporte : on suit le socle, pas l'attente périmée.
+    expect(sol.pivot!.etiquetteAncienne).toBe("vi");  // en Do
+    expect(sol.pivot!.etiquetteNouvelle).toBe("ii");  // en Sol
+    expect(sol.mesureFin).toBe(3);
+  });
+
+  it("une simple tonicisation ne module pas : I V7/V V I reste en Do", () => {
+    const seq = sq([
+      { pcs: [0, 4, 7], m: 1 },    // Do
+      { pcs: [2, 6, 9, 0], m: 1 }, // Ré7 (V/V) — pas de prédominante de Sol avant
+      { pcs: [7, 11, 2], m: 2 },   // Sol
+      { pcs: [0, 4, 7], m: 2 },    // Do
+    ]);
+    const plan = construirePlanTonal(seq, { tonicPc: 0, mode: "major" });
+    expect(plan.regions).toHaveLength(1);
+    expect(plan.regions[0].nom).toBe("Do majeur");
+  });
+
+  it("modulation au relatif mineur (Do → La mineur)", () => {
+    // Do  Rém(=iv Lam)  Mi7(=V Lam)  Lam(cadence)
+    const seq = sq([
+      { pcs: [0, 4, 7], m: 1 },     // Do  ← pivot (I en Do = III en Lam)
+      { pcs: [2, 5, 9], m: 1 },     // Rém iv en Lam
+      { pcs: [4, 8, 11, 2], m: 2 }, // Mi7 V en Lam
+      { pcs: [9, 0, 4], m: 2 },     // Lam i (cadence)
+    ]);
+    const plan = construirePlanTonal(seq, { tonicPc: 0, mode: "major" });
+    expect(plan.regions.map((r) => r.nom)).toEqual(["Do majeur", "La mineur"]);
+  });
+
+  it("chaîne Do → Sol → Ré", () => {
+    const seq = sq([
+      { pcs: [0, 4, 7], m: 1 },     // Do   pivot vers Sol
+      { pcs: [9, 0, 4], m: 1 },     // Lam  ii Sol
+      { pcs: [2, 6, 9, 0], m: 2 },  // Ré7  V Sol
+      { pcs: [7, 11, 2], m: 2 },    // Sol  I Sol   pivot vers Ré (I Sol = IV Ré)
+      { pcs: [4, 7, 11], m: 3 },    // Mim  ii Ré
+      { pcs: [9, 1, 4, 7], m: 3 },  // La7  V Ré
+      { pcs: [2, 6, 9], m: 4 },     // Ré   I Ré (cadence)
+    ]);
+    const plan = construirePlanTonal(seq, { tonicPc: 0, mode: "major" });
+    expect(plan.regions.map((r) => r.nom)).toEqual(["Do majeur", "Sol majeur", "Ré majeur"]);
+  });
+
+  it("aucune modulation → une seule région couvrant toute la pièce", () => {
+    const seq = sq([
+      { pcs: [0, 4, 7], m: 1 },   // Do
+      { pcs: [5, 9, 0], m: 1 },   // Fa
+      { pcs: [7, 11, 2], m: 2 },  // Sol
+      { pcs: [0, 4, 7], m: 2 },   // Do
+    ]);
+    const plan = construirePlanTonal(seq, { tonicPc: 0, mode: "major" });
+    expect(plan.regions).toHaveLength(1);
+    expect(plan.regions[0].mesureDebut).toBe(1);
+    expect(plan.regions[0].mesureFin).toBe(2);
   });
 });

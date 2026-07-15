@@ -163,3 +163,122 @@ export function trouvePivot(
   }
   return null;
 }
+
+export interface AccordSequence {
+  result: ChordResult;
+  measure: number;
+}
+
+export interface RegionTonale {
+  tonicPc: number;
+  mode: "major" | "minor";
+  nom: string;
+  indexDebut: number;   // position dans la séquence (incluse)
+  indexFin: number;     // position dans la séquence (incluse)
+  mesureDebut: number;
+  mesureFin: number;
+  /** L'accord charnière — absent pour la région initiale. */
+  pivot?: {
+    index: number;
+    etiquetteAncienne: string; // degré dans le ton QUITTÉ
+    etiquetteNouvelle: string; // degré dans le ton REJOINT
+  };
+  /** La cadence qui a confirmé cette région — absente pour la région initiale. */
+  cadence?: { mesure: number };
+}
+
+export interface DegreRelu {
+  index: number;
+  degree: string;   // le degré dans le ton de sa région
+  tonalite: string; // le nom du ton
+}
+
+export interface PlanTonal {
+  regions: RegionTonale[];
+  /** Étiquette de chaque accord dans le ton de SA région (pivot exclu : sa double
+   *  étiquette vit dans `region.pivot`). */
+  degresRelus: DegreRelu[];
+}
+
+/**
+ * Construit le plan tonal par un balayage séquentiel à état. La tonalité courante
+ * démarre sur `home` et bascule dès qu'une cadence dans un ton voisin est à la fois
+ * CONFIRMÉE (dominante → tonique), PRÉPARÉE (prédominante du nouveau ton) et PIVOTÉE
+ * (accord commun aux deux tons). Sans l'un de ces trois, on reste : c'est une
+ * tonicisation, pas une modulation.
+ */
+export function construirePlanTonal(seq: AccordSequence[], home: Tonalite): PlanTonal {
+  const regions: RegionTonale[] = [];
+  const degresRelus: DegreRelu[] = [];
+
+  // On hisse la projection {result} → ChordResult hors de la boucle : les prédicats
+  // (aPredominantePreparee, trouvePivot) travaillent sur des ChordResult nus, et cette
+  // liste est stable pour toute la durée du balayage.
+  const results = seq.map((s) => s.result);
+
+  let courant = home;
+  let debut = 0;            // index de début de la région courante
+  let pivotEntrant: RegionTonale["pivot"] | undefined; // pivot qui a ouvert la région
+  let cadenceEntrante: RegionTonale["cadence"] | undefined;
+
+  /** Clôt la région courante sur l'intervalle [debut, fin] et enregistre ses degrés. */
+  const clore = (fin: number) => {
+    if (fin < debut) return; // région vide (bascule immédiate) : rien à émettre
+    regions.push({
+      tonicPc: courant.tonicPc,
+      mode: courant.mode,
+      nom: nomTonalite(courant),
+      indexDebut: debut,
+      indexFin: fin,
+      mesureDebut: seq[debut].measure,
+      mesureFin: seq[fin].measure,
+      pivot: pivotEntrant,
+      cadence: cadenceEntrante,
+    });
+    for (let k = debut; k <= fin; k++) {
+      // Le pivot porte une double étiquette (dans `region.pivot`) : on ne le remet
+      // pas ici, pour ne pas afficher deux fois le même index.
+      if (pivotEntrant && k === pivotEntrant.index) continue;
+      degresRelus.push({
+        index: k,
+        degree: analyseEn(seq[k].result, courant).degree,
+        tonalite: nomTonalite(courant),
+      });
+    }
+  };
+
+  let i = 1;
+  while (i < seq.length - 1) {
+    let bascule = false;
+
+    for (const K of tonsVoisins(courant)) {
+      // Cadence à cette position : seq[i] dominante de K, seq[i+1] tonique de K.
+      if (!estDominanteDe(seq[i].result, K)) continue;
+      if (!estToniqueDe(seq[i + 1].result, K)) continue;
+
+      // Préparée ? Pivotée ? — sinon ce n'est qu'une tonicisation.
+      if (!aPredominantePreparee(results, i, K, debut)) continue;
+      const pivot = trouvePivot(results, i, courant, K, debut);
+      if (pivot === null) continue;
+
+      // On clôt la région courante JUSTE AVANT le pivot ; le pivot ouvre la nouvelle.
+      const ancienne = analyseEn(seq[pivot].result, courant).degree;
+      const nouvelle = analyseEn(seq[pivot].result, K).degree;
+      clore(pivot - 1);
+
+      debut = pivot;
+      courant = K;
+      pivotEntrant = { index: pivot, etiquetteAncienne: ancienne, etiquetteNouvelle: nouvelle };
+      cadenceEntrante = { mesure: seq[i + 1].measure };
+
+      i = i + 2; // on reprend le balayage APRÈS la tonique de cadence
+      bascule = true;
+      break;
+    }
+
+    if (!bascule) i++;
+  }
+
+  clore(seq.length - 1);
+  return { regions, degresRelus };
+}
