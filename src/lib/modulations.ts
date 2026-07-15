@@ -261,6 +261,13 @@ export function construirePlanTonal(seq: AccordSequence[], home: Tonalite): Plan
       const pivot = trouvePivot(results, i, courant, K, debut);
       if (pivot === null) continue;
 
+      // On ne module JAMAIS depuis un ton qu'on n'a pas installé : il faut au moins
+      // un accord de la région courante AVANT le pivot. Si `pivot === debut`, la
+      // région d'origine serait vide (clore(pivot-1) sort aussitôt) et le plan
+      // naîtrait mal formé — une région portant un pivot vers un ton absent. On
+      // laisse alors filer et le balayage continue (i++), quitte à ne rien déclarer.
+      if (pivot <= debut) continue;
+
       // On clôt la région courante JUSTE AVANT le pivot ; le pivot ouvre la nouvelle.
       const ancienne = analyseEn(seq[pivot].result, courant).degree;
       const nouvelle = analyseEn(seq[pivot].result, K).degree;

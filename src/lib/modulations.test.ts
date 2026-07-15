@@ -223,6 +223,22 @@ describe("construirePlanTonal", () => {
     expect(plan.regions.map((r) => r.nom)).toEqual(["Do majeur", "Sol majeur", "Ré majeur"]);
   });
 
+  it("pas de bascule si le pivot serait le tout premier accord (pivot à l'index 0)", () => {
+    // La séquence s'ouvre DIRECTEMENT sur son pivot : Lam (vi de Do = ii de Sol),
+    // puis Ré7 (V de Sol), Sol (cadence). Basculer ici viderait la région d'origine
+    // (Do) et pendrait un pivot vers un ton absent du plan. On refuse : une seule
+    // région, « Do majeur », sans pivot.
+    const seq = sq([
+      { pcs: [9, 0, 4], m: 1 },    // Lam  (pivot potentiel à l'index 0)
+      { pcs: [2, 6, 9, 0], m: 1 }, // Ré7  V en Sol
+      { pcs: [7, 11, 2], m: 2 },   // Sol  I en Sol
+    ]);
+    const plan = construirePlanTonal(seq, { tonicPc: 0, mode: "major" });
+    expect(plan.regions).toHaveLength(1);
+    expect(plan.regions[0].nom).toBe("Do majeur");
+    expect(plan.regions[0].pivot).toBeUndefined();
+  });
+
   it("aucune modulation → une seule région couvrant toute la pièce", () => {
     const seq = sq([
       { pcs: [0, 4, 7], m: 1 },   // Do
