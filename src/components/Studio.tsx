@@ -265,7 +265,7 @@ export default function Studio() {
 
   return (
     <main style={{ minHeight: "100vh", background: "#f4f1ec", padding: "2rem 1rem" }}>
-      <div style={{ maxWidth: 900, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1240, margin: "0 auto" }}>
 
         {/* En-tête */}
         <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 20, flexWrap: "wrap", gap: 12 }}>
@@ -302,73 +302,88 @@ export default function Studio() {
           </div>
         )}
 
-        {/* Partition gravée */}
-        {xml && (
-          <div style={{
-            background: "#fff", borderRadius: 12, padding: "16px 12px",
-            boxShadow: "0 1px 4px rgba(0,0,0,0.07)", marginBottom: 16,
-          }}>
-            <StudioScore musicxml={xml} />
-          </div>
-        )}
+        {/* Deux colonnes : la PARTITION à gauche (+ contrôles), l'ANALYSE à droite,
+            qui défile DANS sa propre colonne — ainsi le surlignage de lecture ne
+            fait plus disparaître la partition. Les colonnes s'empilent sur écran
+            étroit (flexWrap). */}
+        <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
 
-        {/* Contrôles de lecture */}
-        {xml && (
-          <div style={{
-            display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap",
-            background: "#fff", borderRadius: 12, padding: "12px 20px",
-            boxShadow: "0 1px 4px rgba(0,0,0,0.07)", marginBottom: 20,
-            fontFamily: "system-ui, sans-serif",
-          }}>
-            <button
-              onClick={isPlaying ? arreterLecture : lire}
-              style={{
-                padding: "10px 24px", borderRadius: 10, border: "none",
-                background: isPlaying ? "#C62828" : "#5C3D6E", color: "#fff",
-                fontSize: 14, fontWeight: 700, cursor: "pointer",
-                display: "inline-flex", alignItems: "center", gap: 8,
-              }}
-            >
-              {isPlaying ? "◼ Arrêter" : "▶ Lire"}
-            </button>
+          {/* ── Colonne gauche : partition + lecture ── */}
+          <div style={{ flex: "1 1 520px", minWidth: 0 }}>
+            {xml && (
+              <div style={{
+                background: "#fff", borderRadius: 12, padding: "16px 12px",
+                boxShadow: "0 1px 4px rgba(0,0,0,0.07)", marginBottom: 16,
+              }}>
+                <StudioScore musicxml={xml} />
+              </div>
+            )}
 
-            <label style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: 13, color: "#555" }}>
-              Tempo
-              <input
-                type="range"
-                min={40}
-                max={200}
-                step={1}
-                value={tempo}
-                // Changer le tempo pendant la lecture désynchroniserait les timeouts déjà
-                // programmés : on le fige tant que ça joue.
-                disabled={isPlaying}
-                onChange={e => setTempo(Number(e.target.value))}
-                style={{ accentColor: "#5C3D6E" }}
-              />
-              <span style={{ minWidth: 56, fontWeight: 700, color: "#1a1a1a" }}>{tempo} BPM</span>
-            </label>
+            {xml && (
+              <div style={{
+                display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap",
+                background: "#fff", borderRadius: 12, padding: "12px 20px",
+                boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
+                fontFamily: "system-ui, sans-serif",
+                position: "sticky", bottom: 12,
+              }}>
+                <button
+                  onClick={isPlaying ? arreterLecture : lire}
+                  style={{
+                    padding: "10px 24px", borderRadius: 10, border: "none",
+                    background: isPlaying ? "#C62828" : "#5C3D6E", color: "#fff",
+                    fontSize: 14, fontWeight: 700, cursor: "pointer",
+                    display: "inline-flex", alignItems: "center", gap: 8,
+                  }}
+                >
+                  {isPlaying ? "◼ Arrêter" : "▶ Lire"}
+                </button>
 
-            {mesureActive !== null && (
-              <span style={{ marginLeft: "auto", fontSize: 12, color: "#5C3D6E", fontWeight: 700 }}>
-                mesure {mesureActive}
-              </span>
+                <label style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: 13, color: "#555" }}>
+                  Tempo
+                  <input
+                    type="range"
+                    min={40}
+                    max={200}
+                    step={1}
+                    value={tempo}
+                    // Changer le tempo pendant la lecture désynchroniserait les timeouts déjà
+                    // programmés : on le fige tant que ça joue.
+                    disabled={isPlaying}
+                    onChange={e => setTempo(Number(e.target.value))}
+                    style={{ accentColor: "#5C3D6E" }}
+                  />
+                  <span style={{ minWidth: 56, fontWeight: 700, color: "#1a1a1a" }}>{tempo} BPM</span>
+                </label>
+
+                {mesureActive !== null && (
+                  <span style={{ marginLeft: "auto", fontSize: 12, color: "#5C3D6E", fontWeight: 700 }}>
+                    mesure {mesureActive}
+                  </span>
+                )}
+              </div>
             )}
           </div>
-        )}
 
-        {/* Analyse par mesure, la mesure courante surlignée */}
-        {analyse && (
-          <div style={{ marginBottom: 24 }}>
+          {/* ── Colonne droite : analyse, défilement interne ── */}
+          {analyse && (
             <div style={{
-              fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", color: "#999",
-              textTransform: "uppercase", marginBottom: 10, fontFamily: "system-ui, sans-serif",
+              flex: "1 1 360px", minWidth: 0,
+              // Colonne « collante » avec sa propre hauteur : le surlignage défile
+              // ICI, jamais la page — la partition reste visible à gauche.
+              position: "sticky", top: 16,
+              maxHeight: "calc(100vh - 32px)", overflowY: "auto",
             }}>
-              Analyse harmonique
+              <div style={{
+                fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", color: "#999",
+                textTransform: "uppercase", marginBottom: 10, fontFamily: "system-ui, sans-serif",
+              }}>
+                Analyse harmonique
+              </div>
+              <StudioAnalyse analyse={analyse} mesureActive={mesureActive} />
             </div>
-            <StudioAnalyse analyse={analyse} mesureActive={mesureActive} />
-          </div>
-        )}
+          )}
+        </div>
 
         {/* PianoPlayer monté caché : il ne sert qu'à SONNER (cf. CompositionGuidee). */}
         <div style={{ height: 0, overflow: "hidden", pointerEvents: "none" }}>
