@@ -46,6 +46,9 @@ const isPublicRoute = createRouteMatcher([
   "/api/webhooks/clerk",
   "/api/contact-cursus",
   "/api/contact-conservatoire",
+  // Cron Vercel : aucun utilisateur Clerk ne le déclenche, donc il serait bloqué
+  // en 401 ici. Il est protégé par son propre jeton (CRON_SECRET), pas par Clerk.
+  "/api/cron/(.*)",
 ]);
 
 function localeOf(pathname: string): string {
