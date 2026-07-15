@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import StudioScore from "@/components/StudioScore";
+import StudioScore, { type StudioScoreRef } from "@/components/StudioScore";
 import StudioAnalyse from "@/components/StudioAnalyse";
 import PianoPlayer, { type PianoPlayerRef } from "@/components/PianoPlayer";
 import { extraireMusicXML } from "@/lib/lire-musicxml";
@@ -58,15 +58,21 @@ export default function Studio() {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const pianoRef = useRef<PianoPlayerRef>(null);
+  const scoreRef = useRef<StudioScoreRef>(null);
   // Identifiants des timeouts en attente (notes + surlignage + fin), pour tout annuler.
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  // Boucle d'animation du repère sur la partition, et l'instant de départ.
+  const rafRef = useRef<number | null>(null);
+  const departRef = useRef<number>(0);
 
   // ── Lecture ────────────────────────────────────────────────────────────────
 
   const arreterLecture = useCallback(() => {
     timeoutsRef.current.forEach(clearTimeout);
     timeoutsRef.current = [];
+    if (rafRef.current !== null) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
     pianoRef.current?.stopAll();
+    scoreRef.current?.surlignerATemps(null);
     setIsPlaying(false);
     setMesureActive(null);
   }, []);
@@ -108,11 +114,27 @@ export default function Studio() {
     ids.push(setTimeout(() => arreterLecture(), dureeTotale * 1000 + 200));
 
     timeoutsRef.current = ids;
+
+    // Le REPÈRE sur la partition, piloté par la même horloge que le son. Verovio
+    // raisonne en temps ÉCRIT (tempos du fichier, sans la vitesse) ; notre temps réel
+    // écoulé y correspond en le multipliant par le facteur de vitesse.
+    const facteur = vitesse / 100;
+    departRef.current = performance.now();
+    const animer = () => {
+      const msEcrit = (performance.now() - departRef.current) * facteur;
+      scoreRef.current?.surlignerATemps(msEcrit);
+      rafRef.current = requestAnimationFrame(animer);
+    };
+    rafRef.current = requestAnimationFrame(animer);
+
     setIsPlaying(true);
   }, [xml, vitesse, isPlaying, arreterLecture]);
 
-  // À la disparition du composant, ne laisser aucun timeout orphelin.
-  useEffect(() => () => { timeoutsRef.current.forEach(clearTimeout); }, []);
+  // À la disparition du composant, ne laisser ni timeout ni animation orphelins.
+  useEffect(() => () => {
+    timeoutsRef.current.forEach(clearTimeout);
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+  }, []);
 
   // ── Import ─────────────────────────────────────────────────────────────────
 
@@ -315,7 +337,7 @@ export default function Studio() {
                 background: "#fff", borderRadius: 12, padding: "16px 12px",
                 boxShadow: "0 1px 4px rgba(0,0,0,0.07)", marginBottom: 16,
               }}>
-                <StudioScore musicxml={xml} />
+                <StudioScore ref={scoreRef} musicxml={xml} />
               </div>
             )}
 

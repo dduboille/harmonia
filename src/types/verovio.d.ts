@@ -32,5 +32,11 @@ declare module "verovio/esm" {
     getPageCount(): number;
     /** SVG d'une page (numérotation 1-based). */
     renderToSVG(page: number): string;
+    /**
+     * Éléments (notes…) qui SONNENT à l'instant `millisec`, d'après la table de
+     * temps interne de Verovio (calculée sur les tempos du fichier). Sert au
+     * surlignage de lecture. Le champ `notes` porte les identifiants SVG des notes.
+     */
+    getElementsAtTime(millisec: number): { notes?: string[]; page?: number };
   }
 }
