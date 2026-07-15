@@ -359,6 +359,17 @@ function PaletteGrid({
   const groupesNonVides = groupes.filter(g => g.accords.length > 0);
   const measures = exercise.measures;
 
+  // Quels groupes sont repliés — état PARTAGÉ par toutes les mesures : replier un
+  // groupe dans une mesure le replie partout, pour garder une palette homogène.
+  // « Chromatisme » est replié par défaut : c'est le groupe le plus fourni, et un
+  // débutant n'en a pas besoin d'emblée.
+  const [replies, setReplies] = useState<Set<string>>(() => new Set(['Chromatisme']));
+  const basculer = (titre: string) => setReplies(prev => {
+    const n = new Set(prev);
+    if (n.has(titre)) n.delete(titre); else n.add(titre);
+    return n;
+  });
+
   return (
     <div style={{ display: 'grid', gridTemplateColumns: `repeat(${measures}, minmax(160px, 1fr))`, gap: 8, overflowX: 'auto' }}>
       {Array.from({ length: measures }, (_, mi) => {
@@ -402,36 +413,52 @@ function PaletteGrid({
               })}
             </div>
 
-            {/* Palette par groupes fonctionnels */}
-            {groupesNonVides.map(g => (
-              <div key={g.titre} style={{ marginBottom: 8 }}>
-                <div style={{ fontSize: 9, fontWeight: 700, color: GROUPE_COULEUR[g.titre], letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 4 }}>
-                  {g.titre}
+            {/* Palette par groupes fonctionnels, repliables */}
+            {groupesNonVides.map(g => {
+              const repli = replies.has(g.titre);
+              return (
+                <div key={g.titre} style={{ marginBottom: 8 }}>
+                  <button
+                    onClick={() => basculer(g.titre)}
+                    aria-expanded={!repli}
+                    style={{
+                      display: 'flex', alignItems: 'center', gap: 4, width: '100%',
+                      background: 'none', border: 'none', padding: 0, marginBottom: 4,
+                      cursor: 'pointer', textAlign: 'left',
+                    }}
+                  >
+                    <span style={{ fontSize: 9, color: GROUPE_COULEUR[g.titre], width: 8 }}>{repli ? '▸' : '▾'}</span>
+                    <span style={{ fontSize: 9, fontWeight: 700, color: GROUPE_COULEUR[g.titre], letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                      {g.titre} <span style={{ color: '#bbb', fontWeight: 600 }}>({g.accords.length})</span>
+                    </span>
+                  </button>
+                  {!repli && (
+                    <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
+                      {g.accords.map(a => {
+                        const isSelected = selected.includes(a.id);
+                        return (
+                          <button
+                            key={a.id}
+                            onClick={() => toggle(a.id)}
+                            style={{
+                              display: 'flex', flexDirection: 'column', alignItems: 'center',
+                              padding: '3px 6px', borderRadius: 4,
+                              border: `0.5px solid ${isSelected ? '#5C3D6E' : '#e0dbd3'}`,
+                              background: isSelected ? '#F0EBF8' : '#fff',
+                              color: isSelected ? '#5C3D6E' : '#444',
+                              fontFamily: 'system-ui,sans-serif', cursor: 'pointer', lineHeight: 1.15,
+                            }}
+                          >
+                            <span style={{ fontSize: 11, fontWeight: isSelected ? 700 : 600 }}>{a.nom}</span>
+                            <span style={{ fontSize: 8, color: isSelected ? '#7B5A8E' : '#999' }}>{a.degree}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
-                <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
-                  {g.accords.map(a => {
-                    const isSelected = selected.includes(a.id);
-                    return (
-                      <button
-                        key={a.id}
-                        onClick={() => toggle(a.id)}
-                        style={{
-                          display: 'flex', flexDirection: 'column', alignItems: 'center',
-                          padding: '3px 6px', borderRadius: 4,
-                          border: `0.5px solid ${isSelected ? '#5C3D6E' : '#e0dbd3'}`,
-                          background: isSelected ? '#F0EBF8' : '#fff',
-                          color: isSelected ? '#5C3D6E' : '#444',
-                          fontFamily: 'system-ui,sans-serif', cursor: 'pointer', lineHeight: 1.15,
-                        }}
-                      >
-                        <span style={{ fontSize: 11, fontWeight: isSelected ? 700 : 600 }}>{a.nom}</span>
-                        <span style={{ fontSize: 8, color: isSelected ? '#7B5A8E' : '#999' }}>{a.degree}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         );
       })}
