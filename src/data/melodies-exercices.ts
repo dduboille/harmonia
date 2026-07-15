@@ -33,7 +33,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'C', octave: 4, duration: 'whole' },
     ],
     suggestedChords: [['C', 'Em'], ['F', 'G'], ['Am', 'G'], ['C']],
-    pool: ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim', 'G7'],
     hint: 'La mélodie dessine l\'accord de Do en mesure 1 — choisissez C. La note B en mesure 3 est la sensible : G ou G7 la précèdent bien.',
     concepts: ['triades diatoniques', 'fonctions T/SD/D', 'cadence parfaite'],
     solutionExplanation: [
@@ -74,7 +73,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'G', octave: 4, duration: 'whole' },
     ],
     suggestedChords: [['G', 'G'], ['C', 'G'], ['D7', 'D7'], ['G']],
-    pool: ['G', 'Am', 'Bm', 'C', 'D', 'Em', 'F#dim', 'D7'],
     hint: 'M1–M2 alternent autour de G et C. M3 dessine l\'accord de D7 : D F# A C (C est la 7e). Finissez par G.',
     concepts: ['gamme de Sol majeur', 'accord de dominante', 'cadence parfaite'],
     solutionExplanation: [
@@ -109,7 +107,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'D', octave: 4, duration: 'whole' },
     ],
     suggestedChords: [['D', 'D'], ['Em', 'A'], ['Bm', 'A7'], ['D']],
-    pool: ['D', 'Em', 'F#m', 'G', 'A', 'Bm', 'C#dim', 'A7'],
     hint: 'M1 dessine l\'arpège de Ré. M2 : Mi sol La sont dans Em puis La. M3 descend — la sensible Do♯ appelle La7→Ré.',
     concepts: ['arpège', 'sensible', 'cadence V7→I'],
     solutionExplanation: [
@@ -145,7 +142,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'F', octave: 4, duration: 'whole' },
     ],
     suggestedChords: [['F', 'F'], ['Bb', 'F'], ['C7', 'C7'], ['F']],
-    pool: ['F', 'Gm', 'Am', 'Bb', 'C', 'Dm', 'Edim', 'C7'],
     hint: 'M1 arpège en Fa. M2 : Si♭ est la dominante de Fa (IV). M3 dessine C7 (Do–Mi–Sol–Si♭) — la dominante appelle la tonique.',
     concepts: ['fa majeur', 'IV degré', 'dominante 7'],
     solutionExplanation: [
@@ -180,7 +176,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'A', octave: 4, duration: 'whole' },
     ],
     suggestedChords: [['Am', 'Am'], ['Am', 'F'], ['E7', 'E7'], ['Am']],
-    pool: ['Am', 'Bdim', 'C', 'Dm', 'E7', 'F', 'G', 'Em'],
     hint: 'En La mineur, la dominante est E7 (avec Sol♯ — sensible menant à La). La note Sol (naturel) en M2 est dans Am et F.',
     concepts: ['mode mineur', 'sensible artificielle', 'dominante de mineur'],
     solutionExplanation: [
@@ -218,7 +213,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'A', octave: 3, duration: 'whole' },
     ],
     suggestedChords: [['Am', 'Am7'], ['E7', 'F'], ['G', 'C'], ['Am']],
-    pool: ['Am', 'Am7', 'Bdim', 'C', 'CMaj7', 'Dm', 'E7', 'F', 'FMaj7', 'G'],
     hint: 'Le style nocturne privilégie les 7es douces (Am7, FMaj7). La sensible Sol♯ de E7 crée l\'émotion romantique caractéristique.',
     concepts: ['accord mineur 7', 'romantisme', 'sensible chromatique'],
     solutionExplanation: [
@@ -254,7 +248,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'C', octave: 5, duration: 'whole' },
     ],
     suggestedChords: [['CMaj7', 'Am7'], ['Dm7', 'G7'], ['Em7', 'CMaj7'], ['CMaj7']],
-    pool: ['CMaj7', 'Dm7', 'Em7', 'FMaj7', 'G7', 'Am7', 'Bm7b5', 'G9'],
     hint: 'En jazz, tout est II–V–I : cherchez Dm7→G7→CMaj7. La mélodie Mi–Sol–La sonne sur CMaj7 ou Am7 (notes communes).',
     concepts: ['II–V–I', 'accord majeur 7', 'accord mineur 7', 'jazz tonal'],
     solutionExplanation: [
@@ -291,7 +284,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'D', octave: 4, duration: 'whole' },
     ],
     suggestedChords: [['Dm', 'Dm'], ['Am', 'Bb'], ['C', 'Dm'], ['Dm']],
-    pool: ['Dm', 'Em', 'F', 'G', 'Am', 'Bb', 'C', 'Gm', 'Am7', 'Dm7'],
     hint: 'Le mode Dorien évite la dominante fonctionnelle. Utilisez Bb (caractéristique de Dorien) et terminez sur Dm sans passer par A7.',
     concepts: ['mode dorien', 'harmonisation modale', 'ambiguïté tonale'],
     solutionExplanation: [
@@ -326,7 +318,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'A', octave: 4, duration: 'whole' },
     ],
     suggestedChords: [['A7', 'A7'], ['D7', 'D7'], ['E7', 'A7'], ['A7']],
-    pool: ['A7', 'D7', 'E7', 'A', 'D', 'E', 'G7', 'B7'],
     hint: 'Le blues utilise des accords de dominante 7 sur chaque degré (I7 IV7 V7). La blue note Mi♭ sonne sur A7 — c\'est voulu.',
     concepts: ['blues 12 mesures', 'accord dominante sur I', 'blue note'],
     solutionExplanation: [
@@ -362,7 +353,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'E', octave: 4, duration: 'whole' },
     ],
     suggestedChords: [['E', 'E'], ['F#m', 'B'], ['C#m', 'B7'], ['E']],
-    pool: ['E', 'F#m', 'G#m', 'A', 'B', 'C#m', 'D#dim', 'B7', 'AMaj7', 'G#7'],
     hint: 'Mi majeur a 4 dièses. M1 arpège de Mi. M3 : Do♯5 est la tierce de C♯m, Sol♯ appelle B7. Finissez sur E.',
     concepts: ['tonalité avec dièses', 'arpège', 'conduite chromatique'],
     solutionExplanation: [
@@ -399,7 +389,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'C', octave: 5, duration: 'whole' },
     ],
     suggestedChords: [['Dm7', 'G7'], ['CMaj7', 'Am7'], ['Em7', 'A7'], ['Dm7', 'G7']],
-    pool: ['CMaj7', 'Dm7', 'Em7', 'FMaj7', 'G7', 'Am7', 'Bm7b5', 'D7', 'A7', 'E7'],
     hint: 'Identifiez les II–V–I : Dm7→G7→CMaj7 est la progression centrale. M3 amorce un II–V vers Dm (Em7→A7 est II–V en Ré mineur).',
     concepts: ['II–V–I imbriqués', 'tonicisation', 'jazz avancé'],
     solutionExplanation: [
@@ -434,7 +423,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'G', octave: 4, duration: 'whole' },
     ],
     suggestedChords: [['G7', 'Db7'], ['CMaj7', 'Eb7'], ['Am7', 'D7'], ['G']],
-    pool: ['G', 'Am7', 'Bm7', 'CMaj7', 'D7', 'Em7', 'Db7', 'Ab7', 'Eb7', 'Bb7', 'G7'],
     hint: 'La substitution tritonique remplace V7 par l\'accord à 6 demi-tons (triton). G7 ↔ Db7 ; D7 ↔ Ab7. Notez la basse chromatique descendante.',
     concepts: ['substitution tritonique', 'basse chromatique', 'jazz avancé'],
     solutionExplanation: [
@@ -470,7 +458,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'E', octave: 4, duration: 'whole' },
     ],
     suggestedChords: [['Em', 'F'], ['C', 'Am'], ['G', 'Am'], ['Em']],
-    pool: ['Em', 'F', 'G', 'Am', 'Bdim', 'C', 'Dm', 'Bm', 'FMaj7', 'CMaj7'],
     hint: 'Le mode Phrygien est caractérisé par la seconde mineure (Mi→Fa). Le mouvement Em→F est sa couleur distinctive. Évitez B7 (V de Em) — vous sortiriez du mode.',
     concepts: ['mode phrygien', 'seconde mineure phrygienne', 'cadence modale'],
     solutionExplanation: [
@@ -506,7 +493,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'C', octave: 5, duration: 'whole' },
     ],
     suggestedChords: [['Cm', 'Eb'], ['Ab', 'Fm'], ['G7', 'G7'], ['Cm']],
-    pool: ['Cm', 'Cm7', 'Ddim', 'Eb', 'EbMaj7', 'Fm', 'G7', 'Ab', 'AbMaj7', 'Bb7'],
     hint: 'Le style Rachmaninov alterne les accords par tierces (Do mineur → Mi♭ → La♭). La densité harmonique vient des 7es et des mouvements chromatiques.',
     concepts: ['relation par tierce', 'accordsmineurs 7', 'romantisme tardif'],
     solutionExplanation: [
@@ -543,7 +529,6 @@ export const MELODIES: MelodyExercise[] = [
       { note: 'C', octave: 4, duration: 'half' },
     ],
     suggestedChords: [['C', 'Am'], ['F', 'G7'], ['Am', 'Dm'], ['G7', 'C']],
-    pool: ['C', 'CMaj7', 'Dm', 'Dm7', 'Em', 'Em7', 'F', 'FMaj7', 'G7', 'Am', 'Am7', 'Bb', 'Eb', 'D7'],
     hint: 'Cette mélodie simple peut s\'harmoniser de mille façons. Explorez les substitutions diatoniques, les accords empruntés (Bb, Eb) et les II–V–I pour créer une couleur unique.',
     concepts: ['réharmonisation', 'emprunts modaux', 'substitutions diatoniques'],
     solutionExplanation: [
@@ -551,6 +536,128 @@ export const MELODIES: MelodyExercise[] = [
       'M2 F + G7 : Mi–Fa dans F (IV) ; Sol7 (V7) prépare parfaitement la résolution.',
       'M3 Am + Dm : Sol–La dans Am (VI) ; Fa–Mi dans Dm (II) — couleur mélancolique avant la cadence.',
       'M4 G7 + C : Cadence V7→I classique — mais essayez Dm7→G7→C pour un II–V–I jazz.',
+    ],
+  },
+
+  // ── Niveau 3 — Chromatisme ───────────────────────────────────────────────────
+  // Ces exercices ciblent chacun un accord chromatique de la palette (fonction
+  // prédominante étendue, dominante secondaire, emprunt) : ils n'ont de sens qu'au
+  // niveau 3, où `construirePalette` débloque les catégories chromatiques.
+
+  {
+    id: 'predominante-ii6',
+    title: 'La prédominante ii6 avant la cadence',
+    difficulty: 3,
+    style: 'classique',
+    keySignature: 'C',
+    isMinor: false,
+    timeSignature: '4/4',
+    measures: 4,
+    notes: [
+      // M1 : arpège de Do (I)
+      { note: 'C', octave: 4, duration: 'quarter' },
+      { note: 'E', octave: 4, duration: 'quarter' },
+      { note: 'G', octave: 4, duration: 'quarter' },
+      { note: 'E', octave: 4, duration: 'quarter' },
+      // M2 : Fa–La–Ré–Fa dessinent le ii (Ré–Fa–La), avec le Fa à la basse en tête
+      { note: 'F', octave: 4, duration: 'quarter' },
+      { note: 'A', octave: 4, duration: 'quarter' },
+      { note: 'D', octave: 4, duration: 'quarter' },
+      { note: 'F', octave: 4, duration: 'quarter' },
+      // M3 : Sol–Fa–Ré–Si → dominante (V7)
+      { note: 'G', octave: 4, duration: 'quarter' },
+      { note: 'F', octave: 4, duration: 'quarter' },
+      { note: 'D', octave: 4, duration: 'quarter' },
+      { note: 'B', octave: 3, duration: 'quarter' },
+      // M4 : tonique
+      { note: 'C', octave: 4, duration: 'whole' },
+    ],
+    suggestedChords: [['C'], ['Dm'], ['G7'], ['C']],
+    hint: 'En mesure 2, choisissez la prédominante « ii6 » (Ré mineur, Fa à la basse) plutôt que le ii fondamental : la basse Fa prépare en douceur la sensible Si du V7. C\'est la marche T → SD → D → T.',
+    concepts: ['prédominante ii6', 'renversement à la basse', 'cadence parfaite'],
+    solutionExplanation: [
+      'M1 C : Do–Mi–Sol–Mi arpègent la tonique (I) — assise de la phrase.',
+      'M2 ii6 : Ré–Fa–La forment le ii ; en 1er renversement (Fa à la basse), la basse descend par degrés vers le V — c\'est la prédominante idiomatique.',
+      'M3 V7 : Sol–Fa–Ré–Si dessinent G7 ; le Fa (7e) et le Si (sensible) tendent vers Do.',
+      'M4 I : Cadence parfaite V7 → I, conclusion affirmée.',
+    ],
+  },
+
+  {
+    id: 'dominante-secondaire-v7-de-v',
+    title: 'La dominante secondaire V7/V',
+    difficulty: 3,
+    style: 'classique',
+    keySignature: 'C',
+    isMinor: false,
+    timeSignature: '4/4',
+    measures: 4,
+    notes: [
+      // M1 : tonique (I)
+      { note: 'C', octave: 4, duration: 'quarter' },
+      { note: 'E', octave: 4, duration: 'quarter' },
+      { note: 'G', octave: 4, duration: 'quarter' },
+      { note: 'E', octave: 4, duration: 'quarter' },
+      // M2 : Ré–Fa♯–La–Ré : le Fa♯ chromatique dessine D7 (V7/V)
+      { note: 'D', octave: 4, duration: 'quarter' },
+      { note: 'F#', octave: 4, duration: 'quarter' },
+      { note: 'A', octave: 4, duration: 'quarter' },
+      { note: 'D', octave: 5, duration: 'quarter' },
+      // M3 : Sol–Fa–Ré–Si : la dominante (V7) — cible de la dominante secondaire
+      { note: 'G', octave: 4, duration: 'quarter' },
+      { note: 'F', octave: 4, duration: 'quarter' },
+      { note: 'D', octave: 4, duration: 'quarter' },
+      { note: 'B', octave: 3, duration: 'quarter' },
+      // M4 : tonique
+      { note: 'C', octave: 4, duration: 'whole' },
+    ],
+    suggestedChords: [['C'], ['D7'], ['G7'], ['C']],
+    hint: 'Le Fa♯ de la mesure 2 n\'appartient pas à Do majeur : c\'est la sensible de Sol. Choisissez « V7/V » (D7) — la dominante de la dominante — puis résolvez-la sur le V (G7). Une parenthèse qui tonicise la dominante.',
+    concepts: ['dominante secondaire', 'V7/V', 'tonicisation'],
+    solutionExplanation: [
+      'M1 C : la tonique installe Do majeur.',
+      'M2 V7/V : Ré–Fa♯–La–Do = D7, dominante de Sol. Le Fa♯ est la sensible tonicisant le V.',
+      'M3 V7 : G7 reçoit la résolution du V7/V — le Fa♯ monte vers Sol. La dominante principale est atteinte.',
+      'M4 I : G7 → Do conclut la cadence.',
+    ],
+  },
+
+  {
+    id: 'emprunt-bvi',
+    title: 'L\'emprunt bVI au mode mineur',
+    difficulty: 3,
+    style: 'romantique',
+    keySignature: 'C',
+    isMinor: false,
+    timeSignature: '4/4',
+    measures: 4,
+    notes: [
+      // M1 : tonique (I)
+      { note: 'C', octave: 4, duration: 'quarter' },
+      { note: 'E', octave: 4, duration: 'quarter' },
+      { note: 'G', octave: 4, duration: 'quarter' },
+      { note: 'C', octave: 5, duration: 'quarter' },
+      // M2 : La♭–Do–Mi♭–Do : le La♭ et le Mi♭ empruntés dessinent bVI (La♭ majeur)
+      { note: 'Ab', octave: 4, duration: 'quarter' },
+      { note: 'C', octave: 5, duration: 'quarter' },
+      { note: 'Eb', octave: 5, duration: 'quarter' },
+      { note: 'C', octave: 5, duration: 'quarter' },
+      // M3 : Sol–Fa–Ré–Si : dominante (V7), la basse descend La♭ → Sol
+      { note: 'G', octave: 4, duration: 'quarter' },
+      { note: 'F', octave: 4, duration: 'quarter' },
+      { note: 'D', octave: 4, duration: 'quarter' },
+      { note: 'B', octave: 3, duration: 'quarter' },
+      // M4 : tonique
+      { note: 'C', octave: 4, duration: 'whole' },
+    ],
+    suggestedChords: [['C'], ['Ab'], ['G7'], ['C']],
+    hint: 'Les bémols de la mesure 2 (La♭, Mi♭) viennent de Do mineur : c\'est l\'emprunt « bVI » (La♭ majeur). Sa basse La♭ descend d\'un demi-ton vers le Sol du V7 — une couleur romantique sombre avant la cadence.',
+    concepts: ['emprunt au mode mineur', 'bVI', 'basse chromatique'],
+    solutionExplanation: [
+      'M1 C : la tonique majeure, lumineuse.',
+      'M2 bVI : La♭–Do–Mi♭ = La♭ majeur, emprunté au mode mineur parallèle — assombrissement soudain.',
+      'M3 V7 : la basse La♭ glisse chromatiquement vers Sol ; G7 rétablit la tension dominante.',
+      'M4 I : résolution V7 → I, la lumière revient.',
     ],
   },
 ];
