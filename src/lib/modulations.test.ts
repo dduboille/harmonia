@@ -6,6 +6,7 @@ import {
   type Tonalite,
 } from "./modulations";
 import { estDominanteDe, estToniqueDe, aPredominantePreparee } from "./modulations";
+import { trouvePivot } from "./modulations";
 import { identifyChordFromNotes, analyzeChord, type ChordResult } from "./harmonic-analysis";
 
 const DO: Tonalite = { tonicPc: 0, mode: "major" };
@@ -104,5 +105,33 @@ describe("aPredominantePreparee — la cellule cadentielle du nouveau ton", () =
 
   it("ne remonte pas au-delà de la borne gauche (début de région)", () => {
     expect(aPredominantePreparee(seqVersSol, 2, SOL, 2)).toBe(false);
+  });
+});
+
+describe("trouvePivot — le dernier accord commun aux deux tons", () => {
+  // Do  Lam  Ré7  Sol   —  home = Do, cible = Sol, dominante en 2.
+  const seq: ChordResult[] = [
+    acc([0, 4, 7]),      // 0 Do  (I en Do = IV en Sol : commun)
+    acc([9, 0, 4]),      // 1 Lam (vi en Do = ii en Sol : commun) ← le dernier avant Ré7
+    acc([2, 6, 9, 0]),   // 2 Ré7 (Fa# : étranger à Do)
+    acc([7, 11, 2]),     // 3 Sol
+  ];
+
+  it("prend le dernier accord commun avant la dominante (Lam)", () => {
+    expect(trouvePivot(seq, 2, DO, SOL, 0)).toBe(1);
+  });
+
+  it("rend null s'il n'existe aucun accord commun (modulation sans pivot)", () => {
+    // Ré7 précédé d'un accord déjà étranger à Do (Fa#m) : rien de commun.
+    const sansPivot: ChordResult[] = [
+      acc([6, 9, 1]),      // 0 Fa#m (étranger à Do)
+      acc([2, 6, 9, 0]),   // 1 Ré7
+      acc([7, 11, 2]),     // 2 Sol
+    ];
+    expect(trouvePivot(sansPivot, 1, DO, SOL, 0)).toBeNull();
+  });
+
+  it("ne remonte pas au-delà de la borne gauche", () => {
+    expect(trouvePivot(seq, 2, DO, SOL, 2)).toBeNull();
   });
 });

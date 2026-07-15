@@ -124,3 +124,24 @@ export function aPredominantePreparee(
   }
   return false;
 }
+
+/**
+ * Le PIVOT : le dernier accord diatonique aux DEUX tonalités avant la dominante du
+ * nouveau ton (à `indexDominante`). On remonte depuis la dominante ; le premier
+ * accord commun rencontré est, par construction, le dernier avant la bascule.
+ *
+ * `null` s'il n'existe aucun accord commun dans la région : c'est une modulation
+ * sans pivot (par saut, par juxtaposition), que la version stricte laisse en
+ * chromatisme plutôt que de l'inventer.
+ */
+export function trouvePivot(
+  seq: ChordResult[], indexDominante: number, ancien: Tonalite, nouveau: Tonalite,
+  borneGauche: number,
+): number | null {
+  for (let j = indexDominante - 1; j >= borneGauche; j--) {
+    if (estDiatoniqueEn(seq[j], ancien) && estDiatoniqueEn(seq[j], nouveau)) {
+      return j;
+    }
+  }
+  return null;
+}
