@@ -4,9 +4,11 @@ import React, { useState, useRef, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import PianoPlayer, { PianoPlayerRef } from './PianoPlayer';
-import { evaluateHarmonization } from '@/lib/harmonization-engine';
 import { MELODIES } from '@/data/melodies-exercices';
-import type { MelodyExercise, MelodyNote, HarmonizationScore } from '@/types/composition';
+import type { MelodyExercise, MelodyNote } from '@/types/composition';
+import { construirePalette, resoudreAccord, type AccordPalette } from '@/lib/palette-fonctionnelle';
+import { realiserSATB, type Voicing } from '@/lib/satb-voicing';
+import { corrigerHarmonisation, type CorrectionResult } from '@/lib/correction-harmonisation';
 
 // ── Staff rendering helpers ──────────────────────────────────────────────────
 
@@ -40,13 +42,6 @@ function getLedgerLines(step: number): number[] {
   return lines;
 }
 
-const EN_TO_FR: Record<string, string> = {
-  C: 'Do', 'C#': 'Do♯', Db: 'Ré♭', D: 'Ré', 'D#': 'Ré♯',
-  Eb: 'Mi♭', E: 'Mi', F: 'Fa', 'F#': 'Fa♯', Gb: 'Sol♭',
-  G: 'Sol', 'G#': 'Sol♯', Ab: 'La♭', A: 'La', 'A#': 'La♯',
-  Bb: 'Si♭', B: 'Si',
-};
-
 const STAFF_LINES = [0, 2, 4, 6, 8];
 
 // ── Bass staff infrastructure ────────────────────────────────────────────────
@@ -76,71 +71,28 @@ function midiToNameOct(midi: number): { name: string; octave: number } {
   return { name: ALL_SHARP_NAMES[midi % 12], octave: Math.floor(midi / 12) - 1 };
 }
 
-function allInVC(pc: number, lo: number, hi: number): number[] {
-  const r: number[] = [];
-  for (let m = lo; m <= hi; m++) if (m % 12 === pc) r.push(m);
-  return r;
+/**
+ * Tonalité de l'exercice → { classe de la tonique, mode } que le moteur attend.
+ * "Am"/"Cm"/"Em" portent le suffixe `m` : on l'ôte pour lire la fondamentale.
+ */
+function exerciseTonic(ex: MelodyExercise): { tonicPc: number; mode: 'major' | 'minor' } {
+  const tonicPc = PC_FROM_NAME[ex.keySignature.replace(/m$/, '')] ?? 0;
+  return { tonicPc, mode: ex.isMinor ? 'minor' : 'major' };
 }
 
-function nearestVC(pc: number, lo: number, hi: number, pref: number): number {
-  const all = allInVC(pc, lo, hi);
-  if (!all.length) return lo;
-  return all.reduce((b, c) => Math.abs(c - pref) < Math.abs(b - pref) ? c : b);
-}
-
-function parseChordPCs(chord: string): number[] {
-  const m = chord.match(/^([A-G][#b]?)(.*)$/);
-  if (!m) return [0, 4, 7];
-  const root = PC_FROM_NAME[m[1]] ?? 0;
-  const q = m[2];
-  let ivs: number[];
-  if (q.match(/m7b5|[øØ]/))           ivs = [0,3,6,10];
-  else if (q.includes('dim7'))         ivs = [0,3,6,9];
-  else if (q.includes('dim'))          ivs = [0,3,6];
-  else if (q.includes('aug'))          ivs = [0,4,8];
-  else if (q.match(/[Mm]aj7/))        ivs = [0,4,7,11];
-  else if (q.match(/^m7|min7/))       ivs = [0,3,7,10];
-  else if (q.match(/^m(?!aj)/))       ivs = [0,3,7];
-  else if (q.includes('sus4'))        ivs = [0,5,7];
-  else if (q.includes('sus2'))        ivs = [0,2,7];
-  else if (q.includes('7'))           ivs = [0,4,7,10];
-  else                                 ivs = [0,4,7];
-  return ivs.map(i => (root + i) % 12);
-}
-
-interface ATBVoicing { alto: number; tenor: number; bass: number }
-
-// Compute alto, tenor, bass with voice leading given fixed soprano MIDI
-function computeATB(chord: string, sopMidi: number, prev: ATBVoicing | null): ATBVoicing {
-  const pr = prev ?? { alto: 64, tenor: 60, bass: 48 };
-  const pcs = parseChordPCs(chord);
-  const sopPC = sopMidi % 12;
-  const rootPC = pcs[0];
-
-  // Bass → root of chord, range E2(40)–C4(60)
-  const bassMidi = nearestVC(rootPC, 40, 60, pr.bass);
-
-  // Pad to 4 PCs (double root for triads)
-  const t4 = pcs.length < 4 ? [...pcs, pcs[0]] : [...pcs];
-  const rem = [...t4];
-  const drop = (pc: number) => { const i = rem.indexOf(pc); if (i >= 0) rem.splice(i, 1); };
-  drop(rootPC);
-  drop(sopPC);
-  while (rem.length < 2) rem.push(pcs[0]);
-
-  let bAlt = pr.alto, bTen = pr.tenor, bScore = Infinity;
-  for (const [aPC, tPC] of [[rem[0], rem[1]], [rem[1], rem[0]]] as [number,number][]) {
-    const aCands = allInVC(aPC, 55, 72).filter(m => m < sopMidi && m > bassMidi);
-    const tCands = allInVC(tPC, 48, 67).filter(m => m > bassMidi);
-    if (!aCands.length || !tCands.length) continue;
-    const aM = aCands.reduce((b, c) => Math.abs(c - pr.alto) < Math.abs(b - pr.alto) ? c : b);
-    const tF = tCands.filter(m => m <= aM);
-    if (!tF.length) continue;
-    const tM = tF.reduce((b, c) => Math.abs(c - pr.tenor) < Math.abs(b - pr.tenor) ? c : b);
-    const sc = Math.abs(aM - pr.alto) + Math.abs(tM - pr.tenor);
-    if (sc < bScore) { bScore = sc; bAlt = aM; bTen = tM; }
-  }
-  return { alto: bAlt, tenor: bTen, bass: bassMidi };
+/**
+ * Réalisation SATB d'un jeton de copie : id de palette ("V6/5") OU nom d'accord
+ * de solution ("G7"). `resoudreAccord` fait le pont vers { pcs, bassPc } — donc la
+ * BASSE suit le renversement — puis `realiserSATB` conduit alto/ténor. `null` si le
+ * jeton est illisible : l'appelant n'affiche alors aucune voix d'accompagnement.
+ */
+function realiserPourJeton(
+  jeton: string, sopMidi: number, prev: Voicing | null,
+  tonicPc: number, mode: 'major' | 'minor',
+): Voicing | null {
+  const acc = resoudreAccord(jeton, tonicPc, mode);
+  if (!acc) return null;
+  return realiserSATB(acc.pcs, acc.bassPc, sopMidi, prev);
 }
 
 // ── Grand staff component ────────────────────────────────────────────────────
@@ -154,6 +106,7 @@ function MelodyStaff({
 }) {
   const notes = exercise.notes;
   const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
+  const { tonicPc, mode } = exerciseTonic(exercise);
   const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
   const hasChords = Boolean(attempt?.some(m => m.length > 0));
   const svgW = Math.max(660, CLEF_W + 30 + notes.length * NOTE_SP + 40);
@@ -245,7 +198,9 @@ function MelodyStaff({
 
       {/* ── Bass staff (shown when chords are selected) ── */}
       {hasChords && (() => {
-        // Collect all chord positions and compute SATB voice leading sequentially
+        // Collect all chord positions and compute SATB voice leading sequentially.
+        // `chord` porte désormais un id de palette ("V6/5") ou un nom ("G7") ; c'est
+        // `realiserPourJeton` (via `resoudreAccord`) qui en tire les hauteurs + la basse.
         type ChordPos = { x: number; chord: string; sopIdx: number; twoPerBar: boolean };
         const positions: ChordPos[] = [];
         measureNoteIndices.forEach((indices, mi) => {
@@ -258,17 +213,17 @@ function MelodyStaff({
           });
         });
 
-        let prevATB: ATBVoicing | null = null;
-        const voicings: ATBVoicing[] = positions.map(pos => {
+        let prevV: Voicing | null = null;
+        const voicings: (Voicing | null)[] = positions.map(pos => {
           const sn = notes[pos.sopIdx];
           const sopMidi = noteMidiValue(sn.note, sn.octave);
-          const atb = computeATB(pos.chord, sopMidi, prevATB);
-          prevATB = atb;
-          return atb;
+          const v = realiserPourJeton(pos.chord, sopMidi, prevV, tonicPc, mode);
+          if (v) prevV = v;
+          return v;
         });
 
         function renderNote(
-          x: number, y: number, ledgerY: (ls: number) => number,
+          x: number, y: number,
           hasSharp: boolean, stemUp: boolean | null, /* null = whole note */
           color: string, xOffset: number = 0
         ) {
@@ -309,6 +264,7 @@ function MelodyStaff({
             {positions.map((pos, pi) => {
               const { x, chord, twoPerBar } = pos;
               const atb = voicings[pi];
+              if (!atb) return null; // jeton illisible : pas de voix d'accompagnement
               const stemMode = twoPerBar ? true : null; // half notes get stem, whole notes don't
 
               // Alto → treble staff (stem down, purple)
@@ -338,21 +294,21 @@ function MelodyStaff({
                   {altLedgers.map(ls => (
                     <line key={ls} x1={x - 14} y1={STAFF_BOTTOM - ls * HALF_STEP} x2={x + 14} y2={STAFF_BOTTOM - ls * HALF_STEP} stroke="#555" strokeWidth="1.1" />
                   ))}
-                  {renderNote(x, altY, ls => STAFF_BOTTOM - ls * HALF_STEP, altInfo.name.includes('#'), stemMode === null ? null : false, '#5C3D6E')}
+                  {renderNote(x, altY, altInfo.name.includes('#'), stemMode === null ? null : false, '#5C3D6E')}
 
                   {/* Tenor ledger lines on bass staff */}
                   {tenLedgers.map(ls => (
                     <line key={ls} x1={x + tenXOffset - 14} y1={BASS_STAFF_BOTTOM - ls * HALF_STEP} x2={x + tenXOffset + 14} y2={BASS_STAFF_BOTTOM - ls * HALF_STEP} stroke="#555" strokeWidth="1.1" />
                   ))}
-                  {renderNote(x, tenY, ls => BASS_STAFF_BOTTOM - ls * HALF_STEP, tenInfo.name.includes('#'), stemMode === null ? null : true, '#5C3D6E', tenXOffset)}
+                  {renderNote(x, tenY, tenInfo.name.includes('#'), stemMode === null ? null : true, '#5C3D6E', tenXOffset)}
 
                   {/* Bass ledger lines on bass staff */}
                   {basLedgers.map(ls => (
                     <line key={ls} x1={x - 14} y1={BASS_STAFF_BOTTOM - ls * HALF_STEP} x2={x + 14} y2={BASS_STAFF_BOTTOM - ls * HALF_STEP} stroke="#555" strokeWidth="1.1" />
                   ))}
-                  {renderNote(x, basY, ls => BASS_STAFF_BOTTOM - ls * HALF_STEP, basInfo.name.includes('#'), stemMode === null ? null : false, '#1a1a1a')}
+                  {renderNote(x, basY, basInfo.name.includes('#'), stemMode === null ? null : false, '#1a1a1a')}
 
-                  {/* Chord label */}
+                  {/* Chord label (id de palette ou nom d'accord) */}
                   <text x={x} y={BASS_STAFF_BOTTOM + 18} fontSize="10" fontFamily="system-ui,sans-serif"
                     fill="#5C3D6E" fontWeight="700" textAnchor="middle">{chord}</text>
                 </g>
@@ -365,9 +321,22 @@ function MelodyStaff({
   );
 }
 
-// ── Chord grid ───────────────────────────────────────────────────────────────
+// ── Palette d'accords par fonction ───────────────────────────────────────────
 
-function ChordGrid({
+const GROUPE_COULEUR: Record<string, string> = {
+  'Tonique': '#2E8B57',
+  'Prédominante': '#185FA5',
+  'Dominante': '#7B3F9E',
+  'Chromatisme': '#BA7517',
+};
+
+/**
+ * La palette : pour chaque mesure, les accords de `construirePalette` filtrés par
+ * le NIVEAU de l'exercice, rangés en sous-sections Tonique / Prédominante /
+ * Dominante / Chromatisme. Un clic stocke l'`accord.id` (jamais le nom) dans la
+ * copie — un renversement comme "V6/5" y garde donc son identité harmonique.
+ */
+function PaletteGrid({
   exercise,
   attempt,
   onChange,
@@ -376,13 +345,33 @@ function ChordGrid({
   attempt: string[][];
   onChange: (mi: number, chords: string[]) => void;
 }) {
+  const { tonicPc, mode } = exerciseTonic(exercise);
+  const groupes = useMemo(
+    () => construirePalette(tonicPc, mode, exercise.difficulty),
+    [tonicPc, mode, exercise.difficulty],
+  );
+  // id → accord, pour afficher le nom d'un accord déjà sélectionné.
+  const parId = useMemo(() => {
+    const m = new Map<string, AccordPalette>();
+    for (const g of groupes) for (const a of g.accords) m.set(a.id, a);
+    return m;
+  }, [groupes]);
+  const groupesNonVides = groupes.filter(g => g.accords.length > 0);
   const measures = exercise.measures;
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${measures}, minmax(120px, 1fr))`, gap: 8, overflowX: 'auto' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${measures}, minmax(160px, 1fr))`, gap: 8, overflowX: 'auto' }}>
       {Array.from({ length: measures }, (_, mi) => {
         const selected = attempt[mi] ?? [];
-        const pool = exercise.pool;
+        const toggle = (id: string) => {
+          if (selected.includes(id)) {
+            onChange(mi, selected.filter(c => c !== id));
+          } else if (selected.length < 2) {
+            onChange(mi, [...selected, id]);
+          } else {
+            onChange(mi, [selected[0], id]);
+          }
+        };
 
         return (
           <div key={mi} style={{ background: '#faf8f5', border: '0.5px solid #e0dbd3', borderRadius: 8, padding: 10 }}>
@@ -390,68 +379,59 @@ function ChordGrid({
               M {mi + 1}
             </div>
 
-            {/* Selected chords badges */}
-            <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', minHeight: 28, marginBottom: 8 }}>
+            {/* Accords sélectionnés (cliquer pour retirer) */}
+            <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', minHeight: 26, marginBottom: 8 }}>
               {selected.length === 0 && (
                 <span style={{ fontSize: 11, color: '#ccc', fontStyle: 'italic' }}>—</span>
               )}
-              {selected.map((c, ci) => (
-                <button
-                  key={ci}
-                  onClick={() => {
-                    const next = selected.filter((_, i) => i !== ci);
-                    onChange(mi, next);
-                  }}
-                  style={{
-                    padding: '2px 8px',
-                    borderRadius: 4,
-                    background: '#5C3D6E',
-                    color: '#fff',
-                    border: 'none',
-                    fontSize: 12,
-                    fontWeight: 600,
-                    fontFamily: 'system-ui,sans-serif',
-                    cursor: 'pointer',
-                  }}
-                >
-                  {c} ✕
-                </button>
-              ))}
-            </div>
-
-            {/* Pool chord buttons */}
-            <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
-              {pool.map(chord => {
-                const isSelected = selected.includes(chord);
+              {selected.map((id, ci) => {
+                const a = parId.get(id);
                 return (
                   <button
-                    key={chord}
-                    onClick={() => {
-                      if (isSelected) {
-                        onChange(mi, selected.filter(c => c !== chord));
-                      } else if (selected.length < 2) {
-                        onChange(mi, [...selected, chord]);
-                      } else {
-                        onChange(mi, [selected[0], chord]);
-                      }
-                    }}
+                    key={ci}
+                    onClick={() => onChange(mi, selected.filter((_, i) => i !== ci))}
+                    title={a ? `${a.nom} · ${a.degree}` : id}
                     style={{
-                      padding: '3px 7px',
-                      borderRadius: 4,
-                      border: `0.5px solid ${isSelected ? '#5C3D6E' : '#e0dbd3'}`,
-                      background: isSelected ? '#F0EBF8' : '#fff',
-                      color: isSelected ? '#5C3D6E' : '#444',
-                      fontSize: 11,
-                      fontFamily: 'system-ui,sans-serif',
-                      cursor: 'pointer',
-                      fontWeight: isSelected ? 600 : 400,
+                      padding: '2px 8px', borderRadius: 4, background: '#5C3D6E', color: '#fff',
+                      border: 'none', fontSize: 12, fontWeight: 600, fontFamily: 'system-ui,sans-serif', cursor: 'pointer',
                     }}
                   >
-                    {chord}
+                    {a ? a.nom : id} ✕
                   </button>
                 );
               })}
             </div>
+
+            {/* Palette par groupes fonctionnels */}
+            {groupesNonVides.map(g => (
+              <div key={g.titre} style={{ marginBottom: 8 }}>
+                <div style={{ fontSize: 9, fontWeight: 700, color: GROUPE_COULEUR[g.titre], letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 4 }}>
+                  {g.titre}
+                </div>
+                <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
+                  {g.accords.map(a => {
+                    const isSelected = selected.includes(a.id);
+                    return (
+                      <button
+                        key={a.id}
+                        onClick={() => toggle(a.id)}
+                        style={{
+                          display: 'flex', flexDirection: 'column', alignItems: 'center',
+                          padding: '3px 6px', borderRadius: 4,
+                          border: `0.5px solid ${isSelected ? '#5C3D6E' : '#e0dbd3'}`,
+                          background: isSelected ? '#F0EBF8' : '#fff',
+                          color: isSelected ? '#5C3D6E' : '#444',
+                          fontFamily: 'system-ui,sans-serif', cursor: 'pointer', lineHeight: 1.15,
+                        }}
+                      >
+                        <span style={{ fontSize: 11, fontWeight: isSelected ? 700 : 600 }}>{a.nom}</span>
+                        <span style={{ fontSize: 8, color: isSelected ? '#7B5A8E' : '#999' }}>{a.degree}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
         );
       })}
@@ -459,144 +439,94 @@ function ChordGrid({
   );
 }
 
-// ── Score display ────────────────────────────────────────────────────────────
+// ── Panneau d'analyse par le moteur ──────────────────────────────────────────
 
-// ── Harmonization hint panel ─────────────────────────────────────────────────
-
-const SEMITONES_H: Record<string, number> = {
-  C: 0, 'C#': 1, Db: 1, D: 2, 'D#': 3, Eb: 3,
-  E: 4, F: 5, 'F#': 6, Gb: 6, G: 7, 'G#': 8, Ab: 8,
-  A: 9, 'A#': 10, Bb: 10, B: 11,
+const FONCTION_LABEL: Record<string, string> = {
+  T: 'Tonique', SD: 'Prédominante', D: 'Dominante', '?': '—',
 };
 
-function getChordTonesPc(chord: string): Set<number> {
-  const m = chord.match(/^([A-G][#b]?)(.*)$/);
-  if (!m) return new Set([0, 4, 7]);
-  const root = SEMITONES_H[m[1]] ?? 0;
-  const qual = m[2];
-  let ivls: number[];
-  if (qual === 'm' || qual === 'min') ivls = [0, 3, 7];
-  else if (qual === '7') ivls = [0, 4, 7, 10];
-  else if (qual === 'm7') ivls = [0, 3, 7, 10];
-  else if (qual === 'dim') ivls = [0, 3, 6];
-  else if (qual === 'Maj7' || qual === 'maj7') ivls = [0, 4, 7, 11];
-  else ivls = [0, 4, 7];
-  return new Set(ivls.map(i => (root + i) % 12));
-}
-
-function guessNonChordType(noteIdx: number, notes: MelodyNote[], chordTones: Set<number>): string {
-  const pc = (n: MelodyNote) => SEMITONES_H[n.note] ?? 0;
-  const prev = noteIdx > 0 ? notes[noteIdx - 1] : null;
-  const next = noteIdx < notes.length - 1 ? notes[noteIdx + 1] : null;
-  const cur = pc(notes[noteIdx]);
-
-  const prevIsChord = prev ? chordTones.has(pc(prev)) : false;
-  const nextIsChord = next ? chordTones.has(pc(next)) : false;
-
-  if (prevIsChord && nextIsChord) return 'broderie';
-  if (prevIsChord && next) {
-    const step = Math.abs(pc(next) - cur);
-    return step <= 2 ? 'passage' : 'échappée';
-  }
-  if (nextIsChord && prev) return 'retard';
-  return 'note étrangère';
-}
-
-const NCT_COLORS: Record<string, string> = {
-  broderie: '#185FA5', passage: '#2E8B57', retard: '#BA7517', échappée: '#7B3F9E', 'note étrangère': '#888',
-};
-const NCT_TIPS: Record<string, string> = {
-  broderie: 'Note encadrée par deux notes d\'accord (broderie ou voisine).',
-  passage: 'Relie deux notes d\'accord par degré conjoint.',
-  retard: 'Résout sur une note d\'accord suivante.',
-  échappée: 'S\'échappe de la note d\'accord par saut.',
-  'note étrangère': 'Note non liée à l\'accord par mouvement simple.',
-};
-
-function HarmonizationPanel({
+/**
+ * L'analyse, alimentée par `corrigerHarmonisation` (le vrai moteur) : par accord,
+ * son degré et sa fonction ; par note de la mélodie, son statut — note de l'accord
+ * (✓), note étrangère nommée par la taxonomie C1, ou dissonance non expliquée.
+ */
+function AnalysePanel({
   exercise,
   attempt,
 }: {
   exercise: MelodyExercise;
   attempt: string[][];
 }) {
-  const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
-  const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
-
-  // Split notes into measures
-  const measureNotes: MelodyNote[][] = [];
-  let cur: MelodyNote[] = [];
-  let beats = 0;
-  for (const note of exercise.notes) {
-    const dur = dBeats[note.duration] ?? 1;
-    cur.push(note);
-    beats += dur;
-    if (beats >= bpm - 0.01) { measureNotes.push(cur); cur = []; beats = 0; }
-  }
-  if (cur.length > 0) measureNotes.push(cur);
-
   const anyAttempt = attempt.some(m => m.length > 0);
+  const correction = useMemo(
+    () => (anyAttempt ? corrigerHarmonisation(exercise, attempt) : null),
+    [exercise, attempt, anyAttempt],
+  );
 
   return (
     <div style={{ background: '#fff', border: '0.5px solid #e8e3db', borderRadius: 10, padding: '16px 20px', marginBottom: '1rem' }}>
       <div style={{ fontSize: 11, fontWeight: 700, color: '#888', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 12 }}>
-        Comment harmoniser ?
+        Analyse par le moteur harmonique
       </div>
 
-      {!anyAttempt && (
+      {!correction && (
         <div style={{ fontSize: 12, color: '#aaa', fontStyle: 'italic', fontFamily: 'system-ui,sans-serif' }}>
           Sélectionnez des accords ci-dessus pour voir l'analyse note par note.
         </div>
       )}
 
-      {anyAttempt && (
-        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${exercise.measures}, minmax(120px, 1fr))`, gap: 10, overflowX: 'auto' }}>
+      {correction && (
+        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${exercise.measures}, minmax(140px, 1fr))`, gap: 10, overflowX: 'auto' }}>
           {Array.from({ length: exercise.measures }, (_, mi) => {
-            const chords = (attempt[mi] ?? []).filter(c => c !== '');
-            const notes = measureNotes[mi] ?? [];
+            const accs = correction.accords.filter(a => a.mesure === mi + 1);
+            const notes = correction.notesMelodie.filter(n => n.mesure === mi + 1);
+            const suggested = exercise.suggestedChords[mi] ?? [];
 
             return (
               <div key={mi} style={{ fontSize: 11, fontFamily: 'system-ui,sans-serif' }}>
                 <div style={{ fontWeight: 700, color: '#BA7517', marginBottom: 6 }}>M {mi + 1}</div>
-                {chords.length === 0 && (
+
+                {accs.length === 0 && (
                   <div style={{ color: '#ccc', fontStyle: 'italic' }}>— pas d'accord —</div>
                 )}
-                {chords.length > 0 && (() => {
-                  // Per-note analysis: determine which chord is active at each note
-                  let noteBeats = 0;
-                  return notes.map((n, ni) => {
-                    const dur = dBeats[n.duration] ?? 1;
-                    const chordIdx = chords.length === 2 && noteBeats >= bpm / 2 ? 1 : 0;
-                    const chord = chords[chordIdx];
-                    const tones = chord ? getChordTonesPc(chord) : new Set<number>();
-                    const pc = SEMITONES_H[n.note] ?? 0;
-                    const isChordTone = tones.has(pc);
-                    const nctType = !isChordTone ? guessNonChordType(ni, notes, tones) : null;
-                    noteBeats += dur;
 
-                    return (
-                      <div key={ni} style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 4 }}>
-                        <span style={{ fontWeight: 600, color: '#1a1a1a', minWidth: 28 }}>
-                          {EN_TO_FR[n.note] ?? n.note}
-                        </span>
-                        {isChordTone ? (
-                          <span style={{ color: '#2E8B57', fontSize: 10, fontWeight: 600 }}>✓ accord</span>
-                        ) : (
-                          <span
-                            title={nctType ? NCT_TIPS[nctType] : ''}
-                            style={{ color: NCT_COLORS[nctType ?? 'note étrangère'] ?? '#888', fontSize: 10, fontWeight: 600, cursor: 'help', borderBottom: '1px dotted currentColor' }}
-                          >
-                            {nctType}
-                          </span>
-                        )}
-                      </div>
-                    );
-                  });
-                })()}
-                {chords.length > 0 && (
+                {accs.length > 0 && (
+                  <>
+                    {/* Accords analysés : degré + fonction */}
+                    <div style={{ marginBottom: 6 }}>
+                      {accs.map((a, ai) => (
+                        <div key={ai} style={{ display: 'flex', alignItems: 'baseline', gap: 5, marginBottom: 2 }}>
+                          <span style={{ fontWeight: 700, color: '#5C3D6E' }}>{a.degree}</span>
+                          <span style={{ fontSize: 10, color: '#888' }}>{FONCTION_LABEL[a.fonction] ?? a.fonction}</span>
+                          {a.resolue && (
+                            <span style={{ fontSize: 9, color: '#2E8B57', fontWeight: 600 }}>résolue</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Notes de la mélodie : accord / étrangère nommée / dissonance */}
+                    <div style={{ borderTop: '0.5px solid #f0ece6', paddingTop: 6 }}>
+                      {notes.map((n, ni) => (
+                        <div key={ni} style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 3 }}>
+                          <span style={{ fontWeight: 600, color: '#1a1a1a', minWidth: 28 }}>{n.nom}</span>
+                          {n.estAccord ? (
+                            <span style={{ color: '#2E8B57', fontSize: 10, fontWeight: 600 }}>✓ accord</span>
+                          ) : n.type !== null ? (
+                            <span style={{ color: '#185FA5', fontSize: 10, fontWeight: 600 }}>{n.type}</span>
+                          ) : (
+                            <span style={{ color: '#c0392b', fontSize: 10, fontWeight: 600 }} title="Dissonance non expliquée par l'accord">étrangère</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                {suggested.length > 0 && (
                   <div style={{ marginTop: 8, paddingTop: 6, borderTop: '0.5px solid #f0ece6' }}>
-                    <div style={{ color: '#888', fontSize: 10, marginBottom: 3 }}>Accord(s) compatible(s) :</div>
-                    {exercise.suggestedChords[mi]?.map(c => (
+                    <div style={{ color: '#888', fontSize: 10, marginBottom: 3 }}>Piste :</div>
+                    {suggested.map(c => (
                       <span key={c} style={{ display: 'inline-block', marginRight: 4, marginBottom: 2, padding: '1px 6px', background: '#E1F5EE', color: '#0F6E56', borderRadius: 4, fontSize: 10, fontWeight: 600 }}>
                         {c}
                       </span>
@@ -611,6 +541,8 @@ function HarmonizationPanel({
     </div>
   );
 }
+
+// ── Score display ────────────────────────────────────────────────────────────
 
 function ScoreBar({ label, value, color }: { label: string; value: number; color: string }) {
   return (
@@ -630,6 +562,9 @@ function ScoreBar({ label, value, color }: { label: string; value: number; color
 
 type Step = 'select' | 'harmonize' | 'results' | 'solution';
 
+// Le score renvoyé par la correction (sans les listes note-à-note, gardées pour le panneau).
+type Score = CorrectionResult['score'];
+
 const STYLE_LABELS: Record<string, string> = {
   classique: 'Classique', jazz: 'Jazz', modal: 'Modal', romantique: 'Romantique',
 };
@@ -642,7 +577,7 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
   const [step, setStep] = useState<Step>('select');
   const [exercise, setExercise] = useState<MelodyExercise | null>(null);
   const [attempt, setAttempt] = useState<string[][]>([[], [], [], []]);
-  const [score, setScore] = useState<HarmonizationScore | null>(null);
+  const [score, setScore] = useState<Score | null>(null);
   const [filterDifficulty, setFilterDifficulty] = useState<1 | 2 | 3 | null>(null);
   const [filterStyle, setFilterStyle] = useState<string | null>(null);
   const [tempo, setTempo] = useState(80);
@@ -676,8 +611,8 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
 
   const handleValidate = () => {
     if (!exercise) return;
-    const result = evaluateHarmonization(exercise, attempt);
-    setScore(result);
+    const result = corrigerHarmonisation(exercise, attempt);
+    setScore(result.score);
     setStep('results');
   };
 
@@ -688,15 +623,19 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
     pianoRef.current.playVoicingSequence(voicings, { interval: beatSec, duration: beatSec * 0.88 });
   }, [exercise, tempo]);
 
-  // Pre-compute SATB voice leadings for a chord schedule, keyed by "measureIdx-chordIdx"
+  // Pre-compute SATB voice leadings for a chord schedule, keyed by "measureIdx-chordIdx".
+  // Chaque jeton (id de palette ou nom) est résolu par `realiserPourJeton` → la basse
+  // suit le renversement.
   function buildATBMap(
     exNotes: MelodyNote[],
     chordsByMeasure: string[][],
-    bpm: number
-  ): Map<string, ATBVoicing> {
+    bpm: number,
+    tonicPc: number,
+    mode: 'major' | 'minor',
+  ): Map<string, Voicing> {
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
-    const map = new Map<string, ATBVoicing>();
-    let prev: ATBVoicing | null = null;
+    const map = new Map<string, Voicing>();
+    let prev: Voicing | null = null;
     let mi = 0, mb = 0;
     const seen = new Set<string>();
     for (const note of exNotes) {
@@ -708,9 +647,11 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
       if (chord && !seen.has(key)) {
         seen.add(key);
         const sopMidi = noteMidiValue(note.note, note.octave);
-        const atb = computeATB(chord, sopMidi, prev);
-        map.set(key, atb);
-        prev = atb;
+        const atb = realiserPourJeton(chord, sopMidi, prev, tonicPc, mode);
+        if (atb) {
+          map.set(key, atb);
+          prev = atb;
+        }
       }
       mb += dur;
       if (mb >= bpm - 0.01) { mi++; mb = 0; }
@@ -718,7 +659,7 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
     return map;
   }
 
-  function atbSpecs(atb: ATBVoicing): string[] {
+  function atbSpecs(atb: Voicing): string[] {
     return [atb.alto, atb.tenor, atb.bass].map(midi => {
       const n = midiToNameOct(midi);
       return `${n.name}:${n.octave - 1}`;
@@ -730,8 +671,9 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
     const piano = pianoRef.current;
     const beatSec = 60 / tempo;
     const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
+    const { tonicPc, mode } = exerciseTonic(exercise);
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
-    const atbMap = buildATBMap(exercise.notes, attempt.map(m => m ?? []), bpm);
+    const atbMap = buildATBMap(exercise.notes, attempt.map(m => m ?? []), bpm, tonicPc, mode);
 
     let globalBeat = 0;
     let measureIdx = 0;
@@ -777,8 +719,9 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
     const piano = pianoRef.current;
     const beatSec = 60 / tempo;
     const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
+    const { tonicPc, mode } = exerciseTonic(exercise);
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
-    const atbMap = buildATBMap(exercise.notes, exercise.suggestedChords, bpm);
+    const atbMap = buildATBMap(exercise.notes, exercise.suggestedChords, bpm, tonicPc, mode);
 
     let globalBeat = 0;
     let measureIdx = 0;
@@ -1003,16 +946,16 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
 
         {step === 'harmonize' && exercise && (
           <div>
-            {/* Chord grid */}
+            {/* Palette d'accords */}
             <div style={{ background: '#fff', border: '0.5px solid #e8e3db', borderRadius: 10, padding: '16px 20px', marginBottom: '1rem' }}>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#888', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 12 }}>
-                Grille d'harmonisation — choisissez 1 ou 2 accords par mesure
+                Palette d'accords — choisissez 1 ou 2 accords par mesure
               </div>
-              <ChordGrid exercise={exercise} attempt={attempt} onChange={handleAttemptChange} />
+              <PaletteGrid exercise={exercise} attempt={attempt} onChange={handleAttemptChange} />
             </div>
 
-            {/* Harmonization hint panel */}
-            <HarmonizationPanel exercise={exercise} attempt={attempt} />
+            {/* Analyse par le moteur */}
+            <AnalysePanel exercise={exercise} attempt={attempt} />
 
             {/* Actions */}
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
@@ -1062,9 +1005,9 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                <ScoreBar label="Compatibilité mélodie/accord" value={score.compatibility} color={scoreColor(score.compatibility)} />
-                <ScoreBar label="Cohérence fonctionnelle (T/SD/D)" value={score.functions} color={scoreColor(score.functions)} />
-                <ScoreBar label="Cadence finale" value={score.cadences} color={scoreColor(score.cadences)} />
+                <ScoreBar label="Compatibilité mélodie/accord" value={score.compatibilite} color={scoreColor(score.compatibilite)} />
+                <ScoreBar label="Cohérence fonctionnelle (T/SD/D)" value={score.fonctions} color={scoreColor(score.fonctions)} />
+                <ScoreBar label="Cadence finale" value={score.cadence} color={scoreColor(score.cadence)} />
               </div>
             </div>
 
@@ -1092,9 +1035,9 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                   {score.feedback.map((f, i) => (
                     <div key={i} style={{
-                      fontSize: 12, color: f.startsWith('✓') ? '#2E8B57' : '#BA7517',
+                      fontSize: 12, color: '#5a4020',
                       padding: '6px 10px', borderRadius: 6,
-                      background: f.startsWith('✓') ? '#f0faf0' : '#fff9f0',
+                      background: '#fff9f0',
                       lineHeight: 1.5,
                     }}>
                       {f}
@@ -1169,8 +1112,16 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
                 <div style={{ overflowX: 'auto' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: `repeat(${exercise.measures}, minmax(90px, 1fr))`, gap: 6 }}>
                   {exercise.suggestedChords.map((sug, mi) => {
+                    // Votre copie porte des ids de palette, la référence des noms d'accords.
+                    // On compare sur le TERRAIN COMMUN : le degré rendu par le moteur.
+                    const { tonicPc, mode } = exerciseTonic(exercise);
+                    const degresRef = new Set(
+                      sug.map(s => resoudreAccord(s, tonicPc, mode)?.degree).filter(Boolean),
+                    );
                     const myChords = attempt[mi] ?? [];
-                    const match = sug.some(s => myChords.includes(s));
+                    const match = myChords.some(
+                      c => degresRef.has(resoudreAccord(c, tonicPc, mode)?.degree),
+                    );
                     return (
                       <div key={mi} style={{ borderRadius: 6, overflow: 'hidden', border: `0.5px solid ${match ? '#a8d8a8' : '#e8e3db'}` }}>
                         <div style={{ padding: '6px 8px', background: match ? '#f0faf0' : '#faf8f5', fontSize: 11 }}>
