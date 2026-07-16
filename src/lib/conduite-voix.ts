@@ -80,6 +80,11 @@ const AMBITUS: Record<NomVoix, { min: number; max: number }> = {
   tenor: { min: 48, max: 67 }, basse: { min: 40, max: 60 },
 };
 const NOM: Record<NomVoix, string> = { soprano: "Soprano", alto: "Alto", tenor: "Ténor", basse: "Basse" };
+const LABEL: Record<NomVoix, string> = { soprano: "S", alto: "A", tenor: "T", basse: "B" };
+const PAIRES: [NomVoix, NomVoix][] = [
+  ["soprano", "alto"], ["soprano", "tenor"], ["soprano", "basse"],
+  ["alto", "tenor"], ["alto", "basse"], ["tenor", "basse"],
+];
 
 /** Paires voisines (haut, bas) pour croisement et écart. */
 const VOISINES: [NomVoix, NomVoix][] = [["soprano", "alto"], ["alto", "tenor"], ["tenor", "basse"]];
@@ -117,6 +122,43 @@ export function detecterFautes(piece: Piece): Faute[] {
       }
       if ((haut === "soprano" || haut === "alto") && a.midi - b.midi > 12) {
         fautes.push({ type: "ecart", severite: "avertissement", message: `${NOM[haut]}–${NOM[bas]} : écart > octave`, mesure: v.mesure, positions: [a.position, b.position] });
+      }
+    }
+  }
+
+  // ── Parallèles (toutes paires) et directes (S–B) : entre verticalités consécutives ──
+  for (let k = 1; k < verts.length; k++) {
+    const prev = verts[k - 1], cur = verts[k];
+
+    for (const [v1, v2] of PAIRES) {
+      const p1 = prev.sons[v1], p2 = prev.sons[v2], c1 = cur.sons[v1], c2 = cur.sons[v2];
+      if (!p1 || !p2 || !c1 || !c2) continue;
+      const d1 = c1.midi - p1.midi, d2 = c2.midi - p2.midi;
+      const memeSens = d1 !== 0 && d2 !== 0 && Math.sign(d1) === Math.sign(d2);
+      if (!memeSens) continue;
+      const avant = Math.abs(p1.midi - p2.midi) % 12;
+      const apres = Math.abs(c1.midi - c2.midi) % 12;
+      if (avant === 7 && apres === 7) {
+        fautes.push({ type: "quintes-paralleles", severite: "faute", message: `Quintes ‖ ${LABEL[v1]}–${LABEL[v2]}`, mesure: cur.mesure, positions: [c1.position, c2.position] });
+      }
+      if (avant === 0 && apres === 0) {
+        fautes.push({ type: "octaves-paralleles", severite: "faute", message: `Octaves ‖ ${LABEL[v1]}–${LABEL[v2]}`, mesure: cur.mesure, positions: [c1.position, c2.position] });
+      }
+    }
+
+    const ps = prev.sons.soprano, pb = prev.sons.basse, cs = cur.sons.soprano, cb = cur.sons.basse;
+    if (ps && pb && cs && cb) {
+      const ds = cs.midi - ps.midi, db = cb.midi - pb.midi;
+      const memeSens = ds !== 0 && db !== 0 && Math.sign(ds) === Math.sign(db);
+      if (memeSens && Math.abs(ds) > 2) {
+        const avant = Math.abs(ps.midi - pb.midi) % 12;
+        const apres = Math.abs(cs.midi - cb.midi) % 12;
+        if (apres === 7 && avant !== 7) {
+          fautes.push({ type: "quinte-directe", severite: "avertissement", message: "Quinte directe S–B", mesure: cur.mesure, positions: [cs.position, cb.position] });
+        }
+        if (apres === 0 && avant !== 0) {
+          fautes.push({ type: "octave-directe", severite: "avertissement", message: "Octave directe S–B", mesure: cur.mesure, positions: [cs.position, cb.position] });
+        }
       }
     }
   }
