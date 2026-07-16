@@ -541,6 +541,11 @@ export default function AtelierComposition() {
               onChange={(e) => {
                 const [f, m] = e.target.value.split("|");
                 choisirTonalite(Number(f), m as "major" | "minor");
+                // Rendre le focus à la page : un <select> focalisé CAPTE flèches et
+                // lettres (le garde du clavier l'ignore exprès), et cliquer la
+                // partition — un simple div — ne le lui reprend pas. Sans ce blur,
+                // tout le clavier de saisie semble mort après un changement de ton.
+                e.currentTarget.blur();
               }}
               aria-label="Tonalité de la pièce"
               style={{ ...btn, padding: "6px 8px", maxWidth: 180 }}
