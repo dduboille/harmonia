@@ -236,12 +236,21 @@ export function validateSATB(
       });
 
       // 4c. Résolution de la sensible (accord de dominante conforme → mesure conforme)
+      //
+      // R4 — dans une marche (cycle de 7es : Bø7→Em7…), la sensible perd sa
+      // fonction de sensible : elle n'est plus qu'une note de l'accord suivant,
+      // qui n'est ni la tonique ni le VI. La règle ne s'arme donc QUE si
+      // l'accord D'ARRIVÉE (identifié sur la solution) résout vers la tonique
+      // ou le 6e degré (cadence parfaite ou rompue) — jamais ailleurs.
       if (keySignature && conforme[m - 1] && conforme[m]) {
-        const { tonicPc } = tonaliteDeSignature(keySignature);
+        const { tonicPc, minor } = tonaliteDeSignature(keySignature);
         const sensible = (tonicPc + 11) % 12;
         const dominante = (tonicPc + 7) % 12;
+        const sixte = (tonicPc + (minor ? 8 : 9)) % 12;
         const acc = accords[m - 1];
-        if (acc && (acc.rootPc === dominante || acc.rootPc === sensible)) {
+        const arrivee = accords[m];
+        const armee = arrivee && (arrivee.rootPc === tonicPc || arrivee.rootPc === sixte);
+        if (armee && acc && (acc.rootPc === dominante || acc.rootPc === sensible)) {
           VOICES.forEach(v => {
             if (pcOf(prev[v]) !== sensible) return;
             const midiP = noteToMidi(noteName(prev[v].name!), prev[v].octave);

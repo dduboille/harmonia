@@ -496,12 +496,8 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
           keySignature={exercise.tonalite.replace("m","")}
           showKeySignature={showKS}
           initialNotes={initialNotes}
-          solution={exercise.solution.map(m => ({
-            soprano: { name: m.soprano.name as NoteName, octave: m.soprano.octave },
-            alto:    { name: m.alto.name    as NoteName, octave: m.alto.octave    },
-            tenor:   { name: m.tenor.name   as NoteName, octave: m.tenor.octave   },
-            bass:    { name: m.bass.name    as NoteName, octave: m.bass.octave    },
-          }))}
+          // pas de `solution` : la page revient au comportement d'avant la
+          // conformité — mise à niveau du générateur en suivi.
           onComplete={handleComplete}
         />
       </div>

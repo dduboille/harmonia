@@ -104,7 +104,9 @@ export default function ExerciceContent(props: ExerciceContentProps) {
             // La note reflète la propreté de la copie : les FAUTES sont déjà
             // impossibles (Terminer bloqué) ; chaque avertissement restant coûte 10.
             const restants = validateSATB(measures, props.keySignature, !showKS, props.solution, props.regles);
-            const avertissements = restants.filter(e => e.severity === "warning").length;
+            // cross_relation reste affichée mais ne coûte rien — faux positifs
+            // enharmoniques, analyse fine de la règle en suivi (R5).
+            const avertissements = restants.filter(e => e.severity === "warning" && e.type !== "cross_relation").length;
             handleComplete(noteExercice(avertissements));
           }}
         />

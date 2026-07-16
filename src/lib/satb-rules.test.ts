@@ -299,6 +299,50 @@ describe("validateSATB — la sensible (barème d'école)", () => {
   });
 });
 
+describe("validateSATB — la sensible en marche (I/VI seulement)", () => {
+  it("marche de septièmes Bø7 → Em7 en do : la sensible perd sa fonction → rien", () => {
+    // Bø7 (B-D-F-A, fonction vii) → Em7 (E-G-B-D, iii) : l'accord d'arrivée
+    // n'est ni le I ni le VI, la sensible du Bø7 (B) n'y résout donc rien —
+    // la règle doit se taire, alors même que le départ est bien un accord de
+    // sensible (racine 11) qui armerait la règle SANS le raffinement R4.
+    const m1 = chord("B2", "A3", "D4", "F4");
+    const m2 = chord("E3", "G3", "D4", "E4");
+    const marche = [m1, m2];
+    const errs = validateSATB(marche, "C", false, marche);
+    // La fixture est sa propre solution : vérifie d'abord qu'elle est conforme
+    // à elle-même (sinon les règles de résolution ne parlent pas du tout).
+    expect(errs.filter(e => e.type === "wrong_chord" || e.type === "wrong_bass")).toEqual([]);
+    expect(typesOf(errs)).not.toContain("leading_tone");
+  });
+
+  it("V → IV en do (arrivée ni I ni VI) : la sensible saute → rien", () => {
+    const m1 = chord("G2", "B3", "D4", "G4");  // V : sol-si-ré, sensible au ténor
+    const m2 = chord("F2", "F3", "C4", "A4");  // IV : fa-la-do — la sensible saute (B3 → F3)
+    const cadence = [m1, m2];
+    const errs = validateSATB(cadence, "C", false, cadence);
+    expect(errs.filter(e => e.type === "wrong_chord" || e.type === "wrong_bass")).toEqual([]);
+    expect(typesOf(errs)).not.toContain("leading_tone");
+  });
+
+  it("non-régression : cadence V→I reste armée (test existant)", () => {
+    const sol = [
+      chord("G2", "F3", "D4", "B4"),
+      chord("C3", "E3", "C4", "G4"), // sensible qui saute → toujours signalé
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    expect(typesOf(errs)).toContain("leading_tone");
+  });
+
+  it("non-régression : cadence rompue V→VI reste armée (test existant)", () => {
+    const sol = [
+      chord("G2", "D3", "F4", "B4"),
+      chord("A2", "C3", "E4", "C5"),   // B4 → C5 ✓, résolution correcte
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    expect(typesOf(errs)).not.toContain("leading_tone"); // armée mais résolue : rien à signaler
+  });
+});
+
 describe("validateSATB — contrat de sortie", () => {
   it("rapporte la mesure en numérotation humaine dans params, l'index en interne", () => {
     const errors = validateSATB([chord("C2", "E3", "G3", "C4")]);
