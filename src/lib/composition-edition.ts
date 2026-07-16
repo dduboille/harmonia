@@ -11,7 +11,7 @@
  */
 
 import {
-  dureeEnDivisions, DIVISIONS, ORDRE_VOIX,
+  dureeEnDivisions, DIVISIONS, ORDRE_VOIX, midiDeHauteur,
   type Piece, type Voix, type Evenement, type Silence, type Duree, type NomVoix,
   type Note, type Hauteur, type LettreNote,
 } from "./piece-model";
@@ -253,4 +253,48 @@ export function effacer(piece: Piece, curseur: Curseur): { piece: Piece; curseur
     return { piece: piecePrec, curseur: precedent };
   }
   return { piece, curseur };
+}
+
+/** ms par tick au tempo par défaut de Verovio (120 bpm, une noire = 500 ms, DIVISIONS ticks/noire). */
+export const MS_PAR_TICK = 60000 / (120 * DIVISIONS);
+
+/** Onset (en ticks) de la note d'index `note` dans sa voix (offset de mesure inclus). */
+function onsetTicks(piece: Piece, mesure: number, voix: NomVoix, note: number): number {
+  const capacite = capaciteMesure(piece.chiffrage);
+  const evs = piece.mesures[mesure].voix[voix];
+  let t = mesure * capacite;
+  for (let i = 0; i < note; i++) t += dureeEnDivisions(evs[i].duree);
+  return t;
+}
+
+/** (onsetMs, midi) de la note sélectionnée, pour surligner l'élément Verovio correspondant. */
+export function onsetMsMidiDeSelection(
+  piece: Piece, curseur: Curseur,
+): { onsetMs: number; midi: number } | null {
+  if (curseur.note === "fin") return null;
+  const ev = piece.mesures[curseur.mesure].voix[curseur.voix][curseur.note];
+  if (!ev || ev.type !== "note") return null;
+  return {
+    onsetMs: onsetTicks(piece, curseur.mesure, curseur.voix, curseur.note) * MS_PAR_TICK,
+    midi: midiDeHauteur(ev.hauteurs[0]),
+  };
+}
+
+/**
+ * Retrouve la position (mesure, voix, note) d'une note à partir du couple (onsetMs, midi) remonté
+ * par Verovio au clic. Tolérance d'un tick sur le temps. Renvoie null si aucune ne colle.
+ */
+export function trouverPosition(piece: Piece, onsetMs: number, midi: number): Curseur | null {
+  const cibleTicks = Math.round(onsetMs / MS_PAR_TICK);
+  for (const voix of ORDRE_VOIX) {
+    const p = positions(piece, voix);
+    for (const { mesure, note } of p) {
+      const ev = piece.mesures[mesure].voix[voix][note] as Note;
+      if (midiDeHauteur(ev.hauteurs[0]) !== midi) continue;
+      if (Math.abs(onsetTicks(piece, mesure, voix, note) - cibleTicks) <= 1) {
+        return { mesure, voix, note };
+      }
+    }
+  }
+  return null;
 }

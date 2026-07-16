@@ -6,7 +6,7 @@ import {
   capaciteMesure, dureePlacee, decouperEnSilences, voixActives,
   inserer, effacer, positionEcriture, positions, naviguer,
   transposerDegre, transposerOctave, remplacerHauteur, remplacerDuree,
-  supprimerNote, type Curseur,
+  supprimerNote, onsetMsMidiDeSelection, trouverPosition, type Curseur,
 } from "./composition-edition";
 
 const DO5: Hauteur = { lettre: "C", alteration: 0, octave: 5 };
@@ -279,6 +279,29 @@ describe("supprimerNote — retirer la note selectionnee", () => {
     const r = supprimerNote(p, c);
     expect(r.piece).toBe(p);
     expect(r.curseur).toBe(c);
+  });
+});
+
+describe("appariement Verovio : onset/midi <-> position", () => {
+  it("onsetMsMidiDeSelection donne le temps et le MIDI de la note selectionnee", () => {
+    const p = pieceEdition();
+    p.mesures[0].voix.soprano = [
+      { type: "note", hauteurs: [{ lettre: "C", alteration: 0, octave: 5 }], duree: { base: "noire", points: 0 } },
+      { type: "note", hauteurs: [{ lettre: "D", alteration: 0, octave: 5 }], duree: { base: "noire", points: 0 } },
+    ];
+    const c: Curseur = { mesure: 0, voix: "soprano", note: 1 };
+    const r = onsetMsMidiDeSelection(p, c)!;
+    expect(r.midi).toBe(74);
+    expect(r.onsetMs).toBeCloseTo(500, 0);
+  });
+  it("trouverPosition retrouve la note a partir de (onsetMs, midi)", () => {
+    const p = pieceEdition();
+    p.mesures[0].voix.soprano = [{ type: "note", hauteurs: [{ lettre: "C", alteration: 0, octave: 5 }], duree: { base: "noire", points: 0 } }];
+    p.mesures[0].voix.basse = [{ type: "note", hauteurs: [{ lettre: "C", alteration: 0, octave: 3 }], duree: { base: "ronde", points: 0 } }];
+    expect(trouverPosition(p, 0, 48)).toEqual({ mesure: 0, voix: "basse", note: 0 });
+  });
+  it("trouverPosition renvoie null si rien ne correspond", () => {
+    expect(trouverPosition(pieceEdition(), 0, 60)).toBeNull();
   });
 });
 
