@@ -13,8 +13,7 @@ import { detecterFautes } from "@/lib/conduite-voix";
 import { parseMusicXML, type ParsedScore } from "@/lib/musicxml-parse";
 import { planifierLecture, specDepuisMidi } from "@/lib/studio-playback";
 import AtelierAnalyse from "@/components/AtelierAnalyse";
-import { analyserPartition, toniqueDe, type AnalysisResult } from "@/lib/analyse-resultat";
-import { NOTE_FR } from "@/lib/harmonic-analysis";
+import { analyserPartition, type AnalysisResult } from "@/lib/analyse-resultat";
 import {
   ORDRE_VOIX,
   type Piece, type Voix, type Note, type Silence, type Duree, type BaseDuree,
@@ -102,12 +101,23 @@ const VOIX_META: Record<NomVoix, { label: string; court: string; couleur: string
 const ARMURES = [-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7];
 
 /**
- * Libellé d'une tonalité : « Do majeur », « La mineur », « Sol majeur (1♯) »…
- * L'armure est rappelée entre parenthèses — elle distingue les enharmonies
- * (Fa♯ majeur 6♯ / Sol♭ majeur 6♭, même pitch class).
+ * Nom de tonalité par armure : « Do majeur », « Ré♭ majeur (5♭) », « si mineur (2♯) »…
+ * On ne passe PAS par la pitch class (qui ne connaît que les dièses) : chaque armure
+ * a SON nom d'école — c'est aussi ce qui distingue les enharmonies (Fa♯/Sol♭).
  */
+const NOM_TONALITE: Record<number, { major: string; minor: string }> = {
+  [-7]: { major: "Do♭", minor: "la♭" }, [-6]: { major: "Sol♭", minor: "mi♭" },
+  [-5]: { major: "Ré♭", minor: "si♭" }, [-4]: { major: "La♭", minor: "fa" },
+  [-3]: { major: "Mi♭", minor: "do" },  [-2]: { major: "Si♭", minor: "sol" },
+  [-1]: { major: "Fa", minor: "ré" },   [0]: { major: "Do", minor: "la" },
+  [1]: { major: "Sol", minor: "mi" },   [2]: { major: "Ré", minor: "si" },
+  [3]: { major: "La", minor: "fa♯" },   [4]: { major: "Mi", minor: "do♯" },
+  [5]: { major: "Si", minor: "sol♯" },  [6]: { major: "Fa♯", minor: "ré♯" },
+  [7]: { major: "Do♯", minor: "la♯" },
+};
+
 function libelleTonalite(fifths: number, mode: "major" | "minor"): string {
-  const nom = `${NOTE_FR[toniqueDe(fifths, mode)] ?? "?"} ${mode === "major" ? "majeur" : "mineur"}`;
+  const nom = `${NOM_TONALITE[fifths]?.[mode] ?? "?"} ${mode === "major" ? "majeur" : "mineur"}`;
   if (fifths === 0) return nom;
   return `${nom} (${Math.abs(fifths)}${fifths > 0 ? "♯" : "♭"})`;
 }
