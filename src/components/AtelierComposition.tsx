@@ -105,7 +105,7 @@ function pieceEditionVierge(): Piece {
 
 export default function AtelierComposition() {
   const [piece, setPiece] = useState<Piece>(pieceEditionVierge);
-  const [curseur, setCurseur] = useState<Curseur>({ mesure: 0, voix: "soprano" });
+  const [curseur, setCurseur] = useState<Curseur>({ mesure: 0, voix: "soprano", note: "fin" });
   const [base, setBase] = useState<BaseDuree>("noire");
   const [points, setPoints] = useState<0 | 1 | 2>(0);
   const [alteration, setAlteration] = useState<-1 | 0 | 1>(0);
@@ -172,7 +172,7 @@ export default function AtelierComposition() {
 
   const toutEffacer = useCallback(() => {
     setPiece(pieceEditionVierge());
-    setCurseur({ mesure: 0, voix: "soprano" });
+    setCurseur({ mesure: 0, voix: "soprano", note: "fin" });
     setOctaves(OCTAVE_DEFAUT);
   }, []);
 
@@ -183,7 +183,7 @@ export default function AtelierComposition() {
    * suivante au lieu de la même.
    */
   const choisirVoix = useCallback((voix: NomVoix) => {
-    setCurseur({ mesure: positionEcriture(piece, voix), voix });
+    setCurseur({ mesure: positionEcriture(piece, voix), voix, note: "fin" });
   }, [piece]);
 
   // ── Lecture (reprise du patron de Studio.tsx) ────────────────────────────────

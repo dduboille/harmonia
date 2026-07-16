@@ -15,10 +15,11 @@ import {
   type Piece, type Voix, type Evenement, type Silence, type Duree, type NomVoix,
 } from "./piece-model";
 
-/** Le curseur d'édition : dans quelle mesure et dans quelle voix on écrit. */
+/** Le curseur d'édition : mesure, voix, et la note sélectionnée (ou "fin" = mode ajout). */
 export interface Curseur {
   mesure: number;
   voix: NomVoix;
+  note: number | "fin";
 }
 
 /** Ticks d'une mesure : temps × (une noire) × 4 / unité. En 4/4 : 4×48. */
@@ -111,8 +112,8 @@ export function inserer(
   const pleine = dureePlacee(nouvelleVoix) >= capacite;
   const curseurSuivant: Curseur =
     pleine && curseur.mesure + 1 < piece.mesures.length
-      ? { mesure: curseur.mesure + 1, voix: curseur.voix }
-      : curseur;
+      ? { mesure: curseur.mesure + 1, voix: curseur.voix, note: "fin" }
+      : { mesure: curseur.mesure, voix: curseur.voix, note: "fin" };
   return { piece: nouvellePiece, curseur: curseurSuivant };
 }
 
@@ -125,7 +126,7 @@ export function effacer(piece: Piece, curseur: Curseur): { piece: Piece; curseur
   const voix = piece.mesures[curseur.mesure].voix[curseur.voix];
   if (voix.length > 0) return { piece: avecVoix(piece, curseur, voix.slice(0, -1)), curseur };
   if (curseur.mesure > 0) {
-    const precedent: Curseur = { mesure: curseur.mesure - 1, voix: curseur.voix };
+    const precedent: Curseur = { mesure: curseur.mesure - 1, voix: curseur.voix, note: "fin" };
     const voixPrec = piece.mesures[precedent.mesure].voix[precedent.voix];
     const piecePrec = voixPrec.length > 0 ? avecVoix(piece, precedent, voixPrec.slice(0, -1)) : piece;
     return { piece: piecePrec, curseur: precedent };
