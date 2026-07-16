@@ -255,7 +255,7 @@ export default function HarmoniaEditor({
 
   // Validation à chaque changement
   useEffect(() => {
-    const errs = validateSATB(measures, keySignature, !showKeySignature);
+    const errs = validateSATB(measures, keySignature, !showKeySignature, solution);
     setErrors(errs);
     for (const e of errs) errorTypesSeen.current.add(e.type);
   }, [measures, keySignature, showKeySignature]);
@@ -743,7 +743,7 @@ export default function HarmoniaEditor({
               cursor: placedNotes === totalNotes && !hasErrors ? "pointer" : "default",
               transition:"all .2s",
             }}>
-            Terminer ✓
+            {t("finish")} ✓
           </button>
         </div>
 

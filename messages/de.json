@@ -4046,6 +4046,7 @@
     "octave": "Oktave",
     "clear": "Note löschen",
     "play": "Anhören",
+    "finish": "Beenden",
     "showSolution": "Musterlösung anzeigen",
     "hideSolution": "Musterlösung ausblenden",
     "reset": "Neu beginnen",
@@ -4059,7 +4060,12 @@
       "cross_relation": "Querstand {v1}↔{v2} ({note}, T. {from}→{to})",
       "missing_accidental": "{voice}: {note} ohne Vorzeichen — ohne Generalvorzeichen bitte {expected} verwenden (T. {from})",
       "leading_tone": "Leitton falsch aufgelöst (T. {from})",
-      "seventh": "Septime falsch aufgelöst (T. {from})"
+      "seventh": "Septime falsch aufgelöst (T. {from})",
+      "wrong_chord": "Takt {from}: nicht der verlangte Akkord",
+      "wrong_bass": "Takt {from}: erwarteter Bass ist {expected}",
+      "doubled_leading_tone": "Leitton verdoppelt (T. {from})",
+      "hidden_fifth": "Verdeckte Quinte Sopran–Bass (T. {from}→{to})",
+      "hidden_octave": "Verdeckte Oktave Sopran–Bass (T. {from}→{to})"
     },
     "exerciseDone": "Übung erfolgreich abgeschlossen!",
     "exercisePerfect": "Keine harmonischen Fehler — ausgezeichnete Arbeit.",

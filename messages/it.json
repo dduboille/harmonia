@@ -4046,6 +4046,7 @@
     "octave": "Ottava",
     "clear": "Cancella la nota",
     "play": "Ascolta",
+    "finish": "Termina",
     "showSolution": "Mostra la soluzione proposta",
     "hideSolution": "Nascondi la soluzione proposta",
     "reset": "Ricomincia",
@@ -4059,7 +4060,12 @@
       "cross_relation": "Falsa relazione {v1}↔{v2} ({note}, b. {from}→{to})",
       "missing_accidental": "{voice}: {note} naturale — senza armatura di chiave, usare {expected} (b. {from})",
       "leading_tone": "Sensibile risolta male (b. {from})",
-      "seventh": "Settima risolta male (b. {from})"
+      "seventh": "Settima risolta male (b. {from})",
+      "wrong_chord": "Battuta {from}: non è l'accordo richiesto",
+      "wrong_bass": "Battuta {from}: il basso atteso è {expected}",
+      "doubled_leading_tone": "Sensibile raddoppiata (b. {from})",
+      "hidden_fifth": "Quinta nascosta soprano–basso (b. {from}→{to})",
+      "hidden_octave": "Ottava nascosta soprano–basso (b. {from}→{to})"
     },
     "exerciseDone": "Esercizio completato!",
     "exercisePerfect": "Nessun errore armonico — ottimo lavoro.",

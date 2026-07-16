@@ -6,6 +6,7 @@ import { getKeyAccidentalHint } from "@/lib/key-accidentals";
 import IdentificationQuiz from "@/components/IdentificationQuiz";
 import { useProgress } from "@/hooks/useProgress";
 import type { IdentifyExercise, BuildExercise } from "@/types/exercise";
+import { validateSATB, noteExercice, type Measure } from "@/lib/satb-rules";
 
 interface SATBData {
   type: "satb";
@@ -15,7 +16,7 @@ interface SATBData {
   subtitle?: string;
   measures: string[];
   keySignature: string;
-  solution: any[];
+  solution: Measure[];
   hint?: string;
   devoirId?: string;
   plan?: string;
@@ -96,7 +97,13 @@ export default function ExerciceContent(props: ExerciceContentProps) {
           keySignature={props.keySignature}
           showKeySignature={showKS}
           solution={props.solution}
-          onComplete={() => handleComplete(100)}
+          onComplete={(measures) => {
+            // La note reflète la propreté de la copie : les FAUTES sont déjà
+            // impossibles (Terminer bloqué) ; chaque avertissement restant coûte 10.
+            const restants = validateSATB(measures, props.keySignature, !showKS, props.solution);
+            const avertissements = restants.filter(e => e.severity === "warning").length;
+            handleComplete(noteExercice(avertissements));
+          }}
         />
       </div>
     );
