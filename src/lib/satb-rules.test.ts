@@ -9,7 +9,7 @@
  */
 
 import { describe, it, expect } from "vitest";
-import { validateSATB, type Measure, type NoteName, type ValidationError } from "@/lib/satb-rules";
+import { validateSATB, noteExercice, type Measure, type NoteName, type ValidationError } from "@/lib/satb-rules";
 
 /** Raccourci de construction d'une mesure : ["C4","E4","G4","C5"] = B, T, A, S. */
 function chord(bass: string, tenor: string, alto: string, soprano: string): Measure {
@@ -309,5 +309,72 @@ describe("validateSATB — contrat de sortie", () => {
   it("ne renvoie aucune phrase toute faite : le moteur reste neutre linguistiquement", () => {
     const errors = validateSATB([chord("C2", "E3", "G3", "C4")]);
     expect(errors[0]).not.toHaveProperty("message");
+  });
+});
+
+describe("validateSATB — 7e d'accord et directes S–B", () => {
+  it("7e de V7 descendant par degré → rien ; quittée par saut → seventh (warning)", () => {
+    const sol = [
+      chord("G2", "F3", "D4", "B4"),   // 7e = F au ténor
+      chord("C3", "E3", "C4", "C5"),   // F3 → E3 ✓
+    ];
+    expect(typesOf(validateSATB(sol, "C", false, sol))).not.toContain("seventh");
+    const faux = [
+      chord("G2", "F3", "D4", "B4"),
+      chord("C3", "C4", "E4", "C5"),   // {do,mi} basse do : CONFORME ; F3 → C4 : la 7e saute
+    ];
+    const errs = validateSATB(faux, "C", false, sol);
+    const s = errs.find(e => e.type === "seventh");
+    expect(s).toBeDefined();
+    expect(s!.severity).toBe("warning");
+  });
+  it("7e TENUE → rien ; triade sans 7e → la règle se tait", () => {
+    const tenue = [
+      chord("G2", "F3", "D4", "B4"),
+      chord("C3", "F3", "C4", "C5"),   // F3 tenu (deviendra retard — toléré)
+    ];
+    expect(typesOf(validateSATB(tenue, "C", false, tenue))).not.toContain("seventh");
+    const triade = [
+      chord("G2", "D3", "B3", "G4"),
+      chord("C3", "E3", "C4", "E4"),
+    ];
+    expect(typesOf(validateSATB(triade, "C", false, triade))).not.toContain("seventh");
+  });
+  it("quinte directe S–B (saut du soprano vers la quinte, même sens) → hidden_fifth (warning)", () => {
+    // B : C3 → G3 (monte). S : E4 → D5 (saut, monte). Arrivée D5/G3 = quinte réduite,
+    // qui n'en était pas une avant (E4/C3 = tierce+octave).
+    const sol = [
+      chord("C3", "E3", "G3", "E4"),
+      chord("G3", "B3", "G4", "D5"),
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    const h = errs.find(e => e.type === "hidden_fifth");
+    expect(h).toBeDefined();
+    expect(h!.severity).toBe("warning");
+  });
+  it("arrivée sur la quinte par mouvement conjoint du soprano → rien", () => {
+    const sol = [
+      chord("E3", "G3", "C4", "C5"),
+      chord("G3", "B3", "G4", "D5"),   // soprano C5 → D5 : conjoint (2 demi-tons)
+    ];
+    expect(typesOf(validateSATB(sol, "C", false, sol))).not.toContain("hidden_fifth");
+  });
+  it("quintes déjà PARALLÈLES : parallel_fifth, pas de doublon hidden_fifth", () => {
+    const sol = [
+      chord("C3", "E3", "E4", "G4"),
+      chord("D3", "F3", "F4", "A4"),   // quintes parallèles S–B (G4/C3 → A4/D3)
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    expect(typesOf(errs)).toContain("parallel_fifth");
+    expect(typesOf(errs)).not.toContain("hidden_fifth");
+  });
+});
+
+describe("noteExercice", () => {
+  it("0 avertissement → 100 ; 2 → 80 ; 5 et plus → 60 (plancher)", () => {
+    expect(noteExercice(0)).toBe(100);
+    expect(noteExercice(2)).toBe(80);
+    expect(noteExercice(5)).toBe(60);
+    expect(noteExercice(9)).toBe(60);
   });
 });

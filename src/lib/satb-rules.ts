@@ -253,6 +253,48 @@ export function validateSATB(
           });
         }
       }
+
+      // 4d. Résolution de la 7e d'accord (descend par degré ou tient)
+      if (conforme[m - 1] && conforme[m]) {
+        const acc = accords[m - 1];
+        if (acc) {
+          const pcs = solution?.[m - 1] ? pcsDe(solution[m - 1]) : new Set<number>();
+          const septieme = [...pcs].find(pc => {
+            const iv = (pc - acc.rootPc + 12) % 12;
+            return iv === 10 || iv === 11;
+          });
+          if (septieme !== undefined) {
+            VOICES.forEach(v => {
+              if (pcOf(prev[v]) !== septieme) return;
+              const midiP = noteToMidi(noteName(prev[v].name!), prev[v].octave);
+              const midiC = noteToMidi(noteName(cur[v].name!), cur[v].octave);
+              const d = midiC - midiP;
+              if (d !== 0 && d !== -1 && d !== -2) {
+                errors.push({ type: "seventh", measure: m, severity: "warning", params: { voice: v, from: m } });
+              }
+            });
+          }
+        }
+      }
+
+      // 4e. Quintes et octaves DIRECTES soprano–basse (mêmes conditions que l'atelier)
+      if (solution && estComplete(prev) && estComplete(cur)) {
+        const ps = prev.soprano, pb = prev.bass, cs = cur.soprano, cb = cur.bass;
+        const mPS = noteToMidi(noteName(ps.name!), ps.octave), mPB = noteToMidi(noteName(pb.name!), pb.octave);
+        const mCS = noteToMidi(noteName(cs.name!), cs.octave), mCB = noteToMidi(noteName(cb.name!), cb.octave);
+        const ds = mCS - mPS, db = mCB - mPB;
+        const memeSens = ds !== 0 && db !== 0 && Math.sign(ds) === Math.sign(db);
+        if (memeSens && Math.abs(ds) > 2) {
+          const avant = Math.abs(mPS - mPB) % 12;
+          const apres = Math.abs(mCS - mCB) % 12;
+          if (apres === 7 && avant !== 7) {
+            errors.push({ type: "hidden_fifth", voices: ["soprano", "bass"], measure: m, severity: "warning", params: { from: m, to: m + 1 } });
+          }
+          if (apres === 0 && avant !== 0) {
+            errors.push({ type: "hidden_octave", voices: ["soprano", "bass"], measure: m, severity: "warning", params: { from: m, to: m + 1 } });
+          }
+        }
+      }
     }
 
     // 5. Altérations manquantes (mode sans armure)
@@ -304,4 +346,9 @@ export function validateSATB(
   }
 
   return errors;
+}
+
+/** La note d'un exercice terminé : 100 moins 10 par avertissement restant, plancher 60. */
+export function noteExercice(avertissements: number): number {
+  return Math.max(60, 100 - 10 * avertissements);
 }
