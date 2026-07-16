@@ -7,7 +7,7 @@ import {
   inserer, effacer, positionEcriture, naviguer,
   transposerDegre, transposerOctave, remplacerHauteur, remplacerDuree,
   supprimerNote, onsetMsMidiDeSelection, trouverPosition,
-  empilerHauteur, retirerDerniereHauteur, cibleAccord, type Curseur,
+  empilerHauteur, retirerDerniereHauteur, cibleAccord, insererAvant, type Curseur,
 } from "@/lib/composition-edition";
 import { pieceVersMusicXML } from "@/lib/piece-vers-musicxml";
 import { detecterFautes } from "@/lib/conduite-voix";
@@ -132,6 +132,7 @@ export default function AtelierComposition() {
   const [alteration, setAlteration] = useState<-1 | 0 | 1>(0);
   const [triolet, setTriolet] = useState(false);
   const [accord, setAccord] = useState(false);
+  const [insertion, setInsertion] = useState(false);
   // Une octave courante PAR VOIX : chaque voix part de sa tessiture (cf. OCTAVE_DEFAUT).
   const [octaves, setOctaves] = useState<Record<NomVoix, number>>(OCTAVE_DEFAUT);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -192,6 +193,20 @@ export default function AtelierComposition() {
   // courante de la palette.
   const poserNote = useCallback(
     (lettre: LettreNote) => {
+      // Mode insertion : la lettre s'INTERCALE avant la note sélectionnée (durée et
+      // altération de la palette, octave de la voix, sans triolet — un membre de
+      // groupe inséré isolément casserait le groupe).
+      if (insertion && curseur.note !== "fin") {
+        const oct = octaves[curseur.voix];
+        const note: Note = { type: "note", hauteurs: [{ lettre, alteration, octave: oct }], duree: { base, points } };
+        const r = insererAvant(piece, curseur, note);
+        if (r.piece !== piece) {
+          setPiece(r.piece);
+          setCurseur(r.curseur);
+          pianoRef.current?.playVoicing([specHauteur(lettre, alteration, oct)], { duration: 0.5, velocity: 0.8 });
+        }
+        return;
+      }
       // Mode sélection : on CORRIGE la hauteur de la note pointée (garde la durée).
       if (curseur.note !== "fin") {
         const np = remplacerHauteur(piece, curseur, lettre, alteration);
@@ -213,7 +228,7 @@ export default function AtelierComposition() {
         pianoRef.current?.playVoicing([specHauteur(lettre, alteration, oct)], { duration: 0.5, velocity: 0.8 });
       }
     },
-    [piece, curseur, octaves, base, points, alteration, triolet],
+    [piece, curseur, octaves, base, points, alteration, triolet, insertion],
   );
 
   // ── Empiler une hauteur (accord dans la voix) ────────────────────────────────
@@ -241,12 +256,18 @@ export default function AtelierComposition() {
   // ── Poser un silence ─────────────────────────────────────────────────────────
   const poserSilence = useCallback(() => {
     const silence: Silence = { type: "silence", duree: { base, points } };
+    // Mode insertion : le silence s'intercale avant la note sélectionnée.
+    if (insertion && curseur.note !== "fin") {
+      const r = insererAvant(piece, curseur, silence);
+      if (r.piece !== piece) { setPiece(r.piece); setCurseur(r.curseur); }
+      return;
+    }
     const r = inserer(piece, curseur, silence);
     if (r.piece !== piece) {
       setPiece(r.piece);
       setCurseur(r.curseur);
     }
-  }, [piece, curseur, base, points]);
+  }, [piece, curseur, base, points, insertion]);
 
   // Choisit base ou points : en mode sélection, CORRIGE la durée de la note pointée ; sinon règle
   // la palette de saisie. (Le triolet reste géré à part : il n'a de sens qu'en mode ajout.)
@@ -314,6 +335,7 @@ export default function AtelierComposition() {
     setCurseur({ mesure: 0, voix: "soprano", note: "fin" });
     setOctaves(OCTAVE_DEFAUT);
     setAccord(false);
+    setInsertion(false);
   }, []);
 
   /**
@@ -331,6 +353,10 @@ export default function AtelierComposition() {
   const choisirTonalite = useCallback((armure: number, mode: "major" | "minor") => {
     setPiece((p) => ({ ...p, armure, mode }));
   }, []);
+
+  // Insérer et Accord sont EXCLUSIVES : chacune éteint l'autre en s'activant.
+  const basculerAccord = useCallback(() => { setInsertion(false); setAccord((a) => !a); }, []);
+  const basculerInsertion = useCallback(() => { setAccord(false); setInsertion((i) => !i); }, []);
 
   // ── Lecture (reprise du patron de Studio.tsx) ────────────────────────────────
 
@@ -386,8 +412,8 @@ export default function AtelierComposition() {
   // ── Clavier d'ordinateur ─────────────────────────────────────────────────────
   // Les handlers dépendent de l'état ; pour ne poser l'écouteur qu'UNE fois (et ne
   // jamais lire un état périmé), on passe par une ref remise à jour à chaque rendu.
-  const actionsRef = useRef({ poserNote, empiler, poserSilence, effacerContextuel, naviguerNote, transposer, setBase });
-  actionsRef.current = { poserNote, empiler, poserSilence, effacerContextuel, naviguerNote, transposer, setBase };
+  const actionsRef = useRef({ poserNote, empiler, poserSilence, effacerContextuel, naviguerNote, transposer, setBase, basculerInsertion });
+  actionsRef.current = { poserNote, empiler, poserSilence, effacerContextuel, naviguerNote, transposer, setBase, basculerInsertion };
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -419,6 +445,7 @@ export default function AtelierComposition() {
         case "ArrowDown":  e.preventDefault(); a.transposer(-1, e.shiftKey); break;
         case "Backspace":  e.preventDefault(); a.effacerContextuel(); break;
         case "r": case "R": e.preventDefault(); a.poserSilence(); break;
+        case "i": case "I": e.preventDefault(); a.basculerInsertion(); break;
       }
     };
     window.addEventListener("keydown", onKeyDown);
@@ -496,11 +523,18 @@ export default function AtelierComposition() {
             {triolet ? "⌐ Triolet actif" : "Triolet"}
           </button>
           <button
-            onClick={() => setAccord((a) => !a)}
+            onClick={basculerAccord}
             style={accord ? btnOn : btn}
             title="Les notes s'empilent sur la dernière note posée (Maj+lettre au clavier)"
           >
             {accord ? "♪ Accord actif" : "Accord"}
+          </button>
+          <button
+            onClick={basculerInsertion}
+            style={insertion ? btnOn : btn}
+            title="La prochaine note se pose avant la note sélectionnée (touche I)"
+          >
+            {insertion ? "→| Insertion active" : "Insérer"}
           </button>
         </div>
 
@@ -582,6 +616,11 @@ export default function AtelierComposition() {
           {accord && (
             <span style={{ fontSize: 12, color: "#BA7517", fontWeight: 600 }}>
               Accord : les notes s&apos;empilent sur la dernière posée
+            </span>
+          )}
+          {insertion && (
+            <span style={{ fontSize: 12, color: "#BA7517", fontWeight: 600 }}>
+              Insertion : les notes se posent avant la sélection
             </span>
           )}
         </div>
@@ -692,7 +731,7 @@ export default function AtelierComposition() {
 
         {/* ── Aide clavier ─────────────────────────────────────────── */}
         <div style={{ fontSize: 12, color: "#999", fontFamily: "system-ui, sans-serif", lineHeight: 1.7, padding: "0 4px" }}>
-          <strong style={{ color: "#777" }}>Clavier :</strong> a…g = poser/corriger la note · Maj+a…g = empiler (accord) · ← → = naviguer entre les notes · ↑ ↓ = transposer (Maj = octave) · 1–5 = durée · R = silence · Retour arrière = effacer (un accord se dépile hauteur par hauteur).
+          <strong style={{ color: "#777" }}>Clavier :</strong> a…g = poser/corriger la note · Maj+a…g = empiler (accord) · I = insérer avant la note sélectionnée · ← → = naviguer entre les notes · ↑ ↓ = transposer (Maj = octave) · 1–5 = durée · R = silence · Retour arrière = effacer (un accord se dépile hauteur par hauteur).
         </div>
 
         {/* PianoPlayer monté caché : il ne sert qu'à SONNER (cf. Studio). */}

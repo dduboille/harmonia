@@ -119,6 +119,30 @@ export function inserer(
 }
 
 /**
+ * Insère un événement (note ou silence) juste AVANT la note sélectionnée, si sa durée
+ * tient dans la mesure (refus LOCAL : rien ne franchit la barre — les événements
+ * suivants de la mesure se décalent). Le curseur SUIT la note sélectionnée — son index
+ * glisse de +1 — pour enchaîner les insertions. Sans effet en mode ajout ("fin"), sur
+ * un silence pointé ou si ça ne tient pas.
+ */
+export function insererAvant(
+  piece: Piece, curseur: Curseur, evenement: Evenement,
+): { piece: Piece; curseur: Curseur } {
+  if (curseur.note === "fin") return { piece, curseur };
+  const voix = piece.mesures[curseur.mesure].voix[curseur.voix];
+  const ev = voix[curseur.note];
+  if (!ev || ev.type !== "note") return { piece, curseur };
+  const capacite = capaciteMesure(piece.chiffrage);
+  if (dureePlacee(voix) + dureeEnDivisions(evenement.duree) > capacite) return { piece, curseur };
+
+  const nouvelleVoix = [...voix.slice(0, curseur.note), evenement, ...voix.slice(curseur.note)];
+  return {
+    piece: avecVoix(piece, curseur, nouvelleVoix),
+    curseur: { ...curseur, note: curseur.note + 1 },
+  };
+}
+
+/**
  * Les positions NAVIGABLES d'une voix : une entrée par NOTE (les silences saisis ne sont pas
  * sélectionnables), dans l'ordre de lecture, à travers les mesures. `note` est l'index BRUT
  * dans le tableau de la mesure.
