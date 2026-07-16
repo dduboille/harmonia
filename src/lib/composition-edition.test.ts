@@ -292,7 +292,7 @@ describe("appariement Verovio : onset/midi <-> position", () => {
     ];
     const c: Curseur = { mesure: 0, voix: "soprano", note: 1 };
     const r = onsetMsMidiDeSelection(p, c)!;
-    expect(r.midi).toBe(74);
+    expect(r.midis).toEqual([74]);
     expect(r.onsetMs).toBeCloseTo(500, 0);
   });
   it("trouverPosition retrouve la note a partir de (onsetMs, midi)", () => {
@@ -396,5 +396,27 @@ describe("empilerHauteur / retirerDerniereHauteur — l'accord dans une voix", (
     const p = remplacerHauteur(accord, selection, "D", 1);
     const n = p.mesures[0].voix.basse[0] as Note;
     expect(n.hauteurs).toEqual([{ lettre: "D", alteration: 1, octave: 3 }]);
+  });
+});
+
+describe("appariement multi-têtes (accords)", () => {
+  /** Une pièce d'une mesure 4/4, basse seule. */
+  function pieceBasse(evs: Evenement[]): Piece {
+    return {
+      armure: 0, chiffrage: { temps: 4, unite: 4 },
+      mesures: [{ voix: { soprano: [], alto: [], tenor: [], basse: evs } }],
+    };
+  }
+  const selection: Curseur = { mesure: 0, voix: "basse", note: 0 };
+
+  it("onsetMsMidiDeSelection renvoie TOUS les midis du bloc", () => {
+    const accord = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "G", 0, 3);
+    const s = onsetMsMidiDeSelection(accord, selection);
+    expect(s?.midis).toEqual([48, 55]); // Do3, Sol3
+  });
+  it("trouverPosition retrouve le bloc par une hauteur EMPILÉE", () => {
+    const accord = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "G", 0, 3);
+    expect(trouverPosition(accord, 0, 55)).toEqual({ mesure: 0, voix: "basse", note: 0 }); // par le Sol3
+    expect(trouverPosition(accord, 0, 48)).toEqual({ mesure: 0, voix: "basse", note: 0 }); // par le Do3
   });
 });

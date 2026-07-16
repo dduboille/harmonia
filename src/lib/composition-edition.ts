@@ -337,16 +337,16 @@ function onsetTicks(piece: Piece, mesure: number, voix: NomVoix, note: number): 
   return t;
 }
 
-/** (onsetMs, midi) de la note sélectionnée, pour surligner l'élément Verovio correspondant. */
+/** (onsetMs, midis) de la note sélectionnée — TOUS les midis du bloc, pour surligner chaque tête. */
 export function onsetMsMidiDeSelection(
   piece: Piece, curseur: Curseur,
-): { onsetMs: number; midi: number } | null {
+): { onsetMs: number; midis: number[] } | null {
   if (curseur.note === "fin") return null;
   const ev = piece.mesures[curseur.mesure].voix[curseur.voix][curseur.note];
   if (!ev || ev.type !== "note") return null;
   return {
     onsetMs: onsetTicks(piece, curseur.mesure, curseur.voix, curseur.note) * MS_PAR_TICK,
-    midi: midiDeHauteur(ev.hauteurs[0]),
+    midis: ev.hauteurs.map(midiDeHauteur),
   };
 }
 
@@ -360,7 +360,7 @@ export function trouverPosition(piece: Piece, onsetMs: number, midi: number): Cu
     const p = positions(piece, voix);
     for (const { mesure, note } of p) {
       const ev = piece.mesures[mesure].voix[voix][note] as Note;
-      if (midiDeHauteur(ev.hauteurs[0]) !== midi) continue;
+      if (!ev.hauteurs.some((h) => midiDeHauteur(h) === midi)) continue;
       if (Math.abs(onsetTicks(piece, mesure, voix, note) - cibleTicks) <= 1) {
         return { mesure, voix, note };
       }

@@ -173,7 +173,7 @@ export default function AtelierComposition() {
           const s = onsetMsMidiDeSelection(piece, pos);
           return s ? { ...s, severite: f.severite } : null;
         })
-        .filter((x): x is { onsetMs: number; midi: number; severite: "faute" | "avertissement" } => x !== null),
+        .filter((x): x is { onsetMs: number; midis: number[]; severite: "faute" | "avertissement" } => x !== null),
     );
     scoreRef.current?.surlignerFautes(cibles);
   }, [musicxml, fautes, piece]);
