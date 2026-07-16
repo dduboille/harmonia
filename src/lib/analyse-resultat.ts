@@ -75,6 +75,32 @@ export function toniqueDe(fifths: number, mode: "major" | "minor"): number {
   return mode === "minor" ? (majeure + 9) % 12 : majeure;
 }
 
+/**
+ * Nom de la tonique par ARMURE — pas par pitch class : `NOTE_FR` ne connaît que les
+ * dièses, et une armure bémolisée doit porter son nom d'école (Ré♭ majeur, pas Do♯).
+ * C'est aussi ce qui distingue les enharmonies (Fa♯ majeur 6♯ / Sol♭ majeur 6♭).
+ */
+const TONIQUE_FR: Record<number, { major: string; minor: string }> = {
+  [-7]: { major: "Do♭", minor: "La♭" }, [-6]: { major: "Sol♭", minor: "Mi♭" },
+  [-5]: { major: "Ré♭", minor: "Si♭" }, [-4]: { major: "La♭", minor: "Fa" },
+  [-3]: { major: "Mi♭", minor: "Do" },  [-2]: { major: "Si♭", minor: "Sol" },
+  [-1]: { major: "Fa", minor: "Ré" },   [0]: { major: "Do", minor: "La" },
+  [1]: { major: "Sol", minor: "Mi" },   [2]: { major: "Ré", minor: "Si" },
+  [3]: { major: "La", minor: "Fa♯" },   [4]: { major: "Mi", minor: "Do♯" },
+  [5]: { major: "Si", minor: "Sol♯" },  [6]: { major: "Fa♯", minor: "Ré♯" },
+  [7]: { major: "Do♯", minor: "La♯" },
+};
+
+/** Nom d'école de la tonique d'une armure (repli pitch class si armure inconnue). */
+export function toniqueFrDe(fifths: number, mode: "major" | "minor"): string {
+  return TONIQUE_FR[fifths]?.[mode] ?? NOTE_FR[toniqueDe(fifths, mode)] ?? "Do";
+}
+
+/** Libellé complet de la tonalité : « Ré♭ majeur », « La mineur »… */
+export function tonaliteDe(fifths: number, mode: "major" | "minor"): string {
+  return `${toniqueFrDe(fifths, mode)} ${mode === "major" ? "majeur" : "mineur"}`;
+}
+
 // ── L'analyse complète ────────────────────────────────────────────────────────
 
 /** L'analyse complète d'une partition déjà lue. Pure ; peut tourner au navigateur. */
@@ -82,8 +108,8 @@ export function analyserPartition(score: ParsedScore, fichier: string): Analysis
   const { mode, signature } = score;
 
   const tonicPc = toniqueDe(score.fifths, mode);
-  const tonicFr = NOTE_FR[tonicPc] ?? "Do";
-  const tonalite = `${tonicFr} ${mode === "major" ? "majeur" : "mineur"}`;
+  const tonicFr = toniqueFrDe(score.fifths, mode);
+  const tonalite = tonaliteDe(score.fifths, mode);
 
   // LA CHAÎNE. Elle segmente au temps mais VOIT toute note qui sonne, choisit chaque
   // accord par le coût de ce qu'il explique contre ce qu'il écarte, fusionne les temps

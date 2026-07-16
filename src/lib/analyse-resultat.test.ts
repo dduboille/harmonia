@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { toniqueDe, analyserPartition } from "./analyse-resultat";
+import { toniqueDe, tonaliteDe, analyserPartition } from "./analyse-resultat";
 import { parseMusicXML } from "./musicxml-parse";
 import { pieceVersMusicXML } from "./piece-vers-musicxml";
 import type { Piece, Note, NomVoix, Voix } from "./piece-model";
@@ -53,6 +53,20 @@ describe("toniqueDe — la tonique d'une armure et d'un mode", () => {
     expect(toniqueDe(0, "minor")).toBe(9);   // la mineur (et non Do !)
     expect(toniqueDe(-3, "minor")).toBe(0);  // do mineur
     expect(toniqueDe(2, "minor")).toBe(11);  // si mineur
+  });
+});
+
+describe("tonaliteDe — le nom d'école d'une armure", () => {
+  it("armures bémolisées : le nom BÉMOL, pas l'enharmonie diésée", () => {
+    expect(tonaliteDe(-5, "major")).toBe("Ré♭ majeur");  // et non « Do♯ majeur »
+    expect(tonaliteDe(-2, "major")).toBe("Si♭ majeur");
+    expect(tonaliteDe(-2, "minor")).toBe("Sol mineur");
+  });
+  it("armures diésées et naturelles : inchangées", () => {
+    expect(tonaliteDe(0, "major")).toBe("Do majeur");
+    expect(tonaliteDe(0, "minor")).toBe("La mineur");
+    expect(tonaliteDe(6, "major")).toBe("Fa♯ majeur");
+    expect(tonaliteDe(4, "minor")).toBe("Do♯ mineur");
   });
 });
 
