@@ -5,7 +5,8 @@ import { type Piece, type Note, type Hauteur } from "./piece-model";
 import {
   capaciteMesure, dureePlacee, decouperEnSilences, voixActives,
   inserer, effacer, positionEcriture, positions, naviguer,
-  transposerDegre, transposerOctave, remplacerHauteur, remplacerDuree, type Curseur,
+  transposerDegre, transposerOctave, remplacerHauteur, remplacerDuree,
+  supprimerNote, type Curseur,
 } from "./composition-edition";
 
 const DO5: Hauteur = { lettre: "C", alteration: 0, octave: 5 };
@@ -252,6 +253,32 @@ describe("remplacerHauteur / remplacerDuree", () => {
     const c: Curseur = { mesure: 0, voix: "soprano", note: "fin" };
     expect(remplacerHauteur(p, c, "G", 0)).toBe(p);
     expect(remplacerDuree(p, c, { base: "croche", points: 0 })).toBe(p);
+  });
+});
+
+describe("supprimerNote — retirer la note selectionnee", () => {
+  it("retire la note et selectionne la precedente", () => {
+    const p = pieceEdition();
+    p.mesures[0].voix.soprano = [noteN("noire"), noteN("noire"), noteN("noire")];
+    const c: Curseur = { mesure: 0, voix: "soprano", note: 1 };
+    const r = supprimerNote(p, c);
+    expect(r.piece.mesures[0].voix.soprano).toHaveLength(2);
+    expect(r.curseur).toEqual({ mesure: 0, voix: "soprano", note: 0 });
+  });
+  it("sur la premiere note, repasse en mode ajout", () => {
+    const p = pieceEdition();
+    p.mesures[0].voix.soprano = [noteN("noire")];
+    const c: Curseur = { mesure: 0, voix: "soprano", note: 0 };
+    const r = supprimerNote(p, c);
+    expect(r.piece.mesures[0].voix.soprano).toHaveLength(0);
+    expect(r.curseur.note).toBe("fin");
+  });
+  it("sans effet en mode fin", () => {
+    const p = pieceEdition();
+    const c: Curseur = { mesure: 0, voix: "soprano", note: "fin" };
+    const r = supprimerNote(p, c);
+    expect(r.piece).toBe(p);
+    expect(r.curseur).toBe(c);
   });
 });
 

@@ -217,6 +217,28 @@ export function remplacerDuree(piece: Piece, curseur: Curseur, duree: Duree): Pi
 }
 
 /**
+ * Supprime la note sélectionnée (décale la suite de la voix) et sélectionne la note PRÉCÉDENTE de
+ * la voix (dans la même mesure) ; s'il n'y en a plus, repasse en mode ajout ("fin"). Sans effet en
+ * mode ajout.
+ */
+export function supprimerNote(piece: Piece, curseur: Curseur): { piece: Piece; curseur: Curseur } {
+  if (curseur.note === "fin") return { piece, curseur };
+  const voix = piece.mesures[curseur.mesure].voix[curseur.voix];
+  const index = curseur.note;
+  const nouvelleVoix = voix.filter((_, i) => i !== index);
+  const nouvellePiece = avecVoix(piece, curseur, nouvelleVoix);
+  let prec = -1;
+  for (let i = index - 1; i >= 0; i--) {
+    if (nouvelleVoix[i]?.type === "note") { prec = i; break; }
+  }
+  const nouveauCurseur: Curseur =
+    prec >= 0
+      ? { mesure: curseur.mesure, voix: curseur.voix, note: prec }
+      : { mesure: curseur.mesure, voix: curseur.voix, note: "fin" };
+  return { piece: nouvellePiece, curseur: nouveauCurseur };
+}
+
+/**
  * Efface la dernière note posée dans la voix courante. Si la voix courante est vide et
  * qu'on n'est pas à la première mesure, on recule à la précédente et on y retire la
  * dernière — un seul Retour arrière efface toujours quelque chose de visible.
