@@ -4,7 +4,7 @@ import { pieceVersMusicXML } from "./piece-vers-musicxml";
 import { type Piece, type Note, type Hauteur } from "./piece-model";
 import {
   capaciteMesure, dureePlacee, decouperEnSilences, voixActives,
-  inserer, effacer, positionEcriture, type Curseur,
+  inserer, effacer, positionEcriture, positions, type Curseur,
 } from "./composition-edition";
 
 const DO5: Hauteur = { lettre: "C", alteration: 0, octave: 5 };
@@ -133,6 +133,22 @@ describe("effacer", () => {
     ({ piece: p, curseur: c } = effacer(p, c));
     expect(c.mesure).toBe(0);
     expect(p.mesures[0].voix.soprano).toHaveLength(3);
+  });
+});
+
+describe("positions — notes navigables d'une voix", () => {
+  it("énumère les notes dans l'ordre, à travers les mesures, en ignorant silences et mesures vides", () => {
+    let p = pieceEdition();
+    p.mesures[0].voix.soprano = [noteN("noire"), noteN("noire")];
+    p.mesures[2].voix.soprano = [{ type: "silence", duree: { base: "noire", points: 0 } }, noteN("noire")];
+    expect(positions(p, "soprano")).toEqual([
+      { mesure: 0, note: 0 },
+      { mesure: 0, note: 1 },
+      { mesure: 2, note: 1 },
+    ]);
+  });
+  it("une voix sans note donne une liste vide", () => {
+    expect(positions(pieceEdition(), "alto")).toEqual([]);
   });
 });
 

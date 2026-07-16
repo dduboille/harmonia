@@ -118,6 +118,21 @@ export function inserer(
 }
 
 /**
+ * Les positions NAVIGABLES d'une voix : une entrée par NOTE (les silences saisis ne sont pas
+ * sélectionnables), dans l'ordre de lecture, à travers les mesures. `note` est l'index BRUT
+ * dans le tableau de la mesure.
+ */
+export function positions(piece: Piece, voix: NomVoix): Array<{ mesure: number; note: number }> {
+  const out: Array<{ mesure: number; note: number }> = [];
+  piece.mesures.forEach((m, mesure) => {
+    m.voix[voix].forEach((ev, note) => {
+      if (ev.type === "note") out.push({ mesure, note });
+    });
+  });
+  return out;
+}
+
+/**
  * Efface la dernière note posée dans la voix courante. Si la voix courante est vide et
  * qu'on n'est pas à la première mesure, on recule à la précédente et on y retire la
  * dernière — un seul Retour arrière efface toujours quelque chose de visible.
