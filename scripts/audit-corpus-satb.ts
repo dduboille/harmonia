@@ -70,10 +70,12 @@ const audits: ExerciceAudit[] = satbExercises.map(ex => {
 const total = audits.length;
 const clean = audits.filter(a => a.errors.length === 0 && a.warnings.length === 0);
 const blocked = audits.filter(a => a.errors.length > 0);
-// Notées <100 : avertissements comptés par noteExercice (toutes catégories
-// pour l'instant — R5 exclura cross_relation du décompte, pas encore en
-// vigueur ici).
-const warned = audits.filter(a => a.errors.length === 0 && a.warnings.length > 0 && noteExercice(a.warnings.length) < 100);
+// Notées <100 : avertissements comptés par noteExercice, en excluant
+// cross_relation — alignement sur la note de l'app (R5 : cross_relation reste
+// affichée mais ne pénalise plus). Le test d'invariant (R8) et l'app comptent
+// donc la même chose.
+const notedWarnings = (a: ExerciceAudit) => a.warnings.filter(w => w.type !== "cross_relation");
+const warned = audits.filter(a => a.errors.length === 0 && notedWarnings(a).length > 0 && noteExercice(notedWarnings(a).length) < 100);
 
 // ─── Répartition des bloqués : nouvelles règles vs préexistantes vs mixte ────
 let blockedNewOnly = 0;
@@ -127,7 +129,7 @@ console.log("-".repeat(78));
 for (const a of warned) {
   const counts = countByType(a.warnings);
   const detail = Object.entries(counts).map(([t, n]) => `${t}×${n}`).join(", ");
-  const note = noteExercice(a.warnings.length);
+  const note = noteExercice(notedWarnings(a).length);
   console.log(`  ${a.id}  (cours ${a.cours})  note=${note}  →  ${detail}`);
 }
 
