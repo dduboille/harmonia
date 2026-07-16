@@ -106,9 +106,9 @@ describe("aller-retour atelier : Piece → MusicXML → parse → analyse", () =
     return { type: "note", hauteurs: [{ lettre, alteration: 0, octave }], duree: { base: "ronde", points: 0 } };
   }
   /** Un accord SATB par mesure (rondes). */
-  function choral(accords: Array<Record<NomVoix, Note>>): Piece {
+  function choral(accords: Array<Record<NomVoix, Note>>, mode?: Piece["mode"]): Piece {
     return {
-      armure: 0, chiffrage: { temps: 4, unite: 4 },
+      armure: 0, mode, chiffrage: { temps: 4, unite: 4 },
       mesures: accords.map((a) => ({
         voix: {
           soprano: [a.soprano] as Voix, alto: [a.alto] as Voix,
@@ -129,5 +129,20 @@ describe("aller-retour atelier : Piece → MusicXML → parse → analyse", () =
     expect(a.tonalite).toBe("Do majeur");
     expect(a.mesures.map((m) => m.accords[0]?.degreeNum)).toEqual([1, 4, 5, 1]);
     expect(a.cadences.some((c) => c.type === "parfaite" && c.measure === 4)).toBe(true);
+  });
+
+  it("i–V–i en La mineur (armure 0, mode minor) : degrés et cadence parfaite en direct", () => {
+    const solDiese: Note = {
+      type: "note", hauteurs: [{ lettre: "G", alteration: 1, octave: 4 }], duree: { base: "ronde", points: 0 },
+    };
+    const piece = choral([
+      { soprano: ronde("C", 5), alto: ronde("A", 4), tenor: ronde("E", 3), basse: ronde("A", 2) }, // i
+      { soprano: ronde("B", 4), alto: solDiese, tenor: ronde("E", 3), basse: ronde("E", 2) }, // V
+      { soprano: ronde("C", 5), alto: ronde("A", 4), tenor: ronde("E", 3), basse: ronde("A", 2) }, // i
+    ], "minor");
+    const a = analyserPartition(parseMusicXML(pieceVersMusicXML(piece)), "");
+    expect(a.tonalite).toBe("La mineur");
+    expect(a.mesures.map((m) => m.accords[0]?.degreeNum)).toEqual([1, 5, 1]);
+    expect(a.cadences.some((c) => c.type === "parfaite" && c.measure === 3)).toBe(true);
   });
 });
