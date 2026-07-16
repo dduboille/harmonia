@@ -508,7 +508,7 @@ export default function AtelierComposition() {
             <button onClick={poserSilence} style={{ ...btn, padding: "8px 14px", fontFamily: "'Times New Roman', serif", fontSize: 15 }} title="Touche R">
               𝄽 Silence
             </button>
-            <button onClick={effacerDerniere} style={{ ...btn, padding: "8px 14px", color: "#c0392b" }} title="Retour arrière">
+            <button onClick={effacerContextuel} style={{ ...btn, padding: "8px 14px", color: "#c0392b" }} title="Retour arrière">
               ⌫ Effacer
             </button>
             <div style={{ flex: 1 }} />
