@@ -7,7 +7,7 @@ import {
   inserer, effacer, positionEcriture, positions, naviguer,
   transposerDegre, transposerOctave, remplacerHauteur, remplacerDuree,
   supprimerNote, onsetMsMidiDeSelection, trouverPosition, type Curseur,
-  empilerHauteur, retirerDerniereHauteur,
+  empilerHauteur, retirerDerniereHauteur, insererAvant, MS_PAR_TICK,
 } from "./composition-edition";
 
 const DO5: Hauteur = { lettre: "C", alteration: 0, octave: 5 };
@@ -418,5 +418,70 @@ describe("appariement multi-têtes (accords)", () => {
     const accord = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "G", 0, 3);
     expect(trouverPosition(accord, 0, 55)).toEqual({ mesure: 0, voix: "basse", note: 0 }); // par le Sol3
     expect(trouverPosition(accord, 0, 48)).toEqual({ mesure: 0, voix: "basse", note: 0 }); // par le Do3
+  });
+});
+
+describe("insererAvant — intercaler avant la sélection", () => {
+  /** Une pièce d'une mesure 4/4, basse seule. */
+  function pieceBasse(evs: Evenement[]): Piece {
+    return {
+      armure: 0, chiffrage: { temps: 4, unite: 4 },
+      mesures: [{ voix: { soprano: [], alto: [], tenor: [], basse: evs } }],
+    };
+  }
+  const surD: Curseur = { mesure: 0, voix: "basse", note: 1 };
+
+  it("insère avant la note sélectionnée et la sélection SUIT (+1)", () => {
+    const p = pieceBasse([noteSimple("C", 3), noteSimple("D", 3)]);
+    const r = insererAvant(p, surD, noteSimple("E", 3));
+    expect(r.piece.mesures[0].voix.basse.map((e) => (e as Note).hauteurs[0].lettre)).toEqual(["C", "E", "D"]);
+    expect(r.curseur).toEqual({ mesure: 0, voix: "basse", note: 2 }); // toujours le Ré
+  });
+  it("insertions consécutives : la sélection reste sur la note d'origine", () => {
+    const p = pieceBasse([noteSimple("C", 3), noteSimple("D", 3)]);
+    const r1 = insererAvant(p, surD, noteSimple("E", 3));
+    const r2 = insererAvant(r1.piece, r1.curseur, noteSimple("F", 3));
+    expect(r2.piece.mesures[0].voix.basse.map((e) => (e as Note).hauteurs[0].lettre)).toEqual(["C", "E", "F", "D"]);
+    expect(r2.curseur.note).toBe(3);
+  });
+  it("refuse si la durée ne tient pas dans la mesure (mêmes références)", () => {
+    const pleine = pieceBasse([noteSimple("C", 3), noteSimple("D", 3), noteSimple("E", 3), noteSimple("F", 3)]); // 4 noires en 4/4
+    const r = insererAvant(pleine, { mesure: 0, voix: "basse", note: 3 }, noteSimple("G", 3));
+    expect(r.piece).toBe(pleine);
+    expect(r.curseur).toEqual({ mesure: 0, voix: "basse", note: 3 });
+  });
+  it("avant la PREMIÈRE note : la nouvelle devient l'index 0", () => {
+    const p = pieceBasse([noteSimple("C", 3)]);
+    const r = insererAvant(p, { mesure: 0, voix: "basse", note: 0 }, noteSimple("B", 2));
+    expect(r.piece.mesures[0].voix.basse.map((e) => (e as Note).hauteurs[0].lettre)).toEqual(["B", "C"]);
+    expect(r.curseur.note).toBe(1);
+  });
+  it("avant un accord : le bloc n'est pas touché", () => {
+    const accord = empilerHauteur(pieceBasse([noteSimple("C", 3)]), { mesure: 0, voix: "basse", note: 0 }, "G", 0, 3);
+    const r = insererAvant(accord, { mesure: 0, voix: "basse", note: 0 }, noteSimple("D", 3));
+    expect((r.piece.mesures[0].voix.basse[1] as Note).hauteurs).toHaveLength(2);
+  });
+  it("un SILENCE s'intercale comme une note", () => {
+    const p = pieceBasse([noteSimple("C", 3), noteSimple("D", 3)]);
+    const silence: Silence = { type: "silence", duree: { base: "noire", points: 0 } };
+    const r = insererAvant(p, surD, silence);
+    expect(r.piece.mesures[0].voix.basse[1].type).toBe("silence");
+    expect(r.curseur.note).toBe(2);
+  });
+  it("inerte en mode ajout et sur pièce vide (mêmes références)", () => {
+    const p = pieceBasse([noteSimple("C", 3)]);
+    const rFin = insererAvant(p, { mesure: 0, voix: "basse", note: "fin" }, noteSimple("E", 3));
+    expect(rFin.piece).toBe(p);
+    const vide = pieceBasse([]);
+    const rVide = insererAvant(vide, { mesure: 0, voix: "basse", note: "fin" }, noteSimple("E", 3));
+    expect(rVide.piece).toBe(vide);
+  });
+  it("invariant d'appariement : la sélection pointe la même note, décalée de la durée insérée", () => {
+    const p = pieceBasse([noteSimple("C", 3), noteSimple("D", 3)]);
+    const avant = onsetMsMidiDeSelection(p, surD)!;
+    const r = insererAvant(p, surD, noteSimple("E", 3));
+    const apres = onsetMsMidiDeSelection(r.piece, r.curseur)!;
+    expect(apres.midis).toEqual(avant.midis);                       // toujours le Ré (62)
+    expect(apres.onsetMs).toBeCloseTo(avant.onsetMs + 48 * MS_PAR_TICK); // décalé d'une noire
   });
 });
