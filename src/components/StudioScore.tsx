@@ -28,6 +28,8 @@ export interface StudioScoreRef {
   surlignerATemps(ms: number | null): void;
   /** Surligne UNE note choisie par (onsetMs, midi) ; `null` efface la sélection. */
   surlignerSelection(sel: { onsetMs: number; midi: number } | null): void;
+  /** Surligne un ensemble de notes fautives (rouge = faute, orange = avertissement) ; [] efface. */
+  surlignerFautes(fautes: Array<{ onsetMs: number; midi: number; severite: "faute" | "avertissement" }>): void;
 }
 
 interface Props {
@@ -47,6 +49,7 @@ const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ mus
   const tkRef = useRef<any>(null);
   const notesJouees = useRef<Element[]>([]);
   const notesSelection = useRef<Element[]>([]);
+  const notesFautes = useRef<Element[]>([]);
   const [erreur, setErreur] = useState<string | null>(null);
 
   // ── Gravure (au montage et à chaque nouveau fichier, + sur redimensionnement) ──
@@ -151,6 +154,28 @@ const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ mus
         }
       }
     },
+
+    surlignerFautes(fautes) {
+      const tk = tkRef.current;
+      const hote = conteneur.current;
+      if (!tk || !hote) return;
+      for (const el of notesFautes.current) el.classList.remove("harmonia-faute", "harmonia-avert");
+      notesFautes.current = [];
+      for (const f of fautes) {
+        let ids: string[] = [];
+        try { ids = tk.getElementsAtTime(f.onsetMs + 1).notes ?? []; } catch { continue; }
+        for (const id of ids) {
+          let midi: number | undefined;
+          try { midi = tk.getMIDIValuesForElement(id).pitch; } catch { midi = undefined; }
+          if (midi !== f.midi) continue;
+          const el = hote.querySelector(`[id="${id}"]`);
+          if (el) {
+            el.classList.add(f.severite === "faute" ? "harmonia-faute" : "harmonia-avert");
+            notesFautes.current.push(el);
+          }
+        }
+      }
+    },
   }));
 
   if (erreur) {
@@ -181,6 +206,8 @@ const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ mus
       <style>{`
         .harmonia-joue, .harmonia-joue * { fill: #C62828 !important; }
         .harmonia-selection, .harmonia-selection * { fill: #5C3D6E !important; }
+        .harmonia-faute, .harmonia-faute * { fill: #E53E3E !important; }
+        .harmonia-avert, .harmonia-avert * { fill: #DD6B20 !important; }
       `}</style>
       <div ref={conteneur} onClick={onClick} style={{ width: "100%", overflowX: "auto", cursor: "pointer" }} />
     </>

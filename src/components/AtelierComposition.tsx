@@ -9,6 +9,7 @@ import {
   supprimerNote, onsetMsMidiDeSelection, trouverPosition, type Curseur,
 } from "@/lib/composition-edition";
 import { pieceVersMusicXML } from "@/lib/piece-vers-musicxml";
+import { detecterFautes } from "@/lib/conduite-voix";
 import { parseMusicXML, type ParsedScore } from "@/lib/musicxml-parse";
 import { planifierLecture, specDepuisMidi } from "@/lib/studio-playback";
 import {
@@ -128,11 +129,27 @@ export default function AtelierComposition() {
   // voix vides lui-même, puis Verovio grave. 8 mesures — le coût par frappe reste acceptable.
   const musicxml = useMemo(() => pieceVersMusicXML(piece), [piece]);
 
+  // Contrôle de la conduite des voix : recalculé à chaque frappe (module pur, peu coûteux).
+  const fautes = useMemo(() => detecterFautes(piece), [piece]);
+
   // Surligne la note sélectionnée après chaque regravure (le SVG est recréé à chaque
   // changement de `piece`, donc à chaque frappe : on re-surligne dans la foulée).
   useEffect(() => {
     scoreRef.current?.surlignerSelection(onsetMsMidiDeSelection(piece, curseur));
   }, [musicxml, curseur, piece]);
+
+  // Surligne les notes fautives après chaque regravure (même raison : SVG recréé à chaque frappe).
+  useEffect(() => {
+    const cibles = fautes.flatMap((f) =>
+      f.positions
+        .map((pos) => {
+          const s = onsetMsMidiDeSelection(piece, pos);
+          return s ? { ...s, severite: f.severite } : null;
+        })
+        .filter((x): x is { onsetMs: number; midi: number; severite: "faute" | "avertissement" } => x !== null),
+    );
+    scoreRef.current?.surlignerFautes(cibles);
+  }, [musicxml, fautes, piece]);
 
   // Clic sur une note gravée : retrouve sa position dans le modèle et la sélectionne
   // (bascule aussi la voix active si besoin).
@@ -467,6 +484,38 @@ export default function AtelierComposition() {
         {/* ── Partition gravée (à chaque frappe) ───────────────────── */}
         <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "16px 12px", marginBottom: 12, overflowX: "auto" }}>
           <StudioScore ref={scoreRef} musicxml={musicxml} onSelectNote={onSelectNote} />
+        </div>
+
+        {/* ── Conduite des voix ─────────────────────────────────────── */}
+        <div style={{ ...carte }}>
+          <h2 style={{ fontSize: 15, fontWeight: 600, color: "#1a1a1a", margin: "0 0 10px", fontFamily: "Georgia, serif" }}>
+            Conduite des voix
+          </h2>
+          {fautes.length === 0 ? (
+            <p style={{ fontSize: 13, color: "#0F6E56", margin: 0, fontFamily: "system-ui, sans-serif" }}>
+              Aucune faute détectée.
+            </p>
+          ) : (
+            <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+              {fautes.map((f, i) => (
+                <li key={i}>
+                  <button
+                    onClick={() => setCurseur(f.positions[0])}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 8, width: "100%", textAlign: "left",
+                      padding: "6px 10px", borderRadius: 6, cursor: "pointer",
+                      border: "0.5px solid #e0dbd3", background: "#fff",
+                      fontFamily: "system-ui, sans-serif", fontSize: 13,
+                    }}
+                  >
+                    <span style={{ width: 8, height: 8, borderRadius: "50%", flexShrink: 0, background: f.severite === "faute" ? "#E53E3E" : "#DD6B20" }} />
+                    <span style={{ color: "#1a1a1a" }}>{f.message}</span>
+                    <span style={{ color: "#aaa" }}>· mesure {f.mesure + 1}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         {/* ── Saisie des notes ─────────────────────────────────────── */}
