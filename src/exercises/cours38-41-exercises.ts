@@ -131,7 +131,7 @@ export const COURS39_EXERCISES: SATBExercise[] = [
     keySignature: "C",
     measures: ["IV⁷ · Fmaj7", "V⁷ · G7", "I · C"],
     solution: [
-      { soprano: n("E", 5), alto: n("C", 5), tenor: n("A", 4), bass: n("F", 3) },
+      { soprano: n("E", 5), alto: n("A", 4), tenor: n("C", 4), bass: n("F", 3) },
       { soprano: n("D", 5), alto: n("B", 4), tenor: n("F", 4), bass: n("G", 3) },
       { soprano: n("C", 5), alto: n("G", 4), tenor: n("E", 4), bass: n("C", 3) },
     ],
@@ -336,6 +336,7 @@ export const COURS41_EXERCISES: SATBExercise[] = [
     explanation:
       "Signature romantique (Schumann, Brahms) : emprunt au mode mineur (le iv, Fm, avec son Ab expressif) puis sixte augmentée allemande (Ger⁺⁶ = Ab–C–Eb–F#). La sixte augmentée se résout par mouvement contraire et écartement vers l'octave sur la dominante : Ab (basse) descend chromatiquement vers G, F# (soprano) monte vers G — les deux notes de la ⁺6 s'ouvrent vers l'octave G–G. Pour éviter les quintes parallèles classiques de la sixte allemande (Ab–Eb → G–D), la sixte allemande résout d'abord sur le 6/4 cadentiel (C/G) : la quinte Eb monte chromatiquement vers E (sixte du 6/4) au lieu de descendre vers D. Ensuite I⁶⁴ → V (6→5, 4→3) → I parfait. Vérification des parallèles : aucune quinte ni octave parallèle (vérifié paire par paire), grâce à la résolution Eb→E via le 6/4.",
     concepts: ["sixte augmentée", "sixte allemande", "emprunt au mode mineur", "iv emprunté", "résolution par écartement", "romantisme", "6/4 de cadence"],
+    regles: "libre",
   },
   {
     id: "c41-debut-xxe-planing",
@@ -358,5 +359,6 @@ export const COURS41_EXERCISES: SATBExercise[] = [
     explanation:
       "Signature début XXe (Fauré, Ravel) : technique du planing (accords parallèles) — les triades diatoniques F – G – Am – G glissent en mouvement parallèle strict, toutes les voix montant ou descendant du même intervalle. ATTENTION : ici les quintes et octaves parallèles sont STYLISTIQUEMENT INTENTIONNELLES — elles ne constituent PAS une faute mais le procédé même qui crée la couleur impressionniste (le bloc sonore se déplace comme un objet rigide). L'accord final CMaj9 (C–E–G–D) ajoute une neuvième (D, au soprano) laissée en suspension, non résolue, comme note de couleur ajoutée — autre marque du langage modal/impressionniste où la dissonance devient timbre. Les « règles » du contrepoint tonal (interdiction des parallèles, résolution des dissonances) sont ici délibérément relâchées au profit de la couleur harmonique. Tessitures et ordre S≥A≥T≥B respectés.",
     concepts: ["planing", "accords parallèles", "parallélisme intentionnel", "neuvième ajoutée", "couleur modale", "impressionnisme", "Fauré", "Ravel"],
+    regles: "libre",
   },
 ];
