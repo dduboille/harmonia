@@ -117,6 +117,7 @@ export function validateSATB(
   keySignature?: string,
   checkAccidentals?: boolean,
   solution?: Measure[],
+  regles: "ecole" | "libre" = "ecole",
 ): ValidationError[] {
   const errors: ValidationError[] = [];
 
@@ -151,6 +152,13 @@ export function validateSATB(
         errors.push({ type: "range", measure: m, severity: "error", params: { voice: v, from: m + 1 } });
       }
     });
+
+    // En mode libre, seules les tessitures (1) et la conformité (6) parlent :
+    // les règles d'école (espacements, croisements, parallèles, fausses
+    // relations, résolutions, altérations, doublure) sont toutes sautées —
+    // ce sont les exercices non tonals (modal/planing/jazz) qui posent ce
+    // drapeau, et leur solution VOULUE ne doit pas être jugée contre elle-même.
+    if (regles !== "libre") {
 
     // 2. Espacements (S-A et A-T : une octave au maximum)
     const pairs: [Voice, Voice][] = [["soprano", "alto"], ["alto", "tenor"]];
@@ -321,6 +329,8 @@ export function validateSATB(
       }
     }
 
+    } // fin du bloc « règles d'école » (regles !== "libre")
+
     // 6. Conformité à l'harmonie demandée (mesures complètes seulement)
     const sol = solution?.[m];
     if (sol && estComplete(cur) && estComplete(sol) && !conforme[m]) {
@@ -334,7 +344,7 @@ export function validateSATB(
     }
 
     // 7. Sensible doublée (accord de fonction dominante, mesure conforme)
-    if (keySignature && conforme[m]) {
+    if (regles !== "libre" && keySignature && conforme[m]) {
       const { tonicPc } = tonaliteDeSignature(keySignature);
       const sensible = (tonicPc + 11) % 12;
       const acc = accords[m];

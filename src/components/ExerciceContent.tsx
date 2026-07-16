@@ -20,6 +20,8 @@ interface SATBData {
   hint?: string;
   devoirId?: string;
   plan?: string;
+  /** école = règles d'écriture complètes ; libre = conformité + tessitures, pour les exercices non tonals. */
+  regles?: "ecole" | "libre";
 }
 
 interface QuizData {
@@ -97,10 +99,11 @@ export default function ExerciceContent(props: ExerciceContentProps) {
           keySignature={props.keySignature}
           showKeySignature={showKS}
           solution={props.solution}
+          regles={props.regles}
           onComplete={(measures) => {
             // La note reflète la propreté de la copie : les FAUTES sont déjà
             // impossibles (Terminer bloqué) ; chaque avertissement restant coûte 10.
-            const restants = validateSATB(measures, props.keySignature, !showKS, props.solution);
+            const restants = validateSATB(measures, props.keySignature, !showKS, props.solution, props.regles);
             const avertissements = restants.filter(e => e.severity === "warning").length;
             handleComplete(noteExercice(avertissements));
           }}

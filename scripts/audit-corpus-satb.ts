@@ -55,11 +55,10 @@ const satbExercises = ALL_EXERCISES.filter((ex): ex is SATBExercise => ex.type =
 
 const audits: ExerciceAudit[] = satbExercises.map(ex => {
   // Le moteur juge la solution contre elle-même : un élève qui recopierait le
-  // modèle à la note près doit pouvoir Terminer sans faute.
-  // TODO Task 2 : passer ex.regles en 5e paramètre de validateSATB quand le
-  // drapeau "ecole" | "libre" existera (voir R3 de la spec) — pour l'instant
-  // validateSATB n'a que 4 paramètres.
-  const errors = validateSATB(ex.solution, ex.keySignature, false, ex.solution);
+  // modèle à la note près doit pouvoir Terminer sans faute. Les exercices
+  // signalés "libre" (modaux/planing/jazz) ne sont jugés que sur la
+  // conformité et les tessitures — voir R3 de la spec.
+  const errors = validateSATB(ex.solution, ex.keySignature, false, ex.solution, ex.regles ?? "ecole");
   return {
     id: ex.id,
     cours: ex.cours,

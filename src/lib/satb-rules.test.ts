@@ -370,6 +370,53 @@ describe("validateSATB — 7e d'accord et directes S–B", () => {
   });
 });
 
+describe("validateSATB — mode libre", () => {
+  // Deux mesures à quintes parallèles VOULUES (planing/parallélisme assumé),
+  // toutes voix dans leur tessiture, reproduites à l'identique comme solution :
+  // en mode ecole, les parallèles doivent être détectées (test de contrôle) ;
+  // en mode libre, elles doivent rester muettes.
+  const PARALLELES_VOULUES = [
+    chord("C3", "E3", "C4", "G4"),
+    chord("D3", "F3", "D4", "A4"),
+  ];
+
+  // Solution V–I en do majeur, réutilisée pour vérifier que la conformité
+  // reste vivante en mode libre.
+  const SOLUTION = [
+    chord("G2", "D3", "B3", "G4"),
+    chord("C3", "G3", "C4", "E4"),
+  ];
+
+  it("accord faux en libre → wrong_chord (la conformité vit)", () => {
+    const copie = [
+      chord("C3", "E3", "G3", "C4"), // Do majeur au lieu de Sol
+      chord("C3", "G3", "C4", "E4"),
+    ];
+    const errs = validateSATB(copie, "C", false, SOLUTION, "libre");
+    expect(typesOf(errs)).toContain("wrong_chord");
+  });
+
+  it("quintes parallèles VOULUES jugées contre elles-mêmes en libre → aucune erreur ni avertissement", () => {
+    const errs = validateSATB(PARALLELES_VOULUES, "C", false, PARALLELES_VOULUES, "libre");
+    expect(errs).toEqual([]);
+  });
+
+  it("hors tessiture en libre → range", () => {
+    const errs = validateSATB([chord("C2", "E3", "G3", "C4")], undefined, false, undefined, "libre");
+    expect(typesOf(errs)).toContain("range");
+  });
+
+  it("contrôle : le même couple de mesures à quintes parallèles en mode ecole → parallel_fifth", () => {
+    const errs = validateSATB(PARALLELES_VOULUES, "C", false, PARALLELES_VOULUES);
+    expect(typesOf(errs)).toContain("parallel_fifth");
+  });
+
+  it("espacement, croisement, fausse relation en libre → muets (cas espacement)", () => {
+    const errs = validateSATB([chord("C3", "E3", "G3", "A4")], undefined, false, undefined, "libre");
+    expect(typesOf(errs)).not.toContain("spacing");
+  });
+});
+
 describe("noteExercice", () => {
   it("0 avertissement → 100 ; 2 → 80 ; 5 et plus → 60 (plancher)", () => {
     expect(noteExercice(0)).toBe(100);

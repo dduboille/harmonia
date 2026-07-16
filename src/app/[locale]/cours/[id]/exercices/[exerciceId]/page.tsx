@@ -96,6 +96,7 @@ export default async function ExercicePage({ params, searchParams }: Props) {
               hint={(exercise as any).hint}
               devoirId={devoirId}
               plan={plan}
+              regles={(exercise as any).regles}
             />
           ) : (
             <ExerciceContent

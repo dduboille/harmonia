@@ -100,6 +100,9 @@ export interface SATBExercise {
 
   // i18n — titres traduits (optionnel pour MVP)
   titleI18n?: Partial<Record<string, string>>;
+
+  /** école = règles d'écriture complètes ; libre = conformité + tessitures, pour les exercices non tonals. */
+  regles?: "ecole" | "libre";
 }
 
 // ─── Union type pour exercices futurs ─────────────────────────────────────────
