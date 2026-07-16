@@ -27,7 +27,12 @@ export default function AtelierAnalyse({ analyse }: { analyse: AnalysisResult | 
   if (lignes.length === 0) {
     return (
       <p style={{ fontSize: 13, color: "#999", margin: 0, fontFamily: "system-ui, sans-serif" }}>
-        Posez des notes pour voir l'analyse.
+        {/* Même vide, le panneau rappelle dans quel ton le moteur lira. */}
+        {analyse ? (
+          <>Lue en <strong style={{ color: "#5C3D6E" }}>{analyse.tonalite}</strong> — posez des notes pour voir l&apos;analyse.</>
+        ) : (
+          <>Posez des notes pour voir l&apos;analyse.</>
+        )}
       </p>
     );
   }
