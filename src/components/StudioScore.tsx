@@ -24,12 +24,16 @@ import React, {
  */
 
 export interface StudioScoreRef {
-  /** Surligne les notes sonnant à `ms` (temps ÉCRIT, sans facteur de vitesse) ; `null` efface tout. */
+  /** Surligne les notes sonnant à `ms` (temps ÉCRIT) ; `null` efface tout. */
   surlignerATemps(ms: number | null): void;
+  /** Surligne UNE note choisie par (onsetMs, midi) ; `null` efface la sélection. */
+  surlignerSelection(sel: { onsetMs: number; midi: number } | null): void;
 }
 
 interface Props {
   musicxml: string;
+  /** Clic sur une note gravée : remonte (onsetMs, midi) de l'élément cliqué. */
+  onSelectNote?: (sel: { onsetMs: number; midi: number }) => void;
 }
 
 // Échelle de gravure (en %). `pageWidth` de Verovio est en unités : la largeur en
@@ -37,11 +41,12 @@ interface Props {
 // faut donc `pageWidth = L × 100 / échelle`.
 const ECHELLE = 40;
 
-const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ musicxml }, ref) {
+const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ musicxml, onSelectNote }, ref) {
   const conteneur = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- l'instance Verovio est conservée entre rendus pour le surlignage ; son type vit dans le stub verovio.d.ts, mais on n'a besoin ici que d'une poignée opaque.
   const tkRef = useRef<any>(null);
   const notesJouees = useRef<Element[]>([]);
+  const notesSelection = useRef<Element[]>([]);
   const [erreur, setErreur] = useState<string | null>(null);
 
   // ── Gravure (au montage et à chaque nouveau fichier, + sur redimensionnement) ──
@@ -124,18 +129,60 @@ const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ mus
         if (el) { el.classList.add("harmonia-joue"); notesJouees.current.push(el); }
       }
     },
+
+    surlignerSelection(sel: { onsetMs: number; midi: number } | null) {
+      const tk = tkRef.current;
+      const hote = conteneur.current;
+      if (!tk || !hote) return;
+      for (const el of notesSelection.current) el.classList.remove("harmonia-selection");
+      notesSelection.current = [];
+      if (!sel) return;
+      let ids: string[] = [];
+      try {
+        // +1 ms pour tomber À L'INTÉRIEUR de la note (et non juste avant son attaque).
+        ids = tk.getElementsAtTime(sel.onsetMs + 1).notes ?? [];
+      } catch { return; }
+      for (const id of ids) {
+        let midi: number | undefined;
+        try { midi = tk.getMIDIValuesForElement(id).pitch; } catch { midi = undefined; }
+        if (midi === sel.midi) {
+          const el = hote.querySelector(`[id="${id}"]`);
+          if (el) { el.classList.add("harmonia-selection"); notesSelection.current.push(el); }
+        }
+      }
+    },
   }));
 
   if (erreur) {
     return <div style={{ color: "#c0392b", fontSize: 13, padding: 16 }}>{erreur}</div>;
   }
+
+  const onClick = (e: React.MouseEvent) => {
+    const tk = tkRef.current;
+    if (!tk || !onSelectNote) return;
+    let el = e.target as Element | null;
+    // Remonter jusqu'à l'élément .note porteur d'un id.
+    while (el && el !== e.currentTarget) {
+      if (el.classList?.contains("note") && el.id) {
+        try {
+          const v = tk.getMIDIValuesForElement(el.id);
+          if (typeof v.time === "number" && typeof v.pitch === "number") {
+            onSelectNote({ onsetMs: v.time, midi: v.pitch });
+          }
+        } catch { /* élément non temporel : on ignore */ }
+        return;
+      }
+      el = el.parentElement;
+    }
+  };
+
   return (
     <>
-      {/* Le repère : les notes jouées passent en violet Harmonia. Le `!important` et
-          le sélecteur descendant forcent la couleur par-dessus les attributs de
-          gravure que Verovio pose sur les glyphes. */}
-      <style>{`.harmonia-joue, .harmonia-joue * { fill: #C62828 !important; }`}</style>
-      <div ref={conteneur} style={{ width: "100%", overflowX: "auto" }} />
+      <style>{`
+        .harmonia-joue, .harmonia-joue * { fill: #C62828 !important; }
+        .harmonia-selection, .harmonia-selection * { fill: #5C3D6E !important; }
+      `}</style>
+      <div ref={conteneur} onClick={onClick} style={{ width: "100%", overflowX: "auto", cursor: "pointer" }} />
     </>
   );
 });
