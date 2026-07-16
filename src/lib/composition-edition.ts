@@ -158,45 +158,63 @@ export function naviguer(piece: Piece, curseur: Curseur, sens: -1 | 1): Curseur 
 /** L'ordre diatonique des lettres, pour le déplacement sur la portée. */
 const ECHELLE_LETTRES: LettreNote[] = ["C", "D", "E", "F", "G", "A", "B"];
 
-/** Applique une transformation à la 1re hauteur de la note sélectionnée (sans effet en "fin"). */
-function avecHauteurSelectionnee(
-  piece: Piece, curseur: Curseur, f: (h: Hauteur) => Hauteur,
+/**
+ * Applique une transformation à la NOTE sélectionnée (le bloc entier — accord compris).
+ * `f` peut renvoyer `null` pour refuser la transformation : la pièce ne change pas.
+ * Sans effet en "fin" ou sur un silence.
+ */
+function avecNoteSelectionnee(
+  piece: Piece, curseur: Curseur, f: (n: Note) => Note | null,
 ): Piece {
   if (curseur.note === "fin") return piece;
   const voix = piece.mesures[curseur.mesure].voix[curseur.voix];
   const ev = voix[curseur.note];
   if (!ev || ev.type !== "note") return piece;
-  const nouvelle: Note = { ...ev, hauteurs: [f(ev.hauteurs[0]), ...ev.hauteurs.slice(1)] };
+  const nouvelle = f(ev);
+  if (!nouvelle) return piece;
   const nouvelleVoix = voix.map((x, i) => (i === curseur.note ? nouvelle : x));
   return avecVoix(piece, curseur, nouvelleVoix);
 }
 
 /**
- * Transpose la note sélectionnée d'un DEGRÉ diatonique (déplacement sur la portée) : la lettre
+ * Transpose la note sélectionnée d'un DEGRÉ diatonique — TOUTES les hauteurs du bloc : la lettre
  * avance/recule dans l'échelle, l'octave suit à la jonction B↔C, l'altération repasse à bécarre.
  */
 export function transposerDegre(piece: Piece, curseur: Curseur, sens: -1 | 1): Piece {
-  return avecHauteurSelectionnee(piece, curseur, (h) => {
-    const i = ECHELLE_LETTRES.indexOf(h.lettre);
-    const j = i + sens;
-    const lettre = ECHELLE_LETTRES[(j + 7) % 7];
-    const octave = h.octave + (j < 0 ? -1 : j > 6 ? 1 : 0);
-    return { lettre, alteration: 0, octave };
-  });
-}
-
-/** Transpose la note sélectionnée d'une OCTAVE (bornée 1..7). */
-export function transposerOctave(piece: Piece, curseur: Curseur, sens: -1 | 1): Piece {
-  return avecHauteurSelectionnee(piece, curseur, (h) => ({
-    ...h, octave: Math.min(7, Math.max(1, h.octave + sens)),
+  return avecNoteSelectionnee(piece, curseur, (ev) => ({
+    ...ev,
+    hauteurs: ev.hauteurs.map((h) => {
+      const i = ECHELLE_LETTRES.indexOf(h.lettre);
+      const j = i + sens;
+      return {
+        lettre: ECHELLE_LETTRES[(j + 7) % 7],
+        alteration: 0,
+        octave: h.octave + (j < 0 ? -1 : j > 6 ? 1 : 0),
+      };
+    }),
   }));
 }
 
-/** Remplace lettre + altération de la note sélectionnée (garde octave et durée). */
+/** Transpose la note sélectionnée d'une OCTAVE — bloc SOUDÉ : si une hauteur sort de 1..7, rien ne bouge. */
+export function transposerOctave(piece: Piece, curseur: Curseur, sens: -1 | 1): Piece {
+  return avecNoteSelectionnee(piece, curseur, (ev) =>
+    ev.hauteurs.some((h) => h.octave + sens < 1 || h.octave + sens > 7)
+      ? null
+      : { ...ev, hauteurs: ev.hauteurs.map((h) => ({ ...h, octave: h.octave + sens })) },
+  );
+}
+
+/**
+ * Remplace la note sélectionnée par une note SIMPLE (lettre + altération, octave de la
+ * 1re hauteur) — sur un accord, c'est le geste de correction : le bloc entier cède la place.
+ */
 export function remplacerHauteur(
   piece: Piece, curseur: Curseur, lettre: LettreNote, alteration: number,
 ): Piece {
-  return avecHauteurSelectionnee(piece, curseur, (h) => ({ ...h, lettre, alteration }));
+  return avecNoteSelectionnee(piece, curseur, (ev) => ({
+    ...ev,
+    hauteurs: [{ lettre, alteration, octave: ev.hauteurs[0].octave }],
+  }));
 }
 
 /**

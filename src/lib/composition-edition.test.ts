@@ -379,4 +379,22 @@ describe("empilerHauteur / retirerDerniereHauteur — l'accord dans une voix", (
     const avant = pieceBasse([noteSimple("C", 3)]);
     expect(retirerDerniereHauteur(avant, selection)).toBe(avant);
   });
+
+  it("transposerDegre déplace TOUTES les hauteurs", () => {
+    const accord = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "E", 0, 3);
+    const p = transposerDegre(accord, selection, 1);
+    expect((p.mesures[0].voix.basse[0] as Note).hauteurs.map((h) => h.lettre)).toEqual(["D", "F"]);
+  });
+  it("transposerOctave : bloc soudé — si UNE hauteur sort des bornes, rien ne bouge", () => {
+    const grave = empilerHauteur(pieceBasse([noteSimple("C", 1)]), selection, "G", 0, 5);
+    expect(transposerOctave(grave, selection, -1)).toBe(grave); // C1 sortirait (octave 0)
+    const ok = transposerOctave(grave, selection, 1);
+    expect((ok.mesures[0].voix.basse[0] as Note).hauteurs.map((h) => h.octave)).toEqual([2, 6]);
+  });
+  it("remplacerHauteur remplace le bloc par une note SIMPLE (octave de la 1re hauteur)", () => {
+    const accord = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "E", 0, 4);
+    const p = remplacerHauteur(accord, selection, "D", 1);
+    const n = p.mesures[0].voix.basse[0] as Note;
+    expect(n.hauteurs).toEqual([{ lettre: "D", alteration: 1, octave: 3 }]);
+  });
 });
