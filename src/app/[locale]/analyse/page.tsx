@@ -19,6 +19,13 @@ const TOOLS = [
     pro: true,
   },
   {
+    href: "composer",
+    icon: "✐",
+    title: "Atelier de composition",
+    desc: "Composez votre pièce à deux portées, note à note — gravure en direct et écoute.",
+    pro: true,
+  },
+  {
     href: "assistant",
     icon: "✦",
     title: "Assistant IA",
