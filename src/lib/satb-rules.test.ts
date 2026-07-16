@@ -211,6 +211,94 @@ describe("validateSATB — conformité à la solution", () => {
   });
 });
 
+describe("validateSATB — la sensible (barème d'école)", () => {
+  // V7 – I en do majeur ; la sensible (B) est au soprano. Le I est une triade
+  // COMPLÈTE : les copies fautives doivent rester CONFORMES (mêmes pitch classes,
+  // même basse), sinon les règles de résolution se taisent par construction.
+  const SOL_V7_I = [
+    chord("G2", "F3", "D4", "B4"),
+    chord("C3", "E3", "G4", "C5"),
+  ];
+
+  it("sensible au soprano montant à la tonique → rien", () => {
+    const errs = validateSATB(SOL_V7_I, "C", false, SOL_V7_I);
+    expect(typesOf(errs)).not.toContain("leading_tone");
+  });
+  it("sensible au soprano NE montant PAS → leading_tone (error)", () => {
+    const copie = [
+      chord("G2", "F3", "D4", "B4"),
+      chord("C3", "E3", "C4", "G4"), // {do,mi,sol} basse do : CONFORME ; B4 → G4 : la sensible saute
+    ];
+    const errs = validateSATB(copie, "C", false, SOL_V7_I);
+    const lt = errs.find(e => e.type === "leading_tone");
+    expect(lt).toBeDefined();
+    expect(lt!.severity).toBe("error"); // voix extrême (même la descente à la dominante y est interdite)
+  });
+  it("sensible à l'ALTO descendant à la dominante (frustrée) → rien", () => {
+    const sol = [
+      chord("G2", "D3", "B3", "F4"),   // sensible à l'alto
+      chord("C3", "E3", "G3", "E4"),   // B3 → G3 : descente à la dominante
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    expect(typesOf(errs)).not.toContain("leading_tone");
+  });
+  it("sensible à l'alto sautant AILLEURS → leading_tone (warning)", () => {
+    const sol = [
+      chord("G2", "D3", "B3", "F4"),
+      chord("C3", "E3", "E4", "C5"),   // B3 → E4 : ni tonique, ni tenue, ni dominante
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    const lt = errs.find(e => e.type === "leading_tone");
+    expect(lt).toBeDefined();
+    expect(lt!.severity).toBe("warning"); // voix interne
+  });
+  it("cadence rompue V→VI : la sensible monte quand même → rien", () => {
+    const sol = [
+      chord("G2", "D3", "F4", "B4"),
+      chord("A2", "C3", "E4", "C5"),   // B4 → C5 ✓
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    expect(typesOf(errs)).not.toContain("leading_tone");
+  });
+  it("sensible TENUE (V → V7) → rien", () => {
+    const sol = [
+      chord("G2", "D3", "B3", "G4"),
+      chord("G2", "F3", "B3", "G4"),   // B3 tenu
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    expect(typesOf(errs)).not.toContain("leading_tone");
+  });
+  it("en LA MINEUR (Am) : sensible = sol dièse, mêmes verdicts", () => {
+    const sol = [
+      chord("E2", "E3", "B3", "G#4"),  // V de la mineur, sensible au soprano
+      chord("A2", "E3", "C4", "A4"),   // G#4 → A4 ✓
+    ];
+    expect(typesOf(validateSATB(sol, "Am", false, sol))).not.toContain("leading_tone");
+    const faux = [
+      chord("E2", "E3", "B3", "G#4"),
+      chord("A2", "E3", "C4", "E4"),   // G#4 → E4 : saute
+    ];
+    expect(validateSATB(faux, "Am", false, sol).find(e => e.type === "leading_tone")!.severity).toBe("error");
+  });
+  it("accord NON dominant contenant le pc de la sensible (iii) → la règle se tait", () => {
+    const sol = [
+      chord("E3", "G3", "B3", "E4"),   // iii (Em) — B présent mais pas fonction dominante
+      chord("A2", "A3", "C4", "E4"),   // vi
+    ];
+    expect(typesOf(validateSATB(sol, "C", false, sol))).not.toContain("leading_tone");
+  });
+  it("sensible DOUBLÉE dans un accord de dominante → doubled_leading_tone (error)", () => {
+    const sol = [
+      chord("G2", "B3", "D4", "B4"),   // B au ténor ET au soprano
+      chord("C3", "C4", "E4", "C5"),
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    const d = errs.find(e => e.type === "doubled_leading_tone");
+    expect(d).toBeDefined();
+    expect(d!.severity).toBe("error");
+  });
+});
+
 describe("validateSATB — contrat de sortie", () => {
   it("rapporte la mesure en numérotation humaine dans params, l'index en interne", () => {
     const errors = validateSATB([chord("C2", "E3", "G3", "C4")]);

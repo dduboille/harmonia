@@ -9,6 +9,7 @@
  */
 
 import { KEY_ACCIDENTALS } from "@/lib/key-accidentals";
+import { identifyChordFromNotes } from "@/lib/harmonic-analysis";
 
 export type NoteName = "C" | "D" | "E" | "F" | "G" | "A" | "B"
   | "C#" | "Db" | "D#" | "Eb" | "F#" | "Gb" | "G#" | "Ab" | "A#" | "Bb"
@@ -104,6 +105,13 @@ function pcsDe(m: Measure): Set<number> {
   return new Set(VOICES.map(v => pcOf(m[v])));
 }
 
+/** Tonique (pitch class) et mode d'une signature « C », « Bb », « Am »… */
+export function tonaliteDeSignature(keySignature: string): { tonicPc: number; minor: boolean } {
+  const minor = keySignature.endsWith("m");
+  const nom = minor ? keySignature.slice(0, -1) : keySignature;
+  return { tonicPc: ((noteToMidi(noteName(nom), 0) % 12) + 12) % 12, minor };
+}
+
 export function validateSATB(
   measures: Measure[],
   keySignature?: string,
@@ -120,6 +128,12 @@ export function validateSATB(
     const a = pcsDe(cur), b = pcsDe(sol);
     return a.size === b.size && [...a].every(pc => b.has(pc)) && pcOf(cur.bass) === pcOf(sol.bass);
   });
+
+  // Accord attendu de chaque mesure (identifié sur la SOLUTION), pour armer les
+  // règles de résolution. Identification nulle → les règles se taisent.
+  const accords = (solution ?? []).map(sol =>
+    estComplete(sol) ? identifyChordFromNotes([...pcsDe(sol)], pcOf(sol.bass)) : null,
+  );
 
   for (let m = 0; m < measures.length; m++) {
     const cur = measures[m];
@@ -212,6 +226,33 @@ export function validateSATB(
           });
         });
       });
+
+      // 4c. Résolution de la sensible (accord de dominante conforme → mesure conforme)
+      if (keySignature && conforme[m - 1] && conforme[m]) {
+        const { tonicPc } = tonaliteDeSignature(keySignature);
+        const sensible = (tonicPc + 11) % 12;
+        const dominante = (tonicPc + 7) % 12;
+        const acc = accords[m - 1];
+        if (acc && (acc.rootPc === dominante || acc.rootPc === sensible)) {
+          VOICES.forEach(v => {
+            if (pcOf(prev[v]) !== sensible) return;
+            const midiP = noteToMidi(noteName(prev[v].name!), prev[v].octave);
+            const midiC = noteToMidi(noteName(cur[v].name!), cur[v].octave);
+            const externe = v === "soprano" || v === "bass";
+            const ok =
+              midiC - midiP === 1 ||   // monte à la tonique
+              midiC === midiP ||        // tenue
+              (!externe && midiC - midiP === -4 && pcOf(cur[v]) === dominante); // frustrée interne
+            if (!ok) {
+              errors.push({
+                type: "leading_tone", measure: m,
+                severity: externe ? "error" : "warning",
+                params: { voice: v, from: m },
+              });
+            }
+          });
+        }
+      }
     }
 
     // 5. Altérations manquantes (mode sans armure)
@@ -247,6 +288,17 @@ export function validateSATB(
         errors.push({ type: "wrong_chord", measure: m, severity: "error", params: { from: m + 1 } });
       } else {
         errors.push({ type: "wrong_bass", measure: m, severity: "error", params: { from: m + 1, expected: sol.bass.name! } });
+      }
+    }
+
+    // 7. Sensible doublée (accord de fonction dominante, mesure conforme)
+    if (keySignature && conforme[m]) {
+      const { tonicPc } = tonaliteDeSignature(keySignature);
+      const sensible = (tonicPc + 11) % 12;
+      const acc = accords[m];
+      const dominant = acc && (acc.rootPc === (tonicPc + 7) % 12 || acc.rootPc === sensible);
+      if (dominant && VOICES.filter(v => pcOf(cur[v]) === sensible).length >= 2) {
+        errors.push({ type: "doubled_leading_tone", measure: m, severity: "error", params: { from: m + 1 } });
       }
     }
   }
