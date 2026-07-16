@@ -1,21 +1,24 @@
 /**
  * lib/composition-edition.ts
- * Harmonia — La logique d'ÉDITION de l'atelier de composition (pure).
+ * Harmonia — La logique d'ÉDITION de l'atelier de composition (pure), en écriture SATB
+ * à quatre voix nommées.
  *
  * Le modèle d'édition ne porte que les notes POSÉES par l'élève : une voix peut être
- * incomplète. Le remplissage en silences est une affaire de RENDU (`remplirSilences`),
- * pas d'édition — l'édition reste ainsi triviale (ajouter / retirer la dernière), et
- * `remplirSilences` produit une pièce toujours valide, sérialisable et gravable.
+ * incomplète, ou entièrement vide. Le remplissage en silences n'est PAS une affaire
+ * d'édition mais de RENDU — il déménage dans l'export, car il dépend des voix actives
+ * et de leur portée. L'édition reste ainsi triviale : ajouter / retirer la dernière
+ * note de la voix pointée par le curseur.
  */
 
 import {
-  dureeEnDivisions, DIVISIONS,
-  type Piece, type Voix, type Evenement, type Silence, type Duree,
+  dureeEnDivisions, DIVISIONS, ORDRE_VOIX,
+  type Piece, type Voix, type Evenement, type Silence, type Duree, type NomVoix,
 } from "./piece-model";
 
+/** Le curseur d'édition : dans quelle mesure et dans quelle voix on écrit. */
 export interface Curseur {
   mesure: number;
-  portee: 0 | 1;
+  voix: NomVoix;
 }
 
 /** Ticks d'une mesure : temps × (une noire) × 4 / unité. En 4/4 : 4×48. */
@@ -58,92 +61,62 @@ export function decouperEnSilences(ticks: number): Silence[] {
 }
 
 /**
- * Complète chaque voix à la capacité de la mesure : une voix VIDE devient un silence
- * de mesure (centré) ; une voix partielle reçoit ses silences de complément. C'est
- * la pièce rendue par cette fonction qu'on sérialise et grave.
+ * Les voix qui portent au moins une NOTE quelque part dans la pièce. Une voix sans
+ * aucune note n'est pas gravée du tout (masquée) : c'est ce qui permet d'écrire à une,
+ * deux ou trois voix sans traîner des portées vides.
  */
-export function remplirSilences(piece: Piece): Piece {
-  const capacite = capaciteMesure(piece.chiffrage);
-  const silenceMesure: Silence = {
-    type: "silence", duree: { base: "ronde", points: 0 }, mesureEntiere: true,
-  };
-
-  const remplirVoix = (voix: Voix): Voix => {
-    if (voix.length === 0) return [silenceMesure];
-    const vide = capacite - dureePlacee(voix);
-    return vide > 0 ? [...voix, ...decouperEnSilences(vide)] : [...voix];
-  };
-
-  return {
-    ...piece,
-    mesures: piece.mesures.map((m) => ({
-      portees: [remplirVoix(m.portees[0]), remplirVoix(m.portees[1])] as [Voix, Voix],
-    })),
-  };
+export function voixActives(piece: Piece): NomVoix[] {
+  return ORDRE_VOIX.filter((v) =>
+    piece.mesures.some((m) => m.voix[v].some((e) => e.type === "note")),
+  );
 }
 
-/** Remplace la voix (mesure, portée) par une nouvelle, sans muter la pièce. */
+/** Remplace une voix (mesure, voix nommée) par une nouvelle, sans muter la pièce. */
 function avecVoix(piece: Piece, curseur: Curseur, voix: Voix): Piece {
   return {
     ...piece,
-    mesures: piece.mesures.map((m, i) => {
-      if (i !== curseur.mesure) return m;
-      const portees: [Voix, Voix] = [m.portees[0], m.portees[1]];
-      portees[curseur.portee] = voix;
-      return { portees };
-    }),
+    mesures: piece.mesures.map((m, i) =>
+      i === curseur.mesure ? { voix: { ...m.voix, [curseur.voix]: voix } } : m,
+    ),
   };
 }
 
 /**
- * Insère un événement au curseur s'il tient dans le temps restant de la mesure.
- * Sinon (note trop longue) : rien ne change. Quand la mesure se remplit exactement,
- * le curseur passe à la mesure suivante (s'il en reste une).
+ * Insère un événement au curseur s'il tient dans le temps restant de la mesure (dans
+ * la voix courante). Sinon (trop long) : rien ne change. Quand la voix se remplit
+ * exactement, le curseur passe à la mesure suivante (même voix), s'il en reste une.
  */
 export function inserer(
   piece: Piece, curseur: Curseur, evenement: Evenement,
 ): { piece: Piece; curseur: Curseur } {
   const capacite = capaciteMesure(piece.chiffrage);
-  const voix = piece.mesures[curseur.mesure].portees[curseur.portee];
+  const voix = piece.mesures[curseur.mesure].voix[curseur.voix];
   const reste = capacite - dureePlacee(voix);
-  const d = dureeEnDivisions(evenement.duree);
-
-  if (d > reste) return { piece, curseur }; // ne rentre pas : inchangé
+  if (dureeEnDivisions(evenement.duree) > reste) return { piece, curseur }; // ne rentre pas
 
   const nouvelleVoix = [...voix, evenement];
   const nouvellePiece = avecVoix(piece, curseur, nouvelleVoix);
-
   const pleine = dureePlacee(nouvelleVoix) >= capacite;
   const curseurSuivant: Curseur =
     pleine && curseur.mesure + 1 < piece.mesures.length
-      ? { mesure: curseur.mesure + 1, portee: curseur.portee }
+      ? { mesure: curseur.mesure + 1, voix: curseur.voix }
       : curseur;
-
   return { piece: nouvellePiece, curseur: curseurSuivant };
 }
 
 /**
- * Efface la dernière note posée. Si la mesure courante est vide et qu'on n'est pas à
- * la première, on recule à la précédente et on y retire la dernière — un seul Retour
- * arrière efface toujours quelque chose de visible.
+ * Efface la dernière note posée dans la voix courante. Si la voix courante est vide et
+ * qu'on n'est pas à la première mesure, on recule à la précédente et on y retire la
+ * dernière — un seul Retour arrière efface toujours quelque chose de visible.
  */
 export function effacer(piece: Piece, curseur: Curseur): { piece: Piece; curseur: Curseur } {
-  const voix = piece.mesures[curseur.mesure].portees[curseur.portee];
-  if (voix.length > 0) {
-    return { piece: avecVoix(piece, curseur, voix.slice(0, -1)), curseur };
-  }
+  const voix = piece.mesures[curseur.mesure].voix[curseur.voix];
+  if (voix.length > 0) return { piece: avecVoix(piece, curseur, voix.slice(0, -1)), curseur };
   if (curseur.mesure > 0) {
-    const precedent: Curseur = { mesure: curseur.mesure - 1, portee: curseur.portee };
-    const voixPrec = piece.mesures[precedent.mesure].portees[precedent.portee];
-    const piecePrec = voixPrec.length > 0
-      ? avecVoix(piece, precedent, voixPrec.slice(0, -1))
-      : piece;
+    const precedent: Curseur = { mesure: curseur.mesure - 1, voix: curseur.voix };
+    const voixPrec = piece.mesures[precedent.mesure].voix[precedent.voix];
+    const piecePrec = voixPrec.length > 0 ? avecVoix(piece, precedent, voixPrec.slice(0, -1)) : piece;
     return { piece: piecePrec, curseur: precedent };
   }
   return { piece, curseur };
-}
-
-/** Bascule entre la portée du haut (0) et du bas (1). */
-export function basculerPortee(curseur: Curseur): Curseur {
-  return { mesure: curseur.mesure, portee: curseur.portee === 0 ? 1 : 0 };
 }
