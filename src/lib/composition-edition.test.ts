@@ -4,7 +4,7 @@ import { pieceVersMusicXML } from "./piece-vers-musicxml";
 import { type Piece, type Note, type Hauteur } from "./piece-model";
 import {
   capaciteMesure, dureePlacee, decouperEnSilences, voixActives,
-  inserer, effacer, positionEcriture, positions, type Curseur,
+  inserer, effacer, positionEcriture, positions, naviguer, type Curseur,
 } from "./composition-edition";
 
 const DO5: Hauteur = { lettre: "C", alteration: 0, octave: 5 };
@@ -149,6 +149,33 @@ describe("positions — notes navigables d'une voix", () => {
   });
   it("une voix sans note donne une liste vide", () => {
     expect(positions(pieceEdition(), "alto")).toEqual([]);
+  });
+});
+
+describe("naviguer — deplacer la selection", () => {
+  it("depuis fin, la fleche gauche selectionne la derniere note", () => {
+    let p = pieceEdition();
+    p.mesures[0].voix.soprano = [noteN("noire"), noteN("noire")];
+    const c: Curseur = { mesure: 1, voix: "soprano", note: "fin" };
+    expect(naviguer(p, c, -1)).toEqual({ mesure: 0, voix: "soprano", note: 1 });
+  });
+  it("la fleche droite avance de note en note puis revient a fin", () => {
+    let p = pieceEdition();
+    p.mesures[0].voix.soprano = [noteN("noire"), noteN("noire")];
+    const c0: Curseur = { mesure: 0, voix: "soprano", note: 0 };
+    const c1 = naviguer(p, c0, 1);
+    expect(c1).toEqual({ mesure: 0, voix: "soprano", note: 1 });
+    expect(naviguer(p, c1, 1)).toEqual({ mesure: 0, voix: "soprano", note: "fin" });
+  });
+  it("la fleche gauche sur la premiere note y reste", () => {
+    let p = pieceEdition();
+    p.mesures[0].voix.soprano = [noteN("noire")];
+    const c: Curseur = { mesure: 0, voix: "soprano", note: 0 };
+    expect(naviguer(p, c, -1)).toEqual({ mesure: 0, voix: "soprano", note: 0 });
+  });
+  it("sur une voix sans note, reste en fin", () => {
+    const c: Curseur = { mesure: 0, voix: "alto", note: "fin" };
+    expect(naviguer(pieceEdition(), c, -1)).toEqual({ mesure: 0, voix: "alto", note: "fin" });
   });
 });
 

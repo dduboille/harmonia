@@ -133,6 +133,28 @@ export function positions(piece: Piece, voix: NomVoix): Array<{ mesure: number; 
 }
 
 /**
+ * Déplace la sélection le long des `positions` de la voix active. `sens` = +1 (droite) ou -1
+ * (gauche). Au-delà de la dernière note → mode ajout ("fin") sur la mesure d'écriture ; avant la
+ * première → reste sur la première. Depuis "fin", gauche sélectionne la dernière note.
+ */
+export function naviguer(piece: Piece, curseur: Curseur, sens: -1 | 1): Curseur {
+  const pos = positions(piece, curseur.voix);
+  if (pos.length === 0) return { ...curseur, note: "fin" };
+
+  const finCurseur: Curseur = { mesure: positionEcriture(piece, curseur.voix), voix: curseur.voix, note: "fin" };
+  const indexCourant =
+    curseur.note === "fin"
+      ? pos.length
+      : pos.findIndex((q) => q.mesure === curseur.mesure && q.note === curseur.note);
+
+  const cible = indexCourant + sens;
+  if (cible >= pos.length) return finCurseur;
+  if (cible < 0) return { mesure: pos[0].mesure, voix: curseur.voix, note: pos[0].note };
+  const q = pos[cible];
+  return { mesure: q.mesure, voix: curseur.voix, note: q.note };
+}
+
+/**
  * Efface la dernière note posée dans la voix courante. Si la voix courante est vide et
  * qu'on n'est pas à la première mesure, on recule à la précédente et on y retire la
  * dernière — un seul Retour arrière efface toujours quelque chose de visible.
