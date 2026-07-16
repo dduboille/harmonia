@@ -79,6 +79,30 @@ function transposeNote(rootNote: string, rootOctave: number, semitones: number, 
   return { name: useFlats ? (SHARP_TO_FLAT[sharp] ?? sharp) : sharp, octave: oct };
 }
 
+// ─── Orthographe de la sensible en mineur ─────────────────────────────────────
+//
+// La sensible (7e degré HAUSSÉ) d'un mineur en bémols doit s'écrire comme un
+// dièse/naturel du 7e degré, jamais comme un bémol : en Ré mineur c'est un DO#
+// (et non Réb), en Do mineur un SI naturel, etc. — même si la tonalité est en
+// bémols. Fix ciblé : quand une hauteur produite tombe sur la sensible, on force
+// l'orthographe correcte du 7e degré (repli sur l'orthographe par défaut si elle
+// exigerait une graphie exotique — E#, B#, F## — que le moteur ne gère pas).
+
+const LETTERS = ["C", "D", "E", "F", "G", "A", "B"];
+const LETTER_PC: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+
+/** Noms de notes que le moteur (noteToMidi) et le rendu savent lire sans risque. */
+const SAFE_NAMES = new Set([...CHROMATIC, ...Object.values(SHARP_TO_FLAT)]);
+
+/** Orthographe du 7e degré haussé (sensible) d'une tonalité mineure. */
+function raisedSeventhSpelling(tonicRoot: string, ltPc: number): string {
+  const idx = LETTERS.indexOf(tonicRoot[0]);
+  const seventhLetter = LETTERS[(idx + 6) % 7]; // lettre juste sous la tonique
+  const diff = ((ltPc - LETTER_PC[seventhLetter]) % 12 + 12) % 12;
+  const acc = diff === 0 ? "" : diff === 1 ? "#" : diff === 2 ? "##" : "";
+  return seventhLetter + acc;
+}
+
 // ─── Intervalles standard ─────────────────────────────────────────────────────
 // [fondamentale(0), tierce, quinte, septième] en demi-tons
 
@@ -91,6 +115,26 @@ const INT = {
   M:     [0, 4, 7,  7] as [number,number,number,number], // triade maj (quinte doublée)
   m:     [0, 3, 7,  7] as [number,number,number,number], // triade min
   dim:   [0, 3, 6,  6] as [number,number,number,number], // triade dim
+};
+
+// ─── Déclinaison mineure des gabarits both-mode ───────────────────────────────
+//
+// Les gabarits marqués modes:["major","minor"] écrivaient leurs accords avec les
+// QUALITÉS MAJEURES, transposées telles quelles en mineur — d'où des i/iv MAJEURS,
+// un VI mineur, un IIm7 au lieu du iiø7 : 192 exercices mineurs non diatoniques.
+// On corrige à la donnée : chaque degré reçoit sa qualité DIATONIQUE au mineur
+// harmonique. Clé = degreeLabel du gabarit ; les degrés absents (V7, V/V) restent
+// inchangés — la dominante porte déjà sa sensible haussée, la dominante secondaire
+// est chromatique par nature.
+const MINOR_DECLENSION: Record<string, {
+  degreeLabel: string;
+  intervals: [number, number, number, number];
+  quality: string;
+}> = {
+  "I":    { degreeLabel: "i",    intervals: INT.m,    quality: "m"    }, // tonique mineure
+  "IV":   { degreeLabel: "iv",   intervals: INT.m,    quality: "m"    }, // sous-dominante mineure
+  "VI":   { degreeLabel: "VI",   intervals: INT.M,    quality: "M"    }, // VI MAJEUR (rompue authentique)
+  "IIm7": { degreeLabel: "iiø7", intervals: INT.m7b5, quality: "m7b5" }, // demi-diminué
 };
 
 // ─── Templates de progressions ────────────────────────────────────────────────
@@ -659,21 +703,37 @@ export function generateExercisesForTemplate(
     const tonicPc = noteIndex(key.root);
     const minor = key.mode === "minor";
 
+    // Sensible (7e degré haussé) à orthographier juste en mineur — seulement si la
+    // graphie du 7e degré est « sûre » (sinon repli sur l'orthographe par défaut).
+    const ltPc = minor ? (tonicPc + 11) % 12 : -1;
+    const ltName = minor ? raisedSeventhSpelling(key.root, ltPc) : "";
+    const ltForce = minor && SAFE_NAMES.has(ltName);
+    const toEntry = (midi: number): NoteEntry => {
+      const base = midiToNote(midi, useFlats);
+      return ltForce && ((midi % 12) + 12) % 12 === ltPc ? { name: ltName, octave: base.octave } : base;
+    };
+
     for (const position of positions) {
       // Préparer chaque accord : fondamentale transposée, intervalles/qualité effectifs.
       const chordInfos = template.chords.map(chord => {
         const degreeSemitones = degreeToSemitones(chord.degreeLabel, key.mode);
         const chordRoot = transposeNote(key.root, 4, degreeSemitones, useFlats);
-        // V/V devient une 7e de dominante ; IVm une triade mineure.
+        // En mineur : qualité diatoniquement correcte (i/iv mineurs, VI majeur,
+        // iiø7). V7/V/V restent inchangés. En majeur : V/V → 7e de dominante,
+        // IVm → triade mineure (emprunt).
+        const decl = minor ? MINOR_DECLENSION[chord.degreeLabel] : undefined;
         const effIntervals: [number,number,number,number] =
+          decl ? decl.intervals :
           chord.degreeLabel === "V/V" ? INT["7"] :
           chord.degreeLabel === "IVm" ? INT.m     :
           chord.intervals;
         const effQuality =
+          decl ? decl.quality :
           chord.degreeLabel === "V/V" ? "7" :
           chord.degreeLabel === "IVm" ? "m" :
           chord.quality;
-        return { chord, chordRoot, effIntervals, effQuality };
+        const degreeLabel = decl ? decl.degreeLabel : chord.degreeLabel;
+        return { degreeLabel, chordRoot, effIntervals, effQuality };
       });
 
       const specs = chordInfos.map((ci, idx) => ({
@@ -687,14 +747,14 @@ export function generateExercisesForTemplate(
       if (!voiced) continue; // aucune conduite légale : combinaison abandonnée
 
       const solution: SATBMeasure[] = voiced.map(vm => ({
-        soprano: midiToNote(vm.soprano, useFlats),
-        alto:    midiToNote(vm.alto,    useFlats),
-        tenor:   midiToNote(vm.tenor,   useFlats),
-        bass:    midiToNote(vm.bass,    useFlats),
+        soprano: toEntry(vm.soprano),
+        alto:    toEntry(vm.alto),
+        tenor:   toEntry(vm.tenor),
+        bass:    toEntry(vm.bass),
       }));
 
       const measureLabels = chordInfos.map(ci =>
-        `${ci.chord.degreeLabel} · ${ci.chordRoot.name}${ci.chord.quality !== "M" && ci.chord.quality !== "m" ? ci.chord.quality : ci.chord.quality === "m" ? "m" : ""}`,
+        `${ci.degreeLabel} · ${ci.chordRoot.name}${ci.effQuality !== "M" && ci.effQuality !== "m" ? ci.effQuality : ci.effQuality === "m" ? "m" : ""}`,
       );
 
       // R2b — auto-filtrage : la solution doit passer le juge contre elle-même
