@@ -86,7 +86,7 @@ describe("validateSATB — conformité à la solution", () => {
   it("mesure incomplète → la conformité se tait", () => {
     const copie = [
       { ...chord("C3", "E3", "G3", "C4"), soprano: { name: null, octave: 4 } } as Measure,
-      chord("C3", "E3", "C4", "E4"),
+      chord("C3", "G3", "C4", "E4"), // = SOLUTION[1] : seule la mesure incomplète est sous test
     ];
     const errs = validateSATB(copie, "C", false, SOLUTION);
     expect(typesOf(errs)).not.toContain("wrong_chord");
