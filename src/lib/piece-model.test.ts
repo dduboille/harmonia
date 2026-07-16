@@ -46,15 +46,11 @@ describe("pieceVierge — 8 mesures, Do majeur, 4/4", () => {
     expect(p.mesures).toHaveLength(8);
   });
 
-  it("chaque mesure a deux portées, chacune un silence de mesure", () => {
-    const p = pieceVierge();
-    for (const m of p.mesures) {
-      expect(m.portees).toHaveLength(2);
-      for (const voix of m.portees) {
-        expect(voix).toHaveLength(1);
-        const ev = voix[0];
-        expect(ev.type).toBe("silence");
-        expect(ev.type === "silence" && ev.mesureEntiere).toBe(true);
+  it("chaque mesure a les quatre voix, toutes vides", () => {
+    for (const m of pieceVierge().mesures) {
+      expect(Object.keys(m.voix).sort()).toEqual(["alto", "basse", "soprano", "tenor"]);
+      for (const v of ["soprano", "alto", "tenor", "basse"] as const) {
+        expect(m.voix[v]).toEqual([]);
       }
     }
   });

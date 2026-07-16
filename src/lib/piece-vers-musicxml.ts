@@ -1,25 +1,39 @@
 /**
  * lib/piece-vers-musicxml.ts
- * Harmonia — Sérialise une `Piece` en MusicXML : à une PARTIE, DEUX PORTÉES
- * (convention MusicXML : <staff>1 = clé de Sol, <staff>2 = clé de Fa, séparées dans
- * chaque mesure par un <backup>). De ce MusicXML découlent la gravure (Verovio),
- * l'analyse et l'export vers MuseScore.
+ * Harmonia — Sérialise une `Piece` SATB en MusicXML : une PARTIE, DEUX PORTÉES
+ * (<staff>1 = clé de Sol, <staff>2 = clé de Fa), jusqu'à DEUX VOIX par portée séparées
+ * par des <backup>. Chaque note porte sa HAMPE explicite (S/T en haut, A/B en bas) et
+ * son <staff>. Une voix sans aucune note n'est pas émise (masquée) ; une portée sans
+ * voix active reçoit une voix de silence pour rester visible.
+ *
+ * De ce MusicXML découlent la gravure (Verovio), l'analyse et l'export vers MuseScore.
  */
 
 import {
   DIVISIONS,
+  ORDRE_VOIX,
+  CONFIG_VOIX,
   dureeEnDivisions,
   type Piece,
-  type Mesure,
   type Voix,
   type Note,
   type Silence,
   type Hauteur,
   type BaseDuree,
+  type NomVoix,
 } from "./piece-model";
+import {
+  capaciteMesure, dureePlacee, decouperEnSilences, voixActives,
+} from "./composition-edition";
 
 const TYPE_XML: Record<BaseDuree, string> = {
   ronde: "whole", blanche: "half", noire: "quarter", croche: "eighth", double: "16th",
+};
+
+// Numéro de voix MusicXML par nom : distinct pour chaque voix, y compris entre les
+// deux portées, pour que le parseur et le graveur ne les confondent jamais.
+const NUM_VOIX: Record<NomVoix, string> = {
+  soprano: "1", alto: "2", tenor: "3", basse: "4",
 };
 
 function hauteurXML(h: Hauteur): string {
@@ -30,10 +44,11 @@ function hauteurXML(h: Hauteur): string {
 /**
  * Un `<note>` par hauteur ; les hauteurs 2..n portent `<chord/>`. `tenueEntrante`
  * ferme une liaison venue de la note précédente ; `note.liee` en ouvre une vers la
- * suivante. La liaison est à la fois SONORE (`<tie>`) et GRAPHIQUE (`<tied>`).
+ * suivante. La HAMPE (`<stem>`) est émise explicitement, dans l'ordre du schéma
+ * MusicXML : … type, dot, time-modification, STEM, STAFF, notations.
  */
 function noteXML(
-  note: Note, voix: string, portee: number,
+  note: Note, voix: string, portee: number, hampe: string,
   tenueEntrante: boolean, tupletDebut: boolean, tupletFin: boolean,
 ): string {
   const duree = dureeEnDivisions(note.duree);
@@ -64,7 +79,7 @@ function noteXML(
       return (
         `<note>${chord}${hauteurXML(h)}<duration>${duree}</duration>${ties}` +
         `<voice>${voix}</voice><type>${type}</type>${points}${modif}` +
-        `<staff>${portee}</staff>${notations}</note>`
+        `<stem>${hampe}</stem><staff>${portee}</staff>${notations}</note>`
       );
     })
     .join("");
@@ -82,16 +97,28 @@ function silenceXML(s: Silence, voix: string, portee: number, ticksMesure: numbe
     `<type>${TYPE_XML[s.duree.base]}</type>${points}<staff>${portee}</staff></note>`;
 }
 
-function voixXML(voix: Voix, numeroVoix: string, portee: number, ticksMesure: number): string {
+/**
+ * Sérialise UNE voix pour UNE mesure : les événements posés, COMPLÉTÉS en silences
+ * jusqu'à la capacité (une voix vide devient un silence de mesure centré). Suit l'état
+ * de liaison entrante et les groupes de n-olet, et applique la hampe de la voix.
+ */
+function voixMesureXML(evenements: Voix, nom: NomVoix, ticksMesure: number): string {
+  const num = NUM_VOIX[nom];
+  const { portee, hampe } = CONFIG_VOIX[nom];
+  // Complément : voix vide → un silence de mesure ; voix partielle → + silences.
+  const complet: Voix = evenements.length === 0
+    ? [{ type: "silence", duree: { base: "ronde", points: 0 }, mesureEntiere: true }]
+    : [...evenements, ...decouperEnSilences(ticksMesure - dureePlacee(evenements))];
+
   let out = "";
   let tenueEntrante = false;
-  // Position dans le n-olet courant : les notes de n-olet consécutives se groupent
-  // par paquets de `reelles` (3 pour un triolet) ; le premier ouvre le crochet, le
-  // dernier le ferme.
+  // Position dans le n-olet courant : les notes de n-olet consécutives se groupent par
+  // paquets de `reelles` (3 pour un triolet) ; le premier ouvre le crochet, le dernier
+  // le ferme.
   let posNolet = 0;
-  for (const ev of voix) {
+  for (const ev of complet) {
     if (ev.type === "silence") {
-      out += silenceXML(ev, numeroVoix, portee, ticksMesure);
+      out += silenceXML(ev, num, portee, ticksMesure);
       tenueEntrante = false;
       posNolet = 0;
     } else {
@@ -105,7 +132,7 @@ function voixXML(voix: Voix, numeroVoix: string, portee: number, ticksMesure: nu
       } else {
         posNolet = 0;
       }
-      out += noteXML(ev, numeroVoix, portee, tenueEntrante, debut, fin);
+      out += noteXML(ev, num, portee, hampe, tenueEntrante, debut, fin);
       tenueEntrante = !!ev.liee;
     }
   }
@@ -123,23 +150,31 @@ function attributsXML(piece: Piece): string {
   );
 }
 
-function mesureXML(mesure: Mesure, index: number, piece: Piece, ticksMesure: number): string {
-  const attrs = index === 0 ? attributsXML(piece) : "";
-  const haut = voixXML(mesure.portees[0], "1", 1, ticksMesure);
-  const bas = voixXML(mesure.portees[1], "2", 2, ticksMesure);
-  // Le <backup> ramène le curseur au début de la mesure pour écrire la 2e portée.
-  return (
-    `<measure number="${index + 1}">${attrs}${haut}` +
-    `<backup><duration>${ticksMesure}</duration></backup>${bas}</measure>`
-  );
-}
-
 export function pieceVersMusicXML(piece: Piece): string {
-  // Durée d'une mesure en ticks : temps × (une noire) × 4 / unité. En 4/4 : 4×48 = 192.
-  const ticksMesure = (piece.chiffrage.temps * DIVISIONS * 4) / piece.chiffrage.unite;
-  const mesures = piece.mesures
-    .map((m, i) => mesureXML(m, i, piece, ticksMesure))
-    .join("");
+  const ticksMesure = capaciteMesure(piece.chiffrage);
+  const actives = voixActives(piece);
+
+  const mesures = piece.mesures.map((mesure, i) => {
+    const attrs = i === 0 ? attributsXML(piece) : "";
+
+    // Par portée (1 puis 2) : les voix actives de cette portée, ou une voix de silence
+    // (repli) si aucune, pour que la portée reste visible.
+    const parPortee = ([1, 2] as const).map((p) => {
+      const voixDeLaPortee = ORDRE_VOIX.filter(
+        (v) => CONFIG_VOIX[v].portee === p && actives.includes(v),
+      );
+      if (voixDeLaPortee.length === 0) {
+        const repli: NomVoix = p === 1 ? "soprano" : "tenor";
+        return [voixMesureXML([], repli, ticksMesure)];
+      }
+      return voixDeLaPortee.map((v) => voixMesureXML(mesure.voix[v], v, ticksMesure));
+    }).flat();
+
+    // Le <backup> ramène le curseur au début de la mesure entre chaque voix (pas après
+    // la dernière) : toutes les voix commencent donc au même instant.
+    const backup = `<backup><duration>${ticksMesure}</duration></backup>`;
+    return `<measure number="${i + 1}">${attrs}${parPortee.join(backup)}</measure>`;
+  }).join("");
 
   return (
     `<?xml version="1.0" encoding="UTF-8"?>` +

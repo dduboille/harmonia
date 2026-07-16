@@ -41,9 +41,27 @@ export interface Silence {
 export type Evenement = Note | Silence;
 export type Voix = Evenement[];
 
-/** Une mesure : la portée du haut (clé de Sol) et du bas (clé de Fa). */
+/** Les quatre voix nommées du choral (haut → bas). */
+export type NomVoix = "soprano" | "alto" | "tenor" | "basse";
+
+/** L'ordre canonique des voix (haut → bas), pour parcourir et masquer de façon stable. */
+export const ORDRE_VOIX: NomVoix[] = ["soprano", "alto", "tenor", "basse"];
+
+/**
+ * Portée (1 = clé de Sol, 2 = clé de Fa) et sens de hampe de chaque voix, selon la
+ * convention SATB : sur chaque portée, la voix du dessus a la hampe en HAUT, celle du
+ * dessous en BAS — c'est ce qui rend les deux voix d'une même portée lisibles.
+ */
+export const CONFIG_VOIX: Record<NomVoix, { portee: 1 | 2; hampe: "up" | "down" }> = {
+  soprano: { portee: 1, hampe: "up" },
+  alto:    { portee: 1, hampe: "down" },
+  tenor:   { portee: 2, hampe: "up" },
+  basse:   { portee: 2, hampe: "down" },
+};
+
+/** Une mesure porte les quatre voix nommées (chacune peut être vide). */
 export interface Mesure {
-  portees: [Voix, Voix];
+  voix: Record<NomVoix, Voix>;
 }
 
 export interface Piece {
@@ -85,13 +103,14 @@ export function dureeEnDivisions(duree: Duree, divisions: number = DIVISIONS): n
   return ticks;
 }
 
-/** La pièce vierge de départ : 8 mesures (une phrase), Do majeur, 4/4, portées vides. */
+/**
+ * La pièce vierge de départ : 8 mesures (une phrase), Do majeur, 4/4, les quatre voix
+ * VIDES. Le modèle d'édition ne porte que les notes posées ; les silences (complément
+ * de mesure) sont ajoutés au moment du rendu MusicXML, pas ici.
+ */
 export function pieceVierge(): Piece {
   const mesureVide = (): Mesure => ({
-    portees: [
-      [{ type: "silence", duree: { base: "ronde", points: 0 }, mesureEntiere: true }],
-      [{ type: "silence", duree: { base: "ronde", points: 0 }, mesureEntiere: true }],
-    ],
+    voix: { soprano: [], alto: [], tenor: [], basse: [] },
   });
   return {
     armure: 0,
