@@ -327,8 +327,11 @@ export const PROGRESSION_TEMPLATES: ProgressionTemplate[] = [
 function degreeToSemitones(degree: string, mode: "major" | "minor"): number {
   // Cas spéciaux
   if (degree === "V/V") {
-    // Dominante de V = IIe degré de la gamme majeure + 4 (pour faire un accord dom7)
-    return mode === "major" ? 9 : 9; // VIe degré = dominante de la dominante
+    // V/V = dominante de la dominante : sa fondamentale est sur le IIe degré
+    // (tonique + 2). En Do → Ré (Ré7 → Sol7) ; en la min → Si (Si7 → Mi7).
+    // La qualité (7e de dominante, tierce haussée = sensible de V) est posée par
+    // le générateur (effIntervals = INT["7"]).
+    return 2;
   }
   if (degree === "IVm") return 5; // même position que IV
   if (degree === "IIm7" || degree === "II") return 2;

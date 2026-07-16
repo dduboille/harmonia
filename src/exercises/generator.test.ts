@@ -166,4 +166,27 @@ describe("générateur SATB — déclinaison mineure (Task 4bis)", () => {
     }
     expect([...new Set(offenders)]).toEqual([]);
   });
+
+  it("Task 4ter — le V/V (2e mesure) est une 7e de dominante fondée sur le IIe degré (T+2), en majeur ET mineur", () => {
+    const vov = generated.filter(e => e.id.startsWith("gen-v-of-v-tonicization-"));
+    // Doit couvrir les deux modes (majeur + mineur).
+    expect(vov.some(e => /m$/.test(e.keySignature))).toBe(true);
+    expect(vov.some(e => !/m$/.test(e.keySignature))).toBe(true);
+    for (const e of vov) {
+      const { tonicPc } = tonaliteDeSignature(e.keySignature);
+      const root = (tonicPc + 2) % 12; // Ré en Do, Si en la min
+      const dom7 = new Set([0, 4, 7, 10].map(i => (root + i) % 12));
+      const vovChord = e.solution[1]; // mesure V/V
+      // Basse sur la fondamentale (état fondamental).
+      expect(pcOfNote(vovChord.bass), `${e.id} basse`).toBe(root);
+      // Toutes les hauteurs appartiennent à la 7e de dominante sur T+2…
+      const pcs = VOICES.map(v => pcOfNote(vovChord[v]));
+      for (const p of pcs) expect(dom7.has(p), `${e.id}:${p}`).toBe(true);
+      // …et les sons ESSENTIELS (fondamentale, tierce = sensible secondaire, 7e)
+      // sont présents (la quinte peut être ellipsée).
+      expect(pcs, `${e.id} fond.`).toContain(root);
+      expect(pcs, `${e.id} tierce`).toContain((root + 4) % 12);
+      expect(pcs, `${e.id} 7e`).toContain((root + 10) % 12);
+    }
+  });
 });
