@@ -38,5 +38,10 @@ declare module "verovio/esm" {
      * surlignage de lecture. Le champ `notes` porte les identifiants SVG des notes.
      */
     getElementsAtTime(millisec: number): { notes?: string[]; page?: number };
+    /**
+     * Valeurs MIDI d'un élément (note) : instant de déclenchement et hauteur MIDI. Sert à apparier
+     * une note gravée avec le modèle (clic, surlignage de sélection).
+     */
+    getMIDIValuesForElement(xmlId: string): { time?: number; pitch?: number; duration?: number };
   }
 }

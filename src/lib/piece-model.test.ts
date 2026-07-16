@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { dureeEnDivisions, pieceVierge, DIVISIONS, type Duree } from "./piece-model";
+import { dureeEnDivisions, pieceVierge, DIVISIONS, midiDeHauteur, type Duree } from "./piece-model";
 
 describe("dureeEnDivisions — durées entières en divisions 48", () => {
   const d = (base: Duree["base"], points: Duree["points"] = 0, nolet?: Duree["nolet"]): Duree =>
@@ -53,5 +53,13 @@ describe("pieceVierge — 8 mesures, Do majeur, 4/4", () => {
         expect(m.voix[v]).toEqual([]);
       }
     }
+  });
+});
+
+describe("midiDeHauteur", () => {
+  it("convertit lettre + altération + octave en MIDI", () => {
+    expect(midiDeHauteur({ lettre: "C", alteration: 0, octave: 4 })).toBe(60); // Do central
+    expect(midiDeHauteur({ lettre: "A", alteration: 0, octave: 4 })).toBe(69); // La4
+    expect(midiDeHauteur({ lettre: "F", alteration: 1, octave: 5 })).toBe(78); // Fa#5
   });
 });

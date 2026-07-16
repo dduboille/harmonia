@@ -103,6 +103,14 @@ export function dureeEnDivisions(duree: Duree, divisions: number = DIVISIONS): n
   return ticks;
 }
 
+/** Demi-tons de la fondamentale (Do) pour chaque lettre. */
+const DEMI_LETTRE: Record<LettreNote, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+
+/** Numéro MIDI d'une hauteur (Do4 = 60). */
+export function midiDeHauteur(h: Hauteur): number {
+  return (h.octave + 1) * 12 + DEMI_LETTRE[h.lettre] + h.alteration;
+}
+
 /**
  * La pièce vierge de départ : 8 mesures (une phrase), Do majeur, 4/4, les quatre voix
  * VIDES. Le modèle d'édition ne porte que les notes posées ; les silences (complément

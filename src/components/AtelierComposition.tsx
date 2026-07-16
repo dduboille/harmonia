@@ -4,7 +4,9 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import StudioScore, { type StudioScoreRef } from "@/components/StudioScore";
 import PianoPlayer, { type PianoPlayerRef } from "@/components/PianoPlayer";
 import {
-  inserer, effacer, positionEcriture, type Curseur,
+  inserer, effacer, positionEcriture, naviguer,
+  transposerDegre, transposerOctave, remplacerHauteur, remplacerDuree,
+  supprimerNote, onsetMsMidiDeSelection, trouverPosition, type Curseur,
 } from "@/lib/composition-edition";
 import { pieceVersMusicXML } from "@/lib/piece-vers-musicxml";
 import { parseMusicXML, type ParsedScore } from "@/lib/musicxml-parse";
@@ -105,7 +107,7 @@ function pieceEditionVierge(): Piece {
 
 export default function AtelierComposition() {
   const [piece, setPiece] = useState<Piece>(pieceEditionVierge);
-  const [curseur, setCurseur] = useState<Curseur>({ mesure: 0, voix: "soprano" });
+  const [curseur, setCurseur] = useState<Curseur>({ mesure: 0, voix: "soprano", note: "fin" });
   const [base, setBase] = useState<BaseDuree>("noire");
   const [points, setPoints] = useState<0 | 1 | 2>(0);
   const [alteration, setAlteration] = useState<-1 | 0 | 1>(0);
@@ -126,11 +128,34 @@ export default function AtelierComposition() {
   // voix vides lui-même, puis Verovio grave. 8 mesures — le coût par frappe reste acceptable.
   const musicxml = useMemo(() => pieceVersMusicXML(piece), [piece]);
 
+  // Surligne la note sélectionnée après chaque regravure (le SVG est recréé à chaque
+  // changement de `piece`, donc à chaque frappe : on re-surligne dans la foulée).
+  useEffect(() => {
+    scoreRef.current?.surlignerSelection(onsetMsMidiDeSelection(piece, curseur));
+  }, [musicxml, curseur, piece]);
+
+  // Clic sur une note gravée : retrouve sa position dans le modèle et la sélectionne
+  // (bascule aussi la voix active si besoin).
+  const onSelectNote = useCallback((sel: { onsetMs: number; midi: number }) => {
+    const pos = trouverPosition(piece, sel.onsetMs, sel.midi);
+    if (pos) setCurseur(pos);
+  }, [piece]);
+
   // ── Poser une note ─────────────────────────────────────────────────────────
   // La note se pose à l'octave de la VOIX ACTIVE (sa tessiture), avec l'altération
   // courante de la palette.
   const poserNote = useCallback(
     (lettre: LettreNote) => {
+      // Mode sélection : on CORRIGE la hauteur de la note pointée (garde la durée).
+      if (curseur.note !== "fin") {
+        const np = remplacerHauteur(piece, curseur, lettre, alteration);
+        if (np !== piece) {
+          setPiece(np);
+          const oct = (np.mesures[curseur.mesure].voix[curseur.voix][curseur.note] as Note).hauteurs[0].octave;
+          pianoRef.current?.playVoicing([specHauteur(lettre, alteration, oct)], { duration: 0.5, velocity: 0.8 });
+        }
+        return;
+      }
       const oct = octaves[curseur.voix];
       const duree: Duree = { base, points, ...(triolet ? { nolet: { reelles: 3, normales: 2 } } : {}) };
       const note: Note = { type: "note", hauteurs: [{ lettre, alteration, octave: oct }], duree };
@@ -155,6 +180,21 @@ export default function AtelierComposition() {
     }
   }, [piece, curseur, base, points]);
 
+  // Choisit base ou points : en mode sélection, CORRIGE la durée de la note pointée ; sinon règle
+  // la palette de saisie. (Le triolet reste géré à part : il n'a de sens qu'en mode ajout.)
+  const choisirDuree = useCallback((patch: { base?: BaseDuree; points?: 0 | 1 | 2 }) => {
+    if (curseur.note !== "fin") {
+      const ev = piece.mesures[curseur.mesure].voix[curseur.voix][curseur.note];
+      if (ev && ev.type === "note") {
+        const np = remplacerDuree(piece, curseur, { ...ev.duree, ...patch });
+        if (np !== piece) setPiece(np);
+      }
+      return;
+    }
+    if (patch.base !== undefined) setBase(patch.base);
+    if (patch.points !== undefined) setPoints(patch.points);
+  }, [piece, curseur]);
+
   // ── Effacer la dernière note posée ───────────────────────────────────────────
   const effacerDerniere = useCallback(() => {
     const r = effacer(piece, curseur);
@@ -170,9 +210,35 @@ export default function AtelierComposition() {
     }));
   }, [curseur.voix]);
 
+  // ── Navigation / transposition / suppression sur la sélection ───────────────
+  const naviguerNote = useCallback((sens: -1 | 1) => {
+    setCurseur((c) => naviguer(piece, c, sens));
+  }, [piece]);
+
+  const transposer = useCallback((sens: -1 | 1, octave: boolean) => {
+    if (curseur.note === "fin") return;
+    const np = octave ? transposerOctave(piece, curseur, sens) : transposerDegre(piece, curseur, sens);
+    if (np === piece) return;
+    setPiece(np);
+    const ev = np.mesures[curseur.mesure].voix[curseur.voix][curseur.note];
+    if (ev && ev.type === "note") {
+      const h = ev.hauteurs[0];
+      pianoRef.current?.playVoicing([specHauteur(h.lettre, h.alteration, h.octave)], { duration: 0.4, velocity: 0.7 });
+    }
+  }, [piece, curseur]);
+
+  const effacerContextuel = useCallback(() => {
+    if (curseur.note !== "fin") {
+      const r = supprimerNote(piece, curseur);
+      setPiece(r.piece); setCurseur(r.curseur);
+    } else {
+      effacerDerniere();
+    }
+  }, [piece, curseur, effacerDerniere]);
+
   const toutEffacer = useCallback(() => {
     setPiece(pieceEditionVierge());
-    setCurseur({ mesure: 0, voix: "soprano" });
+    setCurseur({ mesure: 0, voix: "soprano", note: "fin" });
     setOctaves(OCTAVE_DEFAUT);
   }, []);
 
@@ -183,7 +249,7 @@ export default function AtelierComposition() {
    * suivante au lieu de la même.
    */
   const choisirVoix = useCallback((voix: NomVoix) => {
-    setCurseur({ mesure: positionEcriture(piece, voix), voix });
+    setCurseur({ mesure: positionEcriture(piece, voix), voix, note: "fin" });
   }, [piece]);
 
   // ── Lecture (reprise du patron de Studio.tsx) ────────────────────────────────
@@ -240,8 +306,8 @@ export default function AtelierComposition() {
   // ── Clavier d'ordinateur ─────────────────────────────────────────────────────
   // Les handlers dépendent de l'état ; pour ne poser l'écouteur qu'UNE fois (et ne
   // jamais lire un état périmé), on passe par une ref remise à jour à chaque rendu.
-  const actionsRef = useRef({ poserNote, poserSilence, effacerDerniere, changerOctave, setBase });
-  actionsRef.current = { poserNote, poserSilence, effacerDerniere, changerOctave, setBase };
+  const actionsRef = useRef({ poserNote, poserSilence, effacerContextuel, naviguerNote, transposer, setBase });
+  actionsRef.current = { poserNote, poserSilence, effacerContextuel, naviguerNote, transposer, setBase };
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -266,9 +332,11 @@ export default function AtelierComposition() {
         return;
       }
       switch (e.key) {
-        case "ArrowUp":   e.preventDefault(); a.changerOctave(1); break;
-        case "ArrowDown": e.preventDefault(); a.changerOctave(-1); break;
-        case "Backspace": e.preventDefault(); a.effacerDerniere(); break;
+        case "ArrowLeft":  e.preventDefault(); a.naviguerNote(-1); break;
+        case "ArrowRight": e.preventDefault(); a.naviguerNote(1); break;
+        case "ArrowUp":    e.preventDefault(); a.transposer(1, e.shiftKey); break;
+        case "ArrowDown":  e.preventDefault(); a.transposer(-1, e.shiftKey); break;
+        case "Backspace":  e.preventDefault(); a.effacerContextuel(); break;
         case "r": case "R": e.preventDefault(); a.poserSilence(); break;
       }
     };
@@ -306,7 +374,7 @@ export default function AtelierComposition() {
             Atelier de composition
           </h1>
           <p style={{ fontSize: 13, color: "#888", margin: 0, fontFamily: "system-ui, sans-serif" }}>
-            Écrivez votre pièce à quatre voix (S/A/T/B) — choisissez la voix, puis posez les notes avec les boutons ci-dessous ou au clavier (a…g). Chaque voix se pose dans sa tessiture. La partition se grave à chaque frappe.
+            Écrivez votre pièce à quatre voix (S/A/T/B) — choisissez la voix, puis posez les notes avec les boutons ci-dessous ou au clavier (a…g). Chaque voix se pose dans sa tessiture. La partition se grave à chaque frappe ; flèches ← → pour revenir corriger une note, ↑ ↓ pour la déplacer.
           </p>
         </div>
 
@@ -315,7 +383,7 @@ export default function AtelierComposition() {
           <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
             <span style={groupeLabel}>DURÉE</span>
             {DUREES.map((d) => (
-              <button key={d.base} onClick={() => setBase(d.base)} style={base === d.base ? btnOn : btn} title={`Touche ${d.touche}`}>
+              <button key={d.base} onClick={() => choisirDuree({ base: d.base })} style={base === d.base ? btnOn : btn} title={`Touche ${d.touche}`}>
                 {d.label}
               </button>
             ))}
@@ -324,7 +392,7 @@ export default function AtelierComposition() {
           <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
             <span style={groupeLabel}>POINTS</span>
             {([0, 1, 2] as const).map((p) => (
-              <button key={p} onClick={() => setPoints(p)} style={points === p ? btnOn : btn}>
+              <button key={p} onClick={() => choisirDuree({ points: p })} style={points === p ? btnOn : btn}>
                 {p === 0 ? "—" : p === 1 ? "·" : "··"}
               </button>
             ))}
@@ -381,8 +449,13 @@ export default function AtelierComposition() {
           <span>
             <span style={{ color: "#aaa" }}>Voix : </span>
             <strong style={{ color: VOIX_META[curseur.voix].couleur }}>{VOIX_META[curseur.voix].label}</strong>
-            <span style={{ color: "#aaa" }}> · mesure </span>
-            <strong style={{ color: VOIX_META[curseur.voix].couleur }}>{curseur.mesure + 1}</strong>
+            <span style={{ color: "#aaa" }}> · </span>
+            {curseur.note === "fin" ? (
+              <><span style={{ color: "#aaa" }}>ajout · mesure </span>
+                <strong style={{ color: VOIX_META[curseur.voix].couleur }}>{curseur.mesure + 1}</strong></>
+            ) : (
+              <strong style={{ color: VOIX_META[curseur.voix].couleur }}>note sélectionnée (mesure {curseur.mesure + 1})</strong>
+            )}
           </span>
           {triolet && (
             <span style={{ fontSize: 12, color: "#BA7517", fontWeight: 600 }}>
@@ -393,7 +466,7 @@ export default function AtelierComposition() {
 
         {/* ── Partition gravée (à chaque frappe) ───────────────────── */}
         <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "16px 12px", marginBottom: 12, overflowX: "auto" }}>
-          <StudioScore ref={scoreRef} musicxml={musicxml} />
+          <StudioScore ref={scoreRef} musicxml={musicxml} onSelectNote={onSelectNote} />
         </div>
 
         {/* ── Saisie des notes ─────────────────────────────────────── */}
@@ -435,7 +508,7 @@ export default function AtelierComposition() {
             <button onClick={poserSilence} style={{ ...btn, padding: "8px 14px", fontFamily: "'Times New Roman', serif", fontSize: 15 }} title="Touche R">
               𝄽 Silence
             </button>
-            <button onClick={effacerDerniere} style={{ ...btn, padding: "8px 14px", color: "#c0392b" }} title="Retour arrière">
+            <button onClick={effacerContextuel} style={{ ...btn, padding: "8px 14px", color: "#c0392b" }} title="Retour arrière">
               ⌫ Effacer
             </button>
             <div style={{ flex: 1 }} />
@@ -457,7 +530,7 @@ export default function AtelierComposition() {
 
         {/* ── Aide clavier ─────────────────────────────────────────── */}
         <div style={{ fontSize: 12, color: "#999", fontFamily: "system-ui, sans-serif", lineHeight: 1.7, padding: "0 4px" }}>
-          <strong style={{ color: "#777" }}>Clavier :</strong> a…g = les notes (a = La, c = Do…) · ↑ ↓ = octave · 1–5 = durée · R = silence · Retour arrière = effacer.
+          <strong style={{ color: "#777" }}>Clavier :</strong> a…g = poser/corriger la note · ← → = naviguer entre les notes · ↑ ↓ = transposer (Maj = octave) · 1–5 = durée · R = silence · Retour arrière = effacer.
         </div>
 
         {/* PianoPlayer monté caché : il ne sert qu'à SONNER (cf. Studio). */}
