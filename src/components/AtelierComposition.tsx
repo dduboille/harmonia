@@ -20,7 +20,7 @@ import {
  * Harmonia — L'atelier de composition « note à note » (fonction Pro).
  *
  * L'élève écrit sa pièce en écriture SATB à QUATRE voix nommées (Soprano, Alto, Ténor,
- * Basse), une note à la fois, au piano à l'écran ou au clavier d'ordinateur. Un sélecteur
+ * Basse), une note à la fois, via les boutons de notes ou le clavier d'ordinateur. Un sélecteur
  * de voix (S/A/T/B) désigne la voix ACTIVE : la saisie opère sur elle seule. À CHAQUE
  * frappe on regrave (Verovio, via StudioScore) et il peut ÉCOUTER. Toute la logique
  * d'édition est PURE (`composition-edition.ts`) : ce composant n'orchestre que l'état,
@@ -43,10 +43,23 @@ import {
 const DEMI: Record<LettreNote, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
 /** Noms français des sept notes naturelles. */
 const NOM_FR: Record<LettreNote, string> = { C: "Do", D: "Ré", E: "Mi", F: "Fa", G: "Sol", A: "La", B: "Si" };
-/** Les sept blanches, dans l'ordre d'une octave. */
-const BLANCHES: LettreNote[] = ["C", "D", "E", "F", "G", "A", "B"];
-/** Une noire (touche altérée) suit ces blanches (Do♯, Ré♯, Fa♯, Sol♯, La♯). */
-const NOIRE_APRES: Partial<Record<LettreNote, true>> = { C: true, D: true, F: true, G: true, A: true };
+/** Les sept notes naturelles, dans l'ordre d'une octave. */
+const NOTES: LettreNote[] = ["C", "D", "E", "F", "G", "A", "B"];
+
+/** Couleur par note (reprise de l'ancien éditeur SATB) : un repère de couleur stable. */
+const COULEUR_NOTE: Record<LettreNote, string> = {
+  C: "#E53E3E", D: "#DD6B20", E: "#D69E2E",
+  F: "#38A169", G: "#3182CE", A: "#805AD5", B: "#D53F8C",
+};
+
+/**
+ * Octave PAR DÉFAUT de chaque voix : sa TESSITURE. Poser une note dans la basse la
+ * place au grave (octave 3), dans le soprano à l'aigu (octave 5) — plus besoin de
+ * chercher l'octave. Chaque voix garde ensuite sa propre octave courante, ajustable.
+ */
+const OCTAVE_DEFAUT: Record<NomVoix, number> = {
+  soprano: 5, alto: 4, tenor: 4, basse: 3,
+};
 
 /** Durées de la palette, du plus long au plus court, avec leur libellé. */
 const DUREES: ReadonlyArray<{ base: BaseDuree; label: string; touche: string }> = [
@@ -97,7 +110,8 @@ export default function AtelierComposition() {
   const [points, setPoints] = useState<0 | 1 | 2>(0);
   const [alteration, setAlteration] = useState<-1 | 0 | 1>(0);
   const [triolet, setTriolet] = useState(false);
-  const [octave, setOctave] = useState(5); // octave courante (clavier d'ordinateur + piano à l'écran)
+  // Une octave courante PAR VOIX : chaque voix part de sa tessiture (cf. OCTAVE_DEFAUT).
+  const [octaves, setOctaves] = useState<Record<NomVoix, number>>(OCTAVE_DEFAUT);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const pianoRef = useRef<PianoPlayerRef>(null);
@@ -113,22 +127,22 @@ export default function AtelierComposition() {
   const musicxml = useMemo(() => pieceVersMusicXML(piece), [piece]);
 
   // ── Poser une note ─────────────────────────────────────────────────────────
-  // `altOverride` sert aux touches NOIRES du piano (qui portent leur propre dièse) ;
-  // sinon on prend l'altération courante de la palette.
+  // La note se pose à l'octave de la VOIX ACTIVE (sa tessiture), avec l'altération
+  // courante de la palette.
   const poserNote = useCallback(
-    (lettre: LettreNote, oct: number, altOverride?: -1 | 0 | 1) => {
-      const alt = altOverride ?? alteration;
+    (lettre: LettreNote) => {
+      const oct = octaves[curseur.voix];
       const duree: Duree = { base, points, ...(triolet ? { nolet: { reelles: 3, normales: 2 } } : {}) };
-      const note: Note = { type: "note", hauteurs: [{ lettre, alteration: alt, octave: oct }], duree };
+      const note: Note = { type: "note", hauteurs: [{ lettre, alteration, octave: oct }], duree };
       const r = inserer(piece, curseur, note);
       if (r.piece !== piece) {
         setPiece(r.piece);
         setCurseur(r.curseur);
         // Jouer la note posée, pour un retour sonore immédiat.
-        pianoRef.current?.playVoicing([specHauteur(lettre, alt, oct)], { duration: 0.5, velocity: 0.8 });
+        pianoRef.current?.playVoicing([specHauteur(lettre, alteration, oct)], { duration: 0.5, velocity: 0.8 });
       }
     },
-    [piece, curseur, base, points, alteration, triolet],
+    [piece, curseur, octaves, base, points, alteration, triolet],
   );
 
   // ── Poser un silence ─────────────────────────────────────────────────────────
@@ -148,13 +162,18 @@ export default function AtelierComposition() {
     setCurseur(r.curseur);
   }, [piece, curseur]);
 
+  // Change l'octave courante de la VOIX ACTIVE (les autres voix gardent la leur).
   const changerOctave = useCallback((delta: number) => {
-    setOctave((o) => Math.min(7, Math.max(1, o + delta)));
-  }, []);
+    setOctaves((o) => ({
+      ...o,
+      [curseur.voix]: Math.min(7, Math.max(1, o[curseur.voix] + delta)),
+    }));
+  }, [curseur.voix]);
 
   const toutEffacer = useCallback(() => {
     setPiece(pieceEditionVierge());
     setCurseur({ mesure: 0, voix: "soprano" });
+    setOctaves(OCTAVE_DEFAUT);
   }, []);
 
   /** Change la voix active en gardant la mesure courante. */
@@ -232,7 +251,7 @@ export default function AtelierComposition() {
 
       if (TOUCHE_LETTRE[k]) {
         e.preventDefault();
-        a.poserNote(TOUCHE_LETTRE[k], octave);
+        a.poserNote(TOUCHE_LETTRE[k]);
         return;
       }
       const dureeTouche = DUREES.find((d) => d.touche === e.key);
@@ -250,8 +269,8 @@ export default function AtelierComposition() {
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-    // `octave` est lue directement (pas via ref) car elle change l'octave visée du clavier.
-  }, [octave]);
+    // L'écouteur est posé une seule fois : tout l'état est lu via `actionsRef`.
+  }, []);
 
   // ── Styles ───────────────────────────────────────────────────────────────────
   const carte: React.CSSProperties = {
@@ -266,11 +285,8 @@ export default function AtelierComposition() {
   const groupeLabel: React.CSSProperties = { fontSize: 11, fontWeight: 600, color: "#888", marginRight: 4, letterSpacing: "0.04em" };
   const separateur = <div style={{ width: 1, height: 28, background: "#e0dbd3" }} />;
 
-  // ── Clavier de piano (2 octaves autour de l'octave courante) ─────────────────
-  const octavesClavier = [octave, octave + 1];
-  const WHITE_W = 46, WHITE_H = 150, BLACK_W = 30, BLACK_H = 94;
-  // Les blanches à plat : { lettre, oct }.
-  const blanches = octavesClavier.flatMap((oct) => BLANCHES.map((lettre) => ({ lettre, oct })));
+  const octaveVoix = octaves[curseur.voix];
+  const symboleAlt = alteration === 1 ? "♯" : alteration === -1 ? "♭" : "";
 
   return (
     <main style={{ minHeight: "100vh", background: "#f4f1ec", padding: "2rem 1rem" }}>
@@ -285,7 +301,7 @@ export default function AtelierComposition() {
             Atelier de composition
           </h1>
           <p style={{ fontSize: 13, color: "#888", margin: 0, fontFamily: "system-ui, sans-serif" }}>
-            Écrivez votre pièce à quatre voix (S/A/T/B) — choisissez la voix, puis posez les notes au piano ci-dessous ou au clavier (a…g). La partition se grave à chaque frappe.
+            Écrivez votre pièce à quatre voix (S/A/T/B) — choisissez la voix, puis posez les notes avec les boutons ci-dessous ou au clavier (a…g). Chaque voix se pose dans sa tessiture. La partition se grave à chaque frappe.
           </p>
         </div>
 
@@ -375,57 +391,37 @@ export default function AtelierComposition() {
           <StudioScore ref={scoreRef} musicxml={musicxml} />
         </div>
 
-        {/* ── Piano à l'écran ──────────────────────────────────────── */}
+        {/* ── Saisie des notes ─────────────────────────────────────── */}
         <div style={{ ...carte }}>
-          <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 12, flexWrap: "wrap" }}>
-            <span style={groupeLabel}>OCTAVE</span>
+          {/* Octave de la VOIX ACTIVE : chaque voix a la sienne (sa tessiture). */}
+          <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 14, flexWrap: "wrap" }}>
+            <span style={groupeLabel}>OCTAVE ({VOIX_META[curseur.voix].label})</span>
             <button onClick={() => changerOctave(-1)} style={{ ...btn, padding: "5px 12px" }} title="Flèche bas">▼</button>
-            <span style={{ fontSize: 14, fontFamily: "monospace", color: "#1a1a1a", minWidth: 20, textAlign: "center" }}>{octave}</span>
+            <span style={{ fontSize: 14, fontFamily: "monospace", color: "#1a1a1a", minWidth: 20, textAlign: "center" }}>{octaveVoix}</span>
             <button onClick={() => changerOctave(1)} style={{ ...btn, padding: "5px 12px" }} title="Flèche haut">▲</button>
             <span style={{ fontSize: 11, color: "#bbb", fontFamily: "system-ui, sans-serif" }}>
-              (octaves {octave} et {octave + 1})
+              la note se pose dans le registre de la voix
             </span>
           </div>
 
-          {/* Rangée de touches : blanches en flex, noires posées par-dessus. */}
-          <div style={{ overflowX: "auto", paddingBottom: 4 }}>
-            <div style={{ position: "relative", height: WHITE_H, width: blanches.length * WHITE_W }}>
-              {/* Blanches */}
-              {blanches.map(({ lettre, oct }, i) => (
-                <button
-                  key={`w-${lettre}-${oct}-${i}`}
-                  onClick={() => poserNote(lettre, oct)}
-                  style={{
-                    position: "absolute", left: i * WHITE_W, top: 0, width: WHITE_W - 2, height: WHITE_H,
-                    borderRadius: "0 0 6px 6px", border: "1px solid #d8d2c8", background: "#fff",
-                    display: "flex", flexDirection: "column", justifyContent: "flex-end", alignItems: "center",
-                    paddingBottom: 8, cursor: "pointer", fontFamily: "system-ui, sans-serif",
-                  }}
-                >
-                  <span style={{ fontSize: 12, fontWeight: 600, color: "#5C3D6E" }}>{NOM_FR[lettre]}</span>
-                  <span style={{ fontSize: 9, color: "#bbb", fontFamily: "monospace" }}>{oct}</span>
-                </button>
-              ))}
-              {/* Noires (dièse de la blanche à leur gauche) */}
-              {blanches.map(({ lettre, oct }, i) =>
-                NOIRE_APRES[lettre] && i < blanches.length - 1 ? (
-                  <button
-                    key={`b-${lettre}-${oct}-${i}`}
-                    onClick={() => poserNote(lettre, oct, 1)}
-                    style={{
-                      position: "absolute", left: (i + 1) * WHITE_W - BLACK_W / 2, top: 0,
-                      width: BLACK_W, height: BLACK_H, borderRadius: "0 0 4px 4px",
-                      border: "1px solid #1a1a1a", background: "#2a2a2a", color: "#fff",
-                      cursor: "pointer", zIndex: 2, fontSize: 9, fontFamily: "system-ui, sans-serif",
-                      display: "flex", alignItems: "flex-end", justifyContent: "center", paddingBottom: 6,
-                    }}
-                    title={`${NOM_FR[lettre]}♯${oct}`}
-                  >
-                    {NOM_FR[lettre]}♯
-                  </button>
-                ) : null,
-              )}
-            </div>
+          {/* Rangée de boutons de notes (Do…Si), colorés. L'altération de la palette
+              (♯ ♭ ♮) s'applique à la note posée. */}
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            {NOTES.map((lettre) => (
+              <button
+                key={lettre}
+                onClick={() => poserNote(lettre)}
+                title={`${NOM_FR[lettre]}${symboleAlt} ${octaveVoix}`}
+                style={{
+                  minWidth: 62, padding: "16px 10px", borderRadius: 8, cursor: "pointer",
+                  border: `1.5px solid ${COULEUR_NOTE[lettre]}`, background: "#fff",
+                  color: COULEUR_NOTE[lettre], fontWeight: 700, fontSize: 16,
+                  fontFamily: "Georgia, serif",
+                }}
+              >
+                {NOM_FR[lettre]}{symboleAlt}
+              </button>
+            ))}
           </div>
 
           {/* Actions : silence, effacer, écouter, tout effacer */}
