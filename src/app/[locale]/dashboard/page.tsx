@@ -320,8 +320,8 @@ export default async function DashboardPage({ params }: Props) {
               </div>
             </Link>
 
-            {/* Éditeur mélodique */}
-            <Link href={`/${locale}/editeur-melodique`} style={{ textDecoration: "none" }}>
+            {/* Atelier de composition (remplace l'ancien éditeur mélodique, retiré). */}
+            <Link href={`/${locale}/composer`} style={{ textDecoration: "none" }}>
               <div style={{
                 background: "#fff",
                 border: "0.5px solid #e8e3db",
@@ -331,15 +331,15 @@ export default async function DashboardPage({ params }: Props) {
                 height: "100%",
                 boxSizing: "border-box" as const,
               }}>
-                <div style={{ fontSize: 22, marginBottom: 8 }}>♩</div>
+                <div style={{ fontSize: 22, marginBottom: 8 }}>✐</div>
                 <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a", marginBottom: 6 }}>
-                  {t("editeurTitle")}
+                  Atelier de composition
                 </div>
                 <div style={{ fontSize: 12, color: "#888", lineHeight: 1.5, marginBottom: 12 }}>
-                  {t("editeurDesc")}
+                  Composez votre pièce à deux portées, note à note — gravure en direct et écoute.
                 </div>
                 <div style={{ fontSize: 12, color: "#185FA5", fontWeight: 600 }}>
-                  {t("editeurLink")}
+                  Ouvrir l&apos;atelier →
                 </div>
               </div>
             </Link>

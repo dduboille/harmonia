@@ -20,7 +20,6 @@ const TOOL_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "notes-etrangeres",  priority: 0.8 },
   { path: "tonalites",         priority: 0.7 },
   { path: "generateur-satb",   priority: 0.7 },
-  { path: "editeur-melodique", priority: 0.7 },
   { path: "composition",       priority: 0.7 },
   { path: "conditions",        priority: 0.3 },
   { path: "confidentialite",   priority: 0.3 },

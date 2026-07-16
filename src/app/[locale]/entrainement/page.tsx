@@ -17,12 +17,6 @@ const TOOLS = [
     desc: "Entraînement à l'oreille — intervalles et dictée harmonique.",
   },
   {
-    href: "editeur-melodique",
-    icon: "♩",
-    title: "Mélodie",
-    desc: "Éditeur mélodique pour saisir et visualiser vos mélodies.",
-  },
-  {
     href: "notes-etrangeres",
     icon: "♪",
     title: "Notes étrangères",

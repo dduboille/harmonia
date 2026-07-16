@@ -152,11 +152,11 @@ function AppNav() {
     { href: `/${locale}/cours`, icon: "♩", label: t("courses").toUpperCase(), active: active("cours") || active("cursus"), pro: false },
     {
       href: `/${locale}/entrainement`, icon: "✎", label: t("training").toUpperCase(), pro: false,
-      active: active("entrainement") || active("atelier") || active("dictee") || active("editeur-melodique") || active("notes-etrangeres"),
+      active: active("entrainement") || active("atelier") || active("dictee") || active("notes-etrangeres"),
     },
     {
       href: `/${locale}/creation`, icon: "♬", label: t("creation").toUpperCase(), pro: false,
-      active: active("creation") || active("composition") || active("comparateur") || active("progressions") || active("generateur-satb"),
+      active: active("creation") || active("composition") || active("composer") || active("comparateur") || active("progressions") || active("generateur-satb"),
     },
     {
       href: `/${locale}/analyse`, icon: "◎", label: t("analyser").toUpperCase(), pro: true,

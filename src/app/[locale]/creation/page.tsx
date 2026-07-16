@@ -11,6 +11,12 @@ const TOOLS = [
     desc: "Composition guidée : harmonisez une basse ou un soprano pas à pas.",
   },
   {
+    href: "composer",
+    icon: "✐",
+    title: "Atelier de composition",
+    desc: "Composez votre propre pièce à deux portées, note à note — gravure en direct et écoute. (Pro)",
+  },
+  {
     href: "comparateur",
     icon: "⟳",
     title: "Styles",
