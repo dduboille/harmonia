@@ -5,7 +5,7 @@ import { type Piece, type Note, type Hauteur } from "./piece-model";
 import {
   capaciteMesure, dureePlacee, decouperEnSilences, voixActives,
   inserer, effacer, positionEcriture, positions, naviguer,
-  transposerDegre, transposerOctave, type Curseur,
+  transposerDegre, transposerOctave, remplacerHauteur, remplacerDuree, type Curseur,
 } from "./composition-edition";
 
 const DO5: Hauteur = { lettre: "C", alteration: 0, octave: 5 };
@@ -216,6 +216,42 @@ describe("transposerDegre / transposerOctave", () => {
     const { p } = selNote0();
     const c: Curseur = { mesure: 0, voix: "soprano", note: "fin" };
     expect(transposerDegre(p, c, 1)).toBe(p);
+  });
+});
+
+describe("remplacerHauteur / remplacerDuree", () => {
+  const selDo5 = (base = "noire" as const, points: 0 | 1 | 2 = 0): { p: Piece; c: Curseur } => {
+    const p = pieceEdition();
+    p.mesures[0].voix.soprano = [
+      { type: "note", hauteurs: [{ lettre: "C", alteration: 0, octave: 5 }], duree: { base, points } },
+      { type: "note", hauteurs: [{ lettre: "E", alteration: 0, octave: 5 }], duree: { base: "noire", points: 0 } },
+    ];
+    return { p, c: { mesure: 0, voix: "soprano", note: 0 } };
+  };
+  it("remplace lettre + alteration, garde octave et duree", () => {
+    const { p, c } = selDo5("noire");
+    const n0 = remplacerHauteur(p, c, "G", 1).mesures[0].voix.soprano[0] as Note;
+    expect(n0.hauteurs[0]).toEqual({ lettre: "G", alteration: 1, octave: 5 });
+    expect(n0.duree).toEqual({ base: "noire", points: 0 });
+    expect((remplacerHauteur(p, c, "G", 1).mesures[0].voix.soprano[1] as Note).hauteurs[0].lettre).toBe("E");
+  });
+  it("remplace la duree si elle tient (noire -> croche)", () => {
+    const { p, c } = selDo5("noire");
+    const n0 = remplacerDuree(p, c, { base: "croche", points: 0 }).mesures[0].voix.soprano[0] as Note;
+    expect(n0.duree).toEqual({ base: "croche", points: 0 });
+    expect(n0.hauteurs[0].lettre).toBe("C");
+  });
+  it("refuse la duree qui deborde la mesure (sans rien changer)", () => {
+    const p = pieceEdition();
+    p.mesures[0].voix.soprano = [noteN("noire"), noteN("noire"), noteN("noire"), noteN("noire")];
+    const c: Curseur = { mesure: 0, voix: "soprano", note: 0 };
+    expect(remplacerDuree(p, c, { base: "ronde", points: 0 })).toBe(p);
+  });
+  it("sans effet en mode fin", () => {
+    const { p } = selDo5();
+    const c: Curseur = { mesure: 0, voix: "soprano", note: "fin" };
+    expect(remplacerHauteur(p, c, "G", 0)).toBe(p);
+    expect(remplacerDuree(p, c, { base: "croche", points: 0 })).toBe(p);
   });
 });
 

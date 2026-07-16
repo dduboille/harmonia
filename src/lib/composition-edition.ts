@@ -192,6 +192,30 @@ export function transposerOctave(piece: Piece, curseur: Curseur, sens: -1 | 1): 
   }));
 }
 
+/** Remplace lettre + altération de la note sélectionnée (garde octave et durée). */
+export function remplacerHauteur(
+  piece: Piece, curseur: Curseur, lettre: LettreNote, alteration: number,
+): Piece {
+  return avecHauteurSelectionnee(piece, curseur, (h) => ({ ...h, lettre, alteration }));
+}
+
+/**
+ * Remplace la durée de la note sélectionnée (garde la hauteur), SI la nouvelle durée tient dans la
+ * mesure (les autres notes ne bougent pas). Sinon renvoie la pièce inchangée.
+ */
+export function remplacerDuree(piece: Piece, curseur: Curseur, duree: Duree): Piece {
+  if (curseur.note === "fin") return piece;
+  const voix = piece.mesures[curseur.mesure].voix[curseur.voix];
+  const ev = voix[curseur.note];
+  if (!ev || ev.type !== "note") return piece;
+  const capacite = capaciteMesure(piece.chiffrage);
+  const autres = dureePlacee(voix) - dureeEnDivisions(ev.duree);
+  if (autres + dureeEnDivisions(duree) > capacite) return piece;
+  const nouvelle: Note = { ...ev, duree };
+  const nouvelleVoix = voix.map((x, i) => (i === curseur.note ? nouvelle : x));
+  return avecVoix(piece, curseur, nouvelleVoix);
+}
+
 /**
  * Efface la dernière note posée dans la voix courante. Si la voix courante est vide et
  * qu'on n'est pas à la première mesure, on recule à la précédente et on y retire la
