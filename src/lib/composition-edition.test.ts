@@ -4,7 +4,7 @@ import { pieceVersMusicXML } from "./piece-vers-musicxml";
 import { type Piece, type Note, type Hauteur } from "./piece-model";
 import {
   capaciteMesure, dureePlacee, decouperEnSilences, voixActives,
-  inserer, effacer, type Curseur,
+  inserer, effacer, positionEcriture, type Curseur,
 } from "./composition-edition";
 
 const DO5: Hauteur = { lettre: "C", alteration: 0, octave: 5 };
@@ -87,6 +87,32 @@ describe("inserer", () => {
     ({ piece: p } = inserer(p, { mesure: 0, voix: "alto" }, noteN("blanche")));
     expect(p.mesures[0].voix.soprano).toHaveLength(1);
     expect(p.mesures[0].voix.alto).toHaveLength(1);
+  });
+});
+
+describe("positionEcriture — où écrit chaque voix", () => {
+  it("une voix vide écrit à la première mesure", () => {
+    expect(positionEcriture(pieceEdition(), "alto")).toBe(0);
+  });
+  it("chaque voix a sa propre position : soprano rempli n'avance pas l'alto", () => {
+    // On remplit la mesure 0 au soprano (une ronde) ; l'alto, lui, reste en mesure 0.
+    let p = pieceEdition();
+    ({ piece: p } = inserer(p, { mesure: 0, voix: "soprano" }, noteN("ronde")));
+    expect(positionEcriture(p, "soprano")).toBe(1); // sa mesure 0 est pleine
+    expect(positionEcriture(p, "alto")).toBe(0);    // l'alto écrit toujours en mesure 0
+  });
+  it("saute les mesures pleines jusqu'à la première place libre", () => {
+    let p = pieceEdition();
+    ({ piece: p } = inserer(p, { mesure: 0, voix: "tenor" }, noteN("ronde")));
+    ({ piece: p } = inserer(p, { mesure: 1, voix: "tenor" }, noteN("ronde")));
+    expect(positionEcriture(p, "tenor")).toBe(2);
+  });
+  it("toutes les mesures pleines : reste sur la dernière", () => {
+    let p = pieceEdition();
+    for (let i = 0; i < p.mesures.length; i++) {
+      ({ piece: p } = inserer(p, { mesure: i, voix: "basse" }, noteN("ronde")));
+    }
+    expect(positionEcriture(p, "basse")).toBe(p.mesures.length - 1);
   });
 });
 

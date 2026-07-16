@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import StudioScore, { type StudioScoreRef } from "@/components/StudioScore";
 import PianoPlayer, { type PianoPlayerRef } from "@/components/PianoPlayer";
 import {
-  inserer, effacer, type Curseur,
+  inserer, effacer, positionEcriture, type Curseur,
 } from "@/lib/composition-edition";
 import { pieceVersMusicXML } from "@/lib/piece-vers-musicxml";
 import { parseMusicXML, type ParsedScore } from "@/lib/musicxml-parse";
@@ -176,10 +176,15 @@ export default function AtelierComposition() {
     setOctaves(OCTAVE_DEFAUT);
   }, []);
 
-  /** Change la voix active en gardant la mesure courante. */
+  /**
+   * Change la voix active et place le curseur là où CETTE voix écrit (sa première mesure
+   * non pleine) : chaque voix a sa propre position, indépendante des autres. Sans quoi,
+   * après avoir rempli une mesure au soprano, passer à l'alto écrirait dans la mesure
+   * suivante au lieu de la même.
+   */
   const choisirVoix = useCallback((voix: NomVoix) => {
-    setCurseur((c) => ({ mesure: c.mesure, voix }));
-  }, []);
+    setCurseur({ mesure: positionEcriture(piece, voix), voix });
+  }, [piece]);
 
   // ── Lecture (reprise du patron de Studio.tsx) ────────────────────────────────
 
@@ -404,8 +409,9 @@ export default function AtelierComposition() {
             </span>
           </div>
 
-          {/* Rangée de boutons de notes (Do…Si), colorés. L'altération de la palette
-              (♯ ♭ ♮) s'applique à la note posée. */}
+          {/* Rangée de boutons de notes (C…B, notation anglo-saxonne), colorés.
+              L'altération de la palette (♯ ♭ ♮) s'applique à la note posée ; le nom
+              français reste en info-bulle. */}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {NOTES.map((lettre) => (
               <button
@@ -419,7 +425,7 @@ export default function AtelierComposition() {
                   fontFamily: "Georgia, serif",
                 }}
               >
-                {NOM_FR[lettre]}{symboleAlt}
+                {lettre}{symboleAlt}
               </button>
             ))}
           </div>

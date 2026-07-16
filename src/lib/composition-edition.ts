@@ -71,6 +71,18 @@ export function voixActives(piece: Piece): NomVoix[] {
   );
 }
 
+/**
+ * La mesure où l'on ÉCRIT dans une voix : la première mesure non pleine (là où la note
+ * suivante ira). Si toutes les mesures de la voix sont pleines, on reste sur la dernière.
+ * Sert au changement de voix : chaque voix a sa propre position d'écriture, indépendante
+ * de celle des autres — on ne veut pas hériter du numéro de mesure de la voix précédente.
+ */
+export function positionEcriture(piece: Piece, voix: NomVoix): number {
+  const capacite = capaciteMesure(piece.chiffrage);
+  const i = piece.mesures.findIndex((m) => dureePlacee(m.voix[voix]) < capacite);
+  return i === -1 ? piece.mesures.length - 1 : i;
+}
+
 /** Remplace une voix (mesure, voix nommée) par une nouvelle, sans muter la pièce. */
 function avecVoix(piece: Piece, curseur: Curseur, voix: Voix): Piece {
   return {
