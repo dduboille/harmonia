@@ -255,6 +255,58 @@ export function effacer(piece: Piece, curseur: Curseur): { piece: Piece; curseur
   return { piece, curseur };
 }
 
+/**
+ * La note CIBLE d'un geste d'ACCORD : la note sélectionnée, ou — en mode ajout — le
+ * DERNIER ÉVÉNEMENT de la voix (en remontant les mesures depuis le curseur), seulement
+ * si c'est une note. Un silence de queue ne se « dépile » pas : la cible est nulle et
+ * l'appelant retombe sur `effacer`.
+ */
+export function cibleAccord(piece: Piece, curseur: Curseur): { mesure: number; note: number } | null {
+  if (curseur.note !== "fin") {
+    const ev = piece.mesures[curseur.mesure].voix[curseur.voix][curseur.note];
+    return ev && ev.type === "note" ? { mesure: curseur.mesure, note: curseur.note } : null;
+  }
+  for (let mesure = curseur.mesure; mesure >= 0; mesure--) {
+    const voix = piece.mesures[mesure].voix[curseur.voix];
+    if (voix.length > 0) {
+      const note = voix.length - 1;
+      return voix[note].type === "note" ? { mesure, note } : null;
+    }
+  }
+  return null;
+}
+
+/**
+ * Empile une hauteur sur la note cible (cf. `cibleAccord`). L'ordre d'empilement est
+ * CONSERVÉ — c'est lui que `retirerDerniereHauteur` dépile. Refuse le doublon exact
+ * (même midi) ; pièce inchangée si pas de cible.
+ */
+export function empilerHauteur(
+  piece: Piece, curseur: Curseur, lettre: LettreNote, alteration: number, octave: number,
+): Piece {
+  const cible = cibleAccord(piece, curseur);
+  if (!cible) return piece;
+  const voix = piece.mesures[cible.mesure].voix[curseur.voix];
+  const ev = voix[cible.note] as Note;
+  const h: Hauteur = { lettre, alteration, octave };
+  if (ev.hauteurs.some((x) => midiDeHauteur(x) === midiDeHauteur(h))) return piece;
+  const nouvelle: Note = { ...ev, hauteurs: [...ev.hauteurs, h] };
+  const nouvelleVoix = voix.map((x, i) => (i === cible.note ? nouvelle : x));
+  return avecVoix(piece, { ...curseur, mesure: cible.mesure }, nouvelleVoix);
+}
+
+/** Dépile la dernière hauteur d'un ACCORD (2+ hauteurs) ; note simple = pièce inchangée. */
+export function retirerDerniereHauteur(piece: Piece, curseur: Curseur): Piece {
+  const cible = cibleAccord(piece, curseur);
+  if (!cible) return piece;
+  const voix = piece.mesures[cible.mesure].voix[curseur.voix];
+  const ev = voix[cible.note] as Note;
+  if (ev.hauteurs.length < 2) return piece;
+  const nouvelle: Note = { ...ev, hauteurs: ev.hauteurs.slice(0, -1) };
+  const nouvelleVoix = voix.map((x, i) => (i === cible.note ? nouvelle : x));
+  return avecVoix(piece, { ...curseur, mesure: cible.mesure }, nouvelleVoix);
+}
+
 /** ms par tick au tempo par défaut de Verovio (120 bpm, une noire = 500 ms, DIVISIONS ticks/noire). */
 export const MS_PAR_TICK = 60000 / (120 * DIVISIONS);
 

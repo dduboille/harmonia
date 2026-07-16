@@ -1,12 +1,13 @@
 import { describe, it, expect } from "vitest";
 import { parseMusicXML, TPQ } from "./musicxml-parse";
 import { pieceVersMusicXML } from "./piece-vers-musicxml";
-import { type Piece, type Note, type Hauteur } from "./piece-model";
+import { type Piece, type Note, type Hauteur, type Evenement, type Silence, type LettreNote } from "./piece-model";
 import {
   capaciteMesure, dureePlacee, decouperEnSilences, voixActives,
   inserer, effacer, positionEcriture, positions, naviguer,
   transposerDegre, transposerOctave, remplacerHauteur, remplacerDuree,
   supprimerNote, onsetMsMidiDeSelection, trouverPosition, type Curseur,
+  empilerHauteur, retirerDerniereHauteur,
 } from "./composition-edition";
 
 const DO5: Hauteur = { lettre: "C", alteration: 0, octave: 5 };
@@ -317,5 +318,65 @@ describe("aller-retour complet par le socle 2a", () => {
     const score = parseMusicXML(pieceVersMusicXML(p));
     const haut = score.notes.filter((x) => x.midi >= 72 && x.onset < 4 * TPQ).sort((a, b) => a.onset - b.onset);
     expect(haut.map((x) => x.onset)).toEqual([0, TPQ, 2 * TPQ, 3 * TPQ]);
+  });
+});
+
+/** Une note simple (une seule hauteur). */
+function noteSimple(lettre: LettreNote, octave: number): Note {
+  return { type: "note", hauteurs: [{ lettre, alteration: 0, octave }], duree: { base: "noire", points: 0 } };
+}
+
+describe("empilerHauteur / retirerDerniereHauteur — l'accord dans une voix", () => {
+  /** Une pièce d'une mesure 4/4, basse seule. */
+  function pieceBasse(evs: Evenement[]): Piece {
+    return {
+      armure: 0, chiffrage: { temps: 4, unite: 4 },
+      mesures: [{ voix: { soprano: [], alto: [], tenor: [], basse: evs } }],
+    };
+  }
+  const selection: Curseur = { mesure: 0, voix: "basse", note: 0 };
+  const ajout: Curseur = { mesure: 0, voix: "basse", note: "fin" };
+
+  it("empile sur la note sélectionnée, ordre conservé", () => {
+    const p = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "E", 0, 3);
+    const n = p.mesures[0].voix.basse[0] as Note;
+    expect(n.hauteurs.map((h) => h.lettre)).toEqual(["C", "E"]);
+  });
+  it("empile sur la DERNIÈRE note de la voix en mode ajout", () => {
+    const p = empilerHauteur(pieceBasse([noteSimple("C", 3), noteSimple("D", 3)]), ajout, "F", 0, 3);
+    expect((p.mesures[0].voix.basse[0] as Note).hauteurs).toHaveLength(1);
+    expect((p.mesures[0].voix.basse[1] as Note).hauteurs.map((h) => h.lettre)).toEqual(["D", "F"]);
+  });
+  it("refuse le doublon midi exact", () => {
+    const avant = pieceBasse([noteSimple("C", 3)]);
+    expect(empilerHauteur(avant, selection, "C", 0, 3)).toBe(avant);
+  });
+  it("sans effet : silence de queue, voix vide", () => {
+    const silence: Silence = { type: "silence", duree: { base: "noire", points: 0 } };
+    const avecSilence = pieceBasse([noteSimple("C", 3), silence]);
+    expect(empilerHauteur(avecSilence, ajout, "E", 0, 3)).toBe(avecSilence);
+    const vide = pieceBasse([]);
+    expect(empilerHauteur(vide, ajout, "E", 0, 3)).toBe(vide);
+  });
+  it("mode ajout : remonte à la mesure précédente si la courante est vide", () => {
+    const p: Piece = {
+      armure: 0, chiffrage: { temps: 4, unite: 4 },
+      mesures: [
+        { voix: { soprano: [], alto: [], tenor: [], basse: [noteSimple("C", 3)] } },
+        { voix: { soprano: [], alto: [], tenor: [], basse: [] } },
+      ],
+    };
+    const r = empilerHauteur(p, { mesure: 1, voix: "basse", note: "fin" }, "G", 0, 3);
+    expect((r.mesures[0].voix.basse[0] as Note).hauteurs.map((h) => h.lettre)).toEqual(["C", "G"]);
+  });
+
+  it("retire la dernière hauteur empilée (et elle seule)", () => {
+    const accord = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "E", 0, 3);
+    const p = retirerDerniereHauteur(accord, selection);
+    expect((p.mesures[0].voix.basse[0] as Note).hauteurs.map((h) => h.lettre)).toEqual(["C"]);
+  });
+  it("sans effet sur une note simple", () => {
+    const avant = pieceBasse([noteSimple("C", 3)]);
+    expect(retirerDerniereHauteur(avant, selection)).toBe(avant);
   });
 });
