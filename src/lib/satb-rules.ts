@@ -33,7 +33,12 @@ export type ValidationErrorType =
   | "leading_tone"
   | "seventh"
   | "missing_accidental"
-  | "cross_relation";
+  | "cross_relation"
+  | "wrong_chord"
+  | "wrong_bass"
+  | "doubled_leading_tone"
+  | "hidden_fifth"
+  | "hidden_octave";
 
 /**
  * Une faute détectée par le moteur.
@@ -84,12 +89,37 @@ export function noteToMidi(name: string, octave: number): number {
   return (octave + 1) * 12 + (base === -1 ? 0 : base);
 }
 
+/** Pitch class (0-11) d'une case remplie. */
+function pcOf(n: NoteEntry): number {
+  return ((noteToMidi(noteName(n.name!), n.octave) % 12) + 12) % 12;
+}
+
+/** Une mesure est complète quand les quatre voix sont posées. */
+function estComplete(m: Measure): boolean {
+  return VOICES.every(v => m[v].name !== null);
+}
+
+/** L'ensemble des pitch classes d'une mesure complète. */
+function pcsDe(m: Measure): Set<number> {
+  return new Set(VOICES.map(v => pcOf(m[v])));
+}
+
 export function validateSATB(
   measures: Measure[],
   keySignature?: string,
-  checkAccidentals?: boolean
+  checkAccidentals?: boolean,
+  solution?: Measure[],
 ): ValidationError[] {
   const errors: ValidationError[] = [];
+
+  // ── Conformité à la solution : précalculée par mesure (les règles de résolution
+  //    ne parlent que sur des mesures conformes, pour éviter les cascades absurdes).
+  const conforme: boolean[] = measures.map((cur, m) => {
+    const sol = solution?.[m];
+    if (!sol || !estComplete(cur) || !estComplete(sol)) return false;
+    const a = pcsDe(cur), b = pcsDe(sol);
+    return a.size === b.size && [...a].every(pc => b.has(pc)) && pcOf(cur.bass) === pcOf(sol.bass);
+  });
 
   for (let m = 0; m < measures.length; m++) {
     const cur = measures[m];
@@ -205,6 +235,18 @@ export function validateSATB(
             });
           }
         });
+      }
+    }
+
+    // 6. Conformité à l'harmonie demandée (mesures complètes seulement)
+    const sol = solution?.[m];
+    if (sol && estComplete(cur) && estComplete(sol) && !conforme[m]) {
+      const a = pcsDe(cur), b = pcsDe(sol);
+      const memeAccord = a.size === b.size && [...a].every(pc => b.has(pc));
+      if (!memeAccord) {
+        errors.push({ type: "wrong_chord", measure: m, severity: "error", params: { from: m + 1 } });
+      } else {
+        errors.push({ type: "wrong_bass", measure: m, severity: "error", params: { from: m + 1, expected: sol.bass.name! } });
       }
     }
   }

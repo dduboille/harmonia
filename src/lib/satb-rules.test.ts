@@ -158,6 +158,59 @@ describe("validateSATB — fausses relations", () => {
   });
 });
 
+describe("validateSATB — conformité à la solution", () => {
+  // Solution : V – I en do majeur (G au V, C fondamentale au I, triades complètes).
+  const SOLUTION = [
+    chord("G2", "D3", "B3", "G4"),
+    chord("C3", "G3", "C4", "E4"),
+  ];
+
+  it("accord hors sujet → wrong_chord (error)", () => {
+    const copie = [
+      chord("C3", "E3", "G3", "C4"), // Do majeur au lieu de Sol
+      chord("C3", "G3", "C4", "E4"),
+    ];
+    const errs = validateSATB(copie, "C", false, SOLUTION);
+    const wc = errs.find(e => e.type === "wrong_chord");
+    expect(wc).toBeDefined();
+    expect(wc!.severity).toBe("error");
+    expect(wc!.params.from).toBe(1);
+  });
+  it("bon accord, mauvaise basse (renversement) → wrong_bass, PAS wrong_chord", () => {
+    const copie = [
+      chord("B2", "D3", "G3", "G4"), // V6 au lieu de V à l'état fondamental
+      chord("C3", "G3", "C4", "E4"),
+    ];
+    const errs = validateSATB(copie, "C", false, SOLUTION);
+    expect(typesOf(errs)).toContain("wrong_bass");
+    expect(typesOf(errs)).not.toContain("wrong_chord");
+    expect(errs.find(e => e.type === "wrong_bass")!.params.expected).toBe("G");
+  });
+  it("réalisation ALTERNATIVE valide (autres octaves/doublures, même accord même basse) → conforme", () => {
+    const copie = [
+      chord("G2", "B3", "D4", "G4"), // autre disposition du V
+      chord("C3", "G3", "E4", "C5"), // autre disposition du I (mêmes pitch classes, même basse)
+    ];
+    // NB : d'autres règles (ex. octaves parallèles) peuvent parler sur cette copie —
+    // seules les erreurs de CONFORMITÉ sont sous test ici.
+    const errs = validateSATB(copie, "C", false, SOLUTION);
+    expect(typesOf(errs)).not.toContain("wrong_chord");
+    expect(typesOf(errs)).not.toContain("wrong_bass");
+  });
+  it("mesure incomplète → la conformité se tait", () => {
+    const copie = [
+      { ...chord("C3", "E3", "G3", "C4"), soprano: { name: null, octave: 4 } } as Measure,
+      chord("C3", "G3", "C4", "E4"), // = SOLUTION[1] : seule la mesure incomplète est sous test
+    ];
+    const errs = validateSATB(copie, "C", false, SOLUTION);
+    expect(typesOf(errs)).not.toContain("wrong_chord");
+  });
+  it("sans solution : comportement inchangé (aucune erreur de conformité possible)", () => {
+    const copie = [chord("C3", "E3", "G3", "C4")];
+    expect(typesOf(validateSATB(copie, "C", false))).not.toContain("wrong_chord");
+  });
+});
+
 describe("validateSATB — contrat de sortie", () => {
   it("rapporte la mesure en numérotation humaine dans params, l'index en interne", () => {
     const errors = validateSATB([chord("C2", "E3", "G3", "C4")]);
