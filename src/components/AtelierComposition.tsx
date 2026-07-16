@@ -4,32 +4,37 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import StudioScore, { type StudioScoreRef } from "@/components/StudioScore";
 import PianoPlayer, { type PianoPlayerRef } from "@/components/PianoPlayer";
 import {
-  inserer, effacer, basculerPortee, remplirSilences, type Curseur,
+  inserer, effacer, type Curseur,
 } from "@/lib/composition-edition";
 import { pieceVersMusicXML } from "@/lib/piece-vers-musicxml";
 import { parseMusicXML, type ParsedScore } from "@/lib/musicxml-parse";
 import { planifierLecture, specDepuisMidi } from "@/lib/studio-playback";
-import type {
-  Piece, Voix, Note, Silence, Duree, BaseDuree, LettreNote,
+import {
+  ORDRE_VOIX,
+  type Piece, type Voix, type Note, type Silence, type Duree, type BaseDuree,
+  type LettreNote, type NomVoix,
 } from "@/lib/piece-model";
 
 /**
  * AtelierComposition.tsx
  * Harmonia — L'atelier de composition « note à note » (fonction Pro).
  *
- * L'élève écrit sa pièce à deux portées, une note à la fois, au piano à l'écran ou au
- * clavier d'ordinateur. À CHAQUE frappe, on regrave (Verovio, via StudioScore) et il
- * peut ÉCOUTER. Toute la logique d'édition est PURE (`composition-edition.ts`) : ce
- * composant n'orchestre que l'état, les entrées et le son.
+ * L'élève écrit sa pièce en écriture SATB à QUATRE voix nommées (Soprano, Alto, Ténor,
+ * Basse), une note à la fois, au piano à l'écran ou au clavier d'ordinateur. Un sélecteur
+ * de voix (S/A/T/B) désigne la voix ACTIVE : la saisie opère sur elle seule. À CHAQUE
+ * frappe on regrave (Verovio, via StudioScore) et il peut ÉCOUTER. Toute la logique
+ * d'édition est PURE (`composition-edition.ts`) : ce composant n'orchestre que l'état,
+ * les entrées et le son.
  *
- * POURQUOI regraver `remplirSilences(piece)` et non `piece` : le modèle ne porte que
- * les notes POSÉES (voix parfois incomplètes) ; c'est le complément en silences qui
- * rend la pièce toujours valide et gravable. Le calcul est mémoïsé sur `piece` seul.
+ * POURQUOI regraver directement `piece` (sans complément de silences ici) : le modèle
+ * ne porte que les notes POSÉES (voix souvent incomplètes) ; c'est l'export
+ * (`pieceVersMusicXML`) qui ajoute lui-même les silences de complément et masque les
+ * voix restées vides. Le calcul est mémoïsé sur `piece` seul.
  *
- * PORTÉE DU 2b : saisie MÉLODIQUE (une hauteur par note) + silences. Les ACCORDS
- * (plusieurs hauteurs simultanées) sont supportés par le modèle mais PAS par cette
- * interaction — c'est une itération suivante. Le triolet reste une bascule manuelle :
- * l'élève entre les trois notes du groupe lui-même.
+ * PORTÉE : saisie MÉLODIQUE (une hauteur par note) par voix + silences. Les ACCORDS au
+ * sens d'une même voix (plusieurs hauteurs simultanées) sont supportés par le modèle mais
+ * PAS par cette interaction — l'accord SATB s'obtient en posant une note par voix au même
+ * instant. Le triolet reste une bascule manuelle : l'élève entre les trois notes du groupe.
  */
 
 // ── Constantes musicales ─────────────────────────────────────────────────────────
@@ -62,18 +67,32 @@ function specHauteur(lettre: LettreNote, alteration: number, octave: number): st
   return specDepuisMidi((octave + 1) * 12 + DEMI[lettre] + alteration);
 }
 
-/** Une pièce d'édition vierge : 8 mesures, Do majeur, 4/4, portées VIDES. */
+/**
+ * Métadonnées d'affichage de chaque voix : libellé, lettre du sélecteur et couleur
+ * d'accent. La couleur suit la voix partout (bouton actif, repère de position) pour
+ * que « où j'écris » se lise d'un coup d'œil.
+ */
+const VOIX_META: Record<NomVoix, { label: string; court: string; couleur: string }> = {
+  soprano: { label: "Soprano", court: "S", couleur: "#5C3D6E" },
+  alto:    { label: "Alto",    court: "A", couleur: "#185FA5" },
+  tenor:   { label: "Ténor",   court: "T", couleur: "#0F6E56" },
+  basse:   { label: "Basse",   court: "B", couleur: "#BA7517" },
+};
+
+/** Une pièce d'édition vierge : 8 mesures, Do majeur, 4/4, les quatre voix VIDES. */
 function pieceEditionVierge(): Piece {
   return {
     armure: 0,
     chiffrage: { temps: 4, unite: 4 },
-    mesures: Array.from({ length: 8 }, () => ({ portees: [[], []] as [Voix, Voix] })),
+    mesures: Array.from({ length: 8 }, () => ({
+      voix: { soprano: [], alto: [], tenor: [], basse: [] } as Record<NomVoix, Voix>,
+    })),
   };
 }
 
 export default function AtelierComposition() {
   const [piece, setPiece] = useState<Piece>(pieceEditionVierge);
-  const [curseur, setCurseur] = useState<Curseur>({ mesure: 0, portee: 0 });
+  const [curseur, setCurseur] = useState<Curseur>({ mesure: 0, voix: "soprano" });
   const [base, setBase] = useState<BaseDuree>("noire");
   const [points, setPoints] = useState<0 | 1 | 2>(0);
   const [alteration, setAlteration] = useState<-1 | 0 | 1>(0);
@@ -89,9 +108,9 @@ export default function AtelierComposition() {
   const departRef = useRef<number>(0);
 
   // ── Gravure à chaque frappe ────────────────────────────────────────────────
-  // Mémoïsée sur `piece` seul : `remplirSilences` puis sérialisation MusicXML, gravés
-  // par Verovio. 8 mesures — le coût par frappe reste acceptable.
-  const musicxml = useMemo(() => pieceVersMusicXML(remplirSilences(piece)), [piece]);
+  // Mémoïsée sur `piece` seul : `pieceVersMusicXML` complète les silences et masque les
+  // voix vides lui-même, puis Verovio grave. 8 mesures — le coût par frappe reste acceptable.
+  const musicxml = useMemo(() => pieceVersMusicXML(piece), [piece]);
 
   // ── Poser une note ─────────────────────────────────────────────────────────
   // `altOverride` sert aux touches NOIRES du piano (qui portent leur propre dièse) ;
@@ -135,7 +154,12 @@ export default function AtelierComposition() {
 
   const toutEffacer = useCallback(() => {
     setPiece(pieceEditionVierge());
-    setCurseur({ mesure: 0, portee: 0 });
+    setCurseur({ mesure: 0, voix: "soprano" });
+  }, []);
+
+  /** Change la voix active en gardant la mesure courante. */
+  const choisirVoix = useCallback((voix: NomVoix) => {
+    setCurseur((c) => ({ mesure: c.mesure, voix }));
   }, []);
 
   // ── Lecture (reprise du patron de Studio.tsx) ────────────────────────────────
@@ -261,7 +285,7 @@ export default function AtelierComposition() {
             Atelier de composition
           </h1>
           <p style={{ fontSize: 13, color: "#888", margin: 0, fontFamily: "system-ui, sans-serif" }}>
-            Écrivez votre pièce note à note — au piano ci-dessous ou au clavier (a…g). La partition se grave à chaque frappe.
+            Écrivez votre pièce à quatre voix (S/A/T/B) — choisissez la voix, puis posez les notes au piano ci-dessous ou au clavier (a…g). La partition se grave à chaque frappe.
           </p>
         </div>
 
@@ -303,17 +327,42 @@ export default function AtelierComposition() {
           </button>
         </div>
 
-        {/* ── Repère de position ───────────────────────────────────── */}
+        {/* ── Sélecteur de voix + repère de position ───────────────── */}
         <div style={{ ...carte, marginBottom: 12, padding: "10px 16px", display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap", fontFamily: "system-ui, sans-serif", fontSize: 13 }}>
+          {/* Quatre boutons colorés S/A/T/B : cliquer désigne la voix ACTIVE (la mesure
+              courante est conservée). Le bouton actif prend la couleur de sa voix. */}
+          <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+            <span style={groupeLabel}>VOIX</span>
+            {ORDRE_VOIX.map((v) => {
+              const meta = VOIX_META[v];
+              const actif = curseur.voix === v;
+              return (
+                <button
+                  key={v}
+                  onClick={() => choisirVoix(v)}
+                  title={meta.label}
+                  aria-pressed={actif}
+                  style={{
+                    ...btn,
+                    minWidth: 40,
+                    fontWeight: actif ? 700 : 500,
+                    color: actif ? "#fff" : meta.couleur,
+                    background: actif ? meta.couleur : "#fff",
+                    border: `0.5px solid ${meta.couleur}`,
+                  }}
+                >
+                  {meta.court}
+                </button>
+              );
+            })}
+          </div>
+          {separateur}
           <span>
-            <span style={{ color: "#aaa" }}>Prochaine note en </span>
-            <strong style={{ color: "#5C3D6E" }}>mesure {curseur.mesure + 1}</strong>
-            <span style={{ color: "#aaa" }}> · portée </span>
-            <strong>{curseur.portee === 0 ? "𝄞 Sol" : "𝄢 Fa"}</strong>
+            <span style={{ color: "#aaa" }}>Voix : </span>
+            <strong style={{ color: VOIX_META[curseur.voix].couleur }}>{VOIX_META[curseur.voix].label}</strong>
+            <span style={{ color: "#aaa" }}> · mesure </span>
+            <strong style={{ color: VOIX_META[curseur.voix].couleur }}>{curseur.mesure + 1}</strong>
           </span>
-          <button onClick={() => setCurseur((c) => basculerPortee(c))} style={{ ...btn, padding: "4px 12px" }}>
-            ⇅ Changer de portée
-          </button>
           {triolet && (
             <span style={{ fontSize: 12, color: "#BA7517", fontWeight: 600 }}>
               Triolet : entrez les trois notes du groupe
