@@ -258,7 +258,7 @@ export default function HarmoniaEditor({
     const errs = validateSATB(measures, keySignature, !showKeySignature, solution);
     setErrors(errs);
     for (const e of errs) errorTypesSeen.current.add(e.type);
-  }, [measures, keySignature, showKeySignature]);
+  }, [measures, keySignature, showKeySignature, solution]);
 
   // Envoi au démontage (l'élève quitte la page sans forcément terminer)
   useEffect(() => {
