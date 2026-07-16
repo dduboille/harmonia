@@ -85,6 +85,11 @@ const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ mus
         if (annule || !conteneur.current) return;
         const tk = new VerovioToolkit(module);
         tk.loadData(musicxml); // Verovio auto-détecte le MusicXML.
+        // La table de temps MIDI ne se construit PAS paresseusement (Verovio 6.2.0 :
+        // « Calculation of MIDI timemap failed ») : sans ce renderToMIDI,
+        // getMIDIValuesForElement rend {} et TOUT l'appariement — clic, sélection,
+        // fautes — est muet. Cf. lib/verovio-appariement.test.ts (le contrat).
+        tk.renderToMIDI();
         tkRef.current = tk;
         graver();
       } catch (e) {

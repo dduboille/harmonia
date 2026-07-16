@@ -39,6 +39,12 @@ declare module "verovio/esm" {
      */
     getElementsAtTime(millisec: number): { notes?: string[]; page?: number };
     /**
+     * Rend la pièce en MIDI (base64) — appelé pour son EFFET DE BORD : construire la
+     * table de temps MIDI, qui ne se construit pas paresseusement en 6.2.0 (sans
+     * quoi `getMIDIValuesForElement` rend {}). Cf. lib/verovio-appariement.test.ts.
+     */
+    renderToMIDI(): string;
+    /**
      * Valeurs MIDI d'un élément (note) : instant de déclenchement et hauteur MIDI. Sert à apparier
      * une note gravée avec le modèle (clic, surlignage de sélection).
      */
