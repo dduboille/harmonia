@@ -60,3 +60,66 @@ export function verticalites(piece: Piece): Verticalite[] {
     return { onset, mesure: Math.floor(onset / capacite), sons };
   });
 }
+
+export type TypeFaute =
+  | "quintes-paralleles" | "octaves-paralleles"
+  | "quinte-directe" | "octave-directe"
+  | "croisement" | "ecart" | "tessiture";
+
+export interface Faute {
+  type: TypeFaute;
+  severite: "faute" | "avertissement";
+  message: string;
+  mesure: number;       // 0-based ; l'affichage ajoute 1
+  positions: Curseur[]; // 1 à 2 notes fautives
+}
+
+/** Ambitus (midi) et libellés de chaque voix. */
+const AMBITUS: Record<NomVoix, { min: number; max: number }> = {
+  soprano: { min: 60, max: 79 }, alto: { min: 55, max: 72 },
+  tenor: { min: 48, max: 67 }, basse: { min: 40, max: 60 },
+};
+const NOM: Record<NomVoix, string> = { soprano: "Soprano", alto: "Alto", tenor: "Ténor", basse: "Basse" };
+
+/** Paires voisines (haut, bas) pour croisement et écart. */
+const VOISINES: [NomVoix, NomVoix][] = [["soprano", "alto"], ["alto", "tenor"], ["tenor", "basse"]];
+const MSG_CROISEMENT: Record<string, string> = {
+  "soprano-alto": "Soprano sous l'alto",
+  "alto-tenor": "Alto sous le ténor",
+  "tenor-basse": "Ténor sous la basse",
+};
+
+export function detecterFautes(piece: Piece): Faute[] {
+  const fautes: Faute[] = [];
+  const verts = verticalites(piece);
+
+  // ── Tessiture : par note (indépendant des verticalités, pas de doublon) ──
+  for (const voix of ORDRE_VOIX) {
+    piece.mesures.forEach((m, mesure) => {
+      m.voix[voix].forEach((ev, note) => {
+        if (ev.type !== "note") return;
+        const midi = midiDeHauteur(ev.hauteurs[0]);
+        if (midi < AMBITUS[voix].min || midi > AMBITUS[voix].max) {
+          fautes.push({ type: "tessiture", severite: "avertissement", message: `${NOM[voix]} hors tessiture`, mesure, positions: [{ mesure, voix, note }] });
+        }
+      });
+    });
+  }
+
+  // ── Croisement et écart : par verticalité (au moins une des deux voix attaque) ──
+  for (const v of verts) {
+    for (const [haut, bas] of VOISINES) {
+      const a = v.sons[haut], b = v.sons[bas];
+      if (!a || !b) continue;
+      if (!a.attaque && !b.attaque) continue; // ne signaler qu'une fois, à l'attaque
+      if (a.midi < b.midi) {
+        fautes.push({ type: "croisement", severite: "faute", message: MSG_CROISEMENT[`${haut}-${bas}`], mesure: v.mesure, positions: [a.position, b.position] });
+      }
+      if ((haut === "soprano" || haut === "alto") && a.midi - b.midi > 12) {
+        fautes.push({ type: "ecart", severite: "avertissement", message: `${NOM[haut]}–${NOM[bas]} : écart > octave`, mesure: v.mesure, positions: [a.position, b.position] });
+      }
+    }
+  }
+
+  return fautes;
+}
