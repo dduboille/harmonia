@@ -66,6 +66,8 @@ export interface Mesure {
 
 export interface Piece {
   armure: number;                          // -7..+7
+  /** Mode de la tonalité (l'armure ne suffit pas : 0 = Do majeur OU la mineur). Défaut : major. */
+  mode?: "major" | "minor";
   chiffrage: { temps: number; unite: number };
   mesures: Mesure[];
 }

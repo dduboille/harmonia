@@ -177,3 +177,20 @@ describe("pieceVersMusicXML — la pièce vierge", () => {
     expect(xml).toContain("<staff>2</staff>");
   });
 });
+
+describe("le mode dans l'export", () => {
+  it("sans mode : <mode>major</mode> par défaut", () => {
+    const piece: Piece = {
+      armure: 0, chiffrage: { temps: 4, unite: 4 },
+      mesures: [{ voix: { soprano: [], alto: [], tenor: [], basse: [] } }],
+    };
+    expect(pieceVersMusicXML(piece)).toContain("<mode>major</mode>");
+  });
+  it("mode minor : <mode>minor</mode>", () => {
+    const piece: Piece = {
+      armure: 0, mode: "minor", chiffrage: { temps: 4, unite: 4 },
+      mesures: [{ voix: { soprano: [], alto: [], tenor: [], basse: [] } }],
+    };
+    expect(pieceVersMusicXML(piece)).toContain("<mode>minor</mode>");
+  });
+});
