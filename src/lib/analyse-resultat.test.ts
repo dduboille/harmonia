@@ -159,4 +159,19 @@ describe("aller-retour atelier : Piece → MusicXML → parse → analyse", () =
     expect(a.mesures.map((m) => m.accords[0]?.degreeNum)).toEqual([1, 5, 1]);
     expect(a.cadences.some((c) => c.type === "parfaite" && c.measure === 3)).toBe(true);
   });
+
+  it("un accord EMPILÉ dans une voix traverse l'export et se chiffre", () => {
+    // Basse = Do3+Sol3 empilés, soprano = Mi4 : trois sons, un accord de Do (I).
+    const doGrave: Note = {
+      type: "note",
+      hauteurs: [{ lettre: "C", alteration: 0, octave: 3 }, { lettre: "G", alteration: 0, octave: 3 }],
+      duree: { base: "ronde", points: 0 },
+    };
+    const piece: Piece = {
+      armure: 0, chiffrage: { temps: 4, unite: 4 },
+      mesures: [{ voix: { soprano: [ronde("E", 4)], alto: [], tenor: [], basse: [doGrave] } }],
+    };
+    const a = analyserPartition(parseMusicXML(pieceVersMusicXML(piece)), "");
+    expect(a.mesures[0].accords[0]?.degreeNum).toBe(1);
+  });
 });

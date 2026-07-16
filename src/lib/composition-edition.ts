@@ -158,45 +158,63 @@ export function naviguer(piece: Piece, curseur: Curseur, sens: -1 | 1): Curseur 
 /** L'ordre diatonique des lettres, pour le déplacement sur la portée. */
 const ECHELLE_LETTRES: LettreNote[] = ["C", "D", "E", "F", "G", "A", "B"];
 
-/** Applique une transformation à la 1re hauteur de la note sélectionnée (sans effet en "fin"). */
-function avecHauteurSelectionnee(
-  piece: Piece, curseur: Curseur, f: (h: Hauteur) => Hauteur,
+/**
+ * Applique une transformation à la NOTE sélectionnée (le bloc entier — accord compris).
+ * `f` peut renvoyer `null` pour refuser la transformation : la pièce ne change pas.
+ * Sans effet en "fin" ou sur un silence.
+ */
+function avecNoteSelectionnee(
+  piece: Piece, curseur: Curseur, f: (n: Note) => Note | null,
 ): Piece {
   if (curseur.note === "fin") return piece;
   const voix = piece.mesures[curseur.mesure].voix[curseur.voix];
   const ev = voix[curseur.note];
   if (!ev || ev.type !== "note") return piece;
-  const nouvelle: Note = { ...ev, hauteurs: [f(ev.hauteurs[0]), ...ev.hauteurs.slice(1)] };
+  const nouvelle = f(ev);
+  if (!nouvelle) return piece;
   const nouvelleVoix = voix.map((x, i) => (i === curseur.note ? nouvelle : x));
   return avecVoix(piece, curseur, nouvelleVoix);
 }
 
 /**
- * Transpose la note sélectionnée d'un DEGRÉ diatonique (déplacement sur la portée) : la lettre
+ * Transpose la note sélectionnée d'un DEGRÉ diatonique — TOUTES les hauteurs du bloc : la lettre
  * avance/recule dans l'échelle, l'octave suit à la jonction B↔C, l'altération repasse à bécarre.
  */
 export function transposerDegre(piece: Piece, curseur: Curseur, sens: -1 | 1): Piece {
-  return avecHauteurSelectionnee(piece, curseur, (h) => {
-    const i = ECHELLE_LETTRES.indexOf(h.lettre);
-    const j = i + sens;
-    const lettre = ECHELLE_LETTRES[(j + 7) % 7];
-    const octave = h.octave + (j < 0 ? -1 : j > 6 ? 1 : 0);
-    return { lettre, alteration: 0, octave };
-  });
-}
-
-/** Transpose la note sélectionnée d'une OCTAVE (bornée 1..7). */
-export function transposerOctave(piece: Piece, curseur: Curseur, sens: -1 | 1): Piece {
-  return avecHauteurSelectionnee(piece, curseur, (h) => ({
-    ...h, octave: Math.min(7, Math.max(1, h.octave + sens)),
+  return avecNoteSelectionnee(piece, curseur, (ev) => ({
+    ...ev,
+    hauteurs: ev.hauteurs.map((h) => {
+      const i = ECHELLE_LETTRES.indexOf(h.lettre);
+      const j = i + sens;
+      return {
+        lettre: ECHELLE_LETTRES[(j + 7) % 7],
+        alteration: 0,
+        octave: h.octave + (j < 0 ? -1 : j > 6 ? 1 : 0),
+      };
+    }),
   }));
 }
 
-/** Remplace lettre + altération de la note sélectionnée (garde octave et durée). */
+/** Transpose la note sélectionnée d'une OCTAVE — bloc SOUDÉ : si une hauteur sort de 1..7, rien ne bouge. */
+export function transposerOctave(piece: Piece, curseur: Curseur, sens: -1 | 1): Piece {
+  return avecNoteSelectionnee(piece, curseur, (ev) =>
+    ev.hauteurs.some((h) => h.octave + sens < 1 || h.octave + sens > 7)
+      ? null
+      : { ...ev, hauteurs: ev.hauteurs.map((h) => ({ ...h, octave: h.octave + sens })) },
+  );
+}
+
+/**
+ * Remplace la note sélectionnée par une note SIMPLE (lettre + altération, octave de la
+ * 1re hauteur) — sur un accord, c'est le geste de correction : le bloc entier cède la place.
+ */
 export function remplacerHauteur(
   piece: Piece, curseur: Curseur, lettre: LettreNote, alteration: number,
 ): Piece {
-  return avecHauteurSelectionnee(piece, curseur, (h) => ({ ...h, lettre, alteration }));
+  return avecNoteSelectionnee(piece, curseur, (ev) => ({
+    ...ev,
+    hauteurs: [{ lettre, alteration, octave: ev.hauteurs[0].octave }],
+  }));
 }
 
 /**
@@ -255,6 +273,58 @@ export function effacer(piece: Piece, curseur: Curseur): { piece: Piece; curseur
   return { piece, curseur };
 }
 
+/**
+ * La note CIBLE d'un geste d'ACCORD : la note sélectionnée, ou — en mode ajout — le
+ * DERNIER ÉVÉNEMENT de la voix (en remontant les mesures depuis le curseur), seulement
+ * si c'est une note. Un silence de queue ne se « dépile » pas : la cible est nulle et
+ * l'appelant retombe sur `effacer`.
+ */
+export function cibleAccord(piece: Piece, curseur: Curseur): { mesure: number; note: number } | null {
+  if (curseur.note !== "fin") {
+    const ev = piece.mesures[curseur.mesure].voix[curseur.voix][curseur.note];
+    return ev && ev.type === "note" ? { mesure: curseur.mesure, note: curseur.note } : null;
+  }
+  for (let mesure = curseur.mesure; mesure >= 0; mesure--) {
+    const voix = piece.mesures[mesure].voix[curseur.voix];
+    if (voix.length > 0) {
+      const note = voix.length - 1;
+      return voix[note].type === "note" ? { mesure, note } : null;
+    }
+  }
+  return null;
+}
+
+/**
+ * Empile une hauteur sur la note cible (cf. `cibleAccord`). L'ordre d'empilement est
+ * CONSERVÉ — c'est lui que `retirerDerniereHauteur` dépile. Refuse le doublon exact
+ * (même midi) ; pièce inchangée si pas de cible.
+ */
+export function empilerHauteur(
+  piece: Piece, curseur: Curseur, lettre: LettreNote, alteration: number, octave: number,
+): Piece {
+  const cible = cibleAccord(piece, curseur);
+  if (!cible) return piece;
+  const voix = piece.mesures[cible.mesure].voix[curseur.voix];
+  const ev = voix[cible.note] as Note;
+  const h: Hauteur = { lettre, alteration, octave };
+  if (ev.hauteurs.some((x) => midiDeHauteur(x) === midiDeHauteur(h))) return piece;
+  const nouvelle: Note = { ...ev, hauteurs: [...ev.hauteurs, h] };
+  const nouvelleVoix = voix.map((x, i) => (i === cible.note ? nouvelle : x));
+  return avecVoix(piece, { ...curseur, mesure: cible.mesure }, nouvelleVoix);
+}
+
+/** Dépile la dernière hauteur d'un ACCORD (2+ hauteurs) ; note simple = pièce inchangée. */
+export function retirerDerniereHauteur(piece: Piece, curseur: Curseur): Piece {
+  const cible = cibleAccord(piece, curseur);
+  if (!cible) return piece;
+  const voix = piece.mesures[cible.mesure].voix[curseur.voix];
+  const ev = voix[cible.note] as Note;
+  if (ev.hauteurs.length < 2) return piece;
+  const nouvelle: Note = { ...ev, hauteurs: ev.hauteurs.slice(0, -1) };
+  const nouvelleVoix = voix.map((x, i) => (i === cible.note ? nouvelle : x));
+  return avecVoix(piece, { ...curseur, mesure: cible.mesure }, nouvelleVoix);
+}
+
 /** ms par tick au tempo par défaut de Verovio (120 bpm, une noire = 500 ms, DIVISIONS ticks/noire). */
 export const MS_PAR_TICK = 60000 / (120 * DIVISIONS);
 
@@ -267,16 +337,16 @@ function onsetTicks(piece: Piece, mesure: number, voix: NomVoix, note: number): 
   return t;
 }
 
-/** (onsetMs, midi) de la note sélectionnée, pour surligner l'élément Verovio correspondant. */
+/** (onsetMs, midis) de la note sélectionnée — TOUS les midis du bloc, pour surligner chaque tête. */
 export function onsetMsMidiDeSelection(
   piece: Piece, curseur: Curseur,
-): { onsetMs: number; midi: number } | null {
+): { onsetMs: number; midis: number[] } | null {
   if (curseur.note === "fin") return null;
   const ev = piece.mesures[curseur.mesure].voix[curseur.voix][curseur.note];
   if (!ev || ev.type !== "note") return null;
   return {
     onsetMs: onsetTicks(piece, curseur.mesure, curseur.voix, curseur.note) * MS_PAR_TICK,
-    midi: midiDeHauteur(ev.hauteurs[0]),
+    midis: ev.hauteurs.map(midiDeHauteur),
   };
 }
 
@@ -290,7 +360,7 @@ export function trouverPosition(piece: Piece, onsetMs: number, midi: number): Cu
     const p = positions(piece, voix);
     for (const { mesure, note } of p) {
       const ev = piece.mesures[mesure].voix[voix][note] as Note;
-      if (midiDeHauteur(ev.hauteurs[0]) !== midi) continue;
+      if (!ev.hauteurs.some((h) => midiDeHauteur(h) === midi)) continue;
       if (Math.abs(onsetTicks(piece, mesure, voix, note) - cibleTicks) <= 1) {
         return { mesure, voix, note };
       }

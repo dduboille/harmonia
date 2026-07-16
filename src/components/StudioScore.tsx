@@ -26,10 +26,10 @@ import React, {
 export interface StudioScoreRef {
   /** Surligne les notes sonnant à `ms` (temps ÉCRIT) ; `null` efface tout. */
   surlignerATemps(ms: number | null): void;
-  /** Surligne UNE note choisie par (onsetMs, midi) ; `null` efface la sélection. */
-  surlignerSelection(sel: { onsetMs: number; midi: number } | null): void;
+  /** Surligne UNE note (toutes les têtes d'un accord) par (onsetMs, midis) ; `null` efface. */
+  surlignerSelection(sel: { onsetMs: number; midis: number[] } | null): void;
   /** Surligne un ensemble de notes fautives (rouge = faute, orange = avertissement) ; [] efface. */
-  surlignerFautes(fautes: Array<{ onsetMs: number; midi: number; severite: "faute" | "avertissement" }>): void;
+  surlignerFautes(fautes: Array<{ onsetMs: number; midis: number[]; severite: "faute" | "avertissement" }>): void;
 }
 
 interface Props {
@@ -133,7 +133,7 @@ const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ mus
       }
     },
 
-    surlignerSelection(sel: { onsetMs: number; midi: number } | null) {
+    surlignerSelection(sel: { onsetMs: number; midis: number[] } | null) {
       const tk = tkRef.current;
       const hote = conteneur.current;
       if (!tk || !hote) return;
@@ -148,7 +148,7 @@ const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ mus
       for (const id of ids) {
         let midi: number | undefined;
         try { midi = tk.getMIDIValuesForElement(id).pitch; } catch { midi = undefined; }
-        if (midi === sel.midi) {
+        if (midi !== undefined && sel.midis.includes(midi)) {
           const el = hote.querySelector(`[id="${id}"]`);
           if (el) { el.classList.add("harmonia-selection"); notesSelection.current.push(el); }
         }
@@ -167,7 +167,7 @@ const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ mus
         for (const id of ids) {
           let midi: number | undefined;
           try { midi = tk.getMIDIValuesForElement(id).pitch; } catch { midi = undefined; }
-          if (midi !== f.midi) continue;
+          if (midi === undefined || !f.midis.includes(midi)) continue;
           const el = hote.querySelector(`[id="${id}"]`);
           if (el) {
             el.classList.add(f.severite === "faute" ? "harmonia-faute" : "harmonia-avert");

@@ -1,12 +1,13 @@
 import { describe, it, expect } from "vitest";
 import { parseMusicXML, TPQ } from "./musicxml-parse";
 import { pieceVersMusicXML } from "./piece-vers-musicxml";
-import { type Piece, type Note, type Hauteur } from "./piece-model";
+import { type Piece, type Note, type Hauteur, type Evenement, type Silence, type LettreNote } from "./piece-model";
 import {
   capaciteMesure, dureePlacee, decouperEnSilences, voixActives,
   inserer, effacer, positionEcriture, positions, naviguer,
   transposerDegre, transposerOctave, remplacerHauteur, remplacerDuree,
   supprimerNote, onsetMsMidiDeSelection, trouverPosition, type Curseur,
+  empilerHauteur, retirerDerniereHauteur,
 } from "./composition-edition";
 
 const DO5: Hauteur = { lettre: "C", alteration: 0, octave: 5 };
@@ -291,7 +292,7 @@ describe("appariement Verovio : onset/midi <-> position", () => {
     ];
     const c: Curseur = { mesure: 0, voix: "soprano", note: 1 };
     const r = onsetMsMidiDeSelection(p, c)!;
-    expect(r.midi).toBe(74);
+    expect(r.midis).toEqual([74]);
     expect(r.onsetMs).toBeCloseTo(500, 0);
   });
   it("trouverPosition retrouve la note a partir de (onsetMs, midi)", () => {
@@ -317,5 +318,105 @@ describe("aller-retour complet par le socle 2a", () => {
     const score = parseMusicXML(pieceVersMusicXML(p));
     const haut = score.notes.filter((x) => x.midi >= 72 && x.onset < 4 * TPQ).sort((a, b) => a.onset - b.onset);
     expect(haut.map((x) => x.onset)).toEqual([0, TPQ, 2 * TPQ, 3 * TPQ]);
+  });
+});
+
+/** Une note simple (une seule hauteur). */
+function noteSimple(lettre: LettreNote, octave: number): Note {
+  return { type: "note", hauteurs: [{ lettre, alteration: 0, octave }], duree: { base: "noire", points: 0 } };
+}
+
+describe("empilerHauteur / retirerDerniereHauteur — l'accord dans une voix", () => {
+  /** Une pièce d'une mesure 4/4, basse seule. */
+  function pieceBasse(evs: Evenement[]): Piece {
+    return {
+      armure: 0, chiffrage: { temps: 4, unite: 4 },
+      mesures: [{ voix: { soprano: [], alto: [], tenor: [], basse: evs } }],
+    };
+  }
+  const selection: Curseur = { mesure: 0, voix: "basse", note: 0 };
+  const ajout: Curseur = { mesure: 0, voix: "basse", note: "fin" };
+
+  it("empile sur la note sélectionnée, ordre conservé", () => {
+    const p = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "E", 0, 3);
+    const n = p.mesures[0].voix.basse[0] as Note;
+    expect(n.hauteurs.map((h) => h.lettre)).toEqual(["C", "E"]);
+  });
+  it("empile sur la DERNIÈRE note de la voix en mode ajout", () => {
+    const p = empilerHauteur(pieceBasse([noteSimple("C", 3), noteSimple("D", 3)]), ajout, "F", 0, 3);
+    expect((p.mesures[0].voix.basse[0] as Note).hauteurs).toHaveLength(1);
+    expect((p.mesures[0].voix.basse[1] as Note).hauteurs.map((h) => h.lettre)).toEqual(["D", "F"]);
+  });
+  it("refuse le doublon midi exact", () => {
+    const avant = pieceBasse([noteSimple("C", 3)]);
+    expect(empilerHauteur(avant, selection, "C", 0, 3)).toBe(avant);
+  });
+  it("sans effet : silence de queue, voix vide", () => {
+    const silence: Silence = { type: "silence", duree: { base: "noire", points: 0 } };
+    const avecSilence = pieceBasse([noteSimple("C", 3), silence]);
+    expect(empilerHauteur(avecSilence, ajout, "E", 0, 3)).toBe(avecSilence);
+    const vide = pieceBasse([]);
+    expect(empilerHauteur(vide, ajout, "E", 0, 3)).toBe(vide);
+  });
+  it("mode ajout : remonte à la mesure précédente si la courante est vide", () => {
+    const p: Piece = {
+      armure: 0, chiffrage: { temps: 4, unite: 4 },
+      mesures: [
+        { voix: { soprano: [], alto: [], tenor: [], basse: [noteSimple("C", 3)] } },
+        { voix: { soprano: [], alto: [], tenor: [], basse: [] } },
+      ],
+    };
+    const r = empilerHauteur(p, { mesure: 1, voix: "basse", note: "fin" }, "G", 0, 3);
+    expect((r.mesures[0].voix.basse[0] as Note).hauteurs.map((h) => h.lettre)).toEqual(["C", "G"]);
+  });
+
+  it("retire la dernière hauteur empilée (et elle seule)", () => {
+    const accord = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "E", 0, 3);
+    const p = retirerDerniereHauteur(accord, selection);
+    expect((p.mesures[0].voix.basse[0] as Note).hauteurs.map((h) => h.lettre)).toEqual(["C"]);
+  });
+  it("sans effet sur une note simple", () => {
+    const avant = pieceBasse([noteSimple("C", 3)]);
+    expect(retirerDerniereHauteur(avant, selection)).toBe(avant);
+  });
+
+  it("transposerDegre déplace TOUTES les hauteurs", () => {
+    const accord = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "E", 0, 3);
+    const p = transposerDegre(accord, selection, 1);
+    expect((p.mesures[0].voix.basse[0] as Note).hauteurs.map((h) => h.lettre)).toEqual(["D", "F"]);
+  });
+  it("transposerOctave : bloc soudé — si UNE hauteur sort des bornes, rien ne bouge", () => {
+    const grave = empilerHauteur(pieceBasse([noteSimple("C", 1)]), selection, "G", 0, 5);
+    expect(transposerOctave(grave, selection, -1)).toBe(grave); // C1 sortirait (octave 0)
+    const ok = transposerOctave(grave, selection, 1);
+    expect((ok.mesures[0].voix.basse[0] as Note).hauteurs.map((h) => h.octave)).toEqual([2, 6]);
+  });
+  it("remplacerHauteur remplace le bloc par une note SIMPLE (octave de la 1re hauteur)", () => {
+    const accord = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "E", 0, 4);
+    const p = remplacerHauteur(accord, selection, "D", 1);
+    const n = p.mesures[0].voix.basse[0] as Note;
+    expect(n.hauteurs).toEqual([{ lettre: "D", alteration: 1, octave: 3 }]);
+  });
+});
+
+describe("appariement multi-têtes (accords)", () => {
+  /** Une pièce d'une mesure 4/4, basse seule. */
+  function pieceBasse(evs: Evenement[]): Piece {
+    return {
+      armure: 0, chiffrage: { temps: 4, unite: 4 },
+      mesures: [{ voix: { soprano: [], alto: [], tenor: [], basse: evs } }],
+    };
+  }
+  const selection: Curseur = { mesure: 0, voix: "basse", note: 0 };
+
+  it("onsetMsMidiDeSelection renvoie TOUS les midis du bloc", () => {
+    const accord = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "G", 0, 3);
+    const s = onsetMsMidiDeSelection(accord, selection);
+    expect(s?.midis).toEqual([48, 55]); // Do3, Sol3
+  });
+  it("trouverPosition retrouve le bloc par une hauteur EMPILÉE", () => {
+    const accord = empilerHauteur(pieceBasse([noteSimple("C", 3)]), selection, "G", 0, 3);
+    expect(trouverPosition(accord, 0, 55)).toEqual({ mesure: 0, voix: "basse", note: 0 }); // par le Sol3
+    expect(trouverPosition(accord, 0, 48)).toEqual({ mesure: 0, voix: "basse", note: 0 }); // par le Do3
   });
 });

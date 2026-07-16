@@ -19,7 +19,7 @@ describe("verticalites — reconstruire les accords malgre des rythmes independa
       basse: [note("C", 3, "noire"), note("D", 3, "noire")],
     }));
     expect(v).toHaveLength(2);
-    expect(v[1].sons.soprano!.midi).toBe(72);
+    expect(v[1].sons.soprano!.haut).toBe(72);
     expect(v[1].sons.soprano!.attaque).toBe(false);
     expect(v[1].sons.basse!.attaque).toBe(true);
   });
@@ -115,5 +115,51 @@ describe("detecterFautes — parallèles et directes", () => {
       tenor: [note("C", 4, "ronde"), note("F", 4, "ronde")],
     }));
     expect(f.some((x) => x.type === "quinte-directe" || x.type === "octave-directe")).toBe(false);
+  });
+});
+
+/** Note à PLUSIEURS hauteurs (accord empilé), pour les tests d'extrêmes. */
+function accord(hs: Array<[Note["hauteurs"][0]["lettre"], number]>, base: Note["duree"]["base"]): Note {
+  return {
+    type: "note",
+    hauteurs: hs.map(([lettre, octave]) => ({ lettre, alteration: 0, octave })),
+    duree: { base, points: 0 },
+  };
+}
+
+describe("detecterFautes — accords empilés (hauteurs extrêmes)", () => {
+  it("verticalites expose haut/bas/midis", () => {
+    const v = verticalites(piece1({ basse: [accord([["C", 3], ["G", 3]], "ronde")] }));
+    expect(v[0].sons.basse).toMatchObject({ haut: 55, bas: 48, midis: [48, 55] });
+  });
+  it("croisement sur extrêmes ADJACENTS : le grave du soprano sous l'aigu de l'alto", () => {
+    // Soprano = accord Mi4+Do5 (bas = 64), Alto = La4 (69) : 64 < 69 → croisement.
+    const f = detecterFautes(piece1({
+      soprano: [accord([["E", 4], ["C", 5]], "ronde")],
+      alto: [note("A", 4, "ronde")],
+    }));
+    expect(f.some((x) => x.type === "croisement")).toBe(true);
+  });
+  it("pas de faux croisement quand les extrêmes sont bien ordonnés", () => {
+    // Soprano = Sol4+Do5 (bas = 67), Alto = Mi4 (64) : 67 > 64 → rien.
+    const f = detecterFautes(piece1({
+      soprano: [accord([["G", 4], ["C", 5]], "ronde")],
+      alto: [note("E", 4, "ronde")],
+    }));
+    expect(f.some((x) => x.type === "croisement")).toBe(false);
+  });
+  it("parallèles sur la LIGNE extérieure : quintes S–B malgré une hauteur interne", () => {
+    // S : Sol4→La4 (haut). B : accord Do3+Mi3 → accord Ré3+Fa3 : la LIGNE de basse est
+    // le bas (Do3→Ré3). Sol4/Do3 = quinte, La4/Ré3 = quinte, même sens → parallèles.
+    const f = detecterFautes(piece2({
+      soprano: [note("G", 4, "ronde"), note("A", 4, "ronde")],
+      basse: [accord([["C", 3], ["E", 3]], "ronde"), accord([["D", 3], ["F", 3]], "ronde")],
+    }));
+    expect(f.some((x) => x.type === "quintes-paralleles")).toBe(true);
+  });
+  it("tessiture : une hauteur EMPILÉE hors ambitus est signalée", () => {
+    // Basse Do3 (dans l'ambitus) + Do5 empilé (72 > 60) → tessiture.
+    const f = detecterFautes(piece1({ basse: [accord([["C", 3], ["C", 5]], "ronde")] }));
+    expect(f.some((x) => x.type === "tessiture")).toBe(true);
   });
 });
