@@ -25,14 +25,14 @@ import type {
 
 // ── Style helpers (repris d'AnalysePartition.tsx pour la cohérence visuelle) ─────
 
-const FONC_STYLE: Record<Fonction, { bg: string; color: string; label: string }> = {
+export const FONC_STYLE: Record<Fonction, { bg: string; color: string; label: string }> = {
   T:   { bg: "#E1F5EE", color: "#0F6E56", label: "T" },
   SD:  { bg: "#E3F2FD", color: "#1565C0", label: "SD" },
   D:   { bg: "#FFEBEE", color: "#C62828", label: "D" },
   "?": { bg: "#F5F5F5", color: "#777",    label: "?" },
 };
 
-const CAT_STYLE: Record<Categorie, { bg: string; color: string; label: string }> = {
+export const CAT_STYLE: Record<Categorie, { bg: string; color: string; label: string }> = {
   diatonique:           { bg: "#f0ece6", color: "#888",    label: "diatonique" },
   dominante_secondaire: { bg: "#FAEEDA", color: "#BA7517", label: "dominante secondaire" },
   sensible_degre:       { bg: "#FAEEDA", color: "#BA7517", label: "sensible de degré" },
@@ -48,12 +48,12 @@ const CAT_STYLE: Record<Categorie, { bg: string; color: string; label: string }>
  * justement à dissiper : on ne l'affiche pas, le DEGRÉ dit le reste.
  * (Même règle qu'AnalysePartition.tsx.)
  */
-function nomAccordAffichable(categorie: Categorie, nom: string): string | null {
+export function nomAccordAffichable(categorie: Categorie, nom: string): string | null {
   return categorie === "sixte_augmentee" ? null : nom;
 }
 
 /** Une note étrangère, telle qu'on l'écrit : « Ré (note de passage) ». */
-function libelleEtrangere(e: NoteEtrangere): string {
+export function libelleEtrangere(e: NoteEtrangere): string {
   return `${e.nom} (${e.type ?? "étrangère"})`;
 }
 

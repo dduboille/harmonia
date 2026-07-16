@@ -142,7 +142,7 @@ function voixMesureXML(evenements: Voix, nom: NomVoix, ticksMesure: number): str
 function attributsXML(piece: Piece): string {
   return (
     `<attributes><divisions>${DIVISIONS}</divisions>` +
-    `<key><fifths>${piece.armure}</fifths></key>` +
+    `<key><fifths>${piece.armure}</fifths><mode>${piece.mode ?? "major"}</mode></key>` +
     `<time><beats>${piece.chiffrage.temps}</beats><beat-type>${piece.chiffrage.unite}</beat-type></time>` +
     `<staves>2</staves>` +
     `<clef number="1"><sign>G</sign><line>2</line></clef>` +

@@ -12,6 +12,8 @@ import { pieceVersMusicXML } from "@/lib/piece-vers-musicxml";
 import { detecterFautes } from "@/lib/conduite-voix";
 import { parseMusicXML, type ParsedScore } from "@/lib/musicxml-parse";
 import { planifierLecture, specDepuisMidi } from "@/lib/studio-playback";
+import AtelierAnalyse from "@/components/AtelierAnalyse";
+import { analyserPartition, type AnalysisResult } from "@/lib/analyse-resultat";
 import {
   ORDRE_VOIX,
   type Piece, type Voix, type Note, type Silence, type Duree, type BaseDuree,
@@ -95,10 +97,36 @@ const VOIX_META: Record<NomVoix, { label: string; court: string; couleur: string
   basse:   { label: "Basse",   court: "B", couleur: "#BA7517" },
 };
 
+/** Les 15 armures, du plus bémolisé au plus diésé. */
+const ARMURES = [-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7];
+
+/**
+ * Nom de tonalité par armure : « Do majeur », « Ré♭ majeur (5♭) », « si mineur (2♯) »…
+ * On ne passe PAS par la pitch class (qui ne connaît que les dièses) : chaque armure
+ * a SON nom d'école — c'est aussi ce qui distingue les enharmonies (Fa♯/Sol♭).
+ */
+const NOM_TONALITE: Record<number, { major: string; minor: string }> = {
+  [-7]: { major: "Do♭", minor: "la♭" }, [-6]: { major: "Sol♭", minor: "mi♭" },
+  [-5]: { major: "Ré♭", minor: "si♭" }, [-4]: { major: "La♭", minor: "fa" },
+  [-3]: { major: "Mi♭", minor: "do" },  [-2]: { major: "Si♭", minor: "sol" },
+  [-1]: { major: "Fa", minor: "ré" },   [0]: { major: "Do", minor: "la" },
+  [1]: { major: "Sol", minor: "mi" },   [2]: { major: "Ré", minor: "si" },
+  [3]: { major: "La", minor: "fa♯" },   [4]: { major: "Mi", minor: "do♯" },
+  [5]: { major: "Si", minor: "sol♯" },  [6]: { major: "Fa♯", minor: "ré♯" },
+  [7]: { major: "Do♯", minor: "la♯" },
+};
+
+function libelleTonalite(fifths: number, mode: "major" | "minor"): string {
+  const nom = `${NOM_TONALITE[fifths]?.[mode] ?? "?"} ${mode === "major" ? "majeur" : "mineur"}`;
+  if (fifths === 0) return nom;
+  return `${nom} (${Math.abs(fifths)}${fifths > 0 ? "♯" : "♭"})`;
+}
+
 /** Une pièce d'édition vierge : 8 mesures, Do majeur, 4/4, les quatre voix VIDES. */
 function pieceEditionVierge(): Piece {
   return {
     armure: 0,
+    mode: "major",
     chiffrage: { temps: 4, unite: 4 },
     mesures: Array.from({ length: 8 }, () => ({
       voix: { soprano: [], alto: [], tenor: [], basse: [] } as Record<NomVoix, Voix>,
@@ -131,6 +159,16 @@ export default function AtelierComposition() {
 
   // Contrôle de la conduite des voix : recalculé à chaque frappe (module pur, peu coûteux).
   const fautes = useMemo(() => detecterFautes(piece), [piece]);
+
+  // Analyse harmonique en direct : LA chaîne du Studio, au navigateur, à chaque
+  // frappe. Dépend de `musicxml` (qui porte armure, mode et notes).
+  const analyse = useMemo<AnalysisResult | null>(() => {
+    try {
+      return analyserPartition(parseMusicXML(musicxml), "");
+    } catch {
+      return null; // pièce vide ou non analysable : le panneau montre son état vide
+    }
+  }, [musicxml]);
 
   // Surligne la note sélectionnée après chaque regravure (le SVG est recréé à chaque
   // changement de `piece`, donc à chaque frappe : on re-surligne dans la foulée).
@@ -268,6 +306,12 @@ export default function AtelierComposition() {
   const choisirVoix = useCallback((voix: NomVoix) => {
     setCurseur({ mesure: positionEcriture(piece, voix), voix, note: "fin" });
   }, [piece]);
+
+  // Changer de tonalité ne TRANSPOSE pas : les notes gardent leurs hauteurs, seule
+  // la notation (armure) et la lecture analytique changent.
+  const choisirTonalite = useCallback((armure: number, mode: "major" | "minor") => {
+    setPiece((p) => ({ ...p, armure, mode }));
+  }, []);
 
   // ── Lecture (reprise du patron de Studio.tsx) ────────────────────────────────
 
@@ -463,6 +507,30 @@ export default function AtelierComposition() {
             })}
           </div>
           {separateur}
+          <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+            <span style={groupeLabel}>TONALITÉ</span>
+            <select
+              value={`${piece.armure}|${piece.mode ?? "major"}`}
+              onChange={(e) => {
+                const [f, m] = e.target.value.split("|");
+                choisirTonalite(Number(f), m as "major" | "minor");
+              }}
+              aria-label="Tonalité de la pièce"
+              style={{ ...btn, padding: "6px 8px", maxWidth: 180 }}
+            >
+              <optgroup label="Majeur">
+                {ARMURES.map((f) => (
+                  <option key={`M${f}`} value={`${f}|major`}>{libelleTonalite(f, "major")}</option>
+                ))}
+              </optgroup>
+              <optgroup label="Mineur">
+                {ARMURES.map((f) => (
+                  <option key={`m${f}`} value={`${f}|minor`}>{libelleTonalite(f, "minor")}</option>
+                ))}
+              </optgroup>
+            </select>
+          </div>
+          {separateur}
           <span>
             <span style={{ color: "#aaa" }}>Voix : </span>
             <strong style={{ color: VOIX_META[curseur.voix].couleur }}>{VOIX_META[curseur.voix].label}</strong>
@@ -484,6 +552,14 @@ export default function AtelierComposition() {
         {/* ── Partition gravée (à chaque frappe) ───────────────────── */}
         <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "16px 12px", marginBottom: 12, overflowX: "auto" }}>
           <StudioScore ref={scoreRef} musicxml={musicxml} onSelectNote={onSelectNote} />
+        </div>
+
+        {/* ── Analyse harmonique en direct ──────────────────────────── */}
+        <div style={{ ...carte }}>
+          <h2 style={{ fontSize: 15, fontWeight: 600, color: "#1a1a1a", margin: "0 0 10px", fontFamily: "Georgia, serif" }}>
+            Analyse harmonique
+          </h2>
+          <AtelierAnalyse analyse={analyse} />
         </div>
 
         {/* ── Conduite des voix ─────────────────────────────────────── */}
