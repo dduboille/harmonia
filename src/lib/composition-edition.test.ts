@@ -4,7 +4,8 @@ import { pieceVersMusicXML } from "./piece-vers-musicxml";
 import { type Piece, type Note, type Hauteur } from "./piece-model";
 import {
   capaciteMesure, dureePlacee, decouperEnSilences, voixActives,
-  inserer, effacer, positionEcriture, positions, naviguer, type Curseur,
+  inserer, effacer, positionEcriture, positions, naviguer,
+  transposerDegre, transposerOctave, type Curseur,
 } from "./composition-edition";
 
 const DO5: Hauteur = { lettre: "C", alteration: 0, octave: 5 };
@@ -176,6 +177,45 @@ describe("naviguer — deplacer la selection", () => {
   it("sur une voix sans note, reste en fin", () => {
     const c: Curseur = { mesure: 0, voix: "alto", note: "fin" };
     expect(naviguer(pieceEdition(), c, -1)).toEqual({ mesure: 0, voix: "alto", note: "fin" });
+  });
+});
+
+describe("transposerDegre / transposerOctave", () => {
+  const selNote0 = (base = "noire" as const): { p: Piece; c: Curseur } => {
+    const p = pieceEdition();
+    p.mesures[0].voix.soprano = [{ type: "note", hauteurs: [{ lettre: "C", alteration: 0, octave: 5 }], duree: { base, points: 0 } }];
+    return { p, c: { mesure: 0, voix: "soprano", note: 0 } };
+  };
+  it("monte d'un degre diatonique : C5 -> D5", () => {
+    const { p, c } = selNote0();
+    const h = transposerDegre(p, c, 1).mesures[0].voix.soprano[0] as Note;
+    expect(h.hauteurs[0]).toEqual({ lettre: "D", alteration: 0, octave: 5 });
+  });
+  it("passe l'octave en montant depuis B : B4 -> C5", () => {
+    const p = pieceEdition();
+    p.mesures[0].voix.soprano = [{ type: "note", hauteurs: [{ lettre: "B", alteration: 0, octave: 4 }], duree: { base: "noire", points: 0 } }];
+    const c: Curseur = { mesure: 0, voix: "soprano", note: 0 };
+    expect((transposerDegre(p, c, 1).mesures[0].voix.soprano[0] as Note).hauteurs[0])
+      .toEqual({ lettre: "C", alteration: 0, octave: 5 });
+  });
+  it("efface l'alteration en bougeant sur la portee : F#5 monte -> G5 (becarre)", () => {
+    const p = pieceEdition();
+    p.mesures[0].voix.soprano = [{ type: "note", hauteurs: [{ lettre: "F", alteration: 1, octave: 5 }], duree: { base: "noire", points: 0 } }];
+    const c: Curseur = { mesure: 0, voix: "soprano", note: 0 };
+    expect((transposerDegre(p, c, 1).mesures[0].voix.soprano[0] as Note).hauteurs[0])
+      .toEqual({ lettre: "G", alteration: 0, octave: 5 });
+  });
+  it("transposerOctave monte d'une octave, borne a 7", () => {
+    const { p, c } = selNote0();
+    expect((transposerOctave(p, c, 1).mesures[0].voix.soprano[0] as Note).hauteurs[0].octave).toBe(6);
+    const p7 = pieceEdition();
+    p7.mesures[0].voix.soprano = [{ type: "note", hauteurs: [{ lettre: "C", alteration: 0, octave: 7 }], duree: { base: "noire", points: 0 } }];
+    expect((transposerOctave(p7, c, 1).mesures[0].voix.soprano[0] as Note).hauteurs[0].octave).toBe(7);
+  });
+  it("sans effet en mode fin", () => {
+    const { p } = selNote0();
+    const c: Curseur = { mesure: 0, voix: "soprano", note: "fin" };
+    expect(transposerDegre(p, c, 1)).toBe(p);
   });
 });
 

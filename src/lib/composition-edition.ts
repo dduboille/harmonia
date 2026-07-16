@@ -13,6 +13,7 @@
 import {
   dureeEnDivisions, DIVISIONS, ORDRE_VOIX,
   type Piece, type Voix, type Evenement, type Silence, type Duree, type NomVoix,
+  type Note, type Hauteur, type LettreNote,
 } from "./piece-model";
 
 /** Le curseur d'édition : mesure, voix, et la note sélectionnée (ou "fin" = mode ajout). */
@@ -152,6 +153,43 @@ export function naviguer(piece: Piece, curseur: Curseur, sens: -1 | 1): Curseur 
   if (cible < 0) return { mesure: pos[0].mesure, voix: curseur.voix, note: pos[0].note };
   const q = pos[cible];
   return { mesure: q.mesure, voix: curseur.voix, note: q.note };
+}
+
+/** L'ordre diatonique des lettres, pour le déplacement sur la portée. */
+const ECHELLE_LETTRES: LettreNote[] = ["C", "D", "E", "F", "G", "A", "B"];
+
+/** Applique une transformation à la 1re hauteur de la note sélectionnée (sans effet en "fin"). */
+function avecHauteurSelectionnee(
+  piece: Piece, curseur: Curseur, f: (h: Hauteur) => Hauteur,
+): Piece {
+  if (curseur.note === "fin") return piece;
+  const voix = piece.mesures[curseur.mesure].voix[curseur.voix];
+  const ev = voix[curseur.note];
+  if (!ev || ev.type !== "note") return piece;
+  const nouvelle: Note = { ...ev, hauteurs: [f(ev.hauteurs[0]), ...ev.hauteurs.slice(1)] };
+  const nouvelleVoix = voix.map((x, i) => (i === curseur.note ? nouvelle : x));
+  return avecVoix(piece, curseur, nouvelleVoix);
+}
+
+/**
+ * Transpose la note sélectionnée d'un DEGRÉ diatonique (déplacement sur la portée) : la lettre
+ * avance/recule dans l'échelle, l'octave suit à la jonction B↔C, l'altération repasse à bécarre.
+ */
+export function transposerDegre(piece: Piece, curseur: Curseur, sens: -1 | 1): Piece {
+  return avecHauteurSelectionnee(piece, curseur, (h) => {
+    const i = ECHELLE_LETTRES.indexOf(h.lettre);
+    const j = i + sens;
+    const lettre = ECHELLE_LETTRES[(j + 7) % 7];
+    const octave = h.octave + (j < 0 ? -1 : j > 6 ? 1 : 0);
+    return { lettre, alteration: 0, octave };
+  });
+}
+
+/** Transpose la note sélectionnée d'une OCTAVE (bornée 1..7). */
+export function transposerOctave(piece: Piece, curseur: Curseur, sens: -1 | 1): Piece {
+  return avecHauteurSelectionnee(piece, curseur, (h) => ({
+    ...h, octave: Math.min(7, Math.max(1, h.octave + sens)),
+  }));
 }
 
 /**
