@@ -1588,12 +1588,251 @@ const COURS35_EXERCISES: Exercise[] = [
   },
 ];
 
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 25 — Chromatisme et harmonie chromatique avancée
+// ════════════════════════════════════════════════════════════════════════════
+//
+// LOT 5. Le cours 25 traite les lignes chromatiques (basse de lamento), l'accord
+// de Tristan et son ambiguïté fonctionnelle, l'accord diminué 7e et la
+// modulation enharmonique, ainsi que la règle d'orthographe ♯ monte / ♭ descend.
+// Aucun recouvrement avec les cours 24/32 (sixtes augmentées, tensions altérées) :
+// ici l'angle est le chromatisme comme LIGNE et l'enharmonie comme PIVOT (dim7,
+// non +6). Un `build` remplace le SATB : une modulation enharmonique chromatique
+// « d'école » à 0 faute / 0 avertissement est hors d'atteinte du modèle strict,
+// et le cours privilégie de toute façon la construction du pivot dim7.
+
+const COURS25_EXERCISES: Exercise[] = [
+  // ── identify 1 — l'ambiguïté fonctionnelle de l'accord de Tristan (diff 2) ───
+  {
+    id: "c25-tristan-ambiguite",
+    type: "identify",
+    cours: 25,
+    difficulty: 2,
+    tags: ["accord de Tristan", "ambiguïté fonctionnelle", "triton", "sixte augmentée", "Wagner"],
+    concepts: ["Fa–Si–Ré#–Sol#", "triton Fa–Si + sixte augmentée Fa–Ré#", "lectures concurrentes sans consensus"],
+    question:
+      "L'accord de Tristan (Fa–Si–Ré#–Sol#, ouverture de Tristan und Isolde) résiste à toute étiquette fonctionnelle unique. D'où vient précisément cette ambiguïté, telle que le cours la présente ?",
+    context: "Accord : Fa–Si–Ré#–Sol#.",
+    options: [
+      { id: "a", label: "De sa seule complexité rythmique : les notes entrent en valeurs irrégulières", isCorrect: false },
+      { id: "b", label: "De la présence SIMULTANÉE d'un triton (Fa–Si) et d'une sixte augmentée (Fa–Ré#) : plusieurs lectures coexistent — Fa mineur 7 ♯5, dominante secondaire altérée, « accord errant » — sans qu'aucune ne s'impose", isCorrect: true },
+      { id: "c", label: "Du fait qu'il s'agit en réalité d'un simple V⁷ de Do majeur qui résout normalement sur Do", isCorrect: false },
+      { id: "d", label: "De l'absence de basse : privé de fondamentale, aucun accord n'est analysable", isCorrect: false },
+    ],
+    explanation:
+      "L'accord empile deux intervalles ambigus : le triton Fa–Si (le plus instable) et la sixte augmentée Fa–Ré#. Cette dernière SONNE comme une septième de dominante (on croit entendre un Sol♯7 / La♭7), mais son orthographe et son contexte interdisent d'y voir une dominante nette. D'où les lectures concurrentes que le cours cite — Fa mineur 7 à quinte augmentée, dominante secondaire altérée, « accord errant » de Schönberg — aucune ne faisant consensus. Wagner cultive cette indécision : le Prélude entier diffère la résolution, ébranle la tonalité fonctionnelle et ouvre la voie à Schönberg. Le piège (c) prête à l'accord une fonction nette de V⁷, exactement ce qu'il refuse d'être.",
+    hint: "Repérez les DEUX intervalles caractéristiques de l'accord et demandez-vous si l'un d'eux impose une fonction unique.",
+  },
+
+  // ── identify 2 — modulation enharmonique par dim7 : cas chiffré (diff 3) ─────
+  {
+    id: "c25-modulation-enharm-dim7",
+    type: "identify",
+    cours: 25,
+    difficulty: 3,
+    tags: ["modulation enharmonique", "accord diminué 7e", "pivot enharmonique", "quatre résolutions", "enharmonie"],
+    concepts: ["dim7 = 4 tierces mineures égales", "réécriture enharmonique du pivot", "sensible réorientée"],
+    question:
+      "L'accord diminué Sol#–Si–Ré–Fa fonctionne d'abord comme VII°7 de La mineur (Sol#, sensible, monte vers La). On veut s'en servir comme PIVOT pour moduler vers Mib majeur, sans changer un seul son. Comment procède-t-on ?",
+    context: "Pivot : Sol#–Si–Ré–Fa (dim7). Départ : La mineur. Cible : Mib majeur.",
+    options: [
+      { id: "a", label: "On transpose l'accord une tierce mineure plus haut pour l'amener dans Mib", isCorrect: false },
+      { id: "b", label: "On renomme seulement le Fa en Mi#, et l'accord résout tel quel vers La", isCorrect: false },
+      { id: "c", label: "On réécrit les mêmes sons Ré–Fa–La♭–Do♭ (= Ré°7) : la nouvelle sensible Ré monte alors d'un demi-ton vers Mib — mêmes touches, nouvelle orthographe, nouvelle résolution", isCorrect: true },
+      { id: "d", label: "On ajoute un Mib à l'accord pour en faire une tétrade de cinq sons pointant vers Mib", isCorrect: false },
+    ],
+    explanation:
+      "Le diminué 7e divise l'octave en quatre tierces mineures égales : ses quatre notes sont interchangeables comme fondamentale, d'où QUATRE résolutions enharmoniques. Ici Sol# = La♭ et Si = Do♭, Ré et Fa restent : les mêmes sons se réécrivent Ré–Fa–La♭–Do♭, soit Ré°7, dont la fondamentale Ré est la sensible de Mib et monte vers la nouvelle tonique. On n'a rien transposé (a) — cela changerait les sons — ni rien ajouté (d) : on a seulement changé le NOM (l'orthographe) des notes pour réorienter le vecteur de résolution. C'est le mécanisme exact de la modulation enharmonique par dim7.",
+    hint: "Le dim7 a quatre résolutions : cherchez laquelle de ses quatre notes est la sensible de Mib (elle doit monter d'un demi-ton vers Mib).",
+  },
+
+  // ── identify 3 — la basse de lamento transposée en Ré mineur (diff 2) ────────
+  {
+    id: "c25-basse-lamento-re-mineur",
+    type: "identify",
+    cours: 25,
+    difficulty: 2,
+    tags: ["basse de lamento", "descente chromatique de quarte", "Ré mineur", "ostinato", "deuil"],
+    concepts: ["tonique → dominante par demi-tons", "quarte juste descendante chromatique", "transposition du modèle de Do mineur"],
+    question:
+      "La basse de lamento descend chromatiquement, par demi-tons, de la tonique à la dominante (une quarte juste), et sert d'ostinato aux plaintes baroques. Laquelle de ces lignes de basse est une basse de lamento en RÉ mineur ?",
+    context: "Ré mineur : tonique Ré, dominante La.",
+    options: [
+      { id: "a", label: "Ré–Do#–Do♮–Si♮–Si♭–La — six notes, cinq demi-tons descendants remplissant la quarte Ré→La", isCorrect: true },
+      { id: "b", label: "Ré–Do–Si♭–La — descente diatonique (notes de la gamme), sans chromatisme", isCorrect: false },
+      { id: "c", label: "Ré–Mi–Fa–Sol–La — montée diatonique vers la dominante", isCorrect: false },
+      { id: "d", label: "Ré–La–Ré–La — oscillation tonique-dominante sur pédale", isCorrect: false },
+    ],
+    explanation:
+      "Transposée du modèle en Do mineur (Do–Si–Si♭–La–La♭–Sol), la basse de lamento en Ré mineur descend Ré–Do#–Do♮–Si♮–Si♭–La : cinq demi-tons consécutifs remplissant la quarte juste Ré→La. C'est le CHROMATISME — chaque pas vaut un demi-ton — qui fait le lamento, d'où le rejet de (b), descente diatonique correcte mais sans la couleur de plainte. La ligne se répète en ostinato sous une mélodie libre — Purcell (« When I am laid in earth »), Monteverdi, Bach — pour évoquer le deuil inéluctable.",
+    hint: "« Chromatique » impose que CHAQUE intervalle soit un demi-ton ; comptez les demi-tons entre Ré et La (il en faut cinq).",
+  },
+
+  // ── build — construire le dim7 pivot Sol#°7 (VII°7 de La mineur) (diff 2) ────
+  {
+    id: "c25-build-dim7-pivot",
+    type: "build",
+    cours: 25,
+    difficulty: 2,
+    tags: ["accord diminué 7e", "pivot enharmonique", "tierces mineures", "La mineur", "construction"],
+    concepts: ["empilement de tierces mineures", "VII°7 de La mineur", "Sol# sensible"],
+    question:
+      "Construisez l'accord de septième diminuée bâti sur Sol# — le VII°7 de La mineur, futur pivot enharmonique. Donnez les quatre notes dans l'ordre, de la plus grave à la plus aiguë (empilement de tierces mineures).",
+    keySignature: "Am",
+    correctNotes: ["G#", "B", "D", "F"],
+    explanation:
+      "Le VII°7 de La mineur est Sol#–Si–Ré–Fa : quatre tierces mineures superposées (Sol#→Si = 3 demi-tons, Si→Ré = 3, Ré→Fa = 3). Cette symétrie parfaite fait toute l'utilité de l'accord en modulation : chacune de ses quatre notes peut être renommée fondamentale d'un autre dim7 (Sol#°7 → La ; Si°7 → Do ; Ré°7 → Mib ; Fa°7 → Fa#), soit quatre résolutions enharmoniques pour un seul et même son. On écrit Sol# (sensible de La), non La♭, tant que l'accord pointe vers La mineur.",
+    hint: "Partez de Sol# (la sensible de La mineur) et empilez des tierces mineures (3 demi-tons chacune).",
+  },
+
+  // ── identify 4 — orthographe chromatique en ligne descendante (diff 1) ───────
+  {
+    id: "c25-chromatisme-orthographe-descendante",
+    type: "identify",
+    cours: 25,
+    difficulty: 1,
+    tags: ["orthographe chromatique", "♯ monte ♭ descend", "ligne descendante", "conduite de voix"],
+    concepts: ["l'altération indique la direction de résolution", "Sol# ≠ La♭ en écriture", "chromatisme descendant"],
+    question:
+      "Dans une ligne mélodique DESCENDANTE La → Sol, on intercale la note chromatique intermédiaire (le demi-ton entre La et Sol). Comment faut-il l'orthographier, et pourquoi ?",
+    context: "Ligne descendante : La – ? – Sol.",
+    options: [
+      { id: "a", label: "Sol# — le dièse est l'altération la plus courante", isCorrect: false },
+      { id: "b", label: "La# — puisque la ligne part de La", isCorrect: false },
+      { id: "c", label: "Peu importe : Sol# et La♭ sont la même touche au piano", isCorrect: false },
+      { id: "d", label: "La♭ — le bémol signale la direction descendante (♭ descend), cohérent avec le mouvement vers Sol", isCorrect: true },
+    ],
+    explanation:
+      "Règle absolue du chromatisme : ♯ monte, ♭ descend — l'altération doit indiquer la direction de résolution. La ligne descend vers Sol, on écrit donc La♭ (bémol descendant), non Sol# (qui signalerait une montée vers La). Certes La♭ et Sol# sonnent identique au tempérament égal (d'où le piège c), mais l'orthographe porte une information de SENS : c'est toute la logique des lignes chromatiques et, plus loin, de la modulation enharmonique, où Sol# et La♭ prennent des directions opposées.",
+    hint: "L'altération doit « pointer » vers la note d'arrivée : la ligne descend — quel signe indique une descente ?",
+  },
+];
+
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 37 — Analyse avancée : Schenker et analyse motivique
+// ════════════════════════════════════════════════════════════════════════════
+//
+// LOT 5. APPROFONDISSEMENT du cours 27 (déjà couvert : Urlinie 3̂–2̂–1̂ en build,
+// régions T/SD/D, piliers vs surface, Bassbrechung à grande échelle, Ursatz SATB).
+// Ici on va PLUS LOIN et AILLEURS : les quatre niveaux de réduction nommés dans
+// l'ordre (Vordergrund → Hintergrund), l'Urlinie de QUINTE 5̂–4̂–3̂–2̂–1̂ en build,
+// la RECONNAISSANCE d'un procédé motivique sur un exemple concret (à distinguer
+// des définitions du cours 18), la mécanique de réduction broderie/note de passage,
+// et l'économie motivique de Brahms. L'interruption n'est pas enseignée par le
+// cours : elle n'est donc pas testée.
+
+const COURS37_EXERCISES: Exercise[] = [
+  // ── identify 1 — les quatre niveaux de réduction dans l'ordre (diff 1) ───────
+  {
+    id: "c37-quatre-niveaux-reduction",
+    type: "identify",
+    cours: 37,
+    difficulty: 1,
+    tags: ["niveaux de réduction", "Vordergrund", "Mittelgrund", "Hintergrund", "Schenker"],
+    concepts: ["surface → structure profonde", "quatre couches de réduction", "terminologie allemande"],
+    question:
+      "Le cours décompose l'analyse schenkérienne en quatre niveaux de réduction. Dans quel ordre les parcourt-on, de la surface entendue (niveau 4) jusqu'à la structure fondamentale (niveau 1) ?",
+    options: [
+      { id: "a", label: "Niveau 4 = Hintergrund (Urlinie) → 3 → 2 → niveau 1 = Vordergrund (surface) : on part de la structure vers la surface", isCorrect: false },
+      { id: "b", label: "Niveau 4 (majeur) → 3 (mineur) → 2 (chromatique) → 1 (diatonique)", isCorrect: false },
+      { id: "c", label: "Niveau 4 (Vordergrund : surface, tous les accords) → 3 (Mittelgrund proche : fonctions harmoniques) → 2 (Mittelgrund profond : régions tonales et prolongations) → 1 (Hintergrund : Urlinie + Bassbrechung)", isCorrect: true },
+      { id: "d", label: "Niveau 4 (notes) → 3 (mesures) → 2 (phrases) → 1 (sections) : une simple hiérarchie de durées", isCorrect: false },
+    ],
+    explanation:
+      "Les quatre niveaux vont de la surface vers le fond : niveau 4, le Vordergrund (« premier plan »), est la surface complète, accord par accord ; niveau 3, le Mittelgrund proche, dégage les fonctions harmoniques principales ; niveau 2, le Mittelgrund profond, révèle les régions tonales et les prolongations ; niveau 1, le Hintergrund (« arrière-plan »), ne garde que l'Ursatz — l'Urlinie et la Bassbrechung. Chaque réduction efface une couche d'ornement pour révéler la charpente. Les distracteurs confondent les niveaux avec une échelle esthétique (b) ou une simple hiérarchie de durées (d) : la réduction hiérarchise le STRUCTUREL, pas le long ou le court.",
+    hint: "Le préfixe allemand donne la profondeur : Vorder- (devant / surface), Mittel- (milieu), Hinter- (derrière / fond).",
+  },
+
+  // ── build — l'Urlinie de quinte 5̂–4̂–3̂–2̂–1̂ en Sol majeur (diff 2) ────────────
+  {
+    id: "c37-build-urlinie-quinte-sol",
+    type: "build",
+    cours: 37,
+    difficulty: 2,
+    tags: ["Urlinie", "ligne de quinte", "5̂–4̂–3̂–2̂–1̂", "Sol majeur", "Schenker", "Kopfton"],
+    concepts: ["Urlinie de quinte (la plus ample)", "Kopfton = 5̂", "descente diatonique vers 1̂"],
+    question:
+      "L'Urlinie de QUINTE (5̂–4̂–3̂–2̂–1̂) est la ligne fondamentale la plus ample selon Schenker, typique des sonates et symphonies. Donnez-la en SOL majeur, du Kopfton (5̂) jusqu'à 1̂, dans l'ordre.",
+    keySignature: "G",
+    correctNotes: ["D", "C", "B", "A", "G"],
+    explanation:
+      "En Sol majeur : 5̂ = Ré (le Kopfton, note-tête qui ouvre la ligne), 4̂ = Do, 3̂ = Si, 2̂ = La, 1̂ = Sol. L'Urlinie descend donc Ré–Do–Si–La–Sol. Sur la Bassbrechung I–V–I : 5̂ et 3̂ se posent sur la tonique (prolongation de I), 2̂ sur la dominante (V), 1̂ sur le I conclusif ; le 4̂ est une note de passage entre 5̂ et 3̂. Cette ligne de cinq notes est plus large que l'Urlinie de tierce 3̂–2̂–1̂ (la plus fréquente dans les pièces courtes) : elle demande davantage de « matière » pour être remplie, d'où sa présence dans les grandes formes.",
+    hint: "5̂ est la dominante de la gamme (la quinte au-dessus de la tonique) ; descendez ensuite par degrés conjoints jusqu'à Sol.",
+  },
+
+  // ── identify 2 — reconnaître un procédé motivique sur un exemple concret (diff 3) ─
+  {
+    id: "c37-procede-inversion-concret",
+    type: "identify",
+    cours: 37,
+    difficulty: 3,
+    tags: ["analyse motivique", "inversion mélodique", "transformation de motif", "reconnaissance"],
+    concepts: ["reconnaître un procédé sur un cas concret", "inversion = intervalles en miroir", "distinction inversion / rétrograde / augmentation / diminution"],
+    question:
+      "Analyse motivique. Un motif énoncé Do–Ré–Mi (montée par degrés conjoints) réapparaît plus loin sous la forme Do–Si–La (descente par degrés conjoints). Les hauteurs diffèrent, mais le rythme est identique. Quel procédé de transformation reconnaît-on ?",
+    context: "Motif : Do–Ré–Mi (↑). Forme rencontrée : Do–Si–La (↓).",
+    options: [
+      { id: "a", label: "Augmentation — les valeurs rythmiques ont été doublées", isCorrect: false },
+      { id: "b", label: "Inversion (renversement mélodique) — chaque intervalle ascendant devient le même intervalle descendant : le contour est mis en miroir autour de Do", isCorrect: true },
+      { id: "c", label: "Rétrograde — le motif est lu de la dernière note à la première", isCorrect: false },
+      { id: "d", label: "Diminution — les valeurs rythmiques ont été réduites de moitié", isCorrect: false },
+    ],
+    explanation:
+      "Le contour est retourné : Do monte vers Ré puis Mi (deux secondes ascendantes) ; la nouvelle forme descend Do–Si–La (deux secondes descendantes). Mêmes intervalles, direction inversée : c'est l'INVERSION mélodique (le motif « vu dans un miroir »). On écarte le rétrograde, qui lirait le motif à l'envers et donnerait Mi–Ré–Do (mêmes hauteurs, ordre inversé) ; et l'augmentation / diminution, qui touchent le RYTHME, ici inchangé. Reconnaître ces procédés sur un exemple concret — non les définir — est le cœur de l'analyse motivique.",
+    hint: "Le rythme n'a pas bougé : la transformation porte donc sur les hauteurs. Montée devenue descente aux mêmes intervalles = ?",
+  },
+
+  // ── identify 3 — mécanique de réduction : la broderie s'efface (diff 2) ──────
+  {
+    id: "c37-reduction-broderie-niveau",
+    type: "identify",
+    cours: 37,
+    difficulty: 2,
+    tags: ["réduction schenkérienne", "broderie", "note structurelle", "Nebennote", "niveaux"],
+    concepts: ["la broderie s'efface au niveau plus profond", "note structurelle tenue", "broderie ≠ note de passage"],
+    question:
+      "Sur un accord de tonique tenu (Do–Mi–Sol), le soprano joue Mi–Fa–Mi. Dans la réduction schenkérienne, comment traite-t-on le Fa lorsqu'on descend au niveau plus profond ?",
+    context: "Harmonie tenue : I (Do–Mi–Sol). Soprano de surface : Mi–Fa–Mi.",
+    options: [
+      { id: "a", label: "Le Fa est une note de passage reliant Mi à Sol ; il subsiste au niveau profond comme maillon de la ligne", isCorrect: false },
+      { id: "b", label: "Le Fa est une note structurelle, de même poids que le Mi", isCorrect: false },
+      { id: "c", label: "Le Fa remplace le Mi : c'est lui qui devient la note structurelle de l'accord", isCorrect: false },
+      { id: "d", label: "Le Fa est une broderie supérieure (Nebennote) : le Mi structurel le quitte d'un degré puis y revient ; à la réduction, la broderie s'efface et il ne reste que le Mi tenu", isCorrect: true },
+    ],
+    explanation:
+      "Mi–Fa–Mi : la note part vers son voisin supérieur (Fa) et REVIENT — c'est une broderie (Nebennote), non une note de passage (celle-ci relierait deux notes structurelles DIFFÉRENTES, ex. Mi–Fa–Sol, sans revenir). Dans la réduction, l'ornement de surface disparaît au niveau plus profond : il ne subsiste que le Mi structurel, tenu sur toute la durée de l'accord de tonique. C'est le mécanisme même de la réduction — séparer, couche après couche, ce qui décore (broderies, notes de passage) de ce qui porte la structure.",
+    hint: "La note quitte le Mi et y revient : passe-t-elle VERS une autre note, ou tourne-t-elle autour de la MÊME ? Cela décide broderie vs note de passage.",
+  },
+
+  // ── identify 4 — l'économie motivique de Brahms (op.51) (diff 2) ─────────────
+  {
+    id: "c37-motif-economie-brahms",
+    type: "identify",
+    cours: 37,
+    difficulty: 2,
+    tags: ["analyse motivique", "économie motivique", "Brahms", "op.51", "intervalle générateur"],
+    concepts: ["un intervalle génère toute l'œuvre", "la seconde sous toutes ses formes", "unité organique par transformation"],
+    question:
+      "Dans les Quatuors à cordes op.51 de Brahms, l'analyse motivique met au jour une « économie motivique ». En quoi consiste-t-elle ?",
+    options: [
+      { id: "a", label: "Un même intervalle de seconde (souvent mineure) génère l'œuvre entière : il réapparaît — ascendant, descendant, augmenté, inversé — dans le sujet, le contre-sujet, le thème lent, le scherzo ; un maximum de musique tiré d'un minimum de matériau", isCorrect: true },
+      { id: "b", label: "Chaque mouvement repose sur un motif entièrement nouveau, sans parenté avec les autres", isCorrect: false },
+      { id: "c", label: "Le même thème est répété à l'identique, sans transformation, dans les quatre mouvements", isCorrect: false },
+      { id: "d", label: "« Économie » désigne ici la brièveté exceptionnelle des mouvements", isCorrect: false },
+    ],
+    explanation:
+      "L'économie motivique de Brahms consiste à dériver un maximum de musique d'une cellule minimale : dans l'op.51, un simple intervalle de seconde structure chaque mouvement, réapparaissant sous toutes ses formes (ascendant, descendant, augmenté, inversé) dans le sujet, le contre-sujet, la mélodie lente, le scherzo. Ce n'est ni la répétition littérale (c), qui ignore les transformations, ni l'absence de lien (b) : c'est l'unité organique par la TRANSFORMATION d'un germe unique — ce que l'analyse motivique révèle et que l'analyse accord-par-accord, purement locale, ne peut montrer.",
+    hint: "« Économie » = tirer beaucoup de peu. Cherchez l'option où UN seul intervalle, transformé, irrigue toute l'œuvre.",
+  },
+];
+
 export {
   COURS26_EXERCISES,
   COURS33_EXERCISES,
   COURS34_EXERCISES,
   COURS35_EXERCISES,
   COURS24_EXERCISES,
+  COURS25_EXERCISES,
   COURS32_EXERCISES,
   COURS27_EXERCISES,
   COURS28_EXERCISES,
@@ -1601,4 +1840,5 @@ export {
   COURS30_EXERCISES,
   COURS31_EXERCISES,
   COURS36_EXERCISES,
+  COURS37_EXERCISES,
 };
