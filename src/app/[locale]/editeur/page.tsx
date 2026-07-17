@@ -6,29 +6,26 @@
 import HarmoniaEditor from "@/components/HarmoniaEditor";
 import type { NoteEntry } from "@/components/HarmoniaEditor";
 
-// ── Solution de référence : II–V–I en C majeur (position 7351) ──
-// Dm7 | G7 | CMaj7
-// S : D5 | D5 | E5
-// A : F4 | F4 | E4
-// T : A3 | G3 | G3
-// B : D3 | G3 | C3
-
 function n(name: NoteEntry["name"], octave: number): NoteEntry {
   return { name, octave };
 }
 
+// ── Solution de référence : II–V–I en Do majeur ──
+// Recomposée par le moteur d'école partagé (@/lib/voicing-ecole) et VÉRIFIÉE
+// contre validateSATB (0 erreur, 0 avertissement noté) : accords complets,
+// doublures réglées, sensible et 7e résolues. On peut donc réarmer `solution`.
 const SOLUTION_IIVI = [
-  { soprano: n("D",5), alto: n("F",4), tenor: n("A",3), bass: n("D",3) }, // Dm7
-  { soprano: n("D",5), alto: n("F",4), tenor: n("G",3), bass: n("G",3) }, // G7
-  { soprano: n("E",5), alto: n("E",4), tenor: n("G",3), bass: n("C",3) }, // CMaj7
+  { soprano: n("C",5), alto: n("F",4), tenor: n("A",3), bass: n("D",3) }, // Dm7
+  { soprano: n("B",4), alto: n("F",4), tenor: n("D",4), bass: n("G",2) }, // G7
+  { soprano: n("C",5), alto: n("E",4), tenor: n("B",3), bass: n("C",3) }, // CMaj7
 ];
 
-// ── Solution : I–IV–V7–I en C majeur ──
+// ── Solution : I–IV–V7–I en Do majeur (idem — vérifiée école) ──
 const SOLUTION_IFVII = [
-  { soprano: n("E",5), alto: n("C",5), tenor: n("G",3), bass: n("C",3) }, // C
-  { soprano: n("F",5), alto: n("A",4), tenor: n("C",4), bass: n("F",3) }, // F
-  { soprano: n("D",5), alto: n("B",4), tenor: n("F",4), bass: n("G",3) }, // G7
-  { soprano: n("E",5), alto: n("C",5), tenor: n("E",4), bass: n("C",3) }, // C
+  { soprano: n("G",4), alto: n("E",4), tenor: n("C",4), bass: n("C",4) }, // C
+  { soprano: n("A",4), alto: n("F",4), tenor: n("C",4), bass: n("F",3) }, // F
+  { soprano: n("G",4), alto: n("F",4), tenor: n("B",3), bass: n("G",3) }, // G7
+  { soprano: n("G",4), alto: n("E",4), tenor: n("C",4), bass: n("C",4) }, // C
 ];
 
 export default function EditeurPage() {
@@ -63,9 +60,7 @@ export default function EditeurPage() {
             subtitle="Conduite de voix minimaliste · Position 7351 · 3 mesures"
             measures={["II (Dm7)", "V (G7)", "I (CMaj7)"]}
             keySignature="C"
-            // Pas de `solution` : ses accords codés en dur sont incomplets (G7 sans
-            // tierce…) et armeraient la conformité à tort — même retrait que le
-            // générateur (R6). Mise à niveau des démos en suivi.
+            solution={SOLUTION_IIVI}
           />
         </div>
 
@@ -79,7 +74,7 @@ export default function EditeurPage() {
             subtitle="Cadence parfaite complète · 4 mesures"
             measures={["I (C)", "IV (F)", "V7 (G7)", "I (C)"]}
             keySignature="C"
-            // Pas de `solution` : cf. exercice 1 (retrait miroir de R6).
+            solution={SOLUTION_IFVII}
           />
         </div>
 
