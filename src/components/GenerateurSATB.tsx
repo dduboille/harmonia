@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useState, useCallback, useMemo } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -85,15 +85,23 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
     return true;
   });
 
+  // Réalisation du combo sélectionné. `null` = combinaison non réalisable
+  // proprement (certaines positions d'un accord demi-diminué p. ex.) : le
+  // générateur l'écarte plutôt que d'offrir une solution qui ne vaudrait pas 100.
+  const preview = useMemo(
+    () => (template ? generateSATBExercise(template, selectedKey, doigte) : null),
+    [template, selectedKey, doigte],
+  );
+  const canGenerate = !!template && preview !== null;
+
   const generate = useCallback(() => {
-    if (!template) return;
-    const ex = generateSATBExercise(template, selectedKey, doigte);
-    setExercise(ex);
+    if (!preview) return; // combinaison écartée : le bouton est désactivé
+    setExercise(preview);
     setResults(null);
     setScore(null);
     setShowKS(true);
     setStep("exercise");
-  }, [template, selectedKey, doigte]);
+  }, [preview]);
 
   const handlePlaySolution = useCallback(() => {
     if (!exercise || !pianoRef.current) return;
@@ -315,11 +323,11 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <button
           onClick={generate}
-          disabled={!template}
+          disabled={!canGenerate}
           style={{
-            padding: "14px 40px", borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: template ? "pointer" : "not-allowed",
-            background: template ? "#1a1a1a" : "#ccc", color: "#fff", border: "none",
-            boxShadow: template ? "0 4px 16px rgba(0,0,0,0.18)" : "none",
+            padding: "14px 40px", borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: canGenerate ? "pointer" : "not-allowed",
+            background: canGenerate ? "#1a1a1a" : "#ccc", color: "#fff", border: "none",
+            boxShadow: canGenerate ? "0 4px 16px rgba(0,0,0,0.18)" : "none",
           }}
         >
           🎵 Générer l'exercice
@@ -328,6 +336,12 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
       {!template && (
         <p style={{ textAlign: "center", fontSize: 12, color: "#767676", marginTop: 8 }}>
           Sélectionnez d'abord une progression harmonique
+        </p>
+      )}
+      {template && preview === null && (
+        <p style={{ textAlign: "center", fontSize: 12, color: "#BA7517", marginTop: 8 }}>
+          Cette combinaison (tonalité + doigté) n'est pas réalisable proprement selon les règles d'école —
+          essayez un autre doigté ou une autre tonalité.
         </p>
       )}
     </div>
@@ -410,7 +424,7 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
           </div>
 
           <button
-            onClick={() => { setExercise(generateSATBExercise(exercise.template, exercise.tonalite, exercise.doigte)); setResults(null); setScore(null); }}
+            onClick={() => { const ex = generateSATBExercise(exercise.template, exercise.tonalite, exercise.doigte); if (ex) setExercise(ex); setResults(null); setScore(null); }}
             style={{ padding: "8px 14px", borderRadius: 8, fontSize: 12, cursor: "pointer", background: "#fff", border: "0.5px solid #e0dbd3", color: "#555" }}
           >
             ↺ Regénérer
@@ -493,11 +507,12 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
           title={mode === "dictee" ? "Dictée SATB — Écoutez et recopiez" : mode === "basse" ? "Réalisez les voix intérieures" : "Réalisez la progression"}
           subtitle={`${exercise.template.nom} — ${keyLabel}`}
           measures={exercise.labels}
-          keySignature={exercise.tonalite.replace("m","")}
+          keySignature={exercise.tonalite}
           showKeySignature={showKS}
           initialNotes={initialNotes}
-          // pas de `solution` : la page revient au comportement d'avant la
-          // conformité — mise à niveau du générateur en suivi.
+          // Solution armée (mode école par défaut) : contrôle en direct de la
+          // conformité harmonique ET des résolutions (sensible, septième).
+          solution={exercise.solution as unknown as HarmoniaEditorProps["solution"]}
           onComplete={handleComplete}
         />
       </div>
@@ -561,9 +576,18 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
       <div style={{ display: "flex", gap: 10, marginTop: "1.5rem", flexWrap: "wrap" }}>
         <button
           onClick={() => {
-            const keys = KEYS_BY_LEVEL.map(k => k.key);
-            const randKey = keys[Math.floor(Math.random() * keys.length)];
-            setExercise(generateSATBExercise(exercise.template, randKey, exercise.doigte));
+            // On ne tire que parmi les tonalités RÉALISABLES pour ce gabarit +
+            // doigté (certaines combinaisons sont écartées → pas d'écran vide).
+            const viable = KEYS_BY_LEVEL
+              .map(k => [k.key, generateSATBExercise(exercise.template, k.key, exercise.doigte)] as const)
+              .filter((x): x is readonly [string, GeneratedExercise] => x[1] !== null)
+              .filter(([k]) => k !== exercise.tonalite);
+            const pool = viable.length ? viable : KEYS_BY_LEVEL
+              .map(k => [k.key, generateSATBExercise(exercise.template, k.key, exercise.doigte)] as const)
+              .filter((x): x is readonly [string, GeneratedExercise] => x[1] !== null);
+            if (!pool.length) return;
+            const [randKey, ex] = pool[Math.floor(Math.random() * pool.length)];
+            setExercise(ex);
             setSelectedKey(randKey);
             setResults(null);
             setScore(null);

@@ -106,8 +106,8 @@ export const PROGRESSION_TEMPLATES: ProgressionTemplate[] = [
   {
     id: "cycle-quintes",
     nom: "Cycle des quintes complet",
-    symboles: ["I","V6","I6","IV","II6","V","I"],
-    description: "Séquence de Corelli. La basse descend par degrés conjoints, les harmonies montent par quintes.",
+    symboles: ["I","V6","I","IV","II6","V","I"],
+    description: "Séquence cadentielle : la sensible à la basse (V⁶) résout à la tonique, puis les fondamentales descendent par quintes (Ré–Sol–Do) vers la cadence.",
     concepts: ["Cycle des quintes","Séquence","Basse fondamentale"],
     difficulte: 2,
     categorie: "cycle",
@@ -115,8 +115,8 @@ export const PROGRESSION_TEMPLATES: ProgressionTemplate[] = [
   {
     id: "basse-fondamentale",
     nom: "Basse fondamentale montante",
-    symboles: ["I","V6","I6","IV","II6","V","I"],
-    description: "La basse monte par demi-tons (Do–Si–La–Sol) pendant que les harmonies alternent en renversements.",
+    symboles: ["I","V6","I","IV","II6","V","I"],
+    description: "La basse alterne fondamentales et renversements (Do–Si–Do–Fa–Fa–Sol–Do) : chaque chiffrage se lit à la basse.",
     concepts: ["Basse montante","Renversements","Séquence"],
     difficulte: 2,
     categorie: "cycle",
