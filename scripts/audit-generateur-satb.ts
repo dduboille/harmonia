@@ -75,17 +75,27 @@ function countByType(errs: ValidationError[]): Record<string, number> {
 // ─── Énumération et jugement ─────────────────────────────────────────────────
 
 const audits: ComboAudit[] = [];
+const discarded: string[] = []; // combos écartés par l'auto-filtrage (générateur → null)
 
+let enumerated = 0;
 for (const template of PROGRESSION_TEMPLATES) {
   for (const key of KEYS) {
     for (const doigte of DOIGTES) {
+      enumerated++;
+      const id = `${template.id}·${key}·d${doigte}`;
       const ex = generateSATBExercise(template, key, doigte);
+      if (ex === null) {
+        // Combo écarté par le générateur (aucune conduite légale, ou solution
+        // qui n'obtient pas 100). Non « offert » par la page — hors périmètre.
+        discarded.push(id);
+        continue;
+      }
       const sol = ex.solution as unknown as Measure[];
       // Le juge évalue la solution contre elle-même, en école, avec la vraie
       // signature (mineures « Xm » incluses).
       const errs = validateSATB(sol, ex.tonalite, false, sol, "ecole");
       audits.push({
-        id: `${template.id}·${key}·d${doigte}`,
+        id,
         errors: errs.filter(e => e.severity === "error"),
         warnings: errs.filter(e => e.severity === "warning"),
       });
@@ -146,8 +156,11 @@ console.log("=".repeat(78));
 console.log("SWEEP DU GÉNÉRATEUR /generateur-satb — solutions jugées contre l'école");
 console.log("=".repeat(78));
 console.log();
+const discardRate = enumerated === 0 ? 0 : (discarded.length / enumerated) * 100;
 console.log(`Gabarits × tonalités × doigtés : ${PROGRESSION_TEMPLATES.length} × ${KEYS.length} × ${DOIGTES.length}`);
-console.log(`Total combos                   : ${total}`);
+console.log(`Total combos énumérés          : ${enumerated}`);
+console.log(`Écartés (auto-filtrage → null) : ${discarded.length}  (${discardRate.toFixed(1)} %)`);
+console.log(`Conservés (jugés)              : ${total}`);
 console.log(`Propres (0 erreur, 0 avert.)   : ${clean.length}`);
 console.log(`Bloqués (≥1 erreur)            : ${blocked.length}`);
 console.log(`Notés <100 (sans erreur)       : ${warned.length}`);
@@ -170,7 +183,10 @@ for (const [t, n] of Object.entries(warnTypeTotals).sort((a, b) => b[1] - a[1]))
 
 console.log();
 const summary = {
-  total,
+  enumerated,
+  discarded: discarded.length,
+  discardRatePct: Number(discardRate.toFixed(2)),
+  kept: total,
   clean: clean.length,
   blocked: blocked.length,
   blockedNewOnly,

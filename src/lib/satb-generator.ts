@@ -1,14 +1,31 @@
 /**
  * src/lib/satb-generator.ts
- * Moteur de génération d'exercices SATB pour Harmonia.
+ * Moteur de génération d'exercices SATB pour la page /generateur-satb.
+ *
+ * DÉCISION DE PARTAGE (chantier « mise à niveau /generateur-satb », Task 2) :
+ * le moteur de réalisation à quatre voix — voicings complets, doublures
+ * réglementaires, rejets durs (parallèles, directes S–B, sensible externe non
+ * résolue, 7e non résolue), tessitures/espacements/croisements — est PARTAGÉ
+ * avec le générateur du corpus (`src/exercises/generator.ts`). Il a été extrait
+ * dans `@/lib/voicing-ecole` et est importé par les DEUX générateurs. La seule
+ * généralisation nécessaire au partage : `buildCandidates`/`voiceProgression`
+ * reçoivent une classe de hauteurs de basse explicite (`bassPc`) — car cette
+ * page réalise des accords RENVERSÉS (II6, I64, bII6, V6…), là où le corpus est
+ * en état fondamental. Ce fichier ne garde que la couche « chiffrage romain →
+ * accord réel » (parseDeg/buildChord, avec renversements et extensions), la
+ * conversion MIDI→note (orthographe mineure comprise) et l'auto-filtrage.
  *
  * Étapes :
  *  1. Transposition des degrés romains en accords réels dans la tonalité choisie
- *  2. Voicing SATB (greedy, voice leading minimal)
- *  3. Règles de conduite des voix (tessitures, pas de croisements)
+ *     (avec renversements et extensions).
+ *  2. Réalisation SATB par le moteur partagé (DFS + retour arrière).
+ *  3. Auto-filtrage : une solution qui n'obtient pas 100 (école) écarte le combo
+ *     (la fonction renvoie `null`).
  */
 
 import type { ProgressionTemplate } from "@/data/progressions-templates";
+import { voiceProgression, type ChordSpec, type SpecEntry } from "@/lib/voicing-ecole";
+import { validateSATB, type Measure } from "@/lib/satb-rules";
 
 // ── Types publics ──────────────────────────────────────────────────────────────
 
@@ -56,39 +73,35 @@ const MINOR_SCALE = [0,2,3,5,7,8,10];
 const MAJ_QUAL = ["maj","min","min","maj","maj","min","dim"] as const;
 const MIN_QUAL = ["min","dim","maj","min","maj","maj","maj"] as const;
 
-// Voice MIDI ranges [min, max]
-const RANGES = {
-  bass:    [40, 60] as [number, number], // E2–C4
-  tenor:   [48, 67] as [number, number], // C3–G4
-  alto:    [55, 72] as [number, number], // G3–C5
-  soprano: [60, 79] as [number, number], // C4–G5
-};
-
-// ── Helpers ────────────────────────────────────────────────────────────────────
+// ── Helpers de nom ───────────────────────────────────────────────────────────
 
 function noteName(pc: number, key: string): string {
   return FLAT_KEYS.has(key) ? FLAT_NAMES[pc % 12] : SHARP_NAMES[pc % 12];
 }
 
-function midiToEntry(midi: number, key: string): { name: string; octave: number } {
-  return {
-    name: noteName(midi % 12, key),
-    octave: Math.floor(midi / 12) - 1,
-  };
+// ── Orthographe de la sensible en mineur (miroir de exercises/generator.ts) ────
+//
+// La sensible (7e degré HAUSSÉ) d'un mineur en bémols doit s'écrire comme un
+// dièse/naturel du 7e degré, jamais comme un bémol : en Ré mineur c'est un DO#
+// (et non Réb), en Do mineur un SI naturel, etc. Repli sur l'orthographe par
+// défaut si la graphie exacte est exotique (E#, B#, F##).
+
+const LETTERS = ["C", "D", "E", "F", "G", "A", "B"];
+const LETTER_PC: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+const SAFE_NAMES = new Set([...SHARP_NAMES, ...FLAT_NAMES]);
+
+/** Orthographe du 7e degré haussé (sensible) pour une tonique mineure. */
+function raisedSeventhSpelling(tonicName: string, ltPc: number): string {
+  const idx = LETTERS.indexOf(tonicName[0]);
+  const seventhLetter = LETTERS[(idx + 6) % 7]; // lettre juste sous la tonique
+  const diff = ((ltPc - LETTER_PC[seventhLetter]) % 12 + 12) % 12;
+  const acc = diff === 0 ? "" : diff === 1 ? "#" : diff === 2 ? "##" : "";
+  return seventhLetter + acc;
 }
 
-function allInRange(pc: number, range: [number, number]): number[] {
-  const r: number[] = [];
-  for (let m = range[0]; m <= range[1]; m++) {
-    if (m % 12 === pc % 12) r.push(m);
-  }
-  return r;
-}
-
-function nearest(pc: number, range: [number, number], pref: number): number {
-  const all = allInRange(pc, range);
-  if (!all.length) return range[0];
-  return all.reduce((b, c) => Math.abs(c - pref) < Math.abs(b - pref) ? c : b);
+/** Nom de la tonique (lettre + éventuelle altération) d'une signature « Am », « Bbm »… */
+function tonicNameOf(key: string): string {
+  return key.endsWith("m") ? key.slice(0, -1) : key;
 }
 
 // ── Degree parser ──────────────────────────────────────────────────────────────
@@ -134,14 +147,15 @@ function parseDeg(deg: string): DegreeInfo {
 
 // ── Chord builder ──────────────────────────────────────────────────────────────
 
-interface ChordSpec {
-  rootPc: number;
-  tones: number[];   // pitch classes (0-11)
-  bassTone: number;  // PC for bass voice
+/** Un accord réel : rôles pour le moteur partagé + basse imposée + affichage. */
+interface BuiltChord {
+  spec: ChordSpec;
+  bassPc: number;      // classe de hauteurs à la basse (fondamentale ou renversement)
+  tones: number[];     // hauteurs ordonnées [fond, 3ce, 5te, (7e)] — pour la position soprano
   displayName: string;
 }
 
-function buildChord(info: DegreeInfo, keyRoot: number, mode: "major"|"minor", key: string): ChordSpec {
+function buildChord(info: DegreeInfo, keyRoot: number, mode: "major"|"minor", key: string): BuiltChord {
   const scale = mode === "major" ? MAJOR_SCALE : MINOR_SCALE;
   const defQual = mode === "major" ? MAJ_QUAL : MIN_QUAL;
 
@@ -171,10 +185,20 @@ function buildChord(info: DegreeInfo, keyRoot: number, mode: "major"|"minor", ke
 
   const tones = intervals.map(i => (rootPc + i) % 12);
 
-  // Bass tone (first inversion = 3rd, second = 5th)
-  const bassTone = tones[info.inversion] ?? tones[0];
+  const thirdPc  = tones[1];
+  const fifthPc  = tones[2];
+  const seventhPc = tones.length > 3 ? tones[3] : null;
+  const pcs = [...new Set(tones)];
 
-  // Display name — flatted degrees always use flat spelling (bII = Db, not C#)
+  // La quinte n'est ellipsable que si elle est JUSTE (accords maj/min et leurs
+  // 7es) — jamais pour un accord diminué/augmenté/demi-diminué (quinte altérée
+  // caractéristique).
+  const fifthOmissible = quality === "maj" || quality === "min";
+
+  // Bass tone (renversement : 1er = 3ce, 2e = 5te)
+  const bassPc = tones[info.inversion] ?? tones[0];
+
+  // Display name — les degrés bémolisés s'écrivent en bémol (bII = Db, non C#)
   const root = info.flatted ? FLAT_NAMES[rootPc % 12] : noteName(rootPc, key);
   const qSuf = quality === "min" ? "m" : quality === "dim" ? "dim" : "";
   const eSuf =
@@ -189,68 +213,34 @@ function buildChord(info: DegreeInfo, keyRoot: number, mode: "major"|"minor", ke
     ? `${root}m7b5${invSuf}`
     : `${root}${qSuf}${eSuf}${invSuf}`;
 
-  return { rootPc, tones, bassTone, displayName };
+  return {
+    spec: { rootPc, thirdPc, fifthPc, seventhPc, pcs, fifthOmissible },
+    bassPc,
+    tones,
+    displayName,
+  };
 }
 
-// ── SATB voicer ────────────────────────────────────────────────────────────────
+// ── MIDI → note ────────────────────────────────────────────────────────────────
 
-interface MidiVoicing { soprano: number; alto: number; tenor: number; bass: number }
+function pcOf(midi: number): number {
+  return ((midi % 12) + 12) % 12;
+}
 
-function voiceChord(
-  tones: number[],
-  bassTone: number,
-  prev: MidiVoicing | null,
-): MidiVoicing {
-  const pr = prev ?? { soprano: 67, alto: 64, tenor: 60, bass: 48 };
-
-  // 1. Bass
-  const bassMidi = nearest(bassTone, RANGES.bass, pr.bass);
-
-  // 2. Pad tones to 4 voices (double root for triads)
-  const tones4 = tones.length < 4 ? [...tones, tones[0]] : [...tones];
-
-  // 3. Soprano (free — moves by nearest pitch)
-  const best = tones4
-    .map(t => ({ t, m: nearest(t, RANGES.soprano, pr.soprano) }))
-    .reduce((b, c) => Math.abs(c.m - pr.soprano) < Math.abs(b.m - pr.soprano) ? c : b);
-  const sopPC = best.t;
-  const sopMidi = best.m;
-
-  // 4. Inner voices from remaining tones
-  const remaining = [...tones4];
-  const remove = (pc: number) => { const i = remaining.indexOf(pc); if (i >= 0) remaining.splice(i, 1); };
-  remove(bassTone);
-  remove(sopPC);
-
-  // Ensure we have 2 inner PCs
-  while (remaining.length < 2) remaining.push(tones[0]);
-
-  // 5. Try both assignments of inner PCs to alto/tenor, pick best voice leading
-  let bestAlt = 0, bestTen = 0, bestScore = Infinity;
-
-  for (const [altPC, tenPC] of [[remaining[0], remaining[1]], [remaining[1], remaining[0]]]) {
-    const altCands = allInRange(altPC, RANGES.alto).filter(m => m <= sopMidi);
-    const tenCands = allInRange(tenPC, RANGES.tenor).filter(m => m >= bassMidi);
-    if (!altCands.length || !tenCands.length) continue;
-
-    const altMidi = altCands.reduce((b, c) => Math.abs(c - pr.alto) < Math.abs(b - pr.alto) ? c : b);
-    const tenFiltered = tenCands.filter(m => m <= altMidi);
-    if (!tenFiltered.length) continue;
-    const tenMidi = tenFiltered.reduce((b, c) => Math.abs(c - pr.tenor) < Math.abs(b - pr.tenor) ? c : b);
-
-    const score = Math.abs(altMidi - pr.alto) + Math.abs(tenMidi - pr.tenor);
-    if (score < bestScore) { bestScore = score; bestAlt = altMidi; bestTen = tenMidi; }
-  }
-
-  if (bestScore === Infinity) {
-    // Fallback: simple midpoint placement
-    bestAlt = nearest(remaining[0], RANGES.alto, Math.round((RANGES.alto[0]+RANGES.alto[1])/2));
-    bestTen = nearest(remaining[1] ?? remaining[0], RANGES.tenor, Math.round((RANGES.tenor[0]+RANGES.tenor[1])/2));
-    if (bestAlt > sopMidi) bestAlt = sopMidi;
-    if (bestTen > bestAlt) bestTen = bestAlt;
-  }
-
-  return { soprano: sopMidi, alto: bestAlt, tenor: bestTen, bass: bassMidi };
+/**
+ * Convertit une hauteur MIDI en {nom, octave}, en forçant l'orthographe de la
+ * sensible haussée en mineur (Ré m → Do#, non Réb) quand elle est « sûre ».
+ */
+function makeToEntry(key: string, mode: "major"|"minor") {
+  const tonicPc = KEY_ROOTS[key] ?? 0;
+  const ltPc = (tonicPc + 11) % 12;
+  const ltName = mode === "minor" ? raisedSeventhSpelling(tonicNameOf(key), ltPc) : "";
+  const ltForce = mode === "minor" && SAFE_NAMES.has(ltName);
+  return (midi: number): { name: string; octave: number } => {
+    const octave = Math.floor(midi / 12) - 1;
+    if (ltForce && pcOf(midi) === ltPc) return { name: ltName, octave };
+    return { name: noteName(pcOf(midi), key), octave };
+  };
 }
 
 // ── LilyPond export ────────────────────────────────────────────────────────────
@@ -277,50 +267,69 @@ function generateLilyPond(mesures: SATBMeasure[], key: string, mode: "major"|"mi
   return `\\version "2.24.0"\n\\relative c' {\n  \\key ${keyLily} ${modeLily}\n  \\time 4/4\n${chords}\n}`;
 }
 
-// ── Main export ────────────────────────────────────────────────────────────────
+// ── Main export ──────────────────────────────────────────────────────────────
 
+const DOIGTE_IDX: Record<Doigte, number> = { "1":0, "3":1, "5":2, "7":3 };
+
+/**
+ * Génère un exercice SATB pour un combo (gabarit × tonalité × doigté).
+ *
+ * Le doigté fixe la note de l'accord placée au SOPRANO de la première mesure
+ * (① fondamentale, ③ tierce, ⑤ quinte, ⑦ septième — repli sur la quinte pour une
+ * triade). La basse suit le chiffrage (renversements du gabarit). Le moteur
+ * partagé réalise les voix ; l'auto-filtrage renvoie `null` si la solution
+ * obtenue ne vaut pas 100 contre les règles d'école (combo écarté).
+ */
 export function generateSATBExercise(
   template: ProgressionTemplate,
   tonalite: string,
   doigte: Doigte
-): GeneratedExercise {
+): GeneratedExercise | null {
   const mode: "major"|"minor" = MINOR_KEYS.has(tonalite) ? "minor" : "major";
   const keyRoot = KEY_ROOTS[tonalite] ?? 0;
+  const minor = mode === "minor";
 
   const chords = template.symboles.map(deg => buildChord(parseDeg(deg), keyRoot, mode, tonalite));
 
-  const DOIGTE_IDX: Record<Doigte, number> = { "1":0, "3":1, "5":2, "7":3 };
-  const bassIdx = DOIGTE_IDX[doigte];
+  const sopIdx = DOIGTE_IDX[doigte];
 
-  const mesures: SATBMeasure[] = [];
-  const dotKeys: string[][] = [];
-  const accords: string[] = [];
-  let prevMidi: MidiVoicing | null = null;
+  // Prépare les entrées du moteur partagé : soprano imposé sur la 1re mesure
+  // (position du doigté), basse imposée par le renversement de chaque accord.
+  const specs: SpecEntry[] = chords.map((ch, idx) => ({
+    spec: ch.spec,
+    firstSopranoPc: idx === 0 ? (ch.tones[sopIdx] ?? ch.tones[ch.tones.length - 1]) : 0,
+    bassPc: ch.bassPc,
+  }));
 
-  for (let i = 0; i < chords.length; i++) {
-    const ch = chords[i];
-    // Doigté constrains which chord tone is in the BASS for the first chord
-    const bassPC = i === 0 ? (ch.tones[bassIdx] ?? ch.tones[0]) : ch.bassTone;
-    const midi = voiceChord(ch.tones, bassPC, prevMidi);
+  const voiced = voiceProgression(specs, keyRoot, minor);
+  if (!voiced) return null; // aucune conduite légale : combo écarté
 
-    const m: SATBMeasure = {
-      soprano: midiToEntry(midi.soprano, tonalite),
-      alto:    midiToEntry(midi.alto, tonalite),
-      tenor:   midiToEntry(midi.tenor, tonalite),
-      bass:    midiToEntry(midi.bass, tonalite),
-    };
-    mesures.push(m);
-    dotKeys.push([
-      `${m.bass.name}:${m.bass.octave}`,
-      `${m.tenor.name}:${m.tenor.octave}`,
-      `${m.alto.name}:${m.alto.octave}`,
-      `${m.soprano.name}:${m.soprano.octave}`,
-    ]);
-    accords.push(ch.displayName);
-    prevMidi = midi;
-  }
+  const toEntry = makeToEntry(tonalite, mode);
 
-  const rules = ["Tessitures SATB respectées","Mouvement conjoint privilégié"];
+  const mesures: SATBMeasure[] = voiced.map(vm => ({
+    soprano: toEntry(vm.soprano),
+    alto:    toEntry(vm.alto),
+    tenor:   toEntry(vm.tenor),
+    bass:    toEntry(vm.bass),
+  }));
+
+  // Auto-filtrage : la solution doit passer le juge (école) contre elle-même
+  // sans AUCUNE erreur ni avertissement noté (hors cross_relation), avec la
+  // VRAIE signature (mineures « Xm »).
+  const jugement = validateSATB(mesures as unknown as Measure[], tonalite, false, mesures as unknown as Measure[], "ecole");
+  const fautes = jugement.filter(e => e.severity === "error");
+  const avertsNotes = jugement.filter(e => e.severity === "warning" && e.type !== "cross_relation");
+  if (fautes.length > 0 || avertsNotes.length > 0) return null; // combo écarté
+
+  const dotKeys: string[][] = mesures.map(m => [
+    `${m.bass.name}:${m.bass.octave}`,
+    `${m.tenor.name}:${m.tenor.octave}`,
+    `${m.alto.name}:${m.alto.octave}`,
+    `${m.soprano.name}:${m.soprano.octave}`,
+  ]);
+  const accords = chords.map(ch => ch.displayName);
+
+  const rules = ["Tessitures SATB respectées","Mouvement conjoint privilégié","Accords complets, doublures réglées"];
   if (template.symboles.some(d => d.includes("V"))) rules.push("Sensible résolue vers la tonique");
   if (template.symboles.some(d => d.includes("7"))) rules.push("Septième résolue par degré conjoint");
   if (template.symboles.some(d => d.startsWith("b"))) rules.push("Accord emprunté utilisé");
