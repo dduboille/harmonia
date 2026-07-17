@@ -166,7 +166,7 @@ const questionsFr: Question[] = [
       q: "Quel intervalle sépare la première et la dernière note de la basse de lamento ?",
       opts: ["Tierce mineure", "Quinte juste", "Quarte juste", "Sixte majeure"],
       a: 2,
-      fb: "La basse de lamento descend d'une quarte juste (4 tons et demi). De Do à Sol en Do mineur : c'est exactement une quarte juste descendante, parcourue chromatiquement (par demi-tons). Cette symétrie intervalique est constitutive de la figure.",
+      fb: "La basse de lamento descend d'une quarte juste (2 tons et demi). De Do à Sol en Do mineur : c'est exactement une quarte juste descendante, parcourue chromatiquement (par demi-tons). Cette symétrie intervalique est constitutive de la figure.",
     },
     // ── Basse de chaconne ──────────────────────────────────────────────────────
     {
@@ -323,15 +323,15 @@ const questionsFr: Question[] = [
       fb: "La sixte augmentée (ex. Lab–Fa# en Do majeur) peut être enharmoniquement réinterprétée comme un V7 (Sol#–Do–Ré#–Fa# = Sol7 avec renommage) pointant vers une nouvelle tonalité. Le dim7 fonctionne de même avec 4 possibilités.",
     },
     {
-      q: "Dans une modulation enharmonique par dim7, Sol#–Si–Ré–Fa est renommé Lab–Si–Ré–Mib#. La nouvelle résolution va vers :",
+      q: "Dans une modulation enharmonique par dim7, Sol#–Si–Ré–Fa est renommé Ré–Fa–Lab–Dob (= Rédim7). La nouvelle résolution va vers :",
       opts: [
         "La mineur",
-        "Mib majeur ou mineur (Lab est sensible de La, mais Mib# = sensible de Fa...)",
+        "Mib majeur ou mineur (Ré devient sensible et monte vers Mib)",
         "Sol majeur",
         "Fa# mineur",
       ],
       a: 1,
-      fb: "Si l'on renomme Sol# en Lab et Fa en Mib# (enharmonie), l'accord Labdim7 = Lab–Si–Ré–Fa (= Mib#). La sensible Lab monte vers La (non), mais réinterprété comme diminué de Si : Si–Ré–Fa–Lab résout vers Do. Les modulations enharmoniques nécessitent de tracer avec soin le vecteur de résolution.",
+      fb: "En renommant Sol# en Lab et Si en Dob (enharmonie : mêmes touches, nouvelle orthographe), le même accord s'écrit Rédim7 = Ré–Fa–Lab–Dob. Ré devient alors sensible et monte d'un demi-ton vers Mib : l'accord résout vers Mib (majeur ou mineur). Un même dim7 pointe vers quatre tonalités selon son orthographe — les modulations enharmoniques exigent de tracer avec soin le vecteur de résolution.",
     },
     {
       q: "La modulation enharmonique différencie musicalement Sol# de Lab parce que :",
