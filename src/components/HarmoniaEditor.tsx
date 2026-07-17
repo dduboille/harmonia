@@ -210,6 +210,9 @@ export default function HarmoniaEditor({
   // Re-appliqué après chaque (re)gravure (`pretDeGravure`) car le SVG recréé perd
   // les classes. L'onset d'une mesure i (0-based) = i × 2000 ms (défaut Verovio).
   useEffect(() => {
+    // Solution affichée : la partition montre le modèle, pas la copie — aucun
+    // surlignage issu de l'état élève ne doit s'y plaquer.
+    if (showSolution) { scoreRef.current?.surlignerSelection(null); return; }
     const note = measures[activeMeasure]?.[activeVoice];
     if (note?.name) {
       scoreRef.current?.surlignerSelection({
@@ -219,7 +222,7 @@ export default function HarmoniaEditor({
     } else {
       scoreRef.current?.surlignerSelection(null);
     }
-  }, [musicxml, activeMeasure, activeVoice, pretDeGravure, measures]);
+  }, [musicxml, activeMeasure, activeVoice, pretDeGravure, measures, showSolution]);
 
   // ── Fautes colorées ─────────────────────────────────────────────────────────
   // Mapping erreur → têtes de notes à colorer. Vérifié contre le moteur
@@ -232,6 +235,8 @@ export default function HarmoniaEditor({
   // On privilégie from/to (ils couvrent les fautes à cheval sur deux mesures) et on
   // retombe sur `measure` si aucun n'est fourni.
   useEffect(() => {
+    // Solution affichée : le modèle reste vierge (cf. surlignage de sélection).
+    if (showSolution) { scoreRef.current?.surlignerFautes([]); return; }
     const cibles: Array<{ onsetMs: number; midis: number[]; severite: "faute" | "avertissement" }> = [];
     for (const err of errors) {
       // Fausse relation : signalée mais NON colorée (non comptée au barème — décision spec).
@@ -241,8 +246,12 @@ export default function HarmoniaEditor({
       if (err.params.to != null) mesureIdxs.push(err.params.to - 1);
       if (mesureIdxs.length === 0 && err.measure != null) mesureIdxs.push(err.measure);
       // Voix : la paire `voices`, sinon `params.voice`, sinon toutes les voix de la
-      // mesure (wrong_chord/wrong_bass/doubled_leading_tone n'en précisent pas).
-      const voix: Voice[] = err.voices ?? (err.params.voice ? [err.params.voice] : VOICES);
+      // mesure (wrong_chord/doubled_leading_tone n'en précisent pas). Exception :
+      // wrong_bass incrimine la seule basse (les trois voix hautes SONT justes —
+      // le moteur ne l'émet que quand l'ensemble des pitch classes correspond déjà).
+      const voix: Voice[] = err.type === "wrong_bass"
+        ? ["bass"]
+        : err.voices ?? (err.params.voice ? [err.params.voice] : VOICES);
       const severite: "faute" | "avertissement" = err.severity === "error" ? "faute" : "avertissement";
       for (const mIdx of mesureIdxs) {
         const mes = measures[mIdx];
@@ -255,7 +264,7 @@ export default function HarmoniaEditor({
       }
     }
     scoreRef.current?.surlignerFautes(cibles);
-  }, [musicxml, errors, pretDeGravure, measures]);
+  }, [musicxml, errors, pretDeGravure, measures, showSolution]);
 
   // ── Clic sur une note gravée → sélection ────────────────────────────────────
   // Retrouve (mesure, voix) par l'onset et la hauteur MIDI. Ordre bass→ténor→alto→
