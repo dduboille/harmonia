@@ -82,7 +82,7 @@ const COURS26_EXERCISES: Exercise[] = [
     title: "Basse donnée en Do majeur",
     subtitle: "I – V⁶ – vi – IV – V – I · réalisation d'école",
     difficulty: 2,
-    tags: ["basse donnée", "Do majeur", "V6", "cadence rompue", "cadence parfaite", "harmonisation DEM"],
+    tags: ["basse donnée", "Do majeur", "V6", "résolution déceptive", "cadence parfaite", "harmonisation DEM"],
     keySignature: "C",
     measures: ["I · Do", "V⁶ · Si", "vi · La", "IV · Fa", "V · Sol", "I · Do"],
     solution: [
@@ -95,8 +95,8 @@ const COURS26_EXERCISES: Exercise[] = [
     ],
     hint: "Analysez d'abord la basse : Do = I, Si (sensible) = V⁶, La = vi, Fa = IV, Sol = V, Do = I. La basse Si → La du V⁶ vers le vi descend d'un ton (geste séquentiel de Pachelbel) ; à la cadence finale, la sensible Si du soprano monte vers Do.",
     explanation:
-      "Basse donnée typique du DEM : chaque note de basse révèle l'accord (fondamentale → état fondamental, tierce → 1er renversement). La sensible à la basse donne V⁶ (Sol–Si–Ré), qui enchaîne ici sur vi (cadence rompue) : la basse sensible descend vers La et ne double jamais la sensible dans les voix supérieures. Le soprano monte doucement Sol–Sol–La–La–Si–Do ; la cadence parfaite finale (V–I) résout la sensible Si → Do au soprano. Vérification : aucune quinte ni octave parallèle, tessitures et ordre des voix respectés.",
-    concepts: ["basse donnée", "analyse des notes de basse", "V6", "cadence rompue", "cadence parfaite", "T-SD-D-T"],
+      "Basse donnée typique du DEM : chaque note de basse révèle l'accord (fondamentale → état fondamental, tierce → 1er renversement). La sensible à la basse donne V⁶ (Sol–Si–Ré), qui enchaîne ici sur vi (résolution déceptive V⁶–vi — et non « cadence rompue », terme réservé au V fondamental en position cadentielle). La basse DONNÉE descend ici par degrés (8̂–7̂–6̂ : Do–Si–La) : dans ce geste séquentiel, la sensible à la basse peut exceptionnellement descendre d'un degré vers La, ce qui lève la contradiction apparente avec l'identify c26-sensible-basse-v6 (où, faute de ce contexte descendant, la sensible à la basse monte vers la tonique). La sensible n'est jamais doublée dans les voix supérieures. Le soprano monte doucement Sol–Sol–La–La–Si–Do ; la cadence parfaite finale (V–I) résout la sensible Si → Do au soprano. Vérification : aucune quinte ni octave parallèle, tessitures et ordre des voix respectés.",
+    concepts: ["basse donnée", "analyse des notes de basse", "V6", "résolution déceptive", "cadence parfaite", "T-SD-D-T"],
     regles: "ecole",
   },
 
@@ -112,7 +112,7 @@ const COURS26_EXERCISES: Exercise[] = [
     keySignature: "G",
     measures: ["I · Sol", "vi · Mi", "II⁶ · Do", "I⁶/⁴ · Ré", "V · Ré", "I · Sol"],
     solution: [
-      { soprano: n("D", 5), alto: n("G", 4), tenor: n("B", 3), bass: n("G", 2) },
+      { soprano: n("B", 4), alto: n("G", 4), tenor: n("D", 4), bass: n("G", 2) },
       { soprano: n("B", 4), alto: n("G", 4), tenor: n("E", 4), bass: n("E", 3) },
       { soprano: n("C", 5), alto: n("A", 4), tenor: n("E", 4), bass: n("C", 3) },
       { soprano: n("B", 4), alto: n("G", 4), tenor: n("D", 4), bass: n("D", 3) },
@@ -209,10 +209,10 @@ const COURS24_EXERCISES: Exercise[] = [
       { id: "a", label: "Lab–Do–Fa# — trois notes seulement", isCorrect: false },
       { id: "b", label: "Lab–Do–Ré–Fa# — le socle plus le Ré (2e degré)", isCorrect: true },
       { id: "c", label: "Lab–Do–Mib–Fa# — le socle plus le Mib (3e degré abaissé)", isCorrect: false },
-      { id: "d", label: "Lab–Réb–Fa — accord majeur sur le 2e degré abaissé", isCorrect: false },
+      { id: "d", label: "Lab–Réb–Fa — les notes de l'accord napolitain (♭II)", isCorrect: false },
     ],
     explanation:
-      "La française (Fr+6) ajoute au socle ♭6–1–♯4 le 2e degré (Ré en Do majeur) : Lab–Do–Ré–Fa#. Ce Ré est la neuvième de la dominante Sol, d'où sa couleur. Lab–Do–Fa# (3 notes) est l'italienne ; Lab–Do–Mib–Fa# (avec le ♭3) est l'allemande ; Lab–Réb–Fa est l'accord napolitain (majeur sur le ♭II), une autre prédominante qu'il ne faut pas confondre avec les sixtes augmentées.",
+      "La française (Fr+6) ajoute au socle ♭6–1–♯4 le 2e degré (Ré en Do majeur) : Lab–Do–Ré–Fa#. Ce Ré est la neuvième de la dominante Sol, d'où sa couleur. Lab–Do–Fa# (3 notes) est l'italienne ; Lab–Do–Mib–Fa# (avec le ♭3) est l'allemande ; Lab–Réb–Fa donne les notes de l'accord napolitain (le ♭II ; sa position idiomatique, la sixte napolitaine, met Fa à la basse — ici c'est Lab qui est à la basse), une autre prédominante qu'il ne faut pas confondre avec les sixtes augmentées.",
     hint: "Les trois sixtes se distinguent par leur note AJOUTÉE : rien (italienne), le 2 (française), le ♭3 (allemande).",
   },
 
@@ -229,7 +229,7 @@ const COURS24_EXERCISES: Exercise[] = [
     keySignature: "C",
     correctNotes: ["Ab", "C", "D", "F#"],
     explanation:
-      "La française en Do majeur = Lab (♭6) – Do (1) – Ré (2) – Fa# (♯4). L'intervalle de sixte augmentée se forme entre la basse Lab et le Fa#. On écrit bien Fa# (4e degré ÉLEVÉ) et non Solb : c'est cette orthographe qui distingue la sixte augmentée d'une 7e de dominante enharmonique, et qui impose la résolution ascendante du Fa# vers Sol.",
+      "La française en Do majeur = Lab (♭6) – Do (1) – Ré (2) – Fa# (♯4). L'intervalle de sixte augmentée se forme entre la basse Lab et le Fa#. On écrit bien Fa# (4e degré ÉLEVÉ) et non Solb : c'est cette orthographe qui distingue la sixte augmentée de son équivalent enharmonique — pour l'italienne et l'allemande, une 7e de dominante ; pour la française, plus précisément une 7e de dominante à la quinte diminuée (Lab–Do–Ré–Fa# sonne comme un Ré7♭5) — et qui impose la résolution ascendante du Fa# vers Sol.",
     hint: "Partez du socle Lab–Do–Fa#, puis intercalez la note distinctive de la française : le 2e degré.",
   },
 
@@ -395,11 +395,11 @@ const COURS32_EXERCISES: Exercise[] = [
     options: [
       { id: "a", label: "La gamme altérée (super-locrien = 7e mode de la mineure mélodique)", isCorrect: true },
       { id: "b", label: "Le mode lydien dominant (4e mode de la mineure mélodique)", isCorrect: false },
-      { id: "c", label: "La gamme diminuée (ton/demi-ton)", isCorrect: false },
+      { id: "c", label: "La gamme diminuée (demi-ton/ton)", isCorrect: false },
       { id: "d", label: "Le mode mixolydien (gamme majeure à 7te bémolisée)", isCorrect: false },
     ],
     explanation:
-      "G7alt provient de la gamme ALTÉRÉE (aussi appelée super-locrien, le 7e mode de la gamme mineure mélodique) : elle contient précisément toutes les tensions altérées b9, #9, b5(=#11) et b13. Le lydien dominant est la gamme du G7#11 (une seule altération, la #11), la gamme diminuée ton/demi-ton celle du G7b9, et le mixolydien celle du G13 naturel — chaque couleur de dominante a SA gamme source.",
+      "G7alt provient de la gamme ALTÉRÉE (aussi appelée super-locrien, le 7e mode de la gamme mineure mélodique) : elle contient précisément toutes les tensions altérées b9, #9, b5(=#11) et b13. Le lydien dominant est la gamme du G7#11 (une seule altération, la #11), la gamme diminuée demi-ton/ton celle du G7b9, et le mixolydien celle du G13 naturel — chaque couleur de dominante a SA gamme source.",
     hint: "Une seule de ces gammes contient à la fois b9, #9, b5 ET b13.",
   },
 
@@ -467,11 +467,11 @@ const COURS32_EXERCISES: Exercise[] = [
     solution: [
       { soprano: n("F#", 4), alto: n("D#", 4), tenor: n("A#", 3), bass: n("B", 2) },
       { soprano: n("F#", 4), alto: n("C", 4),  tenor: n("A", 3),  bass: n("D", 3) },
-      { soprano: n("F#", 4), alto: n("B", 3),  tenor: n("D", 3),  bass: n("G", 2) },
+      { soprano: n("F#", 4), alto: n("B", 3),  tenor: n("G", 3),  bass: n("G", 2) },
     ],
     hint: "Les trois accords sont séparés de tierces majeures (Si → Sol). Cherchez la note COMMUNE aux trois : Fa# est la quinte de BMaj7, la tierce de D7 et la 7te de GMaj7. Tenez-la au soprano — c'est le fil qui relie les trois tonalités. Les voix intérieures glissent par demi-tons (La#→La, Do→Si).",
     explanation:
-      "La cellule de base de Giant Steps : BMaj7 (tonique Si) → D7 (dominante de Sol) → GMaj7 (tonique Sol), un mouvement de tierce majeure descendante Si→Sol introduit par la dominante D7. La difficulté du morceau vient de ces modulations par tierces, étrangères au cycle des quintes. Astuce de conduite : le Fa#, commun aux trois accords (5te / 3ce / 7te), tient lieu de pivot au soprano ; en dessous, les voix se conduisent par demi-tons (La#→La = 7te de Si qui descend ; Do→Si = 7te de Ré7 qui descend sur la 3ce de Sol). Réalisation « libre » : la cellule module — aucune tonalité unique ne la régit —, mais la conduite reste conjointe et sans parallèle.",
+      "La cellule de base de Giant Steps : BMaj7 (tonique Si) → D7 (dominante de Sol) → GMaj7 (tonique Sol), un mouvement de tierce majeure descendante Si→Sol introduit par la dominante D7. La difficulté du morceau vient de ces modulations par tierces, étrangères au cycle des quintes. Astuce de conduite : le Fa#, commun aux trois accords (5te / 3ce / 7te), tient lieu de pivot au soprano ; en dessous, les voix se conduisent par degrés (La#→La = 7te de Si qui descend ; Do→Si = 7te de Ré7 qui descend sur la 3ce de Sol). Le GMaj7 final est disposé Sol2–Sol3–Si3–Fa#4 : quinte (Ré) omise, fondamentale doublée — voicing courant de l'accord de 7e majeure ; le ténor descend La→Sol par degré, ce qui supprime la quinte La–Ré du D7 et évite toute quinte parallèle ténor/basse. Réalisation « libre » : la cellule module — aucune tonalité unique ne la régit —, mais la conduite reste conjointe et sans parallèle.",
     concepts: ["Coltrane changes", "cycle de tierces majeures", "note pivot commune", "modulation rapide", "Giant Steps"],
     regles: "libre",
   },
