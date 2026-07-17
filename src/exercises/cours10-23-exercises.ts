@@ -224,6 +224,32 @@ export const COURS11_EXERCISES: (IdentifyExercise | BuildExercise)[] = [
     ],
     explanation: "Sur G7 en Do majeur, les tensions 'disponibles' (qui sonnent bien sans altération) sont la 9e (A) et la 13e (E). La 11e (C) crée un clash direct avec la 3ce (B) et est évitée — sauf altérée en ♯11 (C#). La ♭9 et ♯9 sont des tensions altérées pour couleur blues.",
   },
+  {
+    id: "c11-11juste-interdite-majeur",
+    type: "identify", cours: 11, difficulty: 2,
+    tags: ["extensions", "11e juste", "#11", "tensions disponibles"],
+    concepts: ["11e juste interdite sur accord majeur", "frottement de ♭9 avec la 3ce", "#11 lydienne"],
+    question: "Pourquoi la 11e JUSTE est-elle interdite sur un accord majeur (Cmaj7), et que met-on à la place ?",
+    options: [
+      { id: "a", label: "Elle forme un ♭9 (demi-ton) avec la 3ce majeure Mi ; on la remplace par la #11 (Fa#)", isCorrect: true  },
+      { id: "b", label: "Elle est trop grave ; on la monte d'une octave",                                       isCorrect: false },
+      { id: "c", label: "Elle double la quinte Sol ; on la remplace par la 13e",                                 isCorrect: false },
+      { id: "d", label: "Aucune interdiction : la 11e juste sonne bien sur tout accord majeur",                  isCorrect: false },
+    ],
+    explanation: "Sur Cmaj7 (Do–Mi–Sol–Si), la 11e juste est Fa. Or Fa n'est qu'à un demi-ton de la 3ce majeure Mi : ce frottement de ♭9 sonne « faux » (tension non disponible). On hausse donc la 11e en #11 (Fa#), qui est à un TON de Mi : plus de frottement, et la couleur lydienne brillante en prime. Sur les accords MINEURS, en revanche, la 11e juste est disponible (pas de demi-ton avec la ♭3).",
+    hint: "Comptez la distance entre la 11e juste (Fa) et la tierce majeure (Mi) de l'accord.",
+  },
+  {
+    id: "c11-build-c7s11",
+    type: "build", cours: 11, difficulty: 2,
+    tags: ["extensions", "C7#11", "lydien dominant", "construction", "quinte omise"],
+    concepts: ["voicing lydien-dominant", "guide-tones 3ce + ♭7", "quinte omise pour éviter la friction avec #11"],
+    question: "Construisez le voicing compact de C7#11 (accord lydien-dominant), quinte omise : fondamentale, 3ce, ♭7, #11. Donnez les quatre notes.",
+    correctNotes: ["C", "E", "Bb", "F#"],
+    keySignature: "C",
+    explanation: "C7#11 = Do (fond.) – Mi (3ce majeure) – Sib (♭7, dominante) – Fa# (#11). On omet la quinte juste (Sol) car elle frotterait à un demi-ton avec la #11 (Fa#) : le voicing gagne en clarté et affiche la couleur lydienne-dominante (mode lydien-mixolydien, 4e mode de la mineure mélodique).",
+    hint: "La #11 de Do est Fa# (triton au-dessus de la fondamentale) ; la ♭7 est Sib (pas de « Maj »).",
+  },
 ];
 
 export const COURS11_SATB: SATBExercise[] = [
@@ -267,6 +293,26 @@ export const COURS11_SATB: SATBExercise[] = [
     explanation: "Enrichir une progression classique avec des 7es et extensions. Cmaj7→Am9 : B reste en place (note commune). Am9→Fmaj9 : E reste, A→C (basse descend conjointement). Fmaj9→G13 : A reste (note commune = 13e de G). La conduite de voix reste économique malgré les extensions.",
     concepts: ["extensions", "Maj7", "9e", "notes communes avec extensions"],
     regles: "libre",
+  },
+  {
+    id: "c11-satb-9e-preparee-ecole",
+    type: "satb",
+    cours: 11,
+    title: "9e de dominante préparée et résolue",
+    subtitle: "Dm7 – G9 – C · la 9e descend sur la quinte (école)",
+    difficulty: 2,
+    tags: ["extensions", "9e de dominante", "préparation", "résolution", "Do majeur", "école"],
+    keySignature: "C",
+    measures: ["II7 · Dm7", "V9 · G9", "I · C"],
+    solution: [
+      { soprano: n("A",4), alto: n("C",4), tenor: n("F",3), bass: n("D",3) },
+      { soprano: n("A",4), alto: n("B",3), tenor: n("F",3), bass: n("G",2) },
+      { soprano: n("G",4), alto: n("C",4), tenor: n("E",3), bass: n("C",3) },
+    ],
+    hint: "La 9e de G9 est La — déjà présente comme quinte du Dm7 : elle est donc PRÉPARÉE (note commune au soprano). À la résolution G9→C, la 9e (La) descend d'un ton sur la quinte de Do (Sol), la sensible Si monte vers Do et la 7e Fa descend vers Mi.",
+    explanation: "Traitement CLASSIQUE de la 9e de dominante, à la différence du jazz : la 9e y est une dissonance PRÉPARÉE puis RÉSOLUE. G9 = Sol–Si–Fa–La (quinte Ré omise) ; la 9e La est préparée (quinte du Dm7 précédent, tenue au soprano) puis résout en descendant d'un ton sur la quinte de la tonique (La→Sol). En parallèle, la sensible Si monte vers Do et la 7e de dominante Fa descend vers Mi. La 7e du Dm7 (Do) descend elle aussi conjointement vers Si. Réalisation d'ÉCOLE : aucune quinte ni octave parallèle, sensible non doublée, tessitures respectées.",
+    concepts: ["9e de dominante", "dissonance préparée", "résolution de la 9e", "sensible", "septième de dominante"],
+    regles: "ecole",
   },
 ];
 

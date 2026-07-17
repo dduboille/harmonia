@@ -340,4 +340,141 @@ const COURS24_EXERCISES: Exercise[] = [
   },
 ];
 
-export { COURS26_EXERCISES, COURS24_EXERCISES };
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 32 — Extensions altérées (b9, #9, #11, b13) et reharmonisation moderne
+// ════════════════════════════════════════════════════════════════════════════
+//
+// NOTE SUR `regles: "libre"` POUR LES RÉALISATIONS SATB (documentée, cf. spec) :
+// ce cours traite du JAZZ DE COULEUR — dominantes altérées, cycle de tierces de
+// Coltrane. Le moteur d'école n'a rien à y valider utilement :
+//   1. les TENSIONS (b9, #9, #11, b13) ne sont pas des sons d'accord au sens
+//      tonal : identifyChordFromNotes lit un G7(b9) {Sol,Si,Fa,Lab} comme un
+//      Sol7 à quinte omise avec un Lab « en trop » ; la règle d'école « pas de
+//      ♭9 non préparée » condamnerait précisément la couleur recherchée ;
+//   2. la cellule de Coltrane MODULE par tierces majeures (Si maj → Sol maj) —
+//      aucune tonalité unique ne la régit, donc sensible et 7e n'y ont pas de
+//      fonction stable.
+// → `regles: "libre"` sur les deux SATB (conformité + tessitures vérifiées ;
+// la conduite reste écrite « proprement », comme le montre la revue voix par
+// voix), à l'identique des SATB jazz du cours 11.
+
+const COURS32_EXERCISES: Exercise[] = [
+  // ── identify 1 — nommer la tension altérée écrite (piège enharmonique) ──────
+  {
+    id: "c32-nommer-tension-alteree",
+    type: "identify",
+    cours: 32,
+    difficulty: 1,
+    tags: ["tensions altérées", "#9", "enharmonie", "Hendrix", "ambiguïté maj/min"],
+    concepts: ["#9 ≡ ♭3 enharmonique", "coexistence 3ce majeure / #9", "orthographe de la tension"],
+    question:
+      "Un voicing de dominante est écrit Sol – Si – Fa – La# (une couleur de G7 enrichie). Quelle tension le La# apporte-t-il ?",
+    context: "Dominante de Do majeur. Notes du voicing : Sol (fond.), Si (3ce majeure), Fa (♭7), La#.",
+    options: [
+      { id: "a", label: "#9 (neuvième dièse) — La# = La haussé d'un demi-ton, à l'octave", isCorrect: true },
+      { id: "b", label: "♭3 (tierce mineure Si♭) — l'accord serait donc mineur", isCorrect: false },
+      { id: "c", label: "♭9 (neuvième bémol, La♭)", isCorrect: false },
+      { id: "d", label: "♭13 (treizième bémol, Mi♭)", isCorrect: false },
+    ],
+    explanation:
+      "La# est bien la #9 : le 9e degré (La) haussé d'un demi-ton. Le piège est enharmonique — La# sonne exactement comme Si♭, la tierce mineure. Mais ce n'EST PAS la tierce mineure, car la tierce MAJEURE (Si) est déjà présente : les deux coexistent, et c'est justement cette ambiguïté majeur/mineur qui fait le son « Hendrix » du G7#9 (Purple Haze). On écrit donc La# (9e altérée) et non Si♭ (3ce), l'orthographe suivant la fonction.",
+    hint: "La 3ce majeure Si est déjà dans l'accord : la note ajoutée ne peut donc pas être une seconde tierce.",
+  },
+
+  // ── identify 2 — la gamme source d'un V7 altéré (G7alt) ────────────────────
+  {
+    id: "c32-gamme-source-alteree",
+    type: "identify",
+    cours: 32,
+    difficulty: 2,
+    tags: ["gamme altérée", "super-locrien", "G7alt", "gammes sources"],
+    concepts: ["G7alt ← gamme altérée", "super-locrien = 7e mode de la mineure mélodique", "une gamme par couleur d'accord"],
+    question:
+      "Sur quelle gamme repose un accord altéré complet G7alt (b9, #9, b5, b13), tension maximale avant résolution ?",
+    context: "V7 altéré de Do majeur/mineur. G7alt réunit toutes les altérations de la dominante.",
+    options: [
+      { id: "a", label: "La gamme altérée (super-locrien = 7e mode de la mineure mélodique)", isCorrect: true },
+      { id: "b", label: "Le mode lydien dominant (4e mode de la mineure mélodique)", isCorrect: false },
+      { id: "c", label: "La gamme diminuée (ton/demi-ton)", isCorrect: false },
+      { id: "d", label: "Le mode mixolydien (gamme majeure à 7te bémolisée)", isCorrect: false },
+    ],
+    explanation:
+      "G7alt provient de la gamme ALTÉRÉE (aussi appelée super-locrien, le 7e mode de la gamme mineure mélodique) : elle contient précisément toutes les tensions altérées b9, #9, b5(=#11) et b13. Le lydien dominant est la gamme du G7#11 (une seule altération, la #11), la gamme diminuée ton/demi-ton celle du G7b9, et le mixolydien celle du G13 naturel — chaque couleur de dominante a SA gamme source.",
+    hint: "Une seule de ces gammes contient à la fois b9, #9, b5 ET b13.",
+  },
+
+  // ── build — construire une dominante altérée G7(b9,b13) ────────────────────
+  {
+    id: "c32-build-g7-b9-b13",
+    type: "build",
+    cours: 32,
+    difficulty: 2,
+    tags: ["dominante altérée", "b9", "b13", "construction", "voicing"],
+    concepts: ["♭9 = Lab sur Sol", "♭13 = Mib sur Sol", "quinte omise", "guide-tones + tensions"],
+    question:
+      "Construisez le voicing d'une dominante altérée G7(♭9, ♭13) en empilant, dans l'ordre : fondamentale, tierce, septième, puis les deux tensions ♭9 et ♭13 (la quinte est omise). Donnez les cinq notes.",
+    keySignature: "C",
+    correctNotes: ["G", "B", "F", "Ab", "Eb"],
+    explanation:
+      "G7(♭9, ♭13) = Sol (fond.) – Si (3ce majeure) – Fa (♭7) – Lab (♭9 = 9e bémolisée) – Mib (♭13 = 13e bémolisée). On garde les guide-tones (3ce + ♭7, qui définissent la dominante) et on ajoute les deux tensions ; la quinte (Ré) est omise, comme presque toujours dès qu'on empile des tensions. Mib s'écrit bien ♭13 (et non #5 = Ré#) car il colore une 13e abaissée au-dessus des guide-tones.",
+    hint: "Sur Sol : la ♭9 est un demi-ton au-dessus de la fondamentale, la ♭13 un demi-ton sous la 13e naturelle (Mi).",
+  },
+
+  // ── satb 1 — II–V–I mineur avec dominante altérée (b9 → 5) ──────────────────
+  //
+  // `regles: "libre"` : voir la note en tête de section. Le G7(♭9) est une
+  // couleur jazz — sa ♭9 (Lab) n'est pas un son d'accord tonal, et la règle
+  // d'école la refuserait. La conduite reste néanmoins « propre » : ♭9 et ♭7
+  // descendent, la sensible monte, aucune parallèle.
+  {
+    id: "c32-satb-iivi-mineur-altere",
+    type: "satb",
+    cours: 32,
+    title: "II–V–I mineur avec dominante altérée",
+    subtitle: "Dm7♭5 – G7(♭9) – Cm · la ♭9 descend sur la quinte",
+    difficulty: 3,
+    tags: ["II-V-I mineur", "dominante altérée", "b9", "résolution des tensions", "Do mineur"],
+    keySignature: "Cm",
+    measures: ["iiø7 · Dm7♭5", "V7(♭9) · G7(♭9)", "i · Cm"],
+    solution: [
+      { soprano: n("Ab", 4), alto: n("C", 4), tenor: n("F", 3), bass: n("D", 3) },
+      { soprano: n("Ab", 4), alto: n("B", 3), tenor: n("F", 3), bass: n("G", 2) },
+      { soprano: n("G", 4),  alto: n("C", 4), tenor: n("Eb", 3), bass: n("C", 3) },
+    ],
+    hint: "La ♭9 de G7 est Lab — déjà présente comme ♭5 du Dm7♭5 : elle est donc PRÉPARÉE (note commune au soprano). À la résolution sur Cm, chaque tension descend : la ♭9 (Lab) descend d'un demi-ton sur la quinte Sol, la ♭7 (Fa) descend sur la tierce Mib, tandis que la sensible Si monte vers Do.",
+    explanation:
+      "Le II–V–I mineur est le terrain naturel des dominantes altérées. Ici G7(♭9) = Sol – Si – Fa – Lab (quinte omise). La ♭9 (Lab) est préparée : c'est déjà la quinte diminuée du Dm7♭5, tenue au soprano. À la résolution, les tensions se conduisent par mouvement DESCENDANT — c'est la règle d'or : la ♭9 (Lab) descend d'un demi-ton sur la 5te de Cm (Sol), la ♭7 (Fa) descend sur la 3ce (Mib) ; la sensible Si, elle, monte vers Do. Le même principe régit la ♭13, qui descendrait sur la 9e. Réalisation « libre » : la ♭9 est une couleur, non un son d'accord tonal — mais la conduite reste sans parallèle ni saut disgracieux (revue voix par voix).",
+    concepts: ["dominante altérée", "b9 préparée", "résolution descendante des tensions", "II-V-I mineur", "note commune"],
+    regles: "libre",
+  },
+
+  // ── satb 2 — cellule de Coltrane (cycle de tierces majeures) ────────────────
+  //
+  // `regles: "libre"` : voir la note en tête de section. La cellule MODULE par
+  // tierces majeures (Si maj → Sol maj) ; aucune tonalité unique ne la régit.
+  // Le Fa# est le pivot commun aux trois accords (5te de Si, 3ce de Ré7, 7e de
+  // Sol) : il est tenu au soprano, seul lien entre les trois pôles.
+  {
+    id: "c32-satb-coltrane-cellule",
+    type: "satb",
+    cours: 32,
+    title: "Cellule de Coltrane (Giant Steps)",
+    subtitle: "BMaj7 – D7 – GMaj7 · cycle de tierces majeures, Fa# pivot",
+    difficulty: 3,
+    tags: ["Coltrane changes", "Giant Steps", "cycle de tierces", "modulation par tierces", "note pivot"],
+    keySignature: "G",
+    measures: ["I(Si) · BMaj7", "V7(Sol) · D7", "I(Sol) · GMaj7"],
+    solution: [
+      { soprano: n("F#", 4), alto: n("D#", 4), tenor: n("A#", 3), bass: n("B", 2) },
+      { soprano: n("F#", 4), alto: n("C", 4),  tenor: n("A", 3),  bass: n("D", 3) },
+      { soprano: n("F#", 4), alto: n("B", 3),  tenor: n("D", 3),  bass: n("G", 2) },
+    ],
+    hint: "Les trois accords sont séparés de tierces majeures (Si → Sol). Cherchez la note COMMUNE aux trois : Fa# est la quinte de BMaj7, la tierce de D7 et la 7te de GMaj7. Tenez-la au soprano — c'est le fil qui relie les trois tonalités. Les voix intérieures glissent par demi-tons (La#→La, Do→Si).",
+    explanation:
+      "La cellule de base de Giant Steps : BMaj7 (tonique Si) → D7 (dominante de Sol) → GMaj7 (tonique Sol), un mouvement de tierce majeure descendante Si→Sol introduit par la dominante D7. La difficulté du morceau vient de ces modulations par tierces, étrangères au cycle des quintes. Astuce de conduite : le Fa#, commun aux trois accords (5te / 3ce / 7te), tient lieu de pivot au soprano ; en dessous, les voix se conduisent par demi-tons (La#→La = 7te de Si qui descend ; Do→Si = 7te de Ré7 qui descend sur la 3ce de Sol). Réalisation « libre » : la cellule module — aucune tonalité unique ne la régit —, mais la conduite reste conjointe et sans parallèle.",
+    concepts: ["Coltrane changes", "cycle de tierces majeures", "note pivot commune", "modulation rapide", "Giant Steps"],
+    regles: "libre",
+  },
+];
+
+export { COURS26_EXERCISES, COURS24_EXERCISES, COURS32_EXERCISES };
