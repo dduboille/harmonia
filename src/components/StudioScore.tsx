@@ -8,10 +8,11 @@ import React, {
  * StudioScore.tsx
  * Harmonia — Gravure d'une partition MusicXML avec Verovio.
  *
- * POURQUOI Verovio (et non OSMD) : OSMD embarque son propre VexFlow 1.x dont les
- * déclarations ambiantes écrasaient la résolution de « vexflow » côté projet et
- * cassaient VexFlowScore.tsx (VexFlow 5). Verovio n'embarque aucun VexFlow : plus
- * de conflit. Il grave en WASM, chargé UNIQUEMENT au navigateur — d'où l'import
+ * POURQUOI Verovio (et non OSMD) : OSMD embarquait sa propre dépendance de gravure
+ * dont les déclarations ambiantes écrasaient la résolution du même paquet côté
+ * projet et cassaient le rendu de portées historique. Verovio n'embarque aucune
+ * dépendance de ce type : plus de conflit. Il grave en WASM, chargé UNIQUEMENT au
+ * navigateur — d'où l'import
  * DYNAMIQUE (jamais au rendu serveur). Le WASM est embarqué dans le module JS :
  * aucun fichier .wasm à servir depuis /public.
  *

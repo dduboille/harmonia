@@ -447,7 +447,7 @@ const MAJOR_KEY_DATA: KeyData[] = [
 
 // R1 — chaque tonalité mineure porte sa VRAIE signature (« Am », « Dm »…), et non
 // plus celle de son relatif majeur. L'armure affichée est identique (relatifs de
-// mêmes altérations) — VexFlow accepte les clés mineures « Xm » (cf. tables.js),
+// mêmes altérations) — les tonalités mineures sont passées sous la forme « Xm »,
 // `KEY_ACCIDENTALS` les connaît, et `tonaliteDeSignature` en lit la vraie tonique :
 // les règles de sensible s'arment désormais sur le bon degré.
 const MINOR_KEY_DATA: KeyData[] = [

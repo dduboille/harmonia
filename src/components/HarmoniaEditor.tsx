@@ -5,7 +5,7 @@
  * Harmonia — Éditeur d'exercices SATB interactif
  *
  * Fonctionnalités :
- * - Portées grand staff (Sol + Fa) via VexFlowScoreClient
+ * - Portées grand staff (Sol + Fa) gravées par Verovio via StudioScore
  * - Placement de notes voix par voix (B / T / A / S)
  * - Clavier chromatique 12 touches
  * - Validation harmonique en temps réel (parallèles, espacements, résolutions)
