@@ -343,6 +343,35 @@ describe("validateSATB — la sensible en marche (I/VI seulement)", () => {
   });
 });
 
+describe("validateSATB — cadence rompue V7→VI en mineur (sixte mineur, tonicPc+8)", () => {
+  // Couverture du branchement mineur de l'armement (R4) : en majeur, sixte =
+  // tonicPc+9 (VI relatif) — déjà testé plus haut (« cadence rompue V→VI »).
+  // En MINEUR, sixte = tonicPc+8 (VI abaissé, degré emprunté au majeur
+  // homonyme) : c'est la branche qui manquait de test dédié. En la mineur
+  // (Am, tonicPc=9), sixte = 9+8=17 mod 12 = 5 = Fa — le VI est donc Fa
+  // majeur (Fa-La-Do), et le V7 est Mi7 (Mi-Sol♯-Si-Ré).
+  it("Mi7 → Fa (VI) en la mineur : la sensible (sol♯) résout en montant → rien", () => {
+    const sol = [
+      chord("E2", "D3", "B3", "G#4"), // V7 (Mi7 : Mi-Sol♯-Si-Ré) — sensible au soprano
+      chord("F2", "C3", "A3", "A4"),  // VI (Fa : Fa-La-Do) — G#4 → A4 ✓ (résout en montant)
+    ];
+    const errs = validateSATB(sol, "Am", false, sol);
+    expect(errs.filter(e => e.type === "wrong_chord" || e.type === "wrong_bass")).toEqual([]);
+    expect(typesOf(errs)).not.toContain("leading_tone");
+  });
+
+  it("Mi7 → Fa (VI) en la mineur : la sensible (sol♯) SAUTE au soprano → leading_tone (error)", () => {
+    const sol = [
+      chord("E2", "D3", "B3", "G#4"), // V7 : sensible au soprano
+      chord("F2", "C3", "A3", "E4"),  // VI : G#4 → E4, saut — pas de résolution
+    ];
+    const errs = validateSATB(sol, "Am", false, sol);
+    expect(errs.filter(e => e.type === "wrong_chord" || e.type === "wrong_bass")).toEqual([]);
+    const lt = errs.find(e => e.type === "leading_tone");
+    expect(lt?.severity).toBe("error");
+  });
+});
+
 describe("validateSATB — sensible à la basse d'un V6 (règle « Pachelbel »)", () => {
   // Geste séquentiel canonique reconnu par les traités : I – V6 – vi… la sensible
   // est à la BASSE du V6 et DESCEND par degré vers le VI (do–sol/si–la). Elle n'y
