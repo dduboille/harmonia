@@ -896,7 +896,7 @@ const COURS30_EXERCISES: Exercise[] = [
     keySignature: "C",
     correctNotes: ["C", "D", "Eb", "F", "F#", "G#", "A", "B"],
     explanation:
-      "La gamme octatonique en ton–demi-ton à partir de Do : Do – Ré – Mib – Fa – Fa# – Sol# – La – Si (puis Do à l'octave). Huit sons, alternance stricte T–½T–T–½T–T–½T–T–½T. C'est le mode 2 à transpositions limitées de Messiaen (3 transpositions distinctes, contre 2 pour la gamme par tons). Elle contient trois accords dim7 imbriqués (Do–Mib–Fa#–La…) et sert la couleur « slave mystique » de Stravinsky (L'Oiseau de feu, Pétrouchka). Ne pas la confondre avec la gamme par tons (6 sons, tous tons entiers).",
+      "La gamme octatonique en ton–demi-ton à partir de Do : Do – Ré – Mib – Fa – Fa# – Sol# – La – Si (puis Do à l'octave). Huit sons, alternance stricte T–½T–T–½T–T–½T–T–½T. C'est le mode 2 à transpositions limitées de Messiaen (3 transpositions distinctes, contre 2 pour la gamme par tons). Elle contient deux accords dim7 imbriqués (Do–Mib–Fa#–La et Ré–Fa–Sol#–Si) et sert la couleur « slave mystique » de Stravinsky (L'Oiseau de feu, Pétrouchka). Ne pas la confondre avec la gamme par tons (6 sons, tous tons entiers).",
     hint: "Alternez un ton puis un demi-ton, à partir de Do : Do (+T) Ré (+½T) Mib (+T) Fa (+½T) Fa#… jusqu'à revenir vers Do.",
   },
 
@@ -1138,7 +1138,7 @@ const COURS36_EXERCISES: Exercise[] = [
     tags: ["Debussy", "Ravel", "démarche compositionnelle", "impressionnisme", "style"],
     concepts: ["Debussy = intuitif, organique, par images", "Ravel = architecte, calculé, « horloger »", "même surface, logiques opposées"],
     question:
-      "Debussy et Ravel partagent la surface impressionniste (accords colorés, gammes spéciales) mais leurs DÉMARCHES s'opposent. Lequel décrivait sa propre écriture comme celle d'un « horloger » — précise, architecturale, calculée ?",
+      "Debussy et Ravel partagent la surface impressionniste (accords colorés, gammes spéciales) mais leurs DÉMARCHES s'opposent. Lequel avait une écriture d'« horloger » — précise, architecturale, calculée (le mot est de Stravinsky à son sujet) ?",
     context: "Distinction de fond du cours : même palette, logiques compositionnelles opposées.",
     options: [
       { id: "a", label: "Ravel — écriture architecturale et calculée, d'une rigueur quasi horlogère ; Debussy compose au contraire par images et couleurs, de façon intuitive et organique", isCorrect: true },
@@ -1147,8 +1147,8 @@ const COURS36_EXERCISES: Exercise[] = [
       { id: "d", label: "Aucun des deux : ils composaient de manière identique, d'où l'étiquette commune", isCorrect: false },
     ],
     explanation:
-      "Même « surface » impressionniste, logiques opposées. Ravel se voulait « horloger » : construction architecturale, précision quasi mathématique (le Boléro, un seul accord tendu 15 minutes par la seule orchestration, en est le manifeste). Debussy compose organiquement, en suivant l'image et la couleur sonore, sans plan préétabli — d'ailleurs il rejetait l'étiquette « impressionniste » empruntée à la peinture. Confondre les deux (d) est précisément l'erreur que le cours démonte : la parenté de vocabulaire cache deux tempéraments contraires.",
-    hint: "Lequel disait avoir « l'esprit d'un horloger » ? L'autre suivait l'image et la couleur, intuitivement.",
+      "Même « surface » impressionniste, logiques opposées. Ravel, « parfait horloger suisse » selon le mot de Stravinsky : construction architecturale, précision quasi mathématique (le Boléro, un seul accord tendu 15 minutes par la seule orchestration, en est le manifeste). Debussy compose organiquement, en suivant l'image et la couleur sonore, sans plan préétabli — d'ailleurs il rejetait l'étiquette « impressionniste » empruntée à la peinture. Confondre les deux (d) est précisément l'erreur que le cours démonte : la parenté de vocabulaire cache deux tempéraments contraires.",
+    hint: "Lequel Stravinsky comparait-il à un « horloger » ? L'autre suivait l'image et la couleur, intuitivement.",
   },
 
   // ── identify 2 — la pédale longue debussyste (diff 2) ────────────────────────
