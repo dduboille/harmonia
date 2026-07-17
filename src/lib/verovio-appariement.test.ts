@@ -19,9 +19,11 @@
 import { describe, it, expect, beforeAll } from "vitest";
 import { pieceVersMusicXML } from "./piece-vers-musicxml";
 import { satbVersMusicXML } from "./satb-vers-musicxml";
+import { squeletteVersMusicXML } from "./squelette-vers-musicxml";
 import { trouverPosition } from "./composition-edition";
 import type { Piece, Note } from "./piece-model";
 import type { Measure } from "./satb-rules";
+import type { VoicedMeasure } from "./voicing-ecole";
 
 function ronde(hs: Array<[Note["hauteurs"][0]["lettre"], number]>): Note {
   return {
@@ -133,5 +135,46 @@ describe("appariement du MusicXML SATB genere", () => {
         expect(Math.abs(tkSatb.getMIDIValuesForElement(id).time - onset)).toBeLessThanOrEqual(1);
       }
     }
+  });
+});
+
+/**
+ * Le squelette harmonique grave DEUX BLANCHES quand une mesure porte deux accords.
+ * VERROUILLE la constante de temps de la blanche : à tempo Verovio par défaut (120 BPM)
+ * une blanche en 4/4 dure 1000 ms, donc le 2e accord d'une mesure attaque à
+ * i × 2000 + 1000 ms. Sans ce verrou, l'appariement clic/couleur du 2e accord serait
+ * décalé (la fiche/fauteur se poserait sur la mauvaise verticalité).
+ */
+// m0 : deux blanches — Do majeur (48/55/64/72) puis Sol majeur (43/59/62/67).
+const MESURE_DEUX_BLANCHES: VoicedMeasure[][] = [[
+  { bass: 48, tenor: 55, alto: 64, soprano: 72 },
+  { bass: 43, tenor: 59, alto: 62, soprano: 67 },
+]];
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- poignée opaque, comme dans StudioScore
+let tkSq: any;
+
+beforeAll(async () => {
+  const creerModule = (await import("verovio/wasm")).default;
+  const { VerovioToolkit } = await import("verovio/esm");
+  tkSq = new VerovioToolkit(await creerModule());
+  tkSq.loadData(squeletteVersMusicXML(MESURE_DEUX_BLANCHES, "C"));
+  tkSq.renderToMIDI();
+  tkSq.setOptions({ scale: 40, adjustPageHeight: true, breaks: "auto", footer: "none", pageWidth: 2000 });
+  tkSq.renderToSVG(1);
+}, 60000);
+
+describe("appariement du squelette (blanches)", () => {
+  it("la 1re blanche attaque à 0 ms, la 2e à 1000 ms — la constante 1000 ms/blanche", () => {
+    const premier: string[] = tkSq.getElementsAtTime(0 * 2000 + 1).notes ?? [];
+    const second: string[] = tkSq.getElementsAtTime(0 * 2000 + 1000 + 1).notes ?? [];
+    expect(premier).toHaveLength(4);
+    expect(second).toHaveLength(4);
+
+    const midis = (ids: string[]) => ids.map((id) => tkSq.getMIDIValuesForElement(id).pitch).sort((a: number, b: number) => a - b);
+    expect(midis(premier)).toEqual([48, 55, 64, 72]); // 1er accord (Do majeur)
+    expect(midis(second)).toEqual([43, 59, 62, 67]);  // 2e accord (Sol majeur)
+    // Les deux verticalités sont distinctes (pas d'aliasing sur la même blanche).
+    expect(premier.sort()).not.toEqual(second.sort());
   });
 });
