@@ -63,7 +63,9 @@ export default function EditeurPage() {
             subtitle="Conduite de voix minimaliste · Position 7351 · 3 mesures"
             measures={["II (Dm7)", "V (G7)", "I (CMaj7)"]}
             keySignature="C"
-            solution={SOLUTION_IIVI}
+            // Pas de `solution` : ses accords codés en dur sont incomplets (G7 sans
+            // tierce…) et armeraient la conformité à tort — même retrait que le
+            // générateur (R6). Mise à niveau des démos en suivi.
           />
         </div>
 
@@ -77,7 +79,7 @@ export default function EditeurPage() {
             subtitle="Cadence parfaite complète · 4 mesures"
             measures={["I (C)", "IV (F)", "V7 (G7)", "I (C)"]}
             keySignature="C"
-            solution={SOLUTION_IFVII}
+            // Pas de `solution` : cf. exercice 1 (retrait miroir de R6).
           />
         </div>
 

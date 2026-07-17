@@ -56,6 +56,8 @@ export interface HarmoniaEditorProps {
   showKeySignature?: boolean;
   initialNotes?: Partial<Record<Voice, (NoteEntry | null)[]>>; // notes pré-remplies
   solution?: Record<Voice, NoteEntry>[]; // solution pour comparaison
+  /** école = règles d'écriture complètes ; libre = conformité + tessitures, pour les exercices non tonals. */
+  regles?: "ecole" | "libre";
   onComplete?: (measures: Measure[]) => void;
 }
 
@@ -187,6 +189,7 @@ export default function HarmoniaEditor({
   showKeySignature = true,
   initialNotes,
   solution,
+  regles = "ecole",
   onComplete,
 }: HarmoniaEditorProps) {
   const t = useTranslations("satb");
@@ -255,10 +258,10 @@ export default function HarmoniaEditor({
 
   // Validation à chaque changement
   useEffect(() => {
-    const errs = validateSATB(measures, keySignature, !showKeySignature);
+    const errs = validateSATB(measures, keySignature, !showKeySignature, solution, regles);
     setErrors(errs);
     for (const e of errs) errorTypesSeen.current.add(e.type);
-  }, [measures, keySignature, showKeySignature]);
+  }, [measures, keySignature, showKeySignature, solution, regles]);
 
   // Envoi au démontage (l'élève quitte la page sans forcément terminer)
   useEffect(() => {
@@ -743,7 +746,7 @@ export default function HarmoniaEditor({
               cursor: placedNotes === totalNotes && !hasErrors ? "pointer" : "default",
               transition:"all .2s",
             }}>
-            Terminer ✓
+            {t("finish")} ✓
           </button>
         </div>
 

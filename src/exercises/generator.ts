@@ -10,6 +10,8 @@
  */
 
 import type { SATBExercise } from "@/types/exercise";
+import { validateSATB } from "@/lib/satb-rules";
+import type { Measure } from "@/lib/satb-rules";
 
 // ─── Types internes ───────────────────────────────────────────────────────────
 
@@ -35,6 +37,8 @@ interface ProgressionTemplate {
   chords: ChordTemplate[];
   /** Applicable en majeur, mineur, ou les deux */
   modes: ("major" | "minor")[];
+  /** Régime de règles (défaut « ecole ») — les templates générés sont tous tonals. */
+  regles?: "ecole" | "libre";
 }
 
 /** Une note SATB calculée */
@@ -49,7 +53,12 @@ const SHARP_TO_FLAT: Record<string, string> = {
   "C#": "Db", "D#": "Eb", "F#": "Gb", "G#": "Ab", "A#": "Bb",
 };
 
-const FLAT_KEY_SIGS = new Set(["F", "Bb", "Eb", "Ab", "Db", "Gb"]);
+// Tonalités dont l'armure s'écrit en bémols — majeures ET mineures (la signature
+// mineure porte désormais son vrai nom « Xm », cf. MINOR_KEY_DATA).
+const FLAT_KEYS = new Set([
+  "F", "Bb", "Eb", "Ab", "Db", "Gb",
+  "Dm", "Gm", "Cm", "Fm", "Bbm", "Ebm",
+]);
 
 function noteIndex(note: string): number {
   const map: Record<string,number> = {
@@ -70,6 +79,30 @@ function transposeNote(rootNote: string, rootOctave: number, semitones: number, 
   return { name: useFlats ? (SHARP_TO_FLAT[sharp] ?? sharp) : sharp, octave: oct };
 }
 
+// ─── Orthographe de la sensible en mineur ─────────────────────────────────────
+//
+// La sensible (7e degré HAUSSÉ) d'un mineur en bémols doit s'écrire comme un
+// dièse/naturel du 7e degré, jamais comme un bémol : en Ré mineur c'est un DO#
+// (et non Réb), en Do mineur un SI naturel, etc. — même si la tonalité est en
+// bémols. Fix ciblé : quand une hauteur produite tombe sur la sensible, on force
+// l'orthographe correcte du 7e degré (repli sur l'orthographe par défaut si elle
+// exigerait une graphie exotique — E#, B#, F## — que le moteur ne gère pas).
+
+const LETTERS = ["C", "D", "E", "F", "G", "A", "B"];
+const LETTER_PC: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+
+/** Noms de notes que le moteur (noteToMidi) et le rendu savent lire sans risque. */
+const SAFE_NAMES = new Set([...CHROMATIC, ...Object.values(SHARP_TO_FLAT)]);
+
+/** Orthographe du 7e degré haussé (sensible) d'une tonalité mineure. */
+function raisedSeventhSpelling(tonicRoot: string, ltPc: number): string {
+  const idx = LETTERS.indexOf(tonicRoot[0]);
+  const seventhLetter = LETTERS[(idx + 6) % 7]; // lettre juste sous la tonique
+  const diff = ((ltPc - LETTER_PC[seventhLetter]) % 12 + 12) % 12;
+  const acc = diff === 0 ? "" : diff === 1 ? "#" : diff === 2 ? "##" : "";
+  return seventhLetter + acc;
+}
+
 // ─── Intervalles standard ─────────────────────────────────────────────────────
 // [fondamentale(0), tierce, quinte, septième] en demi-tons
 
@@ -82,6 +115,26 @@ const INT = {
   M:     [0, 4, 7,  7] as [number,number,number,number], // triade maj (quinte doublée)
   m:     [0, 3, 7,  7] as [number,number,number,number], // triade min
   dim:   [0, 3, 6,  6] as [number,number,number,number], // triade dim
+};
+
+// ─── Déclinaison mineure des gabarits both-mode ───────────────────────────────
+//
+// Les gabarits marqués modes:["major","minor"] écrivaient leurs accords avec les
+// QUALITÉS MAJEURES, transposées telles quelles en mineur — d'où des i/iv MAJEURS,
+// un VI mineur, un IIm7 au lieu du iiø7 : 192 exercices mineurs non diatoniques.
+// On corrige à la donnée : chaque degré reçoit sa qualité DIATONIQUE au mineur
+// harmonique. Clé = degreeLabel du gabarit ; les degrés absents (V7, V/V) restent
+// inchangés — la dominante porte déjà sa sensible haussée, la dominante secondaire
+// est chromatique par nature.
+const MINOR_DECLENSION: Record<string, {
+  degreeLabel: string;
+  intervals: [number, number, number, number];
+  quality: string;
+}> = {
+  "I":    { degreeLabel: "i",    intervals: INT.m,    quality: "m"    }, // tonique mineure
+  "IV":   { degreeLabel: "iv",   intervals: INT.m,    quality: "m"    }, // sous-dominante mineure
+  "VI":   { degreeLabel: "VI",   intervals: INT.M,    quality: "M"    }, // VI MAJEUR (rompue authentique)
+  "IIm7": { degreeLabel: "iiø7", intervals: INT.m7b5, quality: "m7b5" }, // demi-diminué
 };
 
 // ─── Templates de progressions ────────────────────────────────────────────────
@@ -274,8 +327,11 @@ export const PROGRESSION_TEMPLATES: ProgressionTemplate[] = [
 function degreeToSemitones(degree: string, mode: "major" | "minor"): number {
   // Cas spéciaux
   if (degree === "V/V") {
-    // Dominante de V = IIe degré de la gamme majeure + 4 (pour faire un accord dom7)
-    return mode === "major" ? 9 : 9; // VIe degré = dominante de la dominante
+    // V/V = dominante de la dominante : sa fondamentale est sur le IIe degré
+    // (tonique + 2). En Do → Ré (Ré7 → Sol7) ; en la min → Si (Si7 → Mi7).
+    // La qualité (7e de dominante, tierce haussée = sensible de V) est posée par
+    // le générateur (effIntervals = INT["7"]).
+    return 2;
   }
   if (degree === "IVm") return 5; // même position que IV
   if (degree === "IIm7" || degree === "II") return 2;
@@ -328,10 +384,6 @@ const RANGES = {
   bass:    { min: 40, max: 60 }, // E2–C4
 };
 
-function noteToMidi(name: string, octave: number): number {
-  return noteIndex(name) + (octave + 1) * 12;
-}
-
 function midiToNote(midi: number, useFlats = false): { name: string; octave: number } {
   const oct  = Math.floor(midi / 12) - 1;
   const idx  = ((midi % 12) + 12) % 12;
@@ -339,88 +391,254 @@ function midiToNote(midi: number, useFlats = false): { name: string; octave: num
   return { name: useFlats ? (SHARP_TO_FLAT[sharp] ?? sharp) : sharp, octave: oct };
 }
 
-/**
- * Calcule le voicing SATB optimal pour un accord donné avec une position soprano
- */
-function computeVoicing(
+// ─── R2a — voicings complets et conduite des voix ─────────────────────────────
+//
+// L'ancien `computeVoicing` distribuait alto/ténor par modulo (`chordNotes[i %
+// n]`) : il produisait des accords dégénérés (7e à deux sons, sensible doublée)
+// et n'assurait aucune conduite d'une mesure à l'autre — d'où les 134 sensibles
+// doublées et 143 parallèles relevées à l'audit. Le nouveau moteur :
+//   1. pose le soprano (position demandée) et la basse (fondamentale) ;
+//   2. COMPLÈTE l'accord — alto/ténor couvrent d'abord les hauteurs manquantes,
+//      et toute doublure privilégie la FONDAMENTALE, jamais la sensible ;
+//   3. enchaîne les mesures par recherche en profondeur (DFS) : à chaque accord,
+//      on écarte d'emblée les candidats qui créeraient une quinte/octave
+//      parallèle ou une sensible externe non résolue, et l'on garde le meilleur
+//      mouvement — avec retour arrière si une impasse survient plus loin.
+// Ce que le DFS ne peut pas rendre propre, l'auto-filtrage (R2b) l'écarte.
+
+/** Un accord posé en hauteurs MIDI absolues. */
+interface VoicedMeasure { soprano: number; alto: number; tenor: number; bass: number }
+
+/** Rôles (classes de hauteurs) d'un accord dans une tonalité donnée. */
+interface ChordSpec {
+  rootPc: number;
+  thirdPc: number;
+  fifthPc: number;
+  seventhPc: number | null;   // null = triade
+  pcs: number[];              // hauteurs distinctes de l'accord
+  fifthOmissible: boolean;    // la quinte peut-elle manquer ? (quintes justes seulement)
+}
+
+const VOICE_KEYS = ["soprano", "alto", "tenor", "bass"] as const;
+
+/** Qualités dont la quinte (juste) peut être ellipsée — miroir de harmonic-analysis. */
+const FIFTH_OMISSIBLE_QUALITIES = new Set(["M", "m", "7", "m7", "Maj7"]);
+
+function pcOfMidi(midi: number): number {
+  return ((midi % 12) + 12) % 12;
+}
+
+function chordSpec(
   rootNote: string,
   intervals: [number, number, number, number],
-  sopranoPosition: Position,
-  useFlats = false,
-): SATBMeasure | null {
-  // Notes de l'accord (4 intervalles depuis la fondamentale)
-  const chordNotes = intervals.map(int => noteIndex(rootNote) + int);
-
-  // Note cible du soprano
-  const sopranoPcIdx = ((chordNotes[sopranoPosition] % 12) + 12) % 12;
-
-  // Trouver une hauteur soprano dans la tessiture
-  let sopMidi = -1;
-  for (let oct = 4; oct <= 5; oct++) {
-    const m = sopranoPcIdx + (oct + 1) * 12;
-    if (m >= RANGES.soprano.min && m <= RANGES.soprano.max) {
-      sopMidi = m;
-      break;
-    }
-  }
-  if (sopMidi === -1) return null;
-
-  // Basse = fondamentale (état fondamental)
-  const bassPcIdx = ((chordNotes[0] % 12) + 12) % 12;
-  let bassMidi = -1;
-  for (let oct = 2; oct <= 3; oct++) {
-    const m = bassPcIdx + (oct + 1) * 12;
-    if (m >= RANGES.bass.min && m <= RANGES.bass.max) {
-      bassMidi = m;
-      break;
-    }
-  }
-  if (bassMidi === -1) return null;
-
-  // Alto et ténor — les deux notes restantes de l'accord
-  const remaining = [0, 1, 2, 3].filter(i => i !== sopranoPosition && i !== 0);
-  // Choisir 2 notes pour alto et ténor (toujours 4 notes dans un accord de 7e)
-  // Si accord à 3 sons (triade), on double une note
-  const altoTargetPc  = ((chordNotes[remaining[0] % remaining.length] % 12) + 12) % 12;
-  const tenorTargetPc = ((chordNotes[remaining[1] % remaining.length] % 12) + 12) % 12;
-
-  // Alto : entre la basse et le soprano, dans sa tessiture
-  let altoMidi = -1;
-  for (let oct = 3; oct <= 4; oct++) {
-    const m = altoTargetPc + (oct + 1) * 12;
-    if (m >= RANGES.alto.min && m <= RANGES.alto.max && m < sopMidi) {
-      altoMidi = m;
-      break;
-    }
-  }
-
-  // Ténor : entre la basse et l'alto
-  let tenorMidi = -1;
-  for (let oct = 3; oct <= 4; oct++) {
-    const m = tenorTargetPc + (oct + 1) * 12;
-    if (m >= RANGES.tenor.min && m <= RANGES.tenor.max && m < (altoMidi !== -1 ? altoMidi : sopMidi)) {
-      tenorMidi = m;
-      break;
-    }
-  }
-
-  if (altoMidi === -1 || tenorMidi === -1) return null;
-
-  // Vérifier espacements
-  if (sopMidi - altoMidi > 12)  return null; // S-A max 1 octave
-  if (altoMidi - tenorMidi > 12) return null; // A-T max 1 octave
-
-  const toEntry = (midi: number): NoteEntry => {
-    const { name, octave } = midiToNote(midi, useFlats);
-    return { name, octave };
-  };
-
+  quality: string,
+): ChordSpec {
+  const base = noteIndex(rootNote);
+  const rootPc = base % 12;
+  const thirdPc = (base + intervals[1]) % 12;
+  const fifthPc = (base + intervals[2]) % 12;
+  const isSeventh = intervals[3] !== intervals[2]; // les triades répètent la quinte
+  const seventhPc = isSeventh ? (base + intervals[3]) % 12 : null;
+  const pcs = isSeventh
+    ? [rootPc, thirdPc, fifthPc, seventhPc as number]
+    : [rootPc, thirdPc, fifthPc];
   return {
-    soprano: toEntry(sopMidi),
-    alto:    toEntry(altoMidi),
-    tenor:   toEntry(tenorMidi),
-    bass:    toEntry(bassMidi),
+    rootPc, thirdPc, fifthPc, seventhPc,
+    pcs: [...new Set(pcs)],
+    fifthOmissible: FIFTH_OMISSIBLE_QUALITIES.has(quality),
   };
+}
+
+/** Hauteurs MIDI d'une classe de hauteurs dans une tessiture. */
+function midisInRange(pc: number, min: number, max: number): number[] {
+  const out: number[] = [];
+  for (let m = min; m <= max; m++) if (pcOfMidi(m) === pc) out.push(m);
+  return out;
+}
+
+/**
+ * Ordre de préférence des doublures : fondamentale, puis quinte, puis tierce —
+ * JAMAIS la sensible de la tonalité, ni la septième (dissonance).
+ */
+function doublingOrder(spec: ChordSpec, ltPc: number): number[] {
+  return [spec.rootPc, spec.fifthPc, spec.thirdPc].filter(
+    pc => pc !== ltPc && pc !== spec.seventhPc,
+  );
+}
+
+/**
+ * Tous les voicings légaux d'un accord pour une (ou plusieurs) note(s) de
+ * soprano : basse = fondamentale, accord complété, doublures réglementaires,
+ * tessitures et espacements respectés, aucun croisement.
+ */
+function buildCandidates(spec: ChordSpec, sopranoPcs: number[], ltPc: number): VoicedMeasure[] {
+  const out: VoicedMeasure[] = [];
+  for (const sopranoPc of sopranoPcs) {
+    const sopMidis  = midisInRange(sopranoPc, RANGES.soprano.min, RANGES.soprano.max);
+    const bassMidis = midisInRange(spec.rootPc, RANGES.bass.min, RANGES.bass.max);
+    for (const sop of sopMidis) {
+      for (const bass of bassMidis) {
+        const covered = new Set([sopranoPc, spec.rootPc]);
+        const missing = spec.pcs.filter(pc => !covered.has(pc));
+
+        // Classes de hauteurs des deux voix intérieures (alto, ténor).
+        const innerPcPairs: [number, number][] = [];
+        if (missing.length === 2) {
+          innerPcPairs.push([missing[0], missing[1]]);
+        } else if (missing.length === 1) {
+          for (const d of doublingOrder(spec, ltPc)) innerPcPairs.push([missing[0], d]);
+        } else if (missing.length === 0) {
+          const dbl = doublingOrder(spec, ltPc);
+          for (const d1 of dbl) for (const d2 of dbl) innerPcPairs.push([d1, d2]);
+        } else {
+          // Soprano sur la fondamentale d'une tétrade : trois hauteurs pour deux
+          // voix intérieures — on n'ellipse que la quinte JUSTE, sinon impasse.
+          if (spec.seventhPc !== null && spec.fifthOmissible) {
+            const m2 = missing.filter(pc => pc !== spec.fifthPc);
+            if (m2.length === 2) innerPcPairs.push([m2[0], m2[1]]);
+          }
+        }
+
+        for (const [pa, pb] of innerPcPairs) {
+          for (const [altoPc, tenorPc] of [[pa, pb], [pb, pa]] as [number, number][]) {
+            const altoMidis  = midisInRange(altoPc,  RANGES.alto.min,  RANGES.alto.max);
+            const tenorMidis = midisInRange(tenorPc, RANGES.tenor.min, RANGES.tenor.max);
+            for (const alto of altoMidis) {
+              for (const tenor of tenorMidis) {
+                if (!(bass <= tenor && tenor <= alto && alto <= sop)) continue; // pas de croisement
+                if (sop - alto > 12) continue;   // espacement S-A ≤ 1 octave
+                if (alto - tenor > 12) continue;  // espacement A-T ≤ 1 octave
+                out.push({ soprano: sop, alto, tenor, bass });
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return out;
+}
+
+const CANDIDATE_PAIRS = [
+  ["soprano", "alto"], ["soprano", "tenor"], ["soprano", "bass"],
+  ["alto", "tenor"], ["alto", "bass"], ["tenor", "bass"],
+] as const;
+
+/** Quintes ou octaves parallèles entre deux mesures — même logique que le juge. */
+function hasParallels(prev: VoicedMeasure, cur: VoicedMeasure): boolean {
+  for (const [v1, v2] of CANDIDATE_PAIRS) {
+    const prevInt = Math.abs(prev[v1] - prev[v2]) % 12;
+    const curInt  = Math.abs(cur[v1]  - cur[v2])  % 12;
+    const d1 = cur[v1] - prev[v1], d2 = cur[v2] - prev[v2];
+    const sameDir = (d1 > 0 && d2 > 0) || (d1 < 0 && d2 < 0);
+    if (!sameDir) continue;
+    if (prevInt === 7 && curInt === 7) return true;
+    if (prevInt === 0 && curInt === 0 && pcOfMidi(prev[v1]) !== pcOfMidi(cur[v1])) return true;
+  }
+  return false;
+}
+
+interface TransitionInfo {
+  armed: boolean;          // la sensible du prev doit-elle résoudre (arrivée I/VI) ?
+  ltPc: number;
+  dominantePc: number;
+  seventhPc: number | null; // septième du prev à faire descendre
+}
+
+/**
+ * Coût d'un candidat par rapport à la mesure précédente, ou `null` s'il est
+ * irrecevable (parallèle, ou sensible externe non résolue vers la tonique).
+ */
+function scoreNext(cur: VoicedMeasure, prev: VoicedMeasure, info: TransitionInfo): number | null {
+  if (hasParallels(prev, cur)) return null;
+
+  // Sensible de la tonalité (rule 4c) : dans une cadence armée (arrivée I/VI), la
+  // sensible du prev DOIT se résoudre — la voix externe est une faute bloquante,
+  // l'interne un avertissement noté. On les traite toutes deux comme des
+  // contraintes dures pour que la reproduction du modèle vaille 100 (R8).
+  if (info.armed) {
+    for (const v of VOICE_KEYS) {
+      if (pcOfMidi(prev[v]) !== info.ltPc) continue;
+      const d = cur[v] - prev[v];
+      const external = v === "soprano" || v === "bass";
+      const ok = external
+        ? d === 1 || d === 0
+        : d === 1 || d === 0 || (d === -4 && pcOfMidi(cur[v]) === info.dominantePc);
+      if (!ok) return null;
+    }
+  }
+
+  // Septième d'accord (rule 4d) : elle descend par degré ou tient — sinon la copie
+  // écoperait d'un avertissement. Contrainte dure.
+  if (info.seventhPc !== null) {
+    for (const v of VOICE_KEYS) {
+      if (pcOfMidi(prev[v]) !== info.seventhPc) continue;
+      const d = cur[v] - prev[v];
+      if (d !== 0 && d !== -1 && d !== -2) return null;
+    }
+  }
+
+  // Quintes/octaves directes soprano-basse (rule 4e, avertissement) : contrainte
+  // dure elle aussi — on cherche une conduite qui les évite.
+  const ds = cur.soprano - prev.soprano, db = cur.bass - prev.bass;
+  if (ds !== 0 && db !== 0 && Math.sign(ds) === Math.sign(db) && Math.abs(ds) > 2) {
+    const avant = Math.abs(prev.soprano - prev.bass) % 12;
+    const apres = Math.abs(cur.soprano - cur.bass) % 12;
+    if ((apres === 7 && avant !== 7) || (apres === 0 && avant !== 0)) return null;
+  }
+
+  return VOICE_KEYS.reduce((s, v) => s + Math.abs(cur[v] - prev[v]), 0);
+}
+
+/** Coût d'une première mesure : voicing compact et centré. */
+function costFirst(m: VoicedMeasure): number {
+  return (m.soprano - m.bass) * 2 + Math.abs(m.alto - 62) + Math.abs(m.tenor - 53);
+}
+
+/**
+ * Réalise toute la progression par recherche en profondeur : le meilleur
+ * candidat d'abord, retour arrière sur impasse. `null` si aucune conduite légale
+ * n'existe dans l'espace des candidats.
+ */
+function voiceProgression(
+  specs: { spec: ChordSpec; firstSopranoPc: number }[],
+  tonicPc: number,
+  minor: boolean,
+): VoicedMeasure[] | null {
+  const ltPc = (tonicPc + 11) % 12;
+  const dominantePc = (tonicPc + 7) % 12;
+  const sixtePc = (tonicPc + (minor ? 8 : 9)) % 12;
+
+  function transition(i: number): TransitionInfo {
+    const prev = specs[i - 1].spec, cur = specs[i].spec;
+    const armed =
+      (prev.rootPc === dominantePc || prev.rootPc === ltPc) &&
+      (cur.rootPc === tonicPc || cur.rootPc === sixtePc);
+    return { armed, ltPc, dominantePc, seventhPc: prev.seventhPc };
+  }
+
+  function dfs(i: number, prev: VoicedMeasure | null): VoicedMeasure[] | null {
+    if (i === specs.length) return [];
+    const sopranoPcs = i === 0 ? [specs[0].firstSopranoPc] : specs[i].spec.pcs;
+    let ordered = buildCandidates(specs[i].spec, sopranoPcs, ltPc);
+    if (i === 0) {
+      ordered = ordered.sort((a, b) => costFirst(a) - costFirst(b));
+    } else {
+      const info = transition(i);
+      ordered = ordered
+        .map(c => [scoreNext(c, prev as VoicedMeasure, info), c] as const)
+        .filter((x): x is readonly [number, VoicedMeasure] => x[0] !== null)
+        .sort((a, b) => a[0] - b[0])
+        .map(x => x[1]);
+    }
+    for (const c of ordered) {
+      const rest = dfs(i + 1, c);
+      if (rest) return [c, ...rest];
+    }
+    return null;
+  }
+
+  return dfs(0, null);
 }
 
 // ─── Données des tonalités ────────────────────────────────────────────────────
@@ -449,19 +667,24 @@ const MAJOR_KEY_DATA: KeyData[] = [
   { id:"Db", root:"Db", label:"Réb majeur", mode:"major", keySignature:"Db", cours:0 },
 ];
 
+// R1 — chaque tonalité mineure porte sa VRAIE signature (« Am », « Dm »…), et non
+// plus celle de son relatif majeur. L'armure affichée est identique (relatifs de
+// mêmes altérations) — VexFlow accepte les clés mineures « Xm » (cf. tables.js),
+// `KEY_ACCIDENTALS` les connaît, et `tonaliteDeSignature` en lit la vraie tonique :
+// les règles de sensible s'arment désormais sur le bon degré.
 const MINOR_KEY_DATA: KeyData[] = [
-  { id:"Am",  root:"A",  label:"La mineur",  mode:"minor", keySignature:"C",  cours:0 },
-  { id:"Em",  root:"E",  label:"Mi mineur",  mode:"minor", keySignature:"G",  cours:0 },
-  { id:"Bm",  root:"B",  label:"Si mineur",  mode:"minor", keySignature:"D",  cours:0 },
-  { id:"F#m", root:"F#", label:"Fa# mineur", mode:"minor", keySignature:"A",  cours:0 },
-  { id:"C#m", root:"C#", label:"Do# mineur", mode:"minor", keySignature:"E",  cours:0 },
-  { id:"G#m", root:"G#", label:"Sol# mineur",mode:"minor", keySignature:"B",  cours:0 },
-  { id:"Dm",  root:"D",  label:"Ré mineur",  mode:"minor", keySignature:"F",  cours:0 },
-  { id:"Gm",  root:"G",  label:"Sol mineur", mode:"minor", keySignature:"Bb", cours:0 },
-  { id:"Cm",  root:"C",  label:"Do mineur",  mode:"minor", keySignature:"Eb", cours:0 },
-  { id:"Fm",  root:"F",  label:"Fa mineur",  mode:"minor", keySignature:"Ab", cours:0 },
-  { id:"Bbm", root:"Bb", label:"Sib mineur", mode:"minor", keySignature:"Db", cours:0 },
-  { id:"Ebm", root:"Eb", label:"Mib mineur", mode:"minor", keySignature:"Gb", cours:0 },
+  { id:"Am",  root:"A",  label:"La mineur",  mode:"minor", keySignature:"Am",  cours:0 },
+  { id:"Em",  root:"E",  label:"Mi mineur",  mode:"minor", keySignature:"Em",  cours:0 },
+  { id:"Bm",  root:"B",  label:"Si mineur",  mode:"minor", keySignature:"Bm",  cours:0 },
+  { id:"F#m", root:"F#", label:"Fa# mineur", mode:"minor", keySignature:"F#m", cours:0 },
+  { id:"C#m", root:"C#", label:"Do# mineur", mode:"minor", keySignature:"C#m", cours:0 },
+  { id:"G#m", root:"G#", label:"Sol# mineur",mode:"minor", keySignature:"G#m", cours:0 },
+  { id:"Dm",  root:"D",  label:"Ré mineur",  mode:"minor", keySignature:"Dm",  cours:0 },
+  { id:"Gm",  root:"G",  label:"Sol mineur", mode:"minor", keySignature:"Gm",  cours:0 },
+  { id:"Cm",  root:"C",  label:"Do mineur",  mode:"minor", keySignature:"Cm",  cours:0 },
+  { id:"Fm",  root:"F",  label:"Fa mineur",  mode:"minor", keySignature:"Fm",  cours:0 },
+  { id:"Bbm", root:"Bb", label:"Sib mineur", mode:"minor", keySignature:"Bbm", cours:0 },
+  { id:"Ebm", root:"Eb", label:"Mib mineur", mode:"minor", keySignature:"Ebm", cours:0 },
 ];
 
 const ALL_KEY_DATA = [...MAJOR_KEY_DATA, ...MINOR_KEY_DATA];
@@ -479,44 +702,72 @@ export function generateExercisesForTemplate(
   const keys = ALL_KEY_DATA.filter(k => template.modes.includes(k.mode));
 
   for (const key of keys) {
-    const useFlats = FLAT_KEY_SIGS.has(key.keySignature);
+    const useFlats = FLAT_KEYS.has(key.keySignature);
+    const tonicPc = noteIndex(key.root);
+    const minor = key.mode === "minor";
+
+    // Sensible (7e degré haussé) à orthographier juste en mineur — seulement si la
+    // graphie du 7e degré est « sûre » (sinon repli sur l'orthographe par défaut).
+    const ltPc = minor ? (tonicPc + 11) % 12 : -1;
+    const ltName = minor ? raisedSeventhSpelling(key.root, ltPc) : "";
+    const ltForce = minor && SAFE_NAMES.has(ltName);
+    const toEntry = (midi: number): NoteEntry => {
+      const base = midiToNote(midi, useFlats);
+      return ltForce && ((midi % 12) + 12) % 12 === ltPc ? { name: ltName, octave: base.octave } : base;
+    };
+
     for (const position of positions) {
-      const solution: SATBMeasure[] = [];
-      const measureLabels: string[] = [];
-      let valid = true;
-
-      // Calculer le voicing de chaque mesure
-      for (let ci = 0; ci < template.chords.length; ci++) {
-        const chord = template.chords[ci];
-
-        // Calculer la fondamentale de l'accord dans cette tonalité
+      // Préparer chaque accord : fondamentale transposée, intervalles/qualité effectifs.
+      const chordInfos = template.chords.map(chord => {
         const degreeSemitones = degreeToSemitones(chord.degreeLabel, key.mode);
-
-        // Transposer depuis la tonique de la gamme
         const chordRoot = transposeNote(key.root, 4, degreeSemitones, useFlats);
-
-        // V/V : dominante de la dominante = sur le IIe degré de la gamme
-        const effectiveIntervals: [number,number,number,number] =
+        // En mineur : qualité diatoniquement correcte (i/iv mineurs, VI majeur,
+        // iiø7). V7/V/V restent inchangés. En majeur : V/V → 7e de dominante,
+        // IVm → triade mineure (emprunt).
+        const decl = minor ? MINOR_DECLENSION[chord.degreeLabel] : undefined;
+        const effIntervals: [number,number,number,number] =
+          decl ? decl.intervals :
           chord.degreeLabel === "V/V" ? INT["7"] :
           chord.degreeLabel === "IVm" ? INT.m     :
           chord.intervals;
+        const effQuality =
+          decl ? decl.quality :
+          chord.degreeLabel === "V/V" ? "7" :
+          chord.degreeLabel === "IVm" ? "m" :
+          chord.quality;
+        const degreeLabel = decl ? decl.degreeLabel : chord.degreeLabel;
+        return { degreeLabel, chordRoot, effIntervals, effQuality };
+      });
 
-        // Calculer le voicing SATB
-        // Pour la première mesure, on utilise la position demandée
-        // Pour les mesures suivantes, on optimise par notes communes
-        const pos: Position = ci === 0 ? position : bestNextPosition(solution, chordRoot.name, effectiveIntervals, useFlats);
-        const voicing = computeVoicing(chordRoot.name, effectiveIntervals, pos, useFlats);
+      const specs = chordInfos.map((ci, idx) => ({
+        spec: chordSpec(ci.chordRoot.name, ci.effIntervals, ci.effQuality),
+        // Le soprano n'est imposé (position demandée) que sur la PREMIÈRE mesure.
+        firstSopranoPc:
+          idx === 0 ? (noteIndex(ci.chordRoot.name) + ci.effIntervals[position]) % 12 : 0,
+      }));
 
-        if (!voicing) { valid = false; break; }
+      const voiced = voiceProgression(specs, tonicPc, minor);
+      if (!voiced) continue; // aucune conduite légale : combinaison abandonnée
 
-        solution.push(voicing);
-        measureLabels.push(`${chord.degreeLabel} · ${chordRoot.name}${chord.quality !== "M" && chord.quality !== "m" ? chord.quality : chord.quality === "m" ? "m" : ""}`);
-      }
+      const solution: SATBMeasure[] = voiced.map(vm => ({
+        soprano: toEntry(vm.soprano),
+        alto:    toEntry(vm.alto),
+        tenor:   toEntry(vm.tenor),
+        bass:    toEntry(vm.bass),
+      }));
 
-      if (!valid || solution.length === 0) continue;
+      const measureLabels = chordInfos.map(ci =>
+        `${ci.degreeLabel} · ${ci.chordRoot.name}${ci.effQuality !== "M" && ci.effQuality !== "m" ? ci.effQuality : ci.effQuality === "m" ? "m" : ""}`,
+      );
+
+      // R2b — auto-filtrage : la solution doit passer le juge contre elle-même
+      // sans AUCUNE erreur bloquante. Filet silencieux (le test d'invariant fait foi).
+      const errs = validateSATB(
+        solution as Measure[], key.keySignature, false, solution as Measure[], template.regles ?? "ecole",
+      ).filter(e => e.severity === "error");
+      if (errs.length > 0) continue;
 
       const posLabel = POSITION_SHORT[position];
-      const difficulty = template.difficulty;
 
       exercises.push({
         id: `gen-${template.id}-${key.id}-pos${position}`,
@@ -524,53 +775,20 @@ export function generateExercisesForTemplate(
         cours: template.cours,
         title: `${template.title} en ${key.label}`,
         subtitle: `${posLabel} · ${key.label}`,
-        difficulty,
+        difficulty: template.difficulty,
         tags: [...template.tags, key.label, posLabel],
         keySignature: key.keySignature,
         measures: measureLabels,
-        solution: solution as any,
+        solution: solution as SATBExercise["solution"],
         hint: template.hint,
         explanation: template.explanation,
         concepts: template.concepts,
+        ...(template.regles ? { regles: template.regles } : {}),
       });
     }
   }
 
   return exercises;
-}
-
-/**
- * Trouve la meilleure position pour la prochaine mesure
- * (minimise le mouvement total des voix)
- */
-function bestNextPosition(
-  prevMeasures: SATBMeasure[],
-  rootNote: string,
-  intervals: [number,number,number,number],
-  useFlats = false,
-): Position {
-  if (prevMeasures.length === 0) return 3; // défaut : septième au soprano
-
-  const prev = prevMeasures[prevMeasures.length - 1];
-  const prevSopMidi = noteToMidi(prev.soprano.name!, prev.soprano.octave);
-
-  let bestPos: Position = 0;
-  let minMovement = Infinity;
-
-  for (const pos of [0, 1, 2, 3] as Position[]) {
-    const voicing = computeVoicing(rootNote, intervals, pos, useFlats);
-    if (!voicing || !voicing.soprano.name) continue;
-
-    const sopMidi = noteToMidi(voicing.soprano.name, voicing.soprano.octave);
-    const movement = Math.abs(sopMidi - prevSopMidi);
-
-    if (movement < minMovement) {
-      minMovement = movement;
-      bestPos = pos;
-    }
-  }
-
-  return bestPos;
 }
 
 /**

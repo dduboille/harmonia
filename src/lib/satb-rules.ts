@@ -9,6 +9,7 @@
  */
 
 import { KEY_ACCIDENTALS } from "@/lib/key-accidentals";
+import { identifyChordFromNotes } from "@/lib/harmonic-analysis";
 
 export type NoteName = "C" | "D" | "E" | "F" | "G" | "A" | "B"
   | "C#" | "Db" | "D#" | "Eb" | "F#" | "Gb" | "G#" | "Ab" | "A#" | "Bb"
@@ -33,7 +34,12 @@ export type ValidationErrorType =
   | "leading_tone"
   | "seventh"
   | "missing_accidental"
-  | "cross_relation";
+  | "cross_relation"
+  | "wrong_chord"
+  | "wrong_bass"
+  | "doubled_leading_tone"
+  | "hidden_fifth"
+  | "hidden_octave";
 
 /**
  * Une faute détectée par le moteur.
@@ -84,12 +90,51 @@ export function noteToMidi(name: string, octave: number): number {
   return (octave + 1) * 12 + (base === -1 ? 0 : base);
 }
 
+/** Pitch class (0-11) d'une case remplie. */
+function pcOf(n: NoteEntry): number {
+  return ((noteToMidi(noteName(n.name!), n.octave) % 12) + 12) % 12;
+}
+
+/** Une mesure est complète quand les quatre voix sont posées. */
+function estComplete(m: Measure): boolean {
+  return VOICES.every(v => m[v].name !== null);
+}
+
+/** L'ensemble des pitch classes d'une mesure complète. */
+function pcsDe(m: Measure): Set<number> {
+  return new Set(VOICES.map(v => pcOf(m[v])));
+}
+
+/** Tonique (pitch class) et mode d'une signature « C », « Bb », « Am »… */
+export function tonaliteDeSignature(keySignature: string): { tonicPc: number; minor: boolean } {
+  const minor = keySignature.endsWith("m");
+  const nom = minor ? keySignature.slice(0, -1) : keySignature;
+  return { tonicPc: ((noteToMidi(noteName(nom), 0) % 12) + 12) % 12, minor };
+}
+
 export function validateSATB(
   measures: Measure[],
   keySignature?: string,
-  checkAccidentals?: boolean
+  checkAccidentals?: boolean,
+  solution?: Measure[],
+  regles: "ecole" | "libre" = "ecole",
 ): ValidationError[] {
   const errors: ValidationError[] = [];
+
+  // ── Conformité à la solution : précalculée par mesure (les règles de résolution
+  //    ne parlent que sur des mesures conformes, pour éviter les cascades absurdes).
+  const conforme: boolean[] = measures.map((cur, m) => {
+    const sol = solution?.[m];
+    if (!sol || !estComplete(cur) || !estComplete(sol)) return false;
+    const a = pcsDe(cur), b = pcsDe(sol);
+    return a.size === b.size && [...a].every(pc => b.has(pc)) && pcOf(cur.bass) === pcOf(sol.bass);
+  });
+
+  // Accord attendu de chaque mesure (identifié sur la SOLUTION), pour armer les
+  // règles de résolution. Identification nulle → les règles se taisent.
+  const accords = (solution ?? []).map(sol =>
+    estComplete(sol) ? identifyChordFromNotes([...pcsDe(sol)], pcOf(sol.bass)) : null,
+  );
 
   for (let m = 0; m < measures.length; m++) {
     const cur = measures[m];
@@ -107,6 +152,13 @@ export function validateSATB(
         errors.push({ type: "range", measure: m, severity: "error", params: { voice: v, from: m + 1 } });
       }
     });
+
+    // En mode libre, seules les tessitures (1) et la conformité (6) parlent :
+    // les règles d'école (espacements, croisements, parallèles, fausses
+    // relations, résolutions, altérations, doublure) sont toutes sautées —
+    // ce sont les exercices non tonals (modal/planing/jazz) qui posent ce
+    // drapeau, et leur solution VOULUE ne doit pas être jugée contre elle-même.
+    if (regles !== "libre") {
 
     // 2. Espacements (S-A et A-T : une octave au maximum)
     const pairs: [Voice, Voice][] = [["soprano", "alto"], ["alto", "tenor"]];
@@ -182,6 +234,92 @@ export function validateSATB(
           });
         });
       });
+
+      // 4c. Résolution de la sensible (accord de dominante conforme → mesure conforme)
+      //
+      // R4 — dans une marche (cycle de 7es : Bø7→Em7…), la sensible perd sa
+      // fonction de sensible : elle n'est plus qu'une note de l'accord suivant,
+      // qui n'est ni la tonique ni le VI. La règle ne s'arme donc QUE si
+      // l'accord D'ARRIVÉE (identifié sur la solution) résout vers la tonique
+      // ou le 6e degré (cadence parfaite ou rompue) — jamais ailleurs.
+      if (keySignature && conforme[m - 1] && conforme[m]) {
+        const { tonicPc, minor } = tonaliteDeSignature(keySignature);
+        const sensible = (tonicPc + 11) % 12;
+        const dominante = (tonicPc + 7) % 12;
+        const sixte = (tonicPc + (minor ? 8 : 9)) % 12;
+        const acc = accords[m - 1];
+        const arrivee = accords[m];
+        const armee = arrivee && (arrivee.rootPc === tonicPc || arrivee.rootPc === sixte);
+        if (armee && acc && (acc.rootPc === dominante || acc.rootPc === sensible)) {
+          // Règle « Pachelbel » : la sensible à la BASSE d'un V6 qui DESCEND par
+          // degré vers le VI (do–sol/si–la…) est le geste séquentiel canonique
+          // reconnu par les traités — elle n'y fonctionne pas comme sensible
+          // cadentielle. L'exemption ne vaut que pour la basse ET pour une arrivée
+          // sur le VI : vers la tonique, la basse sensible doit toujours monter.
+          const arriveeSixte = arrivee!.rootPc === sixte;
+          VOICES.forEach(v => {
+            if (pcOf(prev[v]) !== sensible) return;
+            const midiP = noteToMidi(noteName(prev[v].name!), prev[v].octave);
+            const midiC = noteToMidi(noteName(cur[v].name!), cur[v].octave);
+            const d = midiC - midiP;
+            const externe = v === "soprano" || v === "bass";
+            const ok =
+              d === 1 ||   // monte à la tonique
+              d === 0 ||        // tenue
+              (!externe && d === -4 && pcOf(cur[v]) === dominante) || // frustrée interne
+              (v === "bass" && arriveeSixte && (d === -1 || d === -2)); // Pachelbel : basse de V6 descendant vers le VI
+            if (!ok) {
+              errors.push({
+                type: "leading_tone", measure: m,
+                severity: externe ? "error" : "warning",
+                params: { voice: v, from: m },
+              });
+            }
+          });
+        }
+      }
+
+      // 4d. Résolution de la 7e d'accord (descend par degré ou tient)
+      if (conforme[m - 1] && conforme[m]) {
+        const acc = accords[m - 1];
+        if (acc) {
+          const pcs = solution?.[m - 1] ? pcsDe(solution[m - 1]) : new Set<number>();
+          const septieme = [...pcs].find(pc => {
+            const iv = (pc - acc.rootPc + 12) % 12;
+            return iv === 10 || iv === 11;
+          });
+          if (septieme !== undefined) {
+            VOICES.forEach(v => {
+              if (pcOf(prev[v]) !== septieme) return;
+              const midiP = noteToMidi(noteName(prev[v].name!), prev[v].octave);
+              const midiC = noteToMidi(noteName(cur[v].name!), cur[v].octave);
+              const d = midiC - midiP;
+              if (d !== 0 && d !== -1 && d !== -2) {
+                errors.push({ type: "seventh", measure: m, severity: "warning", params: { voice: v, from: m } });
+              }
+            });
+          }
+        }
+      }
+
+      // 4e. Quintes et octaves DIRECTES soprano–basse (mêmes conditions que l'atelier)
+      if (solution && estComplete(prev) && estComplete(cur)) {
+        const ps = prev.soprano, pb = prev.bass, cs = cur.soprano, cb = cur.bass;
+        const mPS = noteToMidi(noteName(ps.name!), ps.octave), mPB = noteToMidi(noteName(pb.name!), pb.octave);
+        const mCS = noteToMidi(noteName(cs.name!), cs.octave), mCB = noteToMidi(noteName(cb.name!), cb.octave);
+        const ds = mCS - mPS, db = mCB - mPB;
+        const memeSens = ds !== 0 && db !== 0 && Math.sign(ds) === Math.sign(db);
+        if (memeSens && Math.abs(ds) > 2) {
+          const avant = Math.abs(mPS - mPB) % 12;
+          const apres = Math.abs(mCS - mCB) % 12;
+          if (apres === 7 && avant !== 7) {
+            errors.push({ type: "hidden_fifth", voices: ["soprano", "bass"], measure: m, severity: "warning", params: { from: m, to: m + 1 } });
+          }
+          if (apres === 0 && avant !== 0) {
+            errors.push({ type: "hidden_octave", voices: ["soprano", "bass"], measure: m, severity: "warning", params: { from: m, to: m + 1 } });
+          }
+        }
+      }
     }
 
     // 5. Altérations manquantes (mode sans armure)
@@ -207,7 +345,37 @@ export function validateSATB(
         });
       }
     }
+
+    } // fin du bloc « règles d'école » (regles !== "libre")
+
+    // 6. Conformité à l'harmonie demandée (mesures complètes seulement)
+    const sol = solution?.[m];
+    if (sol && estComplete(cur) && estComplete(sol) && !conforme[m]) {
+      const a = pcsDe(cur), b = pcsDe(sol);
+      const memeAccord = a.size === b.size && [...a].every(pc => b.has(pc));
+      if (!memeAccord) {
+        errors.push({ type: "wrong_chord", measure: m, severity: "error", params: { from: m + 1 } });
+      } else {
+        errors.push({ type: "wrong_bass", measure: m, severity: "error", params: { from: m + 1, expected: sol.bass.name! } });
+      }
+    }
+
+    // 7. Sensible doublée (accord de fonction dominante, mesure conforme)
+    if (regles !== "libre" && keySignature && conforme[m]) {
+      const { tonicPc } = tonaliteDeSignature(keySignature);
+      const sensible = (tonicPc + 11) % 12;
+      const acc = accords[m];
+      const dominant = acc && (acc.rootPc === (tonicPc + 7) % 12 || acc.rootPc === sensible);
+      if (dominant && VOICES.filter(v => pcOf(cur[v]) === sensible).length >= 2) {
+        errors.push({ type: "doubled_leading_tone", measure: m, severity: "error", params: { from: m + 1 } });
+      }
+    }
   }
 
   return errors;
+}
+
+/** La note d'un exercice terminé : 100 moins 10 par avertissement restant, plancher 60. */
+export function noteExercice(avertissements: number): number {
+  return Math.max(60, 100 - 10 * avertissements);
 }

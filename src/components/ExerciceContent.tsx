@@ -6,6 +6,7 @@ import { getKeyAccidentalHint } from "@/lib/key-accidentals";
 import IdentificationQuiz from "@/components/IdentificationQuiz";
 import { useProgress } from "@/hooks/useProgress";
 import type { IdentifyExercise, BuildExercise } from "@/types/exercise";
+import { validateSATB, noteExercice, type Measure } from "@/lib/satb-rules";
 
 interface SATBData {
   type: "satb";
@@ -15,10 +16,12 @@ interface SATBData {
   subtitle?: string;
   measures: string[];
   keySignature: string;
-  solution: any[];
+  solution: Measure[];
   hint?: string;
   devoirId?: string;
   plan?: string;
+  /** école = règles d'écriture complètes ; libre = conformité + tessitures, pour les exercices non tonals. */
+  regles?: "ecole" | "libre";
 }
 
 interface QuizData {
@@ -96,7 +99,16 @@ export default function ExerciceContent(props: ExerciceContentProps) {
           keySignature={props.keySignature}
           showKeySignature={showKS}
           solution={props.solution}
-          onComplete={() => handleComplete(100)}
+          regles={props.regles}
+          onComplete={(measures) => {
+            // La note reflète la propreté de la copie : les FAUTES sont déjà
+            // impossibles (Terminer bloqué) ; chaque avertissement restant coûte 10.
+            const restants = validateSATB(measures, props.keySignature, !showKS, props.solution, props.regles);
+            // cross_relation reste affichée mais ne coûte rien — faux positifs
+            // enharmoniques, analyse fine de la règle en suivi (R5).
+            const avertissements = restants.filter(e => e.severity === "warning" && e.type !== "cross_relation").length;
+            handleComplete(noteExercice(avertissements));
+          }}
         />
       </div>
     );

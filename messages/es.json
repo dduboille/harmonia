@@ -4046,6 +4046,7 @@
     "octave": "Octava",
     "clear": "Borrar la nota",
     "play": "Escuchar",
+    "finish": "Terminar",
     "showSolution": "Ver la solución propuesta",
     "hideSolution": "Ocultar la solución propuesta",
     "reset": "Empezar de nuevo",
@@ -4059,7 +4060,12 @@
       "cross_relation": "Falsa relación {v1}↔{v2} ({note}, c. {from}→{to})",
       "missing_accidental": "{voice}: {note} natural — sin armadura, utilice {expected} (c. {from})",
       "leading_tone": "Sensible mal resuelta (c. {from})",
-      "seventh": "Séptima mal resuelta (c. {from})"
+      "seventh": "Séptima mal resuelta (c. {from})",
+      "wrong_chord": "Compás {from}: no es el acorde pedido",
+      "wrong_bass": "Compás {from}: el bajo esperado es {expected}",
+      "doubled_leading_tone": "Sensible duplicada (c. {from})",
+      "hidden_fifth": "Quinta directa soprano–bajo (c. {from}→{to})",
+      "hidden_octave": "Octava directa soprano–bajo (c. {from}→{to})"
     },
     "exerciseDone": "¡Ejercicio completado!",
     "exercisePerfect": "Sin errores armónicos — excelente trabajo.",

@@ -6,6 +6,7 @@ import { supabaseAdmin } from "@/lib/supabase";
 const KNOWN_TYPES = new Set([
   "parallel_fifth", "parallel_octave", "spacing", "range",
   "crossing", "leading_tone", "seventh", "missing_accidental", "cross_relation",
+  "wrong_chord", "wrong_bass", "doubled_leading_tone", "hidden_fifth", "hidden_octave",
 ]);
 
 // POST : enregistre les types d'erreurs rencontrés par l'élève pendant une

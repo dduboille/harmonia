@@ -4045,6 +4045,7 @@
     "octave": "Octave",
     "clear": "Effacer la note",
     "play": "Écouter",
+    "finish": "Terminer",
     "showSolution": "Voir la solution proposée",
     "hideSolution": "Masquer la solution proposée",
     "reset": "Recommencer",
@@ -4058,7 +4059,12 @@
       "cross_relation": "Fausse relation {v1}↔{v2} ({note}, m.{from}→{to})",
       "missing_accidental": "{voice} : {note} naturel — en mode sans armure, utilisez {expected} (m.{from})",
       "leading_tone": "Sensible mal résolue (m.{from})",
-      "seventh": "Septième mal résolue (m.{from})"
+      "seventh": "Septième mal résolue (m.{from})",
+      "wrong_chord": "Mesure {from} : ce n'est pas l'accord demandé",
+      "wrong_bass": "Mesure {from} : la basse attendue est {expected}",
+      "doubled_leading_tone": "Sensible doublée (m.{from})",
+      "hidden_fifth": "Quinte directe soprano–basse (m.{from}→{to})",
+      "hidden_octave": "Octave directe soprano–basse (m.{from}→{to})"
     },
     "exerciseDone": "Exercice terminé avec succès !",
     "exercisePerfect": "Aucune erreur harmonique — excellent travail.",

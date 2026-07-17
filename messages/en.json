@@ -4045,6 +4045,7 @@
     "octave": "Octave",
     "clear": "Clear note",
     "play": "Listen",
+    "finish": "Finish",
     "showSolution": "Show the model answer",
     "hideSolution": "Hide the model answer",
     "reset": "Start over",
@@ -4058,7 +4059,12 @@
       "cross_relation": "False relation {v1}↔{v2} ({note}, bars {from}→{to})",
       "missing_accidental": "{voice}: {note} natural — without a key signature, use {expected} (bar {from})",
       "leading_tone": "Leading note incorrectly resolved (bar {from})",
-      "seventh": "Seventh incorrectly resolved (bar {from})"
+      "seventh": "Seventh incorrectly resolved (bar {from})",
+      "wrong_chord": "Bar {from}: this is not the requested chord",
+      "wrong_bass": "Bar {from}: the expected bass is {expected}",
+      "doubled_leading_tone": "Doubled leading note (bar {from})",
+      "hidden_fifth": "Hidden fifth soprano–bass (bars {from}→{to})",
+      "hidden_octave": "Hidden octave soprano–bass (bars {from}→{to})"
     },
     "exerciseDone": "Exercise completed!",
     "exercisePerfect": "No harmonic errors — excellent work.",

@@ -122,6 +122,7 @@ export const COURS10_SATB: SATBExercise[] = [
     hint: "En Ré dorien : le IVe degré est G majeur (B naturel). Le B naturel distingue le dorien de l'éolien (qui aurait Bb).",
     explanation: "Le dorien se joue sur le 2e degré de la gamme majeure. En Ré dorien (gamme de Do), le IVe degré est G majeur — cet accord IV majeur dans un contexte mineur est la signature du dorien. Notez le B naturel (6e majeure) qui donne sa couleur caractéristique.",
     concepts: ["mode dorien", "IV majeur", "6e majeure", "jazz modal"],
+    regles: "libre",
   },
   {
     id: "c10-satb-mixolydien-sol",
@@ -142,6 +143,7 @@ export const COURS10_SATB: SATBExercise[] = [
     hint: "Sol mixolydien = gamme de Do mais en commençant sur Sol. F naturel (♭7) est la note distinctive. La cadence ♭VII–I (F→G) remplace V7–I.",
     explanation: "Le mixolydien est une gamme majeure avec ♭7. En Sol mixolydien, F naturel (au lieu de F#). La progression I–♭VII–IV–I évite la sensible et la cadence parfaite classique — c'est l'esthétique modale pure. Très présent dans le rock et le blues.",
     concepts: ["mode mixolydien", "♭VII", "cadence modale", "blues rock"],
+    regles: "libre",
   },
   {
     id: "c10-satb-phrygien-em",
@@ -161,6 +163,7 @@ export const COURS10_SATB: SATBExercise[] = [
     hint: "La cadence phrygienne : ♭II (F majeur) descend d'un demi-ton vers i (Em). Le mouvement F→E à la basse crée la 'seconde phrygienne' caractéristique.",
     explanation: "Mi phrygien (3e mode de Do majeur) : E F G A B C D. Le mouvement ♭II→i (F→Em) est la cadence phrygienne andalouse. F majeur comme ♭II est l'accord caractéristique du phrygien — absent de tous les autres modes. Très utilisé dans le flamenco et la musique espagnole.",
     concepts: ["mode phrygien", "cadence phrygienne", "♭II", "flamenco"],
+    regles: "libre",
   },
 ];
 
@@ -235,13 +238,14 @@ export const COURS11_SATB: SATBExercise[] = [
     keySignature: "C",
     measures: ["Dm9", "G13", "Cmaj9"],
     solution: [
-      { soprano: n("E",5), alto: n("C",5), tenor: n("A",4), bass: n("D",3) },
+      { soprano: n("E",5), alto: n("C",5), tenor: n("A",3), bass: n("D",3) },
       { soprano: n("E",5), alto: n("F",4), tenor: n("B",3), bass: n("G",3) },
       { soprano: n("D",5), alto: n("E",4), tenor: n("G",3), bass: n("C",3) },
     ],
     hint: "Dm9 = D F A C E (E est la 9e). G13 = G B D F A (A est la 13e, D et 11e omis). Cmaj9 = C E G B D (D est la 9e).",
     explanation: "Les extensions colorent les accords jazz sans changer leur fonction. Dm9 : la 9e (E) au soprano. G13 : la 13e (A) naturelle disponible en Do majeur. Cmaj9 : résolution sur la 9e (D) au soprano. En SATB, on omet la quinte et la 11e pour éviter les frictions — on garde fondamentale, 3ce, 7e et l'extension.",
     concepts: ["neuvième", "treizième", "tensions disponibles", "jazz voicing"],
+    regles: "libre",
   },
   {
     id: "c11-satb-maj7-extensions",
@@ -262,6 +266,7 @@ export const COURS11_SATB: SATBExercise[] = [
     hint: "Cmaj7 : la 7e majeure B remplace l'octave. Am9 : la 9e B naturel (pas Bb !). Fmaj9 : la 9e G. G13 : la 13e A.",
     explanation: "Enrichir une progression classique avec des 7es et extensions. Cmaj7→Am9 : B reste en place (note commune). Am9→Fmaj9 : E reste, A→C (basse descend conjointement). Fmaj9→G13 : A reste (note commune = 13e de G). La conduite de voix reste économique malgré les extensions.",
     concepts: ["extensions", "Maj7", "9e", "notes communes avec extensions"],
+    regles: "libre",
   },
 ];
 
@@ -347,6 +352,7 @@ export const COURS12_SATB: SATBExercise[] = [
     hint: "Db7 = D♭ F A♭ C♭(=B). Notez que F reste en place de Dm7 à Db7 — c'est la note commune (triton partagé). La basse descend chromatiquement D♭→C.",
     explanation: "La substitution tritonique : G7 remplacé par D♭7. Dm7→D♭7→Cmaj7 : la basse descend chromatiquement D→D♭→C (progression ultra-fluide). F reste en place (note du triton commun). A♭ (enharmonique de G#) dans D♭7 crée la couleur blues. C♭=B résout vers C (sensible enharmonique).",
     concepts: ["substitution tritonique", "basse chromatique", "triton commun", "enharmonie"],
+    regles: "libre",
   },
   {
     id: "c12-satb-sub-triton-g",
@@ -366,6 +372,7 @@ export const COURS12_SATB: SATBExercise[] = [
     hint: "Ab7 = A♭ C E♭ G♭. La basse descend A→A♭→G. C reste en place entre Am7 et Ab7.",
     explanation: "En Sol majeur, D7 (V7) est remplacé par A♭7 (SubV). Am7→A♭7→Gmaj7 : même basse chromatique descendante A→A♭→G. C reste en place (note commune = triton de D7 réenharmonisé). E♭ (=D#) résout vers D, G♭(=F#) résout vers G (sensible).",
     concepts: ["substitution tritonique", "basse chromatique", "Sol majeur", "enharmonie"],
+    regles: "libre",
   },
 ];
 
@@ -507,14 +514,15 @@ export const COURS14_SATB: SATBExercise[] = [
     keySignature: "C",
     measures: ["i·Am7", "IV·D", "i·Am7", "VII·G"],
     solution: [
-      { soprano: n("E",5), alto: n("C",5), tenor: n("A",4), bass: n("A",3) },
-      { soprano: n("F#",5),alto: n("D",5), tenor: n("A",4), bass: n("D",4) },
-      { soprano: n("E",5), alto: n("C",5), tenor: n("A",4), bass: n("A",3) },
+      { soprano: n("E",5), alto: n("C",5), tenor: n("E",4), bass: n("A",3) },
+      { soprano: n("F#",5),alto: n("D",4), tenor: n("A",3), bass: n("D",3) },
+      { soprano: n("E",5), alto: n("C",5), tenor: n("E",4), bass: n("A",3) },
       { soprano: n("D",5), alto: n("B",4), tenor: n("G",4), bass: n("G",3) },
     ],
     hint: "En La dorien (gamme de Sol), le IVe degré est Ré majeur (avec F#). Le G est le ♭VII dorien, pas le V.",
     explanation: "La dorien = gamme de Sol à partir de La. IVe degré = D majeur (avec F# naturel). Le mouvement Am7→D→Am7 est la cellule de base du jazz modal ('So What' de Miles Davis). G (♭VII) donne une couleur ouverte sans résolution de sensible.",
     concepts: ["dorien", "IV majeur", "jazz modal", "Miles Davis"],
+    regles: "libre",
   },
   {
     id: "c14-satb-mixolydien-g",
@@ -555,6 +563,7 @@ export const COURS14_SATB: SATBExercise[] = [
     hint: "Fa lydien : Si naturel (♯4). Le IIe degré G majeur (avec B naturel) est l'accord caractéristique du lydien.",
     explanation: "Fa lydien (4e mode de Do majeur) : B naturel au lieu de Bb. G majeur (IIe degré) est l'accord qui révèle le lydien — en Fa ionien, ce serait G mineur. La progression I–II–III en lydien crée une couleur lumineuse et 'flottante', typique de John Williams.",
     concepts: ["lydien", "#4", "IIe majeur", "accord caractéristique"],
+    regles: "libre",
   },
 ];
 
@@ -640,6 +649,7 @@ export const COURS15_SATB: SATBExercise[] = [
     hint: "Dm7→G9 : F reste en place (note commune). Dans G9, D est la 9e au soprano. B monte vers B (reste) dans Cmaj7.",
     explanation: "Voicing jazz du II–V–I : la 7e de Dm7 (C) au soprano crée un mouvement conjoint C→D (9e de G)→E (3ce de Cmaj7). F reste en place de Dm7 à G9 (notes communes). La basse fait la progression roots D→G→C. Le résultat est fluide et idiomatique jazz.",
     concepts: ["voicings jazz", "9e", "notes communes", "II-V-I jazz"],
+    regles: "libre",
   },
   {
     id: "c15-satb-blues-jazz-f",
@@ -661,6 +671,7 @@ export const COURS15_SATB: SATBExercise[] = [
     hint: "Eb naturel dans F7 (♭7 de Fa) est hors de Fa majeur — c'est normal, le blues utilise des dominantes altérées même sur I.",
     explanation: "Le blues jazz utilise des accords de 7e dominante sur chaque degré — même I et IV sont des dominantes 7. F7 (I7) contient Eb (♭7) étranger à Fa majeur. Bb7 (IV7) contient Ab. Ce chromatisme 'bluesé' est la signature du blues : la grille est fonctionnelle mais les couleurs sont délibérément 'sales'.",
     concepts: ["blues jazz", "dominante sur I", "Eb dans Fa majeur", "couleur blues"],
+    regles: "libre",
   },
   {
     id: "c15-satb-turnaround-c",
@@ -674,13 +685,14 @@ export const COURS15_SATB: SATBExercise[] = [
     measures: ["I·C", "VI·Am7", "II·Dm7", "V7·G7"],
     solution: [
       { soprano: n("E",5), alto: n("C",5), tenor: n("G",4), bass: n("C",3) },
-      { soprano: n("E",5), alto: n("C",5), tenor: n("A",4), bass: n("A",3) },
-      { soprano: n("F",5), alto: n("C",5), tenor: n("A",4), bass: n("D",3) },
+      { soprano: n("E",5), alto: n("C",5), tenor: n("E",4), bass: n("A",3) },
+      { soprano: n("F",5), alto: n("C",5), tenor: n("A",3), bass: n("D",3) },
       { soprano: n("F",5), alto: n("B",4), tenor: n("G",4), bass: n("G",3) },
     ],
     hint: "C→Am7 : E et C restent en place, seule la basse bouge (C→A). Am7→Dm7 : la basse descend d'une quinte (A→D), le reste bouge peu.",
     explanation: "Le turnaround I–VI–II–V crée un cycle de retour vers I. Notes communes maximisées : E reste de C à Am7, C reste de Am7 à Dm7, F reste de Dm7 à G7. La basse fait le cycle des quintes descendantes C–A–D–G. C'est la progression jazz la plus employée.",
     concepts: ["turnaround", "I-VI-II-V", "cycle des quintes", "notes communes jazz"],
+    regles: "libre",
   },
 ];
 
@@ -747,7 +759,7 @@ export const COURS16_SATB: SATBExercise[] = [
     solution: [
       { soprano: n("E",5), alto: n("C",5), tenor: n("G",4), bass: n("C",3) },
       { soprano: n("E",5), alto: n("B",4), tenor: n("G",4), bass: n("E",3) },
-      { soprano: n("E",5), alto: n("C",5), tenor: n("A",4), bass: n("A",3) },
+      { soprano: n("E",5), alto: n("C",5), tenor: n("E",4), bass: n("A",3) },
       { soprano: n("E",5), alto: n("B",4), tenor: n("G",4), bass: n("C",3) },
     ],
     hint: "E reste au soprano tout au long — c'est la même mélodie. Seule l'harmonie change. C, Em et Am sont tous de fonction tonique.",
@@ -765,13 +777,14 @@ export const COURS16_SATB: SATBExercise[] = [
     keySignature: "C",
     measures: ["IIm7·Dm7", "SubV·Db7", "I·Cmaj7"],
     solution: [
-      { soprano: n("F",5), alto: n("C",5), tenor: n("A",4), bass: n("D",3) },
+      { soprano: n("F",5), alto: n("C",5), tenor: n("A",3), bass: n("D",3) },
       { soprano: n("F",5), alto: n("Ab",4), tenor: n("B",3), bass: n("Db",3) },
       { soprano: n("E",5), alto: n("G",4), tenor: n("C",4), bass: n("C",3) },
     ],
     hint: "F reste en place de Dm7 à D♭7 (note du triton commun). A♭ dans D♭7 descend vers G dans Cmaj7. Basse chromatique D→D♭→C.",
     explanation: "La substitution tritonique de G7 par D♭7 sous la même mélodie. F reste en place (triton commun G7/D♭7). A♭ crée la couleur 'blue note' de la substitution. B est enharmonique de C♭ — la sensible de la nouvelle dominante. Basse chromatique D→D♭→C : ultra-fluide.",
     concepts: ["substitution tritonique", "réharmonisation", "même mélodie", "basse chromatique"],
+    regles: "libre",
   },
   {
     id: "c16-satb-reharmo-modale",
@@ -1171,14 +1184,15 @@ export const COURS22_SATB: SATBExercise[] = [
     keySignature: "C",
     measures: ["IIm7·Dm7", "♭IIImaj7·Dbmaj7", "♭VII7·Gb7", "IMaj7·Cmaj7"],
     solution: [
-      { soprano: n("C",5), alto: n("F",4), tenor: n("A",4), bass: n("D",3) },
-      { soprano: n("C",5), alto: n("F",4), tenor: n("Ab",4), bass: n("Db",3) },
+      { soprano: n("C",5), alto: n("F",4), tenor: n("A",3), bass: n("D",3) },
+      { soprano: n("C",5), alto: n("F",4), tenor: n("Ab",3), bass: n("Db",3) },
       { soprano: n("B",4), alto: n("F",4), tenor: n("Bb",3), bass: n("Gb",3) },
       { soprano: n("C",5), alto: n("E",4), tenor: n("G",3), bass: n("C",3) },
     ],
     hint: "D♭maj7 remplace G7 (substitution tritonique + maj7). G♭7 est le SubV du I. F reste en place tout au long — c'est le fil conducteur.",
     explanation: "Réharmonisation multi-substitutions : D♭maj7 en lieu de G7 (SubV avec couleur maj7). G♭7 est un second SubV qui approche C par demi-ton descendant. F reste en place comme fil mélodique continu. B dans G♭7 est la sensible enharmonique (C♭) qui résout vers C. Technique inspirée des Coltrane Changes.",
     concepts: ["substitutions multiples", "Coltrane approach", "SubV maj7", "fil mélodique"],
+    regles: "libre",
   },
   {
     id: "c22-satb-parallelisme-debussy",
@@ -1193,12 +1207,13 @@ export const COURS22_SATB: SATBExercise[] = [
     solution: [
       { soprano: n("B",4), alto: n("G",4), tenor: n("E",4), bass: n("C",3) },
       { soprano: n("C#",5),alto: n("A",4), tenor: n("F#",4),bass: n("D",3) },
-      { soprano: n("D#",5),alto: n("B",4), tenor: n("G#",4),bass: n("E",3) },
-      { soprano: n("E",5), alto: n("C",5), tenor: n("A",4), bass: n("F",3) },
+      { soprano: n("D#",5),alto: n("B",4), tenor: n("G#",3),bass: n("E",3) },
+      { soprano: n("E",5), alto: n("C",5), tenor: n("A",3), bass: n("F",3) },
     ],
     hint: "Chaque accord se déplace d'un ton vers le haut tout en conservant la qualité maj7. La mélodie monte conjointement : B–C#–D#–E.",
     explanation: "L'harmonisation parallèle (planing) de Debussy : déplacer tout l'accord en bloc, ton par ton. Toutes les voix bougent en mouvement parallèle — les quintes et octaves parallèles sont ici intentionnelles et voulues (contrairement au contrepoint classique). L'oreille perçoit un 'glissement' de couleur harmonique plutôt que des fonctions tonales.",
     concepts: ["planing", "accords parallèles", "Debussy", "mouvement conjoint"],
+    regles: "libre",
   },
 ];
 
