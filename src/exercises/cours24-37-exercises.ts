@@ -1448,10 +1448,10 @@ const COURS34_EXERCISES: Exercise[] = [
     cours: 34,
     difficulty: 3,
     tags: ["Hans Zimmer", "Inception", "Time", "orchestration progressive", "musique de film"],
-    concepts: ["4 accords répétés (I–V–vi–IV)", "montée par l'orchestration, pas par l'harmonie", "timbre et dynamique > complexité"],
+    concepts: ["4 accords simples répétés en boucle", "montée par l'orchestration, pas par l'harmonie", "timbre et dynamique > complexité"],
     question:
       "« Time » de Hans Zimmer (Inception) est bâti sur seulement quatre accords répétés indéfiniment. D'où vient alors sa puissance émotionnelle croissante, selon le cours ?",
-    context: "Les quatre accords : Do – Sol – La mineur – Fa (I – V – vi – IV).",
+    context: "Une boucle de quatre accords simples, répétée du début à la fin.",
     options: [
       { id: "a", label: "De changements harmoniques rapides et de plus en plus complexes", isCorrect: false },
       { id: "b", label: "D'une fugue à quatre voix qui se superpose aux accords", isCorrect: false },
@@ -1459,7 +1459,7 @@ const COURS34_EXERCISES: Exercise[] = [
       { id: "d", label: "D'une modulation continue par la gamme octatonique", isCorrect: false },
     ],
     explanation:
-      "« Time » n'utilise que 4 accords (Do–Sol–Lam–Fa, soit I–V–vi–IV) répétés sans changement. Toute sa puissance vient de l'ORCHESTRATION qui s'épaissit : piano solo, puis cordes, puis ensemble complet, dans une longue montée dynamique. C'est la leçon de Zimmer que le cours retient : au cinéma, la force émotionnelle naît du timbre et de la dynamique bien plus que de la complexité harmonique. Les distracteurs proposent l'inverse exact (complexité harmonique, fugue, modulation) — précisément ce que Zimmer n'emploie PAS ici.",
+      "« Time » n'utilise que 4 accords simples répétés sans changement. Toute sa puissance vient de l'ORCHESTRATION qui s'épaissit : piano solo, puis cordes, puis ensemble complet, dans une longue montée dynamique. C'est la leçon de Zimmer que le cours retient : au cinéma, la force émotionnelle naît du timbre et de la dynamique bien plus que de la complexité harmonique. Les distracteurs proposent l'inverse exact (complexité harmonique, fugue, modulation) — précisément ce que Zimmer n'emploie PAS ici.",
     hint: "Si les quatre accords ne changent jamais, qu'est-ce qui, lui, ne cesse de grandir tout au long du morceau ?",
   },
 ];
