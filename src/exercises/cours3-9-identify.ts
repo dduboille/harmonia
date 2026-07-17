@@ -353,7 +353,7 @@ export const COURS5_IDENTIFY: IdentifyExercise[] = [
     explanation: "En La mineur harmonique, le Ve degré est E. Avec la sensible G# (VIIe degré élevé), on obtient E7 = E–G#–B–D. G# crée la tension vers A (tonique).",
   },
   {
-    id: "c5-emprunt-iv-mineur",
+    id: "c5-emprunt-iv-mineur-quiz",
     type: "identify", cours: 5, difficulty: 2,
     tags: ["emprunt","IV mineur","homonyme"],
     concepts: ["emprunt à l'homonyme","IV mineur","couleur romantique"],

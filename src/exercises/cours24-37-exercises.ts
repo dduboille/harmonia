@@ -477,4 +477,375 @@ const COURS32_EXERCISES: Exercise[] = [
   },
 ];
 
-export { COURS26_EXERCISES, COURS24_EXERCISES, COURS32_EXERCISES };
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 27 — Analyse fonctionnelle profonde : régions, Urlinie, Bassbrechung, Ursatz
+// ════════════════════════════════════════════════════════════════════════════
+//
+// Cours d'ANALYSE : dominante `identify` (raisonner sur une progression donnée,
+// distinguer surface et structure, lire une réduction) et `build` (écrire
+// l'Urlinie en notes). Un unique SATB : la Ursatz elle-même — Urlinie 3̂–2̂–1̂ au
+// soprano sur la Bassbrechung I–V–I à la basse, le « modèle de base » que le
+// cours illustre (Der freie Satz). Réalisation d'école complète : la sensible
+// (ténor) est frustrée — elle descend d'une tierce (Si3→Sol3) vers la quinte
+// pour garder l'accord de tonique complet ; aucune parallèle ; l'unique quinte
+// directe soprano–basse est de l'espèce permise (soprano conjoint). D'où
+// `regles: "ecole"`.
+
+const COURS27_EXERCISES: Exercise[] = [
+  // ── identify 1 — régions fonctionnelles dans une progression donnée (diff 1) ─
+  {
+    id: "c27-region-vi-progression",
+    type: "identify",
+    cours: 27,
+    difficulty: 1,
+    tags: ["régions tonales", "T-SD-D", "vi", "prolongation tonique", "analyse fonctionnelle"],
+    concepts: ["région tonique = I, iii, vi", "vi partage deux notes avec I", "prolongation avant SD"],
+    question:
+      "Analyse fonctionnelle de la progression I – vi – IV – V – I en Do majeur. À quelle région (T, SD ou D) le vi (La mineur) appartient-il, et quel rôle joue-t-il ici ?",
+    context: "Do majeur. I (Do) – vi (La mineur) – IV (Fa) – V (Sol) – I (Do).",
+    options: [
+      { id: "a", label: "Région tonique — vi prolonge la tonique (il partage Do et Mi avec I) avant le mouvement vers la sous-dominante IV", isCorrect: true },
+      { id: "b", label: "Région sous-dominante — vi prépare la dominante au même titre que IV", isCorrect: false },
+      { id: "c", label: "Région dominante — vi contient la sensible et tend vers I", isCorrect: false },
+      { id: "d", label: "Aucune région — vi n'est ici qu'un accord de passage sans fonction", isCorrect: false },
+    ],
+    explanation:
+      "La région tonique regroupe I, iii et vi : tous partagent deux notes avec l'accord de tonique. La mineur (La–Do–Mi) partage Do et Mi avec Do majeur — c'est la couleur de repos. Dans I–vi–IV–V–I, le vi prolonge donc la région T avant le vrai mouvement fonctionnel T→SD(IV)→D(V)→T. Le piège (b) est la confusion classique vi/pré-dominante : le vi peut parfois préparer V, mais le cours le range dans la région tonique. Réponse (c) fausse : La–Do–Mi ne contient pas la sensible Si.",
+    hint: "Comptez les notes communes entre La mineur (La–Do–Mi) et Do majeur (Do–Mi–Sol).",
+  },
+
+  // ── build — écrire l'Urlinie 3̂–2̂–1̂ en Fa majeur (diff 1) ────────────────────
+  {
+    id: "c27-build-urlinie-fa",
+    type: "build",
+    cours: 27,
+    difficulty: 1,
+    tags: ["Urlinie", "ligne fondamentale", "Kopfton", "Fa majeur", "Schenker"],
+    concepts: ["Urlinie de tierce 3̂–2̂–1̂", "descente diatonique vers 1̂", "Kopfton = 3̂"],
+    question:
+      "L'Urlinie de tierce (3̂–2̂–1̂) est la ligne fondamentale la plus simple selon Schenker : une descente diatonique du soprano jusqu'à la tonique. Donnez-la en Fa majeur, du Kopfton (3̂) jusqu'à 1̂, dans l'ordre.",
+    keySignature: "F",
+    correctNotes: ["A", "G", "F"],
+    explanation:
+      "En Fa majeur : 3̂ = La (le Kopfton, note de couverture qui ouvre la ligne), 2̂ = Sol (harmonisé par V), 1̂ = Fa (harmonisé par I). L'Urlinie descend donc La–Sol–Fa. Toute tension mélodique tonale doit résoudre sur 1̂ : c'est la loi que matérialise l'Urlinie. Les deux autres formes sont 5̂–4̂–3̂–2̂–1̂ (Do–Sib–La–Sol–Fa ici) et 8̂–7̂–6̂–5̂–4̂–3̂–2̂–1̂.",
+    hint: "3̂ est la tierce de la gamme de Fa majeur ; descendez ensuite par degré conjoint jusqu'à la tonique.",
+  },
+
+  // ── identify 2 — piliers structuraux vs prolongations de surface (diff 2) ────
+  {
+    id: "c27-surface-vs-structure-piliers",
+    type: "identify",
+    cours: 27,
+    difficulty: 2,
+    tags: ["surface vs structure", "piliers structuraux", "prolongation", "réduction", "Bassbrechung"],
+    concepts: ["piliers = ouverture / dominante / conclusion", "vi et I⁶ prolongent la tonique", "accord structural vs accord de surface"],
+    question:
+      "On réduit la phrase I – vi – I⁶ – V⁷ – I (Do majeur). Selon la lecture en couches (surface vs structure profonde), quels sont les PILIERS structuraux, et quels accords ne sont que des prolongations de surface de la tonique ?",
+    context: "Do majeur. I – vi – I⁶ – V⁷ – I.",
+    options: [
+      { id: "a", label: "Piliers : I (ouverture) – V⁷ (dominante) – I (conclusion) ; vi et I⁶ prolongent la région tonique (surface)", isCorrect: true },
+      { id: "b", label: "Piliers : vi – I⁶ – V⁷ ; le premier I n'est qu'une anacrouse sans poids structural", isCorrect: false },
+      { id: "c", label: "Piliers : I – vi – I ; le V⁷ n'est qu'un ornement de passage vers la tonique finale", isCorrect: false },
+      { id: "d", label: "Les cinq accords sont des piliers de poids structural égal", isCorrect: false },
+    ],
+    explanation:
+      "La stratégie schenkérienne repère trois points d'ancrage : l'ouverture (I), la dominante structurale (V⁷) et la conclusion (I) — c'est la Bassbrechung I–V–I sous-jacente. Le vi et le I⁶ appartiennent tous deux à la région tonique (vi partage deux notes avec I ; I⁶ est I renversé) : ils prolongent la couleur de repos initiale sans créer de mouvement fonctionnel propre. Ce sont des accords de surface. Nier le poids du V⁷ (c) ou mettre tous les accords sur le même plan (d) revient à rester à la surface, sans voir la hiérarchie.",
+    hint: "Un accord dont la suppression ne change pas la logique tonale (ex. I⁶, même accord que I) est une prolongation, pas un pilier.",
+  },
+
+  // ── satb — la Ursatz : Urlinie 3̂–2̂–1̂ sur Bassbrechung I–V–I (diff 2) ─────────
+  {
+    id: "c27-ursatz-satb-do",
+    type: "satb",
+    cours: 27,
+    title: "La Ursatz en Do majeur",
+    subtitle: "Urlinie 3̂–2̂–1̂ (Mi–Ré–Do) sur Bassbrechung I–V–I",
+    difficulty: 2,
+    tags: ["Ursatz", "Urlinie", "Bassbrechung", "Do majeur", "Schenker", "structure fondamentale"],
+    keySignature: "C",
+    measures: ["I · Do (3̂=Mi)", "V · Sol (2̂=Ré)", "I · Do (1̂=Do)"],
+    solution: [
+      { soprano: n("E", 5), alto: n("G", 4), tenor: n("C", 4), bass: n("C", 3) },
+      { soprano: n("D", 5), alto: n("G", 4), tenor: n("B", 3), bass: n("G", 2) },
+      { soprano: n("C", 5), alto: n("E", 4), tenor: n("G", 3), bass: n("C", 3) },
+    ],
+    hint: "Le soprano réalise l'Urlinie 3̂–2̂–1̂ (Mi–Ré–Do) ; la basse réalise la Bassbrechung I–V–I (Do–Sol–Do). 3̂ coïncide avec I, 2̂ avec V, 1̂ avec I. À la cadence, la sensible Si est au ténor (voix intérieure) : elle est frustrée vers Sol pour laisser l'accord de tonique complet.",
+    explanation:
+      "La Ursatz est la structure contrapuntique fondamentale de Schenker : l'Urlinie au soprano (descente 3̂–2̂–1̂ = Mi–Ré–Do) superposée à la Bassbrechung à la basse (arche I–V–I = Do–Sol–Do). L'alignement canonique est ici respecté à la note : 3̂/Mi sur I, 2̂/Ré sur V, 1̂/Do sur I. Conduite d'école : la sensible Si (ténor, voix interne) est « frustrée » — elle descend d'une tierce vers Sol (quinte de la tonique) plutôt que de monter, ce qui permet à l'accord final Do–Mi–Sol d'être complet. Aucune quinte ni octave parallèle ; le soprano se meut par degré, donc aucune octave/quinte directe soprano–basse. C'est le « modèle de base » que Schenker illustre dans Der freie Satz : toute œuvre tonale n'est qu'une prolongation élaborée de cette arche.",
+    concepts: ["Ursatz", "Urlinie 3̂–2̂–1̂", "Bassbrechung I–V–I", "sensible frustrée", "accord de tonique complet"],
+    regles: "ecole",
+  },
+
+  // ── identify 3 — le V structurel de la Bassbrechung à grande échelle (diff 3) ─
+  {
+    id: "c27-bassbrechung-menuet-16",
+    type: "identify",
+    cours: 27,
+    difficulty: 3,
+    tags: ["Bassbrechung", "grande échelle", "V structurel", "tonicisation vs modulation", "forme"],
+    concepts: ["arche I–V–I à l'échelle de la pièce", "V médian = tension structurale", "tonicisation ≠ modulation définitive"],
+    question:
+      "Un menuet classique de 16 mesures (Do majeur) cadence nettement sur V (Sol) à la mesure 8, puis revient à I (Do) à la mesure 16. Comment la lecture schenkérienne interprète-t-elle cette cadence sur V à mi-parcours ?",
+    context: "Do majeur, 16 mesures. Cadence sur V (m.8), retour à I (m.16).",
+    options: [
+      { id: "a", label: "C'est le V structurel de la Bassbrechung : le point de tension médian de l'arche I–V–I qui structure les 16 mesures ; la seconde moitié prolonge le retour vers I", isCorrect: true },
+      { id: "b", label: "C'est une modulation définitive en Sol majeur : la pièce change réellement de tonalité pour la seconde moitié", isCorrect: false },
+      { id: "c", label: "C'est une simple demi-cadence de surface, sans aucune portée structurale", isCorrect: false },
+      { id: "d", label: "C'est une faute de forme : un menuet doit rester à la tonique de bout en bout", isCorrect: false },
+    ],
+    explanation:
+      "La Bassbrechung (I–V–I) est scalable : elle structure aussi bien une phrase de 4 mesures que toute une pièce. Ici, la cadence sur V à la mesure 8 est le V STRUCTUREL — le sommet de tension de l'arche I–V–I sur 16 mesures. Tout ce qui précède prolonge le I (aller), tout ce qui suit prolonge le retour vers I (retour). Le piège (b) confond la tonicisation de V (momentanée, réabsorbée par le retour à I) avec une modulation définitive : la pièce ne quitte jamais vraiment Do majeur. Sous-estimer ce V (c) revient à ignorer la structure profonde.",
+    hint: "À quelle échelle la Bassbrechung I–V–I peut-elle s'étendre ? Le V du milieu est-il quitté définitivement ou ré-absorbé par le retour à I ?",
+  },
+];
+
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 28 — Formes musicales : binaire, ternaire, rondo, forme sonate
+// ════════════════════════════════════════════════════════════════════════════
+//
+// Cours d'ANALYSE des formes : exclusivement `identify`, chaque question ancrée
+// dans un PLAN de forme concret (tonalités des sections, retours thématiques) et
+// un exemple du répertoire enseigné (Bach, Mozart, Beethoven). Les distracteurs
+// sont les confusions que le cours combat : binaire fermée vs ouverte, T2 qui
+// « resterait » à la dominante en réexposition, fausse réexposition prise pour
+// la vraie, rondo confondu avec la forme sonate.
+
+const COURS28_EXERCISES: Exercise[] = [
+  // ── identify 1 — plan tonal de la forme binaire majeure (diff 1) ────────────
+  {
+    id: "c28-binaire-plan-tonal",
+    type: "identify",
+    cours: 28,
+    difficulty: 1,
+    tags: ["forme binaire", "plan tonal", "baroque", "danse", "dominante"],
+    concepts: ["fin de A à la dominante en majeur", "arc tonal instabilité → retour", "B ramène à la tonique"],
+    question:
+      "Une allemande de Bach en Sol majeur est en forme binaire (||:A:||·||:B:||). La section A se referme par une cadence à la mesure 8. Sur quelle tonalité aboutit typiquement cette cadence, et pourquoi ?",
+    context: "Forme binaire baroque, Sol majeur. Cadence de fin de section A.",
+    options: [
+      { id: "a", label: "À la dominante (Ré majeur) : la fin de A sur V crée l'instabilité qui appelle la section B, laquelle ramènera à la tonique", isCorrect: true },
+      { id: "b", label: "À la tonique (Sol majeur) : chaque section d'une forme binaire se referme obligatoirement sur I", isCorrect: false },
+      { id: "c", label: "Au relatif mineur (Mi mineur), passage obligé en mode majeur", isCorrect: false },
+      { id: "d", label: "À la sous-dominante (Do majeur)", isCorrect: false },
+    ],
+    explanation:
+      "Dans la forme binaire baroque en majeur, la section A se termine à la dominante (V) : en Sol majeur, cette cadence aboutit à Ré majeur. Cette fin instable (forme binaire « ouverte ») appelle la section B, qui module et revient à la tonique pour conclure — un arc tonal instabilité → résolution à l'échelle de la pièce. La réponse (b) décrit la forme binaire « tonalement fermée », rare et beaucoup moins dynamique. En mineur, ce serait le relatif majeur (III), pas le relatif mineur.",
+    hint: "La forme binaire dessine un arc de tension : où doit s'arrêter A pour que B ait un but tonal à atteindre ?",
+  },
+
+  // ── identify 2 — forme ternaire menuet–trio–menuet da capo (diff 1) ─────────
+  {
+    id: "c28-ternaire-menuet-trio",
+    type: "identify",
+    cours: 28,
+    difficulty: 1,
+    tags: ["forme ternaire", "ABA", "menuet", "trio", "da capo"],
+    concepts: ["Menuet–Trio–Menuet D.C. = ternaire A–B–A", "da capo = retour intégral de A", "grande forme ternaire"],
+    question:
+      "Un menuet classique est noté « Menuet – Trio – Menuet D.C. ». Quelle est la forme globale, et que désigne le « da capo » ?",
+    context: "Menuet (section A) – Trio (section B) – Menuet da capo.",
+    options: [
+      { id: "a", label: "Forme ternaire A–B–A : le da capo (« depuis le début ») indique le retour intégral du menuet (A) après le trio (B)", isCorrect: true },
+      { id: "b", label: "Forme binaire A–B : le da capo est une coda ajoutée à la fin", isCorrect: false },
+      { id: "c", label: "Forme rondo A–B–A–C–A : le trio est le premier de plusieurs épisodes", isCorrect: false },
+      { id: "d", label: "Forme sonate : le trio joue le rôle du développement", isCorrect: false },
+    ],
+    explanation:
+      "Menuet – Trio – Menuet da capo est l'archétype de la (grande) forme ternaire A–B–A. Le trio (nommé ainsi car joué à l'origine par trois instruments) est la section B contrastante ; le « da capo » renvoie au début et fait rejouer le menuet (A) — souvent sans les reprises. Chez Beethoven, le scherzo remplace le menuet mais garde exactement cette architecture Scherzo–Trio–Scherzo. Le distracteur (d) confond le trio (simple contraste) avec le développement de la forme sonate (fragmentation et errance tonale).",
+    hint: "Combien de sections distinctes entend-on, et laquelle revient à l'identique à la fin ?",
+  },
+
+  // ── identify 3 — le refrain du rondo comme ancrage tonal (diff 2) ────────────
+  {
+    id: "c28-rondo-refrain-tonique",
+    type: "identify",
+    cours: 28,
+    difficulty: 2,
+    tags: ["rondo", "ABACA", "refrain", "épisodes", "Beethoven Pathétique"],
+    concepts: ["le refrain A revient toujours à la tonique", "les épisodes explorent d'autres tonalités", "rondo ≠ forme sonate"],
+    question:
+      "Le finale de la Sonate « Pathétique » op.13 de Beethoven (Do mineur) est un rondo. À chaque retour, dans quelle tonalité le refrain A revient-il, et qu'est-ce qui le distingue des épisodes ?",
+    context: "Rondo, tonique principale Do mineur.",
+    options: [
+      { id: "a", label: "Toujours à la tonique (Do mineur) : le refrain est le point d'ancrage tonal, tandis que les épisodes B et C explorent d'autres tonalités", isCorrect: true },
+      { id: "b", label: "Transposé d'un degré plus haut à chaque retour, pour créer une progression", isCorrect: false },
+      { id: "c", label: "Toujours à la dominante (Sol) ; ce sont les épisodes qui reviennent à la tonique", isCorrect: false },
+      { id: "d", label: "Une seule fois, comme le thème 1 d'une forme sonate en réexposition", isCorrect: false },
+    ],
+    explanation:
+      "Dans le rondo, le refrain A revient toujours à la tonique principale (Do mineur ici) : c'est ce qui définit son rôle de « foyer » tonal, retrouvé après chaque excursion. Les épisodes (B, C…), eux, voyagent dans d'autres tonalités pour créer le contraste. Le distracteur (d) pointe la différence-clé avec la forme sonate : dans une sonate, T1 et T2 ne reviennent qu'une seule fois (en réexposition) — logique narrative de tension/résolution ; le rondo est cyclique, le thème revenant après CHAQUE épisode.",
+    hint: "Qu'est-ce qui fait qu'un rondo « tourne » (ronde) plutôt qu'il ne raconte une histoire en une seule fois ?",
+  },
+
+  // ── identify 4 — forme sonate en mineur : T2 en réexposition (diff 2) ────────
+  {
+    id: "c28-sonate-t2-reexposition",
+    type: "identify",
+    cours: 28,
+    difficulty: 2,
+    tags: ["forme sonate", "réexposition", "thème 2", "mode mineur", "Mozart Symphonie 40"],
+    concepts: ["exposition mineure : T2 au relatif majeur III", "réexposition : T2 revient à la tonique", "résolution de la polarité tonale"],
+    question:
+      "Dans l'exposition du 1er mouvement de la Symphonie n°40 de Mozart (Sol mineur), le thème 2 (T2) est en Sib majeur. En réexposition, dans quelle tonalité T2 revient-il, et quel principe fondamental cela illustre-t-il ?",
+    context: "Forme sonate, Sol mineur. Exposition : T1 en Sol mineur, T2 en Sib majeur (relatif = III).",
+    options: [
+      { id: "a", label: "À la tonique (Sol mineur) : la réexposition ramène T2 au ton principal — c'est la résolution de la tension, le principe même de la forme sonate", isCorrect: true },
+      { id: "b", label: "Il reste en Sib majeur (III), inchangé par rapport à l'exposition", isCorrect: false },
+      { id: "c", label: "Il passe à la dominante (Ré majeur) en réexposition", isCorrect: false },
+      { id: "d", label: "Il monte à la sous-dominante (Do mineur)", isCorrect: false },
+    ],
+    explanation:
+      "En mode mineur, T2 est au relatif majeur (III) dans l'exposition — ici Sib majeur. La règle d'or de la forme sonate est que la réexposition ramène T2 à la TONIQUE : le thème 2 revient donc à Sol mineur (parfois en Sol majeur pour adoucir la fin, mais toujours sur la tonique). C'est la résolution de la polarité tonale ouverte par l'exposition. Le distracteur (b) est l'erreur que le cours combat frontalement : si T2 « restait » à la dominante ou au relatif en réexposition, il n'y aurait pas de résolution — et ce ne serait plus une forme sonate.",
+    hint: "Toute la tension de la forme sonate vient de T2 « hors du foyer ». Que doit-il se passer pour qu'elle se résolve ?",
+  },
+
+  // ── identify 5 — développement : la fausse réexposition (diff 3) ─────────────
+  {
+    id: "c28-sonate-fausse-reexposition",
+    type: "identify",
+    cours: 28,
+    difficulty: 3,
+    tags: ["forme sonate", "développement", "fausse réexposition", "tonalité", "Beethoven Héroïque"],
+    concepts: ["réexposition définie par le retour à la TONIQUE, pas seulement du thème", "le développement doit aboutir sur V", "fausse réexposition = leurre"],
+    question:
+      "Au sein du développement d'une forme sonate en Do majeur, un compositeur ramène le thème 1 — mais en Mi bémol majeur, pas à la tonique. Comment nomme-t-on ce procédé, et que doit encore accomplir le développement ensuite ?",
+    context: "Forme sonate, tonique Do majeur. Retour de T1 en Mib majeur, au milieu du développement.",
+    options: [
+      { id: "a", label: "Une fausse réexposition : le retour de T1 hors tonique est un leurre ; le développement doit repartir moduler puis aboutir sur V (dominante) pour préparer la vraie réexposition à la tonique", isCorrect: true },
+      { id: "b", label: "La vraie réexposition : dès que T1 réapparaît, la réexposition commence, quelle que soit la tonalité", isCorrect: false },
+      { id: "c", label: "Une coda anticipée qui conclut le mouvement", isCorrect: false },
+      { id: "d", label: "Une faute de forme : le thème 1 ne peut jamais reparaître dans le développement", isCorrect: false },
+    ],
+    explanation:
+      "C'est une fausse réexposition : le thème 1 réapparaît, mais dans une tonalité étrangère (Mib majeur au lieu de Do), ce qui trompe l'auditeur avant que la musique ne reparte moduler. Ce qui définit la vraie réexposition n'est pas le retour du thème mais le retour à la TONIQUE — d'où l'erreur du distracteur (b). Le développement doit encore accomplir son office : traverser d'autres tonalités puis se fixer sur la dominante (V), souvent en pédale, pour préparer le vrai retour de T1 à la tonique. Beethoven en fait un usage célèbre dans la Symphonie n°3 « Héroïque ».",
+    hint: "Qu'est-ce qui définit une réexposition : le retour du thème, ou le retour de la tonique ?",
+  },
+];
+
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 29 — Analyse comparative du répertoire : identifier une période au style
+// ════════════════════════════════════════════════════════════════════════════
+//
+// Cours COMPARATIF (baroque / classique / romantique / impressionniste) : la
+// même mélodie harmonisée selon les époques, et l'art d'identifier une période
+// par ses critères. Dominante `identify` (reconnaître un style à un faisceau de
+// traits, opposer deux écritures) ; un `build` central de l'impressionnisme (la
+// gamme par tons, que le cours donne explicitement). Les distracteurs sont les
+// confusions de période que le cours démonte (chromatisme romantique vs
+// impressionniste ; basse continue vs basse d'Alberti).
+
+const COURS29_EXERCISES: Exercise[] = [
+  // ── identify 1 — reconnaître le baroque à ses trois critères (diff 1) ────────
+  {
+    id: "c29-identifier-baroque",
+    type: "identify",
+    cours: 29,
+    difficulty: 1,
+    tags: ["baroque", "basse continue", "contrepoint", "cadences", "identification de période"],
+    concepts: ["basse continue chiffrée", "contrepoint rigoureux", "cadences V–I fréquentes et ornées"],
+    question:
+      "Une pièce présente une basse continue chiffrée, un contrepoint rigoureux à plusieurs voix indépendantes, et des cadences V–I fréquentes ornées d'un trille sur la sensible. De quelle période stylistique s'agit-il ?",
+    context: "Faisceau d'indices : basse continue + contrepoint + cadences fréquentes ornées.",
+    options: [
+      { id: "a", label: "La période baroque (Bach, Haendel, Vivaldi)", isCorrect: true },
+      { id: "b", label: "Le classicisme viennois (Mozart, Haydn)", isCorrect: false },
+      { id: "c", label: "Le romantisme (Schubert, Chopin, Wagner)", isCorrect: false },
+      { id: "d", label: "L'impressionnisme (Debussy, Ravel)", isCorrect: false },
+    ],
+    explanation:
+      "Trois critères combinés signent le baroque : (1) la basse continue chiffrée réalisée au continuo (clavecin, orgue, théorbe), (2) le contrepoint rigoureux entre voix indépendantes, (3) des cadences V–I fréquentes et affirmées, ornées d'un trille cadentiel sur la sensible. Aucun de ces traits seul ne suffit, mais leur combinaison est caractéristique. Le classicisme abandonne la basse continue pour la basse d'Alberti et l'écriture homophonique ; l'impressionnisme dissout la cadence V–I fonctionnelle.",
+    hint: "Un seul de ces indices — la basse continue chiffrée — écarte déjà le classicisme et tout ce qui suit.",
+  },
+
+  // ── identify 2 — baroque vs classique : la texture d'accompagnement (diff 2) ─
+  {
+    id: "c29-baroque-vs-classique-basse",
+    type: "identify",
+    cours: 29,
+    difficulty: 2,
+    tags: ["baroque", "classique", "basse continue", "basse d'Alberti", "phrases symétriques"],
+    concepts: ["basse continue + contrepoint = baroque", "basse d'Alberti + phrases 4+4 = classique viennois", "texture d'accompagnement comme indice"],
+    question:
+      "On compare deux accompagnements. Extrait 1 : une basse continue chiffrée réalisée au clavecin sous un contrepoint à voix indépendantes. Extrait 2 : une basse d'Alberti (arpège brisé fondamentale–quinte–tierce–quinte) sous une mélodie chantante taillée en phrases de 4+4 mesures. À quelles périodes appartiennent-ils respectivement ?",
+    context: "Extrait 1 : basse continue + contrepoint. Extrait 2 : basse d'Alberti + phrases 4+4.",
+    options: [
+      { id: "a", label: "Baroque puis classique : la basse continue et le contrepoint signent le baroque ; la basse d'Alberti et les phrases symétriques signent le classicisme viennois", isCorrect: true },
+      { id: "b", label: "Classique puis baroque : l'ordre est inversé", isCorrect: false },
+      { id: "c", label: "Les deux sont baroques : la basse d'Alberti est une forme de basse continue", isCorrect: false },
+      { id: "d", label: "Les deux sont classiques : le contrepoint est typique de Mozart", isCorrect: false },
+    ],
+    explanation:
+      "La texture d'accompagnement est un indice de période très sûr. La basse continue chiffrée sous un contrepoint est baroque : plusieurs voix indépendantes, réalisation au continuo. La basse d'Alberti (arpège régulier fondamentale–quinte–tierce–quinte) sous une mélodie en phrases symétriques de 4+4 mesures (antécédent/conséquent) est la signature du classicisme viennois (Mozart, Haydn) : une mélodie accompagnée homophonique remplace le contrepoint. Le distracteur (c) est faux : la basse d'Alberti est un accompagnement écrit d'accords brisés, sans rien de la basse continue chiffrée improvisée.",
+    hint: "Contrepoint de voix indépendantes vs mélodie accompagnée d'arpèges réguliers : deux mondes, deux époques.",
+  },
+
+  // ── identify 3 — la même mélodie : où la cadence V–I disparaît (diff 1) ──────
+  {
+    id: "c29-melodie-cadence-vi",
+    type: "identify",
+    cours: 29,
+    difficulty: 1,
+    tags: ["comparatif", "cadence V–I", "impressionnisme", "fonction vs couleur", "Debussy"],
+    concepts: ["une mélodie, cinq harmonisations", "l'impressionnisme abandonne la cadence V–I fonctionnelle", "accord = couleur, non fonction"],
+    question:
+      "Cœur du cours : une même mélodie est harmonisée dans cinq styles. Dans lequel la cadence V–I cesse-t-elle d'être le pilier qui structure l'harmonie ?",
+    context: "Comparaison baroque / classique / romantique / post-romantique / impressionniste de la même mélodie.",
+    options: [
+      { id: "a", label: "L'impressionnisme (Debussy) : les accords progressent par couleur et registre, non par tension–résolution ; y chercher un V–I fonctionnel serait le mauvais outil", isCorrect: true },
+      { id: "b", label: "Le baroque de Bach, où la dominante est évitée", isCorrect: false },
+      { id: "c", label: "Le classicisme de Mozart, qui préfère la cadence plagale IV–I", isCorrect: false },
+      { id: "d", label: "Le romantisme de Schubert, qui n'utilise jamais la dominante", isCorrect: false },
+    ],
+    explanation:
+      "Bach, Mozart et Schubert structurent tous leur discours autour de la cadence V–I (avec, chez Schubert, un enrichissement chromatique). Debussy est le seul à l'abandonner délibérément : chez lui, un accord est une couleur, non une fonction ; les accords de 9e, 11e, 13e glissent d'une couleur à l'autre sans « résoudre ». Analyser un prélude de Debussy avec les fonctions T/SD/D, c'est appliquer le mauvais outil — l'analyse modale et timbrale est plus adaptée. Les distracteurs inversent les faits : baroque et classicisme affirment au contraire la dominante.",
+    hint: "Quel style pense en couleurs sonores plutôt qu'en tensions à résoudre ?",
+  },
+
+  // ── build — la gamme par tons de Debussy (diff 2) ────────────────────────────
+  {
+    id: "c29-build-gamme-par-tons",
+    type: "build",
+    cours: 29,
+    difficulty: 2,
+    tags: ["impressionnisme", "gamme par tons", "Debussy", "ambiguïté tonale", "construction"],
+    concepts: ["six sons séparés d'un ton entier", "ni sensible ni sous-tonique", "orthographe Fa#–Sol#–La#"],
+    question:
+      "Debussy emploie la gamme par tons pour dissoudre la tonalité : sans demi-ton, elle n'a ni sensible ni sous-tonique, donc aucune tonique claire. Construisez-la à partir de Do, en montant (six sons).",
+    keySignature: "C",
+    correctNotes: ["C", "D", "E", "F#", "G#", "A#"],
+    explanation:
+      "La gamme par tons à partir de Do : Do – Ré – Mi – Fa# – Sol# – La# (puis Do à l'octave). Chaque degré est séparé du suivant par un ton entier. Faute de demi-ton, il n'y a ni sensible (pas de Si→Do) ni sous-tonique : impossible d'y désigner une tonique — d'où l'atmosphère flottante et l'ambiguïté tonale totale recherchées par Debussy (Voiles, La cathédrale engloutie). On écrit Fa#, Sol#, La# (et non Solb, Lab, Sib) pour conserver une note par degré alphabétique jusqu'au dièse.",
+    hint: "Ne posez que des tons entiers : après Mi, le ton entier tombe sur Fa#, non sur Fa.",
+  },
+
+  // ── identify 4 — chromatisme romantique vs impressionniste (diff 3) ──────────
+  {
+    id: "c29-chromatisme-romantique-vs-impressionniste",
+    type: "identify",
+    cours: 29,
+    difficulty: 3,
+    tags: ["romantisme", "impressionnisme", "chromatisme", "fonction vs couleur", "Tristan"],
+    concepts: ["chromatisme romantique = tensions fonctionnelles résolues", "chromatisme impressionniste = couleurs non fonctionnelles", "même densité, usages opposés"],
+    question:
+      "Deux extraits usent abondamment de notes altérées. Extrait A : les altérations créent des tensions (dominantes secondaires, sixte augmentée, accord de Tristan) qui finissent par se résoudre vers des degrés fonctionnels. Extrait B : des accords de 9e se déplacent en mouvement parallèle (planing) sur une gamme par tons, sans jamais résoudre. Comment classer ces deux chromatismes ?",
+    context: "A : altérations qui tendent puis résolvent. B : accords parallèles non résolus sur gamme par tons.",
+    options: [
+      { id: "a", label: "A = chromatisme romantique (fonctionnel : les tensions se résolvent) ; B = chromatisme impressionniste (couleurs non fonctionnelles, sans tension–résolution)", isCorrect: true },
+      { id: "b", label: "A = impressionniste, B = romantique : l'ordre est inversé", isCorrect: false },
+      { id: "c", label: "Les deux relèvent du même chromatisme ; seule l'époque de composition change", isCorrect: false },
+      { id: "d", label: "A est baroque (le triton y est résolu) et B est classique", isCorrect: false },
+    ],
+    explanation:
+      "La distinction ne tient pas à la quantité de chromatisme mais à son usage. Le chromatisme romantique (Wagner, Chopin, Brahms) est fonctionnel : dominantes secondaires, sixtes augmentées, accord de Tristan créent des tensions qui — même longtemps différées — s'inscrivent dans un système de tension–résolution. Le chromatisme impressionniste (Debussy) est non fonctionnel : modes, gamme par tons, accords parallèles produisent des couleurs qui glissent sans résolution obligatoire. Le distracteur (c) est précisément l'erreur que le cours démonte : ce n'est pas « plus de chromatisme », c'est un chromatisme d'une autre nature.",
+    hint: "Demandez-vous si les altérations veulent aller quelque part (se résoudre) ou si elles ne font que colorer.",
+  },
+];
+
+export {
+  COURS26_EXERCISES,
+  COURS24_EXERCISES,
+  COURS32_EXERCISES,
+  COURS27_EXERCISES,
+  COURS28_EXERCISES,
+  COURS29_EXERCISES,
+};
