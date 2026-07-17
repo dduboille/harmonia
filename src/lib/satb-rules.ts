@@ -251,15 +251,23 @@ export function validateSATB(
         const arrivee = accords[m];
         const armee = arrivee && (arrivee.rootPc === tonicPc || arrivee.rootPc === sixte);
         if (armee && acc && (acc.rootPc === dominante || acc.rootPc === sensible)) {
+          // Règle « Pachelbel » : la sensible à la BASSE d'un V6 qui DESCEND par
+          // degré vers le VI (do–sol/si–la…) est le geste séquentiel canonique
+          // reconnu par les traités — elle n'y fonctionne pas comme sensible
+          // cadentielle. L'exemption ne vaut que pour la basse ET pour une arrivée
+          // sur le VI : vers la tonique, la basse sensible doit toujours monter.
+          const arriveeSixte = arrivee!.rootPc === sixte;
           VOICES.forEach(v => {
             if (pcOf(prev[v]) !== sensible) return;
             const midiP = noteToMidi(noteName(prev[v].name!), prev[v].octave);
             const midiC = noteToMidi(noteName(cur[v].name!), cur[v].octave);
+            const d = midiC - midiP;
             const externe = v === "soprano" || v === "bass";
             const ok =
-              midiC - midiP === 1 ||   // monte à la tonique
-              midiC === midiP ||        // tenue
-              (!externe && midiC - midiP === -4 && pcOf(cur[v]) === dominante); // frustrée interne
+              d === 1 ||   // monte à la tonique
+              d === 0 ||        // tenue
+              (!externe && d === -4 && pcOf(cur[v]) === dominante) || // frustrée interne
+              (v === "bass" && arriveeSixte && (d === -1 || d === -2)); // Pachelbel : basse de V6 descendant vers le VI
             if (!ok) {
               errors.push({
                 type: "leading_tone", measure: m,

@@ -343,6 +343,56 @@ describe("validateSATB — la sensible en marche (I/VI seulement)", () => {
   });
 });
 
+describe("validateSATB — sensible à la basse d'un V6 (règle « Pachelbel »)", () => {
+  // Geste séquentiel canonique reconnu par les traités : I – V6 – vi… la sensible
+  // est à la BASSE du V6 et DESCEND par degré vers le VI (do–sol/si–la). Elle n'y
+  // fonctionne pas comme sensible cadentielle : la règle doit se taire.
+  it("I – V6 – vi en do : basse sensible B3 → A3 (descend d'un ton vers le VI) → rien", () => {
+    const sol = [
+      chord("C3", "E3", "G3", "C4"),   // I
+      chord("B3", "D4", "G4", "D5"),   // V6 : sensible (si) à la basse
+      chord("A3", "E4", "A4", "C5"),   // vi (la mineur) : basse B3 → A3, descente d'un ton
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    expect(errs.filter(e => e.type === "wrong_chord" || e.type === "wrong_bass")).toEqual([]);
+    expect(typesOf(errs)).not.toContain("leading_tone");
+  });
+
+  it("non-exemption : V6 → I (arrivée tonique) basse sensible descendante → leading_tone (error)", () => {
+    // L'exemption ne vaut QUE pour l'arrivée sur le VI. Vers la tonique, la sensible
+    // à la basse doit toujours MONTER.
+    const sol = [
+      chord("B3", "D4", "G4", "D5"),   // V6 : sensible à la basse
+      chord("E3", "G3", "C4", "G4"),   // I6 : basse B3 → E3, la sensible plonge
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    expect(errs.filter(e => e.type === "wrong_chord" || e.type === "wrong_bass")).toEqual([]);
+    const lt = errs.find(e => e.type === "leading_tone");
+    expect(lt?.severity).toBe("error");
+  });
+
+  it("non-exemption : V6 → I basse sensible qui MONTE → rien (inchangé)", () => {
+    const sol = [
+      chord("B3", "D4", "G4", "D5"),   // V6
+      chord("C4", "E4", "G4", "C5"),   // I : basse B3 → C4, la sensible monte
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    expect(typesOf(errs)).not.toContain("leading_tone");
+  });
+
+  it("non-exemption : sensible au SOPRANO sautant, arrivée VI → leading_tone (error)", () => {
+    // L'exemption est réservée à la basse : au soprano, la sensible doit résoudre.
+    const sol = [
+      chord("G2", "D3", "G3", "B4"),   // V : sensible (si) au soprano
+      chord("A2", "C3", "E3", "E5"),   // vi : B4 → E5, saut — pas de résolution
+    ];
+    const errs = validateSATB(sol, "C", false, sol);
+    expect(errs.filter(e => e.type === "wrong_chord" || e.type === "wrong_bass")).toEqual([]);
+    const lt = errs.find(e => e.type === "leading_tone");
+    expect(lt?.severity).toBe("error");
+  });
+});
+
 describe("validateSATB — contrat de sortie", () => {
   it("rapporte la mesure en numérotation humaine dans params, l'index en interne", () => {
     const errors = validateSATB([chord("C2", "E3", "G3", "C4")]);
