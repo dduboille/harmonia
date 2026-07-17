@@ -1620,7 +1620,7 @@ const COURS25_EXERCISES: Exercise[] = [
       { id: "d", label: "De l'absence de basse : privé de fondamentale, aucun accord n'est analysable", isCorrect: false },
     ],
     explanation:
-      "L'accord empile deux intervalles ambigus : le triton Fa–Si (le plus instable) et la sixte augmentée Fa–Ré#. Cette dernière SONNE comme une septième de dominante (on croit entendre un Sol♯7 / La♭7), mais son orthographe et son contexte interdisent d'y voir une dominante nette. D'où les lectures concurrentes que le cours cite — Fa mineur 7 à quinte augmentée, dominante secondaire altérée, « accord errant » de Schönberg — aucune ne faisant consensus. Wagner cultive cette indécision : le Prélude entier diffère la résolution, ébranle la tonalité fonctionnelle et ouvre la voie à Schönberg. Le piège (c) prête à l'accord une fonction nette de V⁷, exactement ce qu'il refuse d'être.",
+      "L'accord empile deux intervalles ambigus : le triton Fa–Si (le plus instable) et la sixte augmentée Fa–Ré#. Cette dernière SONNE comme une septième mineure — l'oreille croit reconnaître le geste d'une dominante — alors que l'ensemble des sons, réécrit enharmoniquement, forme en réalité un accord demi-diminué : l'orthographe et le contexte interdisent d'y voir une dominante nette. D'où les lectures concurrentes que le cours cite — Fa mineur 7 à quinte augmentée, dominante secondaire altérée, « accord errant » de Schönberg — aucune ne faisant consensus. Wagner cultive cette indécision : le Prélude entier diffère la résolution, ébranle la tonalité fonctionnelle et ouvre la voie à Schönberg. Le piège (c) prête à l'accord une fonction nette de V⁷, exactement ce qu'il refuse d'être.",
     hint: "Repérez les DEUX intervalles caractéristiques de l'accord et demandez-vous si l'un d'eux impose une fonction unique.",
   },
 
@@ -1773,7 +1773,7 @@ const COURS37_EXERCISES: Exercise[] = [
     context: "Motif : Do–Ré–Mi (↑). Forme rencontrée : Do–Si–La (↓).",
     options: [
       { id: "a", label: "Augmentation — les valeurs rythmiques ont été doublées", isCorrect: false },
-      { id: "b", label: "Inversion (renversement mélodique) — chaque intervalle ascendant devient le même intervalle descendant : le contour est mis en miroir autour de Do", isCorrect: true },
+      { id: "b", label: "Inversion (renversement mélodique) — chaque intervalle ascendant devient le même intervalle générique descendant (une seconde reste une seconde) : le contour est mis en miroir autour de Do", isCorrect: true },
       { id: "c", label: "Rétrograde — le motif est lu de la dernière note à la première", isCorrect: false },
       { id: "d", label: "Diminution — les valeurs rythmiques ont été réduites de moitié", isCorrect: false },
     ],
