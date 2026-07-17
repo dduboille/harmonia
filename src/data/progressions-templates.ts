@@ -106,7 +106,7 @@ export const PROGRESSION_TEMPLATES: ProgressionTemplate[] = [
   {
     id: "cycle-quintes",
     nom: "Cycle des quintes complet",
-    symboles: ["I","V6","I6","IV","II6","V","I"],
+    symboles: ["I","V6","I","IV","II6","V","I"],
     description: "Séquence de Corelli. La basse descend par degrés conjoints, les harmonies montent par quintes.",
     concepts: ["Cycle des quintes","Séquence","Basse fondamentale"],
     difficulte: 2,
@@ -115,7 +115,7 @@ export const PROGRESSION_TEMPLATES: ProgressionTemplate[] = [
   {
     id: "basse-fondamentale",
     nom: "Basse fondamentale montante",
-    symboles: ["I","V6","I6","IV","II6","V","I"],
+    symboles: ["I","V6","I","IV","II6","V","I"],
     description: "La basse monte par demi-tons (Do–Si–La–Sol) pendant que les harmonies alternent en renversements.",
     concepts: ["Basse montante","Renversements","Séquence"],
     difficulte: 2,
