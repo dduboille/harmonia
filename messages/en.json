@@ -4066,6 +4066,98 @@
       "hidden_fifth": "Hidden fifth soprano–bass (bars {from}→{to})",
       "hidden_octave": "Hidden octave soprano–bass (bars {from}→{to})"
     },
+    "pedagogie": {
+      "titre": "Understanding these remarks",
+      "labels": {
+        "quoi": "What is it?",
+        "pourquoi": "Why?",
+        "comment": "How to avoid it"
+      },
+      "parallel_fifth": {
+        "titre": "Parallel fifths",
+        "quoi": "Two voices a perfect fifth apart moving in the same direction while keeping that fifth. Example: bass C and tenor G (a fifth) rising together to bass D and tenor A — two perfect fifths in a row.",
+        "pourquoi": "The perfect fifth is so consonant that, repeated in parallel, it fuses the two voices: we no longer hear them as two distinct lines but as a single, thickened one. The independence of the four voices — the whole point of four-part writing — is lost.",
+        "comment": "Prefer contrary motion: one voice rises while the other falls. Or route one of them through a different chord tone, so the interval is no longer a fifth. Swapping two notes between voices is often enough."
+      },
+      "parallel_octave": {
+        "titre": "Parallel octaves",
+        "quoi": "Two voices an octave (or unison) apart moving in the same direction while keeping that spacing. Example: soprano C doubled at the octave by tenor C, then both moving to D — the octave D–D slides in parallel.",
+        "pourquoi": "At the octave, one voice merely doubles the other: if they move together, four real voices become three. An octave reinforcement is superb when held, but in motion it erases a voice and thins the polyphony.",
+        "comment": "Contrary motion for preference. Change the doubling: double a different chord tone instead of this one. A held common note is never flagged — keeping one voice still while the other moves solves it."
+      },
+      "hidden_fifth": {
+        "titre": "Hidden fifth (soprano–bass)",
+        "quoi": "The soprano and bass reach a fifth together by similar motion, the soprano arriving by a leap. Example: the soprano leaps from E to A while the bass rises from C to D — the two outer voices land on the fifth D–A.",
+        "pourquoi": "The ear anticipates the fifth filled in by the parallel motion: the hidden fifth suggests a parallel fifth sketched out, and on the two outer voices, the most exposed, it can be heard. It is only a warning, not a serious fault.",
+        "comment": "Approach the fifth by contrary or oblique motion. Above all, avoid the soprano leaping into it: a soprano moving by step is not flagged. Or place the fifth in an inner voice."
+      },
+      "hidden_octave": {
+        "titre": "Hidden octave (soprano–bass)",
+        "quoi": "The soprano and bass reach an octave by similar motion, the soprano by a leap. Example: the soprano leaps from G to D while the bass rises from C to D — arriving on the octave D–D, reached too head-on.",
+        "pourquoi": "As with the hidden fifth, an octave reached in the same direction and by leap sounds like a parallel octave begun. On the outer voices, well to the fore in the texture, the effect is audible; the independence of the two lines blurs.",
+        "comment": "Approach the octave by contrary or oblique motion. Let the soprano move by step rather than by leap. Or double a different chord tone so as not to aim for that octave."
+      },
+      "leading_tone": {
+        "titre": "Leading note incorrectly resolved",
+        "quoi": "At a dominant → tonic (or degree VI) progression, the leading note — the 7th degree, a semitone below the tonic — must resolve to it. Example: in C major, the B of the G chord must rise to C; if it goes elsewhere, it is flagged.",
+        "pourquoi": "The leading note creates a tension the ear expects to see resolved a semitone higher. Leaving it hanging frustrates that expectation and weakens the cadence. In the outer voices (soprano, bass) it is an error; in an inner voice, only a warning.",
+        "comment": "Move the leading note up a semitone to the tonic, especially in the soprano and bass. In an inner voice, its fall of a third to the dominant (to complete the chord) is tolerated. So is the bass of a V6 descending to VI."
+      },
+      "doubled_leading_tone": {
+        "titre": "Doubled leading note",
+        "quoi": "In a dominant-function chord, the leading note (7th degree) appears in two voices at once. Example: in C major, the B of the G chord present in both the tenor and the soprano.",
+        "pourquoi": "The leading note wants to rise to the tonic. If it is doubled, both voices would rise together — producing parallel octaves on the tonic — or one would have to give up its natural resolution. So we prefer to state it only once.",
+        "comment": "Double the leading note only once. Rather double the root or the fifth of the chord, which move freely. Replace one of the two leading notes with another chord tone by swapping notes between voices."
+      },
+      "seventh": {
+        "titre": "Seventh incorrectly resolved",
+        "quoi": "The seventh of a chord is a dissonance that must fall by step, or be held if it belongs to the next chord. Example: in G7 (G–B–D–F), the F must fall to E in the C chord.",
+        "pourquoi": "The seventh introduces a dissonance the ear expects to see resolved downward, gently. Making it leap or rise leaves the tension unresolved: the seventh chord loses its sense of preparation and resolution.",
+        "comment": "Let the seventh fall by a semitone or a tone (F→E). Or hold it if the note stays in the arriving chord. You can also prepare it — presenting it as a consonance just before — so its resolution feels natural."
+      },
+      "spacing": {
+        "titre": "Voices too far apart",
+        "quoi": "Between soprano and alto, and between alto and tenor, the gap must not exceed an octave. Example: soprano G and alto G an octave apart is the limit; if the alto drops to E, the gap with the soprano exceeds an octave and is flagged.",
+        "pourquoi": "Too wide a gap between the three upper voices makes the chord hollow, poorly blended, top-heavy. Between tenor and bass, on the other hand, a wide gap is natural (that is how the harmonic series resonates): this pair is not checked.",
+        "comment": "Tighten the upper voices: raise the alto or the tenor by an octave. Redistribute the chord to fill the gap. Double a closer note to keep the three upper voices within an octave."
+      },
+      "crossing": {
+        "titre": "Voice crossing",
+        "quoi": "A voice moves above the one that should sit over it. Example: the tenor rises to D4 while the alto stays on C4 — the tenor ends up higher than the alto, breaking the soprano ≥ alto ≥ tenor ≥ bass order.",
+        "pourquoi": "The listener follows each voice by its pitch. When two voices cross, the ear loses the thread: it no longer knows which is which, and the clarity of the polyphonic fabric blurs for the duration of the crossing.",
+        "comment": "Keep the order of pitches in every bar. Swap the two notes between the voices concerned to restore the hierarchy. Or rewrite the offending note an octave lower, within its voice's range."
+      },
+      "range": {
+        "titre": "Out of range",
+        "quoi": "Each voice has a comfortable range: bass E2–C4, tenor C3–G4, alto G3–C5, soprano C4–G5. A note beyond it is flagged. Example: a soprano written on A5 exceeds G5, its upper limit.",
+        "pourquoi": "Beyond its range a voice strains, becomes inaudible or loses its tone: the writing stops being singable. Yet four-part singing remains the reference — what a human voice cannot sustain sounds wrong, even on paper.",
+        "comment": "Transpose the note by an octave to bring it back within range. Give it to the neighbouring voice, whose range covers it better. Or redistribute the chord so each voice stays at home."
+      },
+      "cross_relation": {
+        "titre": "False relation",
+        "quoi": "The same note appears in two forms (two different accidentals) in two different voices, from one chord to the next. Example: F natural in the tenor, then F sharp in the soprano in the following bar. Chromaticism carried within one and the same voice, however, remains allowed.",
+        "pourquoi": "The clash of the two versions can surprise the ear — but it is often perfectly defensible, notably in the minor with its melodic movement. That is why Harmonia flags it without counting it in the mark: it is a pointer, not a fault.",
+        "comment": "If you would rather soften it, keep the chromatic step within a single voice (F→F sharp in the same part). Otherwise, embrace it when the minor context justifies it: it is part of the language."
+      },
+      "missing_accidental": {
+        "titre": "Missing accidental",
+        "quoi": "Without a key signature, the accidentals of the key must be written by hand on each note concerned. Example: in D major, every F must be F sharp and every C a C sharp; an F natural is then flagged.",
+        "pourquoi": "Without its accidental, the note no longer belongs to the key and the harmony becomes wrong. This is not a matter of taste but a reminder about pitch: hence the mere warning, until the correct pitch is restored.",
+        "comment": "Add the required accidental (sharp or flat) shown in the message. Review each note against the key signature. When in doubt, compare with the reference scale of the piece."
+      },
+      "wrong_chord": {
+        "titre": "This is not the requested chord",
+        "quoi": "The notes in the bar do not form the chord the exercise expects. Example: the exercise asks for C major (C–E–G) and your four voices give C–E–G–B — that B makes it another chord.",
+        "pourquoi": "The chord is the harmonic frame of the exercise: the wrong chord changes the meaning of the progression. The good news: only the nature of the chord (its notes) and its bass count. The layout is free — octaves, doublings and distribution among the voices are yours to choose.",
+        "comment": "Check the chord's expected notes. Keep only those (root, third, fifth…). Then distribute them freely among soprano, alto, tenor and bass: it is your choice of layout, not the octave, that gives the colour."
+      },
+      "wrong_bass": {
+        "titre": "The expected bass is wrong",
+        "quoi": "The chord's notes are right, but the wrong one is in the bass — the inversion is wrong. Example: the chord C–E–G is correct, but the exercise wants C in the bass (root position) and you have placed E (first inversion).",
+        "pourquoi": "The bass sets the inversion, which changes the chord's stability and function. Only the bass note is judged here: the three upper voices remain free in octave and distribution. Fix the bass, the rest is up to you.",
+        "comment": "Place the requested note in the bass (often the root). Swap the current bass for the right one. Once the bass is correct, arrange the upper voices freely: their octave does not count."
+      }
+    },
     "exerciseDone": "Exercise completed!",
     "exercisePerfect": "No harmonic errors — excellent work.",
     "defaultTitle": "Voice-leading exercise",

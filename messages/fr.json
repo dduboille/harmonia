@@ -4066,6 +4066,98 @@
       "hidden_fifth": "Quinte directe soprano–basse (m.{from}→{to})",
       "hidden_octave": "Octave directe soprano–basse (m.{from}→{to})"
     },
+    "pedagogie": {
+      "titre": "Comprendre ces remarques",
+      "labels": {
+        "quoi": "Qu'est-ce que c'est ?",
+        "pourquoi": "Pourquoi ?",
+        "comment": "Comment l'éviter ?"
+      },
+      "parallel_fifth": {
+        "titre": "Quintes parallèles",
+        "quoi": "Deux voix séparées d'une quinte juste qui bougent dans le même sens en gardant cette quinte. Exemple : basse Do et ténor Sol (une quinte), qui montent ensemble vers basse Ré et ténor La — deux quintes justes de suite.",
+        "pourquoi": "La quinte juste est si consonante que, répétée en parallèle, elle soude les deux voix : on ne les entend plus comme deux lignes distinctes mais comme une seule, épaissie. L'indépendance des quatre voix — la raison d'être de l'écriture à quatre parties — se perd.",
+        "comment": "Préférez le mouvement contraire : une voix monte pendant que l'autre descend. Ou faites passer l'une des deux par une autre note de l'accord, pour que l'intervalle ne soit plus une quinte. Échanger deux notes entre voix suffit souvent."
+      },
+      "parallel_octave": {
+        "titre": "Octaves parallèles",
+        "quoi": "Deux voix à l'octave (ou à l'unisson) qui se déplacent dans le même sens en conservant cet écart. Exemple : soprano Do doublé à l'octave par le ténor Do, puis tous deux vers Ré — l'octave Ré–Ré glisse en parallèle.",
+        "pourquoi": "À l'octave, une voix ne fait que doubler l'autre : si elles bougent ensemble, on passe de quatre voix réelles à trois. Le renfort d'octave est superbe tenu, mais en mouvement il gomme une voix et appauvrit la polyphonie.",
+        "comment": "Mouvement contraire de préférence. Changez la doublure : doublez une autre note de l'accord plutôt que celle-ci. Une note commune tenue n'est jamais signalée — laisser une voix immobile pendant que l'autre bouge résout le problème."
+      },
+      "hidden_fifth": {
+        "titre": "Quinte directe (soprano–basse)",
+        "quoi": "Le soprano et la basse arrivent ensemble, par mouvement direct, sur une quinte, le soprano y accédant par un saut. Exemple : le soprano bondit de Mi à La tandis que la basse monte de Do à Ré — les deux voix extrêmes atterrissent sur la quinte Ré–La.",
+        "pourquoi": "L'oreille « anticipe » la quinte remplie par le mouvement parallèle : la quinte directe évoque une quinte parallèle esquissée, et aux deux voix extrêmes, les plus exposées, cela s'entend. C'est un simple avertissement, pas une faute lourde.",
+        "comment": "Abordez la quinte par mouvement contraire ou oblique. Évitez surtout que le soprano y saute : un soprano qui avance par degré conjoint n'est pas signalé. Ou placez la quinte à une voix intérieure."
+      },
+      "hidden_octave": {
+        "titre": "Octave directe (soprano–basse)",
+        "quoi": "Le soprano et la basse rejoignent une octave par mouvement direct, le soprano par saut. Exemple : le soprano saute de Sol à Ré pendant que la basse monte de Do à Ré — on arrive sur l'octave Ré–Ré, atteinte de manière trop frontale.",
+        "pourquoi": "Comme pour la quinte directe, l'octave rejointe dans le même sens et par saut sonne comme une octave parallèle amorcée. Sur les voix extrêmes, très en avant dans la texture, l'effet est audible ; l'indépendance des deux lignes se brouille.",
+        "comment": "Approchez l'octave par mouvement contraire ou oblique. Faites avancer le soprano par degré conjoint plutôt que par saut. Ou doublez une autre note de l'accord pour ne pas viser cette octave."
+      },
+      "leading_tone": {
+        "titre": "Sensible mal résolue",
+        "quoi": "À l'enchaînement dominante → tonique (ou degré VI), la sensible — le 7e degré, un demi-ton sous la tonique — doit résoudre vers celle-ci. Exemple : en Do majeur, le Si de l'accord de Sol doit monter à Do ; s'il part ailleurs, c'est signalé.",
+        "pourquoi": "La sensible crée une tension que l'oreille attend de voir se dénouer un demi-ton plus haut. La laisser en suspens frustre cette attente et affaiblit la cadence. Aux voix extrêmes (soprano, basse), c'est une erreur ; à une voix intérieure, un simple avertissement.",
+        "comment": "Faites monter la sensible d'un demi-ton vers la tonique, surtout au soprano et à la basse. À une voix intérieure, sa descente de tierce vers la dominante (pour compléter l'accord) est tolérée. La basse d'un V6 descendant vers le VI l'est aussi."
+      },
+      "doubled_leading_tone": {
+        "titre": "Sensible doublée",
+        "quoi": "Dans un accord de fonction dominante, la sensible (7e degré) figure à deux voix en même temps. Exemple : en Do majeur, le Si de l'accord de Sol présent à la fois au ténor et au soprano.",
+        "pourquoi": "La sensible veut monter à la tonique. Si elle est doublée, les deux voix devraient monter ensemble — ce qui produirait des octaves parallèles sur la tonique — ou l'une devrait renoncer à sa résolution naturelle. On préfère donc ne la poser qu'une fois.",
+        "comment": "Ne doublez la sensible qu'une seule fois. Doublez plutôt la fondamentale ou la quinte de l'accord, qui se déplacent librement. Remplacez l'une des deux sensibles par une autre note de l'accord en échangeant des notes entre voix."
+      },
+      "seventh": {
+        "titre": "Septième mal résolue",
+        "quoi": "La septième d'un accord est une dissonance qui doit descendre par degré conjoint, ou se tenir si elle appartient à l'accord suivant. Exemple : dans Sol7 (Sol–Si–Ré–Fa), le Fa doit descendre à Mi dans l'accord de Do.",
+        "pourquoi": "La septième introduit une dissonance que l'oreille attend de voir résolue vers le bas, tout doucement. La faire sauter ou monter laisse la tension en plan : l'accord de septième perd son sens de préparation-résolution.",
+        "comment": "Faites descendre la septième d'un demi-ton ou d'un ton (Fa→Mi). Ou tenez-la si la note reste dans l'accord d'arrivée. Vous pouvez aussi la préparer — la présenter comme consonance juste avant — pour que sa résolution coule de source."
+      },
+      "spacing": {
+        "titre": "Écart trop grand entre voix",
+        "quoi": "Entre soprano et alto, et entre alto et ténor, l'écart ne doit pas dépasser l'octave. Exemple : soprano Sol et alto Sol à l'octave, c'est la limite ; si l'alto tombe à Mi, l'écart avec le soprano franchit l'octave et c'est signalé.",
+        "pourquoi": "Un trou trop large entre les trois voix supérieures rend l'accord creux, mal fondu, déséquilibré vers le haut. Entre ténor et basse, en revanche, un grand écart est naturel (c'est ainsi que résonne la série harmonique) : cette paire n'est pas contrôlée.",
+        "comment": "Resserrez les voix hautes : montez l'alto ou le ténor à l'octave. Redistribuez l'accord pour combler le vide. Doublez une note plus proche afin de garder les trois voix supérieures dans l'octave."
+      },
+      "crossing": {
+        "titre": "Croisement de voix",
+        "quoi": "Une voix passe au-dessus de celle qui devrait la surplomber. Exemple : le ténor monte à Ré4 alors que l'alto reste à Do4 — le ténor se retrouve plus haut que l'alto, l'ordre soprano ≥ alto ≥ ténor ≥ basse est rompu.",
+        "pourquoi": "L'auditeur suit chaque voix par sa hauteur. Quand deux voix se croisent, l'oreille perd le fil : elle ne sait plus laquelle est laquelle, et la clarté du tissu polyphonique se brouille le temps du croisement.",
+        "comment": "Gardez l'ordre des hauteurs à chaque mesure. Échangez les deux notes entre les voix concernées pour rétablir la hiérarchie. Ou réécrivez la note fautive une octave plus bas, dans la tessiture de sa voix."
+      },
+      "range": {
+        "titre": "Hors tessiture",
+        "quoi": "Chaque voix a une étendue confortable : basse Mi2–Do4, ténor Do3–Sol4, alto Sol3–Do5, soprano Do4–Sol5. Une note au-delà est signalée. Exemple : un soprano écrit à La5 dépasse le Sol5, sa limite supérieure.",
+        "pourquoi": "Au-delà de sa tessiture, une voix force, devient inaudible ou perd son timbre : l'écriture cesse d'être chantable. Or le chant à quatre voix reste la référence — ce qu'une voix humaine ne peut pas tenir sonne faux, même sur le papier.",
+        "comment": "Transposez la note d'une octave pour la ramener dans l'étendue. Confiez-la à la voix voisine, dont la tessiture la couvre mieux. Ou redistribuez l'accord pour que chaque voix reste chez elle."
+      },
+      "cross_relation": {
+        "titre": "Fausse relation",
+        "quoi": "Une même note apparaît sous deux formes (deux altérations différentes) à deux voix distinctes, d'un accord au suivant. Exemple : Fa naturel au ténor, puis Fa dièse au soprano à la mesure d'après. Le chromatisme mené dans une seule et même voix, lui, reste autorisé.",
+        "pourquoi": "Le heurt des deux versions peut surprendre l'oreille — mais il est souvent parfaitement défendable, notamment en mineur avec le mouvement mélodique. C'est pourquoi Harmonia la signale sans la compter dans la note : c'est un repère, pas une faute.",
+        "comment": "Si vous préférez l'adoucir, gardez le pas chromatique dans une seule voix (Fa→Fa dièse au même pupitre). Sinon, assumez-la lorsque le contexte mineur la justifie : elle fait partie du langage."
+      },
+      "missing_accidental": {
+        "titre": "Altération manquante",
+        "quoi": "En mode sans armure, les altérations de la tonalité doivent être écrites à la main sur chaque note concernée. Exemple : en Ré majeur, tout Fa doit être Fa dièse et tout Do un Do dièse ; un Fa naturel est alors signalé.",
+        "pourquoi": "Sans son altération, la note n'appartient plus à la tonalité et l'harmonie devient fausse. Ce n'est pas une règle de goût mais un rappel de justesse : d'où le simple avertissement, le temps de rétablir la bonne hauteur.",
+        "comment": "Ajoutez l'altération demandée (dièse ou bémol) indiquée par le message. Passez chaque note en revue face à l'armure de la tonalité. En cas de doute, comparez avec la gamme de référence du morceau."
+      },
+      "wrong_chord": {
+        "titre": "Ce n'est pas l'accord demandé",
+        "quoi": "Les notes de la mesure ne forment pas l'accord attendu par l'exercice. Exemple : l'exercice demande Do majeur (Do–Mi–Sol) et vos quatre voix donnent Do–Mi–Sol–Si — ce Si en fait un autre accord.",
+        "pourquoi": "L'accord est la charpente harmonique de l'exercice : se tromper d'accord change le sens de la progression. Bonne nouvelle : seule compte la nature de l'accord (ses notes) et sa basse. La disposition est libre — octaves, doublures et répartition entre les voix sont à votre main.",
+        "comment": "Vérifiez les notes attendues de l'accord. Ne conservez que celles-ci (fondamentale, tierce, quinte…). Puis répartissez-les librement entre soprano, alto, ténor et basse : c'est votre choix de disposition, pas l'octave, qui fera la couleur."
+      },
+      "wrong_bass": {
+        "titre": "La basse attendue n'est pas la bonne",
+        "quoi": "Les notes de l'accord sont justes, mais ce n'est pas la bonne qui est à la basse — le renversement est faux. Exemple : l'accord Do–Mi–Sol est correct, mais l'exercice veut Do à la basse (état fondamental) et vous avez posé Mi (premier renversement).",
+        "pourquoi": "La basse fixe le renversement, qui change la stabilité et la fonction de l'accord. Seule la note de basse est jugée ici : les trois voix supérieures restent libres en octave et en répartition. Corrigez la basse, le reste vous appartient.",
+        "comment": "Placez à la basse la note demandée (souvent la fondamentale). Échangez la basse actuelle contre la bonne. Une fois la basse juste, disposez librement les voix hautes : leur octave n'entre pas en compte."
+      }
+    },
     "exerciseDone": "Exercice terminé avec succès !",
     "exercisePerfect": "Aucune erreur harmonique — excellent travail.",
     "defaultTitle": "Exercice de conduite de voix",
