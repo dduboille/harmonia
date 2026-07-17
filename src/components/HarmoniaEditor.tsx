@@ -5,7 +5,7 @@
  * Harmonia — Éditeur d'exercices SATB interactif
  *
  * Fonctionnalités :
- * - Portées grand staff (Sol + Fa) via VexFlowScoreClient
+ * - Portées grand staff (Sol + Fa) gravées par Verovio via StudioScore
  * - Placement de notes voix par voix (B / T / A / S)
  * - Clavier chromatique 12 touches
  * - Validation harmonique en temps réel (parallèles, espacements, résolutions)
@@ -21,16 +21,11 @@
  *   />
  */
 
-import React, { useRef, useState, useCallback, useEffect } from "react";
-import dynamic from "next/dynamic";
+import React, { useRef, useState, useCallback, useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import PianoPlayer, { PianoPlayerRef, getInstrument } from "@/components/PianoPlayer";
-
-// VexFlow côté client uniquement
-const VexFlowScoreClient = dynamic(
-  () => import("@/components/VexFlowScoreClient").then((m) => m.GrandStaffSATB),
-  { ssr: false, loading: () => <div style={styles.staffPlaceholder}>Chargement partition…</div> }
-);
+import StudioScore, { StudioScoreRef } from "@/components/StudioScore";
+import { satbVersMusicXML } from "@/lib/satb-vers-musicxml";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -101,58 +96,6 @@ const NOTE_TO_FR: Record<string, string> = {
   "B": "Si",
 };
 
-// ─── Conversion vers format VexFlow ──────────────────────────────────────────
-
-function measureToVexFlow(measures: Measure[], measureIdx: number): { treble: string; bass: string } {
-  const m = measures[measureIdx];
-  if (!m) return { treble: "B4/wr", bass: "C3/wr" };
-
-  const s = m.soprano;
-  const a = m.alto;
-  const t = m.tenor;
-  const b = m.bass;
-
-  function noteStr(n: NoteEntry): string {
-    if (!n.name) return "";
-    // VexFlow attend ex: Cb4, C##4, Bb3
-    return `${n.name}${n.octave}`;
-  }
-
-  // Portée Sol (Soprano + Alto)
-  let treble: string;
-  if (s.name && a.name) {
-    treble = `(${noteStr(s)} ${noteStr(a)})/w`;
-  } else if (s.name) {
-    treble = `${noteStr(s)}/w`;
-  } else if (a.name) {
-    treble = `${noteStr(a)}/w`;
-  } else {
-    treble = "B4/wr";
-  }
-
-  // Portée Fa (Tenor + Bass)
-  let bassClef: string;
-  if (t.name && b.name) {
-    bassClef = `(${noteStr(t)} ${noteStr(b)})/w`;
-  } else if (t.name) {
-    bassClef = `${noteStr(t)}/w`;
-  } else if (b.name) {
-    bassClef = `${noteStr(b)}/w`;
-  } else {
-    bassClef = "C3/wr";
-  }
-
-  return { treble, bass: bassClef };
-}
-
-function allMeasuresToVexFlow(measures: Measure[]): { treble: string; bass: string } {
-  const parts = measures.map((_, i) => measureToVexFlow(measures, i));
-  return {
-    treble: parts.map(p => p.treble).join(" | "),
-    bass:   parts.map(p => p.bass).join(" | "),
-  };
-}
-
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function emptyMeasure(): Measure {
@@ -163,21 +106,6 @@ function emptyMeasure(): Measure {
     soprano: { name: null, octave: DEFAULT_OCTAVES.soprano },
   };
 }
-
-// ─── Styles ───────────────────────────────────────────────────────────────────
-
-const styles = {
-  staffPlaceholder: {
-    height: 200,
-    background: "#f8f7f4",
-    borderRadius: 8,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: 13,
-    color: "#767676",
-  } as React.CSSProperties,
-};
 
 // ─── Composant principal ──────────────────────────────────────────────────────
 
@@ -225,8 +153,23 @@ export default function HarmoniaEditor({
   const [errors,        setErrors]        = useState<ValidationError[]>([]);
   const [completed,     setCompleted]     = useState(false);
   const [showSolution,  setShowSolution]  = useState(false);
+  // Compteur incrémenté à chaque fin de gravure Verovio (onReady) : sert de
+  // dépendance aux effets de surlignage pour les RÉ-appliquer après une regravure
+  // (le SVG recréé au resize efface les classes de sélection/fautes).
+  const [pretDeGravure, setPretDeGravure] = useState(0);
 
   const pianoRef = useRef<PianoPlayerRef>(null);
+  const scoreRef = useRef<StudioScoreRef>(null);
+
+  // ── Gravure Verovio ────────────────────────────────────────────────────────
+  // Grand staff MusicXML dérivé de l'état SATB (ou de la solution quand elle est
+  // affichée). Une mesure d'exercice = une mesure gravée, rondes, 4/4.
+  const musicxml = useMemo(
+    () => satbVersMusicXML(showSolution && solution ? solution : measures, keySignature, showKeySignature),
+    [measures, solution, showSolution, keySignature, showKeySignature],
+  );
+
+  const handleReady = useCallback(() => setPretDeGravure((n) => n + 1), []);
 
   // ── Suivi des erreurs récurrentes ──
   // Accumule les types d'erreurs rencontrés pendant toute la session de travail
@@ -262,6 +205,83 @@ export default function HarmoniaEditor({
     setErrors(errs);
     for (const e of errs) errorTypesSeen.current.add(e.type);
   }, [measures, keySignature, showKeySignature, solution, regles]);
+
+  // ── Surlignage de la note sélectionnée (voix + mesure actives) ──────────────
+  // Re-appliqué après chaque (re)gravure (`pretDeGravure`) car le SVG recréé perd
+  // les classes. L'onset d'une mesure i (0-based) = i × 2000 ms (défaut Verovio).
+  useEffect(() => {
+    // Solution affichée : la partition montre le modèle, pas la copie — aucun
+    // surlignage issu de l'état élève ne doit s'y plaquer.
+    if (showSolution) { scoreRef.current?.surlignerSelection(null); return; }
+    const note = measures[activeMeasure]?.[activeVoice];
+    if (note?.name) {
+      scoreRef.current?.surlignerSelection({
+        onsetMs: activeMeasure * 2000,
+        midis: [noteToMidi(noteName(note.name), note.octave)],
+      });
+    } else {
+      scoreRef.current?.surlignerSelection(null);
+    }
+  }, [musicxml, activeMeasure, activeVoice, pretDeGravure, measures, showSolution]);
+
+  // ── Fautes colorées ─────────────────────────────────────────────────────────
+  // Mapping erreur → têtes de notes à colorer. Vérifié contre le moteur
+  // (validateSATB) :
+  //  • `measure` est 0-based (boucle `for (let m = 0; …)`, ex. range/wrong_chord
+  //    poussent `measure: m`) ;
+  //  • `params.from`/`params.to` sont en numérotation HUMAINE 1-based
+  //    (ex. range `from: m + 1` ; parallel_fifth `from: m, to: m + 1` désigne les
+  //    mesures m-1 et m 0-based) → on retranche 1 pour retrouver les indices.
+  // On privilégie from/to (ils couvrent les fautes à cheval sur deux mesures) et on
+  // retombe sur `measure` si aucun n'est fourni.
+  useEffect(() => {
+    // Solution affichée : le modèle reste vierge (cf. surlignage de sélection).
+    if (showSolution) { scoreRef.current?.surlignerFautes([]); return; }
+    const cibles: Array<{ onsetMs: number; midis: number[]; severite: "faute" | "avertissement" }> = [];
+    for (const err of errors) {
+      // Fausse relation : signalée mais NON colorée (non comptée au barème — décision spec).
+      if (err.type === "cross_relation") continue;
+      const mesureIdxs: number[] = [];
+      if (err.params.from != null) mesureIdxs.push(err.params.from - 1);
+      if (err.params.to != null) mesureIdxs.push(err.params.to - 1);
+      if (mesureIdxs.length === 0 && err.measure != null) mesureIdxs.push(err.measure);
+      // Voix : la paire `voices`, sinon `params.voice`, sinon toutes les voix de la
+      // mesure (wrong_chord/doubled_leading_tone n'en précisent pas). Exception :
+      // wrong_bass incrimine la seule basse (les trois voix hautes SONT justes —
+      // le moteur ne l'émet que quand l'ensemble des pitch classes correspond déjà).
+      const voix: Voice[] = err.type === "wrong_bass"
+        ? ["bass"]
+        : err.voices ?? (err.params.voice ? [err.params.voice] : VOICES);
+      const severite: "faute" | "avertissement" = err.severity === "error" ? "faute" : "avertissement";
+      for (const mIdx of mesureIdxs) {
+        const mes = measures[mIdx];
+        if (!mes) continue;
+        for (const v of voix) {
+          const n = mes[v];
+          if (!n?.name) continue;
+          cibles.push({ onsetMs: mIdx * 2000, midis: [noteToMidi(noteName(n.name), n.octave)], severite });
+        }
+      }
+    }
+    scoreRef.current?.surlignerFautes(cibles);
+  }, [musicxml, errors, pretDeGravure, measures, showSolution]);
+
+  // ── Clic sur une note gravée → sélection ────────────────────────────────────
+  // Retrouve (mesure, voix) par l'onset et la hauteur MIDI. Ordre bass→ténor→alto→
+  // soprano : en cas d'unisson entre deux voix, la plus grave gagne (arbitraire assumé).
+  const onSelectNote = useCallback((sel: { onsetMs: number; midi: number }) => {
+    const mIdx = Math.round(sel.onsetMs / 2000);
+    const mes = measures[mIdx];
+    if (!mes) return;
+    for (const v of ["bass", "tenor", "alto", "soprano"] as Voice[]) {
+      const n = mes[v];
+      if (n?.name && noteToMidi(noteName(n.name), n.octave) === sel.midi) {
+        setActiveMeasure(mIdx);
+        setActiveVoice(v);
+        return;
+      }
+    }
+  }, [measures]);
 
   // Envoi au démontage (l'élève quitte la page sans forcément terminer)
   useEffect(() => {
@@ -382,11 +402,6 @@ export default function HarmoniaEditor({
     T.start();
   }, [measures]);
 
-  // Vexflow strings
-  const { treble, bass } = allMeasuresToVexFlow(showSolution && solution ? solution.map(s => ({
-    soprano: s.soprano, alto: s.alto, tenor: s.tenor, bass: s.bass
-  })) : measures);
-
   // Stats
   const totalNotes = measureLabels.length * 4;
   const placedNotes = measures.reduce((acc, m) =>
@@ -484,12 +499,11 @@ export default function HarmoniaEditor({
           <div style={{ display:"flex", justifyContent:"space-between", fontSize:10, color: "#767676", letterSpacing:"0.08em", marginBottom:8, padding:"0 8px" }}>
             <span>SOPRANO · ALTO</span>
           </div>
-          <VexFlowScoreClient
-            treble={treble}
-            bass={bass}
-            keySignature={showKeySignature ? keySignature : undefined}
-            width={700}
-            label={measureLabels.map((l,i)=>`Mesure ${i+1}: ${l}`).join(" · ")}
+          <StudioScore
+            ref={scoreRef}
+            musicxml={musicxml}
+            onSelectNote={onSelectNote}
+            onReady={handleReady}
           />
           <div style={{ fontSize:10, color: "#767676", letterSpacing:"0.08em", marginTop:6, padding:"0 8px" }}>
             TÉNOR · BASSE

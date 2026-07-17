@@ -8,10 +8,11 @@ import React, {
  * StudioScore.tsx
  * Harmonia — Gravure d'une partition MusicXML avec Verovio.
  *
- * POURQUOI Verovio (et non OSMD) : OSMD embarque son propre VexFlow 1.x dont les
- * déclarations ambiantes écrasaient la résolution de « vexflow » côté projet et
- * cassaient VexFlowScore.tsx (VexFlow 5). Verovio n'embarque aucun VexFlow : plus
- * de conflit. Il grave en WASM, chargé UNIQUEMENT au navigateur — d'où l'import
+ * POURQUOI Verovio (et non OSMD) : OSMD embarquait sa propre dépendance de gravure
+ * dont les déclarations ambiantes écrasaient la résolution du même paquet côté
+ * projet et cassaient le rendu de portées historique. Verovio n'embarque aucune
+ * dépendance de ce type : plus de conflit. Il grave en WASM, chargé UNIQUEMENT au
+ * navigateur — d'où l'import
  * DYNAMIQUE (jamais au rendu serveur). Le WASM est embarqué dans le module JS :
  * aucun fichier .wasm à servir depuis /public.
  *
@@ -36,6 +37,12 @@ interface Props {
   musicxml: string;
   /** Clic sur une note gravée : remonte (onsetMs, midi) de l'élément cliqué. */
   onSelectNote?: (sel: { onsetMs: number; midi: number }) => void;
+  /**
+   * Appelé à la FIN de chaque gravure (initiale ET regravures au resize), une fois
+   * le SVG en place et la table de temps prête. Sert à re-appliquer les surlignages
+   * (sélection, fautes) que la regravure a effacés — cf. HarmoniaEditor.
+   */
+  onReady?: () => void;
 }
 
 // Échelle de gravure (en %). `pageWidth` de Verovio est en unités : la largeur en
@@ -43,8 +50,12 @@ interface Props {
 // faut donc `pageWidth = L × 100 / échelle`.
 const ECHELLE = 40;
 
-const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ musicxml, onSelectNote }, ref) {
+const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ musicxml, onSelectNote, onReady }, ref) {
   const conteneur = useRef<HTMLDivElement>(null);
+  // `onReady` gardé dans une ref : l'effet de gravure ne dépend QUE de `musicxml`,
+  // un changement d'identité du callback ne doit pas re-déclencher la gravure.
+  const onReadyRef = useRef(onReady);
+  useEffect(() => { onReadyRef.current = onReady; }, [onReady]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- l'instance Verovio est conservée entre rendus pour le surlignage ; son type vit dans le stub verovio.d.ts, mais on n'a besoin ici que d'une poignée opaque.
   const tkRef = useRef<any>(null);
   const notesJouees = useRef<Element[]>([]);
@@ -75,6 +86,8 @@ const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ mus
       let svg = "";
       for (let p = 1; p <= pages; p++) svg += tk.renderToSVG(p);
       hote.innerHTML = svg;
+      // Gravure terminée : le SVG est en place, l'appelant peut re-surligner.
+      onReadyRef.current?.();
     };
 
     (async () => {
@@ -210,9 +223,12 @@ const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ mus
     <>
       <style>{`
         .harmonia-joue, .harmonia-joue * { fill: #C62828 !important; }
-        .harmonia-selection, .harmonia-selection * { fill: #5C3D6E !important; }
-        .harmonia-faute, .harmonia-faute * { fill: #E53E3E !important; }
         .harmonia-avert, .harmonia-avert * { fill: #DD6B20 !important; }
+        .harmonia-faute, .harmonia-faute * { fill: #E53E3E !important; }
+        /* La sélection prime visuellement : règle placée EN DERNIER pour gagner le
+           conflit d'égale spécificité quand une note est à la fois sélectionnée et
+           fautive (dernier !important l'emporte). */
+        .harmonia-selection, .harmonia-selection * { fill: #5C3D6E !important; }
       `}</style>
       <div ref={conteneur} onClick={onClick} style={{ width: "100%", overflowX: "auto", cursor: "pointer" }} />
     </>
