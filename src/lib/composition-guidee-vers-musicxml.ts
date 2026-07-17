@@ -76,7 +76,22 @@ export interface CompositionGuideeOptions {
   showKeySignature?: boolean;    // grave l'armure (défaut : true)
 }
 
+// Trois orthographes des touches noires, choisies AU DIAPASON DE L'ARMURE (l'ancienne
+// présentation épelait tout en dièses, ce qui gravait des La# en Fa majeur ou des
+// Sol#/Ré# là où un cours enseigne Lab/Mib) :
+//  • armure à dièses → dièses ;
+//  • armure à bémols → bémols ;
+//  • tonalité neutre (Do/La m) → bémols pour Mib/Lab/Sib/Réb (les emprunts au mineur
+//    parallèle, le cas d'usage courant), mais Fa# conservé (sensibles des dominantes
+//    secondaires). Les hauteurs de la MÉLODIE gardent leur orthographe d'origine.
 const NOMS_DIESES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+const NOMS_BEMOLS = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+const NOMS_NEUTRE = ["C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
+
+/** Table d'orthographe des hauteurs d'accompagnement d'après le nombre de quintes. */
+function nomsPourArmure(fifths: number): string[] {
+  return fifths < 0 ? NOMS_BEMOLS : fifths > 0 ? NOMS_DIESES : NOMS_NEUTRE;
+}
 
 const GLYPHE: Record<number, string> = {
   2: "double-sharp", 1: "sharp", 0: "natural", [-1]: "flat", [-2]: "flat-flat",
@@ -90,11 +105,11 @@ function decoderNom(nom: string): { step: string; alter: number } {
   return { step, alter };
 }
 
-/** MIDI → hauteur écrite (orthographe par dièses, comme l'ancienne présentation). */
-function decoderMidi(midi: number): { step: string; alter: number; octave: number } {
+/** MIDI → hauteur écrite, orthographiée selon la table de l'armure (`noms`). */
+function decoderMidi(midi: number, noms: string[]): { step: string; alter: number; octave: number } {
   const pc = ((midi % 12) + 12) % 12;
   const octave = Math.floor(midi / 12) - 1;
-  return { ...decoderNom(NOMS_DIESES[pc]), octave };
+  return { ...decoderNom(noms[pc]), octave };
 }
 
 /**
@@ -172,7 +187,11 @@ export function compositionGuideeVersMusicXML(
   const { keySignature, timeSignature, measures } = options;
   const showKey = options.showKeySignature ?? true;
   const bpm = timeSignature === "4/4" ? 4 : 3;
-  const { fifths, attendu } = showKey ? armure(keySignature) : { fifths: 0, attendu: {} };
+  // L'armure réelle de l'exercice décide l'orthographe des accords, MÊME quand on ne
+  // grave pas l'armure (showKey=false) : c'est la tonalité qui dicte dièses/bémols.
+  const arm = armure(keySignature);
+  const noms = nomsPourArmure(arm.fifths);
+  const { fifths, attendu } = showKey ? arm : { fifths: 0, attendu: {} as Record<string, number> };
   const grandStaff = Boolean(accompagnement && accompagnement.length > 0);
   const capaciteDiv = divisionsPourBeats(bpm);
   const backup = `<backup><duration>${capaciteDiv}</duration></backup>`;
@@ -180,11 +199,18 @@ export function compositionGuideeVersMusicXML(
   // Regrouper la mélodie par mesure (accumulation des durées jusqu'à la capacité).
   const parMesure: MelodyNote[][] = Array.from({ length: measures }, () => []);
   {
-    let mi = 0, acc = 0;
+    let mi = 0, acc = 0, deborde = false;
     for (const n of melody) {
-      if (mi < measures) parMesure[mi].push(n);
+      if (mi < measures) parMesure[mi].push(n); else deborde = true;
       acc += (DIV_PAR_DUREE[n.duration] ?? 2) / DIVISIONS;
       if (acc >= bpm - 1e-6) { mi++; acc = 0; }
+    }
+    // Débordement : des notes dépassent les mesures déclarées (données d'exercice mal
+    // dimensionnées). On les ignore — au moins signalé en développement.
+    if (deborde && process.env.NODE_ENV !== "production") {
+      console.warn(
+        `compositionGuideeVersMusicXML : la mélodie dépasse les ${measures} mesures déclarées — surplus ignoré.`,
+      );
     }
   }
 
@@ -209,12 +235,26 @@ export function compositionGuideeVersMusicXML(
     const notesMes = parMesure[i];
     const sopHampe = grandStaff ? ("up" as const) : null;
     const sopPortee = grandStaff ? 1 : null;
-    const soprano = notesMes.length > 0
-      ? notesMes.map((n) => {
-          const { step, alter } = decoderNom(n.note);
-          return noteXML(step, alter, n.octave, DIV_PAR_DUREE[n.duration] ?? 2, "1", attendu, sopPortee, sopHampe);
-        }).join("")
-      : silenceXML(capaciteDiv, "1", sopPortee);
+    let soprano: string;
+    let consomme: number; // divisions occupées par la mélodie de cette mesure
+    if (notesMes.length > 0) {
+      soprano = notesMes.map((n) => {
+        const { step, alter } = decoderNom(n.note);
+        return noteXML(step, alter, n.octave, DIV_PAR_DUREE[n.duration] ?? 2, "1", attendu, sopPortee, sopHampe);
+      }).join("");
+      consomme = notesMes.reduce((s, n) => s + (DIV_PAR_DUREE[n.duration] ?? 2), 0);
+    } else {
+      soprano = silenceXML(capaciteDiv, "1", sopPortee);
+      consomme = capaciteDiv;
+    }
+    // Rembourrage : une mesure dont la mélodie ne remplit pas le mètre (ex. dernière
+    // mesure à 3 temps sur des 4/4 déclarés) reçoit un silence jusqu'à la capacité.
+    // Sans lui, le <backup> — de longueur FIXE (capaciteDiv) — reculerait le curseur
+    // au-delà du début de mesure (négatif → MusicXML invalide) dès qu'un accord est
+    // gravé sous cette mesure.
+    if (consomme < capaciteDiv) {
+      soprano += silenceXML(capaciteDiv - consomme, "1", sopPortee);
+    }
 
     let corps = soprano;
 
@@ -225,7 +265,7 @@ export function compositionGuideeVersMusicXML(
         const voixXML = evs.map((ev) => {
           const div = divisionsPourBeats(ev.beats);
           if (ev.midi === null) return silenceXML(div, cfg.voix, cfg.portee);
-          const { step, alter, octave } = decoderMidi(ev.midi);
+          const { step, alter, octave } = decoderMidi(ev.midi, noms);
           return noteXML(step, alter, octave, div, cfg.voix, attendu, cfg.portee, cfg.hampe);
         }).join("");
         corps += backup + voixXML;

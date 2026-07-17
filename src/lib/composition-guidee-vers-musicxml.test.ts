@@ -160,3 +160,96 @@ describe("compositionGuideeVersMusicXML — mélodie + réalisation SATB", () =>
     expect((xml.match(/<attributes>/g) ?? []).length).toBe(1);
   });
 });
+
+describe("compositionGuideeVersMusicXML — revue phase ② (robustesse & épellation)", () => {
+  it("(F5-a) mesure finale sous-remplie : le <backup> reste valide, un silence rembourre, l'accord tombe au bon instant", () => {
+    // M1 pleine (4 noires), M2 ne porte que 3 noires (3/4 des 4/4 déclarés).
+    const melody: MelodyNote[] = [
+      ...M1,
+      { note: "C", octave: 4, duration: "quarter" },
+      { note: "D", octave: 4, duration: "quarter" },
+      { note: "E", octave: 4, duration: "quarter" },
+    ];
+    const acc: AccompagnementSegment[] = [
+      { mesure: 0, debutBeats: 0, dureeBeats: 4, alto: 64, tenor: 55, bass: 48 },
+      { mesure: 1, debutBeats: 0, dureeBeats: 4, alto: 65, tenor: 57, bass: 53 },
+    ];
+    const xml = compositionGuideeVersMusicXML(melody, acc, {
+      keySignature: "C",
+      timeSignature: "4/4",
+      measures: 2,
+    });
+    // Un silence de rembourrage complète la mélodie courte.
+    expect(xml).toContain("<rest");
+    const parsed = parseMusicXML(xml);
+    expect(parsed.measures).toHaveLength(2);
+    // L'accord de M2 (basse Fa2 = 53) attaque au 1er temps de la 2e mesure — preuve
+    // que le <backup> n'a pas reculé le curseur en négatif (arithmétique intacte).
+    const basseM2 = parsed.notes.find((n) => n.measure === 2 && n.midi === 53);
+    expect(basseM2).toBeDefined();
+    expect(basseM2!.beat).toBe(1);
+  });
+
+  it("(F5-b) tonalité mineure Cm : armure du relatif majeur (<fifths>-3</fifths>)", () => {
+    const xml = compositionGuideeVersMusicXML(M1, null, {
+      keySignature: "Cm",
+      timeSignature: "4/4",
+      measures: 1,
+    });
+    expect(xml).toContain("<fifths>-3</fifths>");
+  });
+
+  it("(F5-c) armure bémol (Fa majeur) : l'accompagnement MIDI 70 s'épelle Sib (B/-1), jamais La# (A/+1)", () => {
+    const acc: AccompagnementSegment[] = [
+      { mesure: 0, debutBeats: 0, dureeBeats: 4, alto: 70, tenor: 57, bass: 53 },
+    ];
+    const xml = compositionGuideeVersMusicXML(M1, acc, {
+      keySignature: "F",
+      timeSignature: "4/4",
+      measures: 1,
+    });
+    expect(xml).toContain("<step>B</step><alter>-1</alter>");
+    expect(xml).not.toContain("<step>A</step><alter>1</alter>");
+    // Sib est dans l'armure de Fa → aucune altération accidentelle affichée pour lui.
+    const parsed = parseMusicXML(xml);
+    expect(parsed.notes.map((n) => n.midi)).toContain(70);
+  });
+
+  it("(F5-c bis) tonalité neutre (Do majeur) : un emprunt bVI s'épelle Lab/Mib (bémols), pas Sol#/Ré#", () => {
+    // Accord de Lab majeur (bVI en Do) : basse Lab2=44, ténor Mib3=51, alto Do4=60.
+    const acc: AccompagnementSegment[] = [
+      { mesure: 0, debutBeats: 0, dureeBeats: 4, alto: 60, tenor: 51, bass: 44 },
+    ];
+    const xml = compositionGuideeVersMusicXML(M1, acc, {
+      keySignature: "C",
+      timeSignature: "4/4",
+      measures: 1,
+    });
+    expect(xml).toContain("<step>A</step><alter>-1</alter>"); // Lab
+    expect(xml).toContain("<step>E</step><alter>-1</alter>"); // Mib
+    expect(xml).not.toContain("<step>G</step><alter>1</alter>"); // pas de Sol#
+    expect(xml).not.toContain("<step>D</step><alter>1</alter>"); // pas de Ré#
+  });
+
+  it("(F5-d) 3/4, un accord par mesure : la ronde-pointée remplit la mesure et l'accompagnement somme à la capacité", () => {
+    const melody: MelodyNote[] = [
+      { note: "C", octave: 4, duration: "quarter" },
+      { note: "E", octave: 4, duration: "quarter" },
+      { note: "G", octave: 4, duration: "quarter" },
+    ];
+    const acc: AccompagnementSegment[] = [
+      { mesure: 0, debutBeats: 0, dureeBeats: 3, alto: 64, tenor: 55, bass: 48 },
+    ];
+    const xml = compositionGuideeVersMusicXML(melody, acc, {
+      keySignature: "C",
+      timeSignature: "3/4",
+      measures: 1,
+    });
+    // Trois blanches pointées (alto, ténor, basse) — une note pointée par voix.
+    expect((xml.match(/<type>half<\/type><dot\/>/g) ?? []).length).toBe(3);
+    expect((xml.match(/<dot\/>/g) ?? []).length).toBe(3);
+    // La mesure fait bien 3 temps (3 noires) : la capacité est remplie sans débordement.
+    const parsed = parseMusicXML(xml);
+    expect(parsed.measures[0].length).toBe(3 * 768);
+  });
+});
