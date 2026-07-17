@@ -729,6 +729,37 @@ export default function AtelierComposition() {
           </div>
         </div>
 
+        {/* ── Mode d'emploi (notice dépliante, fermée par défaut) ──── */}
+        {/* <details> natif : pas d'état à gérer, clavier et lecteur d'écran servis. */}
+        <details style={{ ...carte, padding: "12px 20px" }}>
+          <summary style={{
+            cursor: "pointer", fontSize: 14, fontWeight: 600, color: "#5C3D6E",
+            fontFamily: "Georgia, serif", listStyle: "revert",
+          }}>
+            Mode d&apos;emploi de l&apos;atelier
+          </summary>
+          <div style={{ fontSize: 13, color: "#444", fontFamily: "system-ui, sans-serif", lineHeight: 1.75, marginTop: 10, display: "flex", flexDirection: "column", gap: 8 }}>
+            <p style={{ margin: 0 }}>
+              <strong style={{ color: "#1a1a1a" }}>Écrire.</strong> Choisissez la voix (S, A, T, B) : chaque voix écrit dans sa tessiture, à sa propre octave (réglable ▲▼). Réglez la durée (1-5), le point, l&apos;altération, puis posez les notes : boutons C-D-E… ou touches a…g. La partition se grave et la note sonne à chaque frappe. R pose un silence ; le triolet s&apos;active en bascule, entrez les trois notes du groupe.
+            </p>
+            <p style={{ margin: 0 }}>
+              <strong style={{ color: "#1a1a1a" }}>Corriger.</strong> Les flèches ← → naviguent de note en note (la sélection s&apos;affiche en violet) ; cliquer une note sur la partition la sélectionne aussi. Une lettre remplace la hauteur, un bouton de durée remplace la durée, ↑ ↓ transposent (Maj = octave). Retour arrière supprime la note sélectionnée — ou la dernière posée.
+            </p>
+            <p style={{ margin: 0 }}>
+              <strong style={{ color: "#1a1a1a" }}>Insérer.</strong> Touche I (ou bouton Insérer) : les notes et silences suivants s&apos;intercalent <em>avant</em> la note sélectionnée, qui reste sélectionnée — enchaînez les insertions, puis désactivez.
+            </p>
+            <p style={{ margin: 0 }}>
+              <strong style={{ color: "#1a1a1a" }}>Accords.</strong> Maj+lettre empile une hauteur sur la note sélectionnée ou la dernière posée (bouton Accord pour la souris). L&apos;accord se manipule d&apos;un bloc : ↑ ↓ le transposent entier, Retour arrière le dépile hauteur par hauteur.
+            </p>
+            <p style={{ margin: 0 }}>
+              <strong style={{ color: "#1a1a1a" }}>Comprendre.</strong> Le panneau <em>Analyse harmonique</em> chiffre ce que vous écrivez (accords, degrés, fonctions, cadences) dans la tonalité choisie au sélecteur — changer de tonalité relit la pièce sans déplacer les notes. Le panneau <em>Conduite des voix</em> signale les fautes d&apos;écriture : rouge = faute (parallèles, croisement…), orange = à surveiller (directes, écart, tessiture) ; cliquer une faute sélectionne la note en cause.
+            </p>
+            <p style={{ margin: 0 }}>
+              <strong style={{ color: "#1a1a1a" }}>Écouter.</strong> ▶ joue la pièce avec le repère de lecture ; Tout effacer repart d&apos;une page blanche.
+            </p>
+          </div>
+        </details>
+
         {/* ── Aide clavier ─────────────────────────────────────────── */}
         <div style={{ fontSize: 12, color: "#999", fontFamily: "system-ui, sans-serif", lineHeight: 1.7, padding: "0 4px" }}>
           <strong style={{ color: "#777" }}>Clavier :</strong> a…g = poser/corriger la note · Maj+a…g = empiler (accord) · I = insérer avant la note sélectionnée · ← → = naviguer entre les notes · ↑ ↓ = transposer (Maj = octave) · 1–5 = durée · R = silence · Retour arrière = effacer (un accord se dépile hauteur par hauteur).
