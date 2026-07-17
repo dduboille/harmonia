@@ -144,6 +144,25 @@ export default function AtelierComposition() {
   const rafRef = useRef<number | null>(null);
   const departRef = useRef<number>(0);
 
+  // ── Import d'un squelette exporté depuis /squelette-harmonique ──────────────
+  // Au montage seulement : si l'outil « squelette » a déposé une pièce en
+  // sessionStorage, on l'adopte (puis on efface la clé — chargement unique). Clé
+  // absente → démarrage normal sur la pièce vierge ; pièce corrompue → idem (garde-fou).
+  useEffect(() => {
+    try {
+      const brut = window.sessionStorage.getItem("squelette->piece");
+      if (!brut) return;
+      window.sessionStorage.removeItem("squelette->piece");
+      const p = JSON.parse(brut) as Piece;
+      if (p && Array.isArray(p.mesures) && p.chiffrage) {
+        setPiece(p);
+        setCurseur({ mesure: 0, voix: "soprano", note: "fin" });
+      }
+    } catch {
+      // pièce corrompue : on garde l'état vierge, aucune régression du démarrage normal.
+    }
+  }, []);
+
   // ── Gravure à chaque frappe ────────────────────────────────────────────────
   // Mémoïsée sur `piece` seul : `pieceVersMusicXML` complète les silences et masque les
   // voix vides lui-même, puis Verovio grave. 8 mesures — le coût par frappe reste acceptable.
