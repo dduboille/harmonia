@@ -4163,5 +4163,54 @@
     "defaultTitle": "Exercice de conduite de voix",
     "loadingScore": "Chargement de la partition…",
     "accidentalLabel": "Altération :"
+  },
+  "squelette": {
+    "badge": "Composition",
+    "titre": "Squelette harmonique",
+    "sousTitre": "Posez une succession d'accords sur 8 mesures, voyez-la réalisée à quatre voix, écoutez-la, puis étoffez-la dans l'atelier.",
+    "tonalite": "Tonalité",
+    "majeur": "majeur",
+    "mineur": "mineur",
+    "niveau": "Niveau",
+    "niveauDiatonique": "Diatonique",
+    "niveauChromatique": "+ Chromatismes",
+    "banque": "Banque d'accords",
+    "banqueAide": "Choisissez un emplacement, puis cliquez un accord pour l'y poser.",
+    "groupes": {
+      "Tonique": "Tonique",
+      "Prédominante": "Prédominante",
+      "Dominante": "Dominante",
+      "Chromatisme": "Chromatisme"
+    },
+    "mesures": "Mesures",
+    "emplacementVide": "Vide",
+    "unAccord": "1 accord",
+    "deuxAccords": "2 accords",
+    "basculer": "Basculer 1 ↔ 2 accords",
+    "vider": "Vider l'emplacement",
+    "portee": "Réalisation à quatre voix",
+    "ecouter": "Écouter",
+    "vide": "Posez des accords depuis la banque pour voir la réalisation.",
+    "voixHautes": "SOPRANO · ALTO",
+    "voixBasses": "TÉNOR · BASSE",
+    "approx": "Réalisation approximative (conduite non garantie).",
+    "conduiteOk": "Conduite correcte — aucune faute détectée.",
+    "fautesTitre": "Vérification de la conduite",
+    "frise": "Analyse fonctionnelle",
+    "cadence": "Cadence",
+    "cadences": {
+      "parfaite": "Cadence parfaite (V → I)",
+      "plagale": "Cadence plagale (IV → I)",
+      "demi": "Demi-cadence (→ V)",
+      "rompue": "Cadence rompue (V → vi)",
+      "aucune": "Aucune cadence caractéristique"
+    },
+    "fonctions": {
+      "T": "T",
+      "SD": "PD",
+      "D": "D",
+      "?": "—"
+    },
+    "exporter": "Étoffer dans l'atelier"
   }
 }

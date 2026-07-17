@@ -4164,5 +4164,54 @@
     "defaultTitle": "Esercizio di condotta delle voci",
     "loadingScore": "Caricamento della partitura…",
     "accidentalLabel": "Alterazione:"
+  },
+  "squelette": {
+    "badge": "Composizione",
+    "titre": "Scheletro armonico",
+    "sousTitre": "Disponi una successione di accordi su 8 misure, guardala realizzata a quattro voci, ascoltala e poi sviluppala nel laboratorio.",
+    "tonalite": "Tonalità",
+    "majeur": "maggiore",
+    "mineur": "minore",
+    "niveau": "Livello",
+    "niveauDiatonique": "Diatonico",
+    "niveauChromatique": "+ Cromatismi",
+    "banque": "Banca di accordi",
+    "banqueAide": "Scegli una posizione, poi clicca un accordo per collocarlo.",
+    "groupes": {
+      "Tonique": "Tonica",
+      "Prédominante": "Predominante",
+      "Dominante": "Dominante",
+      "Chromatisme": "Cromatismo"
+    },
+    "mesures": "Misure",
+    "emplacementVide": "Vuoto",
+    "unAccord": "1 accordo",
+    "deuxAccords": "2 accordi",
+    "basculer": "Alterna 1 ↔ 2 accordi",
+    "vider": "Svuota posizione",
+    "portee": "Realizzazione a quattro voci",
+    "ecouter": "Ascolta",
+    "vide": "Colloca accordi dalla banca per vedere la realizzazione.",
+    "voixHautes": "SOPRANO · CONTRALTO",
+    "voixBasses": "TENORE · BASSO",
+    "approx": "Realizzazione approssimativa (condotta non garantita).",
+    "conduiteOk": "Condotta corretta — nessun errore rilevato.",
+    "fautesTitre": "Verifica della condotta",
+    "frise": "Analisi funzionale",
+    "cadence": "Cadenza",
+    "cadences": {
+      "parfaite": "Cadenza perfetta (V → I)",
+      "plagale": "Cadenza plagale (IV → I)",
+      "demi": "Semicadenza (→ V)",
+      "rompue": "Cadenza d'inganno (V → vi)",
+      "aucune": "Nessuna cadenza caratteristica"
+    },
+    "fonctions": {
+      "T": "T",
+      "SD": "PD",
+      "D": "D",
+      "?": "—"
+    },
+    "exporter": "Sviluppa nel laboratorio"
   }
 }

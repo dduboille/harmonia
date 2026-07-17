@@ -17,6 +17,12 @@ const TOOLS = [
     desc: "Composez votre propre pièce à deux portées, note à note — gravure en direct et écoute. (Pro)",
   },
   {
+    href: "squelette-harmonique",
+    icon: "⌗",
+    title: "Squelette harmonique",
+    desc: "Posez des accords sur 8 mesures, réalisés à quatre voix conduites, puis étoffez dans l'atelier.",
+  },
+  {
     href: "comparateur",
     icon: "⟳",
     title: "Styles",
