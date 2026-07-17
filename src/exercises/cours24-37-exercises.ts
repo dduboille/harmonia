@@ -7,10 +7,15 @@
  * solution SATB en `regles: "ecole"` passe `validateSATB` avec 0 faute et 0
  * avertissement noté (invariant du corpus, cf. corpus-invariant.test.ts).
  *
- * LOT 1 — Cours 26 (Harmonisation DEM : basse donnée et soprano donné).
+ * LOT 1 — Cours 26 (Harmonisation DEM : basse donnée et soprano donné) et
+ *         Cours 24 (les trois sixtes augmentées et leurs résolutions).
  *   - satb     : réalisations d'école complètes (basse donnée, soprano donné),
  *                cadences claires, sensible et 7es conduites selon les règles.
- *   - identify : raisonnement de choix d'accord de la méthode en 5 étapes.
+ *                Pour les sixtes augmentées, voir la note `regles: "libre"`
+ *                ci-dessous (COURS 24).
+ *   - identify : raisonnement de choix d'accord de la méthode en 5 étapes ;
+ *                distinction des trois sixtes augmentées et piège enharmonique.
+ *   - build    : construction d'une sixte augmentée sur basse donnée.
  */
 
 import type { Exercise } from "@/types/exercise";
@@ -173,4 +178,166 @@ const COURS26_EXERCISES: Exercise[] = [
   },
 ];
 
-export { COURS26_EXERCISES };
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 24 — Les trois sixtes augmentées et leurs résolutions
+// ════════════════════════════════════════════════════════════════════════════
+//
+// NOTE SUR `regles: "libre"` POUR LES RÉALISATIONS SATB (documentée, cf. spec) :
+// le moteur identifie les accords par CLASSES DE HAUTEURS (enharmonie aveugle).
+// Une sixte augmentée s'y lit donc comme une 7e de dominante : la 6te italienne
+// Fa–La–Ré# ressort en Fa7 (Ré# = 7e), l'allemande Lab–Do–Mib–Fa# en Lab7
+// (Fa# = 7e). La règle d'école « la 7e descend » exige alors que le #4 DESCENDE,
+// alors que l'idiome commande qu'il MONTE d'un demi-ton vers la quinte de
+// dominante (Ré#→Mi, Fa#→Sol). Ce conflit est STRUCTUREL — inhérent à toute
+// résolution de sixte augmentée — d'où `regles: "libre"` sur les deux SATB
+// (conformité + tessitures vérifiées ; la conduite reste écrite « à l'école »,
+// sans parallèles ni fausses relations, comme le montre la revue voix par voix).
+
+const COURS24_EXERCISES: Exercise[] = [
+  // ── identify 1 — reconnaître les trois structures (diff 1) ─────────────────
+  {
+    id: "c24-identifier-trois-sixtes",
+    type: "identify",
+    cours: 24,
+    difficulty: 1,
+    tags: ["sixte augmentée", "italienne", "française", "allemande", "napolitain"],
+    concepts: ["It+6 = ♭6–1–♯4", "Fr+6 ajoute le 2", "Al+6 ajoute le ♭3", "note distinctive"],
+    question:
+      "Toutes les sixtes augmentées se bâtissent sur le même socle en Do majeur : Lab (♭6, à la basse) – Do (tonique) – Fa# (♯4). Laquelle de ces quatre propositions est la sixte FRANÇAISE ?",
+    context: "Tonalité : Do majeur. Basse imposée : Lab (6e degré abaissé).",
+    options: [
+      { id: "a", label: "Lab–Do–Fa# — trois notes seulement", isCorrect: false },
+      { id: "b", label: "Lab–Do–Ré–Fa# — le socle plus le Ré (2e degré)", isCorrect: true },
+      { id: "c", label: "Lab–Do–Mib–Fa# — le socle plus le Mib (3e degré abaissé)", isCorrect: false },
+      { id: "d", label: "Lab–Réb–Fa — accord majeur sur le 2e degré abaissé", isCorrect: false },
+    ],
+    explanation:
+      "La française (Fr+6) ajoute au socle ♭6–1–♯4 le 2e degré (Ré en Do majeur) : Lab–Do–Ré–Fa#. Ce Ré est la neuvième de la dominante Sol, d'où sa couleur. Lab–Do–Fa# (3 notes) est l'italienne ; Lab–Do–Mib–Fa# (avec le ♭3) est l'allemande ; Lab–Réb–Fa est l'accord napolitain (majeur sur le ♭II), une autre prédominante qu'il ne faut pas confondre avec les sixtes augmentées.",
+    hint: "Les trois sixtes se distinguent par leur note AJOUTÉE : rien (italienne), le 2 (française), le ♭3 (allemande).",
+  },
+
+  // ── build — construire la sixte française sur basse donnée (diff 2) ────────
+  {
+    id: "c24-construire-sixte-francaise",
+    type: "build",
+    cours: 24,
+    difficulty: 2,
+    tags: ["sixte augmentée", "française", "construction", "Do majeur", "♯4"],
+    concepts: ["♭6 à la basse", "socle ♭6–1–♯4", "2e degré ajouté", "orthographe ♯4 (Fa#, non Solb)"],
+    question:
+      "Construisez la sixte augmentée FRANÇAISE en Do majeur, à partir de la basse Lab. Donnez les quatre notes dans l'ordre, de la plus grave à la plus aiguë.",
+    keySignature: "C",
+    correctNotes: ["Ab", "C", "D", "F#"],
+    explanation:
+      "La française en Do majeur = Lab (♭6) – Do (1) – Ré (2) – Fa# (♯4). L'intervalle de sixte augmentée se forme entre la basse Lab et le Fa#. On écrit bien Fa# (4e degré ÉLEVÉ) et non Solb : c'est cette orthographe qui distingue la sixte augmentée d'une 7e de dominante enharmonique, et qui impose la résolution ascendante du Fa# vers Sol.",
+    hint: "Partez du socle Lab–Do–Fa#, puis intercalez la note distinctive de la française : le 2e degré.",
+  },
+
+  // ── identify 2 — pourquoi le I6/4 avant V pour l'allemande (diff 2) ────────
+  {
+    id: "c24-al6-quintes-i64",
+    type: "identify",
+    cours: 24,
+    difficulty: 2,
+    tags: ["sixte allemande", "quintes parallèles", "I6/4", "résolution", "cadence"],
+    concepts: ["Al+6 → I6/4 → V", "quintes parallèles ♭6–♭3", "6/4 de cadence"],
+    question:
+      "On résout très souvent la sixte ALLEMANDE (Lab–Do–Mib–Fa# en Do majeur) en passant d'abord par un I6/4, plutôt qu'en allant directement sur la dominante. Pourquoi ?",
+    context: "Contexte : cadence en Do majeur, … Al+6 – ? – V – I.",
+    options: [
+      { id: "a", label: "Parce que la basse Lab et le Mib forment une quinte juste qui glisserait en quintes parallèles vers Sol–Ré sur la dominante ; le I6/4 intercalé les évite", isCorrect: true },
+      { id: "b", label: "Parce que la sixte allemande est incapable de résoudre sur la dominante", isCorrect: false },
+      { id: "c", label: "Parce que le I6/4 est un accord de repos plus consonant que la dominante", isCorrect: false },
+      { id: "d", label: "Parce que seule la sixte italienne peut aller directement sur V", isCorrect: false },
+    ],
+    explanation:
+      "Dans l'allemande, Lab (♭6) et Mib (♭3) forment une quinte juste. Si l'on résout directement sur V, cette quinte glisse vers Sol–Ré (autre quinte juste) par mouvement direct : quintes parallèles. On intercale donc le I6/4 de cadence — le Mib monte vers Mi, puis le 6/4 se résout sur V. La formule Al+6 → I6/4 → V est la parade classique. (La française et l'italienne, elles, peuvent aller directement sur V sans ce problème.)",
+    hint: "Repérez la quinte juste cachée dans l'accord (♭6–♭3) et voyez où elle irait sur la dominante.",
+  },
+
+  // ── satb 1 — résolution de la sixte italienne en La mineur (diff 2) ────────
+  //
+  // `regles: "libre"` : voir la note en tête de section. It+6 = Fa–La–Ré# se lit
+  // Fa7 aux hauteurs (Ré# = 7e) ; le Ré# doit MONTER vers Mi (idiome), ce que la
+  // règle d'école de la 7e interdirait. La conduite ci-dessous est néanmoins
+  // pleinement « école » : aucune parallèle, aucune fausse relation.
+  {
+    id: "c24-resolution-italienne-lam",
+    type: "satb",
+    cours: 24,
+    title: "Résolution de la sixte italienne en La mineur",
+    subtitle: "iv⁶ – It+6 – V – i · mouvement contraire vers l'octave de dominante",
+    difficulty: 2,
+    tags: ["sixte italienne", "La mineur", "résolution", "mouvement contraire", "prédominante"],
+    keySignature: "Am",
+    measures: ["iv⁶ · Fa", "It+6 · Fa", "V · Mi", "i · La"],
+    solution: [
+      { soprano: n("A", 4), alto: n("D", 4),  tenor: n("A", 3),  bass: n("F", 3) },
+      { soprano: n("A", 4), alto: n("D#", 4), tenor: n("A", 3),  bass: n("F", 3) },
+      { soprano: n("B", 4), alto: n("E", 4),  tenor: n("G#", 3), bass: n("E", 3) },
+      { soprano: n("C", 5), alto: n("E", 4),  tenor: n("A", 3),  bass: n("A", 2) },
+    ],
+    hint: "La sixte italienne n'a que trois notes (Fa–La–Ré#) : on double la tonique (La). Le Ré# naît chromatiquement du Ré du iv⁶ (une seule voix bouge). À la résolution, les deux notes de la sixte augmentée — la basse Fa (♭6) et le Ré# (♯4) — convergent par demi-tons contraires sur l'octave de Mi (dominante).",
+    explanation:
+      "En La mineur, la sixte italienne = Fa (♭6, basse) – La (1) – Ré# (♯4), la tonique La étant doublée. Elle naît du iv⁶ (Ré–Fa–La, Fa à la basse) par la simple montée chromatique Ré→Ré#. Résolution caractéristique : la basse Fa DESCEND vers Mi, le Ré# MONTE vers Mi — mouvement contraire des deux voix extrêmes vers l'octave de dominante (Mi–Mi). La tonique doublée se partage : une La monte vers Si (quinte de V), l'autre descend vers Sol# (tierce sensible). Puis V→i résout Sol#→La. Vérification voix par voix : aucune quinte ni octave parallèle, aucune fausse relation (le Ré# vient du Ré de la même voix).",
+    concepts: ["sixte italienne", "♭6 à la basse", "mouvement contraire", "octave de dominante", "tonique doublée"],
+    // Conflit structurel 7e/♯4 : la sixte augmentée impose la montée du ♯4, la
+    // règle d'école exigerait la descente de la « 7e » enharmonique. → libre.
+    regles: "libre",
+  },
+
+  // ── identify 3 — le piège enharmonique Al+6 vs V7 (diff 3) ─────────────────
+  {
+    id: "c24-al6-vs-v7-enharmonie",
+    type: "identify",
+    cours: 24,
+    difficulty: 3,
+    tags: ["sixte allemande", "enharmonie", "V7", "substitution tritonique", "orthographe"],
+    concepts: ["Al+6 ≡ Lab7 aux hauteurs", "orthographe ♯4 vs ♭5", "la résolution tranche la fonction"],
+    question:
+      "En Do majeur, l'accord Lab–Do–Mib–Fa# a exactement les mêmes hauteurs qu'un Lab7 (accord de dominante). Qu'est-ce qui prouve qu'il s'agit d'une sixte allemande, et non d'un V7 ?",
+    context: "Hauteurs entendues : Lab, Do, Mib, Fa#/Solb — identiques dans les deux lectures.",
+    options: [
+      { id: "a", label: "Rien : les deux accords sont identiques et parfaitement interchangeables", isCorrect: false },
+      { id: "b", label: "Le triton est écrit ♯4 (Fa#, note élevée) et l'accord résout sur V (Sol) par mouvement contraire — Lab↓Sol, Fa#↑Sol ; un vrai Lab7 s'écrirait Solb et résoudrait sur Réb", isCorrect: true },
+      { id: "c", label: "La sixte allemande contient une quinte juste que le Lab7 ne possède pas", isCorrect: false },
+      { id: "d", label: "Le Lab7 se résout toujours sur Do, la sixte allemande toujours sur Fa", isCorrect: false },
+    ],
+    explanation:
+      "Aux seules classes de hauteurs, Lab–Do–Mib–Fa# (Al+6) et Lab–Do–Mib–Solb (Lab7) sont indiscernables. Deux indices tranchent : l'ORTHOGRAPHE — le triton s'écrit Fa# (4e degré élevé) dans la sixte augmentée, Solb (7e de l'accord) dans le Lab7 ; et la RÉSOLUTION — la sixte allemande s'épanouit sur V (Sol) avec Lab et Fa# convergeant vers Sol, tandis que le Lab7 (= V7 du ♭II) résoudrait sur Réb. C'est cette ambiguïté que le jazz exploite dans la substitution tritonique (remplacer Sol7 par Réb7).",
+    hint: "Deux choses distinguent des accords aux mêmes hauteurs : comment on les ÉCRIT, et où ils vont ENSUITE.",
+  },
+
+  // ── satb 2 — résolution de la sixte allemande en Do majeur (diff 3) ────────
+  //
+  // `regles: "libre"` : voir la note en tête de section. Al+6 = Lab–Do–Mib–Fa#
+  // se lit Lab7 aux hauteurs (Fa# = 7e) ; le Fa# doit MONTER vers Sol (idiome).
+  // Conduite « école » : le I6/4 intercalé évite les quintes parallèles ♭6–♭3.
+  {
+    id: "c24-resolution-allemande-do",
+    type: "satb",
+    cours: 24,
+    title: "Résolution de la sixte allemande en Do majeur",
+    subtitle: "iv⁶ – Al+6 – I⁶/⁴ – V – I · le 6/4 qui dissout les quintes",
+    difficulty: 3,
+    tags: ["sixte allemande", "Do majeur", "I6/4", "quintes parallèles", "cadence", "prédominante"],
+    keySignature: "C",
+    measures: ["iv⁶ · Lab", "Al+6 · Lab", "I⁶/⁴ · Sol", "V · Sol", "I · Do"],
+    solution: [
+      { soprano: n("F", 4),  alto: n("C", 4), tenor: n("Ab", 3), bass: n("Ab", 2) },
+      { soprano: n("F#", 4), alto: n("C", 4), tenor: n("Eb", 3), bass: n("Ab", 2) },
+      { soprano: n("G", 4),  alto: n("C", 4), tenor: n("E", 3),  bass: n("G", 2) },
+      { soprano: n("G", 4),  alto: n("B", 3), tenor: n("D", 3),  bass: n("G", 2) },
+      { soprano: n("G", 4),  alto: n("C", 4), tenor: n("E", 3),  bass: n("C", 3) },
+    ],
+    hint: "La sixte allemande (Lab–Do–Mib–Fa#) a quatre notes distinctes. Sa quinte Lab–Mib interdit la résolution directe sur V (quintes parallèles). On intercale donc le I⁶/⁴ : le Mib monte vers Mi, le Fa# et la basse Lab convergent vers Sol (octave de dominante), puis le 6/4 se résout sur V.",
+    explanation:
+      "En Do majeur, la sixte allemande = Lab (♭6, basse) – Do (1) – Mib (♭3) – Fa# (♯4). Elle naît du iv⁶ (Fa mineur, Lab à la basse) : le Fa monte chromatiquement vers Fa#, le socle apporte le Mib. Sa quinte interne Lab–Mib rendrait la résolution directe sur V parallèle — on passe donc par le I⁶/⁴ de cadence : la basse Lab et le Fa# convergent par demi-tons contraires vers Sol (octave), le Mib monte vers Mi, le Do reste. Le I⁶/⁴ (double retard de la dominante) se résout ensuite sur V (Do→Si, Mi→Ré au-dessus de la basse Sol tenue), puis V→I. Vérification voix par voix : aucune quinte ni octave parallèle, aucune fausse relation.",
+    concepts: ["sixte allemande", "♭6 à la basse", "quintes parallèles évitées", "6/4 de cadence", "mouvement contraire"],
+    // Conflit structurel 7e/♯4 : le Fa# (♯4) doit monter vers Sol, alors que la
+    // règle d'école le lirait comme la 7e de Lab7 et exigerait sa descente. → libre.
+    regles: "libre",
+  },
+];
+
+export { COURS26_EXERCISES, COURS24_EXERCISES };
