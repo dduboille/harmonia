@@ -1218,8 +1218,381 @@ const COURS36_EXERCISES: Exercise[] = [
   },
 ];
 
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 33 — Écriture classique : fugue et choral
+// ════════════════════════════════════════════════════════════════════════════
+//
+// C'EST LE cours d'écriture du lot. Deux réalisations SATB `regles: "ecole"`
+// (l'audit les juge à 0 faute / 0 avertissement) : un choral style Bach avec
+// 6/4 de cadence en Do majeur, et un choral en La mineur (sensible rehaussée
+// Sol#, cadence parfaite). La FUGUE, elle, est contrapuntique (entrées
+// successives, pas d'accords verticaux) : on ne la « réalise » donc pas en
+// SATB — on teste son anatomie par `identify` (sujet / réponse / contre-sujet,
+// réponse réelle vs tonale) et par `build` (écrire une réponse réelle =
+// transposition exacte à la quinte). La distinction réponse RÉELLE / TONALE est
+// le point technique central du cours.
+
+const COURS33_EXERCISES: Exercise[] = [
+  // ── identify 1 — anatomie de l'exposition (diff 1) ─────────────────────────
+  {
+    id: "c33-anatomie-exposition",
+    type: "identify",
+    cours: 33,
+    difficulty: 1,
+    tags: ["fugue", "exposition", "sujet", "contre-sujet", "Bach"],
+    concepts: ["sujet énoncé seul", "réponse à la dominante", "contre-sujet contre la réponse"],
+    question:
+      "Au début d'une fugue, une première voix énonce SEULE une mélodie (le sujet). Quand la deuxième voix entre à son tour avec la réponse, que fait la première voix pendant ce temps ?",
+    context: "Exposition d'une fugue à plusieurs voix, style Bach.",
+    options: [
+      { id: "a", label: "Elle enchaîne le contre-sujet — le contrepoint qui accompagne la réponse et réapparaît à chaque entrée du sujet", isCorrect: true },
+      { id: "b", label: "Elle se tait jusqu'à la fin de l'exposition", isCorrect: false },
+      { id: "c", label: "Elle répète le sujet à l'identique, en canon strict et perpétuel", isCorrect: false },
+      { id: "d", label: "Elle énonce un second sujet, totalement indépendant du premier", isCorrect: false },
+    ],
+    explanation:
+      "Dans l'exposition, les voix entrent une par une : sujet (à la tonique) seul, puis réponse (à la dominante) tandis que la première voix poursuit avec le CONTRE-SUJET. Le contre-sujet est le contrepoint écrit pour accompagner la réponse ; en contrepoint double avec le sujet, il revient à chaque nouvelle entrée. Le distracteur (c) confond fugue et canon : le canon imite le sujet strictement et indéfiniment, la fugue non. Le (d) confond contre-sujet (dérivé, dépendant) et « second sujet » (une fugue double, cas particulier).",
+    hint: "La voix qui a fini d'énoncer le sujet ne se tait pas : elle enchaîne le contrepoint qui va habiller la réponse.",
+  },
+
+  // ── satb 1 — choral Bach en Do majeur avec 6/4 de cadence (diff 2) ─────────
+  {
+    id: "c33-choral-cadence-do",
+    type: "satb",
+    cours: 33,
+    title: "Choral style Bach en Do majeur",
+    subtitle: "I – ii⁶ – I⁶/⁴ – V⁷ – I · cadence parfaite avec 6/4",
+    difficulty: 2,
+    tags: ["choral", "Bach", "Do majeur", "6/4 de cadence", "cadence parfaite", "SATB"],
+    keySignature: "C",
+    measures: ["I · Do", "ii⁶ · Fa", "I⁶/⁴ · Sol", "V⁷ · Sol", "I · Do"],
+    solution: [
+      { soprano: n("E", 5), alto: n("G", 4), tenor: n("C", 4), bass: n("C", 3) },
+      { soprano: n("D", 5), alto: n("F", 4), tenor: n("A", 3), bass: n("F", 3) },
+      { soprano: n("E", 5), alto: n("E", 4), tenor: n("C", 4), bass: n("G", 3) },
+      { soprano: n("D", 5), alto: n("F", 4), tenor: n("B", 3), bass: n("G", 3) },
+      { soprano: n("C", 5), alto: n("E", 4), tenor: n("C", 4), bass: n("C", 3) },
+    ],
+    hint: "Formule cadentielle du choral : la sous-dominante ii⁶ (Fa à la basse) mène au 6/4 de cadence (Do sur basse Sol), qui retarde la dominante. Le 6/4 se résout sur V⁷, puis I. À la cadence, la sensible Si (ténor) monte vers Do et la septième Fa (alto) descend vers Mi.",
+    explanation:
+      "Choral à 4 voix dans le style de Bach. La septième de la dominante est PRÉPARÉE : l'alto tient Fa du ii⁶ au V⁷ (mesures 2-4). Sur la basse de dominante Sol tenue, le I⁶/⁴ (Do en 2e renversement, un double retard) se résout sur V⁷ : les notes de cadence descendent (Mi→Ré au soprano n'est pas ici — c'est le soprano qui fait Mi–Ré–Mi–Ré–Do). À la cadence parfaite finale, la sensible Si du ténor monte d'un demi-ton vers Do, la septième Fa de l'alto descend vers Mi ; l'accord final est un Do complet tronqué de sa quinte (fondamentale triplée), disposition idiomatique quand la sensible résolue prive l'accord de sa quinte. Vérification voix par voix : aucune quinte ni octave parallèle, sensible jamais doublée, tessitures respectées.",
+    concepts: ["choral", "6/4 de cadence", "septième préparée", "sensible qui monte", "cadence parfaite"],
+    regles: "ecole",
+  },
+
+  // ── build — écrire la réponse réelle (transposition à la quinte) (diff 2) ───
+  {
+    id: "c33-reponse-reelle-build",
+    type: "build",
+    cours: 33,
+    difficulty: 2,
+    tags: ["fugue", "réponse réelle", "transposition à la quinte", "Bach", "construction"],
+    concepts: ["réponse réelle = transposition exacte à la quinte", "sujet à la tonique → réponse à la dominante"],
+    question:
+      "Un sujet de fugue en Do majeur est : Do – Ré – Mi – Do. La réponse RÉELLE en transpose chaque note exactement d'une quinte juste vers le haut (à la dominante). Donnez les quatre notes de la réponse réelle, dans l'ordre.",
+    keySignature: "C",
+    correctNotes: ["G", "A", "B", "G"],
+    explanation:
+      "La réponse réelle est la transposition EXACTE du sujet à la quinte supérieure (à la dominante) : Do–Ré–Mi–Do devient Sol–La–Si–Sol. Chaque intervalle est conservé à l'identique (seconde majeure, seconde majeure, tierce descendante). On l'emploie quand le sujet ne provoque pas de déséquilibre tonal — typiquement quand il commence sur la tonique, comme ici. Si le sujet avait commencé sur la DOMINANTE, on lui aurait préféré une réponse TONALE (un ou deux intervalles retouchés) pour ne pas quitter trop tôt la tonalité principale.",
+    hint: "Montez chaque note du sujet d'une quinte juste : Do→Sol, Ré→La, Mi→Si, Do→Sol.",
+  },
+
+  // ── identify 2 — réponse tonale quand le sujet part sur la dominante (diff 3) ─
+  {
+    id: "c33-reponse-tonale",
+    type: "identify",
+    cours: 33,
+    difficulty: 3,
+    tags: ["fugue", "réponse tonale", "réponse réelle", "sujet tonal", "Bach"],
+    concepts: ["sujet commençant sur la dominante", "réponse tonale = début sur la tonique", "éviter la modulation prématurée"],
+    question:
+      "Un sujet de fugue en Do majeur COMMENCE sur la dominante (Sol). Sur quelle note la réponse doit-elle idéalement commencer, et pourquoi ?",
+    context: "Sujet ouvrant sur Sol (5e degré) en Do majeur.",
+    options: [
+      { id: "a", label: "Sur la tonique (Do) : c'est une réponse TONALE — la dominante initiale est « répondue » par la tonique pour ne pas installer prématurément le ton de la dominante", isCorrect: true },
+      { id: "b", label: "Sur la sus-tonique (Ré) : la transposition réelle exacte de Sol à la quinte, sans aucune retouche", isCorrect: false },
+      { id: "c", label: "Sur la sensible (Si) : pour renforcer l'attraction vers la tonique", isCorrect: false },
+      { id: "d", label: "Sur la sous-dominante (Fa) : pour équilibrer la dominante initiale", isCorrect: false },
+    ],
+    explanation:
+      "Un sujet qui s'ouvre sur la dominante appelle une réponse TONALE : sa première note (Sol) est « répondue » par la tonique (Do), et non par la transposition réelle exacte (qui donnerait Ré, sus-tonique — réponse b). Cette retouche du premier intervalle évite que la réponse ne bascule trop tôt vers Sol majeur, préservant Do comme centre. C'est la règle classique sujet dominante → réponse tonique. La réponse réelle stricte (b) ne conviendrait qu'à un sujet ancré sur la tonique.",
+    hint: "Dominante et tonique se « répondent » mutuellement : si le sujet part de la 5e, la réponse tonale part de la 1re.",
+  },
+
+  // ── satb 2 — choral Bach en La mineur, sensible rehaussée (diff 3) ──────────
+  {
+    id: "c33-choral-mineur",
+    type: "satb",
+    cours: 33,
+    title: "Choral style Bach en La mineur",
+    subtitle: "i – iv – i⁶/⁴ – V⁷ – i · sensible rehaussée Sol#",
+    difficulty: 3,
+    tags: ["choral", "Bach", "La mineur", "mineur harmonique", "sensible", "cadence parfaite", "SATB"],
+    keySignature: "Am",
+    measures: ["i · La", "iv · Ré", "i⁶/⁴ · Mi", "V⁷ · Mi", "i · La"],
+    solution: [
+      { soprano: n("C", 5), alto: n("E", 4),  tenor: n("A", 3),  bass: n("A", 2) },
+      { soprano: n("D", 5), alto: n("F", 4),  tenor: n("A", 3),  bass: n("D", 3) },
+      { soprano: n("C", 5), alto: n("E", 4),  tenor: n("A", 3),  bass: n("E", 3) },
+      { soprano: n("B", 4), alto: n("D", 4),  tenor: n("G#", 3), bass: n("E", 3) },
+      { soprano: n("A", 4), alto: n("C", 4),  tenor: n("A", 3),  bass: n("A", 2) },
+    ],
+    hint: "En La mineur, la dominante V⁷ (Mi⁷ : Mi–Sol#–Si–Ré) exige la sensible rehaussée Sol#. La formule iv – i⁶/⁴ – V⁷ – i calque le choral majeur en mode mineur. À la cadence, Sol# (ténor) monte vers La, la septième Ré (alto) descend vers Do.",
+    explanation:
+      "Choral en mineur : la seule différence de fond avec le majeur est la SENSIBLE, qui doit être rehaussée d'un demi-ton (Sol naturel → Sol#) pour armer la dominante Mi⁷. La sous-dominante mineure iv (Ré mineur) précède le 6/4 de cadence (La sur basse Mi tenue), qui se résout sur V⁷ puis i. À la cadence parfaite, la sensible Sol# du ténor monte vers La, la septième Ré de l'alto descend vers Do (la tierce de i). L'accord final de La mineur est complet à la fondamentale triplée / tierce (Do) sans quinte, disposition normale après résolution de la sensible. Vérification voix par voix : aucune quinte ni octave parallèle, sensible Sol# jamais doublée, tessitures respectées.",
+    concepts: ["choral mineur", "sensible rehaussée", "sous-dominante mineure", "6/4 de cadence", "cadence parfaite"],
+    regles: "ecole",
+  },
+];
+
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 34 — Composition pour l'image : harmonie cinématographique
+// ════════════════════════════════════════════════════════════════════════════
+//
+// Cours de COULEUR et de dramaturgie, pas d'écriture d'école : l'harmonie y sert
+// une émotion à l'écran. Aucun SATB (rien à réaliser en 4 voix strictes) — on
+// teste la « carte des émotions harmoniques » du cours par `identify` (triton =
+// danger, lydien = magie/merveilleux, transformation du leitmotiv, procédé
+// Zimmer de « Time ») et l'accord précis de l'amour par `build` (l'add9 que le
+// cours donne note à note). Compositeurs cités par le cours : Williams, Zimmer,
+// Morricone, Wagner (leitmotiv).
+
+const COURS34_EXERCISES: Exercise[] = [
+  // ── identify 1 — le triton, outil du danger (diff 1) ───────────────────────
+  {
+    id: "c34-triton-danger",
+    type: "identify",
+    cours: 34,
+    difficulty: 1,
+    tags: ["carte des émotions", "triton", "danger", "dissonance", "musique de film"],
+    concepts: ["triton = diabolus in musica", "dissonance non résolue = tension ouverte", "signal du danger"],
+    question:
+      "Un compositeur de film veut signaler un danger imminent, une menace sourde. D'après la « carte des émotions harmoniques » du cours, quel intervalle est l'outil n°1 pour créer cette tension ?",
+    context: "Scène de suspense : on cherche l'intervalle le plus tendu du système tonal.",
+    options: [
+      { id: "a", label: "Le triton (quarte augmentée / quinte diminuée) — le « diabolus in musica », l'intervalle le plus dissonant", isCorrect: true },
+      { id: "b", label: "L'octave juste — l'intervalle le plus consonant", isCorrect: false },
+      { id: "c", label: "La tierce majeure — couleur claire et stable", isCorrect: false },
+      { id: "d", label: "La sixte mineure — couleur douce et nostalgique", isCorrect: false },
+    ],
+    explanation:
+      "Le triton (Do–Fa#) est l'intervalle harmonique le plus dissonant du système tonal — le « diabolus in musica » du Moyen-Âge. Laissé NON RÉSOLU, il crée une tension ouverte que l'oreille cherche à refermer : c'est l'outil n°1 pour signaler danger, incertitude ou menace au cinéma. Les distracteurs sont tous des intervalles consonants ou doux : l'octave (fusion, stabilité), la tierce majeure (clarté), la sixte mineure (nostalgie) — aucun ne porte la tension recherchée.",
+    hint: "Cherchez l'intervalle que le Moyen-Âge appelait « le diable en musique ».",
+  },
+
+  // ── identify 2 — le mode lydien, couleur du merveilleux (diff 2) ───────────
+  {
+    id: "c34-lydien-magie",
+    type: "identify",
+    cours: 34,
+    difficulty: 2,
+    tags: ["carte des émotions", "mode lydien", "#4", "magie", "John Williams"],
+    concepts: ["lydien = majeur à 4te augmentée", "la #11 = ingrédient magique", "Williams : Harry Potter, E.T."],
+    question:
+      "Une scène d'émerveillement, de féerie ou de magie (Harry Potter, E.T.). Quelle couleur modale le cours associe-t-il à ce sentiment d'irréel lumineux ?",
+    context: "On cherche la couleur du « monde fantastique » chez John Williams.",
+    options: [
+      { id: "a", label: "Le mode lydien (majeur à quarte augmentée, #4) — sa #11 crée un effet brillant et irréel", isCorrect: true },
+      { id: "b", label: "Le mode phrygien (seconde bémolisée) — couleur du mystère et du suspense", isCorrect: false },
+      { id: "c", label: "Le mode éolien (mineur naturel) — couleur de la tristesse et de la nostalgie", isCorrect: false },
+      { id: "d", label: "La quinte ouverte (sans tierce) — couleur héroïque et primitive", isCorrect: false },
+    ],
+    explanation:
+      "Le mode lydien (Do–Ré–Mi–Fa#–Sol–La–Si : un majeur dont la 4te est augmentée) sonne « magique » et irréel — c'est sa quarte augmentée (#11) qui est l'ingrédient féerique. John Williams l'emploie abondamment aux moments d'émerveillement (Harry Potter, E.T., Hook). Les distracteurs sont les autres cases de la carte des émotions : phrygien = mystère/suspense, éolien = tristesse, quinte ouverte = héroïsme — chacune sa couleur, aucune n'est celle de la magie.",
+    hint: "La couleur du merveilleux tient à une seule note haussée : la quarte augmentée.",
+  },
+
+  // ── build — l'accord de l'amour (add9) que le cours donne note à note (diff 2)
+  {
+    id: "c34-build-accord-amour",
+    type: "build",
+    cours: 34,
+    difficulty: 2,
+    tags: ["carte des émotions", "amour", "add9", "Cadd9", "construction"],
+    concepts: ["add9 = accord majeur + 9e ajoutée, sans 7e", "la 9e « ouvre » l'accord", "add9 ≠ Maj9"],
+    question:
+      "Le cours associe l'amour et la romance à un accord majeur enrichi d'une neuvième ajoutée, SANS septième (add9). Construisez le Cadd9 en Do majeur, dans l'ordre : fondamentale, tierce, quinte, puis la 9e ajoutée.",
+    keySignature: "C",
+    correctNotes: ["C", "E", "G", "D"],
+    explanation:
+      "Le Cadd9 = Do – Mi – Sol – Ré : l'accord parfait majeur (Do–Mi–Sol) auquel on AJOUTE la 9e (Ré), sans y mettre de septième. Cette 9e « ouvre » l'accord vers quelque chose de plus tendre et lumineux — c'est l'accord de l'« amour doux » au cinéma. À distinguer du CMaj9 (Do–Mi–Sol–Si–Ré), qui ajoute AUSSI la 7e (Si) et sonne plus sophistiqué, plus jazzy. Ici, pas de 7e : la couleur reste candide.",
+    hint: "Empilez d'abord l'accord parfait Do–Mi–Sol, puis ajoutez la 9e (Ré, une seconde au-dessus de la fondamentale) — mais aucune septième.",
+  },
+
+  // ── identify 3 — la transformation du leitmotiv (diff 2) ────────────────────
+  {
+    id: "c34-leitmotiv-mineur",
+    type: "identify",
+    cours: 34,
+    difficulty: 2,
+    tags: ["leitmotiv", "transformation", "majeur vers mineur", "Wagner", "John Williams"],
+    concepts: ["leitmotiv = motif conducteur (Wagner)", "majeur → mineur = signal narratif", "l'oreille ressent avant l'image"],
+    question:
+      "Un héros a jusqu'ici toujours été accompagné de son leitmotiv en MAJEUR. Soudain, on l'entend en MINEUR (mêmes intervalles reconnaissables). Quel est l'effet narratif recherché ?",
+    context: "Technique héritée de Wagner, portée au cinéma par John Williams (Star Wars).",
+    options: [
+      { id: "a", label: "Il signale une transformation du personnage — menace, corruption, perte d'innocence, danger : le spectateur ressent le changement AVANT de le voir", isCorrect: true },
+      { id: "b", label: "Il indique un simple changement de tonalité, sans portée dramatique", isCorrect: false },
+      { id: "c", label: "Il n'a aucune signification narrative : c'est un choix arbitraire du compositeur", isCorrect: false },
+      { id: "d", label: "Il signifie que le thème a été mal composé et doit être réécrit", isCorrect: false },
+    ],
+    explanation:
+      "La transformation modale du leitmotiv (le « motif conducteur » de Wagner) est un mécanisme narratif puissant : un thème majeur qui bascule en mineur fait ressentir, inconsciemment, que quelque chose ne va pas — menace, corruption, vulnérabilité. Le spectateur RECONNAÎT le thème (le lien affectif est déjà noué) et perçoit immédiatement le changement de couleur : double effet impossible avec un thème neuf. Williams exploite cela sur les thèmes de Star Wars. Ce n'est ni un hasard (c), ni une maladresse (d), ni un simple changement de ton neutre (b).",
+    hint: "Le spectateur connaît déjà le thème : que ressent-il quand sa couleur passe brutalement du majeur au mineur ?",
+  },
+
+  // ── identify 4 — la leçon de Zimmer dans « Time » (diff 3) ──────────────────
+  {
+    id: "c34-zimmer-time",
+    type: "identify",
+    cours: 34,
+    difficulty: 3,
+    tags: ["Hans Zimmer", "Inception", "Time", "orchestration progressive", "musique de film"],
+    concepts: ["4 accords répétés (I–V–vi–IV)", "montée par l'orchestration, pas par l'harmonie", "timbre et dynamique > complexité"],
+    question:
+      "« Time » de Hans Zimmer (Inception) est bâti sur seulement quatre accords répétés indéfiniment. D'où vient alors sa puissance émotionnelle croissante, selon le cours ?",
+    context: "Les quatre accords : Do – Sol – La mineur – Fa (I – V – vi – IV).",
+    options: [
+      { id: "a", label: "De l'ORCHESTRATION progressive (piano seul → cordes → ensemble complet) : la force vient du timbre et de la dynamique, pas de la complexité harmonique", isCorrect: true },
+      { id: "b", label: "De changements harmoniques rapides et de plus en plus complexes", isCorrect: false },
+      { id: "c", label: "D'une fugue à quatre voix qui se superpose aux accords", isCorrect: false },
+      { id: "d", label: "D'une modulation continue par la gamme octatonique", isCorrect: false },
+    ],
+    explanation:
+      "« Time » n'utilise que 4 accords (Do–Sol–Lam–Fa, soit I–V–vi–IV) répétés sans changement. Toute sa puissance vient de l'ORCHESTRATION qui s'épaissit : piano solo, puis cordes, puis ensemble complet, dans une longue montée dynamique. C'est la leçon de Zimmer que le cours retient : au cinéma, la force émotionnelle naît du timbre et de la dynamique bien plus que de la complexité harmonique. Les distracteurs proposent l'inverse exact (complexité harmonique, fugue, modulation) — précisément ce que Zimmer n'emploie PAS ici.",
+    hint: "Si les quatre accords ne changent jamais, qu'est-ce qui, lui, ne cesse de grandir tout au long du morceau ?",
+  },
+];
+
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 35 — Jazz avancé : réharmonisation et improvisation
+// ════════════════════════════════════════════════════════════════════════════
+//
+// On teste les VOICINGS pros et les gammes-accords du cours, en évitant ce que
+// couvrent déjà d'autres cours : sub tritonique (c12/c16/c22), réharmonisation
+// et turnarounds (c15/c16/c22), tensions altérées + changements de Coltrane
+// (c32), So What chord / quartal / planing (c31). Restent, propres au cours 35 :
+// chord scale du IMaj7 (lydien pour la #11 / note à éviter), voicing coquille
+// (shell) et voicing sans fondamentale (rootless) construits note à note,
+// substitution diminuée, et un SATB `regles: "libre"` — un II–V–I majeur en
+// voicings rootless (fondamentales à la basse, couleurs 3-5-7-9 au-dessus) —
+// distinct du II–V–I altéré mineur du c32 et des II–V–I d'école.
+
+const COURS35_EXERCISES: Exercise[] = [
+  // ── build — le voicing coquille (shell) de G7 (diff 1) ─────────────────────
+  {
+    id: "c35-build-shell-g7",
+    type: "build",
+    cours: 35,
+    difficulty: 1,
+    tags: ["shell voicing", "voicing coquille", "guide-tones", "G7", "construction"],
+    concepts: ["shell = fondamentale + 3e + 7e", "la quinte est omise", "guide-tones = 3e et 7e"],
+    question:
+      "Construisez le « shell voicing » (voicing coquille) de G7 : le squelette de l'accord réduit à ses notes essentielles — fondamentale, tierce, puis septième (la quinte est omise). Donnez les trois notes dans l'ordre.",
+    keySignature: "C",
+    correctNotes: ["G", "B", "F"],
+    explanation:
+      "Le shell voicing de G7 = Sol – Si – Fa : on garde la fondamentale (Sol), la 3e (Si) et la 7e (Fa), et on OMET la quinte (Ré), qui n'apporte aucune couleur. La 3e et la 7e sont les guide-tones — ce sont elles qui définissent la couleur de l'accord (majeur/mineur, avec/sans 7e). Ce voicing épuré sonne clair et laisse de la place pour la mélodie et les tensions : idéal pour accompagner une voix.",
+    hint: "Trois notes seulement : la fondamentale, la tierce, la septième. On jette la quinte.",
+  },
+
+  // ── identify 1 — la chord scale du IMaj7 (lydien) et la note à éviter (diff 2)
+  {
+    id: "c35-chord-scale-lydien",
+    type: "identify",
+    cours: 35,
+    difficulty: 2,
+    tags: ["chord scale", "gamme par accord", "lydien", "#11", "note à éviter"],
+    concepts: ["CMaj7 → lydien pour la #11", "le 11 naturel = note à éviter sur IMaj7", "une gamme par couleur d'accord"],
+    question:
+      "Sur un IMaj7 (CMaj7) qu'on veut colorer d'une #11, quelle « chord scale » (gamme par accord) faut-il jouer, et pourquoi pas la gamme majeure ordinaire ?",
+    context: "Improvisation sur CMaj7 ; on cherche la couleur brillante de la #11 (Fa#).",
+    options: [
+      { id: "a", label: "Le mode lydien (Do–Ré–Mi–Fa#–Sol–La–Si) : sa 4te augmentée donne la #11, et évite le Fa naturel (11) qui frotterait à un demi-ton de la tierce Mi", isCorrect: true },
+      { id: "b", label: "Le mode mixolydien (7e bémolisée) : c'est la gamme d'un accord de dominante, pas d'un IMaj7", isCorrect: false },
+      { id: "c", label: "La gamme altérée (super-locrien) : réservée au V7 altéré, tension maximale", isCorrect: false },
+      { id: "d", label: "Le mode dorien : c'est la gamme d'un accord mineur 7 (le IIm7), pas d'un IMaj7", isCorrect: false },
+    ],
+    explanation:
+      "Sur CMaj7, la 11e naturelle (Fa) est une NOTE À ÉVITER : elle frotte à un demi-ton de la tierce Mi. Le mode lydien (Do–Ré–Mi–Fa#–Sol–La–Si) résout le problème en haussant cette 11 en #11 (Fa#) — d'où sa couleur brillante et flottante, prisée sur les accords majeurs. Chaque couleur d'accord a SA gamme : mixolydien pour la dominante simple (b), altérée pour le V7 altéré (c), dorien pour le IIm7 (d). Aucune de ces trois ne convient au IMaj7 coloré à la #11.",
+    hint: "Quelle gamme majeure remplace le Fa (note à éviter) par un Fa# (la #11) ?",
+  },
+
+  // ── build — le voicing sans fondamentale (rootless) de CMaj9 (diff 2) ──────
+  {
+    id: "c35-build-rootless-cmaj9",
+    type: "build",
+    cours: 35,
+    difficulty: 2,
+    tags: ["rootless voicing", "voicing sans fondamentale", "CMaj9", "extensions", "construction"],
+    concepts: ["rootless = fondamentale omise (jouée par la basse)", "3e–5e–7e–9e", "couleur flottante"],
+    question:
+      "Construisez le « rootless voicing » (voicing sans fondamentale) de CMaj9, à la main droite du pianiste : on OMET la fondamentale (Do, laissée à la contrebasse) et on empile 3e, 5e, 7e, 9e. Donnez les quatre notes dans l'ordre ascendant.",
+    keySignature: "C",
+    correctNotes: ["E", "G", "B", "D"],
+    explanation:
+      "Le rootless voicing de CMaj9 = Mi – Sol – Si – Ré, soit 3e (Mi) – 5te (Sol) – 7e (Si) – 9e (Ré), la fondamentale Do étant OMISE car jouée par la contrebasse. Sans fondamentale, l'accord sonne plus ouvert, moins ancré — parfait pour les harmonies flottantes du jazz. Même principe pour un G13 rootless (Si–Ré–Fa–Mi = 3-5-7-13) : on garde les guide-tones (3e, 7e) et les extensions colorantes, on laisse la fondamentale à la basse.",
+    hint: "Pas de Do : on part de la tierce (Mi) et on empile 5e, 7e, 9e.",
+  },
+
+  // ── identify 2 — la substitution diminuée (diff 3) ─────────────────────────
+  {
+    id: "c35-diminished-sub",
+    type: "identify",
+    cours: 35,
+    difficulty: 3,
+    tags: ["substitution diminuée", "G7b9", "accord diminué", "notes communes", "reharmonisation"],
+    concepts: ["G7b9 partage 4 notes avec le °7 bâti sur sa 3e", "équivalence dominante ↔ diminué", "distinct du sub tritonique"],
+    question:
+      "En reharmonisation, par quel accord peut-on substituer un G7(♭9), et sur quel principe repose cette « substitution diminuée » ?",
+    context: "G7(♭9) = Sol – Si – Ré – Fa – Lab.",
+    options: [
+      { id: "a", label: "Par un accord diminué de 7e bâti sur sa 3e — B°7 (Si–Ré–Fa–Lab) : les quatre notes du °7 sont exactement les quatre notes supérieures du G7(♭9)", isCorrect: true },
+      { id: "b", label: "Par l'accord majeur parallèle (Sol majeur), qui partage sa fondamentale", isCorrect: false },
+      { id: "c", label: "Par le IVMaj7, en jouant des accords diminués sur tous les temps faibles", isCorrect: false },
+      { id: "d", label: "Par n'importe quel accord, à condition d'improviser en gamme diminuée par-dessus", isCorrect: false },
+    ],
+    explanation:
+      "G7(♭9) = Sol–Si–Ré–Fa–Lab ; ses quatre notes supérieures (Si–Ré–Fa–Lab) forment un accord de 7e diminuée. B°7 est donc harmoniquement équivalent au G7(♭9) et peut le remplacer : c'est la substitution diminuée. Comme le °7 est symétrique, ses quatre renversements (B°7 = D°7 = F°7 = Ab°7) sont tous substituables. À NE PAS confondre avec la substitution tritonique (qui remplace G7 par Db7) : ici on ne descend pas d'un triton, on lit le diminué CACHÉ dans le ♭9. Les distracteurs (b, c, d) ne décrivent aucun partage de notes réel.",
+    hint: "Retirez la fondamentale Sol du G7(♭9) : que forment les quatre notes qui restent (Si–Ré–Fa–Lab) ?",
+  },
+
+  // ── satb — II–V–I majeur en voicings rootless (diff 3) ─────────────────────
+  //
+  // `regles: "libre"` : voicings JAZZ sans fondamentale. La basse porte les
+  // fondamentales (Sol–Do–Fa) ; les trois voix supérieures réalisent des
+  // couleurs rootless (3-5-7 avec guide-tones qui se résolvent : la 7e du IIm7
+  // devient la 3e du V7, etc.). Ces empilements ne sont pas des « accords
+  // d'école » et l'analyse tonale stricte n'a rien à y valider — seules
+  // tessitures et conformité sont jugées, comme les SATB jazz des cours 31/32.
+  {
+    id: "c35-satb-rootless-iivi",
+    type: "satb",
+    cours: 35,
+    title: "II–V–I majeur en voicings rootless",
+    subtitle: "Gm7 – C7 – FMaj7 · fondamentales à la basse, couleurs 3-5-7 au-dessus",
+    difficulty: 3,
+    tags: ["II-V-I majeur", "rootless voicing", "guide-tones", "Fa majeur", "jazz", "voicing"],
+    keySignature: "F",
+    measures: ["IIm7 · Gm7", "V7 · C7", "IMaj7 · FMaj7"],
+    solution: [
+      { soprano: n("Bb", 4), alto: n("F", 4), tenor: n("D", 4), bass: n("G", 2) },
+      { soprano: n("Bb", 4), alto: n("G", 4), tenor: n("E", 4), bass: n("C", 3) },
+      { soprano: n("C", 5),  alto: n("A", 4), tenor: n("E", 4), bass: n("F", 2) },
+    ],
+    hint: "La basse joue les fondamentales (Sol–Do–Fa, mouvement de quintes). Les trois voix supérieures forment des voicings sans fondamentale : la 3e et la 7e (guide-tones) se conduisent par degré — la 7e de Gm7 (Fa) devient la 3e de C7 (Mi), la 7e de C7 (Sib) tenue devient la 7e de FMaj7 (Mi).",
+    explanation:
+      "II–V–I en Fa majeur réalisé en voicings ROOTLESS : la contrebasse (voix de basse) porte les fondamentales Sol–Do–Fa, mouvement de quintes descendantes ; les trois voix supérieures ne contiennent PAS la fondamentale, seulement 3e-5e-7e. Le fil conducteur, ce sont les guide-tones : la 7e du Gm7 (Fa, alto) descend d'un demi-ton vers la 3e du C7 (Mi, ténor) ; le Sib tenu au soprano passe de 3e du Gm7 à 7e du C7, puis se résout vers le La (3e de FMaj7). Cette conduite douce des guide-tones est le cœur de l'accompagnement jazz au piano. Réalisation `libre` : ces voicings de couleur ne sont pas des accords d'école (fondamentale omise) — seules tessitures et conformité sont jugées.",
+    concepts: ["II-V-I majeur", "rootless voicing", "guide-tones", "conduite des guide-tones", "jazz"],
+    regles: "libre",
+  },
+];
+
 export {
   COURS26_EXERCISES,
+  COURS33_EXERCISES,
+  COURS34_EXERCISES,
+  COURS35_EXERCISES,
   COURS24_EXERCISES,
   COURS32_EXERCISES,
   COURS27_EXERCISES,
