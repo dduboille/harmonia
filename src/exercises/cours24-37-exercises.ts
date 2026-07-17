@@ -841,6 +841,383 @@ const COURS29_EXERCISES: Exercise[] = [
   },
 ];
 
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 30 — Harmonie impressionniste et modalité avancée
+// ════════════════════════════════════════════════════════════════════════════
+//
+// Cours des TECHNIQUES GÉNÉRIQUES de l'impressionnisme (planing, gammes
+// symétriques) et de leur systématisation par Messiaen (modes à transpositions
+// limitées). On teste : distinguer les trois gammes de couleur (par tons,
+// octatonique, pentatonique) par leur accord caractéristique ; CONSTRUIRE la
+// gamme octatonique (= mode 2 de Messiaen) ; opposer planing diatonique et
+// chromatique ; reconnaître l'emprunt modal (bVI/bVII). Le SATB `libre` est un
+// PLANING sur gamme par tons — accords de couleur (7♭5 « whole-tone ») glissant
+// tous d'un ton entier en parallèle.
+//   ▸ Distinction voulue avec les cours voisins : la CONSTRUCTION de la gamme
+//     par tons appartient au cours 29 (c29-build-gamme-par-tons) — ici on
+//     construit l'OCTATONIQUE ; le planing SATB en accords Maj7 diatoniques
+//     appartient au cours 22 (c22-satb-parallelisme-debussy) — ici le planing
+//     est en accords de couleur whole-tone, d'une autre qualité et d'une autre
+//     gamme source.
+
+const COURS30_EXERCISES: Exercise[] = [
+  // ── identify 1 — reconnaître la gamme par son accord caractéristique (diff 1)
+  {
+    id: "c30-identifier-gamme-symetrique",
+    type: "identify",
+    cours: 30,
+    difficulty: 1,
+    tags: ["gamme par tons", "octatonique", "pentatonique", "gammes symétriques", "couleur"],
+    concepts: ["par tons → accord augmenté", "octatonique → dim7", "pentatonique → pas de demi-ton", "accord caractéristique d'une gamme"],
+    question:
+      "On empile des tierces sur les degrés d'une gamme de couleur et l'on obtient systématiquement des accords AUGMENTÉS (tierce majeure + tierce majeure, ex. Do–Mi–Sol#). De quelle gamme s'agit-il ?",
+    context: "Indice : tous les accords produits sont augmentés ; aucun demi-ton dans la gamme.",
+    options: [
+      { id: "a", label: "La gamme par tons — six sons à un ton entier d'écart, qui ne produit que des accords augmentés", isCorrect: true },
+      { id: "b", label: "La gamme octatonique — elle produirait au contraire des accords diminués de 7e (dim7)", isCorrect: false },
+      { id: "c", label: "La gamme pentatonique — elle n'a que 5 sons et ne produit pas d'accord augmenté", isCorrect: false },
+      { id: "d", label: "Le mode dorien — une gamme diatonique à 7 sons, sans symétrie particulière", isCorrect: false },
+    ],
+    explanation:
+      "L'accord caractéristique trahit la gamme. La gamme par tons (Do–Ré–Mi–Fa#–Sol#–La#, mode 1 de Messiaen) n'est faite que de tons entiers : en superposant des tierces on n'obtient que des tierces majeures, donc des accords AUGMENTÉS — d'où le flottement sans note directrice. L'octatonique (8 sons, alternance ton/demi-ton) produit au contraire des dim7 ; la pentatonique (5 sons) n'a pas de demi-ton et ne donne pas d'accord augmenté. Chaque gamme symétrique a sa signature harmonique.",
+    hint: "Quelle gamme n'est faite QUE de tons entiers ? Sa superposition en tierces ne peut donner que des tierces majeures.",
+  },
+
+  // ── build — la gamme octatonique = mode 2 de Messiaen (diff 2) ───────────────
+  {
+    id: "c30-build-octatonique",
+    type: "build",
+    cours: 30,
+    difficulty: 2,
+    tags: ["gamme octatonique", "mode 2 de Messiaen", "ton-demi-ton", "Stravinsky", "construction"],
+    concepts: ["alternance ton–demi-ton", "8 sons", "3 accords dim7 imbriqués", "3 transpositions"],
+    question:
+      "Construisez la gamme OCTATONIQUE à partir de Do, en commençant par un TON (version ton–demi-ton). Donnez les huit sons dans l'ordre ascendant.",
+    keySignature: "C",
+    correctNotes: ["C", "D", "Eb", "F", "F#", "G#", "A", "B"],
+    explanation:
+      "La gamme octatonique en ton–demi-ton à partir de Do : Do – Ré – Mib – Fa – Fa# – Sol# – La – Si (puis Do à l'octave). Huit sons, alternance stricte T–½T–T–½T–T–½T–T–½T. C'est le mode 2 à transpositions limitées de Messiaen (3 transpositions distinctes, contre 2 pour la gamme par tons). Elle contient deux accords dim7 imbriqués (Do–Mib–Fa#–La et Ré–Fa–Sol#–Si) et sert la couleur « slave mystique » de Stravinsky (L'Oiseau de feu, Pétrouchka). Ne pas la confondre avec la gamme par tons (6 sons, tous tons entiers).",
+    hint: "Alternez un ton puis un demi-ton, à partir de Do : Do (+T) Ré (+½T) Mib (+T) Fa (+½T) Fa#… jusqu'à revenir vers Do.",
+  },
+
+  // ── identify 2 — planing diatonique vs chromatique (diff 2) ──────────────────
+  {
+    id: "c30-planing-diatonique-vs-chromatique",
+    type: "identify",
+    cours: 30,
+    difficulty: 2,
+    tags: ["planing", "parallélisme", "planing chromatique", "planing diatonique", "Debussy"],
+    concepts: ["planing chromatique = qualité constante", "planing diatonique = qualité variable", "bloc sonore parallèle"],
+    question:
+      "Un bloc d'accords glisse : on part d'un Maj7 (Do–Mi–Sol–Si) et l'accord suivant est Réb–Fa–Lab–Do — exactement un Maj7 un demi-ton plus haut, puis Ré–Fa#–La–Do#, encore un Maj7. Toutes les voix montent du même intervalle et la QUALITÉ ne change jamais. Quel type de planing est-ce ?",
+    context: "Chaque accord est l'exact transposé du précédent (même structure d'intervalles), décalé chromatiquement.",
+    options: [
+      { id: "a", label: "Planing chromatique — le même accord EXACT (qualité préservée) est transposé par demi-tons", isCorrect: true },
+      { id: "b", label: "Planing diatonique — les accords changeraient de qualité selon les degrés de la gamme", isCorrect: false },
+      { id: "c", label: "Une marche harmonique tonale — car les accords se résolvent de fonction en fonction", isCorrect: false },
+      { id: "d", label: "Une modulation par accord pivot vers Réb majeur", isCorrect: false },
+    ],
+    explanation:
+      "Quand la QUALITÉ de l'accord ne change pas (Maj7 → Maj7 → Maj7) et que tout le bloc se transpose du même intervalle, c'est le planing CHROMATIQUE : une couleur unique qui glisse. Le planing DIATONIQUE, lui, conserve l'armure et laisse chaque degré imposer sa qualité (I majeur, II mineur, III mineur…) — les accords changent de couleur. Dans les deux cas les quintes et octaves parallèles sont voulues : le planing est un effet de « bloc sonore », pas une faute de contrepoint, et ne s'analyse pas en T/SD/D.",
+    hint: "La question est : la qualité de l'accord change-t-elle (diatonique) ou reste-t-elle identique à chaque pas (chromatique) ?",
+  },
+
+  // ── identify 3 — emprunt modal bVI / bVII (diff 2) ───────────────────────────
+  {
+    id: "c30-emprunt-modal-bVI-bVII",
+    type: "identify",
+    cours: 30,
+    difficulty: 2,
+    tags: ["emprunt modal", "modal interchange", "bVI", "bVII", "éolien", "mixolydien"],
+    concepts: ["bVI ← éolien (Do mineur)", "bVII ← mixolydien/éolien", "même tonique, autre mode"],
+    question:
+      "En Do MAJEUR, la progression Do – Lab – Sib – Do (I – ♭VI – ♭VII – I). Lab et Sib ne sont pas diatoniques de Do majeur : à quels modes de même tonique ces deux accords sont-ils empruntés ?",
+    context: "Do reste le centre tonal. ♭VI = Lab (Lab–Do–Mib), ♭VII = Sib (Sib–Ré–Fa).",
+    options: [
+      { id: "a", label: "♭VI (Lab) et ♭VII (Sib) sont empruntés à Do éolien / mixolydien (Do mineur naturel a Lab et Sib) — un emprunt modal, sans quitter Do", isCorrect: true },
+      { id: "b", label: "Ce sont deux dominantes secondaires : Lab = V/♭II et Sib = V/♭III", isCorrect: false },
+      { id: "c", label: "C'est une modulation en Lab majeur, dont Sib serait le II", isCorrect: false },
+      { id: "d", label: "Ce sont des sixtes augmentées non résolues", isCorrect: false },
+    ],
+    explanation:
+      "L'emprunt modal (modal interchange) prend un accord à une gamme de MÊME tonique. Do éolien (mineur naturel : Do–Ré–Mib–Fa–Sol–Lab–Sib) contient Lab et Sib : de là viennent ♭VI (Lab–Do–Mib) et ♭VII (Sib–Ré–Fa). Do reste le centre — il n'y a ni modulation ni tonicisation. La suite I–♭VI–♭VII–I est un archétype pop/rock (couleur « épique » sombre) qui mêle les saveurs éolienne et mixolydienne. À distinguer nettement des dominantes secondaires, qui tonicisent un autre degré.",
+    hint: "Quel mode de MÊME tonique (Do) contient à la fois Lab et Sib ?",
+  },
+
+  // ── satb — planing sur la gamme par tons (diff 3) ────────────────────────────
+  //
+  // `regles: "libre"` : PLANING pur, non tonal. Un accord de couleur whole-tone
+  // (7♭5 : fondamentale–3ce M–4te aug–7e m, tout en tons entiers) glisse d'un
+  // ton entier à chaque mesure : LES QUATRE VOIX montent d'un ton en parallèle.
+  // Quintes/octaves parallèles et absence de résolution sont l'esthétique même —
+  // le moteur d'école n'a rien à y juger ; seules tessitures et conformité valent.
+  {
+    id: "c30-satb-planing-gamme-par-tons",
+    type: "satb",
+    cours: 30,
+    title: "Planing sur la gamme par tons",
+    subtitle: "Accords de couleur (7♭5) glissant d'un ton entier · style Voiles",
+    difficulty: 3,
+    tags: ["planing", "gamme par tons", "Debussy", "accords parallèles", "whole-tone", "couleur"],
+    keySignature: "C",
+    measures: ["C7♭5 · Do", "D7♭5 · Ré", "E7♭5 · Mi", "F#7♭5 · Fa#"],
+    solution: [
+      { soprano: n("F#", 4), alto: n("A#", 3), tenor: n("E", 3),  bass: n("C", 3)  },
+      { soprano: n("G#", 4), alto: n("C", 4),  tenor: n("F#", 3), bass: n("D", 3)  },
+      { soprano: n("A#", 4), alto: n("D", 4),  tenor: n("G#", 3), bass: n("E", 3)  },
+      { soprano: n("C", 5),  alto: n("E", 4),  tenor: n("A#", 3), bass: n("F#", 3) },
+    ],
+    hint: "Toutes les notes appartiennent à la seule gamme par tons Do–Ré–Mi–Fa#–Sol#–La#. Chaque voix monte d'un TON entier à chaque mesure : le bloc entier glisse sans jamais résoudre. Ne cherchez ni sensible ni cadence — il n'y en a pas.",
+    explanation:
+      "Planing sur la gamme par tons (Do–Ré–Mi–Fa#–Sol#–La#) : chaque accord est un « 7♭5 » whole-tone (fondamentale – 3ce majeure – quarte augmentée – 7e mineure, ex. Do–Mi–Fa#–La#), sonorité entièrement contenue dans la gamme. On le fait glisser d'un ton entier — les quatre voix montent d'un ton en mouvement parallèle. Il n'y a AUCUNE résolution fonctionnelle : la couleur se déplace comme un bloc, exactement l'esthétique de Voiles. Les quintes et octaves parallèles sont ici l'effet recherché, non une faute — d'où `regles: \"libre\"`, où seules les tessitures et la conformité aux accords sont jugées. Toutes les hauteurs s'écrivent en dièses (Fa#, Sol#, La#) pour garder une note par degré, comme dans la construction de la gamme par tons.",
+    concepts: ["planing", "gamme par tons", "accords parallèles", "couleur non fonctionnelle", "whole-tone"],
+    regles: "libre",
+  },
+];
+
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 31 — Polytonalité et harmonie quartale
+// ════════════════════════════════════════════════════════════════════════════
+//
+// On teste : CONSTRUIRE le So What chord de Bill Evans (empilement de quartes,
+// donné note à note par le cours) et le POLYACCORD de Pétrouchka (Do majeur +
+// Fa# majeur superposés) ; distinguer polytonalité douce et brutale par la
+// distance des centres ; opposer un voicing quartal à un accord tertien de mêmes
+// lettres. Le SATB `libre` est un PLANING QUARTAL (voicing en quartes glissant
+// diatoniquement), idiome du jazz modal (McCoy Tyner).
+
+const COURS31_EXERCISES: Exercise[] = [
+  // ── build 1 — le So What chord (diff 2) ──────────────────────────────────────
+  {
+    id: "c31-build-so-what-chord",
+    type: "build",
+    cours: 31,
+    difficulty: 2,
+    tags: ["accord quartal", "So What chord", "Bill Evans", "jazz modal", "voicing", "construction"],
+    concepts: ["empilement de quartes justes", "tierce majeure au sommet", "voicing dorien", "Kind of Blue"],
+    question:
+      "Construisez le « So What chord » de Bill Evans (Kind of Blue, 1959) à partir de Ré : trois quartes justes empilées, puis une tierce majeure au sommet. Donnez les cinq notes dans l'ordre ascendant.",
+    keySignature: "C",
+    correctNotes: ["D", "G", "C", "F", "A"],
+    explanation:
+      "So What chord = Ré – Sol – Do – Fa – La. Trois quartes justes empilées (Ré→Sol→Do→Fa, +5 demi-tons chacune) surmontées d'une tierce majeure (Fa→La, +4). C'est le voicing emblématique du jazz modal, taillé pour le mode de Ré dorien (toutes ses notes y appartiennent). Sans tierce à la basse ni fonction T/SD/D nette, il est « ouvert », ni majeur ni mineur. En retirant le La du sommet on retrouve le McCoy Tyner voicing (Ré–Sol–Do–Fa), purement quartal.",
+    hint: "Depuis Ré, montez de quarte juste trois fois (Ré→Sol→Do→Fa), puis d'une tierce majeure (Fa→La).",
+  },
+
+  // ── build 2 — le polyaccord de Pétrouchka (diff 3) ───────────────────────────
+  {
+    id: "c31-build-polyaccord-petrouchka",
+    type: "build",
+    cours: 31,
+    difficulty: 3,
+    tags: ["polytonalité", "bitonalité", "accord de Pétrouchka", "Stravinsky", "triton", "construction"],
+    concepts: ["Do majeur + Fa# majeur", "deux centres à distance de triton", "polytonalité brutale"],
+    question:
+      "Construisez l'accord de Pétrouchka de Stravinsky : l'accord parfait de Do majeur surmonté de l'accord parfait de Fa# majeur. Donnez les six notes, la couche grave (Do majeur) d'abord, puis la couche aiguë (Fa# majeur).",
+    keySignature: "C",
+    correctNotes: ["C", "E", "G", "F#", "A#", "C#"],
+    explanation:
+      "Accord de Pétrouchka = Do majeur (Do–Mi–Sol) + Fa# majeur (Fa#–La#–Do#) superposés. Les deux triades restent parfaitement reconnaissables — c'est de la BITONALITÉ, pas un cluster informe : chaque couche garde sa tonalité. Do et Fa# sont à distance de TRITON, les deux pôles les plus éloignés du cycle des quintes : d'où la tension « brutale » qui, dans le ballet (1911), peint la marionnette déchirée entre deux mondes. On oppose cette polytonalité brutale à la polytonalité « douce » entre tons voisins (Do + Sol).",
+    hint: "Superposez deux accords parfaits majeurs à distance de triton : Do–Mi–Sol dessous, Fa#–La#–Do# dessus.",
+  },
+
+  // ── identify 1 — polytonalité douce vs brutale (diff 1) ──────────────────────
+  {
+    id: "c31-polytonalite-douce-vs-brutale",
+    type: "identify",
+    cours: 31,
+    difficulty: 1,
+    tags: ["polytonalité", "bitonalité", "douce vs brutale", "cycle des quintes", "notes communes"],
+    concepts: ["distance des centres = degré de tension", "voisins → douce", "triton → brutale"],
+    question:
+      "Deux superpositions bitonales. (A) Do majeur + Sol majeur. (B) Do majeur + Fa# majeur. Laquelle est la polytonalité « brutale », et pourquoi ?",
+    context: "Do et Sol sont à une quinte d'écart ; Do et Fa# à un triton.",
+    options: [
+      { id: "a", label: "(B) Do + Fa# : les deux centres sont à distance de triton (les plus éloignés du cycle des quintes, ≈ 2 notes communes) → tension maximale", isCorrect: true },
+      { id: "b", label: "(A) Do + Sol : une quinte d'écart rend la superposition la plus dissonante", isCorrect: false },
+      { id: "c", label: "Les deux ont la même tension : toute bitonalité est également dissonante", isCorrect: false },
+      { id: "d", label: "(B) est en réalité de l'atonalité, pas de la polytonalité", isCorrect: false },
+    ],
+    explanation:
+      "La tension d'une polytonalité dépend de la DISTANCE entre les centres. Do et Sol sont voisins (une quinte) et leurs gammes partagent 6 notes sur 7 : la friction est subtile, c'est la polytonalité « douce ». Do et Fa# sont à un triton — aux antipodes du cycle des quintes, un maximum de conflits chromatiques : c'est la polytonalité « brutale » (l'accord de Pétrouchka). Dans les deux cas chaque couche reste TONALE et audible séparément — ce qui distingue la polytonalité de l'atonalité, laquelle abolit toute hiérarchie tonale.",
+    hint: "Plus les deux tonalités sont éloignées dans le cycle des quintes (donc peu de notes communes), plus la tension est brutale.",
+  },
+
+  // ── identify 2 — voicing quartal vs accord tertien (diff 2) ───────────────────
+  {
+    id: "c31-quartal-vs-tertien",
+    type: "identify",
+    cours: 31,
+    difficulty: 2,
+    tags: ["accord quartal", "empilement de quartes", "accord tertien", "ambiguïté modale", "voicing"],
+    concepts: ["quartal = empilement de quartes, sans tierce", "tertien = empilement de tierces", "l'absence de tierce ôte le mode"],
+    question:
+      "Parmi ces quatre accords, lequel est réellement QUARTAL (construit par empilement de quartes) ?",
+    context: "Un accord quartal empile des quartes ; un accord tertien empile des tierces.",
+    options: [
+      { id: "a", label: "Do–Fa–Sib — deux quartes justes empilées (Do→Fa, Fa→Sib) : quartal, sans tierce, donc ni majeur ni mineur", isCorrect: true },
+      { id: "b", label: "Do–Mi–Sol–Sib — c'est un Do7 (dominante), empilement de tierces : accord tertien", isCorrect: false },
+      { id: "c", label: "Do–Mi–Sol — accord parfait majeur, empilement de tierces", isCorrect: false },
+      { id: "d", label: "Do–Mib–Sol — accord parfait mineur, empilement de tierces", isCorrect: false },
+      { id: "e", label: "Do–Sol — une simple quinte à vide (deux notes), pas encore un accord de trois sons", isCorrect: false },
+    ],
+    explanation:
+      "Do–Fa–Sib empile deux quartes justes (Do→Fa = 5 demi-tons, Fa→Sib = 5 demi-tons) : c'est l'accord quartal. Comme il ne contient AUCUNE tierce, il ne dit ni majeur ni mineur — d'où sa couleur « ouverte », spatiale, prisée du jazz modal et du cinéma. Les autres sont tertiens : Do–Mi–Sol–Sib est un Do7 (dominante) empilée en tierces ; Do–Mi–Sol et Do–Mib–Sol sont des accords parfaits ; Do–Sol n'est qu'une quinte à vide (deux sons). Le piège classique : croire qu'un Sib « fait » l'accord quartal, alors que c'est la STRUCTURE d'empilement qui compte.",
+    hint: "Ne regardez pas les notes une à une, mais l'intervalle entre chaque note et la suivante : quartes (quartal) ou tierces (tertien) ?",
+  },
+
+  // ── satb — planing quartal en Ré dorien (diff 3) ─────────────────────────────
+  //
+  // `regles: "libre"` : PLANING QUARTAL. Un voicing en quartes empilées (type
+  // McCoy Tyner : fondamentale + 2 quartes) glisse le long de la gamme de Ré
+  // dorien — les quatre voix montent d'un degré de la gamme en parallèle. Comme
+  // le planing whole-tone du cours 30, c'est un idiome de couleur : quintes/
+  // quartes parallèles voulues, pas de fonction tonale. Le tétracorde F–B (mes. 3)
+  // et G–…–B (mes. 4) contient une quarte augmentée diatonique, attendue en
+  // planing quartal (« quartes mêlées »). Seules tessitures/conformité jugées.
+  {
+    id: "c31-satb-planing-quartal",
+    type: "satb",
+    cours: 31,
+    title: "Planing quartal en Ré dorien",
+    subtitle: "Voicing en quartes (McCoy Tyner) glissant sur la gamme · jazz modal",
+    difficulty: 3,
+    tags: ["accord quartal", "planing", "Ré dorien", "McCoy Tyner", "jazz modal", "harmonie quartale"],
+    keySignature: "C",
+    measures: ["quartal · Ré", "quartal · Mi", "quartal · Fa", "quartal · Sol"],
+    solution: [
+      { soprano: n("F", 4), alto: n("C", 4), tenor: n("G", 3), bass: n("D", 3) },
+      { soprano: n("G", 4), alto: n("D", 4), tenor: n("A", 3), bass: n("E", 3) },
+      { soprano: n("A", 4), alto: n("E", 4), tenor: n("B", 3), bass: n("F", 3) },
+      { soprano: n("B", 4), alto: n("F", 4), tenor: n("C", 4), bass: n("G", 3) },
+    ],
+    hint: "Chaque accord empile des quartes depuis la basse (Ré–Sol–Do–Fa, le voicing McCoy Tyner). On le fait glisser d'un degré de Ré dorien (touches blanches) : les quatre voix montent ensemble. Aux mesures 3 et 4, une quarte devient augmentée (Fa–Si) — c'est normal en planing diatonique.",
+    explanation:
+      "Planing quartal sur Ré dorien (les touches blanches lues depuis Ré). L'accord de départ Ré–Sol–Do–Fa est le voicing quartal de McCoy Tyner (le So What chord amputé de sa tierce). On le fait glisser degré par degré le long de la gamme : Ré–Sol–Do–Fa → Mi–La–Ré–Sol → Fa–Si–Mi–La → Sol–Do–Fa–Si. Les quatre voix montent en parallèle — le « tapis » harmonique statique et ouvert du jazz modal, sur lequel un soliste improvise en dorien. Parce que la gamme est diatonique, certaines quartes deviennent augmentées (Fa–Si) : ce mélange quartes justes / quartes augmentées est attendu, non fautif. Réalisation `libre` : quartes et quintes parallèles sont l'idiome même ; seules tessitures et conformité sont jugées.",
+    concepts: ["accord quartal", "planing", "Ré dorien", "harmonie quartale parallèle", "jazz modal"],
+    regles: "libre",
+  },
+];
+
+// ════════════════════════════════════════════════════════════════════════════
+// COURS 36 — Harmonie de Debussy et Ravel : l'impressionnisme approfondi
+// ════════════════════════════════════════════════════════════════════════════
+//
+// Cours des DEUX COMPOSITEURS et de leurs logiques propres (là où le cours 30
+// traite des techniques génériques). On teste : CONSTRUIRE le polyaccord doux de
+// Ravel (Do majeur + Ré majeur) ; opposer la démarche intuitive de Debussy à la
+// démarche calculée de Ravel ; reconnaître la pédale longue debussyste et la
+// couleur de la note ajoutée ; identifier la modalité néoclassique de la Pavane.
+// Aucun SATB ici : les deux réalisations `libre` du lot (planing whole-tone au
+// cours 30, planing quartal au cours 31) suffisent à l'idiome parallèle.
+
+const COURS36_EXERCISES: Exercise[] = [
+  // ── build — le polyaccord doux de Ravel (diff 2) ─────────────────────────────
+  {
+    id: "c36-build-polyaccord-ravel",
+    type: "build",
+    cours: 36,
+    difficulty: 2,
+    tags: ["polyaccord", "Ravel", "polytonalité douce", "superposition d'accords", "construction"],
+    concepts: ["Do majeur + Ré majeur", "centres à un ton d'écart (doux)", "couleur enrichie, non cluster"],
+    question:
+      "Construisez le polyaccord de Ravel : l'accord parfait de Do majeur surmonté de l'accord parfait de Ré majeur. Donnez les six notes, couche grave (Do majeur) d'abord puis couche aiguë (Ré majeur).",
+    keySignature: "C",
+    correctNotes: ["C", "E", "G", "D", "F#", "A"],
+    explanation:
+      "Polyaccord ravélien = Do majeur (Do–Mi–Sol) + Ré majeur (Ré–Fa#–La) = Do–Mi–Sol–Ré–Fa#–La. Les deux triades, à un TON entier d'écart, restent reconnaissables : leur superposition enrichit la couleur sans virer au cluster (Ravel « calcule » précisément l'assemblage). C'est une polytonalité DOUCE — à opposer à l'accord de Pétrouchka (Do + Fa#, à distance de triton, brutal). Ravel emploie ces empilements pour des couleurs atmosphériques, prolongeant la logique de la note ajoutée (6te, 9e).",
+    hint: "Superposez deux accords parfaits majeurs à un ton d'écart : Do–Mi–Sol dessous, Ré–Fa#–La dessus.",
+  },
+
+  // ── identify 1 — Debussy (intuitif) vs Ravel (architecte) (diff 2) ───────────
+  {
+    id: "c36-debussy-vs-ravel-demarche",
+    type: "identify",
+    cours: 36,
+    difficulty: 2,
+    tags: ["Debussy", "Ravel", "démarche compositionnelle", "impressionnisme", "style"],
+    concepts: ["Debussy = intuitif, organique, par images", "Ravel = architecte, calculé, « horloger »", "même surface, logiques opposées"],
+    question:
+      "Debussy et Ravel partagent la surface impressionniste (accords colorés, gammes spéciales) mais leurs DÉMARCHES s'opposent. Lequel avait une écriture d'« horloger » — précise, architecturale, calculée (le mot est de Stravinsky à son sujet) ?",
+    context: "Distinction de fond du cours : même palette, logiques compositionnelles opposées.",
+    options: [
+      { id: "a", label: "Ravel — écriture architecturale et calculée, d'une rigueur quasi horlogère ; Debussy compose au contraire par images et couleurs, de façon intuitive et organique", isCorrect: true },
+      { id: "b", label: "Debussy — c'est lui l'architecte rigoureux ; Ravel improvisait ses œuvres", isCorrect: false },
+      { id: "c", label: "Les deux revendiquaient une écriture purement intuitive, sans aucun calcul", isCorrect: false },
+      { id: "d", label: "Aucun des deux : ils composaient de manière identique, d'où l'étiquette commune", isCorrect: false },
+    ],
+    explanation:
+      "Même « surface » impressionniste, logiques opposées. Ravel, « parfait horloger suisse » selon le mot de Stravinsky : construction architecturale, précision quasi mathématique (le Boléro, un seul accord tendu 15 minutes par la seule orchestration, en est le manifeste). Debussy compose organiquement, en suivant l'image et la couleur sonore, sans plan préétabli — d'ailleurs il rejetait l'étiquette « impressionniste » empruntée à la peinture. Confondre les deux (d) est précisément l'erreur que le cours démonte : la parenté de vocabulaire cache deux tempéraments contraires.",
+    hint: "Lequel Stravinsky comparait-il à un « horloger » ? L'autre suivait l'image et la couleur, intuitivement.",
+  },
+
+  // ── identify 2 — la pédale longue debussyste (diff 2) ────────────────────────
+  {
+    id: "c36-pedale-longue-debussy",
+    type: "identify",
+    cours: 36,
+    difficulty: 2,
+    tags: ["pédale longue", "Debussy", "organum", "suspension harmonique", "texture"],
+    concepts: ["basse immobile + harmonie mobile au-dessus", "réinvention de l'organum médiéval", "suspension du temps harmonique"],
+    question:
+      "Chez Debussy, un Do grave est tenu (ou répété) pendant huit mesures tandis que, au-dessus, les accords se succèdent et changent de couleur librement. Comment nomme-t-on ce procédé, et quel en est l'effet ?",
+    context: "La basse ne bouge pas ; toute l'activité harmonique se passe au-dessus d'elle.",
+    options: [
+      { id: "a", label: "Une pédale longue — la basse immobile suspend le temps harmonique tandis que la couleur se meut au-dessus (réinvention de l'organum médiéval)", isCorrect: true },
+      { id: "b", label: "Un planing — mais le planing fait glisser TOUTES les voix en parallèle, or ici la basse ne bouge pas", isCorrect: false },
+      { id: "c", label: "Un 6/4 de cadence prolongé sur huit mesures", isCorrect: false },
+      { id: "d", label: "Une marche harmonique dont la basse descend par degrés", isCorrect: false },
+    ],
+    explanation:
+      "C'est la pédale longue : une basse fixe (tenue ou répétée) sous une harmonie qui, elle, évolue librement. L'effet est une suspension du temps harmonique — la couleur change au-dessus d'un socle immobile, très fréquent dans Pelléas et Mélisande. Debussy y réinvente l'organum médiéval. À ne pas confondre avec le planing, où au contraire TOUTES les voix (basse comprise) glissent en parallèle : dans la pédale longue, la basse est justement la voix qui ne bouge PAS.",
+    hint: "Le trait distinctif est que la basse NE bouge pas — ce qui exclut le planing et la marche harmonique.",
+  },
+
+  // ── identify 3 — la modalité néoclassique de Ravel (Pavane) (diff 3) ──────────
+  {
+    id: "c36-modalite-neoclassique-ravel",
+    type: "identify",
+    cours: 36,
+    difficulty: 3,
+    tags: ["modalité néoclassique", "Ravel", "Pavane", "mode dorien", "cadence modale", "sensible"],
+    concepts: ["retour aux modes anciens en langage moderne", "absence de sensible (7e mineure)", "cadence modale, pas V7→i"],
+    question:
+      "La Pavane pour une infante défunte de Ravel illustre sa « modalité néoclassique » (en sol, teinté de dorien). Quel indice HARMONIQUE trahit qu'elle échappe à la cadence tonale classique ?",
+    context: "En sol, la sensible tonale serait Fa#. Sol dorien emploie Fa naturel (7e mineure).",
+    options: [
+      { id: "a", label: "Elle évite la sensible Fa# (elle garde Fa naturel) : sans sensible, pas de vraie dominante V7 — la conclusion se fait par une cadence MODALE (ex. ♭VII Fa majeur → i), plus douce", isCorrect: true },
+      { id: "b", label: "Elle multiplie au contraire les cadences parfaites V7→i, avec un Fa# appuyé", isCorrect: false },
+      { id: "c", label: "Elle est écrite entièrement en gamme par tons, sans aucun accord fonctionnel", isCorrect: false },
+      { id: "d", label: "Elle enchaîne des dominantes secondaires chromatiques de type romantique", isCorrect: false },
+    ],
+    explanation:
+      "La modalité néoclassique de Ravel, c'est réemployer les modes anciens (ici sol dorien) dans un langage moderne. L'indice décisif : l'absence de sensible — sol dorien a Fa naturel (7e mineure), non Fa#. Or sans sensible, l'accord de dominante perd sa tension directrice : impossible de conclure par un V7→i classique. Ravel conclut donc par une cadence MODALE, plus douce (typiquement ♭VII, Fa majeur, vers la tonique), qui « évite » la tonique au sens fonctionnel. Ni gamme par tons (c'est une autre couleur), ni chromatisme romantique fonctionnel : la couleur est modale.",
+    hint: "En sol, cherchez la note qui FERAIT la sensible (Fa#) — et constatez que le mode dorien la remplace par Fa naturel.",
+  },
+
+  // ── identify 4 — la note ajoutée ravélienne (diff 1) ─────────────────────────
+  {
+    id: "c36-note-ajoutee-ravel",
+    type: "identify",
+    cours: 36,
+    difficulty: 1,
+    tags: ["note ajoutée", "Ravel", "accord de 6te ajoutée", "add9", "couleur"],
+    concepts: ["6te/9e ajoutée = couleur sans tension", "pas de 7e = pas de fonction dominante", "CMaj6 ≈ Am7 (ambiguïté tendre)"],
+    question:
+      "Ravel enrichit souvent un accord majeur d'une SIXTE ajoutée : Do–Mi–Sol devient Do–Mi–Sol–La (CMaj6). Qu'apporte cette note, et pourquoi n'appelle-t-elle pas de résolution ?",
+    context: "On ajoute le La (6te) à l'accord parfait de Do majeur — pas de 7e.",
+    options: [
+      { id: "a", label: "Une couleur enrichie (douceur, brillance) SANS tension fonctionnelle : ce n'est pas une 7e, donc rien à résoudre ; CMaj6 sonne d'ailleurs presque comme un La mineur 7 — une ambiguïté tendre", isCorrect: true },
+      { id: "b", label: "Elle transforme l'accord en dominante et appelle une résolution sur Fa", isCorrect: false },
+      { id: "c", label: "Elle rend l'accord mineur", isCorrect: false },
+      { id: "d", label: "Elle crée une dissonance de 7e qui doit descendre par degré", isCorrect: false },
+    ],
+    explanation:
+      "La 6te ajoutée (CMaj6 : Do–Mi–Sol–La) ou la 9e ajoutée (Cadd9 : Do–Mi–Sol–Ré) colore l'accord sans lui donner de tension fonctionnelle : ce n'est PAS une 7e de dominante, donc rien n'appelle de résolution. CMaj6 partage d'ailleurs ses notes avec La mineur 7 (La–Do–Mi–Sol), d'où une ambiguïté « tendre » majeur/mineur très ravélienne. Ces accords enrichis servent la couleur atmosphérique, non la marche tension–résolution du système tonal.",
+    hint: "Une 6te n'est pas une 7e : y a-t-il là une dissonance qui « veut » se résoudre, ou seulement une couleur ?",
+  },
+];
+
 export {
   COURS26_EXERCISES,
   COURS24_EXERCISES,
@@ -848,4 +1225,7 @@ export {
   COURS27_EXERCISES,
   COURS28_EXERCISES,
   COURS29_EXERCISES,
+  COURS30_EXERCISES,
+  COURS31_EXERCISES,
+  COURS36_EXERCISES,
 };
