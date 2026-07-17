@@ -486,9 +486,10 @@ const COURS32_EXERCISES: Exercise[] = [
 // l'Urlinie en notes). Un unique SATB : la Ursatz elle-même — Urlinie 3̂–2̂–1̂ au
 // soprano sur la Bassbrechung I–V–I à la basse, le « modèle de base » que le
 // cours illustre (Der freie Satz). Réalisation d'école complète : la sensible
-// (tenor) est frustrée d'un demi-ton vers la quinte pour garder l'accord de
-// tonique complet, aucune parallèle, aucune octave/quinte directe (le soprano
-// se meut par degré). D'où `regles: "ecole"`.
+// (ténor) est frustrée — elle descend d'une tierce (Si3→Sol3) vers la quinte
+// pour garder l'accord de tonique complet ; aucune parallèle ; l'unique quinte
+// directe soprano–basse est de l'espèce permise (soprano conjoint). D'où
+// `regles: "ecole"`.
 
 const COURS27_EXERCISES: Exercise[] = [
   // ── identify 1 — régions fonctionnelles dans une progression donnée (diff 1) ─
@@ -663,8 +664,8 @@ const COURS28_EXERCISES: Exercise[] = [
     tags: ["rondo", "ABACA", "refrain", "épisodes", "Beethoven Pathétique"],
     concepts: ["le refrain A revient toujours à la tonique", "les épisodes explorent d'autres tonalités", "rondo ≠ forme sonate"],
     question:
-      "Le finale de la Sonate « Pathétique » op.13 de Beethoven (Do mineur) est un rondo ABACA. À chaque retour, dans quelle tonalité le refrain A revient-il, et qu'est-ce qui le distingue des épisodes ?",
-    context: "Rondo ABACA, tonique principale Do mineur.",
+      "Le finale de la Sonate « Pathétique » op.13 de Beethoven (Do mineur) est un rondo. À chaque retour, dans quelle tonalité le refrain A revient-il, et qu'est-ce qui le distingue des épisodes ?",
+    context: "Rondo, tonique principale Do mineur.",
     options: [
       { id: "a", label: "Toujours à la tonique (Do mineur) : le refrain est le point d'ancrage tonal, tandis que les épisodes B et C explorent d'autres tonalités", isCorrect: true },
       { id: "b", label: "Transposé d'un degré plus haut à chaque retour, pour créer une progression", isCorrect: false },
@@ -716,7 +717,7 @@ const COURS28_EXERCISES: Exercise[] = [
       { id: "d", label: "Une faute de forme : le thème 1 ne peut jamais reparaître dans le développement", isCorrect: false },
     ],
     explanation:
-      "C'est une fausse réexposition : le thème 1 réapparaît, mais dans une tonalité étrangère (Mib majeur au lieu de Do), ce qui trompe l'auditeur avant que la musique ne reparte moduler. Ce qui définit la vraie réexposition n'est pas le retour du thème mais le retour à la TONIQUE — d'où l'erreur du distracteur (b). Le développement doit encore accomplir son office : traverser d'autres tonalités puis se fixer sur la dominante (V), souvent en pédale, pour préparer le vrai retour de T1 à la tonique. Beethoven en fait un usage célèbre au cor dans la Symphonie n°3 « Héroïque ».",
+      "C'est une fausse réexposition : le thème 1 réapparaît, mais dans une tonalité étrangère (Mib majeur au lieu de Do), ce qui trompe l'auditeur avant que la musique ne reparte moduler. Ce qui définit la vraie réexposition n'est pas le retour du thème mais le retour à la TONIQUE — d'où l'erreur du distracteur (b). Le développement doit encore accomplir son office : traverser d'autres tonalités puis se fixer sur la dominante (V), souvent en pédale, pour préparer le vrai retour de T1 à la tonique. Beethoven en fait un usage célèbre dans la Symphonie n°3 « Héroïque ».",
     hint: "Qu'est-ce qui définit une réexposition : le retour du thème, ou le retour de la tonique ?",
   },
 ];
@@ -788,7 +789,7 @@ const COURS29_EXERCISES: Exercise[] = [
     concepts: ["une mélodie, cinq harmonisations", "l'impressionnisme abandonne la cadence V–I fonctionnelle", "accord = couleur, non fonction"],
     question:
       "Cœur du cours : une même mélodie est harmonisée dans cinq styles. Dans lequel la cadence V–I cesse-t-elle d'être le pilier qui structure l'harmonie ?",
-    context: "Comparaison baroque / classique / romantique / impressionniste de la même mélodie.",
+    context: "Comparaison baroque / classique / romantique / post-romantique / impressionniste de la même mélodie.",
     options: [
       { id: "a", label: "L'impressionnisme (Debussy) : les accords progressent par couleur et registre, non par tension–résolution ; y chercher un V–I fonctionnel serait le mauvais outil", isCorrect: true },
       { id: "b", label: "Le baroque de Bach, où la dominante est évitée", isCorrect: false },
