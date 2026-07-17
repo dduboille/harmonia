@@ -4,55 +4,13 @@ import React, { useState, useRef, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import PianoPlayer, { PianoPlayerRef } from './PianoPlayer';
+import StudioScore from './StudioScore';
 import { MELODIES } from '@/data/melodies-exercices';
 import type { MelodyExercise, MelodyNote } from '@/types/composition';
 import { construirePalette, resoudreAccord, type AccordPalette } from '@/lib/palette-fonctionnelle';
 import { realiserSATB, type Voicing } from '@/lib/satb-voicing';
 import { corrigerHarmonisation, type CorrectionResult } from '@/lib/correction-harmonisation';
-
-// ── Staff rendering helpers ──────────────────────────────────────────────────
-
-const HALF_STEP = 10;
-const STAFF_BOTTOM = 150;
-const SVG_HEIGHT = 210;
-const CLEF_W = 70;
-const NOTE_SP = 52;
-const NOTE_RX = 8;
-const NOTE_RY = 6;
-
-const DIATONIC_FROM_C: Record<string, number> = {
-  C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6,
-};
-
-function noteStaffStep(note: string, octave: number): number {
-  const base = note.replace(/[#b]/g, '');
-  const d = DIATONIC_FROM_C[base] ?? 0;
-  return d + (octave - 4) * 7 - 2; // E4 = 0
-}
-
-function getLedgerLines(step: number): number[] {
-  const lines: number[] = [];
-  if (step < 0) {
-    const top = 2 * Math.ceil(step / 2);
-    for (let s = -2; s >= top; s -= 2) lines.push(s);
-  } else if (step > 8) {
-    const bot = 2 * Math.floor(step / 2);
-    for (let s = 10; s <= bot; s += 2) lines.push(s);
-  }
-  return lines;
-}
-
-const STAFF_LINES = [0, 2, 4, 6, 8];
-
-// ── Bass staff infrastructure ────────────────────────────────────────────────
-
-const BASS_STAFF_BOTTOM = 340;
-const SVG_HEIGHT_WITH_BASS = 430;
-
-// Bass clef staff step: G2(std)=0, B2=2, D3=4, F3=6, A3=8
-function bassStaffStep(note: string, stdOctave: number): number {
-  return noteStaffStep(note, stdOctave) + 12;
-}
+import { compositionGuideeVersMusicXML, type AccompagnementSegment } from '@/lib/composition-guidee-vers-musicxml';
 
 // ── SATB voice leading (soprano fixed = melody) ──────────────────────────────
 
@@ -95,8 +53,77 @@ function realiserPourJeton(
   return realiserSATB(acc.pcs, acc.bassPc, sopMidi, prev);
 }
 
-// ── Grand staff component ────────────────────────────────────────────────────
+// ── Portées gravées par Verovio ──────────────────────────────────────────────
 
+const D_BEATS: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
+
+/**
+ * Regroupe la mélodie par mesure (accumulation des durées) et repère, par mesure,
+ * l'index de la note tombant au milieu (≥ demi-mesure) — le soprano auquel s'aligne
+ * le 2e accord quand la mesure en porte deux.
+ */
+function decouperMesures(notes: MelodyNote[], bpm: number): { indices: number[][]; milieux: number[] } {
+  const indices: number[][] = [];
+  let cur: number[] = [];
+  let cum = 0;
+  notes.forEach((n, i) => {
+    cur.push(i);
+    cum += D_BEATS[n.duration] ?? 1;
+    if (cum >= bpm - 1e-6) { indices.push(cur); cur = []; cum = 0; }
+  });
+  if (cur.length > 0) indices.push(cur);
+
+  const milieux = indices.map(idxs => {
+    let beats = 0;
+    for (const idx of idxs) {
+      if (beats >= bpm / 2 - 0.01) return idx;
+      beats += D_BEATS[notes[idx].duration] ?? 1;
+    }
+    return idxs[Math.floor(idxs.length / 2)];
+  });
+  return { indices, milieux };
+}
+
+/**
+ * Réalisation SATB de la copie en segments (accords-blocs) : par mesure, un accord
+ * (ronde) ou deux (deux demi-mesures). La conduite alto/ténor est enchaînée d'un
+ * segment au suivant (`prev`) ; la basse suit le renversement du jeton. Le soprano de
+ * référence pour la conduite est la 1re note de la mesure (1er accord) ou celle du
+ * milieu (2e accord), comme le dessinait l'ancienne présentation.
+ */
+function construireAccompagnement(exercise: MelodyExercise, chords: string[][]): AccompagnementSegment[] {
+  const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
+  const { tonicPc, mode } = exerciseTonic(exercise);
+  const { indices, milieux } = decouperMesures(exercise.notes, bpm);
+  const segments: AccompagnementSegment[] = [];
+  let prev: Voicing | null = null;
+  indices.forEach((idxs, mi) => {
+    const jetons = (chords[mi] ?? []).filter(c => c !== '');
+    if (!jetons.length) return;
+    const deux = jetons.length === 2;
+    jetons.forEach((jeton, ci) => {
+      const sopIdx = ci === 0 ? idxs[0] : milieux[mi];
+      const sn = exercise.notes[sopIdx];
+      const v = realiserPourJeton(jeton, noteMidiValue(sn.note, sn.octave), prev, tonicPc, mode);
+      if (!v) return; // jeton illisible : pas de voix d'accompagnement
+      prev = v;
+      segments.push({
+        mesure: mi,
+        debutBeats: ci === 0 ? 0 : bpm / 2,
+        dureeBeats: deux ? bpm / 2 : bpm,
+        alto: v.alto, tenor: v.tenor, bass: v.bass,
+      });
+    });
+  });
+  return segments;
+}
+
+/**
+ * La portée d'affichage, gravée par Verovio (StudioScore) : mélodie seule tant
+ * qu'aucun accord n'est choisi, grand staff (S+A / T+B) dès qu'un accord l'est.
+ * Les jetons d'accords sont rappelés en légende sous la portée, une colonne par
+ * mesure (l'ancienne présentation les inscrivait sous la portée de Fa).
+ */
 function MelodyStaff({
   exercise,
   attempt,
@@ -104,220 +131,31 @@ function MelodyStaff({
   exercise: MelodyExercise;
   attempt?: string[][];
 }) {
-  const notes = exercise.notes;
-  const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
-  const { tonicPc, mode } = exerciseTonic(exercise);
-  const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
-  const hasChords = Boolean(attempt?.some(m => m.length > 0));
-  const svgW = Math.max(660, CLEF_W + 30 + notes.length * NOTE_SP + 40);
-  const svgH = hasChords ? SVG_HEIGHT_WITH_BASS : SVG_HEIGHT;
+  const chordsParMesure = useMemo(() => attempt ?? [], [attempt]);
+  const hasChords = chordsParMesure.some(m => m.length > 0);
 
-  // Group notes by measure
-  const measureNoteIndices: number[][] = [];
-  {
-    let cur: number[] = [];
-    let cum = 0;
-    notes.forEach((n, i) => {
-      cur.push(i);
-      cum += dBeats[n.duration] ?? 1;
-      if (cum % bpm < 0.01) { measureNoteIndices.push([...cur]); cur = []; }
+  const musicxml = useMemo(() => {
+    const segments = hasChords ? construireAccompagnement(exercise, chordsParMesure) : null;
+    return compositionGuideeVersMusicXML(exercise.notes, segments, {
+      keySignature: exercise.keySignature,
+      timeSignature: exercise.timeSignature,
+      measures: exercise.measures,
     });
-    if (cur.length > 0) measureNoteIndices.push(cur);
-  }
-
-  // For each measure: index of the note at/after the half-measure beat
-  const measureMidIndices = measureNoteIndices.map(indices => {
-    let beats = 0;
-    for (const idx of indices) {
-      if (beats >= bpm / 2 - 0.01) return idx;
-      beats += dBeats[notes[idx].duration] ?? 1;
-    }
-    return indices[Math.floor(indices.length / 2)];
-  });
-
-  // Barline x positions
-  const barXs: number[] = [];
-  {
-    let cum = 0;
-    notes.forEach((n, i) => {
-      cum += dBeats[n.duration] ?? 1;
-      if (cum % bpm < 0.01 && i < notes.length - 1) {
-        barXs.push(CLEF_W + 14 + i * NOTE_SP + NOTE_SP);
-      }
-    });
-  }
-
-  const noteX = (i: number) => CLEF_W + 30 + i * NOTE_SP;
+  }, [exercise, chordsParMesure, hasChords]);
 
   return (
-    <svg width={svgW} height={svgH} style={{ display: 'block', minWidth: svgW }}>
-
-      {/* ── Treble staff ── */}
-      {STAFF_LINES.map(s => (
-        <line key={s} x1={10} y1={STAFF_BOTTOM - s * HALF_STEP} x2={svgW - 10} y2={STAFF_BOTTOM - s * HALF_STEP} stroke="#999" strokeWidth="0.8" />
-      ))}
-      <text x={14} y={STAFF_BOTTOM + 6} fontSize="95" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄞</text>
-      <line x1={CLEF_W} y1={STAFF_BOTTOM - 8 * HALF_STEP} x2={CLEF_W} y2={STAFF_BOTTOM} stroke="#999" strokeWidth="1" />
-      {barXs.map((x, i) => (
-        <line key={i} x1={x} y1={STAFF_BOTTOM - 8 * HALF_STEP} x2={x} y2={STAFF_BOTTOM} stroke="#aaa" strokeWidth="0.7" />
-      ))}
-
-      {notes.map((n, i) => {
-        const step = noteStaffStep(n.note, n.octave);
-        const y = STAFF_BOTTOM - step * HALF_STEP;
-        const isFilled = n.duration === 'quarter' || n.duration === 'eighth';
-        const hasStem = n.duration !== 'whole';
-        const stemUp = step <= 4;
-        const ledgers = getLedgerLines(step);
-        const isAccidental = n.note.length > 1;
-        const accSymbol = n.note.endsWith('#') ? '♯' : '♭';
-        const x = noteX(i);
-
-        return (
-          <g key={i}>
-            {ledgers.map(ls => (
-              <line key={ls} x1={x - 14} y1={STAFF_BOTTOM - ls * HALF_STEP} x2={x + 14} y2={STAFF_BOTTOM - ls * HALF_STEP} stroke="#555" strokeWidth="1.1" />
-            ))}
-            {isAccidental && (
-              <text x={x - 18} y={y + 5} fontSize="13" fontFamily="serif" fill="#1a1a1a" textAnchor="middle">{accSymbol}</text>
-            )}
-            {hasStem && (
-              <line x1={stemUp ? x + NOTE_RX : x - NOTE_RX} y1={y} x2={stemUp ? x + NOTE_RX : x - NOTE_RX} y2={stemUp ? y - 30 : y + 30} stroke="#1a1a1a" strokeWidth="1.4" />
-            )}
-            {n.duration === 'eighth' && (
-              <path d={stemUp ? `M ${x + NOTE_RX} ${y - 30} Q ${x + 20} ${y - 20} ${x + 13} ${y - 13}` : `M ${x - NOTE_RX} ${y + 30} Q ${x - 20} ${y + 20} ${x - 13} ${y + 13}`} fill="none" stroke="#1a1a1a" strokeWidth="1.4" />
-            )}
-            <ellipse cx={x} cy={y} rx={NOTE_RX} ry={NOTE_RY} fill={isFilled ? '#1a1a1a' : '#fff'} stroke="#1a1a1a" strokeWidth="1.3" transform={`rotate(-15,${x},${y})`} />
-          </g>
-        );
-      })}
-
-      {notes.length === 0 && (
-        <text x={CLEF_W + 30} y={STAFF_BOTTOM - 4 * HALF_STEP} fontSize="12" fontFamily="system-ui,sans-serif" fill="#bbb">Chargement…</text>
+    <div>
+      <StudioScore musicxml={musicxml} />
+      {hasChords && (
+        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${exercise.measures}, 1fr)`, gap: 4, marginTop: 4 }}>
+          {Array.from({ length: exercise.measures }, (_, mi) => (
+            <div key={mi} style={{ textAlign: 'center', fontSize: 11, fontWeight: 700, color: '#5C3D6E', fontFamily: 'system-ui,sans-serif' }}>
+              {(chordsParMesure[mi] ?? []).filter(c => c !== '').join(' · ') || ' '}
+            </div>
+          ))}
+        </div>
       )}
-
-      {/* ── Bass staff (shown when chords are selected) ── */}
-      {hasChords && (() => {
-        // Collect all chord positions and compute SATB voice leading sequentially.
-        // `chord` porte désormais un id de palette ("V6/5") ou un nom ("G7") ; c'est
-        // `realiserPourJeton` (via `resoudreAccord`) qui en tire les hauteurs + la basse.
-        type ChordPos = { x: number; chord: string; sopIdx: number; twoPerBar: boolean };
-        const positions: ChordPos[] = [];
-        measureNoteIndices.forEach((indices, mi) => {
-          const chords = (attempt?.[mi] ?? []).filter(c => c !== '');
-          if (!chords.length) return;
-          const twoPerBar = chords.length === 2;
-          chords.forEach((chord, ci) => {
-            const sopIdx = ci === 0 ? indices[0] : measureMidIndices[mi];
-            positions.push({ x: noteX(sopIdx), chord, sopIdx, twoPerBar });
-          });
-        });
-
-        let prevV: Voicing | null = null;
-        const voicings: (Voicing | null)[] = positions.map(pos => {
-          const sn = notes[pos.sopIdx];
-          const sopMidi = noteMidiValue(sn.note, sn.octave);
-          const v = realiserPourJeton(pos.chord, sopMidi, prevV, tonicPc, mode);
-          if (v) prevV = v;
-          return v;
-        });
-
-        function renderNote(
-          x: number, y: number,
-          hasSharp: boolean, stemUp: boolean | null, /* null = whole note */
-          color: string, xOffset: number = 0
-        ) {
-          const cx = x + xOffset;
-          return (
-            <g>
-              {hasSharp && (
-                <text x={cx - 16} y={y + 5} fontSize="13" fontFamily="serif" fill={color} textAnchor="middle">♯</text>
-              )}
-              {stemUp !== null && (
-                <line x1={stemUp ? cx + NOTE_RX : cx - NOTE_RX} y1={y}
-                  x2={stemUp ? cx + NOTE_RX : cx - NOTE_RX} y2={stemUp ? y - 28 : y + 28}
-                  stroke={color} strokeWidth="1.4" />
-              )}
-              <ellipse cx={cx} cy={y} rx={NOTE_RX} ry={NOTE_RY}
-                fill="#fff" stroke={color} strokeWidth="1.3"
-                transform={`rotate(-15,${cx},${y})`} />
-            </g>
-          );
-        }
-
-        return (
-          <>
-            {/* System bracket */}
-            <line x1={8} y1={STAFF_BOTTOM - 8 * HALF_STEP} x2={8} y2={BASS_STAFF_BOTTOM} stroke="#444" strokeWidth="3" />
-            {/* System connector between staves */}
-            <line x1={CLEF_W} y1={STAFF_BOTTOM} x2={CLEF_W} y2={BASS_STAFF_BOTTOM - 8 * HALF_STEP} stroke="#bbb" strokeWidth="0.6" />
-            {/* Bass staff lines */}
-            {STAFF_LINES.map(s => (
-              <line key={s} x1={10} y1={BASS_STAFF_BOTTOM - s * HALF_STEP} x2={svgW - 10} y2={BASS_STAFF_BOTTOM - s * HALF_STEP} stroke="#999" strokeWidth="0.8" />
-            ))}
-            <text x={15} y={BASS_STAFF_BOTTOM - HALF_STEP * 1 + 2} fontSize="54" fontFamily="'Times New Roman',Georgia,serif" fill="#1a1a1a">𝄢</text>
-            <line x1={CLEF_W} y1={BASS_STAFF_BOTTOM - 8 * HALF_STEP} x2={CLEF_W} y2={BASS_STAFF_BOTTOM} stroke="#999" strokeWidth="1" />
-            {barXs.map((bx, i) => (
-              <line key={i} x1={bx} y1={BASS_STAFF_BOTTOM - 8 * HALF_STEP} x2={bx} y2={BASS_STAFF_BOTTOM} stroke="#aaa" strokeWidth="0.7" />
-            ))}
-
-            {positions.map((pos, pi) => {
-              const { x, chord, twoPerBar } = pos;
-              const atb = voicings[pi];
-              if (!atb) return null; // jeton illisible : pas de voix d'accompagnement
-              const stemMode = twoPerBar ? true : null; // half notes get stem, whole notes don't
-
-              // Alto → treble staff (stem down, purple)
-              const altInfo = midiToNameOct(atb.alto);
-              const altStep = noteStaffStep(altInfo.name, altInfo.octave);
-              const altY = STAFF_BOTTOM - altStep * HALF_STEP;
-              const altLedgers = getLedgerLines(altStep);
-
-              // Tenor → bass staff (stem up, purple), offset slightly right to avoid collision with bass
-              const tenInfo = midiToNameOct(atb.tenor);
-              const tenStep = bassStaffStep(tenInfo.name, tenInfo.octave);
-              const tenY = BASS_STAFF_BOTTOM - tenStep * HALF_STEP;
-              const tenLedgers = getLedgerLines(tenStep);
-
-              // Bass → bass staff (stem down, black)
-              const basInfo = midiToNameOct(atb.bass);
-              const basStep = bassStaffStep(basInfo.name, basInfo.octave);
-              const basY = BASS_STAFF_BOTTOM - basStep * HALF_STEP;
-              const basLedgers = getLedgerLines(basStep);
-
-              // Same pitch → offset tenor right so noteheads don't overlap
-              const tenXOffset = Math.abs(tenY - basY) < 7 ? NOTE_RX * 2 + 1 : 0;
-
-              return (
-                <g key={pi}>
-                  {/* Alto ledger lines on treble staff */}
-                  {altLedgers.map(ls => (
-                    <line key={ls} x1={x - 14} y1={STAFF_BOTTOM - ls * HALF_STEP} x2={x + 14} y2={STAFF_BOTTOM - ls * HALF_STEP} stroke="#555" strokeWidth="1.1" />
-                  ))}
-                  {renderNote(x, altY, altInfo.name.includes('#'), stemMode === null ? null : false, '#5C3D6E')}
-
-                  {/* Tenor ledger lines on bass staff */}
-                  {tenLedgers.map(ls => (
-                    <line key={ls} x1={x + tenXOffset - 14} y1={BASS_STAFF_BOTTOM - ls * HALF_STEP} x2={x + tenXOffset + 14} y2={BASS_STAFF_BOTTOM - ls * HALF_STEP} stroke="#555" strokeWidth="1.1" />
-                  ))}
-                  {renderNote(x, tenY, tenInfo.name.includes('#'), stemMode === null ? null : true, '#5C3D6E', tenXOffset)}
-
-                  {/* Bass ledger lines on bass staff */}
-                  {basLedgers.map(ls => (
-                    <line key={ls} x1={x - 14} y1={BASS_STAFF_BOTTOM - ls * HALF_STEP} x2={x + 14} y2={BASS_STAFF_BOTTOM - ls * HALF_STEP} stroke="#555" strokeWidth="1.1" />
-                  ))}
-                  {renderNote(x, basY, basInfo.name.includes('#'), stemMode === null ? null : false, '#1a1a1a')}
-
-                  {/* Chord label (id de palette ou nom d'accord) */}
-                  <text x={x} y={BASS_STAFF_BOTTOM + 18} fontSize="10" fontFamily="system-ui,sans-serif"
-                    fill="#5C3D6E" fontWeight="700" textAnchor="middle">{chord}</text>
-                </g>
-              );
-            })}
-          </>
-        );
-      })()}
-    </svg>
+    </div>
   );
 }
 
