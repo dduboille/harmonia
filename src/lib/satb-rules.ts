@@ -42,6 +42,29 @@ export type ValidationErrorType =
   | "hidden_octave";
 
 /**
+ * Liste exhaustive des types d'erreur, dans l'ordre de déclaration ci-dessus.
+ * Sert de source unique pour l'itération (tests d'i18n, fiches pédagogiques) :
+ * un type ajouté au moteur doit apparaître ici, ce que le compilateur garantit
+ * via le typage `readonly ValidationErrorType[]`.
+ */
+export const VALIDATION_ERROR_TYPES: readonly ValidationErrorType[] = [
+  "parallel_fifth",
+  "parallel_octave",
+  "hidden_fifth",
+  "hidden_octave",
+  "leading_tone",
+  "doubled_leading_tone",
+  "seventh",
+  "spacing",
+  "crossing",
+  "range",
+  "cross_relation",
+  "missing_accidental",
+  "wrong_chord",
+  "wrong_bass",
+];
+
+/**
  * Une faute détectée par le moteur.
  *
  * Le moteur ne produit plus de phrase toute faite : il renvoie un code et ses

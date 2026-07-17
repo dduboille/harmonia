@@ -4067,6 +4067,98 @@
       "hidden_fifth": "Quinta nascosta soprano–basso (b. {from}→{to})",
       "hidden_octave": "Ottava nascosta soprano–basso (b. {from}→{to})"
     },
+    "pedagogie": {
+      "titre": "Comprendere queste osservazioni",
+      "labels": {
+        "quoi": "Che cos'è?",
+        "pourquoi": "Perché?",
+        "comment": "Come evitarlo"
+      },
+      "parallel_fifth": {
+        "titre": "Quinte parallele",
+        "quoi": "Due voci a distanza di quinta giusta che si muovono nella stessa direzione mantenendo quella quinta. Esempio: basso Do e tenore Sol (una quinta) che salgono insieme a basso Re e tenore La — due quinte giuste di seguito.",
+        "pourquoi": "La quinta giusta è così consonante che, ripetuta in parallelo, fonde le due voci: non le si sente più come due linee distinte ma come una sola, ispessita. L'indipendenza delle quattro voci — la ragion d'essere della scrittura a quattro parti — va perduta.",
+        "comment": "Preferisci il moto contrario: una voce sale mentre l'altra scende. Oppure fai passare una delle due per un'altra nota dell'accordo, così l'intervallo non è più una quinta. Scambiare due note tra le voci spesso basta."
+      },
+      "parallel_octave": {
+        "titre": "Ottave parallele",
+        "quoi": "Due voci all'ottava (o all'unisono) che si spostano nella stessa direzione mantenendo quella distanza. Esempio: soprano Do raddoppiato all'ottava dal tenore Do, poi entrambi verso Re — l'ottava Re–Re scivola in parallelo.",
+        "pourquoi": "All'ottava, una voce non fa che raddoppiare l'altra: se si muovono insieme, da quattro voci reali si passa a tre. Il rinforzo d'ottava è superbo se tenuto, ma in movimento cancella una voce e impoverisce la polifonia.",
+        "comment": "Moto contrario di preferenza. Cambia il raddoppio: raddoppia un'altra nota dell'accordo anziché questa. Una nota comune tenuta non viene mai segnalata — lasciare una voce ferma mentre l'altra si muove risolve il problema."
+      },
+      "hidden_fifth": {
+        "titre": "Quinta nascosta (soprano–basso)",
+        "quoi": "Soprano e basso raggiungono una quinta insieme per moto retto, con il soprano che vi arriva per salto. Esempio: il soprano salta da Mi a La mentre il basso sale da Do a Re — le due voci estreme atterrano sulla quinta Re–La.",
+        "pourquoi": "L'orecchio «anticipa» la quinta riempita dal moto parallelo: la quinta nascosta evoca una quinta parallela abbozzata, e nelle due voci estreme, le più esposte, si sente. È un semplice avviso, non una colpa grave.",
+        "comment": "Aborda la quinta per moto contrario o obliquo. Evita soprattutto che il soprano vi salti dentro: un soprano che procede per grado congiunto non viene segnalato. Oppure colloca la quinta in una voce interna."
+      },
+      "hidden_octave": {
+        "titre": "Ottava nascosta (soprano–basso)",
+        "quoi": "Soprano e basso raggiungono un'ottava per moto retto, il soprano per salto. Esempio: il soprano salta da Sol a Re mentre il basso sale da Do a Re — si arriva sull'ottava Re–Re, raggiunta in modo troppo frontale.",
+        "pourquoi": "Come per la quinta nascosta, un'ottava raggiunta nella stessa direzione e per salto suona come un'ottava parallela avviata. Nelle voci estreme, molto in primo piano nella tessitura, l'effetto è udibile; l'indipendenza delle due linee si annebbia.",
+        "comment": "Aborda l'ottava per moto contrario o obliquo. Fai procedere il soprano per grado congiunto anziché per salto. Oppure raddoppia un'altra nota dell'accordo per non puntare a quell'ottava."
+      },
+      "leading_tone": {
+        "titre": "Sensibile risolta male",
+        "quoi": "Nel collegamento dominante → tonica (o grado VI), la sensibile — il 7° grado, un semitono sotto la tonica — deve risolvere verso di essa. Esempio: in Do maggiore, il Si dell'accordo di Sol deve salire a Do; se va altrove, viene segnalato.",
+        "pourquoi": "La sensibile crea una tensione che l'orecchio si aspetta risolta un semitono più in alto. Lasciarla in sospeso frustra quell'attesa e indebolisce la cadenza. Nelle voci estreme (soprano, basso) è un errore; in una voce interna, un semplice avviso.",
+        "comment": "Fai salire la sensibile di un semitono verso la tonica, soprattutto al soprano e al basso. In una voce interna, la sua discesa di terza verso la dominante (per completare l'accordo) è tollerata. Così pure il basso di un V6 che scende al VI."
+      },
+      "doubled_leading_tone": {
+        "titre": "Sensibile raddoppiata",
+        "quoi": "In un accordo di funzione dominante, la sensibile (7° grado) figura in due voci contemporaneamente. Esempio: in Do maggiore, il Si dell'accordo di Sol presente sia al tenore sia al soprano.",
+        "pourquoi": "La sensibile vuole salire alla tonica. Se è raddoppiata, le due voci dovrebbero salire insieme — producendo ottave parallele sulla tonica — oppure una dovrebbe rinunciare alla sua risoluzione naturale. Perciò si preferisce porla una sola volta.",
+        "comment": "Raddoppia la sensibile una sola volta. Raddoppia piuttosto la fondamentale o la quinta dell'accordo, che si muovono liberamente. Sostituisci una delle due sensibili con un'altra nota dell'accordo scambiando note tra le voci."
+      },
+      "seventh": {
+        "titre": "Settima risolta male",
+        "quoi": "La settima di un accordo è una dissonanza che deve scendere per grado congiunto, o essere tenuta se appartiene all'accordo successivo. Esempio: in Sol7 (Sol–Si–Re–Fa), il Fa deve scendere a Mi nell'accordo di Do.",
+        "pourquoi": "La settima introduce una dissonanza che l'orecchio si aspetta risolta verso il basso, dolcemente. Farla saltare o salire lascia la tensione irrisolta: l'accordo di settima perde il suo senso di preparazione e risoluzione.",
+        "comment": "Fai scendere la settima di un semitono o di un tono (Fa→Mi). Oppure tienila se la nota resta nell'accordo d'arrivo. Puoi anche prepararla — presentarla come consonanza appena prima — perché la sua risoluzione risulti naturale."
+      },
+      "spacing": {
+        "titre": "Distanza eccessiva tra le voci",
+        "quoi": "Tra soprano e contralto, e tra contralto e tenore, la distanza non deve superare l'ottava. Esempio: soprano Sol e contralto Sol all'ottava è il limite; se il contralto scende a Mi, la distanza col soprano supera l'ottava e viene segnalata.",
+        "pourquoi": "Un vuoto troppo ampio tra le tre voci superiori rende l'accordo cavo, mal fuso, sbilanciato verso l'alto. Tra tenore e basso, invece, una distanza ampia è naturale (così risuona la serie armonica): questa coppia non è controllata.",
+        "comment": "Avvicina le voci alte: alza il contralto o il tenore di un'ottava. Ridistribuisci l'accordo per colmare il vuoto. Raddoppia una nota più vicina per tenere le tre voci superiori entro l'ottava."
+      },
+      "crossing": {
+        "titre": "Incrocio di voci",
+        "quoi": "Una voce passa sopra quella che dovrebbe starle al di sopra. Esempio: il tenore sale a Re4 mentre il contralto resta a Do4 — il tenore finisce più in alto del contralto, rompendo l'ordine soprano ≥ contralto ≥ tenore ≥ basso.",
+        "pourquoi": "L'ascoltatore segue ogni voce dalla sua altezza. Quando due voci si incrociano, l'orecchio perde il filo: non sa più quale sia quale, e la chiarezza del tessuto polifonico si annebbia per la durata dell'incrocio.",
+        "comment": "Mantieni l'ordine delle altezze in ogni battuta. Scambia le due note tra le voci interessate per ristabilire la gerarchia. Oppure riscrivi la nota errata un'ottava più in basso, nella tessitura della sua voce."
+      },
+      "range": {
+        "titre": "Fuori estensione",
+        "quoi": "Ogni voce ha un'estensione comoda: basso Mi2–Do4, tenore Do3–Sol4, contralto Sol3–Do5, soprano Do4–Sol5. Una nota oltre viene segnalata. Esempio: un soprano scritto su La5 supera il Sol5, il suo limite superiore.",
+        "pourquoi": "Oltre la sua estensione una voce forza, diventa inudibile o perde il timbro: la scrittura cessa di essere cantabile. E il canto a quattro voci resta il riferimento — ciò che una voce umana non può sostenere suona falso, anche sulla carta.",
+        "comment": "Trasporta la nota di un'ottava per riportarla nell'estensione. Affidala alla voce vicina, la cui estensione la copre meglio. Oppure ridistribuisci l'accordo perché ogni voce resti a casa sua."
+      },
+      "cross_relation": {
+        "titre": "Falsa relazione",
+        "quoi": "Una stessa nota compare in due forme (due alterazioni diverse) in due voci differenti, da un accordo al successivo. Esempio: Fa naturale al tenore, poi Fa diesis al soprano nella battuta seguente. Il cromatismo condotto entro una stessa voce, invece, resta consentito.",
+        "pourquoi": "Lo scontro delle due versioni può sorprendere l'orecchio — ma è spesso perfettamente difendibile, in particolare in minore con il movimento melodico. Per questo Harmonia la segnala senza contarla nel voto: è un promemoria, non una colpa.",
+        "comment": "Se preferisci ammorbidirla, mantieni il passo cromatico in una sola voce (Fa→Fa diesis nella stessa parte). Altrimenti assumila quando il contesto minore la giustifica: fa parte del linguaggio."
+      },
+      "missing_accidental": {
+        "titre": "Alterazione mancante",
+        "quoi": "Senza armatura di chiave, le alterazioni della tonalità vanno scritte a mano su ogni nota interessata. Esempio: in Re maggiore, ogni Fa dev'essere Fa diesis e ogni Do un Do diesis; un Fa naturale viene allora segnalato.",
+        "pourquoi": "Senza la sua alterazione, la nota non appartiene più alla tonalità e l'armonia diventa errata. Non è una regola di gusto ma un richiamo all'intonazione: da qui il semplice avviso, il tempo di ristabilire l'altezza giusta.",
+        "comment": "Aggiungi l'alterazione richiesta (diesis o bemolle) indicata dal messaggio. Passa in rassegna ogni nota rispetto all'armatura della tonalità. Nel dubbio, confronta con la scala di riferimento del brano."
+      },
+      "wrong_chord": {
+        "titre": "Non è l'accordo richiesto",
+        "quoi": "Le note della battuta non formano l'accordo atteso dall'esercizio. Esempio: l'esercizio chiede Do maggiore (Do–Mi–Sol) e le tue quattro voci danno Do–Mi–Sol–Si — quel Si ne fa un altro accordo.",
+        "pourquoi": "L'accordo è l'ossatura armonica dell'esercizio: sbagliare accordo cambia il senso della progressione. La buona notizia: contano solo la natura dell'accordo (le sue note) e il suo basso. La disposizione è libera — ottave, raddoppi e ripartizione tra le voci sono a tua scelta.",
+        "comment": "Verifica le note attese dell'accordo. Conserva solo quelle (fondamentale, terza, quinta…). Poi distribuiscile liberamente tra soprano, contralto, tenore e basso: è la tua scelta di disposizione, non l'ottava, a dare il colore."
+      },
+      "wrong_bass": {
+        "titre": "Il basso atteso non è quello giusto",
+        "quoi": "Le note dell'accordo sono giuste, ma al basso c'è quella sbagliata — il rivolto è errato. Esempio: l'accordo Do–Mi–Sol è corretto, ma l'esercizio vuole Do al basso (stato fondamentale) e hai messo Mi (primo rivolto).",
+        "pourquoi": "Il basso fissa il rivolto, che cambia la stabilità e la funzione dell'accordo. Qui si giudica solo la nota del basso: le tre voci superiori restano libere in ottava e disposizione. Correggi il basso, il resto è tuo.",
+        "comment": "Metti al basso la nota richiesta (spesso la fondamentale). Scambia il basso attuale con quello giusto. Una volta giusto il basso, disponi liberamente le voci alte: la loro ottava non conta."
+      }
+    },
     "exerciseDone": "Esercizio completato!",
     "exercisePerfect": "Nessun errore armonico — ottimo lavoro.",
     "defaultTitle": "Esercizio di condotta delle voci",

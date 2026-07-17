@@ -4067,6 +4067,98 @@
       "hidden_fifth": "Verdeckte Quinte Sopran–Bass (T. {from}→{to})",
       "hidden_octave": "Verdeckte Oktave Sopran–Bass (T. {from}→{to})"
     },
+    "pedagogie": {
+      "titre": "Diese Hinweise verstehen",
+      "labels": {
+        "quoi": "Worum geht es?",
+        "pourquoi": "Warum?",
+        "comment": "Wie man es vermeidet"
+      },
+      "parallel_fifth": {
+        "titre": "Parallelquinten",
+        "quoi": "Zwei Stimmen im Abstand einer reinen Quinte, die sich in dieselbe Richtung bewegen und diese Quinte beibehalten. Beispiel: Bass C und Tenor G (eine Quinte) steigen gemeinsam nach Bass D und Tenor A — zwei reine Quinten hintereinander.",
+        "pourquoi": "Die reine Quinte ist so konsonant, dass sie parallel wiederholt die beiden Stimmen verschmilzt: Man hört sie nicht mehr als zwei eigenständige Linien, sondern als eine einzige, verdickte. Die Unabhängigkeit der vier Stimmen — der Sinn des vierstimmigen Satzes — geht verloren.",
+        "comment": "Bevorzugen Sie die Gegenbewegung: eine Stimme steigt, während die andere fällt. Oder führen Sie eine der beiden über einen anderen Akkordton, damit das Intervall keine Quinte mehr ist. Zwei Töne zwischen Stimmen zu tauschen genügt oft."
+      },
+      "parallel_octave": {
+        "titre": "Parallel-Oktaven",
+        "quoi": "Zwei Stimmen im Oktavabstand (oder Einklang), die sich in dieselbe Richtung bewegen und diesen Abstand beibehalten. Beispiel: Sopran C, in der Oktave vom Tenor C verdoppelt, dann beide nach D — die Oktave D–D gleitet parallel.",
+        "pourquoi": "In der Oktave verdoppelt eine Stimme nur die andere: Bewegen sie sich gemeinsam, werden aus vier realen Stimmen drei. Die Oktavverstärkung ist ausgehalten prächtig, in Bewegung aber löscht sie eine Stimme und dünnt die Polyphonie aus.",
+        "comment": "Gegenbewegung bevorzugt. Ändern Sie die Verdopplung: verdoppeln Sie einen anderen Akkordton statt dieses. Ein ausgehaltener gemeinsamer Ton wird nie beanstandet — eine Stimme still zu halten, während die andere sich bewegt, löst das Problem."
+      },
+      "hidden_fifth": {
+        "titre": "Verdeckte Quinte (Sopran–Bass)",
+        "quoi": "Sopran und Bass erreichen eine Quinte gemeinsam in gleicher Richtung, wobei der Sopran im Sprung ankommt. Beispiel: Der Sopran springt von E nach A, während der Bass von C nach D steigt — die beiden Außenstimmen landen auf der Quinte D–A.",
+        "pourquoi": "Das Ohr nimmt die durch die Parallelbewegung ausgefüllte Quinte vorweg: Die verdeckte Quinte deutet eine angelegte Parallelquinte an, und in den beiden Außenstimmen, den exponiertesten, ist das hörbar. Es ist nur ein Hinweis, kein schwerer Fehler.",
+        "comment": "Nähern Sie sich der Quinte in Gegen- oder Seitenbewegung. Vermeiden Sie vor allem, dass der Sopran hineinspringt: ein schrittweise geführter Sopran wird nicht beanstandet. Oder legen Sie die Quinte in eine Mittelstimme."
+      },
+      "hidden_octave": {
+        "titre": "Verdeckte Oktave (Sopran–Bass)",
+        "quoi": "Sopran und Bass erreichen eine Oktave in gleicher Richtung, der Sopran im Sprung. Beispiel: Der Sopran springt von G nach D, während der Bass von C nach D steigt — man landet auf der Oktave D–D, zu frontal erreicht.",
+        "pourquoi": "Wie bei der verdeckten Quinte klingt eine in gleicher Richtung und im Sprung erreichte Oktave wie eine angesetzte Parallel-Oktave. In den Außenstimmen, weit vorne im Satz, ist die Wirkung hörbar; die Unabhängigkeit der beiden Linien verschwimmt.",
+        "comment": "Nähern Sie sich der Oktave in Gegen- oder Seitenbewegung. Führen Sie den Sopran schrittweise statt im Sprung. Oder verdoppeln Sie einen anderen Akkordton, um diese Oktave nicht anzusteuern."
+      },
+      "leading_tone": {
+        "titre": "Leitton falsch aufgelöst",
+        "quoi": "Bei der Verbindung Dominante → Tonika (oder VI. Stufe) muss der Leitton — die 7. Stufe, einen Halbton unter der Tonika — sich zu ihr auflösen. Beispiel: In C-Dur muss das H des G-Akkords nach C aufsteigen; geht es woandershin, wird es beanstandet.",
+        "pourquoi": "Der Leitton erzeugt eine Spannung, die das Ohr einen Halbton höher aufgelöst erwartet. Sie hängen zu lassen enttäuscht diese Erwartung und schwächt die Kadenz. In den Außenstimmen (Sopran, Bass) ist es ein Fehler, in einer Mittelstimme nur ein Hinweis.",
+        "comment": "Führen Sie den Leitton einen Halbton aufwärts zur Tonika, besonders im Sopran und Bass. In einer Mittelstimme ist sein Terzfall zur Dominante (zur Vervollständigung des Akkords) geduldet. Ebenso der Bass eines V6, der zur VI. Stufe absteigt."
+      },
+      "doubled_leading_tone": {
+        "titre": "Leitton verdoppelt",
+        "quoi": "In einem Akkord mit Dominantfunktion erscheint der Leitton (7. Stufe) in zwei Stimmen zugleich. Beispiel: In C-Dur das H des G-Akkords zugleich im Tenor und im Sopran.",
+        "pourquoi": "Der Leitton will zur Tonika aufsteigen. Ist er verdoppelt, müssten beide Stimmen gemeinsam aufsteigen — was Parallel-Oktaven auf der Tonika ergäbe — oder eine müsste auf ihre natürliche Auflösung verzichten. Daher setzt man ihn lieber nur einmal.",
+        "comment": "Verdoppeln Sie den Leitton nur einmal. Verdoppeln Sie lieber den Grundton oder die Quinte des Akkords, die sich frei bewegen. Ersetzen Sie einen der beiden Leittöne durch einen anderen Akkordton, indem Sie Töne zwischen Stimmen tauschen."
+      },
+      "seventh": {
+        "titre": "Septime falsch aufgelöst",
+        "quoi": "Die Septime eines Akkords ist eine Dissonanz, die schrittweise abwärts gehen oder ausgehalten werden muss, wenn sie zum nächsten Akkord gehört. Beispiel: In G7 (G–H–D–F) muss das F im C-Akkord nach E fallen.",
+        "pourquoi": "Die Septime bringt eine Dissonanz, die das Ohr sanft abwärts aufgelöst erwartet. Sie springen oder aufsteigen zu lassen lässt die Spannung offen: Der Septakkord verliert seinen Sinn von Vorbereitung und Auflösung.",
+        "comment": "Lassen Sie die Septime einen Halb- oder Ganzton fallen (F→E). Oder halten Sie sie, wenn der Ton im Zielakkord bleibt. Sie können sie auch vorbereiten — kurz zuvor als Konsonanz einführen —, damit ihre Auflösung selbstverständlich wirkt."
+      },
+      "spacing": {
+        "titre": "Zu großer Stimmabstand",
+        "quoi": "Zwischen Sopran und Alt sowie zwischen Alt und Tenor darf der Abstand eine Oktave nicht überschreiten. Beispiel: Sopran G und Alt G im Oktavabstand ist die Grenze; fällt der Alt auf E, überschreitet der Abstand zum Sopran die Oktave und wird beanstandet.",
+        "pourquoi": "Eine zu große Lücke zwischen den drei Oberstimmen macht den Akkord hohl, schlecht verschmolzen, kopflastig. Zwischen Tenor und Bass ist ein weiter Abstand dagegen natürlich (so klingt die Obertonreihe): dieses Paar wird nicht geprüft.",
+        "comment": "Rücken Sie die Oberstimmen zusammen: den Alt oder Tenor eine Oktave höher. Verteilen Sie den Akkord neu, um die Lücke zu füllen. Verdoppeln Sie einen näheren Ton, um die drei Oberstimmen innerhalb einer Oktave zu halten."
+      },
+      "crossing": {
+        "titre": "Stimmkreuzung",
+        "quoi": "Eine Stimme geht über die, die über ihr liegen sollte. Beispiel: Der Tenor steigt auf D4, während der Alt auf C4 bleibt — der Tenor landet höher als der Alt, die Ordnung Sopran ≥ Alt ≥ Tenor ≥ Bass ist gebrochen.",
+        "pourquoi": "Der Hörer folgt jeder Stimme über ihre Tonhöhe. Kreuzen sich zwei Stimmen, verliert das Ohr den Faden: Es weiß nicht mehr, welche welche ist, und die Klarheit des polyphonen Gewebes verschwimmt für die Dauer der Kreuzung.",
+        "comment": "Halten Sie die Tonhöhenordnung in jedem Takt. Tauschen Sie die beiden Töne zwischen den betroffenen Stimmen, um die Hierarchie wiederherzustellen. Oder schreiben Sie den fehlerhaften Ton eine Oktave tiefer, im Ambitus seiner Stimme."
+      },
+      "range": {
+        "titre": "Außerhalb des Ambitus",
+        "quoi": "Jede Stimme hat einen bequemen Umfang: Bass E2–C4, Tenor C3–G4, Alt G3–C5, Sopran C4–G5. Ein Ton darüber hinaus wird beanstandet. Beispiel: ein auf A5 geschriebener Sopran überschreitet das G5, seine obere Grenze.",
+        "pourquoi": "Jenseits ihres Umfangs presst eine Stimme, wird unhörbar oder verliert ihren Klang: der Satz ist nicht mehr singbar. Der vierstimmige Gesang bleibt aber die Referenz — was eine menschliche Stimme nicht halten kann, klingt falsch, auch auf dem Papier.",
+        "comment": "Transponieren Sie den Ton um eine Oktave, um ihn in den Umfang zurückzuholen. Geben Sie ihn der Nachbarstimme, deren Umfang ihn besser deckt. Oder verteilen Sie den Akkord neu, damit jede Stimme daheim bleibt."
+      },
+      "cross_relation": {
+        "titre": "Querstand",
+        "quoi": "Derselbe Ton erscheint in zwei Formen (zwei verschiedene Vorzeichen) in zwei verschiedenen Stimmen, von einem Akkord zum nächsten. Beispiel: F im Tenor, dann Fis im Sopran im folgenden Takt. Chromatik innerhalb ein und derselben Stimme bleibt dagegen erlaubt.",
+        "pourquoi": "Das Aufeinanderprallen der beiden Formen kann das Ohr überraschen — ist aber oft völlig vertretbar, namentlich in Moll mit der melodischen Bewegung. Deshalb kennzeichnet Harmonia ihn, ohne ihn in die Note zu zählen: ein Hinweis, kein Fehler.",
+        "comment": "Wenn Sie ihn mildern möchten, halten Sie den chromatischen Schritt in einer einzigen Stimme (F→Fis in derselben Stimme). Andernfalls nehmen Sie ihn an, wenn der Moll-Kontext ihn rechtfertigt: er gehört zur Sprache."
+      },
+      "missing_accidental": {
+        "titre": "Fehlendes Vorzeichen",
+        "quoi": "Ohne Generalvorzeichen müssen die Vorzeichen der Tonart von Hand an jeden betroffenen Ton geschrieben werden. Beispiel: In D-Dur muss jedes F ein Fis und jedes C ein Cis sein; ein F ohne Vorzeichen wird dann beanstandet.",
+        "pourquoi": "Ohne sein Vorzeichen gehört der Ton nicht mehr zur Tonart, und die Harmonie wird falsch. Das ist keine Geschmacksfrage, sondern eine Erinnerung an die Tonhöhe: daher der bloße Hinweis, bis die richtige Höhe hergestellt ist.",
+        "comment": "Fügen Sie das verlangte Vorzeichen (Kreuz oder Be) hinzu, das die Meldung nennt. Prüfen Sie jeden Ton gegen die Tonart. Im Zweifel vergleichen Sie mit der Referenztonleiter des Stücks."
+      },
+      "wrong_chord": {
+        "titre": "Nicht der verlangte Akkord",
+        "quoi": "Die Töne des Takts bilden nicht den von der Aufgabe erwarteten Akkord. Beispiel: die Aufgabe verlangt C-Dur (C–E–G) und Ihre vier Stimmen ergeben C–E–G–H — dieses H macht daraus einen anderen Akkord.",
+        "pourquoi": "Der Akkord ist das harmonische Gerüst der Aufgabe: der falsche Akkord ändert den Sinn der Fortschreitung. Die gute Nachricht: es zählen nur die Art des Akkords (seine Töne) und sein Bass. Die Lage ist frei — Oktaven, Verdopplungen und Verteilung auf die Stimmen liegen bei Ihnen.",
+        "comment": "Prüfen Sie die erwarteten Töne des Akkords. Behalten Sie nur diese (Grundton, Terz, Quinte…). Verteilen Sie sie dann frei auf Sopran, Alt, Tenor und Bass: Ihre Wahl der Lage, nicht die Oktave, macht die Farbe."
+      },
+      "wrong_bass": {
+        "titre": "Der erwartete Bass stimmt nicht",
+        "quoi": "Die Töne des Akkords sind richtig, aber der falsche liegt im Bass — die Umkehrung stimmt nicht. Beispiel: der Akkord C–E–G ist korrekt, aber die Aufgabe will C im Bass (Grundstellung), und Sie haben E gesetzt (erste Umkehrung).",
+        "pourquoi": "Der Bass legt die Umkehrung fest, die Stabilität und Funktion des Akkords ändert. Nur der Basston wird hier bewertet: die drei Oberstimmen bleiben frei in Oktave und Verteilung. Korrigieren Sie den Bass, der Rest liegt bei Ihnen.",
+        "comment": "Legen Sie den verlangten Ton in den Bass (oft den Grundton). Tauschen Sie den aktuellen Bass gegen den richtigen. Ist der Bass richtig, ordnen Sie die Oberstimmen frei: ihre Oktave zählt nicht."
+      }
+    },
     "exerciseDone": "Übung erfolgreich abgeschlossen!",
     "exercisePerfect": "Keine harmonischen Fehler — ausgezeichnete Arbeit.",
     "defaultTitle": "Übung zur Stimmführung",

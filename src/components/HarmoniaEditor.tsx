@@ -690,6 +690,63 @@ export default function HarmoniaEditor({
           </div>
         )}
 
+        {/* ── Comprendre ces remarques ──
+            Sous le feedback court : une fiche dépliante par TYPE d'erreur présent
+            (dédupliqué, ordre = première apparition), qui explique et donne les
+            gestes pour l'éviter. Le feedback reste premier ; ces fiches sont
+            fermées par défaut (details/summary natifs, accessibles). */}
+        {errors.length > 0 && (() => {
+          const seen = new Set<string>();
+          const fiches = errors
+            .filter(e => { if (seen.has(e.type)) return false; seen.add(e.type); return true; })
+            .map(e => ({ type: e.type, severity: e.severity }));
+          return (
+            <div style={{ marginBottom:20 }}>
+              <div style={{ fontSize:11, color:"#6b6b6b", letterSpacing:"0.06em", marginBottom:8 }}>
+                {t("pedagogie.titre").toUpperCase()}
+              </div>
+              <div style={{ display:"flex", flexDirection:"column" as const, gap:6 }}>
+                {fiches.map(({ type, severity }) => (
+                  <details key={type} style={{
+                    borderRadius:8,
+                    border:"0.5px solid #e0dbd3",
+                    background:"#faf8f4",
+                    fontSize:13,
+                    color:"#4a4a4a",
+                    overflow:"hidden",
+                  }}>
+                    <summary style={{
+                      cursor:"pointer",
+                      padding:"8px 12px",
+                      display:"flex",
+                      alignItems:"center",
+                      gap:8,
+                      fontWeight:500,
+                      color:"#3a2f6b",
+                      listStyle:"revert",
+                    }}>
+                      <span style={{ fontSize:13, color: severity === "error" ? "#C53030" : "#B7791F" }}>
+                        {severity === "error" ? "✗" : "⚠"}
+                      </span>
+                      {t(`pedagogie.${type}.titre` as never)}
+                    </summary>
+                    <div style={{ padding:"0 12px 12px 12px", display:"flex", flexDirection:"column" as const, gap:8, lineHeight:1.5 }}>
+                      {(["quoi", "pourquoi", "comment"] as const).map(volet => (
+                        <div key={volet}>
+                          <div style={{ fontWeight:600, color:"#571AFF", marginBottom:2 }}>
+                            {t(`pedagogie.labels.${volet}` as never)}
+                          </div>
+                          <div>{t(`pedagogie.${type}.${volet}` as never)}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Pas d'erreurs et notes placées */}
         {errors.length === 0 && placedNotes > 0 && (
           <div role="status" aria-live="polite" style={{
