@@ -42,27 +42,28 @@ export type ValidationErrorType =
   | "hidden_octave";
 
 /**
- * Liste exhaustive des types d'erreur, dans l'ordre de déclaration ci-dessus.
- * Sert de source unique pour l'itération (tests d'i18n, fiches pédagogiques) :
- * un type ajouté au moteur doit apparaître ici, ce que le compilateur garantit
- * via le typage `readonly ValidationErrorType[]`.
+ * Liste exhaustive des types d'erreur. Sert de source unique pour l'itération
+ * (tests d'i18n, fiches pédagogiques). L'exhaustivité est réellement garantie
+ * par le compilateur : le `Record<ValidationErrorType, null>` intermédiaire
+ * refuse de compiler si un type de l'union manque ici (ou y est en trop).
  */
-export const VALIDATION_ERROR_TYPES: readonly ValidationErrorType[] = [
-  "parallel_fifth",
-  "parallel_octave",
-  "hidden_fifth",
-  "hidden_octave",
-  "leading_tone",
-  "doubled_leading_tone",
-  "seventh",
-  "spacing",
-  "crossing",
-  "range",
-  "cross_relation",
-  "missing_accidental",
-  "wrong_chord",
-  "wrong_bass",
-];
+const TOUS_LES_TYPES: Record<ValidationErrorType, null> = {
+  parallel_fifth: null,
+  parallel_octave: null,
+  hidden_fifth: null,
+  hidden_octave: null,
+  leading_tone: null,
+  doubled_leading_tone: null,
+  seventh: null,
+  spacing: null,
+  crossing: null,
+  range: null,
+  cross_relation: null,
+  missing_accidental: null,
+  wrong_chord: null,
+  wrong_bass: null,
+};
+export const VALIDATION_ERROR_TYPES = Object.keys(TOUS_LES_TYPES) as readonly ValidationErrorType[];
 
 /**
  * Une faute détectée par le moteur.

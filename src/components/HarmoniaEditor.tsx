@@ -696,10 +696,12 @@ export default function HarmoniaEditor({
             gestes pour l'éviter. Le feedback reste premier ; ces fiches sont
             fermées par défaut (details/summary natifs, accessibles). */}
         {errors.length > 0 && (() => {
-          const seen = new Set<string>();
-          const fiches = errors
-            .filter(e => { if (seen.has(e.type)) return false; seen.add(e.type); return true; })
-            .map(e => ({ type: e.type, severity: e.severity }));
+          const parType = new Map<string, "error" | "warning">();
+          for (const e of errors) {
+            const deja = parType.get(e.type);
+            if (!deja || (deja === "warning" && e.severity === "error")) parType.set(e.type, e.severity);
+          }
+          const fiches = [...parType].map(([type, severity]) => ({ type, severity }));
           return (
             <div style={{ marginBottom:20 }}>
               <div style={{ fontSize:11, color:"#6b6b6b", letterSpacing:"0.06em", marginBottom:8 }}>

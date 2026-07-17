@@ -4090,13 +4090,13 @@
         "titre": "Quinta nascosta (soprano–basso)",
         "quoi": "Soprano e basso raggiungono una quinta insieme per moto retto, con il soprano che vi arriva per salto. Esempio: il soprano salta da Mi a La mentre il basso sale da Do a Re — le due voci estreme atterrano sulla quinta Re–La.",
         "pourquoi": "L'orecchio «anticipa» la quinta riempita dal moto parallelo: la quinta nascosta evoca una quinta parallela abbozzata, e nelle due voci estreme, le più esposte, si sente. È un semplice avviso, non una colpa grave.",
-        "comment": "Aborda la quinta per moto contrario o obliquo. Evita soprattutto che il soprano vi salti dentro: un soprano che procede per grado congiunto non viene segnalato. Oppure colloca la quinta in una voce interna."
+        "comment": "Raggiungi la quinta per moto contrario o obliquo. Evita soprattutto che il soprano vi salti dentro: un soprano che procede per grado congiunto non viene segnalato. Oppure colloca la quinta in una voce interna."
       },
       "hidden_octave": {
         "titre": "Ottava nascosta (soprano–basso)",
         "quoi": "Soprano e basso raggiungono un'ottava per moto retto, il soprano per salto. Esempio: il soprano salta da Sol a Re mentre il basso sale da Do a Re — si arriva sull'ottava Re–Re, raggiunta in modo troppo frontale.",
         "pourquoi": "Come per la quinta nascosta, un'ottava raggiunta nella stessa direzione e per salto suona come un'ottava parallela avviata. Nelle voci estreme, molto in primo piano nella tessitura, l'effetto è udibile; l'indipendenza delle due linee si annebbia.",
-        "comment": "Aborda l'ottava per moto contrario o obliquo. Fai procedere il soprano per grado congiunto anziché per salto. Oppure raddoppia un'altra nota dell'accordo per non puntare a quell'ottava."
+        "comment": "Raggiungi l'ottava per moto contrario o obliquo. Fai procedere il soprano per grado congiunto anziché per salto. Oppure raddoppia un'altra nota dell'accordo per non puntare a quell'ottava."
       },
       "leading_tone": {
         "titre": "Sensibile risolta male",
