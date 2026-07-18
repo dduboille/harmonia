@@ -60,6 +60,7 @@ export const COURS: CoursMeta[] = [
   { num: 39, level: 2 as const, title: "Les 7èmes d'espèces", desc: "Au-delà du V7 : l'accord de septième sur chaque degré, sa nature, sa préparation, sa résolution, ses renversements et la marche de 7èmes.", tags: ["Septièmes", "Préparation", "Résolution"] },
   { num: 40, level: 2 as const, title: "L'invention à 2 voix", desc: "Sujet, imitation à l'octave, contre-sujet, épisodes et plan tonal — l'écriture de l'invention dans le style de Bach.", tags: ["Invention", "Bach", "Imitation"] },
   { num: 41, level: 5 as const, title: "L'écriture de style", desc: "Pasticher le classique, le romantique et le début du XXe — la discipline d'écriture stylistique du DEM.", tags: ["Style", "Pastiche", "DEM"] },
+  { num: 42, level: 3 as const, title: "Harmonisation au clavier et basse chiffrée", desc: "Lire et réaliser un continuo baroque : chiffrages, renversements, 6/4 cadentiel, retards et marches — à quatre voix et au clavier.", tags: ["Basse chiffrée", "Continuo", "Réalisation"] },
 ];
 
 /** Nombre total de cours publiés. */

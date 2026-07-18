@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modi e tecniche avanzate",
     "level2Desc": "7 lezioni per ampliare il linguaggio armonico — modi, estensioni, jazz, contrappunto. Uscire dal quadro classico ed esplorare nuovi colori.",
     "level3Title": "Composizione, analisi e maestria",
-    "level3Desc": "7 lezioni per raggiungere la maestria — forma musicale, orchestrazione, analisi dei grandi compositori e composizione nei loro stili.",
+    "level3Desc": "14 lezioni per raggiungere la maestria — forma musicale, orchestrazione, analisi dei grandi compositori e composizione nei loro stili.",
     "c1": "La scala, i gradi e gli intervalli",
     "c2": "Gli accordi",
     "c3": "Funzioni tonali e conduzione delle voci",
@@ -132,7 +132,14 @@
     "d40": "Soggetto, imitazione all'ottava, controsoggetto, episodi e piano tonale — la scrittura dell'invenzione nello stile di Bach.",
     "c41": "La scrittura di stile",
     "d41": "Pasticciare il classico, il romantico e il primo Novecento — la disciplina di scrittura di stile del DEM.",
-    "locked": "Richiede abbonamento"
+    "locked": "Richiede abbonamento",
+    "c42": "Armonizzazione alla tastiera e basso numerato",
+    "d42": "Leggere e realizzare un continuo barocco: numeriche, rivolti, quartasesta cadenzale, ritardi e marce — a quattro voci e alla tastiera.",
+    "univ1": "≈ Laurea 1",
+    "univ2": "≈ Laurea 2",
+    "univ3": "≈ Laurea 3",
+    "univ4": "≈ Laurea 3 / Magistrale 1",
+    "univ5": "≈ Magistrale 1"
   },
   "cours": {
     "level1": "Livello 1",
@@ -4213,5 +4220,24 @@
       "?": "—"
     },
     "exporter": "Sviluppa nel laboratorio"
+  },
+  "cours42": {
+    "badge": "Livello 3 · Corso 42",
+    "title": "Armonizzazione alla tastiera e basso numerato",
+    "subtitle": "Leggere e realizzare un continuo barocco a quattro voci e poi alla tastiera — numeriche, rivolti, quartasesta cadenzale, ritardi e marce. Il primo corso di livello triennale.",
+    "sections": {
+      "intro": "Il basso numerato",
+      "code": "Il codice",
+      "realiser": "Realizzare a 4 voci",
+      "clavier": "Alla tastiera",
+      "marches": "Marce e formule",
+      "applications": "Applicazioni",
+      "quiz": "Allenamento"
+    },
+    "quiz": {
+      "perfect": "Perfetto! Leggi e realizzi un basso numerato senza esitazioni.",
+      "veryGood": "Molto bene! Alcune numeriche da consolidare (rivolti di 7ª, quartasesta cadenzale, ritardi).",
+      "keepGoing": "Continua — rileggi la tabella delle numeriche e riascolta gli esempi prima di riprovare."
+    }
   }
 }

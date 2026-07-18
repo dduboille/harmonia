@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modos e técnicas avançadas",
     "level2Desc": "7 aulas para expandir a linguagem harmónica — modos, extensões, jazz, contraponto. Sair do quadro clássico e explorar novas cores.",
     "level3Title": "Composição, análise e mestria",
-    "level3Desc": "7 aulas para atingir a mestria — forma musical, orquestração, análise dos grandes compositores e composição nos seus estilos.",
+    "level3Desc": "14 aulas para atingir a mestria — forma musical, orquestração, análise dos grandes compositores e composição nos seus estilos.",
     "c1": "A escala, os graus e os intervalos",
     "c2": "Os acordes",
     "c3": "Funções tonais e condução de vozes",
@@ -132,7 +132,14 @@
     "d40": "Sujeito, imitação à oitava, contrassujeito, episódios e plano tonal — a escrita da invenção ao estilo de Bach.",
     "c41": "A escrita de estilo",
     "d41": "Pastichar o clássico, o romântico e o início do século XX — a disciplina de escrita de estilo do DEM.",
-    "locked": "Requer assinatura"
+    "locked": "Requer assinatura",
+    "c42": "Harmonização ao teclado e baixo cifrado",
+    "d42": "Ler e realizar um contínuo barroco: cifras, inversões, quarta e sexta cadencial, retardos e marchas — a quatro vozes e ao teclado.",
+    "univ1": "≈ Licenciatura 1",
+    "univ2": "≈ Licenciatura 2",
+    "univ3": "≈ Licenciatura 3",
+    "univ4": "≈ Licenciatura 3 / Mestrado 1",
+    "univ5": "≈ Mestrado 1"
   },
   "cours": {
     "level1": "Nível 1",
@@ -4213,5 +4220,24 @@
       "?": "—"
     },
     "exporter": "Desenvolver no ateliê"
+  },
+  "cours42": {
+    "badge": "Nível 3 · Curso 42",
+    "title": "Harmonização ao teclado e baixo cifrado",
+    "subtitle": "Ler e realizar um contínuo barroco a quatro vozes e depois ao teclado — cifras, inversões, quarta e sexta cadencial, retardos e marchas. O primeiro curso de nível licenciatura.",
+    "sections": {
+      "intro": "O baixo cifrado",
+      "code": "O código",
+      "realiser": "Realizar a 4 vozes",
+      "clavier": "Ao teclado",
+      "marches": "Marchas e fórmulas",
+      "applications": "Aplicações",
+      "quiz": "Treino"
+    },
+    "quiz": {
+      "perfect": "Perfeito! Decifras e realizas um baixo cifrado sem hesitar.",
+      "veryGood": "Muito bem! Algumas cifras a consolidar (inversões de 7ª, 6/4 cadencial, retardos).",
+      "keepGoing": "Continua — revê a tabela das cifras e volta a ouvir os exemplos antes de recomeçar."
+    }
   }
 }

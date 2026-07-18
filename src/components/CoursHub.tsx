@@ -8,13 +8,15 @@ import { COURS, FREE_COURS } from "@/lib/catalogue";
 
 
 // ─── Méta par niveau ─────────────────────────────────────────────────────────
+// `univ` = clé i18n de la correspondance universitaire, affichée discrètement à
+// côté du libellé de niveau (N1 ≈ L1, N2 ≈ L2, N3 ≈ L3, N4 ≈ L3/M1, N5 ≈ M1).
 
 const LEVEL_META = {
-  1: { label: "Niveau 1", sublabel: "Fondamentaux",      color: "#185FA5", bg: "#E6F1FB", border: "#C2D9F3", href: "niveau-1" },
-  2: { label: "Niveau 2", sublabel: "Approfondissement", color: "#BA7517", bg: "#FAEEDA", border: "#F6AD55", href: "niveau-2" },
-  3: { label: "Niveau 3", sublabel: "Maîtrise",          color: "#5C3D6E", bg: "#F0EBF8", border: "#C9B3DD", href: "niveau-3" },
-  4: { label: "Niveau 4", sublabel: "Harmonie élargie",  color: "#2D6B7A", bg: "#E3F3F7", border: "#A8D8E2", href: "niveau-4" },
-  5: { label: "Niveau 5", sublabel: "Parcours spécialisé", color: "#4A2C6E", bg: "#F0ECE4", border: "#C9B8E0", href: "niveau-5" },
+  1: { label: "Niveau 1", sublabel: "Fondamentaux",      color: "#185FA5", bg: "#E6F1FB", border: "#C2D9F3", href: "niveau-1", univ: "univ1" }, // ≈ Licence 1
+  2: { label: "Niveau 2", sublabel: "Approfondissement", color: "#BA7517", bg: "#FAEEDA", border: "#F6AD55", href: "niveau-2", univ: "univ2" }, // ≈ Licence 2
+  3: { label: "Niveau 3", sublabel: "Maîtrise",          color: "#5C3D6E", bg: "#F0EBF8", border: "#C9B3DD", href: "niveau-3", univ: "univ3" }, // ≈ Licence 3
+  4: { label: "Niveau 4", sublabel: "Harmonie élargie",  color: "#2D6B7A", bg: "#E3F3F7", border: "#A8D8E2", href: "niveau-4", univ: "univ4" }, // ≈ Licence 3 / Master 1
+  5: { label: "Niveau 5", sublabel: "Parcours spécialisé", color: "#4A2C6E", bg: "#F0ECE4", border: "#C9B8E0", href: "niveau-5", univ: "univ5" }, // ≈ Master 1
 } as const;
 
 // ─── Carte cours ─────────────────────────────────────────────────────────────
@@ -37,15 +39,20 @@ function CoursCard({ cours, locale, level, t, locked }: { cours: typeof COURS[0]
         transition: "box-shadow .15s",
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <span style={{
-            fontSize: 11, fontWeight: 700,
-            color: meta.color, background: meta.bg,
-            border: `0.5px solid ${meta.border}`,
-            padding: "2px 9px", borderRadius: 10,
-            fontFamily: "system-ui, sans-serif",
-          }}>
-            {meta.sublabel} · {cours.num}
-          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <span style={{
+              fontSize: 11, fontWeight: 700,
+              color: meta.color, background: meta.bg,
+              border: `0.5px solid ${meta.border}`,
+              padding: "2px 9px", borderRadius: 10,
+              fontFamily: "system-ui, sans-serif",
+            }}>
+              {meta.sublabel} · {cours.num}
+            </span>
+            <span style={{ fontSize: 10, color: "#aaa", fontFamily: "system-ui, sans-serif", whiteSpace: "nowrap" as const }}>
+              {t(meta.univ as Parameters<TFunc>[0])}
+            </span>
+          </div>
           {locked ? (
             <span style={{
               fontSize: 10, fontWeight: 600,
@@ -142,6 +149,7 @@ export default function CoursLevel({ level, plan = "free" }: Props) {
           }}>
             <span>✦</span>
             {meta.label} · {sublabel}
+            <span style={{ fontWeight: 500, opacity: 0.7, marginLeft: 2 }}>· {t(meta.univ as Parameters<TFunc>[0])}</span>
           </div>
           <h1 style={{ fontSize: "clamp(24px, 3.5vw, 36px)", fontWeight: 400, margin: "0 0 10px", letterSpacing: "-0.02em", color: "#1a1a1a" }}>
             {levelTitle}

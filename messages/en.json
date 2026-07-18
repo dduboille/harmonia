@@ -43,7 +43,7 @@
     "level2Title": "Jazz, Modes and Advanced Techniques",
     "level2Desc": "7 lessons to expand your harmonic language — modes, extensions, jazz, counterpoint. Step outside the classical framework and explore new colors.",
     "level3Title": "Composition, Analysis and Mastery",
-    "level3Desc": "13 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis.",
+    "level3Desc": "14 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis.",
     "sublabel4": "Extended Harmony",
     "level4Title": "Extended Harmony — Beyond Tonality",
     "level4Desc": "3 lessons to explore 20th-century musical languages — impressionism, polytonality, quartal harmony and advanced Coltrane-style reharmonization.",
@@ -132,7 +132,14 @@
     "d40": "Subject, imitation at the octave, countersubject, episodes and tonal plan — writing the invention in Bach's style.",
     "c41": "Stylistic Writing",
     "d41": "Pastiching the Classical, the Romantic and the early 20th century — the DEM’s stylistic-writing discipline.",
-    "locked": "Subscription required"
+    "locked": "Subscription required",
+    "c42": "Keyboard Harmonization and Figured Bass",
+    "d42": "Read and realize a Baroque continuo: figures, inversions, cadential six-four, suspensions and sequences — in four parts and at the keyboard.",
+    "univ1": "≈ Bachelor 1",
+    "univ2": "≈ Bachelor 2",
+    "univ3": "≈ Bachelor 3",
+    "univ4": "≈ Bachelor 3 / Master 1",
+    "univ5": "≈ Master 1"
   },
   "cours": {
     "level1": "Level 1",
@@ -4212,5 +4219,24 @@
       "?": "—"
     },
     "exporter": "Flesh out in the workshop"
+  },
+  "cours42": {
+    "badge": "Level 3 · Course 42",
+    "title": "Keyboard Harmonization & Figured Bass",
+    "subtitle": "Reading and realizing a Baroque continuo in four parts, then at the keyboard — figures, inversions, cadential six-four, suspensions and sequences. The first licence-level course.",
+    "sections": {
+      "intro": "Figured bass",
+      "code": "The code",
+      "realiser": "Realize in 4 parts",
+      "clavier": "At the keyboard",
+      "marches": "Sequences & formulas",
+      "applications": "Applications",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You read and realize a figured bass without hesitation.",
+      "veryGood": "Very good! A few figures still to consolidate (7th inversions, cadential six-four, suspensions).",
+      "keepGoing": "Keep going — review the table of figures and replay the examples before trying again."
+    }
   }
 }
