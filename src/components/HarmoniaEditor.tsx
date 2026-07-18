@@ -145,8 +145,24 @@ export default function HarmoniaEditor({
   }, [t, voiceLabel]);
 
   // State
+  // Les mesures sont amorcées depuis `initialNotes` quand il est fourni (basse
+  // donnée / voix internes pré-remplies) : chaque voix y porte un tableau indexé
+  // par mesure (même forme que GenerateurSATB : `{ bass: [note, note, …] }`).
+  // Sans amorce, toutes les cases partent vides. L'initialiseur ne tourne qu'au
+  // montage : pour ré-amorcer (ex. changement de mode), remonter l'éditeur via
+  // une `key` React côté parent. Les notes amorcées restent éditables — le
+  // barème corrige une basse fausse (wrong_bass / wrong_chord).
   const [measures, setMeasures] = useState<Measure[]>(() =>
-    measureLabels.map(() => emptyMeasure())
+    measureLabels.map((_, i) => {
+      const m = emptyMeasure();
+      if (initialNotes) {
+        for (const v of VOICES) {
+          const seed = initialNotes[v]?.[i];
+          if (seed && seed.name) m[v] = { name: seed.name, octave: seed.octave };
+        }
+      }
+      return m;
+    })
   );
   const [activeVoice,   setActiveVoice]   = useState<Voice>("bass");
   const [activeMeasure, setActiveMeasure] = useState(0);

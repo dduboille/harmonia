@@ -6,7 +6,7 @@ import { getKeyAccidentalHint } from "@/lib/key-accidentals";
 import IdentificationQuiz from "@/components/IdentificationQuiz";
 import { useProgress } from "@/hooks/useProgress";
 import type { IdentifyExercise, BuildExercise } from "@/types/exercise";
-import { validateSATB, noteExercice, type Measure } from "@/lib/satb-rules";
+import { validateSATB, noteExercice, type Measure, type NoteEntry, type Voice } from "@/lib/satb-rules";
 
 interface SATBData {
   type: "satb";
@@ -17,6 +17,8 @@ interface SATBData {
   measures: string[];
   keySignature: string;
   solution: Measure[];
+  /** Notes pré-remplies (basse donnée / voix internes), indexées par mesure. */
+  initialNotes?: Partial<Record<Voice, (NoteEntry | null)[]>>;
   hint?: string;
   devoirId?: string;
   plan?: string;
@@ -98,6 +100,7 @@ export default function ExerciceContent(props: ExerciceContentProps) {
           measures={props.measures}
           keySignature={props.keySignature}
           showKeySignature={showKS}
+          initialNotes={props.initialNotes}
           solution={props.solution}
           regles={props.regles}
           onComplete={(measures) => {

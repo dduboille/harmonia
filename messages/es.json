@@ -39,11 +39,11 @@
     "sublabel2": "Avanzado",
     "sublabel3": "Maestría",
     "level1Title": "Fundamentos de la armonía tonal",
-    "level1Desc": "9 lecciones para construir una base sólida — desde los orígenes de la escala hasta las modulaciones. La base indispensable de toda la armonía.",
+    "level1Desc": "10 lecciones para construir una base sólida — desde los orígenes de la escala hasta las modulaciones. La base indispensable de toda la armonía.",
     "level2Title": "Jazz, modos y técnicas avanzadas",
-    "level2Desc": "7 lecciones para ampliar el lenguaje armónico — modos, extensiones, jazz, contrapunto. Salir del marco clásico y explorar nuevos colores.",
+    "level2Desc": "12 lecciones para ampliar el lenguaje armónico — modos, extensiones, jazz, contrapunto. Salir del marco clásico y explorar nuevos colores.",
     "level3Title": "Composición, análisis y maestría",
-    "level3Desc": "7 lecciones para alcanzar la maestría — forma musical, orquestación, análisis de los grandes compositores y composición en sus estilos.",
+    "level3Desc": "11 lecciones para alcanzar la maestría — forma musical, orquestación, análisis de los grandes compositores y composición en sus estilos.",
     "c1": "La escala, los grados y los intervalos",
     "c2": "Los acordes",
     "c3": "Funciones tonales y conducción de voces",
@@ -112,8 +112,8 @@
     "d31": "Tonalidades superpuestas (Stravinski), acordes cuartales, el acorde So What — más allá de la tonalidad clásica.",
     "d32": "b9, #9, #11, b13 — tensiones disponibles, Giant Steps de Coltrane, el ciclo de terceras y sustituciones avanzadas.",
     "sublabel5": "Itinerario especializado",
-    "level5Title": "Cursus conservatorio — 5 especializaciones",
-    "level5Desc": "5 mini-itinerarios especializados en la cima del cursus — Fuga y Coral, Cine, Jazz avanzado, Impresionismo, Análisis avanzado. Elige tu especialización.",
+    "level5Title": "Cursus conservatorio — Especializaciones",
+    "level5Desc": "Itinerarios especializados en la cima del cursus — Fuga y Coral, Cine, Jazz avanzado, Impresionismo, Análisis avanzado, Escritura de estilo. Elige tu especialización.",
     "c33": "Escritura clásica: Fuga y coral",
     "c34": "Componer para la imagen: Armonía cinematográfica",
     "c35": "Jazz avanzado: Rearmonización e improvisación",
@@ -132,7 +132,14 @@
     "d40": "Sujeto, imitación a la octava, contrasujeto, episodios y plan tonal — la escritura de la invención al estilo de Bach.",
     "c41": "La escritura de estilo",
     "d41": "Pastichar el clásico, el romántico y los inicios del siglo XX — la disciplina de escritura de estilo del DEM.",
-    "locked": "Requiere suscripción"
+    "locked": "Requiere suscripción",
+    "c42": "Armonización al teclado y bajo cifrado",
+    "d42": "Leer y realizar un continuo barroco: cifrados, inversiones, 6/4 cadencial, retardos y marchas — a cuatro voces y al teclado.",
+    "univ1": "≈ Grado 1",
+    "univ2": "≈ Grado 2",
+    "univ3": "≈ Grado 3",
+    "univ4": "≈ Grado 3 / Máster 1",
+    "univ5": "≈ Máster 1"
   },
   "cours": {
     "level1": "Nivel 1",
@@ -4213,5 +4220,24 @@
       "?": "—"
     },
     "exporter": "Desarrollar en el taller"
+  },
+  "cours42": {
+    "badge": "Nivel 3 · Curso 42",
+    "title": "Armonización al teclado y bajo cifrado",
+    "subtitle": "Leer y realizar un continuo barroco a cuatro voces y luego al teclado — cifrados, inversiones, 6/4 cadencial, retardos y marchas. El primer curso de nivel grado.",
+    "sections": {
+      "intro": "El bajo cifrado",
+      "code": "El código",
+      "realiser": "Realizar a 4 voces",
+      "clavier": "Al teclado",
+      "marches": "Marchas y fórmulas",
+      "applications": "Aplicaciones",
+      "quiz": "Entrenamiento"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Descifras y realizas un bajo cifrado sin dudar.",
+      "veryGood": "¡Muy bien! Algunos cifrados por consolidar (inversiones de 7ª, 6/4 cadencial, retardos).",
+      "keepGoing": "Sigue así — repasa la tabla de cifrados y vuelve a escuchar los ejemplos antes de reintentar."
+    }
   }
 }

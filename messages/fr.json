@@ -39,11 +39,11 @@
     "sublabel2": "Approfondissement",
     "sublabel3": "Maîtrise",
     "level1Title": "Fondamentaux de l'harmonie tonale",
-    "level1Desc": "9 cours pour bâtir une fondation solide — des origines de la gamme aux modulations. La base indispensable de toute l'harmonie.",
+    "level1Desc": "10 cours pour bâtir une fondation solide — des origines de la gamme aux modulations. La base indispensable de toute l'harmonie.",
     "level2Title": "Jazz, modes et techniques avancées",
-    "level2Desc": "7 cours pour élargir le langage harmonique — modes, extensions, jazz, contrepoint. Sortir du cadre classique et explorer de nouvelles couleurs.",
+    "level2Desc": "12 cours pour élargir le langage harmonique — modes, extensions, jazz, contrepoint. Sortir du cadre classique et explorer de nouvelles couleurs.",
     "level3Title": "Composition, analyse et maîtrise",
-    "level3Desc": "13 cours pour atteindre la maîtrise — forme musicale, orchestration, analyse des grands compositeurs, composition dans leurs styles et analyse structurelle profonde.",
+    "level3Desc": "11 cours pour atteindre la maîtrise — forme musicale, orchestration, analyse des grands compositeurs, composition dans leurs styles et analyse structurelle profonde.",
     "sublabel4": "Harmonie élargie",
     "level4Title": "Harmonie élargie — au-delà de la tonalité",
     "level4Desc": "3 cours pour explorer les langages du XXe siècle — impressionnisme, polytonalité, harmonie quartale et reharmonisation avancée à la Coltrane.",
@@ -112,8 +112,8 @@
     "d31": "Superposition de tonalités (Stravinsky), accords construits en quartes, So What chord — au-delà de la tonalité classique.",
     "d32": "b9, #9, #11, b13 — tensions disponibles, Giant Steps de Coltrane, cycle de tierces et substitutions avancées.",
     "sublabel5": "Parcours spécialisé",
-    "level5Title": "Cursus conservatoire — Les 5 spécialisations",
-    "level5Desc": "5 parcours spécialisés au sommet du cursus — Fugue & choral, Harmonie cinématographique, Jazz avancé, Impressionnisme, Analyse avancée. Choisissez votre spécialisation.",
+    "level5Title": "Cursus conservatoire — Les spécialisations",
+    "level5Desc": "Les parcours spécialisés au sommet du cursus — Fugue & choral, Harmonie cinématographique, Jazz avancé, Impressionnisme, Analyse avancée, Écriture de style. Choisissez votre spécialisation.",
     "c33": "Écriture classique : Fugue et choral",
     "c34": "Composition pour l'image : Harmonie cinématographique",
     "c35": "Jazz avancé : Reharmonisation et improvisation",
@@ -132,7 +132,14 @@
     "d40": "Sujet, imitation à l'octave, contre-sujet, épisodes et plan tonal — l'écriture de l'invention dans le style de Bach.",
     "c41": "L'écriture de style",
     "d41": "Pasticher le classique, le romantique et le début du XXe — la discipline d'écriture stylistique du DEM.",
-    "locked": "Abonnement requis"
+    "locked": "Abonnement requis",
+    "c42": "Harmonisation au clavier et basse chiffrée",
+    "d42": "Lire et réaliser un continuo baroque : chiffrages, renversements, 6/4 cadentiel, retards et marches — à quatre voix et au clavier.",
+    "univ1": "≈ Licence 1",
+    "univ2": "≈ Licence 2",
+    "univ3": "≈ Licence 3",
+    "univ4": "≈ Licence 3 / Master 1",
+    "univ5": "≈ Master 1"
   },
   "cours": {
     "level1": "Niveau 1",
@@ -4212,5 +4219,24 @@
       "?": "—"
     },
     "exporter": "Étoffer dans l'atelier"
+  },
+  "cours42": {
+    "badge": "Niveau 3 · Cours 42",
+    "title": "Harmonisation au clavier & basse chiffrée",
+    "subtitle": "Lire et réaliser un continuo baroque à quatre voix, puis au clavier — chiffrages, renversements, 6/4 cadentiel, retards et marches. Le premier cours de niveau licence.",
+    "sections": {
+      "intro": "La basse chiffrée",
+      "code": "Le code",
+      "realiser": "Réaliser à 4 voix",
+      "clavier": "Au clavier",
+      "marches": "Marches & formules",
+      "applications": "Applications",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Tu déchiffres et réalises une basse chiffrée sans hésiter.",
+      "veryGood": "Très bien ! Quelques chiffrages à consolider (renversements de 7e, 6/4 cadentiel, retards).",
+      "keepGoing": "Continue — relis la table des chiffrages et réécoute les exemples avant de recommencer."
+    }
   }
 }

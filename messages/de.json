@@ -39,11 +39,11 @@
     "sublabel2": "Fortgeschritten",
     "sublabel3": "Meisterschaft",
     "level1Title": "Grundlagen der Tonalharmonik",
-    "level1Desc": "9 Kurse für ein solides Fundament — von den Ursprüngen der Tonleiter bis zu Modulationen. Die unverzichtbare Basis aller Harmonie.",
+    "level1Desc": "10 Kurse für ein solides Fundament — von den Ursprüngen der Tonleiter bis zu Modulationen. Die unverzichtbare Basis aller Harmonie.",
     "level2Title": "Jazz, Modi und fortgeschrittene Techniken",
-    "level2Desc": "7 Kurse zur Erweiterung der harmonischen Sprache — Modi, Erweiterungen, Jazz, Kontrapunkt. Den klassischen Rahmen verlassen und neue Farben entdecken.",
+    "level2Desc": "12 Kurse zur Erweiterung der harmonischen Sprache — Modi, Erweiterungen, Jazz, Kontrapunkt. Den klassischen Rahmen verlassen und neue Farben entdecken.",
     "level3Title": "Komposition, Analyse und Meisterschaft",
-    "level3Desc": "7 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
+    "level3Desc": "11 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
     "c1": "Die Tonleiter, die Stufen und die Intervalle",
     "c2": "Die Akkorde",
     "c3": "Tonale Funktionen und Stimmführung",
@@ -112,8 +112,8 @@
     "d31": "Überlagerte Tonarten (Strawinsky), Quartakkorde, der So-What-Akkord — jenseits der klassischen Tonalität.",
     "d32": "b9, #9, #11, b13 — verfügbare Spannungen, Coltranes Giant Steps, der Terzkreis und erweiterte Substitutionen.",
     "sublabel5": "Spezialisierungskurs",
-    "level5Title": "Konservatorium-Cursus — 5 Spezialisierungen",
-    "level5Desc": "5 spezialisierte Mini-Cursus an der Spitze des Cursus — Fuge & Choral, Filmmusik, Advanced Jazz, Impressionismus, Erweiterte Analyse. Wählen Sie Ihre Spezialisierung.",
+    "level5Title": "Konservatorium-Cursus — Spezialisierungen",
+    "level5Desc": "Spezialisierte Mini-Cursus an der Spitze des Cursus — Fuge & Choral, Filmmusik, Advanced Jazz, Impressionismus, Erweiterte Analyse, Stilkomposition. Wählen Sie Ihre Spezialisierung.",
     "c33": "Klassisches Schreiben: Fuge und Choral",
     "c34": "Komponieren für das Bild: Filmharmonik",
     "c35": "Advanced Jazz: Reharmonisation und Improvisation",
@@ -132,7 +132,14 @@
     "d40": "Thema, Imitation in der Oktave, Kontrasubjekt, Episoden und tonaler Plan — das Schreiben der Invention im Stil Bachs.",
     "c41": "Die Stilkomposition",
     "d41": "Den klassischen, den romantischen und den frühen 20.-Jahrhundert-Stil nachahmen — die Stilkompositions-Disziplin des DEM.",
-    "locked": "Abo erforderlich"
+    "locked": "Abo erforderlich",
+    "c42": "Klavierharmonisierung und bezifferter Bass",
+    "d42": "Einen barocken Continuo lesen und aussetzen: Bezifferung, Umkehrungen, Kadenzquartsextakkord, Vorhalte und Sequenzen — vierstimmig und am Tasteninstrument.",
+    "univ1": "≈ Bachelor 1",
+    "univ2": "≈ Bachelor 2",
+    "univ3": "≈ Bachelor 3",
+    "univ4": "≈ Bachelor 3 / Master 1",
+    "univ5": "≈ Master 1"
   },
   "cours": {
     "level1": "Niveau 1",
@@ -4213,5 +4220,24 @@
       "?": "—"
     },
     "exporter": "In der Werkstatt ausarbeiten"
+  },
+  "cours42": {
+    "badge": "Stufe 3 · Kurs 42",
+    "title": "Klavierharmonisierung & bezifferter Bass",
+    "subtitle": "Einen barocken Continuo vierstimmig und am Tasteninstrument lesen und aussetzen — Bezifferung, Umkehrungen, Kadenzquartsextakkord, Vorhalte und Sequenzen. Der erste Kurs auf Bachelor-Niveau.",
+    "sections": {
+      "intro": "Der bezifferte Bass",
+      "code": "Der Code",
+      "realiser": "Vierstimmig aussetzen",
+      "clavier": "Am Tasteninstrument",
+      "marches": "Sequenzen & Formeln",
+      "applications": "Anwendungen",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt! Du liest und setzt einen bezifferten Bass ohne Zögern aus.",
+      "veryGood": "Sehr gut! Einige Bezifferungen noch zu festigen (Septumkehrungen, Kadenzquartsextakkord, Vorhalte).",
+      "keepGoing": "Weiter so — sieh dir die Bezifferungstabelle noch einmal an und höre die Beispiele erneut."
+    }
   }
 }

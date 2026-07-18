@@ -4,14 +4,19 @@ import React from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { COURS } from "@/lib/catalogue";
 
+// Le nombre de cours par niveau est DÉRIVÉ du catalogue (source unique) : ajouter
+// un cours met à jour le compte sans retoucher cette liste.
 const LEVELS = [
-  { num: 1 as const, color: "#185FA5", bg: "#E6F1FB", border: "#C2D9F3", count: 9, href: "niveau-1" },
-  { num: 2 as const, color: "#BA7517", bg: "#FAEEDA", border: "#F6AD55", count: 7, href: "niveau-2" },
-  { num: 3 as const, color: "#5C3D6E", bg: "#F0EBF8", border: "#C9B3DD", count: 13, href: "niveau-3" },
-  { num: 4 as const, color: "#2D6B7A", bg: "#E3F3F7", border: "#A8D8E2", count: 3, href: "niveau-4" },
-  { num: 5 as const, color: "#4A2C6E", bg: "#F0ECE4", border: "#C9B8E0", count: 5, href: "niveau-5" },
+  { num: 1 as const, color: "#185FA5", bg: "#E6F1FB", border: "#C2D9F3", href: "niveau-1" },
+  { num: 2 as const, color: "#BA7517", bg: "#FAEEDA", border: "#F6AD55", href: "niveau-2" },
+  { num: 3 as const, color: "#5C3D6E", bg: "#F0EBF8", border: "#C9B3DD", href: "niveau-3" },
+  { num: 4 as const, color: "#2D6B7A", bg: "#E3F3F7", border: "#A8D8E2", href: "niveau-4" },
+  { num: 5 as const, color: "#4A2C6E", bg: "#F0ECE4", border: "#C9B8E0", href: "niveau-5" },
 ];
+
+const coursParNiveau = (n: number) => COURS.filter(c => c.level === n).length;
 
 export default function CoursHubPage() {
   const params = useParams();
@@ -95,7 +100,7 @@ export default function CoursHubPage() {
                       {t(`level${lvl.num}sub`)}
                     </span>
                     <span style={{ fontSize: 11, color: "#767676", fontFamily: "system-ui" }}>
-                      {t(`level${lvl.num}range`)} · {lvl.count} {t("lessons")}
+                      {t(`level${lvl.num}range`)} · {coursParNiveau(lvl.num)} {t("lessons")}
                     </span>
                   </div>
                   <p style={{
