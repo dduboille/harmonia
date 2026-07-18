@@ -194,7 +194,7 @@ Même réserve d'intervalles — un exemplaire de chacune des six classes, d'où
 | 3-4 | [0,1,5] | <100110> | trichorde « seconde + quarte » |
 | 3-5 | [0,1,6] | <100011> | **trichorde viennois** (demi-ton + triton), omniprésent chez Schoenberg/Webern |
 | 3-11 | [0,3,7] | <001110> | triade majeure/mineure |
-| 3-12 | [0,4,8] | <000300> | quinte augmentée |
+| 3-12 | [0,4,8] | <000300> | triade augmentée |
 | 4-16 | [0,1,5,7] | <110121> | notre exemple B (Sol–La–Do♯–Ré) |
 | 4-21 | [0,2,4,6] | <030201> | tétracorde par tons |
 | 4-28 | [0,3,6,9] | <004002> | septième diminuée |
