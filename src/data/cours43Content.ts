@@ -235,7 +235,7 @@ const fr: Cours43Locale = {
   fleuriP:
     "En contrepoint <strong>fleuri</strong> (proche de la 5e espèce, cours 13), on subdivise le contrepoint en valeurs plus brèves et l'on introduit les dissonances réglées de la section suivante. Fragment fleuri sur la première note du cantus : contre <strong>Ré4</strong> tenu, le contrepoint chante <strong>Ré5 – Do5 – Si4 – La4</strong> (quatre minimes).",
   fleuriAnalyse:
-    "Les <strong>Do5</strong> et <strong>Si4</strong> sont des <strong>notes de passage</strong> conjointes sur temps faibles, reliant Ré5 (8ve) à La4 (5te).",
+    "Seul le <strong>Do5</strong> (7e) est dissonant : note de passage conjointe sur temps faible, reliant Ré5 (8ve) à Si4 (6te). Le <strong>Si4</strong> (6te) et le <strong>La4</strong> (5te) sont consonants.",
 
   dissonanceH2: "La dissonance : traitement strict",
   dissonanceP1:
@@ -299,7 +299,7 @@ const fr: Cours43Locale = {
     {
       titre: "Exercice 2 — Contrepoint fleuri avec cadence (mode dorien)",
       consigne: "Cantus firmus (3 notes de fin) : Fa4 – Mi4 – Ré4. Au-dessus, un fleuri qui amène la clausule.",
-      controle: "Corrigé (voix supérieure) : sur Fa4 → La4 – Do5 (3ce puis 5te, consonants) ; sur Mi4 → Ré5 puis Do♯5 (Ré5 amené comme passage/retard, résolvant sur la sensible) ; sur Ré4 → Ré5. Enchaînement cadentiel : cantus Mi4 → Ré4 contre superius Do♯5 → Ré5 = 6M → 8ve (clausule dorienne, sensible par ficta).",
+      controle: "Corrigé (voix supérieure) : sur Fa4 → La4 (3ce) puis Ré5 (6M, préparation sur temps faible) ; le Ré5 est tenu (lié) par-dessus la barre et devient une 7e dissonante sur Mi4 au temps fort (percussion), puis résout Ré5 → Do♯5 (6M, résolution conjointe descendante, sensible par ficta) ; sur Ré4 → Ré5 (8ve). Clausule dorienne : superius Do♯5 → Ré5 (demi-ton montant) contre cantus Mi4 → Ré4 (ton descendant) = 6M → 8ve. C'est le retard 7-6 préparé et lié.",
     },
     {
       titre: "Exercice 3 — Réaliser une cadence modale (mode mixolydien, finale Sol)",
@@ -482,7 +482,7 @@ const en: Cours43Locale = {
   fleuriP:
     "In <strong>florid</strong> counterpoint (close to the 5th species, course 13), the counterpoint is subdivided into shorter values and the regulated dissonances of the next section are introduced. A florid fragment over the first cantus note: against a held <strong>Ré4</strong>, the counterpoint sings <strong>Ré5 – Do5 – Si4 – La4</strong> (four minims).",
   fleuriAnalyse:
-    "<strong>Do5</strong> and <strong>Si4</strong> are stepwise <strong>passing notes</strong> on weak beats, linking Ré5 (8ve) to La4 (5th).",
+    "Only <strong>Do5</strong> (7th) is dissonant: a stepwise passing note on a weak beat, linking Ré5 (8ve) to Si4 (6th). <strong>Si4</strong> (6th) and <strong>La4</strong> (5th) are consonant.",
 
   dissonanceH2: "Dissonance: strict treatment",
   dissonanceP1:
@@ -546,7 +546,7 @@ const en: Cours43Locale = {
     {
       titre: "Exercise 2 — Florid counterpoint with cadence (Dorian mode)",
       consigne: "Cantus firmus (last 3 notes): Fa4 – Mi4 – Ré4. Above it, a florid line that brings in the clausula.",
-      controle: "Model (upper voice): over Fa4 → La4 – Do5 (3rd then 5th, consonant); over Mi4 → Ré5 then Do♯5 (Ré5 introduced as a passing/suspended note, resolving to the leading tone); over Ré4 → Ré5. Cadential motion: cantus Mi4 → Ré4 against superius Do♯5 → Ré5 = 6M → 8ve (Dorian clausula, leading tone by ficta).",
+      controle: "Model (upper voice): over Fa4 → La4 (3rd) then Ré5 (M6, preparation on a weak beat); Ré5 is held (tied) across the barline and becomes a dissonant 7th over Mi4 on the strong beat (percussion), then resolves Ré5 → Do♯5 (M6, downward stepwise resolution, ficta leading tone); over Ré4 → Ré5 (8ve). Dorian clausula: superius Do♯5 → Ré5 (rising semitone) against cantus Mi4 → Ré4 (descending tone) = 6M → 8ve. This is the prepared and tied 7-6 suspension.",
     },
     {
       titre: "Exercise 3 — Realizing a modal cadence (Mixolydian mode, final Sol)",
@@ -729,7 +729,7 @@ const de: Cours43Locale = {
   fleuriP:
     "Im <strong>floriden</strong> Kontrapunkt (nahe der 5. Gattung, Kurs 13) unterteilt man den Kontrapunkt in kürzere Werte und führt die geregelten Dissonanzen des nächsten Abschnitts ein. Ein florides Fragment über dem ersten Cantus-Ton: gegen ein gehaltenes <strong>Ré4</strong> singt der Kontrapunkt <strong>Ré5 – Do5 – Si4 – La4</strong> (vier Minimen).",
   fleuriAnalyse:
-    "<strong>Do5</strong> und <strong>Si4</strong> sind schrittweise <strong>Durchgangstöne</strong> auf unbetonten Zeiten, die Ré5 (8.) mit La4 (5.) verbinden.",
+    "Nur das <strong>Do5</strong> (7.) ist dissonant: ein schrittweiser Durchgangston auf unbetonter Zeit, der Ré5 (8.) mit Si4 (6.) verbindet. <strong>Si4</strong> (6.) und <strong>La4</strong> (5.) sind konsonant.",
 
   dissonanceH2: "Die Dissonanz: strenge Behandlung",
   dissonanceP1:
@@ -793,7 +793,7 @@ const de: Cours43Locale = {
     {
       titre: "Übung 2 — Florider Kontrapunkt mit Kadenz (dorischer Modus)",
       consigne: "Cantus firmus (letzte 3 Töne): Fa4 – Mi4 – Ré4. Darüber ein florider Satz, der die Klausel herbeiführt.",
-      controle: "Lösung (Oberstimme): über Fa4 → La4 – Do5 (3. dann 5., konsonant); über Mi4 → Ré5 dann Do♯5 (Ré5 als Durchgang/Vorhalt eingeführt, sich zum Leitton auflösend); über Ré4 → Ré5. Kadenzwendung: Cantus Mi4 → Ré4 gegen Superius Do♯5 → Ré5 = gr. 6 → 8. (dorische Klausel, Leitton durch ficta).",
+      controle: "Lösung (Oberstimme): über Fa4 → La4 (3.) dann Ré5 (gr. 6, Vorbereitung auf unbetonter Zeit); das Ré5 wird über die Taktlinie hinweg gehalten (gebunden) und wird zur dissonanten 7. über Mi4 auf der betonten Zeit (Aufschlag), löst sich dann Ré5 → Do♯5 (gr. 6, abwärts schreitende Auflösung, ficta-Leitton); über Ré4 → Ré5 (8.). Dorische Klausel: Superius Do♯5 → Ré5 (aufsteigender Halbton) gegen Cantus Mi4 → Ré4 (absteigender Ton) = gr. 6 → 8. Das ist der vorbereitete und gebundene 7-6-Vorhalt.",
     },
     {
       titre: "Übung 3 — Eine modale Kadenz ausführen (mixolydischer Modus, Finalis Sol)",
@@ -976,7 +976,7 @@ const es: Cours43Locale = {
   fleuriP:
     "En el contrapunto <strong>florido</strong> (cercano a la 5.ª especie, curso 13), se subdivide el contrapunto en valores más breves y se introducen las disonancias regladas de la sección siguiente. Fragmento florido sobre la primera nota del cantus: contra un <strong>Ré4</strong> sostenido, el contrapunto canta <strong>Ré5 – Do5 – Si4 – La4</strong> (cuatro mínimas).",
   fleuriAnalyse:
-    "<strong>Do5</strong> y <strong>Si4</strong> son <strong>notas de paso</strong> conjuntas en tiempos débiles, que enlazan Ré5 (8.ª) con La4 (5.ª).",
+    "Solo el <strong>Do5</strong> (7.ª) es disonante: nota de paso conjunta en tiempo débil, que enlaza Ré5 (8.ª) con Si4 (6.ª). El <strong>Si4</strong> (6.ª) y el <strong>La4</strong> (5.ª) son consonantes.",
 
   dissonanceH2: "La disonancia: tratamiento estricto",
   dissonanceP1:
@@ -1040,7 +1040,7 @@ const es: Cours43Locale = {
     {
       titre: "Ejercicio 2 — Contrapunto florido con cadencia (modo dórico)",
       consigne: "Cantus firmus (3 notas finales): Fa4 – Mi4 – Ré4. Encima, un florido que trae la cláusula.",
-      controle: "Solución (voz superior): sobre Fa4 → La4 – Do5 (3.ª y luego 5.ª, consonantes); sobre Mi4 → Ré5 y luego Do♯5 (Ré5 introducido como paso/retardo, resolviendo en la sensible); sobre Ré4 → Ré5. Enlace cadencial: cantus Mi4 → Ré4 contra superius Do♯5 → Ré5 = 6.ª M → 8.ª (cláusula dórica, sensible por ficta).",
+      controle: "Solución (voz superior): sobre Fa4 → La4 (3.ª) y luego Ré5 (6.ª M, preparación en tiempo débil); el Ré5 se mantiene (ligado) a través de la barra y se vuelve una 7.ª disonante sobre Mi4 en tiempo fuerte (percusión), y luego resuelve Ré5 → Do♯5 (6.ª M, resolución conjunta descendente, sensible por ficta); sobre Ré4 → Ré5 (8.ª). Cláusula dórica: superius Do♯5 → Ré5 (semitono ascendente) contra cantus Mi4 → Ré4 (tono descendente) = 6.ª M → 8.ª. Es el retardo 7-6 preparado y ligado.",
     },
     {
       titre: "Ejercicio 3 — Realizar una cadencia modal (modo mixolidio, finalis Sol)",
@@ -1223,7 +1223,7 @@ const it: Cours43Locale = {
   fleuriP:
     "Nel contrappunto <strong>fiorito</strong> (vicino alla 5ª specie, corso 13), si suddivide il contrappunto in valori più brevi e si introducono le dissonanze regolate della sezione seguente. Frammento fiorito sulla prima nota del cantus: contro un <strong>Ré4</strong> tenuto, il contrappunto canta <strong>Ré5 – Do5 – Si4 – La4</strong> (quattro minime).",
   fleuriAnalyse:
-    "<strong>Do5</strong> e <strong>Si4</strong> sono <strong>note di passaggio</strong> congiunte su tempi deboli, che collegano Ré5 (8ª) a La4 (5ª).",
+    "Solo il <strong>Do5</strong> (7ª) è dissonante: nota di passaggio congiunta su tempo debole, che collega Ré5 (8ª) a Si4 (6ª). Il <strong>Si4</strong> (6ª) e il <strong>La4</strong> (5ª) sono consonanti.",
 
   dissonanceH2: "La dissonanza: trattamento rigoroso",
   dissonanceP1:
@@ -1287,7 +1287,7 @@ const it: Cours43Locale = {
     {
       titre: "Esercizio 2 — Contrappunto fiorito con cadenza (modo dorico)",
       consigne: "Cantus firmus (3 note finali): Fa4 – Mi4 – Ré4. Sopra, un fiorito che porta la clausola.",
-      controle: "Soluzione (voce superiore): su Fa4 → La4 – Do5 (3ª poi 5ª, consonanti); su Mi4 → Ré5 poi Do♯5 (Ré5 introdotto come passaggio/ritardo, che risolve sulla sensibile); su Ré4 → Ré5. Concatenazione cadenzale: cantus Mi4 → Ré4 contro superius Do♯5 → Ré5 = 6ª M → 8ª (clausola dorica, sensibile per ficta).",
+      controle: "Soluzione (voce superiore): su Fa4 → La4 (3ª) poi Ré5 (6ª M, preparazione su tempo debole); il Ré5 è tenuto (legato) oltre la stanghetta e diventa una 7ª dissonante su Mi4 sul tempo forte (percussione), poi risolve Ré5 → Do♯5 (6ª M, risoluzione congiunta discendente, sensibile per ficta); su Ré4 → Ré5 (8ª). Clausola dorica: superius Do♯5 → Ré5 (semitono ascendente) contro cantus Mi4 → Ré4 (tono discendente) = 6ª M → 8ª. È il ritardo 7-6 preparato e legato.",
     },
     {
       titre: "Esercizio 3 — Realizzare una cadenza modale (modo misolidio, finalis Sol)",
@@ -1470,7 +1470,7 @@ const pt: Cours43Locale = {
   fleuriP:
     "No contraponto <strong>florido</strong> (próximo da 5.ª espécie, curso 13), subdivide-se o contraponto em valores mais breves e introduzem-se as dissonâncias regradas da secção seguinte. Fragmento florido sobre a primeira nota do cantus: contra um <strong>Ré4</strong> sustentado, o contraponto canta <strong>Ré5 – Do5 – Si4 – La4</strong> (quatro mínimas).",
   fleuriAnalyse:
-    "<strong>Do5</strong> e <strong>Si4</strong> são <strong>notas de passagem</strong> conjuntas em tempos fracos, que ligam Ré5 (8.ª) a La4 (5.ª).",
+    "Apenas o <strong>Do5</strong> (7.ª) é dissonante: nota de passagem conjunta em tempo fraco, que liga Ré5 (8.ª) a Si4 (6.ª). O <strong>Si4</strong> (6.ª) e o <strong>La4</strong> (5.ª) são consonantes.",
 
   dissonanceH2: "A dissonância: tratamento estrito",
   dissonanceP1:
@@ -1534,7 +1534,7 @@ const pt: Cours43Locale = {
     {
       titre: "Exercício 2 — Contraponto florido com cadência (modo dórico)",
       consigne: "Cantus firmus (3 notas finais): Fa4 – Mi4 – Ré4. Por cima, um florido que traz a cláusula.",
-      controle: "Solução (voz superior): sobre Fa4 → La4 – Do5 (3.ª depois 5.ª, consonantes); sobre Mi4 → Ré5 depois Do♯5 (Ré5 introduzido como passagem/retardo, resolvendo na sensível); sobre Ré4 → Ré5. Encadeamento cadencial: cantus Mi4 → Ré4 contra superius Do♯5 → Ré5 = 6.ª M → 8.ª (cláusula dórica, sensível por ficta).",
+      controle: "Solução (voz superior): sobre Fa4 → La4 (3.ª) e depois Ré5 (6.ª M, preparação em tempo fraco); o Ré5 é sustentado (ligado) através da barra e torna-se uma 7.ª dissonante sobre Mi4 no tempo forte (percussão), e depois resolve Ré5 → Do♯5 (6.ª M, resolução conjunta descendente, sensível por ficta); sobre Ré4 → Ré5 (8.ª). Cláusula dórica: superius Do♯5 → Ré5 (semitom ascendente) contra cantus Mi4 → Ré4 (tom descendente) = 6.ª M → 8.ª. É o retardo 7-6 preparado e ligado.",
     },
     {
       titre: "Exercício 3 — Realizar uma cadência modal (modo mixolídio, finalis Sol)",

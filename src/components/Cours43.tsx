@@ -43,6 +43,7 @@ interface CpVoixData { clef: "sol" | "fa"; notes: Tok[] }
 const w = (t: string): Tok => ({ t, d: "whole" });
 const wl = (t: string): Tok => ({ t, d: "whole", lie: true }); // ronde liée à la suivante
 const h = (t: string): Tok => ({ t, d: "half" });
+const hl = (t: string): Tok => ({ t, d: "half", lie: true }); // blanche liée à la suivante
 
 // Section 3 — cantus modèle (mode dorien), une seule voix, 11 semi-brèves.
 const CANTUS_MODELE: CpVoixData[] = [
@@ -91,9 +92,11 @@ const EX_RETARD43: CpVoixData[] = [
   { clef: "sol", notes: [w("Do4"), w("Ré4")] },
 ];
 
-// Section 7 — exercice 2 : fleuri cadentiel sur Fa4 – Mi4 – Ré4 (clausule dorienne).
+// Section 7 — exercice 2 : fleuri cadentiel sur Fa4 – Mi4 – Ré4 avec retard 7-6
+// préparé et lié. Ré5 préparé (6M sur Fa4) au temps faible, tenu par-dessus la
+// barre → 7e dissonante sur Mi4 au temps fort → résout Do♯5 (sensible) → Ré5.
 const EX_CP_EX2: CpVoixData[] = [
-  { clef: "sol", notes: [h("La4"), h("Do5"), h("Ré5"), h("Do#5"), w("Ré5")] },
+  { clef: "sol", notes: [h("La4"), hl("Ré5"), h("Ré5"), h("Do#5"), w("Ré5")] },
   { clef: "sol", notes: [w("Fa4"), w("Mi4"), w("Ré4")] },
 ];
 
