@@ -137,6 +137,8 @@
     "d42": "Lire et réaliser un continuo baroque : chiffrages, renversements, 6/4 cadentiel, retards et marches — à quatre voix et au clavier.",
     "c43": "Contrepoint modal de la Renaissance",
     "d43": "Le style Palestrina (prima pratica) : modes ecclésiastiques, ligne mélodique, contrepoint à 2 voix, dissonance stricte (retards, nota cambiata) et cadences modales.",
+    "c44": "Analyse post-tonale : la set theory",
+    "d44": "Classes de hauteurs, forme normale et forme première, vecteur d'intervalles, nombres de Forte, relation Z — analyser Schoenberg et Webern, jusqu'à la série dodécaphonique.",
     "univ1": "≈ Licence 1",
     "univ2": "≈ Licence 2",
     "univ3": "≈ Licence 3",
@@ -4258,6 +4260,25 @@
       "perfect": "Parfait ! Tu maîtrises le contrepoint modal de Palestrina — lignes, dissonances réglées et cadences.",
       "veryGood": "Très bien ! Quelques points à consolider (traitement de la dissonance, clausules modales).",
       "keepGoing": "Continue — relis les règles mélodiques et le traitement des retards, puis réécoute les exemples."
+    }
+  },
+  "cours44": {
+    "badge": "Niveau 5 · Cours 44",
+    "title": "Analyse post-tonale : la set theory",
+    "subtitle": "Classes de hauteurs et d'intervalles, transposition Tn et inversion TnI, forme normale, forme première, vecteur d'intervalles et nombres de Forte — jusqu'à la série de Webern. Prend le relais des cours 27 et 37 hors tonalité.",
+    "sections": {
+      "intro": "Pourquoi ?",
+      "pcs": "Classes de hauteurs",
+      "ensembles": "Les ensembles",
+      "formes": "Formes normales",
+      "vecteur": "Vecteur & Forte",
+      "analyse": "Analyse & série",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Formes normales, vecteurs et relation Z n'ont plus de secret — l'analyse post-tonale est à toi.",
+      "veryGood": "Très bien ! Quelques calculs à consolider (rotations, inversion avant la forme première).",
+      "keepGoing": "Continue — reprends l'algorithme de la forme normale pas à pas et vérifie chaque étape avec le calculateur."
     }
   }
 }

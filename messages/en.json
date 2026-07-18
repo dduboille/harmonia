@@ -137,6 +137,8 @@
     "d42": "Read and realize a Baroque continuo: figures, inversions, cadential six-four, suspensions and sequences — in four parts and at the keyboard.",
     "c43": "Renaissance Modal Counterpoint",
     "d43": "The Palestrina style (prima pratica): church modes, the melodic line, two-voice counterpoint, strict dissonance (suspensions, nota cambiata) and modal cadences.",
+    "c44": "Post-Tonal Analysis: Set Theory",
+    "d44": "Pitch classes, normal and prime form, interval-class vector, Forte numbers, Z-relation — analysing Schoenberg and Webern, up to the twelve-tone row.",
     "univ1": "≈ Bachelor 1",
     "univ2": "≈ Bachelor 2",
     "univ3": "≈ Bachelor 3",
@@ -4258,6 +4260,25 @@
       "perfect": "Perfect! You have mastered Palestrina's modal counterpoint — lines, regulated dissonance and cadences.",
       "veryGood": "Very good! A few points still to consolidate (dissonance treatment, modal clausulae).",
       "keepGoing": "Keep going — review the melodic rules and the handling of suspensions, then replay the examples."
+    }
+  },
+  "cours44": {
+    "badge": "Level 5 · Course 44",
+    "title": "Post-Tonal Analysis: Set Theory",
+    "subtitle": "Pitch classes and interval classes, transposition Tn and inversion TnI, normal form, prime form, interval-class vector and Forte numbers — up to Webern's row. Takes over from courses 27 and 37 outside tonality.",
+    "sections": {
+      "intro": "Why?",
+      "pcs": "Pitch classes",
+      "ensembles": "Pc sets",
+      "formes": "Normal forms",
+      "vecteur": "Vector & Forte",
+      "analyse": "Analysis & row",
+      "quiz": "Training"
+    },
+    "quiz": {
+      "perfect": "Perfect! Normal forms, vectors and the Z-relation hold no more secrets — post-tonal analysis is yours.",
+      "veryGood": "Very good! A few calculations to consolidate (rotations, inversion before the prime form).",
+      "keepGoing": "Keep going — rerun the normal-form algorithm step by step and check each stage with the calculator."
     }
   }
 }
