@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modi e tecniche avanzate",
     "level2Desc": "12 lezioni per ampliare il linguaggio armonico — modi, estensioni, jazz, contrappunto. Uscire dal quadro classico ed esplorare nuovi colori.",
     "level3Title": "Composizione, analisi e maestria",
-    "level3Desc": "11 lezioni per raggiungere la maestria — forma musicale, orchestrazione, analisi dei grandi compositori e composizione nei loro stili.",
+    "level3Desc": "12 lezioni per raggiungere la maestria — forma musicale, orchestrazione, analisi dei grandi compositori e composizione nei loro stili.",
     "c1": "La scala, i gradi e gli intervalli",
     "c2": "Gli accordi",
     "c3": "Funzioni tonali e conduzione delle voci",
@@ -135,6 +135,8 @@
     "locked": "Richiede abbonamento",
     "c42": "Armonizzazione alla tastiera e basso numerato",
     "d42": "Leggere e realizzare un continuo barocco: numeriche, rivolti, quartasesta cadenzale, ritardi e marce — a quattro voci e alla tastiera.",
+    "c43": "Contrappunto modale del Rinascimento",
+    "d43": "Lo stile Palestrina (prima pratica): modi ecclesiastici, linea melodica, contrappunto a 2 voci, dissonanza rigorosa (ritardi, nota cambiata) e cadenze modali.",
     "univ1": "≈ Laurea 1",
     "univ2": "≈ Laurea 2",
     "univ3": "≈ Laurea 3",
@@ -4238,6 +4240,25 @@
       "perfect": "Perfetto! Leggi e realizzi un basso numerato senza esitazioni.",
       "veryGood": "Molto bene! Alcune numeriche da consolidare (rivolti di 7ª, quartasesta cadenzale, ritardi).",
       "keepGoing": "Continua — rileggi la tabella delle numeriche e riascolta gli esempi prima di riprovare."
+    }
+  },
+  "cours43": {
+    "badge": "Livello 3 · Corso 43",
+    "title": "Contrappunto modale del Rinascimento",
+    "subtitle": "Lo stile Palestrina (prima pratica): modi ecclesiastici, linea melodica, contrappunto a 2 voci consonante, dissonanza rigorosa (ritardi, nota cambiata) e cadenze modali a 3-4 voci. Prosegue i corsi 13 e 10.",
+    "sections": {
+      "intro": "Stile Palestrina",
+      "modes": "I modi",
+      "melodie": "La melodia",
+      "contrepoint": "2 voci",
+      "dissonance": "La dissonanza",
+      "cadences": "Cadenze",
+      "quiz": "Allenamento"
+    },
+    "quiz": {
+      "perfect": "Perfetto! Padroneggi il contrappunto modale di Palestrina — linee, dissonanze regolate e cadenze.",
+      "veryGood": "Molto bene! Alcuni punti da consolidare (trattamento della dissonanza, clausole modali).",
+      "keepGoing": "Continua — rileggi le regole melodiche e il trattamento dei ritardi, poi riascolta gli esempi."
     }
   }
 }

@@ -43,7 +43,7 @@
     "level2Title": "Jazz, Modes and Advanced Techniques",
     "level2Desc": "12 lessons to expand your harmonic language — modes, extensions, jazz, counterpoint. Step outside the classical framework and explore new colors.",
     "level3Title": "Composition, Analysis and Mastery",
-    "level3Desc": "11 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis.",
+    "level3Desc": "12 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis.",
     "sublabel4": "Extended Harmony",
     "level4Title": "Extended Harmony — Beyond Tonality",
     "level4Desc": "3 lessons to explore 20th-century musical languages — impressionism, polytonality, quartal harmony and advanced Coltrane-style reharmonization.",
@@ -135,6 +135,8 @@
     "locked": "Subscription required",
     "c42": "Keyboard Harmonization and Figured Bass",
     "d42": "Read and realize a Baroque continuo: figures, inversions, cadential six-four, suspensions and sequences — in four parts and at the keyboard.",
+    "c43": "Renaissance Modal Counterpoint",
+    "d43": "The Palestrina style (prima pratica): church modes, the melodic line, two-voice counterpoint, strict dissonance (suspensions, nota cambiata) and modal cadences.",
     "univ1": "≈ Bachelor 1",
     "univ2": "≈ Bachelor 2",
     "univ3": "≈ Bachelor 3",
@@ -4237,6 +4239,25 @@
       "perfect": "Perfect! You read and realize a figured bass without hesitation.",
       "veryGood": "Very good! A few figures still to consolidate (7th inversions, cadential six-four, suspensions).",
       "keepGoing": "Keep going — review the table of figures and replay the examples before trying again."
+    }
+  },
+  "cours43": {
+    "badge": "Level 3 · Course 43",
+    "title": "Renaissance Modal Counterpoint",
+    "subtitle": "The Palestrina style (prima pratica): church modes, the melodic line, consonant two-voice counterpoint, strict dissonance (suspensions, nota cambiata) and modal cadences in 3-4 voices. Extends courses 13 and 10.",
+    "sections": {
+      "intro": "Palestrina style",
+      "modes": "The modes",
+      "melodie": "The melody",
+      "contrepoint": "2 voices",
+      "dissonance": "Dissonance",
+      "cadences": "Cadences",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! You have mastered Palestrina's modal counterpoint — lines, regulated dissonance and cadences.",
+      "veryGood": "Very good! A few points still to consolidate (dissonance treatment, modal clausulae).",
+      "keepGoing": "Keep going — review the melodic rules and the handling of suspensions, then replay the examples."
     }
   }
 }

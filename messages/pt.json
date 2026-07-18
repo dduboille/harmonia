@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modos e técnicas avançadas",
     "level2Desc": "12 aulas para expandir a linguagem harmónica — modos, extensões, jazz, contraponto. Sair do quadro clássico e explorar novas cores.",
     "level3Title": "Composição, análise e mestria",
-    "level3Desc": "11 aulas para atingir a mestria — forma musical, orquestração, análise dos grandes compositores e composição nos seus estilos.",
+    "level3Desc": "12 aulas para atingir a mestria — forma musical, orquestração, análise dos grandes compositores e composição nos seus estilos.",
     "c1": "A escala, os graus e os intervalos",
     "c2": "Os acordes",
     "c3": "Funções tonais e condução de vozes",
@@ -135,6 +135,8 @@
     "locked": "Requer assinatura",
     "c42": "Harmonização ao teclado e baixo cifrado",
     "d42": "Ler e realizar um contínuo barroco: cifras, inversões, quarta e sexta cadencial, retardos e marchas — a quatro vozes e ao teclado.",
+    "c43": "Contraponto modal do Renascimento",
+    "d43": "O estilo Palestrina (prima pratica): modos eclesiásticos, linha melódica, contraponto a 2 vozes, dissonância estrita (retardos, nota cambiata) e cadências modais.",
     "univ1": "≈ Licenciatura 1",
     "univ2": "≈ Licenciatura 2",
     "univ3": "≈ Licenciatura 3",
@@ -4238,6 +4240,25 @@
       "perfect": "Perfeito! Decifras e realizas um baixo cifrado sem hesitar.",
       "veryGood": "Muito bem! Algumas cifras a consolidar (inversões de 7ª, 6/4 cadencial, retardos).",
       "keepGoing": "Continua — revê a tabela das cifras e volta a ouvir os exemplos antes de recomeçar."
+    }
+  },
+  "cours43": {
+    "badge": "Nível 3 · Curso 43",
+    "title": "Contraponto modal do Renascimento",
+    "subtitle": "O estilo Palestrina (prima pratica): modos eclesiásticos, linha melódica, contraponto a 2 vozes consonante, dissonância estrita (retardos, nota cambiata) e cadências modais a 3-4 vozes. Prolonga os cursos 13 e 10.",
+    "sections": {
+      "intro": "Estilo Palestrina",
+      "modes": "Os modos",
+      "melodie": "A melodia",
+      "contrepoint": "2 vozes",
+      "dissonance": "A dissonância",
+      "cadences": "Cadências",
+      "quiz": "Treino"
+    },
+    "quiz": {
+      "perfect": "Perfeito! Dominas o contraponto modal de Palestrina — linhas, dissonâncias regradas e cadências.",
+      "veryGood": "Muito bem! Alguns pontos a consolidar (tratamento da dissonância, cláusulas modais).",
+      "keepGoing": "Continua — revê as regras melódicas e o tratamento dos retardos, e volta a ouvir os exemplos."
     }
   }
 }

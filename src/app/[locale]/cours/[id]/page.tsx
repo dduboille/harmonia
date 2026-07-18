@@ -68,6 +68,7 @@ const COURS_COMPONENTS: Record<number, React.ComponentType> = {
   40: nextDynamic(() => import("@/components/Cours40")),
   41: nextDynamic(() => import("@/components/Cours41")),
   42: nextDynamic(() => import("@/components/Cours42")),
+  43: nextDynamic(() => import("@/components/Cours43")),
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string; locale: string }> }): Promise<Metadata> {
