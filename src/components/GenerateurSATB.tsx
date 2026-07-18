@@ -504,6 +504,10 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
       {/* HarmoniaEditor */}
       <div style={{ marginBottom: "1.5rem" }}>
         <HarmoniaEditor
+          // `initialNotes` n'est lu qu'au montage : on force un remontage à
+          // chaque changement de mode / tonalité / doigté pour que la basse
+          // donnée (ou une nouvelle grille) soit réellement ré-amorcée.
+          key={`${mode}-${exercise.template.id}-${exercise.tonalite}-${exercise.doigte}`}
           title={mode === "dictee" ? "Dictée SATB — Écoutez et recopiez" : mode === "basse" ? "Réalisez les voix intérieures" : "Réalisez la progression"}
           subtitle={`${exercise.template.nom} — ${keyLabel}`}
           measures={exercise.labels}
