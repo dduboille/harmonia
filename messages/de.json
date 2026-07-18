@@ -43,7 +43,7 @@
     "level2Title": "Jazz, Modi und fortgeschrittene Techniken",
     "level2Desc": "12 Kurse zur Erweiterung der harmonischen Sprache — Modi, Erweiterungen, Jazz, Kontrapunkt. Den klassischen Rahmen verlassen und neue Farben entdecken.",
     "level3Title": "Komposition, Analyse und Meisterschaft",
-    "level3Desc": "11 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
+    "level3Desc": "12 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
     "c1": "Die Tonleiter, die Stufen und die Intervalle",
     "c2": "Die Akkorde",
     "c3": "Tonale Funktionen und Stimmführung",
@@ -135,6 +135,8 @@
     "locked": "Abo erforderlich",
     "c42": "Klavierharmonisierung und bezifferter Bass",
     "d42": "Einen barocken Continuo lesen und aussetzen: Bezifferung, Umkehrungen, Kadenzquartsextakkord, Vorhalte und Sequenzen — vierstimmig und am Tasteninstrument.",
+    "c43": "Modaler Kontrapunkt der Renaissance",
+    "d43": "Der Palestrina-Stil (prima pratica): Kirchentonarten, melodische Linie, zweistimmiger Kontrapunkt, strenge Dissonanz (Vorhalte, nota cambiata) und modale Kadenzen.",
     "univ1": "≈ Bachelor 1",
     "univ2": "≈ Bachelor 2",
     "univ3": "≈ Bachelor 3",
@@ -4238,6 +4240,25 @@
       "perfect": "Perfekt! Du liest und setzt einen bezifferten Bass ohne Zögern aus.",
       "veryGood": "Sehr gut! Einige Bezifferungen noch zu festigen (Septumkehrungen, Kadenzquartsextakkord, Vorhalte).",
       "keepGoing": "Weiter so — sieh dir die Bezifferungstabelle noch einmal an und höre die Beispiele erneut."
+    }
+  },
+  "cours43": {
+    "badge": "Stufe 3 · Kurs 43",
+    "title": "Modaler Kontrapunkt der Renaissance",
+    "subtitle": "Der Palestrina-Stil (prima pratica): Kirchentonarten, melodische Linie, konsonanter zweistimmiger Kontrapunkt, strenge Dissonanz (Vorhalte, nota cambiata) und modale Kadenzen zu 3-4 Stimmen. Baut auf den Kursen 13 und 10 auf.",
+    "sections": {
+      "intro": "Palestrina-Stil",
+      "modes": "Die Modi",
+      "melodie": "Die Melodie",
+      "contrepoint": "2 Stimmen",
+      "dissonance": "Dissonanz",
+      "cadences": "Kadenzen",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt! Du beherrschst Palestrinas modalen Kontrapunkt — Linien, geregelte Dissonanz und Kadenzen.",
+      "veryGood": "Sehr gut! Einige Punkte noch zu festigen (Dissonanzbehandlung, modale Klauseln).",
+      "keepGoing": "Weiter so — sieh dir die melodischen Regeln und die Behandlung der Vorhalte noch einmal an und höre die Beispiele erneut."
     }
   }
 }
