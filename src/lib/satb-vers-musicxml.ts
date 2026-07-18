@@ -14,8 +14,8 @@
  * d'appariement (une ronde = 2000 ms), verrouillé par verovio-appariement.test.
  */
 
-import { KEY_ACCIDENTALS } from "@/lib/key-accidentals";
-import type { Measure, NoteEntry, NoteName, Voice } from "@/lib/satb-rules";
+import { decoderNote, GLYPHE_ALTERATION as GLYPHE, armureDe as armure } from "@/lib/note-musicxml";
+import type { Measure, NoteEntry, Voice } from "@/lib/satb-rules";
 
 // Résolution : une noire = 1 division → une ronde vaut 4. La valeur exacte est
 // indifférente pour l'appariement MIDI (l'onset dépend du tempo et du chiffrage,
@@ -37,32 +37,8 @@ const CONFIG: Record<Voice, { voix: string; portee: number; hampe: "up" | "down"
 // Ordre d'émission des voix dans la mesure : du haut vers le bas.
 const ORDRE: Voice[] = ["soprano", "alto", "tenor", "bass"];
 
-// Glyphe d'altération affiché en fonction du nombre de demi-tons.
-const GLYPHE: Record<number, string> = {
-  2: "double-sharp", 1: "sharp", 0: "natural", [-1]: "flat", [-2]: "flat-flat",
-};
-
-/** Lettre + altération (en demi-tons, -2..+2) d'un nom de note « F# », « Gbb »… */
-function decoderNote(name: NoteName): { step: string; alter: number } {
-  const step = name[0];
-  const suffixe = name.slice(1);
-  const alter = suffixe.startsWith("#") ? suffixe.length : suffixe.startsWith("b") ? -suffixe.length : 0;
-  return { step, alter };
-}
-
-/**
- * Armure : nombre de quintes (positif = dièses, négatif = bémols) et altération
- * ATTENDUE par lettre. Dérivés de KEY_ACCIDENTALS (source déjà utilisée par le
- * moteur de validation) : un mineur « Xm » reprend l'armure de son relatif majeur.
- * Une note dont l'altération diffère de l'attendu portera un <accidental> affiché.
- */
-function armure(keySignature: string): { fifths: number; attendu: Record<string, number> } {
-  const entries = KEY_ACCIDENTALS[keySignature] ?? KEY_ACCIDENTALS[keySignature.replace(/m$/, "")] ?? [];
-  const attendu: Record<string, number> = {};
-  for (const e of entries) attendu[e.note] = e.acc === "#" ? 1 : -1;
-  const fifths = entries.length === 0 ? 0 : entries[0].acc === "#" ? entries.length : -entries.length;
-  return { fifths, attendu };
-}
+// Décodage des hauteurs, glyphe d'altération et armure : primitives partagées avec
+// le graveur du contrepoint (lib/note-musicxml.ts), pour une orthographe unique.
 
 /** Un <note> (ou un silence de ronde si la case est vide) pour une voix. */
 function noteXML(entry: NoteEntry, voix: string, portee: number, hampe: string, attendu: Record<string, number>): string {
