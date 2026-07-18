@@ -92,6 +92,7 @@ export default async function ExercicePage({ params, searchParams }: Props) {
               subtitle={(exercise as any).subtitle}
               measures={(exercise as any).measures}
               keySignature={(exercise as any).keySignature}
+              initialNotes={(exercise as any).initialNotes}
               solution={(exercise as any).solution}
               hint={(exercise as any).hint}
               devoirId={devoirId}

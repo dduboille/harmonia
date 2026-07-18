@@ -531,6 +531,7 @@ import { COURS3_9_IDENTIFY } from "@/exercises/cours3-9-identify";
 import { INVERSION_EXERCISES } from "@/exercises/cours-inversion-exercises";
 import { COURS10_23_EXERCISES } from "@/exercises/cours10-23-exercises";
 import { COURS38_EXERCISES, COURS39_EXERCISES, COURS40_EXERCISES, COURS41_EXERCISES } from "@/exercises/cours38-41-exercises";
+import { COURS42_EXERCISES } from "@/exercises/cours42-exercises";
 import { COURS24_EXERCISES, COURS25_EXERCISES, COURS26_EXERCISES, COURS32_EXERCISES, COURS27_EXERCISES, COURS28_EXERCISES, COURS29_EXERCISES, COURS30_EXERCISES, COURS31_EXERCISES, COURS33_EXERCISES, COURS34_EXERCISES, COURS35_EXERCISES, COURS36_EXERCISES, COURS37_EXERCISES } from "@/exercises/cours24-37-exercises";
 export type { IdentifyExercise, BuildExercise } from "@/types/exercise";
 export type { InversionExercise, InversionChoice } from "@/exercises/cours-inversion-exercises";
@@ -572,5 +573,6 @@ export const ALL_EXERCISES = [
   ...COURS39_EXERCISES,
   ...COURS40_EXERCISES,
   ...COURS41_EXERCISES,
+  ...COURS42_EXERCISES,
   ...getGenerated(),
 ];

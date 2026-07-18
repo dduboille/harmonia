@@ -92,6 +92,13 @@ export interface SATBExercise {
   keySignature: string;     // ex: "C", "G", "F"
   measures: string[];       // labels des mesures, ex: ["II (Dm7)", "V (G7)", "I (CMaj7)"]
   solution: SATBMeasure[];  // voicing de référence
+  /**
+   * Notes pré-remplies dans l'éditeur (basse donnée / voix internes) : chaque
+   * voix porte un tableau indexé par mesure. Ex. basse chiffrée cours 42 :
+   * `{ bass: [ {name:"C",octave:3}, … ] }`. Restent éditables ; le barème
+   * corrige une basse changée à tort.
+   */
+  initialNotes?: Partial<Record<Voice, (NoteEntry | null)[]>>;
 
   // Pédagogie
   hint?: string;            // indice optionnel
