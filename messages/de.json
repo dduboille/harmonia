@@ -137,6 +137,8 @@
     "d42": "Einen barocken Continuo lesen und aussetzen: Bezifferung, Umkehrungen, Kadenzquartsextakkord, Vorhalte und Sequenzen — vierstimmig und am Tasteninstrument.",
     "c43": "Modaler Kontrapunkt der Renaissance",
     "d43": "Der Palestrina-Stil (prima pratica): Kirchentonarten, melodische Linie, zweistimmiger Kontrapunkt, strenge Dissonanz (Vorhalte, nota cambiata) und modale Kadenzen.",
+    "c44": "Post-tonale Analyse: Set Theory",
+    "d44": "Tonhöhenklassen, Normal- und Primform, Intervallvektor, Forte-Nummern, Z-Beziehung — Schönberg und Webern analysieren, bis zur Zwölftonreihe.",
     "univ1": "≈ Bachelor 1",
     "univ2": "≈ Bachelor 2",
     "univ3": "≈ Bachelor 3",
@@ -4259,6 +4261,25 @@
       "perfect": "Perfekt! Du beherrschst Palestrinas modalen Kontrapunkt — Linien, geregelte Dissonanz und Kadenzen.",
       "veryGood": "Sehr gut! Einige Punkte noch zu festigen (Dissonanzbehandlung, modale Klauseln).",
       "keepGoing": "Weiter so — sieh dir die melodischen Regeln und die Behandlung der Vorhalte noch einmal an und höre die Beispiele erneut."
+    }
+  },
+  "cours44": {
+    "badge": "Stufe 5 · Lektion 44",
+    "title": "Post-tonale Analyse: Set Theory",
+    "subtitle": "Tonhöhen- und Intervallklassen, Transposition Tn und Umkehrung TnI, Normalform, Primform, Intervallvektor und Forte-Nummern — bis zur Webern-Reihe. Übernimmt außerhalb der Tonalität von den Lektionen 27 und 37.",
+    "sections": {
+      "intro": "Warum?",
+      "pcs": "Tonhöhenklassen",
+      "ensembles": "Die Mengen",
+      "formes": "Normalformen",
+      "vecteur": "Vektor & Forte",
+      "analyse": "Analyse & Reihe",
+      "quiz": "Training"
+    },
+    "quiz": {
+      "perfect": "Perfekt! Normalformen, Vektoren und Z-Beziehung haben keine Geheimnisse mehr — die post-tonale Analyse gehört dir.",
+      "veryGood": "Sehr gut! Ein paar Rechnungen festigen (Rotationen, Umkehrung vor der Primform).",
+      "keepGoing": "Weiter so — geh den Normalform-Algorithmus Schritt für Schritt durch und prüfe jede Etappe mit dem Rechner."
     }
   }
 }

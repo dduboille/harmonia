@@ -137,6 +137,8 @@
     "d42": "Leer y realizar un continuo barroco: cifrados, inversiones, 6/4 cadencial, retardos y marchas — a cuatro voces y al teclado.",
     "c43": "Contrapunto modal del Renacimiento",
     "d43": "El estilo Palestrina (prima pratica): modos eclesiásticos, línea melódica, contrapunto a 2 voces, disonancia estricta (retardos, nota cambiata) y cadencias modales.",
+    "c44": "Análisis post-tonal: la set theory",
+    "d44": "Clases de alturas, forma normal y forma prima, vector interválico, números de Forte, relación Z — analizar a Schoenberg y Webern, hasta la serie dodecafónica.",
     "univ1": "≈ Grado 1",
     "univ2": "≈ Grado 2",
     "univ3": "≈ Grado 3",
@@ -4259,6 +4261,25 @@
       "perfect": "¡Perfecto! Dominas el contrapunto modal de Palestrina — líneas, disonancias regladas y cadencias.",
       "veryGood": "¡Muy bien! Algunos puntos por consolidar (tratamiento de la disonancia, cláusulas modales).",
       "keepGoing": "Sigue así — repasa las reglas melódicas y el tratamiento de los retardos, y vuelve a escuchar los ejemplos."
+    }
+  },
+  "cours44": {
+    "badge": "Nivel 5 · Lección 44",
+    "title": "Análisis post-tonal: la set theory",
+    "subtitle": "Clases de alturas y de intervalos, transposición Tn e inversión TnI, forma normal, forma prima, vector interválico y números de Forte — hasta la serie de Webern. Toma el relevo de las lecciones 27 y 37 fuera de la tonalidad.",
+    "sections": {
+      "intro": "¿Por qué?",
+      "pcs": "Clases de alturas",
+      "ensembles": "Los conjuntos",
+      "formes": "Formas normales",
+      "vecteur": "Vector y Forte",
+      "analyse": "Análisis y serie",
+      "quiz": "Entrenamiento"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Formas normales, vectores y relación Z ya no tienen secretos — el análisis post-tonal es tuyo.",
+      "veryGood": "¡Muy bien! Algunos cálculos por consolidar (rotaciones, inversión antes de la forma prima).",
+      "keepGoing": "Sigue — repasa el algoritmo de la forma normal paso a paso y verifica cada etapa con la calculadora."
     }
   }
 }

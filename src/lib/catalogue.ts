@@ -62,6 +62,7 @@ export const COURS: CoursMeta[] = [
   { num: 41, level: 5 as const, title: "L'écriture de style", desc: "Pasticher le classique, le romantique et le début du XXe — la discipline d'écriture stylistique du DEM.", tags: ["Style", "Pastiche", "DEM"] },
   { num: 42, level: 3 as const, title: "Harmonisation au clavier et basse chiffrée", desc: "Lire et réaliser un continuo baroque : chiffrages, renversements, 6/4 cadentiel, retards et marches — à quatre voix et au clavier.", tags: ["Basse chiffrée", "Continuo", "Réalisation"] },
   { num: 43, level: 3 as const, title: "Contrepoint modal de la Renaissance", desc: "Le style Palestrina (prima pratica) : modes ecclésiastiques, ligne mélodique, contrepoint à 2 voix, dissonance stricte (retards, nota cambiata) et cadences modales.", tags: ["Contrepoint", "Palestrina", "Modal"] },
+  { num: 44, level: 5 as const, title: "Analyse post-tonale : la set theory", desc: "Classes de hauteurs, forme normale et forme première, vecteur d'intervalles, nombres de Forte, relation Z — analyser Schoenberg et Webern, jusqu'à la série dodécaphonique.", tags: ["Set theory", "Forte", "Atonal"] },
 ];
 
 /** Nombre total de cours publiés. */

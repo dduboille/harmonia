@@ -137,6 +137,8 @@
     "d42": "Leggere e realizzare un continuo barocco: numeriche, rivolti, quartasesta cadenzale, ritardi e marce — a quattro voci e alla tastiera.",
     "c43": "Contrappunto modale del Rinascimento",
     "d43": "Lo stile Palestrina (prima pratica): modi ecclesiastici, linea melodica, contrappunto a 2 voci, dissonanza rigorosa (ritardi, nota cambiata) e cadenze modali.",
+    "c44": "Analisi post-tonale: la set theory",
+    "d44": "Classi di altezze, forma normale e forma prima, vettore intervallare, numeri di Forte, relazione Z — analizzare Schönberg e Webern, fino alla serie dodecafonica.",
     "univ1": "≈ Laurea 1",
     "univ2": "≈ Laurea 2",
     "univ3": "≈ Laurea 3",
@@ -4259,6 +4261,25 @@
       "perfect": "Perfetto! Padroneggi il contrappunto modale di Palestrina — linee, dissonanze regolate e cadenze.",
       "veryGood": "Molto bene! Alcuni punti da consolidare (trattamento della dissonanza, clausole modali).",
       "keepGoing": "Continua — rileggi le regole melodiche e il trattamento dei ritardi, poi riascolta gli esempi."
+    }
+  },
+  "cours44": {
+    "badge": "Livello 5 · Lezione 44",
+    "title": "Analisi post-tonale: la set theory",
+    "subtitle": "Classi di altezze e di intervalli, trasposizione Tn e inversione TnI, forma normale, forma prima, vettore intervallare e numeri di Forte — fino alla serie di Webern. Prende il testimone delle lezioni 27 e 37 fuori dalla tonalità.",
+    "sections": {
+      "intro": "Perché?",
+      "pcs": "Classi di altezze",
+      "ensembles": "Gli insiemi",
+      "formes": "Forme normali",
+      "vecteur": "Vettore e Forte",
+      "analyse": "Analisi e serie",
+      "quiz": "Allenamento"
+    },
+    "quiz": {
+      "perfect": "Perfetto! Forme normali, vettori e relazione Z non hanno più segreti — l'analisi post-tonale è tua.",
+      "veryGood": "Molto bene! Qualche calcolo da consolidare (rotazioni, inversione prima della forma prima).",
+      "keepGoing": "Continua — riprendi l'algoritmo della forma normale passo passo e verifica ogni tappa con il calcolatore."
     }
   }
 }

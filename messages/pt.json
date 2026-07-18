@@ -137,6 +137,8 @@
     "d42": "Ler e realizar um contínuo barroco: cifras, inversões, quarta e sexta cadencial, retardos e marchas — a quatro vozes e ao teclado.",
     "c43": "Contraponto modal do Renascimento",
     "d43": "O estilo Palestrina (prima pratica): modos eclesiásticos, linha melódica, contraponto a 2 vozes, dissonância estrita (retardos, nota cambiata) e cadências modais.",
+    "c44": "Análise pós-tonal: a set theory",
+    "d44": "Classes de alturas, forma normal e forma prima, vetor intervalar, números de Forte, relação Z — analisar Schoenberg e Webern, até a série dodecafônica.",
     "univ1": "≈ Licenciatura 1",
     "univ2": "≈ Licenciatura 2",
     "univ3": "≈ Licenciatura 3",
@@ -4259,6 +4261,25 @@
       "perfect": "Perfeito! Dominas o contraponto modal de Palestrina — linhas, dissonâncias regradas e cadências.",
       "veryGood": "Muito bem! Alguns pontos a consolidar (tratamento da dissonância, cláusulas modais).",
       "keepGoing": "Continua — revê as regras melódicas e o tratamento dos retardos, e volta a ouvir os exemplos."
+    }
+  },
+  "cours44": {
+    "badge": "Nível 5 · Aula 44",
+    "title": "Análise pós-tonal: a set theory",
+    "subtitle": "Classes de alturas e de intervalos, transposição Tn e inversão TnI, forma normal, forma prima, vetor intervalar e números de Forte — até a série de Webern. Assume o lugar das aulas 27 e 37 fora da tonalidade.",
+    "sections": {
+      "intro": "Porquê?",
+      "pcs": "Classes de alturas",
+      "ensembles": "Os conjuntos",
+      "formes": "Formas normais",
+      "vecteur": "Vetor e Forte",
+      "analyse": "Análise e série",
+      "quiz": "Treino"
+    },
+    "quiz": {
+      "perfect": "Perfeito! Formas normais, vetores e relação Z já não têm segredos — a análise pós-tonal é tua.",
+      "veryGood": "Muito bem! Alguns cálculos a consolidar (rotações, inversão antes da forma prima).",
+      "keepGoing": "Continua — retoma o algoritmo da forma normal passo a passo e verifica cada etapa com a calculadora."
     }
   }
 }
