@@ -27,8 +27,10 @@
  * de lecture ici, la lecture MIDI reste pilotée par le PianoPlayer du composant).
  */
 
-import { KEY_ACCIDENTALS } from "@/lib/key-accidentals";
 import type { MelodyNote, Duration } from "@/types/composition";
+import {
+  nomsPourArmure, GLYPHE, decoderNom, decoderMidi, armure,
+} from "@/lib/midi-vers-musicxml";
 
 // Résolution : une noire = 2 divisions. Deux divisions suffisent à toutes les durées
 // du module : croche = 1, noire = 2, blanche pointée = 6, ronde = 8, et la blanche
@@ -76,54 +78,10 @@ export interface CompositionGuideeOptions {
   showKeySignature?: boolean;    // grave l'armure (défaut : true)
 }
 
-// Trois orthographes des touches noires, choisies AU DIAPASON DE L'ARMURE (l'ancienne
-// présentation épelait tout en dièses, ce qui gravait des La# en Fa majeur ou des
-// Sol#/Ré# là où un cours enseigne Lab/Mib) :
-//  • armure à dièses → dièses ;
-//  • armure à bémols → bémols ;
-//  • tonalité neutre (Do/La m) → bémols pour Mib/Lab/Sib/Réb (les emprunts au mineur
-//    parallèle, le cas d'usage courant), mais Fa# conservé (sensibles des dominantes
-//    secondaires). Les hauteurs de la MÉLODIE gardent leur orthographe d'origine.
-const NOMS_DIESES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-const NOMS_BEMOLS = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
-const NOMS_NEUTRE = ["C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
-
-/** Table d'orthographe des hauteurs d'accompagnement d'après le nombre de quintes. */
-function nomsPourArmure(fifths: number): string[] {
-  return fifths < 0 ? NOMS_BEMOLS : fifths > 0 ? NOMS_DIESES : NOMS_NEUTRE;
-}
-
-const GLYPHE: Record<number, string> = {
-  2: "double-sharp", 1: "sharp", 0: "natural", [-1]: "flat", [-2]: "flat-flat",
-};
-
-/** Lettre + altération (demi-tons, -2..+2) d'un nom anglais « F# », « Eb »… */
-function decoderNom(nom: string): { step: string; alter: number } {
-  const step = nom[0];
-  const suffixe = nom.slice(1);
-  const alter = suffixe.startsWith("#") ? suffixe.length : suffixe.startsWith("b") ? -suffixe.length : 0;
-  return { step, alter };
-}
-
-/** MIDI → hauteur écrite, orthographiée selon la table de l'armure (`noms`). */
-function decoderMidi(midi: number, noms: string[]): { step: string; alter: number; octave: number } {
-  const pc = ((midi % 12) + 12) % 12;
-  const octave = Math.floor(midi / 12) - 1;
-  return { ...decoderNom(noms[pc]), octave };
-}
-
-/**
- * Armure : nombre de quintes (positif = dièses, négatif = bémols) et altération
- * attendue par lettre, dérivés de KEY_ACCIDENTALS (un mineur « Xm » reprend l'armure
- * de son relatif majeur). Une note dont l'altération diffère de l'attendu s'affiche.
- */
-function armure(keySignature: string): { fifths: number; attendu: Record<string, number> } {
-  const entries = KEY_ACCIDENTALS[keySignature] ?? KEY_ACCIDENTALS[keySignature.replace(/m$/, "")] ?? [];
-  const attendu: Record<string, number> = {};
-  for (const e of entries) attendu[e.note] = e.acc === "#" ? 1 : -1;
-  const fifths = entries.length === 0 ? 0 : entries[0].acc === "#" ? entries.length : -entries.length;
-  return { fifths, attendu };
-}
+// Épellation au diapason de l'armure (NOMS_*, nomsPourArmure, decoderMidi, decoderNom,
+// GLYPHE, armure) : partagée avec le squelette harmonique via midi-vers-musicxml.ts —
+// un seul orthographieur MIDI, pas de logique divergente. Les hauteurs de la MÉLODIE
+// gardent leur orthographe d'origine (elles ne passent pas par decoderMidi).
 
 /** Un <note> chanté. `portee`/`hampe` omises en mode à une portée. */
 function noteXML(

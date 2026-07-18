@@ -4164,5 +4164,54 @@
     "defaultTitle": "Übung zur Stimmführung",
     "loadingScore": "Partitur wird geladen…",
     "accidentalLabel": "Vorzeichen:"
+  },
+  "squelette": {
+    "badge": "Komposition",
+    "titre": "Harmonisches Gerüst",
+    "sousTitre": "Lege eine Akkordfolge über 8 Takte, sieh sie vierstimmig ausgesetzt, höre sie an und arbeite sie dann in der Werkstatt aus.",
+    "tonalite": "Tonart",
+    "majeur": "Dur",
+    "mineur": "Moll",
+    "niveau": "Stufe",
+    "niveauDiatonique": "Diatonisch",
+    "niveauChromatique": "+ Chromatik",
+    "banque": "Akkordbank",
+    "banqueAide": "Wähle einen Platz und klicke dann einen Akkord an, um ihn dort zu setzen.",
+    "groupes": {
+      "Tonique": "Tonika",
+      "Prédominante": "Subdominante",
+      "Dominante": "Dominante",
+      "Chromatisme": "Chromatik"
+    },
+    "mesures": "Takte",
+    "emplacementVide": "Leer",
+    "unAccord": "1 Akkord",
+    "deuxAccords": "2 Akkorde",
+    "basculer": "1 ↔ 2 Akkorde umschalten",
+    "vider": "Platz leeren",
+    "portee": "Vierstimmige Aussetzung",
+    "ecouter": "Anhören",
+    "vide": "Setze Akkorde aus der Bank, um die Aussetzung zu sehen.",
+    "voixHautes": "SOPRAN · ALT",
+    "voixBasses": "TENOR · BASS",
+    "approx": "Ungefähre Aussetzung (Stimmführung nicht garantiert).",
+    "conduiteOk": "Stimmführung korrekt — keine Fehler erkannt.",
+    "fautesTitre": "Stimmführungsprüfung",
+    "frise": "Funktionsanalyse",
+    "cadence": "Kadenz",
+    "cadences": {
+      "parfaite": "Authentische Kadenz (V → I)",
+      "plagale": "Plagale Kadenz (IV → I)",
+      "demi": "Halbschluss (→ V)",
+      "rompue": "Trugschluss (V → vi)",
+      "aucune": "Keine charakteristische Kadenz"
+    },
+    "fonctions": {
+      "T": "T",
+      "SD": "S",
+      "D": "D",
+      "?": "—"
+    },
+    "exporter": "In der Werkstatt ausarbeiten"
   }
 }

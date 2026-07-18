@@ -4164,5 +4164,54 @@
     "defaultTitle": "Exercício de condução de vozes",
     "loadingScore": "A carregar a partitura…",
     "accidentalLabel": "Alteração:"
+  },
+  "squelette": {
+    "badge": "Composição",
+    "titre": "Esqueleto harmónico",
+    "sousTitre": "Coloque uma sucessão de acordes em 8 compassos, veja-a realizada a quatro vozes, ouça-a e depois desenvolva-a no ateliê.",
+    "tonalite": "Tonalidade",
+    "majeur": "maior",
+    "mineur": "menor",
+    "niveau": "Nível",
+    "niveauDiatonique": "Diatónico",
+    "niveauChromatique": "+ Cromatismos",
+    "banque": "Banco de acordes",
+    "banqueAide": "Escolha um espaço e clique num acorde para o colocar.",
+    "groupes": {
+      "Tonique": "Tónica",
+      "Prédominante": "Predominante",
+      "Dominante": "Dominante",
+      "Chromatisme": "Cromatismo"
+    },
+    "mesures": "Compassos",
+    "emplacementVide": "Vazio",
+    "unAccord": "1 acorde",
+    "deuxAccords": "2 acordes",
+    "basculer": "Alternar 1 ↔ 2 acordes",
+    "vider": "Esvaziar espaço",
+    "portee": "Realização a quatro vozes",
+    "ecouter": "Ouvir",
+    "vide": "Coloque acordes do banco para ver a realização.",
+    "voixHautes": "SOPRANO · CONTRALTO",
+    "voixBasses": "TENOR · BAIXO",
+    "approx": "Realização aproximada (condução não garantida).",
+    "conduiteOk": "Condução correta — nenhum erro detetado.",
+    "fautesTitre": "Verificação da condução",
+    "frise": "Análise funcional",
+    "cadence": "Cadência",
+    "cadences": {
+      "parfaite": "Cadência perfeita (V → I)",
+      "plagale": "Cadência plagal (IV → I)",
+      "demi": "Meia cadência (→ V)",
+      "rompue": "Cadência interrompida (V → vi)",
+      "aucune": "Nenhuma cadência característica"
+    },
+    "fonctions": {
+      "T": "T",
+      "SD": "PD",
+      "D": "D",
+      "?": "—"
+    },
+    "exporter": "Desenvolver no ateliê"
   }
 }

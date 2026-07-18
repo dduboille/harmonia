@@ -4163,5 +4163,54 @@
     "defaultTitle": "Voice-leading exercise",
     "loadingScore": "Loading score…",
     "accidentalLabel": "Accidental:"
+  },
+  "squelette": {
+    "badge": "Composition",
+    "titre": "Harmonic skeleton",
+    "sousTitre": "Lay out a chord progression over 8 bars, see it realised in four voices, listen to it, then flesh it out in the workshop.",
+    "tonalite": "Key",
+    "majeur": "major",
+    "mineur": "minor",
+    "niveau": "Level",
+    "niveauDiatonique": "Diatonic",
+    "niveauChromatique": "+ Chromaticism",
+    "banque": "Chord bank",
+    "banqueAide": "Pick a slot, then click a chord to place it there.",
+    "groupes": {
+      "Tonique": "Tonic",
+      "Prédominante": "Predominant",
+      "Dominante": "Dominant",
+      "Chromatisme": "Chromaticism"
+    },
+    "mesures": "Bars",
+    "emplacementVide": "Empty",
+    "unAccord": "1 chord",
+    "deuxAccords": "2 chords",
+    "basculer": "Toggle 1 ↔ 2 chords",
+    "vider": "Clear slot",
+    "portee": "Four-voice realisation",
+    "ecouter": "Play",
+    "vide": "Place chords from the bank to see the realisation.",
+    "voixHautes": "SOPRANO · ALTO",
+    "voixBasses": "TENOR · BASS",
+    "approx": "Approximate realisation (voice leading not guaranteed).",
+    "conduiteOk": "Voice leading correct — no mistakes detected.",
+    "fautesTitre": "Voice-leading check",
+    "frise": "Functional analysis",
+    "cadence": "Cadence",
+    "cadences": {
+      "parfaite": "Perfect cadence (V → I)",
+      "plagale": "Plagal cadence (IV → I)",
+      "demi": "Half cadence (→ V)",
+      "rompue": "Deceptive cadence (V → vi)",
+      "aucune": "No characteristic cadence"
+    },
+    "fonctions": {
+      "T": "T",
+      "SD": "PD",
+      "D": "D",
+      "?": "—"
+    },
+    "exporter": "Flesh out in the workshop"
   }
 }
