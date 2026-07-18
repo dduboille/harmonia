@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modes et techniques avancées",
     "level2Desc": "12 cours pour élargir le langage harmonique — modes, extensions, jazz, contrepoint. Sortir du cadre classique et explorer de nouvelles couleurs.",
     "level3Title": "Composition, analyse et maîtrise",
-    "level3Desc": "12 cours pour atteindre la maîtrise — forme musicale, orchestration, analyse des grands compositeurs, composition dans leurs styles et analyse structurelle profonde.",
+    "level3Desc": "13 cours pour atteindre la maîtrise — forme musicale, orchestration, analyse des grands compositeurs, composition dans leurs styles et analyse structurelle profonde.",
     "sublabel4": "Harmonie élargie",
     "level4Title": "Harmonie élargie — au-delà de la tonalité",
     "level4Desc": "3 cours pour explorer les langages du XXe siècle — impressionnisme, polytonalité, harmonie quartale et reharmonisation avancée à la Coltrane.",
@@ -138,10 +138,12 @@
     "c43": "Contrepoint modal de la Renaissance",
     "d43": "Le style Palestrina (prima pratica) : modes ecclésiastiques, ligne mélodique, contrepoint à 2 voix, dissonance stricte (retards, nota cambiata) et cadences modales.",
     "c44": "Analyse post-tonale : la set theory",
+    "c45": "Méthodologie du commentaire d'écoute",
     "d44": "Classes de hauteurs, forme normale et forme première, vecteur d'intervalles, nombres de Forte, relation Z — analyser Schoenberg et Webern, jusqu'à la série dodécaphonique.",
+    "d45": "La méthode complète de l'épreuve — grille des paramètres, marqueurs stylistiques, formes à l'oreille, plan et vocabulaire — et le gymnase harmonique : cadences, modes, modulations, rythme harmonique, textures.",
     "univ1": "≈ Licence 1",
     "univ2": "≈ Licence 2",
-    "univ3": "≈ Licence 3",
+    "univ3": "≈ Licence 3 · DNSPM",
     "univ4": "≈ Licence 3 / Master 1",
     "univ5": "≈ Master 1"
   },
@@ -4279,6 +4281,25 @@
       "perfect": "Parfait ! Formes normales, vecteurs et relation Z n'ont plus de secret — l'analyse post-tonale est à toi.",
       "veryGood": "Très bien ! Quelques calculs à consolider (rotations, inversion avant la forme première).",
       "keepGoing": "Continue — reprends l'algorithme de la forme normale pas à pas et vérifie chaque étape avec le calculateur."
+    }
+  },
+  "cours45": {
+    "badge": "Niveau 3 · Cours 45",
+    "title": "Méthodologie du commentaire d'écoute",
+    "subtitle": "La méthode complète de l'épreuve — décrire, identifier, situer : grille des paramètres, marqueurs stylistiques, formes à l'oreille, plan et vocabulaire — et l'entraînement de l'oreille harmonique au piano de synthèse. Le cours qui clôt le parcours licence/maîtrise.",
+    "sections": {
+      "intro": "L'épreuve",
+      "grille": "La grille d'écoute",
+      "periodes": "Les périodes",
+      "formes": "Les formes",
+      "harmonie": "Entendre l'harmonie",
+      "plan": "Le plan",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Grille, marqueurs, cadences et formes : la méthode du commentaire d'écoute est à toi.",
+      "veryGood": "Très bien ! Quelques marqueurs à consolider — relis la table des périodes et refais les drills à l'aveugle.",
+      "keepGoing": "Continue — reprends la grille des paramètres et la règle d'or (décrire → identifier → situer) avant de recommencer."
     }
   }
 }

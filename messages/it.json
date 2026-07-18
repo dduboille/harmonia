@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modi e tecniche avanzate",
     "level2Desc": "12 lezioni per ampliare il linguaggio armonico — modi, estensioni, jazz, contrappunto. Uscire dal quadro classico ed esplorare nuovi colori.",
     "level3Title": "Composizione, analisi e maestria",
-    "level3Desc": "12 lezioni per raggiungere la maestria — forma musicale, orchestrazione, analisi dei grandi compositori e composizione nei loro stili.",
+    "level3Desc": "13 lezioni per raggiungere la maestria — forma musicale, orchestrazione, analisi dei grandi compositori e composizione nei loro stili.",
     "c1": "La scala, i gradi e gli intervalli",
     "c2": "Gli accordi",
     "c3": "Funzioni tonali e conduzione delle voci",
@@ -138,10 +138,12 @@
     "c43": "Contrappunto modale del Rinascimento",
     "d43": "Lo stile Palestrina (prima pratica): modi ecclesiastici, linea melodica, contrappunto a 2 voci, dissonanza rigorosa (ritardi, nota cambiata) e cadenze modali.",
     "c44": "Analisi post-tonale: la set theory",
+    "c45": "Metodologia del commento d'ascolto",
     "d44": "Classi di altezze, forma normale e forma prima, vettore intervallare, numeri di Forte, relazione Z — analizzare Schönberg e Webern, fino alla serie dodecafonica.",
+    "d45": "Il metodo completo della prova — griglia dei parametri, marcatori stilistici, forme a orecchio, piano e vocabolario — più la palestra armonica: cadenze, modi, modulazioni, ritmo armonico, testure.",
     "univ1": "≈ Laurea 1",
     "univ2": "≈ Laurea 2",
-    "univ3": "≈ Laurea 3",
+    "univ3": "≈ Laurea 3 · DNSPM",
     "univ4": "≈ Laurea 3 / Magistrale 1",
     "univ5": "≈ Magistrale 1"
   },
@@ -4280,6 +4282,25 @@
       "perfect": "Perfetto! Forme normali, vettori e relazione Z non hanno più segreti — l'analisi post-tonale è tua.",
       "veryGood": "Molto bene! Qualche calcolo da consolidare (rotazioni, inversione prima della forma prima).",
       "keepGoing": "Continua — riprendi l'algoritmo della forma normale passo passo e verifica ogni tappa con il calcolatore."
+    }
+  },
+  "cours45": {
+    "badge": "Livello 3 · Corso 45",
+    "title": "Metodologia del commento d'ascolto",
+    "subtitle": "Il metodo completo della prova — descrivere, identificare, collocare: griglia dei parametri, marcatori stilistici, forme a orecchio, piano e vocabolario — più l'allenamento dell'orecchio armonico al pianoforte di sintesi. Il corso che chiude il percorso triennale/magistrale.",
+    "sections": {
+      "intro": "La prova",
+      "grille": "La griglia d'ascolto",
+      "periodes": "I periodi",
+      "formes": "Le forme",
+      "harmonie": "Sentire l'armonia",
+      "plan": "Il piano",
+      "quiz": "Allenamento"
+    },
+    "quiz": {
+      "perfect": "Perfetto! Griglia, marcatori, cadenze e forme: il metodo del commento d'ascolto è tuo.",
+      "veryGood": "Molto bene! Alcuni marcatori da consolidare — rileggi la tabella dei periodi e rifai i drill alla cieca.",
+      "keepGoing": "Continua — riprendi la griglia dei parametri e la regola d'oro (descrivere → identificare → collocare) prima di riprovare."
     }
   }
 }

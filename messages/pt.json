@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modos e técnicas avançadas",
     "level2Desc": "12 aulas para expandir a linguagem harmónica — modos, extensões, jazz, contraponto. Sair do quadro clássico e explorar novas cores.",
     "level3Title": "Composição, análise e mestria",
-    "level3Desc": "12 aulas para atingir a mestria — forma musical, orquestração, análise dos grandes compositores e composição nos seus estilos.",
+    "level3Desc": "13 aulas para atingir a mestria — forma musical, orquestração, análise dos grandes compositores e composição nos seus estilos.",
     "c1": "A escala, os graus e os intervalos",
     "c2": "Os acordes",
     "c3": "Funções tonais e condução de vozes",
@@ -138,10 +138,12 @@
     "c43": "Contraponto modal do Renascimento",
     "d43": "O estilo Palestrina (prima pratica): modos eclesiásticos, linha melódica, contraponto a 2 vozes, dissonância estrita (retardos, nota cambiata) e cadências modais.",
     "c44": "Análise pós-tonal: a set theory",
+    "c45": "Metodologia do comentário auditivo",
     "d44": "Classes de alturas, forma normal e forma prima, vetor intervalar, números de Forte, relação Z — analisar Schoenberg e Webern, até a série dodecafônica.",
+    "d45": "O método completo da prova — grelha de parâmetros, marcadores estilísticos, formas de ouvido, plano e vocabulário — mais o ginásio harmónico: cadências, modos, modulações, ritmo harmónico, texturas.",
     "univ1": "≈ Licenciatura 1",
     "univ2": "≈ Licenciatura 2",
-    "univ3": "≈ Licenciatura 3",
+    "univ3": "≈ Licenciatura 3 · DNSPM",
     "univ4": "≈ Licenciatura 3 / Mestrado 1",
     "univ5": "≈ Mestrado 1"
   },
@@ -4280,6 +4282,25 @@
       "perfect": "Perfeito! Formas normais, vetores e relação Z já não têm segredos — a análise pós-tonal é tua.",
       "veryGood": "Muito bem! Alguns cálculos a consolidar (rotações, inversão antes da forma prima).",
       "keepGoing": "Continua — retoma o algoritmo da forma normal passo a passo e verifica cada etapa com a calculadora."
+    }
+  },
+  "cours45": {
+    "badge": "Nível 3 · Curso 45",
+    "title": "Metodologia do comentário auditivo",
+    "subtitle": "O método completo da prova — descrever, identificar, situar: grelha de parâmetros, marcadores estilísticos, formas de ouvido, plano e vocabulário — mais o treino do ouvido harmónico no piano de síntese. O curso que fecha o percurso licenciatura/mestrado.",
+    "sections": {
+      "intro": "A prova",
+      "grille": "A grelha de escuta",
+      "periodes": "Os períodos",
+      "formes": "As formas",
+      "harmonie": "Ouvir a harmonia",
+      "plan": "O plano",
+      "quiz": "Treino"
+    },
+    "quiz": {
+      "perfect": "Perfeito! Grelha, marcadores, cadências e formas: o método do comentário auditivo é teu.",
+      "veryGood": "Muito bem! Alguns marcadores a consolidar — relê a tabela dos períodos e refaz os drills às cegas.",
+      "keepGoing": "Continua — retoma a grelha de parâmetros e a regra de ouro (descrever → identificar → situar) antes de recomeçar."
     }
   }
 }
