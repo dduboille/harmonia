@@ -4344,5 +4344,56 @@
       "veryGood": "Muito bem! Algumas transposições a consolidar — relê A tabela da secção 3 e volta a tocar os pares escrito/soante.",
       "keepGoing": "Continua — retoma a tabela dos transpositores e as linhas das claves de dó (Fa3–La3–Do4–Mi4–Sol4) antes de recomeçar."
     }
+  },
+  "releve": {
+    "badge": "Formação superior",
+    "titre": "Ditado harmónico",
+    "sousTitre": "Ouça uma progressão de escola a quatro vozes e transcreva-a por etapas: o baixo, as cifras, o SATB completo.",
+    "nouvelExercice": "Novo exercício",
+    "paliers": {
+      "basse": "① Baixo",
+      "chiffrage": "② Cifras",
+      "satb": "③ SATB completo"
+    },
+    "consignes": {
+      "basse": "Anote o baixo ouvido, compasso a compasso — a oitava é livre. Selecione a voz Baixo no editor.",
+      "chiffrage": "O baixo correto é dado. Para cada compasso, escolha a cifra ouvida entre as fichas.",
+      "satb": "Escreva as quatro vozes ouvidas. Aplica-se a verificação de escola completa (conformidade, resoluções)."
+    },
+    "modes": {
+      "entrainement": "Treino",
+      "examen": "Exame"
+    },
+    "modeEntrainementAide": "Audições ilimitadas, repetição acorde a acorde.",
+    "modeExamenAide": "{n} audições da progressão inteira, sem repetição por acorde.",
+    "ecoutesRestantes": "Audições restantes: {n}",
+    "ecoutesEpuisees": "Sem audições restantes — anote o que reteve.",
+    "ecouterProgression": "Ouvir a progressão",
+    "lecture": "A reproduzir…",
+    "ecouterAccord": "Acorde {n}",
+    "basseDonnee": "Baixo dado",
+    "ecouterBasse": "Ouvir o baixo",
+    "filtres": {
+      "niveau": "Nível",
+      "tousNiveaux": "Todos",
+      "tonalites": "Tonalidades",
+      "toutes": "Todas",
+      "majeures": "Maiores",
+      "mineures": "Menores"
+    },
+    "tonalite": "Tonalidade",
+    "mesures": "{n} compassos",
+    "verifierBasse": "Verificar o baixo",
+    "verifierChiffrages": "Verificar as cifras",
+    "mesure": "Compasso {n}",
+    "scoreMesures": "{bonnes}/{total} compassos corretos",
+    "basseCorrigee": "Baixo corrigido",
+    "scoreSatb": "Pontuação: {score}/100",
+    "voirSolution": "Ver a solução",
+    "masquerSolution": "Esconder a solução",
+    "solutionTitre": "Solução completa",
+    "session": "Pontuação da sessão (compassos corretos)",
+    "gratuit": "Plano gratuito — apenas a progressão II–V–I.",
+    "passerPro": "Passar a Pro"
   }
 }

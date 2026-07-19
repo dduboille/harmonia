@@ -4343,5 +4343,56 @@
       "veryGood": "Très bien ! Quelques transpositions à consolider — relis LA table de la section 3 et rejoue les paires écrit/sonnant.",
       "keepGoing": "Continue — reprends la table des transpositeurs et les lignes des clés d'ut (Fa3–La3–Do4–Mi4–Sol4) avant de recommencer."
     }
+  },
+  "releve": {
+    "badge": "Formation supérieure",
+    "titre": "Relevé harmonique",
+    "sousTitre": "Écoutez une progression d'école à quatre voix, puis relevez-la par paliers : la basse, les chiffrages, le SATB complet.",
+    "nouvelExercice": "Nouvel exercice",
+    "paliers": {
+      "basse": "① Basse",
+      "chiffrage": "② Chiffrages",
+      "satb": "③ SATB complet"
+    },
+    "consignes": {
+      "basse": "Notez la basse entendue, mesure par mesure — l'octave est libre. Sélectionnez la voix Basse dans l'éditeur.",
+      "chiffrage": "La basse correcte est donnée. Pour chaque mesure, choisissez le chiffrage entendu parmi les pastilles.",
+      "satb": "Écrivez les quatre voix entendues. La vérification d'école complète s'applique (conformité, résolutions)."
+    },
+    "modes": {
+      "entrainement": "Entraînement",
+      "examen": "Examen"
+    },
+    "modeEntrainementAide": "Écoutes illimitées, réécoute accord par accord.",
+    "modeExamenAide": "{n} écoutes de la progression entière, sans réécoute par accord.",
+    "ecoutesRestantes": "Écoutes restantes : {n}",
+    "ecoutesEpuisees": "Plus d'écoutes disponibles — notez ce que vous avez retenu.",
+    "ecouterProgression": "Écouter la progression",
+    "lecture": "Lecture…",
+    "ecouterAccord": "Accord {n}",
+    "basseDonnee": "Basse donnée",
+    "ecouterBasse": "Écouter la basse",
+    "filtres": {
+      "niveau": "Niveau",
+      "tousNiveaux": "Tous",
+      "tonalites": "Tonalités",
+      "toutes": "Toutes",
+      "majeures": "Majeures",
+      "mineures": "Mineures"
+    },
+    "tonalite": "Tonalité",
+    "mesures": "{n} mesures",
+    "verifierBasse": "Vérifier la basse",
+    "verifierChiffrages": "Vérifier les chiffrages",
+    "mesure": "Mesure {n}",
+    "scoreMesures": "{bonnes}/{total} mesures justes",
+    "basseCorrigee": "Basse corrigée",
+    "scoreSatb": "Score : {score}/100",
+    "voirSolution": "Voir la solution",
+    "masquerSolution": "Masquer la solution",
+    "solutionTitre": "Solution complète",
+    "session": "Score de session (mesures justes)",
+    "gratuit": "Mode gratuit — progression II–V–I uniquement.",
+    "passerPro": "Passer Pro"
   }
 }

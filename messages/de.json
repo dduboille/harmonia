@@ -4344,5 +4344,56 @@
       "veryGood": "Sehr gut! Einige Transpositionen sind noch zu festigen — lies DIE Tabelle aus Abschnitt 3 erneut und spiele die Paare notiert/klingend nach.",
       "keepGoing": "Weiter so — geh die Tabelle der transponierenden Instrumente und die Linien der C-Schlüssel (Fa3–La3–Do4–Mi4–Sol4) noch einmal durch."
     }
+  },
+  "releve": {
+    "badge": "Höhere Ausbildung",
+    "titre": "Harmonisches Diktat",
+    "sousTitre": "Hören Sie eine vierstimmige Schulprogression und notieren Sie sie in Stufen: den Bass, die Bezifferungen, den vollständigen Satz.",
+    "nouvelExercice": "Neue Übung",
+    "paliers": {
+      "basse": "① Bass",
+      "chiffrage": "② Bezifferungen",
+      "satb": "③ Vollständiger Satz"
+    },
+    "consignes": {
+      "basse": "Notieren Sie den gehörten Bass Takt für Takt — die Oktave ist frei. Wählen Sie im Editor die Stimme Bass.",
+      "chiffrage": "Der korrekte Bass ist gegeben. Wählen Sie für jeden Takt die gehörte Bezifferung unter den Plättchen.",
+      "satb": "Schreiben Sie die vier gehörten Stimmen. Die vollständige Schulprüfung gilt (Konformität, Auflösungen)."
+    },
+    "modes": {
+      "entrainement": "Training",
+      "examen": "Prüfung"
+    },
+    "modeEntrainementAide": "Unbegrenztes Anhören, Wiederholung Akkord für Akkord.",
+    "modeExamenAide": "{n} Anhörungen der gesamten Progression, keine Wiederholung einzelner Akkorde.",
+    "ecoutesRestantes": "Verbleibende Anhörungen: {n}",
+    "ecoutesEpuisees": "Keine Anhörungen mehr — notieren Sie, was Sie behalten haben.",
+    "ecouterProgression": "Progression anhören",
+    "lecture": "Wiedergabe…",
+    "ecouterAccord": "Akkord {n}",
+    "basseDonnee": "Gegebener Bass",
+    "ecouterBasse": "Bass anhören",
+    "filtres": {
+      "niveau": "Stufe",
+      "tousNiveaux": "Alle",
+      "tonalites": "Tonarten",
+      "toutes": "Alle",
+      "majeures": "Dur",
+      "mineures": "Moll"
+    },
+    "tonalite": "Tonart",
+    "mesures": "{n} Takte",
+    "verifierBasse": "Bass prüfen",
+    "verifierChiffrages": "Bezifferungen prüfen",
+    "mesure": "Takt {n}",
+    "scoreMesures": "{bonnes}/{total} richtige Takte",
+    "basseCorrigee": "Korrigierter Bass",
+    "scoreSatb": "Ergebnis: {score}/100",
+    "voirSolution": "Lösung anzeigen",
+    "masquerSolution": "Lösung ausblenden",
+    "solutionTitre": "Vollständige Lösung",
+    "session": "Sitzungsergebnis (richtige Takte)",
+    "gratuit": "Kostenloser Plan — nur II–V–I-Progression.",
+    "passerPro": "Pro werden"
   }
 }

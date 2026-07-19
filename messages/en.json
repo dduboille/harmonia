@@ -4343,5 +4343,56 @@
       "veryGood": "Very good! A few transpositions to consolidate — reread THE table of section 3 and replay the written/sounding pairs.",
       "keepGoing": "Keep going — go back over the transposing-instruments table and the C-clef lines (Fa3–La3–Do4–Mi4–Sol4) before trying again."
     }
+  },
+  "releve": {
+    "badge": "Advanced training",
+    "titre": "Harmonic dictation",
+    "sousTitre": "Listen to a four-voice textbook progression, then transcribe it in stages: the bass, the figures, the full SATB.",
+    "nouvelExercice": "New exercise",
+    "paliers": {
+      "basse": "① Bass",
+      "chiffrage": "② Figures",
+      "satb": "③ Full SATB"
+    },
+    "consignes": {
+      "basse": "Write down the bass you hear, measure by measure — any octave is accepted. Select the Bass voice in the editor.",
+      "chiffrage": "The correct bass is given. For each measure, choose the figure you hear among the chips.",
+      "satb": "Write the four voices you hear. The full school-style checking applies (conformity, resolutions)."
+    },
+    "modes": {
+      "entrainement": "Practice",
+      "examen": "Exam"
+    },
+    "modeEntrainementAide": "Unlimited listens, chord-by-chord replay.",
+    "modeExamenAide": "{n} listens of the full progression, no chord-by-chord replay.",
+    "ecoutesRestantes": "Listens remaining: {n}",
+    "ecoutesEpuisees": "No listens left — write down what you remember.",
+    "ecouterProgression": "Play the progression",
+    "lecture": "Playing…",
+    "ecouterAccord": "Chord {n}",
+    "basseDonnee": "Given bass",
+    "ecouterBasse": "Play the bass",
+    "filtres": {
+      "niveau": "Level",
+      "tousNiveaux": "All",
+      "tonalites": "Keys",
+      "toutes": "All",
+      "majeures": "Major",
+      "mineures": "Minor"
+    },
+    "tonalite": "Key",
+    "mesures": "{n} measures",
+    "verifierBasse": "Check the bass",
+    "verifierChiffrages": "Check the figures",
+    "mesure": "Measure {n}",
+    "scoreMesures": "{bonnes}/{total} correct measures",
+    "basseCorrigee": "Corrected bass",
+    "scoreSatb": "Score: {score}/100",
+    "voirSolution": "Show the solution",
+    "masquerSolution": "Hide the solution",
+    "solutionTitre": "Full solution",
+    "session": "Session score (correct measures)",
+    "gratuit": "Free plan — II–V–I progression only.",
+    "passerPro": "Go Pro"
   }
 }

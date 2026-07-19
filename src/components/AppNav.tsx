@@ -156,7 +156,7 @@ function AppNav() {
     },
     {
       href: `/${locale}/creation`, icon: "♬", label: t("creation").toUpperCase(), pro: false,
-      active: active("creation") || active("composition") || active("composer") || active("squelette-harmonique") || active("comparateur") || active("progressions") || active("generateur-satb"),
+      active: active("creation") || active("composition") || active("composer") || active("squelette-harmonique") || active("comparateur") || active("progressions") || active("generateur-satb") || active("releve"),
     },
     {
       href: `/${locale}/analyse`, icon: "◎", label: t("analyser").toUpperCase(), pro: true,

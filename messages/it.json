@@ -4344,5 +4344,56 @@
       "veryGood": "Molto bene! Alcune trasposizioni da consolidare — rileggi LA tabella della sezione 3 e risuona le coppie scritto/reale.",
       "keepGoing": "Continua — riprendi la tabella dei traspositori e le linee delle chiavi di do (Fa3–La3–Do4–Mi4–Sol4) prima di riprovare."
     }
+  },
+  "releve": {
+    "badge": "Formazione superiore",
+    "titre": "Dettato armonico",
+    "sousTitre": "Ascolta una progressione di scuola a quattro voci e trascrivila per tappe: il basso, le cifrature, il SATB completo.",
+    "nouvelExercice": "Nuovo esercizio",
+    "paliers": {
+      "basse": "① Basso",
+      "chiffrage": "② Cifrature",
+      "satb": "③ SATB completo"
+    },
+    "consignes": {
+      "basse": "Annota il basso ascoltato, battuta per battuta — l'ottava è libera. Seleziona la voce Basso nell'editor.",
+      "chiffrage": "Il basso corretto è dato. Per ogni battuta, scegli la cifratura ascoltata tra le tessere.",
+      "satb": "Scrivi le quattro voci ascoltate. Si applica la verifica di scuola completa (conformità, risoluzioni)."
+    },
+    "modes": {
+      "entrainement": "Allenamento",
+      "examen": "Esame"
+    },
+    "modeEntrainementAide": "Ascolti illimitati, riascolto accordo per accordo.",
+    "modeExamenAide": "{n} ascolti dell'intera progressione, senza riascolto per accordo.",
+    "ecoutesRestantes": "Ascolti rimanenti: {n}",
+    "ecoutesEpuisees": "Nessun ascolto rimasto — annota ciò che hai memorizzato.",
+    "ecouterProgression": "Ascolta la progressione",
+    "lecture": "Riproduzione…",
+    "ecouterAccord": "Accordo {n}",
+    "basseDonnee": "Basso dato",
+    "ecouterBasse": "Ascolta il basso",
+    "filtres": {
+      "niveau": "Livello",
+      "tousNiveaux": "Tutti",
+      "tonalites": "Tonalità",
+      "toutes": "Tutte",
+      "majeures": "Maggiori",
+      "mineures": "Minori"
+    },
+    "tonalite": "Tonalità",
+    "mesures": "{n} battute",
+    "verifierBasse": "Verifica il basso",
+    "verifierChiffrages": "Verifica le cifrature",
+    "mesure": "Battuta {n}",
+    "scoreMesures": "{bonnes}/{total} battute corrette",
+    "basseCorrigee": "Basso corretto",
+    "scoreSatb": "Punteggio: {score}/100",
+    "voirSolution": "Vedi la soluzione",
+    "masquerSolution": "Nascondi la soluzione",
+    "solutionTitre": "Soluzione completa",
+    "session": "Punteggio della sessione (battute corrette)",
+    "gratuit": "Piano gratuito — solo la progressione II–V–I.",
+    "passerPro": "Passa a Pro"
   }
 }
