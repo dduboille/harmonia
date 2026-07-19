@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modi e tecniche avanzate",
     "level2Desc": "12 lezioni per ampliare il linguaggio armonico — modi, estensioni, jazz, contrappunto. Uscire dal quadro classico ed esplorare nuovi colori.",
     "level3Title": "Composizione, analisi e maestria",
-    "level3Desc": "13 lezioni per raggiungere la maestria — forma musicale, orchestrazione, analisi dei grandi compositori e composizione nei loro stili.",
+    "level3Desc": "14 lezioni per raggiungere la maestria — forma musicale, orchestrazione, analisi dei grandi compositori e composizione nei loro stili.",
     "c1": "La scala, i gradi e gli intervalli",
     "c2": "Gli accordi",
     "c3": "Funzioni tonali e conduzione delle voci",
@@ -141,6 +141,8 @@
     "c45": "Metodologia del commento d'ascolto",
     "d44": "Classi di altezze, forma normale e forma prima, vettore intervallare, numeri di Forte, relazione Z — analizzare Schönberg e Webern, fino alla serie dodecafonica.",
     "d45": "Il metodo completo della prova — griglia dei parametri, marcatori stilistici, forme a orecchio, piano e vocabolario — più la palestra armonica: cadenze, modi, modulazioni, ritmo armonico, testure.",
+    "c46": "Analizzare un'opera che si sta per suonare",
+    "d46": "L'analisi al servizio dell'interpretazione — mappa formale, scheletro armonico, piano di fraseggio, gerarchia delle voci — e la scheda interpretativa sul proprio repertorio, importato nell'analizzatore. Primo corso del percorso DNSPM da interprete.",
     "univ1": "≈ Laurea 1",
     "univ2": "≈ Laurea 2",
     "univ3": "≈ Laurea 3 · DNSPM",
@@ -4301,6 +4303,25 @@
       "perfect": "Perfetto! Griglia, marcatori, cadenze e forme: il metodo del commento d'ascolto è tuo.",
       "veryGood": "Molto bene! Alcuni marcatori da consolidare — rileggi la tabella dei periodi e rifai i drill alla cieca.",
       "keepGoing": "Continua — riprendi la griglia dei parametri e la regola d'oro (descrivere → identificare → collocare) prima di riprovare."
+    }
+  },
+  "cours46": {
+    "badge": "Livello 3 · Corso 46",
+    "title": "Analizzare un'opera che si sta per suonare",
+    "subtitle": "L'analisi al servizio dell'interpretazione — analizzare, decidere, ascoltare: mappa formale, scheletro armonico, piano di fraseggio, gerarchia delle voci e la scheda interpretativa sul proprio repertorio. Primo corso del percorso DNSPM da interprete.",
+    "sections": {
+      "intro": "Perché analizzare?",
+      "carte": "La mappa dell'opera",
+      "squelette": "Lo scheletro",
+      "phrase": "Il fraseggio",
+      "voix": "Le voci",
+      "fiche": "La scheda",
+      "quiz": "Allenamento"
+    },
+    "quiz": {
+      "perfect": "Perfetto! Mappa, scheletro, fraseggio, voci: il metodo dell'interprete è tuo — ora fallo suonare.",
+      "veryGood": "Molto bene! Alcuni riflessi da consolidare — rileggi la tabella evento → decisione della sezione 3.",
+      "keepGoing": "Continua — riprendi la regola del corso (analizzare → decidere → ascoltare) e il metodo in 5 passate prima di riprovare."
     }
   }
 }

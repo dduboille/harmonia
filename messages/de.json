@@ -43,7 +43,7 @@
     "level2Title": "Jazz, Modi und fortgeschrittene Techniken",
     "level2Desc": "12 Kurse zur Erweiterung der harmonischen Sprache — Modi, Erweiterungen, Jazz, Kontrapunkt. Den klassischen Rahmen verlassen und neue Farben entdecken.",
     "level3Title": "Komposition, Analyse und Meisterschaft",
-    "level3Desc": "13 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
+    "level3Desc": "14 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
     "c1": "Die Tonleiter, die Stufen und die Intervalle",
     "c2": "Die Akkorde",
     "c3": "Tonale Funktionen und Stimmführung",
@@ -141,6 +141,8 @@
     "c45": "Methodik der Höranalyse",
     "d44": "Tonhöhenklassen, Normal- und Primform, Intervallvektor, Forte-Nummern, Z-Beziehung — Schönberg und Webern analysieren, bis zur Zwölftonreihe.",
     "d45": "Die vollständige Methode der Prüfung — Parameterraster, Stilmarker, Formen nach Gehör, Aufbau und Vokabular — plus das harmonische Trainingsstudio: Kadenzen, Modi, Modulationen, harmonisches Tempo, Satzarten.",
+    "c46": "Ein Werk analysieren, das man spielen wird",
+    "d46": "Analyse im Dienst der Interpretation — Formkarte, harmonisches Gerüst, Phrasierungsplan, Stimmenhierarchie — und das Interpretationsblatt zum eigenen Repertoire, importiert in den Analyseur. Erster Kurs des DNSPM-Interpretenwegs.",
     "univ1": "≈ Bachelor 1",
     "univ2": "≈ Bachelor 2",
     "univ3": "≈ Bachelor 3 · DNSPM",
@@ -4301,6 +4303,25 @@
       "perfect": "Perfekt! Raster, Marker, Kadenzen und Formen: Die Methode der Höranalyse gehört dir.",
       "veryGood": "Sehr gut! Einige Marker sind noch zu festigen — lies die Epochentabelle erneut und wiederhole die Blind-Drills.",
       "keepGoing": "Weiter so — geh das Parameterraster und die goldene Regel (beschreiben → bestimmen → einordnen) noch einmal durch."
+    }
+  },
+  "cours46": {
+    "badge": "Stufe 3 · Kurs 46",
+    "title": "Ein Werk analysieren, das man spielen wird",
+    "subtitle": "Analyse im Dienst der Interpretation — analysieren, entscheiden, hören: Formkarte, harmonisches Gerüst, Phrasierungsplan, Stimmenhierarchie und das Interpretationsblatt zum eigenen Repertoire. Erster Kurs des DNSPM-Interpretenwegs.",
+    "sections": {
+      "intro": "Warum analysieren?",
+      "carte": "Die Karte des Werks",
+      "squelette": "Das Gerüst",
+      "phrase": "Die Phrasierung",
+      "voix": "Die Stimmen",
+      "fiche": "Das Blatt",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt! Karte, Gerüst, Phrasierung, Stimmen: Die Methode des Interpreten gehört dir — jetzt bring sie zum Klingen.",
+      "veryGood": "Sehr gut! Einige Reflexe sind noch zu festigen — lies die Tabelle Ereignis → Entscheidung aus Abschnitt 3 erneut.",
+      "keepGoing": "Weiter so — geh die Kursregel (analysieren → entscheiden → hören) und die 5-Durchgänge-Methode noch einmal durch."
     }
   }
 }

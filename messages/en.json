@@ -43,7 +43,7 @@
     "level2Title": "Jazz, Modes and Advanced Techniques",
     "level2Desc": "12 lessons to expand your harmonic language — modes, extensions, jazz, counterpoint. Step outside the classical framework and explore new colors.",
     "level3Title": "Composition, Analysis and Mastery",
-    "level3Desc": "13 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis.",
+    "level3Desc": "14 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis.",
     "sublabel4": "Extended Harmony",
     "level4Title": "Extended Harmony — Beyond Tonality",
     "level4Desc": "3 lessons to explore 20th-century musical languages — impressionism, polytonality, quartal harmony and advanced Coltrane-style reharmonization.",
@@ -141,6 +141,8 @@
     "c45": "Listening Commentary Methodology",
     "d44": "Pitch classes, normal and prime form, interval-class vector, Forte numbers, Z-relation — analysing Schoenberg and Webern, up to the twelve-tone row.",
     "d45": "The complete method of the exam — parameter grid, stylistic markers, forms by ear, plan and vocabulary — plus the harmonic gymnasium: cadences, modes, modulations, harmonic rhythm, textures.",
+    "c46": "Analysing a Piece You Are Going to Play",
+    "d46": "Analysis in the service of interpretation — formal map, harmonic skeleton, phrasing plan, voice hierarchy — and the interpretation worksheet on your own repertoire, imported into the analyser. First course of the DNSPM performer track.",
     "univ1": "≈ Bachelor 1",
     "univ2": "≈ Bachelor 2",
     "univ3": "≈ Bachelor 3 · DNSPM",
@@ -4300,6 +4302,25 @@
       "perfect": "Perfect! Grid, markers, cadences and forms: the listening-commentary method is yours.",
       "veryGood": "Very good! A few markers to consolidate — reread the period table and redo the blind drills.",
       "keepGoing": "Keep going — go back over the parameter grid and the golden rule (describe → identify → situate) before trying again."
+    }
+  },
+  "cours46": {
+    "badge": "Level 3 · Course 46",
+    "title": "Analysing a Piece You Are Going to Play",
+    "subtitle": "Analysis in the service of interpretation — analyse, decide, listen: formal map, harmonic skeleton, phrasing plan, voice hierarchy, and the interpretation worksheet on your own repertoire. First course of the DNSPM performer track.",
+    "sections": {
+      "intro": "Why analyse?",
+      "carte": "The map of the work",
+      "squelette": "The skeleton",
+      "phrase": "Phrasing",
+      "voix": "The voices",
+      "fiche": "The worksheet",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! Map, skeleton, phrasing, voices: the performer's method is yours — now make it sound.",
+      "veryGood": "Very good! A few reflexes to consolidate — reread the event → decision table of section 3.",
+      "keepGoing": "Keep going — go back over the course rule (analyse → decide → listen) and the 5-pass method before trying again."
     }
   }
 }
