@@ -118,6 +118,22 @@ describe("pieceVersMusicXML — aller-retour par le parseur", () => {
     expect(note.alter).toBe(1);
   });
 
+  it("une altération HORS armure porte un <accidental> explicite (pas en armure)", () => {
+    // Sans <accidental>, Verovio dessine le dièse depuis <alter> mais sa table
+    // de temps MIDI (renderToMIDI) l'IGNORE : un Fa♯ hors armure sonnait Fa
+    // bécarre dans l'appariement de StudioScore. Le glyphe doit être émis dès
+    // que l'altération contredit l'armure — et seulement dans ce cas.
+    const faDiese: Note = {
+      type: "note", hauteurs: [{ lettre: "F", alteration: 1, octave: 5 }], duree: { base: "ronde", points: 0 },
+    };
+    // Armure 0 (Do majeur) : le Fa♯ contredit l'armure → accidental émis.
+    expect(pieceVersMusicXML(piece4voix({ soprano: [faDiese] })))
+      .toContain("<accidental>sharp</accidental>");
+    // Armure 1 dièse (Sol majeur) : le Fa♯ est À l'armure → aucun accidental.
+    const enSol: Piece = { ...piece4voix({ soprano: [faDiese] }), armure: 1 };
+    expect(pieceVersMusicXML(enSol)).not.toContain("<accidental>");
+  });
+
   it("deux voix par portée (soprano + alto) se relisent au bon instant", () => {
     // Mesure : soprano = Do5 ronde ; alto = La4 ronde. Même onset, hauteurs distinctes.
     const xml = pieceVersMusicXML(piece4voix({ soprano: [n("C", 5, "ronde")], alto: [n("A", 4, "ronde")] }));

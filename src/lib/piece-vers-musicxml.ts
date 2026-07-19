@@ -25,10 +25,24 @@ import {
 import {
   capaciteMesure, dureePlacee, decouperEnSilences, voixActives,
 } from "./composition-edition";
+import { GLYPHE_ALTERATION } from "./note-musicxml";
 
 const TYPE_XML: Record<BaseDuree, string> = {
   ronde: "whole", blanche: "half", noire: "quarter", croche: "eighth", double: "16th",
 };
+
+// Ordre des dièses et des bémols à l'armure, pour dériver l'altération ATTENDUE
+// de chaque lettre depuis le nombre de quintes (armure -7..+7 du modèle Piece).
+const ORDRE_DIESES = ["F", "C", "G", "D", "A", "E", "B"];
+const ORDRE_BEMOLS = ["B", "E", "A", "D", "G", "C", "F"];
+
+/** Altération attendue par lettre selon l'armure (mêmes conventions que armureDe). */
+function attenduDepuisArmure(fifths: number): Record<string, number> {
+  const attendu: Record<string, number> = {};
+  if (fifths > 0) for (const l of ORDRE_DIESES.slice(0, fifths)) attendu[l] = 1;
+  if (fifths < 0) for (const l of ORDRE_BEMOLS.slice(0, -fifths)) attendu[l] = -1;
+  return attendu;
+}
 
 // Numéro de voix MusicXML par nom : distinct pour chaque voix, y compris entre les
 // deux portées, pour que le parseur et le graveur ne les confondent jamais.
@@ -50,6 +64,7 @@ function hauteurXML(h: Hauteur): string {
 function noteXML(
   note: Note, voix: string, portee: number, hampe: string,
   tenueEntrante: boolean, tupletDebut: boolean, tupletFin: boolean,
+  attendu: Record<string, number>,
 ): string {
   const duree = dureeEnDivisions(note.duree);
   const type = TYPE_XML[note.duree.base];
@@ -76,9 +91,18 @@ function noteXML(
       const chord = i > 0 ? "<chord/>" : "";
       const contenu = tied + (i === 0 ? tuplet : "");
       const notations = contenu ? `<notations>${contenu}</notations>` : "";
+      // <accidental> EXPLICITE dès que l'altération contredit l'armure (même
+      // convention que les graveurs SATB et contrepoint). Indispensable :
+      // Verovio dessine bien le glyphe depuis <alter> seul, mais sa table de
+      // temps MIDI (renderToMIDI → getMIDIValuesForElement) IGNORE <alter>
+      // sans <accidental> — un Fa♯ hors armure sonnait Fa bécarre dans
+      // l'appariement de StudioScore.
+      const accidental = h.alteration !== (attendu[h.lettre] ?? 0)
+        ? `<accidental>${GLYPHE_ALTERATION[h.alteration]}</accidental>`
+        : "";
       return (
         `<note>${chord}${hauteurXML(h)}<duration>${duree}</duration>${ties}` +
-        `<voice>${voix}</voice><type>${type}</type>${points}${modif}` +
+        `<voice>${voix}</voice><type>${type}</type>${points}${accidental}${modif}` +
         `<stem>${hampe}</stem><staff>${portee}</staff>${notations}</note>`
       );
     })
@@ -102,7 +126,7 @@ function silenceXML(s: Silence, voix: string, portee: number, ticksMesure: numbe
  * jusqu'à la capacité (une voix vide devient un silence de mesure centré). Suit l'état
  * de liaison entrante et les groupes de n-olet, et applique la hampe de la voix.
  */
-function voixMesureXML(evenements: Voix, nom: NomVoix, ticksMesure: number): string {
+function voixMesureXML(evenements: Voix, nom: NomVoix, ticksMesure: number, attendu: Record<string, number>): string {
   const num = NUM_VOIX[nom];
   const { portee, hampe } = CONFIG_VOIX[nom];
   // Complément : voix vide → un silence de mesure ; voix partielle → + silences.
@@ -132,7 +156,7 @@ function voixMesureXML(evenements: Voix, nom: NomVoix, ticksMesure: number): str
       } else {
         posNolet = 0;
       }
-      out += noteXML(ev, num, portee, hampe, tenueEntrante, debut, fin);
+      out += noteXML(ev, num, portee, hampe, tenueEntrante, debut, fin, attendu);
       tenueEntrante = !!ev.liee;
     }
   }
@@ -153,6 +177,7 @@ function attributsXML(piece: Piece): string {
 export function pieceVersMusicXML(piece: Piece): string {
   const ticksMesure = capaciteMesure(piece.chiffrage);
   const actives = voixActives(piece);
+  const attendu = attenduDepuisArmure(piece.armure);
 
   const mesures = piece.mesures.map((mesure, i) => {
     const attrs = i === 0 ? attributsXML(piece) : "";
@@ -165,9 +190,9 @@ export function pieceVersMusicXML(piece: Piece): string {
       );
       if (voixDeLaPortee.length === 0) {
         const repli: NomVoix = p === 1 ? "soprano" : "tenor";
-        return [voixMesureXML([], repli, ticksMesure)];
+        return [voixMesureXML([], repli, ticksMesure, attendu)];
       }
-      return voixDeLaPortee.map((v) => voixMesureXML(mesure.voix[v], v, ticksMesure));
+      return voixDeLaPortee.map((v) => voixMesureXML(mesure.voix[v], v, ticksMesure, attendu));
     }).flat();
 
     // Le <backup> ramène le curseur au début de la mesure entre chaque voix (pas après

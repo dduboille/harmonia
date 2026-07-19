@@ -65,6 +65,7 @@ export const COURS: CoursMeta[] = [
   { num: 44, level: 5 as const, title: "Analyse post-tonale : la set theory", desc: "Classes de hauteurs, forme normale et forme première, vecteur d'intervalles, nombres de Forte, relation Z — analyser Schoenberg et Webern, jusqu'à la série dodécaphonique.", tags: ["Set theory", "Forte", "Atonal"] },
   { num: 45, level: 3 as const, title: "Méthodologie du commentaire d'écoute", desc: "La méthode complète de l'épreuve — grille des paramètres, marqueurs stylistiques, formes à l'oreille, plan et vocabulaire — et le gymnase harmonique : cadences, modes, modulations, rythme harmonique, textures.", tags: ["Commentaire d'écoute", "Styles", "Méthodologie"] },
   { num: 46, level: 3 as const, title: "Analyser une œuvre qu'on va jouer", desc: "L'analyse au service de l'interprétation — carte formelle, squelette harmonique, plan de phrasé, hiérarchie des voix — et la fiche d'interprétation sur votre propre répertoire, importé dans l'analyseur. Premier cours du parcours DNSPM.", tags: ["Interprétation", "DNSPM", "Analyse"] },
+  { num: 47, level: 3 as const, title: "Orchestration et lecture d'orchestre", desc: "Lire un conducteur : architecture de la page, clés d'ut, instruments transpositeurs (avec écoute écrit/sonnant), verticalité d'un tutti, réduction au piano et équilibre orchestral. Deuxième cours du parcours DNSPM.", tags: ["Orchestration", "Transposition", "DNSPM"] },
 ];
 
 /** Nombre total de cours publiés. */

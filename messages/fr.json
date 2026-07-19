@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modes et techniques avancées",
     "level2Desc": "12 cours pour élargir le langage harmonique — modes, extensions, jazz, contrepoint. Sortir du cadre classique et explorer de nouvelles couleurs.",
     "level3Title": "Composition, analyse et maîtrise",
-    "level3Desc": "14 cours pour atteindre la maîtrise — forme musicale, orchestration, analyse des grands compositeurs, composition dans leurs styles et analyse structurelle profonde.",
+    "level3Desc": "15 cours pour atteindre la maîtrise — forme musicale, orchestration, analyse des grands compositeurs, composition dans leurs styles et analyse structurelle profonde.",
     "sublabel4": "Harmonie élargie",
     "level4Title": "Harmonie élargie — au-delà de la tonalité",
     "level4Desc": "3 cours pour explorer les langages du XXe siècle — impressionnisme, polytonalité, harmonie quartale et reharmonisation avancée à la Coltrane.",
@@ -143,6 +143,8 @@
     "d45": "La méthode complète de l'épreuve — grille des paramètres, marqueurs stylistiques, formes à l'oreille, plan et vocabulaire — et le gymnase harmonique : cadences, modes, modulations, rythme harmonique, textures.",
     "c46": "Analyser une œuvre qu'on va jouer",
     "d46": "L'analyse au service de l'interprétation — carte formelle, squelette harmonique, plan de phrasé, hiérarchie des voix — et la fiche d'interprétation sur votre propre répertoire, importé dans l'analyseur. Premier cours du parcours DNSPM.",
+    "c47": "Orchestration et lecture d'orchestre",
+    "d47": "Lire un conducteur : architecture de la page, clés d'ut, instruments transpositeurs (avec écoute écrit/sonnant), verticalité d'un tutti, réduction au piano et équilibre orchestral. Deuxième cours du parcours DNSPM.",
     "univ1": "≈ Licence 1",
     "univ2": "≈ Licence 2",
     "univ3": "≈ Licence 3 · DNSPM",
@@ -4321,6 +4323,25 @@
       "perfect": "Parfait ! Carte, squelette, phrasé, voix : la méthode de l'interprète est à toi — reste à la faire sonner.",
       "veryGood": "Très bien ! Quelques réflexes à consolider — relis la table événement → décision de la section 3.",
       "keepGoing": "Continue — reprends la règle du cours (analyser → décider → entendre) et la méthode en 5 passes avant de recommencer."
+    }
+  },
+  "cours47": {
+    "badge": "Niveau 3 · Cours 47",
+    "title": "Orchestration et lecture d'orchestre",
+    "subtitle": "Lire un conducteur — architecture de la page, clés d'ut, instruments transpositeurs avec écoute écrit/sonnant, verticalité d'un tutti, réduction au piano et équilibre orchestral. Deuxième cours du parcours DNSPM.",
+    "sections": {
+      "conducteur": "Le conducteur",
+      "cles": "Les clés",
+      "transpo": "Les transpositeurs",
+      "verticalite": "La verticalité",
+      "reduction": "La réduction",
+      "equilibre": "L'équilibre",
+      "quiz": "Entraînement"
+    },
+    "quiz": {
+      "perfect": "Parfait ! Conducteur, clés, transpositions, verticalité : l'orchestre n'a plus de secret sur le papier — reste à l'entendre.",
+      "veryGood": "Très bien ! Quelques transpositions à consolider — relis LA table de la section 3 et rejoue les paires écrit/sonnant.",
+      "keepGoing": "Continue — reprends la table des transpositeurs et les lignes des clés d'ut (Fa3–La3–Do4–Mi4–Sol4) avant de recommencer."
     }
   }
 }
