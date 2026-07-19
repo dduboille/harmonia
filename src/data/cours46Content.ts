@@ -264,7 +264,7 @@ const fr: Cours46Locale = {
   voixP2:
     "Le soprano est <strong>immobile</strong> (Sol4 tenu trois accords) : il ne conduit rien. La ligne expressive est la <strong>descente chromatique de l'alto</strong> Do4 – Si3 – Si♭3 – La3 : l'inflexion Si → Si♭ (dans la même voix, comme il se doit) fait basculer la tonique en dominante de IV — c'est l'instant d'ombre du passage, à faire entendre. Décision : projeter l'alto (au piano, le doigt de l'alto sonne un plan au-dessus des autres ; en quatuor, le second violon ou l'alto mène), soprano en retrait, basse Do–Sol–Do–Fa ferme mais sobre. La suite logique du II6 est la cadence de la section 3 (I6/4 – V7 – I) : les deux exemples se raccordent.",
   voixVerif:
-    "<em>Conduite vérifiée : mouvements conjoints ou obliques dans les voix supérieures, aucune quinte ni octave consécutive, septième Si♭ introduite par inflexion chromatique dans la même voix et résolue par degré descendant sur La.</em>",
+    "<em>Conduite vérifiée : mouvements conjoints ou obliques dans les voix intérieures, aucune quinte ni octave consécutive, septième Si♭ introduite par inflexion chromatique dans la même voix et résolue par degré descendant sur La.</em>",
 
   ficheH2: "De l'analyse à la décision : la fiche d'interprétation",
   ficheP1:
@@ -573,7 +573,7 @@ const en: Cours46Locale = {
   voixP2:
     "The soprano is <strong>immobile</strong> (Sol4 held for three chords): it leads nothing. The expressive line is the <strong>chromatic descent of the alto</strong> Do4 – Si3 – Si♭3 – La3: the inflection Si → Si♭ (within the same voice, as it should be) tips the tonic into the dominant of IV — the moment of shadow in the passage, to be made audible. Decision: project the alto (at the piano, the alto finger sounds one plane above the others; in a quartet, the second violin or the viola leads), soprano held back, bass Do–Sol–Do–Fa firm but sober. The logical continuation of the II6 is the cadence of section 3 (I6/4 – V7 – I): the two examples join up.",
   voixVerif:
-    "<em>Voice leading checked: stepwise or oblique motion in the upper voices, no consecutive fifths or octaves, the seventh Si♭ introduced by chromatic inflection within the same voice and resolved by descending step onto La.</em>",
+    "<em>Voice leading checked: stepwise or oblique motion in the inner voices, no consecutive fifths or octaves, the seventh Si♭ introduced by chromatic inflection within the same voice and resolved by descending step onto La.</em>",
 
   ficheH2: "From analysis to decision: the interpretation worksheet",
   ficheP1:
@@ -882,7 +882,7 @@ const de: Cours46Locale = {
   voixP2:
     "Der Sopran ist <strong>unbeweglich</strong> (Sol4, drei Akkorde lang gehalten): Er führt nichts. Die expressive Linie ist der <strong>chromatische Abstieg des Alts</strong> Do4 – Si3 – Si♭3 – La3: Die Einfärbung Si → Si♭ (in derselben Stimme, wie es sich gehört) kippt die Tonika in die Dominante der IV — der Schattenmoment der Passage, hörbar zu machen. Entscheidung: den Alt projizieren (am Klavier klingt der Alt-Finger eine Ebene über den anderen; im Quartett führt die zweite Violine oder die Bratsche), Sopran zurückgenommen, Bass Do–Sol–Do–Fa fest, aber nüchtern. Die logische Fortsetzung des II6 ist die Kadenz aus Abschnitt 3 (I6/4 – V7 – I): Die beiden Beispiele fügen sich zusammen.",
   voixVerif:
-    "<em>Stimmführung geprüft: schrittweise oder Seitenbewegung in den Oberstimmen, keine Quint- oder Oktavparallelen, die Septime Si♭ durch chromatische Einfärbung in derselben Stimme eingeführt und stufenweise abwärts nach La aufgelöst.</em>",
+    "<em>Stimmführung geprüft: schrittweise oder Seitenbewegung in den Mittelstimmen, keine Quint- oder Oktavparallelen, die Septime Si♭ durch chromatische Einfärbung in derselben Stimme eingeführt und stufenweise abwärts nach La aufgelöst.</em>",
 
   ficheH2: "Von der Analyse zur Entscheidung: das Interpretationsblatt",
   ficheP1:
@@ -1191,7 +1191,7 @@ const es: Cours46Locale = {
   voixP2:
     "El soprano está <strong>inmóvil</strong> (Sol4 sostenido tres acordes): no conduce nada. La línea expresiva es el <strong>descenso cromático del contralto</strong> Do4 – Si3 – Si♭3 – La3: la inflexión Si → Si♭ (en la misma voz, como debe ser) convierte la tónica en dominante de IV — es el instante de sombra del pasaje, que hay que hacer oír. Decisión: proyectar el contralto (en el piano, el dedo del contralto suena un plano por encima de los demás; en cuarteto, conduce el segundo violín o la viola), soprano en retirada, bajo Do–Sol–Do–Fa firme pero sobrio. La continuación lógica del II6 es la cadencia de la sección 3 (I6/4 – V7 – I): los dos ejemplos se enlazan.",
   voixVerif:
-    "<em>Conducción verificada: movimientos por grados conjuntos u oblicuos en las voces superiores, ninguna quinta ni octava consecutiva, séptima Si♭ introducida por inflexión cromática en la misma voz y resuelta por grado descendente sobre La.</em>",
+    "<em>Conducción verificada: movimientos por grados conjuntos u oblicuos en las voces interiores, ninguna quinta ni octava consecutiva, séptima Si♭ introducida por inflexión cromática en la misma voz y resuelta por grado descendente sobre La.</em>",
 
   ficheH2: "Del análisis a la decisión: la ficha de interpretación",
   ficheP1:
@@ -1500,7 +1500,7 @@ const it: Cours46Locale = {
   voixP2:
     "Il soprano è <strong>immobile</strong> (Sol4 tenuto per tre accordi): non conduce nulla. La linea espressiva è la <strong>discesa cromatica del contralto</strong> Do4 – Si3 – Si♭3 – La3: l'inflessione Si → Si♭ (nella stessa voce, come si deve) fa scivolare la tonica in dominante di IV — è l'istante d'ombra del passaggio, da far sentire. Decisione: proiettare il contralto (al pianoforte, il dito del contralto suona un piano sopra gli altri; in quartetto, conduce il secondo violino o la viola), soprano in ritiro, basso Do–Sol–Do–Fa fermo ma sobrio. Il seguito logico del II6 è la cadenza della sezione 3 (I6/4 – V7 – I): i due esempi si raccordano.",
   voixVerif:
-    "<em>Condotta verificata: moti congiunti od obliqui nelle voci superiori, nessuna quinta né ottava consecutiva, settima Si♭ introdotta per inflessione cromatica nella stessa voce e risolta per grado discendente su La.</em>",
+    "<em>Condotta verificata: moti congiunti od obliqui nelle voci interne, nessuna quinta né ottava consecutiva, settima Si♭ introdotta per inflessione cromatica nella stessa voce e risolta per grado discendente su La.</em>",
 
   ficheH2: "Dall'analisi alla decisione: la scheda interpretativa",
   ficheP1:
@@ -1809,7 +1809,7 @@ const pt: Cours46Locale = {
   voixP2:
     "O soprano está <strong>imóvel</strong> (Sol4 sustentado três acordes): não conduz nada. A linha expressiva é a <strong>descida cromática do contralto</strong> Do4 – Si3 – Si♭3 – La3: a inflexão Si → Si♭ (na mesma voz, como deve ser) faz a tónica tombar em dominante de IV — é o instante de sombra da passagem, a fazer ouvir. Decisão: projetar o contralto (no piano, o dedo do contralto soa um plano acima dos outros; em quarteto, conduz o segundo violino ou a viola), soprano em retirada, baixo Do–Sol–Do–Fa firme mas sóbrio. A continuação lógica do II6 é a cadência da secção 3 (I6/4 – V7 – I): os dois exemplos encaixam.",
   voixVerif:
-    "<em>Condução verificada: movimentos conjuntos ou oblíquos nas vozes superiores, nenhuma quinta nem oitava consecutiva, sétima Si♭ introduzida por inflexão cromática na mesma voz e resolvida por grau descendente sobre La.</em>",
+    "<em>Condução verificada: movimentos conjuntos ou oblíquos nas vozes interiores, nenhuma quinta nem oitava consecutiva, sétima Si♭ introduzida por inflexão cromática na mesma voz e resolvida por grau descendente sobre La.</em>",
 
   ficheH2: "Da análise à decisão: a ficha de interpretação",
   ficheP1:

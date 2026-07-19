@@ -114,7 +114,7 @@ Quatrième passe : qui conduit ? Le réflexe « la voix supérieure est la mélo
 
 Le soprano est **immobile** (Sol4 tenu trois accords) : il ne conduit rien. La ligne expressive est la **descente chromatique de l'alto** Do4 – Si3 – Si♭3 – La3 : l'inflexion Si → Si♭ (dans la même voix, comme il se doit) fait basculer la tonique en dominante de IV — c'est l'instant d'ombre du passage, à faire entendre. Décision : projeter l'alto (au piano, le doigt de l'alto sonne un plan au-dessus des autres ; en quatuor, le second violon ou l'alto mène), soprano en retrait, basse Do–Sol–Do–Fa ferme mais sobre. La suite logique du II6 est la cadence de la section 3 (I6/4 – V7 – I) : les deux exemples se raccordent.
 
-*Conduite vérifiée : mouvements conjoints ou obliques dans les voix supérieures, aucune quinte ni octave consécutive, septième Si♭ introduite par inflexion chromatique dans la même voix et résolue par degré descendant sur La.*
+*Conduite vérifiée : mouvements conjoints ou obliques dans les voix intérieures, aucune quinte ni octave consécutive, septième Si♭ introduite par inflexion chromatique dans la même voix et résolue par degré descendant sur La.*
 
 ---
 
