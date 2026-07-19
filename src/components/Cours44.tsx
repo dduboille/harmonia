@@ -135,13 +135,18 @@ function melodieXML(notes: Grav[], beats: number, clef: "sol" | "fa" = "sol"): s
 
 const EN_TO_FR: Record<string, string> = { C: "Do", D: "Ré", E: "Mi", F: "Fa", G: "Sol", A: "La", B: "Si" };
 
-/** « G#4 » (graveur) → { fr: "Sol#", oct: 4 } (audio). ♭ rendu par son enharmonie ♯. */
+/**
+ * « G#4 » (graveur) → { fr: "Sol#", oct: 3 } (audio). ♭ rendu par son enharmonie ♯.
+ * L'octave est DÉCALÉE de −1 : PianoPlayer ajoute +1 en interne (toMidiNote), et la
+ * convention du cours est celle de la gravure (Do4 = do central) — même correction
+ * que `specAudio` de lib/cours-audio.ts, utilisée par les cours 42/43/45/46.
+ */
 function gravVersAudio(n: Grav): { fr: string; oct: number } {
   const FLAT_TO_SHARP: Record<string, string> = { Bb: "La#", Eb: "Ré#", Ab: "Sol#", Db: "Do#", Gb: "Fa#" };
-  if (n.name.endsWith("b")) return { fr: FLAT_TO_SHARP[n.name] ?? n.name, oct: n.octave };
+  if (n.name.endsWith("b")) return { fr: FLAT_TO_SHARP[n.name] ?? n.name, oct: n.octave - 1 };
   const acc = n.name.endsWith("#") ? "#" : "";
   const base = acc ? n.name.slice(0, -1) : n.name;
-  return { fr: EN_TO_FR[base] + acc, oct: n.octave };
+  return { fr: EN_TO_FR[base] + acc, oct: n.octave - 1 };
 }
 
 /** Joue une mélodie gravée, note à note. */
@@ -152,8 +157,12 @@ function playMelodie(ref: React.RefObject<PianoPlayerRef | null>, notes: Grav[],
   });
 }
 
-/** Joue un ensemble de pcs : plaqué, puis arpégé (l'oreille avant le calcul). */
-function playPcs(ref: React.RefObject<PianoPlayerRef | null>, pcs: number[], octave = 4) {
+/**
+ * Joue un ensemble de pcs : plaqué, puis arpégé (l'oreille avant le calcul).
+ * `octave = 3` en spec PianoPlayer = octave 4 SONNANTE — le registre des segments
+ * gravés du cours, pour que les pastilles abstraites et les extraits concordent.
+ */
+function playPcs(ref: React.RefObject<PianoPlayerRef | null>, pcs: number[], octave = 3) {
   const specs = pcs.map((p) => `${PC_AUDIO[p]}:${octave}`);
   ref.current?.playVoicing(specs, { duration: 1.6 });
   pcs.forEach((p, i) => {

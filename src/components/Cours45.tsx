@@ -46,6 +46,7 @@ import StudioScore from "@/components/StudioScore";
 import { satbVersMusicXML } from "@/lib/satb-vers-musicxml";
 import { contrepointVersMusicXML, type CpVoix, type CpDuree } from "@/lib/contrepoint-vers-musicxml";
 import { pieceVersMusicXML } from "@/lib/piece-vers-musicxml";
+import { specAudio, noteAudio } from "@/lib/cours-audio";
 import type { Piece, Note as PieceNote, Hauteur, BaseDuree, LettreNote } from "@/lib/piece-model";
 import type { Measure, NoteEntry, NoteName } from "@/lib/satb-rules";
 
@@ -239,10 +240,12 @@ function monodieXML(notes: { tok: string; dur: CpDuree }[]): string {
 }
 
 // ─── Audio (PianoPlayer, noms FR — les bémols FR « Mib » sont compris nativement) ──
+// L'octave gravée passe par specAudio/noteAudio (lib/cours-audio) : sans cette
+// correction, PianoPlayer sonnerait une octave au-dessus de la partition affichée.
 
 /** Colonne SATB → specs « Nom:octave » du grave à l'aigu. */
 function toSpecs(v: Voicing): string[] {
-  return [v.b, v.t, v.a, v.s].map((tok) => { const { fr, oct } = splitTok(tok); return `${fr}:${oct}`; });
+  return [v.b, v.t, v.a, v.s].map(specAudio);
 }
 
 /** Joue une progression SATB, un accord toutes les gapMs millisecondes. */
@@ -255,8 +258,8 @@ function playMelodie(ref: React.RefObject<PianoPlayerRef | null>, notes: { tok: 
   let t = 0;
   notes.forEach((n) => {
     const d = n.dur === "half" || n.dur === "blanche" ? 2 * pas : n.dur === "croche" ? pas / 2 : pas;
-    const { fr, oct } = splitTok(n.tok);
-    ref.current?.playNote(fr, oct, { startTime: t, duration: d * 0.95 });
+    const { nom, octave } = noteAudio(n.tok);
+    ref.current?.playNote(nom, octave, { startTime: t, duration: d * 0.95 });
     t += d;
   });
 }
@@ -269,8 +272,8 @@ function playCanon(ref: React.RefObject<PianoPlayerRef | null>, pas = 0.5) {
   let t = 4 * pas; // entrée une mesure plus tard
   v2.forEach((n) => {
     const d = n.dur === "blanche" ? 2 * pas : pas;
-    const { fr, oct } = splitTok(n.tok);
-    ref.current?.playNote(fr, oct, { startTime: t, duration: d * 0.95 });
+    const { nom, octave } = noteAudio(n.tok);
+    ref.current?.playNote(nom, octave, { startTime: t, duration: d * 0.95 });
     t += d;
   });
 }
@@ -278,12 +281,12 @@ function playCanon(ref: React.RefObject<PianoPlayerRef | null>, pas = 0.5) {
 /** Joue la mélodie accompagnée : blanches au soprano + croches d'Alberti. */
 function playAlberti(ref: React.RefObject<PianoPlayerRef | null>, croche = 0.3) {
   ALBERTI_SOP.flat().forEach((n, i) => {
-    const { fr, oct } = splitTok(n.tok);
-    ref.current?.playNote(fr, oct, { startTime: i * 4 * croche, duration: 4 * croche * 0.95 });
+    const { nom, octave } = noteAudio(n.tok);
+    ref.current?.playNote(nom, octave, { startTime: i * 4 * croche, duration: 4 * croche * 0.95 });
   });
   ALBERTI_BAS.flat().forEach((n, i) => {
-    const { fr, oct } = splitTok(n.tok);
-    ref.current?.playNote(fr, oct, { startTime: i * croche, duration: croche * 0.9, velocity: 0.55 });
+    const { nom, octave } = noteAudio(n.tok);
+    ref.current?.playNote(nom, octave, { startTime: i * croche, duration: croche * 0.9, velocity: 0.55 });
   });
 }
 

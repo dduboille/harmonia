@@ -28,10 +28,12 @@ import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
 import StudioScore from "@/components/StudioScore";
 import { satbVersMusicXML } from "@/lib/satb-vers-musicxml";
+import { specAudio } from "@/lib/cours-audio";
 import type { Measure, NoteEntry, NoteName } from "@/lib/satb-rules";
 
 // ─── Données musicales des exemples gravés (indépendantes de la langue) ─────────
-// Noms de notes en solfège FR ; l'octave suit la convention PianoPlayer (Do4 = do central).
+// Noms de notes en solfège FR à la convention de GRAVURE (Do4 = do central) ;
+// l'audio passe par specAudio (lib/cours-audio) qui corrige l'octave PianoPlayer.
 // Une case null = voix qui se tait (marche de sixtes à 3 voix réelles → ténor tacet).
 
 interface Voicing { s: string | null; a: string | null; t: string | null; b: string | null; }
@@ -119,7 +121,7 @@ function toMeasures(vs: Voicing[]): Measure[] {
 function toFrSpecs(v: Voicing): string[] {
   return [v.b, v.t, v.a, v.s]
     .filter((x): x is string => Boolean(x))
-    .map((tok) => { const { fr, oct } = splitTok(tok); return `${fr}:${oct}`; });
+    .map(specAudio); // octave gravée → octave PianoPlayer (Do3 gravé sonne bien Do3)
 }
 
 function playProg(ref: React.RefObject<PianoPlayerRef | null>, vs: Voicing[], gap = 1150) {
@@ -301,7 +303,7 @@ export default function Cours42() {
           <div style={S.warn} dangerouslySetInnerHTML={{ __html: c.altExampleBox }} />
           <div style={{ background: "#fafafa", border: "0.5px solid #e5e5e5", borderRadius: 10, padding: "12px 14px" }}>
             <div style={{ fontSize: 12, color: "#999", marginBottom: 8 }}>{c.altAudioLabel}</div>
-            <button onClick={() => playChord(["Mi:3", "Sol#:3", "Si:3"])} style={{ ...S.listenBtn, marginTop: 0 }}>🔊 {c.altAudioBtn}</button>
+            <button onClick={() => playChord(["Mi3", "Sol#3", "Si3"].map(specAudio))} style={{ ...S.listenBtn, marginTop: 0 }}>🔊 {c.altAudioBtn}</button>
           </div>
         </div>
       )}
@@ -367,7 +369,7 @@ export default function Cours42() {
             <div style={{ fontSize: 12, color: "#999", marginBottom: 8 }}>{c.clavierAudioLabel}</div>
             <button
               onClick={() => c.clavierMD.forEach((chord, i) => setTimeout(() => {
-                const specs = [c.clavierMG[i], ...chord.split("-")].map((tok) => { const { fr, oct } = splitTok(tok); return `${fr}:${oct}`; });
+                const specs = [c.clavierMG[i], ...chord.split("-")].map(specAudio);
                 pianoRef.current?.playVoicing(specs, { duration: 1.5 });
               }, i * 1150))}
               style={{ ...S.listenBtn, marginTop: 0 }}

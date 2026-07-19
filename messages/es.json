@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modos y técnicas avanzadas",
     "level2Desc": "12 lecciones para ampliar el lenguaje armónico — modos, extensiones, jazz, contrapunto. Salir del marco clásico y explorar nuevos colores.",
     "level3Title": "Composición, análisis y maestría",
-    "level3Desc": "13 lecciones para alcanzar la maestría — forma musical, orquestación, análisis de los grandes compositores y composición en sus estilos.",
+    "level3Desc": "14 lecciones para alcanzar la maestría — forma musical, orquestación, análisis de los grandes compositores y composición en sus estilos.",
     "c1": "La escala, los grados y los intervalos",
     "c2": "Los acordes",
     "c3": "Funciones tonales y conducción de voces",
@@ -141,6 +141,8 @@
     "c45": "Metodología del comentario de audición",
     "d44": "Clases de alturas, forma normal y forma prima, vector interválico, números de Forte, relación Z — analizar a Schoenberg y Webern, hasta la serie dodecafónica.",
     "d45": "El método completo de la prueba — tabla de parámetros, marcadores estilísticos, formas de oído, plan y vocabulario — más el gimnasio armónico: cadencias, modos, modulaciones, ritmo armónico, texturas.",
+    "c46": "Analizar una obra que se va a tocar",
+    "d46": "El análisis al servicio de la interpretación — mapa formal, esqueleto armónico, plan de fraseo, jerarquía de las voces — y la ficha de interpretación sobre su propio repertorio, importado en el analizador. Primer curso del itinerario DNSPM de intérprete.",
     "univ1": "≈ Grado 1",
     "univ2": "≈ Grado 2",
     "univ3": "≈ Grado 3 · DNSPM",
@@ -4301,6 +4303,25 @@
       "perfect": "¡Perfecto! Tabla, marcadores, cadencias y formas: el método del comentario de audición es tuyo.",
       "veryGood": "¡Muy bien! Algunos marcadores por consolidar — relee la tabla de períodos y repite los drills a ciegas.",
       "keepGoing": "Sigue así — repasa la tabla de parámetros y la regla de oro (describir → identificar → situar) antes de reintentar."
+    }
+  },
+  "cours46": {
+    "badge": "Nivel 3 · Curso 46",
+    "title": "Analizar una obra que se va a tocar",
+    "subtitle": "El análisis al servicio de la interpretación — analizar, decidir, escuchar: mapa formal, esqueleto armónico, plan de fraseo, jerarquía de las voces y la ficha de interpretación sobre su propio repertorio. Primer curso del itinerario DNSPM de intérprete.",
+    "sections": {
+      "intro": "¿Por qué analizar?",
+      "carte": "El mapa de la obra",
+      "squelette": "El esqueleto",
+      "phrase": "El fraseo",
+      "voix": "Las voces",
+      "fiche": "La ficha",
+      "quiz": "Entrenamiento"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! Mapa, esqueleto, fraseo, voces: el método del intérprete es tuyo — ahora hazlo sonar.",
+      "veryGood": "¡Muy bien! Algunos reflejos por consolidar — relee la tabla acontecimiento → decisión de la sección 3.",
+      "keepGoing": "Sigue así — repasa la regla del curso (analizar → decidir → escuchar) y el método en 5 pasadas antes de reintentar."
     }
   }
 }

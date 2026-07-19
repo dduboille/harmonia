@@ -30,10 +30,12 @@ import MaitreCard from "@/components/MaitreCard";
 import StudioScore from "@/components/StudioScore";
 import { satbVersMusicXML } from "@/lib/satb-vers-musicxml";
 import { contrepointVersMusicXML, type CpVoix, type CpDuree } from "@/lib/contrepoint-vers-musicxml";
+import { specAudio, noteAudio } from "@/lib/cours-audio";
 import type { Measure, NoteEntry, NoteName } from "@/lib/satb-rules";
 
 // ─── Données musicales des exemples (indépendantes de la langue) ────────────────
-// Noms de notes en solfège FR ; octave à la convention PianoPlayer (Do4 = do central).
+// Noms de notes en solfège FR à la convention de GRAVURE (Do4 = do central) ;
+// l'audio passe par specAudio/noteAudio (lib/cours-audio) qui corrigent l'octave.
 
 // ── Contrepoint (1-2 voix) : chaque voix = clé + séquence de notes brèves ────────
 type Dur = "whole" | "half";
@@ -179,7 +181,7 @@ function toCpVoix(v: CpVoixData): CpVoix {
 function toFrSpecs(v: Voicing): string[] {
   return [v.b, v.t, v.a, v.s]
     .filter((x): x is string => Boolean(x))
-    .map((tok) => { const { fr, oct } = splitTok(tok); return `${fr}:${oct}`; });
+    .map(specAudio); // octave gravée → octave PianoPlayer (Ré3 gravé sonne bien Ré3)
 }
 
 /** Joue une suite de colonnes SATB (cadences note contre note). */
@@ -202,8 +204,8 @@ function playContrepoint(ref: React.RefObject<PianoPlayerRef | null>, voices: Cp
     });
     let onset = 0;
     merged.forEach((m) => {
-      const { fr, oct } = splitTok(m.tok);
-      ref.current?.playNote(fr, oct, { startTime: onset * SEC, duration: m.q * SEC * 0.95 });
+      const { nom, octave } = noteAudio(m.tok); // octave gravée → octave PianoPlayer
+      ref.current?.playNote(nom, octave, { startTime: onset * SEC, duration: m.q * SEC * 0.95 });
       onset += m.q;
     });
   });
