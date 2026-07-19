@@ -21,7 +21,7 @@
   - **Squelette harmonique** (`/squelette-harmonique`) — réduction guidée d'une surface à sa progression sous-jacente.
   - **Verovio** — gravure des exemples ; **PianoPlayer** — écoute de tous les exemples (noms FR : Do Ré Mi Fa Sol La Si).
   - **Liens de cours** — cours 17 (*La phrase musicale et la forme*), cours 18 (*Le développement motivique*), cours 27 (*Analyse fonctionnelle profonde* — la réduction), cours 28 (*Formes musicales approfondies*), cours 45 (*Méthodologie du commentaire d'écoute* — l'épreuve sœur, à l'oreille).
-- **Convention de notation** : noms de notes français partout ; Do4 = do central ; chiffrages de degrés dans la notation du cours (I, vi, IV, II6, I6/4, V7).
+- **Convention de notation** : noms de notes français partout ; Do4 = do central ; chiffrages de degrés dans la notation du cours (majuscules à la française : I, VI, IV, II6, I6/4, V7).
 
 ---
 
@@ -66,16 +66,16 @@ Deuxième passe : réduire la surface (arpèges, broderies, figuration) à la **
 |---|---|---|---|---|---|---|---|---|
 | **Mélodie** | Do4 Ré4 Mi4 Fa4 (noires) | Sol4 – Mi4 (blanches) | La4 – Do5 (blanches) | Do5, Si4 (noires) La4 (blanche) | La4 – **Ré5** (blanches) | Do5 (ronde) | Si4 (ronde) | Do5 (ronde) |
 | **Basse** (rondes) | Do3 | Do3 | La2 | Fa2 | Fa2 | Sol2 | Sol2 | Do3 |
-| **Degré** | I | I | vi | IV | II6 | I6/4 | V7 | I |
+| **Degré** | I | I | VI | IV | II6 | I6/4 | V7 | I |
 
 (Ré4, Fa4 et Si4 sont des notes de passage ; toutes les autres notes de la mélodie appartiennent à l'accord.)
 
-Le squelette est **I – vi – IV – II6 – I6/4 – V7 – I**, et chaque événement commande une décision :
+Le squelette est **I – VI – IV – II6 – I6/4 – V7 – I**, et chaque événement commande une décision :
 
 | Événement | Fait d'analyse | Décision de jeu |
 |---|---|---|
 | I (m. 1–2) | tonique prolongée, rythme harmonique lent (1 accord / 2 mesures) | installer le tempo, son posé, aucune urgence |
-| vi (m. 3) | première inflexion, ombre relative | changement de **couleur**, pas d'accent |
+| VI (m. 3) | première inflexion, ombre relative | changement de **couleur**, pas d'accent |
 | IV → II6 (m. 4–5) | zone de pré-dominante ; le rythme harmonique est passé à 1 accord/mesure ; basse commune Fa | l'élan vers la cadence commence : **crescendo directionnel**, lier m. 4–5 sur la basse tenue |
 | Ré5 (m. 5) | **sommet mélodique** — mais pas le sommet de tension | le faire sonner sans s'y arrêter : la phrase n'est pas finie |
 | I6/4 (m. 6) | appoggiature de la dominante (Do5, quarte au-dessus de la basse Sol) : **sommet de tension harmonique** | point culminant dynamique, léger appui ; **ne pas respirer** avant sa résolution |
