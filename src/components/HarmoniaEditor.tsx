@@ -55,6 +55,14 @@ export interface HarmoniaEditorProps {
   /** école = règles d'écriture complètes ; libre = conformité + tessitures, pour les exercices non tonals. */
   regles?: "ecole" | "libre";
   onComplete?: (measures: Measure[]) => void;
+  /**
+   * Remonte l'état des mesures à CHAQUE modification (prop additive, optionnelle).
+   * Nécessaire au relevé (palier « basse ») : `onComplete` ne se déclenche que
+   * par le bouton Terminer, lui-même désactivé tant que les QUATRE voix ne sont
+   * pas remplies — impossible donc de lire une saisie de basse seule par ce
+   * canal. Aucun consommateur existant n'est affecté.
+   */
+  onMeasuresChange?: (measures: Measure[]) => void;
 }
 
 // ─── Constantes d'interface ───────────────────────────────────────────────────
@@ -120,6 +128,7 @@ export default function HarmoniaEditor({
   solution,
   regles = "ecole",
   onComplete,
+  onMeasuresChange,
 }: HarmoniaEditorProps) {
   const t = useTranslations("satb");
 
@@ -215,6 +224,12 @@ export default function HarmoniaEditor({
       }
     } catch { /* silencieux */ }
   }
+
+  // Remontée de l'état à chaque modification (cf. doc de la prop). Le callback
+  // est gardé dans une ref pour que l'effet ne dépende QUE des mesures.
+  const onMeasuresChangeRef = useRef(onMeasuresChange);
+  useEffect(() => { onMeasuresChangeRef.current = onMeasuresChange; }, [onMeasuresChange]);
+  useEffect(() => { onMeasuresChangeRef.current?.(measures); }, [measures]);
 
   // Validation à chaque changement
   useEffect(() => {

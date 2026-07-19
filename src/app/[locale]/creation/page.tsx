@@ -40,6 +40,12 @@ const TOOLS = [
     title: "Générateur SATB",
     desc: "Générez des harmonisations à quatre voix soprano, alto, ténor, basse.",
   },
+  {
+    href: "releve",
+    icon: "♫",
+    title: "Relevé harmonique",
+    desc: "Écoutez une progression d'école et relevez-la par paliers : basse, chiffrages, SATB complet.",
+  },
 ];
 
 export default function CreationHub() {
