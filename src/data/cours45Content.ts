@@ -156,7 +156,7 @@ export interface Cours45Locale {
 const fr: Cours45Locale = {
   maitreConcept: "Le commentaire d'écoute — décrire, identifier, situer",
   maitreAnecdote:
-    "De 1941 à 1978, la classe d'analyse d'Olivier Messiaen au Conservatoire de Paris fut le laboratoire d'écoute le plus célèbre du siècle : on y analysait tout — chant grégorien, Mozart, Debussy, rythmes hindous, chants d'oiseaux — partition et oreille ensemble. Boulez, Xenakis ou Stockhausen y sont passés. Sa discipline : écouter d'abord, nommer précisément ensuite, conclure prudemment enfin.",
+    "Professeur au Conservatoire de Paris de 1941 à 1978, Olivier Messiaen y tint une classe d'analyse qui fut le laboratoire d'écoute le plus célèbre du siècle : on y analysait tout — chant grégorien, Mozart, Debussy, rythmes hindous, chants d'oiseaux — partition et oreille ensemble. Boulez, Xenakis ou Stockhausen y sont passés. Sa discipline : écouter d'abord, nommer précisément ensuite, conclure prudemment enfin.",
   maitreLesson:
     "L'épreuve du commentaire d'écoute évalue une démarche, pas une discothèque intérieure : une description hiérarchisée et argumentée vaut toujours mieux qu'un nom de compositeur lancé au hasard.",
 
@@ -511,7 +511,7 @@ const fr: Cours45Locale = {
 const en: Cours45Locale = {
   maitreConcept: "The listening commentary — describe, identify, situate",
   maitreAnecdote:
-    "From 1941 to 1978, Olivier Messiaen's analysis class at the Paris Conservatoire was the century's most famous listening laboratory: everything was analysed there — Gregorian chant, Mozart, Debussy, Hindu rhythms, birdsong — score and ear together. Boulez, Xenakis and Stockhausen passed through it. His discipline: listen first, name precisely next, conclude cautiously last.",
+    "A professor at the Paris Conservatoire from 1941 to 1978, Olivier Messiaen led an analysis class there that was the century's most famous listening laboratory: everything was analysed there — Gregorian chant, Mozart, Debussy, Hindu rhythms, birdsong — score and ear together. Boulez, Xenakis and Stockhausen passed through it. His discipline: listen first, name precisely next, conclude cautiously last.",
   maitreLesson:
     "The listening-commentary exam assesses a method, not an inner record collection: a hierarchical, well-argued description is always worth more than a composer's name thrown out at random.",
 
@@ -866,7 +866,7 @@ const en: Cours45Locale = {
 const de: Cours45Locale = {
   maitreConcept: "Die Höranalyse — beschreiben, bestimmen, einordnen",
   maitreAnecdote:
-    "Von 1941 bis 1978 war Olivier Messiaens Analyseklasse am Pariser Conservatoire das berühmteste Hörlabor des Jahrhunderts: Dort wurde alles analysiert — Gregorianik, Mozart, Debussy, hinduistische Rhythmen, Vogelgesänge — Partitur und Ohr gemeinsam. Boulez, Xenakis und Stockhausen gingen dort ein und aus. Seine Disziplin: zuerst hören, dann präzise benennen, zuletzt vorsichtig schließen.",
+    "Als Professor am Pariser Conservatoire (1941–1978) leitete Olivier Messiaen eine Analyseklasse, die zum berühmtesten Hörlabor des Jahrhunderts wurde: Dort wurde alles analysiert — Gregorianik, Mozart, Debussy, hinduistische Rhythmen, Vogelgesänge — Partitur und Ohr gemeinsam. Boulez, Xenakis und Stockhausen gingen dort ein und aus. Seine Disziplin: zuerst hören, dann präzise benennen, zuletzt vorsichtig schließen.",
   maitreLesson:
     "Die Höranalyse-Prüfung bewertet eine Methode, keine innere Plattensammlung: Eine hierarchisch geordnete, begründete Beschreibung ist immer mehr wert als ein aufs Geratewohl geworfener Komponistenname.",
 
@@ -1221,7 +1221,7 @@ const de: Cours45Locale = {
 const es: Cours45Locale = {
   maitreConcept: "El comentario de audición — describir, identificar, situar",
   maitreAnecdote:
-    "De 1941 a 1978, la clase de análisis de Olivier Messiaen en el Conservatorio de París fue el laboratorio de escucha más célebre del siglo: allí se analizaba todo — canto gregoriano, Mozart, Debussy, ritmos hindúes, cantos de pájaros — partitura y oído juntos. Boulez, Xenakis o Stockhausen pasaron por ella. Su disciplina: escuchar primero, nombrar con precisión después, concluir con prudencia al final.",
+    "Profesor del Conservatorio de París de 1941 a 1978, Olivier Messiaen dirigió allí una clase de análisis que fue el laboratorio de escucha más célebre del siglo: allí se analizaba todo — canto gregoriano, Mozart, Debussy, ritmos hindúes, cantos de pájaros — partitura y oído juntos. Boulez, Xenakis o Stockhausen pasaron por ella. Su disciplina: escuchar primero, nombrar con precisión después, concluir con prudencia al final.",
   maitreLesson:
     "La prueba del comentario de audición evalúa un método, no una discoteca interior: una descripción jerarquizada y argumentada vale siempre más que un nombre de compositor lanzado al azar.",
 
@@ -1576,7 +1576,7 @@ const es: Cours45Locale = {
 const it: Cours45Locale = {
   maitreConcept: "Il commento d'ascolto — descrivere, identificare, collocare",
   maitreAnecdote:
-    "Dal 1941 al 1978, la classe di analisi di Olivier Messiaen al Conservatorio di Parigi fu il laboratorio d'ascolto più celebre del secolo: vi si analizzava tutto — canto gregoriano, Mozart, Debussy, ritmi indù, canti d'uccelli — partitura e orecchio insieme. Boulez, Xenakis o Stockhausen vi passarono. La sua disciplina: prima ascoltare, poi nominare con precisione, infine concludere con prudenza.",
+    "Professore al Conservatorio di Parigi dal 1941 al 1978, Olivier Messiaen vi tenne una classe di analisi che fu il laboratorio d'ascolto più celebre del secolo: vi si analizzava tutto — canto gregoriano, Mozart, Debussy, ritmi indù, canti d'uccelli — partitura e orecchio insieme. Boulez, Xenakis o Stockhausen vi passarono. La sua disciplina: prima ascoltare, poi nominare con precisione, infine concludere con prudenza.",
   maitreLesson:
     "La prova del commento d'ascolto valuta un metodo, non una discoteca interiore: una descrizione gerarchizzata e argomentata vale sempre più di un nome di compositore lanciato a caso.",
 
@@ -1931,7 +1931,7 @@ const it: Cours45Locale = {
 const pt: Cours45Locale = {
   maitreConcept: "O comentário auditivo — descrever, identificar, situar",
   maitreAnecdote:
-    "De 1941 a 1978, a classe de análise de Olivier Messiaen no Conservatório de Paris foi o laboratório de escuta mais célebre do século: ali analisava-se tudo — canto gregoriano, Mozart, Debussy, ritmos hindus, cantos de pássaros — partitura e ouvido juntos. Boulez, Xenakis ou Stockhausen passaram por ela. A sua disciplina: escutar primeiro, nomear com precisão depois, concluir com prudência no fim.",
+    "Professor no Conservatório de Paris de 1941 a 1978, Olivier Messiaen dirigiu ali uma classe de análise que foi o laboratório de escuta mais célebre do século: ali analisava-se tudo — canto gregoriano, Mozart, Debussy, ritmos hindus, cantos de pássaros — partitura e ouvido juntos. Boulez, Xenakis ou Stockhausen passaram por ela. A sua disciplina: escutar primeiro, nomear com precisão depois, concluir com prudência no fim.",
   maitreLesson:
     "A prova do comentário auditivo avalia um método, não uma discoteca interior: uma descrição hierarquizada e argumentada vale sempre mais do que um nome de compositor lançado ao acaso.",
 
