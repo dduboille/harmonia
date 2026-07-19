@@ -17,11 +17,12 @@
 import { PROGRESSION_TEMPLATES, type ProgressionTemplate } from "@/data/progressions-templates";
 import {
   generateSATBExercise,
+  empreinteDegre,
   type Doigte,
   type GeneratedExercise,
   type SATBMeasure,
 } from "@/lib/satb-generator";
-import { noteToMidi, noteName, type NoteEntry } from "@/lib/satb-rules";
+import type { NoteEntry } from "@/lib/satb-rules";
 
 // ── Types publics ──────────────────────────────────────────────────────────────
 
@@ -75,9 +76,23 @@ const DOIGTES: Doigte[] = ["1", "3", "5", "7"];
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
-/** Classe de hauteurs (0-11) d'une note nommée — indifférente à l'octave. */
-function pcDe(name: string, octave: number): number {
-  return ((noteToMidi(noteName(name), octave) % 12) + 12) % 12;
+const LETTRE_PC: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+
+/**
+ * Classe de hauteurs (0-11) d'une note nommée — indifférente à l'octave.
+ *
+ * Calcul ARITHMÉTIQUE (lettre ± altérations), et non par table : la table de
+ * satb-rules (noteToMidi) ignore les graphies savantes E#, B#, F##, Cb… (repli
+ * sur pc 0). Or elles sont ATTEIGNABLES ici — la basse du V6 en Fa♯ mineur est
+ * un vrai Mi# — et la seule orthographe correcte ne doit jamais être comptée
+ * fausse. (Correctif local : satb-rules reste intouché.)
+ */
+export function pcDe(name: string): number {
+  const lettre = LETTRE_PC[name[0]?.toUpperCase() ?? ""] ?? 0;
+  const alterations = name.slice(1);
+  const dieses = (alterations.match(/#/g) ?? []).length;
+  const bemols = (alterations.match(/b/g) ?? []).length;
+  return ((lettre + dieses - bemols) % 12 + 12) % 12;
 }
 
 /** Tirage d'un indice dans [0, n) via l'aléa injecté. */
@@ -179,7 +194,7 @@ export function noterBasse(
   const parMesure = solution.map((sol, i) => {
     const entree = saisie[i];
     if (!entree || !entree.name) return false;
-    return pcDe(entree.name, entree.octave) === pcDe(sol.bass.name, sol.bass.octave);
+    return pcDe(entree.name) === pcDe(sol.bass.name);
   });
   const bonnes = parMesure.filter(Boolean).length;
   return { parMesure, bonnes, total: parMesure.length };
@@ -210,18 +225,34 @@ function vocabulaireSymboles(): string[] {
   return [...vus];
 }
 
+/** Vrai si deux symboles ont la même empreinte sonore dans cette tonalité. */
+function memeSonorite(a: { pcs: number[]; bassPc: number }, b: { pcs: number[]; bassPc: number }): boolean {
+  return a.bassPc === b.bassPc
+    && a.pcs.length === b.pcs.length
+    && a.pcs.every((pc, i) => pc === b.pcs[i]);
+}
+
 /**
  * Pastilles proposées par mesure au palier ② : le symbole correct + 3
  * distracteurs plausibles tirés du vocabulaire des autres gabarits (sans
  * doublon, jamais égaux à la bonne réponse), le tout MÉLANGÉ par l'aléa
  * injecté — leçon d'écriture d'exercices : jamais la bonne réponse à une
  * position fixe.
+ *
+ * Un distracteur qui SONNE comme la bonne réponse dans la tonalité de
+ * l'exercice est exclu (empreinteDegre) : en mineur I ≡ Im et VI ≡ bVI,
+ * partout V7 ≡ V7b9 — l'inégalité de chaîne ne suffit pas, et une oreille
+ * juste ne doit jamais être notée fausse.
  */
 export function optionsChiffrage(exercice: ExerciceReleve, rng: Rng): string[][] {
   const vocabulaire = vocabulaireSymboles();
   return exercice.symboles.map(correct => {
-    const distracteurs = melanger(vocabulaire.filter(s => s !== correct), rng)
-      .slice(0, NB_OPTIONS_CHIFFRAGE - 1);
+    const empreinte = empreinteDegre(correct, exercice.tonalite);
+    const distracteurs = melanger(
+      vocabulaire.filter(s =>
+        s !== correct && !memeSonorite(empreinteDegre(s, exercice.tonalite), empreinte)),
+      rng,
+    ).slice(0, NB_OPTIONS_CHIFFRAGE - 1);
     return melanger([correct, ...distracteurs], rng);
   });
 }

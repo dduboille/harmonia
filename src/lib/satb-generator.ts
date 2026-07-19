@@ -221,6 +221,24 @@ function buildChord(info: DegreeInfo, keyRoot: number, mode: "major"|"minor", ke
   };
 }
 
+// ── Empreinte sonore d'un degré (export pour le relevé) ────────────────────────
+
+/**
+ * Empreinte SONORE d'un symbole de degré dans une tonalité : classes de
+ * hauteurs de l'accord réalisé (triées) + classe de hauteurs de la basse.
+ * Deux symboles d'empreinte identique sont indiscernables à l'oreille dans
+ * cette tonalité (en mineur I ≡ Im, VI ≡ bVI ; partout V7 ≡ V7b9 — la 9e
+ * mineure n'est jamais voicée). Le relevé s'en sert pour écarter des
+ * pastilles de chiffrage tout distracteur qui sonnerait comme la bonne
+ * réponse (une oreille juste ne doit jamais être notée fausse).
+ */
+export function empreinteDegre(symbole: string, tonalite: string): { pcs: number[]; bassPc: number } {
+  const mode: "major" | "minor" = MINOR_KEYS.has(tonalite) ? "minor" : "major";
+  const keyRoot = KEY_ROOTS[tonalite] ?? 0;
+  const ch = buildChord(parseDeg(symbole), keyRoot, mode, tonalite);
+  return { pcs: [...ch.spec.pcs].sort((a, b) => a - b), bassPc: ch.bassPc };
+}
+
 // ── MIDI → note ────────────────────────────────────────────────────────────────
 
 function pcOf(midi: number): number {

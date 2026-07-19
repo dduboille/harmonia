@@ -13,6 +13,7 @@ import {
   noterBasse,
   noterChiffrages,
   optionsChiffrage,
+  pcDe,
   ECOUTES_EXAMEN,
   NB_OPTIONS_CHIFFRAGE,
   TONALITES_MAJEURES,
@@ -103,6 +104,27 @@ describe("tirerExercice", () => {
   });
 });
 
+// ── Classes de hauteurs (orthographes savantes comprises) ──────────────────────
+
+describe("pcDe", () => {
+  it("calcule la classe de hauteurs ARITHMÉTIQUEMENT — les graphies savantes sont exactes", () => {
+    // noteToMidi (satb-rules) ignore E#, B#, F## et Cb (repli sur pc 0) : le
+    // relevé, lui, doit accepter la SEULE orthographe correcte (Mi# en Fa♯ m…).
+    expect(pcDe("E#")).toBe(5);   // Mi# = Fa
+    expect(pcDe("F##")).toBe(7);  // Fa𝄪 = Sol
+    expect(pcDe("Cb")).toBe(11);  // Dob = Si
+    expect(pcDe("B#")).toBe(0);   // Si# = Do
+    expect(pcDe("Ebb")).toBe(2);  // Mi𝄫 = Ré
+  });
+
+  it("reste exact sur les graphies ordinaires", () => {
+    expect(pcDe("C")).toBe(0);
+    expect(pcDe("G#")).toBe(8);
+    expect(pcDe("Ab")).toBe(8);
+    expect(pcDe("Bb")).toBe(10);
+  });
+});
+
 // ── Notation de la basse (palier ①) ────────────────────────────────────────────
 
 describe("noterBasse", () => {
@@ -144,6 +166,14 @@ describe("noterBasse", () => {
     const r = noterBasse([entree("C")], solution);
     expect(r.parMesure).toEqual([true, false, false]);
     expect(r.total).toBe(3);
+  });
+
+  it("accepte les graphies savantes : Mi# saisi contre Fa attendu est juste (cas réel : V6 en Fa♯ m)", () => {
+    const sol = [{ bass: { name: "F", octave: 3 } }] as SATBMeasure[];
+    expect(noterBasse([entree("E#", 3)], sol).parMesure).toEqual([true]);
+    // Et réciproquement : solution orthographiée E# (sensible de Fa♯ m), saisie F.
+    const solDiese = [{ bass: { name: "E#", octave: 3 } }] as SATBMeasure[];
+    expect(noterBasse([entree("F", 2)], solDiese).parMesure).toEqual([true]);
   });
 });
 
@@ -199,5 +229,51 @@ describe("optionsChiffrage", () => {
   it("est déterministe à graine égale", () => {
     const ex = exempleExercice();
     expect(optionsChiffrage(ex, mulberry32(9))).toEqual(optionsChiffrage(ex, mulberry32(9)));
+  });
+
+  // Un distracteur qui SONNE comme la bonne réponse dans la tonalité de
+  // l'exercice rendrait fausse une oreille juste : ces alias doivent être exclus.
+  // Cas avérés : en mineur I ≡ Im (qualité par défaut) et VI ≡ bVI (le « b »
+  // est ignoré en mineur) ; partout V7 ≡ V7b9 (la 9e mineure n'est pas voicée).
+  describe("exclut les distracteurs de MÊME sonorité que la bonne réponse", () => {
+    /** Exercice factice : optionsChiffrage ne lit que symboles + tonalite. */
+    const faux = (symboles: string[], tonalite: string): ExerciceReleve =>
+      ({ symboles, tonalite } as ExerciceReleve);
+
+    const jamaisEnsemble = (correct: string, alias: string, tonalite: string) => {
+      for (let seed = 1; seed <= 30; seed++) {
+        const [opts] = optionsChiffrage(faux([correct], tonalite), mulberry32(seed));
+        expect(opts, `${correct} en ${tonalite} (graine ${seed})`).not.toContain(alias);
+        expect(opts).toContain(correct);
+        expect(opts.length).toBe(NB_OPTIONS_CHIFFRAGE);
+      }
+    };
+
+    it("en La mineur, I n'offre jamais Im (et réciproquement)", () => {
+      jamaisEnsemble("I", "Im", "Am");
+      jamaisEnsemble("Im", "I", "Am");
+    });
+
+    it("en La mineur, VI n'offre jamais bVI (et réciproquement)", () => {
+      jamaisEnsemble("VI", "bVI", "Am");
+      jamaisEnsemble("bVI", "VI", "Am");
+    });
+
+    it("dans toute tonalité, V7 n'offre jamais V7b9 (et réciproquement)", () => {
+      jamaisEnsemble("V7", "V7b9", "C");
+      jamaisEnsemble("V7b9", "V7", "C");
+      jamaisEnsemble("V7", "V7b9", "Am");
+    });
+
+    it("en MAJEUR, I et Im restent distincts (sonorités différentes → distracteur permis)", () => {
+      // Contre-épreuve : le filtre ne doit pas sur-exclure. En Do majeur, Im
+      // (Do mineur) sonne différemment de I — il peut donc apparaître.
+      let vu = false;
+      for (let seed = 1; seed <= 60 && !vu; seed++) {
+        const [opts] = optionsChiffrage(faux(["I"], "C"), mulberry32(seed));
+        if (opts.includes("Im")) vu = true;
+      }
+      expect(vu).toBe(true);
+    });
   });
 });

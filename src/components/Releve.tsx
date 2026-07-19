@@ -257,7 +257,13 @@ export default function Releve({ plan }: { plan?: string }) {
         <div style={{ display: "flex", gap: 6, background: "#f4f1ec", borderRadius: 8, padding: 4 }}>
           {(["entrainement", "examen"] as ModeEcoute[]).map(m => (
             <button key={m}
-              onClick={() => { setModeEcoute(m); setEcoutesRestantes(ECOUTES_EXAMEN); }}
+              onClick={() => {
+                // Re-cliquer le mode déjà actif ne doit PAS recharger le
+                // compteur d'examen (la discipline serait contournable d'un clic).
+                if (m === modeEcoute) return;
+                setModeEcoute(m);
+                setEcoutesRestantes(ECOUTES_EXAMEN);
+              }}
               title={m === "examen" ? t("modeExamenAide", { n: ECOUTES_EXAMEN }) : t("modeEntrainementAide")}
               style={{
                 padding: "7px 14px", borderRadius: 6, fontSize: 12, fontWeight: 600, cursor: "pointer", border: "none",
@@ -282,18 +288,26 @@ export default function Releve({ plan }: { plan?: string }) {
       {/* Filtres du tirage */}
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center", marginBottom: 20 }}>
         <span style={{ fontSize: 11, color: "#767676" }}>{t("filtres.niveau")}</span>
-        {([null, 1, 2, 3] as (1 | 2 | 3 | null)[]).map(d => (
-          <button key={String(d)} onClick={() => setFiltreNiveau(d)}
-            style={{
-              padding: "4px 12px", borderRadius: 16, fontSize: 11, fontWeight: 600, cursor: "pointer",
-              border: "0.5px solid",
-              background: filtreNiveau === d ? "#1a1a1a" : "#fff",
-              color: filtreNiveau === d ? "#fff" : "#666",
-              borderColor: filtreNiveau === d ? "#1a1a1a" : "#e0dbd3",
-            }}>
-            {d === null ? t("filtres.tousNiveaux") : `${t("filtres.niveau")} ${d}`}
-          </button>
-        ))}
+        {([null, 1, 2, 3] as (1 | 2 | 3 | null)[]).map(d => {
+          // Gating : le plan gratuit ne joue que II–V–I (niveau 1) — les
+          // niveaux 2-3 sont verrouillés (le tirage n'y rendrait rien).
+          const verrouille = isFree && d !== null && d !== 1;
+          return (
+            <button key={String(d)} onClick={() => !verrouille && setFiltreNiveau(d)}
+              disabled={verrouille}
+              style={{
+                padding: "4px 12px", borderRadius: 16, fontSize: 11, fontWeight: 600,
+                cursor: verrouille ? "not-allowed" : "pointer",
+                border: "0.5px solid",
+                background: filtreNiveau === d ? "#1a1a1a" : verrouille ? "#f5f5f5" : "#fff",
+                color: filtreNiveau === d ? "#fff" : verrouille ? "#aaa" : "#666",
+                borderColor: filtreNiveau === d ? "#1a1a1a" : "#e0dbd3",
+                opacity: verrouille ? 0.6 : 1,
+              }}>
+              {verrouille ? "🔒 " : ""}{d === null ? t("filtres.tousNiveaux") : `${t("filtres.niveau")} ${d}`}
+            </button>
+          );
+        })}
         <span style={{ fontSize: 11, color: "#767676", marginLeft: 10 }}>{t("filtres.tonalites")}</span>
         {(["toutes", "majeures", "mineures"] as const).map(f => (
           <button key={f} onClick={() => setFiltreTonalites(f)}
