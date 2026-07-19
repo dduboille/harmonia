@@ -43,7 +43,7 @@
     "level2Title": "Jazz, Modi und fortgeschrittene Techniken",
     "level2Desc": "12 Kurse zur Erweiterung der harmonischen Sprache — Modi, Erweiterungen, Jazz, Kontrapunkt. Den klassischen Rahmen verlassen und neue Farben entdecken.",
     "level3Title": "Komposition, Analyse und Meisterschaft",
-    "level3Desc": "14 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
+    "level3Desc": "15 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
     "c1": "Die Tonleiter, die Stufen und die Intervalle",
     "c2": "Die Akkorde",
     "c3": "Tonale Funktionen und Stimmführung",
@@ -143,6 +143,8 @@
     "d45": "Die vollständige Methode der Prüfung — Parameterraster, Stilmarker, Formen nach Gehör, Aufbau und Vokabular — plus das harmonische Trainingsstudio: Kadenzen, Modi, Modulationen, harmonisches Tempo, Satzarten.",
     "c46": "Ein Werk analysieren, das man spielen wird",
     "d46": "Analyse im Dienst der Interpretation — Formkarte, harmonisches Gerüst, Phrasierungsplan, Stimmenhierarchie — und das Interpretationsblatt zum eigenen Repertoire, importiert in den Analyseur. Erster Kurs des DNSPM-Interpretenwegs.",
+    "c47": "Orchestrierung und Partiturlesen",
+    "d47": "Eine Partitur lesen: Architektur der Seite, C-Schlüssel, transponierende Instrumente (mit Hören notiert/klingend), Vertikale eines Tuttis, Klavierauszug und orchestrale Balance. Zweiter Kurs des DNSPM-Wegs.",
     "univ1": "≈ Bachelor 1",
     "univ2": "≈ Bachelor 2",
     "univ3": "≈ Bachelor 3 · DNSPM",
@@ -4322,6 +4324,25 @@
       "perfect": "Perfekt! Karte, Gerüst, Phrasierung, Stimmen: Die Methode des Interpreten gehört dir — jetzt bring sie zum Klingen.",
       "veryGood": "Sehr gut! Einige Reflexe sind noch zu festigen — lies die Tabelle Ereignis → Entscheidung aus Abschnitt 3 erneut.",
       "keepGoing": "Weiter so — geh die Kursregel (analysieren → entscheiden → hören) und die 5-Durchgänge-Methode noch einmal durch."
+    }
+  },
+  "cours47": {
+    "badge": "Stufe 3 · Kurs 47",
+    "title": "Orchestrierung und Partiturlesen",
+    "subtitle": "Eine Partitur lesen — Architektur der Seite, C-Schlüssel, transponierende Instrumente mit Hören notiert/klingend, Vertikale eines Tuttis, Klavierauszug und orchestrale Balance. Zweiter Kurs des DNSPM-Wegs.",
+    "sections": {
+      "conducteur": "Die Partitur",
+      "cles": "Die Schlüssel",
+      "transpo": "Transposition",
+      "verticalite": "Die Vertikale",
+      "reduction": "Die Reduktion",
+      "equilibre": "Die Balance",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt! Partitur, Schlüssel, Transpositionen, Vertikale: Das Orchester hat auf dem Papier kein Geheimnis mehr — jetzt gilt es, es zu hören.",
+      "veryGood": "Sehr gut! Einige Transpositionen sind noch zu festigen — lies DIE Tabelle aus Abschnitt 3 erneut und spiele die Paare notiert/klingend nach.",
+      "keepGoing": "Weiter so — geh die Tabelle der transponierenden Instrumente und die Linien der C-Schlüssel (Fa3–La3–Do4–Mi4–Sol4) noch einmal durch."
     }
   }
 }

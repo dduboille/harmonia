@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modos e técnicas avançadas",
     "level2Desc": "12 aulas para expandir a linguagem harmónica — modos, extensões, jazz, contraponto. Sair do quadro clássico e explorar novas cores.",
     "level3Title": "Composição, análise e mestria",
-    "level3Desc": "14 aulas para atingir a mestria — forma musical, orquestração, análise dos grandes compositores e composição nos seus estilos.",
+    "level3Desc": "15 aulas para atingir a mestria — forma musical, orquestração, análise dos grandes compositores e composição nos seus estilos.",
     "c1": "A escala, os graus e os intervalos",
     "c2": "Os acordes",
     "c3": "Funções tonais e condução de vozes",
@@ -143,6 +143,8 @@
     "d45": "O método completo da prova — grelha de parâmetros, marcadores estilísticos, formas de ouvido, plano e vocabulário — mais o ginásio harmónico: cadências, modos, modulações, ritmo harmónico, texturas.",
     "c46": "Analisar uma obra que se vai tocar",
     "d46": "A análise ao serviço da interpretação — mapa formal, esqueleto harmónico, plano de fraseado, hierarquia das vozes — e a ficha de interpretação sobre o seu próprio repertório, importado no analisador. Primeiro curso do percurso DNSPM de intérprete.",
+    "c47": "Orquestração e leitura de orquestra",
+    "d47": "Ler uma partitura geral: arquitetura da página, claves de dó, instrumentos transpositores (com escuta escrito/soante), verticalidade de um tutti, redução ao piano e equilíbrio orquestral. Segundo curso do percurso DNSPM.",
     "univ1": "≈ Licenciatura 1",
     "univ2": "≈ Licenciatura 2",
     "univ3": "≈ Licenciatura 3 · DNSPM",
@@ -4322,6 +4324,25 @@
       "perfect": "Perfeito! Mapa, esqueleto, fraseado, vozes: o método do intérprete é teu — agora fá-lo soar.",
       "veryGood": "Muito bem! Alguns reflexos a consolidar — relê a tabela acontecimento → decisão da secção 3.",
       "keepGoing": "Continua — retoma a regra do curso (analisar → decidir → ouvir) e o método em 5 passagens antes de recomeçar."
+    }
+  },
+  "cours47": {
+    "badge": "Nível 3 · Curso 47",
+    "title": "Orquestração e leitura de orquestra",
+    "subtitle": "Ler uma partitura geral — arquitetura da página, claves de dó, instrumentos transpositores com escuta escrito/soante, verticalidade de um tutti, redução ao piano e equilíbrio orquestral. Segundo curso do percurso DNSPM.",
+    "sections": {
+      "conducteur": "A partitura",
+      "cles": "As claves",
+      "transpo": "A transposição",
+      "verticalite": "A verticalidade",
+      "reduction": "A redução",
+      "equilibre": "O equilíbrio",
+      "quiz": "Treino"
+    },
+    "quiz": {
+      "perfect": "Perfeito! Partitura, claves, transposições, verticalidade: a orquestra já não tem segredos no papel — agora é preciso ouvi-la.",
+      "veryGood": "Muito bem! Algumas transposições a consolidar — relê A tabela da secção 3 e volta a tocar os pares escrito/soante.",
+      "keepGoing": "Continua — retoma a tabela dos transpositores e as linhas das claves de dó (Fa3–La3–Do4–Mi4–Sol4) antes de recomeçar."
     }
   }
 }
