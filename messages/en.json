@@ -43,7 +43,7 @@
     "level2Title": "Jazz, Modes and Advanced Techniques",
     "level2Desc": "12 lessons to expand your harmonic language — modes, extensions, jazz, counterpoint. Step outside the classical framework and explore new colors.",
     "level3Title": "Composition, Analysis and Mastery",
-    "level3Desc": "12 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis.",
+    "level3Desc": "13 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis.",
     "sublabel4": "Extended Harmony",
     "level4Title": "Extended Harmony — Beyond Tonality",
     "level4Desc": "3 lessons to explore 20th-century musical languages — impressionism, polytonality, quartal harmony and advanced Coltrane-style reharmonization.",
@@ -138,10 +138,12 @@
     "c43": "Renaissance Modal Counterpoint",
     "d43": "The Palestrina style (prima pratica): church modes, the melodic line, two-voice counterpoint, strict dissonance (suspensions, nota cambiata) and modal cadences.",
     "c44": "Post-Tonal Analysis: Set Theory",
+    "c45": "Listening Commentary Methodology",
     "d44": "Pitch classes, normal and prime form, interval-class vector, Forte numbers, Z-relation — analysing Schoenberg and Webern, up to the twelve-tone row.",
+    "d45": "The complete method of the exam — parameter grid, stylistic markers, forms by ear, plan and vocabulary — plus the harmonic gymnasium: cadences, modes, modulations, harmonic rhythm, textures.",
     "univ1": "≈ Bachelor 1",
     "univ2": "≈ Bachelor 2",
-    "univ3": "≈ Bachelor 3",
+    "univ3": "≈ Bachelor 3 · DNSPM",
     "univ4": "≈ Bachelor 3 / Master 1",
     "univ5": "≈ Master 1"
   },
@@ -4279,6 +4281,25 @@
       "perfect": "Perfect! Normal forms, vectors and the Z-relation hold no more secrets — post-tonal analysis is yours.",
       "veryGood": "Very good! A few calculations to consolidate (rotations, inversion before the prime form).",
       "keepGoing": "Keep going — rerun the normal-form algorithm step by step and check each stage with the calculator."
+    }
+  },
+  "cours45": {
+    "badge": "Level 3 · Course 45",
+    "title": "Listening Commentary Methodology",
+    "subtitle": "The complete method of the exam — describe, identify, situate: the parameter grid, the stylistic markers, forms by ear, plan and vocabulary — plus harmonic ear training on the synthesized piano. The course that closes the bachelor/master track.",
+    "sections": {
+      "intro": "The exam",
+      "grille": "The listening grid",
+      "periodes": "The periods",
+      "formes": "The forms",
+      "harmonie": "Hearing harmony",
+      "plan": "The plan",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! Grid, markers, cadences and forms: the listening-commentary method is yours.",
+      "veryGood": "Very good! A few markers to consolidate — reread the period table and redo the blind drills.",
+      "keepGoing": "Keep going — go back over the parameter grid and the golden rule (describe → identify → situate) before trying again."
     }
   }
 }

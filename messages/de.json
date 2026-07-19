@@ -43,7 +43,7 @@
     "level2Title": "Jazz, Modi und fortgeschrittene Techniken",
     "level2Desc": "12 Kurse zur Erweiterung der harmonischen Sprache — Modi, Erweiterungen, Jazz, Kontrapunkt. Den klassischen Rahmen verlassen und neue Farben entdecken.",
     "level3Title": "Komposition, Analyse und Meisterschaft",
-    "level3Desc": "12 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
+    "level3Desc": "13 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
     "c1": "Die Tonleiter, die Stufen und die Intervalle",
     "c2": "Die Akkorde",
     "c3": "Tonale Funktionen und Stimmführung",
@@ -138,10 +138,12 @@
     "c43": "Modaler Kontrapunkt der Renaissance",
     "d43": "Der Palestrina-Stil (prima pratica): Kirchentonarten, melodische Linie, zweistimmiger Kontrapunkt, strenge Dissonanz (Vorhalte, nota cambiata) und modale Kadenzen.",
     "c44": "Post-tonale Analyse: Set Theory",
+    "c45": "Methodik der Höranalyse",
     "d44": "Tonhöhenklassen, Normal- und Primform, Intervallvektor, Forte-Nummern, Z-Beziehung — Schönberg und Webern analysieren, bis zur Zwölftonreihe.",
+    "d45": "Die vollständige Methode der Prüfung — Parameterraster, Stilmarker, Formen nach Gehör, Aufbau und Vokabular — plus das harmonische Trainingsstudio: Kadenzen, Modi, Modulationen, harmonisches Tempo, Satzarten.",
     "univ1": "≈ Bachelor 1",
     "univ2": "≈ Bachelor 2",
-    "univ3": "≈ Bachelor 3",
+    "univ3": "≈ Bachelor 3 · DNSPM",
     "univ4": "≈ Bachelor 3 / Master 1",
     "univ5": "≈ Master 1"
   },
@@ -4280,6 +4282,25 @@
       "perfect": "Perfekt! Normalformen, Vektoren und Z-Beziehung haben keine Geheimnisse mehr — die post-tonale Analyse gehört dir.",
       "veryGood": "Sehr gut! Ein paar Rechnungen festigen (Rotationen, Umkehrung vor der Primform).",
       "keepGoing": "Weiter so — geh den Normalform-Algorithmus Schritt für Schritt durch und prüfe jede Etappe mit dem Rechner."
+    }
+  },
+  "cours45": {
+    "badge": "Stufe 3 · Kurs 45",
+    "title": "Methodik der Höranalyse",
+    "subtitle": "Die vollständige Methode der Prüfung — beschreiben, bestimmen, einordnen: Parameterraster, Stilmarker, Formen nach Gehör, Aufbau und Vokabular — plus harmonisches Gehörtraining am Synthesizer-Klavier. Der Kurs, der den Bachelor-/Master-Weg abschließt.",
+    "sections": {
+      "intro": "Die Prüfung",
+      "grille": "Das Hörraster",
+      "periodes": "Die Epochen",
+      "formes": "Die Formen",
+      "harmonie": "Harmonik hören",
+      "plan": "Der Plan",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt! Raster, Marker, Kadenzen und Formen: Die Methode der Höranalyse gehört dir.",
+      "veryGood": "Sehr gut! Einige Marker sind noch zu festigen — lies die Epochentabelle erneut und wiederhole die Blind-Drills.",
+      "keepGoing": "Weiter so — geh das Parameterraster und die goldene Regel (beschreiben → bestimmen → einordnen) noch einmal durch."
     }
   }
 }
