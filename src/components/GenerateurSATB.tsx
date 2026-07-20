@@ -39,7 +39,7 @@ const DOIGTE_INFO: { value: Doigte; label: string; desc: string }[] = [
   { value:"1", label:"① Fondamentale", desc:"La fondamentale de l'accord à la basse (accord en position fondamentale)." },
   { value:"3", label:"③ Tierce",       desc:"La tierce de l'accord à la basse (1er renversement)." },
   { value:"5", label:"⑤ Quinte",       desc:"La quinte de l'accord à la basse (2e renversement)." },
-  { value:"7", label:"⑦ Septième",     desc:"La septième de l'accord à la basse (3e renversement, si disponible)." },
+  { value:"7", label:"⑦ Septième",     desc:"La septième de l'accord à la basse (3e renversement) si l'accord de départ en a une, sinon la quinte." },
 ];
 
 const LEVEL_COLOR: Record<1|2|3, { bg: string; border: string; text: string }> = {
@@ -369,7 +369,7 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
           Exercice SATB généré
         </div>
         <h1 style={{ fontSize: 24, fontWeight: 500, color: "#1a1a1a", margin: "0 0 8px" }}>
-          {exercise.template.nom} en {keyLabel} — Soprano : {DOIGTE_FR[exercise.doigte]}
+          {exercise.template.nom} en {keyLabel} — Basse : {DOIGTE_FR[exercise.doigte]}
         </h1>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10 }}>
           <span style={{
