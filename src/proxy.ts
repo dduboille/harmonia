@@ -49,6 +49,9 @@ const isPublicRoute = createRouteMatcher([
   // Cron Vercel : aucun utilisateur Clerk ne le déclenche, donc il serait bloqué
   // en 401 ici. Il est protégé par son propre jeton (CRON_SECRET), pas par Clerk.
   "/api/cron/(.*)",
+  // TEMPORAIRE — route de diagnostic Sentry (src/app/api/sentry-test/route.ts),
+  // à retirer ici en même temps que la suppression de cette route.
+  "/api/sentry-test",
 ]);
 
 function localeOf(pathname: string): string {
