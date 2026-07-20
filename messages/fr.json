@@ -25,7 +25,7 @@
   },
   "coursHub": {
     "title": "Cours de théorie musicale",
-    "subtitle": "Niveau 1 — 9 cours pour maîtriser l'harmonie tonale",
+    "subtitle": "Niveau 1 — 10 cours pour maîtriser l'harmonie tonale",
     "progress": "Progression",
     "available": "Disponible",
     "comingSoon": "Bientôt disponible",
@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modes et techniques avancées",
     "level2Desc": "12 cours pour élargir le langage harmonique — modes, extensions, jazz, contrepoint. Sortir du cadre classique et explorer de nouvelles couleurs.",
     "level3Title": "Composition, analyse et maîtrise",
-    "level3Desc": "16 cours pour atteindre la maîtrise — forme musicale, orchestration, analyse des grands compositeurs, composition dans leurs styles et analyse structurelle profonde.",
+    "level3Desc": "16 cours pour atteindre la maîtrise — forme musicale, orchestration, analyse des grands compositeurs, composition dans leurs styles et analyse structurelle profonde, ainsi que le cursus licence/DNSPM : basse chiffrée, contrepoint renaissance, commentaire d'écoute, analyse pour l'interprète, lecture d'orchestre et méthodologie du relevé.",
     "sublabel4": "Harmonie élargie",
     "level4Title": "Harmonie élargie — au-delà de la tonalité",
     "level4Desc": "3 cours pour explorer les langages du XXe siècle — impressionnisme, polytonalité, harmonie quartale et reharmonisation avancée à la Coltrane.",
@@ -113,7 +113,7 @@
     "d32": "b9, #9, #11, b13 — tensions disponibles, Giant Steps de Coltrane, cycle de tierces et substitutions avancées.",
     "sublabel5": "Parcours spécialisé",
     "level5Title": "Cursus conservatoire — Les spécialisations",
-    "level5Desc": "Les parcours spécialisés au sommet du cursus — Fugue & choral, Harmonie cinématographique, Jazz avancé, Impressionnisme, Analyse avancée, Écriture de style. Choisissez votre spécialisation.",
+    "level5Desc": "Les parcours spécialisés au sommet du cursus — Fugue & choral, Harmonie cinématographique, Jazz avancé, Impressionnisme, Analyse avancée, Écriture de style, Set theory. Choisissez votre spécialisation.",
     "c33": "Écriture classique : Fugue et choral",
     "c34": "Composition pour l'image : Harmonie cinématographique",
     "c35": "Jazz avancé : Reharmonisation et improvisation",
@@ -2898,18 +2898,13 @@
     "level5": "Niveau 5",
     "level5sub": "Parcours spécialisé",
     "start": "Commencer →",
-    "subtitle": "37 cours organisés en 5 niveaux progressifs — des fondamentaux de l'harmonie jusqu'aux parcours spécialisés du conservatoire.",
+    "subtitle": "{count} cours organisés en 5 niveaux progressifs, du conservatoire à la licence et au DNSPM — des fondamentaux de l'harmonie jusqu'aux parcours spécialisés.",
     "lessons": "cours",
-    "level1range": "Cours 1–9",
-    "level2range": "Cours 10–16",
-    "level3range": "Cours 17–29",
-    "level4range": "Cours 30–32",
-    "level5range": "Cours 33–37",
     "level1desc": "Des origines acoustiques de la gamme aux modulations avancées. La fondation complète de l'harmonie tonale : accords, cadences, conduites de voix, tonicisations.",
     "level2desc": "Les modes de l'Église, les extensions jazz, la substitution tritonique, le contrepoint à deux voix et la réharmonisation. Élargir le langage harmonique au-delà du tonal classique.",
-    "level3desc": "La phrase musicale, le développement motivique, l'orchestration, l'analyse des grands compositeurs, la composition dans les styles et l'analyse structurelle — Bach, Debussy, Jazz, Rock.",
+    "level3desc": "La phrase musicale, le développement motivique, l'orchestration, l'analyse des grands compositeurs, la composition dans les styles et l'analyse structurelle — Bach, Debussy, Jazz, Rock — ainsi que le cursus licence/DNSPM : basse chiffrée, contrepoint renaissance, commentaire d'écoute, analyse pour l'interprète, lecture d'orchestre et méthodologie du relevé.",
     "level4desc": "Impressionnisme, polytonalité, harmonie quartale, extensions altérées, Coltrane — au-delà de la tonalité classique vers les langages du XXe siècle.",
-    "level5desc": "5 mini-cursus spécialisés au sommet du cursus — Fugue & choral, Cinéma, Jazz avancé, Impressionnisme approfondi, Analyse avancée. Choisissez votre spécialisation.",
+    "level5desc": "Mini-cursus spécialisés au sommet du cursus — Fugue & choral, Cinéma, Jazz avancé, Impressionnisme approfondi, Analyse avancée, Écriture de style, Set theory. Choisissez votre spécialisation.",
     "level1topics": "Gamme & intervalles,Accords & renversements,Cadences,Modulations",
     "level2topics": "Modes,Extensions 9e–13e,Contrepoint,Jazz avancé",
     "level3topics": "Forme musicale,Orchestration,Analyse,Schenker",
@@ -2918,9 +2913,9 @@
     "freeNote": "Gratuit pour commencer · Cours 1 à 3 accessibles sans abonnement"
   },
   "landing": {
-    "topbar": "Cours 37 disponible — Schenker et analyse motivique",
+    "topbar": "Cours 48 disponible — Méthodologie du relevé",
     "topbarCta": "Découvrir →",
-    "badge": "5 niveaux · {count} cours · 700+ exercices",
+    "badge": "5 niveaux · {count} cours · 850+ exercices",
     "h1": "Maîtrisez l'harmonie tonale.",
     "h1em": "Vraiment.",
     "sub": "L'harmonie tonale. Rigoureusement.",
@@ -3080,7 +3075,7 @@
         "features": [
           "Tous les cours (1 à {count})",
           "Quiz illimité sur tous les cours",
-          "700+ exercices SATB",
+          "600+ exercices SATB",
           "24 tonalités × 4 positions",
           "Tous les niveaux de difficulté",
           "Mises à jour continues"
@@ -3114,7 +3109,7 @@
       },
       {
         "q": "En combien de temps maîtrise-t-on le programme ?",
-        "a": "Le niveau 1 (9 cours) représente environ 30 à 50 heures de travail selon votre rythme et votre niveau de départ. Avec une pratique régulière d'une heure par jour, comptez 6 à 8 semaines."
+        "a": "Le niveau 1 (10 cours) représente environ 30 à 50 heures de travail selon votre rythme et votre niveau de départ. Avec une pratique régulière d'une heure par jour, comptez 6 à 8 semaines."
       },
       {
         "q": "Les exercices sont-ils adaptés à tous les instruments ?",

@@ -25,7 +25,7 @@
   },
   "coursHub": {
     "title": "Music Theory Lessons",
-    "subtitle": "Level 1 — 9 lessons to master tonal harmony",
+    "subtitle": "Level 1 — 10 lessons to master tonal harmony",
     "progress": "Progress",
     "available": "Available",
     "comingSoon": "Coming soon",
@@ -43,7 +43,7 @@
     "level2Title": "Jazz, Modes and Advanced Techniques",
     "level2Desc": "12 lessons to expand your harmonic language — modes, extensions, jazz, counterpoint. Step outside the classical framework and explore new colors.",
     "level3Title": "Composition, Analysis and Mastery",
-    "level3Desc": "16 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis.",
+    "level3Desc": "16 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis, plus the licence/DNSPM track: figured bass, Renaissance counterpoint, listening commentary, performer's analysis, score reading and harmonic dictation methodology.",
     "sublabel4": "Extended Harmony",
     "level4Title": "Extended Harmony — Beyond Tonality",
     "level4Desc": "3 lessons to explore 20th-century musical languages — impressionism, polytonality, quartal harmony and advanced Coltrane-style reharmonization.",
@@ -113,7 +113,7 @@
     "d32": "b9, #9, #11, b13 — available tensions, Coltrane's Giant Steps, the thirds cycle and advanced substitutions.",
     "sublabel5": "Specialized Track",
     "level5Title": "Conservatory Curriculum — Specializations",
-    "level5Desc": "Specialized tracks at the summit of the curriculum — Fugue & Chorale, Film Harmony, Advanced Jazz, Impressionism, Advanced Analysis, Stylistic Writing. Choose your specialization.",
+    "level5Desc": "Specialized tracks at the summit of the curriculum — Fugue & Chorale, Film Harmony, Advanced Jazz, Impressionism, Advanced Analysis, Stylistic Writing, Set Theory. Choose your specialization.",
     "c33": "Classical Writing: Fugue and Chorale",
     "c34": "Composing for the Screen: Film Harmony",
     "c35": "Advanced Jazz: Reharmonization and Improvisation",
@@ -2898,18 +2898,13 @@
     "level5": "Level 5",
     "level5sub": "Specialized Track",
     "start": "Start →",
-    "subtitle": "37 lessons in 5 progressive levels — from harmony fundamentals to conservatory specialisations.",
+    "subtitle": "{count} lessons in 5 progressive levels, from conservatory to licence and DNSPM — from harmony fundamentals to specialised tracks.",
     "lessons": "lessons",
-    "level1range": "Lessons 1–9",
-    "level2range": "Lessons 10–16",
-    "level3range": "Lessons 17–29",
-    "level4range": "Lessons 30–32",
-    "level5range": "Lessons 33–37",
     "level1desc": "From the acoustic origins of the scale to advanced modulations. The complete foundation of tonal harmony: chords, cadences, voice leading, tonicizations.",
     "level2desc": "Church modes, jazz extensions, tritone substitution, two-voice counterpoint and reharmonisation. Expanding the harmonic language beyond classical tonality.",
-    "level3desc": "Musical phrase, motivic development, orchestration, analysis of great composers, style composition and structural analysis — Bach, Debussy, Jazz, Rock.",
+    "level3desc": "Musical phrase, motivic development, orchestration, analysis of great composers, style composition and structural analysis — Bach, Debussy, Jazz, Rock — plus the licence/DNSPM track: figured bass, Renaissance counterpoint, listening commentary, performer's analysis, score reading and harmonic dictation methodology.",
     "level4desc": "Impressionism, polytonality, quartal harmony, altered extensions, Coltrane — beyond classical tonality into 20th-century musical languages.",
-    "level5desc": "5 specialised mini-tracks at the top of the curriculum — Fugue & Chorale, Film, Advanced Jazz, Deep Impressionism, Advanced Analysis. Choose your specialisation.",
+    "level5desc": "Specialised mini-tracks at the top of the curriculum — Fugue & Chorale, Film, Advanced Jazz, Deep Impressionism, Advanced Analysis, Stylistic Writing, Set Theory. Choose your specialisation.",
     "level1topics": "Scales & intervals,Chords & inversions,Cadences,Modulations",
     "level2topics": "Modes,9th–13th extensions,Counterpoint,Advanced Jazz",
     "level3topics": "Musical form,Orchestration,Analysis,Schenker",
@@ -2918,9 +2913,9 @@
     "freeNote": "Free to start · Lessons 1 to 3 accessible without subscription"
   },
   "landing": {
-    "topbar": "Course 37 available — Schenker and motivic analysis",
+    "topbar": "Course 48 available — Harmonic Dictation Methodology",
     "topbarCta": "Discover →",
-    "badge": "5 levels · {count} lessons · 700+ exercises",
+    "badge": "5 levels · {count} lessons · 850+ exercises",
     "h1": "Master tonal harmony.",
     "h1em": "Really.",
     "sub": "Tonal harmony. Rigorously.",
@@ -3080,7 +3075,7 @@
         "features": [
           "All lessons (1 to {count})",
           "Unlimited quiz on every lesson",
-          "700+ SATB exercises",
+          "600+ SATB exercises",
           "24 keys × 4 positions",
           "Every difficulty level",
           "Continuous updates"
@@ -3114,7 +3109,7 @@
       },
       {
         "q": "How long does the programme take to master?",
-        "a": "Level 1 (9 lessons) represents roughly 30 to 50 hours of work depending on your pace and starting point. With an hour of regular practice a day, expect 6 to 8 weeks."
+        "a": "Level 1 (10 lessons) represents roughly 30 to 50 hours of work depending on your pace and starting point. With an hour of regular practice a day, expect 6 to 8 weeks."
       },
       {
         "q": "Are the exercises suitable for every instrument?",
