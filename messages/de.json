@@ -4231,7 +4231,29 @@
       "D": "D",
       "?": "—"
     },
-    "exporter": "In der Werkstatt ausarbeiten"
+    "exporter": "In der Werkstatt ausarbeiten",
+    "infoOuvrir": "Funktionen und Akkorde verstehen",
+    "infoIntro": "Eine harmonische Fortschreitung erzählt eine Geschichte in drei Momenten: Ruhe, Vorbereitung und die Spannung, die dorthin zurückführt.",
+    "infoTonique": {
+      "titre": "Tonika",
+      "texte": "Die Ruhe. Der I.-Stufen-Akkord (i in Moll) und seine nahen Verwandten (vi, iii): dort, wo eine Phrase beginnt und endet — der Ankerpunkt der Tonart."
+    },
+    "infoPredominante": {
+      "titre": "Subdominante",
+      "texte": "Die Vorbereitung. IV, ii, ii6: Sie kündigen die Dominante an und erzeugen eine Bewegung auf sie zu, ohne schon die maximale Spannung zu erreichen."
+    },
+    "infoDominante": {
+      "titre": "Dominante",
+      "texte": "Die Spannung. V, V7, vii° und ihre Umkehrungen: der enthaltene Leitton zieht das Ohr zur Tonika — dies ist der Akkord, der sich auflösen will."
+    },
+    "infoChromatisme": {
+      "titre": "Chromatik (Stufe „+ Chromatik“)",
+      "texte": "Farben, die ohne Tonartwechsel entlehnt werden: Zwischendominanten (sie tonisieren kurzzeitig eine Stufe), Leittonakkorde auf einer Stufe und Entlehnungen aus der gleichnamigen Tonart."
+    },
+    "infoRenversements": {
+      "titre": "Umkehrungen",
+      "texte": "Derselbe Akkord kann mehrfach in der Bank erscheinen: Grundstellung (I), Terz im Bass (I6, erste Umkehrung), Quinte im Bass (I6/4, zweite Umkehrung) sowie die entsprechenden Bezifferungen für Septakkorde (6/5, 4/3, 2). Die Umkehrung ändert den Bass und die Farbe, nicht die Funktion."
+    }
   },
   "cours42": {
     "badge": "Stufe 3 · Kurs 42",

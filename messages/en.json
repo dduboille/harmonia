@@ -4230,7 +4230,29 @@
       "D": "D",
       "?": "—"
     },
-    "exporter": "Flesh out in the workshop"
+    "exporter": "Flesh out in the workshop",
+    "infoOuvrir": "Understanding the functions and the chords",
+    "infoIntro": "A harmonic progression tells a story in three moments: rest, preparation, and the tension that leads back to it.",
+    "infoTonique": {
+      "titre": "Tonic",
+      "texte": "Rest. The I chord (i in minor) and its close relatives (vi, iii): where a phrase begins and ends, the tonality's anchor point."
+    },
+    "infoPredominante": {
+      "titre": "Predominant",
+      "texte": "Preparation. IV, ii, ii6: they announce the dominant and build motion toward it, without yet reaching maximum tension."
+    },
+    "infoDominante": {
+      "titre": "Dominant",
+      "texte": "Tension. V, V7, vii° and their inversions: the leading tone they contain pulls the ear toward the tonic — this is the chord that wants to resolve."
+    },
+    "infoChromatisme": {
+      "titre": "Chromaticism (‘+ Chromatic’ level)",
+      "texte": "Colors borrowed without changing key: secondary dominants (they briefly tonicize a degree), leading-tone chords on a degree, and borrowings from the parallel mode."
+    },
+    "infoRenversements": {
+      "titre": "Inversions",
+      "texte": "The same chord can appear several times in the bank: root position (I), third in the bass (I6, first inversion), fifth in the bass (I6/4, second inversion), and the equivalent figures for seventh chords (6/5, 4/3, 2). The inversion changes the bass and the color, not the function."
+    }
   },
   "cours42": {
     "badge": "Level 3 · Course 42",

@@ -4231,7 +4231,29 @@
       "D": "D",
       "?": "—"
     },
-    "exporter": "Sviluppa nel laboratorio"
+    "exporter": "Sviluppa nel laboratorio",
+    "infoOuvrir": "Capire le funzioni e gli accordi",
+    "infoIntro": "Una progressione armonica racconta una storia in tre momenti: il riposo, la preparazione e la tensione che vi riconduce.",
+    "infoTonique": {
+      "titre": "Tonica",
+      "texte": "Il riposo. L'accordo di grado I (i in minore) e i suoi parenti stretti (vi, iii): dove una frase inizia e finisce, il punto d'ancoraggio della tonalità."
+    },
+    "infoPredominante": {
+      "titre": "Predominante",
+      "texte": "La preparazione. IV, ii, ii6: annunciano la dominante e creano un movimento verso di essa, senza ancora raggiungere la tensione massima."
+    },
+    "infoDominante": {
+      "titre": "Dominante",
+      "texte": "La tensione. V, V7, vii° e i loro rivolti: la sensibile che contengono attira l'orecchio verso la tonica — è l'accordo che vuole risolvere."
+    },
+    "infoChromatisme": {
+      "titre": "Cromatismo (livello «+ Cromatismi»)",
+      "texte": "Colori presi in prestito senza cambiare tonalità: dominanti secondarie (tonicizzano brevemente un grado), accordi sulla sensibile di un grado, e prestiti dal modo omonimo."
+    },
+    "infoRenversements": {
+      "titre": "I rivolti",
+      "texte": "Lo stesso accordo può comparire più volte nella banca: stato fondamentale (I), terza al basso (I6, primo rivolto), quinta al basso (I6/4, secondo rivolto), e le cifrature equivalenti per gli accordi di settima (6/5, 4/3, 2). Il rivolto cambia il basso e il colore, non la funzione."
+    }
   },
   "cours42": {
     "badge": "Livello 3 · Corso 42",
