@@ -25,7 +25,7 @@
   },
   "coursHub": {
     "title": "Lecciones de teoría musical",
-    "subtitle": "Nivel 1 — 9 lecciones para dominar la armonía tonal",
+    "subtitle": "Nivel 1 — 10 lecciones para dominar la armonía tonal",
     "progress": "Progreso",
     "available": "Disponible",
     "comingSoon": "Próximamente",
@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modos y técnicas avanzadas",
     "level2Desc": "12 lecciones para ampliar el lenguaje armónico — modos, extensiones, jazz, contrapunto. Salir del marco clásico y explorar nuevos colores.",
     "level3Title": "Composición, análisis y maestría",
-    "level3Desc": "16 lecciones para alcanzar la maestría — forma musical, orquestación, análisis de los grandes compositores y composición en sus estilos.",
+    "level3Desc": "16 lecciones para alcanzar la maestría — forma musical, orquestación, análisis de los grandes compositores y composición en sus estilos, además del itinerario grado/DNSPM: bajo cifrado, contrapunto renacentista, comentario de audición, análisis para el intérprete, lectura de orquesta y metodología del dictado armónico.",
     "c1": "La escala, los grados y los intervalos",
     "c2": "Los acordes",
     "c3": "Funciones tonales y conducción de voces",
@@ -113,7 +113,7 @@
     "d32": "b9, #9, #11, b13 — tensiones disponibles, Giant Steps de Coltrane, el ciclo de terceras y sustituciones avanzadas.",
     "sublabel5": "Itinerario especializado",
     "level5Title": "Cursus conservatorio — Especializaciones",
-    "level5Desc": "Itinerarios especializados en la cima del cursus — Fuga y Coral, Cine, Jazz avanzado, Impresionismo, Análisis avanzado, Escritura de estilo. Elige tu especialización.",
+    "level5Desc": "Itinerarios especializados en la cima del cursus — Fuga y Coral, Cine, Jazz avanzado, Impresionismo, Análisis avanzado, Escritura de estilo, Set theory. Elige tu especialización.",
     "c33": "Escritura clásica: Fuga y coral",
     "c34": "Componer para la imagen: Armonía cinematográfica",
     "c35": "Jazz avanzado: Rearmonización e improvisación",
@@ -2261,18 +2261,13 @@
     "level5": "Nivel 5",
     "level5sub": "Itinerario especializado",
     "start": "Empezar →",
-    "subtitle": "37 lecciones en 5 niveles progresivos — desde los fundamentos de la armonía hasta las especializaciones de conservatorio.",
+    "subtitle": "{count} lecciones en 5 niveles progresivos, del conservatorio al grado y al DNSPM — desde los fundamentos de la armonía hasta los itinerarios especializados.",
     "lessons": "lecciones",
-    "level1range": "Lecciones 1–9",
-    "level2range": "Lecciones 10–16",
-    "level3range": "Lecciones 17–29",
-    "level4range": "Lecciones 30–32",
-    "level5range": "Lecciones 33–37",
     "level1desc": "De los orígenes acústicos de la escala a las modulaciones avanzadas. La base completa de la armonía tonal: acordes, cadencias, conducción de voces, tonicizaciones.",
     "level2desc": "Los modos eclesiásticos, las extensiones jazz, la sustitución de tritono, el contrapunto a dos voces y la rearmonización. Ampliar el lenguaje armónico más allá de la tonalidad clásica.",
-    "level3desc": "La frase musical, el desarrollo motívico, la orquestación, el análisis de grandes compositores, la composición en estilos y el análisis estructural — Bach, Debussy, Jazz, Rock.",
+    "level3desc": "La frase musical, el desarrollo motívico, la orquestación, el análisis de grandes compositores, la composición en estilos y el análisis estructural — Bach, Debussy, Jazz, Rock — además del itinerario grado/DNSPM: bajo cifrado, contrapunto renacentista, comentario de audición, análisis para el intérprete, lectura de orquesta y metodología del dictado armónico.",
     "level4desc": "Impresionismo, politonalidad, armonía por cuartas, extensiones alteradas, Coltrane — más allá de la tonalidad clásica hacia los lenguajes del siglo XX.",
-    "level5desc": "5 mini-itinerarios especializados — Fuga y coral, Cine, Jazz avanzado, Impresionismo profundo, Análisis avanzado. Elige tu especialización.",
+    "level5desc": "Mini-itinerarios especializados — Fuga y coral, Cine, Jazz avanzado, Impresionismo profundo, Análisis avanzado, Escritura de estilo, Set theory. Elige tu especialización.",
     "level1topics": "Escalas & intervalos,Acordes & inversiones,Cadencias,Modulaciones",
     "level2topics": "Modos,Extensiones 9ª–13ª,Contrapunto,Jazz avanzado",
     "level3topics": "Forma musical,Orquestación,Análisis,Schenker",
@@ -2281,9 +2276,9 @@
     "freeNote": "Gratis para comenzar · Lecciones 1 a 3 accesibles sin suscripción"
   },
   "landing": {
-    "topbar": "Curso 37 disponible — Schenker y análisis motívico",
+    "topbar": "Curso 48 disponible — Metodología del dictado armónico",
     "topbarCta": "Descubrir →",
-    "badge": "5 niveles · {count} cursos · 700+ ejercicios",
+    "badge": "5 niveles · {count} cursos · 850+ ejercicios",
     "h1": "Domina la armonía tonal.",
     "h1em": "De verdad.",
     "sub": "La armonía tonal. Rigurosamente.",
@@ -2443,7 +2438,7 @@
         "features": [
           "Todos los cursos (1 a {count})",
           "Test ilimitado en todos los cursos",
-          "700+ ejercicios SATB",
+          "600+ ejercicios SATB",
           "24 tonalidades × 4 posiciones",
           "Todos los niveles de dificultad",
           "Actualizaciones continuas"
@@ -2477,7 +2472,7 @@
       },
       {
         "q": "¿Cuánto se tarda en dominar el programa?",
-        "a": "El nivel 1 (9 cursos) supone entre 30 y 50 horas de trabajo según su ritmo y su punto de partida. Con una hora de práctica diaria, cuente entre 6 y 8 semanas."
+        "a": "El nivel 1 (10 cursos) supone entre 30 y 50 horas de trabajo según su ritmo y su punto de partida. Con una hora de práctica diaria, cuente entre 6 y 8 semanas."
       },
       {
         "q": "¿Los ejercicios sirven para cualquier instrumento?",

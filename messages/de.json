@@ -25,7 +25,7 @@
   },
   "coursHub": {
     "title": "Musiktheorie-Lektionen",
-    "subtitle": "Niveau 1 — 9 Lektionen zur tonalen Harmonie",
+    "subtitle": "Niveau 1 — 10 Lektionen zur tonalen Harmonie",
     "progress": "Fortschritt",
     "available": "Verfügbar",
     "comingSoon": "Demnächst",
@@ -43,7 +43,7 @@
     "level2Title": "Jazz, Modi und fortgeschrittene Techniken",
     "level2Desc": "12 Kurse zur Erweiterung der harmonischen Sprache — Modi, Erweiterungen, Jazz, Kontrapunkt. Den klassischen Rahmen verlassen und neue Farben entdecken.",
     "level3Title": "Komposition, Analyse und Meisterschaft",
-    "level3Desc": "16 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
+    "level3Desc": "16 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen, sowie der Bachelor-/DNSPM-Zweig: bezifferter Bass, Renaissance-Kontrapunkt, Höranalyse, Interpretenanalyse, Partiturlesen und Methodik des harmonischen Diktats.",
     "c1": "Die Tonleiter, die Stufen und die Intervalle",
     "c2": "Die Akkorde",
     "c3": "Tonale Funktionen und Stimmführung",
@@ -113,7 +113,7 @@
     "d32": "b9, #9, #11, b13 — verfügbare Spannungen, Coltranes Giant Steps, der Terzkreis und erweiterte Substitutionen.",
     "sublabel5": "Spezialisierungskurs",
     "level5Title": "Konservatorium-Cursus — Spezialisierungen",
-    "level5Desc": "Spezialisierte Mini-Cursus an der Spitze des Cursus — Fuge & Choral, Filmmusik, Advanced Jazz, Impressionismus, Erweiterte Analyse, Stilkomposition. Wählen Sie Ihre Spezialisierung.",
+    "level5Desc": "Spezialisierte Mini-Cursus an der Spitze des Cursus — Fuge & Choral, Filmmusik, Advanced Jazz, Impressionismus, Erweiterte Analyse, Stilkomposition, Set Theory. Wählen Sie Ihre Spezialisierung.",
     "c33": "Klassisches Schreiben: Fuge und Choral",
     "c34": "Komponieren für das Bild: Filmharmonik",
     "c35": "Advanced Jazz: Reharmonisation und Improvisation",
@@ -2261,18 +2261,13 @@
     "level5": "Stufe 5",
     "level5sub": "Spezialisierungskurs",
     "start": "Starten →",
-    "subtitle": "37 Lektionen in 5 progressiven Niveaus — von den Grundlagen der Harmonie bis zu Konservatorium-Spezialisierungen.",
+    "subtitle": "{count} Lektionen in 5 progressiven Niveaus, vom Konservatorium über den Bachelor bis zum DNSPM — von den Grundlagen der Harmonie bis zu spezialisierten Vertiefungskursen.",
     "lessons": "Lektionen",
-    "level1range": "Lektionen 1–9",
-    "level2range": "Lektionen 10–16",
-    "level3range": "Lektionen 17–29",
-    "level4range": "Lektionen 30–32",
-    "level5range": "Lektionen 33–37",
     "level1desc": "Von den akustischen Ursprüngen der Tonleiter bis zu fortgeschrittenen Modulationen. Das vollständige Fundament der tonalen Harmonie: Akkorde, Kadenzen, Stimmführung, Tonikalisierungen.",
     "level2desc": "Kirchenmodi, Jazz-Erweiterungen, Tritonussubstitution, zweistimmiger Kontrapunkt und Reharmonisierung. Das harmonische Vokabular jenseits der klassischen Tonalität erweitern.",
-    "level3desc": "Musikalische Phrase, motivische Entwicklung, Orchestrierung, Analyse großer Komponisten, Stilkomposition und Strukturanalyse — Bach, Debussy, Jazz, Rock.",
+    "level3desc": "Musikalische Phrase, motivische Entwicklung, Orchestrierung, Analyse großer Komponisten, Stilkomposition und Strukturanalyse — Bach, Debussy, Jazz, Rock — sowie der Bachelor-/DNSPM-Zweig: bezifferter Bass, Renaissance-Kontrapunkt, Höranalyse, Interpretenanalyse, Partiturlesen und Methodik des harmonischen Diktats.",
     "level4desc": "Impressionismus, Polytonalität, Quartharmonik, alterierte Erweiterungen, Coltrane — jenseits der klassischen Tonalität in die Musiksprachen des 20. Jahrhunderts.",
-    "level5desc": "5 spezialisierte Mini-Kurse — Fuge & Choral, Film, Fortgeschrittener Jazz, Tiefer Impressionismus, Fortgeschrittene Analyse. Wähle deine Spezialisierung.",
+    "level5desc": "Spezialisierte Mini-Kurse — Fuge & Choral, Film, Fortgeschrittener Jazz, Tiefer Impressionismus, Fortgeschrittene Analyse, Stilkomposition, Set Theory. Wähle deine Spezialisierung.",
     "level1topics": "Tonleitern & Intervalle,Akkorde & Umkehrungen,Kadenzen,Modulationen",
     "level2topics": "Modi,9.–13. Erweiterungen,Kontrapunkt,Fortgeschrittener Jazz",
     "level3topics": "Musikalische Form,Orchestrierung,Analyse,Schenker",
@@ -2281,9 +2276,9 @@
     "freeNote": "Kostenlos starten · Lektionen 1 bis 3 ohne Abonnement zugänglich"
   },
   "landing": {
-    "topbar": "Kurs 37 verfügbar — Schenker und motivische Analyse",
+    "topbar": "Kurs 48 verfügbar — Methodik des harmonischen Diktats",
     "topbarCta": "Entdecken →",
-    "badge": "5 Stufen · {count} Kurse · 700+ Übungen",
+    "badge": "5 Stufen · {count} Kurse · 850+ Übungen",
     "h1": "Beherrsche die tonale Harmonielehre.",
     "h1em": "Wirklich.",
     "sub": "Tonale Harmonielehre. Konsequent.",
@@ -2443,7 +2438,7 @@
         "features": [
           "Alle Kurse (1 bis {count})",
           "Unbegrenztes Quiz zu allen Kursen",
-          "700+ SATB-Übungen",
+          "600+ SATB-Übungen",
           "24 Tonarten × 4 Lagen",
           "Alle Schwierigkeitsgrade",
           "Laufende Aktualisierungen"
@@ -2477,7 +2472,7 @@
       },
       {
         "q": "Wie lange dauert es, das Programm zu beherrschen?",
-        "a": "Stufe 1 (9 Kurse) entspricht je nach Tempo und Vorkenntnissen etwa 30 bis 50 Arbeitsstunden. Bei einer Stunde regelmäßiger Übung pro Tag rechnen Sie mit 6 bis 8 Wochen."
+        "a": "Stufe 1 (10 Kurse) entspricht je nach Tempo und Vorkenntnissen etwa 30 bis 50 Arbeitsstunden. Bei einer Stunde regelmäßiger Übung pro Tag rechnen Sie mit 6 bis 8 Wochen."
       },
       {
         "q": "Sind die Übungen für jedes Instrument geeignet?",

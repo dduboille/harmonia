@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { COURS } from "@/lib/catalogue";
+import { COURS, COURS_COUNT } from "@/lib/catalogue";
 
 // Le nombre de cours par niveau est DÉRIVÉ du catalogue (source unique) : ajouter
 // un cours met à jour le compte sans retoucher cette liste.
@@ -52,7 +52,7 @@ export default function CoursHubPage() {
             fontSize: 16, color: "#666", lineHeight: 1.7, margin: 0,
             fontFamily: "system-ui, sans-serif", maxWidth: 540,
           }}>
-            {t("subtitle")}
+            {t("subtitle", { count: COURS_COUNT })}
           </p>
         </div>
 
@@ -100,7 +100,7 @@ export default function CoursHubPage() {
                       {t(`level${lvl.num}sub`)}
                     </span>
                     <span style={{ fontSize: 11, color: "#767676", fontFamily: "system-ui" }}>
-                      {t(`level${lvl.num}range`)} · {coursParNiveau(lvl.num)} {t("lessons")}
+                      {coursParNiveau(lvl.num)} {t("lessons")}
                     </span>
                   </div>
                   <p style={{
