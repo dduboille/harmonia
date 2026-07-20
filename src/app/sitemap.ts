@@ -11,16 +11,24 @@ import { COURS } from "@/lib/catalogue";
 const BASE_URL = "https://www.getharmonia.app";
 const LOCALES = ["fr", "en", "es", "de", "pt", "it"] as const;
 
+// Seules les pages publiques (aucune redirection de connexion pour un visiteur
+// anonyme) ont leur place ici. `generateur-satb`, `composition`, `composer`,
+// `squelette-harmonique`, `releve`, `comparateur`, `progressions`,
+// `analyse-partition` et `assistant` redirigent TOUS vers /sign-in sans session
+// — les y indexer ferait indexer une page de connexion, pas du contenu.
 const TOOL_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "cours",             priority: 0.9 },
   { path: "conservatoire",     priority: 0.9 },
+  { path: "entrainement",      priority: 0.8 },
+  { path: "creation",          priority: 0.8 },
+  { path: "analyse",           priority: 0.8 },
   { path: "upgrade",           priority: 0.8 },
   { path: "cursus",            priority: 0.8 },
   { path: "dictee",            priority: 0.8 },
   { path: "notes-etrangeres",  priority: 0.8 },
+  { path: "atelier",           priority: 0.7 },
+  { path: "editeur",           priority: 0.7 },
   { path: "tonalites",         priority: 0.7 },
-  { path: "generateur-satb",   priority: 0.7 },
-  { path: "composition",       priority: 0.7 },
   { path: "conditions",        priority: 0.3 },
   { path: "confidentialite",   priority: 0.3 },
 ];

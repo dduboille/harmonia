@@ -18,32 +18,32 @@ const SITE_URL = "https://www.getharmonia.app";
 const META: Record<string, { title: string; description: string; lang: string }> = {
   fr: {
     title: "Harmonia — Apprenez l'harmonie musicale en ligne",
-    description: "9 cours interactifs, 700+ exercices SATB, feedback en temps réel. Maîtrisez la conduite de voix, les cadences et les modulations. Gratuit pour commencer.",
+    description: "48 cours interactifs, du débutant au niveau master et DNSPM. Exercices SATB, dictées, analyse de partitions, feedback en temps réel. Gratuit pour commencer.",
     lang: "fr",
   },
   en: {
     title: "Harmonia — Learn Music Harmony Online",
-    description: "9 interactive courses, 700+ SATB exercises, real-time feedback. Master voice leading, cadences and modulations. Free to start.",
+    description: "48 interactive courses, from beginner to master's and DNSPM level. SATB exercises, ear training, score analysis, real-time feedback. Free to start.",
     lang: "en",
   },
   es: {
     title: "Harmonia — Aprende Armonía Musical Online",
-    description: "9 cursos interactivos, 700+ ejercicios SATB, feedback en tiempo real. Domina el contrapunto, las cadencias y las modulaciones. Gratis para empezar.",
+    description: "48 cursos interactivos, del nivel principiante al máster y DNSPM. Ejercicios SATB, dictados, análisis de partituras, feedback en tiempo real. Gratis para empezar.",
     lang: "es",
   },
   de: {
     title: "Harmonia — Musikharmonie Online Lernen",
-    description: "9 interaktive Kurse, 700+ SATB-Übungen, Echtzeit-Feedback. Meistern Sie Stimmführung, Kadenzen und Modulationen. Kostenlos starten.",
+    description: "48 interaktive Kurse, vom Anfänger- bis zum Master- und DNSPM-Niveau. SATB-Übungen, Gehörbildung, Partiturenanalyse, Echtzeit-Feedback. Kostenlos starten.",
     lang: "de",
   },
   pt: {
     title: "Harmonia — Aprenda Harmonia Musical Online",
-    description: "9 cursos interativos, 700+ exercícios SATB, feedback em tempo real. Domine a condução de vozes, cadências e modulações. Gratuito para começar.",
+    description: "48 cursos interativos, do nível iniciante ao mestrado e DNSPM. Exercícios SATB, ditados, análise de partituras, feedback em tempo real. Gratuito para começar.",
     lang: "pt",
   },
   it: {
     title: "Harmonia — Impara l'Armonia Musicale Online",
-    description: "9 corsi interattivi, 700+ esercizi SATB, feedback in tempo reale. Padroneggia il contrappunto, le cadenze e le modulazioni. Gratis per iniziare.",
+    description: "48 corsi interattivi, dal livello principiante al master e DNSPM. Esercizi SATB, dettati, analisi delle partiture, feedback in tempo reale. Gratis per iniziare.",
     lang: "it",
   },
 };
