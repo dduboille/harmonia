@@ -1,4 +1,5 @@
 import createNextIntlPlugin from 'next-intl/plugin';
+import { withSentryConfig } from '@sentry/nextjs';
 const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
 const CSP = [
@@ -59,4 +60,18 @@ const nextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+// `tunnelRoute` fait transiter les rapports d'erreur par une route du site
+// lui-même (même origine) au lieu d'appeler directement l'ingest Sentry :
+// aucun bloqueur de pub ne le voit, et la CSP existante (`connect-src 'self'`)
+// n'a donc besoin d'aucune entrée Sentry supplémentaire. Sans les identifiants
+// SENTRY_ORG/SENTRY_PROJECT/SENTRY_AUTH_TOKEN, l'étape d'upload des source
+// maps s'annule proprement au build — rien ne casse en leur absence.
+export default withSentryConfig(withNextIntl(nextConfig), {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: true,
+  tunnelRoute: "/sentry-tunnel",
+  widenClientFileUpload: true,
+  webpack: { treeshake: { removeDebugLogging: true } },
+});
