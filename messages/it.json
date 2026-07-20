@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modi e tecniche avanzate",
     "level2Desc": "12 lezioni per ampliare il linguaggio armonico — modi, estensioni, jazz, contrappunto. Uscire dal quadro classico ed esplorare nuovi colori.",
     "level3Title": "Composizione, analisi e maestria",
-    "level3Desc": "15 lezioni per raggiungere la maestria — forma musicale, orchestrazione, analisi dei grandi compositori e composizione nei loro stili.",
+    "level3Desc": "16 lezioni per raggiungere la maestria — forma musicale, orchestrazione, analisi dei grandi compositori e composizione nei loro stili.",
     "c1": "La scala, i gradi e gli intervalli",
     "c2": "Gli accordi",
     "c3": "Funzioni tonali e conduzione delle voci",
@@ -145,6 +145,8 @@
     "d46": "L'analisi al servizio dell'interpretazione — mappa formale, scheletro armonico, piano di fraseggio, gerarchia delle voci — e la scheda interpretativa sul proprio repertorio, importato nell'analizzatore. Primo corso del percorso DNSPM da interprete.",
     "c47": "Orchestrazione e lettura della partitura",
     "d47": "Leggere una partitura d'orchestra: architettura della pagina, chiavi di do, strumenti traspositori (con ascolto scritto/reale), verticalità di un tutti, riduzione al pianoforte ed equilibrio orchestrale. Secondo corso del percorso DNSPM.",
+    "c48": "Metodologia del dettato armonico",
+    "d48": "Prima il basso, la cadenza prima degli accordi, i rivolti e la settima che scende, la disciplina dei 6 ascolti — il compagno metodologico dello strumento /releve. Ultimo corso del percorso DNSPM e del catalogo.",
     "univ1": "≈ Laurea 1",
     "univ2": "≈ Laurea 2",
     "univ3": "≈ Laurea 3 · DNSPM",
@@ -4343,6 +4345,25 @@
       "perfect": "Perfetto! Partitura, chiavi, trasposizioni, verticalità: l'orchestra non ha più segreti sulla carta — ora bisogna sentirla.",
       "veryGood": "Molto bene! Alcune trasposizioni da consolidare — rileggi LA tabella della sezione 3 e risuona le coppie scritto/reale.",
       "keepGoing": "Continua — riprendi la tabella dei traspositori e le linee delle chiavi di do (Fa3–La3–Do4–Mi4–Sol4) prima di riprovare."
+    }
+  },
+  "cours48": {
+    "badge": "Livello 3 · Corso 48",
+    "title": "Metodologia del dettato armonico",
+    "subtitle": "Il compagno metodologico dello strumento /releve — prima il basso, le funzioni prima degli accordi, i rivolti all'orecchio, la disciplina dei 6 ascolti. Ultimo corso del percorso DNSPM e del catalogo.",
+    "sections": {
+      "quoi": "Il dettato",
+      "basse": "Prima il basso",
+      "fonctions": "Le funzioni",
+      "renversements": "I rivolti",
+      "ecoutes": "I 6 ascolti",
+      "boucle": "Ascolto ↔ scrittura",
+      "quiz": "Allenamento"
+    },
+    "quiz": {
+      "perfect": "Perfetto! Il basso, le funzioni, i rivolti, i 6 ascolti: il metodo è acquisito — ora bisogna praticarlo in /releve.",
+      "veryGood": "Molto bene! Alcuni riflessi da consolidare — rileggi la scheda riflessa e rifai gli esempi V/V7 della sezione 4.",
+      "keepGoing": "Continua — riprendi la regola d'oro (tonalità → cadenza → basso → cifrature) e la scheda riflessa prima di riprovare."
     }
   },
   "releve": {

@@ -43,7 +43,7 @@
     "level2Title": "Jazz, Modes and Advanced Techniques",
     "level2Desc": "12 lessons to expand your harmonic language — modes, extensions, jazz, counterpoint. Step outside the classical framework and explore new colors.",
     "level3Title": "Composition, Analysis and Mastery",
-    "level3Desc": "15 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis.",
+    "level3Desc": "16 lessons to reach mastery — musical form, orchestration, analysis of great composers, composition in their styles and deep structural analysis.",
     "sublabel4": "Extended Harmony",
     "level4Title": "Extended Harmony — Beyond Tonality",
     "level4Desc": "3 lessons to explore 20th-century musical languages — impressionism, polytonality, quartal harmony and advanced Coltrane-style reharmonization.",
@@ -145,6 +145,8 @@
     "d46": "Analysis in the service of interpretation — formal map, harmonic skeleton, phrasing plan, voice hierarchy — and the interpretation worksheet on your own repertoire, imported into the analyser. First course of the DNSPM performer track.",
     "c47": "Orchestration and Score Reading",
     "d47": "Reading a full score: page architecture, C clefs, transposing instruments (with written/sounding listening), verticality of a tutti, piano reduction and orchestral balance. Second course of the DNSPM track.",
+    "c48": "Harmonic Dictation Methodology",
+    "d48": "Bass first, cadence before chords, inversions and the falling seventh, the discipline of the 6 listenings — the methodological companion to the /releve tool. Last course of the DNSPM track and of the catalogue.",
     "univ1": "≈ Bachelor 1",
     "univ2": "≈ Bachelor 2",
     "univ3": "≈ Bachelor 3 · DNSPM",
@@ -4342,6 +4344,25 @@
       "perfect": "Perfect! Full score, clefs, transpositions, verticality: the orchestra holds no more secrets on paper — now hear it.",
       "veryGood": "Very good! A few transpositions to consolidate — reread THE table of section 3 and replay the written/sounding pairs.",
       "keepGoing": "Keep going — go back over the transposing-instruments table and the C-clef lines (Fa3–La3–Do4–Mi4–Sol4) before trying again."
+    }
+  },
+  "cours48": {
+    "badge": "Level 3 · Course 48",
+    "title": "Harmonic Dictation Methodology",
+    "subtitle": "The methodological companion to the /releve tool — bass first, functions before chords, inversions by ear, the discipline of the 6 listenings. Last course of the DNSPM track and of the catalogue.",
+    "sections": {
+      "quoi": "Harmonic dictation",
+      "basse": "Bass first",
+      "fonctions": "Functions",
+      "renversements": "Inversions",
+      "ecoutes": "The 6 listenings",
+      "boucle": "Listening ↔ writing",
+      "quiz": "Practice"
+    },
+    "quiz": {
+      "perfect": "Perfect! Bass, functions, inversions, the 6 listenings: the method is mastered — now practise it in /releve.",
+      "veryGood": "Very good! A few reflexes to consolidate — reread the reflex card and redo the V/V7 examples of section 4.",
+      "keepGoing": "Keep going — go back over the golden rule (key → cadence → bass → figures) and the reflex card before trying again."
     }
   },
   "releve": {

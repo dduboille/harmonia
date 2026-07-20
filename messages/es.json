@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modos y técnicas avanzadas",
     "level2Desc": "12 lecciones para ampliar el lenguaje armónico — modos, extensiones, jazz, contrapunto. Salir del marco clásico y explorar nuevos colores.",
     "level3Title": "Composición, análisis y maestría",
-    "level3Desc": "15 lecciones para alcanzar la maestría — forma musical, orquestación, análisis de los grandes compositores y composición en sus estilos.",
+    "level3Desc": "16 lecciones para alcanzar la maestría — forma musical, orquestación, análisis de los grandes compositores y composición en sus estilos.",
     "c1": "La escala, los grados y los intervalos",
     "c2": "Los acordes",
     "c3": "Funciones tonales y conducción de voces",
@@ -145,6 +145,8 @@
     "d46": "El análisis al servicio de la interpretación — mapa formal, esqueleto armónico, plan de fraseo, jerarquía de las voces — y la ficha de interpretación sobre su propio repertorio, importado en el analizador. Primer curso del itinerario DNSPM de intérprete.",
     "c47": "Orquestación y lectura de orquesta",
     "d47": "Leer una partitura general: arquitectura de la página, claves de do, instrumentos transpositores (con escucha escrito/sonante), verticalidad de un tutti, reducción al piano y equilibrio orquestal. Segundo curso del itinerario DNSPM.",
+    "c48": "Metodología del dictado armónico",
+    "d48": "El bajo primero, la cadencia antes que los acordes, las inversiones y la séptima que baja, la disciplina de las 6 escuchas — el acompañante metodológico de la herramienta /releve. Último curso del itinerario DNSPM y del catálogo.",
     "univ1": "≈ Grado 1",
     "univ2": "≈ Grado 2",
     "univ3": "≈ Grado 3 · DNSPM",
@@ -4343,6 +4345,25 @@
       "perfect": "¡Perfecto! Partitura, claves, transposiciones, verticalidad: la orquesta ya no tiene secretos sobre el papel — ahora hay que oírla.",
       "veryGood": "¡Muy bien! Algunas transposiciones por consolidar — relee LA tabla de la sección 3 y vuelve a tocar las parejas escrito/sonante.",
       "keepGoing": "Sigue así — repasa la tabla de los transpositores y las líneas de las claves de do (Fa3–La3–Do4–Mi4–Sol4) antes de reintentar."
+    }
+  },
+  "cours48": {
+    "badge": "Nivel 3 · Curso 48",
+    "title": "Metodología del dictado armónico",
+    "subtitle": "El acompañante metodológico de la herramienta /releve — el bajo primero, las funciones antes que los acordes, las inversiones de oído, la disciplina de las 6 escuchas. Último curso del itinerario DNSPM y del catálogo.",
+    "sections": {
+      "quoi": "El dictado",
+      "basse": "El bajo primero",
+      "fonctions": "Las funciones",
+      "renversements": "Las inversiones",
+      "ecoutes": "Las 6 escuchas",
+      "boucle": "Escucha ↔ escritura",
+      "quiz": "Entrenamiento"
+    },
+    "quiz": {
+      "perfect": "¡Perfecto! El bajo, las funciones, las inversiones, las 6 escuchas: el método está adquirido — ahora toca practicarlo en /releve.",
+      "veryGood": "¡Muy bien! Algunos reflejos por consolidar — relee la ficha refleja y repite los ejemplos V/V7 de la sección 4.",
+      "keepGoing": "Sigue así — repasa la regla de oro (tonalidad → cadencia → bajo → cifrados) y la ficha refleja antes de reintentar."
     }
   },
   "releve": {

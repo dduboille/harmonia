@@ -66,6 +66,7 @@ export const COURS: CoursMeta[] = [
   { num: 45, level: 3 as const, title: "Méthodologie du commentaire d'écoute", desc: "La méthode complète de l'épreuve — grille des paramètres, marqueurs stylistiques, formes à l'oreille, plan et vocabulaire — et le gymnase harmonique : cadences, modes, modulations, rythme harmonique, textures.", tags: ["Commentaire d'écoute", "Styles", "Méthodologie"] },
   { num: 46, level: 3 as const, title: "Analyser une œuvre qu'on va jouer", desc: "L'analyse au service de l'interprétation — carte formelle, squelette harmonique, plan de phrasé, hiérarchie des voix — et la fiche d'interprétation sur votre propre répertoire, importé dans l'analyseur. Premier cours du parcours DNSPM.", tags: ["Interprétation", "DNSPM", "Analyse"] },
   { num: 47, level: 3 as const, title: "Orchestration et lecture d'orchestre", desc: "Lire un conducteur : architecture de la page, clés d'ut, instruments transpositeurs (avec écoute écrit/sonnant), verticalité d'un tutti, réduction au piano et équilibre orchestral. Deuxième cours du parcours DNSPM.", tags: ["Orchestration", "Transposition", "DNSPM"] },
+  { num: 48, level: 3 as const, title: "Méthodologie du relevé", desc: "La basse d'abord, la cadence avant les accords, les renversements et la septième qui descend, la discipline des 6 écoutes — le compagnon méthodologique de l'outil /releve. Dernier cours du parcours DNSPM et du catalogue.", tags: ["Relevé", "Oreille", "DNSPM"] },
 ];
 
 /** Nombre total de cours publiés. */
