@@ -14,7 +14,7 @@ import { useParams } from "next/navigation";
 import { COURS_COUNT, FREE_COURS } from "@/lib/catalogue";
 
 const FEATURES = [
-  { icon: "𝄞", title: "23 cours structurés", desc: "Des origines acoustiques de la gamme aux techniques des grands compositeurs — deux niveaux progressifs couvrant l'harmonie classique, le jazz et la composition." },
+  { icon: "𝄞", title: `${COURS_COUNT} cours structurés`, desc: "Des origines acoustiques de la gamme aux techniques des grands compositeurs — cinq niveaux progressifs couvrant l'harmonie classique, le jazz, l'impressionnisme et la composition." },
   { icon: "🎹", title: "Exercices SATB interactifs", desc: "Placez les notes sur les portées voix par voix. La validation harmonique détecte en temps réel les quintes parallèles, croisements et erreurs de tessiture." },
   { icon: "✓", title: "Feedback immédiat", desc: "Chaque note placée est analysée selon les règles du contrepoint tonal. Vous apprenez de vos erreurs au moment où elles se produisent." },
   { icon: "🔊", title: "Audio haute qualité", desc: "Piano samplé en haute fidélité. Écoutez chaque accord, chaque progression, chaque voicing — des cadences de Bach aux substitutions tritoniques jazz." },
@@ -26,7 +26,7 @@ const STEPS = [
   { num: "01", title: "Étudie le cours", desc: "Chaque cours explique les concepts avec des exemples audio, des tableaux récapitulatifs et des anecdotes sur les grands compositeurs." },
   { num: "02", title: "Entraîne-toi au quiz", desc: "Des questions aléatoires piochées dans un pool de 90+ questions par cours — identification, construction, analyse de Bach à Radiohead." },
   { num: "03", title: "Réalise les exercices", desc: "Place les notes sur les portées SATB, choisis les bons renversements, analyse les styles des maîtres. Le moteur valide instantanément tes choix." },
-  { num: "04", title: "Progresse", desc: "23 cours, 24 tonalités, niveaux 1 et 2. De la gamme de base aux techniques de composition des grands maîtres." },
+  { num: "04", title: "Progresse", desc: `${COURS_COUNT} cours, 24 tonalités, 5 niveaux. De la gamme de base aux techniques de composition des grands maîtres.` },
 ];
 
 // Comme sur la landing, chaque plan porte ses propres couleurs de texte : elles
@@ -47,7 +47,7 @@ const PLANS = [
     color: "#fff", bg: "#1a1a1a", border: "#1a1a1a", cta: "Choisir Étudiant", ctaStyle: "solid", badge: "Le plus populaire",
     labelColor: "#bdbdbd", periodColor: "#bdbdbd", descColor: "#bdbdbd",
     checkColor: "#9AE6B4", featureColor: "#e8e8e8", mutedColor: "#9a9a9a",
-    features: [`Tous les cours (1 à ${COURS_COUNT})`, "Quiz illimité sur tous les cours", "700+ exercices SATB", "24 tonalités × 4 positions", "Tous les niveaux de difficulté", "Mises à jour continues"],
+    features: [`Tous les cours (1 à ${COURS_COUNT})`, "Quiz illimité sur tous les cours", "600+ exercices SATB", "24 tonalités × 4 positions", "Tous les niveaux de difficulté", "Mises à jour continues"],
     notIncluded: ["Fonctionnalités IA"],
   },
   {
@@ -63,7 +63,7 @@ const PLANS = [
 
 const FAQ = [
   { q: "Faut-il avoir des bases en théorie musicale ?", a: "Non. Le cours 1 commence depuis les origines acoustiques de la gamme — aucun prérequis n'est nécessaire. Harmonia convient aussi bien aux débutants qu'aux musiciens qui veulent formaliser leurs connaissances." },
-  { q: "En combien de temps maîtrise-t-on le programme ?", a: "Le niveau 1 (9 cours) représente environ 30 à 50 heures de travail selon votre rythme et votre niveau de départ. Avec une pratique régulière d'une heure par jour, comptez 6 à 8 semaines." },
+  { q: "En combien de temps maîtrise-t-on le programme ?", a: "Le niveau 1 (10 cours) représente environ 30 à 50 heures de travail selon votre rythme et votre niveau de départ. Avec une pratique régulière d'une heure par jour, comptez 6 à 8 semaines." },
   { q: "Les exercices sont-ils adaptés à tous les instruments ?", a: "Oui. L'harmonie tonale est un langage universel. Les exercices travaillent la compréhension harmonique abstraite — applicable à n'importe quel instrument ou à la composition." },
   { q: "Puis-je annuler mon abonnement à tout moment ?", a: "Oui, sans engagement. L'annulation prend effet à la fin de la période en cours. Pour le plan annuel, vous conservez l'accès jusqu'à la fin de l'année payée." },
   { q: "Le contenu est-il régulièrement mis à jour ?", a: "Oui. Harmonia est en développement actif — de nouveaux exercices, cours et fonctionnalités sont ajoutés régulièrement. Les abonnés Pro bénéficient de toutes les mises à jour." },
@@ -206,7 +206,7 @@ export default function LandingPreview() {
         <div style={{ maxWidth: 760, textAlign: "center" as const, position: "relative" as const, zIndex: 1, padding: "80px 2rem" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#FAEEDA", border: "0.5px solid #F6AD55", borderRadius: 20, padding: "5px 14px", fontSize: 12, fontWeight: 500, color: "#BA7517", fontFamily: "system-ui, sans-serif", marginBottom: 32, letterSpacing: "0.04em" }}>
             <span>✦</span>
-            Niveaux 1 &amp; 2 · 23 cours · 700+ exercices
+            {COURS_COUNT} cours · 850+ exercices
           </div>
 
           <h1 style={{ fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.02em", margin: "0 0 24px", color: "#1a1a1a" }}>
@@ -216,7 +216,7 @@ export default function LandingPreview() {
           </h1>
 
           <p style={{ fontSize: "clamp(16px, 2.5vw, 20px)", color: "#444", lineHeight: 1.7, maxWidth: 560, margin: "0 auto 40px", fontFamily: "system-ui, sans-serif", fontWeight: 400 }}>
-            De la gamme aux techniques des grands compositeurs — 23 cours interactifs, 700+ exercices avec feedback harmonique en temps réel, dans les 24 tonalités.
+            De la gamme aux techniques des grands compositeurs — {COURS_COUNT} cours interactifs, 850+ exercices avec feedback harmonique en temps réel, dans les 24 tonalités.
           </p>
 
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" as const }}>

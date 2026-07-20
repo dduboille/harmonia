@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { COURS_COUNT } from "@/lib/catalogue";
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -52,7 +53,7 @@ export default async function ConditionsPage({ params }: Props) {
             tonale. Le service propose notamment :
           </p>
           <ul style={listStyle}>
-            <li style={liStyle}><strong>23 cours structurés</strong> couvrant les fondements de l'harmonie classique, le jazz et la composition, répartis en deux niveaux progressifs</li>
+            <li style={liStyle}><strong>{COURS_COUNT} cours structurés</strong> couvrant les fondements de l'harmonie classique, le jazz, l'impressionnisme et la composition, répartis en cinq niveaux progressifs (conservatoire, licence/master, DNSPM)</li>
             <li style={liStyle}><strong>Exercices interactifs SATB</strong> (Soprano, Alto, Ténor, Basse) avec validation harmonique en temps réel</li>
             <li style={liStyle}><strong>Quiz d'identification et de construction</strong> d'accords et de progressions harmoniques</li>
             <li style={liStyle}><strong>Dictée harmonique</strong>, comparateur de styles, éditeur mélodique et générateur d'exercices SATB</li>
@@ -104,7 +105,7 @@ export default async function ConditionsPage({ params }: Props) {
               {
                 name: "Étudiant",
                 price: "9 € / mois",
-                desc: "Accès à l'intégralité des 23 cours, aux 700+ exercices SATB dans les 24 tonalités et les 4 positions, à tous les niveaux de difficulté. Abonnement mensuel renouvelable.",
+                desc: `Accès à l'intégralité des ${COURS_COUNT} cours, aux 600+ exercices SATB dans les 24 tonalités et les 4 positions, à tous les niveaux de difficulté. Abonnement mensuel renouvelable.`,
                 color: "#185FA5",
                 bg: "#E6F1FB",
               },

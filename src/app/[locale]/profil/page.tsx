@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getUserPlan } from "@/lib/progression";
 import { supabaseAdmin } from "@/lib/supabase";
+import { COURS_COUNT } from "@/lib/catalogue";
 
 const PLAN_LABEL: Record<string, string> = {
   free:   "Gratuit",
@@ -185,7 +186,7 @@ export default async function ProfilPage({ params }: Props) {
                   Accès
                 </div>
                 <div style={{ fontSize: 14, color: "#1a1a1a", fontWeight: 500 }}>
-                  9 cours · 700+ exercices
+                  {COURS_COUNT} cours · 600+ exercices
                 </div>
               </div>
             </div>

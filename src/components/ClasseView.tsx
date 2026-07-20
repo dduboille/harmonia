@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import type { Classe, Eleve, Devoir } from "@/types/conservatoire";
 import { downloadClasseBilan } from "@/lib/pdf-bilan";
+import { COURS_COUNT } from "@/lib/catalogue";
 
 const ACCENT = "#2D5A8E";
 
@@ -732,7 +733,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                     Élèves par nombre de cours complétés
                   </h3>
                   <div style={{ display: "flex", alignItems: "flex-end", gap: 6, height: 100 }}>
-                    {Array.from({ length: 24 }, (_, i) => i).map((n) => {
+                    {Array.from({ length: COURS_COUNT + 1 }, (_, i) => i).map((n) => {
                       const count = buckets[n] ?? 0;
                       const maxCount = Math.max(...Object.values(buckets), 1);
                       const h = Math.max(count > 0 ? 8 : 2, Math.round((count / maxCount) * 90));
@@ -750,7 +751,7 @@ export default function ClasseView({ classe, eleves: initialEleves, devoirs: ini
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4, fontSize: 10, color: "#767676" }}>
                     <span>0 cours</span>
-                    <span>23 cours</span>
+                    <span>{COURS_COUNT} cours</span>
                   </div>
                 </div>
 
