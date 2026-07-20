@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import { PROGRESSION_TEMPLATES, type ProgressionTemplate, type ProgressionCategory } from "@/data/progressions-templates";
-import { generateSATBExercise, type Doigte, type GeneratedExercise } from "@/lib/satb-generator";
+import { generateSATBExercise, premierAccordImpose, type Doigte, type GeneratedExercise } from "@/lib/satb-generator";
 import type { Measure, NoteName, HarmoniaEditorProps } from "@/components/HarmoniaEditor";
 import { getKeyAccidentalHint } from "@/lib/key-accidentals";
 
@@ -93,6 +93,11 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
     [template, selectedKey, doigte],
   );
   const canGenerate = !!template && preview !== null;
+
+  // Certains gabarits imposent déjà l'inversion de leur 1er accord (I64, II6,
+  // bII6…) : le doigté de départ est alors sans effet sur la basse — on grise le
+  // panneau C plutôt que de laisser croire à un choix qui serait ignoré.
+  const doigteInerte = !!template && premierAccordImpose(template);
 
   const generate = useCallback(() => {
     if (!preview) return; // combinaison écartée : le bouton est désactivé
@@ -299,11 +304,13 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
           {/* Panel C — Doigté */}
           <div style={{ background: "#fff", border: "0.5px solid #e0dbd3", borderRadius: 12, padding: 20 }}>
             <div style={{ fontWeight: 600, fontSize: 13, color: "#1a1a1a", marginBottom: 10 }}>C — Doigté de départ</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6, opacity: doigteInerte ? 0.45 : 1 }}>
               {DOIGTE_INFO.map(d => (
                 <button key={d.value} onClick={() => setDoigte(d.value)}
+                  disabled={doigteInerte}
                   style={{
-                    textAlign: "left", padding: "8px 12px", borderRadius: 8, cursor: "pointer",
+                    textAlign: "left", padding: "8px 12px", borderRadius: 8,
+                    cursor: doigteInerte ? "not-allowed" : "pointer",
                     border: doigte === d.value ? "1.5px solid #185FA5" : "0.5px solid #e0dbd3",
                     background: doigte === d.value ? "#EBF3FD" : "#fafaf8",
                   }}
@@ -315,6 +322,16 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
                 </button>
               ))}
             </div>
+            {doigteInerte && template && (
+              <div style={{
+                marginTop: 10, padding: "8px 12px", borderRadius: 8,
+                background: "#FEF0D9", border: "0.5px solid #F5C77E",
+                fontSize: 11, color: "#744210", lineHeight: 1.5,
+              }}>
+                Cette progression impose déjà l'inversion de son premier accord
+                {" "}(<strong>{template.symboles[0]}</strong>) — le doigté de départ ne s'applique pas ici.
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -369,7 +386,11 @@ export default function GenerateurSATB({ plan }: { plan?: string }) {
           Exercice SATB généré
         </div>
         <h1 style={{ fontSize: 24, fontWeight: 500, color: "#1a1a1a", margin: "0 0 8px" }}>
-          {exercise.template.nom} en {keyLabel} — Basse : {DOIGTE_FR[exercise.doigte]}
+          {exercise.template.nom} en {keyLabel}
+          {/* Quand le gabarit impose l'inversion de son 1er accord, le doigté est
+              inerte : pas de « — Basse : … » trompeur (le nom du gabarit, p. ex.
+              « I6/4–V–I », porte déjà l'information). */}
+          {!premierAccordImpose(exercise.template) && ` — Basse : ${DOIGTE_FR[exercise.doigte]}`}
         </h1>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10 }}>
           <span style={{

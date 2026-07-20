@@ -290,6 +290,20 @@ function generateLilyPond(mesures: SATBMeasure[], key: string, mode: "major"|"mi
 const DOIGTE_IDX: Record<Doigte, number> = { "1":0, "3":1, "5":2, "7":3 };
 
 /**
+ * Le 1er accord du gabarit impose-t-il DÉJÀ son renversement (I64, II6, bII6…) ?
+ *
+ * Si oui, le doigté de départ est INERTE : la basse de la 1re mesure suit le
+ * chiffrage du gabarit, exactement comme les mesures suivantes — sinon le doigté
+ * écraserait l'inversion que l'exercice a précisément pour but de faire
+ * travailler. Seul l'accord d'index 0 est concerné (le doigté ne touche jamais
+ * les autres) : un gabarit comme IV–I64–V–I n'est PAS « imposé », son 1er accord
+ * (IV) étant fondamental. Réutilisé par l'UI pour griser le panneau « doigté ».
+ */
+export function premierAccordImpose(template: ProgressionTemplate): boolean {
+  return parseDeg(template.symboles[0]).inversion !== 0;
+}
+
+/**
  * Génère un exercice SATB pour un combo (gabarit × tonalité × doigté).
  *
  * Le doigté fixe la note de l'accord placée à la BASSE de la première mesure —
@@ -298,6 +312,12 @@ const DOIGTE_IDX: Record<Doigte, number> = { "1":0, "3":1, "5":2, "7":3 };
  * renversement), avec repli sur la quinte pour une triade (pas de 7e à mettre à
  * la basse). Ce renversement de départ REMPLACE le chiffrage du gabarit sur la
  * seule 1re mesure ; les mesures suivantes gardent leurs propres renversements.
+ *
+ * EXCEPTION — le doigté ne gouverne cette basse QUE si le gabarit laisse son 1er
+ * accord en position fondamentale. Si le chiffrage impose déjà un renversement à
+ * ce 1er accord (I64, II6, bII6…), le doigté est INERTE : la basse suit le
+ * chiffrage comme les autres mesures — l'exercice porte justement sur ce
+ * renversement et le doigté ne doit pas l'écraser (cf. `premierAccordImpose`).
  *
  * Le soprano de la 1re mesure n'est PAS imposé : le moteur partagé exige une note
  * de soprano UNIQUE pour ancrer sa recherche en tête (là où les mesures suivantes
@@ -319,17 +339,21 @@ export function generateSATBExercise(
 
   const chords = template.symboles.map(deg => buildChord(parseDeg(deg), keyRoot, mode, tonalite));
 
-  // Basse de la 1re mesure = note du doigté (renversement de départ), avec le
-  // même repli qu'auparavant : ⑦ sur une triade n'a pas de 7e → on retombe sur
-  // la quinte (dernière note de l'accord).
+  // Basse de la 1re mesure. Cas normal (1er accord fondamental dans le gabarit) :
+  // = note du doigté (renversement de départ), avec le même repli qu'auparavant
+  // (⑦ sur une triade n'a pas de 7e → on retombe sur la quinte, dernière note).
+  // Cas d'un gabarit qui impose déjà un renversement à son 1er accord (I64, II6,
+  // bII6…) : on garde SA basse et le doigté reste sans effet (cf. premierAccordImpose).
   const ch0 = chords[0];
-  const bassPc0 = ch0.tones[DOIGTE_IDX[doigte]] ?? ch0.tones[ch0.tones.length - 1];
+  const bassPc0 = premierAccordImpose(template)
+    ? ch0.bassPc
+    : (ch0.tones[DOIGTE_IDX[doigte]] ?? ch0.tones[ch0.tones.length - 1]);
 
   // Le soprano de la 1re mesure est libre, mais le moteur partagé n'accepte
   // qu'UN soprano imposé en tête : on l'essaie donc sur chaque note de l'accord
   // (fond., 3ce, 5te, [7e]) et l'on garde la 1re conduite qui aboutit. La basse
-  // de la 1re mesure reste épinglée au doigté ; les autres mesures gardent la
-  // basse de leur chiffrage (renversements du gabarit).
+  // de la 1re mesure reste épinglée à `bassPc0` (doigté, ou renversement imposé
+  // par le gabarit) ; les autres mesures gardent la basse de leur chiffrage.
   let voiced: VoicedMeasure[] | null = null;
   for (const firstSopranoPc of ch0.tones) {
     const specs: SpecEntry[] = chords.map((ch, idx) => ({
