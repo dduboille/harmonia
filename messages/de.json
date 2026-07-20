@@ -43,7 +43,7 @@
     "level2Title": "Jazz, Modi und fortgeschrittene Techniken",
     "level2Desc": "12 Kurse zur Erweiterung der harmonischen Sprache — Modi, Erweiterungen, Jazz, Kontrapunkt. Den klassischen Rahmen verlassen und neue Farben entdecken.",
     "level3Title": "Komposition, Analyse und Meisterschaft",
-    "level3Desc": "15 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
+    "level3Desc": "16 Kurse zur Erlangung der Meisterschaft — Musikform, Orchestrierung, Analyse großer Komponisten und Komposition in ihren Stilen.",
     "c1": "Die Tonleiter, die Stufen und die Intervalle",
     "c2": "Die Akkorde",
     "c3": "Tonale Funktionen und Stimmführung",
@@ -145,6 +145,8 @@
     "d46": "Analyse im Dienst der Interpretation — Formkarte, harmonisches Gerüst, Phrasierungsplan, Stimmenhierarchie — und das Interpretationsblatt zum eigenen Repertoire, importiert in den Analyseur. Erster Kurs des DNSPM-Interpretenwegs.",
     "c47": "Orchestrierung und Partiturlesen",
     "d47": "Eine Partitur lesen: Architektur der Seite, C-Schlüssel, transponierende Instrumente (mit Hören notiert/klingend), Vertikale eines Tuttis, Klavierauszug und orchestrale Balance. Zweiter Kurs des DNSPM-Wegs.",
+    "c48": "Methodik des harmonischen Diktats",
+    "d48": "Zuerst der Bass, die Kadenz vor den Akkorden, Umkehrungen und die fallende Septime, die Disziplin der 6 Hördurchgänge — der methodische Begleiter zum Werkzeug /releve. Letzter Kurs des DNSPM-Wegs und des Katalogs.",
     "univ1": "≈ Bachelor 1",
     "univ2": "≈ Bachelor 2",
     "univ3": "≈ Bachelor 3 · DNSPM",
@@ -4343,6 +4345,25 @@
       "perfect": "Perfekt! Partitur, Schlüssel, Transpositionen, Vertikale: Das Orchester hat auf dem Papier kein Geheimnis mehr — jetzt gilt es, es zu hören.",
       "veryGood": "Sehr gut! Einige Transpositionen sind noch zu festigen — lies DIE Tabelle aus Abschnitt 3 erneut und spiele die Paare notiert/klingend nach.",
       "keepGoing": "Weiter so — geh die Tabelle der transponierenden Instrumente und die Linien der C-Schlüssel (Fa3–La3–Do4–Mi4–Sol4) noch einmal durch."
+    }
+  },
+  "cours48": {
+    "badge": "Stufe 3 · Kurs 48",
+    "title": "Methodik des harmonischen Diktats",
+    "subtitle": "Der methodische Begleiter zum Werkzeug /releve — zuerst der Bass, Funktionen vor Akkorden, Umkehrungen mit dem Ohr, die Disziplin der 6 Hördurchgänge. Letzter Kurs des DNSPM-Wegs und des Katalogs.",
+    "sections": {
+      "quoi": "Das Diktat",
+      "basse": "Der Bass zuerst",
+      "fonctions": "Die Funktionen",
+      "renversements": "Die Umkehrungen",
+      "ecoutes": "Die 6 Hördurchgänge",
+      "boucle": "Hören ↔ Schreiben",
+      "quiz": "Übung"
+    },
+    "quiz": {
+      "perfect": "Perfekt! Bass, Funktionen, Umkehrungen, die 6 Hördurchgänge: die Methode sitzt — jetzt gilt es, sie in /releve zu üben.",
+      "veryGood": "Sehr gut! Einige Reflexe sind noch zu festigen — lies die Reflexkarte erneut und wiederhole die V/V7-Beispiele aus Abschnitt 4.",
+      "keepGoing": "Weiter so — geh die goldene Regel (Tonart → Kadenz → Bass → Bezifferungen) und die Reflexkarte noch einmal durch."
     }
   },
   "releve": {

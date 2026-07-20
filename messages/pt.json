@@ -43,7 +43,7 @@
     "level2Title": "Jazz, modos e técnicas avançadas",
     "level2Desc": "12 aulas para expandir a linguagem harmónica — modos, extensões, jazz, contraponto. Sair do quadro clássico e explorar novas cores.",
     "level3Title": "Composição, análise e mestria",
-    "level3Desc": "15 aulas para atingir a mestria — forma musical, orquestração, análise dos grandes compositores e composição nos seus estilos.",
+    "level3Desc": "16 aulas para atingir a mestria — forma musical, orquestração, análise dos grandes compositores e composição nos seus estilos.",
     "c1": "A escala, os graus e os intervalos",
     "c2": "Os acordes",
     "c3": "Funções tonais e condução de vozes",
@@ -145,6 +145,8 @@
     "d46": "A análise ao serviço da interpretação — mapa formal, esqueleto harmónico, plano de fraseado, hierarquia das vozes — e a ficha de interpretação sobre o seu próprio repertório, importado no analisador. Primeiro curso do percurso DNSPM de intérprete.",
     "c47": "Orquestração e leitura de orquestra",
     "d47": "Ler uma partitura geral: arquitetura da página, claves de dó, instrumentos transpositores (com escuta escrito/soante), verticalidade de um tutti, redução ao piano e equilíbrio orquestral. Segundo curso do percurso DNSPM.",
+    "c48": "Metodologia do ditado harmónico",
+    "d48": "O baixo primeiro, a cadência antes dos acordes, as inversões e a sétima que desce, a disciplina das 6 escutas — o companheiro metodológico da ferramenta /releve. Último curso do percurso DNSPM e do catálogo.",
     "univ1": "≈ Licenciatura 1",
     "univ2": "≈ Licenciatura 2",
     "univ3": "≈ Licenciatura 3 · DNSPM",
@@ -4343,6 +4345,25 @@
       "perfect": "Perfeito! Partitura, claves, transposições, verticalidade: a orquestra já não tem segredos no papel — agora é preciso ouvi-la.",
       "veryGood": "Muito bem! Algumas transposições a consolidar — relê A tabela da secção 3 e volta a tocar os pares escrito/soante.",
       "keepGoing": "Continua — retoma a tabela dos transpositores e as linhas das claves de dó (Fa3–La3–Do4–Mi4–Sol4) antes de recomeçar."
+    }
+  },
+  "cours48": {
+    "badge": "Nível 3 · Curso 48",
+    "title": "Metodologia do ditado harmónico",
+    "subtitle": "O companheiro metodológico da ferramenta /releve — o baixo primeiro, as funções antes dos acordes, as inversões de ouvido, a disciplina das 6 escutas. Último curso do percurso DNSPM e do catálogo.",
+    "sections": {
+      "quoi": "O ditado",
+      "basse": "O baixo primeiro",
+      "fonctions": "As funções",
+      "renversements": "As inversões",
+      "ecoutes": "As 6 escutas",
+      "boucle": "Escuta ↔ escrita",
+      "quiz": "Treino"
+    },
+    "quiz": {
+      "perfect": "Perfeito! O baixo, as funções, as inversões, as 6 escutas: o método está adquirido — agora é preciso praticá-lo em /releve.",
+      "veryGood": "Muito bem! Alguns reflexos a consolidar — relê a ficha reflexa e refaz os exemplos V/V7 da secção 4.",
+      "keepGoing": "Continua — retoma a regra de ouro (tonalidade → cadência → baixo → cifras) e a ficha reflexa antes de recomeçar."
     }
   },
   "releve": {
