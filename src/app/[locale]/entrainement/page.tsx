@@ -22,6 +22,24 @@ const TOOLS = [
     title: "Notes étrangères",
     desc: "Retards, appogiatures, broderies, notes de passage — identifier et utiliser.",
   },
+  {
+    href: "comparateur",
+    icon: "⟳",
+    title: "Styles",
+    desc: "Comparez les signatures harmoniques de Bach, Mozart, Chopin, Jazz, Rock…",
+  },
+  {
+    href: "progressions",
+    icon: "♬",
+    title: "Progressions",
+    desc: "Bibliothèque de progressions harmoniques à explorer et analyser.",
+  },
+  {
+    href: "generateur-satb",
+    icon: "⊞",
+    title: "Générateur SATB",
+    desc: "Générez des harmonisations à quatre voix soprano, alto, ténor, basse.",
+  },
 ];
 
 export default function EntrainementHub() {
