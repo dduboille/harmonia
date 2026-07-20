@@ -4230,7 +4230,29 @@
       "D": "D",
       "?": "—"
     },
-    "exporter": "Étoffer dans l'atelier"
+    "exporter": "Étoffer dans l'atelier",
+    "infoOuvrir": "Comprendre les fonctions et les accords",
+    "infoIntro": "Une progression harmonique raconte une histoire en trois temps : le repos, la préparation, la tension qui y ramène.",
+    "infoTonique": {
+      "titre": "Tonique",
+      "texte": "Le repos. L'accord de degré I (i en mineur) et ses proches parents (vi, iii) : là où une phrase commence et se termine, le point d'ancrage de la tonalité."
+    },
+    "infoPredominante": {
+      "titre": "Prédominante",
+      "texte": "La préparation. IV, ii, ii6 : ils annoncent la dominante et créent un mouvement vers elle, sans encore la tension maximale."
+    },
+    "infoDominante": {
+      "titre": "Dominante",
+      "texte": "La tension. V, V7, vii° et leurs renversements : la sensible qu'ils contiennent attire l'oreille vers la tonique — c'est l'accord qui veut résoudre."
+    },
+    "infoChromatisme": {
+      "titre": "Chromatisme (niveau « + Chromatismes »)",
+      "texte": "Des couleurs empruntées sans changer de tonalité : dominantes secondaires (elles tonicisent un degré le temps d'un accord), accords sur la sensible d'un degré, et emprunts au mode homonyme."
+    },
+    "infoRenversements": {
+      "titre": "Les renversements",
+      "texte": "Le même accord peut apparaître plusieurs fois dans la banque : fondamentale (I), tierce à la basse (I6, 1er renversement), quinte à la basse (I6/4, 2e renversement), et les chiffrages équivalents pour les accords de septième (6/5, 4/3, 2). Le renversement change la basse et la couleur, pas la fonction."
+    }
   },
   "cours42": {
     "badge": "Niveau 3 · Cours 42",

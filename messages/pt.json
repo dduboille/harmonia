@@ -4231,7 +4231,29 @@
       "D": "D",
       "?": "—"
     },
-    "exporter": "Desenvolver no ateliê"
+    "exporter": "Desenvolver no ateliê",
+    "infoOuvrir": "Compreender as funções e os acordes",
+    "infoIntro": "Uma progressão harmónica conta uma história em três tempos: o repouso, a preparação e a tensão que a ele regressa.",
+    "infoTonique": {
+      "titre": "Tónica",
+      "texte": "O repouso. O acorde de grau I (i em menor) e os seus parentes próximos (vi, iii): onde uma frase começa e termina, o ponto de ancoragem da tonalidade."
+    },
+    "infoPredominante": {
+      "titre": "Predominante",
+      "texte": "A preparação. IV, ii, ii6: anunciam a dominante e criam um movimento em direção a ela, sem ainda atingir a tensão máxima."
+    },
+    "infoDominante": {
+      "titre": "Dominante",
+      "texte": "A tensão. V, V7, vii° e as suas inversões: a sensível que contêm atrai o ouvido para a tónica — é o acorde que quer resolver."
+    },
+    "infoChromatisme": {
+      "titre": "Cromatismo (nível «+ Cromatismos»)",
+      "texte": "Cores emprestadas sem mudar de tonalidade: dominantes secundárias (tonicizam brevemente um grau), acordes sobre a sensível de um grau, e empréstimos do modo homónimo."
+    },
+    "infoRenversements": {
+      "titre": "As inversões",
+      "texte": "O mesmo acorde pode aparecer várias vezes no banco: estado fundamental (I), terça no baixo (I6, primeira inversão), quinta no baixo (I6/4, segunda inversão), e as cifras equivalentes para os acordes de sétima (6/5, 4/3, 2). A inversão muda o baixo e a cor, não a função."
+    }
   },
   "cours42": {
     "badge": "Nível 3 · Curso 42",

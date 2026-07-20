@@ -49,23 +49,35 @@ const BORDURE = "#e8e4df";
 // ── Tonalités proposées (une seule à la fois, majeure ou mineure) ──────────────
 // `note` = orthographe française du solfège (constante à travers l'app, quelle que
 // soit la langue de l'interface) ; `mode` fournit le mot traduit majeur/mineur.
+// Les 24 tonalités canoniques de l'app (mêmes que /generateur-satb, voir
+// `KEYS_BY_LEVEL` dans GenerateurSATB.tsx et `KEYS` dans satb-generator.test.ts) —
+// toutes couvertes par `KEY_ACCIDENTALS` (armure exacte) et par `construirePalette`
+// (arithmétique de classes de hauteurs, valable dans les 12).
 const TONALITES: Array<{ keySignature: string; tonicPc: number; mode: "major" | "minor"; note: string }> = [
   { keySignature: "C", tonicPc: 0, mode: "major", note: "Do" },
   { keySignature: "G", tonicPc: 7, mode: "major", note: "Sol" },
   { keySignature: "D", tonicPc: 2, mode: "major", note: "Ré" },
   { keySignature: "A", tonicPc: 9, mode: "major", note: "La" },
   { keySignature: "E", tonicPc: 4, mode: "major", note: "Mi" },
+  { keySignature: "B", tonicPc: 11, mode: "major", note: "Si" },
+  { keySignature: "F#", tonicPc: 6, mode: "major", note: "Fa#" },
   { keySignature: "F", tonicPc: 5, mode: "major", note: "Fa" },
   { keySignature: "Bb", tonicPc: 10, mode: "major", note: "Sib" },
   { keySignature: "Eb", tonicPc: 3, mode: "major", note: "Mib" },
   { keySignature: "Ab", tonicPc: 8, mode: "major", note: "Lab" },
+  { keySignature: "Db", tonicPc: 1, mode: "major", note: "Réb" },
   { keySignature: "Am", tonicPc: 9, mode: "minor", note: "La" },
   { keySignature: "Em", tonicPc: 4, mode: "minor", note: "Mi" },
   { keySignature: "Bm", tonicPc: 11, mode: "minor", note: "Si" },
+  { keySignature: "F#m", tonicPc: 6, mode: "minor", note: "Fa#" },
+  { keySignature: "C#m", tonicPc: 1, mode: "minor", note: "Do#" },
+  { keySignature: "G#m", tonicPc: 8, mode: "minor", note: "Sol#" },
   { keySignature: "Dm", tonicPc: 2, mode: "minor", note: "Ré" },
   { keySignature: "Gm", tonicPc: 7, mode: "minor", note: "Sol" },
   { keySignature: "Cm", tonicPc: 0, mode: "minor", note: "Do" },
-  { keySignature: "F#m", tonicPc: 6, mode: "minor", note: "Fa#" },
+  { keySignature: "Fm", tonicPc: 5, mode: "minor", note: "Fa" },
+  { keySignature: "Bbm", tonicPc: 10, mode: "minor", note: "Sib" },
+  { keySignature: "Ebm", tonicPc: 3, mode: "minor", note: "Mib" },
 ];
 
 const NOMS_DIESES_MIDI = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
@@ -320,6 +332,25 @@ export default function SqueletteHarmonique() {
             </div>
           </div>
         </div>
+
+        {/* Note d'info — fermée par défaut, juste au-dessus de la banque */}
+        <details style={{ marginBottom: 20, border: `1px solid ${BORDURE}`, borderRadius: 10, background: "#fff" }}>
+          <summary style={{
+            cursor: "pointer", padding: "10px 14px", fontSize: 13, fontWeight: 600, color: VIOLET,
+            listStyle: "revert",
+          }}>
+            {t("infoOuvrir")}
+          </summary>
+          <div style={{ padding: "4px 16px 16px", fontSize: 13, color: "#444", lineHeight: 1.55 }}>
+            <p style={{ margin: "0 0 12px" }}>{t("infoIntro")}</p>
+            {(["infoTonique", "infoPredominante", "infoDominante", "infoChromatisme", "infoRenversements"] as const).map((k) => (
+              <div key={k} style={{ marginBottom: 10 }}>
+                <div style={{ fontWeight: 700, color: "#1a1a1a", marginBottom: 2 }}>{t(`${k}.titre` as never)}</div>
+                <div>{t(`${k}.texte` as never)}</div>
+              </div>
+            ))}
+          </div>
+        </details>
 
         {/* Banque d'accords */}
         <section style={{ marginBottom: 28 }}>

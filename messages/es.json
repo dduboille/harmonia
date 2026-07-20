@@ -4231,7 +4231,29 @@
       "D": "D",
       "?": "—"
     },
-    "exporter": "Desarrollar en el taller"
+    "exporter": "Desarrollar en el taller",
+    "infoOuvrir": "Comprender las funciones y los acordes",
+    "infoIntro": "Una progresión armónica cuenta una historia en tres tiempos: el reposo, la preparación y la tensión que lleva de vuelta a él.",
+    "infoTonique": {
+      "titre": "Tónica",
+      "texte": "El reposo. El acorde de grado I (i en menor) y sus parientes cercanos (vi, iii): donde una frase empieza y termina, el punto de anclaje de la tonalidad."
+    },
+    "infoPredominante": {
+      "titre": "Predominante",
+      "texte": "La preparación. IV, ii, ii6: anuncian la dominante y crean un movimiento hacia ella, sin llegar aún a la tensión máxima."
+    },
+    "infoDominante": {
+      "titre": "Dominante",
+      "texte": "La tensión. V, V7, vii° y sus inversiones: la sensible que contienen atrae el oído hacia la tónica — es el acorde que quiere resolver."
+    },
+    "infoChromatisme": {
+      "titre": "Cromatismo (nivel «+ Cromatismos»)",
+      "texte": "Colores tomados prestados sin cambiar de tonalidad: dominantes secundarias (tonicizan brevemente un grado), acordes sobre la sensible de un grado, y préstamos del modo homónimo."
+    },
+    "infoRenversements": {
+      "titre": "Las inversiones",
+      "texte": "El mismo acorde puede aparecer varias veces en el banco: estado fundamental (I), tercera en el bajo (I6, primera inversión), quinta en el bajo (I6/4, segunda inversión), y las cifras equivalentes para los acordes de séptima (6/5, 4/3, 2). La inversión cambia el bajo y el color, no la función."
+    }
   },
   "cours42": {
     "badge": "Nivel 3 · Curso 42",
