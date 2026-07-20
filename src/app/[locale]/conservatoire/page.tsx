@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ContactConservatoireForm from "@/components/ContactConservatoireForm";
 import Link from "next/link";
+import { COURS_COUNT } from "@/lib/catalogue";
 
 export const metadata: Metadata = {
   title: "Harmonia pour les conservatoires — Outil pédagogique musical",
@@ -119,7 +120,7 @@ export default async function ConservatoirePage({ params }: Props) {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20 }}>
           {[
             { icon: "⚡", title: "Créer des classes en 30 secondes", desc: "Un nom, un code d'accès généré automatiquement, partagez-le à vos élèves." },
-            { icon: "📋", title: "Assigner des cours et exercices", desc: "Créez des devoirs liés à n'importe lequel des 23 cours ou exercices disponibles." },
+            { icon: "📋", title: "Assigner des cours et exercices", desc: `Créez des devoirs liés à n'importe lequel des ${COURS_COUNT} cours ou exercices disponibles.` },
             { icon: "📊", title: "Progression détaillée de chaque élève", desc: "Scores, cours complétés, activité récente — tout d'un coup d'œil." },
             { icon: "✏️", title: "Corriger avec annotations", desc: "Notez chaque exercice sur 100 et ajoutez un commentaire personnalisé." },
             { icon: "📈", title: "Rapports de progression", desc: "Identifiez les points forts et les lacunes de votre classe en un instant." },

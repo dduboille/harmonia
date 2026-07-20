@@ -71,7 +71,7 @@ const PLANS = [
     features: [
       `Tous les cours (1 à ${COURS_COUNT})`,
       "Quiz illimité sur tous les cours",
-      "700+ exercices SATB",
+      "600+ exercices SATB",
       "24 tonalités × 4 positions",
       "Tous les niveaux de difficulté",
       "Mises à jour continues",
@@ -164,7 +164,7 @@ export default function UpgradePage() {
             Choisissez votre rythme
           </h1>
           <p style={{ fontSize: 15, color: "#5f5f5f", margin: "0 0 28px", lineHeight: 1.7, fontFamily: "system-ui" }}>
-            {COURS_COUNT} cours · 700+ exercices · Feedback harmonique en temps réel
+            {COURS_COUNT} cours · 600+ exercices · Feedback harmonique en temps réel
           </p>
 
           {/* Toggle mensuel/annuel */}
