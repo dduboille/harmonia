@@ -909,6 +909,7 @@
       "triades": "Dreiklänge",
       "gamme": "Durtonleiter",
       "tetrades": "Vierklänge",
+      "gammeTetrades": "Tonleiter (Vierklänge)",
       "renversements": "Umkehrungen",
       "conservatoire": "🎓 Conservatoire",
       "quiz": "Übung"
@@ -955,6 +956,10 @@
       "tetradsTableNotes": "Noten",
       "tetradsTableType": "Typ",
       "tetradsWarnBox": "Die V. Stufe (G7) ist der einzige Dominantseptakkord (X7) der Tonleiter. Er enthält den vollständigen Tritonus B–F.",
+      "gammeTetradesTitle": "Die 7 Vierklänge der Durtonleiter",
+      "gammeTetradesBody": "Durch das Stapeln einer <strong>vierten Terz</strong> auf jeden Dreiklang der Tonleiter erhält man 7 Vierklänge — jeder übernimmt die Funktion seiner Stufe, aber mit einer reicheren Klangfarbe.",
+      "gammeTetradesClickHint": "Klicke auf eine Stufe, um den Vierklang zu sehen und zu hören:",
+      "gammeTetradesInfoBox": "<strong>Feste Abfolge in der Durtonleiter:</strong><br />I=<span style=\"color:#0F6E56\">Maj7</span> · II=<span style=\"color:#534AB7\">m7</span> · III=<span style=\"color:#534AB7\">m7</span> · IV=<span style=\"color:#0F6E56\">Maj7</span> · V=<span style=\"color:#BA7517\">7</span> · VI=<span style=\"color:#534AB7\">m7</span> · VII=<span style=\"color:#993C1D\">m7♭5</span>",
       "renversementsTitle": "Umkehrungen",
       "renversementsBody": "Ein Akkord enthält stets dieselben Noten — aber welche Note <strong>im Bass</strong> liegt, verändert die Klangfarbe. Der tiefste Ton bestimmt die Umkehrung. Die Notation verwendet einen Schrägstrich: C/E = C-Dur mit E im Bass.",
       "renversementsRootLabel": "Grundton",

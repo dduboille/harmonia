@@ -140,14 +140,31 @@ const TRIAD_TYPES = [
   },
 ];
 
+// Intervalles RELATIFS à la fondamentale de chaque accord (même convention que
+// TRIAD_TYPES : [0,4,7]=majeure, [0,3,7]=mineure, [0,3,6]=diminuée). `buildChord`
+// ajoute déjà l'index de la fondamentale — lui passer des classes de hauteur
+// ABSOLUES (ex. [2,5,9] pour ré-fa-la) la décale une seconde fois et brise
+// l'accord (bug signalé : « Dm » affichait ré-sol-si au lieu de ré-fa-la).
 const GAMME_ACCORDS = [
-  { deg:"I",   root:"C", suffix:"",    intervals:[0,4,7],  ctx:"sharp" as AccordContext, fn:"Tonique",   fnColor:"#0F6E56", fnBg:"#E1F5EE", type:"Majeure",  desc:"L'accord de repos absolu. Aucune note du triton instable." },
-  { deg:"II",  root:"D", suffix:"m",   intervals:[2,5,9],  ctx:"flat"  as AccordContext, fn:"Sous-dom.", fnColor:"#534AB7", fnBg:"#EEEDFE", type:"Mineure",  desc:"Légèrement tendu. Prépare naturellement la dominante." },
-  { deg:"III", root:"E", suffix:"m",   intervals:[4,7,11], ctx:"flat"  as AccordContext, fn:"Tonique",   fnColor:"#0F6E56", fnBg:"#E1F5EE", type:"Mineure",  desc:"Stable mais coloré. Substitut possible du I." },
-  { deg:"IV",  root:"F", suffix:"",    intervals:[5,9,0],  ctx:"flat"  as AccordContext, fn:"Sous-dom.", fnColor:"#534AB7", fnBg:"#EEEDFE", type:"Majeure",  desc:"Prépare la dominante. Contient F, note du triton." },
-  { deg:"V",   root:"G", suffix:"",    intervals:[7,11,2], ctx:"sharp" as AccordContext, fn:"Dominante", fnColor:"#BA7517", fnBg:"#FAEEDA", type:"Majeure",  desc:"Le plus tendu. Contient le triton B–F. Appelle la résolution." },
-  { deg:"VI",  root:"A", suffix:"m",   intervals:[9,0,4],  ctx:"flat"  as AccordContext, fn:"Tonique",   fnColor:"#0F6E56", fnBg:"#E1F5EE", type:"Mineure",  desc:"Tonique secondaire. Souvent substitut du I (cadence rompue)." },
-  { deg:"VII", root:"B", suffix:"dim", intervals:[11,2,5], ctx:"flat"  as AccordContext, fn:"Dominante", fnColor:"#BA7517", fnBg:"#FAEEDA", type:"Diminuée", desc:"La seule triade diminuée. Forte tension vers le I." },
+  { deg:"I",   root:"C", suffix:"",    intervals:[0,4,7], ctx:"sharp" as AccordContext, fn:"Tonique",   fnColor:"#0F6E56", fnBg:"#E1F5EE", type:"Majeure",  desc:"L'accord de repos absolu. Aucune note du triton instable." },
+  { deg:"II",  root:"D", suffix:"m",   intervals:[0,3,7], ctx:"flat"  as AccordContext, fn:"Sous-dom.", fnColor:"#534AB7", fnBg:"#EEEDFE", type:"Mineure",  desc:"Légèrement tendu. Prépare naturellement la dominante." },
+  { deg:"III", root:"E", suffix:"m",   intervals:[0,3,7], ctx:"flat"  as AccordContext, fn:"Tonique",   fnColor:"#0F6E56", fnBg:"#E1F5EE", type:"Mineure",  desc:"Stable mais coloré. Substitut possible du I." },
+  { deg:"IV",  root:"F", suffix:"",    intervals:[0,4,7], ctx:"flat"  as AccordContext, fn:"Sous-dom.", fnColor:"#534AB7", fnBg:"#EEEDFE", type:"Majeure",  desc:"Prépare la dominante. Contient F, note du triton." },
+  { deg:"V",   root:"G", suffix:"",    intervals:[0,4,7], ctx:"sharp" as AccordContext, fn:"Dominante", fnColor:"#BA7517", fnBg:"#FAEEDA", type:"Majeure",  desc:"Le plus tendu. Contient le triton B–F. Appelle la résolution." },
+  { deg:"VI",  root:"A", suffix:"m",   intervals:[0,3,7], ctx:"flat"  as AccordContext, fn:"Tonique",   fnColor:"#0F6E56", fnBg:"#E1F5EE", type:"Mineure",  desc:"Tonique secondaire. Souvent substitut du I (cadence rompue)." },
+  { deg:"VII", root:"B", suffix:"dim", intervals:[0,3,6], ctx:"flat"  as AccordContext, fn:"Dominante", fnColor:"#BA7517", fnBg:"#FAEEDA", type:"Diminuée", desc:"La seule triade diminuée. Forte tension vers le I." },
+];
+
+// Même principe que GAMME_ACCORDS, une tierce de plus : les 7 tétrades de la
+// gamme majeure. Intervalles RELATIFS à la fondamentale (cf. commentaire ci-dessus).
+const GAMME_TETRADS = [
+  { deg:"I",   root:"C", suffix:"Maj7", intervals:[0,4,7,11], ctx:"sharp" as AccordContext, fn:"Tonique",   fnColor:"#0F6E56", fnBg:"#E1F5EE", type:"Maj7",  desc:"Couleur douce et enrichie du repos. La 7e majeure ajoute une tension raffinée sans instabilité." },
+  { deg:"II",  root:"D", suffix:"m7",   intervals:[0,3,7,10], ctx:"flat"  as AccordContext, fn:"Sous-dom.", fnColor:"#534AB7", fnBg:"#EEEDFE", type:"m7",    desc:"Le plus fréquent en jazz. Prépare la dominante avec une couleur plus sombre que la triade seule." },
+  { deg:"III", root:"E", suffix:"m7",   intervals:[0,3,7,10], ctx:"flat"  as AccordContext, fn:"Tonique",   fnColor:"#0F6E56", fnBg:"#E1F5EE", type:"m7",    desc:"Stable mais coloré, comme sa triade. Souvent substitut du I ou du V." },
+  { deg:"IV",  root:"F", suffix:"Maj7", intervals:[0,4,7,11], ctx:"sharp" as AccordContext, fn:"Sous-dom.", fnColor:"#534AB7", fnBg:"#EEEDFE", type:"Maj7",  desc:"Prépare la dominante en douceur. Sa 7e majeure adoucit la tension du IV." },
+  { deg:"V",   root:"G", suffix:"7",    intervals:[0,4,7,10], ctx:"sharp" as AccordContext, fn:"Dominante", fnColor:"#BA7517", fnBg:"#FAEEDA", type:"7",     desc:"L'unique dominante 7 de la gamme. Contient le triton complet B–F — appelle fortement la résolution." },
+  { deg:"VI",  root:"A", suffix:"m7",   intervals:[0,3,7,10], ctx:"flat"  as AccordContext, fn:"Tonique",   fnColor:"#0F6E56", fnBg:"#E1F5EE", type:"m7",    desc:"Tonique secondaire enrichie. Fréquent en cadence rompue ou en point de départ de progression." },
+  { deg:"VII", root:"B", suffix:"m7♭5", intervals:[0,3,6,10], ctx:"flat"  as AccordContext, fn:"Dominante", fnColor:"#BA7517", fnBg:"#FAEEDA", type:"m7♭5",  desc:"Le seul demi-diminué de la gamme. Sensible et triton réunis dans un même accord — tension maximale." },
 ];
 
 const TETRAD_TYPES = [
@@ -244,6 +261,9 @@ export default function Cours2() {
   // S2 : Gamme
   const [selDeg, setSelDeg] = useState<number | null>(null);
 
+  // S2b : Gamme (tétrades)
+  const [selDegTet, setSelDegTet] = useState<number | null>(null);
+
   // S3 : Tétrades
   const [tetRoot, setTetRoot] = useState("C");
   const [tetTypeId, setTetTypeId] = useState("maj7");
@@ -285,7 +305,7 @@ export default function Cours2() {
     setQuizIdx(0); setQuizScore(0); setAnswered(false); setSelected(null); setDone(false);
   };
 
-  const SECTIONS_IDS = ["triades","gamme","tetrades","renversements","conservatoire","quiz"] as const;
+  const SECTIONS_IDS = ["triades","gamme","tetrades","gammeTetrades","renversements","conservatoire","quiz"] as const;
 
   const btnSel = (active: boolean, color = "#333"): React.CSSProperties => ({
     fontSize: 12, padding: "4px 10px",
@@ -574,6 +594,50 @@ export default function Cours2() {
         </div>
       )}
 
+      {/* ══ GAMME (TÉTRADES) ══ */}
+      {activeSection === "gammeTetrades" && (
+        <div>
+          <h2 style={S.stitle}>{n("gammeTetradesTitle")}</h2>
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("gammeTetradesBody") }} />
+          <p style={{ fontSize: 13, color: "#888", marginBottom: 12 }}>{n("gammeTetradesClickHint")}</p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 5, marginBottom: 12 }}>
+            {GAMME_TETRADS.map((d, i) => {
+              const chord = buildChord(d.root, d.intervals, d.suffix, d.ctx);
+              return (
+                <div key={d.deg}
+                  onClick={() => { setSelDegTet(i); playChordFromKeys(chord.dotKeys, true); }}
+                  style={{ border: `0.5px solid ${selDegTet===i ? d.fnColor : "#e5e5e5"}`, borderRadius: 8, padding: "8px 4px", textAlign: "center", cursor: "pointer", background: selDegTet===i ? d.fnBg : "#fff", transition: "all .15s" }}>
+                  <div style={{ fontSize: 10, color: "#999", fontWeight: 500 }}>{d.deg}</div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "#111", margin: "2px 0" }}>{chord.name}</div>
+                  <div style={{ fontSize: 10, color: "#888" }}>{tr(d.type)}</div>
+                  <div style={{ fontSize: 9, marginTop: 3, padding: "1px 4px", borderRadius: 8, display: "inline-block", background: d.fnBg, color: d.fnColor, fontWeight: 500 }}>{tr(d.fn)}</div>
+                </div>
+              );
+            })}
+          </div>
+
+          {selDegTet !== null && (() => {
+            const d = GAMME_TETRADS[selDegTet];
+            const chord = buildChord(d.root, d.intervals, d.suffix, d.ctx);
+            return (
+              <>
+                <div style={{ border: `0.5px solid ${d.fnColor}`, borderRadius: 10, padding: "14px 18px", background: d.fnBg, marginBottom: 16 }}>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 8 }}>
+                    <span style={{ fontSize: 22, fontWeight: 600, color: d.fnColor }}>{chord.name}</span>
+                    <span style={{ fontSize: 13, color: "#666" }}>{chord.notes.join(" – ")}</span>
+                  </div>
+                  <p style={{ fontSize: 13, color: "#444", lineHeight: 1.6, margin: 0 }}>{d.desc}</p>
+                </div>
+                <PianoPlayer dotKeys={chord.dotKeys} octaves={2} startOctave={3} showLabels showOctaveMarkers />
+              </>
+            );
+          })()}
+
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("gammeTetradesInfoBox") }} />
+        </div>
+      )}
+
       {/* ══ RENVERSEMENTS ══ */}
       {activeSection === "renversements" && (
         <div>
@@ -604,7 +668,14 @@ export default function Cours2() {
 
           <div style={{ display: "flex", gap: 6, marginBottom: 12, flexWrap: "wrap" }}>
             {INV_NAMES.slice(0, maxInv + 1).map((name, i) => (
-              <button key={i} onClick={() => { setInvIdx(i); setTimeout(() => playChordFromKeys(invChord.dotKeys, true), 50); }}
+              <button key={i} onClick={() => {
+                setInvIdx(i);
+                // `invChord` vient du rendu EN COURS (calculé avec l'ancien invIdx) : le
+                // lire ici rejouerait toujours le renversement précédent, un clic en retard.
+                // On recalcule donc l'accord pour l'index `i` qu'on vient de choisir.
+                const chord = buildChord(invRoot, invChordType.intervals, invChordType.suffix, invChordType.ctx, i);
+                playChordFromKeys(chord.dotKeys, true);
+              }}
                 style={{ fontSize: 12, padding: "5px 14px", border: `0.5px solid ${i===safeInvIdx ? "#0F6E56" : "#ddd"}`, borderRadius: 20, cursor: "pointer", background: i===safeInvIdx ? "#E1F5EE" : "transparent", color: i===safeInvIdx ? "#0F6E56" : "#666" }}>
                 {name}
               </button>

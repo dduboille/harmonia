@@ -909,6 +909,7 @@
       "triades": "Les triades",
       "gamme": "Gamme majeure",
       "tetrades": "Tétrades",
+      "gammeTetrades": "Gamme (tétrades)",
       "renversements": "Renversements",
       "conservatoire": "🎓 Conservatoire",
       "quiz": "Entraînement"
@@ -955,6 +956,10 @@
       "tetradsTableNotes": "Notes",
       "tetradsTableType": "Type",
       "tetradsWarnBox": "Le Ve degré (G7) est le seul accord de dominante 7 (X7) de la gamme. Il contient le triton complet B–F.",
+      "gammeTetradesTitle": "Les 7 tétrades de la gamme majeure",
+      "gammeTetradesBody": "En empilant une <strong>quatrième tierce</strong> sur chaque triade de la gamme, on obtient 7 tétrades — chacune héritant de la fonction de son degré, mais avec une couleur plus riche.",
+      "gammeTetradesClickHint": "Cliquez sur un degré pour voir et entendre la tétrade :",
+      "gammeTetradesInfoBox": "<strong>Séquence fixe en gamme majeure :</strong><br />I=<span style=\"color:#0F6E56\">Maj7</span> · II=<span style=\"color:#534AB7\">m7</span> · III=<span style=\"color:#534AB7\">m7</span> · IV=<span style=\"color:#0F6E56\">Maj7</span> · V=<span style=\"color:#BA7517\">7</span> · VI=<span style=\"color:#534AB7\">m7</span> · VII=<span style=\"color:#993C1D\">m7♭5</span>",
       "renversementsTitle": "Renversements",
       "renversementsBody": "Un accord contient toujours les mêmes notes — mais quelle note est placée <strong>à la basse</strong> change la couleur. La note la plus grave détermine le renversement. La notation utilise un slash : C/E = C major avec E à la basse.",
       "renversementsRootLabel": "Fondamentale",

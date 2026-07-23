@@ -909,6 +909,7 @@
       "triades": "Triads",
       "gamme": "Major scale",
       "tetrades": "Seventh chords",
+      "gammeTetrades": "Scale (seventh chords)",
       "renversements": "Inversions",
       "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
@@ -955,6 +956,10 @@
       "tetradsTableNotes": "Notes",
       "tetradsTableType": "Type",
       "tetradsWarnBox": "The V degree (G7) is the only dominant 7 chord (X7) in the scale. It contains the full tritone B–F.",
+      "gammeTetradesTitle": "The 7 seventh chords of the major scale",
+      "gammeTetradesBody": "Stacking a <strong>fourth third</strong> on top of each triad of the scale gives 7 seventh chords — each inheriting the function of its degree, but with a richer color.",
+      "gammeTetradesClickHint": "Click a degree to see and hear the seventh chord:",
+      "gammeTetradesInfoBox": "<strong>Fixed sequence in a major scale:</strong><br />I=<span style=\"color:#0F6E56\">Maj7</span> · II=<span style=\"color:#534AB7\">m7</span> · III=<span style=\"color:#534AB7\">m7</span> · IV=<span style=\"color:#0F6E56\">Maj7</span> · V=<span style=\"color:#BA7517\">7</span> · VI=<span style=\"color:#534AB7\">m7</span> · VII=<span style=\"color:#993C1D\">m7♭5</span>",
       "renversementsTitle": "Inversions",
       "renversementsBody": "A chord always contains the same notes — but which note is placed <strong>in the bass</strong> changes the color. The lowest note determines the inversion. The notation uses a slash: C/E = C major with E in the bass.",
       "renversementsRootLabel": "Root",

@@ -1,4 +1,5 @@
 import { BWV846_MESURES_1_8, BWV846_ANALYSE, type MesureAnalyse } from "./conservatoire-bwv846";
+import { PATHETIQUE2_MESURES_1_8 } from "./conservatoire-pathetique2";
 
 export interface CoursPieceData {
   titre: string;
@@ -78,6 +79,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       titre: "Sonate op.13 'Pathétique' mvt.II",
       compositeur: "L. van Beethoven",
       notes: ["G#4", "C5", "D#5", "G#5", "C5", "D#5", "G#4", "C5"],
+      musicxml: PATHETIQUE2_MESURES_1_8,
     },
     pieges: [
       {

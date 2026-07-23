@@ -909,6 +909,7 @@
       "triades": "Las tríadas",
       "gamme": "Escala mayor",
       "tetrades": "Tétradas",
+      "gammeTetrades": "Escala (tétradas)",
       "renversements": "Inversiones",
       "conservatoire": "🎓 Conservatoire",
       "quiz": "Práctica"
@@ -955,6 +956,10 @@
       "tetradsTableNotes": "Notas",
       "tetradsTableType": "Tipo",
       "tetradsWarnBox": "El grado V (G7) es el único acorde de dominante 7 (X7) de la escala. Contiene el tritono completo B–F.",
+      "gammeTetradesTitle": "Las 7 tétradas de la escala mayor",
+      "gammeTetradesBody": "Apilando una <strong>cuarta tercera</strong> sobre cada tríada de la escala, se obtienen 7 tétradas — cada una hereda la función de su grado, pero con un color más rico.",
+      "gammeTetradesClickHint": "Haz clic en un grado para ver y escuchar la tétrada:",
+      "gammeTetradesInfoBox": "<strong>Secuencia fija en escala mayor:</strong><br />I=<span style=\"color:#0F6E56\">Maj7</span> · II=<span style=\"color:#534AB7\">m7</span> · III=<span style=\"color:#534AB7\">m7</span> · IV=<span style=\"color:#0F6E56\">Maj7</span> · V=<span style=\"color:#BA7517\">7</span> · VI=<span style=\"color:#534AB7\">m7</span> · VII=<span style=\"color:#993C1D\">m7♭5</span>",
       "renversementsTitle": "Inversiones",
       "renversementsBody": "Un acorde contiene siempre las mismas notas — pero qué nota se coloca <strong>en el bajo</strong> cambia el color. La nota más grave determina la inversión. La notación utiliza una barra: C/E = C mayor con E en el bajo.",
       "renversementsRootLabel": "Fundamental",

@@ -909,6 +909,7 @@
       "triades": "Le triadi",
       "gamme": "Scala maggiore",
       "tetrades": "Tetradi",
+      "gammeTetrades": "Scala (tetradi)",
       "renversements": "Rivolti",
       "conservatoire": "🎓 Conservatoire",
       "quiz": "Esercitazione"
@@ -955,6 +956,10 @@
       "tetradsTableNotes": "Note",
       "tetradsTableType": "Tipo",
       "tetradsWarnBox": "Il grado V (G7) è l'unico accordo di dominante 7 (X7) della scala. Contiene il tritono completo B–F.",
+      "gammeTetradesTitle": "Le 7 tetradi della scala maggiore",
+      "gammeTetradesBody": "Impilando una <strong>quarta terza</strong> su ogni triade della scala, si ottengono 7 tetradi — ciascuna eredita la funzione del proprio grado, ma con un colore più ricco.",
+      "gammeTetradesClickHint": "Clicca su un grado per vedere e ascoltare la tetrade:",
+      "gammeTetradesInfoBox": "<strong>Sequenza fissa nella scala maggiore:</strong><br />I=<span style=\"color:#0F6E56\">Maj7</span> · II=<span style=\"color:#534AB7\">m7</span> · III=<span style=\"color:#534AB7\">m7</span> · IV=<span style=\"color:#0F6E56\">Maj7</span> · V=<span style=\"color:#BA7517\">7</span> · VI=<span style=\"color:#534AB7\">m7</span> · VII=<span style=\"color:#993C1D\">m7♭5</span>",
       "renversementsTitle": "Rivolti",
       "renversementsBody": "Un accordo contiene sempre le stesse note — ma quale nota è posta <strong>al basso</strong> cambia il colore. La nota più grave determina il rivolto. La notazione utilizza uno slash: C/E = C maggiore con E al basso.",
       "renversementsRootLabel": "Fondamentale",

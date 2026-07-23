@@ -909,6 +909,7 @@
       "triades": "As tríades",
       "gamme": "Escala maior",
       "tetrades": "Tétrades",
+      "gammeTetrades": "Escala (tétrades)",
       "renversements": "Inversões",
       "conservatoire": "🎓 Conservatoire",
       "quiz": "Prática"
@@ -955,6 +956,10 @@
       "tetradsTableNotes": "Notas",
       "tetradsTableType": "Tipo",
       "tetradsWarnBox": "O grau V (G7) é o único acorde de dominante 7 (X7) da escala. Ele contém o trítono completo B–F.",
+      "gammeTetradesTitle": "As 7 tétrades da escala maior",
+      "gammeTetradesBody": "Empilhando uma <strong>quarta terça</strong> sobre cada tríade da escala, obtemos 7 tétrades — cada uma herdando a função do seu grau, mas com uma cor mais rica.",
+      "gammeTetradesClickHint": "Clique em um grau para ver e ouvir a tétrade:",
+      "gammeTetradesInfoBox": "<strong>Sequência fixa na escala maior:</strong><br />I=<span style=\"color:#0F6E56\">Maj7</span> · II=<span style=\"color:#534AB7\">m7</span> · III=<span style=\"color:#534AB7\">m7</span> · IV=<span style=\"color:#0F6E56\">Maj7</span> · V=<span style=\"color:#BA7517\">7</span> · VI=<span style=\"color:#534AB7\">m7</span> · VII=<span style=\"color:#993C1D\">m7♭5</span>",
       "renversementsTitle": "Inversões",
       "renversementsBody": "Um acorde contém sempre as mesmas notas — mas qual nota está <strong>no baixo</strong> muda a cor. A nota mais grave determina a inversão. A notação usa uma barra: C/E = C maior com E no baixo.",
       "renversementsRootLabel": "Fundamental",
