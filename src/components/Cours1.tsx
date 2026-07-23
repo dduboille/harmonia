@@ -110,8 +110,9 @@ export default function Cours1() {
 
   const playGamme = useCallback(() => {
     const g = GAMMES[activeGamme];
-    g.notes.forEach((note, i) => {
-      setTimeout(() => pianoRef.current?.playNote(note, 3, { duration: 0.7 }), i * 280);
+    g.dotKeys.forEach((key, i) => {
+      const [note, octaveStr] = key.split(":");
+      setTimeout(() => pianoRef.current?.playNote(note, Number(octaveStr), { duration: 0.7 }), i * 280);
     });
   }, [activeGamme]);
 

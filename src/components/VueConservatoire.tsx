@@ -1,10 +1,13 @@
 "use client";
 
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import StudioScore, { type StudioScoreRef } from "@/components/StudioScore";
+import { parseMusicXML } from "@/lib/musicxml-parse";
+import { planifierLecture } from "@/lib/studio-playback";
 import { CONSERVATOIRE_DATA, type CoursConservatoireData } from "@/data/conservatoireData";
 
 const ACCENT = "#2D5A8E";
@@ -60,6 +63,7 @@ export function VueConservatoire({
       titre: tcons(`${ck}.titre` as any),
       compositeur: tcons(`${ck}.compositeur` as any),
       notes: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9}`].repertoire.notes,
+      musicxml: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9}`].repertoire.musicxml,
     },
     pieges: [{
       erreur: tcons(`${ck}.piege0erreur` as any),
@@ -78,6 +82,56 @@ export function VueConservatoire({
       setTimeout(() => pianoRef.current?.playNote(note, octave, { duration: 0.8 }), i * 380);
     });
   }, [data.repertoire.notes]);
+
+  // ── Extrait noté (`musicxml`) : lecture avec surlignage synchronisé, même
+  // mécanique que Studio.tsx (timeouts annulables + repère piloté par rAF). ──
+  const scoreRef = useRef<StudioScoreRef>(null);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const rafRef = useRef<number | null>(null);
+  const departRef = useRef<number>(0);
+  const [isPlayingScore, setIsPlayingScore] = useState(false);
+
+  const arreterLecturePartition = useCallback(() => {
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+    if (rafRef.current !== null) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
+    pianoRef.current?.stopAll();
+    scoreRef.current?.surlignerATemps(null);
+    setIsPlayingScore(false);
+  }, []);
+
+  const lirePartition = useCallback(() => {
+    const musicxml = data.repertoire.musicxml;
+    if (!musicxml || isPlayingScore) return;
+
+    const score = parseMusicXML(musicxml);
+    const { evenements, dureeTotale } = planifierLecture(score, 1);
+    if (evenements.length === 0) return;
+
+    const ids: ReturnType<typeof setTimeout>[] = [];
+    const piano = pianoRef.current;
+    for (const e of evenements) {
+      ids.push(setTimeout(() => {
+        piano?.playVoicing([e.spec], { duration: e.duration, velocity: e.velocity });
+      }, e.startTime * 1000));
+    }
+    ids.push(setTimeout(() => arreterLecturePartition(), dureeTotale * 1000 + 200));
+    timeoutsRef.current = ids;
+
+    departRef.current = performance.now();
+    const animer = () => {
+      scoreRef.current?.surlignerATemps(performance.now() - departRef.current);
+      rafRef.current = requestAnimationFrame(animer);
+    };
+    rafRef.current = requestAnimationFrame(animer);
+
+    setIsPlayingScore(true);
+  }, [data.repertoire.musicxml, isPlayingScore, arreterLecturePartition]);
+
+  useEffect(() => () => {
+    timeoutsRef.current.forEach(clearTimeout);
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+  }, []);
 
   return (
     <div style={{ fontFamily: "system-ui, sans-serif" }}>
@@ -129,18 +183,23 @@ export function VueConservatoire({
         <div style={{ fontSize: 10, fontWeight: 700, color: ACCENT, letterSpacing: "0.1em", marginBottom: 10, textTransform: "uppercase" as const }}>
           {tc("conservatoireRepertoire")}
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" as const, gap: 10 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" as const, gap: 10, marginBottom: data.repertoire.musicxml ? 12 : 0 }}>
           <div>
             <div style={{ fontSize: 15, fontWeight: 600, color: "#1a1a1a" }}>{data.repertoire.titre}</div>
             <div style={{ fontSize: 13, color: "#666", marginTop: 2 }}>{data.repertoire.compositeur}</div>
           </div>
           <button
-            onClick={playRepertoire}
+            onClick={data.repertoire.musicxml ? (isPlayingScore ? arreterLecturePartition : lirePartition) : playRepertoire}
             style={{ fontSize: 12, padding: "6px 16px", border: `0.5px solid ${ACCENT}`, borderRadius: 20, cursor: "pointer", background: ACCENT_BG, color: ACCENT, fontFamily: "system-ui, sans-serif" }}
           >
-            {tc("conservatoireEcouter")}
+            {data.repertoire.musicxml && isPlayingScore ? tc("conservatoireArreter") : tc("conservatoireEcouter")}
           </button>
         </div>
+        {data.repertoire.musicxml && (
+          <div style={{ border: "0.5px solid #e0dbd3", borderRadius: 8, overflow: "hidden" }}>
+            <StudioScore ref={scoreRef} musicxml={data.repertoire.musicxml} />
+          </div>
+        )}
       </div>
 
       {/* 5. Pièges fréquents */}

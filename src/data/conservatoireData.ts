@@ -1,7 +1,15 @@
+import { BWV846_MESURES_1_8 } from "./conservatoire-bwv846";
+
 export interface CoursPieceData {
   titre: string;
   compositeur: string;
   notes: string[]; // format "C4", "F#3", "G#5"
+  /**
+   * Extrait MusicXML complet, gravé (Verovio) et joué en synchronisé si présent —
+   * remplace la lecture simplifiée par `notes` pour ce morceau. Optionnel : les
+   * morceaux sans transcription complète retombent sur `notes`.
+   */
+  musicxml?: string;
 }
 
 export interface CoursConservatoireData {
@@ -35,6 +43,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       titre: "Prélude en Do majeur BWV 846",
       compositeur: "J.S. Bach",
       notes: ["C4", "E4", "G4", "C5", "E5", "G4", "C5", "E5"],
+      musicxml: BWV846_MESURES_1_8,
     },
     pieges: [
       {
