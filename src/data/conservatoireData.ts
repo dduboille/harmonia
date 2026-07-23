@@ -1,4 +1,4 @@
-import { BWV846_MESURES_1_8 } from "./conservatoire-bwv846";
+import { BWV846_MESURES_1_8, BWV846_ANALYSE, type MesureAnalyse } from "./conservatoire-bwv846";
 
 export interface CoursPieceData {
   titre: string;
@@ -10,6 +10,9 @@ export interface CoursPieceData {
    * morceaux sans transcription complète retombent sur `notes`.
    */
   musicxml?: string;
+  /** Analyse mesure par mesure (accord/degré/fonction), affichée sous la partition
+   *  quand `musicxml` est présent. */
+  analyse?: MesureAnalyse[];
 }
 
 export interface CoursConservatoireData {
@@ -44,6 +47,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       compositeur: "J.S. Bach",
       notes: ["C4", "E4", "G4", "C5", "E5", "G4", "C5", "E5"],
       musicxml: BWV846_MESURES_1_8,
+      analyse: BWV846_ANALYSE,
     },
     pieges: [
       {

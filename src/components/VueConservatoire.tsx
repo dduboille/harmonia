@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import StudioScore, { type StudioScoreRef } from "@/components/StudioScore";
+import { FONC_STYLE, CAT_STYLE } from "@/components/StudioAnalyse";
 import { parseMusicXML } from "@/lib/musicxml-parse";
 import { planifierLecture } from "@/lib/studio-playback";
 import { CONSERVATOIRE_DATA, type CoursConservatoireData } from "@/data/conservatoireData";
@@ -64,6 +65,7 @@ export function VueConservatoire({
       compositeur: tcons(`${ck}.compositeur` as any),
       notes: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9}`].repertoire.notes,
       musicxml: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9}`].repertoire.musicxml,
+      analyse: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9}`].repertoire.analyse,
     },
     pieges: [{
       erreur: tcons(`${ck}.piege0erreur` as any),
@@ -90,6 +92,7 @@ export function VueConservatoire({
   const rafRef = useRef<number | null>(null);
   const departRef = useRef<number>(0);
   const [isPlayingScore, setIsPlayingScore] = useState(false);
+  const [mesureActive, setMesureActive] = useState<number | null>(null);
 
   const arreterLecturePartition = useCallback(() => {
     timeoutsRef.current.forEach(clearTimeout);
@@ -98,6 +101,7 @@ export function VueConservatoire({
     pianoRef.current?.stopAll();
     scoreRef.current?.surlignerATemps(null);
     setIsPlayingScore(false);
+    setMesureActive(null);
   }, []);
 
   const lirePartition = useCallback(() => {
@@ -105,7 +109,7 @@ export function VueConservatoire({
     if (!musicxml || isPlayingScore) return;
 
     const score = parseMusicXML(musicxml);
-    const { evenements, dureeTotale } = planifierLecture(score, 1);
+    const { evenements, mesures, dureeTotale } = planifierLecture(score, 1);
     if (evenements.length === 0) return;
 
     const ids: ReturnType<typeof setTimeout>[] = [];
@@ -114,6 +118,9 @@ export function VueConservatoire({
       ids.push(setTimeout(() => {
         piano?.playVoicing([e.spec], { duration: e.duration, velocity: e.velocity });
       }, e.startTime * 1000));
+    }
+    for (const m of mesures) {
+      ids.push(setTimeout(() => setMesureActive(m.numero), m.debutSec * 1000));
     }
     ids.push(setTimeout(() => arreterLecturePartition(), dureeTotale * 1000 + 200));
     timeoutsRef.current = ids;
@@ -198,6 +205,40 @@ export function VueConservatoire({
         {data.repertoire.musicxml && (
           <div style={{ border: "0.5px solid #e0dbd3", borderRadius: 8, overflow: "hidden" }}>
             <StudioScore ref={scoreRef} musicxml={data.repertoire.musicxml} />
+          </div>
+        )}
+        {data.repertoire.analyse && (
+          <div style={{ display: "flex", flexWrap: "wrap" as const, gap: 6, marginTop: 10 }}>
+            {data.repertoire.analyse.map((m) => {
+              const actif = m.numero === mesureActive;
+              return (
+                <div
+                  key={m.numero}
+                  style={{
+                    display: "flex", alignItems: "center", gap: 5,
+                    padding: "5px 8px", borderRadius: 8,
+                    border: `0.5px solid ${actif ? ACCENT : "#e8e3db"}`,
+                    background: actif ? ACCENT_BG : "#fafafa",
+                    transition: "background .15s, border-color .15s",
+                    fontFamily: "system-ui, sans-serif",
+                  }}
+                >
+                  <span style={{ fontSize: 10, color: "#999", fontWeight: 600 }}>m.{m.numero}</span>
+                  <strong style={{ fontSize: 12, color: "#1a1a1a", fontFamily: "Georgia, serif" }}>{m.nom}</strong>
+                  <span style={{ background: "#F0EBF8", color: "#5C3D6E", padding: "1px 6px", borderRadius: 8, fontSize: 10, fontWeight: 700 }}>
+                    {m.degre}
+                  </span>
+                  <span style={{ background: FONC_STYLE[m.fonction].bg, color: FONC_STYLE[m.fonction].color, padding: "1px 6px", borderRadius: 8, fontSize: 10, fontWeight: 700 }}>
+                    {FONC_STYLE[m.fonction].label}
+                  </span>
+                  {m.dominanteSecondaire && (
+                    <span style={{ background: CAT_STYLE.dominante_secondaire.bg, color: CAT_STYLE.dominante_secondaire.color, padding: "1px 6px", borderRadius: 6, fontSize: 9, fontWeight: 600, whiteSpace: "nowrap" as const }}>
+                      {CAT_STYLE.dominante_secondaire.label}
+                    </span>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

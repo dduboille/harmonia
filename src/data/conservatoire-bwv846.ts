@@ -1,3 +1,5 @@
+import type { Fonction } from "@/app/api/analyse-partition/route";
+
 /**
  * data/conservatoire-bwv846.ts
  * Harmonia — Extrait (mesures 1 à 8) du Prélude en Do majeur BWV 846 de J.S. Bach
@@ -8,7 +10,9 @@
  * mise en page ni béquilles de gravure, pour la gravure Verovio + lecture
  * synchronisée déjà utilisées par le Studio). Analyse harmonique des 8 mesures :
  * I — ii7 (3e renv.) — V7 (1er renv.) — I — vi (1er renv.) — V7/V (3e renv., d'où
- * le fa# de la mesure 6) — V (1er renv.) — enchaînement vers la dominante.
+ * le fa# de la mesure 6) — V (1er renv.) — IΔ7 (3e renv., basse commune avec la
+ * mesure 7 : la sensible reste tenue au grave pendant que l'harmonie glisse de la
+ * dominante vers une tonique enrichie).
  */
 export const BWV846_MESURES_1_8 = `<?xml version="1.0" encoding="UTF-8"?>
 <score-partwise version="3.1">
@@ -247,3 +251,28 @@ export const BWV846_MESURES_1_8 = `<?xml version="1.0" encoding="UTF-8"?>
   </part>
 </score-partwise>
 `;
+
+export interface MesureAnalyse {
+  numero: number;
+  /** Nom d'accord affichable (convention `${rootFr}${quality}` du site, ex. "Rém7"). */
+  nom: string;
+  /** Chiffre romain + chiffrage figuré, MÊME convention que `harmonic-analysis.ts`
+   *  (`figureOf`/`chiffrage`/`romanOfDegree`) : ii2 = 3e renv., V6/5 = 1er renv. d'une
+   *  7e, vi6 = 1er renv. d'une triade, V2/V = dominante secondaire 3e renv. */
+  degre: string;
+  fonction: Fonction;
+  /** Sort du diatonique (même badge que `CAT_STYLE.dominante_secondaire` du Studio). */
+  dominanteSecondaire?: boolean;
+}
+
+/** Analyse mesure par mesure de `BWV846_MESURES_1_8` — voir le commentaire d'en-tête. */
+export const BWV846_ANALYSE: MesureAnalyse[] = [
+  { numero: 1, nom: "Do",     degre: "I",    fonction: "T" },
+  { numero: 2, nom: "Rém7",   degre: "ii2",  fonction: "SD" },
+  { numero: 3, nom: "Sol7",   degre: "V6/5", fonction: "D" },
+  { numero: 4, nom: "Do",     degre: "I",    fonction: "T" },
+  { numero: 5, nom: "Lam",    degre: "vi6",  fonction: "T" },
+  { numero: 6, nom: "Ré7",    degre: "V2/V", fonction: "D", dominanteSecondaire: true },
+  { numero: 7, nom: "Sol",    degre: "V6",   fonction: "D" },
+  { numero: 8, nom: "DoMaj7", degre: "IΔ2",  fonction: "T" },
+];
