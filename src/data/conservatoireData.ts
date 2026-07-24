@@ -1,6 +1,8 @@
 import { BWV846_MESURES_1_8, BWV846_ANALYSE, type MesureAnalyse } from "./conservatoire-bwv846";
 import { PATHETIQUE2_MESURES_1_8, PATHETIQUE2_ANALYSE } from "./conservatoire-pathetique2";
 import { K550_MESURES_1_4, K550_ANALYSE } from "./conservatoire-k550";
+import { BWV227_MESURES_1_8, BWV227_ANALYSE } from "./conservatoire-bwv227";
+import { CHOPIN_OP9_N2_MESURES_1_4, CHOPIN_OP9_N2_ANALYSE } from "./conservatoire-chopin-op9n2";
 
 export interface CoursPieceData {
   titre: string;
@@ -144,6 +146,8 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       titre: "Choral BWV 227 'Jesu, meine Freude'",
       compositeur: "J.S. Bach",
       notes: ["E4", "F#4", "G4", "A4", "B4", "A4", "G4", "F#4", "E4"],
+      musicxml: BWV227_MESURES_1_8,
+      analyse: BWV227_ANALYSE,
     },
     pieges: [
       {
@@ -205,6 +209,8 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       titre: "Nocturne op.9 n°2",
       compositeur: "F. Chopin",
       notes: ["D#4", "G4", "A#4", "D#5", "D5", "C5", "A#4", "G#4", "G4"],
+      musicxml: CHOPIN_OP9_N2_MESURES_1_4,
+      analyse: CHOPIN_OP9_N2_ANALYSE,
     },
     pieges: [
       {
