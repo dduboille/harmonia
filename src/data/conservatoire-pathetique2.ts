@@ -1,3 +1,5 @@
+import type { MesureAnalyse } from "./conservatoire-bwv846";
+
 /**
  * data/conservatoire-pathetique2.ts
  * Harmonia — Extrait (mesures 1 à 8) du 2e mouvement (Adagio cantabile, La♭ majeur)
@@ -191,3 +193,37 @@ export const PATHETIQUE2_MESURES_1_8 = `<?xml version="1.0" encoding="UTF-8"?>
   </part>
 </score-partwise>
 `;
+
+/**
+ * Analyse mesure par mesure — harmonie PRINCIPALE (temps 1) de chaque mesure,
+ * même simplification que pour BWV846_ANALYSE (une étiquette par mesure, pas par
+ * temps). Vérifiée contre l'empilement réel des trois voix à chaque mesure :
+ *
+ *  m1 La♭-Do-Mib (basse La♭)         → I
+ *  m2 Do-Mib-La♭ (basse Do)          → I, 3ce à la basse (le reste de la mesure
+ *                                       glisse vers un vii° incomplet passager)
+ *  m3 La♭-Do-Mib (basse La♭)         → I (la basse La♭-Sol-Fa-Fa amorce ensuite
+ *                                       une descente conjointe vers le V de la m4)
+ *  m4 Mib-Sol-Sib (basse Mib, TENUE sur toute la mesure)     → V
+ *  m5 Réb-Fa-Sol/Sib (basse Réb, TENUE sur toute la mesure)  → IV
+ *  m6 Do-Mib-La♭ (basse Do)          → I, 3ce à la basse (même accord qu'à la m2)
+ *  m7 Sib-Réb-Fa (basse Sib)         → ii (seule triade mineure de l'extrait,
+ *                                       hors tonique)
+ *  m8 La♭ (pédale de tonique, doublée à l'octave) sous Sol-Sib-Réb à la mélodie
+ *                                    → I (pédale) — clôture de la phrase de 8
+ *                                       mesures sur la tonique
+ *
+ * Le enchaînement V (m4) → IV (m5) — une « rétrogression » plutôt que l'ordre
+ * SD→D habituel — est authentique : Beethoven, pas une simplification de ce
+ * fichier.
+ */
+export const PATHETIQUE2_ANALYSE: MesureAnalyse[] = [
+  { numero: 1, nom: "Lab",  degre: "I",  fonction: "T" },
+  { numero: 2, nom: "Lab",  degre: "I6", fonction: "T" },
+  { numero: 3, nom: "Lab",  degre: "I",  fonction: "T" },
+  { numero: 4, nom: "Mib",  degre: "V",  fonction: "D" },
+  { numero: 5, nom: "Réb",  degre: "IV", fonction: "SD" },
+  { numero: 6, nom: "Lab",  degre: "I6", fonction: "T" },
+  { numero: 7, nom: "Sibm", degre: "ii", fonction: "SD" },
+  { numero: 8, nom: "Lab",  degre: "I",  fonction: "T" },
+];
