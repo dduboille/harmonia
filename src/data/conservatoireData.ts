@@ -1,5 +1,6 @@
 import { BWV846_MESURES_1_8, BWV846_ANALYSE, type MesureAnalyse } from "./conservatoire-bwv846";
 import { PATHETIQUE2_MESURES_1_8, PATHETIQUE2_ANALYSE } from "./conservatoire-pathetique2";
+import { K550_MESURES_1_4, K550_ANALYSE } from "./conservatoire-k550";
 
 export interface CoursPieceData {
   titre: string;
@@ -67,7 +68,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       "Un accord n'est pas une superposition de notes mais une tension entre elles — comprendre les intervalles, c'est entendre l'harmonie avant de la lire.",
     reference: {
       badge: "Piston · Harmony",
-      citation: "Every chord has a personality determined by the intervals it contains.",
+      citation: "Chaque accord a une personnalité déterminée par les intervalles qu'il contient.",
       auteur: "Walter Piston, 1941",
     },
     voix: [
@@ -99,7 +100,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       "La fonction harmonique, c'est le rôle dramaturgique de chaque accord dans le discours musical — tonique repose, dominante tend, sous-dominante prépare.",
     reference: {
       badge: "Schönberg · Harmonielehre",
-      citation: "Die Harmonie ist nicht Selbstzweck, sondern Mittel des Ausdrucks.",
+      citation: "L'harmonie n'est pas une fin en soi, mais un moyen d'expression.",
       auteur: "Arnold Schönberg, 1911",
     },
     voix: [
@@ -111,6 +112,8 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       titre: "Symphonie n°40 KV550, mvt.I",
       compositeur: "W.A. Mozart",
       notes: ["D4", "D#4", "D4", "C4", "A#3", "G3", "A#3", "D4"],
+      musicxml: K550_MESURES_1_4,
+      analyse: K550_ANALYSE,
     },
     pieges: [
       {
@@ -129,7 +132,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       "La cadence est la ponctuation du discours musical — une virgule, un point-virgule, un point final selon son type.",
     reference: {
       badge: "Aldwell & Schachter · Harmony and Voice Leading",
-      citation: "Cadences articulate musical form at every level, from the phrase to the whole composition.",
+      citation: "Les cadences articulent la forme musicale à tous les niveaux, de la phrase à l'œuvre entière.",
       auteur: "Aldwell & Schachter, 2003",
     },
     voix: [
@@ -190,7 +193,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
     reference: {
       badge: "Piston · Harmony",
       citation:
-        "Non-harmonic tones are the spice of musical texture; used with discretion they add variety and forward motion.",
+        "Les notes étrangères sont le poivre de la texture musicale ; utilisées avec discernement, elles ajoutent variété et élan.",
       auteur: "Walter Piston, 1941",
     },
     voix: [
@@ -221,7 +224,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
     reference: {
       badge: "Levine · The Jazz Theory Book",
       citation:
-        "Secondary dominants temporarily tonicize scale degrees, creating harmonic color without full modulation.",
+        "Les dominantes secondaires tonicisent temporairement des degrés de la gamme, créant une couleur harmonique sans moduler complètement.",
       auteur: "Mark Levine, 1995",
     },
     voix: [
@@ -252,7 +255,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
     reference: {
       badge: "Aldwell & Schachter · Harmony and Voice Leading",
       citation:
-        "The pivot chord belongs to both keys simultaneously, making the modulation smooth and logical.",
+        "L'accord pivot appartient simultanément aux deux tonalités, ce qui rend la modulation fluide et logique.",
       auteur: "Aldwell & Schachter, 2003",
     },
     voix: [
@@ -283,7 +286,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
     reference: {
       badge: "Schönberg · Harmonielehre",
       citation:
-        "Sequences are the most powerful tool of tonal development; they generate both expectation and surprise.",
+        "Les marches harmoniques sont l'outil le plus puissant du développement tonal ; elles génèrent à la fois l'attente et la surprise.",
       auteur: "Arnold Schönberg, 1911",
     },
     voix: [

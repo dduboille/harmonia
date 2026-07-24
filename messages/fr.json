@@ -3918,7 +3918,7 @@
     "cours2": {
       "intuition": "Un accord n'est pas une superposition de notes mais une tension entre elles — comprendre les intervalles, c'est entendre l'harmonie avant de la lire.",
       "badge": "Piston · Harmony",
-      "citation": "Every chord has a personality determined by the intervals it contains.",
+      "citation": "Chaque accord a une personnalité déterminée par les intervalles qu'il contient.",
       "auteur": "Walter Piston, 1941",
       "voix0": "L'accord de dominante (V) contient le triton si–fa qui résout sur l'accord de tonique",
       "voix1": "Les quintes et octaves parallèles entre voix sont interdites",
@@ -3934,7 +3934,7 @@
     "cours3": {
       "intuition": "La fonction harmonique, c'est le rôle dramaturgique de chaque accord dans le discours musical — tonique repose, dominante tend, sous-dominante prépare.",
       "badge": "Schönberg · Harmonielehre",
-      "citation": "Die Harmonie ist nicht Selbstzweck, sondern Mittel des Ausdrucks.",
+      "citation": "L'harmonie n'est pas une fin en soi, mais un moyen d'expression.",
       "auteur": "Arnold Schönberg, 1911",
       "voix0": "La progression authentique V–I est la cadence par excellence",
       "voix1": "La cadence plagale IV–I conclut en douceur (amen cadence)",
@@ -3950,7 +3950,7 @@
     "cours4": {
       "intuition": "La cadence est la ponctuation du discours musical — une virgule, un point-virgule, un point final selon son type.",
       "badge": "Aldwell & Schachter · Harmony and Voice Leading",
-      "citation": "Cadences articulate musical form at every level, from the phrase to the whole composition.",
+      "citation": "Les cadences articulent la forme musicale à tous les niveaux, de la phrase à l'œuvre entière.",
       "auteur": "Aldwell & Schachter, 2003",
       "voix0": "La cadence parfaite (V–I) exige la fondamentale à la basse ET au soprano",
       "voix1": "La cadence imparfaite (V–I avec tierce au soprano) conclut moins définitivement",
@@ -3982,7 +3982,7 @@
     "cours6": {
       "intuition": "Les notes étrangères sont le poivre de l'harmonie — elles créent la dissonance qui rend la consonance désirable.",
       "badge": "Piston · Harmony",
-      "citation": "Non-harmonic tones are the spice of musical texture; used with discretion they add variety and forward motion.",
+      "citation": "Les notes étrangères sont le poivre de la texture musicale ; utilisées avec discernement, elles ajoutent variété et élan.",
       "auteur": "Walter Piston, 1941",
       "voix0": "Le retard (suspension) se prépare consonante, frappe dissonante, résout descendante",
       "voix1": "La pédale de tonique ou dominante peut supporter des harmonies étrangères",
@@ -3998,7 +3998,7 @@
     "cours7": {
       "intuition": "La dominante secondaire est un rayon de soleil dans une autre tonalité — elle tonicise momentanément un degré sans vraiment moduler.",
       "badge": "Levine · The Jazz Theory Book",
-      "citation": "Secondary dominants temporarily tonicize scale degrees, creating harmonic color without full modulation.",
+      "citation": "Les dominantes secondaires tonicisent temporairement des degrés de la gamme, créant une couleur harmonique sans moduler complètement.",
       "auteur": "Mark Levine, 1995",
       "voix0": "V/V (dominante de la dominante) rehausse la cadence authentique",
       "voix1": "Chaque degré sauf VII peut être précédé de sa dominante secondaire",
@@ -4014,7 +4014,7 @@
     "cours8": {
       "intuition": "L'accord pivot est le pont entre deux tonalités — le même accord, deux fonctions, une transition imperceptible.",
       "badge": "Aldwell & Schachter · Harmony and Voice Leading",
-      "citation": "The pivot chord belongs to both keys simultaneously, making the modulation smooth and logical.",
+      "citation": "L'accord pivot appartient simultanément aux deux tonalités, ce qui rend la modulation fluide et logique.",
       "auteur": "Aldwell & Schachter, 2003",
       "voix0": "Choisir le pivot parmi les accords communs aux deux tonalités",
       "voix1": "Confirmer la nouvelle tonalité par une cadence authentique après le pivot",
@@ -4030,7 +4030,7 @@
     "cours9": {
       "intuition": "La marche harmonique est la répétition d'un motif mélodico-harmonique à intervalles réguliers — elle crée une logique interne perceptible même sans connaissance théorique.",
       "badge": "Schönberg · Harmonielehre",
-      "citation": "Sequences are the most powerful tool of tonal development; they generate both expectation and surprise.",
+      "citation": "Les marches harmoniques sont l'outil le plus puissant du développement tonal ; elles génèrent à la fois l'attente et la surprise.",
       "auteur": "Arnold Schönberg, 1911",
       "voix0": "La marche harmonique (séquence) se transpose à la même qualité d'intervalle",
       "voix1": "Les marches tonales maintiennent la tonalité ; les marches réelles la quittent",
