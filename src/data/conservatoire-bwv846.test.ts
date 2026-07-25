@@ -46,6 +46,43 @@ describe("BWV846_MESURES_1_8", () => {
     expect(basseParMesure(7)?.step).toBe("B");
     expect(basseParMesure(8)?.step).toBe("B");
   });
+
+  it("chaque mesure porte un symbole d'accord (<harmony>) correspondant à son analyse", () => {
+    const mesures = BWV846_MESURES_1_8.split(/<measure number="\d+">/).slice(1);
+    expect(mesures).toHaveLength(8);
+    // Contenu du <harmony> écrit sur une seule ligne (pas de retour à la ligne) :
+    // pas besoin du flag /s (dotAll), non supporté par la cible TS de ce projet.
+    const attendus = [
+      /<root-step>C<\/root-step>.*kind text="">major/,
+      /<root-step>D<\/root-step>.*kind text="m7">minor-seventh.*bass-step>C/,
+      /<root-step>G<\/root-step>.*kind text="7">dominant.*bass-step>B/,
+      /<root-step>C<\/root-step>.*kind text="">major/,
+      /<root-step>A<\/root-step>.*kind text="m">minor.*bass-step>C/,
+      /<root-step>D<\/root-step>.*kind text="7">dominant.*bass-step>C/,
+      /<root-step>G<\/root-step>.*kind text="">major.*bass-step>B/,
+      /<root-step>C<\/root-step>.*kind text="maj7">major-seventh.*bass-step>B/,
+    ];
+    mesures.forEach((m, i) => expect(m).toMatch(attendus[i]));
+  });
+
+  it("chaque note écrite (hors silences) porte la couleur de fonction de sa mesure", () => {
+    const BLEU = "#1565C0", ORANGE = "#E65100", ROUGE = "#C62828";
+    const couleurAttendue: Record<number, string> = {
+      1: BLEU, 2: ORANGE, 3: ROUGE, 4: BLEU, 5: BLEU, 6: ROUGE, 7: ROUGE, 8: BLEU,
+    };
+    const mesures = BWV846_MESURES_1_8.split(/<measure number="(\d+)">/).slice(1);
+    // split avec groupe capturant : [numero1, corps1, numero2, corps2, ...]
+    for (let i = 0; i < mesures.length; i += 2) {
+      const numero = Number(mesures[i]);
+      const corps = mesures[i + 1];
+      const notesEcrites = [...corps.matchAll(/<note\b[^>]*>[\s\S]*?<\/note>/g)]
+        .filter((m) => !/<rest\s*\/>/.test(m[0]));
+      expect(notesEcrites.length).toBeGreaterThan(0);
+      for (const n of notesEcrites) {
+        expect(n[0]).toContain(`color="${couleurAttendue[numero]}"`);
+      }
+    }
+  });
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- poignée opaque, comme dans verovio-appariement.test.ts
@@ -67,5 +104,21 @@ describe("BWV846_MESURES_1_8 — gravure Verovio (séquence réelle de StudioSco
     // 8 mesures × (12 main droite + 4 attaques ténor + 2 basse) — la gravure dessine
     // les DEUX notes d'une liaison (contrairement à `parseMusicXML` qui les fusionne).
     expect(notes).toHaveLength(8 * 18);
+  });
+
+  it("Verovio rend bien les couleurs par fonction et les symboles d'accords", () => {
+    tk.loadData(BWV846_MESURES_1_8);
+    tk.renderToMIDI();
+    tk.setOptions({ scale: 40, adjustPageHeight: true, breaks: "auto", footer: "none", pageWidth: 2000 });
+    const svg: string = tk.renderToSVG(1);
+    // 18 attaques notées × 4 mesures bleues (1,4,5,8) = 72 ; × 1 mesure orange (2) = 18 ;
+    // × 3 mesures rouges (3,6,7) = 54.
+    expect([...svg.matchAll(/fill="#1565C0"/g)]).toHaveLength(4 * 18);
+    expect([...svg.matchAll(/fill="#E65100"/g)]).toHaveLength(1 * 18);
+    expect([...svg.matchAll(/fill="#C62828"/g)]).toHaveLength(3 * 18);
+    // Les 8 symboles d'accords apparaissent bien comme texte au-dessus de la portée.
+    for (const symbole of ["C", "Dm7/C", "G7/B", "Am/C", "D7/C", "G/B", "Cmaj7/B"]) {
+      expect(svg).toContain(`>${symbole}<`);
+    }
   });
 });
