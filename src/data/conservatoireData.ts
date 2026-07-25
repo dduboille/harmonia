@@ -1,6 +1,6 @@
 import { BWV846_MESURES_1_8, BWV846_ANALYSE, type MesureAnalyse } from "./conservatoire-bwv846";
 import { PATHETIQUE2_MESURES_1_8, PATHETIQUE2_ANALYSE } from "./conservatoire-pathetique2";
-import { K550_MESURES_1_8, K550_ANALYSE } from "./conservatoire-k550";
+import { K550_MESURES_1_9, K550_ANALYSE } from "./conservatoire-k550";
 import { BWV227_MESURES_1_8, BWV227_ANALYSE } from "./conservatoire-bwv227";
 import { CHOPIN_OP9_N2_MESURES_1_4, CHOPIN_OP9_N2_ANALYSE } from "./conservatoire-chopin-op9n2";
 
@@ -114,7 +114,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       titre: "Symphonie n°40 KV550, mvt.I",
       compositeur: "W.A. Mozart",
       notes: ["D4", "D#4", "D4", "C4", "A#3", "G3", "A#3", "D4"],
-      musicxml: K550_MESURES_1_8,
+      musicxml: K550_MESURES_1_9,
       analyse: K550_ANALYSE,
     },
     pieges: [

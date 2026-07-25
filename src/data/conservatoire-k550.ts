@@ -2,29 +2,31 @@ import type { MesureAnalyse } from "./conservatoire-bwv846";
 
 /**
  * data/conservatoire-k550.ts
- * Harmonia — Extrait (mesures 1 a 8) du 1er mouvement (Molto allegro, sol mineur)
- * de la Symphonie n 40 K.550 de Mozart, pour la section « conservatoire » du
- * cours 3.
+ * Harmonia — Extrait (mesures 1 a 9, la mesure 9 n'occupant qu'une demi-mesure)
+ * du 1er mouvement (Molto allegro, sol mineur) de la Symphonie n 40 K.550 de
+ * Mozart, pour la section « conservatoire » du cours 3.
  *
- * MusicXML VERBATIM : export MuseScore Studio 4.6.3 de Dany, version FINALISEE
- * (fichier "40.musicxml", 2026-07-25 20:48 — remplace la version precedente sans
- * <harmony>/<lyric>). Meme demarche que BWV846_MESURES_1_8 / PATHETIQUE2_MESURES_1_8
- * (voir leurs commentaires d'en-tete) : groupes de ligature explicites, couleurs
- * de tete de note par fonction tonale (bleu #0000FF = tonique, orange #FFAA00 =
- * sous-dominante, rouge #FF0000 = dominante), symboles d'accords (<harmony>),
- * chiffrage + fonction en paroles (<lyric>) sous la basse, saut de systeme
- * explicite (<print new-system>) a la mesure 5. Pas de balise <mode> (comme tous
- * les exports de Dany) : le mode mineur est INFERE par correlation de profil
- * tonal (cf. musicxml-parse.ts, inferModeParProfil) plutot que suppose par
- * defaut.
+ * MusicXML VERBATIM : export MuseScore Studio 4.6.3 de Dany, version FINALE
+ * (fichier "40bon.musicxml", 2026-07-25 21:08 — ajoute une demi-mesure 9 par
+ * rapport a la version precedente "40.musicxml", pour completer la cadence
+ * IIø7-V7-I6/4 enseignee dans la lecon). Meme demarche que BWV846_MESURES_1_8 /
+ * PATHETIQUE2_MESURES_1_8 (voir leurs commentaires d'en-tete) : groupes de
+ * ligature explicites, couleurs de tete de note par fonction tonale (bleu
+ * #0000FF = tonique, orange #FFAA00 = sous-dominante, rouge #FF0000 =
+ * dominante), symboles d'accords (<harmony>), chiffrage + fonction en paroles
+ * (<lyric>) sous la basse, sauts de systeme explicites (<print new-system>) aux
+ * mesures 5 et 9. Pas de balise <mode> (comme tous les exports de Dany) : le
+ * mode mineur est INFERE par correlation de profil tonal (cf. musicxml-parse.ts,
+ * inferModeParProfil) plutot que suppose par defaut.
  *
- * Analyse harmonique des 8 mesures (cf. K550_ANALYSE plus bas, qui reprend les
- * memes lectures que les paroles du fichier) : I6/4 (tonique, quinte a la basse)
- * tenu sur les mesures 1-4, puis IIø7 en 2e renversement (+4/3, sous-dominante)
- * sur les mesures 5-6, puis V7 sur la mesure 7 et V6/4-V7 sur la mesure 8 - un
- * schema I6/4-IIø7-V7 tres classique de phrase preparatoire.
+ * Analyse harmonique (cf. K550_ANALYSE plus bas, qui reprend les memes lectures
+ * que les paroles du fichier) : I6/4 (tonique, quinte a la basse) tenu sur les
+ * mesures 1-4, puis IIø7 en 2e renversement (+4/3, sous-dominante) sur les
+ * mesures 5-6, puis V7 (mesure 7) et V6/4-V7+6 (mesure 8), et enfin retour a
+ * I6/4 sur la demi-mesure 9 - la cadence complete IIø7-V7-I qu'enseigne la
+ * lecon.
  */
-export const K550_MESURES_1_8 =
+export const K550_MESURES_1_9 =
 `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
 <score-partwise version="4.0">
@@ -833,14 +835,14 @@ export const K550_MESURES_1_8 =
         <beam number="1">end</beam>
         </note>
       </measure>
-    <measure number="5" width="307.05">
+    <measure number="5" width="304.78">
       <print new-system="yes">
         <system-layout>
           <system-margins>
             <left-margin>0</left-margin>
             <right-margin>0</right-margin>
             </system-margins>
-          <system-distance>241.45</system-distance>
+          <system-distance>257.66</system-distance>
           </system-layout>
         <staff-layout number="2">
           <staff-distance>65</staff-distance>
@@ -868,7 +870,7 @@ export const K550_MESURES_1_8 =
         <notehead color="#FFAA00">normal</notehead>
         <staff>1</staff>
         </note>
-      <note default-x="141.09" default-y="-15">
+      <note default-x="140.45" default-y="-15">
         <pitch>
           <step>C</step>
           <octave>5</octave>
@@ -879,14 +881,14 @@ export const K550_MESURES_1_8 =
         <stem>down</stem>
         <staff>1</staff>
         </note>
-      <note default-x="195.55" default-y="-20">
+      <note default-x="194.26" default-y="-20">
         <rest/>
         <duration>2</duration>
         <voice>1</voice>
         <type>quarter</type>
         <staff>1</staff>
         </note>
-      <note default-x="250.02" default-y="-10">
+      <note default-x="248.07" default-y="-10">
         <pitch>
           <step>D</step>
           <octave>5</octave>
@@ -898,7 +900,7 @@ export const K550_MESURES_1_8 =
         <staff>1</staff>
         <beam number="1">begin</beam>
         </note>
-      <note default-x="277.25" default-y="-15">
+      <note default-x="274.98" default-y="-15">
         <pitch>
           <step>C</step>
           <octave>5</octave>
@@ -930,7 +932,7 @@ export const K550_MESURES_1_8 =
           <text>II+4/3(SD)</text>
           </lyric>
         </note>
-      <note default-x="113.86" default-y="-145">
+      <note default-x="113.54" default-y="-145">
         <pitch>
           <step>E</step>
           <alter>-1</alter>
@@ -944,7 +946,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="141.09" default-y="-135">
+      <note default-x="140.45" default-y="-135">
         <pitch>
           <step>G</step>
           <octave>4</octave>
@@ -956,7 +958,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="168.32" default-y="-130">
+      <note default-x="167.35" default-y="-130">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -969,7 +971,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">end</beam>
         </note>
-      <note default-x="195.55" default-y="-135">
+      <note default-x="194.26" default-y="-135">
         <pitch>
           <step>G</step>
           <octave>4</octave>
@@ -981,7 +983,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">begin</beam>
         </note>
-      <note default-x="222.79" default-y="-145">
+      <note default-x="221.17" default-y="-145">
         <pitch>
           <step>E</step>
           <alter>-1</alter>
@@ -994,7 +996,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="250.02" default-y="-135">
+      <note default-x="248.07" default-y="-135">
         <pitch>
           <step>G</step>
           <octave>4</octave>
@@ -1006,7 +1008,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="277.25" default-y="-130">
+      <note default-x="274.98" default-y="-130">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -1019,7 +1021,7 @@ export const K550_MESURES_1_8 =
         <beam number="1">end</beam>
         </note>
       </measure>
-    <measure number="6" width="232.92">
+    <measure number="6" width="230.65">
       <harmony print-frame="no">
         <root>
           <root-step>A</root-step>
@@ -1042,7 +1044,7 @@ export const K550_MESURES_1_8 =
         <notehead color="#FFAA00">normal</notehead>
         <staff>1</staff>
         </note>
-      <note default-x="66.96" default-y="-10">
+      <note default-x="66.31" default-y="-10">
         <pitch>
           <step>D</step>
           <octave>5</octave>
@@ -1054,7 +1056,7 @@ export const K550_MESURES_1_8 =
         <staff>1</staff>
         <beam number="1">begin</beam>
         </note>
-      <note default-x="94.19" default-y="-15">
+      <note default-x="93.22" default-y="-15">
         <pitch>
           <step>C</step>
           <octave>5</octave>
@@ -1066,7 +1068,7 @@ export const K550_MESURES_1_8 =
         <staff>1</staff>
         <beam number="1">end</beam>
         </note>
-      <note default-x="121.42" default-y="-15">
+      <note default-x="120.13" default-y="-15">
         <pitch>
           <step>C</step>
           <octave>5</octave>
@@ -1077,7 +1079,7 @@ export const K550_MESURES_1_8 =
         <stem>down</stem>
         <staff>1</staff>
         </note>
-      <note default-x="175.89" default-y="-10">
+      <note default-x="173.94" default-y="-10">
         <pitch>
           <step>D</step>
           <octave>5</octave>
@@ -1089,7 +1091,7 @@ export const K550_MESURES_1_8 =
         <staff>1</staff>
         <beam number="1">begin</beam>
         </note>
-      <note default-x="203.12" default-y="-15">
+      <note default-x="200.85" default-y="-15">
         <pitch>
           <step>C</step>
           <octave>5</octave>
@@ -1121,7 +1123,7 @@ export const K550_MESURES_1_8 =
           <text>II+4/3(SD)</text>
           </lyric>
         </note>
-      <note default-x="39.73" default-y="-145">
+      <note default-x="39.41" default-y="-145">
         <pitch>
           <step>E</step>
           <alter>-1</alter>
@@ -1135,7 +1137,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="66.96" default-y="-135">
+      <note default-x="66.31" default-y="-135">
         <pitch>
           <step>G</step>
           <octave>4</octave>
@@ -1147,7 +1149,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="94.19" default-y="-130">
+      <note default-x="93.22" default-y="-130">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -1160,7 +1162,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">end</beam>
         </note>
-      <note default-x="121.42" default-y="-135">
+      <note default-x="120.13" default-y="-135">
         <pitch>
           <step>G</step>
           <octave>4</octave>
@@ -1172,7 +1174,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">begin</beam>
         </note>
-      <note default-x="148.65" default-y="-145">
+      <note default-x="147.03" default-y="-145">
         <pitch>
           <step>E</step>
           <alter>-1</alter>
@@ -1185,7 +1187,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="175.89" default-y="-135">
+      <note default-x="173.94" default-y="-135">
         <pitch>
           <step>G</step>
           <octave>4</octave>
@@ -1197,7 +1199,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="203.12" default-y="-130">
+      <note default-x="200.85" default-y="-130">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -1210,7 +1212,7 @@ export const K550_MESURES_1_8 =
         <beam number="1">end</beam>
         </note>
       </measure>
-    <measure number="7" width="239.17">
+    <measure number="7" width="236.91">
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
@@ -1229,7 +1231,7 @@ export const K550_MESURES_1_8 =
         <notehead color="#FF0000">normal</notehead>
         <staff>1</staff>
         </note>
-      <note default-x="73.22" default-y="10">
+      <note default-x="72.57" default-y="10">
         <pitch>
           <step>A</step>
           <octave>5</octave>
@@ -1240,14 +1242,14 @@ export const K550_MESURES_1_8 =
         <stem>down</stem>
         <staff>1</staff>
         </note>
-      <note default-x="127.68" default-y="-20">
+      <note default-x="126.38" default-y="-20">
         <rest/>
         <duration>2</duration>
         <voice>1</voice>
         <type>quarter</type>
         <staff>1</staff>
         </note>
-      <note default-x="182.14" default-y="10">
+      <note default-x="180.2" default-y="10">
         <pitch>
           <step>A</step>
           <octave>5</octave>
@@ -1259,7 +1261,7 @@ export const K550_MESURES_1_8 =
         <staff>1</staff>
         <beam number="1">begin</beam>
         </note>
-      <note default-x="209.37" default-y="5">
+      <note default-x="207.11" default-y="5">
         <pitch>
           <step>G</step>
           <octave>5</octave>
@@ -1293,7 +1295,7 @@ export const K550_MESURES_1_8 =
           <text>V7(T)</text>
           </lyric>
         </note>
-      <note default-x="45.99" default-y="-150">
+      <note default-x="45.66" default-y="-150">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1306,7 +1308,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="73.22" default-y="-140">
+      <note default-x="72.57" default-y="-140">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1319,7 +1321,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="100.45" default-y="-130">
+      <note default-x="99.48" default-y="-130">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -1332,7 +1334,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">end</beam>
         </note>
-      <note default-x="127.68" default-y="-140">
+      <note default-x="126.38" default-y="-140">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1345,7 +1347,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">begin</beam>
         </note>
-      <note default-x="154.91" default-y="-150">
+      <note default-x="153.29" default-y="-150">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1357,7 +1359,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="182.14" default-y="-140">
+      <note default-x="180.2" default-y="-140">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1370,7 +1372,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="209.37" default-y="-130">
+      <note default-x="207.11" default-y="-130">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -1383,7 +1385,7 @@ export const K550_MESURES_1_8 =
         <beam number="1">end</beam>
         </note>
       </measure>
-    <measure number="8" width="249.9">
+    <measure number="8" width="256.7">
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
@@ -1407,7 +1409,7 @@ export const K550_MESURES_1_8 =
         <notehead color="#FF0000">normal</notehead>
         <staff>1</staff>
         </note>
-      <note default-x="73.22" default-y="0">
+      <note default-x="72.57" default-y="0">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1420,7 +1422,7 @@ export const K550_MESURES_1_8 =
         <staff>1</staff>
         <beam number="1">begin</beam>
         </note>
-      <note default-x="101.97" default-y="-5">
+      <note default-x="101.33" default-y="-5">
         <pitch>
           <step>E</step>
           <alter>-1</alter>
@@ -1442,7 +1444,7 @@ export const K550_MESURES_1_8 =
           <bass-step>A</bass-step>
           </bass>
         </harmony>
-      <note default-x="129.21" default-y="-10">
+      <note default-x="128.23" default-y="-10">
         <pitch>
           <step>D</step>
           <octave>5</octave>
@@ -1453,7 +1455,7 @@ export const K550_MESURES_1_8 =
         <stem>down</stem>
         <staff>1</staff>
         </note>
-      <note default-x="183.67" default-y="-10">
+      <note default-x="182.05" default-y="-10">
         <pitch>
           <step>D</step>
           <octave>5</octave>
@@ -1465,7 +1467,7 @@ export const K550_MESURES_1_8 =
         <staff>1</staff>
         <beam number="1">begin</beam>
         </note>
-      <note default-x="210.9" default-y="-15">
+      <note default-x="208.95" default-y="-15">
         <pitch>
           <step>C</step>
           <octave>5</octave>
@@ -1498,7 +1500,7 @@ export const K550_MESURES_1_8 =
           <text>V6/4(T)</text>
           </lyric>
         </note>
-      <note default-x="45.99" default-y="-165">
+      <note default-x="45.66" default-y="-165">
         <pitch>
           <step>A</step>
           <octave>3</octave>
@@ -1511,7 +1513,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="73.22" default-y="-150">
+      <note default-x="72.57" default-y="-150">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1523,7 +1525,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="101.97" default-y="-140">
+      <note default-x="101.33" default-y="-140">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1537,7 +1539,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">end</beam>
         </note>
-      <note default-x="129.21" default-y="-150">
+      <note default-x="128.23" default-y="-150">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1554,7 +1556,7 @@ export const K550_MESURES_1_8 =
           <text>V7+6(T)</text>
           </lyric>
         </note>
-      <note default-x="156.44" default-y="-165">
+      <note default-x="155.14" default-y="-165">
         <pitch>
           <step>A</step>
           <octave>3</octave>
@@ -1567,7 +1569,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="183.67" default-y="-150">
+      <note default-x="182.05" default-y="-150">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -1579,7 +1581,7 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">continue</beam>
         </note>
-      <note default-x="210.9" default-y="-140">
+      <note default-x="208.95" default-y="-140">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -1593,6 +1595,132 @@ export const K550_MESURES_1_8 =
         <staff>2</staff>
         <beam number="1">end</beam>
         </note>
+      </measure>
+    <measure number="9" width="244.43">
+      <print new-system="yes">
+        <system-layout>
+          <system-margins>
+            <left-margin>0</left-margin>
+            <right-margin>0</right-margin>
+            </system-margins>
+          <system-distance>257.66</system-distance>
+          </system-layout>
+        <staff-layout number="2">
+          <staff-distance>65</staff-distance>
+          </staff-layout>
+        </print>
+      <attributes>
+        <clef number="2">
+          <sign>F</sign>
+          <line>4</line>
+          </clef>
+        </attributes>
+      <harmony print-frame="no">
+        <root>
+          <root-step>G</root-step>
+          </root>
+        <kind text="m">minor</kind>
+        <bass arrangement="horizontal">
+          <bass-step>D</bass-step>
+          </bass>
+        </harmony>
+      <note default-x="87.59" default-y="-20">
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+          </pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem>down</stem>
+        <notehead color="#0000FF">normal</notehead>
+        <staff>1</staff>
+        </note>
+      <note default-x="134.26" default-y="-20">
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+          </pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem>down</stem>
+        <staff>1</staff>
+        </note>
+      <note default-x="180.93" default-y="-20">
+        <rest/>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <staff>1</staff>
+        </note>
+      <backup>
+        <duration>8</duration>
+        </backup>
+      <note default-x="87.59" default-y="-110">
+        <pitch>
+          <step>G</step>
+          <octave>3</octave>
+          </pitch>
+        <duration>1</duration>
+        <voice>5</voice>
+        <type>eighth</type>
+        <stem>down</stem>
+        <notehead color="#0000FF">normal</notehead>
+        <staff>2</staff>
+        <beam number="1">begin</beam>
+        <lyric number="1" default-x="9.72" default-y="-44.92" relative-y="-30">
+          <syllabic>single</syllabic>
+          <text>I6/4(T)</text>
+          </lyric>
+        </note>
+      <note default-x="110.93" default-y="-125">
+        <pitch>
+          <step>D</step>
+          <octave>3</octave>
+          </pitch>
+        <duration>1</duration>
+        <voice>5</voice>
+        <type>eighth</type>
+        <stem>down</stem>
+        <notehead color="#0000FF">normal</notehead>
+        <staff>2</staff>
+        <beam number="1">continue</beam>
+        </note>
+      <note default-x="134.26" default-y="-110">
+        <pitch>
+          <step>G</step>
+          <octave>3</octave>
+          </pitch>
+        <duration>1</duration>
+        <voice>5</voice>
+        <type>eighth</type>
+        <stem>down</stem>
+        <staff>2</staff>
+        <beam number="1">continue</beam>
+        </note>
+      <note default-x="157.59" default-y="-100">
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>3</octave>
+          </pitch>
+        <duration>1</duration>
+        <voice>5</voice>
+        <type>eighth</type>
+        <stem>down</stem>
+        <staff>2</staff>
+        <beam number="1">end</beam>
+        </note>
+      <note default-x="180.93" default-y="-125">
+        <rest/>
+        <duration>4</duration>
+        <voice>5</voice>
+        <type>half</type>
+        <staff>2</staff>
+        </note>
       <barline location="right">
         <bar-style>light-heavy</bar-style>
         </barline>
@@ -1601,7 +1729,7 @@ export const K550_MESURES_1_8 =
   </score-partwise>
 `;
 
-/** Analyse mesure par mesure de `K550_MESURES_1_8` — voir le commentaire d'en-tête. */
+/** Analyse mesure par mesure de `K550_MESURES_1_9` — voir le commentaire d'en-tête. */
 export const K550_ANALYSE: MesureAnalyse[] = [
   { numero: 1, nom: "Solm",    degre: "I6/4",   fonction: "T" },
   { numero: 2, nom: "Solm",    degre: "I6/4",   fonction: "T" },
@@ -1611,4 +1739,5 @@ export const K550_ANALYSE: MesureAnalyse[] = [
   { numero: 6, nom: "Lam7b5",  degre: "II+4/3", fonction: "SD" },
   { numero: 7, nom: "Ré7",     degre: "V7",     fonction: "T" },
   { numero: 8, nom: "Ré",      degre: "V6/4",   fonction: "T" },
+  { numero: 9, nom: "Solm",    degre: "I6/4",   fonction: "T" },
 ];
