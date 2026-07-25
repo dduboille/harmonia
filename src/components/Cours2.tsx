@@ -735,6 +735,40 @@ export default function Cours2() {
               </tbody>
             </table>
           </div>
+
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "24px 0 8px", color: "#111" }}>{n("renversementsTable2Title")}</h3>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+              <thead>
+                <tr style={{ borderBottom: "0.5px solid #e5e5e5" }}>
+                  {[n("renversementsTableName"), n("renversementsTableBass"), n("renversementsTableNotes"), n("renversementsTableNotation"), n("renversementsTableChiffrage")].map(h => (
+                    <th key={h} style={{ textAlign: "left", padding: "6px 10px", fontWeight: 500, color: "#666" }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  // Chiffrage FRANÇAIS d'une tétrade DOMINANTE (G7 = V7 de C major) : la
+                  // tierce de l'accord (B) EST la sensible du ton — d'où le "+" à chaque
+                  // renversement (règle institutionnelle, cf. cours 39/42) : +7, +6/5 (la
+                  // sensible étant elle-même à la basse, pas de chiffre séparé), +6, +4.
+                  { name: n("renversementsRow0Name"), bass: n("renversementsTet0Bass"), notes:"G–B–D–F", notation:"G7", chiffrage:"+7" },
+                  { name: n("renversementsRow1Name"), bass: n("renversementsTet1Bass"), notes:"B–D–F–G", notation:"G7/B", chiffrage:"+6/5" },
+                  { name: n("renversementsRow2Name"), bass: n("renversementsTet2Bass"), notes:"D–F–G–B", notation:"G7/D", chiffrage:"+6" },
+                  { name: n("renversementsRow3Name"), bass: n("renversementsTet3Bass"), notes:"F–G–B–D", notation:"G7/F", chiffrage:"+4" },
+                ].map((row, i) => (
+                  <tr key={row.name} style={{ borderBottom: "0.5px solid #f0f0f0", background: i%2===0?"#fff":"#fafafa" }}>
+                    <td style={{ padding: "7px 10px", fontWeight: 500 }}>{row.name}</td>
+                    <td style={{ padding: "7px 10px", color: "#666" }}>{row.bass}</td>
+                    <td style={{ padding: "7px 10px", color: "#555" }}>{row.notes}</td>
+                    <td style={{ padding: "7px 10px", fontWeight: 600, color: "#185FA5" }}>{row.notation}</td>
+                    <td style={{ padding: "7px 10px", fontWeight: 600, color: "#BA7517", fontFamily: "monospace" }}>{row.chiffrage}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div style={{ ...S.infoBox, marginTop: 10 }} dangerouslySetInnerHTML={{ __html: n("renversementsTetNote") }} />
         </div>
       )}
 
