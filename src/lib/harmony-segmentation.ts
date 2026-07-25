@@ -9,9 +9,38 @@
 
 import { TPQ, type ParsedNote, type ParsedScore } from "./musicxml-parse";
 
+/**
+ * Durée d'un TEMPS RÉEL, celui que bat un musicien — pas toujours la noire.
+ *
+ * Reconnue à la SEULE armure de mesure (le dénominateur du chiffre), pas conjuguée
+ * avec la basse ou l'harmonie : en 2/2 (cut time), le temps est la BLANCHE ; dans
+ * une mesure COMPOSÉE (6/8, 9/8, 12/8 — dénominateur 8, numérateur multiple de 3),
+ * c'est la NOIRE POINTÉE (trois croches). Sinon, la noire (4/4, 3/4, 2/4…).
+ *
+ * Sans cette distinction, une basse arpégée sur tout un 2/2 (une noire = un quart
+ * de mesure) ne montre jamais plus de deux de ses quatre sons à la fois : le moteur
+ * fragmente une seule harmonie tenue en plusieurs lectures partielles, chacune
+ * moins chère que la lecture complète (cf. `chord-choice.ts`, COUT_SON_REVENDIQUE).
+ * Constaté sur la Symphonie n°40 de Mozart (mesures 5-6, Am7b5 lu en Cm/Am/Ebmaj/Am).
+ */
+export function dureeDuTemps(signature: string): number {
+  const [beatsStr, beatTypeStr] = signature.split("/");
+  const beats = parseInt(beatsStr, 10);
+  const beatType = parseInt(beatTypeStr, 10);
+  if (!Number.isFinite(beats) || !Number.isFinite(beatType) || beatType <= 0) return TPQ;
+
+  // Mesure COMPOSÉE (6/8, 9/8, 12/8 — jamais 3/8, qui est une simple à la croche) :
+  // le temps est la noire pointée (trois croches), pas la valeur du dénominateur.
+  if (beatType === 8 && beats > 3 && beats % 3 === 0) return 1.5 * TPQ;
+
+  // Mesure SIMPLE : le temps est la valeur notée par le dénominateur — la noire en
+  // 4/4, la blanche en 2/2 (cut time), la croche en 3/8…
+  return (4 / beatType) * TPQ;
+}
+
 export interface Slice {
   measure: number;
-  beat: number;        // 1-based, unité = noire
+  beat: number;        // 1-based, unité = le TEMPS RÉEL (cf. `dureeDuTemps`)
   onset: number;       // ticks absolus
   notes: ParsedNote[]; // toutes les notes sonnantes (attaques ET tenues)
   bass: ParsedNote;    // la plus grave (midi minimal) — c'est ELLE qui chiffre
@@ -26,11 +55,12 @@ export function notesSoundingAt(notes: ParsedNote[], t: number): ParsedNote[] {
 /** Une tranche par temps (noire) sur toute la partition. Les temps muets sont omis. */
 export function sliceByBeat(score: ParsedScore): Slice[] {
   const out: Slice[] = [];
+  const duree = dureeDuTemps(score.signature);
 
   for (const m of score.measures) {
-    const nbTemps = Math.max(1, Math.ceil(m.length / TPQ));
+    const nbTemps = Math.max(1, Math.ceil(m.length / duree));
     for (let beat = 1; beat <= nbTemps; beat++) {
-      const onset = m.start + (beat - 1) * TPQ;
+      const onset = m.start + (beat - 1) * duree;
       if (onset >= m.start + m.length) break;
 
       const notes = notesSoundingAt(score.notes, onset);
@@ -108,13 +138,14 @@ export interface Span {
 
 export function spansParTemps(score: ParsedScore): Span[] {
   const out: Span[] = [];
+  const duree = dureeDuTemps(score.signature);
 
   for (const m of score.measures) {
-    const nbTemps = Math.max(1, Math.ceil(m.length / TPQ));
+    const nbTemps = Math.max(1, Math.ceil(m.length / duree));
     for (let beat = 1; beat <= nbTemps; beat++) {
-      const debut = m.start + (beat - 1) * TPQ;
+      const debut = m.start + (beat - 1) * duree;
       if (debut >= m.start + m.length) break;
-      const fin = Math.min(debut + TPQ, m.start + m.length);
+      const fin = Math.min(debut + duree, m.start + m.length);
 
       const notes = notesSoundingDuring(score.notes, debut, fin);
       if (notes.length === 0) continue;

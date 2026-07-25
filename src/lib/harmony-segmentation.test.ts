@@ -6,6 +6,7 @@ import {
   sliceByBeat,
   mergeSlices,
   spansParTemps,
+  dureeDuTemps,
   type Slice,
 } from "./harmony-segmentation";
 
@@ -123,5 +124,71 @@ describe("mergeSlices — rythme harmonique", () => {
   it("une signature vide (accord non identifié) ne fusionne jamais", () => {
     const out = mergeSlices([s(1, ""), s(2, ""), s(3, "")], sig);
     expect(out).toHaveLength(3);
+  });
+});
+
+describe("dureeDuTemps — le temps réel, pas toujours la noire", () => {
+  it("mesure simple (4/4, 3/4, 2/4) : la noire", () => {
+    expect(dureeDuTemps("4/4")).toBe(TPQ);
+    expect(dureeDuTemps("3/4")).toBe(TPQ);
+    expect(dureeDuTemps("2/4")).toBe(TPQ);
+  });
+
+  it("cut time (2/2) : la blanche", () => {
+    expect(dureeDuTemps("2/2")).toBe(2 * TPQ);
+  });
+
+  it("mesures composées (6/8, 9/8, 12/8) : la noire pointée", () => {
+    expect(dureeDuTemps("6/8")).toBe(1.5 * TPQ);
+    expect(dureeDuTemps("9/8")).toBe(1.5 * TPQ);
+    expect(dureeDuTemps("12/8")).toBe(1.5 * TPQ);
+  });
+
+  it("3/8 (simple, PAS composée malgré le dénominateur 8) : la croche", () => {
+    expect(dureeDuTemps("3/8")).toBe(TPQ / 2);
+  });
+
+  it("signature illisible : repli sur la noire", () => {
+    expect(dureeDuTemps("?")).toBe(TPQ);
+  });
+});
+
+describe("spansParTemps — sensible à la mesure réelle", () => {
+  it("2/2 (cut time) : 2 spans par mesure (la blanche), pas 4", () => {
+    const xml =
+      `<score-partwise><part-list><score-part id="P1"/></part-list>` +
+      `<part id="P1"><measure number="1">` +
+      `<attributes><divisions>2</divisions><key><fifths>0</fifths></key>` +
+      `<time symbol="cut"><beats>2</beats><beat-type>2</beat-type></time></attributes>` +
+      `<note><pitch><step>C</step><octave>4</octave></pitch><duration>8</duration></note>` +
+      `</measure></part></score-partwise>`;
+
+    const spans = spansParTemps(parseMusicXML(xml));
+    expect(spans).toHaveLength(2);
+    expect(spans.map((s) => s.fin - s.debut)).toEqual([2 * TPQ, 2 * TPQ]);
+  });
+
+  it("un arpège de basse étalé sur une DEMI-MESURE de 2/2 sonne tout entier dans UN span", () => {
+    // Sol-Mib-Sol-La en croches (les 4 sons d'un Am7b5) : invisibles ENSEMBLE dans
+    // une fenêtre d'une noire, visibles ENSEMBLE dans une fenêtre d'une blanche.
+    const xml =
+      `<score-partwise><part-list><score-part id="P1"/></part-list>` +
+      `<part id="P1"><measure number="1">` +
+      `<attributes><divisions>2</divisions><key><fifths>0</fifths></key>` +
+      `<time symbol="cut"><beats>2</beats><beat-type>2</beat-type></time></attributes>` +
+      ["G3", "Eb3", "G3", "A3"]
+        .map((s) => {
+          const step = s[0];
+          const alter = s.includes("b") ? -1 : 0;
+          const octave = s[s.length - 1];
+          return `<note><pitch><step>${step}</step>${alter ? "<alter>-1</alter>" : ""}<octave>${octave}</octave></pitch><duration>1</duration></note>`;
+        })
+        .join("") +
+      `</measure></part></score-partwise>`;
+
+    const spans = spansParTemps(parseMusicXML(xml));
+    expect(spans).toHaveLength(1); // toute la mesure sonne dans le premier temps (la blanche)
+    const pcs = new Set(spans[0].notes.map((n) => n.pc));
+    expect([...pcs].sort((a, b) => a - b)).toEqual([3, 7, 9]); // Mib, Sol, La (Sol doublé)
   });
 });
