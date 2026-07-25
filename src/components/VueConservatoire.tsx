@@ -204,7 +204,15 @@ export function VueConservatoire({
         </div>
         {data.repertoire.musicxml && (
           <div style={{ border: "0.5px solid #e0dbd3", borderRadius: 8, overflow: "hidden" }}>
-            <StudioScore ref={scoreRef} musicxml={data.repertoire.musicxml} />
+            <StudioScore
+              ref={scoreRef}
+              musicxml={data.repertoire.musicxml}
+              // Un fichier avec des `<print new-system>` porte une mise en page
+              // VOULUE par son auteur (ex. Dany, export MuseScore) : la respecter.
+              // Sans ce marqueur, l'automatique de Verovio fait mieux (vérifié sur
+              // BWV227/Chopin, cf. StudioScore.tsx).
+              breaks={data.repertoire.musicxml.includes("<print new-system") ? "encoded" : "auto"}
+            />
           </div>
         )}
         {data.repertoire.analyse && (

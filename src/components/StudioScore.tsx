@@ -43,6 +43,17 @@ interface Props {
    * (sélection, fautes) que la regravure a effacés — cf. HarmoniaEditor.
    */
   onReady?: () => void;
+  /**
+   * Sauts de système : "auto" (défaut, Verovio recalcule à chaque largeur — ce que
+   * veulent les 15 usages existants) ou "encoded" (respecte les `<print
+   * new-system="yes">` du MusicXML, càd la présentation VOULUE par l'auteur du
+   * fichier). Ne PAS passer "encoded" pour un fichier sans saut encodé explicite :
+   * Verovio est alors moins bon que l'automatique (vérifié empiriquement sur
+   * BWV227, cf. historique de conservatoire-bwv846.ts) — c'est pourquoi ce n'est
+   * pas le défaut, et pourquoi VueConservatoire ne l'active que si le MusicXML
+   * contient effectivement un `<print new-system`.
+   */
+  breaks?: "auto" | "encoded";
 }
 
 // Échelle de gravure (en %). `pageWidth` de Verovio est en unités : la largeur en
@@ -50,12 +61,17 @@ interface Props {
 // faut donc `pageWidth = L × 100 / échelle`.
 const ECHELLE = 40;
 
-const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ musicxml, onSelectNote, onReady }, ref) {
+const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ musicxml, onSelectNote, onReady, breaks = "auto" }, ref) {
   const conteneur = useRef<HTMLDivElement>(null);
   // `onReady` gardé dans une ref : l'effet de gravure ne dépend QUE de `musicxml`,
   // un changement d'identité du callback ne doit pas re-déclencher la gravure.
   const onReadyRef = useRef(onReady);
   useEffect(() => { onReadyRef.current = onReady; }, [onReady]);
+  // Même chose pour `breaks` : identité de fonction mise à part, une nouvelle
+  // valeur ne doit déclencher une regravure QUE si `musicxml` change aussi (une
+  // regravure au resize doit relire la valeur COURANTE, pas figer celle du montage).
+  const breaksRef = useRef(breaks);
+  useEffect(() => { breaksRef.current = breaks; }, [breaks]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- l'instance Verovio est conservée entre rendus pour le surlignage ; son type vit dans le stub verovio.d.ts, mais on n'a besoin ici que d'une poignée opaque.
   const tkRef = useRef<any>(null);
   const notesJouees = useRef<Element[]>([]);
@@ -68,18 +84,21 @@ const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ mus
     let annule = false;
     let tempoRedim: ReturnType<typeof setTimeout> | null = null;
 
+    // Options de mise en page pour la largeur COURANTE du conteneur.
+    const optionsPour = (largeur: number) => ({
+      scale: ECHELLE,
+      adjustPageHeight: true,
+      breaks: breaksRef.current,
+      footer: "none",
+      pageWidth: Math.round((largeur * 100) / ECHELLE),
+    });
+
     const graver = () => {
       const tk = tkRef.current;
       const hote = conteneur.current;
       if (!tk || !hote) return;
       const largeur = Math.max(320, hote.clientWidth);
-      tk.setOptions({
-        scale: ECHELLE,
-        adjustPageHeight: true,
-        breaks: "auto",
-        footer: "none",
-        pageWidth: Math.round((largeur * 100) / ECHELLE),
-      });
+      tk.setOptions(optionsPour(largeur));
       // Un nouveau rendu recrée le SVG : le surlignage courant est perdu, on l'oublie.
       notesJouees.current = [];
       const pages = tk.getPageCount();
@@ -97,6 +116,14 @@ const StudioScore = forwardRef<StudioScoreRef, Props>(function StudioScore({ mus
         const module = await creerModule();
         if (annule || !conteneur.current) return;
         const tk = new VerovioToolkit(module);
+        // `setOptions` DOIT précéder le premier `loadData` : appelé après (l'ordre
+        // naturel, en apparence anodin), les sauts de système "encoded" restent
+        // calculés pour les options par défaut de l'instance — constaté : un même
+        // fichier gravé "5 mesures puis 3" au lieu de "3+3+2"/"4+4" voulus, corrigé
+        // en inversant l'ordre. `setOptions` seul (sans nouveau `loadData`, ce que
+        // fait la regravure au resize ci-dessous) n'a PAS ce problème : seul le
+        // tout premier calcul de mise en page d'une instance fraîche l'exige.
+        tk.setOptions(optionsPour(Math.max(320, conteneur.current.clientWidth)));
         tk.loadData(musicxml); // Verovio auto-détecte le MusicXML.
         // La table de temps MIDI ne se construit PAS paresseusement (Verovio 6.2.0 :
         // « Calculation of MIDI timemap failed ») : sans ce renderToMIDI,

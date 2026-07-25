@@ -148,4 +148,30 @@ describe("BWV846_MESURES_1_8 — gravure Verovio (séquence réelle de StudioSco
     expect(svg).toContain("V6/5(T)");
     expect(svg).toContain("V2/V(DS)");
   });
+
+  it("avec breaks=encoded (StudioScore + VueConservatoire), respecte la mise en page 3+3+2 de Dany", async () => {
+    // BWV846_MESURES_1_8 porte des <print new-system="yes"> sur les mesures 4 et 7
+    // (système de 3+3+2 mesures, comme sur le PDF de Dany) : VueConservatoire
+    // détecte cette balise et bascule StudioScore sur breaks="encoded" plutôt que
+    // "auto" — sinon Verovio recalcule ses propres sauts, indépendants de la mise
+    // en page voulue (constaté : "5 mesures puis 3", pas 3+3+2 ni 4+4).
+    expect(BWV846_MESURES_1_8).toContain("<print new-system");
+    // Instance FRAÎCHE, et surtout MÊME ORDRE D'APPELS que StudioScore.tsx :
+    // `setOptions` AVANT `loadData`. Dans l'autre ordre (constaté empiriquement,
+    // cf. le commentaire de StudioScore.tsx), le tout premier calcul de mise en
+    // page d'une instance neuve ignore les sauts "encoded" demandés et regravait
+    // "5 mesures puis 3" au lieu de 3+3+2 — le bug réel rapporté par Dany.
+    const creerModule = (await import("verovio/wasm")).default;
+    const { VerovioToolkit } = await import("verovio/esm");
+    const frais = new VerovioToolkit(await creerModule());
+    // Largeur de conteneur réaliste (desktop/tablette) : au-delà de ~500px, le
+    // groupement encodé est stable (vérifié empiriquement de 500 à 2000px).
+    frais.setOptions({ scale: 40, adjustPageHeight: true, breaks: "encoded", footer: "none", pageWidth: 1750 });
+    frais.loadData(BWV846_MESURES_1_8);
+    frais.renderToMIDI();
+    const svg: string = frais.renderToSVG(1);
+    const systemes = svg.split(/<g[^>]*class="system"[^>]*>/).slice(1);
+    const mesuresParSysteme = systemes.map((s) => [...s.matchAll(/<g[^>]*class="measure"[^>]*>/g)].length);
+    expect(mesuresParSysteme).toEqual([3, 3, 2]);
+  });
 });

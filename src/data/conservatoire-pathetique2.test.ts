@@ -131,4 +131,25 @@ describe("PATHETIQUE2_MESURES_1_8 — gravure Verovio (séquence réelle de Stud
     expect(svg).toContain("V(D)");
     expect(svg).toContain("II(SD)");
   });
+
+  it("avec breaks=encoded (StudioScore + VueConservatoire), respecte la mise en page 4+4 de Dany", async () => {
+    // PATHETIQUE2_MESURES_1_8 porte un <print new-system="yes"> sur la mesure 5
+    // (système de 4+4 mesures, comme demandé par Dany) : VueConservatoire détecte
+    // cette balise et bascule StudioScore sur breaks="encoded" plutôt que "auto"
+    // — sinon Verovio recalcule ses propres sauts (constaté : "5 mesures puis 3").
+    expect(PATHETIQUE2_MESURES_1_8).toContain("<print new-system");
+    // Instance FRAÎCHE, MÊME ORDRE D'APPELS que StudioScore.tsx : `setOptions`
+    // AVANT `loadData` (cf. le même test dans conservatoire-bwv846.test.ts pour
+    // le pourquoi — sinon le tout premier rendu ignore les sauts "encoded").
+    const creerModule = (await import("verovio/wasm")).default;
+    const { VerovioToolkit } = await import("verovio/esm");
+    const frais = new VerovioToolkit(await creerModule());
+    frais.setOptions({ scale: 40, adjustPageHeight: true, breaks: "encoded", footer: "none", pageWidth: 1750 });
+    frais.loadData(PATHETIQUE2_MESURES_1_8);
+    frais.renderToMIDI();
+    const svg: string = frais.renderToSVG(1);
+    const systemes = svg.split(/<g[^>]*class="system"[^>]*>/).slice(1);
+    const mesuresParSysteme = systemes.map((s) => [...s.matchAll(/<g[^>]*class="measure"[^>]*>/g)].length);
+    expect(mesuresParSysteme).toEqual([4, 4]);
+  });
 });
