@@ -2,10 +2,11 @@ import { describe, it, expect, beforeAll } from "vitest";
 import { parseMusicXML } from "@/lib/musicxml-parse";
 import { BWV846_MESURES_1_8 } from "./conservatoire-bwv846";
 
-// Vérifie l'extrait rejoué contre le MusicXML de référence (voir commentaire du
-// fichier de données) : 8 mesures, 3 voix (broken-chord RH, pédale ténor, basse),
-// et les hauteurs qui portent l'analyse harmonique citée (dont le fa# de la
-// mesure 6, seule altération de l'extrait).
+// Vérifie l'extrait rejoué contre le MusicXML VERBATIM fourni par Dany (export
+// MuseScore Studio 4.6.3, voir commentaire du fichier de données) : 8 mesures,
+// 3 voix (1 = main droite, 2 = pédale de ténor, 5 = basse), et les hauteurs qui
+// portent l'analyse harmonique citée (dont le fa# de la mesure 6, seule altération
+// de l'extrait).
 describe("BWV846_MESURES_1_8", () => {
   it("s'analyse sans erreur et couvre 8 mesures en do majeur, 4/4", () => {
     const score = parseMusicXML(BWV846_MESURES_1_8);
@@ -37,51 +38,59 @@ describe("BWV846_MESURES_1_8", () => {
     expect(altered.every((n) => n.measure === 6 && n.step === "F" && n.alter === 1)).toBe(true);
   });
 
-  it("basse : do4 tenu (m.1-2, 4-6), puis si3 (m.3, 7-8)", () => {
+  it("basse (voix 5) : do4 tenu (m.1-2, 4-6), puis si3 (m.3, 7-8)", () => {
     const score = parseMusicXML(BWV846_MESURES_1_8);
     const basseParMesure = (m: number) =>
-      score.notes.find((n) => n.measure === m && n.voice === "6");
+      score.notes.find((n) => n.measure === m && n.voice === "5");
     expect(basseParMesure(1)?.step).toBe("C");
+    expect(basseParMesure(2)?.step).toBe("C");
     expect(basseParMesure(3)?.step).toBe("B");
+    expect(basseParMesure(4)?.step).toBe("C");
+    expect(basseParMesure(6)?.step).toBe("C");
     expect(basseParMesure(7)?.step).toBe("B");
     expect(basseParMesure(8)?.step).toBe("B");
   });
 
   it("chaque mesure porte un symbole d'accord (<harmony>) correspondant à son analyse", () => {
-    const mesures = BWV846_MESURES_1_8.split(/<measure number="\d+">/).slice(1);
+    const mesures = BWV846_MESURES_1_8.split(/<measure number="\d+"[^>]*>/).slice(1);
     expect(mesures).toHaveLength(8);
     // Contenu du <harmony> écrit sur une seule ligne (pas de retour à la ligne) :
     // pas besoin du flag /s (dotAll), non supporté par la cible TS de ce projet.
     const attendus = [
-      /<root-step>C<\/root-step>.*kind text="">major/,
-      /<root-step>D<\/root-step>.*kind text="m7">minor-seventh.*bass-step>C/,
-      /<root-step>G<\/root-step>.*kind text="7">dominant.*bass-step>B/,
-      /<root-step>C<\/root-step>.*kind text="">major/,
-      /<root-step>A<\/root-step>.*kind text="m">minor.*bass-step>C/,
-      /<root-step>D<\/root-step>.*kind text="7">dominant.*bass-step>C/,
-      /<root-step>G<\/root-step>.*kind text="">major.*bass-step>B/,
-      /<root-step>C<\/root-step>.*kind text="maj7">major-seventh.*bass-step>B/,
+      /<root-step>C<\/root-step>[\s\S]*?<kind>major<\/kind>/,
+      /<root-step>D<\/root-step>[\s\S]*?kind text="m7">minor-seventh[\s\S]*?bass-step>C/,
+      /<root-step>G<\/root-step>[\s\S]*?kind text="7">dominant[\s\S]*?bass-step>B/,
+      /<root-step>C<\/root-step>[\s\S]*?<kind>major<\/kind>/,
+      /<root-step>A<\/root-step>[\s\S]*?kind text="m">minor[\s\S]*?bass-step>C/,
+      /<root-step>D<\/root-step>[\s\S]*?kind text="7">dominant[\s\S]*?bass-step>C/,
+      /<root-step>G<\/root-step>[\s\S]*?<kind>major<\/kind>[\s\S]*?bass-step>B/,
+      /<root-step>C<\/root-step>[\s\S]*?kind text="maj7">major-seventh[\s\S]*?bass-step>B/,
     ];
     mesures.forEach((m, i) => expect(m).toMatch(attendus[i]));
   });
 
-  it("chaque note écrite (hors silences) porte la couleur de fonction de sa mesure", () => {
-    const BLEU = "#1565C0", ORANGE = "#E65100", ROUGE = "#C62828";
-    const couleurAttendue: Record<number, string> = {
-      1: BLEU, 2: ORANGE, 3: BLEU, 4: BLEU, 5: BLEU, 6: ROUGE, 7: ROUGE, 8: BLEU,
-    };
-    const mesures = BWV846_MESURES_1_8.split(/<measure number="(\d+)">/).slice(1);
-    // split avec groupe capturant : [numero1, corps1, numero2, corps2, ...]
-    for (let i = 0; i < mesures.length; i += 2) {
-      const numero = Number(mesures[i]);
-      const corps = mesures[i + 1];
-      const notesEcrites = [...corps.matchAll(/<note\b[^>]*>[\s\S]*?<\/note>/g)]
-        .filter((m) => !/<rest\s*\/>/.test(m[0]));
-      expect(notesEcrites.length).toBeGreaterThan(0);
-      for (const n of notesEcrites) {
-        expect(n[0]).toContain(`color="${couleurAttendue[numero]}"`);
-      }
+  it("28 têtes de note colorées par fonction (13 bleu, 4 orange, 11 rouge) — pas uniforme", () => {
+    // Le fichier de Dany ne colore QUE certaines notes-repères (1re ou 2e note de
+    // chaque groupe de ligature à la main droite, note d'attaque du ténor, tête de
+    // la basse), pas l'intégralité de chaque mesure.
+    const bleu = [...BWV846_MESURES_1_8.matchAll(/notehead color="#0000FF"/g)];
+    const orange = [...BWV846_MESURES_1_8.matchAll(/notehead color="#FFAA00"/g)];
+    const rouge = [...BWV846_MESURES_1_8.matchAll(/notehead color="#FF0000"/g)];
+    expect(bleu).toHaveLength(13);
+    expect(orange).toHaveLength(4);
+    expect(rouge).toHaveLength(11);
+  });
+
+  it("chaque mesure porte son chiffrage romain + fonction en parole (<lyric>) sous la basse", () => {
+    const attendus = [
+      "I(T)", "II2(SD)", "V6/5(T)", "I(T)", "VI6(T)", "V2/V(DS)", "V6(D)",
+    ];
+    for (const texte of attendus) {
+      expect(BWV846_MESURES_1_8).toContain(`<text>${texte}</text>`);
     }
+    // Mesure 8 : le chiffrage "I 2(T)" (3e renversement d'un accord de 7e) est
+    // scindé en plusieurs <text> à cause d'un changement de police MuseScore.
+    expect(BWV846_MESURES_1_8).toContain('<text font-family="FreeSerif">2(T)</text>');
   });
 });
 
@@ -98,7 +107,7 @@ describe("BWV846_MESURES_1_8 — gravure Verovio (séquence réelle de StudioSco
   it("se grave sans erreur : 18 têtes de note par mesure (attaques NOTÉES, liaisons non fusionnées)", () => {
     tk.loadData(BWV846_MESURES_1_8);
     tk.renderToMIDI();
-    tk.setOptions({ scale: 40, adjustPageHeight: true, breaks: "auto", footer: "none", pageWidth: 2000 });
+    tk.setOptions({ scale: 40, adjustPageHeight: true, breaks: "auto", footer: "none", pageWidth: 3000 });
     const svg: string = tk.renderToSVG(1);
     const notes = [...svg.matchAll(/<g id="([^"]+)" class="note"/g)];
     // 8 mesures × (12 main droite + 4 attaques ténor + 2 basse) — la gravure dessine
@@ -106,19 +115,37 @@ describe("BWV846_MESURES_1_8 — gravure Verovio (séquence réelle de StudioSco
     expect(notes).toHaveLength(8 * 18);
   });
 
-  it("Verovio rend bien les couleurs par fonction et les symboles d'accords", () => {
+  it("respecte les groupes de ligature explicites de Dany (32 groupes = 4 par mesure)", () => {
     tk.loadData(BWV846_MESURES_1_8);
     tk.renderToMIDI();
-    tk.setOptions({ scale: 40, adjustPageHeight: true, breaks: "auto", footer: "none", pageWidth: 2000 });
+    tk.setOptions({ scale: 40, adjustPageHeight: true, breaks: "auto", footer: "none", pageWidth: 3000 });
     const svg: string = tk.renderToSVG(1);
-    // 18 attaques notées × 5 mesures bleues (1,3,4,5,8) = 90 ; × 1 mesure orange (2) = 18 ;
-    // × 2 mesures rouges (6,7) = 36.
-    expect([...svg.matchAll(/fill="#1565C0"/g)]).toHaveLength(5 * 18);
-    expect([...svg.matchAll(/fill="#E65100"/g)]).toHaveLength(1 * 18);
-    expect([...svg.matchAll(/fill="#C62828"/g)]).toHaveLength(2 * 18);
-    // Les 8 symboles d'accords apparaissent bien comme texte au-dessus de la portée.
+    // Chaque moitié de mesure grave 6 doubles-croches en DEUX groupes explicites
+    // (2 notes puis 4 notes, cf. les <beam> du fichier source) — pas une ligature
+    // continue de 6, ce que produisait le rendu automatique de Verovio auparavant.
+    const groupes = [...svg.matchAll(/class="beam"/g)];
+    expect(groupes).toHaveLength(8 * 4);
+  });
+
+  it("Verovio rend bien les couleurs par fonction (têtes de note)", () => {
+    tk.loadData(BWV846_MESURES_1_8);
+    tk.renderToMIDI();
+    tk.setOptions({ scale: 40, adjustPageHeight: true, breaks: "auto", footer: "none", pageWidth: 3000 });
+    const svg: string = tk.renderToSVG(1);
+    expect([...svg.matchAll(/fill="#0000FF"/gi)]).toHaveLength(13);
+    expect([...svg.matchAll(/fill="#FFAA00"/gi)]).toHaveLength(4);
+    expect([...svg.matchAll(/fill="#FF0000"/gi)]).toHaveLength(11);
+  });
+
+  it("Verovio rend les symboles d'accords et le chiffrage romain sous la basse", () => {
+    tk.loadData(BWV846_MESURES_1_8);
+    tk.renderToMIDI();
+    tk.setOptions({ scale: 40, adjustPageHeight: true, breaks: "auto", footer: "none", pageWidth: 3000 });
+    const svg: string = tk.renderToSVG(1);
     for (const symbole of ["C", "Dm7/C", "G7/B", "Am/C", "D7/C", "G/B", "Cmaj7/B"]) {
       expect(svg).toContain(`>${symbole}<`);
     }
+    expect(svg).toContain("V6/5(T)");
+    expect(svg).toContain("V2/V(DS)");
   });
 });
