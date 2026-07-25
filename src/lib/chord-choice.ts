@@ -131,6 +131,63 @@ const COUT_SON_REVENDIQUE = 1.3;
  */
 const COUT_QUINTE_OMISE = 0.4;
 
+/**
+ * BONUS DE L'ACCORD ARPÉGÉ — récompense la lecture qui explique tout le span, mais
+ * SEULEMENT quand cette complétude vient d'un vrai accord brisé, pas d'une broderie.
+ *
+ * Un bonus plat pour « zéro étrangère » est mathématiquement IMPOSSIBLE : il existe
+ * déjà un cas calibré (le La5 de passage entre Sol5 et Si5, dans
+ * `chord-choice.test.ts`) où revendiquer TOUS les sons donne trivialement un Lam7
+ * complet — et où le test exige que Do majeur gagne quand même. Le calcul montre que
+ * la marge y est de 0,65, rigoureusement la MÊME marge que sur la basse murky de la
+ * Symphonie 40 (mesure 5) qu'il s'agit de corriger : les deux cas sont algébriquement
+ * identiques (même poids de note abandonnée, même légitimité d'abandon). Aucun bonus
+ * plat ne peut faire gagner l'un sans faire gagner l'autre.
+ *
+ * La différence est dans la TEXTURE, pas dans le coût : le La5 est une voix qui
+ * MARCHE (Sol-La-Si, chaque hauteur une seule fois, elle continue son chemin) pendant
+ * qu'un accord de Do complet tient déjà dans les trois autres voix. La basse murky de
+ * Mozart, elle, ne tient RIEN en dessous : c'est une seule voix qui OSCILLE entre les
+ * sons de l'accord (Sol-Mib-Sol-La — le Sol revient) sans qu'aucune autre voix ne
+ * porte déjà un accord complet. `estAccordBrise` distingue les deux : une voix unique,
+ * MOBILE (plusieurs sons distincts), qui RÉPÈTE au moins un de ses sons dans le span —
+ * la signature d'un accord brisé, jamais d'une ligne qui passe.
+ */
+const BONUS_ACCORD_BRISE = 1.0;
+
+/**
+ * Vrai si les sons REVENDIQUÉS par la lecture proviennent d'un accord brisé : une
+ * seule voix mobile (plusieurs attaques, plusieurs hauteurs distinctes) qui répète
+ * au moins un de ses sons dans le span — toutes les autres voix étant tenues (une
+ * seule attaque chacune, ou plusieurs attaques de la MÊME hauteur).
+ *
+ * Une voix qui marche (chaque hauteur une seule fois, comme une gamme ou un passage)
+ * n'est PAS un accord brisé : c'est cette distinction, et elle seule, qui écarte le
+ * cas du La5 de passage (cf. `BONUS_ACCORD_BRISE`).
+ */
+function estAccordBrise(span: Span, sons: Set<number>): boolean {
+  const parVoix = new Map<string, ParsedNote[]>();
+  for (const note of span.notes) {
+    if (!sons.has(note.pc)) continue;
+    const cle = `${note.part}|${note.voice}`;
+    const notesVoix = parVoix.get(cle);
+    if (notesVoix) notesVoix.push(note);
+    else parVoix.set(cle, [note]);
+  }
+
+  let voixMobile: ParsedNote[] | null = null;
+  for (const notesVoix of parVoix.values()) {
+    const pcsDistincts = new Set(notesVoix.map((n) => n.pc)).size;
+    if (notesVoix.length === 1 || pcsDistincts === 1) continue; // voix tenue
+    if (voixMobile !== null) return false; // deux voix bougent : pas un simple arpège
+    voixMobile = notesVoix;
+  }
+  if (voixMobile === null) return false;
+
+  const pcsVoixMobile = voixMobile.map((n) => n.pc);
+  return new Set(pcsVoixMobile).size < pcsVoixMobile.length;
+}
+
 // ── Le calcul ─────────────────────────────────────────────────────────────────
 
 /**
@@ -242,6 +299,9 @@ export function choisirAccord(
     gain -= sons.size * COUT_SON_REVENDIQUE;
     if (lecture.pcs.length < (TAILLE_ACCORD[lecture.quality] ?? lecture.pcs.length)) {
       gain -= COUT_QUINTE_OMISE;
+    }
+    if (etrangeres.length === 0 && estAccordBrise(span, sons)) {
+      gain += BONUS_ACCORD_BRISE;
     }
 
     // La BASSE de l'accord est le plus grave de SES sons — pas la note la plus grave
