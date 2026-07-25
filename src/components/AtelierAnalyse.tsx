@@ -70,7 +70,7 @@ export default function AtelierAnalyse({ analyse }: { analyse: AnalysisResult | 
                       <span style={{ fontSize: 11, color: "#999", fontWeight: 400 }}>/{a.bassFr}</span>
                     )}
                   </strong>
-                  <span style={pastille("#F0EBF8", "#5C3D6E")}>{a.degree}</span>
+                  <span style={pastille("#F0EBF8", "#5C3D6E")}>{a.degreeAffichable ?? a.degree}</span>
                   {a.fonction !== "?" ? (
                     <span style={pastille(FONC_STYLE[a.fonction].bg, FONC_STYLE[a.fonction].color)}>
                       {FONC_STYLE[a.fonction].label}

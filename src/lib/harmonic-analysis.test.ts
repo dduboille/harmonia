@@ -1151,3 +1151,51 @@ describe("noteFrContextuel — orthographe pilotée par l'armure, sauf la sensib
     expect(r.degree).toBe("VI");
   });
 });
+
+describe("degreeAffichable — chiffrage institutionnel (+7, +6/5) réservé à l'affichage", () => {
+  it("V7 à l'état fondamental (Do majeur) : degree='V7', degreeAffichable='V+7'", () => {
+    const r = an([7, 11, 2, 5], PC.Do, "major"); // Sol-Si-Ré-Fa
+    expect(r.degree).toBe("V7");
+    expect(r.degreeAffichable).toBe("V+7");
+  });
+
+  it("V6/5 (1er renversement, sensible à la basse) : degree='V6/5', degreeAffichable='V+6/5'", () => {
+    // Sol-Si-Ré-Fa, basse Si (sensible) — 1er renversement de V7.
+    const chord = identifyChordFromNotes([7, 11, 2, 5], 11)!;
+    const r = analyzeChord(chord, PC.Do, "major");
+    expect(r.bassPc).toBe(11);
+    expect(r.degree).toBe("V6/5");
+    expect(r.degreeAffichable).toBe("V+6/5");
+  });
+
+  it("vii°7 à l'état fondamental (la mineur harmonique) : degreeAffichable='vii°+7'", () => {
+    // Sol#-Si-Ré-Fa en la mineur harmonique : 7e diminuée sur la sensible.
+    const r = an([8, 11, 2, 5], PC.La, "minor");
+    expect(r.degree).toBe("vii°7");
+    expect(r.degreeAffichable).toBe("vii°+7");
+  });
+
+  it("ii7 (Do majeur, pas de sensible) : degreeAffichable ABSENT (identique à degree)", () => {
+    const r = an([2, 5, 9, 0], PC.Do, "major"); // Ré-Fa-La-Do
+    expect(r.degree).toBe("ii7");
+    expect(r.degreeAffichable).toBeUndefined();
+  });
+
+  it("une triade (I, Do majeur) : degreeAffichable ABSENT — jamais de + sur une triade", () => {
+    const r = an([0, 4, 7], PC.Do, "major");
+    expect(r.degree).toBe("I");
+    expect(r.degreeAffichable).toBeUndefined();
+  });
+
+  it("2e/3e renversements de V7 : degree DÉJÀ correct (+6/+4) — degreeAffichable ABSENT", () => {
+    // `figureOf` marque déjà le + au 2e et 3e renversement (inchangé par ce
+    // correctif) : rien de plus à afficher, degreeAffichable reste absent.
+    const r2 = analyzeChord(identifyChordFromNotes([7, 11, 2, 5], 2)!, PC.Do, "major");
+    expect(r2.degree).toBe("V+6"); // Ré à la basse, sensible (Si) à la 6te
+    expect(r2.degreeAffichable).toBeUndefined();
+
+    const r3 = analyzeChord(identifyChordFromNotes([7, 11, 2, 5], 5)!, PC.Do, "major");
+    expect(r3.degree).toBe("V+4"); // Fa à la basse (7e), sensible (Si) à la 4te
+    expect(r3.degreeAffichable).toBeUndefined();
+  });
+});

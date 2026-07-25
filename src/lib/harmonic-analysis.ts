@@ -51,6 +51,18 @@ export interface ChordResult {
    */
   bassFr?: string;
   degree: string;
+  /**
+   * Variante AFFICHABLE de `degree`, avec le « + » institutionnel devant la
+   * sensible (V+7, V+6/5…) — cf. `chiffrageAvecSensible`. Absente (`undefined`)
+   * quand elle serait identique à `degree` (triades, accords sans sensible).
+   *
+   * JAMAIS `degree` lui-même : ce champ sert d'IDENTIFIANT partout ailleurs dans
+   * le code (`palette-fonctionnelle.ts` : `id: r.degree`, résolution par nom
+   * d'accord, recherche par degré dans les squelettes) — le faire varier casserait
+   * ces recherches en silence. Seuls les composants d'AFFICHAGE (AnalysePartition,
+   * StudioAnalyse, AtelierAnalyse) doivent lire `degreeAffichable ?? degree`.
+   */
+  degreeAffichable?: string;
   degreeNum: number;
   fonction: Fonction;
   categorie: Categorie;
@@ -635,6 +647,11 @@ export function figureOf(
 
   const sens = intervalleSensible(rootPc, quality, inversion, tonicPc);
   switch (inversion) {
+    // État fondamental et 1er renversement : PAS de "+" ici, volontairement — cf.
+    // `figureAvecSensible` pour la variante institutionnelle complète. `figureOf`
+    // alimente `ChordResult.degree`, utilisé comme IDENTIFIANT ailleurs (palette,
+    // résolution par nom d'accord : "V7", "V6/5") ; le faire varier casserait ces
+    // recherches en silence.
     case 0: return "7";
     case 1: return sens === 6 ? "+6/5" : "6/5";
     case 2: return sens === 6 ? "+6" : sens === 4 ? "+4" : "4/3";
@@ -657,6 +674,41 @@ function romanOfDegree(
   const roman = ROMANS[deg - 1];
   return (isMinorish(quality) ? roman.toLowerCase() : roman) +
     chiffrage(rootPc, quality, inversion, tonicPc);
+}
+
+/**
+ * Variante D'AFFICHAGE de `figureOf`, avec le « + » institutionnel aussi à
+ * l'ÉTAT FONDAMENTAL et au 1er RENVERSEMENT (`figureOf` les omet volontairement,
+ * cf. son commentaire) :
+ *  - état fondamental : "+7" dès que la sensible est présente (elle y est
+ *    toujours soit la tierce — V7 —, soit la fondamentale — vii°7/viiø7) ;
+ *  - 1er renversement : "+6/5" aussi bien quand la sensible EST la basse
+ *    (V6/5, cas le plus fréquent — aucun chiffre propre à marquer, puisque
+ *    « la basse elle-même » ne s'écrit pas) que lorsqu'elle se trouve à la
+ *    6te au-dessus (viiø7/vii°7 renversés).
+ * Les 2e et 3e renversements sont déjà corrects dans `figureOf` : inchangés ici.
+ */
+function figureAvecSensible(
+  rootPc: number, quality: string, inversion: number, tonicPc: number,
+): string {
+  if (!SEVENTHS.has(quality)) return FIGURES_TRIADE[inversion] ?? "";
+  const sens = intervalleSensible(rootPc, quality, inversion, tonicPc);
+  if (inversion === 0) return sens !== null ? "+7" : "7";
+  if (inversion === 1) return sens === 1 || sens === 6 ? "+6/5" : "6/5";
+  return figureOf(rootPc, quality, inversion, tonicPc);
+}
+
+/**
+ * Variante D'AFFICHAGE de `romanOfDegree` (cf. `figureAvecSensible`). N'alimente
+ * JAMAIS `ChordResult.degree` — seulement `degreeAffichable`, réservé aux
+ * composants d'affichage (AnalysePartition, StudioAnalyse, AtelierAnalyse).
+ */
+function romanAvecSensible(
+  deg: number, rootPc: number, quality: string, inversion: number, tonicPc: number,
+): string {
+  const roman = ROMANS[deg - 1];
+  return (isMinorish(quality) ? roman.toLowerCase() : roman) +
+    (QUALITY_MARK[quality] ?? quality) + figureAvecSensible(rootPc, quality, inversion, tonicPc);
 }
 
 /**
@@ -842,9 +894,12 @@ export function analyzeChord(
   const deg = degreeOfRoot(rootPc, tonicPc, mode);
 
   if (toutesDiatoniques && deg !== null) {
+    const degree = romanOfDegree(deg, rootPc, chord.quality, inv, tonicPc);
+    const degreeAffichable = romanAvecSensible(deg, rootPc, chord.quality, inv, tonicPc);
     return {
       ...base,
-      degree: romanOfDegree(deg, rootPc, chord.quality, inv, tonicPc),
+      degree,
+      degreeAffichable: degreeAffichable !== degree ? degreeAffichable : undefined,
       degreeNum: deg,
       fonction: fonctionOfDegree(deg, rootPc, tonicPc, mode),
       categorie: "diatonique",

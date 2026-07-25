@@ -156,7 +156,7 @@ export default function StudioAnalyse({
                       padding: "1px 8px", borderRadius: 10,
                       fontSize: 11, fontWeight: 700,
                     }}>
-                      {a.degree}
+                      {a.degreeAffichable ?? a.degree}
                     </span>
 
                     {/* Fonction tonale (T / SD / D), ou « chr » hors fonction. */}

@@ -30,6 +30,10 @@ interface ChordResult {
   /** Nom français de la basse réelle, orthographe comprise ("Lab", pas "Sol#"). */
   bassFr?: string;
   degree: string;
+  /** Variante affichable de `degree`, avec le "+" institutionnel — cf. le même
+   *  champ dans `@/lib/harmonic-analysis` (source de vérité, ce fichier n'en est
+   *  qu'un miroir pour typer la réponse JSON de l'API). */
+  degreeAffichable?: string;
   degreeNum: number;
   fonction: Fonction;
   categorie: Categorie;
@@ -547,7 +551,9 @@ export default function AnalysePartition() {
                             padding: "2px 10px", borderRadius: 12,
                             fontSize: 12, fontWeight: 700,
                           }}>
-                            {relu ? relu.degree : chord.degree}
+                            {/* `relu` (DegreRelu, plan tonal) n'a pas de variante
+                                d'affichage — seul `chord` (ChordResult) en a une. */}
+                            {relu ? relu.degree : (chord.degreeAffichable ?? chord.degree)}
                           </span>
                         )}
                       </td>
