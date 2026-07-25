@@ -90,11 +90,15 @@ interface InversionRow {
   color: string;
 }
 
+// Chiffrage NU (sans sensible) : c'est celui des 7èmes d'espèces construites sur
+// I, II, III, IV et VI — le sujet de cette leçon. Le « + » institutionnel (+7,
+// +6/5, +6/+4, +2) ne s'écrit QUE sur les accords qui contiennent la sensible du
+// ton — le V7 et le VIIe degré (viiø7/vii°7) — cf. le rappel sous le tableau.
 const INVERSIONS: InversionRow[] = [
   { etat: "État fondamental", basse: "Fondamentale", chiffrage: "7", color: "#0F6E56" },
   { etat: "1er renversement", basse: "Tierce", chiffrage: "6/5", color: "#185FA5" },
   { etat: "2e renversement", basse: "Quinte", chiffrage: "4/3", color: "#BA7517" },
-  { etat: "3e renversement", basse: "7e (dissonance)", chiffrage: "+2 / 2", color: "#993C1D" },
+  { etat: "3e renversement", basse: "7e (dissonance)", chiffrage: "2", color: "#993C1D" },
 ];
 
 // ── Quiz ──────────────────────────────────────────────────────────────────────
@@ -210,7 +214,7 @@ export default function Cours39() {
       {activeSection === "degres" && (
         <div>
           <h2 style={S.h2}>{n("degSectionTitle")}</h2>
-          <p style={S.p}>{n("degIntro")}</p>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("degIntro") }} />
 
           <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("degInfoBox") }} />
 
@@ -283,11 +287,11 @@ export default function Cours39() {
       {activeSection === "ecriture" && (
         <div>
           <h2 style={S.h2}>{n("ecrSectionTitle")}</h2>
-          <p style={S.p}>{n("ecrIntro")}</p>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("ecrIntro") }} />
 
           {/* Préparation / résolution */}
           <h3 style={S.h3}>{n("ecrPrepTitle")}</h3>
-          <p style={S.p}>{n("ecrPrepText")}</p>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("ecrPrepText") }} />
           <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("ecrResolBox") }} />
 
           <button
@@ -303,7 +307,7 @@ export default function Cours39() {
 
           {/* Renversements */}
           <h3 style={S.h3}>{n("ecrInvTitle")}</h3>
-          <p style={S.p}>{n("ecrInvText")}</p>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("ecrInvText") }} />
 
           <div style={{ overflowX: "auto", marginBottom: 16 }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
@@ -330,9 +334,11 @@ export default function Cours39() {
             </table>
           </div>
 
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("ecrSensibleNote") }} />
+
           {/* Marche de 7èmes */}
           <h3 style={S.h3}>{n("ecrMarcheTitle")}</h3>
-          <p style={S.p}>{n("ecrMarcheText")}</p>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("ecrMarcheText") }} />
           <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("ecrMarcheBox") }} />
 
           <button

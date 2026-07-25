@@ -710,22 +710,26 @@ export default function Cours2() {
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
               <thead>
                 <tr style={{ borderBottom: "0.5px solid #e5e5e5" }}>
-                  {[n("renversementsTableName"), n("renversementsTableBass"), n("renversementsTableNotes"), n("renversementsTableNotation")].map(h => (
+                  {[n("renversementsTableName"), n("renversementsTableBass"), n("renversementsTableNotes"), n("renversementsTableNotation"), n("renversementsTableChiffrage")].map(h => (
                     <th key={h} style={{ textAlign: "left", padding: "6px 10px", fontWeight: 500, color: "#666" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { name: n("renversementsRow0Name"), bass: n("renversementsRow0Bass"), notes:"C–E–G", notation:"C" },
-                  { name: n("renversementsRow1Name"), bass: n("renversementsRow1Bass"), notes:"E–G–C", notation:"C/E" },
-                  { name: n("renversementsRow2Name"), bass: n("renversementsRow2Bass"), notes:"G–C–E", notation:"C/G" },
+                  // Chiffrage FRANÇAIS d'une triade : "" (ou 5/3) à l'état fondamental,
+                  // "6" au 1er renversement, "6/4" au 2e — jamais de "+" sur une triade
+                  // (réservé aux septièmes qui portent la sensible, cf. cours 39/42).
+                  { name: n("renversementsRow0Name"), bass: n("renversementsRow0Bass"), notes:"C–E–G", notation:"C", chiffrage:"(rien) · 5/3" },
+                  { name: n("renversementsRow1Name"), bass: n("renversementsRow1Bass"), notes:"E–G–C", notation:"C/E", chiffrage:"6" },
+                  { name: n("renversementsRow2Name"), bass: n("renversementsRow2Bass"), notes:"G–C–E", notation:"C/G", chiffrage:"6/4" },
                 ].map((row, i) => (
                   <tr key={row.name} style={{ borderBottom: "0.5px solid #f0f0f0", background: i%2===0?"#fff":"#fafafa" }}>
                     <td style={{ padding: "7px 10px", fontWeight: 500 }}>{row.name}</td>
                     <td style={{ padding: "7px 10px", color: "#666" }}>{row.bass}</td>
                     <td style={{ padding: "7px 10px", color: "#555" }}>{row.notes}</td>
                     <td style={{ padding: "7px 10px", fontWeight: 600, color: "#185FA5" }}>{row.notation}</td>
+                    <td style={{ padding: "7px 10px", fontWeight: 600, color: "#BA7517", fontFamily: "monospace" }}>{row.chiffrage}</td>
                   </tr>
                 ))}
               </tbody>

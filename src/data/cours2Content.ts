@@ -66,6 +66,12 @@ const questionsFr: Question[] = [
   { q:"Comment note-t-on le 1er renversement de C major ?", opts:["C","C/E","C/G","Cm"], a:1, fb:"C/E = C major avec E (la tierce) à la basse." },
   { q:"Pourquoi utilise-t-on des renversements ?", opts:["Pour changer la couleur","Pour fluidifier la basse","Pour varier la texture","Toutes ces raisons"], a:3, fb:"Les renversements servent à fluidifier la ligne de basse, varier la couleur et l'équilibre." },
   { q:"Quel est le 1er renversement de Am ?", opts:["Am/E","Am/C","Am/A","Am/G"], a:1, fb:"Am = A–C–E. 1er renversement = tierce à la basse = C. Notation : Am/C." },
+  // Chiffrage français des triades
+  { q:"En chiffrage français, l'état fondamental d'une triade se note :", opts:["6","6/4","(rien) ou 5/3","7"], a:2, fb:"L'état fondamental d'une triade se chiffre « rien » (ou 5/3, souvent sous-entendu) : la tierce et la quinte sont comptées depuis la basse, qui est la fondamentale." },
+  { q:"En chiffrage français, le 1er renversement d'une triade (tierce à la basse) se note :", opts:["6","6/4","(rien)","7"], a:0, fb:"« 6 » = une sixte et une tierce au-dessus de la basse : c'est le 1er renversement, la tierce de l'accord étant à la basse." },
+  { q:"En chiffrage français, le 2e renversement d'une triade (quinte à la basse) se note :", opts:["6","6/4","5/3","7"], a:1, fb:"« 6/4 » = une sixte et une quarte au-dessus de la basse : c'est le 2e renversement, la quinte de l'accord étant à la basse." },
+  { q:"C/E (notation anglaise) correspond, en chiffrage français, à :", opts:["(rien) ou 5/3","6","6/4","7"], a:1, fb:"C/E = do majeur avec mi (la tierce) à la basse = 1er renversement = chiffré 6." },
+  { q:"G/D (notation anglaise) correspond, en chiffrage français, à :", opts:["6","6/4","5/3","7"], a:1, fb:"G/D = sol majeur avec ré (la quinte) à la basse = 2e renversement = chiffré 6/4." },
   // Reconnaissance
   { q:"Quel accord produit le IVe degré de G majeur ?", opts:["C major","Dm","Em","Bdim"], a:0, fb:"G(I) A(II) B(III) C(IV). Le IVe degré de G majeur est C major." },
   { q:"Quel accord produit le Ve degré de G majeur ?", opts:["C major","D major","Em","Am"], a:1, fb:"G(I) A(II) B(III) C(IV) D(V). La dominante de G majeur est D major." },
