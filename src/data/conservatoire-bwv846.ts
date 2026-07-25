@@ -14,18 +14,20 @@ import type { Fonction } from "@/app/api/analyse-partition/route";
  * mesure 7 : la sensible reste tenue au grave pendant que l'harmonie glisse de la
  * dominante vers une tonique enrichie).
  *
- * Présentation calée sur la maquette fournie par Dany (chiffrage + fonction sous
- * chaque mesure, symboles d'accords au-dessus, notes colorées par fonction
- * tonale) : chaque note porte un attribut MusicXML `color` (rendu par Verovio
- * comme couleur de tête de note), et chaque mesure porte un `<harmony>` (rendu
- * comme symbole d'accord au-dessus de la portée — vérifié directement sur
+ * Présentation calée EXACTEMENT sur la maquette fournie par Dany (chiffrage +
+ * fonction sous chaque mesure, symboles d'accords au-dessus, notes colorées par
+ * fonction tonale) : chaque note porte un attribut MusicXML `color` (rendu par
+ * Verovio comme couleur de tête de note), et chaque mesure porte un `<harmony>`
+ * (rendu comme symbole d'accord au-dessus de la portée — vérifié directement sur
  * Verovio avant d'écrire tout le fichier). Couleurs PAR FONCTION, PAS les mêmes
  * que les badges T/SD/D de StudioAnalyse (vert/bleu/rouge) : ici bleu=tonique,
  * orange=sous-dominante, rouge=dominante, choix explicite de Dany pour cette
- * vue « partition annotée ». Fonction de la mesure 3 (V6/5) mise en ROUGE
- * (dominante), pas la couleur tonique que montrait la maquette source pour cette
- * mesure précise — un 7e de dominante est fonctionnellement une dominante par
- * définition ; à corriger dans l'autre sens si ce n'était pas une coquille.
+ * vue « partition annotée ».
+ *
+ * Mesure 3 (V6/5) en TONIQUE (bleu), comme la maquette — pas dominante malgré la
+ * 7e de dominante : lecture par prolongation (la basse Si est un passage entre le
+ * Do de la mesure 1 et celui de la mesure 4, la tonique reste l'harmonie
+ * structurelle sous-jacente). Choix délibéré de Dany, gardé tel quel.
  */
 const BLEU_TONIQUE = "#1565C0";
 const ORANGE_SOUS_DOMINANTE = "#E65100";
@@ -35,7 +37,7 @@ const ROUGE_DOMINANTE = "#C62828";
 const COULEUR_MESURE: Record<number, string> = {
   1: BLEU_TONIQUE,
   2: ORANGE_SOUS_DOMINANTE,
-  3: ROUGE_DOMINANTE,
+  3: BLEU_TONIQUE,
   4: BLEU_TONIQUE,
   5: BLEU_TONIQUE,
   6: ROUGE_DOMINANTE,
@@ -306,7 +308,7 @@ export interface MesureAnalyse {
 export const BWV846_ANALYSE: MesureAnalyse[] = [
   { numero: 1, nom: "Do",     degre: "I",    fonction: "T" },
   { numero: 2, nom: "Rém7",   degre: "ii2",  fonction: "SD" },
-  { numero: 3, nom: "Sol7",   degre: "V6/5", fonction: "D" },
+  { numero: 3, nom: "Sol7",   degre: "V6/5", fonction: "T" },
   { numero: 4, nom: "Do",     degre: "I",    fonction: "T" },
   { numero: 5, nom: "Lam",    degre: "vi6",  fonction: "T" },
   { numero: 6, nom: "Ré7",    degre: "V2/V", fonction: "D", dominanteSecondaire: true },

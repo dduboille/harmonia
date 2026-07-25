@@ -68,7 +68,7 @@ describe("BWV846_MESURES_1_8", () => {
   it("chaque note écrite (hors silences) porte la couleur de fonction de sa mesure", () => {
     const BLEU = "#1565C0", ORANGE = "#E65100", ROUGE = "#C62828";
     const couleurAttendue: Record<number, string> = {
-      1: BLEU, 2: ORANGE, 3: ROUGE, 4: BLEU, 5: BLEU, 6: ROUGE, 7: ROUGE, 8: BLEU,
+      1: BLEU, 2: ORANGE, 3: BLEU, 4: BLEU, 5: BLEU, 6: ROUGE, 7: ROUGE, 8: BLEU,
     };
     const mesures = BWV846_MESURES_1_8.split(/<measure number="(\d+)">/).slice(1);
     // split avec groupe capturant : [numero1, corps1, numero2, corps2, ...]
@@ -111,11 +111,11 @@ describe("BWV846_MESURES_1_8 — gravure Verovio (séquence réelle de StudioSco
     tk.renderToMIDI();
     tk.setOptions({ scale: 40, adjustPageHeight: true, breaks: "auto", footer: "none", pageWidth: 2000 });
     const svg: string = tk.renderToSVG(1);
-    // 18 attaques notées × 4 mesures bleues (1,4,5,8) = 72 ; × 1 mesure orange (2) = 18 ;
-    // × 3 mesures rouges (3,6,7) = 54.
-    expect([...svg.matchAll(/fill="#1565C0"/g)]).toHaveLength(4 * 18);
+    // 18 attaques notées × 5 mesures bleues (1,3,4,5,8) = 90 ; × 1 mesure orange (2) = 18 ;
+    // × 2 mesures rouges (6,7) = 36.
+    expect([...svg.matchAll(/fill="#1565C0"/g)]).toHaveLength(5 * 18);
     expect([...svg.matchAll(/fill="#E65100"/g)]).toHaveLength(1 * 18);
-    expect([...svg.matchAll(/fill="#C62828"/g)]).toHaveLength(3 * 18);
+    expect([...svg.matchAll(/fill="#C62828"/g)]).toHaveLength(2 * 18);
     // Les 8 symboles d'accords apparaissent bien comme texte au-dessus de la portée.
     for (const symbole of ["C", "Dm7/C", "G7/B", "Am/C", "D7/C", "G/B", "Cmaj7/B"]) {
       expect(svg).toContain(`>${symbole}<`);
