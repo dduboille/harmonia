@@ -13,6 +13,7 @@ import {
   identifyChordFromNotes,
   pcOfDegree,
   NOTE_FR,
+  NOTE_FR_BEMOL,
   type Fonction,
   type Categorie,
 } from "./harmonic-analysis";
@@ -86,12 +87,6 @@ function candidatsChromatiques(tonicPc: number, mode: "major" | "minor"): Candid
   }
   return out;
 }
-
-/** Noms français en BÉMOLS — pour les degrés abaissés (bVI, bII, bIII, bVII). */
-const NOTE_FR_BEMOL: Record<number, string> = {
-  0: "Do", 1: "Réb", 2: "Ré", 3: "Mib", 4: "Mi", 5: "Fa",
-  6: "Solb", 7: "Sol", 8: "Lab", 9: "La", 10: "Sib", 11: "Si",
-};
 
 /**
  * Nom français d'un accord de palette, ORTHOGRAPHE COMPRISE.

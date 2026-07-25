@@ -9,6 +9,7 @@ import {
   analyzeChord,
   annotateResolutions,
   buildChromaEvents,
+  noteFrContextuel,
   PC,
   type SpelledNote,
 } from "./harmonic-analysis";
@@ -1118,5 +1119,35 @@ describe("lecturesAccord — toutes les lectures, pas la meilleure", () => {
 
   it("une quinte à vide n'a aucune lecture", () => {
     expect(lecturesAccord([0, 7])).toHaveLength(0);
+  });
+});
+
+describe("noteFrContextuel — orthographe pilotée par l'armure, sauf la sensible haussée", () => {
+  it("Sol mineur (armure 2♭) : le VI (Mib) s'écrit en bémol, pas 'Ré#'", () => {
+    // Bug réel trouvé sur la Symphonie n°40 de Mozart : l'accord VI (Mib-Sol-Sib)
+    // s'affichait "Ré#" faute de contexte tonal dans le nom de l'accord.
+    expect(noteFrContextuel(3, PC.Sol, "minor")).toBe("Mib");
+  });
+
+  it("Sol mineur : la sensible haussée (Fa#, vii°) reste en dièse, jamais 'Solb'", () => {
+    // La sensible du mineur harmonique est une note CHROMATIQUE (7e haussée), pas
+    // un degré « de l'armure » — une bémolisation aveugle l'écrirait à tort Solb.
+    expect(noteFrContextuel(6, PC.Sol, "minor")).toBe("Fa#");
+  });
+
+  it("Do majeur (armure neutre) : reste en dièses, comme avant ce correctif", () => {
+    expect(noteFrContextuel(1, PC.Do, "major")).toBe("Do#");
+    expect(noteFrContextuel(3, PC.Do, "major")).toBe("Ré#");
+  });
+
+  it("Ré majeur (armure diésée) : reste en dièses", () => {
+    expect(noteFrContextuel(1, PC.Ré, "major")).toBe("Do#");
+  });
+
+  it("analyzeChord : l'accord VI de Sol mineur porte 'Mib', pas 'Ré#'", () => {
+    // Reproduit exactement le cas signalé : accord Mib-Sol-Sib en Sol mineur.
+    const r = an([3, 7, 10], PC.Sol, "minor");
+    expect(r.rootFr).toBe("Mib");
+    expect(r.degree).toBe("VI");
   });
 });

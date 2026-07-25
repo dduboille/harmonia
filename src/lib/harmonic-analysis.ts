@@ -66,8 +66,61 @@ export const NOTE_FR: Record<number, string> = {
   5: "Fa", 6: "Fa#", 7: "Sol", 8: "Sol#", 9: "La", 10: "La#", 11: "Si",
 };
 
+/** Même table, en BÉMOLS — pour les tonalités dont l'armure est bémolisée. */
+export const NOTE_FR_BEMOL: Record<number, string> = {
+  0: "Do", 1: "Réb", 2: "Ré", 3: "Mib", 4: "Mi", 5: "Fa",
+  6: "Solb", 7: "Sol", 8: "Lab", 9: "La", 10: "Sib", 11: "Si",
+};
+
 /** Raccourci lisible pour les tests. */
 export const PC = { Do: 0, Ré: 2, Mi: 4, Fa: 5, Sol: 7, La: 9, Si: 11 } as const;
+
+/** Tonique MAJEURE (pitch class) de chaque armure — cycle des quintes depuis Do. */
+const FIFTHS_PC_MAJEUR = new Map<number, number>([
+  [0, 0], [1, 7], [2, 2], [3, 9], [4, 4], [5, 11], [6, 6], [7, 1],
+  [-1, 5], [-2, 10], [-3, 3], [-4, 8], [-5, 1], [-6, 6], [-7, 11],
+]);
+
+/**
+ * Armure CONVENTIONNELLE d'une tonique + mode — sert UNIQUEMENT à choisir entre
+ * dièses et bémols pour l'orthographe (`noteFrContextuel`), jamais à identifier la
+ * tonalité elle-même (déjà connue via `tonicPc`/`mode`, cf. `analyse-resultat.ts`).
+ * Un mineur emprunte l'armure de son relatif majeur (+9 demi-tons) : Sol mineur
+ * partage l'armure 2♭ de Si♭ majeur, et doit donc s'écrire en bémols lui aussi.
+ */
+function armureConventionnelle(tonicPc: number, mode: "major" | "minor"): number {
+  for (const [fifths, majPc] of FIFTHS_PC_MAJEUR) {
+    const pc = mode === "minor" ? (majPc + 9) % 12 : majPc;
+    if (pc === tonicPc) return fifths;
+  }
+  return 0;
+}
+
+/**
+ * Nom français d'une hauteur, ORTHOGRAPHE SELON LA TONALITÉ : bémols dans une
+ * armure bémolisée, dièses sinon. `NOTE_FR` seul ne le permettait pas — toujours
+ * en dièses, il rendait "Ré#" là où une pièce en Sol mineur (2♭) écrit "Mib" :
+ * bug réel trouvé sur la Symphonie n°40 de Mozart (accord VI, Mib-Sol-Sib, affiché
+ * "Ré#m" faute de contexte). Même principe que `NOTE_FR_BEMOL` de
+ * `palette-fonctionnelle.ts`, généralisé à toute hauteur (pas seulement les degrés
+ * empruntés) et piloté par l'armure plutôt que par le préfixe du chiffre romain.
+ *
+ * EXCEPTION nécessaire : la sensible haussée du mineur (7e degré élevé d'un demi-
+ * ton, PAS la 7e naturelle) reste en dièse même dans une armure bémolisée — c'est
+ * une note CHROMATIQUE (haussée), pas un degré de l'armure. `diatonicSet` la
+ * compte pourtant comme diatonique (à raison : côté ANALYSE, elle ne doit pas être
+ * traitée en emprunt) — mais côté ORTHOGRAPHE, une bémolisation aveugle l'aurait
+ * écrite "Solb" au lieu de "Fa#" pour la sensible de Sol mineur : constaté et
+ * corrigé en vérifiant le même extrait de Mozart (vii°, Fa#-La-Do#).
+ */
+export function noteFrContextuel(pc: number, tonicPc: number, mode: "major" | "minor"): string {
+  const intervalle = (pc - tonicPc + 12) % 12;
+  const sensibleHaussee = mode === "minor" && intervalle === 11;
+  const bemols = !sensibleHaussee &&
+    armureConventionnelle(tonicPc, mode) < 0 &&
+    diatonicSet(tonicPc, mode).has(pc);
+  return (bemols ? NOTE_FR_BEMOL : NOTE_FR)[pc] ?? "?";
+}
 
 export const CHORD_PATTERNS: Array<{ quality: string; intervals: number[] }> = [
   { quality: "Maj7", intervals: [0, 4, 7, 11] },
@@ -772,11 +825,11 @@ export function analyzeChord(
 
   const base = {
     rootPc,
-    rootFr: NOTE_FR[rootPc] ?? chord.rootFr,
+    rootFr: noteFrContextuel(rootPc, tonicPc, mode) ?? chord.rootFr,
     quality: chord.quality,
     pcs: chord.pcs,
     bassPc: chord.bassPc,
-    bassFr: chord.bassPc === undefined ? undefined : NOTE_FR[chord.bassPc],
+    bassFr: chord.bassPc === undefined ? undefined : noteFrContextuel(chord.bassPc, tonicPc, mode),
   };
 
   // ── Règle 1 : diatonique = TOUTES les notes dans la gamme ──
@@ -1105,7 +1158,7 @@ export function buildChromaEvents(
     let explication: string;
     if (c.categorie === "dominante_secondaire" || c.categorie === "sensible_degre") {
       const targetPc = c.cible ? targetPcOfLabel(c.cible, tonicPc, mode) : null;
-      const cibleNom = targetPc === null ? "?" : NOTE_FR[targetPc];
+      const cibleNom = targetPc === null ? "?" : noteFrContextuel(targetPc, tonicPc, mode);
       // « chaîne de dominantes » : l'accord suivant peut être une dominante
       // SECONDAIRE (V7/x) ou une SENSIBLE de degré (vii°7/x) — dans les deux cas
       // un accord de fonction dominante, jamais une « autre dominante secondaire ».
