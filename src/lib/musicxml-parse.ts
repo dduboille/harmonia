@@ -69,6 +69,71 @@ export function noteNameFr(step: string, alter: number): string {
   return base;
 }
 
+/**
+ * Profils tonals de Krumhansl & Kessler (1982) — poids empiriques de chaque degré
+ * de gamme (0 = tonique, 1 = 2nde mineure, …), issus d'expériences de perception
+ * tonale. Base standard de la littérature (music information retrieval) pour
+ * départager DEUX tonalités RELATIVES (même armure, mode différent) à partir du
+ * seul contenu des notes — ce que l'armure, par construction, ne permet jamais.
+ */
+const PROFIL_MAJEUR = [6.35, 2.23, 3.48, 2.33, 4.38, 4.09, 2.52, 5.19, 2.39, 3.66, 2.29, 2.88];
+const PROFIL_MINEUR = [6.33, 2.68, 3.52, 5.38, 2.60, 3.53, 2.54, 4.75, 3.98, 2.69, 3.34, 3.17];
+
+/** Corrélation de Pearson entre deux vecteurs de même longueur. */
+function correlation(a: number[], b: number[]): number {
+  const n = a.length;
+  const moyA = a.reduce((s, x) => s + x, 0) / n;
+  const moyB = b.reduce((s, x) => s + x, 0) / n;
+  let num = 0, denA = 0, denB = 0;
+  for (let i = 0; i < n; i++) {
+    const da = a[i] - moyA, db = b[i] - moyB;
+    num += da * db;
+    denA += da * da;
+    denB += db * db;
+  }
+  return denA === 0 || denB === 0 ? 0 : num / Math.sqrt(denA * denB);
+}
+
+/**
+ * Départage majeur / relatif mineur (MÊME armure) par corrélation avec les profils
+ * de Krumhansl-Kessler, pondérée par la DURÉE de chaque hauteur (pas son nombre
+ * d'occurrences — une ronde pèse plus qu'une croche).
+ *
+ * N'est appelé QUE quand le fichier ne porte PAS de balise `<mode>` explicite : une
+ * armure de 2 bémols ne dit pas si l'on est en Sol mineur ou Si♭ majeur, or c'est
+ * exactement le cas des exports MuseScore de Dany (aucun n'inclut `<mode>`, qu'ils
+ * soient majeurs ou mineurs) — sans cette inférence, TOUTE pièce mineure ainsi
+ * exportée serait lue dans son relatif majeur, et l'analyse harmonique entière
+ * (degrés, fonctions, cadences) s'en trouverait décalée d'une tierce. Constaté en
+ * pratique sur l'extrait de la Symphonie n°40 de Mozart (Sol mineur lu comme Si♭
+ * majeur, chaque accord décalé de "i" à "vi").
+ *
+ * Un simple « la sensible altérée apparaît » est TROP fragile (testé et rejeté) :
+ * la Pathétique de Beethoven contient un mi bécarre de passage sans être en fa
+ * mineur, ce qui l'aurait fait basculer à tort. La corrélation sur l'ensemble du
+ * matériau, plutôt qu'un indice isolé, résiste à ce genre de faux positif.
+ */
+export function inferModeParProfil(
+  notes: Array<{ pc: number; duration: number }>,
+  tonicMajeurPc: number
+): "major" | "minor" {
+  const poidsParPc = new Array(12).fill(0) as number[];
+  for (const n of notes) poidsParPc[n.pc] += n.duration;
+  if (poidsParPc.every((p) => p === 0)) return "major"; // aucune note : repli neutre
+
+  const tonicMineurPc = (tonicMajeurPc + 9) % 12;
+  const histDegresMajeur = new Array(12).fill(0) as number[];
+  const histDegresMineur = new Array(12).fill(0) as number[];
+  for (let d = 0; d < 12; d++) {
+    histDegresMajeur[d] = poidsParPc[(tonicMajeurPc + d) % 12];
+    histDegresMineur[d] = poidsParPc[(tonicMineurPc + d) % 12];
+  }
+
+  const corrMajeur = correlation(histDegresMajeur, PROFIL_MAJEUR);
+  const corrMineur = correlation(histDegresMineur, PROFIL_MINEUR);
+  return corrMineur > corrMajeur ? "minor" : "major";
+}
+
 function getTag(xml: string, tag: string): string {
   const m = new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`).exec(xml);
   return m ? m[1].trim() : "";
@@ -308,7 +373,12 @@ export function parseMusicXML(source: string): ParsedScore {
   const xml = source.replace(/<!--[\s\S]*?-->/g, "");
 
   const fifths = intTag(xml, "fifths", 0);
-  const mode: "major" | "minor" = getTag(xml, "mode") === "minor" ? "minor" : "major";
+  // Balise EXPLICITE : elle fait autorité, jamais remise en cause. Absente (le cas
+  // de tous les exports MuseScore de Dany, y compris ses pièces mineures) : inférée
+  // plus bas par `inferModeParProfil`, une fois les notes lues — cf. son commentaire.
+  const modeTag = getTag(xml, "mode");
+  const modeExplicite: "major" | "minor" | null =
+    modeTag === "minor" ? "minor" : modeTag === "major" ? "major" : null;
   const beats = getTag(xml, "beats");
   const beatType = getTag(xml, "beat-type");
   const signature = beats && beatType ? `${beats}/${beatType}` : "4/4";
@@ -376,6 +446,9 @@ export function parseMusicXML(source: string): ParsedScore {
   const tempos: TempoEvent[] = [...parOnset.entries()]
     .map(([onset, bpm]) => ({ onset, bpm }))
     .sort((a, b) => a.onset - b.onset);
+
+  const tonicMajeurPc = (((7 * fifths) % 12) + 12) % 12; // cycle des quintes depuis Do
+  const mode: "major" | "minor" = modeExplicite ?? inferModeParProfil(notes, tonicMajeurPc);
 
   return { fifths, mode, signature, notes, measures, tempos };
 }

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { parseMusicXML, noteNameFr, TPQ } from "./musicxml-parse";
+import { parseMusicXML, noteNameFr, TPQ, inferModeParProfil } from "./musicxml-parse";
 
 /** Enveloppe minimale : une partie, des mesures fournies telles quelles. */
 function partition(mesures: string, divisions = 1): string {
@@ -13,6 +13,11 @@ function partition(mesures: string, divisions = 1): string {
 function note(step: string, octave: number, duration: number, extra = ""): string {
   return `<note><pitch><step>${step}</step><octave>${octave}</octave></pitch>` +
     `<duration>${duration}</duration>${extra}</note>`;
+}
+
+function noteAlteree(step: string, alter: number, octave: number, duration: number): string {
+  return `<note><pitch><step>${step}</step><alter>${alter}</alter><octave>${octave}</octave></pitch>` +
+    `<duration>${duration}</duration></note>`;
 }
 
 describe("parseMusicXML — en-tête", () => {
@@ -315,5 +320,72 @@ describe("parseMusicXML — robustesse des fichiers réels", () => {
     // Le doublement subsiste, mais la note liée ne se réattaque pas en mesure 2.
     expect(s.notes.every((n) => n.measure === 1)).toBe(true);
     expect(s.notes.some((n) => n.duration === 8 * TPQ)).toBe(true);
+  });
+});
+
+describe("mode : inféré par profil tonal quand <mode> est absent de l'armure", () => {
+  it("inferModeParProfil : tonique + tierce + sensible mineures dominent → 'minor'", () => {
+    // Sol mineur (tonique Sol = pc 7) : sol-sib-ré (accord de tonique) très présents,
+    // + fa# (sensible) qui résout sur sol — signature d'un VRAI mineur tonal, pas
+    // d'une simple altération de passage (cf. le garde-fou Pathétique plus bas).
+    const notes = [
+      { pc: 7, duration: 100 },  // sol (tonique), très présent
+      { pc: 7, duration: 100 },
+      { pc: 10, duration: 60 },  // sib (tierce mineure)
+      { pc: 2, duration: 60 },   // ré (quinte)
+      { pc: 6, duration: 20 },   // fa# (sensible, résolution vers sol)
+      { pc: 7, duration: 40 },
+    ];
+    expect(inferModeParProfil(notes, /* tonique majeure = */ 10)).toBe("minor");
+  });
+
+  it("inferModeParProfil : tonique + tierce + sensible majeures dominent → 'major'", () => {
+    // Si♭ majeur (tonique Si♭ = pc 10) : si♭-ré-fa (accord de tonique) très présents,
+    // + la naturel (sensible majeure) qui résout sur si♭.
+    const notes = [
+      { pc: 10, duration: 100 }, // sib (tonique)
+      { pc: 10, duration: 100 },
+      { pc: 2, duration: 60 },   // ré (tierce majeure)
+      { pc: 5, duration: 60 },   // fa (quinte)
+      { pc: 9, duration: 20 },   // la (sensible, résolution vers sib)
+      { pc: 10, duration: 40 },
+    ];
+    expect(inferModeParProfil(notes, 10)).toBe("major");
+  });
+
+  it("inferModeParProfil : aucune note → repli neutre 'major' (ne plante pas)", () => {
+    expect(inferModeParProfil([], 0)).toBe("major");
+  });
+
+  it("parseMusicXML : armure de 2 bémols SANS <mode>, contenu net de Sol mineur → 'minor'", () => {
+    // Reproduit la structure réelle qui a révélé le bug : export MuseScore de Dany
+    // (Symphonie n°40 de Mozart, K.550) sans balise <mode>, motif d'ouverture
+    // sol-sib-ré à la basse (voix d'alto), sensible fa# en fin d'extrait.
+    const xml = `<score-partwise><part id="P1">` +
+      `<measure number="1"><attributes><divisions>1</divisions><key><fifths>-2</fifths></key>` +
+      `<time><beats>2</beats><beat-type>2</beat-type></time></attributes>` +
+      note("G", 4, 4) + noteAlteree("B", -1, 4, 2) + note("D", 4, 2) +
+      `</measure>` +
+      `<measure number="2">` +
+      note("G", 4, 4) + noteAlteree("B", -1, 4, 2) + note("D", 4, 2) +
+      `</measure>` +
+      `<measure number="3">` +
+      noteAlteree("F", 1, 4, 4) + note("G", 4, 4) + // fa# (sensible) → sol (tonique)
+      `</measure></part></score-partwise>`;
+    const s = parseMusicXML(xml);
+    expect(s.fifths).toBe(-2);
+    expect(s.mode).toBe("minor");
+  });
+
+  it("parseMusicXML : balise <mode>major> explicite JAMAIS remise en cause, même avec du contenu mineur", () => {
+    const xml = `<score-partwise><part id="P1">` +
+      `<measure number="1"><attributes><divisions>1</divisions>` +
+      `<key><fifths>-2</fifths><mode>major</mode></key>` +
+      `<time><beats>2</beats><beat-type>2</beat-type></time></attributes>` +
+      note("G", 4, 4) + noteAlteree("B", -1, 4, 2) + note("D", 4, 2) +
+      noteAlteree("F", 1, 4, 4) + note("G", 4, 4) +
+      `</measure></part></score-partwise>`;
+    const s = parseMusicXML(xml);
+    expect(s.mode).toBe("major");
   });
 });

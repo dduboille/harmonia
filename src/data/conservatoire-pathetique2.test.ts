@@ -10,6 +10,11 @@ describe("PATHETIQUE2_MESURES_1_8", () => {
   it("s'analyse sans erreur et couvre 8 mesures en la♭ majeur, 2/4", () => {
     const score = parseMusicXML(PATHETIQUE2_MESURES_1_8);
     expect(score.fifths).toBe(-4);
+    // Ce fichier n'a PAS de balise <mode> (comme tous les exports MuseScore de
+    // Dany) : "major" vient donc de `inferModeParProfil`, pas d'un repli par
+    // défaut — garde-fou en conditions réelles contre le faux positif identifié
+    // en le concevant (le mi bécarre de passage, mesures 4/6, ne doit PAS faire
+    // basculer la lecture vers fa mineur, son relatif).
     expect(score.mode).toBe("major");
     expect(score.signature).toBe("2/4");
     expect(score.measures).toHaveLength(8);
