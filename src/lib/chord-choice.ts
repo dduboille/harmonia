@@ -132,8 +132,10 @@ const COUT_SON_REVENDIQUE = 1.3;
 const COUT_QUINTE_OMISE = 0.4;
 
 /**
- * BONUS DE L'ACCORD ARPÉGÉ — récompense la lecture qui explique tout le span, mais
- * SEULEMENT quand cette complétude vient d'un vrai accord brisé, pas d'une broderie.
+ * BONUS DE L'ACCORD ARPÉGÉ — récompense la lecture dont les sons REVENDIQUÉS
+ * dessinent un vrai accord brisé, même si une voix INDÉPENDANTE laisse de côté un
+ * passage légitime à elle. L'arpège doit être intégralement expliqué ; ce qu'une
+ * AUTRE voix fait pendant ce temps-là ne l'empêche pas d'être reconnu.
  *
  * Un bonus plat pour « zéro étrangère » est mathématiquement IMPOSSIBLE : il existe
  * déjà un cas calibré (le La5 de passage entre Sol5 et Si5, dans
@@ -149,23 +151,33 @@ const COUT_QUINTE_OMISE = 0.4;
  * qu'un accord de Do complet tient déjà dans les trois autres voix. La basse murky de
  * Mozart, elle, ne tient RIEN en dessous : c'est une seule voix qui OSCILLE entre les
  * sons de l'accord (Sol-Mib-Sol-La — le Sol revient) sans qu'aucune autre voix ne
- * porte déjà un accord complet. `estAccordBrise` distingue les deux : une voix unique,
- * MOBILE (plusieurs sons distincts), qui RÉPÈTE au moins un de ses sons dans le span —
- * la signature d'un accord brisé, jamais d'une ligne qui passe.
+ * porte déjà un accord complet. `voixMobileArpegee` distingue les deux : une voix
+ * unique, MOBILE (plusieurs sons distincts), qui RÉPÈTE au moins un de ses sons dans
+ * le span — la signature d'un accord brisé, jamais d'une ligne qui passe.
+ *
+ * SECONDE MOITIÉ DE LA MÊME MESURE (mesure 5, temps 2) : le même arpège Sol-Mib-Sol-La
+ * s'y répète intact, mais la mélodie n'y tient plus — elle passe par un Ré (légitime,
+ * quitté par degré conjoint) avant de revenir au Do. La lecture complète (Laø7 + Ré
+ * étranger) perd quand même contre une lecture à 2 sons, quinte omise (Mib-Sol) : la
+ * même mécanique que le La5 aurait dû l'empêcher, mais ici l'étrangère n'est PAS dans
+ * la voix arpégée — elle est dans une voix indépendante. D'où le second membre du
+ * test ci-dessous : le bonus tient tant qu'aucune étrangère n'appartient à la voix
+ * arpégée elle-même (l'arpège doit rester intégralement expliqué) et que celles des
+ * AUTRES voix sont toutes des abandons légitimes — jamais une anomalie.
  */
 const BONUS_ACCORD_BRISE = 1.0;
 
 /**
- * Vrai si les sons REVENDIQUÉS par la lecture proviennent d'un accord brisé : une
- * seule voix mobile (plusieurs attaques, plusieurs hauteurs distinctes) qui répète
- * au moins un de ses sons dans le span — toutes les autres voix étant tenues (une
- * seule attaque chacune, ou plusieurs attaques de la MÊME hauteur).
- *
- * Une voix qui marche (chaque hauteur une seule fois, comme une gamme ou un passage)
- * n'est PAS un accord brisé : c'est cette distinction, et elle seule, qui écarte le
- * cas du La5 de passage (cf. `BONUS_ACCORD_BRISE`).
+ * La voix MOBILE (plusieurs attaques, plusieurs hauteurs distinctes) qui RÉPÈTE au
+ * moins un de ses sons parmi ceux REVENDIQUÉS par la lecture — la signature d'un
+ * accord brisé — ou `null` s'il n'y en a pas (ou s'il y en a plusieurs : deux voix
+ * qui bougent à la fois ne sont pas un simple arpège). Une voix qui marche (chaque
+ * hauteur une seule fois, comme une gamme ou un passage) n'est pas mobile au sens de
+ * cette fonction : c'est cette distinction qui écarte le cas du La5 de passage
+ * (cf. `BONUS_ACCORD_BRISE`). Rend la CLÉ `part|voice` de cette voix, pour qu'on
+ * puisse vérifier qu'une étrangère n'y appartient pas.
  */
-function estAccordBrise(span: Span, sons: Set<number>): boolean {
+function voixMobileArpegee(span: Span, sons: Set<number>): string | null {
   const parVoix = new Map<string, ParsedNote[]>();
   for (const note of span.notes) {
     if (!sons.has(note.pc)) continue;
@@ -175,17 +187,19 @@ function estAccordBrise(span: Span, sons: Set<number>): boolean {
     else parVoix.set(cle, [note]);
   }
 
+  let cleMobile: string | null = null;
   let voixMobile: ParsedNote[] | null = null;
-  for (const notesVoix of parVoix.values()) {
+  for (const [cle, notesVoix] of parVoix) {
     const pcsDistincts = new Set(notesVoix.map((n) => n.pc)).size;
     if (notesVoix.length === 1 || pcsDistincts === 1) continue; // voix tenue
-    if (voixMobile !== null) return false; // deux voix bougent : pas un simple arpège
+    if (voixMobile !== null) return null; // deux voix bougent : pas un simple arpège
+    cleMobile = cle;
     voixMobile = notesVoix;
   }
-  if (voixMobile === null) return false;
+  if (voixMobile === null) return null;
 
   const pcsVoixMobile = voixMobile.map((n) => n.pc);
-  return new Set(pcsVoixMobile).size < pcsVoixMobile.length;
+  return new Set(pcsVoixMobile).size < pcsVoixMobile.length ? cleMobile : null;
 }
 
 // ── Le calcul ─────────────────────────────────────────────────────────────────
@@ -204,21 +218,22 @@ function poids(note: ParsedNote, span: Span): number {
 }
 
 /**
- * Coût d'ABANDON d'une note.
+ * Vrai si l'ABANDON de `note` est légitime — TENUE, PRÉPARÉE, ou abordée/quittée par
+ * degré conjoint. Sert au COÛT de l'abandon (`coutAbandon`, `false` compte comme
+ * ANOMALIE) et au BONUS de l'accord brisé (`false` empêche le bonus : une voix
+ * indépendante ne peut couvrir une étrangère que si son abandon est, lui-même,
+ * légitime — cf. `BONUS_ACCORD_BRISE`).
  *
- * On ne peut pas la CLASSER ici — la classification exige de connaître l'accord, et
- * l'accord est justement ce qu'on cherche (cf. `notes-etrangeres.classer`, qui vient
- * après). On se contente donc du test qui n'en dépend pas : la note se comporte-t-elle
- * comme une étrangère peut légitimement se comporter ?
+ * On ne peut pas CLASSER la note ici — la classification exige de connaître l'accord,
+ * et l'accord est justement ce qu'on cherche (cf. `notes-etrangeres.classer`, qui
+ * vient après). On se contente donc du test qui n'en dépend pas : la note se
+ * comporte-t-elle comme une étrangère peut légitimement se comporter ?
  */
-function coutAbandon(
+function abandonLegitime(
   note: ParsedNote, span: Span, carte: CarteMelodique, options: OptionsChoix,
-): number {
-  const p = poids(note, span);
+): boolean {
   const v = carte.voisinage(note);
-
-  // Aucune ligne mélodique : on ne sait pas, on ne punit pas.
-  if (v === null) return p * COUT_INCONNU;
+  if (v === null) return false; // aucune ligne mélodique : on ne sait pas, ce n'est pas légitime pour autant
 
   // TENUE par-dessus le changement d'harmonie. En écriture tonale, une note étrangère
   // qui se tient n'a que deux noms : RETARD ou PÉDALE. Ni l'un ni l'autre n'est une
@@ -245,8 +260,16 @@ function coutAbandon(
     contigues(note, v.suivante) &&
     conjointe(note.midi, v.suivante.midi);
 
-  const legitime = preparee || tenue || abordeeConjointe || quitteeConjointe;
-  return p * (legitime ? COUT_LEGITIME : COUT_ANOMALIE);
+  return preparee || tenue || abordeeConjointe || quitteeConjointe;
+}
+
+/** Coût d'ABANDON d'une note — cf. `abandonLegitime` pour ce qui fait ce prix. */
+function coutAbandon(
+  note: ParsedNote, span: Span, carte: CarteMelodique, options: OptionsChoix,
+): number {
+  const p = poids(note, span);
+  if (carte.voisinage(note) === null) return p * COUT_INCONNU;
+  return p * (abandonLegitime(note, span, carte, options) ? COUT_LEGITIME : COUT_ANOMALIE);
 }
 
 /**
@@ -300,8 +323,15 @@ export function choisirAccord(
     if (lecture.pcs.length < (TAILLE_ACCORD[lecture.quality] ?? lecture.pcs.length)) {
       gain -= COUT_QUINTE_OMISE;
     }
-    if (etrangeres.length === 0 && estAccordBrise(span, sons)) {
-      gain += BONUS_ACCORD_BRISE;
+    const cleArpege = voixMobileArpegee(span, sons);
+    if (cleArpege !== null) {
+      // L'arpège doit rester intégralement expliqué (aucune étrangère dans SA voix),
+      // et ce qu'une AUTRE voix laisse de côté doit être un abandon légitime, jamais
+      // une anomalie — sinon n'importe quelle broderie s'engouffrerait dans le bonus.
+      const geneLArpege = etrangeres.some(
+        (e) => e.voix === cleArpege || !abandonLegitime(e.note, span, carte, options),
+      );
+      if (!geneLArpege) gain += BONUS_ACCORD_BRISE;
     }
 
     // La BASSE de l'accord est le plus grave de SES sons — pas la note la plus grave
