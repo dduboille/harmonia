@@ -491,7 +491,42 @@ export default function Cours4() {
       {/* Exercices de renversements */}
       {activeSection === "progressions" && (
         <div style={{ marginTop: 32 }}>
-          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>{n("inversionsH3")}</h3>
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "0 0 8px", color: "#111" }}>{n("basseGuideH3")}</h3>
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("basseGuideIntro") }} />
+          <div style={S.infoBox} dangerouslySetInnerHTML={{ __html: n("basseGuideInfoBox") }} />
+
+          <div style={{ overflowX: "auto", margin: "12px 0" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+              <thead>
+                <tr style={{ borderBottom: "0.5px solid #e5e5e5" }}>
+                  {[n("basseGuideTableHPosition"), n("basseGuideTableHNote"), n("basseGuideTableHEffet")].map((h) => (
+                    <th key={h} style={{ textAlign: "left", padding: "6px 10px", fontWeight: 500, color: "#666" }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { pos: n("basseGuideRow0Pos"), note: n("basseGuideRow0Note"), effet: n("basseGuideRow0Effet") },
+                  { pos: n("basseGuideRow1Pos"), note: n("basseGuideRow1Note"), effet: n("basseGuideRow1Effet") },
+                  { pos: n("basseGuideRow2Pos"), note: n("basseGuideRow2Note"), effet: n("basseGuideRow2Effet") },
+                  { pos: n("basseGuideRow3Pos"), note: n("basseGuideRow3Note"), effet: n("basseGuideRow3Effet") },
+                ].map((row, i) => (
+                  <tr key={row.pos} style={{ borderBottom: "0.5px solid #f0f0f0", background: i % 2 === 0 ? "#fff" : "#fafafa" }}>
+                    <td style={{ padding: "7px 10px", fontWeight: 500 }}>{row.pos}</td>
+                    <td style={{ padding: "7px 10px", fontFamily: "monospace", color: "#185FA5" }}>{row.note}</td>
+                    <td style={{ padding: "7px 10px", color: "#444", fontSize: 12.5, lineHeight: 1.5 }}>{row.effet}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style={{ fontSize: 13, fontWeight: 600, margin: "18px 0 6px", color: "#111" }}>{n("basseGuideMethodeH4")}</h4>
+          <p style={S.sbody} dangerouslySetInnerHTML={{ __html: n("basseGuideMethodeText") }} />
+
+          <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("basseGuideExceptionsBox") }} />
+
+          <h3 style={{ fontSize: 14, fontWeight: 500, margin: "24px 0 8px", color: "#111" }}>{n("inversionsH3")}</h3>
           <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7, marginBottom: 16, fontFamily: "system-ui, sans-serif" }}>
             {n("inversionsSubtitle")}
           </p>
