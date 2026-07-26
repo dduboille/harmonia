@@ -1,4 +1,4 @@
-import { BWV846_MESURES_1_8, BWV846_ANALYSE, type MesureAnalyse, type AnalyseNarrative } from "./conservatoire-bwv846";
+import { BWV846_MESURES_1_8, BWV846_ANALYSE, BWV846_ANALYSE_NARRATIVE, type MesureAnalyse, type AnalyseNarrative } from "./conservatoire-bwv846";
 import { PATHETIQUE2_MESURES_1_8, PATHETIQUE2_ANALYSE } from "./conservatoire-pathetique2";
 import { K550_MESURES_1_9, K550_ANALYSE } from "./conservatoire-k550";
 import { BWV227_MESURES_1_8, BWV227_ANALYSE, BWV227_ANALYSE_NARRATIVE } from "./conservatoire-bwv227";
@@ -55,6 +55,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       notes: ["C4", "E4", "G4", "C5", "E5", "G4", "C5", "E5"],
       musicxml: BWV846_MESURES_1_8,
       analyse: BWV846_ANALYSE,
+      analyseNarrative: BWV846_ANALYSE_NARRATIVE,
     },
     pieges: [
       {

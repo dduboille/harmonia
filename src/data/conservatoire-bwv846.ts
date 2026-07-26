@@ -801,7 +801,7 @@ export const BWV846_MESURES_1_8 =
         <voice>1</voice>
         <type>16th</type>
         <stem>up</stem>
-        <notehead color="#FF0000">normal</notehead>
+        <notehead color="#0000FF">normal</notehead>
         <staff>1</staff>
         <beam number="1">begin</beam>
         <beam number="2">begin</beam>
@@ -828,7 +828,7 @@ export const BWV846_MESURES_1_8 =
         <voice>1</voice>
         <type>16th</type>
         <stem>up</stem>
-        <notehead color="#FF0000">normal</notehead>
+        <notehead color="#0000FF">normal</notehead>
         <staff>1</staff>
         <beam number="1">begin</beam>
         <beam number="2">begin</beam>
@@ -987,7 +987,7 @@ export const BWV846_MESURES_1_8 =
         <type>16th</type>
         <dot default-x="48.82" default-y="-45"/>
         <stem>down</stem>
-        <notehead color="#FF0000">normal</notehead>
+        <notehead color="#0000FF">normal</notehead>
         <staff>1</staff>
         <notations>
           <tied type="start"/>
@@ -1070,7 +1070,7 @@ export const BWV846_MESURES_1_8 =
         <voice>5</voice>
         <type>half</type>
         <stem>down</stem>
-        <notehead color="#FF0000">normal</notehead>
+        <notehead color="#0000FF">normal</notehead>
         <staff>2</staff>
         <lyric number="1" default-x="9.7" default-y="-40" relative-y="-30">
           <syllabic>single</syllabic>
@@ -2698,3 +2698,77 @@ export const BWV846_ANALYSE: MesureAnalyse[] = [
   { numero: 7, nom: "Sol",    degre: "V6",   fonction: "D" },
   { numero: 8, nom: "DoMaj7", degre: "IΔ2",  fonction: "T" },
 ];
+
+/**
+ * Analyse harmonique NARRATIVE — vérifiée mesure par mesure contre les hauteurs
+ * réelles du MusicXML ci-dessus (pas recopiée telle quelle d'un premier jet fourni
+ * par Dany, généré ailleurs). Le premier jet lisait la mesure 3 comme une vraie
+ * DOMINANTE (« tension maximale », notes rouges) — ce qui contredisait le chiffrage
+ * déjà présent dans le fichier (« V6/5(T) ») et le commentaire d'en-tête, qui
+ * documentent une lecture délibérée de Dany : cette mesure, de FORME dominante,
+ * est fonctionnellement une TONIQUE PROLONGÉE (la basse si est la voisine
+ * inférieure du do tenu, pas une vraie basse de dominante). Question posée à Dany
+ * le 2026-07-26, tranchée en faveur de la lecture d'origine — la couleur des têtes
+ * de note de la mesure 3 a été corrigée de rouge à BLEU en conséquence (elle était
+ * restée rouge, incohérente avec son propre chiffrage, depuis l'export initial).
+ *
+ * En creusant les hauteurs réelles (voix 5, la basse) pour vérifier cette lecture,
+ * un plan structurel plus large est apparu, vérifié note par note : la basse ne
+ * bouge quasiment pas sur tout l'extrait — do (mesures 1-2, 4-6, avec la voisine
+ * si à la mesure 3) puis si (mesures 7-8). Toute l'harmonie « glisse » au-dessus de
+ * ces deux pédales par le seul mouvement des voix supérieures. C'est ce plan, plus
+ * riche et mieux étayé que le premier jet, qui structure le texte ci-dessous.
+ */
+export const BWV846_ANALYSE_NARRATIVE: AnalyseNarrative = {
+  tonalite: "Do majeur — aucune altération à l'armure. Les deux seuls demi-tons diatoniques naturels de la gamme (mi-fa entre le IIIe et le IVe degré, si-do entre le VIIe et le Ier) sont les moteurs de toute la pièce.",
+  metrique: "4/4",
+  forme: "Tout l'extrait (mes. 1-8) tient sur un plan de basse à seulement DEUX notes pédales : do (mes. 1-2, 4-6, avec une brève voisine si à la mesure 3) puis si (mes. 7-8, la sensible tenue jusqu'à la fin de l'extrait). L'harmonie change de couleur au-dessus de ces pédales par le seul mouvement des voix supérieures — la basse, elle, bouge à peine.",
+  sections: [
+    {
+      label: "Mesures 1-3",
+      titre: "Une pédale de tonique, décorée par sa voisine",
+      chiffrage: "C  |  Dm7/C  |  G7/B",
+      fonctions: "I  |  ii2  |  V6/5 (lu comme i prolongé)",
+      texte:
+        "La basse tient do sur les deux premières mesures : l'accord ne bouge qu'AU-DESSUS d'elle — d'abord l'arpège do-mi-sol (I), puis ré-fa-la qui, combiné à ce do tenu, dessine un <strong>Dm7 en 3e renversement</strong> (ii2). À la mesure 3, la basse descend d'un ton vers si : la FORME de l'accord (sol-si-ré-fa) est bien celle d'un G7 en 1er renversement (V6/5) — mais Bach l'utilise ici comme une simple <em>voisine inférieure</em> de la pédale de do, pas comme une vraie dominante en attente de résolution. D'où son chiffrage « V6/5(T) » : la forme est celle d'une dominante, la FONCTION reste la tonique.",
+    },
+    {
+      label: "Mesures 4-5",
+      titre: "Retour à la tonique, puis son substitut",
+      chiffrage: "C  |  Am/C",
+      fonctions: "i  |  vi6",
+      texte:
+        "La voisine se résout : le si de la basse remonte au do (mesure 4), pendant que le fa et le ré des voix supérieures redescendent au mi et au do — l'accord de tonique est retrouvé note pour note comme à la mesure 1. La mesure 5 change de couleur SANS changer de basse : le do tenu devient la <strong>tierce</strong> d'un accord de la mineur (vi6), le substitut le plus direct de la tonique — il partage deux notes avec elle (do, mi).",
+    },
+    {
+      label: "Mesure 6",
+      titre: "La seule altération de l'extrait",
+      chiffrage: "D7/C",
+      fonctions: "V2/V",
+      texte:
+        "Premier vrai déplacement harmonique depuis le début de l'extrait : la basse reste sur do (elle en devient la 7e, plus la fondamentale), mais l'harmonie au-dessus se transforme en un <strong>Ré7 complet</strong> (ré-fa♯-la-do). Le fa♯, seule note étrangère à l'armure de tout l'extrait, est une sensible ARTIFICIELLE qui tire vers sol : Bach vise maintenant la dominante (V), pas encore la tonique.",
+    },
+    {
+      label: "Mesures 7-8",
+      titre: "La dominante, puis une tonique qui ne se referme pas tout à fait",
+      chiffrage: "G/B  |  Cmaj7/B",
+      fonctions: "V6  |  IΔ2",
+      texte:
+        "La basse descend enfin sur si — la sensible du ton — et y reste pour les deux dernières mesures : d'abord sous un accord de sol majeur (V6), puis sous l'arrivée de la tonique (mesure 8). Mais cette tonique n'est pas dans son état le plus stable : sa <strong>7e majeure</strong> (si, justement — la basse ne bouge pas) la colore d'une tension suspendue qui appelle la suite de la pièce plutôt qu'elle ne la referme.",
+    },
+  ],
+  synthese: [
+    {
+      titre: "Deux pédales, un seul geste",
+      texte: "Toute l'harmonie de l'extrait tient sur deux notes de basse : do (mesures 1 à 6, avec un bref détour par sa voisine si à la mesure 3), puis si (mesures 7-8). Le mouvement musical ne vient pas de la basse, qui bouge à peine — il vient des voix supérieures, qui redessinent l'accord au-dessus d'elle.",
+    },
+    {
+      titre: "Les deux demi-tons diatoniques",
+      texte: "Mi-fa (dans le Dm7 de la mesure 2 et son entourage) et si-do (la sensible, mesures 3 et 7-8) sont les deux seuls demi-tons naturels de do majeur — ce sont eux qui créent toute la tension de la pièce, sans le moindre accident jusqu'à la mesure 6.",
+    },
+    {
+      titre: "La couleur suit la fonction, pas la forme",
+      texte: "La mesure 3 a la FORME d'une dominante (G7) mais la FONCTION d'une tonique prolongée — d'où sa couleur bleue malgré son chiffrage « V6/5 ». En harmonie tonale, c'est toujours la fonction qui l'emporte sur l'apparence de surface.",
+    },
+  ],
+};

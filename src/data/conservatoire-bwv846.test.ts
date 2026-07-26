@@ -69,16 +69,23 @@ describe("BWV846_MESURES_1_8", () => {
     mesures.forEach((m, i) => expect(m).toMatch(attendus[i]));
   });
 
-  it("28 têtes de note colorées par fonction (13 bleu, 4 orange, 11 rouge) — pas uniforme", () => {
+  it("28 têtes de note colorées par fonction (17 bleu, 4 orange, 7 rouge) — pas uniforme", () => {
     // Le fichier de Dany ne colore QUE certaines notes-repères (1re ou 2e note de
     // chaque groupe de ligature à la main droite, note d'attaque du ténor, tête de
     // la basse), pas l'intégralité de chaque mesure.
+    //
+    // La mesure 3 (Sol7/Si, V6/5) est en BLEU malgré sa forme de dominante : Dany
+    // la lit délibérément comme une TONIQUE PROLONGÉE (la basse Si n'est qu'un
+    // passage entre les Do des mesures 1 et 4, cf. le chiffrage "V6/5(T)" et le
+    // commentaire en tête de fichier) — la couleur suit la FONCTION choisie, pas
+    // la forme brute de l'accord. Corrigé le 2026-07-26 : elle était encore en
+    // rouge (incohérente avec son "(T)") avant que Dany ne tranche explicitement.
     const bleu = [...BWV846_MESURES_1_8.matchAll(/notehead color="#0000FF"/g)];
     const orange = [...BWV846_MESURES_1_8.matchAll(/notehead color="#FFAA00"/g)];
     const rouge = [...BWV846_MESURES_1_8.matchAll(/notehead color="#FF0000"/g)];
-    expect(bleu).toHaveLength(13);
+    expect(bleu).toHaveLength(17);
     expect(orange).toHaveLength(4);
-    expect(rouge).toHaveLength(11);
+    expect(rouge).toHaveLength(7);
   });
 
   it("chaque mesure porte son chiffrage romain + fonction en parole (<lyric>) sous la basse", () => {
@@ -132,9 +139,9 @@ describe("BWV846_MESURES_1_8 — gravure Verovio (séquence réelle de StudioSco
     tk.renderToMIDI();
     tk.setOptions({ scale: 40, adjustPageHeight: true, breaks: "auto", footer: "none", pageWidth: 3000 });
     const svg: string = tk.renderToSVG(1);
-    expect([...svg.matchAll(/fill="#0000FF"/gi)]).toHaveLength(13);
+    expect([...svg.matchAll(/fill="#0000FF"/gi)]).toHaveLength(17);
     expect([...svg.matchAll(/fill="#FFAA00"/gi)]).toHaveLength(4);
-    expect([...svg.matchAll(/fill="#FF0000"/gi)]).toHaveLength(11);
+    expect([...svg.matchAll(/fill="#FF0000"/gi)]).toHaveLength(7);
   });
 
   it("Verovio rend les symboles d'accords et le chiffrage romain sous la basse", () => {
