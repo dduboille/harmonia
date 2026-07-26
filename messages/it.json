@@ -22,7 +22,12 @@
     "conservatoireArreter": "◼ Ferma",
     "conservatoireCursus": "Vedi il curriculum del conservatorio →",
     "conservatoirePieges": "Errori frequenti",
-    "conservatoireResume": "Riepilogo del conservatorio"
+    "conservatoireResume": "Riepilogo del conservatorio",
+    "conservatoireAnalyseTitre": "Analisi armonica",
+    "conservatoireAnalyseTonalite": "Tonalità:",
+    "conservatoireAnalyseMetrique": "Metrica:",
+    "conservatoireAnalyseForme": "Forma:",
+    "conservatoireAnalyseSynthese": "In sintesi"
   },
   "coursHub": {
     "title": "Lezioni di teoria musicale",

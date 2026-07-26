@@ -22,7 +22,12 @@
     "conservatoireArreter": "◼ Parar",
     "conservatoireCursus": "Ver o currículo do conservatório →",
     "conservatoirePieges": "Erros frequentes",
-    "conservatoireResume": "Resumo do conservatório"
+    "conservatoireResume": "Resumo do conservatório",
+    "conservatoireAnalyseTitre": "Análise harmônica",
+    "conservatoireAnalyseTonalite": "Tonalidade:",
+    "conservatoireAnalyseMetrique": "Métrica:",
+    "conservatoireAnalyseForme": "Forma:",
+    "conservatoireAnalyseSynthese": "Em resumo"
   },
   "coursHub": {
     "title": "Aulas de teoria musical",

@@ -66,6 +66,7 @@ export function VueConservatoire({
       notes: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9}`].repertoire.notes,
       musicxml: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9}`].repertoire.musicxml,
       analyse: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9}`].repertoire.analyse,
+      analyseNarrative: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9}`].repertoire.analyseNarrative,
     },
     pieges: [{
       erreur: tcons(`${ck}.piege0erreur` as any),
@@ -250,6 +251,56 @@ export function VueConservatoire({
           </div>
         )}
       </div>
+
+      {/* 4bis. Analyse harmonique narrative (prose), quand disponible */}
+      {data.repertoire.analyseNarrative && (() => {
+        const an = data.repertoire.analyseNarrative;
+        return (
+          <div style={{ background: "#fff", border: "0.5px solid #e0dbd3", borderRadius: 10, padding: "16px 20px", marginBottom: 12 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: ACCENT, letterSpacing: "0.1em", marginBottom: 10, textTransform: "uppercase" as const, fontFamily: "system-ui, sans-serif" }}>
+              {tc("conservatoireAnalyseTitre")}
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap" as const, gap: "4px 18px", fontSize: 12, color: "#555", marginBottom: 16, fontFamily: "system-ui, sans-serif" }}>
+              <span><strong style={{ color: "#1a1a1a" }}>{tc("conservatoireAnalyseTonalite")}</strong> {an.tonalite}</span>
+              <span><strong style={{ color: "#1a1a1a" }}>{tc("conservatoireAnalyseMetrique")}</strong> {an.metrique}</span>
+              <span style={{ flexBasis: "100%" }}><strong style={{ color: "#1a1a1a" }}>{tc("conservatoireAnalyseForme")}</strong> {an.forme}</span>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column" as const, gap: 12, marginBottom: 16 }}>
+              {an.sections.map((s) => (
+                <div key={s.label} style={{ border: "0.5px solid #e8e3db", borderRadius: 8, padding: "12px 14px", background: "#fafafa" }}>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap" as const, marginBottom: 6 }}>
+                    <span style={{ fontSize: 10, fontWeight: 700, color: "#fff", background: ACCENT, padding: "2px 8px", borderRadius: 10, fontFamily: "system-ui, sans-serif" }}>
+                      {s.label}
+                    </span>
+                    <strong style={{ fontSize: 13, color: "#1a1a1a", fontFamily: "Georgia, serif" }}>{s.titre}</strong>
+                  </div>
+                  <div style={{ fontSize: 12, color: "#444", marginBottom: 4, fontFamily: "monospace" }}>{s.chiffrage}</div>
+                  <div style={{ fontSize: 11, color: "#5C3D6E", background: "#F0EBF8", display: "inline-block", padding: "2px 8px", borderRadius: 6, marginBottom: 8, fontFamily: "monospace" }}>
+                    {s.fonctions}
+                  </div>
+                  <p
+                    style={{ fontSize: 13, color: "#444", lineHeight: 1.6, margin: 0, fontFamily: "system-ui, sans-serif" }}
+                    dangerouslySetInnerHTML={{ __html: s.texte }}
+                  />
+                </div>
+              ))}
+            </div>
+            <div style={{ borderTop: "0.5px solid #e8e3db", paddingTop: 12 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#888", letterSpacing: "0.06em", marginBottom: 8, textTransform: "uppercase" as const, fontFamily: "system-ui, sans-serif" }}>
+                {tc("conservatoireAnalyseSynthese")}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" as const, gap: 8 }}>
+                {an.synthese.map((p) => (
+                  <p key={p.titre} style={{ fontSize: 13, color: "#444", lineHeight: 1.6, margin: 0, fontFamily: "system-ui, sans-serif" }}>
+                    <strong style={{ color: "#1a1a1a" }}>{p.titre} — </strong>
+                    {p.texte}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* 5. Pièges fréquents */}
       <div style={{ background: "#fff", border: "0.5px solid #e0dbd3", borderRadius: 10, padding: "16px 20px", marginBottom: 12 }}>

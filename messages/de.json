@@ -22,7 +22,12 @@
     "conservatoireArreter": "◼ Stopp",
     "conservatoireCursus": "Konservatorium-Curriculum ansehen →",
     "conservatoirePieges": "Häufige Fallen",
-    "conservatoireResume": "Konservatorium-Zusammenfassung"
+    "conservatoireResume": "Konservatorium-Zusammenfassung",
+    "conservatoireAnalyseTitre": "Harmonische Analyse",
+    "conservatoireAnalyseTonalite": "Tonart:",
+    "conservatoireAnalyseMetrique": "Takt:",
+    "conservatoireAnalyseForme": "Form:",
+    "conservatoireAnalyseSynthese": "Zusammengefasst"
   },
   "coursHub": {
     "title": "Musiktheorie-Lektionen",

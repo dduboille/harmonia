@@ -22,7 +22,12 @@
     "conservatoireArreter": "◼ Stop",
     "conservatoireCursus": "View conservatory curriculum →",
     "conservatoirePieges": "Common pitfalls",
-    "conservatoireResume": "Conservatory summary"
+    "conservatoireResume": "Conservatory summary",
+    "conservatoireAnalyseTitre": "Harmonic analysis",
+    "conservatoireAnalyseTonalite": "Key:",
+    "conservatoireAnalyseMetrique": "Meter:",
+    "conservatoireAnalyseForme": "Form:",
+    "conservatoireAnalyseSynthese": "In short"
   },
   "coursHub": {
     "title": "Music Theory Lessons",

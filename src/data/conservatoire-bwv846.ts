@@ -2659,6 +2659,34 @@ export interface MesureAnalyse {
   dominanteSecondaire?: boolean;
 }
 
+/**
+ * Une section de l'analyse harmonique NARRATIVE (prose), affichée sous la
+ * partition du conservatoire — un cran plus détaillé que `MesureAnalyse` (qui ne
+ * porte qu'un accord par mesure). Couvre en général un GROUPE de mesures (une
+ * phrase ou demi-phrase), pas forcément une seule.
+ */
+export interface AnalyseSection {
+  /** Repère affiché en tête de carte, ex. "Mesures 1-2". */
+  label: string;
+  /** Titre court de la section, ex. "Motif d'ouverture". */
+  titre: string;
+  /** Accords en notation anglaise, séparés par « – », les mesures par « | ». */
+  chiffrage: string;
+  /** Chiffres romains + fonctions, même découpage que `chiffrage`. */
+  fonctions: string;
+  /** Prose d'analyse. HTML autorisé (mise en forme légère : <strong>/<em>). */
+  texte: string;
+}
+
+/** Analyse harmonique narrative complète d'un extrait du conservatoire. */
+export interface AnalyseNarrative {
+  tonalite: string;
+  metrique: string;
+  forme: string;
+  sections: AnalyseSection[];
+  synthese: Array<{ titre: string; texte: string }>;
+}
+
 /** Analyse mesure par mesure de `BWV846_MESURES_1_8` — voir le commentaire d'en-tête. */
 export const BWV846_ANALYSE: MesureAnalyse[] = [
   { numero: 1, nom: "Do",     degre: "I",    fonction: "T" },

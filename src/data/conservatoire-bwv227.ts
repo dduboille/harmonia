@@ -1,4 +1,4 @@
-import type { MesureAnalyse } from "./conservatoire-bwv846";
+import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
 
 /**
  * data/conservatoire-bwv227.ts
@@ -1987,3 +1987,67 @@ export const BWV227_ANALYSE: MesureAnalyse[] = [
   { numero: 7, nom: "Mim",  degre: "i",  fonction: "T" },
   { numero: 8, nom: "Lam",  degre: "iv", fonction: "SD" },
 ];
+
+/**
+ * Analyse harmonique NARRATIVE — vérifiée mesure par mesure contre le chiffrage
+ * (`<harmony>`/`<lyric>`) que porte le MusicXML ci-dessus, PAS recopiée telle
+ * quelle d'un premier jet (fourni par Dany, généré ailleurs) qui groupait les
+ * mesures autrement et comportait deux inexactitudes corrigées ici :
+ *  - mesure 3 se termine sur III (Sol majeur), pas sur un retour à i — la marche
+ *    par quintes A-Ré-Sol (V/VII-VII-III) ne revient au i qu'à la mesure SUIVANTE ;
+ *  - la mesure 4 porte bien un accord de tonique (I) avant le V7 — le premier jet
+ *    l'omettait et fusionnait à tort les mesures 4 et 5 sous un même intitulé.
+ */
+export const BWV227_ANALYSE_NARRATIVE: AnalyseNarrative = {
+  tonalite: "Mi mineur (i) — confirmée par le pôle I (Mim) omniprésent et la dominante V (Si7) avec sa sensible rehaussée (Ré♯, propre au mineur harmonique).",
+  metrique: "4/4",
+  forme: "Deux phrases de 4 mesures : la 1re (mes. 1-4) part du I, traverse une marche harmonique et s'arrête en demi-cadence sur V7 ; la 2e (mes. 5-8) résout par une cadence parfaite dès la mesure 6, puis reprend le motif d'ouverture une octave plus haut en guise de conclusion.",
+  sections: [
+    {
+      label: "Mesures 1-2",
+      titre: "Motif d'ouverture — la sixte dorienne",
+      chiffrage: "Em – Bm – Am6 – Em  |  Am6 – B7 – Em",
+      fonctions: "i – v – iv6 – i  |  iv6 – V7 – i",
+      texte:
+        "Le motif d'ouverture installe la tonique par un mouvement conjoint descendant aux voix supérieures (si-si-la-sol). L'accord <strong>Am6</strong> (la-do-mi-fa♯) qui prépare chaque retour au i n'est pas un vrai vie degré : le fa♯ est une <em>sixte ajoutée</em> (couleur dorienne) au-dessus du iv (Am), pas une septième. La mesure 2 referme la phrase par un mouvement classique iv6 → V7 → i, avec la sensible ré♯ du si7 qui monte au mi.",
+    },
+    {
+      label: "Mesures 3-4",
+      titre: "Marche harmonique et demi-cadence",
+      chiffrage: "A – D – G  |  Em – B7",
+      fonctions: "V/VII – VII – III  |  i – V7",
+      texte:
+        "Marche descendante par quintes (la→ré→sol) : <strong>A</strong> (avec son do♯, sensible empruntée) agit comme dominante secondaire du <strong>D</strong> (VIIe degré), qui résout à son tour sur <strong>G</strong>, la relative majeure (IIIe degré). La mesure 4 revient au i avant de s'arrêter sur le V7 — une <em>demi-cadence</em> qui suspend la 1re phrase sans la conclure.",
+    },
+    {
+      label: "Mesures 5-6",
+      titre: "Retard et cadence parfaite",
+      chiffrage: "C – Em – B7sus(4-3)  |  Em",
+      fonctions: "VI – i – V4/3  |  i",
+      texte:
+        "Détour par le VIe degré (C) avant de reposer sur le i, puis un <strong>B7sus</strong> (si-mi-fa♯-la) : le mi (4te suspendue) colore d'abord la dominante avant que le ré♯ (3ce, sensible du ton) ne rejoigne la voix supérieure au dernier temps. La mesure 6 conclut par une <strong>cadence parfaite</strong> : le mi mineur y sonne en ronde, fondamentale à la BASSE ET au SOPRANO (mi3/mi5), exactement la condition que ce cours pose pour reconnaître une cadence parfaite.",
+    },
+    {
+      label: "Mesures 7-8",
+      titre: "Reprise à l'octave",
+      chiffrage: "Em – Bm – Am6 – Em  |  Am6 – B7 – Em",
+      fonctions: "i – v – iv6 – i  |  iv6 – V7 – i",
+      texte:
+        "Reprise EXACTE du chiffrage des mesures 1-2, note pour note, mais transposée une octave au-dessus (si5-si5-la5-sol5 au lieu de si4-si4-la4-sol4) — un écho qui referme l'extrait sur la même sonorité qui l'avait ouvert, cette fois sans reprendre son souffle : le motif va jusqu'au bout de son propre mouvement iv6-V7-i.",
+    },
+  ],
+  synthese: [
+    {
+      titre: "La sixte dorienne (Am6)",
+      texte: "La friction entre le fa♯ (6te du iv) et le do naturel donne une couleur à la fois mélancolique et raffinée, empruntée au mode dorien — un trait de style qui revient 4 fois dans l'extrait (mes. 1, 2, 7, 8).",
+    },
+    {
+      titre: "Conduite des voix",
+      texte: "La voix supérieure (soprano) procède presque toujours par mouvement conjoint ; la voix de basse, elle, alterne notes tenues et sauts d'accord à accord — un contrepoint simple, typique de l'écriture chorale de Bach réduite au piano.",
+    },
+    {
+      titre: "Deux cadences, deux fonctions",
+      texte: "La demi-cadence de la mesure 4 (sur V7) crée l'attente ; la cadence parfaite de la mesure 6 (i, fondamentale doublée basse+soprano) la résout. La reprise des mesures 7-8 ne cherche plus à conclure — elle referme la boucle.",
+    },
+  ],
+};

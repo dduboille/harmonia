@@ -22,7 +22,12 @@
     "conservatoireArreter": "◼ Arrêter",
     "conservatoireCursus": "Voir le cursus conservatoire →",
     "conservatoirePieges": "Pièges fréquents",
-    "conservatoireResume": "Résumé conservatoire"
+    "conservatoireResume": "Résumé conservatoire",
+    "conservatoireAnalyseTitre": "Analyse harmonique",
+    "conservatoireAnalyseTonalite": "Tonalité :",
+    "conservatoireAnalyseMetrique": "Métrique :",
+    "conservatoireAnalyseForme": "Forme :",
+    "conservatoireAnalyseSynthese": "En résumé"
   },
   "coursHub": {
     "title": "Cours de théorie musicale",
