@@ -794,9 +794,9 @@ export const SCHUBERT_D845_MESURES_1_10 =
     <measure number="4" width="149.89">
       <harmony print-frame="no">
         <root>
-          <root-step text="">C</root-step>
+          <root-step></root-step>
           </root>
-        <kind text="it+6">none</kind>
+        <kind text="It+6">other</kind>
         </harmony>
       <note default-x="21.36" default-y="-60">
         <pitch>
@@ -1871,9 +1871,9 @@ export const SCHUBERT_D845_MESURES_1_10 =
         </direction>
       <harmony print-frame="no">
         <root>
-          <root-step text="">C</root-step>
+          <root-step></root-step>
           </root>
-        <kind text="it+6">none</kind>
+        <kind text="It+6">other</kind>
         </harmony>
       <note default-x="54.99" default-y="10">
         <pitch>
@@ -2077,9 +2077,9 @@ export const SCHUBERT_D845_MESURES_1_10 =
     <measure number="10" width="210.96">
       <harmony print-frame="no">
         <root>
-          <root-step>F</root-step>
+          <root-step></root-step>
           </root>
-        <kind text="r+">other</kind>
+        <kind text="Fr+6">other</kind>
         </harmony>
       <note default-x="15.84" default-y="15">
         <pitch>

@@ -33,8 +33,8 @@ describe("SCHUBERT_D845_MESURES_1_10", () => {
     const attendus = [
       /<root-step>A<\/root-step>[\s\S]{0,40}kind text="m">minor/,       // i
       /<root-step>B<\/root-step>[\s\S]{0,40}kind text="dim">diminished/, // ii°
-      /<kind text="it\+6">none/,                                        // sixte italienne
-      /<kind text="r\+">other/,                                         // sixte française (encodage MuseScore)
+      /<kind text="It\+6">other/,                                       // sixte italienne
+      /<kind text="Fr\+6">other/,                                       // sixte française
     ];
     for (const re of attendus) expect(SCHUBERT_D845_MESURES_1_10).toMatch(re);
     expect([...SCHUBERT_D845_MESURES_1_10.matchAll(/<harmony print-frame="no">/g)]).toHaveLength(17);
@@ -79,6 +79,26 @@ describe("SCHUBERT_D845_MESURES_1_10 — gravure Verovio (séquence réelle de S
     const svg: string = tk.renderToSVG(1);
     expect(svg).toContain("it+6");
     expect(svg).toContain("Fr+6");
+  });
+
+  it("Verovio rend le SYMBOLE d'accord des sixtes augmentées en toutes lettres (pas la racine seule)", () => {
+    // Regression : `<kind>none</kind>` (avec `<root-step text="">C</root-step>`
+    // comme racine de remplissage) faisait afficher « C » nu par Verovio, qui
+    // ignore le texte du kind quand il vaut "none" — Dany n'avait jamais saisi
+    // ce "C", qui ne correspondait à rien sur sa partition. Corrigé en
+    // `<root-step></root-step>` (vide) + `<kind text="It+6">other</kind>` :
+    // avec kind="other", Verovio concatène racine (vide) + texte du kind.
+    tk.loadData(SCHUBERT_D845_MESURES_1_10);
+    tk.renderToMIDI();
+    tk.setOptions({ scale: 40, adjustPageHeight: true, breaks: "auto", footer: "none", pageWidth: 2000 });
+    const svg: string = tk.renderToSVG(1);
+    const harms = [...svg.matchAll(/<g[^>]*class="harm"[^>]*>[\s\S]*?<\/g>/g)].map((m) =>
+      m[0].replace(/<[^>]+>/g, "").replace(/\s+/g, "").trim(),
+    );
+    expect(harms.filter((h) => h === "It+6")).toHaveLength(2); // mesures 4 et 9
+    expect(harms.filter((h) => h === "Fr+6")).toHaveLength(1); // mesure 10
+    expect(harms).not.toContain("C");
+    expect(harms).not.toContain("Fr+");
   });
 
   it("avec breaks=encoded (StudioScore + VueConservatoire), respecte le saut de système voulu à la mesure 6 (5+5)", async () => {
