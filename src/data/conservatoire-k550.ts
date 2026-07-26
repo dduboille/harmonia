@@ -1,4 +1,4 @@
-import type { MesureAnalyse } from "./conservatoire-bwv846";
+import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
 
 /**
  * data/conservatoire-k550.ts
@@ -1292,7 +1292,7 @@ export const K550_MESURES_1_9 =
         <beam number="1">begin</beam>
         <lyric number="1" default-x="9.32" default-y="-60.32" relative-y="-30">
           <syllabic>single</syllabic>
-          <text>V7(T)</text>
+          <text>V7(D)</text>
           </lyric>
         </note>
       <note default-x="45.66" default-y="-150">
@@ -1497,7 +1497,7 @@ export const K550_MESURES_1_9 =
         <beam number="1">begin</beam>
         <lyric number="1" default-x="9.32" default-y="-60.32" relative-y="-30">
           <syllabic>single</syllabic>
-          <text>V6/4(T)</text>
+          <text>V6/4(D)</text>
           </lyric>
         </note>
       <note default-x="45.66" default-y="-165">
@@ -1553,7 +1553,7 @@ export const K550_MESURES_1_9 =
         <beam number="1">begin</beam>
         <lyric number="1" default-x="9.32" default-y="-60.32" relative-y="-30">
           <syllabic>single</syllabic>
-          <text>V7+6(T)</text>
+          <text>V7+6(D)</text>
           </lyric>
         </note>
       <note default-x="155.14" default-y="-165">
@@ -1729,7 +1729,18 @@ export const K550_MESURES_1_9 =
   </score-partwise>
 `;
 
-/** Analyse mesure par mesure de `K550_MESURES_1_9` — voir le commentaire d'en-tête. */
+/**
+ * Analyse mesure par mesure de `K550_MESURES_1_9` — voir le commentaire d'en-tête.
+ *
+ * Mesures 7-8 (V7 / V6/4) : fonction corrigée de "T" à "D" le 2026-07-26, en
+ * écrivant l'analyse narrative de ce morceau. La basse de ces deux mesures est
+ * celle de l'accord de dominante lui-même (ré puis la, tous deux membres du Ré7 —
+ * pas une pédale de tonique décorée, contrairement à la mesure 3 de BWV846/cours1,
+ * seul autre cas où couleur et fonction avaient semblé se contredire). Question
+ * posée à Dany, qui a choisi de corriger l'étiquette (D) plutôt que la couleur
+ * (rouge, déjà cohérente) ou le texte. Les `<lyric>` du MusicXML ci-dessus ont été
+ * mis à jour en conséquence (V7(D), V6/4(D), V7+6(D)).
+ */
 export const K550_ANALYSE: MesureAnalyse[] = [
   { numero: 1, nom: "Solm",    degre: "I6/4",   fonction: "T" },
   { numero: 2, nom: "Solm",    degre: "I6/4",   fonction: "T" },
@@ -1737,7 +1748,80 @@ export const K550_ANALYSE: MesureAnalyse[] = [
   { numero: 4, nom: "Solm",    degre: "I6/4",   fonction: "T" },
   { numero: 5, nom: "Lam7b5",  degre: "II+4/3", fonction: "SD" },
   { numero: 6, nom: "Lam7b5",  degre: "II+4/3", fonction: "SD" },
-  { numero: 7, nom: "Ré7",     degre: "V7",     fonction: "T" },
-  { numero: 8, nom: "Ré",      degre: "V6/4",   fonction: "T" },
+  { numero: 7, nom: "Ré7",     degre: "V7",     fonction: "D" },
+  { numero: 8, nom: "Ré",      degre: "V6/4",   fonction: "D" },
   { numero: 9, nom: "Solm",    degre: "I6/4",   fonction: "T" },
 ];
+
+/**
+ * Analyse harmonique NARRATIVE — vérifiée mesure par mesure contre les hauteurs et
+ * couleurs RÉELLES du MusicXML ci-dessus (pas recopiée telle quelle d'un premier
+ * jet fourni par Dany, généré ailleurs). Plusieurs corrections :
+ *  - « pédale de dominante » (mesures 1-4) est trompeur : le ré tenu à la basse
+ *    est la QUINTE de l'accord de TONIQUE (i6/4), pas une pédale de dominante
+ *    indépendante — corrigé en « quinte de la tonique à la basse » ;
+ *  - mesures 7-8 : le premier jet écrivait la fonction "(D)" alors que le fichier
+ *    portait encore "(T)" — CONFLIT du même type que la mesure 3 de BWV846/cours1.
+ *    Mais ici, contrairement à BWV846, aucune pédale de tonique ne justifie une
+ *    relecture fonctionnelle : la basse (ré puis la) est celle de l'accord de
+ *    dominante lui-même. Question posée à Dany, qui a choisi de corriger
+ *    l'étiquette en "(D)" (dans K550_ANALYSE ET dans les <lyric> du MusicXML)
+ *    plutôt que la couleur (rouge, déjà cohérente) — décision inverse de celle
+ *    prise pour BWV846, où c'est la couleur qui avait été corrigée ;
+ *  - la mesure 9 n'est pas une « cadence authentique » au sens strict : elle
+ *    revient au i, mais toujours en 2e renversement (i6/4, quinte à la basse,
+ *    exactement la texture d'ouverture) — pas de fondamentale à la basse.
+ */
+export const K550_ANALYSE_NARRATIVE: AnalyseNarrative = {
+  tonalite: "Sol mineur (i) — 2 bémols à l'armure (si♭, mi♭). Mode mineur INFÉRÉ par corrélation de profil tonal (aucune balise <mode> dans l'export MuseScore) : confirmé par l'omniprésence du pôle I (Solm) et la dominante Ré7 avec sa sensible fa♯, seule note étrangère à l'armure de tout l'extrait.",
+  metrique: "C (4/4, alla breve).",
+  forme: "Le célèbre thème d'ouverture repose sur une pédale — la quinte de la tonique (ré) tenue à la basse pendant 4 mesures — puis glisse par un simple demi-ton vers une sous-dominante enrichie (IIø7, mesures 5-6), avant la progression cadentielle IIø7-V7-I qu'enseigne ce cours (mesures 7 à 9 — Dany a ajouté la demi-mesure 9 spécifiquement pour la compléter).",
+  sections: [
+    {
+      label: "Mesures 1-4",
+      titre: "Le thème, sur la quinte de la tonique tenue à la basse",
+      chiffrage: "Gm/D",
+      fonctions: "i6/4",
+      texte:
+        "La main gauche égraine un motif régulier en croches (sol-ré-sol-si♭ — la fondamentale, la quinte, la fondamentale, la tierce de sol mineur) : c'est un accord de TONIQUE tout du long, mais avec sa propre QUINTE (ré) à la basse — pas une pédale de dominante indépendante, seulement l'un des sons de la tonique elle-même. Au-dessus, le célèbre motif anacroustique (mi♭-ré-ré) lance le thème, développé sur les 4 mesures.",
+    },
+    {
+      label: "Mesures 5-6",
+      titre: "La sous-dominante enrichie, par degré conjoint",
+      chiffrage: "Am7b5/Eb",
+      fonctions: "ii+4/3",
+      texte:
+        "La basse passe de ré à mi♭ par un simple demi-ton — sans le moindre saut — pour rejoindre un accord de quinte diminuée et septième (la-do-mi♭-sol, IIe degré demi-diminué), sa PROPRE quinte (mi♭) cette fois à la basse. C'est la couleur orange : la sous-dominante enrichie s'éloigne franchement de la tonique.",
+    },
+    {
+      label: "Mesures 7-8",
+      titre: "La dominante et sa tension",
+      chiffrage: "D7  |  D/A puis D7/A",
+      fonctions: "V7  |  V6/4 puis V7+6",
+      texte:
+        "La sensible du ton (fa♯, seule altération de tout l'extrait) apparaît enfin à la mesure 7 : elle forme, avec le do (7e de l'accord), le <strong>triton</strong> qui porte toute la tension de la dominante. À la mesure 8, la basse reste proche (ré, la, fa♯) : le même accord de dominante, d'abord entendu comme une triade en 2e renversement (V6/4), puis enrichi de sa 7e (V7, toujours en 2e renversement, d'où le « +6 »).",
+    },
+    {
+      label: "Mesure 9",
+      titre: "Retour — pas encore une cadence fermée",
+      chiffrage: "Gm/D",
+      fonctions: "i6/4",
+      texte:
+        "La tension retombe sur la tonique — mais toujours en 2e renversement (i6/4), exactement la texture qui ouvrait l'extrait. Ce n'est pas une cadence authentique au sens strict (qui exigerait la fondamentale à la basse) : plutôt un retour à l'idée d'ouverture, la boucle qui referme la phrase pour relancer le thème.",
+    },
+  ],
+  synthese: [
+    {
+      titre: "Une note, deux fonctions",
+      texte: "Le ré porte toute l'harmonie des 4 premières mesures (5e de la tonique) puis, un ton plus haut à la basse (mi♭), fait glisser l'harmonie vers la sous-dominante — un déplacement d'un seul demi-ton suffit à changer complètement de fonction.",
+    },
+    {
+      titre: "Le triton, moteur de la dominante",
+      texte: "Fa♯ (la sensible) et do (la 7e) forment l'intervalle qui pousse tout vers la résolution — la seule altération étrangère à l'armure de tout l'extrait, réservée aux 2 mesures de dominante.",
+    },
+    {
+      titre: "Une cadence qui ne referme pas tout à fait",
+      texte: "IIø7-V7-I est bien la progression cadentielle que ce cours enseigne, mais elle boucle ici sur un I en 2e renversement (comme au départ), pas sur une fondamentale à la basse — la tension retombe sans que la phrase se ferme complètement.",
+    },
+  ],
+};

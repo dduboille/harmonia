@@ -75,7 +75,7 @@ describe("K550_MESURES_1_9", () => {
   });
 
   it("chaque mesure annotée porte son chiffrage + fonction en parole (<lyric>) sous la basse", () => {
-    for (const texte of ["I6/4(T)", "II+4/3(SD)", "V7(T)", "V6/4(T)", "V7+6(T)"]) {
+    for (const texte of ["I6/4(T)", "II+4/3(SD)", "V7(D)", "V6/4(D)", "V7+6(D)"]) {
       expect(K550_MESURES_1_9).toContain(`<text>${texte}</text>`);
     }
     // "I6/4(T)" apparaît deux fois : mesure 1 (ouverture) ET mesure 9 (retour, la
@@ -119,7 +119,7 @@ describe("K550_MESURES_1_9 — gravure Verovio (séquence réelle de StudioScore
     tk.setOptions({ scale: 40, adjustPageHeight: true, breaks: "auto", footer: "none", pageWidth: 3000 });
     const svg: string = tk.renderToSVG(1);
     expect(svg).toContain("II+4/3(SD)");
-    expect(svg).toContain("V6/4(T)");
+    expect(svg).toContain("V6/4(D)");
   });
 
   it("avec breaks=encoded (StudioScore + VueConservatoire), respecte les sauts de système aux mesures 5 et 9", async () => {
