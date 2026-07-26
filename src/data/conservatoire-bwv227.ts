@@ -1076,6 +1076,18 @@ export const BWV227_MESURES_1_8 = `<?xml version="1.0" encoding="UTF-8"?>
         </note>
       </measure>
     <measure number="5" width="187.62">
+      <print new-system="yes">
+        <system-layout>
+          <system-margins>
+            <left-margin>0</left-margin>
+            <right-margin>0</right-margin>
+            </system-margins>
+          <system-distance>320</system-distance>
+          </system-layout>
+        <staff-layout number="2">
+          <staff-distance>77.69</staff-distance>
+          </staff-layout>
+        </print>
       <harmony print-frame="no">
         <root>
           <root-step>C</root-step>
@@ -1327,18 +1339,6 @@ export const BWV227_MESURES_1_8 = `<?xml version="1.0" encoding="UTF-8"?>
         </note>
       </measure>
     <measure number="6" width="239.27">
-      <print new-system="yes">
-        <system-layout>
-          <system-margins>
-            <left-margin>0</left-margin>
-            <right-margin>0</right-margin>
-            </system-margins>
-          <system-distance>320</system-distance>
-          </system-layout>
-        <staff-layout number="2">
-          <staff-distance>77.69</staff-distance>
-          </staff-layout>
-        </print>
       <harmony print-frame="no">
         <root>
           <root-step>E</root-step>

@@ -27,9 +27,7 @@ describe("BWV227_MESURES_1_8", () => {
   });
 
   it("mesure 6 : cadence parfaite — mi mineur, ronde, mi DOUBLÉ à la basse ET au soprano", () => {
-    // Mesure la plus courte de l'extrait (une seule ronde par voix) : c'est ELLE
-    // qui porte le `<print new-system=\"yes\">` — Dany a choisi d'ouvrir un nouveau
-    // système ici, cf. le test de mise en page plus bas.
+    // Mesure la plus courte de l'extrait (une seule ronde par voix).
     const score = parseMusicXML(BWV227_MESURES_1_8);
     const notes = score.notes.filter((n) => n.measure === 6);
     expect(notes.map((n) => n.pc).sort((a, b) => a - b)).toEqual([4, 4, 7, 11]); // Mi(x2)-Sol-Si, tonique complet
@@ -92,7 +90,7 @@ describe("BWV227_MESURES_1_8 — gravure Verovio (séquence réelle de StudioSco
     expect(svg).toContain("V7");
   });
 
-  it("avec breaks=encoded (StudioScore + VueConservatoire), respecte le saut de système voulu à la mesure 6", async () => {
+  it("avec breaks=encoded (StudioScore + VueConservatoire), respecte le saut de système voulu à la mesure 5", async () => {
     expect(BWV227_MESURES_1_8).toContain("<print new-system");
     const creerModule = (await import("verovio/wasm")).default;
     const { VerovioToolkit } = await import("verovio/esm");
@@ -103,7 +101,7 @@ describe("BWV227_MESURES_1_8 — gravure Verovio (séquence réelle de StudioSco
     const svg: string = frais.renderToSVG(1);
     const systemes = svg.split(/<g[^>]*class="system"[^>]*>/).slice(1);
     const mesuresParSysteme = systemes.map((s) => [...s.matchAll(/<g[^>]*class="measure"[^>]*>/g)].length);
-    // Mesures 1-5, puis 6-8 : le nouveau système s'ouvre exactement à la mesure 6.
-    expect(mesuresParSysteme).toEqual([5, 3]);
+    // Mesures 1-4, puis 5-8 : équilibré, à la demande de Dany.
+    expect(mesuresParSysteme).toEqual([4, 4]);
   });
 });
