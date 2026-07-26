@@ -1,4 +1,4 @@
-import type { MesureAnalyse } from "./conservatoire-bwv846";
+import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
 
 /**
  * data/conservatoire-schubert-d845.ts
@@ -2319,3 +2319,111 @@ export const SCHUBERT_D845_ANALYSE: MesureAnalyse[] = [
   { numero: 9,  nom: "It+6",  degre: "It+6", fonction: "SD" },
   { numero: 10, nom: "Fr+6",  degre: "Fr+6", fonction: "SD" },
 ];
+
+/**
+ * Analyse harmonique NARRATIVE — vérifiée note par note contre les hauteurs
+ * RÉELLES du MusicXML ci-dessus (pas recopiée telle quelle d'un premier jet
+ * fourni par Dany, généré ailleurs). Plusieurs erreurs corrigées :
+ *  - la sixte italienne (mesure 4) n'est PAS fa-do-ré♯ : do n'apparaît nulle
+ *    part dans cette mesure. Le vrai accord est fa-LA-ré♯ (avec un mi
+ *    supplémentaire à la basse, anticipant la dominante) ;
+ *  - la sixte française n'est pas non plus fa-do-ré-ré♯ : c'est fa-LA-SI-ré♯
+ *    (le si, pas le ré, est la note ajoutée — la seconde majeure la-si) ;
+ *  - et surtout, le premier jet plaçait la sixte française À LA MESURE 9 —
+ *    c'est la mesure 10. La mesure 9 est en réalité le RAPPEL de la sixte
+ *    ITALIENNE (2e occurrence, identique à la mesure 4) ;
+ *  - le ii° de la mesure 5 est une triade (si-ré-fa), pas un accord de 4 sons
+ *    « si-do-ré-fa » — le do qui apparaît dans la mesure est une note de
+ *    passage à la basse, pas un son de l'accord ;
+ *  - la mesure 7 ne contient PAS « Em/G → F#m7 » : ces deux accords
+ *    appartiennent à la mesure 8 (erreur de frontière de mesure, même famille
+ *    que celle déjà trouvée sur BWV227/cours4) ;
+ *  - l'extrait ne se termine PAS par une résolution à la tonique : la
+ *    mesure 10 s'arrête sur V (dominante), suspendue — la phrase continue
+ *    au-delà de ces 10 mesures.
+ *
+ * Trouvé en vérifiant : la mesure 8 emprunte aussi au mode MINEUR ANCIEN
+ * (naturel) — la dominante y perd sa sensible (sol♯→sol) et devient un accord
+ * MINEUR (v, pas V) — un emprunt modal direct, à côté des emprunts
+ * chromatiques des sixtes augmentées. Les mesures 5-6 reprennent en outre le
+ * motif d'ouverture (mêmes intervalles, une octave/un degré plus haut),
+ * réharmonisé sur le ii° puis réorienté vers fa — la même note qui sert de
+ * basse aux deux sixtes augmentées de l'extrait.
+ */
+export const SCHUBERT_D845_ANALYSE_NARRATIVE: AnalyseNarrative = {
+  tonalite: "La mineur (i). La sensible (sol♯) n'apparaît que dans les accords qui la réclament (V, V7) — ailleurs, l'extrait explore de vraies couleurs empruntées, pas seulement la gamme harmonique mineure.",
+  metrique: "4/4.",
+  forme: "Le thème d'ouverture (mes. 1-2) revient réharmonisé et réorienté vers fa (mes. 5-6), la note qui sert de basse aux deux sixtes augmentées de l'extrait : italienne (mes. 4, rappelée mes. 9), puis française (mes. 10, plus riche d'une note). L'extrait s'arrête suspendu sur la dominante (mes. 10) — la phrase continue au-delà de ces 10 mesures.",
+  sections: [
+    {
+      label: "Mesures 1-2",
+      titre: "Le thème, à l'unisson à l'octave",
+      chiffrage: "Am",
+      fonctions: "i",
+      texte:
+        "Chant et basse jouent EXACTEMENT la même ligne, à l'octave (do-si-la, puis mi tenu) : pas d'harmonie verticale, seulement le mode mineur exposé nu, en pianissimo. La tierce (do) colore d'emblée la tonalité de sa couleur mélancolique.",
+    },
+    {
+      label: "Mesure 3",
+      titre: "Une oscillation tonique-dominante, une basse qui descend par degrés conjoints",
+      chiffrage: "Am/C  →  E7/B  →  Am  →  E/G♯",
+      fonctions: "i6  →  V4/3  →  i  →  V6",
+      texte:
+        "Quatre accords en une seule mesure, mais une seule ligne directrice : la basse descend do-si-la-sol♯, degré par degré. Le sol♯ (la sensible) referme la mesure sur la dominante en 1er renversement — l'alternance i-V ancre solidement la tonalité avant l'emprunt qui va suivre.",
+    },
+    {
+      label: "Mesure 4",
+      titre: "La sixte augmentée italienne",
+      chiffrage: "It+6 (fa-la-ré♯)  →  E",
+      fonctions: "SD (emprunt)  →  V",
+      texte:
+        "Premier emprunt chromatique de l'extrait : sur une basse de fa (le VIe degré abaissé), l'accord fa-la-ré♯ forme une <strong>sixte augmentée</strong> — l'intervalle fa-ré♯ (10 demi-tons) qui donne son nom à l'accord. Les deux notes extrêmes divergent par mouvement contraire, chacune d'un demi-ton : le fa descend au mi (à la basse), le ré♯ monte au mi (au-dessus) — une résolution en éventail vers l'unisson mi, qui devient la dominante. Une demi-cadence d'une grande tension.",
+    },
+    {
+      label: "Mesures 5-6",
+      titre: "Le même motif, réharmonisé et réorienté",
+      chiffrage: "Bdim",
+      fonctions: "ii°",
+      texte:
+        "Le motif d'ouverture revient, mêmes intervalles, un degré plus haut (ré-do-si, puis fa tenu au lieu de mi) — mais cette fois harmonisé sur le IIe degré diminué (si-ré-fa), la seule triade diminuée de l'extrait. Le fa tenu qui conclut la phrase n'est pas un hasard : c'est la même note qui sert de basse aux deux sixtes augmentées de l'extrait.",
+    },
+    {
+      label: "Mesure 7",
+      titre: "Même geste qu'à la mesure 3, une couleur en moins",
+      chiffrage: "E7/D  →  Am/C  →  E/B  →  Am",
+      fonctions: "V4/2  →  i6  →  V6/4  →  i",
+      texte:
+        "Le même principe qu'à la mesure 3 (une basse qui relie i et V) revient, engagé cette fois par la 7e de la dominante (E7 en 3e renversement, ré à la basse). Le 3e accord (mi-si, V6/4) omet sa propre tierce (sol♯) — un accord de dominante réduit à sa fondamentale et sa quinte, sans sa couleur de sensible.",
+    },
+    {
+      label: "Mesure 8",
+      titre: "Un emprunt modal, puis un pivot vers la dominante",
+      chiffrage: "Em/G  →  F♯m7",
+      fonctions: "v (emprunt)  →  ii7/V",
+      texte:
+        "Coloration modale directe : la sensible (sol♯) s'efface, remplacée par le sol naturel du mode mineur ANCIEN — l'accord de dominante devient mineur (v, pas V), un emprunt au mode le plus ancien de la tonalité. Il enchaîne sur un fa♯m7 (sans sa quinte, do♯) : le ii7 DE LA DOMINANTE, qui prépare le retour de mi comme pôle d'attraction.",
+    },
+    {
+      label: "Mesures 9-10",
+      titre: "It+6 rappelée, puis Fr+6 — l'extrait se referme en suspens",
+      chiffrage: "It+6  →  Fr+6 (fa-la-si-ré♯)  →  E",
+      fonctions: "SD (emprunt)  →  SD (emprunt)  →  V",
+      texte:
+        "La sixte italienne (fa-la-ré♯) revient à l'identique, puis se colore d'une note supplémentaire à la mesure 10 : la sixte <strong>française</strong> ajoute le si (fa-la-si-ré♯) — la seconde majeure la-si qui la rend plus mordante que l'italienne. Les deux sixtes partagent la même basse (fa) et la même résolution en éventail vers mi. L'extrait s'arrête ici, suspendu sur la dominante : la phrase continue au-delà de ces 10 mesures.",
+    },
+  ],
+  synthese: [
+    {
+      titre: "Une seule note-pivot pour deux sixtes",
+      texte: "Fa (le VIe degré abaissé) sert de basse aux deux sixtes augmentées de l'extrait (mesures 4 et 9-10) — italienne d'abord (3 sons), française ensuite (4 sons, avec le si en plus). Une seule note, deux couleurs d'emprunt.",
+    },
+    {
+      titre: "La résolution en éventail",
+      texte: "Les deux sixtes augmentées résolvent de la même façon : leurs deux notes extrêmes (fa et ré♯) convergent par mouvement contraire, chacune d'un demi-ton, vers l'unisson mi — la dominante. C'est la signature de toute sixte augmentée, quelle que soit sa richesse (italienne, française, allemande).",
+    },
+    {
+      titre: "Un emprunt modal, pas seulement chromatique",
+      texte: "La mesure 8 emprunte au mode mineur ANCIEN (naturel) : la dominante y perd sa sensible (sol♯→sol) pour devenir un accord mineur. Un emprunt de mode, à côté des emprunts chromatiques des sixtes augmentées — deux visages du même principe : sortir de la gamme sans quitter la tonalité.",
+    },
+  ],
+};
