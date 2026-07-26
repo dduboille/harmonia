@@ -3,6 +3,7 @@ import { PATHETIQUE2_MESURES_1_8, PATHETIQUE2_ANALYSE, PATHETIQUE2_ANALYSE_NARRA
 import { K550_MESURES_1_9, K550_ANALYSE, K550_ANALYSE_NARRATIVE } from "./conservatoire-k550";
 import { BWV227_MESURES_1_8, BWV227_ANALYSE, BWV227_ANALYSE_NARRATIVE } from "./conservatoire-bwv227";
 import { CHOPIN_OP9_N2_MESURES_1_4, CHOPIN_OP9_N2_ANALYSE } from "./conservatoire-chopin-op9n2";
+import { SCHUBERT_D845_MESURES_1_10, SCHUBERT_D845_ANALYSE } from "./conservatoire-schubert-d845";
 
 export interface CoursPieceData {
   titre: string;
@@ -185,6 +186,8 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       titre: "Sonate D.845 mvt.I",
       compositeur: "F. Schubert",
       notes: ["A3", "C4", "E4", "A4", "F4", "A4", "C5", "E5"],
+      musicxml: SCHUBERT_D845_MESURES_1_10,
+      analyse: SCHUBERT_D845_ANALYSE,
     },
     pieges: [
       {
