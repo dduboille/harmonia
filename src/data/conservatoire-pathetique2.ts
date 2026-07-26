@@ -1,4 +1,4 @@
-import type { MesureAnalyse } from "./conservatoire-bwv846";
+import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
 
 /**
  * data/conservatoire-pathetique2.ts
@@ -1991,3 +1991,72 @@ export const PATHETIQUE2_ANALYSE: MesureAnalyse[] = [
   { numero: 7, nom: "Sibm", degre: "ii", fonction: "SD" },
   { numero: 8, nom: "Lab",  degre: "I",  fonction: "T" },
 ];
+
+/**
+ * Analyse harmonique NARRATIVE — vérifiée mesure par mesure contre les hauteurs
+ * RÉELLES du MusicXML ci-dessus (pas recopiée telle quelle d'un premier jet fourni
+ * par Dany, généré ailleurs). Deux erreurs corrigées :
+ *  - la mesure 4 (V) n'a PAS de septième : le premier jet y décrivait un triton
+ *    sensible/7e ("la tétrade de V7") — l'accord réel est une simple triade
+ *    mi♭-sol-si♭, sans ré♭ nulle part dans la mesure (vérifié note par note) ;
+ *  - à la mesure 2 (I6), le do n'est affirmé QU'à la basse — ni le chant (qui
+ *    chante mi♭ puis ré♭) ni l'accompagnement (qui alterne la♭-mi♭ puis
+ *    la♭-si♭) ne le reprennent, contrairement à ce qu'affirmait le premier jet.
+ *
+ * Aucun conflit avec une lecture antérieure de Dany cette fois (contrairement à
+ * BWV846/cours 1) — la couleur de chaque mesure correspond déjà exactement à sa
+ * fonction chiffrée, rien à corriger de ce côté.
+ */
+export const PATHETIQUE2_ANALYSE_NARRATIVE: AnalyseNarrative = {
+  tonalite: "La♭ majeur (4 bémols à l'armure : si♭, mi♭, la♭, ré♭).",
+  metrique: "2/4.",
+  forme: "Deux phrases de 4 mesures. La 1re (mes. 1-4) affirme la tonique sous ses trois visages (fondamentale, 1er renversement, fondamentale) puis atteint la dominante. La 2e (mes. 5-8) s'ouvre par un mouvement rare — la dominante glisse DIRECTEMENT vers la sous-dominante, sans passer par la tonique — avant de refermer la phrase par un retour complet à I.",
+  sections: [
+    {
+      label: "Mesures 1-3",
+      titre: "Trois visages de la tonique",
+      chiffrage: "Ab  |  Ab/C  |  Ab",
+      fonctions: "I  |  I6  |  I",
+      texte:
+        "La mesure 1 pose l'accord de tonique à l'état fondamental : la fondamentale (la♭) est doublée entre la basse et l'accompagnement, pendant que le chant entonne la tierce (do). La mesure 2 renverse le même accord — la basse porte maintenant la <strong>tierce</strong> (do), et non plus la fondamentale : c'est le 1er renversement (I6), qui allège la basse sans changer la fonction (toujours bleu, toujours tonique). La mesure 3 revient à l'état fondamental, la basse redescendant sur la♭.",
+    },
+    {
+      label: "Mesures 4-5",
+      titre: "La dominante, puis une « rétrogression » vers la sous-dominante",
+      chiffrage: "Eb  |  Db",
+      fonctions: "V  |  IV",
+      texte:
+        "Premier changement de fonction de l'extrait : l'accord mi♭-sol-si♭ (V), à l'état fondamental, colore tout en rouge. C'est une triade simple, SANS septième — le sol (sensible du ton) y est bien présent, prêt à tirer vers la tonique. Mais au lieu de résoudre vers I comme l'oreille l'attend, l'harmonie recule vers la sous-dominante (mesure 5, ré♭ majeur) : une <strong>rétrogression</strong> authentique, pas une simplification d'écriture — le repos sur la tonique attendra encore trois mesures.",
+    },
+    {
+      label: "Mesures 6-7",
+      titre: "Un accord de passage, puis la seule triade mineure de l'extrait",
+      chiffrage: "Ab/C  |  Bbm",
+      fonctions: "I6  |  ii",
+      texte:
+        "La basse redescend par degrés conjoints (ré♭ → do → si♭), reliant la sous-dominante de la mesure 5 au ii de la mesure 7 par un bref retour à la tonique en 1er renversement (mesure 6 — un accord de PASSAGE, pas un vrai repos). La mesure 7 introduit si♭ mineur (ii), la <strong>seule triade mineure de tout l'extrait</strong> : couleur orange, comme IV — les deux degrés de la famille sous-dominante.",
+    },
+    {
+      label: "Mesure 8",
+      titre: "Retour et clôture",
+      chiffrage: "Ab",
+      fonctions: "I",
+      texte:
+        "La basse achève sa descente sur la♭, doublé à l'octave dans le grave : la phrase se referme sur la tonique. Le chant conclut sur un arpège complet de l'accord (la♭-do-mi♭-la♭), après une brève appoggiature.",
+    },
+  ],
+  synthese: [
+    {
+      titre: "Le code couleur suit toujours la fonction",
+      texte: "Bleu = tonique (I, I6), orange = sous-dominante (IV, ii), rouge = dominante (V) — même convention que dans les autres partitions du conservatoire. Ici, contrairement au Prélude de Bach (cours 1), aucune couleur ne contredit son propre chiffrage : chaque teinte correspond exactement à la forme de l'accord.",
+    },
+    {
+      titre: "La rétrogression V→IV",
+      texte: "Résoudre une dominante n'est pas une obligation mécanique : ici, elle glisse vers la sous-dominante avant que la tonique ne revienne, à la mesure 8 seulement — à repérer par contraste avec l'attente V→I que pose la règle générale.",
+    },
+    {
+      titre: "Une seule triade mineure",
+      texte: "Sur les 8 mesures, un seul accord est mineur : le ii (si♭ mineur) de la mesure 7 — la couleur d'ensemble reste résolument majeure, à l'image de la tonalité (la♭ majeur).",
+    },
+  ],
+};

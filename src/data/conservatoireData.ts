@@ -1,5 +1,5 @@
 import { BWV846_MESURES_1_8, BWV846_ANALYSE, BWV846_ANALYSE_NARRATIVE, type MesureAnalyse, type AnalyseNarrative } from "./conservatoire-bwv846";
-import { PATHETIQUE2_MESURES_1_8, PATHETIQUE2_ANALYSE } from "./conservatoire-pathetique2";
+import { PATHETIQUE2_MESURES_1_8, PATHETIQUE2_ANALYSE, PATHETIQUE2_ANALYSE_NARRATIVE } from "./conservatoire-pathetique2";
 import { K550_MESURES_1_9, K550_ANALYSE } from "./conservatoire-k550";
 import { BWV227_MESURES_1_8, BWV227_ANALYSE, BWV227_ANALYSE_NARRATIVE } from "./conservatoire-bwv227";
 import { CHOPIN_OP9_N2_MESURES_1_4, CHOPIN_OP9_N2_ANALYSE } from "./conservatoire-chopin-op9n2";
@@ -88,6 +88,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       notes: ["G#4", "C5", "D#5", "G#5", "C5", "D#5", "G#4", "C5"],
       musicxml: PATHETIQUE2_MESURES_1_8,
       analyse: PATHETIQUE2_ANALYSE,
+      analyseNarrative: PATHETIQUE2_ANALYSE_NARRATIVE,
     },
     pieges: [
       {
