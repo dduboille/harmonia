@@ -37,7 +37,7 @@ describe("CHOPIN_OP9_N2_MESURES_1_9", () => {
   });
 
   it("les mesures 6-9 répètent exactement le chiffrage des mesures 2-5 (reprise du thème)", () => {
-    for (const texte of ["I", "IV6", "I7", "V7/II", "II", "V7", "VII/VI", "VI", "V65/V"]) {
+    for (const texte of ["I", "IIø7", "I7", "V7/II", "II", "V7", "VII/VI", "VI", "V65/V"]) {
       const occurrences = [...CHOPIN_OP9_N2_MESURES_1_9.matchAll(new RegExp(`<text>${texte.replace("/", "\\/")}</text>`, "g"))];
       expect(occurrences.length).toBeGreaterThanOrEqual(1);
     }

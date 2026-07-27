@@ -1,4 +1,4 @@
-import type { MesureAnalyse } from "./conservatoire-bwv846";
+import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
 
 /**
  * data/conservatoire-chopin-op9n2.ts
@@ -19,6 +19,13 @@ import type { MesureAnalyse } from "./conservatoire-bwv846";
  * Mesure 1 = la levee celebre (un seul sib4 a la melodie, silence a la main
  * gauche) : la phrase (mesures 2-5) se repete ensuite a l'identique
  * (mesures 6-9, meme chiffrage) — la structure meme du theme du Nocturne.
+ *
+ * Correction (2026-07-27) : au 2e temps des mesures 2 et 6, le <lyric> disait
+ * "IV6" alors que le symbole d'accord (<harmony>) dit "Fm7b5, basse Mib" (un
+ * IIe degre demi-diminue en 3e renversement, la pedale de tonique Mib tenue au
+ * pedalier pendant que la main joue un dessin diminue Lab-Sib(=Dob)-Re au-dessus).
+ * Question posee a Dany, qui a confirme le symbole d'accord comme lecture
+ * voulue — le <lyric> corrige en "IIø7" en consequence.
  */
 export const CHOPIN_OP9_N2_MESURES_1_9 =
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -480,7 +487,7 @@ export const CHOPIN_OP9_N2_MESURES_1_9 =
           </notations>
         <lyric number="1" default-x="11.9" default-y="-74.4" relative-y="-30">
           <syllabic>single</syllabic>
-          <text>IV6</text>
+          <text>IIø7</text>
           </lyric>
         </note>
       <note default-x="273.02" default-y="-90">
@@ -2555,7 +2562,7 @@ export const CHOPIN_OP9_N2_MESURES_1_9 =
         <beam number="1">begin</beam>
         <lyric number="1" default-x="11.9" default-y="-44.4" relative-y="-30">
           <syllabic>single</syllabic>
-          <text>IV6</text>
+          <text>IIø7</text>
           </lyric>
         </note>
       <note default-x="371.02" default-y="-105">
@@ -4769,7 +4776,7 @@ export const CHOPIN_OP9_N2_MESURES_1_9 =
  * Analyse mesure par mesure — la mesure 1 (levee) ne porte aucun accord (voir
  * le chiffrage complet dans les <lyric> du MusicXML pour le detail battement
  * par battement de chaque mesure). Une mesure porte parfois PLUSIEURS accords
- * (ex. mesure 2 : I-IV6-I-I7) ; par convention, chaque entree retient le
+ * (ex. mesure 2 : I-IIø7-I-I7) ; par convention, chaque entree retient le
  * PREMIER accord de la mesure. Les mesures 6-9 repetent exactement le
  * chiffrage des mesures 2-5.
  */
@@ -4783,3 +4790,86 @@ export const CHOPIN_OP9_N2_ANALYSE: MesureAnalyse[] = [
   { numero: 8, nom: "Sib7", degre: "V7",      fonction: "D" },
   { numero: 9, nom: "Sib7", degre: "V7",      fonction: "D" },
 ];
+
+/**
+ * Analyse harmonique NARRATIVE — vérifiée mesure par mesure contre les hauteurs
+ * RÉELLES du MusicXML ci-dessus (pas recopiée telle quelle d'un premier jet
+ * fourni par Dany, généré ailleurs). Le conflit IV6/IIø7 déjà réglé plus haut
+ * (cf. commentaire d'en-tête) sert de socle : la basse conserve mib au pédalier
+ * (marques `keyboardPedalUp` explicites dans le MusicXML) pendant que la main
+ * dessine un IIe degré demi-diminué (fa-lab-sib♮-mib) au-dessus.
+ *
+ * Une précision vérifiée mais nuancée par rapport au premier jet : la basse de
+ * la mesure 4 (V7-VII/VI-VI-V6/5/V) ne descend pas ENTIÈREMENT par degrés
+ * conjoints — si♭→si♮→do est bien chromatique, mais do→la est un SAUT de tierce
+ * (l'appui de la dominante secondaire vers V/V), pas un pas supplémentaire.
+ */
+export const CHOPIN_OP9_N2_ANALYSE_NARRATIVE: AnalyseNarrative = {
+  tonalite: "Mib majeur (I) — l'armure (3 bémols) code ici réellement la tonalité (contrairement aux pièces mineures de Dany, où l'armure ne distingue jamais un ton de son relatif).",
+  metrique: "12/8 (4 temps, chacun une noire pointée).",
+  forme: "La levée (un seul si♭, la dominante mélodique) lance le thème. Les mesures 2 à 5 posent la phrase complète — tonique ornée d'un emprunt chromatique sur pédale, dominante secondaire vers le IIe degré, marche vers la dominante de la dominante, cadence parfaite. Les mesures 6 à 9 la répètent note pour note (même chiffrage), Chopin variant seulement l'ornementation du chant.",
+  sections: [
+    {
+      label: "Mesure 1",
+      titre: "La levée",
+      chiffrage: "(si♭ seul)",
+      fonctions: "—",
+      texte:
+        "Une seule note, si♭4 — la dominante mélodique du ton — lance le thème avant même que l'harmonie ne commence. Rien à la main gauche : le silence prépare l'entrée.",
+    },
+    {
+      label: "Mesure 2",
+      titre: "La tonique, ornée d'un emprunt chromatique sur pédale",
+      chiffrage: "Mib  →  Fm7♭5/Mib  →  Mib  →  Mib/Ré",
+      fonctions: "I  →  IIø7  →  I  →  I7",
+      texte:
+        "La main gauche arpège l'accord de tonique (mib-sol-sib) en croches. Au 2e temps, la basse TIENT le mib au pédalier pendant que la main dessine un <strong>IIe degré demi-diminué</strong> (fa-lab-sib♮-mib) — un accord emprunté à mib mineur, qui colore la tonique sans jamais la quitter réellement : c'est le pédalier, pas l'oreille harmonique, qui continue d'ancrer mib. Le 4e temps enrichit la tonique de sa 7e majeure (ré) avant de relancer la phrase.",
+    },
+    {
+      label: "Mesure 3",
+      titre: "Dominante secondaire vers le IIe degré",
+      chiffrage: "Do7  →  Fam",
+      fonctions: "V7/II  →  II",
+      texte:
+        "Do7 (do-mi-sol-sib) est la dominante du IIe degré (fa mineur) — une tonicisation passagère qui colore la marche harmonique sans jamais quitter mib majeur pour de bon. Le chant déploie une broderie en groupe (un <em>tour de gorge</em> bel canto) autour de ce mouvement.",
+    },
+    {
+      label: "Mesure 4",
+      titre: "Marche vers la dominante de la dominante",
+      chiffrage: "Sib7  →  Sidim7  →  Dom  →  Fa7/La",
+      fonctions: "V7  →  VII/VI  →  VI  →  V6/5/V",
+      texte:
+        "La basse grimpe par demi-tons (si♭→si♮→do) avant un saut de tierce vers la : un accord de 7e diminuée sur la sensible du VIe degré (si°7) pousse vers do mineur (VI), lui-même préparant — via une nouvelle dominante secondaire (fa7, la à la basse) — l'arrivée de la dominante.",
+    },
+    {
+      label: "Mesure 5",
+      titre: "Cadence parfaite",
+      chiffrage: "Sib7  →  Mib",
+      fonctions: "V7  →  I",
+      texte:
+        "La dominante résout sur la tonique : la 1re phrase se referme. Le chant y déploie son trait le plus véloce (triples croches), une cadence ornementée typique du style bel canto de Chopin.",
+    },
+    {
+      label: "Mesures 6-9",
+      titre: "La phrase, note pour note — sauf le chant",
+      chiffrage: "(identique aux mesures 2-5)",
+      fonctions: "I → IIø7 → I → I7 → V7/II → II → V7 → VII/VI → VI → V6/5/V → V7 → I",
+      texte:
+        "L'harmonie et la basse se répètent à l'identique. Seule change l'ornementation du chant : la mesure 8 y superpose un long <strong>trille</strong> écrit note pour note (fa-sol en alternance, 24 croches) au-dessus de la même marche V7-VII/VI-VI-V6/5/V — un retard de cadence qui résout enfin à la mesure 9, sur la même cadence parfaite qu'à la mesure 5.",
+    },
+  ],
+  synthese: [
+    {
+      titre: "Une pédale peut porter un emprunt sans le trahir",
+      texte: "Le IIe degré demi-diminué de la mesure 2 colore la tonique d'une ombre chromatique — mais comme le mib reste tenu au pédalier pendant qu'il sonne, l'oreille ne perd jamais le fil de la tonique. L'emprunt décore, il ne déplace pas le centre tonal.",
+    },
+    {
+      titre: "Une marche n'est pas toujours entièrement conjointe",
+      texte: "La basse de la mesure 4 commence par un mouvement chromatique strict (si♭-si♮-do) mais se referme par un saut de tierce (do-la) — l'appui d'une dominante secondaire, pas un pas de plus. Toutes les « marches » harmoniques ne sont pas des lignes de basse entièrement conjointes.",
+    },
+    {
+      titre: "La répétition sert l'ornementation, pas l'harmonie",
+      texte: "Les mesures 6-9 reprennent l'harmonie et la basse des mesures 2-5 sans le moindre changement — c'est le chant, seul, qui se renouvelle (le trille de la mesure 8 en est l'exemple le plus spectaculaire). Une leçon de style bel canto : l'ornementation est le lieu de la variation, la structure harmonique reste le cadre stable.",
+    },
+  ],
+};

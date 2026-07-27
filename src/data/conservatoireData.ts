@@ -2,7 +2,7 @@ import { BWV846_MESURES_1_8, BWV846_ANALYSE, BWV846_ANALYSE_NARRATIVE, type Mesu
 import { PATHETIQUE2_MESURES_1_8, PATHETIQUE2_ANALYSE, PATHETIQUE2_ANALYSE_NARRATIVE } from "./conservatoire-pathetique2";
 import { K550_MESURES_1_9, K550_ANALYSE, K550_ANALYSE_NARRATIVE } from "./conservatoire-k550";
 import { BWV227_MESURES_1_8, BWV227_ANALYSE, BWV227_ANALYSE_NARRATIVE } from "./conservatoire-bwv227";
-import { CHOPIN_OP9_N2_MESURES_1_9, CHOPIN_OP9_N2_ANALYSE } from "./conservatoire-chopin-op9n2";
+import { CHOPIN_OP9_N2_MESURES_1_9, CHOPIN_OP9_N2_ANALYSE, CHOPIN_OP9_N2_ANALYSE_NARRATIVE } from "./conservatoire-chopin-op9n2";
 import { SCHUBERT_D845_MESURES_1_10, SCHUBERT_D845_ANALYSE, SCHUBERT_D845_ANALYSE_NARRATIVE } from "./conservatoire-schubert-d845";
 
 export interface CoursPieceData {
@@ -222,6 +222,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       notes: ["D#4", "G4", "A#4", "D#5", "D5", "C5", "A#4", "G#4", "G4"],
       musicxml: CHOPIN_OP9_N2_MESURES_1_9,
       analyse: CHOPIN_OP9_N2_ANALYSE,
+      analyseNarrative: CHOPIN_OP9_N2_ANALYSE_NARRATIVE,
     },
     pieges: [
       {
