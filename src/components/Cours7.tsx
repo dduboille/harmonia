@@ -166,7 +166,7 @@ export default function Cours7() {
           </div>
 
           <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("principeExH3")}</h3>
-          <p style={S.p}>{n("principeExP")}</p>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("principeExP") }} />
 
           <div style={{ background:"#fafafa", border:"0.5px solid #e5e5e5", borderRadius:10, padding:"14px 16px", marginBottom:16 }}>
             <div style={{ fontSize:12, color:"#999", marginBottom:8 }}>{n("principeProgLabel")}</div>
@@ -184,7 +184,7 @@ export default function Cours7() {
           <div style={S.warn} dangerouslySetInnerHTML={{ __html: n("principeWarn") }} />
 
           <h3 style={{ fontSize:14, fontWeight:500, margin:"20px 0 8px", color:"#111" }}>{n("principeSimplH3")}</h3>
-          <p style={S.p}>{n("principeSimplP")}</p>
+          <p style={S.p} dangerouslySetInnerHTML={{ __html: n("principeSimplP") }} />
         </div>
       )}
 
