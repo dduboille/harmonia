@@ -1,7 +1,11 @@
 import { describe, it, expect, beforeAll } from "vitest";
 import { parseMusicXML } from "@/lib/musicxml-parse";
 import { planifierLecture } from "@/lib/studio-playback";
-import { SATIN_DOLL_MESURES_1_8, SATIN_DOLL_ANALYSE } from "./conservatoire-satin-doll";
+import {
+  SATIN_DOLL_MESURES_1_8,
+  SATIN_DOLL_ANALYSE,
+  SATIN_DOLL_ANALYSE_NARRATIVE,
+} from "./conservatoire-satin-doll";
 
 // Vérifie l'extrait rejoué contre le MusicXML VERBATIM fourni par Dany (export
 // MuseScore Studio 4.6.3, fichier « satin-doll-duke-ellington.musicxml »,
@@ -44,6 +48,53 @@ describe("SATIN_DOLL_MESURES_1_8", () => {
     expect(SATIN_DOLL_ANALYSE).toHaveLength(8);
     expect(SATIN_DOLL_ANALYSE[0]).toMatchObject({ numero: 1, degre: "II7", fonction: "SD" });
     expect(SATIN_DOLL_ANALYSE[5]).toMatchObject({ numero: 6, degre: "bVI7", fonction: "SD" });
+  });
+
+  // Régression : le fichier source ne contient AUCUN tempo ni AUCUNE
+  // mention de swing (vérifié avant publication de l'analyse narrative, qui
+  // corrige un brouillon de référence affirmant à tort "120 bpm, swing 5:3").
+  it("le fichier source ne contient aucune mention de swing (le tempo affiché est ajouté par nous)", () => {
+    expect(SATIN_DOLL_MESURES_1_8.toLowerCase()).not.toContain("swing");
+  });
+
+  // Régression : la mesure 8 sonne une septième diminuée COMPLÈTE
+  // (Mib-Fa#-La-Do), pas seulement la triade — la balise <harmony> dit
+  // "diminished" (triade), mais les 4 notes réelles forment bien un accord
+  // de 7e diminuée. "nom" corrigé en conséquence après vérification.
+  it("mesure 8 : les 4 notes d'une septième diminuée complète sonnent (Mib-Fa#-La-Do)", () => {
+    const score = parseMusicXML(SATIN_DOLL_MESURES_1_8);
+    const m8 = score.measures.find((m) => m.numero === 8)!;
+    const pcs = new Set(
+      score.notes.filter((n) => n.measure === 8 && n.onset === m8.start).map((n) => n.pc),
+    );
+    expect(pcs.has(3)).toBe(true); // Mib
+    expect(pcs.has(6)).toBe(true); // Fa# (Solb enharmonique)
+    expect(pcs.has(9)).toBe(true); // La
+    expect(pcs.has(0)).toBe(true); // Do
+    expect(SATIN_DOLL_ANALYSE.find((a) => a.numero === 8)!.nom).toBe("Mibdim7");
+  });
+
+  // Régression : l'accord de tonique (Cmaj9) de la mesure 7 est anticipé et
+  // lié depuis le dernier contretemps de la mesure 6 (4 ties "start" en
+  // mesure 6, 4 ties "stop" correspondants en mesure 7).
+  it("mesure 6→7 : l'accord Cmaj9 est anticipé et lié par-dessus la barre de mesure", () => {
+    const m6 = SATIN_DOLL_MESURES_1_8.slice(
+      SATIN_DOLL_MESURES_1_8.indexOf('<measure number="6"'),
+      SATIN_DOLL_MESURES_1_8.indexOf('<measure number="7"'),
+    );
+    const m7 = SATIN_DOLL_MESURES_1_8.slice(
+      SATIN_DOLL_MESURES_1_8.indexOf('<measure number="7"'),
+      SATIN_DOLL_MESURES_1_8.indexOf('<measure number="8"'),
+    );
+    expect([...m6.matchAll(/<tie type="start"\/>/g)]).toHaveLength(4);
+    expect([...m7.matchAll(/<tie type="stop"\/>/g)]).toHaveLength(4);
+  });
+});
+
+describe("SATIN_DOLL_ANALYSE_NARRATIVE", () => {
+  it("couvre les 6 étapes de la marche, de ii-V à la relance chromatique", () => {
+    expect(SATIN_DOLL_ANALYSE_NARRATIVE.sections).toHaveLength(6);
+    expect(SATIN_DOLL_ANALYSE_NARRATIVE.synthese.length).toBeGreaterThan(0);
   });
 });
 

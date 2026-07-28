@@ -1694,17 +1694,154 @@ export const SATIN_DOLL_MESURES_1_8 =
  * toutes les autres pieces a 2 accords par mesure de ce chantier ; le
  * moment-cle du cours sera detaille dans l'analyse narrative.
  *
- * Mesure 8 : Mib diminue est un accord de passage chromatique (basse
- * Do-Ré-Mib-Mi ascendante), sans fonction T/SD/D nette — fonction "?"
- * choisie plutot que de forcer une etiquette qui ne conviendrait pas.
+ * Mesure 8 : accord de passage chromatique (basse Do-Ré-Mib-Mi ascendante),
+ * sans fonction T/SD/D nette — fonction "?" choisie plutot que de forcer une
+ * etiquette qui ne conviendrait pas. "nom" corrige en "Mibdim7" (et non
+ * "Mibdim") apres verification des hauteurs reelles : les 4 notes d'une
+ * septieme diminuee complete sonnent bel et bien (Mib-Fa#-La-Do), pas
+ * seulement la triade — la balise <harmony> du fichier dit juste "diminished"
+ * (triade) mais Dany n'a pas ecrit de "7" dans son propre chiffrage romain
+ * ("bIII", inchange ici) : le "nom" reflete les hauteurs verifiees, le
+ * "degre" reste fidele a son chiffrage.
  */
 export const SATIN_DOLL_ANALYSE: MesureAnalyse[] = [
-  { numero: 1, nom: "Rém7",   degre: "II7",   fonction: "SD" },
-  { numero: 2, nom: "Rém7",   degre: "II7",   fonction: "SD" },
-  { numero: 3, nom: "Mim7",   degre: "III7",  fonction: "T" },
-  { numero: 4, nom: "Mim7",   degre: "III7",  fonction: "T" },
-  { numero: 5, nom: "Lam7",   degre: "VI7",   fonction: "T" },
-  { numero: 6, nom: "Lábm7",  degre: "bVI7",  fonction: "SD" },
-  { numero: 7, nom: "DoMaj9", degre: "Imaj9", fonction: "T" },
-  { numero: 8, nom: "Mibdim", degre: "bIII",  fonction: "?" },
+  { numero: 1, nom: "Rém7",    degre: "II7",   fonction: "SD" },
+  { numero: 2, nom: "Rém7",    degre: "II7",   fonction: "SD" },
+  { numero: 3, nom: "Mim7",    degre: "III7",  fonction: "T" },
+  { numero: 4, nom: "Mim7",    degre: "III7",  fonction: "T" },
+  { numero: 5, nom: "Lam7",    degre: "VI7",   fonction: "T" },
+  { numero: 6, nom: "Lábm7",   degre: "bVI7",  fonction: "SD" },
+  { numero: 7, nom: "DoMaj9",  degre: "Imaj9", fonction: "T" },
+  { numero: 8, nom: "Mibdim7", degre: "bIII",  fonction: "?" },
 ];
+
+/**
+ * Analyse narrative — verifiee note a note (script Node sur les hauteurs
+ * reelles, mesure par mesure) avant redaction. Brouillon de reference fourni
+ * par Dany (Gemini) : plusieurs erreurs trouvees et corrigees.
+ *  - Le brouillon affirme un tempo de "120 bpm" et une indication "Swing"
+ *    explicite (ratio 5:3) — VERIFIE FAUX : le fichier d'origine ne contient
+ *    aucun tempo ni aucune mention de swing (recherche texte, 0 occurrence).
+ *    Le tempo affiche (90) est celui que nous avons nous-memes ajoute par
+ *    prudence (cf. commentaire d'en-tete) — probable confusion avec le
+ *    fichier du cours precedent (All the Things You Are), qui lui a une
+ *    vraie indication de swing.
+ *  - Mesure 5 : le brouillon decrit la 7e du Ré7 (Do5) comme « la tonique a
+ *    l'octave » — incoherent (Do n'est pas la tonique de Ré7). C'est
+ *    simplement sa 7e mineure. Le brouillon omet aussi la 11e (Sol4)
+ *    presente dans ce meme accord.
+ *  - Le brouillon generalise la basse chromatique de fin de mesure (mesures
+ *    1-2) comme menant "vers le Ré" — vrai seulement pour cette occurrence
+ *    precise (Mib->Ré) ; la meme figure reapparait a chaque charniere de 2
+ *    mesures mais vise a chaque fois la fondamentale SUIVANTE (Mi a la
+ *    mesure 3, etc.), pas toujours Ré.
+ * Confirme par verification : l'identite de tous les accords, la
+ * substitution tritonique (mesure 6), et surtout l'anticipation liee de
+ * Cmaj9 sur le contretemps final de la mesure 6 (confirme par les balises
+ * <tie> elles-memes : 4 "start" en mesure 6, 4 "stop" correspondants en
+ * mesure 7).
+ */
+export const SATIN_DOLL_ANALYSE_NARRATIVE: AnalyseNarrative = {
+  tonalite:
+    "Do majeur (armure vierge) — mais jamais affirmé directement avant la mesure 7 : toute la " +
+    "phrase n'est qu'une chaîne de ii-V qui ne se pose sur la tonique qu'à la toute fin.",
+  metrique: "4/4.",
+  forme:
+    "8 mesures = la phrase A du standard : une marche de paires ii-V (ou substituts) qui " +
+    "s'élève degré par degré avant de résoudre sur Do majeur à la mesure 7, puis relance " +
+    "aussitôt le cycle vers une reprise de la section.",
+  sections: [
+    {
+      label: "Mesures 1-2",
+      titre: "ii7-V7, la marche de base",
+      chiffrage: "Rém7 – Sol7",
+      fonctions: "II7 – V7",
+      texte:
+        "L'extrait s'ouvre sur l'enchaînement le plus classique du jazz : ii7-V7 en Do majeur. " +
+        "La basse glisse chromatiquement (Mib) tout à la fin de la mesure 1 — une note de " +
+        "passage qui descend d'un demi-ton vers la fondamentale (Ré) qui ouvre la mesure 2.",
+    },
+    {
+      label: "Mesures 3-4",
+      titre: "iii7-V7/II, la marche remonte",
+      chiffrage: "Mim7 – La7",
+      fonctions: "III7 – V7/II",
+      texte:
+        "La même paire ii-V remonte d'une tierce : Mim7 (iii7, un accord de la famille tonique) " +
+        "puis La7, la dominante secondaire du degré ii (<strong>V7/II</strong>) — une couleur " +
+        "qui prépare un retour vers Rém7 qui n'arrive plus dans cet extrait. La basse reprend " +
+        "son glissement chromatique en fin de mesure, cette fois vers Mi.",
+    },
+    {
+      label: "Mesure 5",
+      titre: "vi7-V7/V, une dominante de la dominante bien parée",
+      chiffrage: "Lam7 – Ré7",
+      fonctions: "VI7 – V7/V",
+      texte:
+        "Nouvelle paire ii-V, encore transposée. Les voicings s'enrichissent nettement ici : " +
+        "Lam7 sonne sans fondamentale ni tierce — seulement 5te, 7e et <strong>11e</strong> " +
+        "(Mi-Sol-Ré). Ré7 (V7/V) ajoute la <strong>9e</strong> (Mi) et la " +
+        "<strong>11e</strong> (Sol) à sa 7e mineure (Do) — un accord bien plus riche qu'un " +
+        "simple D7 de manuel.",
+    },
+    {
+      label: "Mesure 6",
+      titre: "bVI7-subV7, la substitution tritonique",
+      chiffrage: "Lábm7 – Réb7",
+      fonctions: "bVI7 – subV7",
+      texte:
+        "Le moment-clé du cours : au lieu du ii7-V7 attendu (Rém7-Sol7), Dany a écrit " +
+        "Lábm7-Réb7. Réb7 (<strong>subV7</strong>) remplace Sol7 par substitution " +
+        "tritonique — les deux accords partagent en théorie le même triton (Fa-Si), que " +
+        "cette réalisation précise ne fait sonner que par le Si (7e de Réb7). Sur le dernier " +
+        "contretemps de la mesure, la main droite anticipe déjà l'accord de résolution " +
+        "(Cmaj9) et le tient lié par-dessus la barre de mesure.",
+    },
+    {
+      label: "Mesure 7",
+      titre: "Résolution — déjà entamée avant d'arriver",
+      chiffrage: "DoMaj9 – Rém9",
+      fonctions: "Imaj9 – II9",
+      texte:
+        "Résolution enfin sur la tonique — préparée dès la fin de la mesure précédente : " +
+        "DoMaj9 (7e majeure Si, 9e Ré) occupe les deux premiers temps sans même être " +
+        "réattaqué, avant que la basse ne glisse vers Rém9 pour amorcer la relance du cycle.",
+    },
+    {
+      label: "Mesure 8",
+      titre: "Un passage chromatique vers la relance",
+      chiffrage: "Mibdim7 – Mim7",
+      fonctions: "— – III7",
+      texte:
+        "Un accord de <strong>septième diminuée complet</strong> (Mib-Fa#-La-Do, vérifié " +
+        "note à note) sert de passage chromatique, prolongeant la ligne de basse ascendante " +
+        "entamée à la mesure 7 (Do-Ré-Mib-Mi) jusqu'à Mim7 (iii7), qui referme cette phrase " +
+        "et relance le cycle vers une reprise de la section A.",
+    },
+  ],
+  synthese: [
+    {
+      titre: "Une seule marche, transposée trois fois",
+      texte:
+        "ii7-V7 (mesures 1-2), iii7-V7/II (mesures 3-4), vi7-V7/V (mesure 5) : le même geste " +
+        "harmonique, rejoué à trois hauteurs différentes, avant que la substitution " +
+        "tritonique (mesure 6) ne vienne le remplacer une dernière fois pour ramener enfin " +
+        "la tonique.",
+    },
+    {
+      titre: "La substitution, un simple mouvement de basse",
+      texte:
+        "Remplacer Sol7 par Réb7 ne change presque rien à l'oreille (même triton, même " +
+        "tension) — mais transforme la résolution de la basse d'un saut de quarte (Sol→Do) " +
+        "en un simple demi-ton descendant (Réb→Do) : la vraie raison pour laquelle les " +
+        "jazzmen l'utilisent autant.",
+    },
+    {
+      titre: "La résolution est là avant même d'arriver",
+      texte:
+        "L'accord de tonique (Cmaj9) est déjà tenu, lié depuis la mesure précédente, quand la " +
+        "mesure 7 commence officiellement — une respiration rythmique typique du jazz qui " +
+        "brouille la frontière entre tension et résolution.",
+    },
+  ],
+};
