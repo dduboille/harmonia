@@ -18,6 +18,14 @@ import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
  * Piece choisie pour ce cours : elle expose deux sixtes augmentees (It+6 aux
  * mesures 4 et 9, Fr+6 a la mesure 10) — l'illustration meme de l'emprunt
  * chromatique pre-dominant qu'enseigne le cours 5.
+ *
+ * `<sound tempo="90">` ajoute a la mesure 1 (absent du fichier d'origine) :
+ * sans tempo ecrit, notre horloge audio suppose 90 bpm mais Verovio suppose
+ * 120 bpm pour sa PROPRE table de temps MIDI (celle qui pilote le
+ * surlignage des notes pendant la lecture) — les deux derivent l'une de
+ * l'autre. Un tempo explicite fait lire le meme chiffre aux deux systemes ;
+ * ne change pas la vitesse de lecture (90 etait deja le repli utilise).
+ * Detail complet du diagnostic dans conservatoire-beethoven-op27n2.ts.
  */
 export const SCHUBERT_D845_MESURES_1_10 =
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -154,6 +162,15 @@ export const SCHUBERT_D845_MESURES_1_10 =
           <line>4</line>
           </clef>
         </attributes>
+      <direction placement="above">
+        <direction-type>
+          <metronome parentheses="no">
+            <beat-unit>quarter</beat-unit>
+            <per-minute>90</per-minute>
+            </metronome>
+          </direction-type>
+        <sound tempo="90"/>
+        </direction>
       <harmony print-frame="no">
         <root>
           <root-step>A</root-step>

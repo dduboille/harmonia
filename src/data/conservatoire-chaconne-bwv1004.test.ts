@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeAll } from "vitest";
 import { parseMusicXML } from "@/lib/musicxml-parse";
+import { planifierLecture } from "@/lib/studio-playback";
 import {
   CHACONNE_BWV1004_MESURES_0_8,
   CHACONNE_BWV1004_ANALYSE,
@@ -134,5 +135,19 @@ describe("CHACONNE_BWV1004_MESURES_0_8 — gravure Verovio (séquence réelle de
     const systemes = svg.split(/<g[^>]*class="system"[^>]*>/).slice(1);
     const mesuresParSysteme = systemes.map((s) => [...s.matchAll(/<g[^>]*class="measure"[^>]*>/g)].length);
     expect(mesuresParSysteme.reduce((a, b) => a + b, 0)).toBe(9);
+  });
+
+  // Régression : sans tempo écrit, notre horloge audio (repli 90 bpm) et la
+  // table de temps MIDI interne de Verovio (repli 120 bpm) divergent — le
+  // surlignage décroche de l'audio avant la fin réelle. Cf. commentaire
+  // d'en-tête du fichier et conservatoire-beethoven-op27n2.ts.
+  it("le surlignage Verovio reste synchronisé jusque près de la vraie fin (pas de désync tempo)", () => {
+    const score = parseMusicXML(CHACONNE_BWV1004_MESURES_0_8);
+    expect(score.tempos.length).toBeGreaterThan(0);
+    const { dureeTotale } = planifierLecture(score, 1);
+    tk.loadData(CHACONNE_BWV1004_MESURES_0_8);
+    tk.renderToMIDI();
+    const r = tk.getElementsAtTime(Math.round((dureeTotale - 0.3) * 1000));
+    expect(r.measure).toBeTruthy();
   });
 });

@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeAll } from "vitest";
 import { parseMusicXML } from "@/lib/musicxml-parse";
+import { planifierLecture } from "@/lib/studio-playback";
 import { K550_MESURES_1_9 } from "./conservatoire-k550";
 
 // Vérifie l'extrait rejoué contre le MusicXML VERBATIM fourni par Dany (export
@@ -135,5 +136,19 @@ describe("K550_MESURES_1_9 — gravure Verovio (séquence réelle de StudioScore
     const mesuresParSysteme = systemes.map((s) => [...s.matchAll(/<g[^>]*class="measure"[^>]*>/g)].length);
     // 4 mesures, puis 4 mesures, puis la demi-mesure 9 seule sur son système.
     expect(mesuresParSysteme).toEqual([4, 4, 1]);
+  });
+
+  // Régression : sans tempo écrit, notre horloge audio (repli 90 bpm) et la
+  // table de temps MIDI interne de Verovio (repli 120 bpm) divergent — le
+  // surlignage décroche de l'audio avant la fin réelle. Cf. commentaire
+  // d'en-tête du fichier et conservatoire-beethoven-op27n2.ts.
+  it("le surlignage Verovio reste synchronisé jusque près de la vraie fin (pas de désync tempo)", () => {
+    const score = parseMusicXML(K550_MESURES_1_9);
+    expect(score.tempos.length).toBeGreaterThan(0);
+    const { dureeTotale } = planifierLecture(score, 1);
+    tk.loadData(K550_MESURES_1_9);
+    tk.renderToMIDI();
+    const r = tk.getElementsAtTime(Math.round((dureeTotale - 0.3) * 1000));
+    expect(r.measure).toBeTruthy();
   });
 });

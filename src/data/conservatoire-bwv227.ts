@@ -12,6 +12,14 @@ import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
  * clé de sol, voix 5/6 en clé de fa), avec `<harmony>` et `<lyric>` (chiffrage
  * romain) portés directement sous la portée, mesure par mesure — remplace la
  * précédente réduction SATB à 4 voix (sans chiffrage intégré).
+ *
+ * `<sound tempo="90">` ajouté à la mesure 1 (absent du fichier d'origine) :
+ * sans tempo écrit, notre horloge audio suppose 90 bpm mais Verovio suppose
+ * 120 bpm pour sa PROPRE table de temps MIDI (celle qui pilote le
+ * surlignage des notes pendant la lecture) — les deux dérivent l'une de
+ * l'autre. Un tempo explicite fait lire le même chiffre aux deux systèmes ;
+ * ne change pas la vitesse de lecture (90 était déjà le repli utilisé).
+ * Détail complet du diagnostic dans conservatoire-beethoven-op27n2.ts.
  */
 export const BWV227_MESURES_1_8 = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
@@ -143,6 +151,15 @@ export const BWV227_MESURES_1_8 = `<?xml version="1.0" encoding="UTF-8"?>
           <line>4</line>
           </clef>
         </attributes>
+      <direction placement="above">
+        <direction-type>
+          <metronome parentheses="no">
+            <beat-unit>quarter</beat-unit>
+            <per-minute>90</per-minute>
+            </metronome>
+          </direction-type>
+        <sound tempo="90"/>
+        </direction>
       <harmony print-frame="no">
         <root>
           <root-step>E</root-step>

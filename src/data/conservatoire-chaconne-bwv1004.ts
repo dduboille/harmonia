@@ -26,6 +26,14 @@ import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
  * matiere meme du theme du cours (marche/basse repetee). Les mesures 3 et 7
  * en revanche DIFFERENT (IV-I6/4-V7 contre II-V-V7) — Bach varie aussi
  * l'harmonie d'une repetition a l'autre, pas seulement la figuration.
+ *
+ * `<sound tempo="90">` ajoute a la mesure 0 (absent du fichier d'origine) :
+ * sans tempo ecrit, notre horloge audio suppose 90 bpm mais Verovio suppose
+ * 120 bpm pour sa PROPRE table de temps MIDI (celle qui pilote le
+ * surlignage des notes pendant la lecture) — les deux derivent l'une de
+ * l'autre. Un tempo explicite fait lire le meme chiffre aux deux systemes ;
+ * ne change pas la vitesse de lecture (90 etait deja le repli utilise).
+ * Detail complet du diagnostic dans conservatoire-beethoven-op27n2.ts.
  */
 export const CHACONNE_BWV1004_MESURES_0_8 =
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -169,6 +177,15 @@ export const CHACONNE_BWV1004_MESURES_0_8 =
           <line>4</line>
           </clef>
         </attributes>
+      <direction placement="above">
+        <direction-type>
+          <metronome parentheses="no">
+            <beat-unit>quarter</beat-unit>
+            <per-minute>90</per-minute>
+            </metronome>
+          </direction-type>
+        <sound tempo="90"/>
+        </direction>
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>

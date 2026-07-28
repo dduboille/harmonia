@@ -14,6 +14,16 @@ import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
  * sous la portee. Pas de balise <mode> (comme tous les exports de Dany) : le
  * mode mineur est INFERE.
  *
+ * <sound tempo="90"> ajoute a la mesure 1 (absent du fichier d'origine) : sans
+ * indication de tempo, notre horloge de lecture audio suppose 90 bpm (repli
+ * de studio-playback.ts) mais Verovio, lui, suppose 120 bpm par defaut pour
+ * SA propre table de temps MIDI (celle qui pilote le surlignage) — les deux
+ * horloges divergent progressivement et le surlignage decale par rapport a
+ * l'audio. Ajouter un tempo EXPLICITE fait lire le MEME chiffre aux deux
+ * systemes (verifie : sans cet ajout, le surlignage de Verovio "finit" la
+ * piece ~20 % plus tot que la duree reelle jouee). Ne change PAS la vitesse
+ * de lecture (90 est deja le repli utilise depuis toujours).
+ *
  * Mesure 8 : le <lyric> ecrit "V65/III" pour les DEUX moities de la mesure
  * (pedale de Si tenue tout du long), mais les hauteurs reellement jouees dans
  * la 1ere moitie ne forment qu'un Mi majeur (Mi-Sol#-Si, sans le Ré# du
@@ -164,6 +174,15 @@ export const BEETHOVEN_OP27N2_MESURES_1_9 =
           <line>4</line>
           </clef>
         </attributes>
+      <direction placement="above">
+        <direction-type>
+          <metronome parentheses="no">
+            <beat-unit>quarter</beat-unit>
+            <per-minute>90</per-minute>
+            </metronome>
+          </direction-type>
+        <sound tempo="90"/>
+        </direction>
       <harmony print-frame="no">
         <root>
           <root-step>C</root-step>

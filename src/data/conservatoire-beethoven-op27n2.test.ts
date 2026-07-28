@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeAll } from "vitest";
 import { parseMusicXML } from "@/lib/musicxml-parse";
+import { planifierLecture } from "@/lib/studio-playback";
 import {
   BEETHOVEN_OP27N2_MESURES_1_9,
   BEETHOVEN_OP27N2_ANALYSE,
@@ -116,5 +117,21 @@ describe("BEETHOVEN_OP27N2_MESURES_1_9 — gravure Verovio (séquence réelle de
     const systemes = svg.split(/<g[^>]*class="system"[^>]*>/).slice(1);
     const mesuresParSysteme = systemes.map((s) => [...s.matchAll(/<g[^>]*class="measure"[^>]*>/g)].length);
     expect(mesuresParSysteme.reduce((a, b) => a + b, 0)).toBe(9);
+  });
+
+  // Régression : sans tempo écrit dans le fichier, notre horloge de lecture
+  // audio (studio-playback.ts, repli 90 bpm) et la table de temps MIDI
+  // interne de Verovio (repli 120 bpm) divergent — le surlignage des notes
+  // pendant la lecture (VueConservatoire.tsx) finit par décrocher de l'audio
+  // bien avant la fin réelle. Un <sound tempo="90"> explicite fait lire le
+  // même chiffre aux deux systèmes (cf. commentaire d'en-tête du fichier).
+  it("le surlignage Verovio reste synchronisé jusque près de la vraie fin (pas de désync tempo)", () => {
+    const score = parseMusicXML(BEETHOVEN_OP27N2_MESURES_1_9);
+    expect(score.tempos.length).toBeGreaterThan(0);
+    const { dureeTotale } = planifierLecture(score, 1);
+    tk.loadData(BEETHOVEN_OP27N2_MESURES_1_9);
+    tk.renderToMIDI();
+    const r = tk.getElementsAtTime(Math.round((dureeTotale - 0.3) * 1000));
+    expect(r.measure).toBeTruthy();
   });
 });
