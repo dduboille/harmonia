@@ -1532,7 +1532,8 @@
       "maitreCardPeriod": "1929–1980",
       "maitreCardConcept": "Réharmonisation & impressionnisme jazz",
       "maitreCardAnecdote": "Evans joue Autumn Leaves dans son premier album solo (1956) et l'auditeur reconnaît la mélodie familière — mais les accords ont changé. FMaj7 est devenu Fm, G7 est devenu Db7. Sans modifier une seule note de la mélodie de Joseph Kosma, Evans a transformé un standard printanier en nocturne mélancolique.",
-      "maitreCardLesson": "La réharmonisation n'est pas de la virtuosité — c'est de l'écoute. Avant de substituer un accord, demande-toi : est-ce que la mélodie s'entend encore ? Est-ce que le nouvel accord dit quelque chose que l'original ne pouvait pas dire ?"
+      "maitreCardLesson": "La réharmonisation n'est pas de la virtuosité — c'est de l'écoute. Avant de substituer un accord, demande-toi : est-ce que la mélodie s'entend encore ? Est-ce que le nouvel accord dit quelque chose que l'original ne pouvait pas dire ?",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours15": {
@@ -4179,6 +4180,22 @@
       "resume0": "Une chaîne de dominantes secondaires (V7/III, subV7/VI, V7/V...) tonicise brièvement chaque degré avant la résolution finale",
       "resume1": "Le substitut tritonique remplace une dominante par son triton : même tension (3ce/7e échangées), basse chromatique",
       "resume2": "« Autumn Leaves » (Kosma) : marche descendante iv-VII-III-VI-ii°/V-V-i, puis turnaround V7/IV qui referme la boucle"
+    },
+    "cours16": {
+      "intuition": "Réharmoniser, ce n'est pas remplacer une mélodie — c'est lui trouver de nouveaux compagnons de voyage : chaque accord substitué doit encore porter la note mélodique sans la trahir.",
+      "badge": "Levine · The Jazz Piano Book",
+      "citation": "Une bonne réharmonisation ne change pas ce que joue la mélodie — elle change ce qu'elle raconte.",
+      "auteur": "Mark Levine, 1989",
+      "voix0": "Avant de valider un accord substitué, vérifier que chaque note mélodique reste 1, 3, 5, 7 ou une extension de ce nouvel accord",
+      "voix1": "Une dominante secondaire peut remplacer un accord diatonique par son propre V7 (ex. V/IV à la place d'un accord d'emprunt)",
+      "voix2": "Préférer le mouvement conjoint dans les voix internes — une réharmonisation correcte mais heurtée sonne toujours faux",
+      "titre": "My Funny Valentine",
+      "compositeur": "Richard Rodgers",
+      "piege0erreur": "Introduire une dominante secondaire dont l'une des extensions contredit une note déjà présente à la mélodie",
+      "piege0correction": "Toujours confronter la nouvelle couleur d'accord à la note mélodique réelle avant de la valider",
+      "resume0": "Réharmoniser = remplacer les accords sous une mélodie intacte, en gardant chaque note mélodique compatible avec son nouvel accord",
+      "resume1": "Dominantes secondaires (V/V, V/IV) et substituts tritoniques sont les outils les plus courants",
+      "resume2": "« My Funny Valentine » (Bill Evans) : cadence mineure iiø7-V7alt-i précédée d'une excursion par la sous-dominante (IV9-IV13sus)"
     }
   },
   "satb": {

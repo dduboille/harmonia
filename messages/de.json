@@ -1674,7 +1674,8 @@
       "maitreCardPeriod": "1929–1980",
       "maitreCardConcept": "Reharmonisierung & Jazz-Impressionismus",
       "maitreCardAnecdote": "Evans spielt Autumn Leaves auf seinem ersten Soloalbum (1956), und der Hörer erkennt die vertraute Melodie — doch die Akkorde haben sich verändert. FMaj7 wurde zu Fm, G7 wurde zu Db7. Ohne eine einzige Note von Joseph Kosmas Melodie zu verändern, verwandelte Evans einen Frühlingsstandard in ein melancholisches Nocturne.",
-      "maitreCardLesson": "Reharmonisierung ist keine Virtuosität — es ist Zuhören. Bevor man einen Akkord substituiert, sollte man sich fragen: Ist die Melodie noch zu hören? Sagt der neue Akkord etwas, das das Original nicht sagen konnte?"
+      "maitreCardLesson": "Reharmonisierung ist keine Virtuosität — es ist Zuhören. Bevor man einen Akkord substituiert, sollte man sich fragen: Ist die Melodie noch zu hören? Sagt der neue Akkord etwas, das das Original nicht sagen konnte?",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours17": {
@@ -4180,6 +4181,22 @@
       "resume0": "Eine Kette von Zwischendominanten (V7/III, subV7/VI, V7/V...) tonisiert kurz jede Stufe vor der endgültigen Auflösung",
       "resume1": "Der Tritonus-Ersatz ersetzt eine Dominante durch ihren Tritonus: gleiche Spannung (Terz/Septime vertauscht), chromatischer Bass",
       "resume2": "„Autumn Leaves\" (Kosma): absteigende iv-VII-III-VI-ii°/V-V-i-Folge, dann ein V7/IV-Turnaround, der den Kreis schließt"
+    },
+    "cours16": {
+      "intuition": "Reharmonisieren heißt nicht, eine Melodie zu ersetzen — es heißt, ihr neue Weggefährten zu finden: jeder ersetzte Akkord muss die Melodienote weiterhin tragen, ohne sie zu verraten.",
+      "badge": "Levine · The Jazz Piano Book",
+      "citation": "Eine gute Reharmonisierung ändert nicht, was die Melodie spielt — sie ändert, was sie erzählt.",
+      "auteur": "Mark Levine, 1989",
+      "voix0": "Vor der Bestätigung eines ersetzten Akkords prüfen, ob jede Melodienote weiterhin die 1., 3., 5., 7. Stufe oder eine Erweiterung des neuen Akkords ist",
+      "voix1": "Eine Zwischendominante kann einen diatonischen Akkord durch ihre eigene V7 ersetzen (z. B. V/IV statt eines entlehnten Akkords)",
+      "voix2": "Schrittweise Bewegung in den Innenstimmen bevorzugen — eine technisch korrekte, aber ruckartige Reharmonisierung klingt immer falsch",
+      "titre": "My Funny Valentine",
+      "compositeur": "Richard Rodgers",
+      "piege0erreur": "Eine Zwischendominante einführen, deren Erweiterung einer bereits in der Melodie vorhandenen Note widerspricht",
+      "piege0correction": "Die neue Akkordfarbe immer mit der tatsächlichen Melodienote abgleichen, bevor man sie bestätigt",
+      "resume0": "Reharmonisieren = die Akkorde unter einer unangetasteten Melodie ersetzen, wobei jede Melodienote mit ihrem neuen Akkord kompatibel bleibt",
+      "resume1": "Zwischendominanten (V/V, V/IV) und Tritonus-Ersatzakkorde sind die gängigsten Werkzeuge",
+      "resume2": "„My Funny Valentine\" (Bill Evans): Moll-Kadenz iiø7-V7alt-i, der ein Ausflug zur Subdominante vorausgeht (IV9-IV13sus)"
     }
   },
   "satb": {

@@ -1674,7 +1674,8 @@
       "maitreCardPeriod": "1929–1980",
       "maitreCardConcept": "Riarmonizzazione & impressionismo jazz",
       "maitreCardAnecdote": "Evans suona Autumn Leaves nel suo primo album da solista (1956) e l'ascoltatore riconosce la melodia familiare — ma gli accordi sono cambiati. FMaj7 è diventato Fm, G7 è diventato Db7. Senza modificare una sola nota della melodia di Joseph Kosma, Evans ha trasformato uno standard primaverile in un notturno malinconico.",
-      "maitreCardLesson": "La riarmonizzazione non è virtuosismo — è ascolto. Prima di sostituire un accordo, chiediti: la melodia si sente ancora? Il nuovo accordo dice qualcosa che l'originale non poteva dire?"
+      "maitreCardLesson": "La riarmonizzazione non è virtuosismo — è ascolto. Prima di sostituire un accordo, chiediti: la melodia si sente ancora? Il nuovo accordo dice qualcosa che l'originale non poteva dire?",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours17": {
@@ -4180,6 +4181,22 @@
       "resume0": "Una catena di dominanti secondarie (V7/III, subV7/VI, V7/V...) tonicizza brevemente ogni grado prima della risoluzione finale",
       "resume1": "Il sostituto di tritono sostituisce una dominante con il suo tritono: stessa tensione (3ª/7ª scambiate), basso cromatico",
       "resume2": "«Autumn Leaves» (Kosma): sequenza discendente iv-VII-III-VI-ii°/V-V-i, poi un turnaround V7/IV che chiude il ciclo"
+    },
+    "cours16": {
+      "intuition": "Riarmonizzare non significa sostituire una melodia — significa trovarle nuovi compagni di viaggio: ogni accordo sostituito deve ancora portare la nota melodica senza tradirla.",
+      "badge": "Levine · The Jazz Piano Book",
+      "citation": "Una buona riarmonizzazione non cambia ciò che suona la melodia — cambia ciò che racconta.",
+      "auteur": "Mark Levine, 1989",
+      "voix0": "Prima di validare un accordo sostituito, verificare che ogni nota melodica resti 1ª, 3ª, 5ª, 7ª o un'estensione di quel nuovo accordo",
+      "voix1": "Una dominante secondaria può sostituire un accordo diatonico con il proprio V7 (es. V/IV al posto di un accordo preso in prestito)",
+      "voix2": "Preferire il movimento congiunto nelle voci interne — una riarmonizzazione corretta ma brusca suona sempre sbagliata",
+      "titre": "My Funny Valentine",
+      "compositeur": "Richard Rodgers",
+      "piege0erreur": "Introdurre una dominante secondaria la cui estensione contraddice una nota già presente nella melodia",
+      "piege0correction": "Confrontare sempre il nuovo colore dell'accordo con la nota melodica reale prima di convalidarlo",
+      "resume0": "Riarmonizzare = sostituire gli accordi sotto una melodia intatta, mantenendo ogni nota melodica compatibile con il suo nuovo accordo",
+      "resume1": "Le dominanti secondarie (V/V, V/IV) e i sostituti di tritono sono gli strumenti più comuni",
+      "resume2": "«My Funny Valentine» (Bill Evans): cadenza minore iiø7-V7alt-i preceduta da un'escursione verso la sottodominante (IV9-IV13sus)"
     }
   },
   "satb": {

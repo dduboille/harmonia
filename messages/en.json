@@ -1532,7 +1532,8 @@
       "maitreCardPeriod": "1929–1980",
       "maitreCardConcept": "Reharmonization & jazz impressionism",
       "maitreCardAnecdote": "Evans plays Autumn Leaves on his first solo album (1956) and the listener recognizes the familiar melody — but the chords have changed. FMaj7 became Fm, G7 became Db7. Without altering a single note of Joseph Kosma's melody, Evans transformed a springtime standard into a melancholy nocturne.",
-      "maitreCardLesson": "Reharmonization is not virtuosity — it's listening. Before substituting a chord, ask yourself: can the melody still be heard? Does the new chord say something the original could not?"
+      "maitreCardLesson": "Reharmonization is not virtuosity — it's listening. Before substituting a chord, ask yourself: can the melody still be heard? Does the new chord say something the original could not?",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours15": {
@@ -4179,6 +4180,22 @@
       "resume0": "A chain of secondary dominants (V7/III, subV7/VI, V7/V...) briefly tonicizes each degree before the final resolution",
       "resume1": "The tritone substitute replaces a dominant with its tritone: same tension (3rd/7th swapped), chromatic bass",
       "resume2": "\"Autumn Leaves\" (Kosma): descending iv-VII-III-VI-ii°/V-V-i sequence, then a V7/IV turnaround that closes the loop"
+    },
+    "cours16": {
+      "intuition": "Reharmonizing isn't about replacing a melody — it's about finding it new traveling companions: every substituted chord must still carry the melody note without betraying it.",
+      "badge": "Levine · The Jazz Piano Book",
+      "citation": "A good reharmonization doesn't change what the melody plays — it changes what it says.",
+      "auteur": "Mark Levine, 1989",
+      "voix0": "Before validating a substituted chord, check that each melody note is still the 1st, 3rd, 5th, 7th, or an extension of the new chord",
+      "voix1": "A secondary dominant can replace a diatonic chord with its own V7 (e.g. V/IV instead of a borrowed chord)",
+      "voix2": "Favor stepwise motion in the inner voices — a technically correct but jarring reharmonization always sounds wrong",
+      "titre": "My Funny Valentine",
+      "compositeur": "Richard Rodgers",
+      "piege0erreur": "Introducing a secondary dominant whose extension contradicts a note already present in the melody",
+      "piege0correction": "Always check the new chord color against the actual melody note before validating it",
+      "resume0": "Reharmonizing = replacing the chords under an untouched melody, keeping every melody note compatible with its new chord",
+      "resume1": "Secondary dominants (V/V, V/IV) and tritone substitutes are the most common tools",
+      "resume2": "\"My Funny Valentine\" (Bill Evans): minor cadence iiø7-V7alt-i preceded by a subdominant excursion (IV9-IV13sus)"
     }
   },
   "satb": {

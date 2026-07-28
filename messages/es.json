@@ -1674,7 +1674,8 @@
       "maitreCardPeriod": "1929–1980",
       "maitreCardConcept": "Rearmonización e impresionismo jazz",
       "maitreCardAnecdote": "Evans toca Autumn Leaves en su primer álbum en solitario (1956) y el oyente reconoce la melodía familiar — pero los acordes han cambiado. FMaj7 se convirtió en Fm, G7 se convirtió en Db7. Sin modificar una sola nota de la melodía de Joseph Kosma, Evans transformó un estándar primaveral en un nocturno melancólico.",
-      "maitreCardLesson": "La rearmonización no es virtuosismo — es escucha. Antes de sustituir un acorde, pregúntate: ¿se sigue oyendo la melodía? ¿El nuevo acorde dice algo que el original no podía decir?"
+      "maitreCardLesson": "La rearmonización no es virtuosismo — es escucha. Antes de sustituir un acorde, pregúntate: ¿se sigue oyendo la melodía? ¿El nuevo acorde dice algo que el original no podía decir?",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours17": {
@@ -4180,6 +4181,22 @@
       "resume0": "Una cadena de dominantes secundarias (V7/III, subV7/VI, V7/V...) tonaliza brevemente cada grado antes de la resolución final",
       "resume1": "El sustituto tritonal reemplaza una dominante por su tritono: misma tensión (3ª/7ª intercambiadas), bajo cromático",
       "resume2": "«Autumn Leaves» (Kosma): secuencia descendente iv-VII-III-VI-ii°/V-V-i, seguida de un turnaround V7/IV que cierra el ciclo"
+    },
+    "cours16": {
+      "intuition": "Reharmonizar no es reemplazar una melodía — es encontrarle nuevos compañeros de viaje: cada acorde sustituido debe seguir llevando la nota melódica sin traicionarla.",
+      "badge": "Levine · The Jazz Piano Book",
+      "citation": "Una buena reharmonización no cambia lo que toca la melodía — cambia lo que cuenta.",
+      "auteur": "Mark Levine, 1989",
+      "voix0": "Antes de validar un acorde sustituido, comprobar que cada nota melódica sigue siendo 1ª, 3ª, 5ª, 7ª o una extensión de ese nuevo acorde",
+      "voix1": "Una dominante secundaria puede reemplazar un acorde diatónico por su propio V7 (p. ej. V/IV en lugar de un acorde prestado)",
+      "voix2": "Preferir el movimiento conjunto en las voces internas — una reharmonización correcta pero brusca siempre suena mal",
+      "titre": "My Funny Valentine",
+      "compositeur": "Richard Rodgers",
+      "piege0erreur": "Introducir una dominante secundaria cuya extensión contradiga una nota ya presente en la melodía",
+      "piege0correction": "Comprobar siempre el nuevo color del acorde contra la nota melódica real antes de validarlo",
+      "resume0": "Reharmonizar = reemplazar los acordes bajo una melodía intacta, manteniendo cada nota melódica compatible con su nuevo acorde",
+      "resume1": "Las dominantes secundarias (V/V, V/IV) y los sustitutos tritonales son las herramientas más comunes",
+      "resume2": "«My Funny Valentine» (Bill Evans): cadencia menor iiø7-V7alt-i precedida de una excursión por la subdominante (IV9-IV13sus)"
     }
   },
   "satb": {

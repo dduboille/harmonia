@@ -13,6 +13,7 @@ import { useTerm } from "@/hooks/useTerm";
 import { cours16Content } from "@/data/cours16Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 // ── Audio helpers ─────────────────────────────────────────────────────────────
 
@@ -206,7 +207,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 const QUIZ_COUNT = 10;
-const SECTIONS_IDS = ["principe", "application", "quiz"] as const;
+const SECTIONS_IDS = ["principe", "application", "conservatoire", "quiz"] as const;
 type SectionId = typeof SECTIONS_IDS[number];
 
 const PRIMARY    = "#1A4A7A";
@@ -274,6 +275,7 @@ export default function Cours16() {
   const sectionLabel = (id: SectionId) => {
     if (id === "principe")    return n("navPrincipe");
     if (id === "application") return n("navApplication");
+    if (id === "conservatoire") return n("navConservatoire");
     return n("navEntrainement");
   };
 
@@ -509,6 +511,8 @@ export default function Cours16() {
           <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("applicationTipBox") }} />
         </div>
       )}
+
+      {activeSection === "conservatoire" && <VueConservatoire courseNum={16} />}
 
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (

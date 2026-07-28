@@ -13,6 +13,7 @@ import { SATIN_DOLL_MESURES_1_8, SATIN_DOLL_ANALYSE, SATIN_DOLL_ANALYSE_NARRATIV
 import { BWV772_MESURES_1_8, BWV772_ANALYSE, BWV772_ANALYSE_NARRATIVE } from "./conservatoire-bwv772";
 import { GYMNOPEDIE_MESURES_1_9, GYMNOPEDIE_ANALYSE, GYMNOPEDIE_ANALYSE_NARRATIVE } from "./conservatoire-gymnopedie";
 import { AUTUMN_LEAVES_MESURES_1_10, AUTUMN_LEAVES_ANALYSE, AUTUMN_LEAVES_ANALYSE_NARRATIVE } from "./conservatoire-autumn-leaves";
+import { MY_FUNNY_VALENTINE_MESURES_1_9, MY_FUNNY_VALENTINE_ANALYSE } from "./conservatoire-my-funny-valentine";
 
 export interface CoursPieceData {
   titre: string;
@@ -45,7 +46,7 @@ export interface CoursConservatoireData {
   resume: string[];
 }
 
-export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15}`, CoursConservatoireData> = {
+export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16}`, CoursConservatoireData> = {
   cours1: {
     intuition:
       "Avant toute théorie, la gamme est une expérience physique — sentir la tension des demi-tons et la résolution vers la tonique.",
@@ -551,6 +552,39 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       "Une chaîne de dominantes secondaires (V7/III, subV7/VI, V7/V...) tonicise brièvement chaque degré avant la résolution finale",
       "Le substitut tritonique remplace une dominante par son triton : même tension (3ce/7e échangées), basse chromatique",
       "« Autumn Leaves » (Kosma) : marche descendante iv-VII-III-VI-ii°/V-V-i, puis turnaround V7/IV qui referme la boucle",
+    ],
+  },
+  cours16: {
+    intuition:
+      "Réharmoniser, ce n'est pas remplacer une mélodie — c'est lui trouver de nouveaux compagnons de voyage : chaque accord substitué doit encore porter la note mélodique sans la trahir.",
+    reference: {
+      badge: "Levine · The Jazz Piano Book",
+      citation:
+        "Une bonne réharmonisation ne change pas ce que joue la mélodie — elle change ce qu'elle raconte.",
+      auteur: "Mark Levine, 1989",
+    },
+    voix: [
+      "Avant de valider un accord substitué, vérifier que chaque note mélodique reste 1, 3, 5, 7 ou une extension de ce nouvel accord",
+      "Une dominante secondaire peut remplacer un accord diatonique par son propre V7 (ex. V/IV à la place d'un accord d'emprunt)",
+      "Préférer le mouvement conjoint dans les voix internes — une réharmonisation correcte mais heurtée sonne toujours faux",
+    ],
+    repertoire: {
+      titre: "My Funny Valentine",
+      compositeur: "Richard Rodgers",
+      notes: ["C5", "D5", "Eb5", "F4", "Bb4", "D5", "C5", "D5"],
+      musicxml: MY_FUNNY_VALENTINE_MESURES_1_9,
+      analyse: MY_FUNNY_VALENTINE_ANALYSE,
+    },
+    pieges: [
+      {
+        erreur: "Introduire une dominante secondaire dont l'une des extensions contredit une note déjà présente à la mélodie",
+        correction: "Toujours confronter la nouvelle couleur d'accord à la note mélodique réelle avant de la valider",
+      },
+    ],
+    resume: [
+      "Réharmoniser = remplacer les accords sous une mélodie intacte, en gardant chaque note mélodique compatible avec son nouvel accord",
+      "Dominantes secondaires (V/V, V/IV) et substituts tritoniques sont les outils les plus courants",
+      "« My Funny Valentine » (Bill Evans) : cadence mineure iiø7-V7alt-i précédée d'une excursion par la sous-dominante (IV9-IV13sus)",
     ],
   },
 };
