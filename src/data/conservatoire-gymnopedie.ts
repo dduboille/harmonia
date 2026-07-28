@@ -1,4 +1,4 @@
-import type { MesureAnalyse } from "./conservatoire-bwv846";
+import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
 
 /**
  * data/conservatoire-gymnopedie.ts
@@ -1047,3 +1047,134 @@ export const GYMNOPEDIE_ANALYSE: MesureAnalyse[] = [
   { numero: 8, nom: "RéMaj7",       degre: "Imaj7",        fonction: "T" },
   { numero: 9, nom: "SolMaj7",      degre: "IVmaj7",      fonction: "SD" },
 ];
+
+/**
+ * Analyse harmonique NARRATIVE — vérifiée note à note (durées/hauteurs des
+ * deux voix + basse) contre le MusicXML ci-dessus, à partir d'un brouillon
+ * très précis fourni par Dany. AUCUNE erreur trouvée (même constat que pour
+ * BWV772, cours13, cette même session) : chaque intervalle cité (7e, 9e,
+ * 11e, #11, quinte, "chute de quarte"...) a été recalculé indépendamment et
+ * confirmé, y compris deux points fins qui recoupent le chiffrage de Dany
+ * lui-même sans qu'il l'ait signalé explicitement dans le brouillon :
+ *  - le Fa# (7e de Sol) est la SEULE note qui reste au même registre exact
+ *    (Fa#4) dans les deux voicings d'accompagnement — le Ré, présent dans
+ *    les deux accords en théorie, change d'octave (Ré2 à la basse, Ré4 dans
+ *    l'accord) et ne « tient » donc pas de la même façon ;
+ *  - les deux seules mesures où Dany a chiffré une extension explicite
+ *    (Solmaj9 à la mesure 5, Solmaj7(#11) à la mesure 7) sont EXACTEMENT
+ *    les deux mesures où la mélodie touche cette même extension (La5 = 9e,
+ *    Do#5 = #11) — chiffrage et mélodie se confirment mutuellement.
+ * Absence de tempo/caractère dans ce fichier (le manuscrit original porte
+ * « Lent et douloureux », non repris dans cette réduction) déjà documentée
+ * dans le commentaire d'en-tête de ce fichier — le tempo ajouté (60 à la
+ * noire) est un choix éditorial, pas une donnée du fichier source.
+ */
+export const GYMNOPEDIE_ANALYSE_NARRATIVE: AnalyseNarrative = {
+  tonalite:
+    "Ré majeur (armure à 2 dièses) — mais l'extrait ne fait jamais entendre l'accord de Ré en " +
+    "position d'arrivée affirmée : il <strong>commence et finit sur Sol</strong> (IV), qui occupe " +
+    "5 mesures sur 9. Une lecture en <strong>Sol lydien</strong> (avec Do# comme #4) est tout " +
+    "aussi défendable sur ce seul extrait — les deux lectures partagent exactement les mêmes 2 " +
+    "dièses. La suite de la pièce (hors de cet extrait) tranchera en faveur de Ré majeur.",
+  metrique:
+    "3/4. Aucun tempo ni caractère dans ce fichier (l'original porte « Lent et douloureux », non " +
+    "repris ici) — 60 à la noire ajouté par choix éditorial pour la lecture synchronisée.",
+  forme:
+    "9 mesures = un pendule harmonique strict entre deux accords de 7e majeure, IVmaj7 (Sol) et " +
+    "Imaj7 (Ré), sans jamais faire entendre la dominante (La) : mesures 1-4, l'accompagnement " +
+    "seul installe le balancement ; mesures 5-9, la mélodie entre et descend d'une octave (Fa#5 " +
+    "à Fa#4) en traversant systématiquement les degrés « colorés » de chaque accord (7e, 9e, 11e, " +
+    "#11) plutôt que ses notes stables.",
+  sections: [
+    {
+      label: "Mesures 1-4",
+      titre: "Le pendule harmonique, sans mélodie",
+      chiffrage: "SolMaj7 – RéMaj7 – SolMaj7 – RéMaj7",
+      fonctions: "IV – I – IV – I",
+      texte:
+        "Texture figée sur les 4 premières mesures : une basse profonde tenue toute la mesure " +
+        "(Sol2, puis Ré2), un silence de noire, puis un accord de 3 sons plaqué au 2e temps et " +
+        "tenu jusqu'à la fin (Si3-Ré4-Fa#4 sur Sol ; La3-Do#4-Fa#4 sur Ré) — le fameux balancement " +
+        "de sarabande dépouillée. <strong>Fa#4</strong> est la seule note qui reste exactement à " +
+        "la même hauteur dans les deux voicings : un pivot, sans lequel les deux accords " +
+        "n'auraient plus rien de commun à l'oreille. Aucune dominante (La) n'apparaît jamais : " +
+        "sans V, pas de cadence — l'alternance IV-I est une oscillation plagale statique, qui " +
+        "suspend la direction tonale plutôt qu'elle ne la construit. Fait notable, l'extrait " +
+        "s'ouvre directement sur la sous-dominante, pas sur la tonique.",
+    },
+    {
+      label: "Mesure 5",
+      titre: "La mélodie entre : 7e, puis 9e",
+      chiffrage: "SolMaj9",
+      fonctions: "IV(9)",
+      texte:
+        "Après un silence, la mélodie entre sur <strong>Fa#5</strong> — la 7e majeure de Sol, " +
+        "exactement deux octaves au-dessus du Fa#4 de l'accompagnement — puis saute vers " +
+        "<strong>La5</strong>, la 9e. Dany chiffre explicitement cet accord « Solmaj9 » (pas " +
+        "simplement « maj7 ») : la mélodie touche très précisément l'extension que le chiffrage " +
+        "annonce. D'emblée, deux notes « dissonantes » posées comme une évidence, sans aucune " +
+        "préparation.",
+    },
+    {
+      label: "Mesure 6",
+      titre: "Le seul geste « résolu » de l'extrait",
+      chiffrage: "RéMaj7",
+      fonctions: "I",
+      texte:
+        "Sol5 au 1er temps est une <strong>11e</strong> sur l'accord de tonique (Ré) — la seule " +
+        "dissonance mélodique de tout l'extrait qui redescend par mouvement conjoint, vers Fa#5 " +
+        "(la tierce), mais sur temps faible et sans préparation. La ligne chute ensuite d'une " +
+        "quarte vers Do#5, la 7e de Ré.",
+    },
+    {
+      label: "Mesure 7",
+      titre: "La montée vers le #11",
+      chiffrage: "SolMaj7(#11)",
+      fonctions: "IV(#11)",
+      texte:
+        "Montée conjointe Si4-Do#5-Ré5 (tierce – quinte, en passant par Do#). Cette fois encore " +
+        "le chiffrage de Dany annonce précisément la couleur : c'est la SEULE mesure de tout " +
+        "l'extrait où il ajoute un « (#11) » à l'accord de Sol, et c'est exactement la note que " +
+        "la mélodie touche au passage.",
+    },
+    {
+      label: "Mesures 8-9",
+      titre: "La quinte stable, puis la 7e majeure suspendue",
+      chiffrage: "RéMaj7 – SolMaj7",
+      fonctions: "I – IV",
+      texte:
+        "La4, tenu toute la mesure 8 : la quinte de Ré, seule note pleinement consonante et " +
+        "stable de toute la phrase mélodique. Puis Fa#4, tenu toute la mesure 9 : la 7e majeure " +
+        "de Sol, une octave sous le Fa#5 qui ouvrait la mélodie à la mesure 5. L'extrait se " +
+        "referme ainsi en suspension complète, sans la moindre cadence — un arc descendant d'une " +
+        "octave pile, du Fa# aigu au Fa# grave.",
+    },
+  ],
+  synthese: [
+    {
+      titre: "Une seule vraie note commune : Fa#",
+      texte:
+        "Sol-Si-Ré-Fa# et Ré-Fa#-La-Do# partagent en théorie deux notes (Ré et Fa#), mais dans " +
+        "les voicings réels de l'accompagnement, seul Fa#4 reste exactement à la même hauteur — " +
+        "le Ré change d'octave à chaque fois (basse ou milieu de l'accord). C'est ce fil ténu qui " +
+        "tient les deux couleurs ensemble.",
+    },
+    {
+      titre: "La 7e majeure comme couleur, pas comme dissonance",
+      texte:
+        "Ni le Fa# de Sol ni le Do# de Ré ne sont préparés ou résolus — traitement impensable en " +
+        "harmonie tonale stricte (celle de l'Invention de Bach analysée au cours précédent), où " +
+        "une 7e majeure est une dissonance à diriger. Ici, elle est un état stable, constitutif " +
+        "de l'accord : le geste le plus radical de la pièce.",
+    },
+    {
+      titre: "Sol lydien ou Ré majeur ? Rien ne tranche",
+      texte:
+        "Sur ces 9 mesures seules, les deux lectures tonales restent également valides — c'est " +
+        "précisément l'effet recherché. Chez Bach, chaque accord se justifie par la conduite des " +
+        "voix ; chez Satie, l'harmonie est un objet sonore répété, sans conduite des voix (accords " +
+        "plaqués, pas de lignes qui se répondent) : même exercice de lecture, deux grammaires " +
+        "opposées.",
+    },
+  ],
+};

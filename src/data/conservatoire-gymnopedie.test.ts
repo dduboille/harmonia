@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll } from "vitest";
 import { parseMusicXML } from "@/lib/musicxml-parse";
-import { GYMNOPEDIE_MESURES_1_9, GYMNOPEDIE_ANALYSE } from "./conservatoire-gymnopedie";
+import { GYMNOPEDIE_MESURES_1_9, GYMNOPEDIE_ANALYSE, GYMNOPEDIE_ANALYSE_NARRATIVE } from "./conservatoire-gymnopedie";
 
 // Vérifie l'extrait rejoué contre le MusicXML VERBATIM fourni par Dany (export
 // MuseScore Studio 4.6.3, fichier « gymnopedie-no-1-single-page-erik-satie-1888.musicxml »,
@@ -39,6 +39,34 @@ describe("GYMNOPEDIE_MESURES_1_9", () => {
     GYMNOPEDIE_ANALYSE.forEach((m) => {
       expect(m.fonction).toBe(m.numero % 2 === 1 ? "SD" : "T");
     });
+  });
+
+  // Les 2 seules mesures à porter une extension explicite dans le chiffrage de
+  // Dany (maj9 à la mesure 5, (#11) à la mesure 7) sont aussi les 2 mesures où
+  // la mélodie touche cette même extension — vérifié pour l'analyse narrative.
+  it("les extensions explicites du chiffrage (maj9, #11) sont bien sur les mesures 5 et 7", () => {
+    const m5 = GYMNOPEDIE_MESURES_1_9.slice(
+      GYMNOPEDIE_MESURES_1_9.indexOf('<measure number="5"'),
+      GYMNOPEDIE_MESURES_1_9.indexOf('<measure number="6"'),
+    );
+    const m7 = GYMNOPEDIE_MESURES_1_9.slice(
+      GYMNOPEDIE_MESURES_1_9.indexOf('<measure number="7"'),
+      GYMNOPEDIE_MESURES_1_9.indexOf('<measure number="8"'),
+    );
+    expect(m5).toContain('<kind text="maj9">major-ninth</kind>');
+    expect(m7).toContain("<degree-value>11</degree-value>");
+    expect(m7).toContain("<degree-alter>1</degree-alter>");
+  });
+});
+
+describe("GYMNOPEDIE_ANALYSE_NARRATIVE", () => {
+  it("couvre les 5 étapes de la phrase, du pendule statique à la suspension finale", () => {
+    expect(GYMNOPEDIE_ANALYSE_NARRATIVE.sections).toHaveLength(5);
+    expect(GYMNOPEDIE_ANALYSE_NARRATIVE.synthese.length).toBeGreaterThan(0);
+  });
+
+  it("signale l'ambiguïté modale Sol lydien / Ré majeur", () => {
+    expect(GYMNOPEDIE_ANALYSE_NARRATIVE.tonalite).toContain("lydien");
   });
 });
 

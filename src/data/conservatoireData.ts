@@ -11,7 +11,7 @@ import { SO_WHAT_MESURES_1_9, SO_WHAT_ANALYSE, SO_WHAT_ANALYSE_NARRATIVE } from 
 import { ALL_THE_THINGS_MESURES_1_8, ALL_THE_THINGS_ANALYSE, ALL_THE_THINGS_ANALYSE_NARRATIVE } from "./conservatoire-all-the-things";
 import { SATIN_DOLL_MESURES_1_8, SATIN_DOLL_ANALYSE, SATIN_DOLL_ANALYSE_NARRATIVE } from "./conservatoire-satin-doll";
 import { BWV772_MESURES_1_8, BWV772_ANALYSE, BWV772_ANALYSE_NARRATIVE } from "./conservatoire-bwv772";
-import { GYMNOPEDIE_MESURES_1_9, GYMNOPEDIE_ANALYSE } from "./conservatoire-gymnopedie";
+import { GYMNOPEDIE_MESURES_1_9, GYMNOPEDIE_ANALYSE, GYMNOPEDIE_ANALYSE_NARRATIVE } from "./conservatoire-gymnopedie";
 
 export interface CoursPieceData {
   titre: string;
@@ -504,6 +504,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       notes: ["F#5", "A5", "G5", "F#5", "C#5", "B4", "C#5", "D5"],
       musicxml: GYMNOPEDIE_MESURES_1_9,
       analyse: GYMNOPEDIE_ANALYSE,
+      analyseNarrative: GYMNOPEDIE_ANALYSE_NARRATIVE,
     },
     pieges: [
       {
