@@ -1279,7 +1279,8 @@
       "quizQuestionCounter": "Pregunta",
       "quizPoolInfo": "preguntas en el banco",
       "quizNextBtn": "Siguiente pregunta →",
-      "quizFinishBtn": "Ver mi puntuación"
+      "quizFinishBtn": "Ver mi puntuación",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours12": {
@@ -4095,6 +4096,22 @@
       "resume0": "7 modos = 7 rotaciones de la misma escala, cada uno con su propia tónica",
       "resume1": "El dórico colorea el menor con una 6ª mayor: el modo más usado en el jazz modal",
       "resume2": "«So What» (Miles Davis, 1959): un vamp en re dórico, sin armonía funcional"
+    },
+    "cours11": {
+      "intuition": "Una extensión es un color que se apila por encima de la 7ª — la 9ª, la 11ª y la 13ª no cambian la función del acorde, enriquecen su timbre sin traicionarlo.",
+      "badge": "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
+      "citation": "Cada tensión disponible colorea el acorde sin cambiar su función fundamental, siempre que se respeten las notas evitadas de la escala en la que se apoya.",
+      "auteur": "Barrie Nettles & Richard Graf, 1997",
+      "voix0": "La 9ª (mayor), la 11ª (justa o aumentada) y la 13ª (mayor) son las tensiones más consonantes de los acordes de séptima",
+      "voix1": "Una alteración (b9, #9, #11, b13) colorea fuertemente un acorde de dominante sin cambiar su función",
+      "voix2": "En un acorde menor 7, la 9ª casi siempre está disponible; la 11ª natural choca con la 3ª mayor de un acorde mayor",
+      "titre": "All the Things You Are",
+      "compositeur": "Jerome Kern",
+      "piege0erreur": "Añadir la 11ª natural sobre un acorde de dominante o mayor (choca con la 3ª)",
+      "piege0correction": "Preferir la 11ª aumentada (#11) en estos acordes, u omitir la extensión",
+      "resume0": "9ª = 2º grado a la octava superior, 11ª = 4º, 13ª = 6º",
+      "resume1": "#9 y b9 son tensiones típicas del acorde de dominante alterado",
+      "resume2": "«All the Things You Are» (Kern/Hammerstein): un vamp de introducción construido enteramente con acordes de dominante alterados (#9)"
     }
   },
   "satb": {

@@ -1279,7 +1279,8 @@
       "quizQuestionCounter": "Domanda",
       "quizPoolInfo": "domande nel banco",
       "quizNextBtn": "Domanda successiva →",
-      "quizFinishBtn": "Vedere il mio punteggio"
+      "quizFinishBtn": "Vedere il mio punteggio",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours12": {
@@ -4095,6 +4096,22 @@
       "resume0": "7 modi = 7 rotazioni della stessa scala, ciascuno con la propria tonica",
       "resume1": "Il dorico colora il minore con una 6ª maggiore: il modo più usato nel jazz modale",
       "resume2": "«So What» (Miles Davis, 1959): un vamp in re dorico, senza armonia funzionale"
+    },
+    "cours11": {
+      "intuition": "Un'estensione è un colore che si accumula oltre la 7ª — la 9ª, l'11ª e la 13ª non cambiano la funzione dell'accordo, ne arricchiscono il timbro senza tradirlo.",
+      "badge": "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
+      "citation": "Ogni tensione disponibile colora l'accordo senza cambiarne la funzione fondamentale, a condizione di rispettare le note da evitare della scala su cui si basa.",
+      "auteur": "Barrie Nettles & Richard Graf, 1997",
+      "voix0": "La 9ª (maggiore), l'11ª (giusta o aumentata) e la 13ª (maggiore) sono le tensioni più consonanti degli accordi di settima",
+      "voix1": "Un'alterazione (b9, #9, #11, b13) colora fortemente un accordo di dominante senza cambiarne la funzione",
+      "voix2": "Su un accordo minore 7, la 9ª è quasi sempre disponibile; l'11ª naturale confligge con la 3ª maggiore di un accordo maggiore",
+      "titre": "All the Things You Are",
+      "compositeur": "Jerome Kern",
+      "piege0erreur": "Aggiungere l'11ª naturale su un accordo di dominante o maggiore (confligge con la 3ª)",
+      "piege0correction": "Preferire l'11ª aumentata (#11) su questi accordi, oppure omettere l'estensione",
+      "resume0": "9ª = 2° grado all'ottava superiore, 11ª = 4°, 13ª = 6°",
+      "resume1": "#9 e b9 sono tensioni tipiche dell'accordo di dominante alterato",
+      "resume2": "«All the Things You Are» (Kern/Hammerstein): un vamp introduttivo costruito interamente su accordi di dominante alterati (#9)"
     }
   },
   "satb": {

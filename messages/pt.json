@@ -1279,7 +1279,8 @@
       "quizQuestionCounter": "Questão",
       "quizPoolInfo": "questões no banco",
       "quizNextBtn": "Próxima questão →",
-      "quizFinishBtn": "Ver minha pontuação"
+      "quizFinishBtn": "Ver minha pontuação",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours12": {
@@ -4095,6 +4096,22 @@
       "resume0": "7 modos = 7 rotações da mesma escala, cada um com a sua própria tónica",
       "resume1": "O dórico colore o menor com uma 6ª maior: o modo mais usado no jazz modal",
       "resume2": "«So What» (Miles Davis, 1959): um vamp em ré dórico, sem harmonia funcional"
+    },
+    "cours11": {
+      "intuition": "Uma extensão é uma cor que se empilha acima da 7ª — a 9ª, a 11ª e a 13ª não mudam a função do acorde, enriquecem o seu timbre sem o trair.",
+      "badge": "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
+      "citation": "Cada tensão disponível colore o acorde sem mudar a sua função fundamental, desde que sejam respeitadas as notas a evitar da escala em que se apoia.",
+      "auteur": "Barrie Nettles & Richard Graf, 1997",
+      "voix0": "A 9ª (maior), a 11ª (justa ou aumentada) e a 13ª (maior) são as tensões mais consonantes dos acordes de sétima",
+      "voix1": "Uma alteração (b9, #9, #11, b13) colore fortemente um acorde de dominante sem mudar a sua função",
+      "voix2": "Num acorde menor 7, a 9ª está quase sempre disponível; a 11ª natural choca com a 3ª maior de um acorde maior",
+      "titre": "All the Things You Are",
+      "compositeur": "Jerome Kern",
+      "piege0erreur": "Adicionar a 11ª natural a um acorde de dominante ou maior (choca com a 3ª)",
+      "piege0correction": "Preferir a 11ª aumentada (#11) nestes acordes, ou omitir a extensão",
+      "resume0": "9ª = 2º grau na oitava superior, 11ª = 4º, 13ª = 6º",
+      "resume1": "#9 e b9 são tensões típicas do acorde de dominante alterado",
+      "resume2": "«All the Things You Are» (Kern/Hammerstein): um vamp introdutório construído inteiramente com acordes de dominante alterados (#9)"
     }
   },
   "satb": {

@@ -2171,7 +2171,8 @@
       "quizQuestionCounter": "Question",
       "quizPoolInfo": "questions in the pool",
       "quizNextBtn": "Next question →",
-      "quizFinishBtn": "See my score"
+      "quizFinishBtn": "See my score",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours22": {
@@ -4094,6 +4095,22 @@
       "resume0": "7 modes = 7 rotations of the same scale, each with its own tonic",
       "resume1": "The Dorian colors the minor with a major 6th: the most used mode in modal jazz",
       "resume2": "\"So What\" (Miles Davis, 1959): a vamp in D Dorian, with no functional harmony"
+    },
+    "cours11": {
+      "intuition": "An extension is a color stacked above the 7th — the 9th, 11th, and 13th don't change a chord's function, they enrich its timbre without betraying it.",
+      "badge": "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
+      "citation": "Each available tension colors the chord without changing its underlying function, provided the avoid notes of its underlying scale are respected.",
+      "auteur": "Barrie Nettles & Richard Graf, 1997",
+      "voix0": "The 9th (major), 11th (perfect or augmented), and 13th (major) are the most consonant tensions of seventh chords",
+      "voix1": "An alteration (b9, #9, #11, b13) strongly colors a dominant chord without changing its function",
+      "voix2": "On a minor 7th chord the 9th is almost always available; the natural 11th clashes with the major 3rd of a major chord",
+      "titre": "All the Things You Are",
+      "compositeur": "Jerome Kern",
+      "piege0erreur": "Adding the natural 11th to a dominant or major chord (it clashes with the 3rd)",
+      "piege0correction": "Prefer the raised 11th (#11) on these chords, or omit the extension",
+      "resume0": "9th = 2nd degree an octave up, 11th = 4th, 13th = 6th",
+      "resume1": "#9 and b9 are typical tensions of the altered dominant chord",
+      "resume2": "\"All the Things You Are\" (Kern/Hammerstein): an introductory vamp built entirely on altered dominant chords (#9)"
     }
   },
   "satb": {

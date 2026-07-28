@@ -2171,7 +2171,8 @@
       "quizQuestionCounter": "Question",
       "quizPoolInfo": "questions dans le pool",
       "quizNextBtn": "Question suivante →",
-      "quizFinishBtn": "Voir mon score"
+      "quizFinishBtn": "Voir mon score",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours22": {
@@ -4094,6 +4095,22 @@
       "resume0": "7 modes = 7 rotations de la même gamme, chacun avec sa propre tonique",
       "resume1": "Le dorien colore le mineur d'une 6te majeure : le mode le plus utilisé en jazz modal",
       "resume2": "« So What » (Miles Davis, 1959) : un vamp en ré dorien, sans harmonie fonctionnelle"
+    },
+    "cours11": {
+      "intuition": "Une extension, c'est une couleur qu'on empile au-delà de la 7e — la 9e, la 11e, la 13e ne changent pas la fonction de l'accord, elles enrichissent son timbre sans le trahir.",
+      "badge": "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
+      "citation": "Chaque tension disponible colore l'accord sans en changer la fonction fondamentale, à condition de respecter les notes évitées de la gamme sur laquelle il repose.",
+      "auteur": "Barrie Nettles & Richard Graf, 1997",
+      "voix0": "La 9e (majeure), la 11e (juste ou augmentée) et la 13e (majeure) sont les tensions les plus consonantes des accords de septième",
+      "voix1": "Une altération (b9, #9, #11, b13) colore fortement un accord de dominante sans changer sa fonction",
+      "voix2": "Sur un accord mineur 7, la 9e est presque toujours disponible ; la 11e naturelle heurte la tierce majeure d'un accord majeur",
+      "titre": "All the Things You Are",
+      "compositeur": "Jerome Kern",
+      "piege0erreur": "Ajouter la 11e naturelle sur un accord de dominante ou majeur (elle heurte la tierce)",
+      "piege0correction": "Préférer la 11e augmentée (#11) sur ces accords, ou omettre l'extension",
+      "resume0": "9e = 2e degré à l'octave supérieure, 11e = 4e, 13e = 6e",
+      "resume1": "#9 et b9 sont des tensions typiques de l'accord de dominante altéré",
+      "resume2": "« All the Things You Are » (Kern/Hammerstein) : un vamp d'introduction tout en accords de dominante altérés (#9)"
     }
   },
   "satb": {

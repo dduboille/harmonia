@@ -1279,7 +1279,8 @@
       "quizQuestionCounter": "Frage",
       "quizPoolInfo": "Fragen im Pool",
       "quizNextBtn": "Nächste Frage →",
-      "quizFinishBtn": "Mein Ergebnis anzeigen"
+      "quizFinishBtn": "Mein Ergebnis anzeigen",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours12": {
@@ -4095,6 +4096,22 @@
       "resume0": "7 Modi = 7 Rotationen derselben Tonleiter, jede mit ihrer eigenen Tonika",
       "resume1": "Dorisch färbt Moll mit einer großen Sexte: der meistgenutzte Modus im modalen Jazz",
       "resume2": "„So What“ (Miles Davis, 1959): ein Vamp in D-Dorisch, ohne funktionale Harmonik"
+    },
+    "cours11": {
+      "intuition": "Eine Erweiterung ist eine Klangfarbe, die über der 7 gestapelt wird — die 9, die 11 und die 13 ändern nicht die Funktion des Akkords, sie bereichern nur seine Klangfarbe, ohne sie zu verraten.",
+      "badge": "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
+      "citation": "Jede verfügbare Spannung färbt den Akkord, ohne seine grundlegende Funktion zu ändern, sofern die Vermeidungstöne der zugrunde liegenden Tonleiter beachtet werden.",
+      "auteur": "Barrie Nettles & Richard Graf, 1997",
+      "voix0": "Die 9 (groß), die 11 (rein oder übermäßig) und die 13 (groß) sind die konsonantesten Spannungen der Septakkorde",
+      "voix1": "Eine Alteration (b9, #9, #11, b13) färbt einen Dominantakkord stark, ohne seine Funktion zu ändern",
+      "voix2": "Bei einem Moll-7-Akkord ist die 9 fast immer verfügbar; die reine 11 stößt sich an der großen Terz eines Durakkords",
+      "titre": "All the Things You Are",
+      "compositeur": "Jerome Kern",
+      "piege0erreur": "Die reine 11 zu einem Dominant- oder Durakkord hinzufügen (sie stößt sich an der Terz)",
+      "piege0correction": "Auf diesen Akkorden die übermäßige 11 (#11) bevorzugen, oder die Erweiterung weglassen",
+      "resume0": "9 = 2. Stufe eine Oktave höher, 11 = 4. Stufe, 13 = 6. Stufe",
+      "resume1": "#9 und b9 sind typische Spannungen des alterierten Dominantakkords",
+      "resume2": "„All the Things You Are“ (Kern/Hammerstein): ein einleitender Vamp, vollständig aus alterierten Dominantakkorden (#9) gebaut"
     }
   },
   "satb": {

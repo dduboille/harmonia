@@ -8,6 +8,7 @@ import { BRAHMS_OP118N2_MESURES_0_8, BRAHMS_OP118N2_ANALYSE, BRAHMS_OP118N2_ANAL
 import { BEETHOVEN_OP27N2_MESURES_1_9, BEETHOVEN_OP27N2_ANALYSE, BEETHOVEN_OP27N2_ANALYSE_NARRATIVE } from "./conservatoire-beethoven-op27n2";
 import { CHACONNE_BWV1004_MESURES_0_8, CHACONNE_BWV1004_ANALYSE, CHACONNE_BWV1004_ANALYSE_NARRATIVE } from "./conservatoire-chaconne-bwv1004";
 import { SO_WHAT_MESURES_1_9, SO_WHAT_ANALYSE, SO_WHAT_ANALYSE_NARRATIVE } from "./conservatoire-so-what";
+import { ALL_THE_THINGS_MESURES_1_8, ALL_THE_THINGS_ANALYSE, ALL_THE_THINGS_ANALYSE_NARRATIVE } from "./conservatoire-all-the-things";
 
 export interface CoursPieceData {
   titre: string;
@@ -40,7 +41,7 @@ export interface CoursConservatoireData {
   resume: string[];
 }
 
-export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10}`, CoursConservatoireData> = {
+export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11}`, CoursConservatoireData> = {
   cours1: {
     intuition:
       "Avant toute théorie, la gamme est une expérience physique — sentir la tension des demi-tons et la résolution vers la tonique.",
@@ -376,6 +377,40 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       "7 modes = 7 rotations de la même gamme, chacun avec sa propre tonique",
       "Le dorien colore le mineur d'une 6te majeure : le mode le plus utilisé en jazz modal",
       "« So What » (Miles Davis, 1959) : un vamp en ré dorien, sans harmonie fonctionnelle",
+    ],
+  },
+  cours11: {
+    intuition:
+      "Une extension, c'est une couleur qu'on empile au-delà de la 7e — la 9e, la 11e, la 13e ne changent pas la fonction de l'accord, elles enrichissent son timbre sans le trahir.",
+    reference: {
+      badge: "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
+      citation:
+        "Chaque tension disponible colore l'accord sans en changer la fonction fondamentale, à condition de respecter les notes évitées de la gamme sur laquelle il repose.",
+      auteur: "Barrie Nettles & Richard Graf, 1997",
+    },
+    voix: [
+      "La 9e (majeure), la 11e (juste ou augmentée) et la 13e (majeure) sont les tensions les plus consonantes des accords de septième",
+      "Une altération (b9, #9, #11, b13) colore fortement un accord de dominante sans changer sa fonction",
+      "Sur un accord mineur 7, la 9e est presque toujours disponible ; la 11e naturelle heurte la tierce majeure d'un accord majeur",
+    ],
+    repertoire: {
+      titre: "All the Things You Are",
+      compositeur: "Jerome Kern",
+      notes: ["G#3", "C#4", "F3", "B3", "E4", "F3", "B3", "E4"],
+      musicxml: ALL_THE_THINGS_MESURES_1_8,
+      analyse: ALL_THE_THINGS_ANALYSE,
+      analyseNarrative: ALL_THE_THINGS_ANALYSE_NARRATIVE,
+    },
+    pieges: [
+      {
+        erreur: "Ajouter la 11e naturelle sur un accord de dominante ou majeur (elle heurte la tierce)",
+        correction: "Préférer la 11e augmentée (#11) sur ces accords, ou omettre l'extension",
+      },
+    ],
+    resume: [
+      "9e = 2e degré à l'octave supérieure, 11e = 4e, 13e = 6e",
+      "#9 et b9 sont des tensions typiques de l'accord de dominante altéré",
+      "« All the Things You Are » (Kern/Hammerstein) : un vamp d'introduction tout en accords de dominante altérés (#9)",
     ],
   },
 };
