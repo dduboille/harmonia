@@ -391,6 +391,22 @@ export default function AnalysePartition() {
           </button>
         </div>
 
+        {/* Avertissement — l'analyse automatique reste une aide, pas une vérité */}
+        <div style={{
+          display: "flex", gap: 10, alignItems: "flex-start",
+          background: "#FFF8E8", border: "1px solid #F0DFAE", borderRadius: 10,
+          padding: "12px 16px", marginBottom: 20,
+        }}>
+          <span style={{ fontSize: 15, lineHeight: 1.4 }}>⚠️</span>
+          <div style={{ fontSize: 12.5, lineHeight: 1.6, color: "#6b5a2a", fontFamily: "system-ui, sans-serif" }}>
+            <strong>Une aide, pas une vérité.</strong> Cette analyse est produite par des règles
+            de théorie tonale classique appliquées automatiquement — elle peut se tromper,
+            notamment sur les passages très chromatiques, les ornements denses (trilles,
+            broderies rapides) ou les accords qui admettent plusieurs lectures possibles.
+            Vérifiez toujours les résultats par vous-même avant de vous y fier.
+          </div>
+        </div>
+
         {/* Tabs */}
         <div style={{ display: "flex", gap: 4, marginBottom: 24, borderBottom: "1px solid #e0dbd3", paddingBottom: 0 }}>
           {tabs.map(tab => (
