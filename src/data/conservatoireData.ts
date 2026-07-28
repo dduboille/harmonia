@@ -12,7 +12,7 @@ import { ALL_THE_THINGS_MESURES_1_8, ALL_THE_THINGS_ANALYSE, ALL_THE_THINGS_ANAL
 import { SATIN_DOLL_MESURES_1_8, SATIN_DOLL_ANALYSE, SATIN_DOLL_ANALYSE_NARRATIVE } from "./conservatoire-satin-doll";
 import { BWV772_MESURES_1_8, BWV772_ANALYSE, BWV772_ANALYSE_NARRATIVE } from "./conservatoire-bwv772";
 import { GYMNOPEDIE_MESURES_1_9, GYMNOPEDIE_ANALYSE, GYMNOPEDIE_ANALYSE_NARRATIVE } from "./conservatoire-gymnopedie";
-import { AUTUMN_LEAVES_MESURES_1_10, AUTUMN_LEAVES_ANALYSE } from "./conservatoire-autumn-leaves";
+import { AUTUMN_LEAVES_MESURES_1_10, AUTUMN_LEAVES_ANALYSE, AUTUMN_LEAVES_ANALYSE_NARRATIVE } from "./conservatoire-autumn-leaves";
 
 export interface CoursPieceData {
   titre: string;
@@ -539,6 +539,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       notes: ["G4", "A4", "Bb4", "Eb5", "C#4", "A3", "D4", "G4"],
       musicxml: AUTUMN_LEAVES_MESURES_1_10,
       analyse: AUTUMN_LEAVES_ANALYSE,
+      analyseNarrative: AUTUMN_LEAVES_ANALYSE_NARRATIVE,
     },
     pieges: [
       {

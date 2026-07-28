@@ -1,4 +1,4 @@
-import type { MesureAnalyse } from "./conservatoire-bwv846";
+import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
 
 /**
  * data/conservatoire-autumn-leaves.ts
@@ -2016,3 +2016,161 @@ export const AUTUMN_LEAVES_ANALYSE: MesureAnalyse[] = [
   { numero: 9,  nom: "Sol7",    degre: "V7/IV",    fonction: "D", dominanteSecondaire: true },
   { numero: 10, nom: "Dom7",    degre: "IV7",      fonction: "SD" },
 ];
+
+/**
+ * Analyse harmonique NARRATIVE — vérifiée note à note (voix/durées/liaisons)
+ * contre le MusicXML ci-dessus, à partir d'un brouillon très détaillé fourni
+ * par Dany. Ce brouillon est globalement solide (voicings d'altération de la
+ * mesure 6 recalculés et confirmés à 100 %, résolution 4-3 de la mesure 7
+ * confirmée), mais contient PLUSIEURS erreurs — retour à la fréquence
+ * habituelle des pièces jazz de ce chantier (So What/ATTYA/Satin Doll),
+ * après 3 brouillons sans aucune erreur (Chaconne, BWV772, Gymnopédie) :
+ *
+ *  1. Mesure 1 : le brouillon inverse les deux lectures bitonales de
+ *     l'anacrouse (Sol-La-Sib). Il écrit « 1-2-3 de Sib ? ou 4-5-6 de Sol
+ *     mineur » — les DEUX propositions sont fausses pour ces notes précises.
+ *     Sol-La-Sib est en réalité 1̂-2̂-3̂ de SOL MINEUR (tonique-2nd-tierce
+ *     mineure) ou, vu depuis Sib majeur, 6̂-7̂-1̂ (sus-sensible-tonique).
+ *  2. Mesure 2 : le brouillon affirme que « le chiffrage «m7» du fichier est
+ *     correct mais en-deçà du voicing réel ». Faux : la balise <harmony> du
+ *     fichier dit déjà littéralement "m9" (minor-ninth), pas "m7" — elle
+ *     correspond exactement au voicing réel (Cm9). Seul le <lyric> chiffré
+ *     en romain dit "IV7" (sans préciser la 9e) ; il ne faut pas confondre
+ *     ce chiffre romain simplifié avec le symbole d'accord, qui est déjà
+ *     exact.
+ *  3. Mesure 4 : la ligne de basse entière sous "subV7/VI" est donnée comme
+ *     « Fa → Mib → Ré → Mib » — la note finale « Mib » est inventée : la
+ *     basse réelle sur toute la mesure est Sib2-Fa3-Mib2-Ré3 (4 hauteurs
+ *     différentes), qui s'arrête sur RÉ, pas un retour au Mib.
+ *  4. Mesures 8 ET 9 : le brouillon affirme deux « erreurs de transcription »
+ *     à corriger (un « GM7 » à la mesure 8, un « B°7 » à la mesure 9) — AUCUNE
+ *     des deux n'existe dans le fichier. La mesure 8 est déjà chiffrée
+ *     Gm7→Gm6→Gm(6b) (3 balises <harmony> successives, toutes mineures,
+ *     kind="m7"/"m6"/"m"), exactement la lecture que le brouillon réclame.
+ *     La mesure 9 est déjà chiffrée G7(add b9) avec le romain "V7/IV" (pas
+ *     "B°7" nulle part). Le fichier de Dany n'a besoin d'AUCUNE correction
+ *     ici — c'est le brouillon qui décrit une erreur qui n'existe pas.
+ *  5. Mesure 10 : l'affirmation que le Si♮ final de la basse approche « la
+ *     tierce du F7 à venir » est fausse (la tierce de Fa7 est La, pas Sib) —
+ *     retirée, remplacée par une description du mouvement chromatique seul,
+ *     sans lui prêter une cible qui n'est pas vérifiable sur cet extrait de
+ *     10 mesures (coupé avant la mesure suivante).
+ *
+ * Le titre du fichier source porte bien « Autum Leaves » (coquille, 1 "n"),
+ * comme relevé par Dany — cf. commentaire d'en-tête de ce fichier.
+ */
+export const AUTUMN_LEAVES_ANALYSE_NARRATIVE: AnalyseNarrative = {
+  tonalite:
+    "Sol mineur, avec son relatif Si♭ majeur en permanence à l'horizon — le principe même de la " +
+    "grille d'« Autumn Leaves », qui boucle entre les deux pôles par un enchaînement de quintes " +
+    "descendantes (Do→Fa→Si♭→Mi♭→La→Ré→Sol). Dans cet arrangement, presque chaque accord de la " +
+    "marche est en fait une <strong>dominante secondaire</strong> vers le degré suivant.",
+  metrique: "4/4. Tempo (120, medium swing) et titre corrigé (« Autumn », coquille « Autum » dans le fichier source) ajoutés/signalés par choix éditorial.",
+  forme:
+    "10 mesures = une anacrouse d'un temps (mesure 1) + la section A complète du standard (mesures " +
+    "2-9, 8 mesures) + le début de sa reprise (mesure 10) — le motif de l'anacrouse revient " +
+    "d'ailleurs à la fin de la mesure 9, confirmant que la forme boucle sur elle-même.",
+  sections: [
+    {
+      label: "Mesure 1",
+      titre: "L'anacrouse, et son ambiguïté bitonale",
+      chiffrage: "(sans harmonie)",
+      fonctions: "—",
+      texte:
+        "Trois croches conjointes ascendantes, Sol-La-Sib, main gauche muette. Une figure à double " +
+        "lecture : <strong>1̂-2̂-3̂ de Sol mineur</strong> (tonique, 2nd degré, tierce mineure) ou, " +
+        "vue depuis le pôle relatif, <strong>6̂-7̂-1̂ de Si♭ majeur</strong> (sus-dominante, " +
+        "sensible, tonique) — l'ambiguïté des deux tonalités jumelles posée dès la levée, avant " +
+        "même le premier accord.",
+    },
+    {
+      label: "Mesures 2-3",
+      titre: "Cm9, puis F7 : la marche démarre, la 13e se durcit",
+      chiffrage: "Cm9 – F7(♭13)",
+      fonctions: "iv7 [ii7] – V7/III",
+      texte:
+        "La balise d'accord du fichier dit déjà « m9 », pas « m7 » : Ré4 (9e) est bien tenu à la " +
+        "basse sous Mi♭4-Si♭4 plaqués, sous le Mi♭5 de la mélodie — un <strong>Cm9</strong> complet " +
+        "dès le symbole écrit, seul le chiffre romain simplifié (« IV7 ») ne précise pas la 9e. À " +
+        "la mesure 3, la voix interne descend Ré4→Ré♭4 (<strong>13e→♭13</strong>) pendant que le " +
+        "La3 (tierce) reste tenu — un F7 qui se durcit en cours de mesure, préparé par une " +
+        "acciaccatura chromatique (Do♯4) en tête.",
+    },
+    {
+      label: "Mesure 4",
+      titre: "IIImaj7, puis le premier geste d'arrangeur",
+      chiffrage: "Si♭Maj7 – Mi7",
+      fonctions: "IIImaj7 – subV7/VI",
+      texte:
+        "Si♭maj7 traite sa 7e majeure (La) en couleur stable, exactement comme chez Satie (cours " +
+        "précédent). Puis, absent de la grille la plus courante : un <strong>Mi7 sans " +
+        "fondamentale</strong> (Sol♯3=tierce, Fa♯3=9e, Ré=7e), substitut tritonique de Si♭7 " +
+        "(V7/VI). La basse parcourt Si♭2-Fa3-Mi♭2-Ré3 sur la mesure entière — quatre hauteurs " +
+        "distinctes qui s'arrêtent sur Ré, sans revenir au Mi♭.",
+    },
+    {
+      label: "Mesures 5-6",
+      titre: "VImaj7 satiesque, puis le sommet de tension",
+      chiffrage: "Mi♭Maj9 – La7(♯9,♭13,♭5)",
+      fonctions: "VImaj7 – V7/V",
+      texte:
+        "Mi♭maj9 resserré (Fa3=9e, Sol3=3ce, Ré4=7e majeure) prolonge la couleur immobile. La " +
+        "mesure 6 remplace le ii° diatonique attendu (Lam7♭5) par sa version dominantisée : un " +
+        "<strong>La7 entièrement altéré</strong> — Do♮5 tenu (♯9), Fa4 (♭13, après un Fa♯ " +
+        "chromatique), Mi♭4 (♭5) dans le triolet, et Sol♯3→Sol♮3 à la basse qui frotte contre la " +
+        "7e avant de s'y ranger. Le sommet de tension de tout l'extrait, à sa juste place avant la " +
+        "dominante principale.",
+    },
+    {
+      label: "Mesure 7",
+      titre: "V7, la résolution 4-3 croisée avec la ♭9",
+      chiffrage: "Ré9sus4 – Ré7(♭9)",
+      fonctions: "V7",
+      texte:
+        "Construction en deux temps : d'abord un <strong>D9sus4</strong> complet (Ré-Sol-La-Do-Mi, " +
+        "quarte-quinte-7e-9e), puis la suspension se résout (Sol3→Fa♯3, mouvement 4-3) exactement " +
+        "au moment où la mélodie pose Mi♭4 — la <strong>♭9</strong> — tenue en blanche : " +
+        "résolution et nouvelle dissonance échangées dans le même geste.",
+    },
+    {
+      label: "Mesures 8-10",
+      titre: "Retour, turnaround, et reprise coupée",
+      chiffrage: "Gm7→Gm6→Gm(♭6) – G7(♭9) – Cm7",
+      fonctions: "i – V7/IV – iv7",
+      texte:
+        "La mesure 8 est déjà chiffrée <strong>Gm7→Gm6→Gm(♭6)</strong> par Dany (3 accords " +
+        "successifs) — un <em>line cliché</em> (Fa→Mi♮→Mi♭, 7e-6te-♭6te) sur tonique mineure " +
+        "statique, exactement la lecture attendue : rien à corriger ici. La mesure 9 est déjà " +
+        "chiffrée <strong>G7(add ♭9)</strong>, romain « V7/IV » — Sol-Si-Ré-Fa-La♭ au complet " +
+        "entre les deux mains, la dominante secondaire qui prépare le retour de Cm7 pendant que la " +
+        "mélodie relance le motif de l'anacrouse. La mesure 10 rouvre la boucle : Cm7 avec la 11e " +
+        "(Fa5) au sommet du voicing, triolet arpégé ascendant, basse qui s'arrête sur un Si♮ " +
+        "chromatique — l'extrait est coupé avant que sa cible ne se révèle.",
+    },
+  ],
+  synthese: [
+    {
+      titre: "Deux « fautes » signalées qui n'en sont pas",
+      texte:
+        "Vérification faite : le fichier ne contient ni « GM7 » (mesure 8) ni « B°7 » (mesure 9) — " +
+        "Dany avait déjà chiffré les deux correctement (Gm7/Gm6/Gm♭6, puis G7♭9 romain V7/IV). " +
+        "Aucune correction à reporter sur ces deux mesures.",
+    },
+    {
+      titre: "Presque chaque accord est une dominante secondaire",
+      texte:
+        "V7/III, subV7/VI, V7/V, V7/IV : la marche descendante d'« Autumn Leaves » enchaîne les " +
+        "tonicisations de passage plutôt que les degrés diatoniques nus — le vocabulaire même du " +
+        "cours 15.",
+    },
+    {
+      titre: "La dissonance comme matériau par défaut",
+      texte:
+        "Après Bach (dissonance = événement contrapuntique) et Satie (dissonance = couleur " +
+        "immobile), cet arrangement montre un troisième régime : 9e, 13e et ♭9 ne sont ni " +
+        "préparées ni résolues au sens classique — elles sont la norme de l'accord, gérées par " +
+        "degrés d'altération (13→♭13, sus4→♭9, altéré complet) le long d'un cycle de quintes que " +
+        "Bach aurait reconnu.",
+    },
+  ],
+};

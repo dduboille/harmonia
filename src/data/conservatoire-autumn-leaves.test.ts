@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll } from "vitest";
 import { parseMusicXML } from "@/lib/musicxml-parse";
-import { AUTUMN_LEAVES_MESURES_1_10, AUTUMN_LEAVES_ANALYSE } from "./conservatoire-autumn-leaves";
+import { AUTUMN_LEAVES_MESURES_1_10, AUTUMN_LEAVES_ANALYSE, AUTUMN_LEAVES_ANALYSE_NARRATIVE } from "./conservatoire-autumn-leaves";
 
 // Vérifie l'extrait rejoué contre le MusicXML VERBATIM fourni par Dany (export
 // MuseScore Studio 4.6.3, fichier « autum-leaves-joseph-koshma.musicxml »,
@@ -57,6 +57,43 @@ describe("AUTUMN_LEAVES_MESURES_1_10", () => {
     // Chaîne de dominantes secondaires, le cœur pédagogique du cours 15.
     const secondaires = AUTUMN_LEAVES_ANALYSE.filter((m) => m.dominanteSecondaire);
     expect(secondaires.map((m) => m.degre)).toEqual(["V7/III", "V7/V", "V7/IV"]);
+  });
+
+  // Corrige un brouillon d'analyse qui affirmait 2 "erreurs de transcription"
+  // (un "GM7" à la mesure 8, un "B°7" à la mesure 9) : AUCUNE des deux
+  // n'existe dans le fichier, déjà correctement chiffré des deux côtés.
+  it("mesure 8 : déjà chiffrée Gm7→Gm6→Gm(add b6), jamais GM7 (majeur)", () => {
+    const m8 = AUTUMN_LEAVES_MESURES_1_10.slice(
+      AUTUMN_LEAVES_MESURES_1_10.indexOf('<measure number="8"'),
+      AUTUMN_LEAVES_MESURES_1_10.indexOf('<measure number="9"'),
+    );
+    const harmonies = [...m8.matchAll(/<root-step>([^<]*)<\/root-step>[\s\S]*?<kind[^>]*>([^<]+)<\/kind>/g)];
+    expect(harmonies).toHaveLength(3);
+    expect(harmonies.map((h) => h[2])).toEqual(["minor-seventh", "minor-sixth", "minor"]);
+    expect(m8).not.toContain(">major<");
+  });
+
+  it("mesure 9 : déjà chiffrée G7(add b9), romain « V7/IV », jamais B°7", () => {
+    const m9 = AUTUMN_LEAVES_MESURES_1_10.slice(
+      AUTUMN_LEAVES_MESURES_1_10.indexOf('<measure number="9"'),
+      AUTUMN_LEAVES_MESURES_1_10.indexOf('<measure number="10"'),
+    );
+    expect(m9).toContain("<root-step>G</root-step>");
+    expect(m9).toContain(">dominant<");
+    expect(m9).toContain(">V7/IV<");
+    expect(m9).not.toContain("B°7");
+  });
+});
+
+describe("AUTUMN_LEAVES_ANALYSE_NARRATIVE", () => {
+  it("couvre les 6 étapes de la phrase, de l'anacrouse à la reprise coupée", () => {
+    expect(AUTUMN_LEAVES_ANALYSE_NARRATIVE.sections).toHaveLength(6);
+    expect(AUTUMN_LEAVES_ANALYSE_NARRATIVE.synthese.length).toBeGreaterThan(0);
+  });
+
+  it("clarifie que les mesures 8 et 9 n'ont besoin d'aucune correction", () => {
+    const section89 = AUTUMN_LEAVES_ANALYSE_NARRATIVE.sections.find((s) => s.label.includes("8"));
+    expect(section89?.texte).toContain("rien à corriger");
   });
 });
 
