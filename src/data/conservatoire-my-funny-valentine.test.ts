@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll } from "vitest";
 import { parseMusicXML } from "@/lib/musicxml-parse";
-import { MY_FUNNY_VALENTINE_MESURES_1_9, MY_FUNNY_VALENTINE_ANALYSE } from "./conservatoire-my-funny-valentine";
+import { MY_FUNNY_VALENTINE_MESURES_1_9, MY_FUNNY_VALENTINE_ANALYSE, MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE } from "./conservatoire-my-funny-valentine";
 
 // Vérifie l'extrait rejoué contre le MusicXML VERBATIM fourni par Dany (export
 // MuseScore Studio 4.6.3, fichier « my-funny-valentine-bill-evans-transcription.musicxml »,
@@ -42,6 +42,38 @@ describe("MY_FUNNY_VALENTINE_MESURES_1_9", () => {
     expect(MY_FUNNY_VALENTINE_ANALYSE.slice(-3).map((m) => m.degre)).toEqual(["II7", "V7alt", "I"]);
     const secondaires = MY_FUNNY_VALENTINE_ANALYSE.filter((m) => m.dominanteSecondaire);
     expect(secondaires.map((m) => m.degre)).toEqual(["V/V", "V/IV"]);
+  });
+
+  // Corrige un brouillon d'analyse qui affirmait 2 lacunes de chiffrage qui
+  // n'existent pas dans le fichier (mesure 1 "Cm" sec, mesure 6 vide) —
+  // troisième occurrence de ce piège cette session (déjà vu sur Autumn Leaves).
+  it("mesure 1 : déjà chiffrée Cm6/9 (kind=m/6 + degree 9 add), jamais un Cm sec", () => {
+    const m1 = MY_FUNNY_VALENTINE_MESURES_1_9.slice(0, MY_FUNNY_VALENTINE_MESURES_1_9.indexOf('<measure number="2"'));
+    expect(m1).toContain('<kind text="m/6">minor-sixth</kind>');
+    expect(m1).toContain(">I(6/9)<");
+  });
+
+  it("mesure 6 : chiffrage déjà complet (F13sus9, degrés 7/9/11/13), jamais vide", () => {
+    const m6 = MY_FUNNY_VALENTINE_MESURES_1_9.slice(
+      MY_FUNNY_VALENTINE_MESURES_1_9.indexOf('<measure number="6"'),
+      MY_FUNNY_VALENTINE_MESURES_1_9.indexOf('<measure number="7"'),
+    );
+    expect(m6).toContain('<kind text="13sus">suspended-fourth</kind>');
+    const degrees = [...m6.matchAll(/<degree-value>(\d+)<\/degree-value>/g)].map((m) => m[1]);
+    expect(degrees).toEqual(["7", "9", "11", "13"]);
+  });
+});
+
+describe("MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE", () => {
+  it("couvre les 7 étapes de la phrase, du line cliché verticalisé à la résolution nue", () => {
+    expect(MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE.sections).toHaveLength(7);
+    expect(MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE.synthese.length).toBeGreaterThan(0);
+  });
+
+  it("clarifie que les mesures 1 et 6 n'ont besoin d'aucune correction de chiffrage", () => {
+    const synthese = MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE.synthese[0];
+    expect(synthese.texte).toContain("Cm6/9");
+    expect(synthese.texte).toContain("F13sus9");
   });
 });
 

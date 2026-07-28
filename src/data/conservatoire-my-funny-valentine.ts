@@ -1,4 +1,4 @@
-import type { MesureAnalyse } from "./conservatoire-bwv846";
+import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
 
 /**
  * data/conservatoire-my-funny-valentine.ts
@@ -2631,3 +2631,181 @@ export const MY_FUNNY_VALENTINE_ANALYSE: MesureAnalyse[] = [
   { numero: 8, nom: "Sol7",    degre: "V7alt",   fonction: "D" },
   { numero: 9, nom: "Dom",     degre: "I",       fonction: "T" },
 ];
+
+/**
+ * Analyse harmonique NARRATIVE — vérifiée note à note (onset par onset, les
+ * deux voix, en tenant compte des liaisons qui traversent les barres de
+ * mesure) contre le MusicXML ci-dessus, à partir d'un brouillon très détaillé
+ * fourni par Dany. Le brouillon est globalement remarquable (voicings
+ * altérés recalculés et confirmés à 100 % aux mesures 2, 4, 6, 7, 8 — y
+ * compris des enharmonies précises comme Fa♭ pour la 7e d'un Réb13#11, et
+ * l'observation fine du "shell" 3-7/7-3 dont le voice-leading colle F#→F,
+ * Do→Si). MAIS le brouillon affirme aussi TROIS choses inexactes sur l'état
+ * du fichier lui-même — troisième occurrence cette session de ce piège
+ * précis (déjà rencontré sur Autumn Leaves) : ne jamais confondre « ce que
+ * je m'attendrais à voir » avec « ce qui est réellement écrit » :
+ *  1. Il affirme que la mesure 1 est chiffrée « Cm » sec et propose de la
+ *     « re-chiffrer en Cm6/9 » — FAUX, la balise <harmony> dit déjà
+ *     `kind="m/6"` + `degree 9 add`, soit Cm6/9 exactement, et le romain dit
+ *     déjà "I(6/9)". Rien à corriger.
+ *  2. Il affirme que la mesure 6 a un chiffrage vide (« artefact
+ *     d'encodage ») — FAUX, la balise dit déjà `kind text="13sus"` avec les
+ *     degrés 7/9/11/13 ajoutés, soit F13sus9 exactement. Rien à corriger.
+ *  3. Une erreur de temps réelle, elle : le brouillon place le basculement
+ *     harmonique de la mesure 3 (vers le C7#11 rootless) "au 3e temps" —
+ *     vérifié faux, la note qui sonne au temps 3 est un Ré4 de passage à la
+ *     basse ; le nouvel accord (Mi-Fa#-Sib) n'apparaît qu'au temps 4.
+ * Un point nuancé plutôt que corrigé : l'accord d'ouverture de la mesure 4
+ * (chiffré Aø9 par Dany) est décrit comme « aussi un C9 sans fondamentale » ;
+ * vérifié que les hauteurs réelles (La-Mib-Sol-Si-Ré, SANS Do) ne contiennent
+ * pas la tierce/7e (Mi/Sib) qui justifierait cette équivalence — la structure
+ * réelle est b5-b7-9-11 d'un La, sans tierce du tout. Le romain "V/IV" reste
+ * transcrit tel quel (verbatim, chiffrage de Dany), sans reprendre cette
+ * justification précise.
+ * La coquille « Rogers » (au lieu de « Rodgers ») dans les métadonnées
+ * <creator>/<credit-words> du fichier source est réelle mais sans
+ * conséquence : le champ affiché aux utilisateurs (`repertoire.compositeur`
+ * dans conservatoireData.ts) écrit déjà correctement « Richard Rodgers ».
+ */
+export const MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE: AnalyseNarrative = {
+  tonalite:
+    "Do mineur (armure à 3 bémols). La grille standard de la section A est célèbre pour son " +
+    "<em>line cliché</em> : Cm-Cm(maj7)-Cm7-Cm6, la ligne descendante Do-Si-Sib-La sur pédale de " +
+    "tonique, avant Abmaj7-Fm7-Dø7-G7. Cette transcription ne joue pas la ligne : elle la " +
+    "<strong>comprime et la remplace</strong>.",
+  metrique: "4/4.",
+  forme:
+    "9 mesures = la 1ère section A du standard. Le line cliché horizontal du modèle est " +
+    "verticalisé dès le premier accord (mesure 1) ; les deux mesures ainsi libérées (2-3) sont " +
+    "remplies de turnarounds altérés et d'une réharmonisation de la même mélodie ; deux accords " +
+    "de la grille (Abmaj7/Fm7) sont fusionnés en un seul (mesure 5) ; et l'arrivée du iiø7 " +
+    "(mesures 7-8) devient elle-même un geste formel — une vague en arche, pas un simple accord.",
+  sections: [
+    {
+      label: "Mesure 1",
+      titre: "Le line cliché déjà résumé dans un seul accord",
+      chiffrage: "DoM6/9",
+      fonctions: "i(6/9)",
+      texte:
+        "Basse Do3, et au-dessus La♮3-Ré4-Mib4-Sol4 : fondamentale, 6te majeure, 9e, tierce, " +
+        "quinte — un <strong>Cm6/9</strong> complet. Le La♮, point d'arrivée du line cliché " +
+        "standard (Do-Si-Sib-<em>La</em>), est ainsi intégré verticalement dès le premier " +
+        "accord : quatre mesures d'harmonie horizontale résumées en un seul voicing. Le " +
+        "frottement Ré4/Mib4 (seconde mineure au cœur de l'accord) est la signature-cluster de " +
+        "toute la transcription. La mélodie entre en levée à la moitié du 2e temps : Do5-Ré5-Mib5, " +
+        "la cellule génératrice du thème, sur nuance <em>p</em>.",
+    },
+    {
+      label: "Mesure 2",
+      titre: "Le turnaround substitué, entièrement altéré",
+      chiffrage: "Ré7(♯9♭13) – Sol7(♭9♭13)",
+      fonctions: "II7 alt (V/V) – V7 alt",
+      texte:
+        "À la place des mesures 2-3 du cliché standard, un turnaround II7-V7 entièrement altéré. " +
+        "Ré7 : shell 3-7 à la basse (Fa♯3-Do4), Fa♮4 (=Mi♯, ♯9), Sib4 (♭13) et la fondamentale " +
+        "en soprano. Sol7 (placé en anticipation, croche puis noire pointée) : shell 7-3 (Fa♮3-" +
+        "Si♮3) — le voice-leading des shells est exact, Fa♯→Fa♮, Do→Si, chaque voix descend d'un " +
+        "demi-ton — surmonté de Mib (♭13), Lab (♭9), quinte au sommet. Ces ♭9/♭13 sur Sol7 sont " +
+        "les notes du mineur harmonique de Do : l'altération n'est pas un exotisme, c'est la " +
+        "tonalité elle-même.",
+    },
+    {
+      label: "Mesure 3",
+      titre: "Même mélodie, harmonisation adverse",
+      chiffrage: "DoM6/9 → Do7(♯11)",
+      fonctions: "i → V7/iv",
+      texte:
+        "Retour exact du voicing de la mesure 1 (mêmes quatre notes), et la mélodie relance la " +
+        "cellule Do-Ré-Mib. Mais l'harmonie bascule au <strong>4e temps</strong> (pas le 3e : le " +
+        "Ré4 qui sonne au temps 3 n'est qu'une note de passage à la basse) : Mi♮4-Fa♯4 s'allument " +
+        "sur Sib3 — tierce, ♯11 lydienne et 7e d'un Do7 rootless, fonction V7/iv vers Fa mineur. " +
+        "Même mélodie, harmonisation opposée : la première leçon de réharmonisation de l'extrait. " +
+        "Crescendo noté.",
+    },
+    {
+      label: "Mesure 4",
+      titre: "La vague chromatique",
+      chiffrage: "Laø(9) – Solb13(♯11) – Fa13(♯11)",
+      fonctions: "V/iv – subV/iv – (planing)",
+      texte:
+        "La mesure la plus dense. Laø9 (La3 à la basse, Mib-Sol-Si♮(9e)-Ré au-dessus) : les " +
+        "hauteurs réelles ne contiennent PAS la tierce (Do) — c'est un Aø9 sans tierce, b5-b7-9-11 " +
+        "sur La, pas littéralement un « C9 sans fondamentale » (qui exigerait Mi et Sib, absents " +
+        "ici) ; le romain « V/IV » reste celui de Dany. Puis Solb13(♯11) : le substitut " +
+        "tritonique de Do7, voicing complet (Solb-Sib à la basse, Fab-Lab-Do-Mib au-dessus). Et " +
+        "le geste remarquable : Fa13(♯11) est exactement la même structure glissée un demi-ton " +
+        "plus bas (Fa-La / Mib-Sol-Si♮-Ré) — du <strong>planing parallèle</strong>, chaque voix " +
+        "descend d'un demi-ton en bloc. Diminuendo noté : la vague retombe.",
+    },
+    {
+      label: "Mesures 5-6",
+      titre: "Deux accords fusionnés, puis la descente vers le iiø",
+      chiffrage: "Fam9 – Fa13sus9 – Fam9/Mib",
+      fonctions: "iv9 – iv(sus)",
+      texte:
+        "Fam9 (basse Fa2-Do3 en rondes liées) : trois positions successives du même accord à la " +
+        "main droite — Sol-Lab-Do (9/3/5, encore un cluster de seconde), Sib-Ré♮ (11 et 13 " +
+        "<em>dorienne</em>, pas la 6te bémolisée du mineur naturel), puis Lab-Do-Mib (3/5/7). La " +
+        "grille standard donne ici Abmaj7 PUIS Fm7 — deux accords relatifs que la transcription " +
+        "<strong>fusionne en un seul Fm9 étalé</strong> (Fm9 contient déjà tous les sons " +
+        "d'Abmaj7). Mesure 6, chiffrage déjà complet dans le fichier (F13sus9 : 11, 13, 9, 7, " +
+        "pas de tierce), puis la basse glisse vers Mib sous Fa3 (Fm9/Mib) : Fa→Mib→Ré, le passage " +
+        "obligé de la grille (mesures 6-7 du standard) — le seul endroit où cette transcription " +
+        "la suit à la lettre.",
+    },
+    {
+      label: "Mesures 7-8",
+      titre: "L'arc autour du iiø : sommet, puis redescente",
+      chiffrage: "Réø7 (arpège ascendant) → Solb13(♯9)",
+      fonctions: "iiø7 – V7 alt",
+      texte:
+        "Toute la mesure 7 est un arpège en triolets qui traverse les deux mains : la basse " +
+        "égrène Ré2-Ré3-Fa3-Lab3-Do4-Mib4 (l'accord ø7 complet, plus une ♭9 qui déborde), " +
+        "pendant que la main droite empile des voicings de trois sons qui montent en parallèle " +
+        "jusqu'à Lab4-Do5-Sol5 — le point le plus aigu de tout l'extrait. La mesure 8 redescend " +
+        "en un geste presque symétrique (mêmes empilements de trois sons, parcourus en sens " +
+        "inverse), la basse redescendant Mib4-Ré4-Lab3-Fa3, avant d'atterrir au 3e temps sur " +
+        "Sol7(♯9♭13) : Sol2 à la basse, shell Fa3, puis Si♮-Mib-Fa-Sib (3-♭13-7-♯9). La mélodie " +
+        "descend Lab-Sol-Fa en triolet — Lab (♭9 de passage) : l'accord cumule ainsi ♯9 et ♭9 " +
+        "mélodique, dominante saturée juste avant la résolution.",
+    },
+    {
+      label: "Mesure 9",
+      titre: "La résolution nue",
+      chiffrage: "DoM",
+      fonctions: "i",
+      texte:
+        "Résolution volontairement dépouillée après la houle précédente. Mélodie Mib4 (blanche " +
+        "pointée) ; à la basse, Ré4→Do4 : une appoggiature 9-8 qui résout — le seul ornement " +
+        "d'une mesure autrement vide. Puis le triolet Fa4-Sol4 relance une nouvelle levée vers la " +
+        "suite du thème, coupée ici.",
+    },
+  ],
+  synthese: [
+    {
+      titre: "Trois « corrections » proposées qui n'en sont pas",
+      texte:
+        "Vérification faite : la mesure 1 est déjà chiffrée Cm6/9 (pas « Cm » sec), et la mesure " +
+        "6 porte déjà un chiffrage complet (F13sus9, pas une case vide) — troisième fois cette " +
+        "session qu'un brouillon décrit une lacune du fichier qui n'existe pas. Seule la coquille " +
+        "« Rogers » dans les métadonnées internes du fichier est réelle, mais sans effet sur ce " +
+        "qui s'affiche (déjà « Rodgers » côté site).",
+    },
+    {
+      titre: "Le line cliché, horizontal puis vertical",
+      texte:
+        "Le standard déroule Cm-Cm(maj7)-Cm7-Cm6 sur 4 mesures ; cette transcription empile les " +
+        "mêmes notes (dont le La du cliché) dans un seul Cm6/9 dès la mesure 1, libérant tout le " +
+        "reste de l'espace pour la réharmonisation.",
+    },
+    {
+      titre: "Le voicing comme objet expressif autonome",
+      texte:
+        "Chez Bach (Invention n°1, cours 13), la forme naît de la conduite des voix ; chez Satie " +
+        "(Gymnopédie, cours 14), de la répétition ; dans la grille jazz nue (Autumn Leaves, " +
+        "cours 15), de l'enchaînement fonctionnel. Ici, la texture elle-même — l'arche des " +
+        "mesures 7-8, le planing de la mesure 4 — devient un événement formel : le voicing, pas " +
+        "seulement l'accord qu'il porte, est le sujet.",
+    },
+  ],
+};

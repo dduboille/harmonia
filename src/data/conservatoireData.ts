@@ -13,7 +13,7 @@ import { SATIN_DOLL_MESURES_1_8, SATIN_DOLL_ANALYSE, SATIN_DOLL_ANALYSE_NARRATIV
 import { BWV772_MESURES_1_8, BWV772_ANALYSE, BWV772_ANALYSE_NARRATIVE } from "./conservatoire-bwv772";
 import { GYMNOPEDIE_MESURES_1_9, GYMNOPEDIE_ANALYSE, GYMNOPEDIE_ANALYSE_NARRATIVE } from "./conservatoire-gymnopedie";
 import { AUTUMN_LEAVES_MESURES_1_10, AUTUMN_LEAVES_ANALYSE, AUTUMN_LEAVES_ANALYSE_NARRATIVE } from "./conservatoire-autumn-leaves";
-import { MY_FUNNY_VALENTINE_MESURES_1_9, MY_FUNNY_VALENTINE_ANALYSE } from "./conservatoire-my-funny-valentine";
+import { MY_FUNNY_VALENTINE_MESURES_1_9, MY_FUNNY_VALENTINE_ANALYSE, MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE } from "./conservatoire-my-funny-valentine";
 
 export interface CoursPieceData {
   titre: string;
@@ -574,6 +574,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       notes: ["C5", "D5", "Eb5", "F4", "Bb4", "D5", "C5", "D5"],
       musicxml: MY_FUNNY_VALENTINE_MESURES_1_9,
       analyse: MY_FUNNY_VALENTINE_ANALYSE,
+      analyseNarrative: MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE,
     },
     pieges: [
       {
