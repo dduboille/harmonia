@@ -1537,7 +1537,8 @@
       "maitreLesson": "Los acordes no son funciones (T, SD, D) — son colores. En música modal, se pinta con acordes en lugar de encadenarlos con dirección.",
       "maitrePeriod": "1862–1918",
       "maitreConcept": "Armonía modal",
-      "questionLabel": "Pregunta"
+      "questionLabel": "Pregunta",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours15": {
@@ -4146,6 +4147,22 @@
       "resume0": "Contrapunto = dos voces melódicamente independientes que concuerdan verticalmente",
       "resume1": "Las 5 especies de Fux: nota contra nota, 2 contra 1, síncopas/retardos, florituras, contrapunto florido",
       "resume2": "Invención n.º 1 BWV 772 (Bach): sujeto y respuesta intercambiados entre las dos manos, modula hacia la dominante"
+    },
+    "cours14": {
+      "intuition": "La armonía modal no genera tensión para resolver — establece un color y lo mantiene, evitando precisamente el movimiento hacia la dominante que rompería el hechizo.",
+      "badge": "Messiaen · Técnica de mi lenguaje musical",
+      "citation": "El encanto de las imposibilidades reside sobre todo en esa misma imposibilidad de salir del modo sin dar marcha atrás: esto es lo que da a estas armonías su atmósfera tan particular.",
+      "auteur": "Olivier Messiaen, 1944",
+      "voix0": "La armonía modal oscila alrededor de la tónica por color, no por tensión que resolver",
+      "voix1": "Evitar V7→I: este enlace introduce la sensible ausente del modo y rompe la atmósfera modal",
+      "voix2": "Un acorde «característico» (que contiene la nota distintiva del modo) basta para instalar el color",
+      "titre": "Primera Gymnopédie",
+      "compositeur": "Erik Satie",
+      "piege0erreur": "Buscar una dominante o una resolución tonal en una progresión que no la tiene",
+      "piege0correction": "Reconocer una oscilación colorista (p. ej. IV-I sin V jamás) y analizarla como tal, no como una tonalidad «incompleta»",
+      "resume0": "Armonía modal = color mantenido, no tensión seguida de resolución (a diferencia de la armonía tonal)",
+      "resume1": "El movimiento V7→I se evita: introduciría la sensible y rompería la atmósfera del modo",
+      "resume2": "«Primera Gymnopédie» (Satie): IVmaj7-Imaj7 en bucle durante 9 compases, nunca una dominante"
     }
   },
   "satb": {

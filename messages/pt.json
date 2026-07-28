@@ -1537,7 +1537,8 @@
       "maitreLesson": "Os acordes não são funções (T, SD, D) — são cores. Na música modal, pinta-se com acordes em vez de encadeá-los de forma direcional.",
       "maitrePeriod": "1862–1918",
       "maitreConcept": "Harmonia modal",
-      "questionLabel": "Questão"
+      "questionLabel": "Questão",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours15": {
@@ -4146,6 +4147,22 @@
       "resume0": "Contraponto = duas vozes melodicamente independentes que concordam verticalmente",
       "resume1": "As 5 espécies de Fux: nota contra nota, 2 contra 1, síncopas/retardos, floreios, contraponto florido",
       "resume2": "Invenção n.º 1 BWV 772 (Bach): sujeito e resposta trocados entre as duas mãos, modula para a dominante"
+    },
+    "cours14": {
+      "intuition": "A harmonia modal não cria tensão para resolver — ela estabelece uma cor e a mantém, evitando justamente o movimento em direção à dominante que quebraria o encanto.",
+      "badge": "Messiaen · Técnica da minha linguagem musical",
+      "citation": "O encanto das impossibilidades reside sobretudo nessa própria impossibilidade de sair do modo sem voltar atrás: é isso que dá a essas harmonias sua atmosfera tão particular.",
+      "auteur": "Olivier Messiaen, 1944",
+      "voix0": "A harmonia modal oscila em torno da tônica por cor, não por tensão a resolver",
+      "voix1": "Evitar V7→I: esse encadeamento introduz a sensível ausente do modo e quebra a atmosfera modal",
+      "voix2": "Um acorde «característico» (contendo a nota distintiva do modo) basta para instalar a cor",
+      "titre": "Primeira Gymnopédie",
+      "compositeur": "Erik Satie",
+      "piege0erreur": "Procurar uma dominante ou uma resolução tonal numa progressão que não tem nenhuma",
+      "piege0correction": "Reconhecer uma oscilação colorista (ex. IV-I sem nunca V) e analisá-la como tal, não como uma tonalidade «incompleta»",
+      "resume0": "Harmonia modal = cor mantida, não tensão seguida de resolução (ao contrário da harmonia tonal)",
+      "resume1": "O movimento V7→I é evitado: introduziria a sensível e quebraria a atmosfera do modo",
+      "resume2": "«Primeira Gymnopédie» (Satie): IVmaj7-Imaj7 em loop por 9 compassos, nunca uma dominante"
     }
   },
   "satb": {

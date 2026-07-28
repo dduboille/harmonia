@@ -1358,7 +1358,8 @@
       "maitreLesson": "Les accords ne sont pas des fonctions (T, SD, D) — ils sont des couleurs. En modal, on peint avec des accords plutôt qu'on ne les enchaîne en direction.",
       "maitrePeriod": "1862–1918",
       "maitreConcept": "Harmonie modale",
-      "questionLabel": "Question"
+      "questionLabel": "Question",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours13": {
@@ -4145,6 +4146,22 @@
       "resume0": "Contrepoint = deux voix mélodiquement indépendantes qui s'accordent verticalement",
       "resume1": "5 espèces de Fux : note contre note, 2 contre 1, syncopes/retards, fleuretis, contrepoint fleuri",
       "resume2": "Invention n°1 BWV 772 (Bach) : sujet et réponse échangés entre les deux mains, module vers la dominante"
+    },
+    "cours14": {
+      "intuition": "L'harmonie modale n'installe pas de tension à résoudre — elle pose une couleur et la maintient, en évitant justement le mouvement vers la dominante qui romprait le charme.",
+      "badge": "Messiaen · Technique de mon langage musical",
+      "citation": "Le charme des impossibilités réside surtout dans cette impossibilité même de sortir du mode sans revenir en arrière : c'est ce qui donne à ces harmonies leur atmosphère si particulière.",
+      "auteur": "Olivier Messiaen, 1944",
+      "voix0": "L'harmonie modale oscille autour de la tonique par couleur, pas par tension à résoudre",
+      "voix1": "Éviter V7→I : cet enchaînement introduit la sensible absente du mode et brise l'atmosphère modale",
+      "voix2": "Un accord « caractéristique » (contenant la note distinctive du mode) suffit à installer la couleur",
+      "titre": "Première Gymnopédie",
+      "compositeur": "Erik Satie",
+      "piege0erreur": "Chercher une dominante ou une résolution tonale dans une progression qui n'en a pas",
+      "piege0correction": "Reconnaître une oscillation coloriste (ex. IV-I sans jamais V) et l'analyser comme telle, pas comme une tonalité « incomplète »",
+      "resume0": "Harmonie modale = couleur maintenue, pas tension puis résolution (contrairement à l'harmonie tonale)",
+      "resume1": "Le mouvement V7→I est évité : il introduirait la sensible et romprait l'atmosphère du mode",
+      "resume2": "« Première Gymnopédie » (Satie) : IVmaj7-Imaj7 en boucle sur 9 mesures, jamais de dominante"
     }
   },
   "satb": {

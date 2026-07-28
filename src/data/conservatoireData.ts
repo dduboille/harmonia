@@ -11,6 +11,7 @@ import { SO_WHAT_MESURES_1_9, SO_WHAT_ANALYSE, SO_WHAT_ANALYSE_NARRATIVE } from 
 import { ALL_THE_THINGS_MESURES_1_8, ALL_THE_THINGS_ANALYSE, ALL_THE_THINGS_ANALYSE_NARRATIVE } from "./conservatoire-all-the-things";
 import { SATIN_DOLL_MESURES_1_8, SATIN_DOLL_ANALYSE, SATIN_DOLL_ANALYSE_NARRATIVE } from "./conservatoire-satin-doll";
 import { BWV772_MESURES_1_8, BWV772_ANALYSE, BWV772_ANALYSE_NARRATIVE } from "./conservatoire-bwv772";
+import { GYMNOPEDIE_MESURES_1_9, GYMNOPEDIE_ANALYSE } from "./conservatoire-gymnopedie";
 
 export interface CoursPieceData {
   titre: string;
@@ -43,7 +44,7 @@ export interface CoursConservatoireData {
   resume: string[];
 }
 
-export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13}`, CoursConservatoireData> = {
+export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14}`, CoursConservatoireData> = {
   cours1: {
     intuition:
       "Avant toute théorie, la gamme est une expérience physique — sentir la tension des demi-tons et la résolution vers la tonique.",
@@ -481,6 +482,39 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       "Contrepoint = deux voix mélodiquement indépendantes qui s'accordent verticalement",
       "5 espèces de Fux : note contre note, 2 contre 1, syncopes/retards, fleuretis, contrepoint fleuri",
       "Invention n°1 BWV 772 (Bach) : sujet et réponse échangés entre les deux mains, module vers la dominante",
+    ],
+  },
+  cours14: {
+    intuition:
+      "L'harmonie modale n'installe pas de tension à résoudre — elle pose une couleur et la maintient, en évitant justement le mouvement vers la dominante qui romprait le charme.",
+    reference: {
+      badge: "Messiaen · Technique de mon langage musical",
+      citation:
+        "Le charme des impossibilités réside surtout dans cette impossibilité même de sortir du mode sans revenir en arrière : c'est ce qui donne à ces harmonies leur atmosphère si particulière.",
+      auteur: "Olivier Messiaen, 1944",
+    },
+    voix: [
+      "L'harmonie modale oscille autour de la tonique par couleur, pas par tension à résoudre",
+      "Éviter V7→I : cet enchaînement introduit la sensible absente du mode et brise l'atmosphère modale",
+      "Un accord « caractéristique » (contenant la note distinctive du mode) suffit à installer la couleur",
+    ],
+    repertoire: {
+      titre: "Première Gymnopédie",
+      compositeur: "Erik Satie",
+      notes: ["F#5", "A5", "G5", "F#5", "C#5", "B4", "C#5", "D5"],
+      musicxml: GYMNOPEDIE_MESURES_1_9,
+      analyse: GYMNOPEDIE_ANALYSE,
+    },
+    pieges: [
+      {
+        erreur: "Chercher une dominante ou une résolution tonale dans une progression qui n'en a pas",
+        correction: "Reconnaître une oscillation coloriste (ex. IV-I sans jamais V) et l'analyser comme telle, pas comme une tonalité « incomplète »",
+      },
+    ],
+    resume: [
+      "Harmonie modale = couleur maintenue, pas tension puis résolution (contrairement à l'harmonie tonale)",
+      "Le mouvement V7→I est évité : il introduirait la sensible et romprait l'atmosphère du mode",
+      "« Première Gymnopédie » (Satie) : IVmaj7-Imaj7 en boucle sur 9 mesures, jamais de dominante",
     ],
   },
 };

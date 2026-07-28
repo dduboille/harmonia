@@ -1537,7 +1537,8 @@
       "maitreLesson": "Akkorde sind keine Funktionen (T, SD, D) — sie sind Farben. In modaler Musik malt man mit Akkorden, anstatt sie zielgerichtet aneinanderzureihen.",
       "maitrePeriod": "1862–1918",
       "maitreConcept": "Modale Harmonik",
-      "questionLabel": "Frage"
+      "questionLabel": "Frage",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours15": {
@@ -4146,6 +4147,22 @@
       "resume0": "Kontrapunkt = zwei melodisch unabhängige Stimmen, die vertikal übereinstimmen",
       "resume1": "Fuxens 5 Gattungen: Note gegen Note, 2 gegen 1, Synkopen/Vorhalte, figurierter Kontrapunkt, blumiger Kontrapunkt",
       "resume2": "Invention Nr. 1 BWV 772 (Bach): Subjekt und Antwort wandern zwischen den Händen, moduliert zur Dominante"
+    },
+    "cours14": {
+      "intuition": "Modale Harmonik baut keine Spannung auf, die aufgelöst werden muss — sie setzt eine Klangfarbe und hält sie, indem sie genau die Bewegung zur Dominante vermeidet, die den Zauber brechen würde.",
+      "badge": "Messiaen · Technik meiner musikalischen Sprache",
+      "citation": "Der Reiz der Unmöglichkeiten liegt vor allem in dieser Unmöglichkeit selbst, den Modus zu verlassen, ohne umzukehren: das verleiht diesen Harmonien ihre ganz besondere Atmosphäre.",
+      "auteur": "Olivier Messiaen, 1944",
+      "voix0": "Modale Harmonik oszilliert um die Tonika durch Klangfarbe, nicht durch aufzulösende Spannung",
+      "voix1": "V7→I vermeiden: diese Verbindung führt den im Modus fehlenden Leitton ein und bricht die modale Atmosphäre",
+      "voix2": "Ein einziger „charakteristischer\" Akkord (mit dem unterscheidenden Ton des Modus) genügt, um die Klangfarbe zu setzen",
+      "titre": "Erste Gymnopédie",
+      "compositeur": "Erik Satie",
+      "piege0erreur": "Eine Dominante oder tonale Auflösung in einer Progression suchen, die keine hat",
+      "piege0correction": "Ein koloristisches Schwingen (z. B. IV-I ganz ohne V) als solches erkennen und analysieren, nicht als „unvollständige\" Tonalität",
+      "resume0": "Modale Harmonik = gehaltene Klangfarbe, nicht Spannung gefolgt von Auflösung (anders als in der tonalen Harmonik)",
+      "resume1": "Die Bewegung V7→I wird vermieden: sie würde den Leitton einführen und die Atmosphäre des Modus brechen",
+      "resume2": "„Erste Gymnopédie\" (Satie): IVmaj7-Imaj7 in Schleife über 9 Takte, nie eine Dominante"
     }
   },
   "satb": {

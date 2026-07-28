@@ -1358,7 +1358,8 @@
       "maitreLesson": "Chords are not functions (T, SD, D) — they are colours. In modal music, we paint with chords rather than chaining them in a directed progression.",
       "maitrePeriod": "1862–1918",
       "maitreConcept": "Modal harmony",
-      "questionLabel": "Question"
+      "questionLabel": "Question",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours13": {
@@ -4145,6 +4146,22 @@
       "resume0": "Counterpoint = two melodically independent voices that agree vertically",
       "resume1": "Fux's 5 species: note against note, 2 against 1, syncopations/suspensions, florid figures, florid counterpoint",
       "resume2": "Invention No. 1 BWV 772 (Bach): subject and answer traded between the two hands, modulating to the dominant"
+    },
+    "cours14": {
+      "intuition": "Modal harmony doesn't build tension to resolve — it sets a color and holds it, carefully avoiding the move to the dominant that would break the spell.",
+      "badge": "Messiaen · The Technique of My Musical Language",
+      "citation": "The charm of impossibilities lies above all in this very impossibility of escaping the mode without turning back: this is what gives these harmonies their very particular atmosphere.",
+      "auteur": "Olivier Messiaen, 1944",
+      "voix0": "Modal harmony oscillates around the tonic through color, not through tension to resolve",
+      "voix1": "Avoid V7→I: this progression introduces the leading tone missing from the mode and breaks the modal atmosphere",
+      "voix2": "A single \"characteristic\" chord (containing the mode's distinctive note) is enough to set the color",
+      "titre": "First Gymnopédie",
+      "compositeur": "Erik Satie",
+      "piege0erreur": "Looking for a dominant or a tonal resolution in a progression that has none",
+      "piege0correction": "Recognize a coloristic oscillation (e.g. IV-I with no V at all) and analyze it as such, not as an \"incomplete\" tonality",
+      "resume0": "Modal harmony = a color held in place, not tension followed by resolution (unlike tonal harmony)",
+      "resume1": "The V7→I motion is avoided: it would introduce the leading tone and break the mode's atmosphere",
+      "resume2": "\"First Gymnopédie\" (Satie): IVmaj7-Imaj7 looping over 9 measures, never a dominant"
     }
   },
   "satb": {
