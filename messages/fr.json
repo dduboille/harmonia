@@ -1588,7 +1588,8 @@
       "quizScoreLabel": "Score :",
       "quizPoolLabel": "questions dans le pool",
       "quizNextBtn": "Question suivante →",
-      "quizFinishBtn": "Voir mon score"
+      "quizFinishBtn": "Voir mon score",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours21": {
@@ -4162,6 +4163,22 @@
       "resume0": "Harmonie modale = couleur maintenue, pas tension puis résolution (contrairement à l'harmonie tonale)",
       "resume1": "Le mouvement V7→I est évité : il introduirait la sensible et romprait l'atmosphère du mode",
       "resume2": "« Première Gymnopédie » (Satie) : IVmaj7-Imaj7 en boucle sur 9 mesures, jamais de dominante"
+    },
+    "cours15": {
+      "intuition": "Le II-V-I n'est pas une formule figée — c'est un squelette que le jazz habille d'extensions, de substitutions et de dominantes secondaires, chaîne après chaîne, sans jamais perdre le fil qui ramène à la tonique.",
+      "badge": "Aebersold · Jazz Handbook",
+      "citation": "Le musicien de jazz ne joue pas des accords : il joue des lignes qui racontent l'histoire des accords, en anticipant toujours celui qui vient.",
+      "auteur": "Jamey Aebersold, 1967",
+      "voix0": "Une dominante secondaire (V7/X) tonicise brièvement le degré X avant d'y résoudre",
+      "voix1": "Le substitut tritonique (subV7) remplace une dominante par l'accord de 7e à un triton de distance — même tension, basse qui descend par demi-ton",
+      "voix2": "Un enchaînement de dominantes secondaires forme une chaîne descendante par quintes, l'ossature de nombreux standards",
+      "titre": "Autumn Leaves",
+      "compositeur": "Joseph Kosma",
+      "piege0erreur": "Analyser chaque accord isolément sans repérer la dominante secondaire qui le précède",
+      "piege0correction": "Toujours vérifier si un accord dominant résout un demi-ton ou une quinte plus loin vers un degré autre que la tonique — c'est une dominante secondaire (V7/X)",
+      "resume0": "Une chaîne de dominantes secondaires (V7/III, subV7/VI, V7/V...) tonicise brièvement chaque degré avant la résolution finale",
+      "resume1": "Le substitut tritonique remplace une dominante par son triton : même tension (3ce/7e échangées), basse chromatique",
+      "resume2": "« Autumn Leaves » (Kosma) : marche descendante iv-VII-III-VI-ii°/V-V-i, puis turnaround V7/IV qui referme la boucle"
     }
   },
   "satb": {

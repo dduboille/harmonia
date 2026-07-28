@@ -38,7 +38,7 @@ export function VueConservatoire({
   courseNum,
   data: dataProp,
 }: {
-  courseNum?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+  courseNum?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
   data?: CoursConservatoireData;
 }) {
   const params = useParams();
@@ -63,10 +63,10 @@ export function VueConservatoire({
     repertoire: {
       titre: tcons(`${ck}.titre` as any),
       compositeur: tcons(`${ck}.compositeur` as any),
-      notes: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14}`].repertoire.notes,
-      musicxml: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14}`].repertoire.musicxml,
-      analyse: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14}`].repertoire.analyse,
-      analyseNarrative: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14}`].repertoire.analyseNarrative,
+      notes: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14|15}`].repertoire.notes,
+      musicxml: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14|15}`].repertoire.musicxml,
+      analyse: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14|15}`].repertoire.analyse,
+      analyseNarrative: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14|15}`].repertoire.analyseNarrative,
     },
     pieges: [{
       erreur: tcons(`${ck}.piege0erreur` as any),
@@ -77,7 +77,7 @@ export function VueConservatoire({
       tcons(`${ck}.resume1` as any),
       tcons(`${ck}.resume2` as any),
     ].filter(Boolean),
-  } : (dataProp ?? CONSERVATOIRE_DATA[`cours${courseNum!}` as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14}`]);
+  } : (dataProp ?? CONSERVATOIRE_DATA[`cours${courseNum!}` as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14|15}`]);
 
   const playRepertoire = useCallback(() => {
     data.repertoire.notes.forEach((n, i) => {

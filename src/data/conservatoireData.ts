@@ -12,6 +12,7 @@ import { ALL_THE_THINGS_MESURES_1_8, ALL_THE_THINGS_ANALYSE, ALL_THE_THINGS_ANAL
 import { SATIN_DOLL_MESURES_1_8, SATIN_DOLL_ANALYSE, SATIN_DOLL_ANALYSE_NARRATIVE } from "./conservatoire-satin-doll";
 import { BWV772_MESURES_1_8, BWV772_ANALYSE, BWV772_ANALYSE_NARRATIVE } from "./conservatoire-bwv772";
 import { GYMNOPEDIE_MESURES_1_9, GYMNOPEDIE_ANALYSE, GYMNOPEDIE_ANALYSE_NARRATIVE } from "./conservatoire-gymnopedie";
+import { AUTUMN_LEAVES_MESURES_1_10, AUTUMN_LEAVES_ANALYSE } from "./conservatoire-autumn-leaves";
 
 export interface CoursPieceData {
   titre: string;
@@ -44,7 +45,7 @@ export interface CoursConservatoireData {
   resume: string[];
 }
 
-export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14}`, CoursConservatoireData> = {
+export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15}`, CoursConservatoireData> = {
   cours1: {
     intuition:
       "Avant toute théorie, la gamme est une expérience physique — sentir la tension des demi-tons et la résolution vers la tonique.",
@@ -516,6 +517,39 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       "Harmonie modale = couleur maintenue, pas tension puis résolution (contrairement à l'harmonie tonale)",
       "Le mouvement V7→I est évité : il introduirait la sensible et romprait l'atmosphère du mode",
       "« Première Gymnopédie » (Satie) : IVmaj7-Imaj7 en boucle sur 9 mesures, jamais de dominante",
+    ],
+  },
+  cours15: {
+    intuition:
+      "Le II-V-I n'est pas une formule figée — c'est un squelette que le jazz habille d'extensions, de substitutions et de dominantes secondaires, chaîne après chaîne, sans jamais perdre le fil qui ramène à la tonique.",
+    reference: {
+      badge: "Aebersold · Jazz Handbook",
+      citation:
+        "Le musicien de jazz ne joue pas des accords : il joue des lignes qui racontent l'histoire des accords, en anticipant toujours celui qui vient.",
+      auteur: "Jamey Aebersold, 1967",
+    },
+    voix: [
+      "Une dominante secondaire (V7/X) tonicise brièvement le degré X avant d'y résoudre",
+      "Le substitut tritonique (subV7) remplace une dominante par l'accord de 7e à un triton de distance — même tension, basse qui descend par demi-ton",
+      "Un enchaînement de dominantes secondaires forme une chaîne descendante par quintes, l'ossature de nombreux standards",
+    ],
+    repertoire: {
+      titre: "Autumn Leaves",
+      compositeur: "Joseph Kosma",
+      notes: ["G4", "A4", "Bb4", "Eb5", "C#4", "A3", "D4", "G4"],
+      musicxml: AUTUMN_LEAVES_MESURES_1_10,
+      analyse: AUTUMN_LEAVES_ANALYSE,
+    },
+    pieges: [
+      {
+        erreur: "Analyser chaque accord isolément sans repérer la dominante secondaire qui le précède",
+        correction: "Toujours vérifier si un accord dominant résout un demi-ton ou une quinte plus loin vers un degré autre que la tonique — c'est une dominante secondaire (V7/X)",
+      },
+    ],
+    resume: [
+      "Une chaîne de dominantes secondaires (V7/III, subV7/VI, V7/V...) tonicise brièvement chaque degré avant la résolution finale",
+      "Le substitut tritonique remplace une dominante par son triton : même tension (3ce/7e échangées), basse chromatique",
+      "« Autumn Leaves » (Kosma) : marche descendante iv-VII-III-VI-ii°/V-V-i, puis turnaround V7/IV qui referme la boucle",
     ],
   },
 };

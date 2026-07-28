@@ -1594,7 +1594,8 @@
       "quizScoreLabel": "Punktzahl:",
       "quizPoolLabel": "Fragen im Pool",
       "quizNextBtn": "Nächste Frage →",
-      "quizFinishBtn": "Mein Ergebnis sehen"
+      "quizFinishBtn": "Mein Ergebnis sehen",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours16": {
@@ -4163,6 +4164,22 @@
       "resume0": "Modale Harmonik = gehaltene Klangfarbe, nicht Spannung gefolgt von Auflösung (anders als in der tonalen Harmonik)",
       "resume1": "Die Bewegung V7→I wird vermieden: sie würde den Leitton einführen und die Atmosphäre des Modus brechen",
       "resume2": "„Erste Gymnopédie\" (Satie): IVmaj7-Imaj7 in Schleife über 9 Takte, nie eine Dominante"
+    },
+    "cours15": {
+      "intuition": "Der II-V-I ist keine feste Formel — er ist ein Gerüst, das der Jazz mit Erweiterungen, Substitutionen und Zwischendominanten ausstattet, Glied für Glied, ohne je den Faden zurück zur Tonika zu verlieren.",
+      "badge": "Aebersold · Jazz Handbook",
+      "citation": "Der Jazzmusiker spielt keine Akkorde: er spielt Linien, die die Geschichte der Akkorde erzählen und dabei stets den kommenden vorwegnehmen.",
+      "auteur": "Jamey Aebersold, 1967",
+      "voix0": "Eine Zwischendominante (V7/X) tonisiert kurz die Stufe X, bevor sie dorthin auflöst",
+      "voix1": "Der Tritonus-Ersatz (subV7) ersetzt eine Dominante durch den Septakkord einen Tritonus entfernt — gleiche Spannung, ein Bass, der chromatisch abwärts geht",
+      "voix2": "Eine Kette von Zwischendominanten bildet eine absteigende Quintenfolge, das Rückgrat vieler Standards",
+      "titre": "Autumn Leaves",
+      "compositeur": "Joseph Kosma",
+      "piege0erreur": "Jeden Akkord isoliert analysieren, ohne die vorausgehende Zwischendominante zu erkennen",
+      "piege0correction": "Immer prüfen, ob ein Dominantakkord einen Halbton oder eine Quinte weiter zu einer anderen Stufe als der Tonika auflöst — das ist eine Zwischendominante (V7/X)",
+      "resume0": "Eine Kette von Zwischendominanten (V7/III, subV7/VI, V7/V...) tonisiert kurz jede Stufe vor der endgültigen Auflösung",
+      "resume1": "Der Tritonus-Ersatz ersetzt eine Dominante durch ihren Tritonus: gleiche Spannung (Terz/Septime vertauscht), chromatischer Bass",
+      "resume2": "„Autumn Leaves\" (Kosma): absteigende iv-VII-III-VI-ii°/V-V-i-Folge, dann ein V7/IV-Turnaround, der den Kreis schließt"
     }
   },
   "satb": {

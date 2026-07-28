@@ -1594,7 +1594,8 @@
       "quizScoreLabel": "Puntuación:",
       "quizPoolLabel": "preguntas en el banco",
       "quizNextBtn": "Siguiente pregunta →",
-      "quizFinishBtn": "Ver mi puntuación"
+      "quizFinishBtn": "Ver mi puntuación",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours16": {
@@ -4163,6 +4164,22 @@
       "resume0": "Armonía modal = color mantenido, no tensión seguida de resolución (a diferencia de la armonía tonal)",
       "resume1": "El movimiento V7→I se evita: introduciría la sensible y rompería la atmósfera del modo",
       "resume2": "«Primera Gymnopédie» (Satie): IVmaj7-Imaj7 en bucle durante 9 compases, nunca una dominante"
+    },
+    "cours15": {
+      "intuition": "El II-V-I no es una fórmula fija — es un esqueleto que el jazz viste con extensiones, sustituciones y dominantes secundarias, eslabón tras eslabón, sin perder nunca el hilo que devuelve a la tónica.",
+      "badge": "Aebersold · Jazz Handbook",
+      "citation": "El músico de jazz no toca acordes: toca líneas que cuentan la historia de los acordes, anticipando siempre el que viene.",
+      "auteur": "Jamey Aebersold, 1967",
+      "voix0": "Una dominante secundaria (V7/X) tonaliza brevemente el grado X antes de resolver en él",
+      "voix1": "El sustituto tritonal (subV7) reemplaza una dominante por el acorde de 7ª a un tritono de distancia — misma tensión, bajo que desciende por semitono",
+      "voix2": "Una cadena de dominantes secundarias forma una secuencia descendente por quintas, la columna vertebral de muchos estándares",
+      "titre": "Autumn Leaves",
+      "compositeur": "Joseph Kosma",
+      "piege0erreur": "Analizar cada acorde de forma aislada sin detectar la dominante secundaria que lo precede",
+      "piege0correction": "Comprobar siempre si un acorde dominante resuelve un semitono o una quinta más allá hacia un grado distinto de la tónica — eso es una dominante secundaria (V7/X)",
+      "resume0": "Una cadena de dominantes secundarias (V7/III, subV7/VI, V7/V...) tonaliza brevemente cada grado antes de la resolución final",
+      "resume1": "El sustituto tritonal reemplaza una dominante por su tritono: misma tensión (3ª/7ª intercambiadas), bajo cromático",
+      "resume2": "«Autumn Leaves» (Kosma): secuencia descendente iv-VII-III-VI-ii°/V-V-i, seguida de un turnaround V7/IV que cierra el ciclo"
     }
   },
   "satb": {

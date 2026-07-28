@@ -1588,7 +1588,8 @@
       "quizScoreLabel": "Score:",
       "quizPoolLabel": "questions in the pool",
       "quizNextBtn": "Next question →",
-      "quizFinishBtn": "See my score"
+      "quizFinishBtn": "See my score",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours21": {
@@ -4162,6 +4163,22 @@
       "resume0": "Modal harmony = a color held in place, not tension followed by resolution (unlike tonal harmony)",
       "resume1": "The V7→I motion is avoided: it would introduce the leading tone and break the mode's atmosphere",
       "resume2": "\"First Gymnopédie\" (Satie): IVmaj7-Imaj7 looping over 9 measures, never a dominant"
+    },
+    "cours15": {
+      "intuition": "The II-V-I isn't a fixed formula — it's a skeleton that jazz dresses up with extensions, substitutions, and secondary dominants, link after link, without ever losing the thread back to the tonic.",
+      "badge": "Aebersold · Jazz Handbook",
+      "citation": "The jazz musician doesn't play chords: they play lines that tell the story of the chords, always anticipating the one that's coming next.",
+      "auteur": "Jamey Aebersold, 1967",
+      "voix0": "A secondary dominant (V7/X) briefly tonicizes degree X before resolving to it",
+      "voix1": "The tritone substitute (subV7) replaces a dominant with the 7th chord a tritone away — same tension, a bass line that descends by half-step",
+      "voix2": "A chain of secondary dominants forms a descending sequence of fifths, the backbone of many standards",
+      "titre": "Autumn Leaves",
+      "compositeur": "Joseph Kosma",
+      "piege0erreur": "Analyzing each chord in isolation without spotting the secondary dominant that precedes it",
+      "piege0correction": "Always check whether a dominant chord resolves a half-step or a fifth away to a degree other than the tonic — that's a secondary dominant (V7/X)",
+      "resume0": "A chain of secondary dominants (V7/III, subV7/VI, V7/V...) briefly tonicizes each degree before the final resolution",
+      "resume1": "The tritone substitute replaces a dominant with its tritone: same tension (3rd/7th swapped), chromatic bass",
+      "resume2": "\"Autumn Leaves\" (Kosma): descending iv-VII-III-VI-ii°/V-V-i sequence, then a V7/IV turnaround that closes the loop"
     }
   },
   "satb": {
