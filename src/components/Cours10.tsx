@@ -13,6 +13,7 @@ import { useTerm } from "@/hooks/useTerm";
 import { cours10Content } from "@/data/cours10Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 interface Section { id: string; label: string; }
 
@@ -196,7 +197,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 const QUIZ_COUNT = 10;
-const SECTIONS_IDS = ["modes", "harmonie", "quiz"] as const;
+const SECTIONS_IDS = ["modes", "harmonie", "conservatoire", "quiz"] as const;
 
 const S = {
   wrap:     { fontFamily: "var(--font-sans, system-ui)", maxWidth: 720, margin: "0 auto", padding: "0 1rem 3rem" } as React.CSSProperties,
@@ -262,6 +263,7 @@ export default function Cours10() {
   const sectionLabel = (id: string) => {
     if (id === "modes") return n("navModes");
     if (id === "harmonie") return n("navHarmonie");
+    if (id === "conservatoire") return n("navConservatoire");
     return n("navQuiz");
   };
 
@@ -539,6 +541,8 @@ export default function Cours10() {
           <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("harmonieWarnBox") }} />
         </div>
       )}
+
+      {activeSection === "conservatoire" && <VueConservatoire courseNum={10} />}
 
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (

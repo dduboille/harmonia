@@ -1194,7 +1194,8 @@
       "maitreAnecdote": "En 1959, Miles Davis enregistre Kind of Blue — l'album de jazz le plus vendu de tous les temps. Au lieu d'enchaîner des accords complexes, il construit chaque morceau sur un seul mode. So What est entièrement en D dorien. Davis dira : 'Je voulais que les musiciens pensent à une couleur, pas à une suite d'accords.'",
       "maitreLesson": "Un mode n'est pas une gamme avec une note différente — c'est une couleur harmonique, une façon d'entendre le monde.",
       "maitrePeriod": "1926–1991",
-      "maitreConcept": "Modes"
+      "maitreConcept": "Modes",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours12": {
@@ -4077,6 +4078,22 @@
       "resume2": "Chromatisme : altérations non diatoniques enrichissant l'harmonie sans moduler",
       "titre": "Chaconne BWV 1004",
       "compositeur": "J.S. Bach"
+    },
+    "cours10": {
+      "intuition": "Un mode, c'est la même gamme majeure vue depuis un autre degré — le paysage ne change pas, seul le point d'écoute change, et avec lui la couleur entière de la musique.",
+      "badge": "Russell · Lydian Chromatic Concept",
+      "citation": "Chaque mode porte sa propre gravité tonale, indépendante de toute fonction harmonique classique.",
+      "auteur": "George Russell, 1953",
+      "voix0": "Le dorien (2e degré) est le mode mineur le plus lumineux : sa 6te majeure le distingue de la gamme mineure naturelle",
+      "voix1": "Une pièce modale peut rester sur un seul accord des mesures durant — la couleur remplace le mouvement harmonique",
+      "voix2": "Sans dominante ni cadence, c'est le degré caractéristique du mode (ici la 6te du dorien) qui porte toute son identité",
+      "titre": "So What",
+      "compositeur": "Miles Davis",
+      "piege0erreur": "Chercher une cadence V–I dans une pièce modale comme « So What »",
+      "piege0correction": "La musique modale ne cadence pas : elle colore un centre tonal fixe, sans jamais s'en éloigner ni y revenir par une dominante",
+      "resume0": "7 modes = 7 rotations de la même gamme, chacun avec sa propre tonique",
+      "resume1": "Le dorien colore le mineur d'une 6te majeure : le mode le plus utilisé en jazz modal",
+      "resume2": "« So What » (Miles Davis, 1959) : un vamp en ré dorien, sans harmonie fonctionnelle"
     }
   },
   "satb": {

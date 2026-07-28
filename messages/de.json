@@ -1195,7 +1195,8 @@
       "maitreAnecdote": "1959 nahm Miles Davis Kind of Blue auf — das meistverkaufte Jazzalbum aller Zeiten. Anstatt komplexe Akkorde aneinanderzureihen, baute er jedes Stück auf einem einzigen Modus auf. So What steht vollständig in D dorisch. Davis sagte: 'Ich wollte, dass die Musiker an eine Farbe denken, nicht an eine Akkordfolge.'",
       "maitreLesson": "Ein Modus ist keine Tonleiter mit einer anderen Note — er ist eine harmonische Farbe, eine Art, die Welt zu hören.",
       "maitrePeriod": "1926–1991",
-      "maitreConcept": "Modi"
+      "maitreConcept": "Modi",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours11": {
@@ -4078,6 +4079,22 @@
       "resume2": "Chromatik: nicht-diatonische Alterationen, die die Harmonie bereichern, ohne zu modulieren",
       "titre": "Chaconne BWV 1004",
       "compositeur": "J.S. Bach"
+    },
+    "cours10": {
+      "intuition": "Ein Modus ist dieselbe Durtonleiter, nur von einer anderen Stufe aus betrachtet — die Landschaft bleibt gleich, nur der Hörpunkt ändert sich, und mit ihm die gesamte Klangfarbe der Musik.",
+      "badge": "Russell · Lydian Chromatic Concept",
+      "citation": "Jeder Modus trägt seine eigene tonale Schwerkraft, unabhängig von jeder klassischen harmonischen Funktion.",
+      "auteur": "George Russell, 1953",
+      "voix0": "Dorisch (2. Stufe) ist der hellste Molltonmodus: seine große Sexte unterscheidet ihn von der natürlichen Molltonleiter",
+      "voix1": "Ein modales Stück kann taktelang auf einem einzigen Akkord verharren — Klangfarbe ersetzt harmonische Bewegung",
+      "voix2": "Ohne Dominante oder Kadenz ist es die charakteristische Stufe des Modus (hier die Sexte des Dorischen), die seine ganze Identität trägt",
+      "titre": "So What",
+      "compositeur": "Miles Davis",
+      "piege0erreur": "Eine V–I-Kadenz in einem modalen Stück wie „So What“ suchen",
+      "piege0correction": "Modale Musik kadenziert nicht: sie färbt ein festes tonales Zentrum, ohne sich je davon zu entfernen oder über eine Dominante dorthin zurückzukehren",
+      "resume0": "7 Modi = 7 Rotationen derselben Tonleiter, jede mit ihrer eigenen Tonika",
+      "resume1": "Dorisch färbt Moll mit einer großen Sexte: der meistgenutzte Modus im modalen Jazz",
+      "resume2": "„So What“ (Miles Davis, 1959): ein Vamp in D-Dorisch, ohne funktionale Harmonik"
     }
   },
   "satb": {

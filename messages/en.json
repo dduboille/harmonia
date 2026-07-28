@@ -1194,7 +1194,8 @@
       "maitreAnecdote": "In 1959, Miles Davis recorded Kind of Blue — the best-selling jazz album of all time. Instead of chaining complex chords, he built each piece on a single mode. So What is entirely in D Dorian. Davis said: 'I wanted the musicians to think of a color, not a chord sequence.'",
       "maitreLesson": "A mode is not a scale with one different note — it is a harmonic color, a way of hearing the world.",
       "maitrePeriod": "1926–1991",
-      "maitreConcept": "Modes"
+      "maitreConcept": "Modes",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours12": {
@@ -4077,6 +4078,22 @@
       "resume2": "Chromaticism: non-diatonic alterations enriching harmony without modulating",
       "titre": "Chaconne BWV 1004",
       "compositeur": "J.S. Bach"
+    },
+    "cours10": {
+      "intuition": "A mode is the same major scale seen from a different degree — the landscape doesn't change, only the listening point does, and with it the entire color of the music.",
+      "badge": "Russell · Lydian Chromatic Concept",
+      "citation": "Each mode carries its own tonal gravity, independent of any classical harmonic function.",
+      "auteur": "George Russell, 1953",
+      "voix0": "The Dorian (2nd degree) is the brightest minor mode: its major 6th sets it apart from the natural minor scale",
+      "voix1": "A modal piece can stay on a single chord for measures on end — color replaces harmonic motion",
+      "voix2": "Without a dominant or a cadence, it's the mode's characteristic degree (here the Dorian's 6th) that carries its whole identity",
+      "titre": "So What",
+      "compositeur": "Miles Davis",
+      "piege0erreur": "Looking for a V–I cadence in a modal piece like \"So What\"",
+      "piege0correction": "Modal music doesn't cadence: it colors a fixed tonal center, never moving away from it or returning to it via a dominant",
+      "resume0": "7 modes = 7 rotations of the same scale, each with its own tonic",
+      "resume1": "The Dorian colors the minor with a major 6th: the most used mode in modal jazz",
+      "resume2": "\"So What\" (Miles Davis, 1959): a vamp in D Dorian, with no functional harmony"
     }
   },
   "satb": {

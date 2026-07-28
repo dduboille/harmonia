@@ -7,6 +7,7 @@ import { SCHUBERT_D845_MESURES_1_10, SCHUBERT_D845_ANALYSE, SCHUBERT_D845_ANALYS
 import { BRAHMS_OP118N2_MESURES_0_8, BRAHMS_OP118N2_ANALYSE, BRAHMS_OP118N2_ANALYSE_NARRATIVE } from "./conservatoire-brahms-op118n2";
 import { BEETHOVEN_OP27N2_MESURES_1_9, BEETHOVEN_OP27N2_ANALYSE, BEETHOVEN_OP27N2_ANALYSE_NARRATIVE } from "./conservatoire-beethoven-op27n2";
 import { CHACONNE_BWV1004_MESURES_0_8, CHACONNE_BWV1004_ANALYSE, CHACONNE_BWV1004_ANALYSE_NARRATIVE } from "./conservatoire-chaconne-bwv1004";
+import { SO_WHAT_MESURES_1_9, SO_WHAT_ANALYSE, SO_WHAT_ANALYSE_NARRATIVE } from "./conservatoire-so-what";
 
 export interface CoursPieceData {
   titre: string;
@@ -39,7 +40,7 @@ export interface CoursConservatoireData {
   resume: string[];
 }
 
-export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}`, CoursConservatoireData> = {
+export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10}`, CoursConservatoireData> = {
   cours1: {
     intuition:
       "Avant toute théorie, la gamme est une expérience physique — sentir la tension des demi-tons et la résolution vers la tonique.",
@@ -340,6 +341,41 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       "Marche tonale : transposition dans le même ton (intervalles diatoniques)",
       "Marche réelle : transposition exacte (intervalles chromatiques identiques)",
       "Chromatisme : altérations non diatoniques enrichissant l'harmonie sans moduler",
+    ],
+  },
+  cours10: {
+    intuition:
+      "Un mode, c'est la même gamme majeure vue depuis un autre degré — le paysage ne change pas, seul le point d'écoute change, et avec lui la couleur entière de la musique.",
+    reference: {
+      badge: "Russell · Lydian Chromatic Concept",
+      citation:
+        "Chaque mode porte sa propre gravité tonale, indépendante de toute fonction harmonique classique.",
+      auteur: "George Russell, 1953",
+    },
+    voix: [
+      "Le dorien (2e degré) est le mode mineur le plus lumineux : sa 6te majeure le distingue de la gamme mineure naturelle",
+      "Une pièce modale peut rester sur un seul accord des mesures durant — la couleur remplace le mouvement harmonique",
+      "Sans dominante ni cadence, c'est le degré caractéristique du mode (ici la 6te du dorien) qui porte toute son identité",
+    ],
+    repertoire: {
+      titre: "So What",
+      compositeur: "Miles Davis",
+      notes: ["D3", "A3", "B3", "C4", "D4", "G4", "B4", "E4"],
+      musicxml: SO_WHAT_MESURES_1_9,
+      analyse: SO_WHAT_ANALYSE,
+      analyseNarrative: SO_WHAT_ANALYSE_NARRATIVE,
+    },
+    pieges: [
+      {
+        erreur: "Chercher une cadence V–I dans une pièce modale comme « So What »",
+        correction:
+          "La musique modale ne cadence pas : elle colore un centre tonal fixe, sans jamais s'en éloigner ni y revenir par une dominante",
+      },
+    ],
+    resume: [
+      "7 modes = 7 rotations de la même gamme, chacun avec sa propre tonique",
+      "Le dorien colore le mineur d'une 6te majeure : le mode le plus utilisé en jazz modal",
+      "« So What » (Miles Davis, 1959) : un vamp en ré dorien, sans harmonie fonctionnelle",
     ],
   },
 };

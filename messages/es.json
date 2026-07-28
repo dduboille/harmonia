@@ -1195,7 +1195,8 @@
       "maitreAnecdote": "En 1959, Miles Davis grabó Kind of Blue — el álbum de jazz más vendido de todos los tiempos. En lugar de encadenar acordes complejos, construyó cada pieza sobre un único modo. So What está enteramente en D dórico. Davis diría: 'Quería que los músicos pensaran en un color, no en una secuencia de acordes.'",
       "maitreLesson": "Un modo no es una escala con una nota diferente — es un color armónico, una manera de escuchar el mundo.",
       "maitrePeriod": "1926–1991",
-      "maitreConcept": "Modos"
+      "maitreConcept": "Modos",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours11": {
@@ -4078,6 +4079,22 @@
       "resume2": "Cromatismo: alteraciones no diatónicas que enriquecen la armonía sin modular",
       "titre": "Chacona BWV 1004",
       "compositeur": "J.S. Bach"
+    },
+    "cours10": {
+      "intuition": "Un modo es la misma escala mayor vista desde otro grado — el paisaje no cambia, solo cambia el punto de escucha, y con él, todo el color de la música.",
+      "badge": "Russell · Lydian Chromatic Concept",
+      "citation": "Cada modo tiene su propia gravedad tonal, independiente de cualquier función armónica clásica.",
+      "auteur": "George Russell, 1953",
+      "voix0": "El dórico (2º grado) es el modo menor más luminoso: su 6ª mayor lo distingue de la escala menor natural",
+      "voix1": "Una pieza modal puede permanecer en un solo acorde durante varios compases — el color reemplaza al movimiento armónico",
+      "voix2": "Sin dominante ni cadencia, es el grado característico del modo (aquí la 6ª del dórico) el que le da toda su identidad",
+      "titre": "So What",
+      "compositeur": "Miles Davis",
+      "piege0erreur": "Buscar una cadencia V–I en una pieza modal como «So What»",
+      "piege0correction": "La música modal no cadencia: colorea un centro tonal fijo, sin alejarse nunca de él ni volver mediante una dominante",
+      "resume0": "7 modos = 7 rotaciones de la misma escala, cada uno con su propia tónica",
+      "resume1": "El dórico colorea el menor con una 6ª mayor: el modo más usado en el jazz modal",
+      "resume2": "«So What» (Miles Davis, 1959): un vamp en re dórico, sin armonía funcional"
     }
   },
   "satb": {
