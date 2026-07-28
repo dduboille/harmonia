@@ -9,6 +9,7 @@ import { BEETHOVEN_OP27N2_MESURES_1_9, BEETHOVEN_OP27N2_ANALYSE, BEETHOVEN_OP27N
 import { CHACONNE_BWV1004_MESURES_0_8, CHACONNE_BWV1004_ANALYSE, CHACONNE_BWV1004_ANALYSE_NARRATIVE } from "./conservatoire-chaconne-bwv1004";
 import { SO_WHAT_MESURES_1_9, SO_WHAT_ANALYSE, SO_WHAT_ANALYSE_NARRATIVE } from "./conservatoire-so-what";
 import { ALL_THE_THINGS_MESURES_1_8, ALL_THE_THINGS_ANALYSE, ALL_THE_THINGS_ANALYSE_NARRATIVE } from "./conservatoire-all-the-things";
+import { SATIN_DOLL_MESURES_1_8, SATIN_DOLL_ANALYSE } from "./conservatoire-satin-doll";
 
 export interface CoursPieceData {
   titre: string;
@@ -41,7 +42,7 @@ export interface CoursConservatoireData {
   resume: string[];
 }
 
-export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11}`, CoursConservatoireData> = {
+export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12}`, CoursConservatoireData> = {
   cours1: {
     intuition:
       "Avant toute théorie, la gamme est une expérience physique — sentir la tension des demi-tons et la résolution vers la tonique.",
@@ -411,6 +412,39 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       "9e = 2e degré à l'octave supérieure, 11e = 4e, 13e = 6e",
       "#9 et b9 sont des tensions typiques de l'accord de dominante altéré",
       "« All the Things You Are » (Kern/Hammerstein) : un vamp d'introduction tout en accords de dominante altérés (#9)",
+    ],
+  },
+  cours12: {
+    intuition:
+      "Deux accords de dominante situés à un triton de distance partagent exactement le même triton — leur tension est identique, seule la direction de résolution de la basse change.",
+    reference: {
+      badge: "Mulholland & Hojnacki · The Berklee Book of Jazz Harmony",
+      citation:
+        "Tout accord de dominante peut être remplacé par celui construit un triton plus loin : les deux partagent la même tierce et la même septième, simplement échangées.",
+      auteur: "Joe Mulholland & Tom Hojnacki, 2013",
+    },
+    voix: [
+      "V7 et bII7 (subV7) partagent le même triton (tierce et 7e échangées) — la tension de résolution est identique",
+      "La substitution tritonique crée un mouvement de basse chromatique descendant vers l'accord de résolution",
+      "Elle est particulièrement efficace juste avant un accord de tonique",
+    ],
+    repertoire: {
+      titre: "Satin Doll",
+      compositeur: "Duke Ellington",
+      notes: ["D4", "G3", "E4", "A3", "A3", "D3", "G#3", "C#3"],
+      musicxml: SATIN_DOLL_MESURES_1_8,
+      analyse: SATIN_DOLL_ANALYSE,
+    },
+    pieges: [
+      {
+        erreur: "Utiliser la substitution tritonique sur un accord qui n'est pas un vrai V7 fonctionnel",
+        correction: "Réserver subV7 aux dominantes (V7 ou dominantes secondaires), jamais à un accord de tonique ou de sous-dominante",
+      },
+    ],
+    resume: [
+      "subV7 = accord de dominante construit un triton au-dessus (ou en-dessous) de V7",
+      "Les deux accords partagent tierce et 7e (juste échangées) : même tension, résolution différente",
+      "« Satin Doll » (Ellington) : Réb7 remplace Sol7 (subV7) juste avant le retour à Do majeur",
     ],
   },
 };

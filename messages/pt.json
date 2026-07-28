@@ -1356,7 +1356,8 @@
       "quizFeedbackGood": "Bem — mais algumas progressões para praticar e estará perfeito.",
       "quizFeedbackKeepGoing": "Continue ouvindo as duas resoluções — o ouvido se educa pela comparação!",
       "quizNextBtn": "Próxima pergunta →",
-      "quizScoreBtn": "Ver minha pontuação"
+      "quizScoreBtn": "Ver minha pontuação",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours13": {
@@ -4112,6 +4113,22 @@
       "resume0": "9ª = 2º grau na oitava superior, 11ª = 4º, 13ª = 6º",
       "resume1": "#9 e b9 são tensões típicas do acorde de dominante alterado",
       "resume2": "«All the Things You Are» (Kern/Hammerstein): um vamp introdutório construído inteiramente com acordes de dominante alterados (#9)"
+    },
+    "cours12": {
+      "intuition": "Dois acordes de dominante situados a um trítono de distância partilham exatamente o mesmo trítono — a sua tensão é idêntica, só muda a direção em que o baixo resolve.",
+      "badge": "Mulholland & Hojnacki · The Berklee Book of Jazz Harmony",
+      "citation": "Qualquer acorde de dominante pode ser substituído pelo construído um trítono mais além: ambos partilham a mesma 3ª e 7ª, simplesmente trocadas.",
+      "auteur": "Joe Mulholland & Tom Hojnacki, 2013",
+      "voix0": "V7 e bII7 (subV7) partilham o mesmo trítono (3ª e 7ª trocadas) — a tensão de resolução é idêntica",
+      "voix1": "A substituição de trítono cria um movimento de baixo cromático descendente para o acorde de resolução",
+      "voix2": "É particularmente eficaz mesmo antes de um acorde de tónica",
+      "titre": "Satin Doll",
+      "compositeur": "Duke Ellington",
+      "piege0erreur": "Usar a substituição de trítono num acorde que não é um V7 funcional genuíno",
+      "piege0correction": "Reservar subV7 para dominantes (V7 ou dominantes secundárias), nunca para um acorde de tónica ou subdominante",
+      "resume0": "subV7 = acorde de dominante construído um trítono acima (ou abaixo) de V7",
+      "resume1": "Os dois acordes partilham 3ª e 7ª (apenas trocadas): mesma tensão, resolução diferente",
+      "resume2": "«Satin Doll» (Ellington): Réb7 substitui Sol7 (subV7) mesmo antes do regresso a Dó maior"
     }
   },
   "satb": {

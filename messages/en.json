@@ -1271,7 +1271,8 @@
       "quizFeedbackGood": "Good — a few more progressions to practice and it will be perfect.",
       "quizFeedbackKeepGoing": "Keep listening to both resolutions — the ear is trained through comparison!",
       "quizNextBtn": "Next question →",
-      "quizScoreBtn": "See my score"
+      "quizScoreBtn": "See my score",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours14": {
@@ -4111,6 +4112,22 @@
       "resume0": "9th = 2nd degree an octave up, 11th = 4th, 13th = 6th",
       "resume1": "#9 and b9 are typical tensions of the altered dominant chord",
       "resume2": "\"All the Things You Are\" (Kern/Hammerstein): an introductory vamp built entirely on altered dominant chords (#9)"
+    },
+    "cours12": {
+      "intuition": "Two dominant chords a tritone apart share the exact same tritone — their tension is identical, only the direction the bass resolves in changes.",
+      "badge": "Mulholland & Hojnacki · The Berklee Book of Jazz Harmony",
+      "citation": "Any dominant chord can be replaced by the one built a tritone away: the two share the same 3rd and 7th, simply swapped.",
+      "auteur": "Joe Mulholland & Tom Hojnacki, 2013",
+      "voix0": "V7 and bII7 (subV7) share the same tritone (3rd and 7th swapped) — the resolution tension is identical",
+      "voix1": "Tritone substitution creates a descending chromatic bass motion into the resolution chord",
+      "voix2": "It's especially effective right before a tonic chord",
+      "titre": "Satin Doll",
+      "compositeur": "Duke Ellington",
+      "piege0erreur": "Using tritone substitution on a chord that isn't a genuine functional V7",
+      "piege0correction": "Reserve subV7 for dominants (V7 or secondary dominants), never for a tonic or subdominant chord",
+      "resume0": "subV7 = a dominant chord built a tritone above (or below) V7",
+      "resume1": "Both chords share the 3rd and 7th (simply swapped): same tension, different resolution",
+      "resume2": "\"Satin Doll\" (Ellington): Db7 replaces G7 (subV7) right before the return to C major"
     }
   },
   "satb": {

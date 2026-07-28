@@ -1271,7 +1271,8 @@
       "quizFeedbackGood": "Bien — encore quelques progressions à pratiquer et ce sera parfait.",
       "quizFeedbackKeepGoing": "Continue à écouter les deux résolutions — l'oreille s'éduque par comparaison !",
       "quizNextBtn": "Question suivante →",
-      "quizScoreBtn": "Voir mon score"
+      "quizScoreBtn": "Voir mon score",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours14": {
@@ -4111,6 +4112,22 @@
       "resume0": "9e = 2e degré à l'octave supérieure, 11e = 4e, 13e = 6e",
       "resume1": "#9 et b9 sont des tensions typiques de l'accord de dominante altéré",
       "resume2": "« All the Things You Are » (Kern/Hammerstein) : un vamp d'introduction tout en accords de dominante altérés (#9)"
+    },
+    "cours12": {
+      "intuition": "Deux accords de dominante situés à un triton de distance partagent exactement le même triton — leur tension est identique, seule la direction de résolution de la basse change.",
+      "badge": "Mulholland & Hojnacki · The Berklee Book of Jazz Harmony",
+      "citation": "Tout accord de dominante peut être remplacé par celui construit un triton plus loin : les deux partagent la même tierce et la même septième, simplement échangées.",
+      "auteur": "Joe Mulholland & Tom Hojnacki, 2013",
+      "voix0": "V7 et bII7 (subV7) partagent le même triton (tierce et 7e échangées) — la tension de résolution est identique",
+      "voix1": "La substitution tritonique crée un mouvement de basse chromatique descendant vers l'accord de résolution",
+      "voix2": "Elle est particulièrement efficace juste avant un accord de tonique",
+      "titre": "Satin Doll",
+      "compositeur": "Duke Ellington",
+      "piege0erreur": "Utiliser la substitution tritonique sur un accord qui n'est pas un vrai V7 fonctionnel",
+      "piege0correction": "Réserver subV7 aux dominantes (V7 ou dominantes secondaires), jamais à un accord de tonique ou de sous-dominante",
+      "resume0": "subV7 = accord de dominante construit un triton au-dessus (ou en-dessous) de V7",
+      "resume1": "Les deux accords partagent tierce et 7e (juste échangées) : même tension, résolution différente",
+      "resume2": "« Satin Doll » (Ellington) : Réb7 remplace Sol7 (subV7) juste avant le retour à Do majeur"
     }
   },
   "satb": {

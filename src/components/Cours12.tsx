@@ -13,6 +13,7 @@ import { useTerm } from "@/hooks/useTerm";
 import { cours12Content } from "@/data/cours12Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 function playChord(ref: React.RefObject<PianoPlayerRef>, keys: string[], duration = 2.4) {
   keys.forEach(key => {
@@ -144,6 +145,7 @@ export default function Cours12() {
   const sectionLabel = (id: string) => {
     if (id === "principe") return n("navPrincipe");
     if (id === "application") return n("navApplication");
+    if (id === "conservatoire") return n("navConservatoire");
     return n("navQuiz");
   };
 
@@ -196,7 +198,7 @@ export default function Cours12() {
 
       {/* Navigation */}
       <nav style={S.nav}>
-        {(["principe", "application", "quiz"] as const).map(id => (
+        {(["principe", "application", "conservatoire", "quiz"] as const).map(id => (
           <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
             {sectionLabel(id)}
           </button>
@@ -455,6 +457,8 @@ export default function Cours12() {
           <div style={S.warn} dangerouslySetInnerHTML={{ __html: n("limitWarn") }} />
         </div>
       )}
+
+      {activeSection === "conservatoire" && <VueConservatoire courseNum={12} />}
 
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (

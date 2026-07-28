@@ -1356,7 +1356,8 @@
       "quizFeedbackGood": "Bien — unas pocas progresiones más para practicar y será perfecto.",
       "quizFeedbackKeepGoing": "¡Sigue escuchando las dos resoluciones — el oído se educa por comparación!",
       "quizNextBtn": "Siguiente pregunta →",
-      "quizScoreBtn": "Ver mi puntuación"
+      "quizScoreBtn": "Ver mi puntuación",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours13": {
@@ -4112,6 +4113,22 @@
       "resume0": "9ª = 2º grado a la octava superior, 11ª = 4º, 13ª = 6º",
       "resume1": "#9 y b9 son tensiones típicas del acorde de dominante alterado",
       "resume2": "«All the Things You Are» (Kern/Hammerstein): un vamp de introducción construido enteramente con acordes de dominante alterados (#9)"
+    },
+    "cours12": {
+      "intuition": "Dos acordes de dominante situados a un tritono de distancia comparten exactamente el mismo tritono — su tensión es idéntica, solo cambia la dirección en que resuelve el bajo.",
+      "badge": "Mulholland & Hojnacki · The Berklee Book of Jazz Harmony",
+      "citation": "Cualquier acorde de dominante puede sustituirse por el construido un tritono más allá: ambos comparten la misma 3ª y 7ª, simplemente intercambiadas.",
+      "auteur": "Joe Mulholland & Tom Hojnacki, 2013",
+      "voix0": "V7 y bII7 (subV7) comparten el mismo tritono (3ª y 7ª intercambiadas) — la tensión de resolución es idéntica",
+      "voix1": "La sustitución tritonal crea un movimiento de bajo cromático descendente hacia el acorde de resolución",
+      "voix2": "Es especialmente eficaz justo antes de un acorde de tónica",
+      "titre": "Satin Doll",
+      "compositeur": "Duke Ellington",
+      "piege0erreur": "Usar la sustitución tritonal en un acorde que no es un V7 funcional real",
+      "piege0correction": "Reservar subV7 para dominantes (V7 o dominantes secundarias), nunca para un acorde de tónica o subdominante",
+      "resume0": "subV7 = acorde de dominante construido un tritono por encima (o por debajo) de V7",
+      "resume1": "Ambos acordes comparten 3ª y 7ª (intercambiadas): misma tensión, resolución distinta",
+      "resume2": "«Satin Doll» (Ellington): Réb7 sustituye a Sol7 (subV7) justo antes del regreso a Do mayor"
     }
   },
   "satb": {

@@ -1356,7 +1356,8 @@
       "quizFeedbackGood": "Gut — noch ein paar Progressionen üben und es ist perfekt.",
       "quizFeedbackKeepGoing": "Hör weiter beiden Auflösungen zu — das Gehör bildet sich durch Vergleich!",
       "quizNextBtn": "Nächste Frage →",
-      "quizScoreBtn": "Mein Ergebnis ansehen"
+      "quizScoreBtn": "Mein Ergebnis ansehen",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours13": {
@@ -4112,6 +4113,22 @@
       "resume0": "9 = 2. Stufe eine Oktave höher, 11 = 4. Stufe, 13 = 6. Stufe",
       "resume1": "#9 und b9 sind typische Spannungen des alterierten Dominantakkords",
       "resume2": "„All the Things You Are“ (Kern/Hammerstein): ein einleitender Vamp, vollständig aus alterierten Dominantakkorden (#9) gebaut"
+    },
+    "cours12": {
+      "intuition": "Zwei Dominantakkorde im Tritonusabstand teilen exakt denselben Tritonus — ihre Spannung ist identisch, nur die Auflösungsrichtung des Basses ändert sich.",
+      "badge": "Mulholland & Hojnacki · The Berklee Book of Jazz Harmony",
+      "citation": "Jeder Dominantakkord kann durch den einen Tritonus entfernt aufgebauten ersetzt werden: beide teilen dieselbe Terz und Septime, nur vertauscht.",
+      "auteur": "Joe Mulholland & Tom Hojnacki, 2013",
+      "voix0": "V7 und bII7 (subV7) teilen denselben Tritonus (Terz und Septime vertauscht) — die Auflösungsspannung ist identisch",
+      "voix1": "Der Tritonus-Ersatz erzeugt eine absteigende chromatische Bassbewegung zum Auflösungsakkord",
+      "voix2": "Er wirkt besonders gut unmittelbar vor einem Tonikaakkord",
+      "titre": "Satin Doll",
+      "compositeur": "Duke Ellington",
+      "piege0erreur": "Den Tritonus-Ersatz auf einen Akkord anwenden, der kein echter funktionaler V7 ist",
+      "piege0correction": "subV7 nur für Dominanten (V7 oder Zwischendominanten) verwenden, nie für einen Tonika- oder Subdominantakkord",
+      "resume0": "subV7 = ein Dominantakkord, einen Tritonus über (oder unter) V7 aufgebaut",
+      "resume1": "Beide Akkorde teilen Terz und Septime (nur vertauscht): gleiche Spannung, andere Auflösung",
+      "resume2": "„Satin Doll“ (Ellington): Db7 ersetzt G7 (subV7) unmittelbar vor der Rückkehr nach C-Dur"
     }
   },
   "satb": {
