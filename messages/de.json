@@ -1450,7 +1450,8 @@
       "maitreAnecdote": "Im Jahr 1725 veröffentlicht Fux den Gradus ad Parnassum ('Stufen zum Parnass') in Wien. Er ist 65 Jahre alt und leidet an der Gicht. Er schreibt das Werk als Dialog: Aloysius (sein Ideal, Palestrina) unterrichtet Josephus (ihn selbst). Dieses Buch wird Jahrhunderte überdauern: Der junge Haydn wird es allein in seinem Zimmer in Wien studieren. Mozart wird es zum Unterrichten verwenden. Beethoven wird ganze Passagen in seine Hefte abschreiben.",
       "maitreLesson": "Zwei unabhängige Stimmen zu schreiben ist schwieriger als eine einzige komplexe Stimme zu schreiben. Jede Stimme muss ihr eigenes Leben haben — und dennoch müssen sie gemeinsam eine kohärente Harmonie bilden.",
       "maitrePeriod": "1660–1741",
-      "maitreConcept": "Kontrapunkt"
+      "maitreConcept": "Kontrapunkt",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours14": {
@@ -4129,6 +4130,22 @@
       "resume0": "subV7 = ein Dominantakkord, einen Tritonus über (oder unter) V7 aufgebaut",
       "resume1": "Beide Akkorde teilen Terz und Septime (nur vertauscht): gleiche Spannung, andere Auflösung",
       "resume2": "„Satin Doll“ (Ellington): Db7 ersetzt G7 (subV7) unmittelbar vor der Rückkehr nach C-Dur"
+    },
+    "cours13": {
+      "intuition": "Kontrapunkt bedeutet, eine zweite Stimme mit eigenem melodischen Leben zu schreiben, die dennoch in jedem Moment mit der ersten übereinstimmt — zwei Linien im Dialog, niemals nur verdoppelte Harmonie.",
+      "badge": "Fux · Gradus ad Parnassum",
+      "citation": "Kontrapunkt ist die Kunst, Stimmen oder Teile so zu verbinden, dass sie nach bestimmten festen Regeln miteinander übereinstimmen.",
+      "auteur": "Johann Joseph Fux, 1725",
+      "voix0": "Note gegen Note (1. Gattung): vollkommene Konsonanzen (Oktave, Quinte) werden am besten durch Gegen- oder Seitenbewegung erreicht",
+      "voix1": "Gegenbewegung zwischen den beiden Stimmen ist der sicherste Weg, um parallele Quinten und Oktaven zu vermeiden",
+      "voix2": "Jede Stimme behält ihre melodische Eigenständigkeit — keine Stimmkreuzung, kein anhaltender Unisono",
+      "titre": "Invention Nr. 1 BWV 772",
+      "compositeur": "J.S. Bach",
+      "piege0erreur": "Beide Stimmen in gleicher Richtung auf eine Quinte oder Oktave zubewegen",
+      "piege0correction": "Bei vollkommenen Konsonanzen Gegen- oder Seitenbewegung bevorzugen",
+      "resume0": "Kontrapunkt = zwei melodisch unabhängige Stimmen, die vertikal übereinstimmen",
+      "resume1": "Fuxens 5 Gattungen: Note gegen Note, 2 gegen 1, Synkopen/Vorhalte, figurierter Kontrapunkt, blumiger Kontrapunkt",
+      "resume2": "Invention Nr. 1 BWV 772 (Bach): Subjekt und Antwort wandern zwischen den Händen, moduliert zur Dominante"
     }
   },
   "satb": {

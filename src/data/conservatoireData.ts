@@ -10,6 +10,7 @@ import { CHACONNE_BWV1004_MESURES_0_8, CHACONNE_BWV1004_ANALYSE, CHACONNE_BWV100
 import { SO_WHAT_MESURES_1_9, SO_WHAT_ANALYSE, SO_WHAT_ANALYSE_NARRATIVE } from "./conservatoire-so-what";
 import { ALL_THE_THINGS_MESURES_1_8, ALL_THE_THINGS_ANALYSE, ALL_THE_THINGS_ANALYSE_NARRATIVE } from "./conservatoire-all-the-things";
 import { SATIN_DOLL_MESURES_1_8, SATIN_DOLL_ANALYSE, SATIN_DOLL_ANALYSE_NARRATIVE } from "./conservatoire-satin-doll";
+import { BWV772_MESURES_1_8, BWV772_ANALYSE } from "./conservatoire-bwv772";
 
 export interface CoursPieceData {
   titre: string;
@@ -42,7 +43,7 @@ export interface CoursConservatoireData {
   resume: string[];
 }
 
-export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12}`, CoursConservatoireData> = {
+export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13}`, CoursConservatoireData> = {
   cours1: {
     intuition:
       "Avant toute théorie, la gamme est une expérience physique — sentir la tension des demi-tons et la résolution vers la tonique.",
@@ -446,6 +447,39 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       "subV7 = accord de dominante construit un triton au-dessus (ou en-dessous) de V7",
       "Les deux accords partagent tierce et 7e (juste échangées) : même tension, résolution différente",
       "« Satin Doll » (Ellington) : Réb7 remplace Sol7 (subV7) juste avant le retour à Do majeur",
+    ],
+  },
+  cours13: {
+    intuition:
+      "Le contrepoint, c'est écrire une deuxième voix qui a sa propre vie mélodique tout en s'accordant avec la première à chaque instant — deux lignes qui se répondent, jamais une simple harmonie doublée.",
+    reference: {
+      badge: "Fux · Gradus ad Parnassum",
+      citation:
+        "Le contrepoint est l'art de combiner des voix ou des parties de telle sorte qu'elles s'accordent entre elles selon certaines lois fixes.",
+      auteur: "Johann Joseph Fux, 1725",
+    },
+    voix: [
+      "Note contre note (1ère espèce) : les consonances parfaites (8ve, 5te) s'abordent de préférence par mouvement contraire ou oblique",
+      "Le mouvement contraire entre les deux voix est le plus sûr moyen d'éviter quintes et octaves parallèles",
+      "Chaque voix garde son indépendance mélodique — pas de croisement ni d'unisson prolongé",
+    ],
+    repertoire: {
+      titre: "Invention n°1 BWV 772",
+      compositeur: "J.S. Bach",
+      notes: ["C4", "D4", "E4", "F4", "D4", "E4", "C4", "G3"],
+      musicxml: BWV772_MESURES_1_8,
+      analyse: BWV772_ANALYSE,
+    },
+    pieges: [
+      {
+        erreur: "Faire progresser les deux voix par mouvement direct vers une quinte ou une octave",
+        correction: "Préférer le mouvement contraire ou oblique pour aborder les consonances parfaites",
+      },
+    ],
+    resume: [
+      "Contrepoint = deux voix mélodiquement indépendantes qui s'accordent verticalement",
+      "5 espèces de Fux : note contre note, 2 contre 1, syncopes/retards, fleuretis, contrepoint fleuri",
+      "Invention n°1 BWV 772 (Bach) : sujet et réponse échangés entre les deux mains, module vers la dominante",
     ],
   },
 };

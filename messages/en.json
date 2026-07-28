@@ -1451,7 +1451,8 @@
       "maitreAnecdote": "In 1725, Fux publishes the Gradus ad Parnassum ('Steps to Parnassus') in Vienna. He is 65 and suffering from gout. He writes it as a dialogue: Aloysius (his ideal, Palestrina) teaches Josephus (himself). This book would span the centuries: the young Haydn would study it alone in his room in Vienna. Mozart would use it to teach. Beethoven would copy entire passages into his notebooks.",
       "maitreLesson": "Writing two independent voices is harder than writing one complex voice. Each voice must have its own life — and yet, together, they must form a coherent harmony.",
       "maitrePeriod": "1660–1741",
-      "maitreConcept": "Counterpoint"
+      "maitreConcept": "Counterpoint",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours16": {
@@ -4128,6 +4129,22 @@
       "resume0": "subV7 = a dominant chord built a tritone above (or below) V7",
       "resume1": "Both chords share the 3rd and 7th (simply swapped): same tension, different resolution",
       "resume2": "\"Satin Doll\" (Ellington): Db7 replaces G7 (subV7) right before the return to C major"
+    },
+    "cours13": {
+      "intuition": "Counterpoint means writing a second voice with a melodic life of its own that still agrees with the first at every instant — two lines answering each other, never just doubled harmony.",
+      "badge": "Fux · Gradus ad Parnassum",
+      "citation": "Counterpoint is the art of combining voices or parts so that they agree with one another according to certain fixed laws.",
+      "auteur": "Johann Joseph Fux, 1725",
+      "voix0": "Note against note (1st species): perfect consonances (octave, 5th) are best approached by contrary or oblique motion",
+      "voix1": "Contrary motion between the two voices is the surest way to avoid parallel fifths and octaves",
+      "voix2": "Each voice keeps its melodic independence — no crossing, no prolonged unison",
+      "titre": "Invention No. 1 BWV 772",
+      "compositeur": "J.S. Bach",
+      "piege0erreur": "Moving both voices in the same direction into a fifth or an octave",
+      "piege0correction": "Prefer contrary or oblique motion when approaching perfect consonances",
+      "resume0": "Counterpoint = two melodically independent voices that agree vertically",
+      "resume1": "Fux's 5 species: note against note, 2 against 1, syncopations/suspensions, florid figures, florid counterpoint",
+      "resume2": "Invention No. 1 BWV 772 (Bach): subject and answer traded between the two hands, modulating to the dominant"
     }
   },
   "satb": {

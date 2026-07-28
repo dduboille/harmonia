@@ -1451,7 +1451,8 @@
       "maitreAnecdote": "En 1725, Fux publie le Gradus ad Parnassum ('Pas vers le Parnasse') à Vienne. Il a 65 ans et est atteint de la goutte. Il écrit sous forme de dialogue : Aloysius (son idéal, Palestrina) enseigne à Josephus (lui-même). Ce livre traversera les siècles : le jeune Haydn l'étudiera seul dans sa chambre à Vienne. Mozart l'utilisera pour enseigner. Beethoven en recopiera des passages entiers dans ses cahiers.",
       "maitreLesson": "Écrire deux voix indépendantes est plus difficile qu'écrire une seule voix complexe. Chaque voix doit avoir sa vie propre — et pourtant, ensemble, elles doivent former une harmonie cohérente.",
       "maitrePeriod": "1660–1741",
-      "maitreConcept": "Contrepoint"
+      "maitreConcept": "Contrepoint",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours16": {
@@ -4128,6 +4129,22 @@
       "resume0": "subV7 = accord de dominante construit un triton au-dessus (ou en-dessous) de V7",
       "resume1": "Les deux accords partagent tierce et 7e (juste échangées) : même tension, résolution différente",
       "resume2": "« Satin Doll » (Ellington) : Réb7 remplace Sol7 (subV7) juste avant le retour à Do majeur"
+    },
+    "cours13": {
+      "intuition": "Le contrepoint, c'est écrire une deuxième voix qui a sa propre vie mélodique tout en s'accordant avec la première à chaque instant — deux lignes qui se répondent, jamais une simple harmonie doublée.",
+      "badge": "Fux · Gradus ad Parnassum",
+      "citation": "Le contrepoint est l'art de combiner des voix ou des parties de telle sorte qu'elles s'accordent entre elles selon certaines lois fixes.",
+      "auteur": "Johann Joseph Fux, 1725",
+      "voix0": "Note contre note (1ère espèce) : les consonances parfaites (8ve, 5te) s'abordent de préférence par mouvement contraire ou oblique",
+      "voix1": "Le mouvement contraire entre les deux voix est le plus sûr moyen d'éviter quintes et octaves parallèles",
+      "voix2": "Chaque voix garde son indépendance mélodique — pas de croisement ni d'unisson prolongé",
+      "titre": "Invention n°1 BWV 772",
+      "compositeur": "J.S. Bach",
+      "piege0erreur": "Faire progresser les deux voix par mouvement direct vers une quinte ou une octave",
+      "piege0correction": "Préférer le mouvement contraire ou oblique pour aborder les consonances parfaites",
+      "resume0": "Contrepoint = deux voix mélodiquement indépendantes qui s'accordent verticalement",
+      "resume1": "5 espèces de Fux : note contre note, 2 contre 1, syncopes/retards, fleuretis, contrepoint fleuri",
+      "resume2": "Invention n°1 BWV 772 (Bach) : sujet et réponse échangés entre les deux mains, module vers la dominante"
     }
   },
   "satb": {

@@ -1450,7 +1450,8 @@
       "maitreAnecdote": "En 1725, Fux publica el Gradus ad Parnassum ('Pasos hacia el Parnaso') en Viena. Tiene 65 años y padece gota. Lo escribe en forma de diálogo: Aloysius (su ideal, Palestrina) enseña a Josephus (él mismo). Este libro atravesará los siglos: el joven Haydn lo estudiará solo en su habitación de Viena. Mozart lo utilizará para enseñar. Beethoven copiará pasajes enteros en sus cuadernos.",
       "maitreLesson": "Escribir dos voces independientes es más difícil que escribir una sola voz compleja. Cada voz debe tener su propia vida — y sin embargo, juntas deben formar una armonía coherente.",
       "maitrePeriod": "1660–1741",
-      "maitreConcept": "Contrapunto"
+      "maitreConcept": "Contrapunto",
+      "navConservatoire": "🎓 Conservatoire"
     }
   },
   "cours14": {
@@ -4129,6 +4130,22 @@
       "resume0": "subV7 = acorde de dominante construido un tritono por encima (o por debajo) de V7",
       "resume1": "Ambos acordes comparten 3ª y 7ª (intercambiadas): misma tensión, resolución distinta",
       "resume2": "«Satin Doll» (Ellington): Réb7 sustituye a Sol7 (subV7) justo antes del regreso a Do mayor"
+    },
+    "cours13": {
+      "intuition": "El contrapunto consiste en escribir una segunda voz con vida melódica propia que a la vez concuerde con la primera en cada instante — dos líneas que se responden, nunca una simple armonía doblada.",
+      "badge": "Fux · Gradus ad Parnassum",
+      "citation": "El contrapunto es el arte de combinar voces o partes de manera que concuerden entre sí según ciertas leyes fijas.",
+      "auteur": "Johann Joseph Fux, 1725",
+      "voix0": "Nota contra nota (1ª especie): las consonancias perfectas (8ª, 5ª) se abordan preferentemente por movimiento contrario u oblicuo",
+      "voix1": "El movimiento contrario entre las dos voces es la forma más segura de evitar quintas y octavas paralelas",
+      "voix2": "Cada voz conserva su independencia melódica — sin cruces ni unísonos prolongados",
+      "titre": "Invención n.º 1 BWV 772",
+      "compositeur": "J.S. Bach",
+      "piege0erreur": "Hacer avanzar las dos voces por movimiento directo hacia una quinta o una octava",
+      "piege0correction": "Preferir el movimiento contrario u oblicuo para abordar las consonancias perfectas",
+      "resume0": "Contrapunto = dos voces melódicamente independientes que concuerdan verticalmente",
+      "resume1": "Las 5 especies de Fux: nota contra nota, 2 contra 1, síncopas/retardos, florituras, contrapunto florido",
+      "resume2": "Invención n.º 1 BWV 772 (Bach): sujeto y respuesta intercambiados entre las dos manos, modula hacia la dominante"
     }
   },
   "satb": {

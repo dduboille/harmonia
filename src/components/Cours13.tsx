@@ -13,6 +13,7 @@ import { useTerm } from "@/hooks/useTerm";
 import { cours13Content } from "@/data/cours13Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
 
 // Play one beat: CF + CP simultaneously
 function playBeat(ref: React.RefObject<PianoPlayerRef>, cf: string, cp: string, dur = 1.6) {
@@ -336,6 +337,7 @@ export default function Cours13() {
   const sectionLabel = (id: string) => {
     if (id === "especes") return n("navEspeces");
     if (id === "regles") return n("navRegles");
+    if (id === "conservatoire") return n("navConservatoire");
     return n("navQuiz");
   };
 
@@ -381,7 +383,7 @@ export default function Cours13() {
 
       {/* Navigation */}
       <nav style={S.nav}>
-        {(["especes", "regles", "quiz"] as const).map(id => (
+        {(["especes", "regles", "conservatoire", "quiz"] as const).map(id => (
           <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
             {sectionLabel(id)}
           </button>
@@ -603,6 +605,8 @@ export default function Cours13() {
           <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("reglesTipBox") }} />
         </div>
       )}
+
+      {activeSection === "conservatoire" && <VueConservatoire courseNum={13} />}
 
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
