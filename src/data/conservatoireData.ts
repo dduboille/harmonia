@@ -10,7 +10,7 @@ import { CHACONNE_BWV1004_MESURES_0_8, CHACONNE_BWV1004_ANALYSE, CHACONNE_BWV100
 import { SO_WHAT_MESURES_1_9, SO_WHAT_ANALYSE, SO_WHAT_ANALYSE_NARRATIVE } from "./conservatoire-so-what";
 import { ALL_THE_THINGS_MESURES_1_8, ALL_THE_THINGS_ANALYSE, ALL_THE_THINGS_ANALYSE_NARRATIVE } from "./conservatoire-all-the-things";
 import { SATIN_DOLL_MESURES_1_8, SATIN_DOLL_ANALYSE, SATIN_DOLL_ANALYSE_NARRATIVE } from "./conservatoire-satin-doll";
-import { BWV772_MESURES_1_8, BWV772_ANALYSE } from "./conservatoire-bwv772";
+import { BWV772_MESURES_1_8, BWV772_ANALYSE, BWV772_ANALYSE_NARRATIVE } from "./conservatoire-bwv772";
 
 export interface CoursPieceData {
   titre: string;
@@ -469,6 +469,7 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       notes: ["C4", "D4", "E4", "F4", "D4", "E4", "C4", "G3"],
       musicxml: BWV772_MESURES_1_8,
       analyse: BWV772_ANALYSE,
+      analyseNarrative: BWV772_ANALYSE_NARRATIVE,
     },
     pieges: [
       {

@@ -2850,13 +2850,14 @@ export const BWV772_MESURES_1_8 =
  * chaque mesure, transcrit depuis le chiffrage <harmony>/<lyric> deja ecrit
  * par Dany dans le fichier (voir commentaire d'en-tete).
  *
- * A partir de la mesure 5 environ, le chiffrage de Dany semble deja raisonner
- * par rapport a la NOUVELLE tonalite (Sol majeur) que la piece rejoint a la
- * mesure 7 — ses "V4/2"/"I" ne portent plus le suffixe "/V" qu'on attendrait
- * en Do majeur. Le "degre" reste transcrit tel quel (verbatim) ; la fonction
- * D/T assignee ici ne depend pas de cette ambiguite (dominante ou tonique
- * dans les deux lectures possibles) — a eclaircir dans l'analyse narrative
- * si elle est demandee.
+ * Ambiguite levee (verifiee note a note contre le MusicXML) : a partir du
+ * Re7/Fa# de la mesure 4 (l'accord-pivot Do=I/IV bascule vers sa dominante),
+ * le chiffrage de Dany raisonne deja dans la NOUVELLE tonalite (Sol majeur) —
+ * ses "V4/2"/"VI"/"I"/"V" (mesures 5-8) sont de vrais degres de Sol majeur,
+ * pas des dominantes secondaires de Do majeur auxquelles il manquerait un
+ * suffixe "/V" : Re7 EST la dominante de Sol, "VI" (Mim) EST son sixte degre,
+ * etc. Le "degre" reste transcrit tel quel (verbatim) ; voir
+ * BWV772_ANALYSE_NARRATIVE pour le detail mesure par mesure.
  */
 export const BWV772_ANALYSE: MesureAnalyse[] = [
   { numero: 1, nom: "Do",   degre: "I",   fonction: "T" },
@@ -2868,3 +2869,153 @@ export const BWV772_ANALYSE: MesureAnalyse[] = [
   { numero: 7, nom: "Sol",  degre: "I",   fonction: "T" },
   { numero: 8, nom: "Ré",   degre: "V",   fonction: "D" },
 ];
+
+/**
+ * Analyse harmonique NARRATIVE — vérifiée note à note (onset par onset, les
+ * deux voix) contre le MusicXML ci-dessus via un script jetable, pas recopiée
+ * telle quelle du premier jet très détaillé fourni par Dany. Ce premier jet
+ * s'est révélé remarquablement exact : sur les 8 mesures, AUCUNE erreur
+ * factuelle trouvée (contrairement à So What/All the Things You Are/Satin
+ * Doll, cette même session, qui contenaient chacune plusieurs erreurs) —
+ * seul cas depuis le Chaconne (cours9) où le premier jet n'a rien à corriger.
+ * Plusieurs de ses observations vont au-delà du chiffrage <harmony> de Dany
+ * (harmonies de passage non chiffrées) ; chacune vérifiée séparément avant
+ * d'être reprise ci-dessous :
+ *  - la « croche d'échappée » du sujet à la basse (Fa3, mesure 1, temps 4)
+ *  - l'accord de passage vii° (Si-Ré-Fa) entre les mesures 3 et 4
+ *  - le passage furtif par un Sol/Si (I6) implicite mesure 4, temps 3 (note
+ *    isolée, pas un accord plein — nuancé en conséquence dans le texte)
+ *  - l'implication de Ré (V) sur le levé de la mesure 5
+ *  - l'aller-retour Sol(I)/Mi(vi) mesure 6, temps 2
+ * Voir le commentaire d'en-tête de ce fichier pour la levée de l'ambiguïté
+ * de référence tonale (mesures 5-8 déjà en Sol majeur).
+ */
+export const BWV772_ANALYSE_NARRATIVE: AnalyseNarrative = {
+  tonalite:
+    "Do majeur (armure vierge) au départ — mais l'accord-pivot de la mesure 4 fait basculer " +
+    "la pièce vers sa dominante, Sol majeur, où elle s'installe durablement jusqu'à la fin " +
+    "de l'extrait (mesures 7-8).",
+  metrique: "4/4.",
+  forme:
+    "8 mesures = la 1ère phrase de l'Invention : exposition du sujet au soprano puis à la " +
+    "basse à l'octave (mesure 1), fin du sujet et couleur de dominante (mesure 2), marche " +
+    "diatonique de transition (mesure 3), accord pivot et modulation vers Sol majeur " +
+    "(mesure 4), dominante préparée puis résolue avec un détour (mesures 5-6), réexposition " +
+    "du sujet transposé à la basse et cadence suspensive sur la nouvelle dominante " +
+    "(mesures 7-8).",
+  sections: [
+    {
+      label: "Mesure 1",
+      titre: "Le sujet, exposé puis imité à l'octave",
+      chiffrage: "Do (I)",
+      fonctions: "I",
+      texte:
+        "Le sujet paraît d'abord au soprano : Do-Ré-Mi-Fa-Ré-Mi-Do (temps 1-2), pur arpège de " +
+        "la tonique en croisement de degrés conjoints. Aux temps 3-4, il migre à la basse, " +
+        "<strong>une octave plus bas</strong>, pendant que le soprano tient un contre-sujet " +
+        "dans l'accord de tonique (Sol-Do-Si-Do). Le Fa3 qui apparaît au posé du temps 4 dans " +
+        "la basse appartient à cette ligne mélodique du sujet, pas à l'harmonie : inutile d'y " +
+        "chiffrer un accord de sous-dominante, la mesure entière n'est qu'une tonique prolongée.",
+    },
+    {
+      label: "Mesure 2",
+      titre: "La réponse, et une couleur de septième de dominante",
+      chiffrage: "Sol (V) – Sol7 (V7)",
+      fonctions: "V – V7",
+      texte:
+        "La basse achève le sujet en descendant d'une octave (Sol3-Sol2), puis l'entame de " +
+        "nouveau sur Sol (Sol-La-Si-Do-La-Si-Sol) pendant que le soprano répond au-dessus. " +
+        "Au dernier temps, une broderie inférieure du soprano (Sol-Fa♮-Sol) fait entendre le " +
+        "Fa naturel qui colore Sol en <strong>Sol7 (V7)</strong> — exactement le chiffrage " +
+        "porté par Dany à cet endroit précis du fichier.",
+    },
+    {
+      label: "Mesure 3",
+      titre: "Marche diatonique ascendante",
+      chiffrage: "Lam/Do (vi6) – Rém (ii) – Do/Mi (I6) – Lam (vi)",
+      fonctions: "vi6 – ii – I6 – vi",
+      texte:
+        "Quatre accords en marche, basse conjointe ascendante (Do-Ré-Mi-Fa-Sol-La-Si). Tout à " +
+        "la fin de la mesure, un <strong>accord de passage non chiffré</strong> se forme " +
+        "entre les deux voix — Si (basse) - Ré - Fa (soprano), un vii° diminué complet — et " +
+        "pousse naturellement vers le Do de la mesure suivante : une note d'analyse fine que " +
+        "le chiffrage <em>lyric</em> de Dany, qui tient « vi » jusqu'au bout de la mesure, " +
+        "ne rend pas mais que les hauteurs réelles confirment.",
+    },
+    {
+      label: "Mesure 4",
+      titre: "L'accord pivot et la bascule vers Sol majeur",
+      chiffrage: "Do (I=IV) – Ré7/Fa# (V6/5) – Ré7/La (V4/3) – Ré7/Do (V4/2)",
+      fonctions: "IV – V6/5 – V4/3 – V4/2 (déjà en Sol majeur)",
+      texte:
+        "Moment charnière de l'extrait : le Do qui ouvre la mesure est à la fois " +
+        "<strong>I de Do majeur</strong> et <strong>IV de Sol majeur</strong> — un accord " +
+        "pivot au sens strict. Les trois temps suivants composent la dominante de la " +
+        "nouvelle tonalité en accord parfaitement arpégé à la basse (Fa#-La-Do), passant " +
+        "par ses trois renversements (V6/5, V4/3, V4/2) ; le Fa# apparaît d'abord à la basse " +
+        "exactement sur la 3e croche de la mesure, sensible de Sol qui confirme la couleur " +
+        "de la nouvelle tonique. Le Do (7e de Ré7) tenu à la basse en fin de mesure est lié " +
+        "par-dessus la barre : sa résolution est différée à la mesure 5.",
+    },
+    {
+      label: "Mesures 5-6",
+      titre: "La résolution différée, puis la vraie tonique",
+      chiffrage: "Ré7/Do (V4/2) – Sol (I) – Sol (I) – Do (IV) | Mim (vi) – Sol (I) – Sol/Si (I6) – Ré (V)",
+      fonctions: "D (V4/2, prolongé) – T – T – SD | T (vi) – T – T (I6) – D",
+      texte:
+        "La 7e tenue (Do) ne résout pas vers Si comme attendu : la basse s'en échappe par une " +
+        "gamme ascendante (Ré-Mi-Fa#) et rejoint directement la tonique en position " +
+        "fondamentale (Sol), <strong>une résolution évitée</strong>. Le Do5 pointé qui suit " +
+        "au soprano est une dissonance accentuée qui monte vers Ré5 plutôt que de redescendre " +
+        "— traitement inhabituel qui prolonge la tension d'un temps de plus. Mesure 6, la " +
+        "basse hésite un instant entre Sol (I) et un retour furtif sur Mi (vi) avant de se " +
+        "fixer sur Si (I6, note tenue) ; un Do3 de passage relie ensuite Si à Ré, qui ouvre " +
+        "la cadence : un vrai retard 6-5 (Si4 vers La4) porté par la basse Ré3-Ré2, " +
+        "<strong>sans aucune 7e</strong> (aucun Do dans toute la fin de la mesure) — un Ré " +
+        "majeur simple, pas Ré7.",
+    },
+    {
+      label: "Mesures 7-8",
+      titre: "Le sujet revient à la basse, cadence suspensive",
+      chiffrage: "Sol (I) – Sol/Ré (I6/4) – Ré7/Fa# (V6/5) | Ré (V) – Ré7 (V7)",
+      fonctions: "I – I6/4 – V6/5 | V – V7",
+      texte:
+        "Le sujet reparaît, cette fois entièrement <strong>à la basse</strong> et sur Sol " +
+        "(Sol-La-Si-Do-La-Si-Sol) : une réexposition à la quinte de son énoncé initial de la " +
+        "mesure 1, dans la tonalité désormais installée. Après un bref passage par la " +
+        "position de sixte et quarte (I6/4) puis la dominante renversée (V6/5, Fa#3 sous " +
+        "Do5), la basse se pose sur Sol au levé du dernier temps. La mesure 8 relance le " +
+        "sujet sur Ré pendant que le soprano tient un Fa#4 ; les notes La-Si-Do qui suivent " +
+        "au soprano font entendre un Do naturel — la 7e qui installe <strong>Ré7 (V7)</strong>, " +
+        "confirmée à la basse par le mouvement Ré-Do-Ré. L'extrait s'arrête sur cette " +
+        "dominante ouverte, en pleine tension, juste avant la suite de l'Invention.",
+    },
+  ],
+  synthese: [
+    {
+      titre: "Un sujet, deux voix, une seule idée",
+      texte:
+        "Tout l'extrait tient sur un seul motif mélodique (Do-Ré-Mi-Fa-Ré-Mi-Do ou ses " +
+        "transpositions) qui migre sans cesse entre soprano et basse — exposé au soprano " +
+        "(mesure 1), imité à la basse une octave plus bas (mesure 1 encore), puis réexposé à " +
+        "la basse sur le nouveau degré (mesures 7-8) : le principe même du contrepoint " +
+        "d'invention, où une seule ligne engendre tout le discours à deux voix.",
+    },
+    {
+      titre: "Une modulation par la porte la plus proche",
+      texte:
+        "Do majeur bascule vers Sol majeur, sa dominante — la modulation la plus naturelle " +
+        "qui soit, amorcée par un accord pivot (Do = I/IV, mesure 4) puis confirmée par une " +
+        "dominante secondaire entièrement arpégée à la basse (Ré7 dans ses trois " +
+        "renversements). Dès cet instant, le chiffrage raisonne dans la tonalité d'arrivée.",
+    },
+    {
+      titre: "Des résolutions retardées, jamais bâclées",
+      texte:
+        "Deux fois dans cet extrait, une dissonance préparée n'obtient pas la résolution la " +
+        "plus attendue : la 7e de la mesure 4 s'échappe par une gamme au lieu de redescendre " +
+        "(mesure 5), et le Do5 accentué du soprano monte vers Ré5 plutôt que l'inverse — deux " +
+        "détours qui prolongent la tension sans jamais la trahir.",
+    },
+  ],
+};

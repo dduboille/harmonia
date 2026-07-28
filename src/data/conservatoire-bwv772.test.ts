@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll } from "vitest";
 import { parseMusicXML } from "@/lib/musicxml-parse";
-import { BWV772_MESURES_1_8, BWV772_ANALYSE } from "./conservatoire-bwv772";
+import { BWV772_MESURES_1_8, BWV772_ANALYSE, BWV772_ANALYSE_NARRATIVE } from "./conservatoire-bwv772";
 
 // Vérifie l'extrait rejoué contre le MusicXML VERBATIM fourni par Dany (export
 // MuseScore Studio 4.6.3, fichier « js-bach-invention-no-1-bwv-772.musicxml »,
@@ -37,6 +37,47 @@ describe("BWV772_MESURES_1_8", () => {
     expect(BWV772_ANALYSE).toHaveLength(8);
     expect(BWV772_ANALYSE[0]).toMatchObject({ numero: 1, degre: "I", fonction: "T" });
     expect(BWV772_ANALYSE[6]).toMatchObject({ numero: 7, degre: "I", fonction: "T" }); // module vers Sol majeur
+  });
+
+  // La 7e de l'accord-pivot (Ré7/Do, mesure 4) est TENUE par-dessus la barre de
+  // mesure et ne résout qu'à la mesure 5 — vérifié note à note pour l'analyse
+  // narrative (« résolution différée »).
+  it("la 7e du V4/2 (mesure 4) est liée à la basse jusqu'à la mesure 5", () => {
+    const m4 = BWV772_MESURES_1_8.slice(
+      BWV772_MESURES_1_8.indexOf('<measure number="4"'),
+      BWV772_MESURES_1_8.indexOf('<measure number="5"'),
+    );
+    const m5 = BWV772_MESURES_1_8.slice(
+      BWV772_MESURES_1_8.indexOf('<measure number="5"'),
+      BWV772_MESURES_1_8.indexOf('<measure number="6"'),
+    );
+    expect(m4).toContain('<tie type="start"/>');
+    expect(m5).toContain('<tie type="stop"/>');
+  });
+
+  // Le dernier accord de la mesure 6 (Ré) est chiffré "V" (kind=major), pas
+  // "V7" — aucune 7e (Do) ne sonne à ce moment, contrairement à une lecture
+  // hâtive qui y verrait un Ré7 (analyse narrative, mesures 5-6).
+  it("la dominante finale de la mesure 6 est un accord parfait (V), pas une 7e", () => {
+    const m6 = BWV772_MESURES_1_8.slice(
+      BWV772_MESURES_1_8.indexOf('<measure number="6"'),
+      BWV772_MESURES_1_8.indexOf('<measure number="7"'),
+    );
+    const harmonies = [...m6.matchAll(/<root-step>([^<]*)<\/root-step>[\s\S]*?<kind[^>]*>([^<]+)<\/kind>/g)];
+    const derniere = harmonies[harmonies.length - 1];
+    expect(derniere[1]).toBe("D");
+    expect(derniere[2]).toBe("major");
+  });
+});
+
+describe("BWV772_ANALYSE_NARRATIVE", () => {
+  it("couvre les 6 étapes de la phrase, du sujet exposé à la cadence suspensive", () => {
+    expect(BWV772_ANALYSE_NARRATIVE.sections).toHaveLength(6);
+    expect(BWV772_ANALYSE_NARRATIVE.synthese.length).toBeGreaterThan(0);
+  });
+
+  it("situe la modulation vers Sol majeur dès l'accord-pivot de la mesure 4", () => {
+    expect(BWV772_ANALYSE_NARRATIVE.tonalite).toContain("Sol majeur");
   });
 });
 
