@@ -5,6 +5,7 @@ import { BWV227_MESURES_1_8, BWV227_ANALYSE, BWV227_ANALYSE_NARRATIVE } from "./
 import { CHOPIN_OP9_N2_MESURES_1_9, CHOPIN_OP9_N2_ANALYSE, CHOPIN_OP9_N2_ANALYSE_NARRATIVE } from "./conservatoire-chopin-op9n2";
 import { SCHUBERT_D845_MESURES_1_10, SCHUBERT_D845_ANALYSE, SCHUBERT_D845_ANALYSE_NARRATIVE } from "./conservatoire-schubert-d845";
 import { BRAHMS_OP118N2_MESURES_0_8, BRAHMS_OP118N2_ANALYSE, BRAHMS_OP118N2_ANALYSE_NARRATIVE } from "./conservatoire-brahms-op118n2";
+import { BEETHOVEN_OP27N2_MESURES_1_9, BEETHOVEN_OP27N2_ANALYSE, BEETHOVEN_OP27N2_ANALYSE_NARRATIVE } from "./conservatoire-beethoven-op27n2";
 
 export interface CoursPieceData {
   titre: string;
@@ -289,6 +290,9 @@ export const CONSERVATOIRE_DATA: Record<`cours${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 
       titre: "Sonate op.27 n°2 'Clair de Lune' mvt.I",
       compositeur: "L. van Beethoven",
       notes: ["C#4", "E4", "G#4", "C#5", "E5", "G#4", "C#5", "E5", "G#5"],
+      musicxml: BEETHOVEN_OP27N2_MESURES_1_9,
+      analyse: BEETHOVEN_OP27N2_ANALYSE,
+      analyseNarrative: BEETHOVEN_OP27N2_ANALYSE_NARRATIVE,
     },
     pieges: [
       {
