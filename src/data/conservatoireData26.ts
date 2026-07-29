@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  BWV645_MESURES_1_54,
+  BWV645_ANALYSE,
+  BWV645_ANALYSE_NARRATIVE,
+} from "./conservatoire-bwv645";
 
 export const CONSERVATOIRE_DATA_26: CoursConservatoireData = {
   intuition:
@@ -15,9 +20,12 @@ export const CONSERVATOIRE_DATA_26: CoursConservatoireData = {
     "Identifier les notes étrangères au soprano (passage, broderie, retard) avant d'harmoniser, pour éviter de créer de faux accords sur des notes non réelles",
   ],
   repertoire: {
-    titre: "Prélude en Do majeur, BWV 846",
+    titre: "Wachet auf, ruft uns die Stimme (choral-préambule BWV 645)",
     compositeur: "Johann Sebastian Bach",
-    notes: ["C3", "E3", "G3", "C4", "E4", "G3", "C4", "E4"],
+    notes: ["Eb3", "G3", "Bb3", "C4", "Bb3", "Eb2", "C2", "G2"],
+    musicxml: BWV645_MESURES_1_54,
+    analyse: BWV645_ANALYSE,
+    analyseNarrative: BWV645_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
