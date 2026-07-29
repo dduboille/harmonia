@@ -2927,7 +2927,7 @@ export const BWV772_ANALYSE_NARRATIVE: AnalyseNarrative = {
         "nouveau sur Sol (Sol-La-Si-Do-La-Si-Sol) pendant que le soprano répond au-dessus. " +
         "Au dernier temps, une broderie inférieure du soprano (Sol-Fa♮-Sol) fait entendre le " +
         "Fa naturel qui colore Sol en <strong>Sol7 (V7)</strong> — exactement le chiffrage " +
-        "porté par Dany à cet endroit précis du fichier.",
+        "porté à cet endroit précis de la partition.",
     },
     {
       label: "Mesure 3",
@@ -2939,7 +2939,7 @@ export const BWV772_ANALYSE_NARRATIVE: AnalyseNarrative = {
         "la fin de la mesure, un <strong>accord de passage non chiffré</strong> se forme " +
         "entre les deux voix — Si (basse) - Ré - Fa (soprano), un vii° diminué complet — et " +
         "pousse naturellement vers le Do de la mesure suivante : une note d'analyse fine que " +
-        "le chiffrage <em>lyric</em> de Dany, qui tient « vi » jusqu'au bout de la mesure, " +
+        "le chiffrage romain, qui tient « vi » jusqu'au bout de la mesure, " +
         "ne rend pas mais que les hauteurs réelles confirment.",
     },
     {

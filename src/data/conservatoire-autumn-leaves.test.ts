@@ -91,9 +91,18 @@ describe("AUTUMN_LEAVES_ANALYSE_NARRATIVE", () => {
     expect(AUTUMN_LEAVES_ANALYSE_NARRATIVE.synthese.length).toBeGreaterThan(0);
   });
 
-  it("clarifie que les mesures 8 et 9 n'ont besoin d'aucune correction", () => {
-    const section89 = AUTUMN_LEAVES_ANALYSE_NARRATIVE.sections.find((s) => s.label.includes("8"));
-    expect(section89?.texte).toContain("rien à corriger");
+  // Le contenu affiché aux étudiants ne doit jamais faire référence au
+  // processus de relecture (brouillon, correction...) — seul le commentaire
+  // d'en-tête du fichier source garde ce journal.
+  it("ne mentionne pas le processus de relecture (brouillon/correction) dans le contenu affiché", () => {
+    const tousLesTextes = [
+      AUTUMN_LEAVES_ANALYSE_NARRATIVE.tonalite,
+      AUTUMN_LEAVES_ANALYSE_NARRATIVE.metrique,
+      AUTUMN_LEAVES_ANALYSE_NARRATIVE.forme,
+      ...AUTUMN_LEAVES_ANALYSE_NARRATIVE.sections.map((s) => s.texte),
+      ...AUTUMN_LEAVES_ANALYSE_NARRATIVE.synthese.map((s) => s.texte),
+    ].join(" ");
+    expect(tousLesTextes).not.toMatch(/brouillon|corrig|Dany/i);
   });
 });
 

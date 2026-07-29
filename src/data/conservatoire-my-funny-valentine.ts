@@ -34,6 +34,13 @@ import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
  * harmonique la plus célèbre du standard, déjà réharmonisée par la
  * transcription (dominantes secondaires V/V et V/IV insérées), matière
  * idéale pour le cours 16 (réharmonisation).
+ *
+ * `<print new-system="yes">` ajouté aux mesures 3 et 7 (en plus de celui déjà
+ * présent à la mesure 5, qui lui vient du fichier d'origine) — signalé par
+ * Dany : à 4 mesures par ligne (mise en page d'origine), les nombreux
+ * chiffrages (jusqu'à 3 par mesure, ex. mesures 4/6/8) se chevauchent
+ * visuellement. Passage à 2 mesures par ligne partout (1-2 / 3-4 / 5-6 / 7-8
+ * / 9) pour laisser à chaque accord la place d'être lisible.
  */
 export const MY_FUNNY_VALENTINE_MESURES_1_9 =
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -549,6 +556,18 @@ export const MY_FUNNY_VALENTINE_MESURES_1_9 =
         </note>
       </measure>
     <measure number="3" width="248.37">
+      <print new-system="yes">
+        <system-layout>
+          <system-margins>
+            <left-margin>0</left-margin>
+            <right-margin>0</right-margin>
+            </system-margins>
+          <system-distance>143</system-distance>
+          </system-layout>
+        <staff-layout number="2">
+          <staff-distance>67.75</staff-distance>
+          </staff-layout>
+        </print>
       <harmony print-frame="no">
         <root>
           <root-step>C</root-step>
@@ -1416,6 +1435,18 @@ export const MY_FUNNY_VALENTINE_MESURES_1_9 =
         </note>
       </measure>
     <measure number="7" width="285.32">
+      <print new-system="yes">
+        <system-layout>
+          <system-margins>
+            <left-margin>0</left-margin>
+            <right-margin>0</right-margin>
+            </system-margins>
+          <system-distance>143</system-distance>
+          </system-layout>
+        <staff-layout number="2">
+          <staff-distance>67.75</staff-distance>
+          </staff-layout>
+        </print>
       <harmony print-frame="no">
         <root>
           <root-step>D</root-step>
@@ -2666,6 +2697,14 @@ export const MY_FUNNY_VALENTINE_ANALYSE: MesureAnalyse[] = [
  * <creator>/<credit-words> du fichier source est réelle mais sans
  * conséquence : le champ affiché aux utilisateurs (`repertoire.compositeur`
  * dans conservatoireData.ts) écrit déjà correctement « Richard Rodgers ».
+ *
+ * Ces constats de vérification (points 1-3 ci-dessus) sont un JOURNAL DE
+ * RELECTURE — ils ne doivent PAS apparaître dans les champs affichés aux
+ * étudiants (`sections[].texte`, `synthese[].texte`) : un·e étudiant·e n'a
+ * aucune raison de lire « le brouillon disait X, en fait c'est Y ». Retiré
+ * de la synthèse et des sections après retour de Dany (2026-07-29) — même
+ * correctif appliqué à conservatoire-autumn-leaves.ts, qui avait la même
+ * fuite dans son 1er item de synthèse.
  */
 export const MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE: AnalyseNarrative = {
   tonalite:
@@ -2716,11 +2755,10 @@ export const MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE: AnalyseNarrative = {
       fonctions: "i → V7/iv",
       texte:
         "Retour exact du voicing de la mesure 1 (mêmes quatre notes), et la mélodie relance la " +
-        "cellule Do-Ré-Mib. Mais l'harmonie bascule au <strong>4e temps</strong> (pas le 3e : le " +
-        "Ré4 qui sonne au temps 3 n'est qu'une note de passage à la basse) : Mi♮4-Fa♯4 s'allument " +
-        "sur Sib3 — tierce, ♯11 lydienne et 7e d'un Do7 rootless, fonction V7/iv vers Fa mineur. " +
-        "Même mélodie, harmonisation opposée : la première leçon de réharmonisation de l'extrait. " +
-        "Crescendo noté.",
+        "cellule Do-Ré-Mib. Mais l'harmonie bascule au <strong>4e temps</strong> (le Ré4 du 3e " +
+        "temps n'est qu'une note de passage à la basse) : Mi♮4-Fa♯4 s'allument sur Sib3 — tierce, " +
+        "♯11 lydienne et 7e d'un Do7 rootless, fonction V7/iv vers Fa mineur. Même mélodie, " +
+        "harmonisation opposée : la première leçon de réharmonisation de l'extrait. Crescendo noté.",
     },
     {
       label: "Mesure 4",
@@ -2728,10 +2766,8 @@ export const MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE: AnalyseNarrative = {
       chiffrage: "Laø(9) – Solb13(♯11) – Fa13(♯11)",
       fonctions: "V/iv – subV/iv – (planing)",
       texte:
-        "La mesure la plus dense. Laø9 (La3 à la basse, Mib-Sol-Si♮(9e)-Ré au-dessus) : les " +
-        "hauteurs réelles ne contiennent PAS la tierce (Do) — c'est un Aø9 sans tierce, b5-b7-9-11 " +
-        "sur La, pas littéralement un « C9 sans fondamentale » (qui exigerait Mi et Sib, absents " +
-        "ici) ; le romain « V/IV » reste celui de Dany. Puis Solb13(♯11) : le substitut " +
+        "La mesure la plus dense. Laø9 (La3 à la basse, Mib-Sol-Si♮(9e)-Ré au-dessus, sans la " +
+        "tierce Do) fonctionne comme V/iv vers Fa mineur. Puis Solb13(♯11) : le substitut " +
         "tritonique de Do7, voicing complet (Solb-Sib à la basse, Fab-Lab-Do-Mib au-dessus). Et " +
         "le geste remarquable : Fa13(♯11) est exactement la même structure glissée un demi-ton " +
         "plus bas (Fa-La / Mib-Sol-Si♮-Ré) — du <strong>planing parallèle</strong>, chaque voix " +
@@ -2748,8 +2784,8 @@ export const MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE: AnalyseNarrative = {
         "<em>dorienne</em>, pas la 6te bémolisée du mineur naturel), puis Lab-Do-Mib (3/5/7). La " +
         "grille standard donne ici Abmaj7 PUIS Fm7 — deux accords relatifs que la transcription " +
         "<strong>fusionne en un seul Fm9 étalé</strong> (Fm9 contient déjà tous les sons " +
-        "d'Abmaj7). Mesure 6, chiffrage déjà complet dans le fichier (F13sus9 : 11, 13, 9, 7, " +
-        "pas de tierce), puis la basse glisse vers Mib sous Fa3 (Fm9/Mib) : Fa→Mib→Ré, le passage " +
+        "d'Abmaj7). Mesure 6 : F13sus9 (11, 13, 9, 7, pas de tierce), puis la basse glisse vers " +
+        "Mib sous Fa3 (Fm9/Mib) : Fa→Mib→Ré, le passage " +
         "obligé de la grille (mesures 6-7 du standard) — le seul endroit où cette transcription " +
         "la suit à la lettre.",
     },
@@ -2783,13 +2819,13 @@ export const MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE: AnalyseNarrative = {
   ],
   synthese: [
     {
-      titre: "Trois « corrections » proposées qui n'en sont pas",
+      titre: "Le substitut tritonique, sans même résoudre",
       texte:
-        "Vérification faite : la mesure 1 est déjà chiffrée Cm6/9 (pas « Cm » sec), et la mesure " +
-        "6 porte déjà un chiffrage complet (F13sus9, pas une case vide) — troisième fois cette " +
-        "session qu'un brouillon décrit une lacune du fichier qui n'existe pas. Seule la coquille " +
-        "« Rogers » dans les métadonnées internes du fichier est réelle, mais sans effet sur ce " +
-        "qui s'affiche (déjà « Rodgers » côté site).",
+        "Solb13(♯11) (mesure 4) est le substitut tritonique classique de Do7 — mais au lieu de " +
+        "résoudre vers Fa mineur comme un subV7 attendu, il glisse d'un simple demi-ton vers " +
+        "Fa13(♯11), une structure identique. La substitution devient ici un procédé purement " +
+        "chromatique (le <em>planing</em>), détaché de toute idée de résolution — la couleur " +
+        "prime sur la fonction.",
     },
     {
       titre: "Le line cliché, horizontal puis vertical",

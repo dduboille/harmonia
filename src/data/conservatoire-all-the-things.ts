@@ -1894,7 +1894,7 @@ export const ALL_THE_THINGS_ANALYSE_NARRATIVE: AnalyseNarrative = {
       chiffrage: "Réb7(#9)",
       fonctions: "SubV7/V",
       texte:
-        "Le même accord revient — mais pas à l'identique. Dany chiffre différemment cette " +
+        "Le même accord revient — mais pas à l'identique. Le chiffrage change cette " +
         "fois (<strong>« SubV7/V »</strong> plutôt que « SubV/V »), et la main droite " +
         "s'est enrichie : son dessin touche en passant d'autres couleurs — une 13ᵉ (Sib) et " +
         "une 11ᵉ augmentée (Sol) — absentes du premier passage aux mesures 2-3. Un vamp qui " +

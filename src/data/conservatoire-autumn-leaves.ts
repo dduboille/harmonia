@@ -2058,6 +2058,12 @@ export const AUTUMN_LEAVES_ANALYSE: MesureAnalyse[] = [
  *
  * Le titre du fichier source porte bien « Autum Leaves » (coquille, 1 "n"),
  * comme relevé par Dany — cf. commentaire d'en-tête de ce fichier.
+ *
+ * Ces constats de vérification (points 1-5 ci-dessus) sont un JOURNAL DE
+ * RELECTURE — retirés des champs affichés aux étudiants (`sections[].texte`,
+ * `synthese[].texte`) après retour de Dany (2026-07-29) : un·e étudiant·e n'a
+ * aucune raison de lire « le brouillon disait X, en fait c'est Y ». Même
+ * correctif appliqué à conservatoire-my-funny-valentine.ts.
  */
 export const AUTUMN_LEAVES_ANALYSE_NARRATIVE: AnalyseNarrative = {
   tonalite:
@@ -2065,7 +2071,7 @@ export const AUTUMN_LEAVES_ANALYSE_NARRATIVE: AnalyseNarrative = {
     "grille d'« Autumn Leaves », qui boucle entre les deux pôles par un enchaînement de quintes " +
     "descendantes (Do→Fa→Si♭→Mi♭→La→Ré→Sol). Dans cet arrangement, presque chaque accord de la " +
     "marche est en fait une <strong>dominante secondaire</strong> vers le degré suivant.",
-  metrique: "4/4. Tempo (120, medium swing) et titre corrigé (« Autumn », coquille « Autum » dans le fichier source) ajoutés/signalés par choix éditorial.",
+  metrique: "4/4. Tempo 120 (medium swing).",
   forme:
     "10 mesures = une anacrouse d'un temps (mesure 1) + la section A complète du standard (mesures " +
     "2-9, 8 mesures) + le début de sa reprise (mesure 10) — le motif de l'anacrouse revient " +
@@ -2138,10 +2144,9 @@ export const AUTUMN_LEAVES_ANALYSE_NARRATIVE: AnalyseNarrative = {
       chiffrage: "Gm7→Gm6→Gm(♭6) – G7(♭9) – Cm7",
       fonctions: "i – V7/IV – iv7",
       texte:
-        "La mesure 8 est déjà chiffrée <strong>Gm7→Gm6→Gm(♭6)</strong> par Dany (3 accords " +
-        "successifs) — un <em>line cliché</em> (Fa→Mi♮→Mi♭, 7e-6te-♭6te) sur tonique mineure " +
-        "statique, exactement la lecture attendue : rien à corriger ici. La mesure 9 est déjà " +
-        "chiffrée <strong>G7(add ♭9)</strong>, romain « V7/IV » — Sol-Si-Ré-Fa-La♭ au complet " +
+        "La mesure 8 (<strong>Gm7→Gm6→Gm(♭6)</strong>, 3 accords successifs) est un <em>line " +
+        "cliché</em> (Fa→Mi♮→Mi♭, 7e-6te-♭6te) sur tonique mineure statique. La mesure 9 " +
+        "(<strong>G7(add ♭9)</strong>, romain « V7/IV ») fait entendre Sol-Si-Ré-Fa-La♭ au complet " +
         "entre les deux mains, la dominante secondaire qui prépare le retour de Cm7 pendant que la " +
         "mélodie relance le motif de l'anacrouse. La mesure 10 rouvre la boucle : Cm7 avec la 11e " +
         "(Fa5) au sommet du voicing, triolet arpégé ascendant, basse qui s'arrête sur un Si♮ " +
@@ -2150,11 +2155,13 @@ export const AUTUMN_LEAVES_ANALYSE_NARRATIVE: AnalyseNarrative = {
   ],
   synthese: [
     {
-      titre: "Deux « fautes » signalées qui n'en sont pas",
+      titre: "Deux substitutions, deux logiques différentes",
       texte:
-        "Vérification faite : le fichier ne contient ni « GM7 » (mesure 8) ni « B°7 » (mesure 9) — " +
-        "Dany avait déjà chiffré les deux correctement (Gm7/Gm6/Gm♭6, puis G7♭9 romain V7/IV). " +
-        "Aucune correction à reporter sur ces deux mesures.",
+        "Le Mi7 inséré à la mesure 4 AJOUTE un accord absent de la grille la plus courante (une " +
+        "approche chromatique par substitut tritonique). Le La7 de la mesure 6 REMPLACE un accord " +
+        "déjà présent (le ii° diatonique Lam7♭5) par sa version dominantisée, sur la même " +
+        "fondamentale. Deux techniques de réharmonisation bien distinctes, toutes deux réunies " +
+        "dans ce seul chorus.",
     },
     {
       titre: "Presque chaque accord est une dominante secondaire",

@@ -4805,7 +4805,7 @@ export const CHOPIN_OP9_N2_ANALYSE: MesureAnalyse[] = [
  * (l'appui de la dominante secondaire vers V/V), pas un pas supplémentaire.
  */
 export const CHOPIN_OP9_N2_ANALYSE_NARRATIVE: AnalyseNarrative = {
-  tonalite: "Mib majeur (I) — l'armure (3 bémols) code ici réellement la tonalité (contrairement aux pièces mineures de Dany, où l'armure ne distingue jamais un ton de son relatif).",
+  tonalite: "Mib majeur (I) — l'armure (3 bémols) code ici réellement la tonalité (contrairement aux pièces en mineur, où l'armure ne distingue jamais un ton de son relatif).",
   metrique: "12/8 (4 temps, chacun une noire pointée).",
   forme: "La levée (un seul si♭, la dominante mélodique) lance le thème. Les mesures 2 à 5 posent la phrase complète — tonique ornée d'un emprunt chromatique sur pédale, dominante secondaire vers le IIe degré, marche vers la dominante de la dominante, cadence parfaite. Les mesures 6 à 9 la répètent note pour note (même chiffrage), Chopin variant seulement l'ornementation du chant.",
   sections: [

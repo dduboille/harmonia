@@ -70,10 +70,18 @@ describe("MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE", () => {
     expect(MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE.synthese.length).toBeGreaterThan(0);
   });
 
-  it("clarifie que les mesures 1 et 6 n'ont besoin d'aucune correction de chiffrage", () => {
-    const synthese = MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE.synthese[0];
-    expect(synthese.texte).toContain("Cm6/9");
-    expect(synthese.texte).toContain("F13sus9");
+  // Le contenu affiché aux étudiants ne doit jamais faire référence au
+  // processus de relecture (brouillon, correction, "n'existe pas...") —
+  // seul le commentaire d'en-tête du fichier source garde ce journal.
+  it("ne mentionne pas le processus de relecture (brouillon/correction) dans le contenu affiché", () => {
+    const tousLesTextes = [
+      MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE.tonalite,
+      MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE.metrique,
+      MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE.forme,
+      ...MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE.sections.map((s) => s.texte),
+      ...MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE.synthese.map((s) => s.texte),
+    ].join(" ");
+    expect(tousLesTextes).not.toMatch(/brouillon|corrig|Dany/i);
   });
 });
 
@@ -136,5 +144,8 @@ describe("MY_FUNNY_VALENTINE_MESURES_1_9 — gravure Verovio (séquence réelle 
     const systemes = svg.split(/<g[^>]*class="system"[^>]*>/).slice(1);
     const mesuresParSysteme = systemes.map((s) => [...s.matchAll(/<g[^>]*class="measure"[^>]*>/g)].length);
     expect(mesuresParSysteme.reduce((a, b) => a + b, 0)).toBe(9);
+    // 2 mesures par ligne (pas 4) : signalé par Dany, les nombreux chiffrages
+    // (jusqu'à 3 par mesure) se chevauchaient visuellement à 4 par ligne.
+    expect(mesuresParSysteme).toEqual([2, 2, 2, 2, 1]);
   });
 });

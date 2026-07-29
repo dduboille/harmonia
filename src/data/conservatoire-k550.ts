@@ -1792,7 +1792,7 @@ export const K550_ANALYSE: MesureAnalyse[] = [
 export const K550_ANALYSE_NARRATIVE: AnalyseNarrative = {
   tonalite: "Sol mineur (i) — 2 bémols à l'armure (si♭, mi♭). Mode mineur INFÉRÉ par corrélation de profil tonal (aucune balise <mode> dans l'export MuseScore) : confirmé par l'omniprésence du pôle I (Solm) et la dominante Ré7 avec sa sensible fa♯, seule note étrangère à l'armure de tout l'extrait.",
   metrique: "C (4/4, alla breve).",
-  forme: "Le célèbre thème d'ouverture repose sur une pédale — la quinte de la tonique (ré) tenue à la basse pendant 4 mesures — puis glisse par un simple demi-ton vers une sous-dominante enrichie (IIø7, mesures 5-6), avant la progression cadentielle IIø7-V7-I qu'enseigne ce cours (mesures 7 à 9 — Dany a ajouté la demi-mesure 9 spécifiquement pour la compléter).",
+  forme: "Le célèbre thème d'ouverture repose sur une pédale — la quinte de la tonique (ré) tenue à la basse pendant 4 mesures — puis glisse par un simple demi-ton vers une sous-dominante enrichie (IIø7, mesures 5-6), avant la progression cadentielle IIø7-V7-I qu'enseigne ce cours (mesures 7 à 9, complétées par une demi-mesure 9 pour aller jusqu'à la résolution).",
   sections: [
     {
       label: "Mesures 1-4",

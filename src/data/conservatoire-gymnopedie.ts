@@ -1110,9 +1110,9 @@ export const GYMNOPEDIE_ANALYSE_NARRATIVE: AnalyseNarrative = {
       texte:
         "Après un silence, la mélodie entre sur <strong>Fa#5</strong> — la 7e majeure de Sol, " +
         "exactement deux octaves au-dessus du Fa#4 de l'accompagnement — puis saute vers " +
-        "<strong>La5</strong>, la 9e. Dany chiffre explicitement cet accord « Solmaj9 » (pas " +
-        "simplement « maj7 ») : la mélodie touche très précisément l'extension que le chiffrage " +
-        "annonce. D'emblée, deux notes « dissonantes » posées comme une évidence, sans aucune " +
+        "<strong>La5</strong>, la 9e. La partition chiffre explicitement cet accord « Solmaj9 » " +
+        "(pas simplement « maj7 ») : la mélodie touche très précisément l'extension que le " +
+        "chiffrage annonce. D'emblée, deux notes « dissonantes » posées comme une évidence, sans aucune " +
         "préparation.",
     },
     {
@@ -1133,8 +1133,8 @@ export const GYMNOPEDIE_ANALYSE_NARRATIVE: AnalyseNarrative = {
       fonctions: "IV(#11)",
       texte:
         "Montée conjointe Si4-Do#5-Ré5 (tierce – quinte, en passant par Do#). Cette fois encore " +
-        "le chiffrage de Dany annonce précisément la couleur : c'est la SEULE mesure de tout " +
-        "l'extrait où il ajoute un « (#11) » à l'accord de Sol, et c'est exactement la note que " +
+        "le chiffrage annonce précisément la couleur : c'est la SEULE mesure de tout " +
+        "l'extrait où un « (#11) » est ajouté à l'accord de Sol, et c'est exactement la note que " +
         "la mélodie touche au passage.",
     },
     {

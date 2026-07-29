@@ -1790,7 +1790,7 @@ export const SATIN_DOLL_ANALYSE_NARRATIVE: AnalyseNarrative = {
       chiffrage: "Lábm7 – Réb7",
       fonctions: "bVI7 – subV7",
       texte:
-        "Le moment-clé du cours : au lieu du ii7-V7 attendu (Rém7-Sol7), Dany a écrit " +
+        "Le moment-clé du cours : au lieu du ii7-V7 attendu (Rém7-Sol7), la partition donne " +
         "Lábm7-Réb7. Réb7 (<strong>subV7</strong>) remplace Sol7 par substitution " +
         "tritonique — les deux accords partagent en théorie le même triton (Fa-Si), que " +
         "cette réalisation précise ne fait sonner que par le Si (7e de Réb7). Sur le dernier " +
