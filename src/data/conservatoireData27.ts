@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  JESU_INTEGRAL_MESURES_1_19,
+  JESU_INTEGRAL_ANALYSE,
+  JESU_INTEGRAL_ANALYSE_NARRATIVE,
+} from "./conservatoire-jesu-integral";
 
 export const CONSERVATOIRE_DATA_27: CoursConservatoireData = {
   intuition: "Une symphonie de 40 minutes est souvent I–V–I à grande échelle avec des ornements.",
@@ -13,9 +18,12 @@ export const CONSERVATOIRE_DATA_27: CoursConservatoireData = {
     "Ne pas analyser chaque accord isolément : chercher le groupe fonctionnel (T, SD, D) puis la prolongation qui le réalise.",
   ],
   repertoire: {
-    titre: "Choral BWV 227 (réduction)",
-    compositeur: "Johann Sebastian Bach",
-    notes: ["Do:3", "Mi:3", "Sol:3", "Do:4", "Si:3", "Sol:3", "La:3", "Do:4"],
+    titre: "Jesu, meine Freude (choral intégral, 19 mesures)",
+    compositeur: "J. Crüger / harmonisation dans la tradition de J.S. Bach (BWV 227)",
+    notes: ["B3", "F#3", "D4", "B2", "A2", "G2", "G#2", "G3"],
+    musicxml: JESU_INTEGRAL_MESURES_1_19,
+    analyse: JESU_INTEGRAL_ANALYSE,
+    analyseNarrative: JESU_INTEGRAL_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
