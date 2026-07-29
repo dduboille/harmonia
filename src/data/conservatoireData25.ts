@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  TRISTAN_PRELUDE_MESURES_0_13,
+  TRISTAN_PRELUDE_ANALYSE,
+  TRISTAN_PRELUDE_ANALYSE_NARRATIVE,
+} from "./conservatoire-tristan-prelude";
 
 export const CONSERVATOIRE_DATA_25: CoursConservatoireData = {
   intuition:
@@ -18,6 +23,9 @@ export const CONSERVATOIRE_DATA_25: CoursConservatoireData = {
     titre: "Prélude de Tristan und Isolde",
     compositeur: "Richard Wagner",
     notes: ["F3", "B3", "D#4", "G#4"],
+    musicxml: TRISTAN_PRELUDE_MESURES_0_13,
+    analyse: TRISTAN_PRELUDE_ANALYSE,
+    analyseNarrative: TRISTAN_PRELUDE_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
