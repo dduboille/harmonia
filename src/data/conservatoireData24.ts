@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  CHOPIN_OP28_N20_MESURES_1_13,
+  CHOPIN_OP28_N20_ANALYSE,
+  CHOPIN_OP28_N20_ANALYSE_NARRATIVE,
+} from "./conservatoire-chopin-op28-20";
 
 export const CONSERVATOIRE_DATA_24: CoursConservatoireData = {
   intuition:
@@ -15,9 +20,12 @@ export const CONSERVATOIRE_DATA_24: CoursConservatoireData = {
     "La sixte allemande (bVI–I–bIII–#IV) est enharmoniquement identique à un V7/IV — sa résolution diffère radicalement",
   ],
   repertoire: {
-    titre: "Der Wanderer, D.489",
-    compositeur: "Franz Schubert",
-    notes: ["G#3", "C4", "D#4", "F#4"],
+    titre: "Prélude op.28 n°20",
+    compositeur: "Frédéric Chopin",
+    notes: ["C4", "Eb4", "G4", "Ab3", "C4", "Eb4", "G3", "B3"],
+    musicxml: CHOPIN_OP28_N20_MESURES_1_13,
+    analyse: CHOPIN_OP28_N20_ANALYSE,
+    analyseNarrative: CHOPIN_OP28_N20_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
