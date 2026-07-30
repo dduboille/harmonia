@@ -25,6 +25,7 @@ const isPublicRoute = createRouteMatcher([
   "/:locale/tonalites",
   "/:locale/upgrade",
   "/:locale/cursus",
+  "/:locale/dissonance",
   "/:locale/conditions",
   "/:locale/confidentialite",
   // /preview n'est PAS ici : c'est le bac à sable de la landing (son en-tête dit
