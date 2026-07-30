@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  K545_EXPOSITION_MESURES_1_28,
+  K545_EXPOSITION_ANALYSE,
+  K545_EXPOSITION_ANALYSE_NARRATIVE,
+} from "./conservatoire-k545-exposition";
 
 export const CONSERVATOIRE_DATA_28: CoursConservatoireData = {
   intuition: "La forme c'est l'harmonie qui se déploie dans le temps.",
@@ -13,9 +18,12 @@ export const CONSERVATOIRE_DATA_28: CoursConservatoireData = {
     "Distinguer forme de phrase (antécédent-conséquent) et grande forme (exposition-développement-réexposition) — deux niveaux hiérarchiques distincts.",
   ],
   repertoire: {
-    titre: "Sonate K.545 en Do majeur",
+    titre: "Sonate K.545 en Do majeur, 1er mouvement — exposition complète",
     compositeur: "Wolfgang Amadeus Mozart",
-    notes: ["Do:4", "Mi:4", "Sol:4", "Mi:4", "Do:4", "Sol:3", "Mi:4", "Do:5"],
+    notes: ["C4", "E4", "G4", "E4", "C4", "G3", "E4", "C5"],
+    musicxml: K545_EXPOSITION_MESURES_1_28,
+    analyse: K545_EXPOSITION_ANALYSE,
+    analyseNarrative: K545_EXPOSITION_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
