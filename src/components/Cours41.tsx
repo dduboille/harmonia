@@ -15,6 +15,8 @@ import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
 import { cours41Content } from "@/data/cours41Content";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
+import { CONSERVATOIRE_DATA_41 } from "@/data/conservatoireData41";
 
 // ── Les trois styles et leurs signatures ─────────────────────────────────────
 
@@ -101,6 +103,7 @@ export default function Cours41() {
   const sectionLabel = (id: string) => {
     if (id === "styles") return n("navStyles");
     if (id === "methode") return n("navMethode");
+    if (id === "conservatoire") return "🎓 Conservatoire";
     return n("navQuiz");
   };
 
@@ -125,7 +128,7 @@ export default function Cours41() {
 
       {/* Navigation */}
       <nav style={S.nav}>
-        {(["styles", "methode", "quiz"] as const).map(id => (
+        {(["styles", "methode", "conservatoire", "quiz"] as const).map(id => (
           <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
             {sectionLabel(id)}
           </button>
@@ -240,7 +243,10 @@ export default function Cours41() {
         </div>
       )}
 
-      {/* ══ SECTION 3 : QUIZ ══ */}
+      {/* ══ SECTION 3 : CONSERVATOIRE ══ */}
+      {activeSection === "conservatoire" && <VueConservatoire data={CONSERVATOIRE_DATA_41} />}
+
+      {/* ══ SECTION 4 : QUIZ ══ */}
       {activeSection === "quiz" && (
         <div>
           <h2 style={S.h2}>{n("quizSectionTitle")}</h2>
