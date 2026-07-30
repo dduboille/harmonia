@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  CATHEDRALE_ENGLOUTIE_MESURES_1_89,
+  CATHEDRALE_ENGLOUTIE_ANALYSE,
+  CATHEDRALE_ENGLOUTIE_ANALYSE_NARRATIVE,
+} from "./conservatoire-cathedrale-engloutie";
 
 export const CONSERVATOIRE_DATA_29: CoursConservatoireData = {
   intuition: "L'histoire de l'harmonie c'est l'histoire de la dissonance qui devient consonance.",
@@ -13,9 +18,12 @@ export const CONSERVATOIRE_DATA_29: CoursConservatoireData = {
     "Le contexte historique n'excuse pas les erreurs d'analyse : Debussy connaissait parfaitement les règles qu'il transgressait.",
   ],
   repertoire: {
-    titre: "Prélude à l'après-midi d'un faune",
+    titre: "La Cathédrale engloutie (Préludes, livre I, n°10)",
     compositeur: "Claude Debussy",
-    notes: ["Do:4", "Ré:4", "Mi:4", "Fa#:4", "Sol#:4", "La#:4"],
+    notes: ["G1", "A2", "B2", "D3", "E3", "G3"],
+    musicxml: CATHEDRALE_ENGLOUTIE_MESURES_1_89,
+    analyse: CATHEDRALE_ENGLOUTIE_ANALYSE,
+    analyseNarrative: CATHEDRALE_ENGLOUTIE_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
