@@ -35,6 +35,8 @@ import { useCoursContent } from "@/hooks/useCoursContent";
 import { cours44Content, type Cours44Locale } from "@/data/cours44Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
+import { CONSERVATOIRE_DATA_44 } from "@/data/conservatoireData44";
 import StudioScore from "@/components/StudioScore";
 import { contrepointVersMusicXML, type CpVoix, type CpDuree } from "@/lib/contrepoint-vers-musicxml";
 import { formeNormale, formePremiere, vecteurIntervalles, vecteurEnTexte } from "@/lib/pcset";
@@ -294,7 +296,7 @@ function Calculateur({ c, pianoRef }: { c: Cours44Locale; pianoRef: React.RefObj
 
 // ─── Composant ───────────────────────────────────────────────────────────────────
 
-const SECTIONS = ["intro", "pcs", "ensembles", "formes", "vecteur", "analyse", "quiz"] as const;
+const SECTIONS = ["intro", "pcs", "ensembles", "formes", "vecteur", "analyse", "conservatoire", "quiz"] as const;
 
 export default function Cours44() {
   const i18n = useCoursI18n("cours44");
@@ -362,7 +364,7 @@ export default function Cours44() {
       <nav style={S.nav}>
         {SECTIONS.map((id) => (
           <button key={id} style={S.pill(sec === id)} onClick={() => setSec(id)}>
-            {i18n.sectionLabel(id)}
+            {id === "conservatoire" ? "🎓 Conservatoire" : i18n.sectionLabel(id)}
           </button>
         ))}
       </nav>
@@ -653,6 +655,9 @@ export default function Cours44() {
           <div style={S.tip} dangerouslySetInnerHTML={{ __html: c.webernSym }} />
         </div>
       )}
+
+      {/* ══ CONSERVATOIRE ══ */}
+      {sec === "conservatoire" && <VueConservatoire data={CONSERVATOIRE_DATA_44} />}
 
       {/* ══ 7. APPLICATIONS & ENTRAÎNEMENT ══ */}
       {sec === "quiz" && (
