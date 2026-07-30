@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  PETROUCHKA_FICHE_MESURES_1_7,
+  PETROUCHKA_FICHE_ANALYSE,
+  PETROUCHKA_FICHE_ANALYSE_NARRATIVE,
+} from "./conservatoire-petrouchka-fiche";
 
 export const CONSERVATOIRE_DATA_31: CoursConservatoireData = {
   intuition: "Deux tonalités simultanées c'est comme deux conversations en langues différentes — le cerveau entend les deux et crée un sens impossible à analyser séparément.",
@@ -13,9 +18,12 @@ export const CONSERVATOIRE_DATA_31: CoursConservatoireData = {
     "Le 'So What chord' de Miles Davis (Ré–Sol–Do–Fa–La) est l'accord quartal par excellence du jazz modal — apprenez à le construire sur toutes les notes.",
   ],
   repertoire: {
-    titre: "Pétrouchka (2e tableau)",
-    compositeur: "Igor Stravinsky",
-    notes: ["Do:3", "Mi:3", "Sol:3", "Fa#:3", "La#:3", "Do#:4"],
+    titre: "L'accord de Petrouchka (fiche didactique)",
+    compositeur: "D'après Igor Stravinsky, Petrouchka (2e tableau, 1911)",
+    notes: ["C4", "E4", "G4", "F#3", "A#3", "C#4"],
+    musicxml: PETROUCHKA_FICHE_MESURES_1_7,
+    analyse: PETROUCHKA_FICHE_ANALYSE,
+    analyseNarrative: PETROUCHKA_FICHE_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
