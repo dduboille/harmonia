@@ -2323,7 +2323,7 @@
     "freeNote": "Kostenlos starten · Lektionen 1 bis 3 ohne Abonnement zugänglich"
   },
   "landing": {
-    "topbar": "Kurs 48 verfügbar — Methodik des harmonischen Diktats",
+    "topbar": "Zwölf Stücke, eine Geschichte — von Bach bis Evans",
     "topbarCta": "Entdecken →",
     "badge": "5 Stufen · {count} Kurse · 850+ Übungen",
     "h1": "Beherrsche die tonale Harmonielehre.",
@@ -2537,7 +2537,8 @@
     "ctaNote": "Kurse 1 bis {free} · Unbegrenztes Quiz · SATB-Übungen",
     "footerPrivacy": "Datenschutz",
     "footerTerms": "AGB",
-    "footerContact": "Kontakt"
+    "footerContact": "Kontakt",
+    "navDissonance": "Dissonanz"
   },
   "dashboard": {
     "title": "Dashboard",

@@ -2323,7 +2323,7 @@
     "freeNote": "Gratuito para começar · Lições 1 a 3 acessíveis sem subscrição"
   },
   "landing": {
-    "topbar": "Curso 48 disponível — Metodologia do ditado harmónico",
+    "topbar": "Doze peças, uma só história — de Bach a Evans",
     "topbarCta": "Descobrir →",
     "badge": "5 níveis · {count} cursos · 850+ exercícios",
     "h1": "Domine a harmonia tonal.",
@@ -2537,7 +2537,8 @@
     "ctaNote": "Cursos 1 a {free} · Quiz ilimitado · Exercícios SATB",
     "footerPrivacy": "Privacidade",
     "footerTerms": "Termos",
-    "footerContact": "Contacto"
+    "footerContact": "Contacto",
+    "navDissonance": "Dissonância"
   },
   "dashboard": {
     "title": "Painel",

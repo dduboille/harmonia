@@ -2323,7 +2323,7 @@
     "freeNote": "Gratis para comenzar · Lecciones 1 a 3 accesibles sin suscripción"
   },
   "landing": {
-    "topbar": "Curso 48 disponible — Metodología del dictado armónico",
+    "topbar": "Doce piezas, una sola historia — de Bach a Evans",
     "topbarCta": "Descubrir →",
     "badge": "5 niveles · {count} cursos · 850+ ejercicios",
     "h1": "Domina la armonía tonal.",
@@ -2537,7 +2537,8 @@
     "ctaNote": "Cursos 1 a {free} · Test ilimitado · Ejercicios SATB",
     "footerPrivacy": "Privacidad",
     "footerTerms": "Condiciones",
-    "footerContact": "Contacto"
+    "footerContact": "Contacto",
+    "navDissonance": "Disonancia"
   },
   "dashboard": {
     "title": "Panel de control",

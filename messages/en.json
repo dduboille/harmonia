@@ -2960,7 +2960,7 @@
     "freeNote": "Free to start · Lessons 1 to 3 accessible without subscription"
   },
   "landing": {
-    "topbar": "Course 48 available — Harmonic Dictation Methodology",
+    "topbar": "Twelve pieces, one story — from Bach to Evans",
     "topbarCta": "Discover →",
     "badge": "5 levels · {count} lessons · 850+ exercises",
     "h1": "Master tonal harmony.",
@@ -3174,7 +3174,8 @@
     "ctaNote": "Lessons 1 to {free} · Unlimited quiz · SATB exercises",
     "footerPrivacy": "Privacy",
     "footerTerms": "Terms",
-    "footerContact": "Contact"
+    "footerContact": "Contact",
+    "navDissonance": "Dissonance"
   },
   "dashboard": {
     "title": "Dashboard",

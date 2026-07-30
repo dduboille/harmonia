@@ -2323,7 +2323,7 @@
     "freeNote": "Gratuito per iniziare · Lezioni 1 a 9 accessibili senza abbonamento"
   },
   "landing": {
-    "topbar": "Lezione 48 disponibile — Metodologia del dettato armonico",
+    "topbar": "Dodici brani, un'unica storia — da Bach a Evans",
     "topbarCta": "Scopri →",
     "badge": "5 livelli · {count} corsi · 850+ esercizi",
     "h1": "Padroneggia l'armonia tonale.",
@@ -2537,7 +2537,8 @@
     "ctaNote": "Corsi da 1 a {free} · Quiz illimitato · Esercizi SATB",
     "footerPrivacy": "Privacy",
     "footerTerms": "Termini",
-    "footerContact": "Contatti"
+    "footerContact": "Contatti",
+    "navDissonance": "Dissonanza"
   },
   "dashboard": {
     "title": "Dashboard",

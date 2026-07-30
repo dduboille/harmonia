@@ -2960,7 +2960,7 @@
     "freeNote": "Gratuit pour commencer · Cours 1 à 3 accessibles sans abonnement"
   },
   "landing": {
-    "topbar": "Cours 48 disponible — Méthodologie du relevé",
+    "topbar": "Douze pièces, un seul récit — de Bach à Evans",
     "topbarCta": "Découvrir →",
     "badge": "5 niveaux · {count} cours · 850+ exercices",
     "h1": "Maîtrisez l'harmonie tonale.",
@@ -3174,7 +3174,8 @@
     "ctaNote": "Cours 1 à {free} · Quiz illimité · Exercices SATB",
     "footerPrivacy": "Confidentialité",
     "footerTerms": "CGU",
-    "footerContact": "Contact"
+    "footerContact": "Contact",
+    "navDissonance": "Dissonance"
   },
   "dashboard": {
     "title": "Tableau de bord",

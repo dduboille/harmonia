@@ -197,7 +197,7 @@ export default function LandingPage() {
       }}>
         <span style={{ background: "rgba(255,255,255,0.2)", padding: "2px 10px", borderRadius: 10 }}>Nouveau</span>
         <span style={{ opacity: 0.95, fontWeight: 400, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" as const }}>{t("topbar")}</span>
-        <Link href={`/${locale}/cours`} style={{ color: "#E9C97E", textDecoration: "none", fontWeight: 600, whiteSpace: "nowrap" as const }}>
+        <Link href={`/${locale}/dissonance`} style={{ color: "#E9C97E", textDecoration: "none", fontWeight: 600, whiteSpace: "nowrap" as const }}>
           {t("topbarCta")}
         </Link>
       </div>
@@ -492,6 +492,7 @@ export default function LandingPage() {
               { label: t("navAtelier"), href: `/${locale}/atelier` },
               { label: t("navScales"), href: `/${locale}/tonalites` },
               { label: t("navCursus"), href: `/${locale}/cursus` },
+              { label: t("navDissonance"), href: `/${locale}/dissonance` },
               { label: t("footerPrivacy"), href: `/${locale}/confidentialite` },
               { label: t("footerTerms"), href: `/${locale}/conditions` },
             ].map(link => (
