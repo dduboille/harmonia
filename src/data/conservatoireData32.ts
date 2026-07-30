@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  GIANT_STEPS_MESURES_1_98,
+  GIANT_STEPS_ANALYSE,
+  GIANT_STEPS_ANALYSE_NARRATIVE,
+} from "./conservatoire-giant-steps";
 
 export const CONSERVATOIRE_DATA_32: CoursConservatoireData = {
   intuition: "Coltrane n'a pas cassé les règles — il a découvert un niveau de règles plus profond que celui que tout le monde voyait.",
@@ -13,9 +18,12 @@ export const CONSERVATOIRE_DATA_32: CoursConservatoireData = {
     "Giant Steps tourne autour de 3 tonalités à distance de tierce majeure : Si, Sol, Mib — un triangle parfait sur le cercle des quintes qui se parcourt en 16 mesures.",
   ],
   repertoire: {
-    titre: "Giant Steps",
+    titre: "Giant Steps (arrangement piano en 7/4, Jacob Koller)",
     compositeur: "John Coltrane",
-    notes: ["Si:2", "Ré#:3", "Fa#:3", "La#:3", "Ré:3", "Fa#:3", "La:3", "Do:4"],
+    notes: ["B2", "D2", "F#2", "G2", "Bb2", "Eb3"],
+    musicxml: GIANT_STEPS_MESURES_1_98,
+    analyse: GIANT_STEPS_ANALYSE,
+    analyseNarrative: GIANT_STEPS_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
