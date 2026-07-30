@@ -13,9 +13,9 @@ export const CONSERVATOIRE_DATA_35: CoursConservatoireData = {
     "Kind of Blue de Miles Davis a été enregistré sans répétition — les musiciens découvraient les grilles en studio. Ce n'est pas de l'improvisation totale : c'est une structure modale précise avec une liberté totale à l'intérieur. La différence est essentielle.",
   ],
   repertoire: {
-    titre: "So What (Kind of Blue)",
-    compositeur: "Miles Davis",
-    notes: ["Ré:3", "Sol:3", "Do:4", "Fa:4", "La:4"],
+    titre: "Blue in Green (Kind of Blue)",
+    compositeur: "Miles Davis / Bill Evans (paternité disputée)",
+    notes: ["Sol:3", "Sib:3", "Ré:4", "Fa:4"],
   },
   pieges: [
     {

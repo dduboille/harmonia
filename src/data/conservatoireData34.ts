@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  MORRICONE_MESURES_1_111,
+  MORRICONE_ANALYSE,
+  MORRICONE_ANALYSE_NARRATIVE,
+} from "./conservatoire-morricone";
 
 export const CONSERVATOIRE_DATA_34: CoursConservatoireData = {
   intuition: "La musique de film ne raconte pas ce qu'on voit — elle dit ce qu'on ressent devant ce qu'on voit. C'est la différence entre commentaire et révélation.",
@@ -13,9 +18,12 @@ export const CONSERVATOIRE_DATA_34: CoursConservatoireData = {
     "John Williams, Hans Zimmer et Ennio Morricone partagent un secret : leurs harmonies sont souvent simples (I–V–VI–IV), mais leur orchestration est exceptionnelle. La puissance émotionnelle vient du timbre, pas de la complexité harmonique.",
   ],
   repertoire: {
-    titre: "Il Buono, il Brutto, il Cattivo (thème)",
+    titre: "Il Buono, il Brutto, il Cattivo (thème principal, intégral)",
     compositeur: "Ennio Morricone",
     notes: ["Mi:3", "Sol:3", "Si:3", "Ré:4", "Mi:4"],
+    musicxml: MORRICONE_MESURES_1_111,
+    analyse: MORRICONE_ANALYSE,
+    analyseNarrative: MORRICONE_ANALYSE_NARRATIVE,
   },
   pieges: [
     {

@@ -13,9 +13,9 @@ export const CONSERVATOIRE_DATA_36: CoursConservatoireData = {
     "La pédales longue de Debussy — basse immobile pendant que l'harmonie change au-dessus — crée un effet de suspension temporelle. C'est une technique médiévale (organum) réinventée au service de la couleur moderne.",
   ],
   repertoire: {
-    titre: "Gymnopédie n°1",
-    compositeur: "Erik Satie",
-    notes: ["Ré:3", "Fa#:3", "La:3", "Do#:4", "Mi:4"],
+    titre: "Pavane pour une infante défunte",
+    compositeur: "Maurice Ravel",
+    notes: ["Sol:3", "Si:3", "Ré:4", "Mi:4"],
   },
   pieges: [
     {
