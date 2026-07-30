@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  SYMPHONIE5_MESURES_1_502,
+  SYMPHONIE5_ANALYSE,
+  SYMPHONIE5_ANALYSE_NARRATIVE,
+} from "./conservatoire-symphonie5";
 
 export const CONSERVATOIRE_DATA_37: CoursConservatoireData = {
   intuition: "L'analyse schenkérienne n'explique pas pourquoi la musique est belle — elle montre la charpente osseuse sous la peau. Savoir que la Joconde est de la peinture sur bois ne la rend ni plus ni moins belle.",
@@ -13,9 +18,12 @@ export const CONSERVATOIRE_DATA_37: CoursConservatoireData = {
     "Brahms est le maître de l'unité motivique : dans ses quatuors, un seul intervalle (souvent une seconde ou une tierce) revient sous toutes les transformations possibles pendant 30 minutes. Identifier ce motif générateur est le premier geste analytique.",
   ],
   repertoire: {
-    titre: "Für Elise WoO 59",
-    compositeur: "Ludwig van Beethoven",
-    notes: ["Mi:4", "Ré#:4", "Mi:4", "Ré#:4", "Mi:4", "Si:3", "Ré:4", "Do:4", "La:3"],
+    titre: "Symphonie n° 5 en do mineur, 1er mouvement (intégral)",
+    compositeur: "Ludwig van Beethoven (transcription pour piano d'Ernest Pauer)",
+    notes: ["Sol:4", "Sol:4", "Sol:4", "Mib:4"],
+    musicxml: SYMPHONIE5_MESURES_1_502,
+    analyse: SYMPHONIE5_ANALYSE,
+    analyseNarrative: SYMPHONIE5_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
