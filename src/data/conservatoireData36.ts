@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  PAVANE_MESURES_1_72,
+  PAVANE_ANALYSE,
+  PAVANE_ANALYSE_NARRATIVE,
+} from "./conservatoire-pavane";
 
 export const CONSERVATOIRE_DATA_36: CoursConservatoireData = {
   intuition: "Debussy et Ravel ont la même surface — accords non fonctionnels, couleurs sonores, impressionnisme. Mais Debussy rêve et Ravel calcule. Sous le même voile, deux intelligences opposées.",
@@ -13,9 +18,12 @@ export const CONSERVATOIRE_DATA_36: CoursConservatoireData = {
     "La pédales longue de Debussy — basse immobile pendant que l'harmonie change au-dessus — crée un effet de suspension temporelle. C'est une technique médiévale (organum) réinventée au service de la couleur moderne.",
   ],
   repertoire: {
-    titre: "Pavane pour une infante défunte",
+    titre: "Pavane pour une infante défunte (intégrale)",
     compositeur: "Maurice Ravel",
     notes: ["Sol:3", "Si:3", "Ré:4", "Mi:4"],
+    musicxml: PAVANE_MESURES_1_72,
+    analyse: PAVANE_ANALYSE,
+    analyseNarrative: PAVANE_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
