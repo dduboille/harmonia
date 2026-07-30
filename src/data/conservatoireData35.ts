@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  BLUE_IN_GREEN_MESURES_0_310,
+  BLUE_IN_GREEN_ANALYSE,
+  BLUE_IN_GREEN_ANALYSE_NARRATIVE,
+} from "./conservatoire-blue-in-green";
 
 export const CONSERVATOIRE_DATA_35: CoursConservatoireData = {
   intuition: "Miles Davis disait : 'Ne jouez pas ce qui est là — jouez ce qui n'est pas là.' La reharmonisation, c'est exactement ça : entendre les possibilités que la mélodie n'impose pas.",
@@ -13,9 +18,12 @@ export const CONSERVATOIRE_DATA_35: CoursConservatoireData = {
     "Kind of Blue de Miles Davis a été enregistré sans répétition — les musiciens découvraient les grilles en studio. Ce n'est pas de l'improvisation totale : c'est une structure modale précise avec une liberté totale à l'intérieur. La différence est essentielle.",
   ],
   repertoire: {
-    titre: "Blue in Green (Kind of Blue)",
+    titre: "Blue in Green (Kind of Blue, intégral)",
     compositeur: "Miles Davis / Bill Evans (paternité disputée)",
     notes: ["Sol:3", "Sib:3", "Ré:4", "Fa:4"],
+    musicxml: BLUE_IN_GREEN_MESURES_0_310,
+    analyse: BLUE_IN_GREEN_ANALYSE,
+    analyseNarrative: BLUE_IN_GREEN_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
