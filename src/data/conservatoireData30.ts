@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  VOILES_MESURES_1_64,
+  VOILES_ANALYSE,
+  VOILES_ANALYSE_NARRATIVE,
+} from "./conservatoire-voiles";
 
 export const CONSERVATOIRE_DATA_30: CoursConservatoireData = {
   intuition: "Quand Debussy joue un accord de 9e parallèle, il ne pense pas 'tension-résolution' — il pense 'bleu ciel passant au violet'.",
@@ -13,9 +18,12 @@ export const CONSERVATOIRE_DATA_30: CoursConservatoireData = {
     "Les modes de Messiaen ont des transpositions limitées : le mode 1 (gamme par tons) ne peut être transposé que 2 fois avant de revenir à lui-même.",
   ],
   repertoire: {
-    titre: "Voiles (Préludes Livre I)",
+    titre: "Voiles (Préludes, livre I, n°2)",
     compositeur: "Claude Debussy",
-    notes: ["Do:3", "Ré:3", "Mi:3", "Fa#:3", "Sol#:3", "La#:3"],
+    notes: ["Bb1", "C4", "E4", "Gb3", "Ab3", "Bb3"],
+    musicxml: VOILES_MESURES_1_64,
+    analyse: VOILES_ANALYSE,
+    analyseNarrative: VOILES_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
