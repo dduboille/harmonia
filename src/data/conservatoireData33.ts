@@ -1,4 +1,9 @@
 import type { CoursConservatoireData } from "./conservatoireData";
+import {
+  BWV847_MESURES_1_69,
+  BWV847_ANALYSE,
+  BWV847_ANALYSE_NARRATIVE,
+} from "./conservatoire-bwv847";
 
 export const CONSERVATOIRE_DATA_33: CoursConservatoireData = {
   intuition: "La fugue n'est pas une contrainte — c'est une conversation à plusieurs voix où chacun parle et écoute en même temps. Bach pensait en fugue comme nous pensons en phrases.",
@@ -13,9 +18,12 @@ export const CONSERVATOIRE_DATA_33: CoursConservatoireData = {
     "Dans l'analyse d'une fugue, commencez par identifier le sujet, la réponse et le contre-sujet avant d'analyser quoi que ce soit d'autre. Ces trois éléments sont le matériau de toute la fugue.",
   ],
   repertoire: {
-    titre: "Fugue en Do mineur BWV 847",
+    titre: "Prélude et Fugue n° 2 en Do mineur, BWV 847 (intégral)",
     compositeur: "Johann Sebastian Bach",
-    notes: ["Do:3", "Ré:3", "Mib:3", "Fa:3", "Sol:3", "Fa:3", "Mib:3", "Ré:3", "Do:3"],
+    notes: ["C4", "D4", "Eb4", "F4", "G4", "F4", "Eb4", "D4", "C4"],
+    musicxml: BWV847_MESURES_1_69,
+    analyse: BWV847_ANALYSE,
+    analyseNarrative: BWV847_ANALYSE_NARRATIVE,
   },
   pieges: [
     {
