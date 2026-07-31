@@ -53,25 +53,49 @@ export async function POST(req: Request) {
     const stream = anthropic.messages.stream({
       model: MODEL,
       max_tokens: 1000,
+      // Sur Sonnet 5, le « thinking » est actif par défaut (même remarque que
+      // analyse-partition/commentaire) et impose un budget minimal qui dépasse
+      // ce max_tokens réduit — la requête entière était rejetée par
+      // l'API avant même de produire un seul jeton de texte. Désactivé pour
+      // rester cohérent avec l'autre route et garder ce profil de coût/latence
+      // (un chat qui doit rester rapide).
+      thinking: { type: "disabled" },
       system: SYSTEM_PROMPT,
       messages: trimmedMessages,
     });
+
+    /**
+     * Le flux Anthropic n'échoue pas à l'appel de .stream() lui-même (clé
+     * invalide, modèle inconnu, quota dépassé...) mais seulement à sa
+     * PREMIÈRE consommation réelle — après que la Response ci-dessous ait
+     * déjà été renvoyée avec un statut 200 implicite. Un échec survenant à
+     * ce moment-là ne pouvait alors remonter que via `controller.error()`,
+     * ce qui laissait Vercel couper la réponse et renvoyer un 500 brut, sans
+     * corps JSON lisible — le client affichait alors le message générique
+     * "Erreur serveur" au lieu du message clair prévu ci-dessous. On tire
+     * donc le premier événement AVANT de construire la réponse, pour que ce
+     * cas précis retombe dans le catch normal.
+     */
+    const iterator = stream[Symbol.asyncIterator]();
+    const premier = await iterator.next();
 
     const encoder = new TextEncoder();
     const body = new ReadableStream<Uint8Array>({
       async start(controller) {
         try {
-          for await (const event of stream) {
+          let event = premier;
+          while (!event.done) {
             if (
-              event.type === "content_block_delta" &&
-              event.delta.type === "text_delta"
+              event.value.type === "content_block_delta" &&
+              event.value.delta.type === "text_delta"
             ) {
-              controller.enqueue(encoder.encode(event.delta.text));
+              controller.enqueue(encoder.encode(event.value.delta.text));
             }
+            event = await iterator.next();
           }
           controller.close();
         } catch (error) {
-          console.error("Anthropic stream error:", error);
+          console.error("Anthropic stream error (après le premier événement):", error);
           controller.error(error);
         }
       },
