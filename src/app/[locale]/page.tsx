@@ -25,7 +25,7 @@ const FREE_COUNT = FREE_COURS.length;
  * quand ses 10 utilisations seront épuisées et qu'un nouveau code sera créé
  * depuis /admin/essai.
  */
-const CODE_ESSAI_ACTUEL = "LAVITAEBELLA";
+const CODE_ESSAI_ACTUEL = "GETHARM14D";
 
 /** Remplit les jetons de comptage des chaînes traduites. */
 function fill(s: string): string {
