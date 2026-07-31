@@ -10,6 +10,8 @@ import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
 import { useTerm } from "@/hooks/useTerm";
 import { cours20Content } from "@/data/cours20Content";
+import { VueConservatoire } from "@/components/VueConservatoire";
+import { CONSERVATOIRE_DATA_20 } from "@/data/conservatoireData20";
 
 const PRIMARY    = "#7B2055";
 const PRIMARY_BG = "#FAF0F5";
@@ -426,12 +428,13 @@ export default function Cours20() {
   const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours20Content);
   const pianoRef = useRef<PianoPlayerRef | null>(null);
-  const [section, setSection] = useState<"compositeurs"|"analyse"|"quiz">("compositeurs");
+  const [section, setSection] = useState<"compositeurs"|"analyse"|"conservatoire"|"quiz">("compositeurs");
 
   const SECTIONS = [
-    { id: "compositeurs" as const, label: n("sectionCompositeurs") },
-    { id: "analyse"      as const, label: n("sectionAnalyse") },
-    { id: "quiz"         as const, label: n("sectionQuiz") },
+    { id: "compositeurs"  as const, label: n("sectionCompositeurs") },
+    { id: "analyse"       as const, label: n("sectionAnalyse") },
+    { id: "conservatoire" as const, label: "🎓 Conservatoire" },
+    { id: "quiz"          as const, label: n("sectionQuiz") },
   ];
 
   // Quiz state
@@ -508,6 +511,9 @@ export default function Cours20() {
             {ANALYSES.map(a => <AnalysisCard key={a.id} a={a} pianoRef={pianoRef} />)}
           </div>
         )}
+
+        {/* ── Section Conservatoire ── */}
+        {section === "conservatoire" && <VueConservatoire data={CONSERVATOIRE_DATA_20} />}
 
         {/* ── Section Quiz ── */}
         {section === "quiz" && (
