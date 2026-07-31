@@ -12,6 +12,13 @@ export default async function SignInPage({ params, searchParams }: Props) {
   // renvoyé vers la connexion depuis /de/cours atterrissait sur le tableau de
   // bord français.
   const target = redirect_url ?? `/${locale}/dashboard`;
+  // Si quelqu'un clique "créer un compte" depuis ici, il ne doit pas perdre
+  // son redirect_url (ex. /essai?code=XXXX) — sans ce report, un visiteur
+  // venu avec un code d'essai qui choisit de s'inscrire plutôt que de se
+  // connecter atterrissait sur le tableau de bord nu, code perdu.
+  const signUpHref = redirect_url
+    ? `/${locale}/sign-up?redirect_url=${encodeURIComponent(redirect_url)}`
+    : `/${locale}/sign-up`;
 
   return (
     <main style={{
@@ -32,7 +39,7 @@ export default async function SignInPage({ params, searchParams }: Props) {
         }}>
           Harmonia<span style={{ color: "#BA7517" }}>.</span>
         </div>
-        <SignIn forceRedirectUrl={target} signUpUrl={`/${locale}/sign-up`} />
+        <SignIn forceRedirectUrl={target} signUpUrl={signUpHref} />
       </div>
     </main>
   );

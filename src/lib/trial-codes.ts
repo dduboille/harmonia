@@ -36,6 +36,23 @@ export interface TrialCode {
   active: boolean;
 }
 
+export interface AbonnementExistant {
+  stripe_subscription_id: string | null;
+  current_period_end: string | null;
+}
+
+/**
+ * Vrai si l'utilisateur a déjà un abonnement Stripe RÉEL et actif (payant,
+ * pas un essai) — un tel abonnement ne doit jamais être raccourci par un
+ * rachat de code d'essai. `stripe_subscription_id` distingue un vrai
+ * abonnement d'une ligne posée par un essai précédent (qui ne porte jamais
+ * cet identifiant).
+ */
+export function aAbonnementPayantActif(sub: AbonnementExistant | null): boolean {
+  if (!sub || !sub.stripe_subscription_id || !sub.current_period_end) return false;
+  return new Date(sub.current_period_end) > new Date();
+}
+
 export type ResultatValidation =
   | { ok: true }
   | { ok: false; status: 404 | 400 | 409; erreur: string };
@@ -43,12 +60,26 @@ export type ResultatValidation =
 /**
  * Valide un rachat de code AVANT toute écriture. `dejaConsomme` doit être
  * calculé par l'appelant (une ligne dans trial_redemptions pour ce user_id,
- * tous codes confondus).
+ * tous codes confondus). `abonnementPayantActif` doit venir de
+ * `aAbonnementPayantActif`.
+ *
+ * Ordre des vérifications délibéré : l'éligibilité de la PERSONNE (abonnement
+ * actif, essai déjà consommé) est vérifiée AVANT la validité du CODE lui-même.
+ * Sinon, une personne inéligible pourrait distinguer "code inexistant" de
+ * "code valide mais je n'y ai pas droit" selon la réponse reçue, et s'en
+ * servir pour deviner des codes valides par tâtonnement.
  */
 export function validerRachat(
   trialCode: TrialCode | null,
   dejaConsomme: boolean,
+  abonnementPayantActif: boolean,
 ): ResultatValidation {
+  if (abonnementPayantActif) {
+    return { ok: false, status: 400, erreur: "Vous avez déjà un abonnement actif — inutile d'utiliser un code d'essai." };
+  }
+  if (dejaConsomme) {
+    return { ok: false, status: 409, erreur: "Vous avez déjà utilisé un essai." };
+  }
   if (!trialCode) {
     return { ok: false, status: 404, erreur: "Code introuvable." };
   }
@@ -57,9 +88,6 @@ export function validerRachat(
   }
   if (trialCode.uses_count >= trialCode.max_uses) {
     return { ok: false, status: 400, erreur: "Ce code a atteint sa limite d'utilisations." };
-  }
-  if (dejaConsomme) {
-    return { ok: false, status: 409, erreur: "Vous avez déjà utilisé un essai." };
   }
   return { ok: true };
 }

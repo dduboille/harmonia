@@ -19,4 +19,5 @@ create table if not exists trial_redemptions (
   redeemed_at timestamptz default now()
 );
 
-create index if not exists idx_trial_codes_code on trial_codes (code);
+-- Pas d'index séparé sur trial_codes(code) : la contrainte "unique" ci-dessus
+-- en crée déjà un implicitement.

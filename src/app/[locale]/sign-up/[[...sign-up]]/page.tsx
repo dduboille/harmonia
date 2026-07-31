@@ -14,6 +14,11 @@ export default async function SignUpPage({ params, searchParams }: Props) {
   const { locale } = await params;
   const { redirect_url } = await searchParams;
   const target = redirect_url ?? `/${locale}/dashboard`;
+  // Symétrique de sign-in/page.tsx : ne pas perdre redirect_url si la
+  // personne bascule vers "se connecter" depuis ici.
+  const signInHref = redirect_url
+    ? `/${locale}/sign-in?redirect_url=${encodeURIComponent(redirect_url)}`
+    : `/${locale}/sign-in`;
 
   return (
     <main style={{
@@ -34,7 +39,7 @@ export default async function SignUpPage({ params, searchParams }: Props) {
         }}>
           Harmonia<span style={{ color: "#BA7517" }}>.</span>
         </div>
-        <SignUp forceRedirectUrl={target} signInUrl={`/${locale}/sign-in`} />
+        <SignUp forceRedirectUrl={target} signInUrl={signInHref} />
       </div>
     </main>
   );

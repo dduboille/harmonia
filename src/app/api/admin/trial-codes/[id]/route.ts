@@ -23,7 +23,8 @@ export async function PATCH(
   }
 
   const { id } = await params;
-  const { active } = await req.json();
+  const body = await req.json().catch(() => ({}));
+  const { active } = body;
   if (typeof active !== "boolean") {
     return NextResponse.json({ error: "Champ 'active' manquant." }, { status: 400 });
   }

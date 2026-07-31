@@ -4,6 +4,7 @@ import {
   genererCode,
   calculerExpiration,
   validerRachat,
+  aAbonnementPayantActif,
   estAdmin,
   type TrialCode,
 } from "./trial-codes";
@@ -42,28 +43,67 @@ describe("validerRachat", () => {
     active: true,
   };
 
-  it("accepte un code actif, sous sa limite, pour un utilisateur qui n'a jamais consommé d'essai", () => {
-    expect(validerRachat(codeValide, false)).toEqual({ ok: true });
+  it("accepte un code actif, sous sa limite, pour un utilisateur éligible", () => {
+    expect(validerRachat(codeValide, false, false)).toEqual({ ok: true });
   });
 
   it("refuse un code introuvable (null)", () => {
-    const res = validerRachat(null, false);
+    const res = validerRachat(null, false, false);
     expect(res).toEqual({ ok: false, status: 404, erreur: "Code introuvable." });
   });
 
   it("refuse un code désactivé", () => {
-    const res = validerRachat({ ...codeValide, active: false }, false);
+    const res = validerRachat({ ...codeValide, active: false }, false, false);
     expect(res).toEqual({ ok: false, status: 400, erreur: "Ce code n'est plus actif." });
   });
 
   it("refuse un code ayant atteint sa limite d'utilisations", () => {
-    const res = validerRachat({ ...codeValide, uses_count: 5, max_uses: 5 }, false);
+    const res = validerRachat({ ...codeValide, uses_count: 5, max_uses: 5 }, false, false);
     expect(res).toEqual({ ok: false, status: 400, erreur: "Ce code a atteint sa limite d'utilisations." });
   });
 
   it("refuse un utilisateur ayant déjà consommé un essai (n'importe quel code)", () => {
-    const res = validerRachat(codeValide, true);
+    const res = validerRachat(codeValide, true, false);
     expect(res).toEqual({ ok: false, status: 409, erreur: "Vous avez déjà utilisé un essai." });
+  });
+
+  it("refuse un utilisateur ayant déjà un abonnement payant actif", () => {
+    const res = validerRachat(codeValide, false, true);
+    expect(res).toEqual({ ok: false, status: 400, erreur: "Vous avez déjà un abonnement actif — inutile d'utiliser un code d'essai." });
+  });
+
+  it("priorise l'abonnement actif sur l'essai déjà consommé (même message dans les deux cas de figure)", () => {
+    const res = validerRachat(codeValide, true, true);
+    expect(res.ok).toBe(false);
+    if (!res.ok) expect(res.erreur).toBe("Vous avez déjà un abonnement actif — inutile d'utiliser un code d'essai.");
+  });
+
+  it("refuse un utilisateur déjà consommé même avec un code introuvable — même statut 409 dans les deux cas (pas d'oracle sur la validité du code)", () => {
+    const avecCodeValide = validerRachat(codeValide, true, false);
+    const avecCodeInexistant = validerRachat(null, true, false);
+    expect(avecCodeValide).toEqual(avecCodeInexistant);
+  });
+});
+
+describe("aAbonnementPayantActif", () => {
+  it("refuse si aucun abonnement (null)", () => {
+    expect(aAbonnementPayantActif(null)).toBe(false);
+  });
+
+  it("refuse une ligne d'essai (pas de stripe_subscription_id)", () => {
+    expect(aAbonnementPayantActif({ stripe_subscription_id: null, current_period_end: "2099-01-01T00:00:00.000Z" })).toBe(false);
+  });
+
+  it("refuse un abonnement Stripe déjà expiré", () => {
+    expect(aAbonnementPayantActif({ stripe_subscription_id: "sub_123", current_period_end: "2000-01-01T00:00:00.000Z" })).toBe(false);
+  });
+
+  it("accepte un abonnement Stripe réel et encore actif", () => {
+    expect(aAbonnementPayantActif({ stripe_subscription_id: "sub_123", current_period_end: "2099-01-01T00:00:00.000Z" })).toBe(true);
+  });
+
+  it("refuse si current_period_end est absent, même avec un stripe_subscription_id", () => {
+    expect(aAbonnementPayantActif({ stripe_subscription_id: "sub_123", current_period_end: null })).toBe(false);
   });
 });
 
