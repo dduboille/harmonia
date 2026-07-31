@@ -27,6 +27,8 @@ import { cours42Content, type Cours42Locale } from "@/data/cours42Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
 import StudioScore from "@/components/StudioScore";
+import { VueConservatoire } from "@/components/VueConservatoire";
+import { CONSERVATOIRE_DATA_42 } from "@/data/conservatoireData42";
 import { satbVersMusicXML } from "@/lib/satb-vers-musicxml";
 import { specAudio } from "@/lib/cours-audio";
 import type { Measure, NoteEntry, NoteName } from "@/lib/satb-rules";
@@ -186,7 +188,7 @@ function EngravedExample({ voicings, caption, listenLabel, pianoRef }: {
 
 // ─── Composant ───────────────────────────────────────────────────────────────────
 
-const SECTIONS = ["intro", "code", "realiser", "clavier", "marches", "applications", "quiz"] as const;
+const SECTIONS = ["intro", "code", "realiser", "clavier", "marches", "applications", "conservatoire", "quiz"] as const;
 
 export default function Cours42() {
   const i18n = useCoursI18n("cours42");
@@ -239,7 +241,7 @@ export default function Cours42() {
       <nav style={S.nav}>
         {SECTIONS.map((id) => (
           <button key={id} style={S.pill(sec === id)} onClick={() => setSec(id)}>
-            {i18n.sectionLabel(id)}
+            {id === "conservatoire" ? "🎓 Conservatoire" : i18n.sectionLabel(id)}
           </button>
         ))}
       </nav>
@@ -426,6 +428,9 @@ export default function Cours42() {
           <p style={S.p} dangerouslySetInnerHTML={{ __html: c.examenP1 }} />
         </div>
       )}
+
+      {/* ══ SECTION CONSERVATOIRE ══ */}
+      {sec === "conservatoire" && <VueConservatoire data={CONSERVATOIRE_DATA_42} />}
 
       {/* ══ 7. ENTRAÎNEMENT — exercices gravés + quiz ══ */}
       {sec === "quiz" && (
