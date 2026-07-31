@@ -24,6 +24,7 @@ const isPublicRoute = createRouteMatcher([
   "/:locale/cours(.*)",
   "/:locale/tonalites",
   "/:locale/upgrade",
+  "/:locale/essai",
   "/:locale/cursus",
   "/:locale/dissonance",
   "/:locale/conditions",
