@@ -2538,7 +2538,11 @@
     "footerPrivacy": "Privacy",
     "footerTerms": "Termini",
     "footerContact": "Contatti",
-    "navDissonance": "Dissonanza"
+    "navDissonance": "Dissonanza",
+    "essaiLabel": "OFFERTA DI PROVA",
+    "essaiH2": "14 giorni di Pro, gratis",
+    "essaiText": "Senza carta di credito: inserisci il codice {code} nella pagina di prova per sbloccare tutti i corsi e le funzionalità IA per 14 giorni.",
+    "essaiBtn": "Attiva la mia prova gratuita"
   },
   "dashboard": {
     "title": "Dashboard",

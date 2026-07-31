@@ -19,12 +19,21 @@ import { COURS_COUNT, FREE_COURS } from "@/lib/catalogue";
 
 const FREE_COUNT = FREE_COURS.length;
 
+/**
+ * Code d'essai actuellement mis en avant sur la landing. À changer ici
+ * (une seule ligne, pas besoin de toucher les 6 fichiers de traduction)
+ * quand ses 10 utilisations seront épuisées et qu'un nouveau code sera créé
+ * depuis /admin/essai.
+ */
+const CODE_ESSAI_ACTUEL = "LAVITAEBELLA";
+
 /** Remplit les jetons de comptage des chaînes traduites. */
 function fill(s: string): string {
   return s
     .replaceAll("{count}", String(COURS_COUNT))
     .replaceAll("{freePlus}", String(FREE_COUNT + 1))
-    .replaceAll("{free}", String(FREE_COUNT));
+    .replaceAll("{free}", String(FREE_COUNT))
+    .replaceAll("{code}", CODE_ESSAI_ACTUEL);
 }
 
 /**
@@ -261,7 +270,7 @@ export default function LandingPage() {
         <div style={{ maxWidth: 760, textAlign: "center" as const, position: "relative" as const, zIndex: 1, padding: "80px 1.5rem" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#FAEEDA", border: "0.5px solid #F6AD55", borderRadius: 20, padding: "5px 14px", fontSize: 12, fontWeight: 600, color: "#8a5a10", fontFamily: "system-ui, sans-serif", marginBottom: 32, letterSpacing: "0.04em" }}>
             <span aria-hidden="true">✦</span>
-            {fill(t("badge"))}
+            {t("badge", { count: COURS_COUNT })}
           </div>
 
           <h1 style={{ fontSize: "clamp(64px, 15vw, 148px)", fontWeight: 400, lineHeight: 1, letterSpacing: "-0.03em", margin: "0 0 32px" }}>
@@ -402,6 +411,30 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Essai gratuit */}
+      <section style={{ padding: "0 1.5rem 60px" }}>
+        <div style={{
+          maxWidth: 760, margin: "0 auto", textAlign: "center" as const,
+          padding: "40px 32px", borderRadius: 14, background: "#FAEEDA", border: "0.5px solid #F6AD55",
+        }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", color: "#8a5a10", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>
+            {t("essaiLabel")}
+          </div>
+          <h2 style={{ fontSize: "clamp(24px, 3.6vw, 34px)", fontWeight: 400, margin: "0 0 14px", letterSpacing: "-0.01em", color: "#1a1a1a" }}>
+            {t("essaiH2")}
+          </h2>
+          <p style={{ fontSize: 15, color: "#6b4a00", lineHeight: 1.7, margin: "0 auto 28px", maxWidth: 520, fontFamily: "system-ui, sans-serif" }}>
+            {t("essaiText", { code: CODE_ESSAI_ACTUEL })}
+          </p>
+          <Link
+            href={`/${locale}/essai?code=${CODE_ESSAI_ACTUEL}`}
+            style={{ display: "inline-block", padding: "14px 32px", borderRadius: 6, background: "#9A5F12", color: "#fff", textDecoration: "none", fontSize: 15, fontWeight: 500, fontFamily: "system-ui, sans-serif", letterSpacing: "0.02em" }}
+          >
+            {t("essaiBtn")}
+          </Link>
+        </div>
+      </section>
+
       {/* Tarifs */}
       <section style={{ padding: "100px 1.5rem" }}>
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
@@ -478,7 +511,7 @@ export default function LandingPage() {
           <Link href={`/${locale}/cours`} style={{ display: "inline-block", padding: "16px 40px", borderRadius: 4, background: "#9A5F12", color: "#fff", textDecoration: "none", fontSize: 16, fontWeight: 500, fontFamily: "system-ui, sans-serif", letterSpacing: "0.02em" }}>
             {t("ctaBtn")}
           </Link>
-          <p style={{ marginTop: 16, fontSize: 12, color: "#8a8a8a", fontFamily: "system-ui, sans-serif" }}>{fill(t("ctaNote"))}</p>
+          <p style={{ marginTop: 16, fontSize: 12, color: "#8a8a8a", fontFamily: "system-ui, sans-serif" }}>{t("ctaNote", { free: FREE_COUNT })}</p>
         </div>
       </section>
 

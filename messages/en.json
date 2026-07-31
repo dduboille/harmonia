@@ -3175,7 +3175,11 @@
     "footerPrivacy": "Privacy",
     "footerTerms": "Terms",
     "footerContact": "Contact",
-    "navDissonance": "Dissonance"
+    "navDissonance": "Dissonance",
+    "essaiLabel": "TRIAL OFFER",
+    "essaiH2": "14 days of Pro, free",
+    "essaiText": "No credit card needed: enter code {code} on the trial page to unlock every course and all AI features for 14 days.",
+    "essaiBtn": "Activate my free trial"
   },
   "dashboard": {
     "title": "Dashboard",

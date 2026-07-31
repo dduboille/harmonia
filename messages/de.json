@@ -2538,7 +2538,11 @@
     "footerPrivacy": "Datenschutz",
     "footerTerms": "AGB",
     "footerContact": "Kontakt",
-    "navDissonance": "Dissonanz"
+    "navDissonance": "Dissonanz",
+    "essaiLabel": "TESTANGEBOT",
+    "essaiH2": "14 Tage Pro, kostenlos",
+    "essaiText": "Ohne Kreditkarte: Geben Sie den Code {code} auf der Testseite ein, um alle Kurse und KI-Funktionen 14 Tage lang freizuschalten.",
+    "essaiBtn": "Kostenlose Testversion aktivieren"
   },
   "dashboard": {
     "title": "Dashboard",

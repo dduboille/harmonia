@@ -2538,7 +2538,11 @@
     "footerPrivacy": "Privacidade",
     "footerTerms": "Termos",
     "footerContact": "Contacto",
-    "navDissonance": "Dissonância"
+    "navDissonance": "Dissonância",
+    "essaiLabel": "OFERTA DE TESTE",
+    "essaiH2": "14 dias de Pro, grátis",
+    "essaiText": "Sem cartão de crédito: insira o código {code} na página de teste para desbloquear todos os cursos e recursos de IA por 14 dias.",
+    "essaiBtn": "Ativar meu teste gratuito"
   },
   "dashboard": {
     "title": "Painel",

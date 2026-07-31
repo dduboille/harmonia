@@ -3175,7 +3175,11 @@
     "footerPrivacy": "Confidentialité",
     "footerTerms": "CGU",
     "footerContact": "Contact",
-    "navDissonance": "Dissonance"
+    "navDissonance": "Dissonance",
+    "essaiLabel": "OFFRE D'ESSAI",
+    "essaiH2": "14 jours de Pro, gratuits",
+    "essaiText": "Sans carte bancaire : entrez le code {code} sur la page d'essai pour débloquer tous les cours et les fonctionnalités IA pendant 14 jours.",
+    "essaiBtn": "Activer mon essai gratuit"
   },
   "dashboard": {
     "title": "Tableau de bord",
