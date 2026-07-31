@@ -23,6 +23,8 @@ import { useCoursContent } from "@/hooks/useCoursContent";
 import { cours38Content } from "@/data/cours38Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
+import { CONSERVATOIRE_DATA_38 } from "@/data/conservatoireData38";
 
 // ─── Helpers audio ────────────────────────────────────────────────────────────
 
@@ -45,7 +47,7 @@ function playChord(ref: React.RefObject<PianoPlayerRef>, keys: NoteKey[], durati
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const SECTIONS_IDS = ["definition", "types", "retard", "pedale", "emploi", "quiz"] as const;
+const SECTIONS_IDS = ["definition", "types", "retard", "pedale", "emploi", "conservatoire", "quiz"] as const;
 
 // Les types de notes étrangères (hors retard, traité à part) — chaque carte est jouable.
 // melody : la ligne mélodique illustrant la note étrangère (la note étrangère est mise en valeur dans le détail).
@@ -198,7 +200,7 @@ export default function Cours38() {
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => (
           <button key={id} style={S.pill(sec === id)} onClick={() => setSec(id)}>
-            {i18n.sectionLabel(id)}
+            {id === "conservatoire" ? "🎓 Conservatoire" : i18n.sectionLabel(id)}
           </button>
         ))}
       </nav>
@@ -404,6 +406,9 @@ export default function Cours38() {
           <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("emploiGallonBox") }} />
         </div>
       )}
+
+      {/* ══ CONSERVATOIRE ══ */}
+      {sec === "conservatoire" && <VueConservatoire data={CONSERVATOIRE_DATA_38} />}
 
       {/* ══ QUIZ ══ */}
       {sec === "quiz" && (
