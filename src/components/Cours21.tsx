@@ -10,6 +10,8 @@ import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
 import { useTerm } from "@/hooks/useTerm";
 import { cours21Content } from "@/data/cours21Content";
+import { VueConservatoire } from "@/components/VueConservatoire";
+import { CONSERVATOIRE_DATA_21 } from "@/data/conservatoireData21";
 
 const PRIMARY    = "#1A6B8A";
 const PRIMARY_BG = "#EAF3F8";
@@ -373,12 +375,13 @@ export default function Cours21() {
   const tr = useTerm();
   const { questions: ALL_QUESTIONS } = useCoursContent(cours21Content);
   const pianoRef = useRef<PianoPlayerRef | null>(null);
-  const [section, setSection] = useState<"compositeurs"|"analyse"|"quiz">("compositeurs");
+  const [section, setSection] = useState<"compositeurs"|"analyse"|"conservatoire"|"quiz">("compositeurs");
 
   const SECTIONS = [
-    { id: "compositeurs" as const, label: n("sectionCompositeursLabel") },
-    { id: "analyse"      as const, label: n("sectionAnalyseLabel") },
-    { id: "quiz"         as const, label: n("sectionQuizLabel") },
+    { id: "compositeurs"  as const, label: n("sectionCompositeursLabel") },
+    { id: "analyse"       as const, label: n("sectionAnalyseLabel") },
+    { id: "conservatoire" as const, label: "🎓 Conservatoire" },
+    { id: "quiz"          as const, label: n("sectionQuizLabel") },
   ];
 
   const questions = useMemo(() => shuffle(ALL_QUESTIONS).slice(0, QUIZ_COUNT), []);
@@ -456,6 +459,9 @@ export default function Cours21() {
             {ANALYSES.map(a => <AnalysisCard key={a.id} a={a} pianoRef={pianoRef} />)}
           </div>
         )}
+
+        {/* ── Section Conservatoire ── */}
+        {section === "conservatoire" && <VueConservatoire data={CONSERVATOIRE_DATA_21} />}
 
         {/* ── Section Quiz ── */}
         {section === "quiz" && (
