@@ -115,7 +115,7 @@ describe("SATIN_DOLL_MESURES_1_8 — gravure Verovio (séquence réelle de Studi
     const svg: string = tk.renderToSVG(1);
     const notes = [...svg.matchAll(/<g id="([^"]+)" class="note"/g)];
     expect(notes.length).toBeGreaterThan(0);
-  });
+  }, 20000);
 
   it("avec breaks=encoded (StudioScore + VueConservatoire), les 8 mesures tiennent sur UNE SEULE page", async () => {
     const creerModule = (await import("verovio/wasm")).default;

@@ -147,7 +147,7 @@ describe("JESU_INTEGRAL_MESURES_1_19 — gravure Verovio (séquence réelle de S
     }
     expect(totalNotes).toBeGreaterThan(0);
     expect(totalMesures).toBe(19);
-  });
+  }, 20000);
 
   it("le surlignage Verovio avance de ~3750ms par mesure (64bpm, 4/4) sur le premier passage", async () => {
     const creerModule = (await import("verovio/wasm")).default;

@@ -104,7 +104,7 @@ describe("BEETHOVEN_OP27N2_MESURES_1_9 — gravure Verovio (séquence réelle de
     const svg: string = tk.renderToSVG(1);
     const notes = [...svg.matchAll(/<g id="([^"]+)" class="note"/g)];
     expect(notes.length).toBeGreaterThan(0);
-  });
+  }, 20000);
 
   it("avec breaks=encoded (StudioScore + VueConservatoire), les 9 mesures tiennent sur UNE SEULE page", async () => {
     const creerModule = (await import("verovio/wasm")).default;

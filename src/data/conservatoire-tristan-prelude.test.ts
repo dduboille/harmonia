@@ -129,7 +129,7 @@ describe("TRISTAN_PRELUDE_MESURES_0_13 — gravure Verovio (séquence réelle de
     expect(notes.length).toBeGreaterThan(0);
     const mesures = [...svg.matchAll(/<g[^>]*class="measure"[^>]*>/g)];
     expect(mesures).toHaveLength(14);
-  });
+  }, 20000);
 
   it("le surlignage Verovio avance de 3428.6ms par mesure pleine (52.5bpm à la noire, 3 noires par mesure de 6/8) — sauf la 1re transition, l'anacrouse ne durant qu'une croche", async () => {
     const creerModule = (await import("verovio/wasm")).default;

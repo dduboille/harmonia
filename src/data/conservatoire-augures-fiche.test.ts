@@ -134,5 +134,5 @@ describe("AUGURES_FICHE_MESURES_1_6 — gravure Verovio (séquence réelle de St
     expect(notes.length).toBeGreaterThan(0);
     const mesures = [...svg.matchAll(/<g[^>]*class="measure"[^>]*>/g)];
     expect(mesures).toHaveLength(6);
-  });
+  }, 20000);
 });

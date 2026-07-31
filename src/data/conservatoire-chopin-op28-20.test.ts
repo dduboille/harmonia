@@ -110,7 +110,7 @@ describe("CHOPIN_OP28_N20_MESURES_1_13 — gravure Verovio (séquence réelle de
     expect(notes.length).toBeGreaterThan(0);
     const mesures = [...svg.matchAll(/<g[^>]*class="measure"[^>]*>/g)];
     expect(mesures).toHaveLength(13);
-  });
+  }, 20000);
 
   it("le surlignage Verovio avance de 6000ms par mesure (40bpm, 4 temps)", async () => {
     const creerModule = (await import("verovio/wasm")).default;

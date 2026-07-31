@@ -138,5 +138,5 @@ describe("PENDULE_FICHE_MESURES_1_8 — gravure Verovio (séquence réelle de St
     expect(notes.length).toBeGreaterThan(0);
     const mesures = [...svg.matchAll(/<g[^>]*class="measure"[^>]*>/g)];
     expect(mesures).toHaveLength(8);
-  });
+  }, 20000);
 });

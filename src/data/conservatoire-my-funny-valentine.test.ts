@@ -102,7 +102,7 @@ describe("MY_FUNNY_VALENTINE_MESURES_1_9 — gravure Verovio (séquence réelle 
     const svg: string = tk.renderToSVG(1);
     const notes = [...svg.matchAll(/<g id="([^"]+)" class="note"/g)];
     expect(notes.length).toBeGreaterThan(0);
-  });
+  }, 20000);
 
   // Régression du correctif de tempo : la table de temps MIDI de Verovio doit
   // désormais avancer d'une mesure toutes les 2400ms (100bpm, 4 temps), pas

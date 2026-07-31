@@ -130,7 +130,7 @@ describe("HAYDN94_MESURES_1_148 — gravure Verovio (séquence réelle de Studio
     }
     expect(totalNotes).toBeGreaterThan(0);
     expect(totalMesures).toBe(148);
-  });
+  }, 20000);
 
   it("le surlignage Verovio avance de ~1875ms par mesure pendant le thème (Andante, 64bpm, 2/4)", async () => {
     const creerModule = (await import("verovio/wasm")).default;

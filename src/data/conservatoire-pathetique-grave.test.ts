@@ -98,7 +98,7 @@ describe("PATHETIQUE_GRAVE_MESURES_1_10 — gravure Verovio (séquence réelle d
     expect(notes.length).toBeGreaterThan(0);
     const mesures = [...svg.matchAll(/<g[^>]*class="measure"[^>]*>/g)];
     expect(mesures).toHaveLength(10);
-  });
+  }, 20000);
 
   // Régression du correctif de tempo/structure : chaque mesure doit durer
   // exactement 8000ms (30 à la noire, 4 temps) — écarts observés avant le

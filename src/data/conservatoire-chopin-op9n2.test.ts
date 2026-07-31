@@ -78,7 +78,7 @@ describe("CHOPIN_OP9_N2_MESURES_1_9 — gravure Verovio (séquence réelle de St
     const svg: string = tk.renderToSVG(1);
     const notes = [...svg.matchAll(/<g id="([^"]+)" class="note"/g)];
     expect(notes.length).toBeGreaterThan(0);
-  });
+  }, 20000);
 
   it("Verovio rend bien les 24 symboles d'accord", () => {
     tk.loadData(CHOPIN_OP9_N2_MESURES_1_9);

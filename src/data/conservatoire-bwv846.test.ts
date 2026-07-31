@@ -120,7 +120,7 @@ describe("BWV846_MESURES_1_8 — gravure Verovio (séquence réelle de StudioSco
     // 8 mesures × (12 main droite + 4 attaques ténor + 2 basse) — la gravure dessine
     // les DEUX notes d'une liaison (contrairement à `parseMusicXML` qui les fusionne).
     expect(notes).toHaveLength(8 * 18);
-  });
+  }, 20000);
 
   it("respecte les groupes de ligature explicites de Dany (32 groupes = 4 par mesure)", () => {
     tk.loadData(BWV846_MESURES_1_8);

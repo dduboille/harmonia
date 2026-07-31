@@ -14,6 +14,8 @@ import { useCoursI18n } from "@/hooks/useCoursI18n";
 import { useCoursContent } from "@/hooks/useCoursContent";
 import { cours40Content } from "@/data/cours40Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
+import { VueConservatoire } from "@/components/VueConservatoire";
+import { CONSERVATOIRE_DATA_40 } from "@/data/conservatoireData40";
 import MaitreCard from "@/components/MaitreCard";
 
 // Joue une voix mélodique : une note après l'autre, à un tempo donné
@@ -190,6 +192,7 @@ export default function Cours40() {
   const sectionLabel = (id: string) => {
     if (id === "structure") return n("navStructure");
     if (id === "developpement") return n("navDeveloppement");
+    if (id === "conservatoire") return "🎓 Conservatoire";
     return n("navQuiz");
   };
 
@@ -227,7 +230,7 @@ export default function Cours40() {
 
       {/* Navigation */}
       <nav style={S.nav}>
-        {(["structure", "developpement", "quiz"] as const).map(id => (
+        {(["structure", "developpement", "conservatoire", "quiz"] as const).map(id => (
           <button key={id} style={S.pill(activeSection === id)} onClick={() => setActiveSection(id)}>
             {sectionLabel(id)}
           </button>
@@ -372,6 +375,9 @@ export default function Cours40() {
           <div style={S.warnBox} dangerouslySetInnerHTML={{ __html: n("devGedalgeBox") }} />
         </div>
       )}
+
+      {/* ══ SECTION CONSERVATOIRE ══ */}
+      {activeSection === "conservatoire" && <VueConservatoire data={CONSERVATOIRE_DATA_40} />}
 
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (

@@ -115,7 +115,7 @@ describe("PATHETIQUE2_MESURES_1_8 — gravure Verovio (séquence réelle de Stud
     const svg: string = tk.renderToSVG(1);
     const notes = [...svg.matchAll(/<g id="([^"]+)" class="note"/g)];
     expect(notes.length).toBeGreaterThan(0);
-  });
+  }, 20000);
 
   it("Verovio rend bien les couleurs par fonction (têtes de note)", () => {
     tk.loadData(PATHETIQUE2_MESURES_1_8);

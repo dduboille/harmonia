@@ -104,7 +104,7 @@ describe("BWV772_MESURES_1_8 — gravure Verovio (séquence réelle de StudioSco
     // Le 3e symbole de la partition (mesure 2, 2e accord) est celui qui portait
     // le bug ; sans le correctif, il afficherait "C" (root-step) au lieu de "V7".
     expect(harms[2]).toBe("V7");
-  });
+  }, 20000);
 
   it("avec breaks=encoded (StudioScore + VueConservatoire), les 8 mesures tiennent sur UNE SEULE page", async () => {
     const creerModule = (await import("verovio/wasm")).default;

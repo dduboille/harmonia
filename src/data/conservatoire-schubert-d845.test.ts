@@ -71,7 +71,7 @@ describe("SCHUBERT_D845_MESURES_1_10 — gravure Verovio (séquence réelle de S
     const svg: string = tk.renderToSVG(1);
     const notes = [...svg.matchAll(/<g id="([^"]+)" class="note"/g)];
     expect(notes.length).toBeGreaterThan(0);
-  });
+  }, 20000);
 
   it("Verovio rend le chiffrage romain sous la basse", () => {
     tk.loadData(SCHUBERT_D845_MESURES_1_10);

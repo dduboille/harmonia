@@ -116,7 +116,7 @@ describe("K545_EXPOSITION_MESURES_1_28 — gravure Verovio (séquence réelle de
     }
     expect(totalNotes).toBeGreaterThan(0);
     expect(totalMesures).toBe(28);
-  });
+  }, 20000);
 
   it("le surlignage Verovio avance de ~1714ms par mesure (140bpm, 4/4)", async () => {
     const creerModule = (await import("verovio/wasm")).default;

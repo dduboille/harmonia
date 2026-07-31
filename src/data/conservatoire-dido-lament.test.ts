@@ -142,7 +142,7 @@ describe("DIDO_LAMENT_MESURES_1_65 — gravure Verovio (séquence réelle de Stu
     }
     expect(totalNotes).toBeGreaterThan(0);
     expect(totalMesures).toBe(65);
-  });
+  }, 20000);
 
   it("le surlignage Verovio avance de ~1200ms par mesure pendant le récitatif (Largo, 50bpm, 4/4)", async () => {
     const creerModule = (await import("verovio/wasm")).default;

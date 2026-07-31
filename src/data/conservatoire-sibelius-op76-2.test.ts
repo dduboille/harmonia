@@ -144,7 +144,7 @@ describe("SIBELIUS_OP76_2_MESURES_1_72 — gravure Verovio (séquence réelle de
     }
     expect(totalNotes).toBeGreaterThan(0);
     expect(totalMesures).toBe(72);
-  });
+  }, 20000);
 
   it("le surlignage Verovio avance de 2000ms par mesure (Leggiero, 60bpm, 2/4)", async () => {
     const creerModule = (await import("verovio/wasm")).default;

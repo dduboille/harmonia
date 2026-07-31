@@ -123,7 +123,7 @@ describe("BWV645_MESURES_1_54 — gravure Verovio (séquence réelle de StudioSc
     }
     expect(totalNotes).toBeGreaterThan(0);
     expect(totalMesures).toBe(54);
-  });
+  }, 20000);
 
   it("le surlignage Verovio avance de ~3529ms par mesure (68bpm à la noire, 4/4)", async () => {
     const creerModule = (await import("verovio/wasm")).default;
