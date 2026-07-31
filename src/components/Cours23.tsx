@@ -13,6 +13,8 @@ import { useTerm } from "@/hooks/useTerm";
 import { cours23Content } from "@/data/cours23Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
+import { CONSERVATOIRE_DATA_23 } from "@/data/conservatoireData23";
 
 const PRIMARY = "#5C3D6E";
 
@@ -440,7 +442,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 const QUIZ_COUNT = 10;
-const SECTIONS_IDS = ["styles", "exercices", "quiz"] as const;
+const SECTIONS_IDS = ["styles", "exercices", "conservatoire", "quiz"] as const;
 
 const S = {
   wrap:     { fontFamily: "var(--font-sans, system-ui)", maxWidth: 720, margin: "0 auto", padding: "0 1rem 3rem" } as React.CSSProperties,
@@ -509,6 +511,7 @@ export default function Cours23() {
   const sectionLabel = (id: string) => {
     if (id === "styles") return n("navStyles");
     if (id === "exercices") return n("navExercices");
+    if (id === "conservatoire") return "🎓 Conservatoire";
     return n("navEntrainement");
   };
 
@@ -738,6 +741,9 @@ export default function Cours23() {
           <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("exTipBox") }} />
         </div>
       )}
+
+      {/* ══ SECTION CONSERVATOIRE ══ */}
+      {activeSection === "conservatoire" && <VueConservatoire data={CONSERVATOIRE_DATA_23} />}
 
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (

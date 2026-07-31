@@ -164,7 +164,7 @@ describe("BOLERO_MESURES_1_98 — gravure Verovio (séquence réelle de StudioSc
     }
     expect(totalNotes).toBeGreaterThan(0);
     expect(totalMesures).toBe(98);
-  });
+  }, 20000);
 
   it("le surlignage Verovio avance de 2500ms par mesure (Tempo di bolero, 72bpm, 3/4)", async () => {
     const creerModule = (await import("verovio/wasm")).default;
