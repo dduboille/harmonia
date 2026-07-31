@@ -13,6 +13,8 @@ import { useTerm } from "@/hooks/useTerm";
 import { cours22Content } from "@/data/cours22Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
+import { CONSERVATOIRE_DATA_22 } from "@/data/conservatoireData22";
 
 const PRIMARY = "#2D5A8E";
 
@@ -235,7 +237,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 const QUIZ_COUNT = 10;
-const SECTIONS_IDS = ["principe", "application", "quiz"] as const;
+const SECTIONS_IDS = ["principe", "application", "conservatoire", "quiz"] as const;
 
 const S = {
   wrap:     { fontFamily: "var(--font-sans, system-ui)", maxWidth: 720, margin: "0 auto", padding: "0 1rem 3rem" } as React.CSSProperties,
@@ -298,6 +300,7 @@ export default function Cours22() {
   const sectionLabel = (id: string) => {
     if (id === "principe") return n("navTechniques");
     if (id === "application") return n("navAnalyses");
+    if (id === "conservatoire") return "🎓 Conservatoire";
     return n("navEntrainement");
   };
 
@@ -521,6 +524,9 @@ export default function Cours22() {
           <div style={S.tip} dangerouslySetInnerHTML={{ __html: n("applicationTip") }} />
         </div>
       )}
+
+      {/* ══ SECTION CONSERVATOIRE ══ */}
+      {activeSection === "conservatoire" && <VueConservatoire data={CONSERVATOIRE_DATA_22} />}
 
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
