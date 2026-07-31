@@ -13,6 +13,8 @@ import { useTerm } from "@/hooks/useTerm";
 import { cours19Content } from "@/data/cours19Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
+import { VueConservatoire } from "@/components/VueConservatoire";
+import { CONSERVATOIRE_DATA_19 } from "@/data/conservatoireData19";
 
 // ── Audio helpers ─────────────────────────────────────────────────────────────
 
@@ -120,7 +122,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 const QUIZ_COUNT = 10;
-const SECTIONS_IDS = ["instruments", "ecriture", "quiz"] as const;
+const SECTIONS_IDS = ["instruments", "ecriture", "conservatoire", "quiz"] as const;
 type SectionId = typeof SECTIONS_IDS[number];
 
 const PRIMARY    = "#2A6050";
@@ -188,6 +190,7 @@ export default function Cours19() {
   const sectionLabel = (id: SectionId) => {
     if (id === "instruments") return n("navInstruments");
     if (id === "ecriture")   return n("navEcriture");
+    if (id === "conservatoire") return "🎓 Conservatoire";
     return n("navEntrainement");
   };
 
@@ -629,6 +632,9 @@ export default function Cours19() {
           />
         </div>
       )}
+
+      {/* ══ SECTION CONSERVATOIRE ══ */}
+      {activeSection === "conservatoire" && <VueConservatoire data={CONSERVATOIRE_DATA_19} />}
 
       {/* ══ SECTION 3 : QUIZ ══ */}
       {activeSection === "quiz" && (
