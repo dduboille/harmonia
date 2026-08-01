@@ -6104,6 +6104,98 @@
       "originalLabel": "Original:",
       "principeLabel": "Principio:",
       "sequenceLabel": "Secuencia Giant Steps completa: Si &ndash; Sol &ndash; Mib (3 t&oacute;nicas a tercera mayor)"
+    },
+    "conservatoire": {
+      "intuition": "Coltrane no rompió las reglas: descubrió un nivel de reglas más profundo que el que todo el mundo veía.",
+      "reference": {
+        "badge": "Levine · The Jazz Theory Book",
+        "citation": "Las sustituciones de Coltrane no son errores armónicos: son modulaciones ultrarrápidas hacia tonalidades emparentadas por terceras mayores.",
+        "auteur": "Mark Levine, 1995"
+      },
+      "voix": [
+        "Cada grado acórdico tiene sus tensiones 'disponibles' específicas: V7 admite b9/#9/#11/b13; IMaj7 admite 9/#11/13; IIm7 admite 9/11. Fuera de esas tensiones, la nota crea una disonancia ajena al estilo.",
+        "El b9 (novena bemol) suena oscuro y español; el #9 (novena sostenida) suena 'Hendrix' y funky. El mismo acorde de base, colores radicalmente distintos.",
+        "Giant Steps gira en torno a 3 tonalidades a distancia de tercera mayor: Si, Sol, Mi♭ — un triángulo perfecto sobre el círculo de quintas que se recorre en 16 compases."
+      ],
+      "repertoire": {
+        "titre": "Giant Steps (arreglo para piano en 7/4, Jacob Koller)",
+        "compositeur": "John Coltrane"
+      },
+      "pieges": [
+        {
+          "erreur": "Utilizar todas las extensiones a la vez",
+          "correction": "Las extensiones se apilan, pero se contradicen entre sí: b9 y #9 juntas crean un clúster inarmónico. Hay que elegir un color: oscuro (b9), funky (#9) o lidio (#11)."
+        },
+        {
+          "erreur": "Alteraciones sin dirección de conducción de las voces",
+          "correction": "Toda alteración implica una resolución: el b9 resuelve hacia la tercera de I, el #11 hacia la quinta de I. Una alteración sin resolución carece de sentido funcional."
+        },
+        {
+          "erreur": "Confundir b9 y #9 (colores muy distintos)",
+          "correction": "G7b9 = Sol–Si–Re–Fa–La♭ → oscuro, expresivo, flamenco. G7#9 = Sol–Si–Re–Fa–La♯ → funky, eléctrico, 'Purple Haze'. La misma fundamental, un efecto completamente opuesto."
+        }
+      ],
+      "resume": [
+        "Extensiones alteradas: b9 (oscura) · #9 (funky/Hendrix) · #11 (lidio dominante) · b5/b13 (alterada) — cada una con su color específico",
+        "Tensiones disponibles por grado: IMaj7 (9,#11,13) · IIm7 (9,11) · V7 (b9,#9,#11,b13) · Im7 (9,11,b13) · IIm7b5 (b9,11,b13)",
+        "Giant Steps: ciclo de terceras mayores Si–Sol–Mi♭ — triángulo perfecto que barre 3 tonalidades en 16 compases a tempo rápido"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Tres centros equidistantes — Si, Sol, Mi♭ — que dividen la octava en terceras mayores iguales (tríada aumentada), sin jerarquía entre ellos.",
+        "metrique": "7/4. Muy vivo (negra = 242).",
+        "forme": "Introducción (cc. 1-8) — tema (cc. 9-16) — tema bis con voicings ampliados (cc. 17-24) — variación rearmonizada (cc. 25-32) — solo escrito, 6 chorus de 8 compases (cc. 33-80) — tema out (cc. 81-88) — coda rubato (cc. 89-98).",
+        "sections": [
+          {
+            "label": "El truco del 7/4",
+            "titre": "Dos compases al precio de uno",
+            "chiffrage": "16 compases originales → 8 compases de 7/4",
+            "fonctions": "—",
+            "texte": "El arreglo de Koller comprime cada pareja de compases de 4/4 de la parrilla original en un solo compás de 7/4: a cada pareja se le escamotea un tiempo. La parrilla más agotadora del jazz — un centro tonal por tiempo fuerte, o casi — resulta así aún más acelerada: el oído nunca dispone de los ocho tiempos que espera para digerir una pareja de cadencias."
+          },
+          {
+            "label": "Compases 9-16",
+            "titre": "El tema: la parrilla completa",
+            "chiffrage": "B∆–D7·G∆–B♭7 | E♭∆·Am7–D7 | G∆–B♭7·E♭∆–F#7 | B∆·Fm7–B♭7 | E♭∆·Am7–D7 | G∆·C#m7–F#7 | B∆·Fm7–B♭7 | E♭∆·C#m7–F#7",
+            "fonctions": "T (×8, cada compás se abre sobre una tónica local)",
+            "texte": "Tomada por separado, cada cadencia es perfectamente funcional: nada más que V7→I y ii–V–I de manual, la sintaxis de Mozart intacta. Lo que cambia es la velocidad a la que se cambia de centro: Si, Sol, Mi♭, Si, Mi♭, Sol, Si, Mi♭ — nunca hay tiempo de instalarse."
+          },
+          {
+            "label": "Los Coltrane changes",
+            "titre": "Tres tónicas, una tríada aumentada",
+            "chiffrage": "Si – Sol – Mi♭",
+            "fonctions": "—",
+            "texte": "El circuito de los tres centros tonales divide la octava en tres partes estrictamente iguales: Si, Sol y Mi♭ forman una tríada aumentada — el mismo y único acorde que produce la escala de tonos enteros de Voiles. Esa simetría abole la jerarquía: tres tónicas equidistantes, ninguna domina, el ciclo gira sin centro de gravedad, exactamente igual que la colección de tonos enteros giraba sin sensible."
+          },
+          {
+            "label": "Compases 33-88",
+            "titre": "Solo y tema out",
+            "chiffrage": "6 chorus de 8 compases sobre el mismo ciclo, después reexposición del tema",
+            "fonctions": "?",
+            "texte": "Seis chorus escritos recorren el mismo ciclo armónico, antes de que el tema vuelva tal cual para cerrar la forma."
+          },
+          {
+            "label": "Compases 89-98",
+            "titre": "La coda: una puerta que no existía",
+            "chiffrage": "Barrido sobre Mi lidio (Mi-Fa♯-Sol♯-La♯-Si-Do♯-Re♯), final sobre un Mi desnudo",
+            "fonctions": "?",
+            "texte": "Tras noventa y cinco compases de rotación perfecta entre Si, Sol y Mi♭, la coda sale por una tónica que no pertenece al ciclo: un barrido rubato de casi siete octavas despliega la escala de Mi lidio, y la pieza se apaga sobre un Mi desnudo, sin relación funcional alguna con Si-Sol-Mi♭. El La♯ de ese Mi lidio es el mismo color — el #11 — que va de Evans a Debussy en el resto de este corpus."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "La inversión final",
+            "texte": "Mozart hacía girar un ciclo asimétrico (el de las quintas) alrededor de un centro gravitatorio. Coltrane hace girar esa misma sintaxis cadencial — V7 hacia I, ii-V-I de manual — sobre una órbita simétrica, sin gravedad. La función ha sobrevivido a todo: Beethoven, Wagner, Debussy. Termina aquí, con el motor intacto, montado sobre un chasis que ya no lo está."
+          },
+          {
+            "titre": "Dos divisiones de la octava, un mismo problema",
+            "texte": "Stravinsky superponía dos tonalidades a distancia de tritono (división de la octava por 2); Coltrane encadena tres tonalidades a distancia de tercera mayor (división por 3). Dos soluciones al mismo agotamiento de la jerarquía de las quintas — una por conflicto vertical, la otra por rotación horizontal."
+          },
+          {
+            "titre": "Un color que se cierra sobre sí mismo",
+            "texte": "El La♯ del Mi lidio final no es otra cosa que la oncena aumentada — el mismo color que, en otros puntos de este recorrido, une el lenguaje de Bill Evans con el de Debussy. El gesto más 'fuera' de la pieza cierra, sin pretenderlo, uno de los bucles del corpus entero."
+          }
+        ]
+      }
     }
   },
   "cours33": {
@@ -6149,6 +6241,105 @@
       "ecouterBtn": "&#9654; Escuchar",
       "tonaliteLabel": "Tonalidad:",
       "exempleLabel": "Ejemplo:"
+    },
+    "conservatoire": {
+      "intuition": "La fuga no es una limitación: es una conversación a varias voces en la que cada una habla y escucha al mismo tiempo. Bach pensaba en fugas como nosotros pensamos en frases.",
+      "reference": {
+        "badge": "Bach · El arte de la fuga BWV 1080",
+        "citation": "La fuga es el arte de hacer entrar sucesivamente las voces en un sujeto y de conducirlas después juntas sin que ninguna aplaste a las demás: es la democracia absoluta del contrapunto.",
+        "auteur": "Johann Sebastian Bach, testamento musical, 1740–1750"
+      },
+      "voix": [
+        "En el coral a 4 voces, el bajo es el cimiento: establece la armonía. El contralto y el tenor no son 'voces de relleno': sostienen la conducción de las voces. Una mala conducción de voces mata un coral.",
+        "La sensible (7.º grado) DEBE ascender hacia la tónica. La séptima de dominante DEBE descender. Son reglas inviolables en el estilo de Bach: infringirlas constituye un error estilístico grave.",
+        "Al analizar una fuga, empieza por identificar el sujeto, la respuesta y el contrasujeto antes de analizar cualquier otra cosa. Esos tres elementos son el material de toda la fuga."
+      ],
+      "repertoire": {
+        "titre": "Preludio y fuga n.º 2 en do menor, BWV 847 (íntegro)",
+        "compositeur": "Johann Sebastian Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Hacer subir la sensible hacia la dominante (sol en lugar de la tónica)",
+          "correction": "La sensible (Si en Do mayor, no Si bemol — el 7.º grado natural) debe resolver SIEMPRE hacia la tónica por semitono ascendente. Es la regla más estricta del coral barroco."
+        },
+        {
+          "erreur": "Confundir sujeto y respuesta en una fuga",
+          "correction": "El sujeto está en la tónica; la respuesta está en la dominante (transportada una quinta más arriba o una cuarta más abajo). La respuesta puede ser tonal (ligeramente modificada) o real (transporte exacto)."
+        },
+        {
+          "erreur": "Analizar la fuga como una sucesión de acordes clásicos",
+          "correction": "La fuga es un tejido contrapuntístico: cada voz es una línea melódica independiente. La armonía resulta del cruce de esas líneas, no de una progresión de acordes planificada."
+        }
+      ],
+      "resume": [
+        "Coral de Bach: 4 voces (SATB), reglas estrictas de conducción de las voces, sensible resuelta hacia I, séptima de dominante descendente",
+        "Fuga: sujeto (tónica) → respuesta (dominante) → contrasujeto → estrecho — tejido contrapuntístico, no progresiones de acordes",
+        "El arte de la fuga BWV 1080: testamento musical de Bach, 14 fugas sobre un solo sujeto, inacabado a su muerte"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Do menor, con un claro en el relativo (mi bemol mayor) dentro de la fuga, y tercera de Picardía al final del todo.",
+        "metrique": "4/4. Allegro moderato (118), Presto (145) en el c. 28, Adagio (20) en el c. 34, Allegro en el c. 35; fuga Andante.",
+        "forme": "Preludio de figuración de 38 compases (pedal de tónica, secuencia de subdominantes, marcha armónica, pedal de dominante, cadenza, recitativo, coda) seguido de una fuga a 3 voces de 31 compases (exposición, episodios en marcha armónica, 6 entradas del sujeto).",
+        "sections": [
+          {
+            "label": "Compases 1-4",
+            "titre": "El preludio: pedal de tónica",
+            "chiffrage": "i – iv6/4 – vii°7 (ped.) – i",
+            "fonctions": "T – SD – D – T",
+            "texte": "La respiración inicial: un único motivo de semicorcheas en el que cada acorde se lee con claridad, una armonía por compás. La tónica mantenida en el bajo sostiene un vii°7 sobre pedal (ya un color de V♭9) antes de cerrar de nuevo sobre la tónica."
+          },
+          {
+            "label": "Compases 5-12",
+            "titre": "La secuencia de subdominantes en cascada",
+            "chiffrage": "VI6/4 | V4/2 de v – v6 | V4/2 de iv – iv6 | V4/2 de III – III6 | VI6/5",
+            "fonctions": "T | D–D | D–SD | D–T | T",
+            "texte": "El hallazgo de la pieza: cada grado va precedido de su propia dominante en 4/2, con el bajo descendiendo de dos en dos (Do-Si♭, Si♭-La♭, La♭-Sol) — el círculo de quintas disfrazado de deslizamiento cromático de inversiones."
+          },
+          {
+            "label": "Compases 13-27",
+            "titre": "Marcha armónica y luego pedal de dominante",
+            "chiffrage": "marcha (cc. 13-20) — i6/4 ↔ vii°7 sobre pedal de Sol (cc. 21-27) — V7♭9",
+            "fonctions": "? – D – D",
+            "texte": "Una marcha armónica conduce hacia la dominante, antes de que el preludio bascule hacia su segunda naturaleza: siete compases de pedal de dominante, una oscilación i6/4 / vii°7 bajo una melodía que asciende cromáticamente (Mi♭-Fa♯-Sol-La♭ — el gesto del Grave de Beethoven, un siglo antes), espesándose en V7♭9."
+          },
+          {
+            "label": "Compases 28-38",
+            "titre": "Cadenza, recitativo y coda",
+            "chiffrage": "Presto (cadencia-cohete) — Adagio (V7/iv, recitativo) — Allegro (vii°7, ♭9 napolitano) — cadencia",
+            "fonctions": "D – D – T – T",
+            "texte": "El Presto desata la cadencia-cohete sobre la dominante mantenida. El Adagio de un solo compás arpegia un Do7 — la dominante de la subdominante, esgrimida como una pregunta, un gesto de recitativo. El Allegro final responde sobre pedal de tónica, con el Re♭ napolitano como última sombra antes de la resolución."
+          },
+          {
+            "label": "Compases 39-45",
+            "titre": "La fuga: la exposición",
+            "chiffrage": "Sujeto (contralto) — Respuesta tonal (soprano, sol) + 1.er contrasujeto — Sujeto (bajo)",
+            "fonctions": "? (contrapunto — el análisis con números romanos no tiene aquí objeto)",
+            "texte": "Sujeto en el contralto, en do menor, con su salto característico de cuarta. Respuesta tonal en el soprano sobre sol: la cabeza responde con una quinta descendente allí donde el sujeto hacía una cuarta — el ajuste de manual — contra el primer contrasujeto, una escala descendente en el contralto. Sujeto en el bajo: exposición cerrada."
+          },
+          {
+            "label": "Compases 47-69",
+            "titre": "Episodios, entradas y tercera de Picardía",
+            "chiffrage": "episodios en marcha armónica — entrada en el relativo (Mi♭) — retorno a do — entrada final sobre pedal — tercera de Picardía",
+            "fonctions": "? (contrapunto) — T (resolución final)",
+            "texte": "Unos episodios en marcha armónica sobre la cabeza del sujeto conducen a un único claro, la entrada en mi bemol mayor (el relativo). El retorno a do prepara las últimas entradas — bajo y después soprano sobre pedal de tónica — antes de la resolución final sobre tercera de Picardía (el Mi natural del último compás). Ningún artificio sabio: ni estrecho ni inversión; esta fuga es célebre precisamente por su legibilidad."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Las dos caras de Bach",
+            "texte": "El preludio, donde la armonía es lo primero y la figuración lo segundo, y la fuga, donde las líneas lo engendran todo: el mismo compositor, dos métodos de escritura opuestos, reunidos en un solo díptico."
+          },
+          {
+            "titre": "Un inventario en treinta y ocho compases",
+            "texte": "Pedal, secuencia, dominante prolongada, cadenza, recitativo, coda: el preludio despliega él solo casi la totalidad de los recursos que una armonía tonal puede movilizar, cada uno claramente aislado como en un manual."
+          },
+          {
+            "titre": "Una lección sin artificio",
+            "texte": "La fuga no recurre ni al estrecho ni a la inversión: las herramientas sabias del contrapunto permanecen deliberadamente ausentes. Es precisamente esa sobriedad la que la ha convertido en la fuga de análisis por defecto de todos los conservatorios."
+          }
+        ]
+      }
     }
   },
   "cours34": {
@@ -6600,6 +6791,98 @@
       "ravelWarnBox": "<strong>Error frecuente:</strong> Creer que Debussy y Ravel son el mismo compositor con el mismo estilo. Su superficie es similar (impresionismo, colores) pero su método es opuesto. Ravel puede escribir en formas clásicas estrictas (Sonatina para piano, Cuarteto de cuerdas) con un lenguaje impresionista. Debussy evita las formas clásicas. Esta diferencia es fundamental.",
       "quizH2": "Quiz — Impresionismo: Debussy, Ravel, Satie",
       "ecouter": "▶ Escuchar"
+    },
+    "conservatoire": {
+      "intuition": "Debussy y Ravel comparten la misma superficie: acordes no funcionales, colores sonoros, impresionismo. Pero Debussy sueña y Ravel calcula. Bajo el mismo velo, dos inteligencias opuestas.",
+      "reference": {
+        "badge": "Debussy · Correspondencia, 1907",
+        "citation": "Quiero una música que parezca salir de la sombra y que a veces vuelva a ella, cuyo contenido armónico no esté sometido a reglas rígidas y artificiales.",
+        "auteur": "Claude Debussy, carta a su editor Durand, 1907"
+      },
+      "voix": [
+        "En Debussy, la progresión armónica sigue a la melodía, no al revés. Un acorde se elige por su color sonoro, no por su función T/SD/D. Analizar a Debussy con las funciones clásicas equivale a leer un poema como un manual de instrucciones.",
+        "Ravel es el arquitecto del impresionismo: sus acordes son no funcionales en apariencia, pero su encadenamiento está rigurosamente calculado. El Boléro no es más que un acorde (Do7) y, sin embargo, su orquestación progresiva crea una tensión que ninguna progresión de acordes habría podido producir.",
+        "Los pedales largos de Debussy — bajo inmóvil mientras la armonía cambia por encima — crean un efecto de suspensión temporal. Es una técnica medieval (organum) reinventada al servicio del color moderno."
+      ],
+      "repertoire": {
+        "titre": "Pavane pour une infante défunte (íntegra)",
+        "compositeur": "Maurice Ravel"
+      },
+      "pieges": [
+        {
+          "erreur": "Aplicar el análisis funcional T/SD/D a la armonía de Debussy",
+          "correction": "La música de Debussy no sigue la lógica clásica de tensión-resolución. Los acordes son colores, no funciones. El análisis correcto identifica las escalas de origen (escala de tonos enteros, octatónica, pentatónica) y el efecto de planing, no las funciones armónicas."
+        },
+        {
+          "erreur": "Confundir estilísticamente a Ravel y a Debussy",
+          "correction": "Debussy: armonía intuitiva, estructura fluida, sin forma clásica rígida. Ravel: armonía calculada con precisión, formas clásicas reinterpretadas (sonatina, minueto), orquestación de relojero. La misma superficie impresionista, lógicas compositivas opuestas."
+        },
+        {
+          "erreur": "Creer que los policordes de Ravel son aleatorios",
+          "correction": "En Ravel, la superposición de dos acordes (Do mayor + Re mayor) está calculada: las notas comunes crean vínculos, las notas divergentes crean el color. No es azar: es álgebra armónica."
+        }
+      ],
+      "resume": [
+        "Debussy: planing (acordes paralelos), escala de tonos enteros/octatónica/pentatónica, pedales largos, armonía no funcional por color",
+        "Ravel: policordes, notas añadidas (6.ª, 9.ª), modalidad neoclásica, ostinato armónico (Boléro), orquestación precisa y calculada",
+        "Satie: música de mobiliario, armonía estática, repetición hipnótica — prefigura la música minimalista y el ambient 50 años antes de tiempo"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Sol mayor, una tonalidad plenamente funcional: a diferencia de Debussy o de Satie, Ravel no renuncia nunca a la gramática tonal. Solo cambia su vocabulario: cada grado lleva su 7.ª o su 9.ª como equipamiento de serie.",
+        "metrique": "4/4 (escrito con C cortada), ♩=80. « Assez doux, mais d'une sonorité large » (bastante suave, pero con sonoridad amplia) — todas las indicaciones son de Ravel, solas en escena en esta edición.",
+        "forme": "Un rondó a la francesa, legible en las propias indicaciones de la partitura: estribillo (cc. 1-12) y su eco « Très lointain » (muy lejano) (c. 13 y ss.); copla 1 « un peu plus lent » (un poco más lento) (c. 26, en órbita de si menor/Re); estribillo 2 « Reprenez le mouvement » (retomen el movimiento) (c. 28, rearmonizado); copla 2 « subitement très doux et très lié » (súbitamente muy suave y muy ligado) (c. 39, la vertiente oscura, mixturas con bemoles, doble pasaje « Très grave » en los cc. 48 y 58); estribillo final « marquez le chant » (destaquen el canto) (c. 61) y su cadencia « En élargissant beaucoup » (ampliando mucho) (c. 70). Tres estribillos, dos coplas, simetría perfecta.",
+        "sections": [
+          {
+            "label": "Compases 1-4 (el estribillo: una cadena de séptimas)",
+            "titre": "El color moderno sobre la gramática antigua",
+            "chiffrage": "I – IV∆7(#11) – iii6 – vi9 – IV∆7 – ii9 – V9 – I∆9",
+            "fonctions": "T – SD – T – T – SD – SD – D – T",
+            "texte": "El estribillo es un pequeño manifiesto: cada grado de la escala lleva su séptima o su novena como equipamiento de serie, incluida la propia tónica, que llega ya en el c. 4 coronada por su propia séptima mayor (el Fa♯). Pero los encadenamientos siguen siendo perfectamente funcionales: un ii-V-I de manual cierra la frase en los cc. 3-4. Ese es el neoarcaísmo de esta pavana: una danza renacentista revisitada a la luz de gas, el color del siglo XX naciente depositado sobre una sintaxis que no se mueve."
+          },
+          {
+            "label": "Compases 5-12 (la cadencia sobre la mediante)",
+            "titre": "Una puerta falsa, y la melancolía que de ella se deriva",
+            "chiffrage": "viiø7 – iii (cédez) – V13 – V/iii (primer cromatismo) – iii",
+            "fonctions": "D – T – D – D – T",
+            "texte": "El primer cromatismo de toda la pieza — un único Sol♯ en el c. 11 — fabrica una dominante secundaria (Mi7, V de iii) que deposita la frase no sobre la tónica, sino sobre si menor. Cerrar un tema en sol mayor sobre su grado mediante es la cadencia modal-arcaica por excelencia: una puerta falsa que da a la pieza su melancolía procesional. El eco « Très lointain » (muy lejano) que sigue planea sobre un pedal de Si antes de que Sol recupere sus derechos."
+          },
+          {
+            "label": "Compases 13-38 (copla 1 y estribillo 2)",
+            "titre": "La misma materia, desplazada y luego rearmonizada",
+            "chiffrage": "órbita si menor/Re (copla 1) → Sol M (estribillo 2)",
+            "fonctions": "? – T",
+            "texte": "La copla 1, « un peu plus lent » (un poco más lento), sitúa el discurso en órbita en torno a si menor y a Re, con Sol♯ y Do♯ de paso — una zona armónica vecina del estribillo, nunca del todo ajena. El estribillo regresa después (« Reprenez le mouvement » — retomen el movimiento) rearmonizado, pero sostenido por las mismas funciones en los mismos lugares: la materia no cambia, solo se renueva su vestimenta."
+          },
+          {
+            "label": "Compases 39-59 (copla 2: la vertiente oscura)",
+            "titre": "Entran los bemoles, y el lamento se repite",
+            "chiffrage": "Sol m (mixtura modal)",
+            "fonctions": "? (color modal, sin función clásica a este nivel)",
+            "texte": "« Subitement très doux et très lié » (súbitamente muy suave y muy ligado): la copla 2 hace entrar los grados que distinguen sol menor de sol mayor — primero Si♭, después Fa natural y Mi♭ —, una mixtura que oscurece sin abandonar nunca del todo la órbita de la tónica. En su centro, un doble pasaje marcado « Très grave » (muy grave) en los cc. 48 y 58: un lamento que vuelve sobre sí mismo, la única repetición literal de gestos de toda la pieza."
+          },
+          {
+            "label": "Compases 60-72 (estribillo final y cadencia conclusiva)",
+            "titre": "Marquez le chant",
+            "chiffrage": "Sol M (I) → cadencia conclusiva",
+            "fonctions": "T – T",
+            "texte": "El tercer y último estribillo regresa « marquez le chant » (destaquen el canto) — la indicación más explícita de toda la partitura sobre la intención melódica. La pieza concluye « en élargissant beaucoup » (ampliando mucho), la única cadencia realmente conclusiva de toda la forma: los dos estribillos anteriores se habían desviado hacia la mediante, este cierra por fin sobre la tónica."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "El neoarcaísmo: color moderno, gramática antigua",
+            "texte": "En 1899, entre la Gymnopédie de Satie (1888) y la Cathédrale engloutie de Debussy (1910), Ravel sistematiza lo que Satie había decretado — la séptima ya no es una tensión, es el timbre por defecto del acorde — sin renunciar nunca a la sintaxis funcional. Satie abole la función; Debussy la disolverá en color puro; Ravel, en cambio, mantiene las dos manos sobre la mesa."
+          },
+          {
+            "titre": "El antepasado directo del jazz",
+            "texte": "El I∆9 del c. 4 es, nota por nota, el acorde de tónica por defecto de Bill Evans (curso 35) — y Evans citaba a Ravel entre sus influencias declaradas. Sesenta años separan esta pavana del jazz modal, y una sola sonoridad los une directamente."
+          },
+          {
+            "titre": "El diplomático entre dos mundos",
+            "texte": "Satie, Ravel, Debussy: el segundo relato de este corpus (la armonía después de la función) necesita a los tres para contarse. Ravel ocupa en él la posición del diplomático: ni la abolición ni la disolución, sino el color nuevo injertado con paciencia sobre una gramática que, por su parte, resiste."
+          }
+        ]
+      }
     }
   },
   "cours37": {
@@ -6781,6 +7064,112 @@
       "emploiP2": "El repertorio de referencia sigue siendo el <strong>coral de J.S. Bach</strong>: en él se encuentran, en pocos compases, notas de paso, bordaduras, retardos 4-3 y 7-6, y pedales — siempre conducidos con rigor. Es el modelo a imitar para el DEM.",
       "emploiGallonBox": "<strong>Una escuela de la conducción de las voces:</strong> junto al <em>Tratado</em> de Théodore Dubois, la enseñanza de <strong>Noël Gallon</strong>, profesor de armonía en el Conservatorio de París, es una referencia para el empleo de las notas extrañas. Su trabajo sobre las <em>marchas de armonía</em> y la <em>conducción de las voces</em> recuerda que un ornamento solo tiene valor por la línea melódica que dibuja: cada nota extraña debe servir al canto, nunca recargarlo.",
       "quizH2": "Práctica"
+    },
+    "conservatoire": {
+      "intuition": "Un bajo que no cambia ni una sola nota a lo largo de once enunciados — y, sin embargo, nada se repite: toda la invención se aloja en las notas extrañas que la voz cantada superpone a ese descenso inmutable.",
+      "reference": {
+        "badge": "Purcell · prefacio a las Sonnata's of III Parts",
+        "citation": "La música está todavía en su minoría de edad, es un niño precoz que hace concebir esperanzas de lo que podrá llegar a ser algún día en Inglaterra, cuando sus maestros encuentren mayor estímulo.",
+        "auteur": "Henry Purcell, 1683"
+      },
+      "voix": [
+        "El retardo (7-6, luego 4-3) es la nota extraña por excelencia del ground: una voz sostiene la nota del acorde anterior mientras el bajo ya ha cambiado, creando la disonancia antes de la resolución esperada.",
+        "Un bajo obstinado (ground) puede sostener armonías distintas en cada retorno — la nota extraña nace de la distancia entre lo que el bajo impone y lo que la voz cantada decide retener un instante más.",
+        "El desfase entre la longitud de las frases vocales y la del ground (cinco compases) es en sí mismo una nota extraña a escala de la forma entera: el lamento y el bajo casi nunca cadencian juntos."
+      ],
+      "repertoire": {
+        "titre": "Dido's Lament — «When I am laid in earth» (Dido and Aeneas)",
+        "compositeur": "Henry Purcell"
+      },
+      "pieges": [
+        {
+          "erreur": "Confundir el tetracordo cromático del bajo (Sol-Fa#-Fa-Mi-Mib-Re) con una sucesión de notas extrañas",
+          "correction": "Esa línea descendente ES el cantus firmus estructural (el ground mismo, repetido sin una sola variante) — no son notas de paso, sino el cimiento armónico. Las verdaderas notas extrañas (los retardos) están en la voz cantada por encima de ese bajo."
+        },
+        {
+          "erreur": "Resolver un retardo hacia arriba",
+          "correction": "Como toda suspensión clásica, cada retardo del ground resuelve por movimiento descendente — la voz cantada cae un grado sobre la nota real del acorde."
+        },
+        {
+          "erreur": "Buscar la misma lectura armónica en cada retorno del ground",
+          "correction": "Purcell rearmoniza el mismo bajo de manera distinta en cada pasada (los «revestimientos» cambian) — solo la línea del bajo es invariable; el acorde real que se levanta sobre ella varía de una pasada a otra."
+        }
+      ],
+      "resume": [
+        "El retardo (suspensión): preparación consonante → percusión disonante → resolución descendente — Dido's Lament (Purcell, 1689) lo ilustra en cadenas 7-6/4-3 a lo largo de once pasadas del mismo ground.",
+        "El ground (bajo obstinado, aquí un tetracordo cromático descendente Sol-Re, el passus duriusculus) permanece invariable mientras su revestimiento armónico cambia en cada retorno — de esa distancia nace la nota extraña.",
+        "1689, dominio público: la pieza más antigua del corpus Harmonia y la fuente común del bajo de lamento (Chopin), la 7.ª preparada (Bach) y la resolución diferida (Wagner)."
+      ],
+      "analyseNarrative": {
+        "tonalite": "Recitativo en do menor, que modula por grados hacia Re (dominante de sol menor), el umbral del aria. El aria misma — el ground — está en SOL MENOR, la tonalidad real de toda la segunda mitad de la pieza.",
+        "metrique": "4/4. Largo (♩=50) para el recitativo, Adagio con moto (♩=80) a partir del c. 10 — el cambio de tempo cae exactamente sobre el comienzo del ground.",
+        "forme": "Recitativo acompañado «Thy hand, Belinda» (cc. 1-9) y luego aria sobre ground (cc. 10-65): once enunciados de un bajo obstinado de cinco compases (el passus duriusculus, tetracordo cromático descendente Sol-Re), cada uno rearmonizado de manera distinta, más un ritornello final (cc. 60-65).",
+        "sections": [
+          {
+            "label": "Compases 1-9",
+            "titre": "Recitativo: «Thy hand, Belinda»",
+            "chiffrage": "i | I | iv | ... | V7 | V",
+            "fonctions": "T | T | SD | ... | D | D",
+            "texte": "El recitativo abre en do menor (Do-Mib-Sol) y se aclara un instante en un Do mayor «de paso» (c. 2, Do-Mi-Sol) antes de oscurecerse hacia fa menor (c. 3, Fa-Lab-Do): un bajo que desciende por grados y mutaciones, exactamente la imagen del texto («darkness shades me»). Los roces de Fa# se acumulan hasta cristalizar, en el c. 8, en un verdadero acorde de Re7 (Fa#-La-Do) — la dominante de sol menor, la tonalidad aún no nombrada pero ya preparada. El c. 9 responde en Re mayor puro, al descubierto: el umbral sobre el que el recitativo deposita el aria."
+          },
+          {
+            "label": "Compases 10-14",
+            "titre": "El ground, enunciado solo",
+            "chiffrage": "i (Sol-Fa#-Fa-Mi-Mib-Re, en el bajo solo)",
+            "fonctions": "T → D",
+            "texte": "Como el violonchelo del original, el bajo expone solo, sin armonía alguna por encima, el tetracordo cromático que sostendrá todo lo que sigue: Sol-Fa#-Fa-Mi-Mib-Re, y luego la cola cadencial Sib-Do-Re antes de recaer sobre Sol. Cinco compases exactos, que se repetirán once veces sin una sola nota de variante — el passus duriusculus de los teóricos barrocos, el emblema del lamento."
+          },
+          {
+            "label": "Compases 15-19",
+            "titre": "Ground 2: entrada del canto, el desfase",
+            "chiffrage": "i … (rearmonizado)",
+            "fonctions": "T … D",
+            "texte": "La voz entra sobre ese mismo ground, pero Purcell la escribe deliberadamente desfasada: la frase vocal no calca los cinco compases del bajo, de modo que la cadencia del canto y la del ground casi nunca coinciden. El lamento flota sobre una rueda que gira a su propio ritmo."
+          },
+          {
+            "label": "Compases 20-34",
+            "titre": "Grounds 3 a 5: la rearmonización",
+            "chiffrage": "… V7 – i6 (Re7 → sol m, bajo Sib) …",
+            "fonctions": "… D – T …",
+            "texte": "El bajo no cambia una sola nota, pero su revestimiento cambia en cada pasada: cadenas de retardos 7-6 y 4-3 que se desplazan a lo largo del descenso cromático. Un gesto funcional preciso vuelve al menos dos veces idéntico a sí mismo (aquí en el c. 23 y de nuevo en el c. 38): cada vez que el ground bascula de su 4.ª nota a su 5.ª (Re → Sib, con la octava cayendo), la armonía forma un Re7 (V7 de sol menor) que resuelve sobre un sol menor en primera inversión (i6, bajo Sib) — la única regularidad funcional estricta en medio de una rearmonización por lo demás siempre cambiante."
+          },
+          {
+            "label": "Compases 35-39",
+            "titre": "Ground 6: «Remember me»",
+            "chiffrage": "i … V7 – i6 (il canto ben marcato, c. 38)",
+            "fonctions": "T … D – T",
+            "texte": "Cumbre expresiva de la pieza: la voz insiste en una misma nota repetida (Re5) mientras el bajo prosigue implacablemente su descenso — la inmovilidad del canto contra el movimiento obstinado del ground, el contraste más simple y más devastador de la pieza. El propio Purcell marca la parte cantada «il canto ben marcato» en el c. 38: la indicación interpretativa cae exactamente sobre el segundo Re7–i6 verificado en este análisis."
+          },
+          {
+            "label": "Compases 40-59",
+            "titre": "Grounds 7 a 10: el lamento continúa",
+            "chiffrage": "… (4 pasadas más, los mismos cinco compases)",
+            "fonctions": "T … D",
+            "texte": "Cuatro pasadas más del mismo ground, cada una rearmonizada de nuevo de manera distinta — el lamento sigue desplegándose sin que el bajo ceda jamás un solo semitono de su trayectoria."
+          },
+          {
+            "label": "Compases 60-65",
+            "titre": "Ground final: ritornello y cadencia",
+            "chiffrage": "i … V – i (5.ª sola, sin tercera)",
+            "fonctions": "T … D – T",
+            "texte": "El último ground añade contracantos cromáticos descendentes que ganan las voces superiores — como si el bajo hubiera acabado por arrastrar todo el edificio en su propio descenso. La pieza concluye sobre un Sol que ni siquiera es francamente menor: el acorde final (Sol-Re-Sol-Sol) no contiene tercera alguna, una quinta vacía, sin el menor claro de luz."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "El retardo, laboratorio de la disonancia preparada",
+            "texte": "Sobre un bajo que nunca se mueve, todo el trabajo expresivo se aloja en las voces superiores: cadenas de retardos (7-6, 4-3) cuyos roces se desplazan a lo largo del descenso cromático. Es el ejemplo más canónico del repertorio para hacer oír qué es una nota extraña preparada y luego resuelta — el asunto mismo de esta lección."
+          },
+          {
+            "titre": "El bajo fijo, la armonía móvil",
+            "texte": "El ground de Purcell comparte su principio con la Chacona BWV 1004 de Bach, ya estudiada en la lección 9 (un mismo bajo repetido sostiene armonías cambiantes) — salvo que aquí el bajo mismo no varía nunca una sola nota en once pasadas: la totalidad de la invención se aloja en el revestimiento, no en el motivo."
+          },
+          {
+            "titre": "1689: la fuente común del corpus",
+            "texte": "El tetracordo cromático descendente de este ground (Sol-Fa#-Fa-Mi-Mib-Re) es, ciento cincuenta años antes, exactamente el mismo dibujo que el bajo de lamento del Preludio op. 28 n.º 20 de Chopin (lección 24). La pieza más antigua del corpus resulta ser también la fuente común de varios de sus hilos conductores: el descenso cromático, el retardo preparado y el bajo obstinado bajo una armonía cambiante."
+          }
+        ]
+      }
     }
   },
   "cours39": {
@@ -6840,6 +7229,90 @@
       "quizPoolInfo": "preguntas en total",
       "quizNextBtn": "Pregunta siguiente →",
       "quizFinishBtn": "Ver la puntuación →"
+    },
+    "conservatoire": {
+      "intuition": "La 7.ª disminuida es el camaleón de la armonía tonal — un solo acorde, simétrico por terceras menores, capaz de reinterpretarse y de resolver hacia cuatro tónicas distintas.",
+      "reference": {
+        "badge": "Piston · Harmony",
+        "citation": "El acorde de séptima disminuida, por su estructura simétrica, es el acorde más útil para la modulación enarmónica.",
+        "auteur": "Walter Piston, 1941"
+      },
+      "voix": [
+        "vii°7 (7.ª disminuida sobre la sensible) resuelve hacia la tónica por movimiento conjunto de las dos voces extremas",
+        "Su simetría (superposición de terceras menores iguales) permite 4 reescrituras enarmónicas y, por tanto, 4 resoluciones posibles hacia tonalidades distintas",
+        "vii°7 puede construirse sobre CUALQUIER grado como dominante secundaria (vii°7/V, vii°7/IV...), no solo sobre la tónica"
+      ],
+      "repertoire": {
+        "titre": "Sonata n.º 8 «Patética» op. 13 — introducción Grave",
+        "compositeur": "L. van Beethoven"
+      },
+      "pieges": [
+        {
+          "erreur": "Reconocer la 7.ª disminuida únicamente en estado fundamental y sobre la tónica",
+          "correction": "vii°7 aparece tanto como dominante secundaria (vii°7/V, vii°7/IV) como en calidad de pivote enarmónico — es el mismo acorde, reinterpretado"
+        }
+      ],
+      "resume": [
+        "vii°7 = superposición de terceras menores iguales, simétrica, resuelve por movimiento conjunto hacia la tónica",
+        "Esa simetría permite 4 reescrituras enarmónicas: un mismo acorde puede modular hacia 4 tonalidades distintas",
+        "Introducción Grave de la Patética (Beethoven): vii°7 asume allí, sucesivamente, dominante secundaria, dominante principal y pivote enarmónico"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Do menor (armadura de 3 bemoles). Vuelco pasajero hacia Mib mayor (el relativo mayor) en los cc. 4-5, mediante una dominante precipitada (Sib7), antes de un regreso al menor por un único pivote enarmónico (c. 6).",
+        "metrique": "4/4 (símbolo C). Grave, muy lento (30 a la negra), con ralentizaciones adicionales en los pasajes más densos.",
+        "forme": "10 compases = la introducción Grave completa del 1.er movimiento, encadenada attacca al Allegro di molto e con brio. Toda la introducción es una sola cadencia diferida: exposición del problema (cc. 1-3), crisis y modulación precipitada (c. 4), falsa luz y pivote enarmónico (cc. 5-6), gran ascenso cromático interrumpido por una cadencia rota (cc. 7-9), y la cadencia por fin realizada, pero suspendida sobre la dominante (c. 10).",
+        "sections": [
+          {
+            "label": "Compases 1-3",
+            "titre": "La exposición del problema",
+            "chiffrage": "Do (i) – Fa#°7 (vii°7/V) – Sol (V) | Si°7 (vii°4/2) – Do (i6) | Fa#°7 (vii°4/2/V) – Sol (V6)",
+            "fonctions": "i – D – D | D – i6 | D – D",
+            "texte": "El c. 1 plantea el mundo en germen: acorde de tónica completo <em>fp</em> en el grave, ritmo con puntillo característico, y luego un <strong>vii°7/V</strong> (Fa♯-La-Do-Mib) que resuelve sobre la dominante — tónica, tensión, dominante, en cuatro tiempos. El c. 2 traslada el mismo dispositivo a <strong>vii°4/2</strong> (Si-Re-Fa sobre bajo Lab): el bajo desciende Lab-Sol-Fa hacia Mib mientras las voces superiores aún sostienen el acorde — una resolución diferida a i6 en el tiempo siguiente. El c. 3 transporta todo una tercera más arriba (la 7.ª en el bajo, Mib-Re-Do) y relanza de inmediato la figura: el caudal armónico se acelera."
+          },
+          {
+            "label": "Compás 4",
+            "titre": "La crisis y la escapada",
+            "chiffrage": "Fa#°7 (vii°7/V) – Sol (V6) – Do7 (V4/2/iv) – Fa m (iv6) – Sib7 (Mib: V7)",
+            "fonctions": "D – D – SD – SD – D (en Mib)",
+            "texte": "Sobre un <em>sf</em>, la armonía se acelera brutalmente: vii°7/V, V6, y luego dos acordes ajenos al circuito de do menor — Do7/Sib (<strong>V4/2 de fa menor</strong>) y fa menor/Lab (iv6), tres corcheas, tres funciones. Después todo se detiene sobre un Lab suspendido, y una cascada escrita nota por nota (hasta los nonillos) despliega Sib7: la dominante del relativo mayor. La modulación no está preparada: la precipita la crisis."
+          },
+          {
+            "label": "Compases 5-6",
+            "titre": "La falsa luz y el pivote",
+            "chiffrage": "Mib (I) – Lab/Mib (IV6/4) – Si°7 (vii°6/5, en do) – Fa m/Do (iv6/4) | Si°7 (vii°7) – Sib7 (V7/III) – Do#°7 (pivote enarm.) – La7 (V7/(V/V))",
+            "fonctions": "T (Mib) luego D (vuelta a do) | D – D – (pivote) – D",
+            "texte": "Mib mayor, <em>p</em>, textura nueva: acordes repetidos, melodía ascendente que retoma la célula con puntillo. Ese claro dura apenas dos tiempos y medio: <em>ff</em> súbito, el vii°7 natal (Si-Re-Fa-Lab) irrumpe en el mayor y el bajo emprende un descenso cromático — Re, Do, Si (vii°7 en estado fundamental), Sib (el mismo agregado se desliza un semitono y se convierte en Sib7, V7 de Mib)… y entonces, sobre ese mismo bajo Sib, surge Do♯-Mi-Sol: <strong>Do♯°7, el pivote enarmónico</strong>. En un solo acorde se abandona la órbita de Mib por la de Re: La7 concluye el compás, dominante de una dominante todavía inaudita."
+          },
+          {
+            "label": "Compases 7-9",
+            "titre": "El gran ascenso y luego la cadencia rota",
+            "chiffrage": "Re/Fa# (V6/V) – Re/Fa♮ (disolución en disminuido) – Si°6 (vii°6) | Si°7 (vii°7) → Sol7 (V7) – Fa m/Lab (iv6) | Sol7 (V7) → Lab (VI, cadencia rota)",
+            "fonctions": "D lejana | D | D → VI",
+            "texte": "Re mayor en primera inversión (<strong>V6/V</strong>) — la armonía más lejana de la introducción — lanza el ascenso terminal. La melodía trepa en octavas, luego el acorde de Re se deshace por debajo de ella (Fa♯ se vuelve Fa♮, La se vuelve Lab: el mayor se disuelve en disminuido), y la subida continúa, cromática integral, cada grado armonizado por una rotación del mismo repertorio vii°7/dominante, hasta el V7 por fin en estado fundamental (c. 8) — una sexta cromática completa, tendida a lo largo de tres compases. El c. 9 debería resolver: <em>sfp</em> sobre Sol7, fragmentación en staccatos secos — y <strong>cadencia rota</strong>: V7 → Lab mayor (VI). Tras ocho compases de construcción, se niega la resolución. Silencio."
+          },
+          {
+            "label": "Compás 10",
+            "titre": "La cadencia, por fin — y suspendida",
+            "chiffrage": "Re°7/Fa (iiø6/5) – Do/Sol (i6/4) – Sol7(♭9) (V7)",
+            "fonctions": "SD – i6/4 – D",
+            "texte": "La tónica negada llega primero desnuda, en la melodía sola — una voz que reanuda tras la interrupción. Luego se despliega, estirada, la fórmula cadencial de escuela: <strong>iiø6/5</strong> (Re-Fa-Lab-Do, bajo unos Lab staccato obstinados), un i6/4 cadencial bajo el cual se vierte un gran trazo cromático descendente de dos octavas y una tercera (espejo multiplicado del ascenso anterior), y por fin V7 con novena menor — Sol-Si-Re-Fa-Lab, la ♭9 percutida <em>sf</em> bajo calderón. Última nota: la sensible, Si, en semifusa. Doble barra, attacca: la resolución sobre do menor pertenece al Allegro."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Un solo acorde, todas las funciones",
+            "texte": "vii°7 aparece bajo casi todas sus formas posibles en estos 10 compases: dominante secundaria (vii°7/V), dominante principal (vii°7 a secas) y pivote enarmónico (Do♯°7). Un único tipo de acorde, declinado de principio a fin."
+          },
+          {
+            "titre": "La simetría del vii°7, motor de la modulación",
+            "texte": "Al superponer tres terceras menores iguales, el acorde de séptima disminuida puede reescribirse enarmónicamente de cuatro maneras y resolver hacia cuatro tónicas distintas — exactamente lo que permite, en el c. 6, abandonar la órbita de Mib mayor por la de Re en un solo acorde."
+          },
+          {
+            "titre": "La armonía de escuela, puesta en escena",
+            "texte": "Técnicamente, este Grave no inventa nada: apoyaturas, disminuidos, cadencia rota, cuarta y sexta cadencial — todo está en los tratados. Lo nuevo es el régimen dramático impuesto a ese vocabulario: dinámicas como electrochoques, silencios que cortan el discurso, resoluciones sistemáticamente diferidas — la armonía de manual tratada como material teatral."
+          }
+        ]
+      }
     }
   },
   "cours40": {
@@ -6914,6 +7387,98 @@
       "quizPoolInfo": "preguntas en total",
       "quizNextBtn": "Pregunta siguiente →",
       "quizFinishBtn": "Ver la puntuación →"
+    },
+    "conservatoire": {
+      "intuition": "El sujeto de una invención puede contener, en su solo ámbito melódico, el acorde que estructurará toda la pieza — la línea y la verticalidad no son nunca sino dos maneras de oír la misma tensión.",
+      "reference": {
+        "badge": "Bach · al frente de sus Invenciones",
+        "citation": "Una guía sincera… para aprender a tocar limpiamente a dos voces y también, al progresar, para manejar con corrección y acierto tres partes obligadas.",
+        "auteur": "J.S. Bach, prefacio a las Invenciones y Sinfonías (1723)"
+      },
+      "voix": [
+        "Un sujeto puede dibujar melódicamente el mismo intervalo que un acorde fundamental de la tonalidad — aquí, el ámbito del sujeto (Do#-Si♭) traza exactamente una séptima disminuida, el acorde que volverá más tarde verticalizado.",
+        "Un trino escrito (notas realmente alternadas, no un simple signo de adorno) puede funcionar como un pedal: la voz que parece inmóvil es en realidad la que más vibra, mientras la otra voz despliega todo el movimiento armónico.",
+        "Una pieza enteramente en menor puede negarse a decidir hasta el final: concluir sobre una octava desnuda, sin tercera, deja abierta la cuestión mayor/menor en el último acorde."
+      ],
+      "repertoire": {
+        "titre": "Invención n.º 4 en re menor, BWV 775",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Buscar acordes escritos para analizar la armonía de esta invención",
+          "correction": "No hay ninguno: las dos voces son estrictamente melódicas de principio a fin. La armonía debe deducirse del encuentro vertical de ambas líneas en cada instante, nunca leerse directamente en la partitura."
+        },
+        {
+          "erreur": "Confundir el trino escrito de los cc. 19-21 y 29-33 con una simple ornamentación decorativa sin consecuencia estructural",
+          "correction": "Esos trinos funcionan como verdaderos pedales armónicos: la nota que parece repetirse inmóvil sostiene en realidad toda la tensión (un pedal de tónica en los cc. 19-21, el ♭6→5 de la dominante en los cc. 29-33), mientras la otra voz asegura el movimiento."
+        },
+        {
+          "erreur": "Analizar el bajo en escala descendente del c. 39 como una simple línea melódica sin relación con la armonía",
+          "correction": "Es un acorde de séptima disminuida (vii°7 de sol menor) enteramente desplegado en línea — las 4 notas del acorde (Fa#-La-Do-Mib) están todas presentes en la escala descendente, rodeadas de 2 notas de paso."
+        }
+      ],
+      "resume": [
+        "El sujeto de la Invención n.º 4 (Bach, BWV 775) dibuja melódicamente una séptima disminuida (ámbito Do#-Si♭) — el mismo acorde que volverá verticalizado en el c. 50, justo antes de la cadencia final.",
+        "Dos trinos escritos (Re-Do y luego Fa-Mi, hasta 5 compases seguidos) funcionan como verdaderos pedales armónicos: la voz en apariencia inmóvil sostiene la tensión mientras la otra voz asegura todo el movimiento.",
+        "La pieza concluye sobre una octava desnuda (Re-Re), sin tercera — tras cincuenta y dos compases de menor armónica, el último acorde se niega a decidir entre mayor y menor."
+      ],
+      "analyseNarrative": {
+        "tonalite": "Re menor — con un rodeo por el relativo mayor (Fa mayor, cc. 9-18) y luego por la dominante menor (la menor, cc. 27-37) antes del regreso final.",
+        "metrique": "3/8, sin indicación de tempo. Dos voces estrictamente independientes de principio a fin (ninguna armonía está escrita en acordes: nace enteramente del encuentro de las dos líneas).",
+        "forme": "Exposición (cc. 1-8), marcha hacia el relativo mayor (cc. 9-18), primer trino-pedal (cc. 19-21), marcha modulante hacia la dominante menor (cc. 22-27), segundo trino-pedal (cc. 29-33), cadencia y regreso (cc. 34-43), reexposición y cadencias finales (cc. 44-52).",
+        "sections": [
+          {
+            "label": "Compases 1-8",
+            "titre": "El sujeto: una séptima disminuida melódica",
+            "chiffrage": "i … i-V6/5-i-V4/3",
+            "fonctions": "T … T-D-T-D",
+            "texte": "El sujeto se enuncia solo: una escala de re menor que sube de Re a Si♭ (c. 1) y luego vuelve a bajar desde Do# (c. 2) — el ámbito exacto de esos dos compases, del Do# al Si♭, es una séptima disminuida: la sensible y el sexto grado rebajado de la menor armónica delimitan la línea. La mano izquierda imita a la octava (cc. 3-4) bajo un contrapunto que cifra i-V6/5, y después el sujeto vuelve al agudo (cc. 5-6, i-V4/3). La armonía nace enteramente del encuentro de las dos voces — ningún acorde está jamás escrito como tal."
+          },
+          {
+            "label": "Compases 9-21",
+            "titre": "Hacia el relativo mayor y luego el primer trino-pedal",
+            "chiffrage": "→ Fa: I … i",
+            "fonctions": "→ T … T",
+            "texte": "Bajos en movimiento conducen la música hacia el relativo mayor, Fa, mediante secuencias apareadas, hasta una cadencia (cc. 17-18). Después la mano derecha sostiene un trino escrito (Re-Do) durante tres compases enteros mientras el bajo despliega escalas por debajo: un pedal ornamental, donde la nota que no se mueve es también la que más vibra."
+          },
+          {
+            "label": "Compases 22-33",
+            "titre": "Marcha modulante y el segundo trino",
+            "chiffrage": "… → V de la m … i (trino, mano izquierda)",
+            "fonctions": "… → D … T",
+            "texte": "Tres sensibles se encienden por turnos en una marcha modulante, y la música alcanza la dominante menor de re: la menor. Después, la cumbre estructural de la pieza — la mano izquierda sostiene cinco compases enteros de trino escrito (Fa-Mi) bajo las secuencias de la mano derecha: sobre la dominante de la menor, es el movimiento cromático del sexto grado rebajado hacia el quinto, literalmente trinado como adorno continuo."
+          },
+          {
+            "label": "Compases 34-43",
+            "titre": "Cadencia y regreso",
+            "chiffrage": "i (la m) … vii°7 de sol m … V7",
+            "fonctions": "T … ? … D",
+            "texte": "Una cadencia cierra el episodio en la menor. El camino de vuelta pasa por sol menor, con un acorde de séptima disminuida enteramente desplegado en escala descendente al bajo — el acorde disminuido convertido de nuevo en línea, como al principio mismo del sujeto. Un La7 vuelve a encender re."
+          },
+          {
+            "label": "Compases 44-52",
+            "titre": "Reexposición y la octava final desnuda",
+            "chiffrage": "i … vii°7 completo — V — i",
+            "fonctions": "T … ? — D — T",
+            "texte": "El sujeto regresa en las dos voces, al agudo y luego al bajo. El c. 50 ofrece el agregado a plena luz: el acorde de séptima disminuida completo, esta vez verticalizado en lugar de desplegado en línea, justo antes de la dominante y de la conclusión — una octava desnuda, Re-Re, ni tercera mayor ni menor, tras cincuenta y dos compases de menor armónica."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "El acorde disminuido, línea y verticalidad",
+            "texte": "La misma sonoridad (el acorde de séptima disminuida) atraviesa toda la pieza bajo dos formas: horizontal ya desde el sujeto (el ámbito Do#-Sib de la línea melódica) y luego vertical en dos ocasiones (c. 39, desplegado en escala al bajo; c. 50, apilado a plena luz). Una sola y misma tensión, oída sucesivamente como melodía y como acorde."
+          },
+          {
+            "titre": "El suspiro trinado: la célula más antigua, transformada",
+            "texte": "El movimiento del sexto grado rebajado hacia el quinto (♭6→5) — el «suspiro» que atraviesa este corpus desde las lamentaciones barrocas hasta el romanticismo — se convierte aquí, bajo los dedos de Bach, en un adorno continuo de cinco compases: la célula expresiva más antigua transformada en puro objeto de textura, sin perder jamás su carga expresiva de origen."
+          },
+          {
+            "titre": "La octava desnuda: una familia de conclusiones",
+            "texte": "Terminar sobre una octava sin tercera, tras una pieza enteramente escrita en el modo menor, es una decisión que se niega a elegir entre mayor y menor en el último instante — el mismo gesto de despojamiento que un acorde de quinta vacía o que un unísono al final de obras muy posteriores, aquí al servicio de un cierre barroco sencillísimo."
+          }
+        ]
+      }
     }
   },
   "cours41": {
@@ -7223,6 +7788,77 @@
       "perfect": "¡Perfecto! Descifras y realizas un bajo cifrado sin dudar.",
       "veryGood": "¡Muy bien! Algunos cifrados por consolidar (inversiones de 7ª, 6/4 cadencial, retardos).",
       "keepGoing": "Sigue así — repasa la tabla de cifrados y vuelve a escuchar los ejemplos antes de reintentar."
+    },
+    "conservatoire": {
+      "intuition": "Un esquema armónico puede pertenecer a todos y a nadie: La Folia ha atravesado cinco siglos de compositores que la realizaron cada uno a su manera, sin que ninguno la haya poseído jamás.",
+      "reference": {
+        "badge": "Fórmula anónima · siglo XVI",
+        "citation": "La Folia es quizá la melodía más antigua que ha llegado hasta nosotros en Europa occidental bajo una forma continuamente reconocible.",
+        "auteur": "Tradición musicológica sobre el origen ibérico de La Folia"
+      },
+      "voix": [
+        "Un esquema armónico fijo puede sostener, sin cambiar nunca, siglos de realizaciones distintas: el principio mismo del bajo cifrado, un solo armazón y una infinidad de maneras de vestirlo.",
+        "La subtónica mayor (VII, un acorde mayor construido sobre el 7.º grado de un tono menor) es una huella modal anterior a la tonalidad plenamente codificada: sobrevive en fórmulas muy posteriores.",
+        "Una falsa relación (dos voces que atacan casi a la vez la misma nota a alturas cromáticamente vecinas, p. ej. Do natural contra Do♯) es una técnica de escritura auténtica de los siglos XVI y XVII, no un simple error de armonía."
+      ],
+      "repertoire": {
+        "titre": "La Folia (el esquema armónico)",
+        "compositeur": "Fórmula anónima (de origen ibérico, siglo XVI)"
+      },
+      "pieges": [
+        {
+          "erreur": "Cifrar el acorde del compás 4 (Do mayor, en Re menor) como un simple error o una modulación",
+          "correction": "Es el VII del esquema: la subtónica mayor, un color modal característico de La Folia (y de muchas fórmulas populares anteriores a la tonalidad codificada), ni un accidente ni un cambio de tonalidad."
+        },
+        {
+          "erreur": "Considerar el Do natural contra el Do♯ (c. 6 y c. 14) como una falta de escritura que hubiera que corregir",
+          "correction": "Es una falsa relación (cross-relation) deliberada, una técnica auténtica de la escritura antigua: la sensible y la subtónica oídas casi simultáneamente, no un error de conducción de voces."
+        },
+        {
+          "erreur": "Buscar un compositor o una fuente única para «la» Folia",
+          "correction": "El esquema es anónimo y anterior a toda noción moderna de derecho de autor: Corelli, Vivaldi, Marais, C. P. E. Bach, Liszt y Rachmaninov la realizaron por separado, cada uno a su manera, sin que ninguno la inventara ni la poseyera."
+        }
+      ],
+      "resume": [
+        "La Folia es un ciclo armónico fijo de 16 compases (i-V-i-VII-III-VII-iv6-V, dos veces), anónimo y de origen ibérico: el más antiguo y el más reutilizado de los esquemas armónicos occidentales.",
+        "Dos rasgos firman la fórmula: la subtónica mayor (VII), huella modal anterior a la tonalidad codificada, y la cadencia iv6-V, sostenida por un sexto grado rebajado que desciende hacia la dominante.",
+        "Un esquema armónico compartido por generaciones de compositores, sin que ninguno lo posea, es el mismo principio que un estándar de jazz: una progresión que todo el mundo conoce y que cada cual atraviesa a su manera."
+      ],
+      "analyseNarrative": {
+        "tonalite": "Re menor, sin ninguna tercera de Picardía: la fórmula más fija y más reutilizada de toda la historia de la música occidental.",
+        "metrique": "3/4, en acordes tenidos (zarabanda simplificada): un acorde por compás, dieciséis compases, dos veces ocho.",
+        "forme": "Un único y mismo esquema de 8 acordes, tocado dos veces: la primera exposición cerrada sobre la dominante (c. 8), la segunda sobre la tónica (c. 16).",
+        "sections": [
+          {
+            "label": "Compases 1-8",
+            "titre": "El esquema, primer hemistiquio",
+            "chiffrage": "i – V – i – VII – III – VII – iv6 – V",
+            "fonctions": "T – D – T – ? – T – ? – SD – D",
+            "texte": "Ocho acordes, ocho compases: la fórmula de La Folia se expone por entero. Dos rasgos la firman entre mil progresiones menores posibles: la subtónica mayor (VII, Do mayor en un contexto de Re menor), la huella de un mundo modal anterior a la tonalidad codificada; y la cadencia iv6-V, que hace descender el bajo por grados conjuntos (Si♭ hacia La) exactamente como lo hará, siglos más tarde, cualquier sexto grado rebajado resuelto hacia la dominante. En el compás 6, un detalle: la mano derecha sostiene Do natural mientras el bajo desciende ya hacia Do♯; una falsa relación deliberada, la sensible y la subtónica oídas casi a la vez."
+          },
+          {
+            "label": "Compases 9-16",
+            "titre": "El esquema, segundo hemistiquio: la verdadera cadencia",
+            "chiffrage": "i – V – i – VII – III – VII – iv6 – V … i",
+            "fonctions": "T – D – T – ? – T – ? – SD – D … T",
+            "texte": "El mismo recorrido, nota por nota, vuelve a tocarse —la falsa relación reaparece idéntica (c. 14)—, pero esta vez la fórmula no se detiene en la dominante: se cierra sobre la tónica, Re menor desnudo, sin tercera de Picardía. El ciclo completo, en la forma más despojada que quepa imaginar."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "El esquema como bien común",
+            "texte": "La Folia es un ciclo armónico fijo y anónimo que generaciones de compositores —Corelli, Vivaldi, Marais, C. P. E. Bach, Liszt, Rachmaninov— han revestido con sus propias variaciones, sin que ninguna lo posea. Es, término por término, el principio del estándar de jazz: una progresión que todo el mundo conoce, que nadie posee y que cada cual atraviesa a su manera."
+          },
+          {
+            "titre": "La huella modal en una sintaxis ya tonal",
+            "texte": "La subtónica mayor (VII) que estructura la fórmula pertenece a un mundo armónico anterior a la tonalidad funcional plenamente codificada: el mismo ♭VII que reaparece, siglos más tarde, en la armonía modal de Debussy o en ciertas fórmulas de música de cine. Un esquema del siglo XVI lleva ya, en su armazón, un color que la teoría solo nombrará mucho después."
+          },
+          {
+            "titre": "Del ground barroco al estándar de jazz",
+            "texte": "El principio de un bajo o de un esquema fijo sobre el que una melodía o una improvisación se desarrolla libremente atraviesa toda la historia de la música occidental: del ground obstinado de los lamentos barrocos (Purcell) al chorus de un estándar de jazz (Autumn Leaves), La Folia es uno de sus primerísimos ejemplos documentados y uno de los más duraderos: la fórmula ha atravesado cinco siglos sin dejar nunca de reutilizarse."
+          }
+        ]
+      }
     }
   },
   "cours43": {
@@ -7242,6 +7878,91 @@
       "perfect": "¡Perfecto! Dominas el contrapunto modal de Palestrina — líneas, disonancias regladas y cadencias.",
       "veryGood": "¡Muy bien! Algunos puntos por consolidar (tratamiento de la disonancia, cláusulas modales).",
       "keepGoing": "Sigue así — repasa las reglas melódicas y el tratamiento de los retardos, y vuelve a escuchar los ejemplos."
+    },
+    "conservatoire": {
+      "intuition": "Antes de que la disonancia fuera un acontecimiento, un drama o un color que se habita, fue una simple regla de circulación entre las voces: un accidente tan raro que puede contarse con los dedos de una mano a lo largo de cincuenta y seis compases a cuatro voces.",
+      "reference": {
+        "badge": "Palestrina · Missa Brevis",
+        "citation": "Para el concilio de Trento, el estilo de Palestrina se convirtió en el modelo mismo de la música de iglesia.",
+        "auteur": "Tradición musicológica sobre la recepción de Palestrina"
+      },
+      "voix": [
+        "Un punto de imitación clásico hace nacer cada voz de la precedente a un intervalo reglado (la quinta, la octava): aquí confirmado nota por nota, soprano, luego alto a la quinta inferior, luego tenor a la octava del soprano.",
+        "En el contrapunto modal estricto, la disonancia pertenece únicamente a dos categorías: la nota de paso (en tiempo débil) y el retardo (preparado en consonancia, atacado en tiempo fuerte, resuelto por grado descendente); nunca es un objeto libre.",
+        "Una pieza modal puede cerrarse sin dominante ni polaridad V-I: la finalis se impone entonces por el peso y la frecuencia de sus cláusulas, no por una atracción funcional."
+      ],
+      "repertoire": {
+        "titre": "Missa Brevis, Agnus Dei II",
+        "compositeur": "Giovanni Pierluigi da Palestrina"
+      },
+      "pieges": [
+        {
+          "erreur": "Cifrar esta pieza en grados funcionales (I, IV, V) como una pieza tonal clásica",
+          "correction": "Sería anacrónico: en 1570 la tonalidad funcional codificada aún no existe. El análisis debe hacerse por CLÁUSULAS (puntos de reposo cadenciales): la finalis se impone por el peso de sus cláusulas, no por una polaridad dominante-tónica."
+        },
+        {
+          "erreur": "Buscar numerosas alteraciones cromáticas en una pieza del Renacimiento",
+          "correction": "Es al revés: esta pieza no contiene más que UNA SOLA alteración en sus 56 compases a cuatro voces (un La natural, musica ficta, c. 45); el régimen de la disonancia tiene aquí una severidad que la música tonal posterior no volverá a alcanzar jamás."
+        },
+        {
+          "erreur": "Tratar cada disonancia encontrada como un acontecimiento expresivo que hubiera que interpretar individualmente",
+          "correction": "En este estilo, la disonancia es una simple regla de circulación entre las voces (nota de paso en tiempo débil, o retardo preparado-atacado-resuelto): un fenómeno de tráfico reglado, no un objeto expresivo aislado que comentar caso por caso."
+        }
+      ],
+      "resume": [
+        "El estilo de Palestrina (Missa Brevis, 1570) trata la disonancia como una regla estricta de circulación entre las voces —paso en tiempo débil, o retardo preparado-atacado-resuelto—, nunca como un acontecimiento libre.",
+        "Un punto de imitación clásico hace entrar cada voz a un intervalo reglado de la precedente: aquí soprano, luego alto a la quinta inferior, luego tenor a la octava del soprano, confirmados nota por nota.",
+        "Sin dominante conclusiva, la finalis modal se establece por el peso y la frecuencia de las cláusulas más que por una polaridad V-I: un mecanismo de atracción tonal enteramente distinto del de la música funcional posterior."
+      ],
+      "analyseNarrative": {
+        "tonalite": "Modo transportado sobre Mi♭ (edición con 3 bemoles): no hay tonalidad funcional en el sentido clásico, la finalis se impone por la frecuencia y el peso de las cláusulas, no por una polaridad dominante-tónica.",
+        "metrique": "4/4 con la C partida (alla breve moderno). Tempo moderado, sin aceleración ni ralentización.",
+        "forme": "Un único punto de imitación a cuatro voces (cc. 1-9) y luego un tejido continuo de módulos cadenciales recurrentes, jalonado de cláusulas sobre los grados sucesivos del modo, hasta la cadencia plagal final.",
+        "sections": [
+          {
+            "label": "Compases 1-9",
+            "titre": "El punto de imitación: la exposición a cuatro voces",
+            "chiffrage": "Si♭ (S) → Mi♭ (A, 5.ª inf.) → Si♭ (T, 8.ª) → B (bajo)",
+            "fonctions": "?",
+            "texte": "El sujeto —un descenso por grados conjuntos desde Si♭, la curva suplicante del Agnus— entra solo en el soprano, responde luego en el alto sobre Mi♭ (una quinta más abajo, confirmado nota por nota), después en el tenor sobre Si♭ (una octava por debajo del soprano, confirmado) y por fin en el bajo: la exposición clásica del estilo Palestrina, cada voz naciendo de la precedente."
+          },
+          {
+            "label": "Compases 10-44",
+            "titre": "La economía de los módulos: retardos, cláusulas, repetición variada",
+            "chiffrage": "cláusulas sucesivas sobre Mi♭, Sol menor, Si♭…",
+            "fonctions": "?",
+            "texte": "El movimiento se construye sobre un pequeño número de módulos cadenciales, en particular una fórmula de doble retardo (dos voces suspendidas en paralelo, resueltas juntas) que vuelve, tal cual o variada, a intervalos regulares. La invención no está en el material sino en la costura: las cláusulas jalonan el recorrido (Mi♭ como reposo principal, un rodeo de color por Sol menor) sin que ninguna funcione como dominante en el sentido clásico; la atracción es aquí cuestión de grados conjuntos y de convención cadencial, no de quintas."
+          },
+          {
+            "label": "Compases 45-46",
+            "titre": "La única alteración de toda la pieza",
+            "chiffrage": "La♮ (ficta) → Si♭",
+            "fonctions": "?",
+            "texte": "De los 503 acontecimientos sonoros de la pieza, uno solo cae fuera de la escala diatónica de la armadura: un La natural en el soprano, la musica ficta que fabrica la sensible de la cláusula sobre Si♭. Todo lo demás —cada disonancia de los 56 compases— pertenece a dos categorías estrictamente regladas: las notas de paso en tiempo débil y los retardos, preparados en consonancia, atacados en tiempo fuerte, resueltos por grado descendente, sin excepción."
+          },
+          {
+            "label": "Compases 47-56",
+            "titre": "La cadencia plagal final",
+            "chiffrage": "IV (La♭) → finalis (Mi♭)",
+            "fonctions": "? → T",
+            "texte": "El último período superpone los módulos cadenciales ya oídos antes de cerrarse en una cadencia plagal: el acorde de La♭ (IV), adornado con una bordadura descendente en el alto, antes del acorde final de Mi♭, una tríada completa, con su tercera. Sin dominante conclusiva: la finalis se impone por el peso de sus cláusulas y la gravedad de su bajo, no por una polaridad V-I que aún no existe en este lenguaje."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "El régimen cero de la disonancia",
+            "texte": "Una sola alteración en 56 compases a cuatro voces, y cada disonancia rigurosamente clasificada en dos categorías (paso, retardo): es el mundo anterior a toda dramatización de la disonancia. Aquí no es todavía un acontecimiento, ni un drama, ni un color que se habita deliberadamente: es una regla de circulación entre las voces, un fenómeno de tráfico, nunca un objeto en sí. El concilio de Trento hizo de esta disciplina el modelo mismo del estilo de iglesia."
+          },
+          {
+            "titre": "La economía del módulo: la invención está en la costura",
+            "texte": "Palestrina construye este movimiento entero sobre un pequeño número de fórmulas cadenciales recurrentes más que sobre una profusión de ideas nuevas: el mismo principio que sostiene, siglos más tarde, un esquema armónico fijo como La Folia o un estándar de jazz, un material limitado y una combinatoria inagotable."
+          },
+          {
+            "titre": "La finalis por el peso, no por la dominante",
+            "texte": "Sin dominante conclusiva ni polaridad V-I, la finalis de esta pieza se impone por la repetición y la gravedad de sus cláusulas: un mecanismo de atracción tonal enteramente distinto del que la música funcional desarrollará después, y que recuerda que la noción misma de «tonalidad» recubre varios sistemas históricamente distintos, no un único principio universal."
+          }
+        ]
+      }
     }
   },
   "cours44": {
@@ -7299,6 +8020,98 @@
       "perfect": "¡Perfecto! Mapa, esqueleto, fraseo, voces: el método del intérprete es tuyo — ahora hazlo sonar.",
       "veryGood": "¡Muy bien! Algunos reflejos por consolidar — relee la tabla acontecimiento → decisión de la sección 3.",
       "keepGoing": "Sigue así — repasa la regla del curso (analizar → decidir → escuchar) y el método en 5 pasadas antes de reintentar."
+    },
+    "conservatoire": {
+      "intuition": "El mismo tema, rearmonizado seis veces hacia seis destinos diferentes, revela que una melodía no tiene UN sentido armónico: tiene tantos como armonizaciones posibles, y cada una cuenta una historia distinta.",
+      "reference": {
+        "badge": "Schumann · sobre las Kinderszenen",
+        "citation": "Son reminiscencias de un adulto para adultos, y no escenas destinadas a los niños.",
+        "auteur": "Robert Schumann, a propósito de las Kinderszenen (carta a Clara Wieck, 1838)"
+      },
+      "voix": [
+        "Una misma frase melódica puede armonizarse hacia destinos tonales distintos en cada retorno: la forma-sueño, en la que siempre se parte del mismo umbral sin despertar nunca en el mismo lugar.",
+        "Un acorde de séptima disminuida puede funcionar como un simple pivote modulante, sin intención dramática: un gozne que gira sin chirriar, la modulación como pura asociación de ideas.",
+        "Un calderón puede ascender al rango de acontecimiento estructural de pleno derecho: un acorde de novena de dominante sostenido por sí mismo, saboreado incluso antes de resolver."
+      ],
+      "repertoire": {
+        "titre": "«Träumerei» (Kinderszenen op. 15, n.º 7)",
+        "compositeur": "Robert Schumann"
+      },
+      "pieges": [
+        {
+          "erreur": "Analizar los seis retornos del tema como una simple repetición, sin diferencias",
+          "correction": "Cada retorno del tema está rearmonizado hacia un destino tonal distinto (I, V, ii, IV con un rodeo por vi, y después I): solo las estrofas 1 y 5 son rigurosamente idénticas (verificado nota por nota)."
+        },
+        {
+          "erreur": "Tomar el calderón del c. 22 por una simple pausa sin función armónica",
+          "correction": "Es un verdadero acorde (Sol9, la dominante de la dominante), sostenido y saboreado por sí mismo: la cima expresiva de toda la pieza, ni un silencio ni una simple prolongación."
+        },
+        {
+          "erreur": "Buscar una función dramática (a la manera de Beethoven) o suspensiva (a la manera de Wagner) en los acordes de séptima disminuida de esta pieza",
+          "correction": "Aquí la séptima disminuida funciona como un discreto pivote modulante: un gozne que gira sin chirriar, la modulación como asociación de ideas más que como drama o tensión prolongada."
+        }
+      ],
+      "resume": [
+        "El mismo tema (la anacrusa de Do, el ascenso hacia Fa) vuelve seis veces en Träumerei, cada vez rearmonizado hacia un destino distinto —I, V, ii, IV (con un rodeo por vi) y después I—: el círculo familiar completo de Fa mayor.",
+        "Dos acordes de séptima disminuida funcionan como puertas giratorias silenciosas, que hacen bascular la frase hacia regiones nuevas sin dramatizar jamás la transición.",
+        "El calderón del c. 22 (un Sol9 sostenido, la dominante de la dominante) asciende a acontecimiento estructural de pleno derecho: el ensueño sostenido en la mano, antes del despertar de puntillas a través de un V9 completo."
+      ],
+      "analyseNarrative": {
+        "tonalite": "Fa mayor de principio a fin: cada estrofa parte de la misma tónica, pero visita una región distinta antes de volver a ella o de alejarse.",
+        "metrique": "4/4, Moderato (negra = 90). Una sola y misma frase, respirada seis veces, con anacrusa.",
+        "forme": "Seis estrofas de cuatro compases sobre un mismo tema: I (cc. 0-4) — V (cc. 5-8) — ii (cc. 9-12) — IV, con vi de paso (cc. 13-16) — I, repetición exacta (cc. 17-20) — I, con calderón y cadencia final (cc. 21-24).",
+        "sections": [
+          {
+            "label": "Estrofas 1 y 5 (cc. 0-4, cc. 17-20)",
+            "titre": "La exposición, la casa… y su retorno exacto",
+            "chiffrage": "I … I6/4 – V7",
+            "fonctions": "T … T",
+            "texte": "El tema se eleva desde la anacrusa de Do hasta su cima, Fa5, antes de una semicadencia I6/4-V7. La estrofa 5 retoma esa misma frase nota por nota, idéntica hasta en el ataque y en la altura —verificado exhaustivamente—: el regreso a la realidad tras el viaje de las estrofas intermedias."
+          },
+          {
+            "label": "Estrofa 2 (cc. 5-8)",
+            "titre": "La primera puerta giratoria",
+            "chiffrage": "I → vi → vii°7/V → V/V → V",
+            "fonctions": "T → T → ? → D → D",
+            "texte": "La misma salida, pero la frase se desliza hacia vi (re menor) y luego pivota sobre un acorde de séptima disminuida (Fa#-La-Do-Mi♭, confirmado exactamente) que la hace bascular hacia la dominante de la dominante y después hacia Do mayor: el sueño ha derivado una quinta entera sin forzar jamás la puerta."
+          },
+          {
+            "label": "Estrofa 3 (cc. 9-12)",
+            "titre": "El rodeo más sombrío",
+            "chiffrage": "I → do menor (tomado prestado) → Re7♭9 → sol menor (ii)",
+            "fonctions": "T → ? → ? → SD",
+            "texte": "Salida en Fa, pero muy pronto aflora el modo menor (el Mi♭ prestado), la frase se carga con un Re7 de novena menor y acaba por posarse en sol menor: el punto más sombrío de toda la obra, alcanzado mezzo forte."
+          },
+          {
+            "label": "Estrofa 4 (cc. 13-16)",
+            "titre": "La jugada maestra: el tema en Si♭",
+            "chiffrage": "IV → V/vi (vii°7 pivote) → vi → V7",
+            "fonctions": "SD → ? → T → D",
+            "texte": "El tema mismo, oído hasta aquí siempre como melodía sobre un acorde de Fa, se reenuncia en Si♭ mayor (IV) y alcanza aquí la cima absoluta de toda la pieza, Si♭5. Una segunda puerta giratoria (un acorde de séptima disminuida sobre Do#) hace deslizar hacia re menor (vi), antes de que un Do7 prepare el retorno."
+          },
+          {
+            "label": "Estrofa 6 (cc. 21-24)",
+            "titre": "El calderón y el despertar",
+            "chiffrage": "I → V9/V (calderón) → I6/4-V7 → ii-V9-I",
+            "fonctions": "T → ? → T → T",
+            "texte": "El tema arranca una última vez, pero en lugar de proseguir su curso la frase se inmoviliza: un acorde de Sol9 (Sol-Si-Re-Fa-La, confirmado exactamente) se sostiene bajo calderón, con la melodía suspendida en La5: el ensueño sostenido en la mano, fuera del tiempo. Después una última travesía (I6/4-V7) y la cadencia final, pianissimo: ii, y luego un V9 completo en el que el Re y el Mi suenan juntos (confirmado), antes del acorde de Fa bajo un segundo calderón: el despertar de puntillas."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "La séptima disminuida como gozne silencioso",
+            "texte": "Las dos puertas giratorias de la pieza (estrofas 2 y 4) emplean el mismo agregado que, en otros lugares de este corpus, dramatiza (Beethoven) o suspende indefinidamente (Wagner): aquí la séptima disminuida no hace ni lo uno ni lo otro; pivota sin ruido, la modulación como pura asociación de ideas más que como acontecimiento."
+          },
+          {
+            "titre": "El calderón ascendido a acontecimiento estructural",
+            "texte": "El Sol9 sostenido del c. 22 no es una simple pausa: es la cima expresiva de la pieza, un acorde suspendido por sí mismo, saboreado incluso antes de resolver; veintiún años antes de Tristán, la misma idea de una tensión sostenida por sí misma, pero que aquí siempre acaba volviendo a acostarse."
+          },
+          {
+            "titre": "Una lección de rearmonización avant la lettre",
+            "texte": "El mismo material melódico, armonizado seis veces hacia seis destinos distintos (I, V, ii, IV, vi de paso y después I): Träumerei es el ejercicio de rearmonización más diáfano del repertorio, un tema que todo el mundo conoce bajo seis iluminaciones de autor."
+          }
+        ]
+      }
     }
   },
   "cours47": {
@@ -7318,6 +8131,98 @@
       "perfect": "¡Perfecto! Partitura, claves, transposiciones, verticalidad: la orquesta ya no tiene secretos sobre el papel — ahora hay que oírla.",
       "veryGood": "¡Muy bien! Algunas transposiciones por consolidar — relee LA tabla de la sección 3 y vuelve a tocar las parejas escrito/sonante.",
       "keepGoing": "Sigue así — repasa la tabla de los transpositores y las líneas de las claves de do (Fa3–La3–Do4–Mi4–Sol4) antes de reintentar."
+    },
+    "conservatoire": {
+      "intuition": "Una textura orquestal no siempre es un apilamiento de acordes atacados a la vez: las más de las veces es una línea melódica sostenida por pedales tenidos, y saber distinguir un pedal sostenido de un verdadero tutti atacado en bloque es ya saber leer una partitura de orquesta.",
+      "reference": {
+        "badge": "Rimski-Kórsakov · Principios de orquestación",
+        "citation": "La orquestación forma parte integrante del alma misma de la obra.",
+        "auteur": "Nikolái Rimski-Kórsakov, Principios de orquestación (tratado póstumo, ed. Steinberg, 1913)"
+      },
+      "voix": [
+        "Un acompañamiento de cuerdas puede sostener una melodía sin formar jamás un acorde realmente atacado a la vez: la «verticalidad» no es a veces sino un pedal tenido, no un acorde atacado.",
+        "Distinguir un verdadero tutti (todas las partes atacando juntas, con el mismo ritmo) de un pedal simplemente sostenido exige verificar los ataques reales, y no solo las alturas que suenan juntas en un instante dado.",
+        "Las indicaciones pizz./arco no son simples matices de ejecución: redistribuyen el papel de los atriles entre portadores de la melodía y portadores de la armonía implícita."
+      ],
+      "repertoire": {
+        "titre": "Scheherazade, 3.er movimiento «El joven príncipe y la joven princesa» (fragmento, versión condensada)",
+        "compositeur": "Nikolái Rimski-Kórsakov"
+      },
+      "pieges": [
+        {
+          "erreur": "Creer que un arreglo a 5 partes instrumentales forma un acorde completo en cada instante",
+          "correction": "Aquí una sola línea (el violín) lleva la melodía casi todo el tiempo mientras las otras 4 partes mantienen un pedal: los escasos tuttis (5 partes atacando juntas, con el mismo ritmo) se concentran en las articulaciones de la forma, y el acorde del último compás es con mucho el más denso de la pieza."
+        },
+        {
+          "erreur": "Buscar una cuadrícula de acordes cifrable compás a compás en todo arreglo orquestal",
+          "correction": "Un arreglo esencialmente melódico (como este, o el primer archivo del Bolero/curso 19) no contiene una progresión armónica que cifrar: la armonía permanece implícita y el análisis atañe entonces a la línea y a la textura más que a los grados."
+        },
+        {
+          "erreur": "Considerar el ornamento cromático «oriental» (el Do# de la Princesa) como una verdadera modulación o un préstamo funcional",
+          "correction": "Es puro decorado sonoro, jamás resuelto, que colorea la melodía sin entrar nunca en una sintaxis armónica: una cuarta aumentada bordada, no un acorde alterado."
+        }
+      ],
+      "resume": [
+        "Este movimiento es un díptico: el Príncipe (Sol mayor, diatonismo puro, cc. 1-42) frente a la Princesa (sol menor ornado con un Do# «oriental», cc. 43-58), antes de un retorno del Príncipe y una coda (cc. 75-80).",
+        "El acompañamiento es casi siempre un pedal tenido bajo la melodía; los escasos tuttis (5 partes a la vez, con el mismo ritmo) marcan las articulaciones de la forma, y el acorde del último compás —donde la viola añade incluso su propio arpegio Mi-Do-La por encima de la tríada de Sol mayor de las demás partes— es con mucho el más denso.",
+        "El tetracordo descendente de la Princesa (Re-Do-Si♭-La-Sol) y su ornamento cromático jamás resuelto vinculan este movimiento con todo un linaje del corpus (Folía, Purcell, Sibelius, Bolero, Morricone): Rimski-Kórsakov es su fuente rusa, transmitida a Stravinsky, su alumno."
+      ],
+      "analyseNarrative": {
+        "tonalite": "Sol mayor para el Príncipe (armadura de 1 sostenido); sol menor ornado para la Princesa (armadura de 2 bemoles, cc. 43-58); retorno a Sol mayor para la reexposición y la coda.",
+        "metrique": "6/8, un díptico de dos melodías-mundo sobre el mismo pulso mecedor, sin ninguna verdadera ruptura de compás.",
+        "forme": "Príncipe (cc. 1-42, con un episodio interior en pizzicato, cc. 24-30) — Princesa (cc. 43-58) — retorno del Príncipe, da capo variado (cc. 59-74) — coda (cc. 75-80).",
+        "sections": [
+          {
+            "label": "El Príncipe (cc. 1-9)",
+            "titre": "La suavidad como ausencia calculada de alteraciones",
+            "chiffrage": "I (pedal tenido bajo la melodía)",
+            "fonctions": "T",
+            "texte": "El violín expone solo su anacrusa; después las otras cuatro cuerdas entran en pedal (Sol-Si-Re, tenido dos compases seguidos) mientras la línea prosigue su curva: Si-Do, Re-Mi, la caída Sol-La-Si. Ni una sola alteración antes del período cerrado del c. 9: un diatonismo perfecto, la elegancia sin acontecimiento."
+          },
+          {
+            "label": "El episodio en pizzicato (cc. 24-30)",
+            "titre": "La armonía reducida a su esqueleto",
+            "chiffrage": "V implícito (pedal de dominante)",
+            "fonctions": "D",
+            "texte": "Un diálogo de bajos en pizzicato, La y Si alternados bajo un Fa# tenido: la dominante se sugiere, nunca se ataca como acorde completo. Es el acompañamiento en su grado más económico: tres notas que esbozan una función sin reunirse jamás en un acorde atacado a la vez."
+          },
+          {
+            "label": "La Princesa (cc. 43-58)",
+            "titre": "El negativo exacto: el ornamento como decorado",
+            "chiffrage": "i (sol menor), con Do# ajeno al modo",
+            "fonctions": "?",
+            "texte": "La acciaccatura Do#-Re, repetida como un pandero, borda una cuarta aumentada que no pertenece a ninguna escala del pasaje y que nunca se resuelve: un puro ornamento «oriental», color sin función. Después la línea se enrosca en un descenso Re-Do-Si♭-La-Sol, el mismo tetracordo cromático-melódico que arma la Folía, el ground de Purcell y el descenso andaluz de Sibelius, aquí como galas de danza y no como zócalo armónico."
+          },
+          {
+            "label": "Retorno del Príncipe (cc. 59-74)",
+            "titre": "El da capo variado",
+            "chiffrage": "I",
+            "fonctions": "T",
+            "texte": "El tema del Príncipe regresa, reelaborado pero reconocible, en Sol mayor: la tónica recobrada tras el rodeo modal de la Princesa, preparando la coda."
+          },
+          {
+            "label": "La coda (cc. 75-80)",
+            "titre": "La firma de la narradora, y el único tutti",
+            "chiffrage": "I — el único acorde realmente ATACADO a la vez por las 5 partes",
+            "fonctions": "T",
+            "texte": "Unos deslizamientos cromáticos (La#-Si-Do, Mi♭-Fa#-Sol) evocan el arabesco del violín de la propia Scheherazade, que ronda por todo el ciclo. Después, en el último compás, las cinco partes articulan JUNTAS, con el mismo ritmo, el tutti más denso de todo el movimiento: Sol-Re-Si en los violines y el contrabajo, pero la viola le superpone su propio arpegio en pizzicato (Mi-Do-La), un último trazo de color que enriquece la tríada en lugar de un simple acorde de Sol mayor desnudo. En todos los demás lugares la «verticalidad» no era sino un pedal tenido bajo una línea que se mueve, con escasos destellos de conjunto solo en las articulaciones de la forma; aquí, para terminar, es el gesto colectivo más rico de la pieza, y aun este gesto conserva una voz que se aparta de él con un trazo fino."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Verticalidad tenida frente a verticalidad atacada",
+            "texte": "El vaciado nota a nota distingue dos texturas que el ojo confunde con facilidad sobre una partitura: un pedal de cuerdas SOSTENIDO bajo una melodía que sigue moviéndose (el caso casi por doquier en este movimiento) no es lo mismo que un acorde realmente ATACADO a la vez por todas las partes, con el mismo ritmo (raro, y concentrado en las articulaciones de la forma: fin del Príncipe, fin de la Princesa, fin del retorno, coda). El acorde final (c. 80) no es el único de esos instantes, pero es con mucho el más denso. Verificar los ataques reales, y no solo las alturas que suenan juntas en un instante dado, es la única manera fiable de decidir entre pedal tenido y verdadero tutti."
+          },
+          {
+            "titre": "El tetracordo descendente y el ornamento «oriental», dos exportaciones rusas",
+            "texte": "El tetracordo cromático de la Princesa (Re-Do-Si♭-La-Sol) vincula este movimiento con la Folía, con el ground de Purcell y con el descenso andaluz de Sibelius; y la receta de la cuarta aumentada bordada, jamás resuelta, como puro decorado sonoro, es exactamente la que industrializarán más tarde el tema B del Bolero (1928) y Morricone (1966): aquí en su fuente rusa, en el maestro cuyo orientalismo proporcionó el léxico a tres generaciones."
+          },
+          {
+            "titre": "1888, el año de los dos rostros",
+            "texte": "El mismo año que la primera Gymnopédie de Satie: en París la armonía pierde su función; en San Petersburgo, Rimski-Kórsakov lleva a su perfección el arte inverso, el color DENTRO de la función: el cromatismo como traje, la modalidad como perfume, todo ello prudentemente amarrado a la tonalidad. Y el hilo es directo: Rimski-Kórsakov fue el profesor de Stravinsky, cuyos Augurios primaverales (curso 21) vuelven ese taller contra sí mismo."
+          }
+        ]
+      }
     }
   },
   "cours48": {
@@ -7337,6 +8242,98 @@
       "perfect": "¡Perfecto! El bajo, las funciones, las inversiones, las 6 escuchas: el método está adquirido — ahora toca practicarlo en /releve.",
       "veryGood": "¡Muy bien! Algunos reflejos por consolidar — relee la ficha refleja y repite los ejemplos V/V7 de la sección 4.",
       "keepGoing": "Sigue así — repasa la regla de oro (tonalidad → cadencia → bajo → cifrados) y la ficha refleja antes de reintentar."
+    },
+    "conservatoire": {
+      "intuition": "Una «repetición literal» anunciada en una partitura no se verifica nunca a primera vista, ni por el ritmo ni por el tacto: se verifica en el bajo, siguiendo la única línea que porta la progresión real, despejada de todo lo que varía a su alrededor.",
+      "reference": {
+        "badge": "Vivaldi · Soneto de «El invierno» (1725)",
+        "citation": "Temblar helado entre las nieves gélidas, al severo soplar de un viento horrendo.",
+        "auteur": "Soneto que acompaña la edición original de Las cuatro estaciones (1725), atribuido al propio Vivaldi"
+      },
+      "voix": [
+        "El bajo primero, siempre: siguiendo únicamente la línea del bajo, con independencia de una figuración que cambia por completo, se identifica que una secuencia armónica se repite realmente.",
+        "Una misma sonoridad puede cambiar de ESTATUTO según su contexto —textura tenida sin movimiento funcional, o función precisa dentro de una cadencia—: el vaciado debe establecer primero QUÉ HACE el acorde antes de nombrarlo.",
+        "Verificar una afirmación de «literalmente idéntico» exige comparar los puntos de referencia correctos: un desfase de un solo compás en el alineamiento puede llevar a concluir erróneamente que una repetición no es exacta."
+      ],
+      "repertoire": {
+        "titre": "«El invierno» (L'inverno), 1.er movimiento de Las cuatro estaciones (arreglo para piano desarrollado)",
+        "compositeur": "Antonio Vivaldi"
+      },
+      "pieges": [
+        {
+          "erreur": "Confundir un acorde TENIDO como textura (que todavía no funciona) con un acorde funcional que prepara una cadencia precisa",
+          "correction": "El mismo acorde (Sol-Si♭-Re♭-Fa, una séptima semidisminuida) abre el movimiento como pura textura —el frío, representado físicamente— y lo cierra, cincuenta compases después, como clavija de cadencia funcional (iiø6/5–V–i): dos estatutos bien distintos para una misma sonoridad."
+        },
+        {
+          "erreur": "Verificar una «repetición literal» comparando los compases en el orden en que se mencionan, sin comprobar el alineamiento real",
+          "correction": "El círculo de quintas del c. 111 NO retoma el del c. 44 compás a compás, sino el del c. 45: un desfase de una estación en el círculo que un alineamiento ingenuo habría pasado por alto."
+        },
+        {
+          "erreur": "Armar un acorde a partir de varios vaciados parciales sin comprobar el orden de los argumentos (altura, alteración, octava)",
+          "correction": "Un error de argumentos desplazados (ya encontrado en el archivo de la Folía, curso 42) puede transformar en silencio un acorde correcto en uno falso: releerse sistemáticamente en vez de fiarse de un primer borrador."
+        }
+      ],
+      "resume": [
+        "La apertura del movimiento (cc. 1-22) construye una séptima semidisminuida (Sol-Si♭-Re♭-Fa) por acumulación, nota tras nota, como pura textura que representa el frío: diez compases de disonancia helada antes de la primera resolución en fa menor.",
+        "El círculo de quintas completo (Do-Fa-Si♭-Mi♭-La♭-Re♭-Sol-Do, cc. 44-51) vuelve literalmente —misma secuencia de bajo— en el c. 111, pero con una figuración enteramente distinta: el bajo primero es la única manera fiable de verificarlo.",
+        "La gran cadencia final (cc. 111-124) cierra el bucle: el mismo acorde del hielo inicial (Sol-Si♭-Re♭-Fa) reaparece allí como iiø6/5, una clavija de cadencia perfectamente funcional: las dos vidas de un mismo acorde, con cincuenta compases de distancia, en la escritura más ortodoxa del barroco."
+      ],
+      "analyseNarrative": {
+        "tonalite": "Fa menor de principio a fin (armadura de 4 bemoles), con un rodeo por el relativo mayor (La♭ mayor) bajo el più Vivace (c. 77).",
+        "metrique": "4/4, Allegretto, sempre pedale, con aceleraciones escritas (el tempo asciende por microescalones a lo largo de toda la pieza) y un più Vivace en el c. 77.",
+        "forme": "La apertura helada (cc. 1-22) — los episodios en Do, el viento (cc. 23-51, con el círculo de quintas completo al final) — los racimos cromáticos (cc. 52-66) — più Vivace y preparación (cc. 67-110) — la gran cadencia, reexposición y doble vida del acorde (cc. 111-124).",
+        "sections": [
+          {
+            "label": "La apertura helada (cc. 1-22)",
+            "titre": "La disonancia-programa: diez compases de hielo antes de la primera resolución",
+            "chiffrage": "iiø7 → vii°7 → i, después F7(V/iv)–G7(V/V)–A°7",
+            "fonctions": "? → ? → T, después ? → ? → ?",
+            "texte": "Las voces entran una a una y se hielan en el sitio: Fa solo, luego +Sol +Si♭, luego +Re♭; el acorde así construido por acumulación, sostenido en corcheas repetidas, es Sol-Si♭-Re♭-Fa, la séptima semidisminuida. Todavía no funciona: REPRESENTA, físicamente, mediante la textura, el frío que se apodera de todo. El Fa♭ (enarmónico de Mi) lo afila en vii°7; la resolución en fa menor no llega hasta el c. 11, tras diez compases de disonancia helada. Después una escala de dominantes secundarias (F7, G7, A°7) hace subir la tensión un punto en cada peldaño: el castañeteo de dientes se intensifica."
+          },
+          {
+            "label": "Los episodios en Do, el viento (cc. 23-51)",
+            "titre": "El motor barroco a pleno rendimiento",
+            "chiffrage": "v (ráfagas), después círculo de quintas completo",
+            "fonctions": "?",
+            "texte": "Ráfagas de escalas ascendentes y descendentes, acordes martilleados: el viento, los pies que golpean el suelo. Después el círculo de quintas se instala a pleno rendimiento: el bajo desciende Do-Fa-Si♭-Mi♭-La♭-Re♭-Sol-Do, una séptima en cada estación, la dominante de la dominante de la dominante… hasta un acorde semidisminuido sobre Sol que cierra el bucle. El mismo armazón que la cadencia de K. 545 (Mozart, curso 28) y que la cuadrícula de Autumn Leaves (curso 15): sesenta años antes de la una, dos siglos antes de la otra."
+          },
+          {
+            "label": "Los racimos cromáticos (cc. 52-66)",
+            "titre": "La disonancia-textura, otra vez",
+            "chiffrage": "agregados de segundas sobre pedal de Do",
+            "fonctions": "?",
+            "texte": "Mi-Fa-Sol-La♭ apilados en segundas: el viento que muerde, en racimos. Después un cromatismo máximo —hasta un Mi doble bemol— y los roces Fa♭/Fa sobre un pedal de Do tenido por debajo. Vivaldi no escribe acordes que funcionen: escribe texturas que representan, exactamente igual que al comienzo del movimiento, pero aquí llevadas hasta el extremo cromático."
+          },
+          {
+            "label": "Più Vivace y la preparación (cc. 67-110)",
+            "titre": "El procedimiento del hielo, por segunda vez",
+            "chiffrage": "i (tutti), después acumulación en el relativo, cadena de dominantes",
+            "fonctions": "T, después ?",
+            "texte": "Un breve regreso al tutti sobre la tónica y, a continuación, el più Vivace relanza la acumulación por grados (Mi♭, +Fa, +La♭, +Si♭): el mismo procedimiento que en la apertura, trasladado al relativo mayor. Una escala de dominantes encadenadas (Fa mayor–Sol mayor–Do) y unos descensos cromáticos preparan la gran cadencia final."
+          },
+          {
+            "label": "La gran cadencia (cc. 111-124)",
+            "titre": "Las dos vidas del acorde, con cincuenta compases de distancia",
+            "chiffrage": "círculo de quintas reexpuesto, después C7 — iiø6/5 – V – i, dos veces",
+            "fonctions": "?, después D → SD → D → T (×2)",
+            "texte": "El círculo de quintas regresa, literalmente idéntico estación por estación al del c. 45 (misma secuencia de bajo, Fa-Si♭-Mi♭-La♭-Re♭-Sol) pero con una figuración martilleada, distinta de la primera vez. Después Do7 (V7) introduce la fórmula cadencial iiø6/5–V–i, repetida dos veces, martilleada hasta las profundidades del teclado: el Si♭0, la nota más grave de todo el archivo, cae exactamente sobre la 2.ª aparición del acorde-clavija. Y ese acorde-clavija, Sol-Si♭-Re♭-Fa, es EXACTAMENTE el del hielo inicial: la pieza se abre construyendo la semidisminuida como textura y se cierra golpeándola como función. Conclusión en fa menor, sin tercera de Picardía: el invierno sigue siendo el invierno."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Un solo acorde, dos estatutos, un solo movimiento",
+            "texte": "La misma sonoridad (Sol-Si♭-Re♭-Fa) abre el movimiento como pura TEXTURA —tenida, repetida, sin movimiento funcional, representando el frío— y lo cierra como pura FUNCIÓN: una inversión (ø6/5) que prepara la dominante en una cadencia de manual. Vivaldi inventa aquí, un siglo antes que Berlioz y dos antes que La consagración de la primavera, la disonancia-programa y la disonancia-textura, como licencias poéticas en el interior del sistema funcional más ortodoxo."
+          },
+          {
+            "titre": "Una tarjeta de visita a través de cuatro siglos",
+            "texte": "La semidisminuida de este corpus cuenta ya con seis estatutos documentados: textura del frío y clavija de cadencia en Vivaldi (1725), obrera en Bach, drama en Beethoven (la Patética, curso 39), enigma en Wagner (Tristán, curso 25), timbre en Debussy (La catedral sumergida, curso 29), vocablo en Evans (My Funny Valentine, curso 16). Nada nace, todo asciende: la historia de este acorde es un cambio de estatuto, no una invención."
+          },
+          {
+            "titre": "Metodología del vaciado: el bajo primero, siempre",
+            "texte": "Siguiendo únicamente la línea del bajo —no las voces superiores, radicalmente distintas en su figuración— se identifica que el círculo de quintas del c. 111 es IDÉNTICO al del c. 45: misma secuencia de grados, mismo orden, solo cambia la textura. Una «repetición literal» anunciada en una partitura se verifica en el bajo, jamás a primera vista por el ritmo o el tacto."
+          }
+        ]
+      }
     }
   },
   "releve": {
