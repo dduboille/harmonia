@@ -16,6 +16,7 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { COURS_COUNT, FREE_COURS } from "@/lib/catalogue";
+import { REPERTOIRE_COUNT } from "@/data/repertoire";
 
 const FREE_COUNT = FREE_COURS.length;
 
@@ -268,9 +269,15 @@ export default function LandingPage() {
         <div style={{ position: "absolute" as const, inset: 0, background: "linear-gradient(to bottom, rgba(250,248,244,0.62) 0%, rgba(250,248,244,0.78) 60%, rgba(250,248,244,0.94) 100%)" }} />
 
         <div style={{ maxWidth: 760, textAlign: "center" as const, position: "relative" as const, zIndex: 1, padding: "80px 1.5rem" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#FAEEDA", border: "0.5px solid #F6AD55", borderRadius: 20, padding: "5px 14px", fontSize: 12, fontWeight: 600, color: "#8a5a10", fontFamily: "system-ui, sans-serif", marginBottom: 32, letterSpacing: "0.04em" }}>
-            <span aria-hidden="true">✦</span>
-            {t("badge", { count: COURS_COUNT })}
+          <div style={{ display: "flex", flexWrap: "wrap" as const, justifyContent: "center", gap: 10, marginBottom: 32 }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#FAEEDA", border: "0.5px solid #F6AD55", borderRadius: 20, padding: "5px 14px", fontSize: 12, fontWeight: 600, color: "#8a5a10", fontFamily: "system-ui, sans-serif", letterSpacing: "0.04em" }}>
+              <span aria-hidden="true">✦</span>
+              {t("badge", { count: COURS_COUNT })}
+            </div>
+            <Link href={`/${locale}/repertoire`} style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.7)", border: "0.5px solid #e0dbd3", borderRadius: 20, padding: "5px 14px", fontSize: 12, fontWeight: 600, color: "#5f5f5f", fontFamily: "system-ui, sans-serif", letterSpacing: "0.04em", textDecoration: "none" }}>
+              <span aria-hidden="true">🎼</span>
+              {t("repertoireBadge", { count: REPERTOIRE_COUNT })}
+            </Link>
           </div>
 
           <h1 style={{ fontSize: "clamp(64px, 15vw, 148px)", fontWeight: 400, lineHeight: 1, letterSpacing: "-0.03em", margin: "0 0 32px" }}>
@@ -526,6 +533,7 @@ export default function LandingPage() {
               { label: t("navScales"), href: `/${locale}/tonalites` },
               { label: t("navCursus"), href: `/${locale}/cursus` },
               { label: t("navDissonance"), href: `/${locale}/dissonance` },
+              { label: t("navRepertoire"), href: `/${locale}/repertoire` },
               { label: t("footerPrivacy"), href: `/${locale}/confidentialite` },
               { label: t("footerTerms"), href: `/${locale}/conditions` },
             ].map(link => (

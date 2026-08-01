@@ -25,6 +25,7 @@ const TOOL_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "upgrade",           priority: 0.8 },
   { path: "cursus",            priority: 0.8 },
   { path: "dissonance",        priority: 0.7 },
+  { path: "repertoire",        priority: 0.7 },
   { path: "dictee",            priority: 0.8 },
   { path: "notes-etrangeres",  priority: 0.8 },
   { path: "atelier",           priority: 0.7 },
