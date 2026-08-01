@@ -2792,7 +2792,7 @@ export const MY_FUNNY_VALENTINE_ANALYSE_NARRATIVE: AnalyseNarrative = {
     {
       label: "Mesures 7-8",
       titre: "L'arc autour du iiø : sommet, puis redescente",
-      chiffrage: "Réø7 (arpège ascendant) → Solb13(♯9)",
+      chiffrage: "Réø7 (arpège ascendant) → Sol7(♯9♭13)",
       fonctions: "iiø7 – V7 alt",
       texte:
         "Toute la mesure 7 est un arpège en triolets qui traverse les deux mains : la basse " +

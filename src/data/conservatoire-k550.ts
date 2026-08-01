@@ -1830,7 +1830,7 @@ export const K550_ANALYSE_NARRATIVE: AnalyseNarrative = {
   synthese: [
     {
       titre: "Une note, deux fonctions",
-      texte: "Le ré porte toute l'harmonie des 4 premières mesures (5e de la tonique) puis, un ton plus haut à la basse (mi♭), fait glisser l'harmonie vers la sous-dominante — un déplacement d'un seul demi-ton suffit à changer complètement de fonction.",
+      texte: "Le ré porte toute l'harmonie des 4 premières mesures (5e de la tonique) puis, un demi-ton plus haut à la basse (mi♭), fait glisser l'harmonie vers la sous-dominante — un déplacement d'un seul demi-ton suffit à changer complètement de fonction.",
     },
     {
       titre: "Le triton, moteur de la dominante",

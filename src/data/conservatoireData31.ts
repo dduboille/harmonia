@@ -42,6 +42,6 @@ export const CONSERVATOIRE_DATA_31: CoursConservatoireData = {
   resume: [
     "Polytonalité : superposition simultanée de tonalités différentes — douce (tonalités voisines) ou brutale (triton, comme Stravinsky Pétrouchka)",
     "Accords quartaux : construction par superposition de quartes (Do–Fa–Sib ou Do–Fa–Si). Ni majeur ni mineur → ambiguïté moderne.",
-    "So What chord : Ré–Sol–Do–Fa–La (4 quartes + tierce majeure au sommet) — voicing emblématique du jazz modal",
+    "So What chord : Ré–Sol–Do–Fa–La (3 quartes + tierce majeure au sommet) — voicing emblématique du jazz modal",
   ],
 };
