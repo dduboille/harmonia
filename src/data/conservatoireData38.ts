@@ -42,6 +42,6 @@ export const CONSERVATOIRE_DATA_38: CoursConservatoireData = {
   resume: [
     "Le retard (suspension) : préparation consonante → percussion dissonante → résolution descendante — Dido's Lament (Purcell, 1689) l'illustre en chaînes 7-6/4-3 sur onze passages du même ground.",
     "Le ground (basse obstinée, ici un tétracorde chromatique descendant Sol-Ré, le passus duriusculus) reste invariant pendant que son habillage harmonique change à chaque retour — la note étrangère naît de cet écart.",
-    "1689, domaine public : la plus ancienne pièce du corpus Harmonia, et la source commune à la basse de lamento (Chopin), la 7e préparée (Bach) et la résolution différée (Wagner).",
+    "1689, domaine public : la pièce la plus ancienne du corpus Harmonia après la Missa Brevis de Palestrina (1570, cours 43), et la source commune à la basse de lamento (Chopin), la 7e préparée (Bach) et la résolution différée (Wagner).",
   ],
 };

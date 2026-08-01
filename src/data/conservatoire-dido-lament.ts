@@ -20,7 +20,8 @@ import type { MesureAnalyse, AnalyseNarrative } from "./conservatoire-bwv846";
  * onset, cf. lib/musicxml-parse), pas une vérification d'un chiffrage
  * préexistant — à revoir par Dany comme n'importe quelle pièce du corpus.
  *
- * 1689, domaine public absolu : la plus ancienne pièce du corpus.
+ * 1689, domaine public absolu : la plus ancienne pièce du corpus lors de son
+ * ajout — la Missa Brevis de Palestrina (1570, cours 43) l'a depuis devancée.
  *
  * Recoupé note à note contre le fichier :
  *  - le ground (voix de basse, m.10 et rebouclé 10 fois derrière chaque
@@ -12580,7 +12581,7 @@ export const DIDO_LAMENT_ANALYSE_NARRATIVE: AnalyseNarrative = {
     },
     {
       titre: "1689 : la source commune du corpus",
-      texte: "Le tétracorde chromatique descendant de ce ground (Sol-Fa#-Fa-Mi-Mib-Ré) est, cent cinquante ans avant, exactement le même dessin que la basse de lamento du Prélude op. 28 n°20 de Chopin (cours 24). La pièce la plus ancienne du corpus s'avère aussi la source commune de plusieurs de ses fils rouges : la descente chromatique, le retard préparé, et la basse obstinée sous une harmonie changeante.",
+      texte: "Le tétracorde chromatique descendant de ce ground (Sol-Fa#-Fa-Mi-Mib-Ré) est, cent cinquante ans avant, exactement le même dessin que la basse de lamento du Prélude op. 28 n°20 de Chopin (cours 24). Cette pièce, la plus ancienne du corpus après la Missa Brevis de Palestrina (cours 43), s'avère aussi la source commune de plusieurs de ses fils rouges : la descente chromatique, le retard préparé, et la basse obstinée sous une harmonie changeante.",
     },
   ],
 };

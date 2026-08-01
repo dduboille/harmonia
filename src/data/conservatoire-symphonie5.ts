@@ -65833,7 +65833,7 @@ export const SYMPHONIE5_ANALYSE_NARRATIVE: AnalyseNarrative = {
       titre: "La plus célèbre ouverture de la musique occidentale ne dit pas sa tonalité",
       chiffrage: "Sol-Sol-Sol-Mib / Fa-Fa-Fa-Ré (unisson pur, doublé aux octaves)",
       fonctions: "? (aucun accord, donc aucune fonction possible avant la mesure 6)",
-      texte: "Quatre notes, deux fois répétées un ton plus bas, doublées à l'octave, sans une seule tierce : Sol-Mib appartient aussi bien à Do mineur (3̂-1̂) qu'à Mib majeur (5̂-3̂), et rien dans ces cinq mesures ne tranche. La plus célèbre ouverture de la musique occidentale est, harmoniquement, un unisson énigmatique — résolu seulement après coup, à la mesure 6. Les deux points d'orgue ne sont d'ailleurs pas symétriques : le premier (mesure 2) tient sans liaison dans une seule mesure, tandis que le second (mesure 5) est lié depuis la mesure 4 — la seconde tenue, plus longue, porte tout le poids de la suspension.",
+      texte: "Quatre notes, deux fois répétées un ton plus bas, doublées à l'octave, sans une seule tierce : Sol-Mib appartient aussi bien à Do mineur (5̂-3̂) qu'à Mib majeur (3̂-1̂), et rien dans ces cinq mesures ne tranche. La plus célèbre ouverture de la musique occidentale est, harmoniquement, un unisson énigmatique — résolu seulement après coup, à la mesure 6. Les deux points d'orgue ne sont d'ailleurs pas symétriques : le premier (mesure 2) tient sans liaison dans une seule mesure, tandis que le second (mesure 5) est lié depuis la mesure 4 — la seconde tenue, plus longue, porte tout le poids de la suspension.",
     },
     {
       label: "Mesures 6-124 (exposition : l'appel de cor et le second thème)",

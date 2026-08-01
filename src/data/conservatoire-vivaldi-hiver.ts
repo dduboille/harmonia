@@ -39452,7 +39452,7 @@ export const VIVALDI_HIVER_ANALYSE_NARRATIVE: AnalyseNarrative = {
     },
     {
       titre: "Une carte de visite à travers quatre siècles",
-      texte: "La demi-diminuée de ce corpus a maintenant six statuts documentés : texture du froid et cheville de cadence chez Vivaldi (1725), ouvrière chez Bach, drame chez Beethoven (la Pathétique, cours 39), énigme chez Wagner (Tristan, cours 25), timbre chez Debussy (la Cathédrale engloutie, cours 29), vocable chez Evans (My Funny Valentine, cours 16). Rien ne naît, tout est promu — l'histoire de cet accord est un changement de statut, pas une invention.",
+      texte: "La demi-diminuée de ce corpus a maintenant sept statuts documentés chez six compositeurs : texture du froid ET cheville de cadence chez le seul Vivaldi (1725), ouvrière chez Bach, drame chez Beethoven (la Pathétique, cours 39), énigme chez Wagner (Tristan, cours 25), timbre chez Debussy (la Cathédrale engloutie, cours 29), vocable chez Evans (My Funny Valentine, cours 16). Rien ne naît, tout est promu — l'histoire de cet accord est un changement de statut, pas une invention.",
     },
     {
       titre: "Méthodologie du relevé : la basse d'abord, toujours",

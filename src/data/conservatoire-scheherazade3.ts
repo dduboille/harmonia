@@ -18268,7 +18268,7 @@ export const SCHEHERAZADE3_ANALYSE: MesureAnalyse[] = [
   { numero: 47, nom: "Ré-Do-Sib-La-Sol", degre: "le tétracorde descendant en séquences", fonction: "?" },
   { numero: 59, nom: "Sol",       degre: "retour du Prince, da capo varié", fonction: "T" },
   { numero: 75, nom: "chromatismes", degre: "coda : glissades La#-Si-Do / Mib-Fa#-Sol, l'arabesque de la conteuse", fonction: "?" },
-  { numero: 80, nom: "Sol-Ré-Si + arpège d'alto", degre: "I — l'UNIQUE tutti homophone du fichier (5 parties, même rythme), enrichi de l'arpège Mi-Do-La à l'alto, pizz", fonction: "T" },
+  { numero: 80, nom: "Sol-Ré-Si + arpège d'alto", degre: "I — le tutti homophone le plus dense du fichier (5 parties, même rythme), enrichi de l'arpège Mi-Do-La à l'alto, pizz", fonction: "T" },
 ];
 
 export const SCHEHERAZADE3_ANALYSE_NARRATIVE: AnalyseNarrative = {
@@ -18306,8 +18306,8 @@ export const SCHEHERAZADE3_ANALYSE_NARRATIVE: AnalyseNarrative = {
     },
     {
       label: "La coda (m.75-80)",
-      titre: "La signature de la conteuse, et l'unique tutti",
-      chiffrage: "I — le seul accord réellement ATTAQUÉ ensemble par les 5 parties",
+      titre: "La signature de la conteuse, et le tutti le plus dense",
+      chiffrage: "I — le plus dense des rares accords ATTAQUÉS ensemble par les 5 parties",
       fonctions: "T",
       texte: "Des glissades chromatiques (La#-Si-Do, Mib-Fa#-Sol) évoquent l'arabesque du violon de Schéhérazade elle-même, qui rôde dans tout le cycle. Puis, à la toute dernière mesure, les cinq parties articulent ENSEMBLE, dans le même rythme, le tutti le plus dense de tout le mouvement : Sol-Ré-Si aux violons et à la contrebasse, mais l'alto y superpose son propre arpège pizzicato (Mi-Do-La) — un dernier trait de couleur qui enrichit la triade plutôt qu'un simple accord de Sol majeur nu. Partout ailleurs, la « verticalité » n'était qu'une pédale tenue sous une ligne qui bouge, avec de rares éclairs d'ensemble aux seules articulations de la forme ; ici, pour finir, c'est le geste collectif le plus riche de la pièce, et même ce geste garde une voix qui s'en écarte d'un délié.",
     },

@@ -6974,6 +6974,98 @@
       "brahmsInfoBox": "<strong>Brahms and motivic unity:</strong> In his quartets and symphonies, Brahms often derives the entire work from a single interval (a second or a third). This generating interval appears in the melody, the bass, the transitions, the counter-melodies — always recognisable, always transformed. Brahms's motivic analysis reveals a thematic density comparable to Bach's.",
       "motiviqueWarn": "<strong>Common mistake:</strong> Analysing each surface chord without seeking the deep structure. Saying \"C–G–F–C\" says nothing about structural significance. Motivic analysis complements harmonic analysis: on one side the vertical structure (chords), on the other the horizontal structure (motif and its destiny). Together they reveal compositional logic.",
       "quizH2": "Quiz — Schenker and motivic analysis"
+    },
+    "conservatoire": {
+      "intuition": "Schenkerian analysis does not explain why music is beautiful — it shows the bone structure beneath the skin. Knowing that the Mona Lisa is paint on wood makes it neither more nor less beautiful.",
+      "reference": {
+        "badge": "Schenker · Der freie Satz, 1935",
+        "citation": "All tonal music is an ornamentation of the Ursatz — the fundamental line descending to the tonic, supported by the bass rising from I to V and falling back to I. The rest is prolongation.",
+        "auteur": "Heinrich Schenker, Der freie Satz, 1935"
+      },
+      "voix": [
+        "Motivic analysis of Beethoven reveals that the whole Fifth Symphony is built on 4 notes (G–G–G–E♭). Not just the first movement — all 4 movements. It is the same motif, transformed each time. Seeing that structural level means understanding composition at a depth that chord analysis cannot reach.",
+        "Schenkerian reduction is not a simplification — it is an X-ray. At each level of reduction, a different layer of meaning appears. Level 4 (the surface) shows the chords; level 1 (the Urlinie) shows the skeleton of the entire work.",
+        "Brahms is the master of motivic unity: in his quartets, a single interval (often a second or a third) comes back under every possible transformation for 30 minutes. Identifying that generative motif is the first analytical move."
+      ],
+      "repertoire": {
+        "titre": "Symphony No. 5 in C minor, first movement (complete)",
+        "compositeur": "Ludwig van Beethoven (piano transcription by Ernest Pauer)"
+      },
+      "pieges": [
+        {
+          "erreur": "Confusing Schenkerian reduction with simplification",
+          "correction": "Schenkerian reduction does not delete notes at random — it identifies the structural notes according to precise criteria (duration, metrical position, harmonic role). Ornamental notes are not 'less important' — they are the expressive surface of the music."
+        },
+        {
+          "erreur": "Looking for the motif of the Fifth Symphony in rhythm alone",
+          "correction": "The motif G–G–G–E♭ is at once rhythmic (3 eighth notes + a quarter note) AND melodic (a descending minor third). The two dimensions are inseparable. In the second movement the rhythmic motif is transformed, but the melodic interval (the third) remains the link."
+        },
+        {
+          "erreur": "Analyzing every surface chord without looking for the deep structure",
+          "correction": "Chord-by-chord analysis ('C–G–F–C') does not reveal the structure of a work. Schenkerian reduction shows that these 4 chords may be a simple prolongation of I (C major) with a melodic neighbor figure. Structural meaning is not the same as surface meaning."
+        }
+      ],
+      "resume": [
+        "Schenker: Urlinie (descending line 5̂-4̂-3̂-2̂-1̂) + Bassbrechung (bass I→V→I) = Ursatz — the skeleton of all tonal music",
+        "4 levels of reduction: surface (all chords) → intermediate → tonal regions → structure (the Urlinie alone)",
+        "Motivic analysis: identify a motif of 2-4 notes → follow its transformations (transposition, inversion, augmentation, fragmentation) through the whole work"
+      ],
+      "analyseNarrative": {
+        "tonalite": "C minor — but the opening never says so. Five measures of bare unison, without a single third, before the first chord arrives at m. 6 and finally settles the riddle.",
+        "metrique": "2/4, Allegro con brio. 502 measures — the movement in its entirety, in Ernest Pauer's transcription for solo piano. Tempo varies over the course of the transcription (as far as the Adagio of m. 268).",
+        "forme": "A sonata form monothematic to an extreme: exposition (mm. 1-124, repeat sign), development (mm. 125-247), recapitulation (mm. 248-373, with the oboe Adagio at m. 268 and the second theme returning in C major), and an immense coda (mm. 374-502, a quarter of the whole movement) that works like a second development — unheard of in 1808.",
+        "sections": [
+          {
+            "label": "Measures 1-5 (the motto: a harmonic riddle)",
+            "titre": "The most famous opening in Western music does not state its key",
+            "chiffrage": "G-G-G-E♭ / F-F-F-D (bare unison, doubled at the octave)",
+            "fonctions": "? (no chord, hence no possible function before m. 6)",
+            "texte": "Four notes, repeated a whole tone lower, doubled at the octave, without a single third: G-E♭ belongs as much to C minor (5̂-3̂) as to E♭ major (3̂-1̂), and nothing in these five measures decides between them. The most famous opening in Western music is, harmonically, an enigmatic unison — resolved only after the fact, at m. 6. Nor are the two fermatas symmetrical: the first (m. 2) is held without a tie within a single measure, whereas the second (m. 5) is tied over from m. 4 — the second hold, being longer, carries the whole weight of the suspension."
+          },
+          {
+            "label": "Measures 6-124 (exposition: the horn call and the second theme)",
+            "titre": "A rhythmic cell becomes a harmonic function",
+            "chiffrage": "i (m. 6) → horn call, V-I cadence in E♭ (mm. 59-62) → III, 2nd theme (m. 63)",
+            "fonctions": "T → D → T",
+            "texte": "The first group builds C minor out of waves of the motto stacked in imitation. Then comes the great find: at mm. 59-62 the rhythm of the motto returns doubled — but it is no longer a motif, it is a cadence, a dominant-tonic in E♭ disguised as a horn fanfare. The rhythmic cell has turned into a harmonic function: a modulation by metamorphosis of the material, not by transition. The second theme that follows, in the relative major E♭, is songlike — but the motto still growls in the bass under every phrase. There is only one idea in this entire movement; even its tenderness is made of it."
+          },
+          {
+            "label": "Measures 125-247 (development: dramatic subtraction)",
+            "titre": "Developing by taking away, to the very edge of silence",
+            "chiffrage": "motto alone, plunge into F minor → dismemberment of the horn call, pp",
+            "fonctions": "SD (iv, F minor) → ? (extreme reduction, retransition on the dominant)",
+            "texte": "The motto plunges into F minor, alone, over a fermata. Then comes the most radical process of all: the horn call is dismembered — chords alternating between the hands, then two sounds, then a single one, the music reduced to a bare harmonic breathing, pp, almost silent. Beethoven develops by subtraction: the same thinning-out as in Voiles or in the ebb of the Cathédrale engloutie — but here as dramatic crisis, not as contemplative state. The motto flares up again only just before the recapitulation."
+          },
+          {
+            "label": "Measures 248-373 (recapitulation: the oboe Adagio and the major-mode clearing)",
+            "titre": "A human parenthesis inside the machinery",
+            "chiffrage": "i, motto tutti (m. 248) → oboe cadenza, Adagio (m. 268) → parallel major I, 2nd theme (m. 303)",
+            "fonctions": "T → ? (total suspension of the machine) → T (major, a clearing)",
+            "texte": "The motto returns tutti, with its fermatas. Then, at m. 268, the Adagio: a single voice, a single line, suspends the entire machine for a descending lament — the same idea as the silence of m. 9 in the Grave of the Pathétique, become here a full melody in its own right. The second theme then comes back in C MAJOR (the parallel major, not the relative): a clearing of mode, the promise of the finale. A promise only — for the major mode will not hold to the end of this movement."
+          },
+          {
+            "label": "Measures 374-502 (coda: the second development)",
+            "titre": "A quarter of the movement spent refusing victory too soon",
+            "chiffrage": "the motto goes back into battle → twin closing fermatas (mm. 479-483) → i, conclusion",
+            "fonctions": "? → ? → T (minor, with no Picardy third)",
+            "texte": "129 measures of coda — a quarter of the entire movement — take up the fight again like a second development, a thing unheard of at the time. The initial riddle is quoted one last time (mm. 479-483), harmonized this time rather than bare. Then the conclusion, hammered out, in strict C minor: no Picardy third comes to soften the ending. Victory in the major is hoarded for the fourth movement — the first ends on its own obstinacy."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The complete Beethoven diptych",
+            "texte": "The Grave of the Pathétique (1798, course 39) deferred a cadence for ten measures; this Allegro (1808) defers the very existence of harmony for five. Ten years separate the two gestures — schoolroom harmony transformed first into rhetoric, then into an entire organism built on a single cell."
+          },
+          {
+            "titre": "One cell engenders everything — five eras, a single principle",
+            "texte": "The motif of Bach's two-part Invention, the ♭6-5 sigh of the Grave, the parallel thirds of Voiles, Morricone's modal call, the motto of this symphony: five eras, a single principle of economy — a minimal cell that engenders an entire work rather than merely serving as a starting point."
+          },
+          {
+            "titre": "Subtraction, twice over, in two senses",
+            "texte": "The development dismembers the horn call down to silence — the same thinning-out technique as at the end of Voiles or of the Cathédrale engloutie (courses 29-30), but here placed at the service of dramatic tension rather than of contemplation. The same technical gesture, two opposite aesthetic destinies."
+          }
+        ]
+      }
     }
   },
   "cours38": {
@@ -7097,7 +7189,7 @@
       "resume": [
         "The suspension: consonant preparation → dissonant strike → downward resolution — Dido's Lament (Purcell, 1689) illustrates it in 7-6/4-3 chains across eleven statements of the same ground.",
         "The ground (ostinato bass, here a descending chromatic tetrachord G-D, the passus duriusculus) stays invariant while its harmonic clothing changes at every return — the non-chord tone is born of that gap.",
-        "1689, public domain: the oldest piece in the Harmonia corpus, and the common source of the lament bass (Chopin), the prepared seventh (Bach) and the deferred resolution (Wagner)."
+        "1689, public domain: the oldest piece in the Harmonia corpus after Palestrina's Missa Brevis (1570, course 43), and the common source of the lament bass (Chopin), the prepared seventh (Bach) and the deferred resolution (Wagner)."
       ],
       "analyseNarrative": {
         "tonalite": "Recitative in C minor, modulating step by step towards D (the dominant of G minor), which becomes the threshold of the aria. The aria itself — the ground — is in G MINOR, the real key of the whole second half of the piece.",
@@ -7165,7 +7257,7 @@
           },
           {
             "titre": "1689: the common source of the corpus",
-            "texte": "The descending chromatic tetrachord of this ground (G-F♯-F-E-E♭-D) is, a hundred and fifty years earlier, exactly the same shape as the lament bass of Chopin's Prelude op. 28 no. 20 (lesson 24). The oldest piece in the corpus turns out to be the common source of several of its running threads: the chromatic descent, the prepared suspension, and the ostinato bass under a changing harmony."
+            "texte": "The descending chromatic tetrachord of this ground (G-F♯-F-E-E♭-D) is, a hundred and fifty years earlier, exactly the same shape as the lament bass of Chopin's Prelude op. 28 no. 20 (lesson 24). This piece, the oldest in the corpus after Palestrina's Missa Brevis (course 43), turns out to be the common source of several of its running threads: the chromatic descent, the prepared suspension, and the ostinato bass under a changing harmony."
           }
         ]
       }
@@ -7557,6 +7649,84 @@
       "quizPoolInfo": "questions in total",
       "quizNextBtn": "Next question →",
       "quizFinishBtn": "See score →"
+    },
+    "conservatoire": {
+      "intuition": "A good pastiche is not judged by its surface resemblance — it is judged by what someone who knows the style could not find at fault in it. Method comes before inspiration.",
+      "reference": {
+        "badge": "Dukas · on the teaching of style",
+        "citation": "To write in the style of a master is not to imitate him — it is to understand his grammar so intimately that one could, for the space of a phrase, think as he did.",
+        "auteur": "Paul Dukas, professor of composition at the Paris Conservatoire"
+      },
+      "voix": [
+        "Four-square phrasing (4+4, 8+8) is the invisible skeleton of the Classical phrase — breaking it without reason shatters the stylistic illusion just as surely as a wrong note.",
+        "The Alberti bass is not mere rhythmic filler: it is a device that makes the harmony audible without ever drawing attention to itself — transparency is its only function.",
+        "A half cadence is not an ending — it is a breath. It must leave the ear expectant, never satisfied: that is what makes the final perfect cadence necessary rather than decorative."
+      ],
+      "repertoire": {
+        "titre": "Classical period (style exercise, C major)",
+        "compositeur": "Original Harmonia exercise — Classical pastiche (Haydn/Mozart)"
+      },
+      "pieges": [
+        {
+          "erreur": "Introducing a harmonic device later than the style being aimed at (anachronism)",
+          "correction": "An unresolved ninth, a Debussyan parallel chord or a Romantic augmented sixth in a Classical pastiche gives the exercise away immediately — even a single occurrence is enough to shatter the stylistic illusion."
+        },
+        {
+          "erreur": "Breaking the four-square phrasing without stylistic reason",
+          "correction": "Viennese Classicism thinks in symmetrical phrases (4+4, 8+8). A five- or seven-measure phrase with no motivic justification is not boldness — it is a failure of method that signals a poor grasp of the grammar of the style."
+        },
+        {
+          "erreur": "Treating the Alberti bass as mere filler unconnected to the harmony",
+          "correction": "The Alberti bass must fit the chord of the moment exactly (root-fifth-third-fifth) — it is not an automatic formula independent of the harmonic grid, it IS the grid made audible."
+        }
+      ],
+      "resume": [
+        "Method of pastiche: analyse the model (four-square phrasing, harmonic rhythm, cadences, texture) before writing — never the other way round",
+        "Classical period: antecedent (half cadence) + consequent (perfect cadence), strict 4+4 phrasing",
+        "Harmonic anachronism is pitfall no. 1: any device foreign to the period being aimed at gives the exercise away, even in isolation"
+      ],
+      "analyseNarrative": {
+        "tonalite": "C major, without a single accidental — diatonic clarity is not a constraint imposed on the exercise, it IS the exercise.",
+        "metrique": "4/4, Andante grazioso (96 to the quarter note). Strict 4+4 phrasing: eight measures, two rigorously symmetrical phrases.",
+        "forme": "A Classical period: an antecedent (mm. 1-4) that poses the question and comes to rest on a half cadence, a consequent (mm. 5-8) that takes up the same opening and then closes with a perfect cadence. It is the most elementary — and the most strict — cell of Classical writing: every pastiche exercise comes back to it before moving away from it.",
+        "sections": [
+          {
+            "label": "Measures 1-4 (the antecedent: the question)",
+            "titre": "Three degrees, a single direction",
+            "chiffrage": "I – IV – V – V (half cadence)",
+            "fonctions": "T – SD – D – D",
+            "texte": "The melody opens on the tonic arpeggio, then descends by step across the first three measures, while the left hand picks out an Alberti bass (root-fifth-third-fifth) over each of the three fundamental chords of the tonal system. The fourth measure suspends the motion: the melody holds on G, the bass sustains the dominant chord — a half cadence, the question awaiting its answer."
+          },
+          {
+            "label": "Measures 5-8 (the consequent: the answer)",
+            "titre": "The same opening, a different resolution",
+            "chiffrage": "I – ii – V7 – I (perfect cadence)",
+            "fonctions": "T – SD – D – T",
+            "texte": "The consequent takes up the antecedent note for note at its opening — symmetrical phrasing is the signature of the Classical period. Then, where the antecedent visited the subdominant, the consequent turns aside by way of the supertonic degree (ii, D-F-A): a simple touch of colour, without ever leaving the diatonic system. The dominant returns enriched by its seventh (V7), the melody carries the leading tone (B) just before the resolution — and the piece closes on the perfect cadence, the tonic held in the bass as in the melody."
+          },
+          {
+            "label": "The Alberti bass",
+            "titre": "A texture in the service of clarity, not of colour",
+            "chiffrage": "root – fifth – third – fifth (or seventh, in m. 7)",
+            "fonctions": "no function of its own — the texture carries the harmony set out by the melody",
+            "texte": "The Alberti bass tirelessly unrolls the same contour (root-fifth-third-fifth) beneath each chord, changing only in pitch as the harmony changes. Its regularity is the opposite of an expressive device: it exists so that the ear may stop noticing it and concentrate on the melody. It is the exact reverse of Bill Evans's “sempre dopo” pedalling (lesson 35) — the same idea of a repetitive accompaniment, put in the service of an opposite goal: transparency rather than blur."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Anachronism, pitfall number one",
+            "texte": "No ninth, no added sixth, no parallel chord — any device born after 1800 would immediately break the stylistic illusion. A Classical pastiche is judged as much by what it forbids itself as by what it employs."
+          },
+          {
+            "titre": "Phrasing and symmetry: the phrase as architecture",
+            "texte": "The rigorous 4+4 of this period is the opposite of the off-centre cycle of Blue in Green (lesson 35, a ten-measure round that never comes back to its point of departure) or of Debussy's sections built as blocks of sound (lessons 29-30). Every style has its own geometry of phrase; recognising that of Viennese Classicism is the first step of any successful pastiche."
+          },
+          {
+            "titre": "The same tool, two faces",
+            "texte": "A repeated accompaniment figure in the service of clarity here, of blur there (Evans's continuous pedalling, lesson 35): the same technical gesture changes meaning according to the aesthetic it serves. Understanding WHAT service a texture renders is more useful than memorising it as a mere recipe."
+          }
+        ]
+      }
     }
   },
   "satb": {
@@ -7981,6 +8151,98 @@
       "perfect": "Perfect! Normal forms, vectors and the Z-relation hold no more secrets — post-tonal analysis is yours.",
       "veryGood": "Very good! A few calculations to consolidate (rotations, inversion before the prime form).",
       "keepGoing": "Keep going — rerun the normal-form algorithm step by step and check each stage with the calculator."
+    },
+    "conservatoire": {
+      "intuition": "When tonality disappears, the ear still looks for coherence — Schoenberg gives it one by other means: no longer degrees answering one another, but an interval cell that saturates the entire fabric.",
+      "reference": {
+        "badge": "Schoenberg · on the emancipation of the dissonance",
+        "citation": "The dissonance is only a more remote consonance — the ear will end up growing used to it, as it has grown used to all the others.",
+        "auteur": "Arnold Schoenberg, quoted by his biographers"
+      },
+      "voix": [
+        "Op. 11 no. 1 is, by historiographical convention, the birth certificate of free atonality — and its composer coined the very term the discipline uses: the emancipation of the dissonance.",
+        "For the first time in the whole repertoire analysed here, there is literally nothing to label: no root, no stacked third, no degree. The analysis changes units — interval cells, not functions.",
+        "In Schoenberg, melody and harmony are made of the same intervallic substance: the opening melodic cell, stood upright a few measures later, becomes the accompanying chord. There is no longer any difference in kind between the horizontal and the vertical."
+      ],
+      "repertoire": {
+        "titre": "Drei Klavierstücke op. 11, no. 1 (complete)",
+        "compositeur": "Arnold Schoenberg"
+      },
+      "pieges": [
+        {
+          "erreur": "Looking for Roman numerals or a T/SD/D function in an atonal piece",
+          "correction": "With neither root nor reference third, classical labelling has no object. Post-tonal analysis identifies interval CELLS (pitch-class sets) which return, transposed or inverted, in place of the degrees."
+        },
+        {
+          "erreur": "Believing that an atonal piece is arbitrary, without any coherence at all",
+          "correction": "Op. 11 no. 1 is saturated by a single cell ([0,1,4], minor third + semitone) that generates the theme AND the accompaniment. The coherence that tonality secured through the syntax of degrees, Schoenberg obtains by saturating the fabric with one and the same set class."
+        },
+        {
+          "erreur": "Ignoring the residual “tonal ghosts” in an early atonal piece (1909)",
+          "correction": "The free atonality of 1909 does not instantly erase every tonal memory: certain passages (such as the flageolet chords of op. 11 no. 1) let recognisable sonorities resonate (augmented triad, major seventh chord) without ever anchoring themselves functionally. Both readings — the radical and the residual — are legitimate."
+        }
+      ],
+      "resume": [
+        "Post-tonal analysis: pitch classes (pc 0-11), interval classes (ic 0-6), sets (Tn/TnI), normal form / prime form, interval vector, Forte numbers",
+        "Schoenberg's op. 11 no. 1 (1909): the cell [0,1,4] generates melody AND harmony — not a single labellable chord, a first in the tonal corpus studied so far",
+        "1909-1911: three simultaneous answers to tonal saturation — Debussy (collection), Schoenberg (cells), Stravinsky (bitonality in conflict)"
+      ],
+      "analyseNarrative": {
+        "tonalite": "None. For the first time in this entire corpus there is literally nothing to label — the analysis changes units: interval cells, not degrees.",
+        "metrique": "3/4, Moderato (marked ♩=114 in this transcription).",
+        "forme": "A ternary form of complete orthodoxy: A (mm. 1-11, the theme and its continuation), transition and flageolets (mm. 12-17), development of the cell and central storm section (mm. 34 ff.), recapitulation (m. 53, the theme in fortissimo octaves), stackings of the cell (mm. 54-56), coda dissolving through thinning out. Schoenberg changes the material, not the masonry.",
+        "sections": [
+          {
+            "label": "Measures 1-3 (the Grundgestalt: one cell generates everything)",
+            "titre": "Melody and harmony made of the same substance",
+            "chiffrage": "[0,1,4] (theme) → [0,1,6] then [0,1,4] (accompaniment)",
+            "fonctions": "? (no function possible — no chord in the classical sense)",
+            "texte": "The opening theme — B–G♯, then G–A–F — stands alone, without harmony, like the motto of Beethoven's Fifth or the upbeat of Tristan. Its first three notes (B–G♯–G) form the cell [0,1,4]: a minor third and a semitone, the Grundgestalt of the whole piece. The founding gesture follows at once: the first accompanying chord (F–G♭–B) is [0,1,6], but the second (A–B♭–D♭) is exactly [0,1,4] — the melodic cell itself, stood upright. No more difference in kind between the horizontal and the vertical: this is the unity of musical space that Schoenberg will himself theorise."
+          },
+          {
+            "label": "Measures 12-17 (transition and flageolets: the tonal ghosts)",
+            "titre": "Two readings, both of them true",
+            "chiffrage": "resonance chord F–A–C♯–E, held for 4 measures",
+            "fonctions": "? (resonance, not function — but the shadow of a recognisable colour)",
+            "texte": "The classic debate about this piece deserves to be presented fairly. Radical reading: no functions, only cells. Residual reading: the most famous passage of all, the flageolet chords of measures 14-17, sets an augmented triad plus major seventh resonating — the exact shadow of an F∆7#5, the object of Voiles (the augmented triad, the only triad of the whole-tone scale) and Satie's ∆7, fused into pure resonance. Schoenberg deliberately holds to the threshold: close enough to tonality for us to hear what he is leaving, far enough for no figure to regain a foothold."
+          },
+          {
+            "label": "Measures 34 onwards (the storm: atonalised planing)",
+            "titre": "Debussy's technique, moved to another world",
+            "chiffrage": "parallel thirds in chromatic motion",
+            "fonctions": "?",
+            "texte": "The central section unleashes the cell as a storm: parallel thirds slide chromatically, the very planing technique of Debussy — but here with no whole-tone scale and no stable collection to anchor it, only integral chromatic motion. The procedure crosses the tonal frontier; its meaning is utterly changed in the crossing."
+          },
+          {
+            "label": "Measure 53 onwards (the recapitulation: classical form in the new language)",
+            "titre": "The architecture remains, the material has changed",
+            "chiffrage": "B–G♯, doubled across 2 octaves, fortissimo → stackings of [0,1,4]",
+            "fonctions": "?",
+            "texte": "The theme returns in fortissimo octaves — B and G♯ each doubled across two octaves at once — and then the cell is stacked upon itself at several pitch levels. The ternary form is of complete orthodoxy: Schoenberg changes the material, not the masonry. It is the exact opposite of what Coltrane will do half a century later, keeping the material (the cadences) and changing the orbit."
+          },
+          {
+            "label": "Coda (dissolution through thinning out)",
+            "titre": "The piece dies away as it began: without harmony",
+            "chiffrage": "progressive thinning out",
+            "fonctions": "?",
+            "texte": "The piece closes through a gradual thinning of the texture, an echo of the harmony-less enigma of its opening. No chord comes to conclude what was never a system of chords."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The unity of musical space",
+            "texte": "This corpus has followed the frontier between horizontal and vertical through twenty excerpts: Bach, where verticality results from the lines; Satie, where it frees itself from them; Evans, who verticalises a melodic cliché. Here that frontier is abolished on principle — melody and harmony are literally the same cell, seen from two angles."
+          },
+          {
+            "titre": "The two readings, as it should be",
+            "texte": "No functions, only cells; or a brush against tonality that is never confirmed: both readings of this piece are true, and their coexistence — rather than their resolution — is the work itself."
+          },
+          {
+            "titre": "The triptych of 1909-1911",
+            "texte": "Three simultaneous answers to the same harmonic saturation opened up by Wagner: Debussy (Voiles, 1909) makes function unbuildable through his choice of collection; Schoenberg (op. 11, the same year) makes it pointless through an integral chromaticism organised into cells; Stravinsky (1911, the Petrushka lesson) keeps it twice over and makes the conflict itself the material."
+          }
+        ]
+      }
     }
   },
   "cours45": {
@@ -8000,6 +8262,98 @@
       "perfect": "Perfect! Grid, markers, cadences and forms: the listening-commentary method is yours.",
       "veryGood": "Very good! A few markers to consolidate — reread the period table and redo the blind drills.",
       "keepGoing": "Keep going — go back over the parameter grid and the golden rule (describe → identify → situate) before trying again."
+    },
+    "conservatoire": {
+      "intuition": "A key can remain perfectly stable in its identity and yet become mobile to the point of vertigo — major or minor, sharps or flats, one and the same chord can show two faces without ever leaving the system.",
+      "reference": {
+        "badge": "Fauré · on his own aesthetic",
+        "citation": "Art, and music above all, consists in lifting us as far as possible above what is.",
+        "auteur": "Gabriel Fauré (remarks reported by his biographers)"
+      },
+      "voix": [
+        "One and the same pitch can be respelled in another orthography (C♯ for D♭) as an act of composition, not merely of transcription: the change of mode that comes with it becomes a genuine expressive event, not a simple notational choice.",
+        "A progression can travel by successive thirds (mediants) without ever passing through a V-I cadence — each harmonic station remains consonant, but none of them is prepared or resolved in the classical sense.",
+        "A return to the main key can be made through the subdominant rather than through the dominant (plagal cadence) — a gesture that prefers the gentleness of stepwise motion to the force of the dominant-tonic attraction."
+      ],
+      "repertoire": {
+        "titre": "Nocturne no. 6 in D♭ major, op. 63",
+        "compositeur": "Gabriel Fauré"
+      },
+      "pieges": [
+        {
+          "erreur": "Analysing the C♯ minor / D♭ major hinge (m. 19) as a classical modulation to a new, distant key",
+          "correction": "C♯ and D♭ are the SAME pitch: Fauré does not modulate, he respells the tonic in sharps and darkens it into the minor — a change of lighting, not of place."
+        },
+        {
+          "erreur": "Looking for a V-I progression to explain the passage from D♭ to A major and then to C major (mm. 64-66)",
+          "correction": "There is none: each station is linked to the previous one by a simple slide of a third (mediant), a procedure entirely different from the logic of fifths that governs classical cadences."
+        },
+        {
+          "erreur": "Taking the return to the main key (mm. 109-110) for an authentic cadence (V-I)",
+          "correction": "It is a PLAGAL cadence disguised as a secondary dominant: a D♭7 (V7/IV) resolving onto G♭ (IV), not onto the dominant — the return is made through the subdominant."
+        }
+      ],
+      "resume": [
+        "Fauré composes enharmonic respelling as a genuine expressive gesture: C♯ minor and D♭ major are the same pitch, respelled and darkened into the minor mode — a change of lighting with no displacement (m. 19).",
+        "The mediant carousel (D♭ → A → C, mm. 64-66) travels by successive slides of a third, without ever passing through a V-I cadence — each station a self-standing 6/9 chord.",
+        "The return to the main key is made by plagal cadence (V7/IV → IV → I) rather than through the dominant — and the coda closes the piece on the shadow of the parallel minor before the pure tonic, the very gesture that had opened it."
+      ],
+      "analyseNarrative": {
+        "tonalite": "D♭ major — with an enharmonic darkening into C♯ minor (section B, the same sound respelled in sharps) and the recurring shadow of the parallel minor right into the coda.",
+        "metrique": "Adagio 3/2 (A) → Allegretto molto moderato 3/4 with 4 sharps (B) → Allegro moderato leggiero 4/2, 3 sharps then 4 sharps (C) → Tempo I, back to the five flats.",
+        "forme": "A (D♭, mm. 0-18) — B (C♯ minor, mm. 19-63) — C (mediant carousel, mm. 64-105) — Tempo I / troubled recapitulation (mm. 106-115) — summit (m. 116) — Coda (mm. 116-141).",
+        "sections": [
+          {
+            "label": "Measures 0-18 — A",
+            "titre": "The great melody: maximum mobility within the system",
+            "chiffrage": "I | iii-vi7-viiø7 (stepwise bass) | I7/IV-IV-V | …",
+            "fonctions": "T | ? | SD-D",
+            "texte": "From the very first measure, the whole Fauréan programme: a bass walking by step (A♭–B♭–C), each step harmonised with a colour seventh chord — the gesture that Ravel's Pavane will systematise five years later, by his pupil. The tonic itself never stays stable longer than a half note: it slides into the dominant of the subdominant on its second appearance, pours itself out on IV, comes back by way of V, and carries on in chromatic slides. Nothing leaves tonal syntax; nothing stands still within it."
+          },
+          {
+            "label": "Measures 19-63 — B",
+            "titre": "The enharmonic hinge: the same sound, darkened",
+            "chiffrage": "C♯ minor (= D♭ respelled in sharps)",
+            "fonctions": "T",
+            "texte": "Section A dies away on a full D♭ major chord; section B opens on a C♯ minor chord — yet C♯ IS D♭. Fauré does not modulate: he respells the same tonic in sharps and darkens it into the minor, like a light turned down without moving the lamp. Here enharmonic respelling is no longer a copyist's accident: it is composed, structural, expressive."
+          },
+          {
+            "label": "Measures 64-105 — C",
+            "titre": "The mediant carousel",
+            "chiffrage": "D♭ → A (6/9) → C (6/9)",
+            "fonctions": "T → ? → ?",
+            "texte": "The Allegro leggiero first embroiders D♭, then slides by a third onto A major, then by another third onto C major — each station a 6/9 chord, without a single V-I progression intervening. Three keys in three measures: Schubert's journey by mediants, here speeded up into a merry-go-round."
+          },
+          {
+            "label": "Measures 106-116 — Tempo I",
+            "titre": "The plagal return",
+            "chiffrage": "(sharps under tension) → V7/IV → IV → I",
+            "fonctions": "? → D → SD → T",
+            "texte": "The recapitulation does not come straight back into port: it hesitates, a chord built entirely on sharps (F♯–B–D♯) cutting across the world of flats that surrounds it, before the music cuts through in its turn — a D♭7 (V7/IV) resolving onto G♭ (IV). The return to the main key is made through the subdominant, not through the dominant, and a molto crescendo hoists the regained D♭ to the expressive summit of the entire piece."
+          },
+          {
+            "label": "Measures 116-141 — Coda",
+            "titre": "Major and minor, two lightings of the same chord",
+            "chiffrage": "I … (C♭) … I",
+            "fonctions": "T … ? … T",
+            "texte": "In the closing dolcissimo, the shadow of the parallel minor passes through one last time — a C♭ (confirmed note for note) crosses the D♭ chord, the minor seventh that recalls the darkened mode of section B — before the pure tonic and its major third are regained. The piece closes on the very gesture that had split it in two: major and minor as two lightings of one and the same chord."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Enharmonic respelling as an expressive resource",
+            "texte": "Where this corpus had only ever met enharmonic respelling as a transcriber's trap (keys wrongly named by mistake), Fauré composes it deliberately: the C♯/D♭ hinge between sections A and B is not a slip, it is the very programme of the piece — changing the lighting without changing the sound."
+          },
+          {
+            "titre": "The missing link of 1894",
+            "texte": "Between Grieg's Praeludium (1884, the past replayed with modern means) and Ravel's Pavane (1899, by Fauré's pupil), this Nocturne embodies a third way that neither Wagnerian suspension nor Debussyan dissolution represents: a tonality made so mobile, so reversible — major/minor, sharps/flats, sliding thirds — that it prepares harmonic emancipation without ever pronouncing it."
+          },
+          {
+            "titre": "The strolling bass, before the Pavane",
+            "texte": "The stepwise bass harmonised in colour seventh chords in the very first measure is, note for note, the procedure that Ravel — Fauré's pupil — will generalise five years later in his Pavane pour une infante défunte: the pedagogical lineage can be read directly in the kinship of the harmonic gesture."
+          }
+        ]
+      }
     }
   },
   "cours46": {
@@ -8201,8 +8555,8 @@
           },
           {
             "label": "The coda (mm. 75-80)",
-            "titre": "The storyteller's signature, and the one tutti",
-            "chiffrage": "I — the only chord really ATTACKED together by all 5 parts",
+            "titre": "The storyteller's signature, and the densest tutti",
+            "chiffrage": "I — the densest of the few chords ATTACKED together by all 5 parts",
             "fonctions": "T",
             "texte": "Chromatic slides (A#-B-C, E♭-F#-G) evoke the arabesque of Scheherazade's own violin, which prowls through the whole cycle. Then, in the very last measure, the five parts articulate TOGETHER, in the same rhythm, the densest tutti of the entire movement: G-D-B in the violins and the double bass, but the viola superimposes its own pizzicato arpeggio (E-C-A) — a final stroke of colour that enriches the triad rather than a plain bare G major chord. Everywhere else, “verticality” was only a pedal sustained beneath a line that keeps moving, with rare flashes of ensemble at the articulations of the form alone; here, to finish, it is the richest collective gesture of the piece, and even this gesture keeps one voice that steps aside from it with a light flourish."
           }
@@ -8274,7 +8628,7 @@
       ],
       "resume": [
         "The opening of the movement (mm. 1-22) builds a half-diminished seventh (G-B♭-D♭-F) by accumulation, note after note, as pure texture representing the cold — ten measures of frozen dissonance before the first resolution in F minor.",
-        "The complete circle of fifths (C-F-B♭-E♭-A♭-D♭-G-C, mm. 44-51) returns literally — same bass sequence — at m. 111, but in an entirely different figuration: the bass first is the only reliable way to verify it.",
+        "The complete circle of fifths (C-F-B♭-E♭-A♭-D♭-G-C) occupies mm. 44-51; it returns at mm. 111-116, but entering at its second station (F-B♭-E♭-A♭-D♭-G) and in an entirely different figuration. The bass line, and it alone, makes this verifiable.",
         "The great final cadence (mm. 111-124) closes the loop: the very chord of the initial freeze (G-B♭-D♭-F) comes back there as iiø6/5, a perfectly functional cadential linchpin — the two lives of one chord, fifty measures apart, in the most orthodox Baroque writing."
       ],
       "analyseNarrative": {
@@ -8325,7 +8679,7 @@
           },
           {
             "titre": "A calling card across four centuries",
-            "texte": "The half-diminished chord of this corpus now has six documented statuses: texture of the cold and cadential linchpin in Vivaldi (1725), workhorse in Bach, drama in Beethoven (the Pathétique, course 39), enigma in Wagner (Tristan, course 25), timbre in Debussy (The Sunken Cathedral, course 29), a word of the language in Evans (My Funny Valentine, course 16). Nothing is born, everything is promoted — the history of this chord is a change of status, not an invention."
+            "texte": "The half-diminished chord of this corpus now has seven documented statuses across six composers: texture of the cold and cadential linchpin in Vivaldi (1725), workhorse in Bach, drama in Beethoven (the Pathétique, course 39), enigma in Wagner (Tristan, course 25), timbre in Debussy (The Sunken Cathedral, course 29), a word of the language in Evans (My Funny Valentine, course 16). Nothing is born, everything is promoted — the history of this chord is a change of status, not an invention."
           },
           {
             "titre": "Method of the survey: the bass first, always",

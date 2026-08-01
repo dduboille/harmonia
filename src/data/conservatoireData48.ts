@@ -28,7 +28,7 @@ export const CONSERVATOIRE_DATA_48: CoursConservatoireData = {
   pieges: [
     {
       erreur: "Confondre un accord TENU en texture (qui ne fonctionne pas encore) avec un accord fonctionnel qui prépare une cadence précise",
-      correction: "Le même accord (Sol-Sib-Réb-Fa, une septième demi-diminuée) ouvre le mouvement comme pure texture — le froid, représenté physiquement — et le referme, cinquante mesures plus loin, comme cheville de cadence fonctionnelle (iiø6/5–V–i) : deux statuts biens distincts pour une même sonorité.",
+      correction: "Le même accord (Sol-Sib-Réb-Fa, une septième demi-diminuée) ouvre le mouvement comme pure texture — le froid, représenté physiquement — et le referme, cinquante mesures plus loin, comme cheville de cadence fonctionnelle (iiø6/5–V–i) : deux statuts bien distincts pour une même sonorité.",
     },
     {
       erreur: "Vérifier une « reprise littérale » en comparant les mesures dans l'ordre où elles sont mentionnées, sans vérifier l'alignement réel",
@@ -41,7 +41,7 @@ export const CONSERVATOIRE_DATA_48: CoursConservatoireData = {
   ],
   resume: [
     "L'ouverture du mouvement (m.1-22) construit une septième demi-diminuée (Sol-Sib-Réb-Fa) par accumulation, note après note, comme pure texture représentant le froid — dix mesures de dissonance gelée avant la première résolution en fa mineur.",
-    "Le cycle des quintes complet (Do-Fa-Sib-Mib-Lab-Réb-Sol-Do, m.44-51) revient littéralement — même séquence de basse — à la mesure 111, mais dans une figuration entièrement différente : la basse d'abord est la seule façon fiable de le vérifier.",
+    "Le cycle des quintes complet (Do-Fa-Sib-Mib-Lab-Réb-Sol-Do) occupe les mesures 44 à 51 ; il revient aux mesures 111-116, mais en entrant à sa deuxième station (Fa-Sib-Mib-Lab-Réb-Sol) et dans une figuration entièrement différente. C'est la basse, et elle seule, qui permet de le vérifier.",
     "La grande cadence finale (m.111-124) referme la boucle : le même accord du gel initial (Sol-Sib-Réb-Fa) y revient comme iiø6/5, une cheville de cadence parfaitement fonctionnelle — les deux vies du même accord, à cinquante mesures d'écart, dans l'écriture la plus orthodoxe du baroque.",
   ],
 };
