@@ -3644,6 +3644,105 @@
       "soWhatLabel1": "Transposto (Sol)",
       "warnBoxQuartale": "<strong>Erro frequente:</strong> Analisar os acordes quartais com as funções T/SD/D. A harmonia quartal funciona por cor e ambiguidade, não por progressão funcional. Em 'So What', os dois acordes (Ré e Mib) não são um II–III — são duas cores justapostas.",
       "h2Quiz": "Quiz — Politonalidade e harmonia quartal"
+    },
+    "conservatoire": {
+      "intuition": "Duas tonalidades em simultâneo é como duas conversas em línguas diferentes — o cérebro ouve as duas e cria um sentido impossível de analisar separadamente.",
+      "reference": {
+        "badge": "Messiaen · Técnica da minha linguagem musical",
+        "citation": "A politonalidade é a sobreposição de dois centros tonais distintos. O resultado não pertence nem a um nem a outro — cria um espaço harmónico novo.",
+        "auteur": "Olivier Messiaen, 1944"
+      },
+      "voix": [
+        "A politonalidade não é atonalidade — cada camada continua tonal, é a sua combinação que cria a tensão. É sempre possível ouvir as duas tonalidades separadamente.",
+        "A harmonia quartal não tem terceira → nem maior nem menor → ambiguidade controlada. É essa ausência de modo que cria o som «aberto» e «moderno».",
+        "O «So What chord» de Miles Davis (Ré–Sol–Dó–Fá–Lá) é o acorde quartal por excelência do jazz modal — aprenda a construí-lo sobre todas as notas."
+      ],
+      "repertoire": {
+        "titre": "O acorde de Petrushka (ficha didática)",
+        "compositeur": "Segundo Igor Stravinsky, Petrushka (2.º quadro, 1911)"
+      },
+      "pieges": [
+        {
+          "erreur": "Confundir politonalidade e atonalidade",
+          "correction": "A politonalidade sobrepõe tonalidades distintas — cada camada continua tonal. A atonalidade evita qualquer referência tonal. São dois sistemas diferentes."
+        },
+        {
+          "erreur": "Julgar que os acordes quartais não têm lógica",
+          "correction": "A harmonia quartal tem uma lógica precisa: empilhamento de quartas (perfeitas ou aumentadas). O «So What voicing» segue regras estritas de disposição."
+        },
+        {
+          "erreur": "Procurar funções T/SD/D na música politonal",
+          "correction": "A politonalidade funciona por sobreposição de planos, não por progressão funcional. A análise deve identificar os dois (ou vários) centros tonais, não as funções."
+        }
+      ],
+      "resume": [
+        "Politonalidade: sobreposição simultânea de tonalidades diferentes — suave (tonalidades vizinhas) ou brutal (trítono, como no Petrushka de Stravinsky)",
+        "Acordes quartais: construção por sobreposição de quartas (Dó–Fá–Sib ou Dó–Fá–Si). Nem maior nem menor → ambiguidade moderna.",
+        "So What chord: Ré–Sol–Dó–Fá–Lá (4 quartas + terceira maior no topo) — voicing emblemático do jazz modal"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Nenhuma tonalidade única — polaridade ativa entre Dó maior e Fá# maior, duas tríades à distância de trítono.",
+        "metrique": "4/4. Sem andamento indicado (ficha demonstrativa).",
+        "forme": "Demonstração em sete tempos: os dois protagonistas separados, a sua colisão, a sua forma melodizada, depois duas leituras eruditas (escala sintética, coleção octatónica) e a fórmula de encerramento.",
+        "sections": [
+          {
+            "label": "Compassos 1-2",
+            "titre": "Os dois protagonistas",
+            "chiffrage": "Dó maior | Fá# maior",
+            "fonctions": "? | ?",
+            "texte": "Primeiro Dó maior, a tríade mais consonante do sistema tonal. Depois Fá# maior, o seu antípoda exato ao trítono — nenhuma nota em comum entre as duas, as teclas brancas contra as teclas pretas."
+          },
+          {
+            "label": "Compasso 3",
+            "titre": "A colisão: o acorde de Petrushka",
+            "chiffrage": "Dó maior + Fá# maior, sobrepostos",
+            "fonctions": "?",
+            "texte": "As duas tríades soam em simultâneo, cada uma perfeitamente intacta, uma por mão. A dissonância já não está no acorde — cada metade continua a ser um acorde perfeito maior — mas entre os sistemas: o conflito passou do nível do intervalo para o nível da própria tonalidade."
+          },
+          {
+            "label": "Compasso 4",
+            "titre": "A forma melodizada",
+            "chiffrage": "Dó maior + Fá#/Lá# (1.ª inversão)",
+            "fonctions": "?",
+            "texte": "A forma alternada, a dos dois clarinetes do segundo quadro: o Fá# surge em primeira inversão (Lá# no baixo). Os dois mundos respondem-se em vez de se golpearem."
+          },
+          {
+            "label": "Compasso 5",
+            "titre": "Primeira leitura erudita: a escala de trítono",
+            "chiffrage": "Dó-Réb-Mi-Solb-Sol-Sib (hexatónica)",
+            "fonctions": "?",
+            "texte": "Reunidos, os seis sons das duas tríades formam uma escala sintética hexatónica que alterna terceira maior e meio-tom — a «escala de trítono». Um objeto escalar de pleno direito, não apenas a soma de dois acordes."
+          },
+          {
+            "label": "Compasso 6",
+            "titre": "Segunda leitura erudita: a coleção octatónica",
+            "chiffrage": "Coleção octatónica (8 sons, alternância tom/meio-tom)",
+            "fonctions": "?",
+            "texte": "As duas tríades inscrevem-se nativamente na coleção octatónica completa — a leitura de Taruskin, para quem o acorde de Petrushka não é uma colisão de dois sistemas estranhos mas duas cristalizações diatónicas de uma só e mesma coleção simétrica."
+          },
+          {
+            "label": "Compasso 7",
+            "titre": "Polaridade ativa",
+            "chiffrage": "Dó maior + Fá#/Lá#, sustentado sob fermata",
+            "fonctions": "?",
+            "texte": "O acorde fecha-se sob fermata, rotulado com a fórmula que resume o debate: polaridade ativa. Não uma mistura passiva de doze sons, mas duas forças tonais que permanecem em tensão sem que nenhuma ceda."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "A terceira via de 1911",
+            "texte": "Depois de Wagner, que suspendia indefinidamente a resolução, e de Debussy, que a tornou ora evitada ora inconstruível, Stravinsky inventa uma terceira saída: a função não é suspensa nem dissolvida, é conservada mas desdobrada. O próprio conflito torna-se o material."
+          },
+          {
+            "titre": "Duas leituras, um só objeto",
+            "texte": "O acorde de Petrushka deixa-se ouvir como uma colisão de duas tonalidades estranhas, ou como duas cristalizações de uma única coleção octatónica — as duas leituras são verdadeiras ao mesmo tempo, e é precisamente esse duplo estatuto que constitui todo o interesse teórico do objeto."
+          },
+          {
+            "titre": "Stravinsky lexicalizado",
+            "texte": "A escala de trítono e os pares de tríades à distância de trítono tornaram-se uma ferramenta corrente da improvisação moderna — os «triad pairs» e as substituições sub-V do vocabulário do jazz. Stravinsky é retomado sessenta anos depois exatamente como Debussy o foi por Evans: um objeto teórico tornado léxico."
+          }
+        ]
+      }
     }
   },
   "cours32": {

@@ -123,12 +123,17 @@ describe("messages : surcouche conservatoire", () => {
     }
   });
 
-  it("les 6 langues couvrent exactement les mêmes cours (pas de trou dans une seule langue)", () => {
+  it("les 5 langues cibles couvrent exactement les mêmes cours (pas de trou dans une seule langue)", () => {
+    // Le français est exempt : sa version de référence vit dans les fichiers de
+    // données (`conservatoireData*.ts`), pas dans une surcouche. Ce qui doit
+    // rester aligné, ce sont les 5 langues traduites entre elles — une seule
+    // d'entre elles en retard afficherait du français là où les autres non.
+    const cibles = LOCALES.filter((l) => l !== "fr");
     const couverture = (l: string) =>
       Array.from({ length: 48 }, (_, i) => i + 1).filter((n) => msg[l][`cours${n}`]?.conservatoire);
-    const ref = couverture("fr");
-    for (const l of LOCALES.filter((x) => x !== "fr")) {
-      expect(couverture(l), `couverture ${l} différente de fr`).toEqual(ref);
+    const ref = couverture(cibles[0]);
+    for (const l of cibles.slice(1)) {
+      expect(couverture(l), `couverture ${l} différente de ${cibles[0]}`).toEqual(ref);
     }
   });
 });

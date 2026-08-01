@@ -2978,6 +2978,105 @@
       "soWhatLabel1": "Transposed (G)",
       "warnBoxQuartale": "<strong>Common mistake:</strong> Analysing quartal chords with T/SD/D functions. Quartal harmony works by colour and ambiguity, not by functional progression. In 'So What', the two chords (D and Eb) are not a II–III — they are two juxtaposed colours.",
       "h2Quiz": "Quiz — Polytonality and quartal harmony"
+    },
+    "conservatoire": {
+      "intuition": "Two keys at once is like two conversations in different languages — the brain hears both and builds a meaning that cannot be pulled apart into either one.",
+      "reference": {
+        "badge": "Messiaen · The Technique of My Musical Language",
+        "citation": "Polytonality is the superposition of two distinct tonal centres. The result belongs to neither one nor the other — it creates a new harmonic space.",
+        "auteur": "Olivier Messiaen, 1944"
+      },
+      "voix": [
+        "Polytonality is not atonality — each layer stays tonal, and it is their combination that creates the tension. You can always still hear the two keys separately.",
+        "Quartal harmony has no third → neither major nor minor → controlled ambiguity. It is this absence of quality that creates the 'open', 'modern' sound.",
+        "Miles Davis's 'So What chord' (D–G–C–F–A) is the quartal chord par excellence of modal jazz — learn to build it on every note."
+      ],
+      "repertoire": {
+        "titre": "The Petrushka chord (teaching sheet)",
+        "compositeur": "After Igor Stravinsky, Petrushka (Second Tableau, 1911)"
+      },
+      "pieges": [
+        {
+          "erreur": "Confusing polytonality with atonality",
+          "correction": "Polytonality superimposes distinct keys — each layer stays tonal. Atonality avoids any tonal reference. They are two different systems."
+        },
+        {
+          "erreur": "Believing that quartal chords have no logic",
+          "correction": "Quartal harmony has a precise logic: stacked fourths (perfect or augmented). The 'So What voicing' follows strict rules of registration."
+        },
+        {
+          "erreur": "Looking for T/SD/D functions in polytonal music",
+          "correction": "Polytonality works by superimposing planes, not by functional progression. The analysis must identify the two (or more) tonal centres, not the functions."
+        }
+      ],
+      "resume": [
+        "Polytonality: simultaneous superposition of different keys — gentle (neighbouring keys) or brutal (tritone, as in Stravinsky's Petrushka)",
+        "Quartal chords: built by stacking fourths (C–F–B♭ or C–F–B). Neither major nor minor → modern ambiguity.",
+        "So What chord: D–G–C–F–A (4 fourths + a major third on top) — the emblematic modal-jazz voicing"
+      ],
+      "analyseNarrative": {
+        "tonalite": "No single key — active polarity between C major and F# major, two triads a tritone apart.",
+        "metrique": "4/4. No tempo indication (demonstration sheet).",
+        "forme": "A demonstration in seven stages: the two protagonists on their own, their collision, their melodised form, then two scholarly readings (synthetic scale, octatonic collection), and the closing formula.",
+        "sections": [
+          {
+            "label": "Bars 1-2",
+            "titre": "The two protagonists",
+            "chiffrage": "C major | F# major",
+            "fonctions": "? | ?",
+            "texte": "C major first, the most consonant triad of the tonal system. Then F# major, its exact antipode at the tritone — not a single note in common between the two, the white keys against the black keys."
+          },
+          {
+            "label": "Bar 3",
+            "titre": "The collision: the Petrushka chord",
+            "chiffrage": "C major + F# major, superimposed",
+            "fonctions": "?",
+            "texte": "The two triads sound simultaneously, each perfectly intact, one to a hand. The dissonance is no longer inside the chord — each half remains a plain major triad — but between the systems: the conflict has moved from the level of the interval to the level of tonality itself."
+          },
+          {
+            "label": "Bar 4",
+            "titre": "The melodised form",
+            "chiffrage": "C major + F#/A# (first inversion)",
+            "fonctions": "?",
+            "texte": "The alternating form, that of the two clarinets in the second tableau: the F# appears in first inversion (A# in the bass). The two worlds answer each other instead of striking one another."
+          },
+          {
+            "label": "Bar 5",
+            "titre": "First scholarly reading: the tritone scale",
+            "chiffrage": "C-D♭-E-G♭-G-B♭ (hexatonic)",
+            "fonctions": "?",
+            "texte": "Taken together, the six pitches of the two triads form a synthetic hexatonic scale alternating major third and semitone — the 'tritone scale'. A scale-object in its own right, not merely the sum of two chords."
+          },
+          {
+            "label": "Bar 6",
+            "titre": "Second scholarly reading: the octatonic collection",
+            "chiffrage": "Octatonic collection (8 pitches, alternating tone/semitone)",
+            "fonctions": "?",
+            "texte": "Both triads sit natively within the complete octatonic collection — Taruskin's reading, for whom the Petrushka chord is not a collision between two foreign systems but two diatonic crystallisations of one and the same symmetrical collection."
+          },
+          {
+            "label": "Bar 7",
+            "titre": "Active polarity",
+            "chiffrage": "C major + F#/A#, held under a fermata",
+            "fonctions": "?",
+            "texte": "The chord closes under a fermata, labelled with the formula that sums up the debate: active polarity. Not a passive blend of twelve pitches, but two tonal forces held in tension, neither of them giving way."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The third way of 1911",
+            "texte": "After Wagner, who suspended resolution indefinitely, and Debussy, who made it by turns avoided and then unconstructible, Stravinsky invents a third way out: function is neither suspended nor dissolved, it is preserved but doubled. The conflict itself becomes the material."
+          },
+          {
+            "titre": "Two readings, one single object",
+            "texte": "The Petrushka chord can be heard as a collision of two foreign keys, or as two crystallisations of a single octatonic collection — both readings are true at once, and it is precisely this double status that gives the object its whole theoretical interest."
+          },
+          {
+            "titre": "Stravinsky lexicalised",
+            "texte": "The tritone scale and pairs of triads a tritone apart have become a standard tool of modern improvisation — the 'triad pairs' and the sub-V substitutions of the jazz vocabulary. Stravinsky is taken up sixty years later exactly as Debussy was by Evans: a theoretical object turned into lexicon."
+          }
+        ]
+      }
     }
   },
   "cours32": {

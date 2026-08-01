@@ -3644,6 +3644,105 @@
       "soWhatLabel1": "Transponiert (G)",
       "warnBoxQuartale": "<strong>H&auml;ufiger Fehler:</strong> Quartenakkorde mit T/SD/D-Funktionen analysieren. Die Quartenharmonik funktioniert durch Farbe und Mehrdeutigkeit, nicht durch funktionale Progression. In 'So What' sind die beiden Akkorde (D und Es) keine II–III &mdash; sie sind zwei nebeneinandergestellte Farben.",
       "h2Quiz": "Quiz &mdash; Polytonalit&auml;t und Quartenharmonik"
+    },
+    "conservatoire": {
+      "intuition": "Zwei Tonarten gleichzeitig — das ist wie zwei Gespräche in verschiedenen Sprachen: das Gehirn hört beide und bildet einen Sinn, der sich nicht getrennt analysieren lässt.",
+      "reference": {
+        "badge": "Messiaen · Technik meiner musikalischen Sprache",
+        "citation": "Die Polytonalität ist die Überlagerung zweier verschiedener tonaler Zentren. Das Ergebnis gehört weder dem einen noch dem anderen an — es schafft einen neuen harmonischen Raum.",
+        "auteur": "Olivier Messiaen, 1944"
+      },
+      "voix": [
+        "Polytonalität ist keine Atonalität — jede Schicht bleibt tonal, erst ihre Verbindung erzeugt die Spannung. Man kann die beiden Tonarten stets getrennt hören.",
+        "Die Quartenharmonik hat keine Terz → weder Dur noch Moll → kontrollierte Mehrdeutigkeit. Genau dieses Fehlen des Tongeschlechts erzeugt den „offenen“, „modernen“ Klang.",
+        "Der „So What chord“ von Miles Davis (D–G–C–F–A) ist der Quartakkord schlechthin des modalen Jazz — lernen Sie, ihn auf jedem Ton zu bauen."
+      ],
+      "repertoire": {
+        "titre": "Der Petruschka-Akkord (Lehrblatt)",
+        "compositeur": "Nach Igor Stravinsky, Petruschka (2. Bild, 1911)"
+      },
+      "pieges": [
+        {
+          "erreur": "Polytonalität mit Atonalität verwechseln",
+          "correction": "Die Polytonalität überlagert verschiedene Tonarten — jede Schicht bleibt tonal. Die Atonalität vermeidet jeden tonalen Bezug. Das sind zwei verschiedene Systeme."
+        },
+        {
+          "erreur": "Glauben, Quartakkorde hätten keine Logik",
+          "correction": "Die Quartenharmonik hat eine genaue Logik: Schichtung von Quarten (rein oder übermäßig). Das „So What voicing“ folgt strengen Regeln der Lage."
+        },
+        {
+          "erreur": "In polytonaler Musik nach T/SD/D-Funktionen suchen",
+          "correction": "Polytonalität funktioniert durch Überlagerung von Ebenen, nicht durch funktionale Fortschreitung. Die Analyse muss die beiden (oder mehreren) tonalen Zentren bestimmen, nicht die Funktionen."
+        }
+      ],
+      "resume": [
+        "Polytonalität: gleichzeitige Überlagerung verschiedener Tonarten — sanft (benachbarte Tonarten) oder schroff (Tritonus, wie in Stravinskys Petruschka)",
+        "Quartakkorde: Konstruktion durch Schichtung von Quarten (C–F–B oder C–F–H). Weder Dur noch Moll → moderne Mehrdeutigkeit.",
+        "So What chord: D–G–C–F–A (4 Quarten + große Terz obenauf) — das sinnbildliche Voicing des modalen Jazz"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Keine einzige Tonart — aktive Polarität zwischen C-Dur und Fis-Dur, zwei Dreiklängen im Tritonusabstand.",
+        "metrique": "4/4. Ohne Tempoangabe (Demonstrationsblatt).",
+        "forme": "Demonstration in sieben Schritten: die beiden Protagonisten für sich, ihr Zusammenstoß, ihre melodisierte Gestalt, dann zwei gelehrte Lesarten (synthetische Skala, oktatonische Sammlung) und die Schlussformel.",
+        "sections": [
+          {
+            "label": "Takte 1-2",
+            "titre": "Die beiden Protagonisten",
+            "chiffrage": "C-Dur | Fis-Dur",
+            "fonctions": "? | ?",
+            "texte": "Zuerst C-Dur, der konsonanteste Dreiklang des tonalen Systems. Dann Fis-Dur, sein exakter Gegenpol im Tritonus — kein einziger gemeinsamer Ton zwischen beiden, die weißen Tasten gegen die schwarzen."
+          },
+          {
+            "label": "Takt 3",
+            "titre": "Der Zusammenstoß: der Petruschka-Akkord",
+            "chiffrage": "C-Dur + Fis-Dur, übereinandergeschichtet",
+            "fonctions": "?",
+            "texte": "Die beiden Dreiklänge erklingen gleichzeitig, jeder vollkommen unversehrt, einer pro Hand. Die Dissonanz liegt nicht mehr im Akkord — jede Hälfte bleibt ein reiner Durdreiklang —, sondern zwischen den Systemen: der Konflikt ist von der Ebene des Intervalls auf die Ebene der Tonart selbst gewandert."
+          },
+          {
+            "label": "Takt 4",
+            "titre": "Die melodisierte Gestalt",
+            "chiffrage": "C-Dur + Fis/Ais (1. Umkehrung)",
+            "fonctions": "?",
+            "texte": "Die alternierende Gestalt, die der beiden Klarinetten im zweiten Bild: das Fis erscheint in erster Umkehrung (Ais im Bass). Die beiden Welten antworten einander, statt aufeinander einzuschlagen."
+          },
+          {
+            "label": "Takt 5",
+            "titre": "Erste gelehrte Lesart: die Tritonus-Skala",
+            "chiffrage": "C-Des-E-Ges-G-B (hexatonisch)",
+            "fonctions": "?",
+            "texte": "Zusammengenommen bilden die sechs Töne der beiden Dreiklänge eine synthetische hexatonische Skala im Wechsel von großer Terz und Halbton — die „Tritonus-Skala“. Ein eigenständiges Skalengebilde, nicht bloß die Summe zweier Akkorde."
+          },
+          {
+            "label": "Takt 6",
+            "titre": "Zweite gelehrte Lesart: die oktatonische Sammlung",
+            "chiffrage": "Oktatonische Sammlung (8 Töne, Wechsel Ganzton/Halbton)",
+            "fonctions": "?",
+            "texte": "Die beiden Dreiklänge fügen sich von Natur aus in die vollständige oktatonische Sammlung ein — die Lesart Taruskins, für den der Petruschka-Akkord kein Zusammenstoß zweier fremder Systeme ist, sondern zwei diatonische Kristallisationen ein und derselben symmetrischen Sammlung."
+          },
+          {
+            "label": "Takt 7",
+            "titre": "Aktive Polarität",
+            "chiffrage": "C-Dur + Fis/Ais, unter Fermate gehalten",
+            "fonctions": "?",
+            "texte": "Der Akkord schließt sich unter einer Fermate, versehen mit der Formel, die die Debatte zusammenfasst: aktive Polarität. Keine passive Mischung aus zwölf Tönen, sondern zwei tonale Kräfte, die in Spannung bleiben, ohne dass eine nachgäbe."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Der dritte Weg von 1911",
+            "texte": "Nach Wagner, der die Auflösung unendlich hinauszögerte, und Debussy, der sie abwechselnd vermied und dann unkonstruierbar machte, erfindet Stravinsky einen dritten Ausweg: die Funktion wird weder aufgeschoben noch aufgelöst, sie bleibt erhalten, aber verdoppelt. Der Konflikt selbst wird zum Material."
+          },
+          {
+            "titre": "Zwei Lesarten, ein einziges Objekt",
+            "texte": "Der Petruschka-Akkord lässt sich als Zusammenstoß zweier fremder Tonarten hören oder als zwei Kristallisationen einer einzigen oktatonischen Sammlung — beide Lesarten sind zugleich wahr, und genau dieser doppelte Status macht das ganze theoretische Interesse des Objekts aus."
+          },
+          {
+            "titre": "Stravinsky lexikalisiert",
+            "texte": "Die Tritonus-Skala und die Dreiklangspaare im Tritonusabstand sind zu einem Standardwerkzeug der modernen Improvisation geworden — die „triad pairs“ und die sub-V-Substitutionen des Jazzvokabulars. Stravinsky wird sechzig Jahre später genau so aufgegriffen, wie Debussy es durch Evans wurde: ein theoretisches Objekt, das zum Lexikon geworden ist."
+          }
+        ]
+      }
     }
   },
   "cours32": {

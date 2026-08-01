@@ -3644,6 +3644,105 @@
       "soWhatLabel1": "Trasportato (Sol)",
       "warnBoxQuartale": "<strong>Errore frequente:</strong> Analizzare gli accordi quartali con le funzioni T/SD/D. L'armonia quartal funziona per colore e ambiguità, non per progressione funzionale. In 'So What', i due accordi (Re e Mib) non sono un II–III — sono due colori giustapposti.",
       "h2Quiz": "Quiz — Politonalità e armonia quartal"
+    },
+    "conservatoire": {
+      "intuition": "Due tonalità simultanee è come due conversazioni in lingue diverse — il cervello le sente entrambe e crea un senso impossibile da analizzare separatamente.",
+      "reference": {
+        "badge": "Messiaen · Tecnica del mio linguaggio musicale",
+        "citation": "La politonalità è la sovrapposizione di due centri tonali distinti. Il risultato non appartiene né all'uno né all'altro — crea uno spazio armonico nuovo.",
+        "auteur": "Olivier Messiaen, 1944"
+      },
+      "voix": [
+        "La politonalità non è atonalità — ogni strato resta tonale, è la loro combinazione a creare la tensione. Si possono sempre sentire le due tonalità separatamente.",
+        "L'armonia quartale non ha terza → né maggiore né minore → ambiguità controllata. È questa assenza di modo a creare il suono «aperto» e «moderno».",
+        "Il «So What chord» di Miles Davis (Re–Sol–Do–Fa–La) è l'accordo quartale per eccellenza del jazz modale — imparate a costruirlo su tutte le note."
+      ],
+      "repertoire": {
+        "titre": "L'accordo di Petruška (scheda didattica)",
+        "compositeur": "Da Igor Stravinsky, Petruška (2° quadro, 1911)"
+      },
+      "pieges": [
+        {
+          "erreur": "Confondere politonalità e atonalità",
+          "correction": "La politonalità sovrappone tonalità distinte — ogni strato resta tonale. L'atonalità evita ogni riferimento tonale. Sono due sistemi diversi."
+        },
+        {
+          "erreur": "Credere che gli accordi quartali non abbiano una logica",
+          "correction": "L'armonia quartale ha una logica precisa: sovrapposizione di quarte (giuste o eccedenti). Il «So What voicing» segue regole rigorose di disposizione."
+        },
+        {
+          "erreur": "Cercare funzioni T/SD/D nella musica politonale",
+          "correction": "La politonalità funziona per sovrapposizione di piani, non per progressione funzionale. L'analisi deve individuare i due (o più) centri tonali, non le funzioni."
+        }
+      ],
+      "resume": [
+        "Politonalità: sovrapposizione simultanea di tonalità diverse — dolce (tonalità vicine) o brutale (tritono, come nel Petruška di Stravinsky)",
+        "Accordi quartali: costruzione per sovrapposizione di quarte (Do–Fa–Sib o Do–Fa–Si). Né maggiore né minore → ambiguità moderna.",
+        "So What chord: Re–Sol–Do–Fa–La (4 quarte + terza maggiore al vertice) — voicing emblematico del jazz modale"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Nessuna tonalità unica — polarità attiva tra Do maggiore e Fa# maggiore, due triadi a distanza di tritono.",
+        "metrique": "4/4. Senza indicazione di tempo (scheda dimostrativa).",
+        "forme": "Dimostrazione in sette tempi: i due protagonisti separati, la loro collisione, la loro forma melodizzata, poi due letture dotte (scala sintetica, collezione ottatonica) e la formula di chiusura.",
+        "sections": [
+          {
+            "label": "Battute 1-2",
+            "titre": "I due protagonisti",
+            "chiffrage": "Do maggiore | Fa# maggiore",
+            "fonctions": "? | ?",
+            "texte": "Prima Do maggiore, la triade più consonante del sistema tonale. Poi Fa# maggiore, il suo antipodo esatto al tritono — nessuna nota in comune tra le due, i tasti bianchi contro i tasti neri."
+          },
+          {
+            "label": "Battuta 3",
+            "titre": "La collisione: l'accordo di Petruška",
+            "chiffrage": "Do maggiore + Fa# maggiore, sovrapposti",
+            "fonctions": "?",
+            "texte": "Le due triadi suonano simultaneamente, ciascuna perfettamente intatta, una per mano. La dissonanza non è più nell'accordo — ogni metà resta un accordo perfetto maggiore — ma tra i sistemi: il conflitto è passato dal livello dell'intervallo al livello della tonalità stessa."
+          },
+          {
+            "label": "Battuta 4",
+            "titre": "La forma melodizzata",
+            "chiffrage": "Do maggiore + Fa#/La# (1° rivolto)",
+            "fonctions": "?",
+            "texte": "La forma alternata, quella dei due clarinetti del secondo quadro: il Fa# compare in primo rivolto (La# al basso). I due mondi si rispondono invece di colpirsi."
+          },
+          {
+            "label": "Battuta 5",
+            "titre": "Prima lettura dotta: la scala di tritono",
+            "chiffrage": "Do-Reb-Mi-Solb-Sol-Sib (esatonica)",
+            "fonctions": "?",
+            "texte": "Riuniti, i sei suoni delle due triadi formano una scala sintetica esatonica che alterna terza maggiore e semitono — la «scala di tritono». Un oggetto scalare a pieno titolo, non soltanto la somma di due accordi."
+          },
+          {
+            "label": "Battuta 6",
+            "titre": "Seconda lettura dotta: la collezione ottatonica",
+            "chiffrage": "Collezione ottatonica (8 suoni, alternanza tono/semitono)",
+            "fonctions": "?",
+            "texte": "Le due triadi si inscrivono nativamente nella collezione ottatonica completa — la lettura di Taruskin, per il quale l'accordo di Petruška non è una collisione di due sistemi estranei ma due cristallizzazioni diatoniche di una sola e medesima collezione simmetrica."
+          },
+          {
+            "label": "Battuta 7",
+            "titre": "Polarità attiva",
+            "chiffrage": "Do maggiore + Fa#/La#, tenuto sotto corona",
+            "fonctions": "?",
+            "texte": "L'accordo si richiude sotto corona, etichettato con la formula che riassume il dibattito: polarità attiva. Non una miscela passiva di dodici suoni, ma due forze tonali che restano in tensione senza che nessuna ceda."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "La terza via del 1911",
+            "texte": "Dopo Wagner, che sospendeva indefinitamente la risoluzione, e Debussy, che la rese di volta in volta elusa e poi incostruibile, Stravinsky inventa una terza uscita: la funzione non è né sospesa né dissolta, è conservata ma sdoppiata. Il conflitto stesso diventa il materiale."
+          },
+          {
+            "titre": "Due letture, un solo oggetto",
+            "texte": "L'accordo di Petruška si lascia intendere come una collisione di due tonalità estranee, oppure come due cristallizzazioni di un'unica collezione ottatonica — le due letture sono vere allo stesso tempo, ed è precisamente questo doppio statuto a costituire tutto l'interesse teorico dell'oggetto."
+          },
+          {
+            "titre": "Stravinsky lessicalizzato",
+            "texte": "La scala di tritono e le coppie di triadi a distanza di tritono sono diventate uno strumento standard dell'improvvisazione moderna — i «triad pairs» e le sostituzioni sub-V del vocabolario jazz. Stravinsky viene ripreso sessant'anni dopo esattamente come Debussy lo è stato da Evans: un oggetto teorico diventato lessico."
+          }
+        ]
+      }
     }
   },
   "cours32": {
