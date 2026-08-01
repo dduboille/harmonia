@@ -145,7 +145,7 @@ export default function Cours12() {
   const sectionLabel = (id: string) => {
     if (id === "principe") return n("navPrincipe");
     if (id === "application") return n("navApplication");
-    if (id === "conservatoire") return n("navConservatoire");
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return n("navQuiz");
   };
 

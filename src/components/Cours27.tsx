@@ -176,7 +176,7 @@ export default function Cours27() {
   const sectionLabel = (id: string) => {
     if (id === "hierarchies")   return "Hiérarchies tonales";
     if (id === "ursatz")        return "Réduction schenkérienne";
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return "Quiz";
   };
 

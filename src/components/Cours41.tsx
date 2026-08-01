@@ -103,7 +103,7 @@ export default function Cours41() {
   const sectionLabel = (id: string) => {
     if (id === "styles") return n("navStyles");
     if (id === "methode") return n("navMethode");
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return n("navQuiz");
   };
 

@@ -168,7 +168,7 @@ export default function Cours31() {
   const sectionLabel = (id: string) => {
     if (id === "polytonalite") return "Polytonalité";
     if (id === "quartale") return "Harmonie quartale";
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return "Quiz";
   };
 

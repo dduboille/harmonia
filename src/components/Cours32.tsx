@@ -236,7 +236,7 @@ export default function Cours32() {
   const sectionLabel = (id: string) => {
     if (id === "extensions") return "Extensions altérées";
     if (id === "coltrane") return "Changements de Coltrane";
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return "Quiz";
   };
 

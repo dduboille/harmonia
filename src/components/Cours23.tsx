@@ -511,7 +511,7 @@ export default function Cours23() {
   const sectionLabel = (id: string) => {
     if (id === "styles") return n("navStyles");
     if (id === "exercices") return n("navExercices");
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return n("navEntrainement");
   };
 

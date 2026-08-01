@@ -290,7 +290,7 @@ export default function Cours17() {
   const sectionLabel = (id: SectionId) => {
     if (id === "phrase")  return n("navPhrase");
     if (id === "periode") return n("navPeriode");
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return n("navQuiz");
   };
 

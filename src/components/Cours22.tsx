@@ -300,7 +300,7 @@ export default function Cours22() {
   const sectionLabel = (id: string) => {
     if (id === "principe") return n("navTechniques");
     if (id === "application") return n("navAnalyses");
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return n("navEntrainement");
   };
 

@@ -433,7 +433,7 @@ export default function Cours20() {
   const SECTIONS = [
     { id: "compositeurs"  as const, label: n("sectionCompositeurs") },
     { id: "analyse"       as const, label: n("sectionAnalyse") },
-    { id: "conservatoire" as const, label: "🎓 Conservatoire" },
+    { id: "conservatoire" as const, label: i18n.sectionLabel("conservatoire") },
     { id: "quiz"          as const, label: n("sectionQuiz") },
   ];
 

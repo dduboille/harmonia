@@ -192,7 +192,7 @@ export default function Cours40() {
   const sectionLabel = (id: string) => {
     if (id === "structure") return n("navStructure");
     if (id === "developpement") return n("navDeveloppement");
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return n("navQuiz");
   };
 

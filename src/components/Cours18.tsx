@@ -289,7 +289,7 @@ export default function Cours18() {
   const sectionLabel = (id: SectionId) => {
     if (id === "motif")      return n("navMotif");
     if (id === "techniques") return n("navTechniques");
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return n("navEntrainement");
   };
 

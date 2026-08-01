@@ -84,6 +84,11 @@ export function useCoursI18n(coursKey: CoursKey) {
    * Helper section label depuis l'id
    */
   function sectionLabel(id: string): string {
+    // L'onglet « conservatoire » est commun aux 48 cours : son libellé vit dans
+    // le namespace `common`, pas dans chaque cours. Sans ce cas particulier, les
+    // 17 cours qui n'ont pas de clé `sections.conservatoire` afficheraient le
+    // chemin brut de la clé, et les 31 autres dupliqueraient la même traduction.
+    if (id === "conservatoire") return t("conservatoireOnglet");
     // next-intl useTranslations n'accepte pas de clé dynamique directement
     // on passe par tc avec un cast
     return tc(`sections.${id}` as any);

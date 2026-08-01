@@ -190,7 +190,7 @@ export default function Cours19() {
   const sectionLabel = (id: SectionId) => {
     if (id === "instruments") return n("navInstruments");
     if (id === "ecriture")   return n("navEcriture");
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return n("navEntrainement");
   };
 

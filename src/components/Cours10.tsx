@@ -263,7 +263,7 @@ export default function Cours10() {
   const sectionLabel = (id: string) => {
     if (id === "modes") return n("navModes");
     if (id === "harmonie") return n("navHarmonie");
-    if (id === "conservatoire") return n("navConservatoire");
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return n("navQuiz");
   };
 

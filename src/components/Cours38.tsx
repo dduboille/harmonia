@@ -200,7 +200,7 @@ export default function Cours38() {
       <nav style={S.nav}>
         {SECTIONS_IDS.map(id => (
           <button key={id} style={S.pill(sec === id)} onClick={() => setSec(id)}>
-            {id === "conservatoire" ? "🎓 Conservatoire" : i18n.sectionLabel(id)}
+            {i18n.sectionLabel(id)}
           </button>
         ))}
       </nav>

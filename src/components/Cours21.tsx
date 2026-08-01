@@ -380,7 +380,7 @@ export default function Cours21() {
   const SECTIONS = [
     { id: "compositeurs"  as const, label: n("sectionCompositeursLabel") },
     { id: "analyse"       as const, label: n("sectionAnalyseLabel") },
-    { id: "conservatoire" as const, label: "🎓 Conservatoire" },
+    { id: "conservatoire" as const, label: i18n.sectionLabel("conservatoire") },
     { id: "quiz"          as const, label: n("sectionQuizLabel") },
   ];
 

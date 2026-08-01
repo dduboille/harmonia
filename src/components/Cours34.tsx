@@ -190,7 +190,7 @@ export default function Cours34() {
   const sectionLabel = (id: string) => {
     if (id === "emotions") return "Émotions harmoniques";
     if (id === "leitmotif") return "Leitmotif";
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return "Quiz";
   };
 

@@ -187,7 +187,7 @@ export default function Cours33() {
   const sectionLabel = (id: string) => {
     if (id === "choral") return "Le choral à 4 voix";
     if (id === "fugue") return "Introduction à la fugue";
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return "Quiz";
   };
 

@@ -164,7 +164,7 @@ export default function Cours26() {
   const sectionLabel = (id: string) => {
     if (id === "basse")         return "Basse donnée";
     if (id === "soprano")       return "Soprano donné";
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return "Quiz";
   };
 

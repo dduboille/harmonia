@@ -174,7 +174,7 @@ export default function Cours35() {
   const sectionLabel = (id: string) => {
     if (id === "reharmonisation") return "Reharmonisation";
     if (id === "voicings") return "Voicings avancés";
-    if (id === "conservatoire") return "🎓 Conservatoire";
+    if (id === "conservatoire") return i18n.sectionLabel(id);
     return "Quiz";
   };
 

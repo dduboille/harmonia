@@ -15,6 +15,7 @@
     "veryGood": "Very good",
     "keepGoing": "Keep exploring the sections — try again when ready.",
     "training": "Practice",
+    "conservatoireOnglet": "🎓 Conservatory",
     "conservatoireIntuition": "Musical intuition",
     "conservatoireVoix": "Voice leading · DEM rules",
     "conservatoireRepertoire": "Repertoire example",
@@ -172,7 +173,6 @@
     "sections": {
       "cadences": "Cadences",
       "progressions": "Progressions",
-      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -274,7 +274,6 @@
       "mineur": "Minor scale",
       "emprunts": "Borrowings",
       "classiques": "Classic progressions",
-      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -359,7 +358,6 @@
       "etrangeres": "Non-chord tones",
       "squelette": "Harmonic skeleton",
       "accomp": "Accompaniment",
-      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -531,7 +529,6 @@
       "secondaires": "Secondary dominants",
       "voisins": "Neighbouring keys",
       "chaines": "Chains",
-      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -604,7 +601,6 @@
       "pivot": "Pivot chord",
       "outils": "6/4 and sus4",
       "exemples": "Examples",
-      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -719,7 +715,6 @@
       "minor": "Minorisation",
       "pedales": "Pedal points",
       "appog": "Appoggiatura chords",
-      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -846,7 +841,6 @@
       "degres": "Degrees",
       "tons": "Tones & semitones",
       "intervalles": "Intervals",
-      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -937,7 +931,6 @@
       "tetrades": "Seventh chords",
       "gammeTetrades": "Scale (seventh chords)",
       "renversements": "Inversions",
-      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -1039,7 +1032,6 @@
       "fonctions": "Tonal functions",
       "progressions": "Progressions",
       "voix": "Voice leading",
-      "conservatoire": "🎓 Conservatoire",
       "quiz": "Practice"
     },
     "quiz": {
@@ -1194,8 +1186,7 @@
       "maitreAnecdote": "In 1959, Miles Davis recorded Kind of Blue — the best-selling jazz album of all time. Instead of chaining complex chords, he built each piece on a single mode. So What is entirely in D Dorian. Davis said: 'I wanted the musicians to think of a color, not a chord sequence.'",
       "maitreLesson": "A mode is not a scale with one different note — it is a harmonic color, a way of hearing the world.",
       "maitrePeriod": "1926–1991",
-      "maitreConcept": "Modes",
-      "navConservatoire": "🎓 Conservatoire"
+      "maitreConcept": "Modes"
     }
   },
   "cours12": {
@@ -1271,8 +1262,7 @@
       "quizFeedbackGood": "Good — a few more progressions to practice and it will be perfect.",
       "quizFeedbackKeepGoing": "Keep listening to both resolutions — the ear is trained through comparison!",
       "quizNextBtn": "Next question →",
-      "quizScoreBtn": "See my score",
-      "navConservatoire": "🎓 Conservatoire"
+      "quizScoreBtn": "See my score"
     }
   },
   "cours14": {
@@ -1358,8 +1348,7 @@
       "maitreLesson": "Chords are not functions (T, SD, D) — they are colours. In modal music, we paint with chords rather than chaining them in a directed progression.",
       "maitrePeriod": "1862–1918",
       "maitreConcept": "Modal harmony",
-      "questionLabel": "Question",
-      "navConservatoire": "🎓 Conservatoire"
+      "questionLabel": "Question"
     }
   },
   "cours13": {
@@ -1452,8 +1441,7 @@
       "maitreAnecdote": "In 1725, Fux publishes the Gradus ad Parnassum ('Steps to Parnassus') in Vienna. He is 65 and suffering from gout. He writes it as a dialogue: Aloysius (his ideal, Palestrina) teaches Josephus (himself). This book would span the centuries: the young Haydn would study it alone in his room in Vienna. Mozart would use it to teach. Beethoven would copy entire passages into his notebooks.",
       "maitreLesson": "Writing two independent voices is harder than writing one complex voice. Each voice must have its own life — and yet, together, they must form a coherent harmony.",
       "maitrePeriod": "1660–1741",
-      "maitreConcept": "Counterpoint",
-      "navConservatoire": "🎓 Conservatoire"
+      "maitreConcept": "Counterpoint"
     }
   },
   "cours16": {
@@ -1532,8 +1520,7 @@
       "maitreCardPeriod": "1929–1980",
       "maitreCardConcept": "Reharmonization & jazz impressionism",
       "maitreCardAnecdote": "Evans plays Autumn Leaves on his first solo album (1956) and the listener recognizes the familiar melody — but the chords have changed. FMaj7 became Fm, G7 became Db7. Without altering a single note of Joseph Kosma's melody, Evans transformed a springtime standard into a melancholy nocturne.",
-      "maitreCardLesson": "Reharmonization is not virtuosity — it's listening. Before substituting a chord, ask yourself: can the melody still be heard? Does the new chord say something the original could not?",
-      "navConservatoire": "🎓 Conservatoire"
+      "maitreCardLesson": "Reharmonization is not virtuosity — it's listening. Before substituting a chord, ask yourself: can the melody still be heard? Does the new chord say something the original could not?"
     }
   },
   "cours15": {
@@ -1589,8 +1576,7 @@
       "quizScoreLabel": "Score:",
       "quizPoolLabel": "questions in the pool",
       "quizNextBtn": "Next question →",
-      "quizFinishBtn": "See my score",
-      "navConservatoire": "🎓 Conservatoire"
+      "quizFinishBtn": "See my score"
     }
   },
   "cours21": {
@@ -2176,8 +2162,7 @@
       "quizQuestionCounter": "Question",
       "quizPoolInfo": "questions in the pool",
       "quizNextBtn": "Next question →",
-      "quizFinishBtn": "See my score",
-      "navConservatoire": "🎓 Conservatoire"
+      "quizFinishBtn": "See my score"
     }
   },
   "cours22": {
@@ -2283,7 +2268,6 @@
     "sections": {
       "types": "The 3 types",
       "application": "Usage & context",
-      "conservatoire": "Conservatory",
       "quiz": "Practice"
     },
     "quiz": {
@@ -2340,7 +2324,6 @@
     "sections": {
       "lignes": "Chromatic lines",
       "ambiguite": "Tonal ambiguity",
-      "conservatoire": "Conservatory",
       "quiz": "Practice"
     },
     "quiz": {
@@ -2406,7 +2389,6 @@
     "sections": {
       "impressionnisme": "Impressionism",
       "modalite": "Advanced modality",
-      "conservatoire": "Conservatory",
       "quiz": "Practice"
     },
     "quiz": {
@@ -2484,7 +2466,6 @@
     "sections": {
       "polytonalite": "Polytonality",
       "quartale": "Quartal harmony",
-      "conservatoire": "Conservatory",
       "quiz": "Practice"
     },
     "quiz": {
@@ -2558,7 +2539,6 @@
     "sections": {
       "extensions": "Altered extensions",
       "coltrane": "Coltrane changes",
-      "conservatoire": "Conservatory",
       "quiz": "Practice"
     },
     "quiz": {
@@ -2605,7 +2585,6 @@
     "sections": {
       "hierarchies": "Tonal hierarchies",
       "ursatz": "Schenkerian reduction",
-      "conservatoire": "Conservatory",
       "quiz": "Practice"
     },
     "quiz": {
@@ -2678,7 +2657,6 @@
     "sections": {
       "formes": "The major forms",
       "analyse": "Comparative analysis",
-      "conservatoire": "Conservatory",
       "quiz": "Practice"
     },
     "quiz": {
@@ -2755,7 +2733,6 @@
     "sections": {
       "evolution": "Harmonic evolution",
       "comparaison": "Same melody, 5 styles",
-      "conservatoire": "Conservatory",
       "quiz": "Practice"
     },
     "quiz": {
@@ -2823,7 +2800,6 @@
     "sections": {
       "basse": "Given bass",
       "soprano": "Given soprano",
-      "conservatoire": "Conservatory",
       "quiz": "Practice"
     },
     "quiz": {
@@ -3237,7 +3213,6 @@
     "sections": {
       "choral": "Four-Voice Chorale",
       "fugue": "Introduction to Fugue",
-      "conservatoire": "Conservatory",
       "quiz": "Training"
     },
     "quiz": {
@@ -3283,7 +3258,6 @@
     "sections": {
       "emotions": "Harmonic Emotions",
       "leitmotif": "Leitmotif",
-      "conservatoire": "Conservatory",
       "quiz": "Training"
     },
     "quiz": {
@@ -3378,7 +3352,6 @@
     "sections": {
       "reharmonisation": "Reharmonization",
       "voicings": "Advanced Voicings",
-      "conservatoire": "Conservatory",
       "quiz": "Training"
     },
     "quiz": {
@@ -3481,7 +3454,6 @@
     "sections": {
       "debussy": "Debussy's Harmony",
       "ravel": "Ravel's Harmony",
-      "conservatoire": "Conservatory",
       "quiz": "Training"
     },
     "quiz": {
@@ -3560,7 +3532,6 @@
     "sections": {
       "schenker": "Schenkerian Analysis",
       "motivique": "Motivic Analysis",
-      "conservatoire": "Conservatory",
       "quiz": "Training"
     },
     "quiz": {
@@ -3791,8 +3762,7 @@
       "quizQuestionCounter": "Question",
       "quizPoolInfo": "questions in total",
       "quizNextBtn": "Next question →",
-      "quizFinishBtn": "See score →",
-      "navConservatoire": "🎓 Conservatoire"
+      "quizFinishBtn": "See score →"
     }
   },
   "cours40": {
