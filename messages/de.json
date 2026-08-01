@@ -2307,6 +2307,20 @@
     "level5topics": "Fuge & Choral,Film,Jazz,Impressionismus,Schenker",
     "freeNote": "Kostenlos starten · Lektionen 1 bis 3 ohne Abonnement zugänglich"
   },
+  "paywall": {
+    "proLabel": "Pro-Funktion",
+    "proCta": "Zu Pro wechseln →",
+    "proBack": "Zurück zum Dashboard",
+    "breadcrumbCours": "Kurse",
+    "coursNum": "Kurs {num}",
+    "exercicesTitle": "Übungen — {title}",
+    "lockedCours": "Dieser Kurs ist Teil des Abonnements",
+    "lockedExercices": "Diese Übungen sind Teil des Abonnements",
+    "lockedText": "Die Kurse 1 bis {free} sind frei zugänglich. Schalte alle {count} Kurse, die SATB-Übungen aller Stufen und die Fortschrittsverfolgung frei.",
+    "seePlans": "Abonnements ansehen",
+    "startCours1": "Mit Kurs 1 beginnen",
+    "tryFree": "Kostenlos testen"
+  },
   "landing": {
     "topbar": "Zwölf Stücke, eine Geschichte — von Bach bis Evans",
     "topbarCta": "Entdecken →",

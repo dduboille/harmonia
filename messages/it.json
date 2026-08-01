@@ -2307,6 +2307,20 @@
     "level5topics": "Fuga & Corale,Cinema,Jazz,Impressionismo,Schenker",
     "freeNote": "Gratuito per iniziare · Lezioni 1 a 9 accessibili senza abbonamento"
   },
+  "paywall": {
+    "proLabel": "Funzionalità Pro",
+    "proCta": "Passare a Pro →",
+    "proBack": "Torna alla dashboard",
+    "breadcrumbCours": "Lezioni",
+    "coursNum": "Lezione {num}",
+    "exercicesTitle": "Esercizi — {title}",
+    "lockedCours": "Questa lezione fa parte dell'abbonamento",
+    "lockedExercices": "Questi esercizi fanno parte dell'abbonamento",
+    "lockedText": "Le lezioni da 1 a {free} sono ad accesso libero. Sblocca le {count} lezioni, gli esercizi SATB di tutti i livelli e il monitoraggio dei progressi.",
+    "seePlans": "Vedi abbonamenti",
+    "startCours1": "Inizia dalla lezione 1",
+    "tryFree": "Prova gratis"
+  },
   "landing": {
     "topbar": "Dodici brani, un'unica storia — da Bach a Evans",
     "topbarCta": "Scopri →",

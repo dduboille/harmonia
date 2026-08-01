@@ -2935,6 +2935,20 @@
     "level5topics": "Fugue & Chorale,Film,Jazz,Impressionism,Schenker",
     "freeNote": "Free to start · Lessons 1 to 3 accessible without subscription"
   },
+  "paywall": {
+    "proLabel": "Pro feature",
+    "proCta": "Upgrade to Pro →",
+    "proBack": "Back to dashboard",
+    "breadcrumbCours": "Courses",
+    "coursNum": "Course {num}",
+    "exercicesTitle": "Exercises — {title}",
+    "lockedCours": "This course is part of the subscription",
+    "lockedExercices": "These exercises are part of the subscription",
+    "lockedText": "Courses 1 to {free} are free to access. Unlock all {count} courses, SATB exercises at every level and progress tracking.",
+    "seePlans": "View plans",
+    "startCours1": "Start with course 1",
+    "tryFree": "Try for free"
+  },
   "landing": {
     "topbar": "Twelve pieces, one story — from Bach to Evans",
     "topbarCta": "Discover →",
