@@ -2307,6 +2307,29 @@
     "level5topics": "Fuga & Coral,Cinema,Jazz,Impressionismo,Schenker",
     "freeNote": "Gratuito para começar · Lições 1 a 3 acessíveis sem subscrição"
   },
+  "essai": {
+    "label": "Teste gratuito",
+    "titre": "14 dias de Pro, sem cartão de crédito",
+    "intro": "Introduza o seu código de teste para desbloquear todos os cursos e as funcionalidades de IA.",
+    "champLabel": "Código de teste",
+    "bouton": "Ativar o meu teste",
+    "boutonEnCours": "A verificar...",
+    "succes": "O seu teste Pro de 14 dias está ativo.",
+    "succesCta": "Ir para o painel",
+    "pasDeCode": "Não tem código? Ver preços →",
+    "erreurs": {
+      "abonnementActif": "Já tem uma assinatura ativa — não precisa de um código de teste.",
+      "dejaUtilise": "Já utilizou um teste.",
+      "introuvable": "Código não encontrado.",
+      "inactif": "Este código já não está ativo.",
+      "limiteAtteinte": "Este código atingiu o seu limite de utilizações.",
+      "requeteInvalide": "Pedido inválido.",
+      "codeManquant": "Código em falta.",
+      "serveur": "Erro do servidor. Tente novamente.",
+      "reseau": "Erro de rede. Verifique a sua ligação e tente novamente.",
+      "inconnu": "Ocorreu um erro. Tente novamente."
+    }
+  },
   "paywall": {
     "proLabel": "Funcionalidade Pro",
     "proCta": "Mudar para Pro →",

@@ -53,9 +53,22 @@ export function aAbonnementPayantActif(sub: AbonnementExistant | null): boolean 
   return new Date(sub.current_period_end) > new Date();
 }
 
+/**
+ * Identifiant STABLE du motif de refus. C'est lui qui traverse l'API : le
+ * client le traduit dans la langue de la page. Le champ `erreur` qui
+ * l'accompagne reste en français et ne sert plus qu'aux journaux serveur —
+ * ne jamais l'afficher tel quel à l'utilisateur.
+ */
+export type CodeErreurEssai =
+  | "abonnementActif"
+  | "dejaUtilise"
+  | "introuvable"
+  | "inactif"
+  | "limiteAtteinte";
+
 export type ResultatValidation =
   | { ok: true }
-  | { ok: false; status: 404 | 400 | 409; erreur: string };
+  | { ok: false; status: 404 | 400 | 409; code: CodeErreurEssai; erreur: string };
 
 /**
  * Valide un rachat de code AVANT toute écriture. `dejaConsomme` doit être
@@ -75,19 +88,19 @@ export function validerRachat(
   abonnementPayantActif: boolean,
 ): ResultatValidation {
   if (abonnementPayantActif) {
-    return { ok: false, status: 400, erreur: "Vous avez déjà un abonnement actif — inutile d'utiliser un code d'essai." };
+    return { ok: false, status: 400, code: "abonnementActif", erreur: "Vous avez déjà un abonnement actif — inutile d'utiliser un code d'essai." };
   }
   if (dejaConsomme) {
-    return { ok: false, status: 409, erreur: "Vous avez déjà utilisé un essai." };
+    return { ok: false, status: 409, code: "dejaUtilise", erreur: "Vous avez déjà utilisé un essai." };
   }
   if (!trialCode) {
-    return { ok: false, status: 404, erreur: "Code introuvable." };
+    return { ok: false, status: 404, code: "introuvable", erreur: "Code introuvable." };
   }
   if (!trialCode.active) {
-    return { ok: false, status: 400, erreur: "Ce code n'est plus actif." };
+    return { ok: false, status: 400, code: "inactif", erreur: "Ce code n'est plus actif." };
   }
   if (trialCode.uses_count >= trialCode.max_uses) {
-    return { ok: false, status: 400, erreur: "Ce code a atteint sa limite d'utilisations." };
+    return { ok: false, status: 400, code: "limiteAtteinte", erreur: "Ce code a atteint sa limite d'utilisations." };
   }
   return { ok: true };
 }

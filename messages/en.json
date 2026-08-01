@@ -2935,6 +2935,29 @@
     "level5topics": "Fugue & Chorale,Film,Jazz,Impressionism,Schenker",
     "freeNote": "Free to start · Lessons 1 to 3 accessible without subscription"
   },
+  "essai": {
+    "label": "Free trial",
+    "titre": "14 days of Pro, no credit card",
+    "intro": "Enter your trial code to unlock every course and the AI features.",
+    "champLabel": "Trial code",
+    "bouton": "Activate my trial",
+    "boutonEnCours": "Checking...",
+    "succes": "Your 14-day Pro trial is active.",
+    "succesCta": "Go to dashboard",
+    "pasDeCode": "No code? See pricing →",
+    "erreurs": {
+      "abonnementActif": "You already have an active subscription — no need for a trial code.",
+      "dejaUtilise": "You have already used a trial.",
+      "introuvable": "Code not found.",
+      "inactif": "This code is no longer active.",
+      "limiteAtteinte": "This code has reached its usage limit.",
+      "requeteInvalide": "Invalid request.",
+      "codeManquant": "Missing code.",
+      "serveur": "Server error. Please try again.",
+      "reseau": "Network error. Check your connection and try again.",
+      "inconnu": "Something went wrong. Please try again."
+    }
+  },
   "paywall": {
     "proLabel": "Pro feature",
     "proCta": "Upgrade to Pro →",

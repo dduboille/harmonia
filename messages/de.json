@@ -2307,6 +2307,29 @@
     "level5topics": "Fuge & Choral,Film,Jazz,Impressionismus,Schenker",
     "freeNote": "Kostenlos starten · Lektionen 1 bis 3 ohne Abonnement zugänglich"
   },
+  "essai": {
+    "label": "Kostenlose Testversion",
+    "titre": "14 Tage Pro, ohne Kreditkarte",
+    "intro": "Gib deinen Testcode ein, um alle Kurse und die KI-Funktionen freizuschalten.",
+    "champLabel": "Testcode",
+    "bouton": "Testversion aktivieren",
+    "boutonEnCours": "Wird geprüft...",
+    "succes": "Deine 14-tägige Pro-Testversion ist aktiv.",
+    "succesCta": "Zum Dashboard",
+    "pasDeCode": "Kein Code? Preise ansehen →",
+    "erreurs": {
+      "abonnementActif": "Du hast bereits ein aktives Abonnement — ein Testcode ist nicht nötig.",
+      "dejaUtilise": "Du hast bereits eine Testversion genutzt.",
+      "introuvable": "Code nicht gefunden.",
+      "inactif": "Dieser Code ist nicht mehr aktiv.",
+      "limiteAtteinte": "Dieser Code hat sein Nutzungslimit erreicht.",
+      "requeteInvalide": "Ungültige Anfrage.",
+      "codeManquant": "Code fehlt.",
+      "serveur": "Serverfehler. Bitte versuche es erneut.",
+      "reseau": "Netzwerkfehler. Prüfe deine Verbindung und versuche es erneut.",
+      "inconnu": "Ein Fehler ist aufgetreten. Bitte versuche es erneut."
+    }
+  },
   "paywall": {
     "proLabel": "Pro-Funktion",
     "proCta": "Zu Pro wechseln →",

@@ -13,17 +13,17 @@ import { aAbonnementPayantActif, calculerExpiration, validerRachat } from "@/lib
 export async function POST(req: NextRequest) {
   const { userId } = await auth();
   if (!userId) {
-    return NextResponse.json({ error: "Non authentifié" }, { status: 401 });
+    return NextResponse.json({ error: "Non authentifié", code: "nonAuthentifie" }, { status: 401 });
   }
 
   let code: unknown;
   try {
     ({ code } = await req.json());
   } catch {
-    return NextResponse.json({ error: "Requête invalide." }, { status: 400 });
+    return NextResponse.json({ error: "Requête invalide.", code: "requeteInvalide" }, { status: 400 });
   }
   if (!code || typeof code !== "string") {
-    return NextResponse.json({ error: "Code manquant." }, { status: 400 });
+    return NextResponse.json({ error: "Code manquant.", code: "codeManquant" }, { status: 400 });
   }
 
   const { data: trialCode, error: erreurCode } = await supabaseAdmin
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     .single();
   if (erreurCode && erreurCode.code !== "PGRST116") {
     console.error("Erreur lecture trial_codes:", erreurCode);
-    return NextResponse.json({ error: "Erreur serveur. Réessayez." }, { status: 500 });
+    return NextResponse.json({ error: "Erreur serveur. Réessayez.", code: "serveur" }, { status: 500 });
   }
 
   const { data: redemptionExistante, error: erreurLectureRedemption } = await supabaseAdmin
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
     .maybeSingle();
   if (erreurLectureRedemption) {
     console.error("Erreur lecture trial_redemptions:", erreurLectureRedemption);
-    return NextResponse.json({ error: "Erreur serveur. Réessayez." }, { status: 500 });
+    return NextResponse.json({ error: "Erreur serveur. Réessayez.", code: "serveur" }, { status: 500 });
   }
 
   // Un abonnement Stripe réel et actif ne doit JAMAIS être raccourci par un
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
     .maybeSingle();
   if (erreurLectureAbo) {
     console.error("Erreur lecture user_subscriptions:", erreurLectureAbo);
-    return NextResponse.json({ error: "Erreur serveur. Réessayez." }, { status: 500 });
+    return NextResponse.json({ error: "Erreur serveur. Réessayez.", code: "serveur" }, { status: 500 });
   }
 
   const validation = validerRachat(
@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
     aAbonnementPayantActif(abonnementExistant ?? null),
   );
   if (!validation.ok) {
-    return NextResponse.json({ error: validation.erreur }, { status: validation.status });
+    return NextResponse.json({ error: validation.erreur, code: validation.code }, { status: validation.status });
   }
 
   // Étape 1 : insérer la ligne de rachat. La contrainte unique sur user_id
@@ -79,10 +79,10 @@ export async function POST(req: NextRequest) {
 
   if (erreurRedemption) {
     if (erreurRedemption.code === "23505") {
-      return NextResponse.json({ error: "Vous avez déjà utilisé un essai." }, { status: 409 });
+      return NextResponse.json({ error: "Vous avez déjà utilisé un essai.", code: "dejaUtilise" }, { status: 409 });
     }
     console.error("Erreur insert trial_redemptions:", erreurRedemption);
-    return NextResponse.json({ error: "Erreur serveur. Réessayez." }, { status: 500 });
+    return NextResponse.json({ error: "Erreur serveur. Réessayez.", code: "serveur" }, { status: 500 });
   }
 
   // Étape 2 : incrémenter le compteur de façon ATOMIQUE ET CONDITIONNELLE
@@ -103,7 +103,7 @@ export async function POST(req: NextRequest) {
   if (erreurCompteur || !compteurMisAJour) {
     await supabaseAdmin.from("trial_redemptions").delete().eq("id", redemption.id);
     if (erreurCompteur) console.error("Erreur increment uses_count:", erreurCompteur);
-    return NextResponse.json({ error: "Ce code a atteint sa limite d'utilisations." }, { status: 400 });
+    return NextResponse.json({ error: "Ce code a atteint sa limite d'utilisations.", code: "limiteAtteinte" }, { status: 400 });
   }
 
   // Étape 3 : accorder l'accès Pro.
@@ -134,7 +134,7 @@ export async function POST(req: NextRequest) {
       console.error("Compensation échouée (uses_count) après erreur user_subscriptions:", erreurAnnulationCompteur);
     }
     console.error("Erreur upsert user_subscriptions (essai):", erreurSub);
-    return NextResponse.json({ error: "Erreur serveur. Réessayez." }, { status: 500 });
+    return NextResponse.json({ error: "Erreur serveur. Réessayez.", code: "serveur" }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true });

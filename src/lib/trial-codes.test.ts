@@ -49,33 +49,33 @@ describe("validerRachat", () => {
 
   it("refuse un code introuvable (null)", () => {
     const res = validerRachat(null, false, false);
-    expect(res).toEqual({ ok: false, status: 404, erreur: "Code introuvable." });
+    expect(res).toEqual({ ok: false, status: 404, code: "introuvable", erreur: "Code introuvable." });
   });
 
   it("refuse un code désactivé", () => {
     const res = validerRachat({ ...codeValide, active: false }, false, false);
-    expect(res).toEqual({ ok: false, status: 400, erreur: "Ce code n'est plus actif." });
+    expect(res).toEqual({ ok: false, status: 400, code: "inactif", erreur: "Ce code n'est plus actif." });
   });
 
   it("refuse un code ayant atteint sa limite d'utilisations", () => {
     const res = validerRachat({ ...codeValide, uses_count: 5, max_uses: 5 }, false, false);
-    expect(res).toEqual({ ok: false, status: 400, erreur: "Ce code a atteint sa limite d'utilisations." });
+    expect(res).toEqual({ ok: false, status: 400, code: "limiteAtteinte", erreur: "Ce code a atteint sa limite d'utilisations." });
   });
 
   it("refuse un utilisateur ayant déjà consommé un essai (n'importe quel code)", () => {
     const res = validerRachat(codeValide, true, false);
-    expect(res).toEqual({ ok: false, status: 409, erreur: "Vous avez déjà utilisé un essai." });
+    expect(res).toEqual({ ok: false, status: 409, code: "dejaUtilise", erreur: "Vous avez déjà utilisé un essai." });
   });
 
   it("refuse un utilisateur ayant déjà un abonnement payant actif", () => {
     const res = validerRachat(codeValide, false, true);
-    expect(res).toEqual({ ok: false, status: 400, erreur: "Vous avez déjà un abonnement actif — inutile d'utiliser un code d'essai." });
+    expect(res).toEqual({ ok: false, status: 400, code: "abonnementActif", erreur: "Vous avez déjà un abonnement actif — inutile d'utiliser un code d'essai." });
   });
 
   it("priorise l'abonnement actif sur l'essai déjà consommé (même message dans les deux cas de figure)", () => {
     const res = validerRachat(codeValide, true, true);
     expect(res.ok).toBe(false);
-    if (!res.ok) expect(res.erreur).toBe("Vous avez déjà un abonnement actif — inutile d'utiliser un code d'essai.");
+    if (!res.ok) expect(res.code).toBe("abonnementActif");
   });
 
   it("refuse un utilisateur déjà consommé même avec un code introuvable — même statut 409 dans les deux cas (pas d'oracle sur la validité du code)", () => {
