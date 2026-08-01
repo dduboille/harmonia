@@ -514,7 +514,7 @@
           },
           {
             "titre": "La risoluzione a ventaglio",
-            "texte": "Le due seste eccedenti si risolvono allo stesso modo: le loro due note estreme (fa e re♯) convergono per moto contrario, ciascuna di un semitono, verso l'unisono mi — la dominante. È la firma di ogni sesta eccedente, quale che sia la sua ricchezza (italiana, francese, tedesca)."
+            "texte": "Le due seste eccedenti si risolvono allo stesso modo: le loro due note estreme (fa e re♯) divergono per moto contrario, ciascuna di un semitono, verso l'ottava mi — la dominante. È la firma di ogni sesta eccedente, quale che sia la sua ricchezza (italiana, francese, tedesca)."
           },
           {
             "titre": "Un prestito modale, non soltanto cromatico",
@@ -1087,7 +1087,70 @@
         "Accordo perno = comune alla tonalità di partenza e di arrivo",
         "Modulazioni vicine: relative, parallele, quinta superiore/inferiore",
         "Confermare sempre con cadenza nella nuova tonalità"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Do# minore (armatura di 4 diesis).",
+        "metrique": "4/4, con l'accompagnamento continuo in terzine di crome alla mano destra: il celebre motivo ostinato del movimento. Ogni battuta cambia colore armonico soltanto una o due volte sotto questo fruscio costante.",
+        "forme": "Nove battute che abbozzano una frase completa: un gesto di tonica arricchito da un colore napoletano, un pedale di dominante cromatico, un breve ritorno alla tonica e poi un progressivo sbilanciamento verso la relativa maggiore (Mi maggiore), sulla quale la frase si conclude senza mai tornare a casa: esattamente il terreno in cui può germogliare un accordo pivot verso una nuova tonalità, tema di questa lezione.",
+        "sections": [
+          {
+            "label": "Battute 1-2",
+            "titre": "La tonica e il suo primo accordo di passaggio",
+            "chiffrage": "Do#m | Do#m7",
+            "fonctions": "I | I4/2",
+            "texte": "L'arpeggio spezzato della mano destra espone dapprima la triade di tonica allo stato fondamentale (<strong>I</strong>). La battuta 2 vi aggiunge una settima (si), in terzo rivolto (<strong>I4/2</strong>): il basso scende di un tono (do#→si) senza che la funzione cambi; è una semplice colorazione di passaggio, sempre la tonica."
+          },
+          {
+            "label": "Battuta 3",
+            "titre": "La sesta napoletana",
+            "chiffrage": "La | Re/Fa#",
+            "fonctions": "VI | N6",
+            "texte": "Primo accordo di colore: <strong>VI</strong> (La maggiore), la relativa maggiore della tonalità, che prolunga la funzione di tonica. Il secondo è il biglietto da visita armonico di questo brano: la <strong>sesta napoletana</strong>, un accordo maggiore costruito sul II grado abbassato (re, al posto del re# diatonico) e sempre impiegato in primo rivolto (fa# al basso, la sua terza). È l'accordo cromatico più celebre del repertorio romantico per colorare una sottodominante."
+          },
+          {
+            "label": "Battuta 4",
+            "titre": "Un pedale di dominante cromatico",
+            "chiffrage": "Sol#7/Si# — Dom/Sol# — Sol#7",
+            "fonctions": "V6/5 — (colore cromatico) — V7",
+            "texte": "Tutta la battuta poggia su un <strong>pedale di sol#</strong> (la dominante) tenuto al basso senza interruzione. Fra i due accordi di dominante (dapprima in primo rivolto, poi allo stato fondamentale), Beethoven insinua un accordo di Do minore: un semplice ricamo cromatico al di sopra del pedale, che non modifica mai la funzione dominante complessiva della battuta."
+          },
+          {
+            "label": "Battute 5-6",
+            "titre": "Breve ritorno alla tonica",
+            "chiffrage": "Do#m | Sol#7/Si#",
+            "fonctions": "I | V6/5",
+            "texte": "Un breve ritorno a casa prima di una nuova preparazione dominante, che riproduce quasi nota per nota il gesto delle battute 1 e 4: questo respiro tonica-dominante è il motore ritmico di tutto il movimento."
+          },
+          {
+            "label": "Battuta 7",
+            "titre": "Tonica, poi sottodominante minore",
+            "chiffrage": "Do#m — Fa#m",
+            "fonctions": "I — iv",
+            "texte": "La siglatura scrive «IV6» per il secondo accordo, ma l'unica nota realmente suonata al basso in quell'istante è fa#: il la che si ode nello stesso momento si trova in una voce intermedia, non al basso. Si tratta dunque di un accordo di <strong>iv</strong> allo stato fondamentale (Fa# minore), la sottodominante minore, e non del suo primo rivolto."
+          },
+          {
+            "label": "Battute 8-9",
+            "titre": "Tonicizzazione della relativa maggiore",
+            "chiffrage": "Mi/Si (pedale) — Si7 — Mi",
+            "fonctions": "D (preparatoria) — D — T (nuovo colore)",
+            "texte": "Un pedale di si si installa al basso per l'intera battuta 8. Nella sua prima metà le voci superiori non formano che un semplice accordo di Mi maggiore (<strong>III6/4</strong>): la vera dominante applicata arriva soltanto nella seconda metà, quando compare la settima (re#) e trasforma l'accordo in <strong>Si7 (V7/III)</strong>. La risoluzione alla battuta 9 su <strong>Mi maggiore (III)</strong> chiude la frase, non a casa sulla tonica, ma sulla sua relativa maggiore. Ora, Do# minore è proprio la relativa minore di Mi maggiore: l'insieme degli accordi comuni alle due tonalità (a cominciare dalla tonica dell'una, che è il vi dell'altra) è esattamente la relazione che un accordo pivot sfrutta: questa frase si arresta sull'orlo preciso di una modulazione, senza varcarla."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Un solo pedale, due colori",
+            "texte": "Alle battute 4 e 8 Beethoven tiene una sola nota al basso (sol# e poi si) mentre le voci superiori cambiano accordo al di sopra: il pedale dà coerenza alla battuta anche quando l'armonia sembra muoversi."
+          },
+          {
+            "titre": "La napoletana, firma del brano",
+            "texte": "L'accordo della battuta 3 (Re/Fa#, N6) è uno degli emblemi armonici di questo movimento: un prestito cromatico così caratteristico da aver dato il nome a un'intera categoria di accordi nella teoria classica."
+          },
+          {
+            "titre": "Un finale aperto sulla relativa maggiore",
+            "texte": "Arrestandosi sul III invece di tornare al I, questo brano non fa che suggerire la modulazione: prepara il terreno (l'accordo comune alle due tonalità) senza innescarla, esattamente la sfumatura che questa lezione vuole far ascoltare."
+          }
+        ]
+      }
     }
   },
   "cours9": {
@@ -3108,6 +3171,119 @@
       "headerBadge": "Livello 2 · Lezione 17",
       "headerTitle": "La frase musicale e la forma",
       "beethovenFormulaCaption": "Sol – Sol – Sol – Mib  (3 ripetizioni + caduta di terza minore)"
+    },
+    "conservatoire": {
+      "intuition": "Una frase di otto battute, un arpeggio nudo, un'alternanza tonica-dominante da manuale — eppure Haydn ne ricava un colpo di scena. La forma più semplice può reggere la sorpresa più efficace, a patto di sapere esattamente dove collocare l'accento.",
+      "reference": {
+        "badge": "Haydn · Sinfonia n. 94 «La sorpresa»",
+        "citation": "Questo farà sobbalzare le signore.",
+        "auteur": "Joseph Haydn, a proposito del colpo della battuta 16 (riferito dai suoi biografi)"
+      },
+      "voix": [
+        "Una frase classica si articola in motivo, sviluppo e cadenza — il tema della Sorpresa espone questa anatomia nello stato più nudo possibile: otto battute, un solo arpeggio, una sola polarità (tonica-dominante).",
+        "La ripresa di una frase può rieseguire nota per nota lo stesso materiale cambiandone completamente l'effetto — qui, semplicemente cambiando la dinamica (p, poi pp e poi, all'improvviso, ff).",
+        "Una forma binaria (il tema = due sezioni A/B, e ciascuna variazione allo stesso modo) organizza la frase su scala più ampia: la sorpresa cade esattamente nel momento in cui la ripresa della sezione A stava per richiudersi su sé stessa."
+      ],
+      "repertoire": {
+        "titre": "Sinfonia n. 94 «La sorpresa», 2º movimento (Andante)",
+        "compositeur": "Joseph Haydn"
+      },
+      "pieges": [
+        {
+          "erreur": "Cercare un'armonia strana o cromatica per spiegare l'effetto di sorpresa della battuta 16",
+          "correction": "L'accordo è un semplice V, esattamente quello che la semicadenza del tema richiedeva — l'effetto non risiede nell'accordo ma nella sua dinamica (ff dopo due frasi p/pp) e nella sua collocazione sul tempo debole. Una frase può sorprendere senza che alcuna regola armonica venga trasgredita."
+        },
+        {
+          "erreur": "Credere che un tema così semplice (un arpeggio, un'alternanza I-V) sia un difetto di scrittura",
+          "correction": "La nudità del tema è una strategia, non una debolezza: serve un materiale minimo perché le quattro variazioni abbiano spazio per vestirlo, e perché la sorpresa spicchi su uno sfondo di totale innocenza."
+        },
+        {
+          "erreur": "Analizzare ogni variazione come un pezzo armonicamente indipendente",
+          "correction": "Tranne la variazione II (il minore, unica vera escursione fuori dalla tonica), tutte le variazioni conservano la STESSA impalcatura armonica del tema — cambia solo la tessitura (controcanto, ottave martellate, note ribattute, fanfara) da una variazione all'altra."
+        }
+      ],
+      "resume": [
+        "Una frase classica si articola in motivo + sviluppo + cadenza — il tema della Sorpresa (Haydn, 1791) lo espone nello stato più spoglio: arpeggio nudo, alternanza I-V, semicadenze alle battute 4 e 8.",
+        "La forma binaria con ritornelli organizza tema E variazioni su una scala più ampia della semplice frase: ogni sezione è ripetuta, ed è precisamente su una ripresa (pp) che Haydn colloca il suo colpo di scena (batt. 16, ff).",
+        "L'umorismo è una categoria armonica a pieno titolo: la battuta 16 non trasgredisce alcuna regola (un semplice V), cambia soltanto lo statuto — dinamica, orchestrazione — di quell'accordo. Nulla dimostra meglio l'esistenza di una norma della possibilità di riderne."
+      ],
+      "analyseNarrative": {
+        "tonalite": "Do maggiore dall'inizio alla fine — l'unica incursione fuori dalla tonica è il passaggio per do minore della variazione II (batt. 49-74).",
+        "metrique": "2/4. Andante (♩=64), con un lieve allargamento (♩=58) esattamente all'inizio della coda (batt. 135).",
+        "forme": "Tema e quattro variazioni con coda, forma binaria con ritornelli (tema batt. 1-16, variazione I batt. 17-48 [in 2 sezioni A/B], II batt. 49-74, III batt. 75-98, IV batt. 99-134, coda batt. 135-148).",
+        "sections": [
+          {
+            "label": "Battute 1-8",
+            "titre": "Il tema: una nudità calcolata",
+            "chiffrage": "I ... V (antecedente) | I ... V (conseguente)",
+            "fonctions": "T ... D | T ... D",
+            "texte": "Otto battute di una spoliazione voluta: l'arpeggio di Do sgranato nota per nota (Do-Mi, poi Sol-Mi), l'armonia più elementare del linguaggio classico — la polarità tonica-dominante allo stato puro, punteggiata da una semicadenza su Sol alla battuta 4 e di nuovo alla battuta 8. Occorreva un tema da filastrocca perché le variazioni avessero tutto da vestire, e perché la sorpresa spiccasse su uno sfondo di innocenza."
+          },
+          {
+            "label": "Battute 9-16",
+            "titre": "La ripresa in pp, e la sorpresa",
+            "chiffrage": "I ... V",
+            "fonctions": "T ... D",
+            "texte": "Lo stesso tema ritorna nota per nota, ma pianissimo — la ninnananna-trappola, l'ascoltatore invitato ad assopirsi. Poi, alla battuta 16, l'accordo: un Sol maggiore che copre l'intera tastiera (Sol2 a Sol5), ff, sul tempo debole. Armonicamente è di una banalità perfetta — il V che la semicadenza del tema richiedeva comunque. Nulla di estraneo, nulla di cromatico: la sorpresa è una dinamica e un'orchestrazione, non un'armonia."
+          },
+          {
+            "label": "Battute 17-32",
+            "titre": "B: il ritorno (forma binaria del tema)",
+            "chiffrage": "I ...",
+            "fonctions": "T ...",
+            "texte": "Dopo il soprassalto, la seconda sezione del tema chiude la sua forma binaria: una breve deviazione e poi il ritorno sicuro alla tonica, come se nulla fosse."
+          },
+          {
+            "label": "Battute 33-48",
+            "titre": "Variazione I: il tema + controcanto",
+            "chiffrage": "I ...",
+            "fonctions": "T ...",
+            "texte": "Il tema resta intatto — lo stesso arpeggio Do-Mi-Sol, la stessa impalcatura —, ma un controcanto in semicrome viene a vestirlo. La variazione per addizione: l'armonia non cambia, solo la tessitura si arricchisce."
+          },
+          {
+            "label": "Battute 49-74",
+            "titre": "Variazione II: il minore",
+            "chiffrage": "i ... (deviazioni verso III, Mi♭ maggiore)",
+            "fonctions": "T ... SD/D",
+            "texte": "L'ombra regolamentare del ciclo di variazioni classico: do minore, ff, un Do e poi un Mi♭ martellati su tutta la tastiera prima di alcune deviazioni verso Mi♭ maggiore (il relativo maggiore) — l'unica vera escursione armonica di tutto il movimento, fra due sezioni che restano, esse, saldamente ancorate alla tonica."
+          },
+          {
+            "label": "Battute 75-98",
+            "titre": "Variazione III: note ribattute",
+            "chiffrage": "I ...",
+            "fonctions": "T ...",
+            "texte": "Ritorno al maggiore: lo stesso accordo di Do percosso quattro volte di seguito, poi il suo primo rivolto altre quattro — note ribattute e dialoghi nelle voci superiori, il rovescio tessiturale del controcanto fiorito della variazione I."
+          },
+          {
+            "label": "Battute 99-134",
+            "titre": "Variazione IV: fanfara, e la corona",
+            "chiffrage": "I ... vii°6 (sospensivo)",
+            "fonctions": "T ... D",
+            "texte": "Il tutti di fanfara: il tema in gloria di ottoni, proiettato in arpeggi che salgono fino all'estremo acuto della tastiera, e poi una seconda sezione dolce che placa la dinamica. La variazione si arresta su una corona sospensiva alla battuta 134 — un accordo di Do diminuito (primo rivolto, basso Mi♭) che trattiene il respiro prima della coda."
+          },
+          {
+            "label": "Battute 135-148",
+            "titre": "Coda: la tenerezza",
+            "chiffrage": "V (pedale) ... V7 (completo, batt. 140) ... I",
+            "fonctions": "D ... D ... T",
+            "texte": "Il più bel momento armonico del movimento: il tema si riaddormenta pianissimo su un pedale di dominante, si addensa per un istante in un Sol7 completo alla battuta 140 — Re e Fa suonano già, tenuti dalla battuta precedente, solo Sol e Si vengono attaccati di nuovo: l'unica settima davvero assaporata del pezzo, nella dinamica più debole di tutto il movimento — e poi si risolve nelle ultime due battute di Do maggiore. Lo scherzo apriva il movimento; una tenerezza lo richiude."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "La sorpresa è una dinamica, non un'armonia",
+            "texte": "L'accordo della battuta 16 è un V al suo posto esatto, quello che la semicadenza del tema richiedeva comunque — nulla di estraneo, nulla di cromatico. Haydn dimostra per assurdo che l'effetto non risiede nell'accordo ma nel suo statuto: lo stesso V, mormorato, addormenta; assestato, fa sobbalzare. Il corrispettivo comico esatto degli sforzando del Grave di Beethoven (suo allievo, sette anni più tardi): la stessa leva retorica, rivolta al riso."
+          },
+          {
+            "titre": "Il grado zero della K. 545, spinto fino al candore voluto",
+            "texte": "Il tema della Sorpresa (l'arpeggio nudo, l'alternanza tonica-dominante) è ancora più spoglio di quello della Sonata K. 545 di Mozart (corso 28, tre anni prima) — Mozart faceva semplice per eleganza, Haydn fa semplice per strategia: serve un tema da filastrocca perché le quattro variazioni abbiano tutto da vestire, e perché la sorpresa spicchi su uno sfondo di innocenza."
+          },
+          {
+            "titre": "L'umorismo come categoria armonica",
+            "texte": "Fra la K. 545 (la grammatica trasparente) e la Patetica (la grammatica drammatizzata), la Sorpresa documenta una terza via: la grammatica giocata, in senso ludico. Nulla dimostra meglio l'esistenza di una norma della possibilità di riderne — la battuta 16 è la dimostrazione, in un solo accordo, che la tonalità classica era una lingua comune, condizione di tutto ciò che il resto del corpus racconta in seguito, quando quella stessa lingua si drammatizza, si sospende, si dissolve e si reinventa."
+          }
+        ]
+      }
     }
   },
   "cours18": {
@@ -3240,6 +3416,98 @@
       "quizPoolSize": "domande nel banco",
       "quizNextQuestion": "Domanda successiva →",
       "quizSeeScore": "Vedi il mio punteggio"
+    },
+    "conservatoire": {
+      "intuition": "Un'intera strofa di 36 battute, rieseguita quasi identica — e la verifica nota per nota mostra che «quasi» è la parola giusta: la ripetizione più rigorosa lascia sempre passare qualche scarto minuscolo, per chi sa cercarlo.",
+      "reference": {
+        "badge": "Sibelius · sulla sinfonia (a Mahler, 1907)",
+        "citation": "Ammiravo la sua severità di stile e la logica profonda che crea un legame interiore fra tutti i motivi.",
+        "auteur": "Jean Sibelius, riportato da Karl Ekman"
+      },
+      "voix": [
+        "Ripetere un materiale in modo identico non è mai del tutto neutro: la ripresa di una grande sezione può concedersi ridistribuzioni infime (un voicing cambiato, una nota melodica sostituita) che sfuggono all'orecchio senza mai essere un copia-incolla assoluto.",
+        "Una stessa cellula melodica (qui, un tetracordo discendente) può essere sviluppata cambiando unicamente il suo abito armonico — il tetracordo resta, gli accordi che lo accompagnano cambiano.",
+        "La tecnica dello sviluppo motivico non si limita a un motivo breve: può applicarsi alla scala di un'intera strofa, anche quando quella strofa è in gran parte ripetuta senza cambiamenti."
+      ],
+      "repertoire": {
+        "titre": "Studio op. 76 n. 2 (Tredici Pezzi)",
+        "compositeur": "Jean Sibelius"
+      },
+      "pieges": [
+        {
+          "erreur": "Credere che una grande ripresa (un'intera sezione rieseguita) sia per forza un copia-incolla al 100 %",
+          "correction": "La verifica nota per nota di questo pezzo mostra che 30 delle 36 battute della ripresa sono rigorosamente identiche — ma 6 non lo sono (un voicing ridistribuito all'entrata, 3 sostituzioni melodiche isolate e la clausola finale, che varia esplicitamente). Una ripetizione su larga scala lascia quasi sempre passare piccoli scarti."
+        },
+        {
+          "erreur": "Cercare una modulazione reale nei colori armonici inconsueti di questo pezzo (♭13, tetracordo andaluso)",
+          "correction": "Il pezzo resta in la minore dall'inizio alla fine — la ♭13 eolia del V7 e il tetracordo frigio della sezione B sono COLORI posati sulla stessa tonica, non modulazioni verso un'altra tonalità."
+        },
+        {
+          "erreur": "Analizzare la discesa ♭VII7-♭VI∆7-V7-i come una successione di accordi senza legame fra loro",
+          "correction": "Questi quattro accordi armonizzano una sola e identica linea melodica fissa (il tetracordo frigio La-Sol-Fa-Mi) — ogni accordo è al servizio di quella linea, non è una progressione funzionale indipendente da essa."
+        }
+      ],
+      "resume": [
+        "Lo sviluppo motivico può applicarsi alla scala di un'intera strofa: questo studio di Sibelius ripete una strofa di 36 battute quasi identica, ma non del tutto — 6 battute su 36 presentano scarti infimi, fra cui la clausola finale, che varia esplicitamente.",
+        "Una stessa linea melodica fissa (qui, un tetracordo frigio discendente) può essere sviluppata cambiando soltanto il suo abito armonico: il tetracordo resta, gli accordi che lo accompagnano (♭VII7-♭VI∆7-V7-i) sono nuovi.",
+        "Il paradosso della ripetizione: ripetere in modo identico e trasformare un dettaglio minuscolo possono produrre, all'orecchio, l'impressione di una sola e identica cosa."
+      ],
+      "analyseNarrative": {
+        "tonalite": "La minore dall'inizio alla fine — mai una modulazione reale, soltanto colori (♭13 eolia, tetracordo andaluso) posati sulla stessa tonica.",
+        "metrique": "2/4. Leggiero, ♩=60, moto perpetuo (arpeggi ininterrotti dall'inizio alla fine).",
+        "forme": "Una strofa di 36 battute in tre sezioni (A batt. 1-16, B batt. 17-28, A' batt. 29-36) eseguita due volte per intero (batt. 37-72 = batt. 1-36), con una clausola finale variata.",
+        "sections": [
+          {
+            "label": "Battute 1-16",
+            "titre": "A: l'alternanza i-V, da manuale — e la ♭13 eolia fin dall'inizio",
+            "chiffrage": "i | V7♭13 | ... iv (pedale) ... III∆7 6/4 ... | (note di volta cromatiche) | V (periodo chiuso)",
+            "fonctions": "T | D ... SD ... ? ... | D | D",
+            "texte": "Un periodo da manuale sulla polarità tonica-dominante più semplice — ma già dalla seconda battuta il V7 porta un Do naturale che non ha nulla di diatonico: la sesta minore del modo eolio (♭13), posata fin dall'inizio senza che alcuna modulazione la richiami. La deviazione passa per un iv su pedale di La, poi per un III∆7 in 6/4 che sfiora il relativo maggiore senza mai stabilirlo, prima che alcune note di volta cromatiche (Re♯, Fa♯) stringano la tensione su V. Il periodo si richiude, poi si ripete nota per nota."
+          },
+          {
+            "label": "Battute 17-28",
+            "titre": "B: la discesa andalusa e la catena ascendente",
+            "chiffrage": "♭VII7 – ♭VI∆7 – V7 – i | ♭VII7 → V7 (catena ascendente, cresc.) → V (climax, ff)",
+            "fonctions": "? – ? – D – T | ? → D → D",
+            "texte": "Il cuore del pezzo, e una discesa che non ha più nulla di classico: il tetracordo frigio La-Sol-Fa-Mi, armonizzato in settime-colore (Sol7-Fa∆7-Mi7-La m) — lo stesso gesto del lamento di Purcell (corso 38), ma in versione diatonica e danzante, con l'abito armonico del primo Novecento. Poi l'inverso: una catena ascendente di dominanti (Sol7 → La7 → Si7, in crescendo) issa la linea fino a un climax fortissimo su V, dove la nota acuta è bilanciata dalla sua nota di volta cromatica — il ♭6→5, già incontrato altrove in questo corpus, qui promosso a figura di vertice."
+          },
+          {
+            "label": "Battute 29-36",
+            "titre": "A': la dominante eolia al completo",
+            "chiffrage": "V7♭9♭13 ...",
+            "fonctions": "D ...",
+            "texte": "La ripresa incupita si apre sull'accordo più saturo di tutto il pezzo: un V7 che porta SIMULTANEAMENTE la sua nona minore e la sua tredicesima minore — la dominante eolia al gran completo, lo stesso aggregato del Grave di Beethoven o delle cadenze di Chopin, qui come semplice colore di passaggio, pianissimo. Una discesa cromatica al basso richiude la strofa sulla tonica."
+          },
+          {
+            "label": "Battute 37-69",
+            "titre": "La grande ripresa: quasi identica",
+            "chiffrage": "(l'intera strofa, rieseguita)",
+            "fonctions": "(identiche)",
+            "texte": "Tutta la strofa di 36 battute ritorna, e l'immensa maggioranza è una replica nota per nota (30 delle 36 battute, verificate una a una) — ma non assolutamente tutte: la ripresa si apre su un voicing della mano sinistra leggermente ridistribuito (un gesto di rilancio), e tre battute isolate portano ciascuna una sola nota melodica diversa. La ripetizione non è dunque un semplice copia-incolla: è un dispositivo che si concede scarti infimi, invisibili a meno di cercarli uno per uno — il paradosso stesso della ripetizione in musica, dove ripetere in modo identico e trasformare un dettaglio minimo possono produrre, all'orecchio, un'impressione rigorosamente simile."
+          },
+          {
+            "label": "Battute 70-72",
+            "titre": "La clausola finale: poco rit., minore assunto fino in fondo",
+            "chiffrage": "... i (La1)",
+            "fonctions": "... T",
+            "texte": "Unica variazione annunciata in anticipo: la fine. Un poco rit. rallenta il moto perpetuo per la prima volta nel pezzo, e la strofa si conclude sulla nota più grave dell'intero brano (La1) — un accordo di la minore che conserva la sua terza minore fino in fondo, senza terza piccarda: il colore modale del pezzo è assunto fino all'ultimissima verticalità."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Il paradosso della ripetizione, alla scala della forma intera",
+            "texte": "Questo studio spinge all'estremo ciò che il corso esplora alla scala del motivo: qui è un'INTERA strofa di 36 battute a essere ripetuta — e la verifica nota per nota rivela che la ripetizione non è mai del tutto totale (30 battute su 36 rigorosamente identiche, ma una ripresa leggermente ridistribuita e 3 sostituzioni melodiche isolate). Ripetere in modo identico e trasformare un dettaglio infimo possono produrre, all'orecchio, l'impressione di una sola e identica cosa: il materiale musicale può ripetersi senza mai essere un semplice copia-incolla."
+          },
+          {
+            "titre": "Vocabolario nuovo su una sintassi antica",
+            "texte": "La ♭13 eolia sistematica e la discesa in settime-colore (Sol7-Fa∆7-Mi7-i) appartengono al vocabolario armonico del primo Novecento — ma la forma che le sostiene (periodo chiuso, cadenze nette, alternanza i-V) conserva una chiarezza tutta classica. Il vocabolario cambia, la grammatica formale non si muove."
+          },
+          {
+            "titre": "Legame di corpus: la discesa andalusa e il lamento di Purcell",
+            "texte": "Il tetracordo frigio armonizzato in settime (♭VII7-♭VI∆7-V7-i) della sezione B riprende, sotto un abito del tutto diverso, lo stesso principio del tetracordo cromatico discendente del ground di Dido's Lament (corso 38, 1689): una linea melodica fissa e antica, riscoperta come griglia armonica pressoché in ogni grande periodo della storia della tonalità."
+          }
+        ]
+      }
     }
   },
   "cours19": {
@@ -3421,6 +3689,98 @@
       "exDebussyDesc": "L'impressionismo orchestrale per eccellenza: flauto solista, arpa, archi con sordino, corni chiusi, fiati in mezzatinta. Ogni strumento nel suo registro più poetico. Nessun ottone forte — tutto è suggestione e colore.",
       "exBeethovenName": "Beethoven — 5ª Sinfonia op.67 (1808)",
       "exBeethovenDesc": "Modello di economia dei mezzi: un motivo di 4 note distribuito attraverso tutte le famiglie. L'orchestrazione segue l'intensità del discorso — archi + fiati in p, tutti fortissimo nei momenti chiave. Ogni strumento al suo giusto posto."
+    },
+    "conservatoire": {
+      "intuition": "Una sola armonia tenuta per 84 battute, un unico spostamento, un unico incidente — il Boléro spinge l'immobilità armonica fino al suo punto di rottura, e dimostra che tutta la tensione di un'opera può alloggiarsi altrove che negli accordi.",
+      "reference": {
+        "badge": "Ravel · a proposito del Boléro",
+        "citation": "È orchestrazione senza musica.",
+        "auteur": "Maurice Ravel (riferito dai suoi biografi)"
+      },
+      "voix": [
+        "Un pedale può reggere un'opera intera: qui il basso non abbandona mai Do e Sol per 84 battute consecutive — tutta la tensione che ci si attende dall'armonia è delegata al crescendo e allo spessore della tessitura.",
+        "Una modulazione senza preparazione né pivot (qui, una terza maggiore ascendente, Do → Mi) resta leggibile all'orecchio anche senza alcun accordo di transizione — lo spostamento basta da solo a fare evento, proprio perché nulla d'altro si è mosso prima di esso.",
+        "Una nota estranea ostinatamente ribattuta (non una linea che progredisce) può creare una tensione forte quanto un vero sviluppo melodico — lo «stridere» del ritorno dipende dalla ripetizione di una sola asperità, non dalla sua evoluzione."
+      ],
+      "repertoire": {
+        "titre": "Boléro (arrangiamento per pianoforte armonizzato)",
+        "compositeur": "Maurice Ravel"
+      },
+      "pieges": [
+        {
+          "erreur": "Cercare una progressione armonica complessa nelle prime 84 battute del Boléro",
+          "correction": "Non ce n'è alcuna: la mano sinistra suona soltanto Do e Sol dall'inizio alla fine di questa sezione, verificato battuta per battuta senza eccezioni. Tutta la costruzione musicale viene dal crescendo e dall'orchestrazione, non dall'armonia."
+        },
+        {
+          "erreur": "Credere che la «linea cromatica» annunciata al ritorno (batt. 93-96) sia una linea melodica che progredisce grado per grado",
+          "correction": "Verifica nota per nota: queste quattro battute ripetono ESATTAMENTE lo stesso motivo, con una sola nota estranea (La♭) ribattuta identica ogni volta — non è una linea che avanza, ma un rimuginare. La vera linea che scende grado per grado compare solo alla battuta successiva, nell'accordo dello schianto stesso."
+        },
+        {
+          "erreur": "Analizzare l'accordo dello schianto (batt. 97) come un accordo di settima o di nona alterata del consueto vocabolario tonale",
+          "correction": "È un poliaccordo non funzionale: due sovrapposizioni incompatibili (Do-Fa e La♭-Si-Re♭) scagliate simultaneamente, che non si lasciano ridurre a un unico accordo siglabile all'interno del sistema tonale — di qui la cifratura «?», non una casella vuota ma una vera categoria d'analisi."
+        }
+      ],
+      "resume": [
+        "Il Boléro (Ravel, 1928) regge 84 battute su un solo pedale Do-Sol — il caso-limite dell'armonia immobile: tutta la tensione dell'opera viene dal crescendo e dalla tessitura, non dagli accordi.",
+        "L'unica modulazione del pezzo (Do → Mi, batt. 85-92) è uno spostamento di una terza maggiore senza preparazione né pivot — l'intervallo che divide l'ottava in tre parti uguali, senza nulla dovere alla logica delle quinte.",
+        "L'unico vero disordine armonico dell'opera è il suo ultimo accordo forte (batt. 97): un poliaccordo non funzionale (Do-Fa contro La♭-Si-Re♭) — in un pezzo senza tensione armonica, la dissonanza non risolve più, spezza."
+      ],
+      "analyseNarrative": {
+        "tonalite": "Do maggiore dall'inizio alla fine — una sola vera tonicizzazione, in Mi maggiore (batt. 85-92), mai confermata da una cadenza e mai destinata a durare.",
+        "metrique": "3/4. Tempo di bolero, moderato assai (semiminima = 72). pp all'inizio, ritmo di bolero in ostinato alla mano destra fin dalla prima battuta.",
+        "forme": "Un immenso crescendo su pedale (batt. 1-84, 86 % del pezzo), un'unica tonicizzazione in Mi (batt. 85-92), un ritorno che stride (batt. 93-96), uno schianto (batt. 97) e un crollo nudo (batt. 98).",
+        "sections": [
+          {
+            "label": "Battute 1-84",
+            "titre": "Il pedale Do-Sol: un accordo per 84 battute",
+            "chiffrage": "I (pedale Do-Sol ininterrotto)",
+            "fonctions": "T, dall'inizio alla fine",
+            "texte": "Verificata battuta per battuta, la mano sinistra non abbandona mai Do e Sol — la quinta battuta al ritmo di bolero, senza una sola eccezione, per 84 battute consecutive. I due temi dell'opera (l'uno diatonico, l'altro più colorito) si alternano al di sopra, ma tanto l'uno quanto l'altro poggiano esattamente sullo stesso pedale: tutta la tensione di questa sezione non viene né da un accordo né da una cadenza, ma dal crescendo e dall'accumulo di voci che si aggiungono progressivamente alla tessitura."
+          },
+          {
+            "label": "Battute 85-92",
+            "titre": "Mi maggiore: l'unico evento armonico dell'opera",
+            "chiffrage": "III (Mi, con un ciclo interno I-...-V su Mi-Si)",
+            "fonctions": "? (non funzionale: nessuna preparazione, nessun pivot)",
+            "texte": "Dopo 84 battute immobili, uno spostamento secco di una terza maggiore ascendente, senza preparazione né pivot: Do diventa Mi. All'interno di questo nuovo colore, però, la mano sinistra non è un bordone irrigidito come il pedale precedente: ogni battuta pulsa in sé, da Mi (tempo 1) verso Si (tempo 3), un piccolo ciclo tonica-dominante in miniatura. Poi, senza che nulla lo annunci nel testo della partitura, questa «dominante» comincia a scivolare da una battuta all'altra — Si, poi Fa♯-Si, poi Sol — riconducendo discretamente l'orecchio verso Do ancor prima che il ritorno sia consumato."
+          },
+          {
+            "label": "Battute 93-96",
+            "titre": "Il ritorno che stride: una nota ribattuta, non una linea che progredisce",
+            "chiffrage": "I (Do-Sol, con un La♭ estraneo)",
+            "fonctions": "T",
+            "texte": "Il ritorno a Do è netto. Ma ciò che vi si installa non è una linea melodica che avanza: è ESATTAMENTE lo stesso motivo, ripetuto quattro volte identico — il pedale Do-Sol, poi un unico La♭ isolato a metà battuta, poi Sol. Questa nota estranea (il sesto grado abbassato, preso in prestito dal modo minore) non si muove mai: ritorna, ossessiva, allo stesso posto, nelle stesse battute, senza mai risolversi né svilupparsi. È questa ripetizione identica di un'asperità a «stridere» — non una traiettoria, un rimuginare."
+          },
+          {
+            "label": "Battuta 97",
+            "titre": "Lo schianto: l'unico vero disordine armonico del pezzo",
+            "chiffrage": "Do-Fa (mano destra) contro La♭-Si-Re♭ (mano sinistra) — un poliaccordo",
+            "fonctions": "?",
+            "texte": "Dopo 96 battute di una sintassi di semplicità assoluta, l'unico momento in cui la scrittura perde ogni logica funzionale: due sovrapposizioni incompatibili scagliate insieme, Do-Fa da un lato, La♭-Si-Re♭ dall'altro — cinque classi di altezze che non formano alcun accordo identificabile nel vocabolario tonale. È soltanto in questo istante, e in nessun punto prima, che compare una vera linea che scende grado per grado: La♭-Sol-Fa-Mi♭-Re♭ alla mano destra, fino alla fine della battuta."
+          },
+          {
+            "label": "Battuta 98",
+            "titre": "Crollo finale: Do-Sol nudo",
+            "chiffrage": "I, senza terza",
+            "fonctions": "T",
+            "texte": "Dopo il fragore, nient'altro che una quinta vuota, Do-Sol — la stessa quinta che reggeva tutto il pezzo fin dalla prima battuta, ma ora sola, spogliata di tutto ciò che si era accumulato al di sopra di essa per 97 battute. Il pezzo non si richiude su una cadenza: si arresta, di colpo, sull'intervallo stesso che l'aveva tenuto in piedi."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Il caso-limite dell'armonia immobile",
+            "texte": "Questo pezzo porta su scala industriale ciò che il corpus ha già incrociato su scala minore (il pedale di otto battute di Satie, le sessantaquattro battute di Voiles): l'86 % dell'opera poggia su una sola e identica funzione. Tutta la tensione che ci si attende dall'armonia tonale è qui delegata altrove — al crescendo, allo spessore della tessitura, all'accumulo delle voci — mentre l'accordo, lui, non si muove."
+          },
+          {
+            "titre": "La terza maggiore, uno spostamento che nulla deve alle quinte",
+            "texte": "L'unica vera modulazione del pezzo (Do → Mi) non passa per alcun accordo pivot né per alcuna dominante preparatoria: è uno spostamento di una terza maggiore, l'intervallo stesso che divide l'ottava in tre parti uguali — quello del ciclo di Coltrane in Giant Steps, quello della triade aumentata di Voiles. Quando un'opera intera si regge su una sola tensione, lo spostamento che si concede non ha alcuna ragione di seguire la logica delle quinte."
+          },
+          {
+            "titre": "Una nota ribattuta anziché una linea: la vera natura dello «stridore»",
+            "texte": "Il passaggio più istruttivo del pezzo non è dove ce lo si aspetta: ciò che «stride» alle battute 93-96 non è una linea cromatica che avanza, ma una sola nota estranea, ostinatamente ribattuta identica. La vera linea che progredisce grado per grado compare solo una battuta più tardi, DENTRO lo schianto stesso — un promemoria del fatto che occorre sempre verificare che cosa suonano le note, non soltanto ciò che annuncia un riferimento di struttura."
+          }
+        ]
+      }
     }
   },
   "cours20": {
@@ -3462,6 +3822,105 @@
       "sectionCompositeurs": "Compositori",
       "sectionAnalyse": "Analisi comparativa",
       "sectionQuiz": "Quiz"
+    },
+    "conservatoire": {
+      "intuition": "L'armonia può smettere di rappresentare un sentimento per raccontare un'azione: Berlioz interrompe una melodia in pieno volo e la sostituisce con una caduta d'ottava — la risoluzione negata, spinta fino a diventare gesto letterale.",
+      "reference": {
+        "badge": "Berlioz · Memorie",
+        "citation": "Passai la notte a sognare la morte, con un entusiasmo frenetico.",
+        "auteur": "Hector Berlioz, a proposito della genesi della Symphonie fantastique"
+      },
+      "voix": [
+        "Una stessa formula melodica (qui, una scala discendente) può portare due affetti opposti a seconda del suo contesto ritmico — il lamento diventa marcia funebre senza che cambi una sola nota.",
+        "Un'interruzione fisica (una frase troncata di netto, sostituita da un salto brusco) può funzionare come un vero gesto narrativo — l'armonia non colora più un'emozione, racconta un evento preciso.",
+        "Un cambio di modo (minore verso maggiore) può essere usato come una didascalia anziché come semplice colore — qui, il ribaltamento segna letteralmente il passaggio da una scena all'altra."
+      ],
+      "repertoire": {
+        "titre": "Symphonie fantastique, 4º movimento — Marcia al supplizio (arr. trio d'archi)",
+        "compositeur": "Hector Berlioz"
+      },
+      "pieges": [
+        {
+          "erreur": "Cercare un accordo complesso o cromatico per spiegare l'effetto della «mannaia» (batt. 169)",
+          "correction": "È il contrario: l'accordo vi è spogliato all'estremo (un semplice Sol, senza terza), e l'effetto viene da un gesto RITMICO — una caduta d'ottava sincronizzata fra gli strumenti estremi — non da un'armonia inconsueta."
+        },
+        {
+          "erreur": "Analizzare il tema 2 (batt. 62, in Si♭ maggiore) come una modulazione classica preparata da una dominante",
+          "correction": "Nessuna preparazione: il relativo maggiore si insedia direttamente, per semplice giustapposizione di blocchi contrastanti — la fanfara della folla succede al tema funebre senza transizione, di proposito."
+        },
+        {
+          "erreur": "Trattare il passaggio finale al maggiore (batt. 170) come una semplice terza piccarda decorativa",
+          "correction": "Qui il cambio di modo ha una funzione NARRATIVA esplicita (la folla che esulta dopo l'esecuzione) — il modo diventa didascalia, non soltanto colore armonico."
+        }
+      ],
+      "resume": [
+        "Una scala discendente di sol minore (tema 1) riprende la vecchia formula del lamento barocco e la trasforma, per il solo contesto ritmico, in marcia funebre — la prova che il senso musicale non risiede mai nella sola altezza.",
+        "La mannaia (batt. 169) interrompe l'idée fixe in pieno volo e la sostituisce con una caduta d'ottava sincronizzata nei due strumenti estremi — la risoluzione negata spinta fino al gesto letterale.",
+        "Il ribaltamento finale in Sol maggiore (batt. 170) funziona come didascalia anziché come colore: l'armonia smette di rappresentare un affetto per raccontare un'azione, la folla che esulta."
+      ],
+      "analyseNarrative": {
+        "tonalite": "Sol minore dall'inizio fino alla scena della mannaia (batt. 169) — con una lunga incursione nel suo relativo maggiore, Si♭, per il tema 2 — poi un ribaltamento finale e definitivo in Sol MAGGIORE per le ultime nove battute.",
+        "metrique": "4/4. Tempo di marcia (semiminima = 144), con un netto rallentamento (rit., 144→120) alla battuta 165, un «a tempo» alla 170, poi un ultimo rit. nelle ultimissime battute fino alla corona conclusiva.",
+        "forme": "Introduzione (batt. 1-16) — tema 1, la marcia-lamento (batt. 17-61) — tema 2, la fanfara in Si♭ (batt. 62-76) — sviluppo, alternanze e combinazioni (batt. 77-163) — l'idée fixe, un'ultima volta (batt. 164-168) — la mannaia (batt. 169) — Sol maggiore trionfale fino alla corona finale (batt. 170-178).",
+        "sections": [
+          {
+            "label": "Battute 1-16",
+            "titre": "Introduzione: la marcia si avvicina, pianissimo",
+            "chiffrage": "i (Sol-Si♭, bordone senza quinta)",
+            "fonctions": "T",
+            "texte": "Tutto comincia con una semplice terza minore tenuta, pianissimo, staccato: Sol alla viola e al violino, Si♭ alla viola, raddoppiati all'ottava dal violoncello — non ancora una quinta, non ancora una vera armonia, soltanto un colore che si insedia e si ripete, come un passo che si avvicina da lontano."
+          },
+          {
+            "label": "Battute 17-61",
+            "titre": "Tema 1: la scala-lamento fattasi marcia",
+            "chiffrage": "i (scala discendente di sol minore naturale)",
+            "fonctions": "T",
+            "texte": "Affidata ai soli archi gravi, una scala discendente percorre quasi due ottave di sol minore naturale — esattamente il tipo di linea che, in secoli di musica, ha portato il lutto e il lamento (il tetracordo discendente di Purcell, il basso cromatico di tanti lamenti barocchi). Qui la stessa formula melodica cambia senso senza cambiare una sola nota: il ritmo puntato, l'andatura di marcia la trasformano in corteo funebre. È lì che sta l'ironia di Berlioz — far sfilare il condannato sulla formula stessa del lutto."
+          },
+          {
+            "label": "Battute 62-76",
+            "titre": "Tema 2: la fanfara in Si♭, la folla",
+            "chiffrage": "III (Si♭ maggiore, il relativo)",
+            "fonctions": "?",
+            "texte": "Senza dominante preparatoria, la musica ribalta nel suo relativo maggiore per una fanfara sfolgorante — il corrispettivo cinico del tema funebre che precede: la folla che viene ad assistere allo spettacolo. Il contrasto è totale, ma la parentela resta udibile: i due temi condividono la stessa armatura di chiave, lo stesso materiale di base; solo il colore (modo, registro, ritmo) li contrappone."
+          },
+          {
+            "label": "Battute 77-163",
+            "titre": "Sviluppo: alternanze, pizzicati, un richiamo di corno ricordato",
+            "chiffrage": "(combinazioni dei due temi, pizz./arco a raffiche)",
+            "fonctions": "T / ?",
+            "texte": "I due temi si incrociano, si danno il cambio, si interrompono — un grande gioco di alternanze fra pizzicato e arco che imita la meccanica del corteo in marcia. Nel cuore di questo sviluppo, un breve richiamo di corno (due volte, nota per nota identico): nell'orchestra originale quel motivo è affidato ai corni in lontananza — qui il trio d'archi ne conserva l'eco, un discreto ammicco al grande organico da cui questo arrangiamento è tratto."
+          },
+          {
+            "label": "Battute 164-169",
+            "titre": "L'idée fixe, un'ultima volta — poi la mannaia",
+            "chiffrage": "i … (silenzio) … Sol spoglio",
+            "fonctions": "T … ? … ?",
+            "texte": "Dolce assai e appassionato: al violino, la melodia dell'amata si eleva un'ultima volta, Sol-La-Si♭-Do-Re salendo a poco a poco verso Si♮ e poi Do6 — un pensiero tenero, quasi sospeso fuori dal tempo. Poi, alla battuta 165, più nulla: l'unica battuta interamente silenziosa di tutto il pezzo, un rit. che non è soltanto un rallentamento ma un vero taglio del discorso. E alla battuta 169, l'esecuzione: la frase è troncata in pieno volo, sostituita da una caduta secca di un'ottava, raddoppiata nei due strumenti estremi (violino e violoncello) esattamente nello stesso istante — la lama, poi la caduta della testa."
+          },
+          {
+            "label": "Battute 170-178",
+            "titre": "Sol maggiore trionfale: la terza martellata, fino alla corona",
+            "chiffrage": "I (Sol-Si♮-Re, martellato)",
+            "fonctions": "T",
+            "texte": "A tempo, la terza piccarda si insedia e non si muove più: Si naturale martellato in ostinato per sette battute, poi arpeggi in fanfara — il modo maggiore come puro effetto di messinscena, la folla che esulta mentre cala il sipario. Il pezzo si conclude su un accordo di Sol maggiore disteso su quasi quattro ottave, sotto corona."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "La risoluzione ghigliottinata",
+            "texte": "La molla della «risoluzione negata» attraversa questo corpus da Bach (una settima elusa) e Beethoven (una cadenza d'inganno) fino a Wagner (una tensione mai sciolta): Berlioz, nel 1830, ne dà la versione più letterale che si possa immaginare — una frase melodica interrotta di netto, in pieno volo, sostituita da una caduta fisica di un'ottava. Il passaggio dal minore al maggiore che segue non è più soltanto un colore: è una DIDASCALIA, l'armonia che smette di rappresentare un affetto per raccontare un'azione."
+          },
+          {
+            "titre": "Una vecchia formula, un senso nuovo",
+            "texte": "La scala discendente del tema 1 è, nota per nota, lo stesso gesto dei tetracordi di lamento che attraversano questo corpus fin dal Seicento — solo il contesto (il tempo di marcia, il ritmo puntato) ne fa un corteo funebre anziché un lamento intimo. La stessa formula melodica, due affetti opposti: la prova che il senso in musica non risiede mai nella sola altezza."
+          },
+          {
+            "titre": "1830, il decennio mancante",
+            "texte": "Questo pezzo colma un vuoto nella genealogia della drammaturgia armonica del corpus, fra Beethoven (1808) e Chopin (1839): Haydn fa ridere il codice condiviso (1791), Beethoven lo drammatizza (1798-1808), Berlioz lo rende NARRATIVO (1830, la musica a programma), Chopin lo interiorizza (1839), Wagner lo sospende indefinitamente (1859). Cinque stazioni, su cinque pezzi, di uno stesso filo che prosegue fino a Morricone all'interno di questo stesso corpus."
+          }
+        ]
+      }
     }
   },
   "cours21": {
@@ -3501,6 +3960,91 @@
       "sectionCompositeursLabel": "Compositori",
       "sectionAnalyseLabel": "Analisi comparativa",
       "sectionQuizLabel": "Quiz"
+    },
+    "conservatoire": {
+      "intuition": "Un accordo non ha bisogno di muoversi per fare evento — se non cambia mai più e lo si percuote con accenti che cadono ogni volta altrove, è il ritmo, da solo, a farsi carico di tutto il discorso.",
+      "reference": {
+        "badge": "Stravinsky · su La sagra della primavera",
+        "citation": "Ero il vaso attraverso il quale passava La sagra.",
+        "auteur": "Igor Stravinsky (riferito da Robert Craft)"
+      },
+      "voix": [
+        "Due accordi perfettamente consonanti (una triade, una settima di dominante) possono essere sovrapposti alla distanza più piccola possibile — un semitono — per creare la collisione più brutale di tutto il vocabolario politonale.",
+        "Una volta posato, un poliaccordo può restare del tutto immobile per parecchie battute: è allora il ritmo (accenti che cambiano posto a ogni ripetizione) a produrre l'evento musicale, non l'armonia.",
+        "La dissonanza non ha un solo ruolo: può essere un evento isolato, un dramma, una sospensione, uno stato, un vocabolario — oppure, come qui, pura percussione."
+      ],
+      "repertoire": {
+        "titre": "L'accordo degli Auguri (scheda didattica)",
+        "compositeur": "Alla maniera di Igor Stravinsky, La sagra della primavera — Auguri primaverili (1913)"
+      },
+      "pieges": [
+        {
+          "erreur": "Cercare un'evoluzione o una risoluzione armonica nel martellare dell'accordo degli Auguri",
+          "correction": "Non ce n'è alcuna: la verticalità resta rigorosamente identica dal primo all'ultimo colpo — solo gli accenti ritmici si spostano da una ripetizione all'altra. L'analisi deve vertere sul ritmo, non inseguire una progressione che non esiste."
+        },
+        {
+          "erreur": "Confondere questo poliaccordo con quello di Petrushka (Stravinsky, 1911) con il pretesto che entrambi sovrappongono due oggetti consonanti",
+          "correction": "I due stanno agli estremi opposti dell'adiacenza: Petrushka sovrappone due triadi alla distanza di TRITONO (la distanza massima, nessuna nota sfrega contro un'altra), gli Auguri sovrappongono una triade e una settima alla distanza di SEMITONO (la distanza minima: ogni nota della triade sfrega contro una nota della settima)."
+        },
+        {
+          "erreur": "Analizzare questa scheda come una trascrizione de La sagra della primavera",
+          "correction": "È un brano interamente originale, composto per illustrare il fenomeno — La sagra della primavera resta protetta dal diritto d'autore in Francia fino al 2042, e qui non è riprodotta nessuna delle sue note."
+        }
+      ],
+      "resume": [
+        "L'accordo degli Auguri (Stravinsky, 1913) sovrappone una triade maggiore e una settima di dominante alla distanza di un semitono — la collisione più brutale possibile, poiché ogni nota della triade sfrega direttamente contro una nota della settima.",
+        "Una volta posato, l'accordo non cambia più: è il ritmo (accenti spostati a ogni ripetizione) a produrre l'evento, non l'armonia — la dissonanza trattata come percussione anziché come tensione.",
+        "Rispetto all'accordo di Petrushka (due triadi alla distanza di tritono, 1911), quello degli Auguri sceglie l'estremo opposto dell'adiacenza — due risposte di Stravinsky, a due anni di distanza, alla stessa domanda: che farsene della funzione tonale?"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Nessuna tonalità unica — due oggetti consonanti (una settima di dominante, una triade maggiore) sovrapposti alla distanza di un semitono.",
+        "metrique": "4/4. Senza indicazione di tempo (scheda dimostrativa); batt. 4-5 in crome per figurare il martellare ritmico.",
+        "forme": "Dimostrazione in sei battute: i due oggetti separati, la loro collisione, due battute di martellamento ad accenti spostati, poi l'accordo tenuto finale.",
+        "sections": [
+          {
+            "label": "Battute 1-2",
+            "titre": "I due oggetti, separati",
+            "chiffrage": "Mi♭7 | Fa♭ maggiore",
+            "fonctions": "? | ?",
+            "texte": "Dapprima Mi♭7: una settima di dominante del tutto ordinaria. Poi Fa♭ maggiore — scritto così anziché «Mi maggiore» per conservare la stessa logica di scrittura della fonte che ispira questa scheda —, il suo vicino immediato, un semitono più in alto. Presi separatamente, ciascuno dei due è di una banalità totale."
+          },
+          {
+            "label": "Battuta 3",
+            "titre": "La collisione: l'accordo degli Auguri",
+            "chiffrage": "Fa♭ maggiore + Mi♭7, sovrapposti",
+            "fonctions": "?",
+            "texte": "I due oggetti suonano insieme, ciascuno perfettamente intatto. Ma qui, a differenza di una collisione al tritono (l'accordo di Petrushka, dove le due triadi non condividono alcuna nota vicina), OGNI nota della triade superiore va a schiacciarsi a un semitono da una nota della settima inferiore: la fondamentale della triade contro la fondamentale della settima, la sua terza contro la terza della settima, la sua quinta contro la quinta della settima. Tre sfregamenti simultanei, al più piccolo intervallo possibile."
+          },
+          {
+            "label": "Battute 4-5",
+            "titre": "Il martellamento: l'armonia congelata, il ritmo che si muove",
+            "chiffrage": "Fa♭ maggiore + Mi♭7 (invariato)",
+            "fonctions": "?",
+            "texte": "L'accordo non cambia una sola nota per due intere battute di crome martellate — ma gli accenti, quelli sì, cambiano posto a ogni ripetizione. È il rovesciamento completo della scrittura armonica abituale: di norma è l'accordo a muoversi su un ritmo stabile; qui accade il contrario. La dissonanza non è più una tensione che attende la propria risoluzione: è diventata un oggetto che si percuote, esattamente come un tamburo."
+          },
+          {
+            "label": "Battuta 6",
+            "titre": "L'accordo tenuto finale",
+            "chiffrage": "Fa♭ maggiore + Mi♭7, sotto corona",
+            "fonctions": "?",
+            "texte": "Lo stesso accordo, immutato dalla battuta 3, si chiude sotto corona. Nulla si è «risolto» — l'oggetto ha semplicemente smesso di essere percosso."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Il sesto regime: la dissonanza come percussione",
+            "texte": "Un accordo può essere inteso come evento isolato, come dramma che si sviluppa, come tensione sospesa indefinitamente, come stato stabile che si abita o come colore di un vocabolario — ma esiste un sesto regime, in cui la verticalità non si muove più affatto ed è il RITMO, da solo, a produrre l'evento. L'accordo degli Auguri non si risolve mai: viene percosso, con accenti che cadono ogni volta altrove, finché il martellamento stesso diventa il soggetto."
+          },
+          {
+            "titre": "Due poliaccordi, i due estremi dell'adiacenza",
+            "texte": "Rispetto all'accordo di Petrushka (due triadi alla distanza di tritono, la distanza massima fra due centri), questo sceglie l'estremo opposto: due oggetti consonanti premuti l'uno contro l'altro al semitono, la distanza minima. Il risultato è più brutale, perché ogni nota della triade superiore sfrega direttamente contro una nota della settima — la dissonanza non è più una semplice vicinanza di sistemi, è uno schiacciamento."
+          },
+          {
+            "titre": "Una filiazione che arriva fino al rock",
+            "texte": "Trattare la dissonanza come un oggetto da percuotere anziché come una tensione da risolvere è diventato, molto dopo il 1913, un principio corrente delle musiche amplificate — l'accordo percosso in loop, senza progressione, dove è l'intensità ritmica a sostenere il discorso e non la concatenazione armonica."
+          }
+        ]
+      }
     }
   },
   "cours22": {
@@ -3551,6 +4095,91 @@
       "exerciceLabel": "Esercizio:",
       "verificationLabel": "Verifica melodica:",
       "principeLabel": "Principio:"
+    },
+    "conservatoire": {
+      "intuition": "Un ostinato immobile non è un vincolo — è uno sfondo fisso sul quale una sola curva (la densità di note estranee alla tonalità) può sostenere, da sola, tutta la forma di un brano.",
+      "reference": {
+        "badge": "Bill Evans · note di copertina, Kind of Blue",
+        "citation": "Esiste un'arte visiva giapponese in cui l'artista è costretto a essere spontaneo. Deve dipingere su una pergamena sottile e tesa, con un pennello speciale... Cancellature o correzioni sono impossibili.",
+        "auteur": "Bill Evans, «Improvisation in Jazz», note di copertina di Kind of Blue (1959)"
+      },
+      "voix": [
+        "Un ostinato a due accordi-colore (una settima maggiore, un accordo vicino non risolto) può sostenere un intero brano senza produrre mai una sola cadenza.",
+        "Quando l'armonia di accompagnamento resta rigorosamente fissa, un solo parametro melodico — la densità di note estranee alla tonalità — può sostenere, da solo, l'intera curva formale di un brano.",
+        "Una quarta sospesa (accordo «sus») che non si risolve mai sulla terza non è una dominante in attesa: è un secondo colore, dello stesso rango del primo."
+      ],
+      "repertoire": {
+        "titre": "Il pendolo (scheda didattica)",
+        "compositeur": "Alla maniera di Bill Evans, Peace Piece (1958)"
+      },
+      "pieges": [
+        {
+          "erreur": "Siglare l'accordo di Sol come un semplice G7 che invoca la propria risoluzione su Do",
+          "correction": "È un Sol9sus: la quarta (Do) non viene mai sostituita dalla terza (Si). Un G7 invoca una risoluzione; un G9sus fluttua di fianco, senza tensione diretta — questa sfumatura di siglatura cambia tutto il senso dell'ascolto."
+        },
+        {
+          "erreur": "Cercare una progressione armonica che spieghi l'onda di tensione del brano",
+          "correction": "Non ce n'è alcuna: l'ostinato non cambia una sola nota dall'inizio alla fine. Tutta la curva di tensione proviene esclusivamente dalla mano destra (la densità di note estranee alla tonalità), non da un movimento di accordi."
+        },
+        {
+          "erreur": "Trattare la settima maggiore dell'accordo iniziale come una dissonanza che dovrebbe risolversi",
+          "correction": "In questo linguaggio la settima maggiore fa parte del colore costitutivo dell'accordo — non è né preparata né risolta, essa È la sonorità di partenza."
+        }
+      ],
+      "resume": [
+        "Un ostinato a due accordi-colore (Do∆7, Sol9sus) può sostenere un intero brano senza produrre mai una sola cadenza — la funzione cede il posto al colore puro.",
+        "Il Sol9sus non è un G7: la sua quarta non si risolve mai sulla terza, il che ne fa un secondo colore anziché una dominante in attesa.",
+        "Mentre l'armonia resta fissa, la densità di note estranee alla tonalità nella melodia può sostenere, da sola, l'intera forma — un'onda che sale e poi ridiscende sopra uno sfondo immobile."
+      ],
+      "analyseNarrative": {
+        "tonalite": "Do maggiore — ma senza mai una cadenza: un dondolio a due accordi-colore (Do∆7, Sol9sus) che non si risolvono mai l'uno nell'altro.",
+        "metrique": "4/4. L'ostinato della mano sinistra è rigorosamente IDENTICO, nota per nota, in ciascuna delle 8 battute.",
+        "forme": "Il pendolo si mette in moto da solo (batt. 1-2), la mano destra entra in diatonismo puro (batt. 3-4), un'onda cromatica sale e poi ridiscende (batt. 5-7), e tutto si richiude sul bianco assoluto, senza cadenza (batt. 8).",
+        "sections": [
+          {
+            "label": "Battute 1-2",
+            "titre": "Il pendolo si mette in moto",
+            "chiffrage": "Do∆7 | Sol9sus",
+            "fonctions": "T | ?",
+            "texte": "La mano sinistra da sola posa i due colori che sosterranno tutto il brano: Do∆7 (con la settima maggiore inclusa, mai trattata come dissonanza da risolvere), poi Sol9sus — una quarta sospesa che non viene MAI ricondotta alla sua terza. Non è una dominante che attende Do: è un secondo colore, allo stesso titolo del primo."
+          },
+          {
+            "label": "Battute 3-4",
+            "titre": "Diatonismo integrale",
+            "chiffrage": "Do∆7 → Sol9sus (invariato)",
+            "fonctions": "?",
+            "texte": "Entra la mano destra e, per queste due battute, non tocca una sola nota estranea a Do maggiore — nemmeno la minima alterazione. L'ostinato, dal canto suo, non si è mosso di una croma."
+          },
+          {
+            "label": "Battute 5-7",
+            "titre": "L'onda cromatica",
+            "chiffrage": "Do∆7 → Sol9sus (sempre invariato)",
+            "fonctions": "?",
+            "texte": "Una prima nota estranea (batt. 5), poi il culmine: un fascio di quattro note alterate impilate d'un colpo (batt. 6), gettato contro un ostinato che non batte ciglio — poi il riflusso (batt. 7), di nuovo una sola nota estranea. Qui la dissonanza non è né preparata né risolta: sale e ridiscende come una marea, mentre sotto nulla cambia."
+          },
+          {
+            "label": "Battuta 8",
+            "titre": "Ritorno al bianco assoluto",
+            "chiffrage": "Do∆7 → Sol9sus, tenuto",
+            "fonctions": "T",
+            "texte": "Il Do finale non è una risoluzione in senso classico — l'ostinato che lo sorregge è esattamente lo stesso della battuta 1. È un ritorno di colore, non una cadenza."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Lo stesso pendolo, un altro secolo",
+            "texte": "Una settima maggiore mai trattata come dissonanza, un accordo vicino senza legame funzionale, nessuna cadenza per tutta la durata: è lo stesso principio di un dondolio a due accordi-colore già incontrato in questo corpus, trasferito dal pianoforte post-romantico francese al pianoforte jazz — la funzione cede il posto al colore puro."
+          },
+          {
+            "titre": "Un solo parametro fa tutta la forma",
+            "texte": "Mentre l'armonia di accompagnamento resta rigorosamente immobile, un solo parametro sostiene tutta la forma: la densità di note estranee alla tonalità nella mano destra, che sale e poi ridiscende come una curva. Stesso principio di un brano che si muove su un solo asse (timbro, registro, densità) mentre l'accordo, invece, resta fisso."
+          },
+          {
+            "titre": "L'ostinato divenuto cellula",
+            "texte": "Un ostinato a due accordi concepito per una meditazione solitaria al pianoforte può diventare, qualche mese più tardi, l'appoggio armonico di un brano del tutto diverso — la stessa cellula ripetuta, riutilizzata tale e quale in un contesto collettivo e improvvisato. L'ostinato non è soltanto un accompagnamento: è un oggetto che può viaggiare da un brano all'altro."
+          }
+        ]
+      }
     }
   },
   "cours23": {
@@ -3597,6 +4226,98 @@
       "quizScoreLow": "Continua ad ascoltare le progressioni di ogni stile — l'orecchio si educa!",
       "quizNextBtn": "Domanda successiva →",
       "quizSeeScoreBtn": "Vedi il mio punteggio"
+    },
+    "conservatoire": {
+      "intuition": "Imitare uno stile antico non cancella mai del tutto la sua epoca d'origine — ogni deviazione lascia un'impronta digitale del momento in cui è stata scritta, per quanto discreta essa sia.",
+      "reference": {
+        "badge": "Grieg · sulla Suite Holberg",
+        "citation": "Fra Holbergs tid — ai tempi di Holberg.",
+        "auteur": "Edvard Grieg, sottotitolo della Suite Holberg op. 40 (1884)"
+      },
+      "voix": [
+        "Un neoarcaismo riproduce l'IMPALCATURA di uno stile antico (qui il preludio barocco in moto perpetuo su pedale) lasciando trasparire, nei dettagli, i riflessi armonici della sua reale epoca di composizione.",
+        "Un pedale può esitare fra maggiore e minore senza fissarsi mai — un'ambiguità modale che il barocco non si sarebbe permesso e che qui tradisce la mano di un compositore dell'Ottocento.",
+        "Una risoluzione d'inganno (un ii-V che spunta là dove l'orecchio attendeva una risoluzione diretta) può insinuarsi nel cuore stesso di una pagina che, per il resto, rispetta scrupolosamente la sintassi del Settecento."
+      ],
+      "repertoire": {
+        "titre": "Suite Holberg op. 40, I. Praeludium",
+        "compositeur": "Edvard Grieg"
+      },
+      "pieges": [
+        {
+          "erreur": "Analizzare questo preludio come un brano puramente barocco, senza cercare le tracce della sua reale epoca di composizione (1884)",
+          "correction": "L'impalcatura è barocca (pedale di tonica, moto perpetuo, oscillazioni fra il 6/4 e l'accordo diminuito sul pedale di dominante), ma parecchi dettagli tradiscono il romanticismo: le dinamiche fz/ff strutturali, il pedale di dominante che esita fra maggiore e minore (batt. 38-39), la risoluzione d'inganno (batt. 40-41) e l'undicesima eccedente fugace della coda (batt. 70)."
+        },
+        {
+          "erreur": "Cercare una preparazione classica alla risoluzione d'inganno delle battute 40-41",
+          "correction": "Non ce n'è alcuna: il pedale di dominante di mi (Si, nove battute) dovrebbe risolvere su mi minore, ma scivola direttamente nel ii7-V7 di Sol (Lam7-Re7) — puro riflesso romantico di sovvertimento dell'attesa, nel cuore di una pagina per il resto assai regolare."
+        },
+        {
+          "erreur": "Considerare l'undicesima eccedente della battuta 70 come una semplice nota di passaggio senza conseguenze analitiche",
+          "correction": "È un vero colore armonico deliberato (un Fa♯ aggiunto a un accordo di Do maggiore) — una sonorità che nessuna grammatica del Settecento avrebbe prodotto e che firma, per un istante, la mano di un compositore dell'Ottocento."
+        }
+      ],
+      "resume": [
+        "La Suite Holberg (Grieg, 1884) è un neoarcaismo deliberato: un preludio barocco in moto perpetuo su pedale di tonica, scritto con i mezzi armonici del tardo romanticismo — quindici anni prima della Pavane di Ravel, quarant'anni prima del neoclassicismo di Stravinsky.",
+        "Il pedale di dominante di mi (batt. 30-39, nove battute) alterna esplicitamente maggiore e minore (Re♯ contro Re naturale) prima di scivolare in una risoluzione d'inganno (Lam7-Re7) anziché risolvere come atteso — due riflessi tipicamente romantici in una macchina per il resto barocca.",
+        "Ogni imitazione di uno stile antico lascia le proprie impronte digitali: qui le dinamiche strutturali, l'ambiguità modale del pedale, la risoluzione d'inganno e l'undicesima eccedente della coda (batt. 70) tradiscono il 1884 sotto la maschera del Settecento."
+      ],
+      "analyseNarrative": {
+        "tonalite": "Sol maggiore — con una deviazione ben stabilita dal 2º tema in Re (V) e un episodio al relativo, mi minore, al suo centro.",
+        "metrique": "4/4. Allegro vivace (semiminima = 154), f — un moto perpetuo ininterrotto dall'inizio alla fine.",
+        "forme": "Forma-preludio barocca in tre pannelli: esposizione (batt. 1-22, due temi e la loro ripresa), sviluppo (batt. 23-41, l'episodio al relativo e il suo pedale di dominante), riesposizione e coda (batt. 42-72).",
+        "sections": [
+          {
+            "label": "Battute 1-8",
+            "titre": "Il preludio barocco: pedale di tonica, poi modulazione lampo",
+            "chiffrage": "I (pedale) → V",
+            "fonctions": "T → D",
+            "texte": "Il moto perpetuo si installa subito su un pedale di tonica tenuto (Sol1, confermato risuonare senza interruzione per 4 battute) — il principio stesso del preludio in arpeggi di Bach, spinto al suo massimo grado di purezza. Poi, senza giri, una modulazione lampo installa la dominante, Re."
+          },
+          {
+            "label": "Battute 9-22",
+            "titre": "Il secondo tema, la ritransizione, la ripresa",
+            "chiffrage": "I di Re … Re7/Fa♯ → I",
+            "fonctions": "T … D → T",
+            "texte": "Un secondo tema cantabile canta in Re, per sequenze. Poi, alle battute 19-20, un Re7 con Fa♯ al basso porta un Do naturale che non appartiene alla tonalità di Re — la settima che richiama discretamente Sol, riconducendo l'orecchio verso la tonalità principale ancor prima che la ripresa sia compiuta. Il motivo d'apertura ritorna, fp."
+          },
+          {
+            "label": "Battute 23-41",
+            "titre": "L'episodio al relativo: il pedale di dominante e la sua doppia faccia",
+            "chiffrage": "Si7 → mi … La♯°7/Do → Si (pedale) → Lam7 – Re7",
+            "fonctions": "D → T … ? → D → SD – D",
+            "texte": "Una dominante secondaria in ff (Si7) installa il relativo minore, mi. Una progressione di settime su basso discendente conduce all'unico vero morso romantico del brano (fz): un accordo di settima diminuita completo, costruito su La♯, con Do al basso. Segue il perno strutturale — nove battute di pedale su Si, dominante di mi, con oscillazioni che alternano la tonica in 6/4 e l'accordo diminuito, esattamente come in un preludio di Bach. Ma Grieg vi insinua la SUA ambiguità: il pedale esita esplicitamente fra Si maggiore (Re♯, batt. 38) e si minore (Re naturale, batt. 39) — confermato nota per nota. Poi, anziché risolvere verso mi come atteso, la musica scivola in Lam7-Re7: il ii-V di Sol entrato dalla finestra, puro riflesso romantico di risoluzione d'inganno in una macchina per il resto tutta barocca."
+          },
+          {
+            "label": "Battute 42-55",
+            "titre": "Riesposizione: l'espansione plagale",
+            "chiffrage": "I … Sol7/Fa → IV … I",
+            "fonctions": "T … ? → SD … T",
+            "texte": "Il ritorno della tonalità principale (fz) si arricchisce di un colore caro al barocco di Grieg: l'espansione plagale. Un Sol7 con Fa al basso (V4/2 di IV) apre direttamente la porta verso il IV, prima che una grande cadenza in ff ridiscenda una catena di settime fino alla tonica."
+          },
+          {
+            "label": "Battute 56-72",
+            "titre": "Tranquillo e coda: #11 e la finestra finale di ritorno",
+            "chiffrage": "I (pedale) … IV(#11) … V7 – I",
+            "fonctions": "T … SD … D – T",
+            "texte": "Il tranquillo canta il tema conclusivo su un nuovo pedale di tonica. La coda impila un ultimo ciclo di dominanti secondarie, con un colore fugace alla battuta 70: un Fa♯ su un accordo di Do maggiore — l'undicesima eccedente, una nota che non appartiene ad alcuna grammatica del Settecento e che tradisce, per un istante, la mano di un compositore dell'Ottocento. La cadenza V7-I richiude il brano."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Il neoarcaismo: un preludio di Bach scritto nel 1884",
+            "texte": "Tutta l'impalcatura (pedale di tonica in apertura, alternanza di 6/4 e diminuito sul pedale di dominante, moto perpetuo ininterrotto) riproduce fedelmente il disegno del preludio barocco in arpeggi. Ma ogni deviazione lascia un'impronta digitale dell'Ottocento: le dinamiche fz e ff strutturali, il pedale che esita fra maggiore e minore, la risoluzione d'inganno al posto della risoluzione attesa, l'undicesima eccedente fugace della coda. Il passato che si imita non è mai del tutto neutro — si racconta sempre attraverso i riflessi di chi lo imita."
+          },
+          {
+            "titre": "Una catena datata dello sguardo all'indietro",
+            "texte": "1884: Grieg scrive un preludio del Settecento con i mezzi armonici del tardo romanticismo — quindici anni prima della Pavane neo-rinascimentale di Ravel, quarant'anni prima del neoclassicismo di Stravinsky. Il «ritorno al passato» come gesto compositivo non è dunque un fenomeno isolato dell'inizio del Novecento: attraversa più generazioni, e ciascuna vi lascia il proprio segno."
+          },
+          {
+            "titre": "Lo stesso procedimento della Pavane, quindici anni prima",
+            "texte": "La progressione di settime diatoniche su basso discendente (batt. 27-28) è esattamente il procedimento che Ravel userà nella sua Pavane pour une infante défunte (1899) — un basso che scende per gradi congiunti sotto una catena di accordi di settima, una delle firme armoniche più riconoscibili dello «stile antico» rivisitato dal linguaggio moderno."
+          }
+        ]
+      }
     }
   },
   "nav": {
@@ -4006,6 +4727,105 @@
       "h3Stylistique": "Uso stilistico attraverso le epoche",
       "bassePremierRenversement": "Sempre al primo rivolto — basso su bVI:",
       "bassePremierRenversementDesc": "Lab (bVI) è invariabilmente al basso → scende per semitono verso Sol (quinta della dominante)"
+    },
+    "conservatoire": {
+      "intuition": "Un accordo che comprime tutta la tensione tonale in un solo punto — come una molla pronta a scattare verso la dominante.",
+      "reference": {
+        "badge": "Aldwell & Schachter · Harmony and Voice Leading",
+        "citation": "L'accordo di sesta eccedente è l'accordo predominante più intensamente dissonante della musica tonale; i suoi due suoni caratteristici si risolvono verso l'esterno, per semitono, sulla quinta della dominante.",
+        "auteur": "Aldwell & Schachter, 2003"
+      },
+      "voix": [
+        "La sesta eccedente (La♭–Fa♯) si risolve sempre sulla quinta della dominante (Sol–Sol) per moto contrario obbligatorio",
+        "Il basso è invariabilmente sul bVI (La♭ in Do maggiore) — il primo rivolto è costitutivo dell'accordo",
+        "La sesta tedesca (bVI–I–bIII–#IV) è enarmonicamente identica a un V7/IV — la sua risoluzione differisce radicalmente"
+      ],
+      "repertoire": {
+        "titre": "Preludio op. 28 n. 20",
+        "compositeur": "Frédéric Chopin"
+      },
+      "pieges": [
+        {
+          "erreur": "Dimenticare il moto contrario: far salire La♭ e Fa♯ insieme",
+          "correction": "La♭ scende a Sol, Fa♯ sale a Sol — le voci estreme convergono imperativamente sulla quinta di dominante"
+        },
+        {
+          "erreur": "Risolvere la sesta tedesca come un V7/IV (verso IV) anziché verso V",
+          "correction": "La Ted+6 si risolve verso V per moto contrario; il V7/IV si risolve verso IV — stesse note, risoluzioni opposte"
+        },
+        {
+          "erreur": "Collocare la sesta eccedente fuori dal contesto predominante (non prima di V o di I6/4–V)",
+          "correction": "La sesta eccedente è idiomatica solo nella zona predominante, sempre immediatamente prima della dominante"
+        }
+      ],
+      "resume": [
+        "3 tipi: It+6 (bVI–I–#IV), Fr+6 (bVI–I–II–#IV), Ted+6 (bVI–I–bIII–#IV)",
+        "Risoluzione universale: sesta eccedente → quinta di dominante, per moto contrario",
+        "Ted+6 = enarmonica del V7/IV — stesse note, contesti e risoluzioni del tutto differenti"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Do minore (armatura di 3 bemolli). Due escursioni passeggere: La♭ maggiore (il relativo) alla battuta 2, poi Sol maggiore (la dominante), tonicizzata alle battute 3-4 da una catena di dominanti secondarie.",
+        "metrique": "4/4. Largo, molto lento (semiminima = 40 — assente dal file di origine, aggiunto).",
+        "forme": "13 battute = A (battute 1-4) + B (battute 5-8) + B ripreso identico (battute 9-12) + accordo finale (battuta 13). Un corale funebre in accordi omoritmici, quattro per battuta — un accordo per movimento, 49 armonie in tutto. La dinamica (aggiunta, assente dal file di origine) organizza un riflusso: ff (battute 1-4), p (battute 5-8), pp per la ripresa (battute 9-12) — un corteo che si allontana.",
+        "sections": [
+          {
+            "label": "Battuta 1",
+            "titre": "La cadenza madre",
+            "chiffrage": "Dom (i) – Fam7 (iv7) – Sol7 (V7) – Dom (i)",
+            "fonctions": "i – SD7 – D – i",
+            "texte": "La formula cadenzale completa in un solo respiro. Il iv porta la sua 7ª (Mi♭ su Fa-La♭-Do: Fam7), ereditata dalla tonica precedente. Sul V7, il Mi♭ percosso insieme all'accordo sul 3º movimento è un'appoggiatura di <strong>♭13</strong> che si risolve su Re soltanto alla fine del movimento — questo sospiro Mi♭→Re sulla dominante tornerà a ogni cadenza del preludio."
+          },
+          {
+            "label": "Battuta 2",
+            "titre": "Lo stesso blocco, trasportato al relativo",
+            "chiffrage": "La♭ maggiore (I) – Re♭ maggiore (IV) – Mi♭7 (V7) – La♭ maggiore (I)",
+            "fonctions": "T – SD – D – T (in La♭)",
+            "texte": "L'intera formula della battuta 1 viene rigiocata tale e quale, trasportata in blocco in La♭ maggiore (I-IV-V7-I, con la stessa appoggiatura Do→Si♭ sul Mi♭7) — sequenza reale brutale, senza transizione."
+          },
+          {
+            "label": "Battute 3-4",
+            "titre": "Il ritorno per catena di dominanti",
+            "chiffrage": "Sol7 (V7) – Do7 (V7/iv) – Fam (iv) – Do maggiore (IV/V) | Re7 (V7/V) – Sol (V) – Re7 (V7/V) – Sol (V)",
+            "fonctions": "D – D – SD – SD (verso V) | D – D – D – D (semicadenza)",
+            "texte": "Sol7 non risolve su do minore: scivola verso Do7 (<strong>V7/iv</strong>), poi fa minore, poi un Do MAGGIORE (Mi♮, il 4º accordo della battuta) che funziona da IV di Sol. La frase bascula verso la dominante e vi si installa: Re7-Sol-Re7-Sol, tonicizzazione di V e semicadenza. Bilancio del periodo A: do minore → La♭ → ciclo delle quinte → dominante, in quattro battute."
+          },
+          {
+            "label": "Battute 5-6",
+            "titre": "Il lamento cromatico e la sesta francese",
+            "chiffrage": "Dom (i) – La♭ maggiore/Do (VI6) – Si°7 (vii°7) – Solm/Si♭ (v6) | Lam7 (accordo di passaggio) – +6 fr. (Re7♭5/La♭) – Sol (V) – Sol7/Fa (V4/2)",
+            "fonctions": "T – T – D – D (minore di passaggio) | ? – D – D – D",
+            "texte": "Sotto una melodia che sale all'acuto, il basso avvia una discesa cromatica integrale su due battute: Do-Do-Si-Si♭-La-La♭-Sol-Fa, armonizzata accordo per accordo — fra cui un <strong>vii°7 incompleto</strong> (Si-Re-La♭, la settima diminuita senza la sua fondamentale, l'impronta di un G7♭9). La voce di contralto disegna parallelamente La♭-Fa♯-Sol, un doppio ricamo cromatico attorno alla quinta. Poi il culmine: La♭-Do-Re-Fa♯, la <strong>sesta eccedente francese</strong> — leggibile anche, in scrittura jazz, come un Re7(♭5) sul basso La♭ —, che schiaccia la sua doppia dissonanza sul V, prolungato in V4/2."
+          },
+          {
+            "label": "Battute 7-8",
+            "titre": "La cadenza allargata e la napoletana",
+            "chiffrage": "Dom/Mi♭ (i6) – Fam (iv) – Sol/Si (V6) – Dom (i) | La♭ maggiore (VI) – Re♭ maggiore (♭II) – Sol7 (V7) – Dom (i)",
+            "fonctions": "T – SD – D – T | T – SD (napoletana) – D – T",
+            "texte": "Il 4/2 della battuta 6 risolve su i6, poi cadenza allargata iv-V6-i. La battuta 8 rigioca gli accordi della battuta 2 reinterpretati: il La♭ non è più una tonica locale ma <strong>VI</strong>, e il Re♭ maggiore, che era IV di La♭, diventa <strong>♭II</strong> — la sesta napoletana allo stato fondamentale, concatenata direttamente sul V7 (con la stessa appoggiatura ♭13 della battuta 1). I due stessi accordi cambiano così di senso fra la battuta 2 e la battuta 8: diatonici in una tonalità vicina laggiù, cromatici nella tonalità principale qui."
+          },
+          {
+            "label": "Battute 9-13",
+            "titre": "La ripresa in eco e la fine nuda",
+            "chiffrage": "(ripresa integrale di 5-8, aggregato per aggregato) | Dom (i, finale)",
+            "fonctions": "(identiche a 5-8, in pp) | i",
+            "texte": "Le battute 9-12 riprendono 5-8 nota per nota — nell'originale, solo la dinamica (pp) trasforma la ripetizione in eco. La battuta 13 richiude il preludio su un accordo di tonica nudo, senza terza picarda: il modo minore assunto fino in fondo."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Tre colori romantici riuniti",
+            "texte": "Il basso di lamento cromatico (l'eredità barocca del tetracordo discendente), la sesta napoletana e la sesta eccedente francese compaiono tutti e tre in queste 13 battute — l'attrezzatura stessa del cromatismo romantico."
+          },
+          {
+            "titre": "Lo stesso accordo, due volte, due sensi",
+            "texte": "La♭ maggiore e Re♭ maggiore ritornano alla battuta 8 con le stesse note della battuta 2 — ma diatonici e passeggeri laggiù (in una tonalità vicina), cromatici e carichi di senso qui (VI e ♭II della tonica)."
+          },
+          {
+            "titre": "Un tic cadenzale che diventa grammatica",
+            "texte": "L'appoggiatura ♭6→5 sulla dominante (Mi♭→Re alla battuta 1) ritorna a ogni cadenza del preludio — uno stesso gesto espressivo ripetuto fino a diventare un'abitudine di scrittura, non un incidente."
+          }
+        ]
+      }
     }
   },
   "cours25": {
@@ -4071,6 +4891,84 @@
       "masquerBtn": "▲ Nascondi",
       "explorerBtn": "▼ Esplora",
       "ecouter": "▶ Ascolta"
+    },
+    "conservatoire": {
+      "intuition": "Il cromatismo è la tonalità che si guarda in uno specchio deformante: la stessa logica, ma spinta fino ai suoi limiti.",
+      "reference": {
+        "badge": "Schönberg · Harmonielehre",
+        "citation": "La dissonanza non è il contrario della consonanza: è una consonanza lontana che l'orecchio deve ancora imparare a udire.",
+        "auteur": "Arnold Schönberg, 1911"
+      },
+      "voix": [
+        "Il cromatismo ascendente (sensibilizzazione) rafforza l'attrazione verso la nota d'arrivo per semitono ascendente",
+        "Il cromatismo discendente (oscuramento) crea una tensione espressiva che reclama una risoluzione per semitono discendente",
+        "Ogni nota cromatica deve risolversi nel senso della propria alterazione: ♯ sale, ♭ scende, mai il contrario"
+      ],
+      "repertoire": {
+        "titre": "Preludio del Tristan und Isolde",
+        "compositeur": "Richard Wagner"
+      },
+      "pieges": [
+        {
+          "erreur": "Cromatismo gratuito senza direzione armonica: accumulo di note alterate privo di logica di risoluzione",
+          "correction": "Ogni nota cromatica crea un'attrazione verso la propria risoluzione; il cromatismo è una logica, non un ornamento"
+        },
+        {
+          "erreur": "Confusione enarmonica: trattare Sol♯ e La♭ come equivalenti senza distinguerne la direzione di risoluzione",
+          "correction": "Sol♯ sale verso La (cromatismo ascendente), La♭ scende verso Sol (cromatismo discendente): l'enarmonia cambia tutto"
+        },
+        {
+          "erreur": "Perdere il centro tonale accumulando cromatismi senza alcun ancoraggio diatonico",
+          "correction": "Mantenere almeno un accordo diatonico di riferimento prima di concatenare cromatismi o di modulare per enarmonia"
+        }
+      ],
+      "resume": [
+        "Linee cromatiche: basso di lamento (discesa), sensibilizzazione (salita), nota di volta cromatica",
+        "Accordo del Tristano: Fa–Si–Re♯–Sol♯, ambiguità funzionale voluta, discussa ancora oggi",
+        "Modulazione enarmonica: l'accordo di settima diminuita dà accesso a 4 tonalità diverse secondo la lettura scelta"
+      ],
+      "analyseNarrative": {
+        "tonalite": "La minore, mai confermato da un accordo di tonica in questo brano: l'intero pezzo fugge la risoluzione.",
+        "metrique": "6/8. Lento (semiminima puntata = 52,5).",
+        "forme": "Tre presentazioni dello stesso motivo di richiamo (anacrusi + accordo + risoluzione), ciascuna di un grado più tesa della precedente.",
+        "sections": [
+          {
+            "label": "Anacrusi – batt. 3",
+            "titre": "L'accordo del Tristano: due letture per un solo suono",
+            "chiffrage": "Faø7 (batt. 2) – Mi7 (batt. 3)",
+            "fonctions": "? (Tristan) – V7",
+            "texte": "Il motivo si apre con un'anacrusi di tre note (La-Fa-Mi) che sale e poi ricade, come una domanda. Alla batt. 2 le quattro voci si fissano su Fa-Si-Re♯-Sol♯: l'accordo più commentato di tutta la storia dell'armonia. Letto verticalmente, è una semplice settima di dominante con quinta diminuita su Fa (Faø7), una sonorità autonoma che non reclama alcuna risoluzione particolare. Ma Sol♯ è un'appoggiatura: sale verso La, e l'accordo che allora appare — Fa-La-Si-Re♯ — è una sesta aumentata francese in piena regola, che tira meccanicamente verso la quinta della dominante. Le due letture non si contraddicono: coesistono, ed è proprio questa ambiguità a produrre tutto l'effetto del passo. La risoluzione arriva alla batt. 3 su Mi7 (V7 di La minore), attraverso una seconda appoggiatura al grave (La♯→Si)."
+          },
+          {
+            "label": "Battute 4–7",
+            "titre": "Lo stesso accordo, una terza minore più in alto",
+            "chiffrage": "Sol♯ø7 (batt. 6) – Sol7 (batt. 7)",
+            "fonctions": "? (Tristan) – V7/Do",
+            "texte": "Dopo un silenzio che prolunga l'anacrusi, il motivo riprende nota per nota, trasportato di una terza minore. L'accordo della batt. 6 è la stessa sonorità di quello della batt. 2, semplicemente spostata: la sua risoluzione per appoggiatura produce La♭-Do-Re-Fa♯, una sesta aumentata francese rigorosamente identica — nota per nota — a quella del Preludio di Chopin studiato in precedenza. Due compositori, un secolo di distanza, uno stile armonico radicalmente diverso e, ciò nonostante, esattamente la stessa sovrapposizione di quattro note nello stesso punto della frase. Questa volta la risoluzione scivola verso Sol7, dominante non più di La minore ma di Do maggiore: la seconda frase apre una regione tonale nuova senza mai posarvisi."
+          },
+          {
+            "label": "Battute 8–13",
+            "titre": "Una tensione che non viene mai raccolta",
+            "chiffrage": "Reø7/Do (batt. 10, 12) – Si7 (batt. 11, 13)",
+            "fonctions": "? (Tristan) – V7/Mi, poi V7 sospeso",
+            "texte": "La terza presentazione è la più lunga: l'anacrusi si distende in una discesa cromatica (Re-Si-Si♭-La) che ritarda l'arrivo dell'accordo. Quando compare, alla batt. 10, la sua settima (Do) è passata al basso, e le due voci superiori divergono invece di ricongiungersi — una sale (Re-Re♯-Mi), l'altra scende (Fa-Mi) — prima che un fugace accordo aumentato Do-Mi-Sol♯ attraversi l'ultimissimo istante della battuta. La risoluzione, alla batt. 11, avviene su Si7 (V7 di Mi), con la propria appoggiatura (Mi♯→Fa♯) e una doppia tenuta in corona. L'accordo ritorna un'ottava più in alto alla batt. 12, come un'eco, prima di ricadere un'ultima volta su Si7 alla batt. 13: ma questa volta senza alcuna risoluzione, la dominante resta sospesa e il brano si arresta sulla tensione stessa."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Un accordo, due grammatiche",
+            "texte": "L'accordo del Tristano può leggersi come una sonorità verticale autonoma (una settima di dominante con quinta diminuita) oppure come un'appoggiatura su una sesta aumentata francese. Nessuna delle due letture annulla l'altra: il dibattito su quale sia «quella vera» dura da oltre un secolo, ed è proprio questo rifiuto di decidere a rendere l'accordo tanto celebre."
+          },
+          {
+            "titre": "La stessa sonorità, due compositori",
+            "texte": "Una volta risolta per appoggiatura, la versione trasportata dell'accordo (batt. 6) dà La♭-Do-Re-Fa♯, esattamente la sesta aumentata francese del Preludio di Chopin studiato nella lezione precedente. La stessa sovrapposizione di note, la stessa funzione, in due linguaggi armonici che sembrano tuttavia lontanissimi l'uno dall'altro."
+          },
+          {
+            "titre": "Una tensione mai raccolta",
+            "texte": "Il brano si chiude su una dominante (Si7) che non si risolve: la tonica attesa non arriva mai in queste tredici battute. Questo differimento della risoluzione — la «melodia infinita» wagneriana — è già all'opera fin dall'apertura del Preludio."
+          }
+        ]
+      }
     }
   },
   "cours26": {
@@ -4168,6 +5066,105 @@
       "btnVoirCorrection": "Vedere la correzione",
       "btnMasquerCorrection": "Nascondere la correzione",
       "btnNouvellesQuestions": "Nuove domande"
+    },
+    "conservatoire": {
+      "intuition": "Il basso dato è lo scheletro; l'armonizzazione è la carne e il sangue che il musicista gli dona.",
+      "reference": {
+        "badge": "Dubois · Traité d'Harmonie",
+        "citation": "L'arte di armonizzare un basso non è altro che l'arte di pensare musicalmente: ogni nota del basso porta già in germe le voci che si levano al di sopra di essa.",
+        "auteur": "Théodore Dubois, 1901"
+      },
+      "voix": [
+        "Analizzare la funzione di ogni nota del basso prima di scegliere l'accordo: si tratta di una fondamentale (stato fondamentale), di una terza (primo rivolto) o di una quinta (secondo rivolto)?",
+        "La quarta e sesta cadenzale compare solo sul tempo forte, seguita obbligatoriamente da V e poi da I, mai sul tempo debole",
+        "Individuare le note estranee al soprano (passaggio, nota di volta, ritardo) prima di armonizzare, per non costruire falsi accordi su note che non sono reali"
+      ],
+      "repertoire": {
+        "titre": "Wachet auf, ruft uns die Stimme (preludio corale BWV 645)",
+        "compositeur": "Johann Sebastian Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Cambiare accordo su ogni nota veloce del soprano",
+          "correction": "Le note brevi sono spesso note di passaggio o note di volta: armonizzare secondo la struttura ritmica, non secondo ogni singola nota"
+        },
+        {
+          "erreur": "Collocare una quarta e sesta sul tempo debole o senza l'obbligatoria risoluzione su V",
+          "correction": "La quarta e sesta cadenzale sta esclusivamente sul tempo forte (2º o 4º tempo), sempre seguita da un V che risolve su I"
+        },
+        {
+          "erreur": "Ignorare le note estranee e creare accordi errati su note di volta o di passaggio",
+          "correction": "Individuare prima passaggio, nota di volta, ritardo e anticipazione; armonizzare poi soltanto le note reali"
+        }
+      ],
+      "resume": [
+        "Basso dato: individuare fondamentale/terza/quinta, proporre 2–3 accordi possibili, scegliere secondo T→SD→D→T",
+        "Soprano dato: note lunghe = note reali da armonizzare; note brevi = potenzialmente estranee",
+        "Quarta e sesta cadenzale: soltanto sul tempo forte, con risoluzione V–I obbligatoria e immediata"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Mi♭ maggiore, con due escursioni passeggere (Do minore, Sol minore) nell'Abgesang.",
+        "metrique": "4/4. Tempo semiminima = 68 (Lento).",
+        "forme": "Corale ornato in forma bar (AAB): ritornello (R1) — Stollen (due frasi ripetute identicamente + una terza) — ritorno del ritornello (R2) — Abgesang (quattro frasi finali + climax) — ritornello conclusivo. Questa trascrizione per pianoforte scrive lo Stollen una sola volta (54 battute), là dove la versione per organo e voce lo scrive due volte di seguito.",
+        "sections": [
+          {
+            "label": "Anacrusi – batt. 13",
+            "titre": "Il ritornello: pedale, poi tonicizzazione della dominante",
+            "chiffrage": "Mi♭ (ped.) – La♭/Mi♭ – Fa7 – Si♭ – Mi♭: V7/V",
+            "fonctions": "T – SD/T – D (dominante secondaria) – D – pivot",
+            "texte": "Dodici battute prima ancora dell'ingresso del corale: un ritornello costruito su un pedale di tonica (Mi♭ tenuto al basso) attraversato da un'alternanza I–IV, poi una piccola sequenza che sbilancia verso la dominante: il La♮ delle batt. 9-10 tonicizza Si♭ tramite il proprio accordo di settima di dominante (Fa7). La batt. 13 chiude questa sezione su un doppio senso: Si♭ vi è dapprima udito come tonica locale (I di Si♭), prima di essere subito reinterpretato come V di Mi♭ — la cerniera esatta attraverso cui il ritornello raggiunge il corale."
+          },
+          {
+            "label": "Battute 14–20",
+            "titre": "L'ingresso del corale, sulla sopraddominante",
+            "chiffrage": "Dom7 (vi7) – Mi♭ – La♭ – Si♭7",
+            "fonctions": "T – T – SD – D",
+            "texte": "Il corale entra alla batt. 14, sul terzo tempo, ma non sulla tonica. Il primo accordo che sostiene l'inizio della melodia (l'ascendente Mi♭-Sol, l'incipit stesso di «Wachet auf») è un Do minore con settima: vi7, un falso ingresso armonico che ritarda l'arrivo della vera tonica di un'intera frase. Il Si♭ che segue, ripetuto quattro volte di fila (batt. 15) prima di posarsi su Do-Si♭ in valori lunghi (batt. 16), disegna la terminazione caratteristica del corale. Un secondo ingresso (batt. 17, ancora su vi) prepara una cadenza sulla dominante, raggiunta alla batt. 20 dopo una tonicizzazione tramite Fa7."
+          },
+          {
+            "label": "Battute 21–24",
+            "titre": "Terza frase: ritorno alla tonica",
+            "chiffrage": "Si♭7 – Mi♭ – La♭ – Si♭",
+            "fonctions": "D – T – SD – D",
+            "texte": "La terza frase dello Stollen chiude la prima metà del corale su Mi♭, prima che un ultimo gesto armonico (IV–V) prepari il ritorno del ritornello."
+          },
+          {
+            "label": "Battute 25–30",
+            "titre": "R2: il ritornello, nota per nota",
+            "chiffrage": "Mi♭ – Fa7 – Si♭ – Mi♭ – Si♭ (pivot)",
+            "fonctions": "T – D (dominante secondaria) – D – T – D",
+            "texte": "La seconda metà del ritornello iniziale ritorna identica — la stessa progressione, la stessa tonicizzazione di Si♭ tramite Fa7, lo stesso accordo-pivot finale —: cambia soltanto la disposizione pianistica da un'occorrenza all'altra. Il file stesso annota questa ripresa come corrispondente esattamente alle batt. 8-13 dell'apertura, pivot compreso: una ripetizione interamente scritta, non una semplice ripresa segnalata da un segno."
+          },
+          {
+            "label": "Battute 31–43",
+            "titre": "L'Abgesang: due escursioni modali",
+            "chiffrage": "Si♭ – Mi♭ – Sol/Si: V6/Do min. – Do min. – La♭ – Sol7 – Do min. (cad.) – Re/Fa♯: V6/Sol min. – Sol min. (cad.)",
+            "fonctions": "D – T – D poi T (Do minore) – T – D – T (Sol minore)",
+            "texte": "Le frasi finali del corale si avventurano, per la prima volta, fuori da Mi♭ maggiore. Un Si♮ (batt. 34) fa virare l'armonia verso Do minore — il relativo di Mi♭ — con una cadenza completa alla batt. 37. Poi un Fa♯ (batt. 40) apre una seconda escursione, questa volta verso Sol minore, cadenzata alla batt. 43 prima che il testo stesso annunci il ritorno: «Mi♭: ritorno». Due tonicizzazioni successive, ciascuna negoziata dalla propria dominante, prima che il corale ritrovi finalmente la sua tonica d'origine."
+          },
+          {
+            "label": "Battute 44–54",
+            "titre": "Climax e chiusura",
+            "chiffrage": "Sol min. → Mi♭ – La♭ – Si♭ – Mi♭ (climax) – La♭: V7/IV – Si♭7 – Mi♭",
+            "fonctions": "T – SD – D – T – SD – D – T",
+            "texte": "Il ritorno a Mi♭ (batt. 44) prepara le ultime frasi del corale, portate fino a un climax in ottave (batt. 47-49) che culmina su un acuto che nessun organo e nessuna voce potrebbero raggiungere: la firma del trascrittore pianista, non quella del corale d'origine. Il cantus firmus si conclude alla batt. 50 su un Mi♭ ripetuto, prima che un breve ritornello conclusivo chiuda il pezzo: un Re♭ di colore (batt. 51, un V7/IV appena sfiorato senza mai indugiarvi) conferisce alla cadenza finale un profumo plagale prima che essa si richiuda, perfettamente convenzionale, sull'accordo di tonica."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Un ingresso che non entra sulla tonica",
+            "texte": "Il corale comincia su vi7, non su I: la vera tonica arriva soltanto alla fine della prima frase. Una lezione direttamente trasferibile all'esercizio di basso e soprano dati: la prima nota di una melodia non impone necessariamente l'accordo di tonica al di sotto."
+          },
+          {
+            "titre": "Un ritornello interamente riscritto, nota per nota",
+            "texte": "La ripresa del ritornello (batt. 25-30) non lascia nulla al caso: ogni accordo, ogni tonicizzazione della prima occorrenza (batt. 8-13) vi ritorna identica. Una progressione ben concepita si ripete senza aver bisogno di variare."
+          },
+          {
+            "titre": "Due tonicizzazioni, un solo cammino di ritorno",
+            "texte": "Do minore e poi Sol minore: le uniche due incursioni fuori da Mi♭ maggiore di tutto il corale, ciascuna introdotta dalla propria dominante e richiusa dalla propria cadenza, prima di un ritorno annunciato a chiare lettere dalla siglatura stessa."
+          }
+        ]
+      }
     }
   },
   "cours27": {
@@ -4240,6 +5237,105 @@
       "btnUrlinie321": "▶ Urlinie 3̂–2̂–1̂",
       "btnUrlinie54321": "▶ Urlinie 5̂–4̂–3̂–2̂–1̂",
       "btnBassbrechung": "▶ Bassbrechung I–V–I"
+    },
+    "conservatoire": {
+      "intuition": "Una sinfonia di quaranta minuti è spesso un I–V–I su larga scala, con ornamenti.",
+      "reference": {
+        "badge": "Schenker · Der freie Satz",
+        "citation": "Ogni musica tonale poggia su un'unica struttura fondamentale: una discesa del soprano e un arpeggio di quinta al basso. Il resto non è che ornamentazione.",
+        "auteur": "Heinrich Schenker, 1935"
+      },
+      "voix": [
+        "Distinguere l'armonia di superficie (tutti gli accordi) dall'armonia strutturale (i pilastri tonali): una prolungazione può far «durare» un solo accordo per più battute.",
+        "L'Urlinie scende sempre verso 1̂ (la tonica): individuare la nota di partenza (3̂, 5̂ o 8̂) e tracciare la discesa melodica fondamentale.",
+        "Non analizzare ogni accordo isolatamente: cercare prima il gruppo funzionale (T, SD, D) e poi la prolungazione che lo realizza."
+      ],
+      "repertoire": {
+        "titre": "Jesu, meine Freude (corale integrale, 19 battute)",
+        "compositeur": "J. Crüger / armonizzazione nella tradizione di J. S. Bach (BWV 227)"
+      },
+      "pieges": [
+        {
+          "erreur": "Analizzare ogni accordo senza vedere la struttura d'insieme",
+          "correction": "Cominciare individuando i pilastri: inizio (I), cadenza mediana, cadenza finale (V–I). Tutto il resto è prolungazione."
+        },
+        {
+          "erreur": "Confondere armonia di superficie e armonia strutturale",
+          "correction": "Un accordo di volta o di passaggio (fra due accordi di uno stesso pilastro) non è un pilastro strutturale: prolunga l'accordo principale."
+        },
+        {
+          "erreur": "Ridurre troppo in fretta, senza tappe intermedie",
+          "correction": "Ridurre in 3 tappe: 1) annotare tutti gli accordi, 2) raggrupparli per funzione (T/SD/D), 3) individuare la prolungazione principale."
+        }
+      ],
+      "resume": [
+        "Analisi a strati: superficie (tutti gli accordi) → livello intermedio (funzioni raggruppate) → livello profondo (un'unica prolungazione T→D→T)",
+        "Urlinie: discesa del soprano da 3̂, 5̂ o 8̂ verso 1̂, linea fondamentale del discorso melodico",
+        "Bassbrechung: arco del basso I–V–I, la struttura tonale sulla scala dell'opera intera"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Si minore.",
+        "metrique": "4/4. Tempo semiminima = 64.",
+        "forme": "Forma bar AAB: Stollen (3 frasi, batt. 1-6) ripetuto nota per nota (batt. 7-12), poi Abgesang (batt. 13-19).",
+        "sections": [
+          {
+            "label": "Frase 1 (batt. 1-2)",
+            "titre": "Una discesa del basso che sminuzza la tonica",
+            "chiffrage": "i – v6 – iv6 – vii°4/2 – VI – iiø6/5 – V7 – i",
+            "fonctions": "T (prolungata) – SD – T (cadenza perfetta)",
+            "texte": "Il basso scende per gradi congiunti (Si-La-Sol) sotto una nota tenuta del soprano, e ogni gradino porta il proprio accordo — i, v6, iv6 — finché un accordo di passaggio non si insinua sul levare: una settima diminuita della sensibile in terzo rivolto (vii°4/2, la settima al basso), che risolve su VI. La cadenza che segue espone il primo accordo semidiminuito del pezzo (iiø6/5) prima del V7 e della tonica."
+          },
+          {
+            "label": "Frase 2 (batt. 3-4)",
+            "titre": "Una tonicizzazione fulminea, una risalita verso la dominante",
+            "chiffrage": "i – V/La – I6/La – III – i – i6 – V",
+            "fonctions": "T – (tonicizzazione passeggera) – T – D (semicadenza)",
+            "texte": "Una breve deviazione tonicizza La maggiore (la sua stessa dominante, Mi, compare per la durata di un solo accordo) prima di scivolare su III (Re). Il basso risale poi per gradi congiunti (Si-Do♯-Re-Mi) verso la semicadenza su Fa♯ maggiore, che chiude la frase sulla dominante."
+          },
+          {
+            "label": "Frase 3 (batt. 5-6) — e la sua ripresa (batt. 7-12)",
+            "titre": "Il ritardo 4-3 e la tonica sospesa",
+            "chiffrage": "VI – i6/4 – V (ritardo 4-3) – V7 – i (corona)",
+            "fonctions": "T – T (cadenzale) – D – T",
+            "texte": "La più bella cadenza dello Stollen: sopra la dominante, una voce interna tiene il Si contro il Fa♯ del basso (un ritardo 4-3) e cede soltanto sull'ultimissimo tempo della battuta; l'accordo si completa in V7 solo nell'istante stesso della risoluzione. La tonica che segue è tenuta sotto corona. L'insieme delle sei battute (batt. 1-6) ritorna poi nota per nota (batt. 7-12): lo stesso basso, gli stessi accordi, la stessa risoluzione del ritardo; uno Stollen interamente scritto, non soltanto segnalato da una ripresa."
+          },
+          {
+            "label": "Abgesang, frasi 4-5 (batt. 13-14)",
+            "titre": "L'unica zona maggiore di tutto il corale",
+            "chiffrage": "i – III – V6/5/III – III – ii6/5 – V7/III – III",
+            "fonctions": "T – (modulazione al relativo) – SD – D – T",
+            "texte": "L'Abgesang si apre con una vera modulazione al relativo maggiore (Re), installata a regola d'arte dalla sua propria dominante secondaria (La7) e poi confermata da una cadenza completa (ii6/5 – V7 – I) in Re maggiore: l'unico momento dell'intero pezzo che abbandona con franchezza il modo minore."
+          },
+          {
+            "label": "Frase 6 (batt. 15-17)",
+            "titre": "Il culmine drammatico",
+            "chiffrage": "III – vii°/La – I6/La – III – i – v – iiø4/3 di Fa♯ – V7/v – Fa♯: I = Si min.: V",
+            "fonctions": "T – T (passaggio) – T (minore) – D (arrivo sulla dominante maggiorizzata)",
+            "texte": "Ritorno a Si minore attraverso la sua stessa dominante (Fa♯ minore), poi un secondo accordo semidiminuito (iiø4/3 di Fa♯, questa volta sottodominante della dominante) che prepara un Do♯7 (V7/v) risolvente su Fa♯ maggiore: un ii–V–i completo verso la dominante, ma maggiorizzata. Questa battuta reca un refuso d'edizione: il Mi♯ atteso nel Do♯7 è notato come Fa naturale alla voce interna, un'enarmonia che renderebbe assurda la lettura per un cantore che legga quella terza nel coro anziché suonarla alla tastiera. La battuta seguente si apre in pause dopo il suo primo accordo: il respiro del testo tedesco, conservato dal cantico."
+          },
+          {
+            "label": "Frase finale (batt. 18-19)",
+            "titre": "La formula cadenzale al gran completo",
+            "chiffrage": "iv6 – i6/4 cadenzale – iiø6/5 – V7 – I",
+            "fonctions": "SD – T (cadenzale) – SD – D – T",
+            "texte": "La cadenza finale dispiega la formula completa — sottodominante, tonica cadenzale, semidiminuito, dominante, tonica — e l'accordo conclusivo porta l'unico Re♯ di tutto il pezzo: una terza picarda, affidata alla voce interna più grave dopo il basso."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Una sola prolungazione per tutto lo Stollen",
+            "texte": "Sotto i numerosi accordi di superficie (v6, iv6, vii°4/2, VI, iiø6/5…), lo Stollen realizza in verità un unico gesto strutturale: una tonica che si arpeggia verso la propria dominante (la semicadenza della batt. 4) prima di ritornarvi (la corona della batt. 6). Tutto il resto — ogni accordo siglato frase per frase — prolunga l'uno o l'altro polo di questa impalcatura i–V–i, senza mai rimetterla in discussione."
+          },
+          {
+            "titre": "Dal culmine alla tonica: una sola linea melodica",
+            "texte": "Il soprano si apre sulla quinta (Fa♯) e chiude il pezzo sulla tonica (Si): la stessa traiettoria discendente che organizza la melodia di superficie — ogni frase risale e poi ricade — si ritrova, a una scala ben più ampia, nella forma intera del corale."
+          },
+          {
+            "titre": "L'accordo diminuito, semplice riempimento di un intervallo",
+            "texte": "La settima diminuita della batt. 1 e i semidiminuiti delle batt. 2, 16 e 18 sembrano, in superficie, eventi drammatici. Ricondotti alla loro funzione strutturale, non sono che note di passaggio cromatiche armonizzate: il basso avrebbe potuto scendere anche senza di essi. L'ornamento fa il colore; non fa la struttura."
+          }
+        ]
+      }
     }
   },
   "cours28": {
@@ -4316,6 +5412,109 @@
       "btnEcouterMotif": "▶ Ascoltare il motivo principale",
       "infoBoxRetenir": "<strong>Da ricordare:</strong> Bach (arpeggiazione armonica) → nessun tema distinto, logica contrappuntistica. Mozart K. 331 (tema e variazioni) → un solo tema trasformato. Beethoven op. 13 (forma sonata arricchita) → due temi, tensione armonica e ritorno del Grave iniziale nello sviluppo.",
       "h2Quiz": "Quiz — Forme musicali"
+    },
+    "conservatoire": {
+      "intuition": "La forma è l'armonia che si dispiega nel tempo.",
+      "reference": {
+        "badge": "Schönberg · Fundamentals of Musical Composition",
+        "citation": "La forma musicale non è uno stampo in cui si versa la musica: è la conseguenza logica dello sviluppo tematico e armonico.",
+        "auteur": "Arnold Schönberg, 1967"
+      },
+      "voix": [
+        "Nella forma sonata il secondo tema sta sempre alla TONICA nella riesposizione, anche se nell'esposizione stava alla dominante. È la risoluzione armonica dell'intera forma.",
+        "Lo sviluppo DEVE modulare: restare nella tonalità principale durante lo sviluppo è un grave errore di forma.",
+        "Distinguere la forma di frase (antecedente-conseguente) dalla grande forma (esposizione-sviluppo-riesposizione): due livelli gerarchici distinti."
+      ],
+      "repertoire": {
+        "titre": "Sonata in Do maggiore K. 545, primo movimento — esposizione completa",
+        "compositeur": "Wolfgang Amadeus Mozart"
+      },
+      "pieges": [
+        {
+          "erreur": "Confondere forma di frase e grande forma",
+          "correction": "La forma di frase (antecedente di 4 battute + conseguente di 4 battute) è un livello micro. La grande forma (sonata, rondò) è un livello macro che dura diversi minuti."
+        },
+        {
+          "erreur": "Secondo tema alla dominante nella riesposizione (in modo maggiore)",
+          "correction": "Nella riesposizione il secondo tema ritorna SEMPRE alla tonica. È la risoluzione armonica fondamentale della forma sonata: senza di essa non vi è risoluzione."
+        },
+        {
+          "erreur": "Sviluppo privo di modulazioni",
+          "correction": "Lo sviluppo deve attraversare più tonalità: è il suo ruolo drammatico. Uno sviluppo che resta nella tonalità principale manca il proprio scopo."
+        },
+        {
+          "erreur": "Riesposizione identica all'esposizione",
+          "correction": "La riesposizione differisce sempre dall'esposizione su un punto cruciale: il secondo tema sta alla tonica, non alla dominante. Spesso anche la transizione è abbreviata."
+        }
+      ],
+      "resume": [
+        "Forma sonata: esposizione (T1 alla tonica + T2 alla dominante) → sviluppo (modulazioni) → riesposizione (T1 e T2 entrambi alla TONICA)",
+        "Forme semplici: binaria (AB, tonalmente instabile→stabile) · ternaria (ABA) · rondò (ABACA, ritorno ciclico)",
+        "Analisi: individuare le sezioni dalla loro tonalità, non soltanto dai loro temi"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Do maggiore, modulante a Sol maggiore (la dominante) per il secondo tema.",
+        "metrique": "4/4. Tempo semiminima = 140.",
+        "forme": "Esposizione di forma sonata: primo tema (1-4), scale (5-8), transizione modulante (9-13), secondo tema (14-17), progressione per quinte (18-21), cadenza e codetta (22-28).",
+        "sections": [
+          {
+            "label": "Battute 1-4",
+            "titre": "Primo tema: l'armonia come respiro",
+            "chiffrage": "I | V4/3–I | IV6/4–I | V6–I",
+            "fonctions": "T | D–T | SD–T | D–T",
+            "texte": "Quattro battute, quattro coppie di funzione e tonica: ogni battuta si allontana dalla tonica per mezzo di un dolce rivolto (la settima del V4/3 nel basso albertino, la quarta e sesta di volta del IV) prima di ricadervi immediatamente. La tonica non viene mai lasciata per più di mezzo tempo: l'armonia più semplice possibile, ma esposta senza alcuna economia."
+          },
+          {
+            "label": "Battute 5-8",
+            "titre": "Le scale: un'armonia più lenta della virtuosità",
+            "chiffrage": "IV | I6 | V4/3 → V6/5 | I",
+            "fonctions": "SD | T | D | T",
+            "texte": "I passaggi che terrorizzano gli allievi non recano, armonicamente, che un accordo per battuta (due alla batt. 7): la mano sinistra scandisce minime mentre la destra sgrana le sue scale. La virtuosità poggia sempre su un ritmo armonico più lento di lei."
+          },
+          {
+            "label": "Battute 9-13",
+            "titre": "La transizione: una modulazione in tre gesti",
+            "chiffrage": "ii (Do♯ melodica) – Sol: V6 (progressione Fa-Sol-La-Fa♯) – Sol: I (= Do: V) – collegamento Do♯→Do♮",
+            "fonctions": "SD – D (Sol) – T (Sol) / D (Do)",
+            "texte": "Dapprima ii (Re minore), la cui scala ascendente in minore melodica fa udire il Do♯, la prima alterazione del pezzo. Poi una progressione: il basso Fa-Sol-La-Fa♯ converte quel Do♯ in vera sensibile locale (Re/Fa♯ diventa V6 di Sol). L'arrivo su Sol (batt. 11-12), affermato in arpeggi, è la cesura mediana: quello stesso Sol si ode ancora come V di Do nel momento medesimo in cui si insedia come I. La batt. 13, monodica, chiude la transizione: la sola mano sinistra oscilla Do♯-Re e poi Do♮-Re, la stessa coppia di note che ripartisce due funzioni del medesimo grado cromatico."
+          },
+          {
+            "label": "Battute 14-17",
+            "titre": "Secondo tema: un dondolio periodico",
+            "chiffrage": "I6 – V7 | I6 – V7",
+            "fonctions": "T – D | T – D",
+            "texte": "In Sol maggiore il secondo tema si adagia su un semplice dondolio I6-V7: la figurazione della mano sinistra ricama un pedale di Re mentre il Do naturale vi insedia la settima. Alcune appoggiature Sol→Fa♯ punteggiano ogni terminazione di periodo."
+          },
+          {
+            "label": "Battute 18-21",
+            "titre": "La progressione: il circolo delle quinte completo",
+            "chiffrage": "I – IV – vii°6 – iii – vi6 – ii – V6/5 – I",
+            "fonctions": "T – SD – D – T – T – SD – D – T",
+            "texte": "Il vertice analitico dell'esposizione: otto funzioni, due per battuta, nessuna eccezione; un circolo delle quinte diatonico percorso nella sua integrità (Sol-Do-Fa♯°-Si min.-Mi min.-La min.-Re7-Sol), con la melodia che scende in sequenza esatta al di sopra."
+          },
+          {
+            "label": "Battute 22-28",
+            "titre": "Cadenza e codetta",
+            "chiffrage": "ii6 (×2) – I6/4 (cadenzale) – V7 (trillo) – I – I (8ª grave) – I",
+            "fonctions": "SD – T – D – T",
+            "texte": "La formula cadenzale è distesa con gusto: due battute intere di ii6 (La minore su Do, in tremolo), poi la quarta e sesta cadenzale, il V7 ornato dal trillo regolamentare sul La, la risoluzione e una codetta in echi di ottave. L'esposizione si chiude su Sol, la dominante del tono principale: il contratto della forma sonata è firmato, e tocca allo sviluppo scioglierlo."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Il manuale scritto dal pezzo che lo illustra",
+            "texte": "Ogni sezione dell'esposizione occupa il proprio posto esatto nel piano della forma sonata — primo tema, ponte modulante, secondo tema alla dominante, progressione precadenzale, cadenza — senza il minimo scarto. È il pezzo stesso da cui generazioni di trattati hanno tratto il loro piano tipo."
+          },
+          {
+            "titre": "Una sola modulazione, tre gesti distinti",
+            "texte": "Passare da Do a Sol richiede appena una manciata di battute, ma ciascuno dei suoi tre tempi (tonicizzazione locale, progressione cromatica, arrivo alla cesura mediana) ha una propria logica: la modulazione classica non è un salto, è una dimostrazione in più tappe."
+          },
+          {
+            "titre": "Il circolo delle quinte, circuito universale",
+            "texte": "La progressione delle batt. 18-21 percorre per intero il circolo delle quinte diatonico, il medesimo circuito che, sotto altre vesti (modo minore, settime di tipo jazz), struttura progressioni ben più tarde. Qui è una sequenza all'interno della forma; altrove, quello stesso circuito può diventare la forma intera."
+          }
+        ]
+      }
     }
   },
   "cours29": {
@@ -4383,6 +5582,116 @@
       "btnEcouter": "▶ Ascoltare",
       "infoBoxObserver": "<strong>Da osservare:</strong> confronta il basso sul 2° accordo di ogni armonizzazione. Bach scende verso la dominante Sol. Debussy sale in parallelo. La differenza sta lì — nella logica del movimento del basso.",
       "h2Quiz": "Quiz — Analisi comparata del repertorio"
+    },
+    "conservatoire": {
+      "intuition": "La storia dell'armonia è la storia della dissonanza che diventa consonanza.",
+      "reference": {
+        "badge": "Schönberg · Manuale di armonia",
+        "citation": "Ogni dissonanza è una consonanza non ancora risolta. L'orecchio si abitua a tutto — ciò che oggi urta sarà banale domani.",
+        "auteur": "Arnold Schönberg, 1911"
+      },
+      "voix": [
+        "Identificare il periodo storico di un'opera da tre indizi: densità del cromatismo, presenza o assenza della risoluzione V–I, trattamento delle dissonanze.",
+        "Analizzare Debussy con i suoi propri strumenti (colore, parallelismi, modi) e non con le funzioni T/SD/D — i suoi accordi sono macchie di colore, non funzioni.",
+        "Il contesto storico non giustifica gli errori di analisi: Debussy conosceva perfettamente le regole che trasgrediva."
+      ],
+      "repertoire": {
+        "titre": "La Cathédrale engloutie (Préludes, libro I, n. 10)",
+        "compositeur": "Claude Debussy"
+      },
+      "pieges": [
+        {
+          "erreur": "Credere che Debussy non abbia regole armoniche",
+          "correction": "Debussy aveva una padronanza perfetta del contrappunto e dell'armonia classica. La sua libertà è una trasgressione consapevole e calcolata, non un'ignoranza."
+        },
+        {
+          "erreur": "Confondere stile ed epoca",
+          "correction": "Bach e Händel sono contemporanei ma molto diversi. Analizzare un compositore in base alla sola epoca è insufficiente — le firme individuali prevalgono."
+        },
+        {
+          "erreur": "Analizzare Debussy con le funzioni T/SD/D",
+          "correction": "Debussy rifiuta queste funzioni. I suoi accordi procedono per colore, registro e profilo melodico — non per tensione-risoluzione. Cercare «dominanti» in Debussy significa cercare la cosa sbagliata."
+        },
+        {
+          "erreur": "Ignorare il contesto storico nell'analisi",
+          "correction": "Una quinta parallela in Bach è un errore. In Debussy è un effetto voluto (planing). È il contesto a determinare se si tratta di un errore o di una tecnica."
+        }
+      ],
+      "resume": [
+        "5 periodi: Barocco (contrappunto + funzioni chiare) → Classicismo (forme simmetriche + cadenze affermate) → Romanticismo (cromatismo + modulazioni) → Tardo romanticismo (tonalità allargata) → Impressionismo (colore senza funzioni)",
+        "Stessa melodia, 5 armonizzazioni: la melodia Do–Mi–Sol–Do rivela le differenze stilistiche meglio di qualsiasi trattato",
+        "Criterio di identificazione: qual è il rapporto con la dominante? (Bach: obbligatorio → Debussy: inesistente)"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Senza tonalità funzionale fissa — pentatonismo e modi (misolidio), con un'unica tonicizzazione reale (sol#, batt. 47-67).",
+        "metrique": "6/4. Tempo 60 alla semiminima puntata, molto variabile (fino a 120 nel climax, ridiscendendo a 40 nella chiusura).",
+        "forme": "Arco narrativo che segue la leggenda di Ys: emersione della cattedrale, scampanio pieno, inabissamento, eco sottomarina, ritorno al silenzio.",
+        "sections": [
+          {
+            "label": "Battute 1-15",
+            "titre": "Le campane",
+            "chiffrage": "Quinte vuote + pentatonismo — planing Sol→Fa→Mi — campane su Do",
+            "fonctions": "? (nessuna funzione, sonorità pura)",
+            "texte": "L'accordo iniziale dice tutto: quinte vuote impilate su sei ottave (Sol1 fino a Re7) e, al loro interno, un aggregato pentatonico completo {Sol-La-Si-Re-Mi} — nessuna terza, nessuna sensibile, nessuna nota che scelga tra i modi. Il basso scende poi Sol-Fa-Mi sotto le stesse campane: planing integrale, gli accordi scivolano in parallelo senza che nessuno «funzioni». Un tema modale in pure ottave fluttua al di sopra, monodia senza armonia. Le campane tornano su Do (batt. 14): la stessa sonorità, trasposta, sempre senza terza."
+          },
+          {
+            "label": "Battute 16-27",
+            "titre": "L'emersione",
+            "chiffrage": "Si maggiore (pedale) — Mib (tritono) — quarte {Sol-Do-Re}",
+            "fonctions": "?",
+            "texte": "Accordi paralleli si insediano su pedale di Si — la cattedrale che «esce dalla bruma». Poi, senza transizione, la stessa materia è trasposta a Mib: un salto di tritono tra i due piani, la relazione più antitonale che esista, qui impiegata come un semplice cambio di illuminazione. Accordi di quarte {Sol-Do-Re} e una lunga discesa del basso preparano la vetta a venire."
+          },
+          {
+            "label": "Battute 28-41",
+            "titre": "Il corale: il climax senza dominante",
+            "chiffrage": "Do misolidio — Sol, Fa, re m, la m, mi m, Sib (♭VII), sol m (v) — Do",
+            "fonctions": "? (organum parallelo)",
+            "texte": "La cattedrale suona a piena voce: un corale d'organo in Do misolidio su pedale di Do inamovibile, triadi diatoniche parallele trattate come un organum gigante, con il colore distintivo del modo — il Sib, settima abbassata (♭VII) — e il v minore per mistura. Quattordici battute di trionfo senza la minima dominante funzionale: il più grande climax della letteratura pianistica costruito esclusivamente in plagale e in parallelo."
+          },
+          {
+            "label": "Battute 42-46",
+            "titre": "L'inabissamento",
+            "chiffrage": "Quarte {Sol-Do-Re} — basso Sib…Lab (cromatico)",
+            "fonctions": "?",
+            "texte": "Sugli stessi accordi di quarte, il basso cola per gradi cromatici (Sib, poi Lab), mentre campane acute suonano Do-Re al vertice della tastiera — la cattedrale sprofonda dal grave mentre l'acuto continua a scampanare."
+          },
+          {
+            "label": "Battute 47-67",
+            "titre": "La sezione centrale: una reliquia di grammatica in fondo all'acqua",
+            "chiffrage": "Pedale di sol# — Re#ø7 (colore) — Fa#7 (colore) — Re#7 → Sol#(7)",
+            "fonctions": "? — ? — D — T (l'unica vera cadenza del pezzo)",
+            "texte": "Un pedale di sol# quasi permanente sostiene una ripresa in forma di lamento del tema. Prima il colore: un accordo semidiminuito (Re#ø7) oscilla sul pedale — né sensibile né sesta eccedente, qui puro timbro. Poi Fa#7, ancora colore. E d'improvviso, sepolta nella sezione più cupa del pezzo, un'autentica progressione V7-I (Re#7 verso Sol#, con Fa## e Si# debitamente scritti): l'unica cadenza funzionale di tutta La Cathédrale engloutie."
+          },
+          {
+            "label": "Battute 68-83",
+            "titre": "Transizione ed eco",
+            "chiffrage": "Diadi a distanza di tritono (Fa#/Sol# – Do/Re) — eco del corale (pedale Do-Sol-Re, ♭VII, v)",
+            "fonctions": "?",
+            "texte": "Una transizione ridotta a due diadi a distanza di tritono, come un battito di bruma. Poi il corale intero ritorna, ma pianissimo, su un pedale composito (Do-Sol-Re) — la stessa griglia armonica del climax, eppure un altro mondo: la funzione di un accordo, qui, è la sua dinamica e il suo registro, non la sua cifratura."
+          },
+          {
+            "label": "Battute 84-89",
+            "titre": "La conclusione: la terza finalmente concessa",
+            "chiffrage": "Campane pentatoniche {Sol-La-Si-Re-Mi} — Do maggiore puro (I)",
+            "fonctions": "? — T",
+            "texte": "Le campane pentatoniche richiudono l'arco, identiche all'apertura. Ma l'ultimissimo accordo è un Do maggiore completo, disteso su quattro ottave, pianissimo: la terza (Mi), accuratamente evitata in tutte le campane del pezzo, viene concessa soltanto nell'ultima parola."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Il parallelismo come sistema, non come provocazione",
+            "texte": "Ogni parametro abituale dell'armonia funzionale trova qui un sostituto: il modo sostituisce la tonalità, il pedale sostituisce la funzione, il registro e la dinamica sostituiscono la cadenza. Non è assenza di regole — è un sistema interamente diverso, applicato con lo stesso rigore di una fuga."
+          },
+          {
+            "titre": "Il semidiminuito, ridotto a puro timbro",
+            "texte": "L'accordo semidiminuito di batt. 55 non prepara nulla, non sospende nulla, non sostituisce nulla: è un colore su un pedale, senza il minimo obbligo di risoluzione. Lo stesso aggregato che, altrove, porta tutto il peso di una cadenza o di un'ambiguità enarmonica diventa qui un semplice oggetto sonoro."
+          },
+          {
+            "titre": "Una cadenza, una sola, sepolta",
+            "texte": "Su ottantanove battute, una sola autentica progressione V7-I — e sopraggiunge nella sezione più cupa e più intima del pezzo, quasi nascosta. La cadenza, motore della musica tonale per tre secoli, non è qui che una citazione fuggevole in mezzo a un linguaggio del tutto diverso."
+          }
+        ]
+      }
     }
   },
   "cours30": {
@@ -4460,6 +5769,123 @@
       "emprunteLabel": "Preso in prestito da:",
       "warnBoxModalInterchange": "<strong>Modal interchange ≠ modulazione:</strong> Il prestito modale è puntuale — la tonica non cambia. In Do maggiore, prendere in prestito Lab (bVI) crea un colore, ma Do rimane il centro. Una modulazione implica un cambiamento di centro tonale confermato da una cadenza.",
       "h2Quiz": "Quiz — Armonia impressionista e modalità avanzata"
+    },
+    "conservatoire": {
+      "intuition": "Quando Debussy suona un accordo di nona parallelo, non pensa «tensione-risoluzione» — pensa «azzurro cielo che vira al violetto».",
+      "reference": {
+        "badge": "Messiaen · Tecnica del mio linguaggio musicale",
+        "citation": "I modi a trasposizione limitata sono la chiave del mio linguaggio. La loro simmetria interna crea un colore unico e inimitabile.",
+        "auteur": "Olivier Messiaen, 1944"
+      },
+      "voix": [
+        "Il planing non è un errore: è un movimento di accordi in parallelo in cui il colore sostituisce la funzione. Analizzare con gli occhi (non con le funzioni T/SD/D).",
+        "La scala per toni interi (6 note equidistanti) non contiene alcuna nota direttrice — la sospensione è voluta, non è un'ambiguità da risolvere.",
+        "I modi di Messiaen hanno trasposizioni limitate: il modo 1 (scala per toni interi) può essere trasposto solo 2 volte prima di tornare su se stesso."
+      ],
+      "repertoire": {
+        "titre": "Voiles (Préludes, libro I, n. 2)",
+        "compositeur": "Claude Debussy"
+      },
+      "pieges": [
+        {
+          "erreur": "Analizzare Debussy con le funzioni T/SD/D",
+          "correction": "L'armonia impressionista funziona per colore e registro. Cercare una dominante in «Voiles» di Debussy significa cercare la cosa sbagliata."
+        },
+        {
+          "erreur": "Credere che il planing sia un errore di condotta delle parti",
+          "correction": "Il planing è una tecnica deliberata — le quinte e le ottave parallele sono volute, per creare l'effetto di un blocco sonoro che scivola senza risoluzione."
+        },
+        {
+          "erreur": "Confondere scala per toni interi e scala pentatonica",
+          "correction": "Scala per toni interi: 6 note equidistanti (tutti toni), accordi eccedenti. Pentatonica: 5 note senza semitono (Do–Re–Mi–Sol–La). Colori molto diversi."
+        },
+        {
+          "erreur": "Cercare una risoluzione funzionale nell'impressionismo",
+          "correction": "La risoluzione V–I è volutamente evitata. La tensione impressionista è sensoriale (colore, registro, dinamica) e non funzionale."
+        }
+      ],
+      "resume": [
+        "Planing: spostamento di un accordo intero senza risoluzione — diatonico (lo stesso tipo su ogni grado) o cromatico (lo stesso identico accordo trasposto)",
+        "Scale speciali: per toni interi (6 note equidistanti, accordi eccedenti) · ottatonica (tono/semitono, dim7) · pentatonica (5 note senza semitono)",
+        "Modi di Messiaen: simmetria interna + trasposizioni limitate → colore unico e riconoscibile (modo 1 = scala per toni interi, modo 2 = ottatonica)"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Nessuna — collezione per toni interi {Do, Re, Mi, Fa#, Sol#, Sib}, senza tonica né funzione costruibile.",
+        "metrique": "2/4. Modéré (44 alla semiminima all'inizio, poi molto variabile).",
+        "forme": "Un arco unico per densità e registro (non per tensione armonica): esposizione — accumulo — climax pentatonico — decrescita — coda spenta.",
+        "sections": [
+          {
+            "label": "Battute 1-4",
+            "titre": "Il tema: l'oggetto-vela",
+            "chiffrage": "Toni interi — terze maggiori parallele, senza basso",
+            "fonctions": "? (nessuna funzione costruibile)",
+            "texte": "Terze maggiori parallele scendono senza alcun basso (Sol#/Mi → Fa#/Re → Mi/Do → Re/Sib): il tema scivola nella collezione per toni interi come su un piano senza rilievo, senza il minimo riferimento di altezza gerarchizzata."
+          },
+          {
+            "label": "Battute 5-14",
+            "titre": "Il pedale si insedia",
+            "chiffrage": "Toni interi — pedale di Sib",
+            "fonctions": "?",
+            "texte": "Un pedale di Sib si insedia al basso — e vi resterà per cinquantasette battute, fino a batt. 61. Motivi di terze e discese si ripetono pianissimo al di sopra."
+          },
+          {
+            "label": "Battute 15-22",
+            "titre": "L'organum eccedente",
+            "chiffrage": "Toni interi — triadi eccedenti parallele (Lab-Do-Mi, Sib-Re-Fa#)",
+            "fonctions": "?",
+            "texte": "Sotto il tema, l'ostinato di accompagnamento rivela l'unica «armonia» che la collezione autorizza: triadi eccedenti parallele — l'eccedente essendo l'unica triade che la scala per toni interi possa produrre. Debussy ne fa il suo organum, eco diretta delle triadi parallele della Cathédrale engloutie."
+          },
+          {
+            "label": "Battute 23-32",
+            "titre": "Lo strato di Fa# e l'ornamento cromatico",
+            "chiffrage": "Toni interi — strato grave su Fa#; figura cromatica isolata (batt. 31)",
+            "fonctions": "?",
+            "texte": "Uno strato grave si insedia su Fa#, l'altro polo della collezione. La battuta 31 introduce l'unica vera eccezione di tutto il pezzo: una piccola figura cromatica (il gruppetto Do-Re-Reb-Do, la scivolata Fa#-Sol-Lab) che fa udire i soli suoni estranei alla collezione — cromatismo d'ornamento, non d'armonia, l'eccezione che conferma la regola."
+          },
+          {
+            "label": "Battute 33-41",
+            "titre": "Amplificazione",
+            "chiffrage": "Toni interi (invariati)",
+            "fonctions": "?",
+            "texte": "La collezione non cambia; ciò che cambia è la densità e il registro — Serrez, dim. molto, Cédez. L'intensificazione avviene attraverso parametri che l'armonia classica trattava come semplici ausiliari."
+          },
+          {
+            "label": "Battute 42-47",
+            "titre": "Il climax: cambio di alfabeto",
+            "chiffrage": "Pentatonica dei tasti neri {Reb, Mib, Solb, Lab, Sib}",
+            "fonctions": "?",
+            "texte": "L'unico momento di tutto il pezzo in cui qualcosa cambia davvero — e non è né un accordo né una tonalità, è la collezione intera. Glissandi e volate pentatoniche, mf poi f (l'unico f del pezzo), Emporté: l'unica «modulazione» di Voiles è questo ribaltamento da un alfabeto a un altro."
+          },
+          {
+            "label": "Battute 48-61",
+            "titre": "Ritorno e decrescita",
+            "chiffrage": "Toni interi — pedale di Sib ripreso",
+            "fonctions": "?",
+            "texte": "Il tema e l'ostinato tornano sovrapposti in strati, pianissimo, sullo stesso pedale di Sib dell'inizio."
+          },
+          {
+            "label": "Battute 62-64",
+            "titre": "Coda: il pezzo si spegne",
+            "chiffrage": "Pedale di Fa# — terza Do-Mi nuda (×2), senza basso",
+            "fonctions": "?",
+            "texte": "Il pedale abbandona Sib per Fa# nelle ultime tre battute, sostenuto da morbide spazzolate della collezione. Poi la terza Do-Mi appare da sola due volte, senza basso — il pezzo non conclude, si spegne."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Una collezione che rende la funzione impossibile",
+            "texte": "La scala per toni interi non contiene né quinta giusta, né sensibile, né triade maggiore o minore: nessuna dominante, nessuna cadenza vi è nemmeno costruibile. Là dove La Cathédrale engloutie evitava la funzione pur conservandone una, sepolta, Voiles la rende impossibile per costruzione — non si rinuncia più alla cadenza, si sceglie un materiale in cui essa non esiste."
+          },
+          {
+            "titre": "La forma come curva di densità",
+            "texte": "Senza tensione armonica disponibile, sono il numero di suoni per battuta, il registro e la dinamica a disegnare la forma — un accumulo progressivo fino al climax pentatonico, poi una decrescita fino all'estinzione. Il pedale di Sib, unica gerarchia che sopravviva, è «centro» solo perché viene tenuto."
+          },
+          {
+            "titre": "La sesta eccedente, ridotta a un sottoinsieme",
+            "texte": "L'accordo più teso del cromatismo romantico — la sesta eccedente francese, quella del vertice drammatico di Chopin — non è, nota per nota, che un sottoinsieme della collezione per toni interi nella quale Debussy fa fluttuare le sue vele per sessantaquattro battute. Stesso materiale, tensione massima divenuta assenza di peso."
+          }
+        ]
+      }
     }
   },
   "cours31": {
@@ -4817,6 +6243,91 @@
       "infoBoxMorricone": "<strong>Morricone e Leone:</strong> Morricone componeva PRIMA delle riprese. Leone mostrava la musica agli attori sul set — recitavano mentre ascoltavano. La musica dettava il ritmo e l'emozione della recitazione, l'inverso del metodo classico. Questa collaborazione unica spiega la perfetta fusione immagine/suono nei loro film.",
       "warnBoxLeitmotif": "<strong>Tecnica avanzata:</strong> Un leitmotiv in maggiore che diventa minore è più potente di un nuovo tema triste. Perché? Lo spettatore ha già un legame emotivo con il tema originale — la sua trasformazione amplifica l'impatto. Creare un leitmotiv significa investire in una risorsa emotiva che il compositore può sfruttare per tutta la durata del film.",
       "h2Quiz": "Quiz — Armonia cinematografica"
+    },
+    "conservatoire": {
+      "intuition": "La musica da film non racconta ciò che si vede: dice ciò che si prova davanti a ciò che si vede. È la differenza fra commento e rivelazione.",
+      "reference": {
+        "badge": "Morricone · Intervista con Bonini, 2016",
+        "citation": "La musica è il linguaggio invisibile del film. Sergio mi dava le immagini e io componevo senza guardarle: componevo le emozioni che voleva far provare allo spettatore.",
+        "auteur": "Ennio Morricone, compositore, 2016"
+      },
+      "voix": [
+        "Il tritono irrisolto è lo strumento di tensione più efficace del cinema. Basta una quarta aumentata lasciata sospesa, senza risoluzione, per mettere in allerta lo spettatore. Il cervello umano attende la risoluzione: il compositore può impadronirsi di quell'attesa.",
+        "Un leitmotiv trasformato armonicamente è più potente di un tema nuovo. Quando l'Imperial March di Williams vira al minore-maggiore, o viene affidata a una sola arpa, risulta più straziante di qualunque melodia inventata da zero.",
+        "John Williams, Hans Zimmer ed Ennio Morricone condividono un segreto: le loro armonie sono spesso semplici (I–V–VI–IV), ma la loro orchestrazione è eccezionale. La forza emotiva viene dal timbro, non dalla complessità armonica."
+      ],
+      "repertoire": {
+        "titre": "Il Buono, il Brutto, il Cattivo (tema principale, integrale)",
+        "compositeur": "Ennio Morricone"
+      },
+      "pieges": [
+        {
+          "erreur": "Credere che la musica da film debba essere armonicamente complessa per risultare efficace",
+          "correction": "La progressione I–V–VI–IV (usata in «Time» di Zimmer e in «Can't Help Falling in Love» di Williams) genera più emozione delle armonie complesse, perché libera l'orecchio e gli permette di concentrarsi sul timbro, sulla dinamica e sulla melodia."
+        },
+        {
+          "erreur": "Usare lo stesso registro armonico per tutte le emozioni",
+          "correction": "Ogni emozione ha la sua mappa armonica: tritono (tensione), minore discendente (tristezza), maggiore con quinta vuota (eroismo), frigio (mistero). Scegliere il colore armonico sbagliato distrugge l'effetto emotivo."
+        },
+        {
+          "erreur": "Confondere underscoring e source music",
+          "correction": "L'underscoring è musica che i personaggi non sentono (sottofondo musicale). La source music è musica interna alla diegesi (una radio, un'orchestra in scena). L'armonia può essere la stessa; la funzione narrativa è opposta."
+        }
+      ],
+      "resume": [
+        "Mappa delle emozioni: tritono irrisolto (tensione) · minore discendente (tristezza) · maggiore con quinta vuota (eroismo) · frigio/diminuito (mistero) · add9 (amore)",
+        "Leitmotiv: tema legato a un personaggio o a un'idea, trasformato armonicamente secondo l'evoluzione del racconto",
+        "La forza emotiva del cinema viene dall'orchestrazione, non dalla complessità armonica: I–V–VI–IV può essere epico se l'orchestrazione è quella giusta"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Re eolio tinto di dorico (il si♮ dell'accordo di IV) — nessuna tonalità funzionale classica.",
+        "metrique": "2/2. Fast tempo (in 2), ♩ = 200.",
+        "forme": "Una forma con rimandi: strofa (1-49) — To Coda (50) — l'evento (51-58) — ripresa della strofa (59-89) — D.S. al Coda (90) — l'evento una seconda volta (91-94) — coda in decrescendo (95-111).",
+        "sections": [
+          {
+            "label": "Battute 1-16",
+            "titre": "Il richiamo e l'intero corredo modale",
+            "chiffrage": "bordone — i (quinta vuota) — IV — ♭VII — v",
+            "fonctions": "? (nessuna funzione costruibile: terreno modale, non tonale)",
+            "texte": "Un bordone Re-Fa-Sol-La installa il colore prima che entri il richiamo vero e proprio — la quarta La-Re, il celebre «richiamo del coyote» —, armonizzato da una quinta vuota (Re-La, senza terza): lo stesso gesto inaugurale de La Cathédrale engloutie, l'intervallo nudo prima di ogni armonia. La strofa dispiega poi il vocabolario completo del modo: i (re minore), IV (Sol maggiore, con il suo si naturale dorico — il colore folk per eccellenza), ♭VII (Do maggiore, l'accordo che la tonalità classica proibiva), v (la minore, una dominante priva di sensibile)."
+          },
+          {
+            "label": "Battute 27-49",
+            "titre": "Il ponte",
+            "chiffrage": "v — ♭III (Fa) — ♭VII (Do)",
+            "fonctions": "?",
+            "texte": "Il ponte passa al versante relativo — v, ♭III, ♭VII — con archi e voci che planano al di sopra, sempre senza la minima sensibile."
+          },
+          {
+            "label": "Battute 51-58 (riprese a 91-94)",
+            "titre": "L'evento: l'unica dominante",
+            "chiffrage": "♭V (La♭) → V7 (La7, con l'unico do♯ del brano)",
+            "fonctions": "? → D",
+            "texte": "Ed ecco l'evento: un accordo a distanza di tritono dalla tonica (La♭ maggiore, ♭V) sorge dal nulla e scivola su La7 — l'unica vera dominante funzionale di tutto il brano, che contiene l'unico do♯ dell'intera trascrizione, riservata al momento di svolta drammatica prima del ritorno immediato al mondo senza sensibile. La forma con rimandi (To Coda batt. 50, D.S. al Coda batt. 90) fa risuonare due volte questo stesso gesto."
+          },
+          {
+            "label": "Battute 95-111",
+            "titre": "La coda",
+            "chiffrage": "il richiamo che si allontana (dim.) — quinta vuota (106-109) — risoluzione completa (110)",
+            "fonctions": "? — T",
+            "texte": "La coda riporta il richiamo, che si allontana in decrescendo attraverso passaggi a quinte nude — finché l'ultimissima nota tenuta reintroduce la terza minore: il brano si chiude su un accordo di re minore completo, non sul deserto di una quinta vuota."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "L'economia di Bach, rovesciata",
+            "texte": "Nel corale di Bach il modale era l'eccezione colorata di un mondo funzionale (un semplice v minore di passaggio). Qui la dominante è l'effetto speciale di un mondo modale: una sola battuta di funzione vera su centoundici. Un secolo di storia armonica riassunto in un rovesciamento completo delle proporzioni."
+          },
+          {
+            "titre": "Il timbro come parametro formale",
+            "texte": "Lungo sette parti il richiamo passa dall'ocarina alla voce, alla chitarra elettrica, alla tromba — ed è questa rotazione di timbri, non l'armonia, ad articolare la forma. La lezione che Debussy aveva teorizzato (il registro e la dinamica al posto della cadenza), portata nel linguaggio comune di tutto il mondo per la via del western."
+          },
+          {
+            "titre": "Una lingua diventata materna",
+            "texte": "L'eolio con ♭VII di questo tema è diventato, dal 1966 in poi, il vocabolario armonico di base del rock, del pop e della musica per immagini: la stessa economia modale, diffusa a centinaia di milioni di ascoltatori."
+          }
+        ]
+      }
     }
   },
   "cours35": {
@@ -4919,6 +6430,98 @@
       "row4Eviter": "13 naturale (usare b13)",
       "warnBoxVoicings": "<strong>Errore frequente:</strong> Confondere chord scale e modo. Una chord scale è sempre legata a un accordo specifico in un contesto armonico preciso. CMaj7 in Do maggiore usa l'ionico di default — ma se si vuole il colore lidio (#11), si sceglie il lidio. Il contesto (tonale o modale) determina la chord scale, non la griglia da sola.",
       "h2Quiz": "Quiz — Riharmonizzazione e voicings"
+    },
+    "conservatoire": {
+      "intuition": "Miles Davis diceva: «Non suonare ciò che c'è — suona ciò che non c'è.» La riarmonizzazione è esattamente questo: sentire le possibilità che la melodia non impone.",
+      "reference": {
+        "badge": "Levine · The Jazz Theory Book, 1995",
+        "citation": "La riarmonizzazione non è barare: è una conversazione fra il compositore originale e il jazzista. Rispetti la melodia e inviti l'armonia a ballare in un altro modo.",
+        "auteur": "Mark Levine, The Jazz Theory Book, 1995"
+      },
+      "voix": [
+        "I guide-tones (terza e settima dell'accordo) sono le note che definiscono il colore armonico. Quando riarmonizzi, assicurati che la melodia non sfreghi contro i guide-tones del nuovo accordo: è questo il vincolo principale.",
+        "Lo shell voicing (fondamentale + 3ª + 7ª, senza quinta) suona più moderno e lascia più spazio alla melodia e alla linea di basso. Togliere la quinta non impoverisce l'accordo: lo chiarisce.",
+        "Kind of Blue di Miles Davis fu registrato senza prove: i musicisti scoprivano le griglie in studio. Non è improvvisazione totale: è una struttura modale precisa con libertà totale al suo interno. La differenza è essenziale."
+      ],
+      "repertoire": {
+        "titre": "Blue in Green (Kind of Blue, integrale)",
+        "compositeur": "Miles Davis / Bill Evans (paternità contesa)"
+      },
+      "pieges": [
+        {
+          "erreur": "Riarmonizzare senza rispettare le note della melodia",
+          "correction": "In una riarmonizzazione la melodia è intoccabile. Ogni accordo scelto deve permettere alla nota melodica di essere fondamentale, terza, quinta, settima o un'estensione disponibile — mai una avoid note."
+        },
+        {
+          "erreur": "Applicare la sostituzione di tritono a tutti gli accordi indistintamente",
+          "correction": "La sostituzione di tritono funziona solo sugli accordi di dominante (V7). Applicarla a IMaj7 o a IIm7 produce una dissonanza estranea allo stile, perché i guide-tones non sono più in comune."
+        },
+        {
+          "erreur": "Confondere chord scale e modo",
+          "correction": "Una chord scale è una scala suonata su un accordo specifico in un contesto tonale preciso. CMaj7 in Do maggiore → scala ionica (o lidia). CMaj7 modale → si può usare qualunque scala maggiore appropriata. È il contesto armonico a determinare la chord scale."
+        }
+      ],
+      "resume": [
+        "Riarmonizzazione: sostituzione diatonica (I↔VI↔III) · di tritono (V7→bII7) · modal interchange · chromatic mediant",
+        "Guide-tones: terza + settima dell'accordo — non far mai sfregare la melodia contro di essi quando si riarmonizza",
+        "Voicings professionali: shell (1-3-7) · drop 2 · Bill Evans (7-9 senza fondamentale) · So What quartal"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Un re minore decentrato / un Si♭ maggiore implicito: l'ambiguità non è un'imprecisione d'ascolto, è il soggetto stesso del brano. Il materiale è autenticamente funzionale (vere dominanti, ovunque) ma messo in orbita senza fissarsi mai stabilmente su un centro.",
+        "metrique": "3/4 rubato, armatura con un bemolle. Tempo nominale 172 (indicativo: il brano si suona rubato). Pedale «sempre dopo» già dalla seconda battuta: ripedalizzazione legata dopo ogni nuova armonia, la firma Evans/Debussy.",
+        "forme": "Un ciclo di dieci battute funzionali (né le dodici del blues, né i multipli di otto della canzone), disteso su una ventina di battute di 3/4 per ogni chorus: B♭maj9 – A7 – Dm9 – E7 – Am9 – Dm9 – B♭maj7 – A7 – Dm – (Cm9–F13). Il turnaround finale è un ii–V di Si♭, non di Re: il ciclo non riporta mai alla propria tonica, riporta al proprio punto di partenza armonico — che non è la tonica. Nelle sezioni di assolo il ciclo si comprime (armonie con le durate dimezzate, annotazione presente nel file alla batt. 77): la stessa deriva tonale rigiocata più in fretta.",
+        "sections": [
+          {
+            "label": "Battute 0-9 (l'introduzione e il primo giro del ciclo)",
+            "titre": "Un centro che si annuncia senza imporsi",
+            "chiffrage": "Dm13 (intro) → B♭maj9 → A7 → Dm9",
+            "fonctions": "T (i, rubato) → ? (♭VI/I ambiguo) → D (V reale) → T (i, risoluzione reale)",
+            "texte": "L'introduzione rubato pone re minore (Dm13) come centro — ma il ciclo che segue si apre su Si♭ maggiore 9, un accordo dalla identità doppia fin dalla prima battuta: sesto grado abbassato di re minore, oppure tonica implicita di un Si♭ maggiore che affiora senza mai dichiararsi. L'A7 che segue è invece una vera dominante di re minore, e il Dm9 che la accoglie è una vera risoluzione: il brano non è atonale, è funzionale a frammenti."
+          },
+          {
+            "label": "Battute 9-32 (il cerchio di dieci battute)",
+            "titre": "Un ii–V che non riporta mai alla tonica",
+            "chiffrage": "E7 → Am9 → B♭maj7 → A7 → Dm13 → (Cm9–F13)",
+            "fonctions": "D (V7 deviato) → T (v, risoluzione minore) → ? (♭VI) → D (V) → T (i) → ? (turnaround decentrato)",
+            "texte": "E7 è una vera dominante, ma risolve su la minore, mai su La maggiore: una dominante minore, un quinto grado che rifiuta la gerarchia che annuncia. Il ciclo chiude il suo primo giro su Dm13, poi bascula sul turnaround Cm9–F13: un ii–V perfettamente a norma, ma di Si♭, non di Re. È questo il gesto che rende la forma circolare in senso proprio: il ciclo non torna mai al suo presunto centro, torna al proprio punto di partenza, che quel centro non è. Re minore esiste, affermato tre volte nel ciclo, ma non occupa mai un inizio di sezione: la tonalità c'è, ma è fuori centro."
+          },
+          {
+            "label": "Battute 38-39 (le dominanti deviate, al massimo della densità)",
+            "titre": "L'alterazione come densità, non come tensione da risolvere",
+            "chiffrage": "B♭7(#9#11)/basso B♭1 → A7 (♭9 + #9 + 13 naturale)",
+            "fonctions": "D (subV di A7) → D (V, saturo)",
+            "texte": "Alla batt. 38 il Si♭1 del basso, sotto un movimento cromatico, rivela un accordo sostituto di tritono (subV) che scivola su A7: il «B7» del trascrittore è un refuso di un semitono, il più insidioso sia all'orecchio sia sulla carta. La battuta seguente satura quell'A7: nona bemolle (Si♭) e nona diesis (Do naturale) convivono con la terza (Do♯) e una tredicesima naturale (Fa♯, il colore brillante: qui nessuna tredicesima bemolle, nemmeno un fa naturale in tutta la battuta). Il pedale tenuto dalla battuta precedente fa suonare insieme questo gesto lineare ascendente: Evans tratta l'alterazione come un colore che si accumula, non come una tensione che invoca la propria risoluzione."
+          },
+          {
+            "label": "Battute 77 e 219 (la stessa enarmonia errata, due volte)",
+            "titre": "Una grafia illeggibile per uno strumentista",
+            "chiffrage": "Si♭ maggiore (l'«A# major» del file, in entrambe le occorrenze)",
+            "fonctions": "? (colore, non funzione)",
+            "texte": "Due volte nella trascrizione lo stesso accordo di Si♭ maggiore (Fa–Si♭–Re) è scritto «A# major»: un'enarmonia esatta ma illeggibile per uno strumentista, che vedrebbe un fa♯♯ o un do♯♯ là dove la mano suona semplicemente un fa naturale. La correzione non cambia alcuna altezza reale; rende soltanto la partitura suonabile."
+          },
+          {
+            "label": "Battute 308-310 (il finale: il colore come ultima parola)",
+            "titre": "Né maggiore né minore: l'ultima parola è un timbro",
+            "chiffrage": "Re–Mi–La (sus2) → Re + La + Do♯ (scritto Re♭): ∆7 senza terza",
+            "fonctions": "? (colore terminale, nessuna funzione si applica)",
+            "texte": "Il brano si spegne su un colore sospeso (Re-Mi-La, una nona senza terza) prima di richiudersi su un accordo di settima maggiore del tutto privo di terza: Re, La (la quinta), Do♯ (la settima maggiore, notata Re♭ per accidente di scrittura: la sensibile di Re, nell'istante preciso in cui cessa di funzionare come tale). Né maggiore né minore: la ∆7 come puro colore terminale, esattamente la sonorità che Satie poneva nel 1888 come provocazione inaugurale (l'oscillazione Gmaj7/Dmaj7 della Gymnopédie), divenuta settant'anni più tardi l'ultima parola naturale di una ballad."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "1959, l'anno dalle due risposte",
+            "texte": "Nello stesso anno, sullo stesso disco, due soluzioni opposte allo stesso problema (la funzione tonale ha ancora un avvenire?): Giant Steps spinge la dominante al suo limite con una simmetria iperattiva (tre tonalità a distanza di terza maggiore, ciclo richiuso); Blue in Green sospende gli stessi materiali (ii-V, subV, alterazioni) in un cerchio decentrato che non si richiude mai sulla propria tonica. Stesso vocabolario, due destini."
+          },
+          {
+            "titre": "L'eredità Evans/Debussy",
+            "texte": "Il pedale «sempre dopo», il maj7 senza terza come colore terminale, l'ambiguità modale del centro tonale: Bill Evans eredita direttamente il vocabolario di Debussy e lo reimmette in una forma di trentadue battute rielaborata come ciclo di dieci. Il ponte fra questo percorso e il suo stesso passato (Voiles, La Cathédrale engloutie) si richiude qui."
+          },
+          {
+            "titre": "Il sub-V, sempre lo stesso gesto",
+            "texte": "Il sostituto di tritono udito alla batt. 38 (B♭7 al posto di A7) è lo stesso meccanismo che si incontra altrove in questo corpus: una dominante rimpiazzata da quella che ne condivide le sensibili a distanza di tritono. Qui si tratta di una tessitura di passaggio in un'improvvisazione; altrove, di una regola di riarmonizzazione insegnata. Lo stesso strumento, due usi."
+          }
+        ]
+      }
     }
   },
   "cours36": {

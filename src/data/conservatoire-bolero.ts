@@ -39011,7 +39011,7 @@ export const BOLERO_ANALYSE_NARRATIVE: AnalyseNarrative = {
   synthese: [
     {
       titre: "Le cas-limite de l'harmonie immobile",
-      texte: "Cette pièce pousse à l'échelle industrielle ce que le corpus a déjà croisé à plus petite échelle (la pédale de huit mesures de Satie, les cinquante-sept mesures de Voiles) : 86% de l'œuvre repose sur une seule et même fonction. Toute la tension attendue de l'harmonie tonale est ici déléguée ailleurs — au crescendo, à l'épaisseur de la texture, à l'accumulation des voix — pendant que l'accord, lui, ne bouge pas.",
+      texte: "Cette pièce pousse à l'échelle industrielle ce que le corpus a déjà croisé à plus petite échelle (la pédale de huit mesures de Satie, les soixante-quatre mesures de Voiles) : 86% de l'œuvre repose sur une seule et même fonction. Toute la tension attendue de l'harmonie tonale est ici déléguée ailleurs — au crescendo, à l'épaisseur de la texture, à l'accumulation des voix — pendant que l'accord, lui, ne bouge pas.",
     },
     {
       titre: "La tierce majeure, un déplacement qui ne doit rien aux quintes",

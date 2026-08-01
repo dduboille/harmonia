@@ -2436,7 +2436,7 @@ export const SCHUBERT_D845_ANALYSE_NARRATIVE: AnalyseNarrative = {
     },
     {
       titre: "La résolution en éventail",
-      texte: "Les deux sixtes augmentées résolvent de la même façon : leurs deux notes extrêmes (fa et ré♯) convergent par mouvement contraire, chacune d'un demi-ton, vers l'unisson mi — la dominante. C'est la signature de toute sixte augmentée, quelle que soit sa richesse (italienne, française, allemande).",
+      texte: "Les deux sixtes augmentées résolvent de la même façon : leurs deux notes extrêmes (fa et ré♯) divergent par mouvement contraire, chacune d'un demi-ton, vers l'octave de mi — la dominante. C'est la signature de toute sixte augmentée, quelle que soit sa richesse (italienne, française, allemande).",
     },
     {
       titre: "Un emprunt modal, pas seulement chromatique",

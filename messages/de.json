@@ -476,7 +476,7 @@
             "titre": "Die italienische übermäßige Sexte",
             "chiffrage": "It+6 (F-A-Dis)  →  E",
             "fonctions": "SD (entlehnt)  →  V",
-            "texte": "Die erste chromatische Entlehnung des Ausschnitts: Über einem F im Bass (der tiefalterierten sechsten Stufe) bildet der Akkord F-A-Dis eine <strong>übermäßige Sexte</strong> – jenes Intervall F-Dis (zehn Halbtöne), das dem Akkord seinen Namen gibt. Die beiden Außentöne streben in Gegenbewegung auseinander, jeder um einen Halbton: Das F sinkt zum E (im Bass), das Dis steigt zum E (darüber) – eine fächerförmige Auflösung auf das Unisono E, das zur Dominante wird. Ein Halbschluss von großer Spannung."
+            "texte": "Die erste chromatische Entlehnung des Ausschnitts: Über einem F im Bass (der tiefalterierten sechsten Stufe) bildet der Akkord F-A-Dis eine <strong>übermäßige Sexte</strong> – jenes Intervall F-Dis (zehn Halbtöne), das dem Akkord seinen Namen gibt. Die beiden Außentöne streben in Gegenbewegung auseinander, jeder um einen Halbton: Das F sinkt zum E (im Bass), das Dis steigt zum E (darüber) – eine fächerförmige Auflösung auf die Oktave E, das zur Dominante wird. Ein Halbschluss von großer Spannung."
           },
           {
             "label": "Takte 5-6",
@@ -514,7 +514,7 @@
           },
           {
             "titre": "Die fächerförmige Auflösung",
-            "texte": "Beide übermäßigen Sexten lösen sich auf dieselbe Weise auf: Ihre beiden Außentöne (F und Dis) laufen in Gegenbewegung zusammen, jeder um einen Halbton, auf das Unisono E – die Dominante. Das ist die Signatur jeder übermäßigen Sexte, wie reich sie auch besetzt sein mag (italienisch, französisch, deutsch)."
+            "texte": "Beide übermäßigen Sexten lösen sich auf dieselbe Weise auf: Ihre beiden Außentöne (F und Dis) laufen in Gegenbewegung auseinander, jeder um einen Halbton, auf die Oktave E – die Dominante. Das ist die Signatur jeder übermäßigen Sexte, wie reich sie auch besetzt sein mag (italienisch, französisch, deutsch)."
           },
           {
             "titre": "Eine Modusentlehnung, nicht nur eine chromatische",
@@ -1087,7 +1087,70 @@
         "Ausweichungsakkord = gemeinsam in Ausgangs- und Zieltonart",
         "Nahe Modulationen: Paralleltonart, Varianttonart, Quinte auf-/abwärts",
         "Stets durch Kadenz in der neuen Tonart bestätigen"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "cis-Moll (Vorzeichnung mit vier Kreuzen).",
+        "metrique": "4/4, mit der ununterbrochenen Begleitung in Achteltriolen in der rechten Hand – dem berühmten Ostinato-Motiv des Satzes. Jeder Takt wechselt unter diesem beständigen Rauschen nur ein- oder zweimal die harmonische Farbe.",
+        "forme": "Neun Takte, die eine vollständige Phrase entwerfen: eine Tonikageste, bereichert um eine neapolitanische Farbe, ein chromatischer Dominantorgelpunkt, eine kurze Rückkehr zur Tonika, dann ein allmähliches Kippen zur Durparallele (E-Dur), auf der die Phrase endet, ohne je nach Hause zurückzukehren – genau der Boden, auf dem ein Pivotakkord zu einer neuen Tonart keimen kann, das Thema dieser Lektion.",
+        "sections": [
+          {
+            "label": "Takte 1-2",
+            "titre": "Die Tonika und ihre erste Durchgangsfärbung",
+            "chiffrage": "Cism | Cism7",
+            "fonctions": "I | I4/2",
+            "texte": "Das gebrochene Arpeggio der rechten Hand legt zunächst den Tonikadreiklang in Grundstellung vor (<strong>I</strong>). Takt 2 fügt ihm eine Septime hinzu (H), in dritter Umkehrung (<strong>I4/2</strong>): Der Bass sinkt um einen Ganzton (Cis→H), ohne dass sich die Funktion ändert – eine einfache Durchgangsfärbung, weiterhin die Tonika."
+          },
+          {
+            "label": "Takt 3",
+            "titre": "Die neapolitanische Sexte",
+            "chiffrage": "A | D/Fis",
+            "fonctions": "VI | N6",
+            "texte": "Der erste Farbakkord: <strong>VI</strong> (A-Dur), die Durparallele der Tonart, die die Tonikafunktion verlängert. Der zweite ist die harmonische Visitenkarte dieses Stücks: die <strong>neapolitanische Sexte</strong> – ein Durakkord über der tiefalterierten zweiten Stufe (D anstelle des leitereigenen Dis), stets in erster Umkehrung verwendet (Fis im Bass, seine Terz). Es ist der berühmteste chromatische Akkord des romantischen Repertoires, um eine Subdominante einzufärben."
+          },
+          {
+            "label": "Takt 4",
+            "titre": "Ein chromatischer Dominantorgelpunkt",
+            "chiffrage": "Gis7/His — Cm/Gis — Gis7",
+            "fonctions": "V6/5 — (chromatische Farbe) — V7",
+            "texte": "Der ganze Takt ruht auf einem <strong>Gis-Orgelpunkt</strong> (der Dominante), ununterbrochen im Bass gehalten. Zwischen die beiden Dominantakkorde (zuerst in erster Umkehrung, dann in Grundstellung) schiebt Beethoven einen c-Moll-Akkord – eine bloße chromatische Wechselnote über dem Orgelpunkt, die die dominantische Gesamtfunktion des Taktes nie verändert."
+          },
+          {
+            "label": "Takte 5-6",
+            "titre": "Kurze Rückkehr zur Tonika",
+            "chiffrage": "Cism | Gis7/His",
+            "fonctions": "I | V6/5",
+            "texte": "Eine kurze Heimkehr vor einer neuen Dominantvorbereitung, die die Geste der Takte 1 und 4 beinahe Note für Note wiederholt – dieses Atmen zwischen Tonika und Dominante ist der rhythmische Motor des ganzen Satzes."
+          },
+          {
+            "label": "Takt 7",
+            "titre": "Tonika, dann Mollsubdominante",
+            "chiffrage": "Cism — Fism",
+            "fonctions": "I — iv",
+            "texte": "Die Bezifferung schreibt für den zweiten Akkord „IV6“, doch der einzige in diesem Augenblick tatsächlich gespielte Basston ist Fis – das gleichzeitig erklingende A liegt in einer Mittelstimme, nicht im Bass. Es handelt sich also um einen <strong>iv</strong>-Akkord in Grundstellung (fis-Moll), die Mollsubdominante, und nicht um dessen erste Umkehrung."
+          },
+          {
+            "label": "Takte 8-9",
+            "titre": "Tonikalisierung der Durparallele",
+            "chiffrage": "E/H (Orgelpunkt) — H7 — E",
+            "fonctions": "D (vorbereitend) — D — T (neue Farbe)",
+            "texte": "Ein H-Orgelpunkt richtet sich für den ganzen Takt 8 im Bass ein. In dessen erster Hälfte bilden die Oberstimmen nur einen schlichten E-Dur-Akkord (<strong>III6/4</strong>): Die eigentliche angewandte Dominante trifft erst in der zweiten Hälfte ein, wenn die Septime (Dis) erscheint und den Akkord in <strong>H7 (V7/III)</strong> verwandelt. Die Auflösung in Takt 9 auf <strong>E-Dur (III)</strong> schließt die Phrase – nicht daheim auf der Tonika, sondern auf ihrer Durparallele. Nun ist cis-Moll gerade die Mollparallele von E-Dur: Der Bestand an gemeinsamen Akkorden dieser beiden Tonarten (angefangen bei der Tonika der einen, die die vi. Stufe der anderen ist) ist genau die Beziehung, die ein Pivotakkord ausnutzt – diese Phrase hält exakt am Rand einer Modulation inne, ohne sie zu vollziehen."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Ein einziger Orgelpunkt, zwei Farben",
+            "texte": "In den Takten 4 und 8 hält Beethoven einen einzigen Ton im Bass (Gis, dann H), während die Oberstimmen darüber den Akkord wechseln – der Orgelpunkt gibt dem Takt seinen Zusammenhalt, selbst wenn die Harmonie sich zu bewegen scheint."
+          },
+          {
+            "titre": "Die Neapolitanische, Signatur des Stücks",
+            "texte": "Der Akkord aus Takt 3 (D/Fis, N6) ist eines der harmonischen Wahrzeichen dieses Satzes – eine chromatische Entlehnung, so charakteristisch, dass sie einer ganzen Akkordkategorie der klassischen Theorie ihren Namen gegeben hat."
+          },
+          {
+            "titre": "Ein offener Schluss auf der Durparallele",
+            "texte": "Indem er auf der III. Stufe innehält, statt zur I. zurückzukehren, deutet dieser Ausschnitt die Modulation lediglich an – er bereitet den Boden (den beiden Tonarten gemeinsamen Akkord), ohne sie auszulösen: genau die Nuance, die diese Lektion hörbar machen will."
+          }
+        ]
+      }
     }
   },
   "cours9": {
@@ -3108,6 +3171,119 @@
       "headerBadge": "Stufe 2 · Lektion 17",
       "headerTitle": "Die musikalische Phrase und die Form",
       "beethovenFormulaCaption": "Sol – Sol – Sol – Mib  (3 Wiederholungen + kleiner Terzfall)"
+    },
+    "conservatoire": {
+      "intuition": "Eine achttaktige Phrase, eine nackte Akkordbrechung, ein schulmäßiger Wechsel von Tonika und Dominante — und doch zieht Haydn daraus einen Theatercoup. Die einfachste Form kann die wirksamste Überraschung tragen, sofern man genau weiß, wohin der Akzent gehört.",
+      "reference": {
+        "badge": "Haydn · Sinfonie Nr. 94 „mit dem Paukenschlag“",
+        "citation": "Das wird die Damen auffahren lassen.",
+        "auteur": "Joseph Haydn, über den Schlag in Takt 16 (von seinen Biographen überliefert)"
+      },
+      "voix": [
+        "Eine klassische Phrase gliedert sich in Motiv, Fortspinnung und Kadenz — das Thema der Surprise-Sinfonie zeigt diese Anatomie so nackt wie nur möglich: acht Takte, eine einzige Akkordbrechung, eine einzige Polarität (Tonika–Dominante).",
+        "Die Wiederholung einer Phrase kann dasselbe Material Note für Note noch einmal bringen und seine Wirkung dennoch völlig verändern — hier allein durch den Wechsel der Dynamik (p, dann pp und dann, plötzlich, ff).",
+        "Eine zweiteilige Form (Thema = zwei Teile A/B, jede Variation ebenso) ordnet die Phrase auf größerer Ebene: Die Überraschung fällt genau in den Augenblick, in dem sich die Wiederholung des A-Teils in sich selbst schließen wollte."
+      ],
+      "repertoire": {
+        "titre": "Sinfonie Nr. 94 „mit dem Paukenschlag“, 2. Satz (Andante)",
+        "compositeur": "Joseph Haydn"
+      },
+      "pieges": [
+        {
+          "erreur": "Eine seltsame oder chromatische Harmonie suchen, um den Überraschungseffekt in Takt 16 zu erklären",
+          "correction": "Der Akkord ist eine schlichte V, genau diejenige, die der Halbschluss des Themas ohnehin verlangte — die Wirkung steckt nicht im Akkord, sondern in seiner Dynamik (ff nach zwei p/pp-Phrasen) und in seiner Platzierung auf leichter Zählzeit. Eine Phrase kann überraschen, ohne dass eine einzige harmonische Regel verletzt würde."
+        },
+        {
+          "erreur": "Glauben, ein so einfaches Thema (eine Akkordbrechung, ein Wechsel I–V) sei ein Satzfehler",
+          "correction": "Die Nacktheit des Themas ist Strategie, nicht Schwäche: Das Material muss minimal sein, damit die vier Variationen Raum haben, es einzukleiden, und damit die Überraschung vor einem Hintergrund vollkommener Unschuld umso greller wirkt."
+        },
+        {
+          "erreur": "Jede Variation als harmonisch eigenständiges Stück analysieren",
+          "correction": "Außer der Variation II (dem minore, dem einzigen wirklichen Ausflug fort von der Tonika) behalten alle Variationen DASSELBE harmonische Gerüst wie das Thema — nur die Textur (Gegenstimme, gehämmerte Oktaven, Tonrepetitionen, Fanfare) wechselt von Variation zu Variation."
+        }
+      ],
+      "resume": [
+        "Eine klassische Phrase gliedert sich in Motiv + Fortspinnung + Kadenz — das Thema der Surprise-Sinfonie (Haydn, 1791) zeigt sie im kargsten Zustand: nackte Akkordbrechung, Wechsel I–V, Halbschlüsse in T. 4 und T. 8.",
+        "Die zweiteilige Form mit Wiederholungen ordnet Thema UND Variationen auf größerer Ebene als die bloße Phrase: Jeder Teil wird wiederholt, und genau auf eine Wiederholung (pp) setzt Haydn seinen Theatercoup (T. 16, ff).",
+        "Humor ist eine harmonische Kategorie eigenen Rechts: Takt 16 verletzt keine Regel (eine schlichte V), er verändert nur den Status — Dynamik, Instrumentation — dieses Akkords. Nichts beweist die Existenz einer Norm besser als die Möglichkeit, über sie zu lachen."
+      ],
+      "analyseNarrative": {
+        "tonalite": "C-Dur von Anfang bis Ende — der einzige Ausflug fort von der Tonika ist der Gang durch c-Moll in der Variation II (T. 49-74).",
+        "metrique": "2/4. Andante (♩=64), mit einer leichten Verbreiterung (♩=58) genau zu Beginn der Coda (T. 135).",
+        "forme": "Thema und vier Variationen mit Coda, zweiteilige Form mit Wiederholungen (Thema T. 1-16, Variation I T. 17-48 [in 2 Teilen A/B], II T. 49-74, III T. 75-98, IV T. 99-134, Coda T. 135-148).",
+        "sections": [
+          {
+            "label": "Takte 1-8",
+            "titre": "Das Thema: eine kalkulierte Nacktheit",
+            "chiffrage": "I ... V (Vordersatz) | I ... V (Nachsatz)",
+            "fonctions": "T ... D | T ... D",
+            "texte": "Acht Takte gewollter Kargheit: die C-Dur-Brechung Ton für Ton ausgelegt (C–E, dann G–E), die elementarste Harmonie der klassischen Sprache — die Polarität Tonika–Dominante in Reinform, mit einem Halbschluss auf G in Takt 4 und noch einmal in Takt 8. Es brauchte ein Kinderlied-Thema, damit die Variationen alles einzukleiden hatten und damit die Überraschung vor einem Hintergrund von Unschuld umso greller wirkte."
+          },
+          {
+            "label": "Takte 9-16",
+            "titre": "Die Wiederholung im pp — und die Überraschung",
+            "chiffrage": "I ... V",
+            "fonctions": "T ... D",
+            "texte": "Dasselbe Thema kehrt Note für Note wieder, aber pianissimo — das Wiegenlied als Falle, der Hörer zum Einnicken eingeladen. Dann, in Takt 16, der Akkord: ein G-Dur über die ganze Klaviatur (G2 bis G5), ff, auf leichter Zählzeit. Harmonisch von vollkommener Banalität — die V, die der Halbschluss des Themas ohnehin verlangte. Nichts Fremdes, nichts Chromatisches: Die Überraschung ist eine Dynamik und eine Instrumentation, keine Harmonie."
+          },
+          {
+            "label": "Takte 17-32",
+            "titre": "B: die Rückkehr (die zweiteilige Form des Themas)",
+            "chiffrage": "I ...",
+            "fonctions": "T ...",
+            "texte": "Nach dem Schreck schließt der zweite Teil des Themas seine zweiteilige Form: ein kurzer Umweg, dann die sichere Rückkehr zur Tonika, als wäre nichts geschehen."
+          },
+          {
+            "label": "Takte 33-48",
+            "titre": "Variation I: das Thema + Gegenstimme",
+            "chiffrage": "I ...",
+            "fonctions": "T ...",
+            "texte": "Das Thema bleibt unversehrt — dieselbe Brechung C–E–G, dasselbe Gerüst —, doch eine Gegenstimme in Sechzehnteln kleidet es ein. Variation durch Hinzufügung: Die Harmonie ändert sich nicht, nur die Textur wird reicher."
+          },
+          {
+            "label": "Takte 49-74",
+            "titre": "Variation II: das minore",
+            "chiffrage": "i ... (Umwege nach III, Es-Dur)",
+            "fonctions": "T ... SD/D",
+            "texte": "Der vorschriftsmäßige Schatten des klassischen Variationenzyklus: c-Moll, ff, ein C und dann ein Es über die ganze Klaviatur gehämmert, bevor Umwege nach Es-Dur (der Paralleltonart) führen — der einzige wirkliche harmonische Ausflug des ganzen Satzes, zwischen zwei Teilen, die ihrerseits fest auf der Tonika verankert bleiben."
+          },
+          {
+            "label": "Takte 75-98",
+            "titre": "Variation III: Tonrepetitionen",
+            "chiffrage": "I ...",
+            "fonctions": "T ...",
+            "texte": "Zurück nach Dur: derselbe C-Dur-Akkord viermal hintereinander angeschlagen, dann seine erste Umkehrung noch einmal viermal — Tonrepetitionen und Dialoge der Oberstimmen, das texturale Gegenstück zur blühenden Gegenstimme der Variation I."
+          },
+          {
+            "label": "Takte 99-134",
+            "titre": "Variation IV: Fanfare — und die Fermate",
+            "chiffrage": "I ... vii°6 (suspensiv)",
+            "fonctions": "T ... D",
+            "texte": "Das Fanfaren-Tutti: das Thema in blechernem Glanz, in Brechungen bis in die höchste Lage der Klaviatur geschleudert, dann ein zweiter Teil dolce, der die Dynamik beruhigt. Die Variation hält auf einer suspensiven Fermate in Takt 134 an — einem verminderten C-Akkord (erste Umkehrung, Bass Es), der den Atem anhält, bevor die Coda beginnt."
+          },
+          {
+            "label": "Takte 135-148",
+            "titre": "Coda: die Zärtlichkeit",
+            "chiffrage": "V (Orgelpunkt) ... V7 (vollständig, T. 140) ... I",
+            "fonctions": "D ... D ... T",
+            "texte": "Der schönste harmonische Augenblick des Satzes: Das Thema schläft pianissimo über einem Dominantorgelpunkt wieder ein, verdichtet sich einen Moment lang zu einem vollständigen G7 in Takt 140 — D und F klingen bereits, seit dem Vortakt ausgehalten, nur G und H werden neu angeschlagen: die einzige wirklich ausgekostete Septime des Stücks, in der leisesten Dynamik des ganzen Satzes — und löst sich dann in die beiden letzten C-Dur-Takte auf. Der Scherz eröffnete den Satz; eine Zärtlichkeit schließt ihn."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Die Überraschung ist eine Dynamik, keine Harmonie",
+            "texte": "Der Akkord in Takt 16 ist eine V an genau ihrem Platz, diejenige, die der Halbschluss des Themas ohnehin verlangte — nichts Fremdes, nichts Chromatisches. Haydn führt ad absurdum vor, dass die Wirkung nicht im Akkord steckt, sondern in seinem Status: Dieselbe V, geflüstert, schläfert ein; hingeschmettert, lässt sie auffahren. Das exakte komische Gegenstück zu den Sforzandi in Beethovens Grave (seinem Schüler, sieben Jahre später): derselbe rhetorische Hebel, ins Lachen gewendet."
+          },
+          {
+            "titre": "Der Nullpunkt von KV 545, bis zur gewollten Arglosigkeit getrieben",
+            "texte": "Das Thema der Surprise-Sinfonie (die nackte Brechung, der Wechsel Tonika–Dominante) ist noch karger als jenes von Mozarts Sonate KV 545 (Kurs 28, drei Jahre zuvor) — Mozart macht es einfach aus Eleganz, Haydn macht es einfach aus Strategie: Es braucht ein Kinderlied-Thema, damit die vier Variationen alles einzukleiden haben und damit die Überraschung vor einem Hintergrund von Unschuld umso greller wirkt."
+          },
+          {
+            "titre": "Der Humor als harmonische Kategorie",
+            "texte": "Zwischen KV 545 (der durchsichtigen Grammatik) und der Pathétique (der dramatisierten Grammatik) dokumentiert die Surprise-Sinfonie einen dritten Weg: die bespielte Grammatik, im spielerischen Sinn. Nichts beweist die Existenz einer Norm besser als die Möglichkeit, über sie zu lachen — Takt 16 ist der Beweis in einem einzigen Akkord, dass die klassische Tonalität eine gemeinsame Sprache war, Bedingung all dessen, was der übrige Korpus danach erzählt, wenn eben diese Sprache dramatisiert, suspendiert, aufgelöst und neu erfunden wird."
+          }
+        ]
+      }
     }
   },
   "cours18": {
@@ -3240,6 +3416,98 @@
       "quizPoolSize": "Fragen im Pool",
       "quizNextQuestion": "Nächste Frage →",
       "quizSeeScore": "Mein Ergebnis anzeigen"
+    },
+    "conservatoire": {
+      "intuition": "Eine ganze Strophe von 36 Takten, nahezu unverändert noch einmal gespielt — und die Prüfung Note für Note zeigt, dass „nahezu“ genau das richtige Wort ist: Auch die strengste Wiederholung lässt immer ein paar winzige Abweichungen durch, für den, der sie zu suchen weiß.",
+      "reference": {
+        "badge": "Sibelius · über die Sinfonie (zu Mahler, 1907)",
+        "citation": "Ich bewunderte ihre Strenge des Stils und die tiefe Logik, die einen inneren Zusammenhang zwischen allen Motiven schafft.",
+        "auteur": "Jean Sibelius, überliefert von Karl Ekman"
+      },
+      "voix": [
+        "Material unverändert zu wiederholen ist nie ganz neutral: Die Reprise eines großen Abschnitts kann sich winzige Umverteilungen erlauben (ein verändertes Voicing, eine ersetzte Melodienote), die dem Ohr entgehen, ohne je ein absolutes Kopieren-und-Einfügen zu sein.",
+        "Ein und dieselbe melodische Zelle (hier ein absteigender Tetrachord) lässt sich entwickeln, indem allein ihre harmonische Einkleidung gewechselt wird — der Tetrachord bleibt, die Akkorde, die ihn begleiten, ändern sich.",
+        "Die Technik der motivischen Arbeit beschränkt sich nicht auf ein kurzes Motiv: Sie lässt sich auf eine ganze Strophe anwenden, auch dann, wenn diese Strophe überwiegend unverändert wiederholt wird."
+      ],
+      "repertoire": {
+        "titre": "Etüde op. 76 Nr. 2 (Dreizehn Stücke)",
+        "compositeur": "Jean Sibelius"
+      },
+      "pieges": [
+        {
+          "erreur": "Glauben, eine große Reprise (ein ganzer, noch einmal gespielter Abschnitt) sei zwangsläufig ein hundertprozentiges Kopieren-und-Einfügen",
+          "correction": "Die Prüfung dieses Stücks Note für Note zeigt, dass 30 der 36 Takte der Reprise streng identisch sind — 6 aber nicht (ein umverteiltes Voicing beim Einsatz, 3 einzelne melodische Ersetzungen und die Schlussklausel, die ausdrücklich variiert). Eine großformatige Wiederholung lässt fast immer kleine Abweichungen durch."
+        },
+        {
+          "erreur": "In den ungewöhnlichen harmonischen Farben dieses Stücks (♭13, andalusischer Tetrachord) eine wirkliche Modulation suchen",
+          "correction": "Das Stück bleibt von Anfang bis Ende in a-Moll — die äolische ♭13 der V7 und der phrygische Tetrachord des B-Teils sind FARBEN über derselben Tonika, keine Modulationen in eine andere Tonart."
+        },
+        {
+          "erreur": "Den Abstieg ♭VII7-♭VI∆7-V7-i als Folge beziehungsloser Akkorde analysieren",
+          "correction": "Diese vier Akkorde harmonisieren ein und dieselbe feststehende Melodielinie (den phrygischen Tetrachord A–G–F–E) — jeder Akkord steht im Dienst dieser Linie und ist keine von ihr unabhängige funktionale Fortschreitung."
+        }
+      ],
+      "resume": [
+        "Motivische Arbeit lässt sich auf eine ganze Strophe anwenden: Diese Etüde von Sibelius wiederholt eine Strophe von 36 Takten fast unverändert, aber eben nicht völlig — 6 von 36 Takten tragen winzige Abweichungen, darunter die Schlussklausel, die ausdrücklich variiert.",
+        "Ein und dieselbe feststehende Melodielinie (hier ein absteigender phrygischer Tetrachord) lässt sich entwickeln, indem allein ihre harmonische Einkleidung gewechselt wird: Der Tetrachord bleibt, die Akkorde, die ihn begleiten (♭VII7-♭VI∆7-V7-i), sind neu.",
+        "Das Paradox der Wiederholung: Unverändert zu wiederholen und ein winziges Detail zu verwandeln können für das Ohr den Eindruck ein und derselben Sache erzeugen."
+      ],
+      "analyseNarrative": {
+        "tonalite": "a-Moll von Anfang bis Ende — nie eine wirkliche Modulation, nur Farben (äolische ♭13, andalusischer Tetrachord) über derselben Tonika.",
+        "metrique": "2/4. Leggiero, ♩=60, moto perpetuo (ununterbrochene Akkordbrechungen von Anfang bis Ende).",
+        "forme": "Eine Strophe von 36 Takten in drei Teilen (A T. 1-16, B T. 17-28, A' T. 29-36), zweimal vollständig gespielt (T. 37-72 = T. 1-36), mit variierter Schlussklausel.",
+        "sections": [
+          {
+            "label": "Takte 1-16",
+            "titre": "A: der schulmäßige Wechsel i–V — und die äolische ♭13 von Anfang an",
+            "chiffrage": "i | V7♭13 | ... iv (Orgelpunkt) ... III∆7 6/4 ... | (chromatische Nebennoten) | V (geschlossene Periode)",
+            "fonctions": "T | D ... SD ... ? ... | D | D",
+            "texte": "Eine schulmäßige Periode über der einfachsten Polarität Tonika–Dominante — doch schon im zweiten Takt trägt die V7 ein C, das nichts Diatonisches an sich hat: die kleine Sexte des äolischen Modus (♭13), von Anfang an gesetzt, ohne dass irgendeine Modulation sie verlangte. Der Umweg führt über ein iv auf einem A-Orgelpunkt, dann über ein III∆7 im 6/4, das die Paralleltonart streift, ohne sie je zu festigen, bevor chromatische Nebennoten (Dis, Fis) die Spannung auf V zusammenziehen. Die Periode schließt sich und wiederholt sich dann Note für Note."
+          },
+          {
+            "label": "Takte 17-28",
+            "titre": "B: der andalusische Abstieg und die aufsteigende Kette",
+            "chiffrage": "♭VII7 – ♭VI∆7 – V7 – i | ♭VII7 → V7 (aufsteigende Kette, cresc.) → V (Höhepunkt, ff)",
+            "fonctions": "? – ? – D – T | ? → D → D",
+            "texte": "Das Herz des Stücks, und ein Abstieg, an dem nichts Klassisches mehr ist: der phrygische Tetrachord A–G–F–E, in Farbseptimen harmonisiert (G7–F∆7–E7–a-Moll) — dieselbe Geste wie das Lamento von Purcell (Kurs 38), aber in diatonischer, tänzerischer Fassung, mit der harmonischen Einkleidung des frühen 20. Jahrhunderts. Dann das Umgekehrte: Eine aufsteigende Kette von Dominanten (G7 → A7 → H7, im Crescendo) hebt die Linie bis zu einem Fortissimo-Höhepunkt auf V, wo der hohe Ton von seiner chromatischen Nebennote ausgependelt wird — das ♭6→5, in diesem Korpus schon andernorts begegnet, hier zur Gipfelfigur befördert."
+          },
+          {
+            "label": "Takte 29-36",
+            "titre": "A': die äolische Dominante in voller Ausprägung",
+            "chiffrage": "V7♭9♭13 ...",
+            "fonctions": "D ...",
+            "texte": "Die verdüsterte Reprise beginnt mit dem gesättigtsten Akkord des ganzen Stücks: einer V7, die GLEICHZEITIG ihre kleine None und ihre kleine Tredezime trägt — die äolische Dominante in voller Ausprägung, dasselbe Aggregat wie Beethovens Grave oder Chopins Kadenzen, hier bloß als durchgehende Farbe, pianissimo. Ein chromatischer Abstieg im Bass schließt die Strophe auf der Tonika."
+          },
+          {
+            "label": "Takte 37-69",
+            "titre": "Die große Reprise: fast unverändert",
+            "chiffrage": "(die ganze Strophe, noch einmal gespielt)",
+            "fonctions": "(identisch)",
+            "texte": "Die ganze Strophe von 36 Takten kehrt wieder, und die überwiegende Mehrheit ist eine Replik Note für Note (30 der 36 Takte, einzeln überprüft) — aber eben nicht restlos alle: Die Reprise beginnt mit einem leicht umverteilten Voicing in der linken Hand (eine Geste des Neuanstoßes), und drei einzelne Takte tragen jeweils eine einzige abweichende Melodienote. Die Wiederholung ist also kein bloßes Kopieren-und-Einfügen: Sie ist eine Anlage, die sich winzige Abweichungen erlaubt, unsichtbar, wenn man sie nicht einzeln aufspürt — eben das Paradox der Wiederholung in der Musik, wo unverändertes Wiederholen und die Verwandlung eines winzigen Details für das Ohr einen streng gleichartigen Eindruck erzeugen können."
+          },
+          {
+            "label": "Takte 70-72",
+            "titre": "Die Schlussklausel: poco rit., bekanntes Moll",
+            "chiffrage": "... i (A1)",
+            "fonctions": "... T",
+            "texte": "Die einzige vorab angekündigte Abweichung: der Schluss. Ein poco rit. bremst das moto perpetuo zum ersten Mal im Stück, und die Strophe endet auf dem tiefsten Ton des ganzen Werkes (A1) — ein a-Moll-Akkord, der seine kleine Terz bis zuletzt behält, ohne picardische Terz: Die modale Farbe des Stücks wird bis zur allerletzten Vertikale bekannt."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Das Paradox der Wiederholung, auf der Ebene der ganzen Form",
+            "texte": "Diese Etüde treibt auf die Spitze, was der Kurs auf der Ebene des Motivs erkundet: Hier ist es eine GANZE Strophe von 36 Takten, die wiederholt wird — und die Prüfung Note für Note enthüllt, dass die Wiederholung nie ganz vollständig ist (30 von 36 Takten streng identisch, aber eine leicht umverteilte Reprise und 3 einzelne melodische Ersetzungen). Unverändert zu wiederholen und ein winziges Detail zu verwandeln können für das Ohr den Eindruck ein und derselben Sache erzeugen: Musikalisches Material kann sich wiederholen, ohne je ein bloßes Kopieren-und-Einfügen zu sein."
+          },
+          {
+            "titre": "Neues Vokabular auf alter Syntax",
+            "texte": "Die systematische äolische ♭13 und der Abstieg in Farbseptimen (G7–F∆7–E7–i) gehören zum harmonischen Vokabular des frühen 20. Jahrhunderts — doch die Form, die sie trägt (geschlossene Periode, klare Kadenzen, Wechsel i–V), bewahrt eine ganz klassische Klarheit. Das Vokabular ändert sich, die formale Grammatik rührt sich nicht."
+          },
+          {
+            "titre": "Korpus-Verbindung: der andalusische Abstieg und Purcells Lamento",
+            "texte": "Der in Septimen harmonisierte phrygische Tetrachord (♭VII7-♭VI∆7-V7-i) des B-Teils greift in ganz anderer Einkleidung dasselbe Prinzip auf wie der absteigende chromatische Tetrachord des Ground aus Dido's Lament (Kurs 38, 1689): eine feststehende, alte Melodielinie, die in nahezu jeder großen Epoche der Geschichte der Tonalität als harmonisches Raster neu entdeckt wurde."
+          }
+        ]
+      }
     }
   },
   "cours19": {
@@ -3421,6 +3689,98 @@
       "exDebussyDesc": "Orchestraler Impressionismus in Vollendung: Soloflöte, Harfe, gedämpfte Streicher, gestopfte Hörner, Holzbläser in Halbtönen. Jedes Instrument in seiner poetischsten Lage. Kein lautes Blech — alles ist Andeutung und Farbe.",
       "exBeethovenName": "Beethoven — 5. Sinfonie op.67 (1808)",
       "exBeethovenDesc": "Ein Modell der Ökonomie der Mittel: ein 4-Noten-Motiv, auf alle Familien verteilt. Die Orchestrierung folgt der Intensität des Diskurses — Streicher + Holzbläser im p, tutti fortissimo an den entscheidenden Momenten. Jedes Instrument an seinem richtigen Platz."
+    },
+    "conservatoire": {
+      "intuition": "Eine einzige Harmonie, 84 Takte lang ausgehalten, eine einzige Verschiebung, ein einziger Unfall — der Boléro treibt die harmonische Unbeweglichkeit bis an ihren Bruchpunkt und zeigt, dass die ganze Spannung eines Werkes anderswo als in den Akkorden sitzen kann.",
+      "reference": {
+        "badge": "Ravel · über den Boléro",
+        "citation": "Das ist Instrumentation ohne Musik.",
+        "auteur": "Maurice Ravel (von seinen Biographen überliefert)"
+      },
+      "voix": [
+        "Ein Orgelpunkt kann ein ganzes Werk tragen: Hier verlässt der Bass 84 Takte lang nie C und G — die ganze Spannung, die man von der Harmonie erwartet, wird an das Crescendo und an die Dichte der Textur delegiert.",
+        "Eine Modulation ohne Vorbereitung und ohne Pivotakkord (hier eine aufsteigende große Terz, C → E) bleibt auch ohne jeden Übergangsakkord für das Ohr lesbar — die Verschiebung allein genügt, um ein Ereignis zu sein, gerade weil sich vorher nichts anderes bewegt hat.",
+        "Ein hartnäckig wiederholter leitereigenfremder Ton (keine Linie, die fortschreitet) kann eine ebenso starke Spannung erzeugen wie eine echte melodische Entwicklung — das „Knirschen“ der Rückkehr rührt von der Wiederholung einer einzigen Schroffheit her, nicht von ihrer Entwicklung."
+      ],
+      "repertoire": {
+        "titre": "Boléro (harmonisierte Klavierfassung)",
+        "compositeur": "Maurice Ravel"
+      },
+      "pieges": [
+        {
+          "erreur": "In den ersten 84 Takten des Boléro eine komplexe harmonische Fortschreitung suchen",
+          "correction": "Es gibt keine: Die linke Hand spielt vom Anfang bis zum Ende dieses Abschnitts nichts als C und G, Takt für Takt ausnahmslos überprüft. Der gesamte musikalische Aufbau kommt vom Crescendo und von der Instrumentation, nicht von der Harmonie."
+        },
+        {
+          "erreur": "Glauben, die bei der Rückkehr angekündigte „chromatische Linie“ (T. 93-96) sei eine Melodielinie, die Stufe für Stufe fortschreitet",
+          "correction": "Prüfung Note für Note: Diese vier Takte wiederholen EXAKT dieselbe Figur, mit einem einzigen leitereigenfremden Ton (As), jedes Mal unverändert wiederholt — das ist keine Linie, die vorangeht, sondern ein Wiederkäuen. Die wirkliche Linie, die Stufe für Stufe absteigt, erscheint erst im folgenden Takt, im Akkord des Aufpralls selbst."
+        },
+        {
+          "erreur": "Den Akkord des Aufpralls (T. 97) als Septakkord oder alterierten Nonakkord des üblichen tonalen Vokabulars analysieren",
+          "correction": "Es ist ein nichtfunktionaler Polyakkord: zwei unvereinbare Schichtungen (C–F und As–H–Des), gleichzeitig hingeschmettert, die sich innerhalb des tonalen Systems nicht auf einen einzigen bezifferbaren Akkord zurückführen lassen — daher die Bezifferung „?“, kein leeres Feld, sondern eine echte analytische Kategorie."
+        }
+      ],
+      "resume": [
+        "Der Boléro (Ravel, 1928) hält 84 Takte über einem einzigen Orgelpunkt C–G — der Grenzfall der unbeweglichen Harmonie: Die ganze Spannung des Werkes kommt vom Crescendo und von der Textur, nicht von den Akkorden.",
+        "Die einzige Modulation des Stücks (C → E, T. 85-92) ist eine Verschiebung um eine große Terz, ohne Vorbereitung und ohne Pivotakkord — das Intervall, das die Oktave in drei gleiche Teile teilt, ohne der Logik der Quinten irgendetwas zu verdanken.",
+        "Die einzige wirkliche harmonische Unordnung des Werkes ist sein letzter lauter Akkord (T. 97): ein nichtfunktionaler Polyakkord (C–F gegen As–H–Des) — in einem Stück ohne harmonische Spannung löst sich die Dissonanz nicht mehr auf, sie zerbricht."
+      ],
+      "analyseNarrative": {
+        "tonalite": "C-Dur von Anfang bis Ende — eine einzige wirkliche Tonikalisierung, in E-Dur (T. 85-92), nie durch eine Kadenz bestätigt und nie auf Dauer angelegt.",
+        "metrique": "3/4. Tempo di bolero, moderato assai (Viertel = 72). pp zu Beginn, der Boléro-Rhythmus als Ostinato in der rechten Hand schon ab dem ersten Takt.",
+        "forme": "Ein gewaltiges Crescendo über einem Orgelpunkt (T. 1-84, 86 % des Stücks), eine einzige Tonikalisierung in E (T. 85-92), eine Rückkehr, die knirscht (T. 93-96), ein Aufprall (T. 97) und ein nackter Zusammenbruch (T. 98).",
+        "sections": [
+          {
+            "label": "Takte 1-84",
+            "titre": "Der Orgelpunkt C–G: ein Akkord für 84 Takte",
+            "chiffrage": "I (ununterbrochener Orgelpunkt C–G)",
+            "fonctions": "T, von Anfang bis Ende",
+            "texte": "Takt für Takt überprüft: Die linke Hand verlässt nie C und G — die im Boléro-Rhythmus geschlagene Quinte, ohne eine einzige Ausnahme, 84 Takte lang. Die beiden Themen des Werkes (das eine diatonisch, das andere farbiger) wechseln sich darüber ab, doch beide ruhen auf genau demselben Orgelpunkt: Die ganze Spannung dieses Abschnitts kommt weder von einem Akkord noch von einer Kadenz, sondern vom Crescendo und von der Anhäufung der Stimmen, die nach und nach zur Textur hinzutreten."
+          },
+          {
+            "label": "Takte 85-92",
+            "titre": "E-Dur: das einzige harmonische Ereignis des Werkes",
+            "chiffrage": "III (E, mit einem internen Zyklus I-...-V auf E–H)",
+            "fonctions": "? (nichtfunktional: keine Vorbereitung, kein Pivot)",
+            "texte": "Nach 84 unbeweglichen Takten eine trockene Verschiebung um eine aufsteigende große Terz, ohne Vorbereitung und ohne Pivot: Aus C wird E. Innerhalb dieser neuen Farbe ist die linke Hand allerdings kein erstarrter Bordun wie der vorangehende Orgelpunkt: Jeder Takt pulsiert für sich, von E (Zählzeit 1) nach H (Zählzeit 3), ein winziger Zyklus Tonika–Dominante. Dann, ohne dass irgendetwas im Notentext es ankündigte, beginnt diese „Dominante“ von Takt zu Takt zu gleiten — H, dann Fis–H, dann G — und führt das Ohr unauffällig nach C zurück, noch bevor die Rückkehr vollzogen ist."
+          },
+          {
+            "label": "Takte 93-96",
+            "titre": "Die Rückkehr, die knirscht: ein wiederholter Ton, keine Linie, die fortschreitet",
+            "chiffrage": "I (C–G, mit einem tonartfremden As)",
+            "fonctions": "T",
+            "texte": "Die Rückkehr nach C ist klar. Doch was sich dort einrichtet, ist keine Melodielinie, die vorangeht: Es ist EXAKT dieselbe Figur, viermal unverändert wiederholt — der Orgelpunkt C–G, dann ein einzelnes, isoliertes As in der Taktmitte, dann G. Dieser tonartfremde Ton (die tiefalterierte sechste Stufe, dem Moll entlehnt) bewegt sich nie: Er kehrt zwanghaft an derselben Stelle, in denselben Takten wieder, ohne sich je aufzulösen oder zu entwickeln. Es ist diese unveränderte Wiederholung einer Schroffheit, die „knirscht“ — keine Bahn, ein Wiederkäuen."
+          },
+          {
+            "label": "Takt 97",
+            "titre": "Der Aufprall: die einzige wirkliche harmonische Unordnung des Stücks",
+            "chiffrage": "C–F (rechte Hand) gegen As–H–Des (linke Hand) — ein Polyakkord",
+            "fonctions": "?",
+            "texte": "Nach 96 Takten einer Syntax von absoluter Schlichtheit der einzige Augenblick, in dem der Satz jede funktionale Logik verliert: zwei unvereinbare Schichtungen, gemeinsam hingeschmettert, C–F auf der einen, As–H–Des auf der anderen Seite — fünf Tonklassen, die im tonalen Vokabular keinen identifizierbaren Akkord bilden. Erst in diesem Augenblick, und nirgends zuvor, erscheint eine wirkliche Linie, die Stufe für Stufe absteigt: As–G–F–Es–Des in der rechten Hand, bis zum Taktende."
+          },
+          {
+            "label": "Takt 98",
+            "titre": "Endgültiger Zusammenbruch: nacktes C–G",
+            "chiffrage": "I, ohne Terz",
+            "fonctions": "T",
+            "texte": "Nach dem Getöse nichts als eine leere Quinte, C–G — dieselbe Quinte, die das ganze Stück seit dem ersten Takt getragen hatte, nun aber allein, entblößt von allem, was sich 97 Takte lang über ihr angesammelt hatte. Das Stück schließt nicht mit einer Kadenz: Es hält jäh inne, auf eben dem Intervall, das es aufrecht gehalten hatte."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Der Grenzfall der unbeweglichen Harmonie",
+            "texte": "Dieses Stück treibt ins Industrielle, was der Korpus im kleineren Maßstab schon gestreift hat (Saties achttaktiger Orgelpunkt, die vierundsechzig Takte von Voiles): 86 % des Werkes ruhen auf ein und derselben Funktion. Die ganze Spannung, die man von der tonalen Harmonie erwartet, wird hier anderswohin delegiert — an das Crescendo, an die Dichte der Textur, an die Anhäufung der Stimmen —, während der Akkord selbst sich nicht rührt."
+          },
+          {
+            "titre": "Die große Terz, eine Verschiebung, die den Quinten nichts verdankt",
+            "texte": "Die einzige wirkliche Modulation des Stücks (C → E) führt über keinen Pivotakkord und über keine vorbereitende Dominante: Sie ist eine Verschiebung um eine große Terz, eben jenes Intervall, das die Oktave in drei gleiche Teile teilt — dasjenige von Coltranes Zyklus in Giant Steps, dasjenige des übermäßigen Dreiklangs in Voiles. Wenn ein ganzes Werk auf einer einzigen Spannung ruht, hat die Verschiebung, die es sich erlaubt, keinen Grund, der Logik der Quinten zu folgen."
+          },
+          {
+            "titre": "Ein wiederholter Ton statt einer Linie: die wahre Natur des „Knirschens“",
+            "texte": "Die lehrreichste Stelle des Stücks liegt nicht dort, wo man sie erwartet: Was in den Takten 93-96 „knirscht“, ist keine chromatische Linie, die vorangeht, sondern ein einziger tonartfremder Ton, hartnäckig unverändert wiederholt. Die wirkliche Linie, die Stufe für Stufe fortschreitet, erscheint erst einen Takt später, IM Aufprall selbst — eine Erinnerung daran, dass man stets prüfen muss, was die Noten tatsächlich spielen, und nicht nur, was eine Strukturmarke ankündigt."
+          }
+        ]
+      }
     }
   },
   "cours20": {
@@ -3462,6 +3822,105 @@
       "sectionCompositeurs": "Komponisten",
       "sectionAnalyse": "Vergleichende Analyse",
       "sectionQuiz": "Quiz"
+    },
+    "conservatoire": {
+      "intuition": "Die Harmonie kann aufhören, ein Gefühl darzustellen, um eine Handlung zu erzählen: Berlioz unterbricht eine Melodie im vollen Flug und ersetzt sie durch einen Oktavsturz — die verweigerte Auflösung, so weit getrieben, bis sie zur buchstäblichen Geste wird.",
+      "reference": {
+        "badge": "Berlioz · Memoiren",
+        "citation": "Ich verbrachte die Nacht damit, vom Tod zu träumen, mit rasender Begeisterung.",
+        "auteur": "Hector Berlioz, über die Entstehung der Symphonie fantastique"
+      },
+      "voix": [
+        "Ein und dieselbe melodische Formel (hier eine absteigende Tonleiter) kann je nach rhythmischem Kontext zwei entgegengesetzte Affekte tragen — das Lamento wird zum Trauermarsch, ohne dass sich eine einzige Note ändert.",
+        "Eine physische Unterbrechung (eine jäh abgeschnittene Phrase, ersetzt durch einen abrupten Sprung) kann als echte erzählerische Geste wirken — die Harmonie färbt keine Emotion mehr, sie erzählt ein bestimmtes Ereignis.",
+        "Ein Moduswechsel (Moll nach Dur) lässt sich als Regieanweisung einsetzen statt als bloße Farbe — hier markiert das Umkippen buchstäblich den Übergang von einer Szene zur nächsten."
+      ],
+      "repertoire": {
+        "titre": "Symphonie fantastique, 4. Satz — Gang zum Richtplatz (Bearbeitung für Streichtrio)",
+        "compositeur": "Hector Berlioz"
+      },
+      "pieges": [
+        {
+          "erreur": "Einen komplexen oder chromatischen Akkord suchen, um die Wirkung des „Fallbeils“ (T. 169) zu erklären",
+          "correction": "Es ist umgekehrt: Der Akkord ist dort bis zum Äußersten entblößt (ein schlichtes G, ohne Terz), und die Wirkung kommt von einer RHYTHMISCHEN Geste — einem zwischen den äußeren Instrumenten synchronisierten Oktavsturz —, nicht von einer ungewöhnlichen Harmonie."
+        },
+        {
+          "erreur": "Das zweite Thema (T. 62, in B-Dur) als klassische, von einer Dominante vorbereitete Modulation analysieren",
+          "correction": "Es gibt keinerlei Vorbereitung: Die Paralleltonart stellt sich unmittelbar ein, durch bloße Nebeneinanderstellung kontrastierender Blöcke — die Fanfare der Menge folgt dem Trauerthema absichtlich ohne Übergang."
+        },
+        {
+          "erreur": "Den abschließenden Wechsel nach Dur (T. 170) als bloß dekorative picardische Terz behandeln",
+          "correction": "Hier hat der Moduswechsel eine ausdrückliche ERZÄHLENDE Funktion (die Menge, die nach der Hinrichtung jubelt) — der Modus wird zur Regieanweisung, nicht nur zur harmonischen Farbe."
+        }
+      ],
+      "resume": [
+        "Eine absteigende g-Moll-Tonleiter (Thema 1) greift die alte Formel des barocken Lamento auf und verwandelt sie allein durch den rhythmischen Kontext in einen Trauermarsch — der Beweis, dass der musikalische Sinn nie in der Tonhöhe allein steckt.",
+        "Das Fallbeil (T. 169) unterbricht die idée fixe im vollen Flug und ersetzt sie durch einen in den beiden äußeren Instrumenten synchronisierten Oktavsturz — die verweigerte Auflösung, bis zur buchstäblichen Geste getrieben.",
+        "Das abschließende Umkippen nach G-Dur (T. 170) wirkt eher als Regieanweisung denn als Farbe: Die Harmonie hört auf, einen Affekt darzustellen, um eine Handlung zu erzählen — die jubelnde Menge."
+      ],
+      "analyseNarrative": {
+        "tonalite": "g-Moll vom Beginn bis zur Szene des Fallbeils (T. 169) — mit einem langen Ausflug in die Paralleltonart B für das zweite Thema — dann ein abschließendes und endgültiges Umkippen nach G-DUR für die letzten neun Takte.",
+        "metrique": "4/4. Tempo di marcia (Viertel = 144), mit einer deutlichen Verlangsamung (rit., 144→120) in Takt 165, einem „a tempo“ in Takt 170 und dann einem letzten rit. in den allerletzten Takten bis zur Schlussfermate.",
+        "forme": "Einleitung (T. 1-16) — Thema 1, der Marsch als Lamento (T. 17-61) — Thema 2, die Fanfare in B (T. 62-76) — Durchführung, Wechsel und Kombinationen (T. 77-163) — die idée fixe, ein letztes Mal (T. 164-168) — das Fallbeil (T. 169) — triumphales G-Dur bis zur Schlussfermate (T. 170-178).",
+        "sections": [
+          {
+            "label": "Takte 1-16",
+            "titre": "Einleitung: der Marsch nähert sich, pianissimo",
+            "chiffrage": "i (G–B, Bordun ohne Quinte)",
+            "fonctions": "T",
+            "texte": "Alles beginnt mit einer schlichten ausgehaltenen kleinen Terz, pianissimo, staccato: G in Bratsche und Violine, B in der Bratsche, im Violoncello oktaviert — noch keine Quinte, noch keine wirkliche Harmonie, nur eine Farbe, die sich einrichtet und wiederholt, wie ein Schritt, der sich von fern nähert."
+          },
+          {
+            "label": "Takte 17-61",
+            "titre": "Thema 1: die Lamento-Tonleiter als Marsch",
+            "chiffrage": "i (absteigende natürliche g-Moll-Tonleiter)",
+            "fonctions": "T",
+            "texte": "Den tiefen Streichern allein anvertraut, durchmisst eine absteigende Tonleiter fast zwei Oktaven natürliches g-Moll — genau jene Art von Linie, die über Jahrhunderte hinweg Trauer und Klage getragen hat (Purcells absteigender Tetrachord, der chromatische Bass so vieler barocker Lamenti). Hier wechselt dieselbe melodische Formel den Sinn, ohne eine einzige Note zu wechseln: der punktierte Rhythmus, der Marschgestus machen sie zum Trauerzug. Darin liegt Berlioz' Ironie — den Verurteilten auf eben der Formel der Trauer aufmarschieren zu lassen."
+          },
+          {
+            "label": "Takte 62-76",
+            "titre": "Thema 2: die Fanfare in B, die Menge",
+            "chiffrage": "III (B-Dur, die Parallele)",
+            "fonctions": "?",
+            "texte": "Ohne vorbereitende Dominante kippt die Musik für eine gleißende Fanfare in ihre Paralleltonart — das zynische Gegenstück zum vorangehenden Trauerthema: die Menge, die dem Schauspiel beiwohnen kommt. Der Kontrast ist total, doch die Verwandtschaft bleibt hörbar: Beide Themen teilen dieselben Vorzeichen, dasselbe Grundmaterial; nur die Farbe (Modus, Lage, Rhythmus) stellt sie gegeneinander."
+          },
+          {
+            "label": "Takte 77-163",
+            "titre": "Durchführung: Wechsel, Pizzicati, ein erinnerter Hornruf",
+            "chiffrage": "(Kombinationen beider Themen, pizz./arco in Salven)",
+            "fonctions": "T / ?",
+            "texte": "Die beiden Themen kreuzen einander, lösen einander ab, unterbrechen einander — ein großes Wechselspiel zwischen Pizzicato und Arco, das die Mechanik des marschierenden Zuges nachahmt. Im Herzen dieser Durchführung ein kurzer Hornruf (zweimal, Note für Note identisch): Im ursprünglichen Orchester ist dieses Motiv den fernen Hörnern anvertraut — hier bewahrt das Streichtrio sein Echo, ein diskretes Augenzwinkern zur großen Besetzung, aus der diese Bearbeitung stammt."
+          },
+          {
+            "label": "Takte 164-169",
+            "titre": "Die idée fixe, ein letztes Mal — dann das Fallbeil",
+            "chiffrage": "i … (Stille) … nacktes G",
+            "fonctions": "T … ? … ?",
+            "texte": "Dolce assai e appassionato: In der Violine erhebt sich die Melodie der Geliebten ein letztes Mal, G–A–B–C–D, allmählich hinauf zum H und dann zum C6 — ein zärtlicher Gedanke, beinahe außerhalb der Zeit aufgehoben. Dann, in Takt 165, nichts mehr: der einzige vollständig stumme Takt des ganzen Stücks, ein rit., das nicht bloß eine Verlangsamung, sondern ein echter Schnitt im Diskurs ist. Und in Takt 169 die Hinrichtung: Die Phrase wird im vollen Flug abgeschnitten und durch einen trockenen Sturz um eine Oktave ersetzt, in den beiden äußeren Instrumenten (Violine und Violoncello) exakt im selben Augenblick verdoppelt — die Klinge, dann der fallende Kopf."
+          },
+          {
+            "label": "Takte 170-178",
+            "titre": "Triumphales G-Dur: die gehämmerte Terz, bis zur Fermate",
+            "chiffrage": "I (G–H–D, gehämmert)",
+            "fonctions": "T",
+            "texte": "A tempo richtet sich die picardische Terz ein und rührt sich nicht mehr: das H sieben Takte lang als Ostinato gehämmert, dann Fanfarenbrechungen — der Durmodus als reine Inszenierung, die jubelnde Menge, während der Vorhang fällt. Das Stück endet auf einem über nahezu vier Oktaven gespreizten G-Dur-Akkord, unter einer Fermate."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Die guillotinierte Auflösung",
+            "texte": "Die Triebfeder der „verweigerten Auflösung“ durchzieht diesen Korpus von Bach (eine umgangene Septime) über Beethoven (ein Trugschluss) bis zu Wagner (eine nie gelöste Spannung): Berlioz gibt 1830 die buchstäblichste Fassung, die denkbar ist — eine melodische Phrase, jäh im vollen Flug unterbrochen und durch einen physischen Sturz um eine Oktave ersetzt. Der darauf folgende Übergang von Moll nach Dur ist nicht mehr bloß eine Farbe: Er ist eine REGIEANWEISUNG, die Harmonie, die aufhört, einen Affekt darzustellen, um eine Handlung zu erzählen."
+          },
+          {
+            "titre": "Eine alte Formel, ein neuer Sinn",
+            "texte": "Die absteigende Tonleiter des ersten Themas ist Note für Note dieselbe Geste wie die Lamento-Tetrachorde, die diesen Korpus seit dem 17. Jahrhundert durchziehen — allein der Kontext (das Marschtempo, der punktierte Rhythmus) macht daraus einen Trauerzug statt einer intimen Klage. Dieselbe melodische Formel, zwei entgegengesetzte Affekte: der Beweis, dass der Sinn in der Musik nie in der Tonhöhe allein steckt."
+          },
+          {
+            "titre": "1830, das fehlende Jahrzehnt",
+            "texte": "Dieses Stück füllt eine Lücke in der Genealogie der harmonischen Dramaturgie dieses Korpus, zwischen Beethoven (1808) und Chopin (1839): Haydn bringt den gemeinsamen Code zum Lachen (1791), Beethoven dramatisiert ihn (1798-1808), Berlioz macht ihn ERZÄHLEND (1830, die Programmmusik), Chopin verinnerlicht ihn (1839), Wagner hält ihn unbegrenzt in der Schwebe (1859). Fünf Stationen, auf fünf Stücken, eines Fadens, der in eben diesem Korpus bis zu Morricone weiterläuft."
+          }
+        ]
+      }
     }
   },
   "cours21": {
@@ -3501,6 +3960,91 @@
       "sectionCompositeursLabel": "Komponisten",
       "sectionAnalyseLabel": "Vergleichende Analyse",
       "sectionQuizLabel": "Quiz"
+    },
+    "conservatoire": {
+      "intuition": "Ein Akkord muss sich nicht bewegen, um zum Ereignis zu werden — wenn er sich nie wieder verändert und mit Akzenten geschlagen wird, die jedes Mal woanders fallen, dann trägt der Rhythmus allein das gesamte Geschehen.",
+      "reference": {
+        "badge": "Stravinsky · über Le Sacre du printemps",
+        "citation": "Ich war das Gefäß, durch das Le Sacre hindurchging.",
+        "auteur": "Igor Stravinsky (überliefert von Robert Craft)"
+      },
+      "voix": [
+        "Zwei vollkommen konsonante Akkorde (ein Dreiklang, ein Dominantseptakkord) lassen sich im kleinstmöglichen Abstand — einem Halbton — übereinanderschichten und erzeugen so die brutalste Kollision des gesamten polytonalen Vokabulars.",
+        "Einmal gesetzt, kann ein Polyakkord über mehrere Takte hinweg vollkommen unbeweglich bleiben: Dann erzeugt der Rhythmus (Akzente, die bei jeder Wiederholung ihren Platz wechseln) das musikalische Ereignis, nicht die Harmonik.",
+        "Die Dissonanz hat nicht nur eine einzige Rolle: Sie kann ein isoliertes Ereignis sein, ein Drama, ein Vorhalt, ein Zustand, ein Vokabular — oder, wie hier, reine Perkussion."
+      ],
+      "repertoire": {
+        "titre": "Der Augurenakkord (Lehrblatt)",
+        "compositeur": "Nach Igor Stravinsky, Le Sacre du printemps — Die Vorboten des Frühlings (1913)"
+      },
+      "pieges": [
+        {
+          "erreur": "Im Hämmern des Augurenakkords eine harmonische Entwicklung oder Auflösung zu suchen",
+          "correction": "Es gibt keine: Die Vertikale bleibt vom ersten bis zum letzten Schlag streng identisch — nur die rhythmischen Akzente verschieben sich von einer Wiederholung zur nächsten. Die Analyse muss beim Rhythmus ansetzen und darf keiner Fortschreitung nachjagen, die es nicht gibt."
+        },
+        {
+          "erreur": "Diesen Polyakkord mit dem Petruschka-Akkord (Stravinsky, 1911) zu verwechseln, nur weil beide zwei konsonante Objekte übereinanderschichten",
+          "correction": "Beide stehen an den entgegengesetzten Enden der Nachbarschaft: Petruschka schichtet zwei Dreiklänge im TRITONUS-Abstand übereinander (der größtmögliche Abstand, keine Note reibt an einer anderen), die Vorboten dagegen einen Dreiklang und einen Septakkord im HALBTON-Abstand (der kleinstmögliche Abstand, jede Note des Dreiklangs reibt an einer Note des Septakkords)."
+        },
+        {
+          "erreur": "Dieses Lehrblatt als Transkription von Le Sacre du printemps zu analysieren",
+          "correction": "Es ist ein vollständig eigenständiges Stück, komponiert, um das Phänomen zu veranschaulichen — Le Sacre du printemps ist in Frankreich bis 2042 urheberrechtlich geschützt, und keine einzige seiner Noten wird hier wiedergegeben."
+        }
+      ],
+      "resume": [
+        "Der Augurenakkord (Stravinsky, 1913) schichtet einen Durdreiklang und einen Dominantseptakkord im Halbtonabstand übereinander — die brutalstmögliche Kollision, denn jede Note des Dreiklangs reibt unmittelbar an einer Note des Septakkords.",
+        "Einmal gesetzt, verändert sich der Akkord nicht mehr: Das Ereignis erzeugt der Rhythmus (bei jeder Wiederholung verschobene Akzente), nicht die Harmonik — die Dissonanz als Perkussion behandelt und nicht als Spannung.",
+        "Verglichen mit dem Petruschka-Akkord (zwei Dreiklänge im Tritonusabstand, 1911) wählt der Augurenakkord das entgegengesetzte Extrem der Nachbarschaft — zwei Antworten Stravinskys, zwei Jahre auseinander, auf dieselbe Frage: Was ist mit der tonalen Funktion anzufangen?"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Keine einheitliche Tonart — zwei konsonante Objekte (ein Dominantseptakkord, ein Durdreiklang), im Halbtonabstand übereinandergeschichtet.",
+        "metrique": "4/4. Ohne Tempoangabe (Demonstrationsstück); T. 4-5 in Achteln, um das rhythmische Hämmern darzustellen.",
+        "forme": "Eine Demonstration in sechs Takten: die beiden Objekte getrennt, ihre Kollision, zwei Takte Hämmern mit verschobenen Akzenten, schließlich der ausgehaltene Schlussklang.",
+        "sections": [
+          {
+            "label": "Takte 1-2",
+            "titre": "Die beiden Objekte, getrennt",
+            "chiffrage": "Es7 | Fes-Dur",
+            "fonctions": "? | ?",
+            "texte": "Zuerst Es7: ein vollkommen gewöhnlicher Dominantseptakkord. Dann Fes-Dur — so notiert und nicht als „E-Dur“, um dieselbe Schreiblogik zu wahren wie die Quelle, die dieses Lehrblatt anregt —, sein unmittelbarer Nachbar, einen Halbton höher. Für sich genommen ist jedes der beiden Objekte von völliger Banalität."
+          },
+          {
+            "label": "Takt 3",
+            "titre": "Die Kollision: der Augurenakkord",
+            "chiffrage": "Fes-Dur + Es7, übereinandergeschichtet",
+            "fonctions": "?",
+            "texte": "Die beiden Objekte erklingen gemeinsam, jedes vollkommen unversehrt. Doch anders als bei einer Kollision im Tritonus (dem Petruschka-Akkord, wo die beiden Dreiklänge keine benachbarte Note teilen) prallt hier JEDE Note des oberen Dreiklangs im Halbtonabstand auf eine Note des unteren Septakkords: der Grundton des Dreiklangs gegen den Grundton des Septakkords, seine Terz gegen die Terz des Septakkords, seine Quinte gegen die Quinte des Septakkords. Drei gleichzeitige Reibungen, im kleinstmöglichen Intervall."
+          },
+          {
+            "label": "Takte 4-5",
+            "titre": "Das Hämmern: die Harmonik eingefroren, der Rhythmus in Bewegung",
+            "chiffrage": "Fes-Dur + Es7 (unverändert)",
+            "fonctions": "?",
+            "texte": "Über zwei ganze Takte gehämmerter Achtel ändert der Akkord keine einzige Note — die Akzente hingegen wechseln bei jeder Wiederholung ihren Platz. Das ist die vollständige Umkehrung des gewohnten harmonischen Satzes: Normalerweise bewegt sich der Akkord über einem stabilen Rhythmus, hier ist es umgekehrt. Die Dissonanz ist keine Spannung mehr, die auf ihre Auflösung wartet: Sie ist zu einem Objekt geworden, das man schlägt, genau wie eine Trommel."
+          },
+          {
+            "label": "Takt 6",
+            "titre": "Der ausgehaltene Schlussklang",
+            "chiffrage": "Fes-Dur + Es7, unter Fermate",
+            "fonctions": "?",
+            "texte": "Derselbe Akkord, seit Takt 3 unverändert, schließt unter einer Fermate. Nichts hat sich „aufgelöst“ — das Objekt hat einfach aufgehört, geschlagen zu werden."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Das sechste Regime: die Dissonanz als Perkussion",
+            "texte": "Ein Akkord kann als isoliertes Ereignis gehört werden, als sich entfaltendes Drama, als unbegrenzt aufgeschobene Spannung, als stabiler Zustand, den man bewohnt, oder als Farbe eines Vokabulars — es gibt aber ein sechstes Regime, in dem sich die Vertikale überhaupt nicht mehr bewegt und der RHYTHMUS allein das Ereignis erzeugt. Der Augurenakkord löst sich nie auf: Er wird geschlagen, mit Akzenten, die jedes Mal woanders fallen, bis das Hämmern selbst zum Thema wird."
+          },
+          {
+            "titre": "Zwei Polyakkorde, die beiden Extreme der Nachbarschaft",
+            "texte": "Verglichen mit dem Petruschka-Akkord (zwei Dreiklänge im Tritonusabstand, der größtmögliche Abstand zwischen zwei Zentren) wählt dieser das entgegengesetzte Extrem: zwei konsonante Objekte, im Halbton aneinandergepresst, im kleinstmöglichen Abstand. Das Ergebnis ist brutaler, denn jede Note des oberen Dreiklangs reibt unmittelbar an einer Note des Septakkords — die Dissonanz ist keine bloße Nachbarschaft zweier Systeme mehr, sie ist eine Zerquetschung."
+          },
+          {
+            "titre": "Eine Linie, die bis zum Rock reicht",
+            "texte": "Die Dissonanz als Objekt zu behandeln, das man schlägt, statt als Spannung, die man auflöst, wurde lange nach 1913 zu einem geläufigen Prinzip der verstärkten Musik — der in der Schleife geschlagene Akkord, ohne Fortschreitung, bei dem die rhythmische Intensität das Geschehen trägt und nicht die harmonische Verkettung."
+          }
+        ]
+      }
     }
   },
   "cours22": {
@@ -3551,6 +4095,91 @@
       "exerciceLabel": "Übung:",
       "verificationLabel": "Melodische Überprüfung:",
       "principeLabel": "Prinzip:"
+    },
+    "conservatoire": {
+      "intuition": "Ein unbewegliches Ostinato ist kein Zwang — es ist ein fester Grund, über dem eine einzige Kurve (die Dichte tonartfremder Töne) ganz allein die gesamte Form eines Stückes tragen kann.",
+      "reference": {
+        "badge": "Bill Evans · Begleittext, Kind of Blue",
+        "citation": "Es gibt eine japanische Bildkunst, in der der Künstler gezwungen ist, spontan zu sein. Er muss mit einem besonderen Pinsel auf ein dünnes, gespanntes Pergament malen … Radierungen oder Korrekturen sind unmöglich.",
+        "auteur": "Bill Evans, „Improvisation in Jazz“, Begleittext zu Kind of Blue (1959)"
+      },
+      "voix": [
+        "Ein Ostinato aus zwei Farbakkorden (einer großen Septime, einem unaufgelösten Nachbarakkord) kann ein ganzes Stück tragen, ohne je eine einzige Kadenz hervorzubringen.",
+        "Wenn die begleitende Harmonik streng unverändert bleibt, kann ein einziger melodischer Parameter — die Dichte tonartfremder Töne — allein die gesamte Formkurve eines Stückes tragen.",
+        "Eine vorgehaltene Quarte (ein „sus“-Akkord), die sich nie in die Terz auflöst, ist keine wartende Dominante: Sie ist eine zweite Farbe, gleichrangig mit der ersten."
+      ],
+      "repertoire": {
+        "titre": "Das Pendel (Lehrblatt)",
+        "compositeur": "Nach Bill Evans, Peace Piece (1958)"
+      },
+      "pieges": [
+        {
+          "erreur": "Den Akkord auf G als schlichten G7 zu beziffern, der nach seiner Auflösung auf C verlangt",
+          "correction": "Es ist ein G9sus: Die Quarte (C) wird nie durch die Terz (H) ersetzt. Ein G7 verlangt nach Auflösung; ein G9sus schwebt daneben, ohne gerichtete Spannung — diese Nuance der Bezifferung verändert den ganzen Sinn des Hörens."
+        },
+        {
+          "erreur": "Nach einer harmonischen Fortschreitung zu suchen, die die Spannungswelle des Stückes erklärt",
+          "correction": "Es gibt keine: Das Ostinato ändert von Anfang bis Ende keine einzige Note. Die gesamte Spannungskurve stammt ausschließlich aus der rechten Hand (der Dichte tonartfremder Töne), nicht aus einer Akkordbewegung."
+        },
+        {
+          "erreur": "Die große Septime des Anfangsakkords als Dissonanz zu behandeln, die sich auflösen müsste",
+          "correction": "In dieser Sprache gehört die große Septime zur konstitutiven Farbe des Akkords — sie wird weder vorbereitet noch aufgelöst, sie IST der Ausgangsklang."
+        }
+      ],
+      "resume": [
+        "Ein Ostinato aus zwei Farbakkorden (C∆7, G9sus) kann ein ganzes Stück tragen, ohne je eine einzige Kadenz hervorzubringen — die Funktion weicht der reinen Farbe.",
+        "Der G9sus ist kein G7: Seine Quarte löst sich nie in die Terz auf, was ihn zu einer zweiten Farbe macht statt zu einer wartenden Dominante.",
+        "Während die Harmonik unverändert bleibt, kann die Dichte tonartfremder Töne in der Melodie allein die ganze Form tragen — eine Welle, die über einem unbeweglichen Grund ansteigt und wieder abebbt."
+      ],
+      "analyseNarrative": {
+        "tonalite": "C-Dur — aber ohne jede Kadenz: ein Pendeln zwischen zwei Farbakkorden (C∆7, G9sus), die sich nie ineinander auflösen.",
+        "metrique": "4/4. Das Ostinato der linken Hand ist in jedem der 8 Takte streng IDENTISCH, Note für Note.",
+        "forme": "Das Pendel setzt sich allein in Gang (T. 1-2), die rechte Hand tritt in reiner Diatonik hinzu (T. 3-4), eine chromatische Welle steigt an und ebbt wieder ab (T. 5-7), und alles schließt im absoluten Weiß, ohne Kadenz (T. 8).",
+        "sections": [
+          {
+            "label": "Takte 1-2",
+            "titre": "Das Pendel setzt sich in Gang",
+            "chiffrage": "C∆7 | G9sus",
+            "fonctions": "T | ?",
+            "texte": "Die linke Hand allein setzt die beiden Farben, die das ganze Stück tragen werden: C∆7 (samt großer Septime, nie als aufzulösende Dissonanz behandelt), dann G9sus — eine vorgehaltene Quarte, die NIE auf ihre Terz zurückgeführt wird. Das ist keine Dominante, die auf C wartet: Es ist eine zweite Farbe, gleichrangig mit der ersten."
+          },
+          {
+            "label": "Takte 3-4",
+            "titre": "Vollständige Diatonik",
+            "chiffrage": "C∆7 → G9sus (unverändert)",
+            "fonctions": "?",
+            "texte": "Die rechte Hand tritt hinzu und berührt in diesen beiden Takten keinen einzigen Ton, der C-Dur fremd wäre — nicht das geringste Vorzeichen. Das Ostinato hat sich unterdessen um keine Achtel bewegt."
+          },
+          {
+            "label": "Takte 5-7",
+            "titre": "Die chromatische Welle",
+            "chiffrage": "C∆7 → G9sus (weiterhin unverändert)",
+            "fonctions": "?",
+            "texte": "Ein erster tonartfremder Ton (T. 5), dann der Gipfel: ein Bündel von vier alterierten Tönen, auf einen Schlag übereinandergesetzt (T. 6), gegen ein Ostinato geworfen, das nicht mit der Wimper zuckt — dann der Rückgang (T. 7), wieder ein einziger fremder Ton. Die Dissonanz ist hier weder vorbereitet noch aufgelöst: Sie steigt und fällt wie eine Flut, während sich darunter nichts verändert."
+          },
+          {
+            "label": "Takt 8",
+            "titre": "Rückkehr ins absolute Weiß",
+            "chiffrage": "C∆7 → G9sus, ausgehalten",
+            "fonctions": "T",
+            "texte": "Das abschließende C ist keine Auflösung im klassischen Sinn — das Ostinato, das es trägt, ist genau dasselbe wie in Takt 1. Es ist eine Rückkehr der Farbe, keine Kadenz."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Dasselbe Pendel, ein anderes Jahrhundert",
+            "texte": "Eine große Septime, die nie als Dissonanz behandelt wird, ein Nachbarakkord ohne funktionale Bindung, über die gesamte Dauer keine einzige Kadenz: Es ist dasselbe Prinzip wie jenes Pendeln zwischen zwei Farbakkorden, dem wir in diesem Korpus schon begegnet sind, übertragen vom französischen spätromantischen Klavier auf das Jazzklavier — die Funktion weicht der reinen Farbe."
+          },
+          {
+            "titre": "Ein einziger Parameter macht die ganze Form",
+            "texte": "Während die begleitende Harmonik streng unbeweglich bleibt, trägt ein einziger Parameter die gesamte Form: die Dichte tonartfremder Töne in der rechten Hand, die wie eine Kurve ansteigt und wieder abfällt. Dasselbe Prinzip wie bei einem Stück, das sich nur auf einer einzigen Achse bewegt (Klangfarbe, Lage, Dichte), während der Akkord selbst unverändert stehen bleibt."
+          },
+          {
+            "titre": "Das Ostinato als Zelle",
+            "texte": "Ein Ostinato aus zwei Akkorden, ersonnen für eine einsame Meditation am Klavier, kann wenige Monate später zum harmonischen Fundament eines ganz anderen Stückes werden — dieselbe wiederholte Zelle, unverändert übernommen in einen kollektiven, improvisierten Zusammenhang. Ein Ostinato ist nicht bloß eine Begleitung: Es ist ein Objekt, das von einem Stück zum anderen wandern kann."
+          }
+        ]
+      }
     }
   },
   "cours23": {
@@ -3597,6 +4226,98 @@
       "quizScoreLow": "Hören Sie weiter die Progressionen jedes Stils — das Ohr lernt dazu!",
       "quizNextBtn": "Nächste Frage →",
       "quizSeeScoreBtn": "Mein Ergebnis sehen"
+    },
+    "conservatoire": {
+      "intuition": "Einen alten Stil nachzuahmen löscht nie ganz die Zeit aus, aus der die Nachahmung stammt — jeder Umweg hinterlässt einen Fingerabdruck des Augenblicks, in dem er geschrieben wurde, so unauffällig er auch sein mag.",
+      "reference": {
+        "badge": "Grieg · über die Holberg-Suite",
+        "citation": "Fra Holbergs tid — aus Holbergs Zeit.",
+        "auteur": "Edvard Grieg, Untertitel der Holberg-Suite op. 40 (1884)"
+      },
+      "voix": [
+        "Ein Neoarchaismus reproduziert das GERÜST eines alten Stils (hier das barocke Präludium im moto perpetuo über einem Orgelpunkt) und lässt zugleich in den Details die harmonischen Reflexe seiner tatsächlichen Entstehungszeit durchscheinen.",
+        "Ein Orgelpunkt kann zwischen Dur und Moll schwanken, ohne sich je festzulegen — eine modale Mehrdeutigkeit, die sich der Barock nicht erlaubt hätte und die hier die Hand eines Komponisten des 19. Jahrhunderts verrät.",
+        "Eine trugschlüssige Auflösung (ein ii-V, das dort auftaucht, wo das Ohr eine direkte Auflösung erwartete) kann sich mitten in eine Seite einschleichen, die im Übrigen die Syntax des 18. Jahrhunderts peinlich genau beachtet."
+      ],
+      "repertoire": {
+        "titre": "Holberg-Suite op. 40, I. Praeludium",
+        "compositeur": "Edvard Grieg"
+      },
+      "pieges": [
+        {
+          "erreur": "Dieses Präludium als rein barockes Stück zu analysieren, ohne die Spuren seiner tatsächlichen Entstehungszeit (1884) zu suchen",
+          "correction": "Das Gerüst ist barock (Tonika-Orgelpunkt, moto perpetuo, Pendeln zwischen 6/4-Klang und vermindertem Akkord über dem Dominantorgelpunkt), doch mehrere Details verraten die Romantik: die strukturellen fz/ff-Bezeichnungen, der Dominantorgelpunkt, der zwischen Dur und Moll schwankt (T. 38-39), die trugschlüssige Auflösung (T. 40-41) und die flüchtige übermäßige Undezime der Coda (T. 70)."
+        },
+        {
+          "erreur": "Für die trugschlüssige Auflösung der Takte 40-41 eine klassische Vorbereitung zu suchen",
+          "correction": "Es gibt keine: Der Dominantorgelpunkt von e (H, neun Takte) müsste sich nach e-Moll auflösen, gleitet aber unmittelbar in das ii7-V7 von G (Am7-D7) — ein reiner romantischer Reflex, die Erwartung zu unterlaufen, mitten in einer sonst sehr regelmäßigen Seite."
+        },
+        {
+          "erreur": "Die übermäßige Undezime in Takt 70 für einen bloßen Durchgangston ohne analytische Folgen zu halten",
+          "correction": "Sie ist eine echte, bewusst gesetzte harmonische Farbe (ein Fis, das einem C-Dur-Akkord hinzugefügt wird) — ein Klang, den keine Grammatik des 18. Jahrhunderts hervorgebracht hätte und der für einen Augenblick die Hand eines Komponisten des 19. Jahrhunderts signiert."
+        }
+      ],
+      "resume": [
+        "Die Holberg-Suite (Grieg, 1884) ist ein bewusster Neoarchaismus: ein barockes Präludium im moto perpetuo über einem Tonika-Orgelpunkt, geschrieben mit den harmonischen Mitteln der Spätromantik — fünfzehn Jahre vor Ravels Pavane, vierzig Jahre vor Stravinskys Neoklassizismus.",
+        "Der Dominantorgelpunkt von e (T. 30-39, neun Takte) wechselt ausdrücklich zwischen Dur und Moll (Dis gegen D) und gleitet dann in eine trugschlüssige Auflösung (Am7-D7), statt wie erwartet aufzulösen — zwei typisch romantische Reflexe in einer ansonsten barocken Maschinerie.",
+        "Jede Nachahmung eines alten Stils hinterlässt ihre eigenen Fingerabdrücke: Hier verraten die strukturellen Vortragsbezeichnungen, die modale Mehrdeutigkeit des Orgelpunkts, die trugschlüssige Auflösung und die übermäßige Undezime der Coda (T. 70) das Jahr 1884 unter der Maske des 18. Jahrhunderts."
+      ],
+      "analyseNarrative": {
+        "tonalite": "G-Dur — mit einem fest etablierten Umweg über das zweite Thema in D (V) und einer Episode in der Paralleltonart e-Moll im Zentrum.",
+        "metrique": "4/4. Allegro vivace (Viertel = 154), f — ein ununterbrochenes moto perpetuo von Anfang bis Ende.",
+        "forme": "Barocke Präludiumsform in drei Abschnitten: Exposition (T. 1-22, zwei Themen und ihre Wiederkehr), Durchführung (T. 23-41, die Episode in der Paralleltonart und ihr Dominantorgelpunkt), Reprise und Coda (T. 42-72).",
+        "sections": [
+          {
+            "label": "Takte 1-8",
+            "titre": "Das barocke Präludium: Tonika-Orgelpunkt, dann Blitzmodulation",
+            "chiffrage": "I (Orgelpunkt) → V",
+            "fonctions": "T → D",
+            "texte": "Das moto perpetuo setzt sogleich über einem liegenden Tonika-Orgelpunkt ein (tiefes G, nachweislich vier Takte lang ununterbrochen klingend) — genau das Prinzip von Bachs Arpeggio-Präludium, bis zum höchsten Grad der Reinheit getrieben. Dann installiert eine Blitzmodulation ohne Umschweife die Dominante D."
+          },
+          {
+            "label": "Takte 9-22",
+            "titre": "Das zweite Thema, die Rücküberleitung, die Wiederkehr",
+            "chiffrage": "I in D … D7/Fis → I",
+            "fonctions": "T … D → T",
+            "texte": "Ein kantables zweites Thema singt in D, in Sequenzen. Dann trägt in den Takten 19-20 ein D7 mit Fis im Bass ein C, das der Tonart D nicht angehört — die Septime, die unauffällig an G erinnert und das Ohr zur Haupttonart zurückführt, noch ehe die Wiederkehr vollzogen ist. Das Eröffnungsmotiv kehrt wieder, fp."
+          },
+          {
+            "label": "Takte 23-41",
+            "titre": "Die Episode in der Paralleltonart: der Dominantorgelpunkt und sein Doppelgesicht",
+            "chiffrage": "H7 → e … Ais°7/C → H (Orgelpunkt) → Am7 – D7",
+            "fonctions": "D → T … ? → D → SD – D",
+            "texte": "Eine Zwischendominante im ff (H7) installiert die Molltonart e. Eine Septakkordsequenz über absteigendem Bass führt zum einzigen wirklich romantischen Biss des Stückes (fz): ein vollständiger verminderter Septakkord über Ais, mit C im Bass. Es folgt der strukturelle Höhepunkt — neun Takte Orgelpunkt auf H, der Dominante von e, mit einem Pendeln zwischen Tonika im 6/4-Klang und vermindertem Akkord, genau wie in einem Bach-Präludium. Doch Grieg schmuggelt SEINE Mehrdeutigkeit hinein: Der Orgelpunkt schwankt ausdrücklich zwischen H-Dur (Dis, T. 38) und h-Moll (D, T. 39) — Note für Note bestätigt. Und statt wie erwartet nach e aufzulösen, gleitet die Musik in Am7-D7: das ii-V von G, durchs Fenster hereingekommen, ein reiner romantischer Reflex trugschlüssiger Auflösung in einer sonst durch und durch barocken Maschinerie."
+          },
+          {
+            "label": "Takte 42-55",
+            "titre": "Reprise: die plagale Erweiterung",
+            "chiffrage": "I … G7/F → IV … I",
+            "fonctions": "T … ? → SD … T",
+            "texte": "Die Rückkehr der Haupttonart (fz) wird um eine Farbe bereichert, die Griegs Barock liebt: die plagale Erweiterung. Ein G7 mit F im Bass (V4/2 von IV) öffnet unmittelbar die Tür zur IV. Stufe, ehe eine große Kadenz im ff eine Kette von Septakkorden bis zur Tonika hinabsteigt."
+          },
+          {
+            "label": "Takte 56-72",
+            "titre": "Tranquillo und Coda: #11 und das letzte Fenster der Rückkehr",
+            "chiffrage": "I (Orgelpunkt) … IV(#11) … V7 – I",
+            "fonctions": "T … SD … D – T",
+            "texte": "Das Tranquillo singt das Schlussthema über einem neuen Tonika-Orgelpunkt. Die Coda schichtet einen letzten Zyklus von Zwischendominanten, mit einer flüchtigen Farbe in Takt 70: ein Fis über einem C-Dur-Akkord — die übermäßige Undezime, ein Ton, der keiner Grammatik des 18. Jahrhunderts angehört und für einen Augenblick die Hand eines Komponisten des 19. Jahrhunderts verrät. Die Kadenz V7-I schließt das Stück."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Der Neoarchaismus: ein Bach-Präludium, 1884 geschrieben",
+            "texte": "Das gesamte Gerüst (Tonika-Orgelpunkt zu Beginn, Wechsel von 6/4-Klang und vermindertem Akkord über dem Dominantorgelpunkt, ununterbrochenes moto perpetuo) gibt getreu die Anlage des barocken Arpeggio-Präludiums wieder. Doch jeder Umweg hinterlässt einen Fingerabdruck des 19. Jahrhunderts: die strukturellen fz- und ff-Bezeichnungen, der zwischen Dur und Moll schwankende Orgelpunkt, die trugschlüssige Auflösung anstelle der erwarteten, die flüchtige übermäßige Undezime der Coda. Die Vergangenheit, die man nachahmt, ist nie ganz neutral — sie wird immer durch die Reflexe dessen erzählt, der sie nachahmt."
+          },
+          {
+            "titre": "Eine datierte Kette des Blicks zurück",
+            "texte": "1884: Grieg schreibt ein Präludium des 18. Jahrhunderts mit den harmonischen Mitteln der Spätromantik — fünfzehn Jahre vor Ravels neo-renaissancehafter Pavane, vierzig Jahre vor Stravinskys Neoklassizismus. Die „Rückkehr zur Vergangenheit“ als kompositorische Geste ist also kein isoliertes Phänomen des frühen 20. Jahrhunderts: Sie durchzieht mehrere Generationen, und jede hinterlässt darin ihre eigene Spur."
+          },
+          {
+            "titre": "Dasselbe Verfahren wie die Pavane, fünfzehn Jahre vor ihr",
+            "texte": "Die Sequenz diatonischer Septakkorde über absteigendem Bass (T. 27-28) ist genau das Verfahren, das Ravel in seiner Pavane pour une infante défunte (1899) anwenden wird — ein schrittweise absteigender Bass unter einer Kette von Septakkorden, eine der wiedererkennbarsten harmonischen Signaturen des vom modernen Idiom neu besuchten „alten Stils“."
+          }
+        ]
+      }
     }
   },
   "nav": {
@@ -4006,6 +4727,105 @@
       "h3Stylistique": "Stilistische Verwendung durch die Epochen",
       "bassePremierRenversement": "Immer in der ersten Umkehrung — Bass auf bVI:",
       "bassePremierRenversementDesc": "As (bVI) liegt immer im Bass → er fällt halbtonweise nach G (Dominantquinte)"
+    },
+    "conservatoire": {
+      "intuition": "Ein Akkord, der die gesamte tonale Spannung in einen einzigen Punkt presst — wie eine Feder, die bereit ist, sich zur Dominante hin zu entspannen.",
+      "reference": {
+        "badge": "Aldwell & Schachter · Harmony and Voice Leading",
+        "citation": "Der übermäßige Sextakkord ist der intensivste dissonante Prädominantklang der tonalen Musik; seine beiden charakteristischen Töne lösen sich halbtonweise nach außen in die Quinte der Dominante auf.",
+        "auteur": "Aldwell & Schachter, 2003"
+      },
+      "voix": [
+        "Die übermäßige Sexte (As–Fis) löst sich stets in die Quinte der Dominante (G–G) auf, in obligatorischer Gegenbewegung",
+        "Der Bass liegt ausnahmslos auf bVI (As in C-Dur) — die erste Umkehrung ist für den Akkord konstitutiv",
+        "Die deutsche Sexte (bVI–I–bIII–#IV) ist enharmonisch identisch mit einem V7/IV — ihre Auflösung unterscheidet sich radikal"
+      ],
+      "repertoire": {
+        "titre": "Prélude op. 28 Nr. 20",
+        "compositeur": "Frédéric Chopin"
+      },
+      "pieges": [
+        {
+          "erreur": "Die Gegenbewegung vergessen: As und Fis gemeinsam aufwärts führen",
+          "correction": "As geht abwärts nach G, Fis aufwärts nach G — die Außenstimmen müssen zwingend in die Quinte der Dominante konvergieren"
+        },
+        {
+          "erreur": "Die deutsche Sexte wie einen V7/IV (nach IV) auflösen statt nach V",
+          "correction": "Die dt. +6 löst sich in Gegenbewegung nach V auf, der V7/IV löst sich nach IV auf — dieselben Töne, entgegengesetzte Auflösungen"
+        },
+        {
+          "erreur": "Die übermäßige Sexte außerhalb des prädominantischen Zusammenhangs setzen (nicht vor V oder I6/4–V)",
+          "correction": "Die übermäßige Sexte ist nur in der prädominantischen Zone idiomatisch, stets unmittelbar vor der Dominante"
+        }
+      ],
+      "resume": [
+        "3 Typen: it. +6 (bVI–I–#IV), frz. +6 (bVI–I–II–#IV), dt. +6 (bVI–I–bIII–#IV)",
+        "Universelle Auflösung: übermäßige Sexte → Quinte der Dominante, in Gegenbewegung",
+        "Dt. +6 = enharmonisch gleich V7/IV — dieselben Töne, völlig verschiedene Zusammenhänge und Auflösungen"
+      ],
+      "analyseNarrative": {
+        "tonalite": "c-Moll (Vorzeichnung mit drei ♭). Zwei vorübergehende Ausflüge: As-Dur (die Paralleltonart) in Takt 2, dann G-Dur (die Dominante), in den Takten 3-4 durch eine Kette von Zwischendominanten tonikalisiert.",
+        "metrique": "4/4. Largo, sehr langsam (Viertel = 40 — in der Quelldatei nicht vorhanden, ergänzt).",
+        "forme": "13 Takte = A (Takte 1-4) + B (Takte 5-8) + unverändert wiederholtes B (Takte 9-12) + Schlussakkord (Takt 13). Ein Trauerchoral in homorhythmischen Akkorden, vier pro Takt — ein Akkord je Zählzeit, insgesamt 49 Harmonien. Die Dynamik (ergänzt, in der Quelldatei nicht vorhanden) organisiert ein Abebben: ff (Takte 1-4), p (Takte 5-8), pp für die Wiederholung (Takte 9-12) — ein Zug, der sich entfernt.",
+        "sections": [
+          {
+            "label": "Takt 1",
+            "titre": "Die Urkadenz",
+            "chiffrage": "c-Moll (i) – Fm7 (iv7) – G7 (V7) – c-Moll (i)",
+            "fonctions": "i – SD7 – D – i",
+            "texte": "Die vollständige Kadenzformel in einem einzigen Atemzug. Die iv. Stufe trägt ihre Septime (Es über F-As-C: Fm7), von der vorangehenden Tonika übernommen. Über dem V7 ist das auf der 3. Zählzeit mit dem Akkord angeschlagene Es ein <strong>♭13</strong>-Vorhalt, der sich erst am Ende der Zählzeit nach D auflöst — dieser Seufzer Es→D über der Dominante kehrt in jeder Kadenz des Préludes wieder."
+          },
+          {
+            "label": "Takt 2",
+            "titre": "Derselbe Block, in die Paralleltonart versetzt",
+            "chiffrage": "As-Dur (I) – Des-Dur (IV) – Es7 (V7) – As-Dur (I)",
+            "fonctions": "T – SD – D – T (in As)",
+            "texte": "Die ganze Formel von Takt 1 erklingt unverändert noch einmal, als Block nach As-Dur transponiert (I-IV-V7-I, mit demselben Vorhalt C→B über dem Es7) — eine schroffe reale Sequenz, ohne jede Überleitung."
+          },
+          {
+            "label": "Takte 3-4",
+            "titre": "Die Rückkehr über eine Dominantenkette",
+            "chiffrage": "G7 (V7) – C7 (V7/iv) – f-Moll (iv) – C-Dur (IV/V) | D7 (V7/V) – G (V) – D7 (V7/V) – G (V)",
+            "fonctions": "D – D – SD – SD (zur V) | D – D – D – D (Halbschluss)",
+            "texte": "G7 löst sich nicht nach c-Moll auf: Es gleitet nach C7 (<strong>V7/iv</strong>), dann nach f-Moll und weiter zu einem C-DUR (E♮, der vierte Akkord des Taktes), das als IV. Stufe von G wirkt. Die Phrase kippt zur Dominante hin und richtet sich dort ein: D7-G-D7-G, Tonikalisierung der V. Stufe und Halbschluss. Bilanz der Periode A: c-Moll → As → Quintenzirkel → Dominante, in vier Takten."
+          },
+          {
+            "label": "Takte 5-6",
+            "titre": "Das chromatische Lamento und die französische Sexte",
+            "chiffrage": "c-Moll (i) – As-Dur/C (VI6) – H°7 (vii°7) – g-Moll/B (v6) | Am7 (Durchgangsakkord) – frz. +6 (D7♭5/As) – G (V) – G7/F (V4/2)",
+            "fonctions": "T – T – D – D (Moll als Durchgang) | ? – D – D – D",
+            "texte": "Unter einer Melodie, die in die Höhe steigt, beginnt der Bass über zwei Takte hinweg einen lückenlosen chromatischen Abstieg: C-C-H-B-A-As-G-F, Akkord für Akkord harmonisiert — darunter ein <strong>unvollständiger vii°7</strong> (H-D-As, die verminderte Septime ohne ihren Grundton, der Abdruck eines G7♭9). Die Altstimme zeichnet parallel dazu As-Fis-G, eine chromatische Doppelwechselnote um die Quinte. Dann der Gipfel: As-C-D-Fis, die <strong>französische übermäßige Sexte</strong> — in Jazz-Schreibweise auch als D7(♭5) über dem Bass As lesbar —, die ihre doppelte Dissonanz auf die V. Stufe presst, verlängert als V4/2."
+          },
+          {
+            "label": "Takte 7-8",
+            "titre": "Die erweiterte Kadenz und der Neapolitaner",
+            "chiffrage": "c-Moll/Es (i6) – f-Moll (iv) – G/H (V6) – c-Moll (i) | As-Dur (VI) – Des-Dur (♭II) – G7 (V7) – c-Moll (i)",
+            "fonctions": "T – SD – D – T | T – SD (neapolitanisch) – D – T",
+            "texte": "Der 4/2-Klang aus Takt 6 löst sich nach i6 auf, dann folgt die erweiterte Kadenz iv-V6-i. Takt 8 spielt die Akkorde von Takt 2 noch einmal, nun neu gedeutet: Das As ist keine lokale Tonika mehr, sondern <strong>VI</strong>, und das Des-Dur, das IV. Stufe von As war, wird zur <strong>♭II</strong> — der neapolitanische Sextakkord in Grundstellung, unmittelbar an V7 angeschlossen (mit demselben ♭13-Vorhalt wie in Takt 1). Dieselben zwei Akkorde wechseln so zwischen Takt 2 und Takt 8 ihren Sinn: dort diatonisch in einer Nachbartonart, hier chromatisch in der Haupttonart."
+          },
+          {
+            "label": "Takte 9-13",
+            "titre": "Die Wiederholung als Echo und das nackte Ende",
+            "chiffrage": "(vollständige Wiederholung von 5-8, Klang für Klang) | c-Moll (i, Schluss)",
+            "fonctions": "(identisch mit 5-8, im pp) | i",
+            "texte": "Die Takte 9-12 nehmen 5-8 Note für Note wieder auf — im Original macht allein die Dynamik (pp) aus der Wiederholung ein Echo. Takt 13 schließt das Prélude auf einem nackten Tonikaakkord, ohne picardische Terz: das Moll, bis zum Ende durchgehalten."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Drei romantische Farben vereint",
+            "texte": "Der chromatische Lamento-Bass (das barocke Erbe des absteigenden Tetrachords), der neapolitanische Sextakkord und die französische übermäßige Sexte erscheinen alle drei in diesen 13 Takten — das Werkzeug der romantischen Chromatik schlechthin."
+          },
+          {
+            "titre": "Derselbe Akkord, zweimal, zwei Bedeutungen",
+            "texte": "As-Dur und Des-Dur kehren in Takt 8 mit denselben Tönen wieder wie in Takt 2 — dort jedoch diatonisch und vorübergehend (in einer Nachbartonart), hier chromatisch und bedeutungsschwer (VI und ♭II der Tonika)."
+          },
+          {
+            "titre": "Ein Kadenz-Tic, der zur Grammatik wird",
+            "texte": "Der Vorhalt ♭6→5 über der Dominante (Es→D in Takt 1) kehrt in jeder Kadenz des Préludes wieder — ein und dieselbe expressive Geste, so oft wiederholt, bis sie zur Schreibgewohnheit wird und nicht zum Zufall."
+          }
+        ]
+      }
     }
   },
   "cours25": {
@@ -4071,6 +4891,84 @@
       "masquerBtn": "▲ Ausblenden",
       "explorerBtn": "▼ Erkunden",
       "ecouter": "▶ Hören"
+    },
+    "conservatoire": {
+      "intuition": "Chromatik ist die Tonalität, die sich in einem Zerrspiegel betrachtet – dieselbe Logik, nur bis an ihre Grenzen getrieben.",
+      "reference": {
+        "badge": "Schönberg · Harmonielehre",
+        "citation": "Die Dissonanz ist nicht das Gegenteil der Konsonanz – sie ist eine fernere Konsonanz, die das Ohr erst noch hören lernen muss.",
+        "auteur": "Arnold Schönberg, 1911"
+      },
+      "voix": [
+        "Aufwärtsgerichtete Chromatik (Leittonbildung) verstärkt den Zug zum Zielton durch den aufsteigenden Halbton",
+        "Abwärtsgerichtete Chromatik (Verdüsterung) erzeugt eine expressive Spannung, die nach Auflösung durch den absteigenden Halbton verlangt",
+        "Jeder chromatische Ton muss sich in Richtung seiner Alteration auflösen: ♯ steigt, ♭ fällt – niemals umgekehrt"
+      ],
+      "repertoire": {
+        "titre": "Vorspiel zu Tristan und Isolde",
+        "compositeur": "Richard Wagner"
+      },
+      "pieges": [
+        {
+          "erreur": "Grundlose Chromatik ohne harmonische Richtung – eine Anhäufung alterierter Töne ohne jede Auflösungslogik",
+          "correction": "Jeder chromatische Ton erzeugt einen Zug zu seiner Auflösung; Chromatik ist eine Logik, kein Ornament"
+        },
+        {
+          "erreur": "Enharmonische Verwechslung: Gis und As als gleichwertig behandeln, ohne ihre Auflösungsrichtung zu unterscheiden",
+          "correction": "Gis steigt nach A (aufwärtsgerichtete Chromatik), As fällt nach G (abwärtsgerichtete Chromatik) – die enharmonische Schreibweise ändert alles"
+        },
+        {
+          "erreur": "Das tonale Zentrum verlieren, indem man Chromatik ohne diatonischen Ankerpunkt häuft",
+          "correction": "Mindestens einen diatonischen Bezugsakkord bewahren, bevor man Chromatik aneinanderreiht oder enharmonisch moduliert"
+        }
+      ],
+      "resume": [
+        "Chromatische Linien: Lamentobass (Abstieg), Leittonbildung (Aufstieg), chromatische Wechselnote",
+        "Tristan-Akkord: F–H–Dis–Gis – eine gewollte funktionale Mehrdeutigkeit, bis heute umstritten",
+        "Enharmonische Modulation: der verminderte Septakkord eröffnet je nach gewählter Deutung 4 verschiedene Tonarten"
+      ],
+      "analyseNarrative": {
+        "tonalite": "a-Moll – in diesem Ausschnitt nie durch einen Tonikaakkord bestätigt: das ganze Stück entzieht sich der Auflösung.",
+        "metrique": "6/8. Lento (punktierte Viertel = 52,5).",
+        "forme": "Drei Darbietungen desselben Rufmotivs (Auftakt + Akkord + Auflösung), jede um einen Grad gespannter als die vorige.",
+        "sections": [
+          {
+            "label": "Auftakt – T. 3",
+            "titre": "Der Tristan-Akkord: zwei Lesarten für einen einzigen Klang",
+            "chiffrage": "Fø7 (T. 2) – E7 (T. 3)",
+            "fonctions": "? (Tristan) – V7",
+            "texte": "Das Motiv beginnt mit einem dreitönigen Auftakt (A-F-E), der aufsteigt und wieder zurückfällt wie eine Frage. In T. 2 erstarren die vier Stimmen auf F-H-Dis-Gis: dem meistkommentierten Akkord der Harmoniegeschichte. Vertikal gelesen ist er ein schlichter Dominantseptakkord mit verminderter Quinte über F (Fø7), ein eigenständiger Klang, der keine bestimmte Auflösung verlangt. Doch Gis ist ein Vorhalt: es steigt zum A, und der Akkord, der dann erscheint – F-A-H-Dis –, ist ein regelrechter französischer Sextakkord, der mechanisch zur Quinte der Dominante zieht. Die beiden Lesarten widersprechen einander nicht: sie bestehen nebeneinander, und eben diese Mehrdeutigkeit macht die ganze Wirkung der Stelle aus. Die Auflösung erfolgt in T. 3 auf E7 (V7 von a-Moll), über einen zweiten Vorhalt in der Tiefe (Ais→H)."
+          },
+          {
+            "label": "Takte 4–7",
+            "titre": "Derselbe Akkord, eine kleine Terz höher",
+            "chiffrage": "Gisø7 (T. 6) – G7 (T. 7)",
+            "fonctions": "? (Tristan) – V7/C",
+            "texte": "Nach einer Pause, die den Auftakt verlängert, kehrt das Motiv Note für Note wieder, um eine kleine Terz transponiert. Der Akkord in T. 6 ist derselbe Klang wie der in T. 2, nur versetzt: seine Auflösung durch den Vorhalt ergibt As-C-D-Fis, einen französischen Sextakkord, der mit dem des zuvor behandelten Chopin-Préludes – Ton für Ton – identisch ist. Zwei Komponisten, ein Jahrhundert Abstand, ein grundverschiedener harmonischer Stil, und doch genau dieselbe Schichtung von vier Tönen an derselben Stelle der Phrase. Die Auflösung gleitet diesmal nach G7, der Dominante nicht mehr von a-Moll, sondern von C-Dur: die zweite Phrase öffnet eine neue tonale Region, ohne sich je in ihr niederzulassen."
+          },
+          {
+            "label": "Takte 8–13",
+            "titre": "Eine Spannung, die nie eingelöst wird",
+            "chiffrage": "Dø7/C (T. 10, T. 12) – H7 (T. 11, T. 13)",
+            "fonctions": "? (Tristan) – V7/E, dann schwebender V7",
+            "texte": "Die dritte Darbietung ist die längste: der Auftakt dehnt sich zu einem chromatischen Abstieg (D-H-B-A), der die Ankunft des Akkords hinauszögert. Wenn er in T. 10 erscheint, ist seine Septime (C) in den Bass gewandert, und die beiden Oberstimmen laufen auseinander, statt sich zu treffen – die eine steigt (D-Dis-E), die andere fällt (F-E) –, bevor ein flüchtiger übermäßiger Dreiklang C-E-Gis den allerletzten Augenblick des Taktes durchquert. Die Auflösung erfolgt in T. 11 auf H7 (V7 von E), mit eigenem Vorhalt (Eis→Fis) und doppelt gehaltener Fermate. Der Akkord kehrt in T. 12 eine Oktave höher wieder wie ein Echo, bevor er in T. 13 ein letztes Mal auf H7 zurückfällt – diesmal aber ganz ohne Auflösung: die Dominante bleibt in der Schwebe, der Ausschnitt bricht auf der Spannung selbst ab."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Ein Akkord, zwei Grammatiken",
+            "texte": "Der Tristan-Akkord lässt sich als eigenständiger vertikaler Klang lesen (ein Dominantseptakkord mit verminderter Quinte) oder als Vorhalt über einem französischen Sextakkord. Keine der beiden Lesarten hebt die andere auf: der Streit darüber, welche „die wahre“ sei, dauert seit über einem Jahrhundert an, und gerade diese Weigerung, sich zu entscheiden, macht den Akkord so berühmt."
+          },
+          {
+            "titre": "Derselbe Klang, zwei Komponisten",
+            "texte": "Einmal durch den Vorhalt aufgelöst, ergibt die transponierte Fassung des Akkords (T. 6) As-C-D-Fis, genau den französischen Sextakkord des im vorigen Kurs behandelten Chopin-Préludes. Dieselbe Tonschichtung, dieselbe Funktion, zwei harmonische Sprachen, die einander doch sehr fern zu stehen scheinen."
+          },
+          {
+            "titre": "Eine nie eingelöste Spannung",
+            "texte": "Der Ausschnitt endet auf einer Dominante (H7), die sich nicht auflöst: die erwartete Tonika kommt in diesen dreizehn Takten nie. Dieser Aufschub der Auflösung – die Wagnersche „unendliche Melodie“ – ist schon vom Beginn des Vorspiels an am Werk."
+          }
+        ]
+      }
     }
   },
   "cours26": {
@@ -4168,6 +5066,105 @@
       "btnVoirCorrection": "Korrektur anzeigen",
       "btnMasquerCorrection": "Korrektur verbergen",
       "btnNouvellesQuestions": "Neue Fragen"
+    },
+    "conservatoire": {
+      "intuition": "Der gegebene Bass ist das Skelett – die Harmonisierung ist das Fleisch und Blut, das der Musiker ihm gibt.",
+      "reference": {
+        "badge": "Dubois · Traité d'Harmonie",
+        "citation": "Die Kunst, einen Bass zu harmonisieren, ist nichts anderes als die Kunst, musikalisch zu denken: jede Bassnote trägt die Stimmen, die sich über ihr erheben, bereits im Keim in sich.",
+        "auteur": "Théodore Dubois, 1901"
+      },
+      "voix": [
+        "Die Funktion jeder Bassnote bestimmen, bevor man den Akkord wählt: handelt es sich um einen Grundton (Grundstellung), eine Terz (erste Umkehrung) oder eine Quinte (zweite Umkehrung)?",
+        "Der Kadenzquartsextakkord erscheint nur auf schwerer Zeit und wird zwingend von V und dann I gefolgt – nie auf leichter Zeit",
+        "Die akkordfremden Töne im Sopran (Durchgang, Wechselnote, Vorhalt) erkennen, bevor man harmonisiert, um keine Scheinakkorde über akkordfremden Tönen zu bilden"
+      ],
+      "repertoire": {
+        "titre": "Wachet auf, ruft uns die Stimme (Choralvorspiel BWV 645)",
+        "compositeur": "Johann Sebastian Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Auf jeder schnellen Note des Soprans den Akkord wechseln",
+          "correction": "Kurze Noten sind oft Durchgangs- oder Wechselnoten – nach der rhythmischen Struktur harmonisieren, nicht nach jeder einzelnen Note"
+        },
+        {
+          "erreur": "Einen Quartsextakkord auf leichte Zeit setzen oder ohne die zwingende Auflösung über V",
+          "correction": "Der Kadenzquartsextakkord steht ausschließlich auf schwerer Zeit (2. oder 4. Zählzeit) und wird stets von einem nach I auflösenden V gefolgt"
+        },
+        {
+          "erreur": "Die akkordfremden Töne übergehen und über Wechsel- oder Durchgangsnoten falsche Akkorde bilden",
+          "correction": "Zuerst Durchgang, Wechselnote, Vorhalt und Antizipation bestimmen – dann ausschließlich die akkordeigenen Töne harmonisieren"
+        }
+      ],
+      "resume": [
+        "Gegebener Bass: Grundton/Terz/Quinte bestimmen, 2–3 mögliche Akkorde vorschlagen, nach T→SD→D→T auswählen",
+        "Gegebener Sopran: lange Noten = akkordeigene, zu harmonisierende Töne; kurze Noten = möglicherweise akkordfremd",
+        "Kadenzquartsextakkord: nur auf schwerer Zeit, mit zwingender und unmittelbarer Auflösung V–I"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Es-Dur, mit zwei vorübergehenden Ausflügen (c-Moll, g-Moll) im Abgesang.",
+        "metrique": "4/4. Tempo Viertel = 68 (Lento).",
+        "forme": "Verzierter Choral in Barform (AAB): Ritornell (R1) – Stollen (zwei identisch wiederholte Phrasen + eine dritte) – Wiederkehr des Ritornells (R2) – Abgesang (vier Schlussphrasen + Höhepunkt) – abschließendes Ritornell. Diese Klaviertranskription notiert den Stollen nur ein einziges Mal (54 Takte), während ihn die Fassung für Orgel und Singstimme zweimal hintereinander ausschreibt.",
+        "sections": [
+          {
+            "label": "Auftakt – T. 13",
+            "titre": "Das Ritornell: Orgelpunkt, dann Tonikalisierung der Dominante",
+            "chiffrage": "Es (Orgelp.) – As/Es – F7 – B – Es: V7/V",
+            "fonctions": "T – SD/T – D (Zwischendominante) – D – Pivot",
+            "texte": "Zwölf Takte, noch bevor der Choral überhaupt einsetzt: ein Ritornell über einem Tonika-Orgelpunkt (gehaltenes Es im Bass), den ein Wechsel von I und IV durchzieht, dann eine kleine Sequenz, die zur Dominante kippt – das A♮ der T. 9–10 tonikalisiert B über dessen eigenen Dominantseptakkord (F7). T. 13 schließt diesen Abschnitt mit einem Doppelsinn: B wird zunächst als lokale Tonika gehört (I von B), ehe es sogleich als V von Es umgedeutet wird – genau jenes Scharnier, über das das Ritornell den Choral erreicht."
+          },
+          {
+            "label": "Takte 14–20",
+            "titre": "Der Einsatz des Chorals, auf der Submediante",
+            "chiffrage": "c-Moll7 (vi7) – Es – As – B7",
+            "fonctions": "T – T – SD – D",
+            "texte": "Der Choral setzt in T. 14 auf der dritten Zählzeit ein – aber nicht auf der Tonika. Der erste Akkord, der den Beginn der Melodie trägt (das aufsteigende Es-G, das Incipit von „Wachet auf“ selbst), ist ein c-Moll-Akkord mit Septime: vi7, ein harmonischer Scheineinsatz, der die Ankunft der wahren Tonika um eine ganze Phrase verzögert. Das folgende B, viermal hintereinander wiederholt (T. 15), ehe es sich in langen Werten auf C-B niederlässt (T. 16), zeichnet die charakteristische Schlusswendung des Chorals. Ein zweiter Einsatz (T. 17, erneut auf vi) bereitet eine Kadenz auf der Dominante vor, die in T. 20 nach einer Tonikalisierung durch F7 erreicht wird."
+          },
+          {
+            "label": "Takte 21–24",
+            "titre": "Dritte Phrase: Rückkehr zur Tonika",
+            "chiffrage": "B7 – Es – As – B",
+            "fonctions": "D – T – SD – D",
+            "texte": "Die dritte Phrase des Stollens schließt die erste Hälfte des Chorals auf Es, bevor eine letzte harmonische Geste (IV–V) die Wiederkehr des Ritornells vorbereitet."
+          },
+          {
+            "label": "Takte 25–30",
+            "titre": "R2: das Ritornell, Note für Note",
+            "chiffrage": "Es – F7 – B – Es – B (Pivot)",
+            "fonctions": "T – D (Zwischendominante) – D – T – D",
+            "texte": "Die zweite Hälfte des einleitenden Ritornells kehrt unverändert wieder – dieselbe Fortschreitung, dieselbe Tonikalisierung von B durch F7, derselbe abschließende Pivotakkord –, allein die pianistische Lage wechselt von einem Vorkommen zum anderen. Die Datei vermerkt diese Wiederholung selbst als exakt die T. 8 bis 13 der Eröffnung umfassend, Pivot eingeschlossen: eine vollständig ausgeschriebene Wiederholung, kein bloßes Wiederholungszeichen."
+          },
+          {
+            "label": "Takte 31–43",
+            "titre": "Der Abgesang: zwei modale Ausflüge",
+            "chiffrage": "B – Es – G/H: V6/c – c-Moll – As – G7 – c-Moll (Kad.) – D/Fis: V6/g – g-Moll (Kad.)",
+            "fonctions": "D – T – D, dann T (c-Moll) – T – D – T (g-Moll)",
+            "texte": "Die Schlussphrasen des Chorals wagen sich zum ersten Mal aus Es-Dur hinaus. Ein H (T. 34) lässt die Harmonik nach c-Moll kippen – die Mollparallele von Es – mit einer vollständigen Kadenz in T. 37. Dann eröffnet ein Fis (T. 40) einen zweiten Ausflug, diesmal nach g-Moll, in T. 43 kadenzierend, bevor der Text die Rückkehr selbst ankündigt: „Es: Rückkehr“. Zwei aufeinanderfolgende Tonikalisierungen, jede von ihrer eigenen Dominante ausgehandelt, ehe der Choral endlich seine ursprüngliche Tonika wiederfindet."
+          },
+          {
+            "label": "Takte 44–54",
+            "titre": "Höhepunkt und Schluss",
+            "chiffrage": "g-Moll → Es – As – B – Es (Höhepunkt) – As: V7/IV – B7 – Es",
+            "fonctions": "T – SD – D – T – SD – D – T",
+            "texte": "Die Rückkehr nach Es (T. 44) bereitet die letzten Phrasen des Chorals vor, die bis zu einem Höhepunkt in Oktaven (T. 47–49) getragen werden, der auf einem Spitzenton kulminiert, den weder eine Orgel noch eine Stimme je erreichen würde – die Handschrift des pianistischen Bearbeiters, nicht die des ursprünglichen Chorals. Der Cantus firmus endet in T. 50 auf wiederholtem Es, ehe ein kurzes Schlussritornell das Stück beschließt: ein farbiges Des (T. 51, ein flüchtig gestreiftes V7/IV, bei dem nie verweilt wird) verleiht der Schlusskadenz einen plagalen Beigeschmack, bevor sie sich vollkommen konventionell auf dem Tonikaakkord schließt."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Ein Einsatz, der nicht auf der Tonika einsetzt",
+            "texte": "Der Choral beginnt auf vi7, nicht auf I: die wahre Tonika kommt erst am Ende der ersten Phrase. Eine Lehre, die sich unmittelbar auf die Aufgabe des gegebenen Basses bzw. Soprans übertragen lässt – die erste Note einer Melodie verlangt nicht zwangsläufig den Tonikaakkord darunter."
+          },
+          {
+            "titre": "Ein vollständig neu ausgeschriebenes Ritornell, Note für Note",
+            "texte": "Die Wiederkehr des Ritornells (T. 25–30) überlässt nichts dem Zufall: jeder Akkord, jede Tonikalisierung des ersten Vorkommens (T. 8–13) kehrt identisch wieder. Eine gut gebaute Fortschreitung wiederholt sich, ohne variieren zu müssen."
+          },
+          {
+            "titre": "Zwei Tonikalisierungen, ein einziger Rückweg",
+            "texte": "c-Moll, dann g-Moll: die einzigen beiden Ausflüge aus Es-Dur hinaus im ganzen Choral, jeder von seiner eigenen Dominante eingeführt und von seiner eigenen Kadenz abgeschlossen, vor einer Rückkehr, die die Bezifferung selbst in klaren Worten ankündigt."
+          }
+        ]
+      }
     }
   },
   "cours27": {
@@ -4240,6 +5237,105 @@
       "btnUrlinie321": "&#9654; Urlinie 3&#x0302;&ndash;2&#x0302;&ndash;1&#x0302;",
       "btnUrlinie54321": "&#9654; Urlinie 5&#x0302;&ndash;4&#x0302;&ndash;3&#x0302;&ndash;2&#x0302;&ndash;1&#x0302;",
       "btnBassbrechung": "&#9654; Bassbrechung I&ndash;V&ndash;I"
+    },
+    "conservatoire": {
+      "intuition": "Eine vierzigminütige Sinfonie ist oft I–V–I im großen Maßstab, mit Verzierungen.",
+      "reference": {
+        "badge": "Schenker · Der freie Satz",
+        "citation": "Alle tonale Musik beruht auf ein und derselben Ursatzstruktur: einem Abstieg im Sopran und einer Quintbrechung im Bass. Alles Übrige ist nichts als Auszierung.",
+        "auteur": "Heinrich Schenker, 1935"
+      },
+      "voix": [
+        "Vordergrundharmonik (alle Akkorde) und strukturelle Harmonik (die tonalen Pfeiler) unterscheiden: eine Prolongation kann einen einzigen Akkord über mehrere Takte hinweg „dauern“ lassen.",
+        "Die Urlinie steigt stets zu 1̂ (Tonika) hinab – den Ausgangston bestimmen (3̂, 5̂ oder 8̂) und den melodischen Grundabstieg nachzeichnen.",
+        "Nicht jeden Akkord für sich analysieren: erst die Funktionsgruppe suchen (T, SD, D), dann die Prolongation, die sie ausführt."
+      ],
+      "repertoire": {
+        "titre": "Jesu, meine Freude (vollständiger Choral, 19 Takte)",
+        "compositeur": "J. Crüger / Harmonisierung in der Tradition J. S. Bachs (BWV 227)"
+      },
+      "pieges": [
+        {
+          "erreur": "Jeden Akkord analysieren, ohne die Gesamtstruktur zu sehen",
+          "correction": "Zunächst die Pfeiler bestimmen: Anfang (I), Mittelkadenz, Schlusskadenz (V–I). Alles Übrige ist Prolongation."
+        },
+        {
+          "erreur": "Vordergrundharmonik und strukturelle Harmonik verwechseln",
+          "correction": "Ein Wechsel- oder Durchgangsakkord (zwischen zwei Akkorden desselben Pfeilers) ist kein struktureller Pfeiler – er prolongiert den Hauptakkord."
+        },
+        {
+          "erreur": "Zu schnelle Reduktion ohne Zwischenstufen",
+          "correction": "In 3 Schritten reduzieren: 1) alle Akkorde notieren, 2) nach Funktion gruppieren (T/SD/D), 3) die Hauptprolongation bestimmen."
+        }
+      ],
+      "resume": [
+        "Analyse in Schichten: Vordergrund (alle Akkorde) → Mittelgrund (gruppierte Funktionen) → Hintergrund (eine einzige Prolongation T→D→T)",
+        "Urlinie: Sopranabstieg von 3̂, 5̂ oder 8̂ zu 1̂ – die Grundlinie des melodischen Verlaufs",
+        "Bassbrechung: der Bassbogen I–V–I – die tonale Struktur im Maßstab des ganzen Werkes"
+      ],
+      "analyseNarrative": {
+        "tonalite": "h-Moll.",
+        "metrique": "4/4. Tempo Viertel = 64.",
+        "forme": "Barform AAB: Stollen (3 Phrasen, T. 1–6), Note für Note wiederholt (T. 7–12), dann Abgesang (T. 13–19).",
+        "sections": [
+          {
+            "label": "Phrase 1 (T. 1–2)",
+            "titre": "Ein Bassabstieg, der die Tonika ausziert",
+            "chiffrage": "i – v6 – iv6 – vii°4/2 – VI – iiø6/5 – V7 – i",
+            "fonctions": "T (prolongiert) – SD – T (authentischer Ganzschluss)",
+            "texte": "Der Bass steigt schrittweise ab (H-A-G) unter einem ausgehaltenen Sopranton, wobei jede Stufe ihren eigenen Akkord trägt – i, v6, iv6 –, ehe sich auf dem Auftakt ein Durchgangsakkord einschiebt: ein verminderter Septakkord über dem Leitton in dritter Umkehrung (vii°4/2, die Septime im Bass), der sich nach VI auflöst. Die folgende Kadenz bringt den ersten halbverminderten Akkord des Stückes (iiø6/5) vor dem V7 und der Tonika."
+          },
+          {
+            "label": "Phrase 2 (T. 3–4)",
+            "titre": "Eine blitzartige Tonikalisierung, ein Wiederaufstieg zur Dominante",
+            "chiffrage": "i – V/A – I6/A – III – i – i6 – V",
+            "fonctions": "T – (vorübergehende Tonikalisierung) – T – D (Halbschluss)",
+            "texte": "Ein kurzer Umweg tonikalisiert A-Dur (dessen eigene Dominante E für die Dauer eines einzigen Akkords erscheint), ehe er nach III (D) gleitet. Der Bass steigt anschließend schrittweise wieder empor (H-Cis-D-E) zum Halbschluss auf Fis-Dur, der die Phrase auf der Dominante schließt."
+          },
+          {
+            "label": "Phrase 3 (T. 5–6) – und ihre Wiederholung (T. 7–12)",
+            "titre": "Der Vorhalt 4–3 und die unter Fermate gehaltene Tonika",
+            "chiffrage": "VI – i6/4 – V (Vorhalt 4–3) – V7 – i (Fermate)",
+            "fonctions": "T – T (kadenzierend) – D – T",
+            "texte": "Die schönste Kadenz des Stollens: über der Dominante hält eine Mittelstimme das H gegen das Fis des Basses (ein Vorhalt 4–3) und gibt erst auf der allerletzten Zählzeit des Taktes nach – der Akkord vervollständigt sich erst im Augenblick der Auflösung selbst zum V7. Die folgende Tonika wird unter einer Fermate gehalten. Die gesamten sechs Takte (T. 1–6) kehren danach Note für Note wieder (T. 7–12): derselbe Bass, dieselben Akkorde, dieselbe Auflösung des Vorhalts – ein vollständig ausgeschriebener Stollen, nicht bloß durch ein Wiederholungszeichen angezeigt."
+          },
+          {
+            "label": "Abgesang, Phrasen 4–5 (T. 13–14)",
+            "titre": "Die einzige Dur-Strecke des ganzen Chorals",
+            "chiffrage": "i – III – V6/5/III – III – ii6/5 – V7/III – III",
+            "fonctions": "T – (Modulation zur Parallele) – SD – D – T",
+            "texte": "Der Abgesang beginnt mit einer echten Modulation zur Durparallele (D), sauber eingeführt durch deren eigene Zwischendominante (A7) und anschließend durch eine vollständige Kadenz (ii6/5 – V7 – I) in D-Dur bestätigt – der einzige Augenblick des ganzen Stückes, der das Mollgeschlecht wirklich verlässt."
+          },
+          {
+            "label": "Phrase 6 (T. 15–17)",
+            "titre": "Der dramatische Gipfel",
+            "chiffrage": "III – vii°/A – I6/A – III – i – v – iiø4/3 von fis – V7/v – Fis: I = h: V",
+            "fonctions": "T – T (Durchgang) – T (Moll) – D (Ankunft auf der durisierten Dominante)",
+            "texte": "Rückkehr nach h-Moll über dessen eigene Dominante (fis-Moll), dann ein zweiter halbverminderter Akkord (iiø4/3 von fis, diesmal Subdominante der Dominante), der ein Cis7 (V7/v) vorbereitet, das sich nach Fis-Dur auflöst – ein vollständiges ii–V–i zur Dominante hin, jedoch durisiert. Dieser Takt enthält einen Stichfehler: das im Cis7 erwartete Eis ist in einer Mittelstimme als F notiert, eine enharmonische Schreibweise, die das Lesen für einen Sänger, der diese Terz im Chor liest, statt sie am Klavier zu spielen, sinnlos machen würde. Der folgende Takt öffnet sich nach seinem ersten Akkord in Pausen – das Atmen des deutschen Textes, vom Kirchenlied bewahrt."
+          },
+          {
+            "label": "Schlussphrase (T. 18–19)",
+            "titre": "Die Kadenzformel in ganzer Vollständigkeit",
+            "chiffrage": "iv6 – kadenzierender i6/4 – iiø6/5 – V7 – I",
+            "fonctions": "SD – T (kadenzierend) – SD – D – T",
+            "texte": "Die Schlusskadenz entfaltet die vollständige Formel – Subdominante, Kadenztonika, halbverminderter Akkord, Dominante, Tonika –, und der Schlussakkord trägt das einzige Dis des ganzen Stückes: eine picardische Terz, gesungen von der tiefsten Mittelstimme über dem Bass."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Eine einzige Prolongation für den ganzen Stollen",
+            "texte": "Unter den zahlreichen Vordergrundakkorden (v6, iv6, vii°4/2, VI, iiø6/5 …) vollzieht der Stollen in Wahrheit nur eine einzige strukturelle Geste: eine Tonika, die sich zu ihrer Dominante hin brechend entfaltet (der Halbschluss in T. 4), ehe sie zu ihr zurückkehrt (die Fermate in T. 6). Alles Übrige – jeder Phrase für Phrase bezifferte Akkord – prolongiert den einen oder anderen Pol dieses Gerüsts i–V–i, ohne es je in Frage zu stellen."
+          },
+          {
+            "titre": "Vom Gipfel zur Tonika: eine einzige melodische Linie",
+            "texte": "Der Sopran beginnt auf der Quinte (Fis) und schließt das Stück auf der Tonika (H): dieselbe absteigende Bahn, die die Melodie des Vordergrunds ordnet – jede Phrase steigt und fällt wieder zurück –, findet sich in weit größerem Maßstab in der Form des ganzen Chorals wieder."
+          },
+          {
+            "titre": "Der verminderte Akkord – bloße Auszierung eines Intervalls",
+            "texte": "Der verminderte Septakkord in T. 1 und die halbverminderten Akkorde in T. 2, 16 und 18 wirken an der Oberfläche wie dramatische Ereignisse. Auf ihre strukturelle Funktion zurückgeführt, sind sie nichts weiter als harmonisierte chromatische Durchgangsnoten – der Bass hätte auch ohne sie absteigen können. Das Ornament macht die Farbe; es macht nicht die Struktur."
+          }
+        ]
+      }
     }
   },
   "cours28": {
@@ -4316,6 +5412,109 @@
       "btnEcouterMotif": "▶ Hauptmotiv anh&ouml;ren",
       "infoBoxRetenir": "<strong>Merke:</strong> Bach (harmonische Arpeggierung) → keine eigenst&auml;ndigen Themen, kontrapunktische Logik. Mozart K. 331 (Thema und Variationen) → ein einziges transformiertes Thema. Beethoven op. 13 (bereicherte Sonatenform) → zwei Themen, harmonische Spannung und R&uuml;ckkehr des anf&auml;nglichen Grave in der Durchf&uuml;hrung.",
       "h2Quiz": "Quiz — Musikalische Formen"
+    },
+    "conservatoire": {
+      "intuition": "Form ist Harmonie, die sich in der Zeit entfaltet.",
+      "reference": {
+        "badge": "Schönberg · Fundamentals of Musical Composition",
+        "citation": "Die musikalische Form ist keine Gussform, in die man die Musik hineingießt – sie ist die logische Folge der thematischen und harmonischen Entwicklung.",
+        "auteur": "Arnold Schönberg, 1967"
+      },
+      "voix": [
+        "In der Sonatenform steht das zweite Thema in der Reprise stets in der TONIKA – auch wenn es in der Exposition in der Dominante stand. Es ist die harmonische Auflösung der gesamten Form.",
+        "Die Durchführung MUSS modulieren: während der Durchführung in der Haupttonart zu verharren, ist ein schwerer Formfehler.",
+        "Phrasenform (Vordersatz–Nachsatz) und Großform (Exposition–Durchführung–Reprise) unterscheiden – zwei verschiedene hierarchische Ebenen."
+      ],
+      "repertoire": {
+        "titre": "Sonate C-Dur KV 545, 1. Satz — vollständige Exposition",
+        "compositeur": "Wolfgang Amadeus Mozart"
+      },
+      "pieges": [
+        {
+          "erreur": "Phrasenform und Großform verwechseln",
+          "correction": "Die Phrasenform (viertaktiger Vordersatz + viertaktiger Nachsatz) ist eine Mikroebene. Die Großform (Sonate, Rondo) ist eine Makroebene, die mehrere Minuten dauert."
+        },
+        {
+          "erreur": "Zweites Thema in der Reprise in der Dominante (im Dur-Geschlecht)",
+          "correction": "In der Reprise kehrt das zweite Thema IMMER in die Tonika zurück. Das ist die grundlegende harmonische Auflösung der Sonatenform – sonst gibt es keine Auflösung."
+        },
+        {
+          "erreur": "Durchführung ohne Modulationen",
+          "correction": "Die Durchführung muss mehrere Tonarten durchqueren – das ist ihre dramatische Aufgabe. Eine Durchführung, die in der Haupttonart bleibt, verfehlt ihr Ziel."
+        },
+        {
+          "erreur": "Reprise identisch mit der Exposition",
+          "correction": "Die Reprise unterscheidet sich von der Exposition stets in einem entscheidenden Punkt: das zweite Thema steht in der Tonika, nicht in der Dominante. Oft ist auch die Überleitung verkürzt."
+        }
+      ],
+      "resume": [
+        "Sonatenform: Exposition (T1 in der Tonika + T2 in der Dominante) → Durchführung (Modulationen) → Reprise (T1 und T2 beide in der TONIKA)",
+        "Einfache Formen: zweiteilig (AB, tonal instabil→stabil) · dreiteilig (ABA) · Rondo (ABACA, zyklische Wiederkehr)",
+        "Analyse: die Abschnitte nach ihrer Tonart bestimmen, nicht nur nach ihren Themen"
+      ],
+      "analyseNarrative": {
+        "tonalite": "C-Dur, für das zweite Thema nach G-Dur (Dominante) modulierend.",
+        "metrique": "4/4. Tempo Viertel = 140.",
+        "forme": "Exposition in Sonatenform: erstes Thema (1–4), Tonleitern (5–8), modulierende Überleitung (9–13), zweites Thema (14–17), Quintfallsequenz (18–21), Kadenz und Codetta (22–28).",
+        "sections": [
+          {
+            "label": "Takte 1-4",
+            "titre": "Erstes Thema: Harmonie als Atmen",
+            "chiffrage": "I | V4/3–I | IV6/4–I | V6–I",
+            "fonctions": "T | D–T | SD–T | D–T",
+            "texte": "Vier Takte, vier Paare aus Funktion und Tonika: jeder Takt entfernt sich durch eine sanfte Umkehrung von der Tonika (die Septime des V4/3 im Albertibass, der Wechsel-Quartsextakkord der IV), um sogleich wieder auf sie zurückzufallen. Die Tonika wird nie länger als eine halbe Zählzeit verlassen – die denkbar einfachste Harmonik, jedoch ohne jede Sparsamkeit ausgebreitet."
+          },
+          {
+            "label": "Takte 5-8",
+            "titre": "Die Tonleitern: eine Harmonik, die langsamer ist als die Virtuosität",
+            "chiffrage": "IV | I6 | V4/3 → V6/5 | I",
+            "fonctions": "SD | T | D | T",
+            "texte": "Die Läufe, die den Schülern Angst einjagen, tragen harmonisch nur einen Akkord pro Takt (zwei in T. 7): die linke Hand markiert Halbe, während die rechte ihre Tonleitern abrollt. Virtuosität liegt stets über einem harmonischen Rhythmus, der langsamer ist als sie selbst."
+          },
+          {
+            "label": "Takte 9-13",
+            "titre": "Die Überleitung: eine Modulation in drei Gesten",
+            "chiffrage": "ii (Cis, melodisch) – G: V6 (Sequenz F-G-A-Fis) – G: I (= C: V) – Verbindung Cis→C",
+            "fonctions": "SD – D (G) – T (G) / D (C)",
+            "texte": "Zunächst ii (d-Moll), dessen aufsteigende melodische Molltonleiter das Cis hören lässt – das erste Vorzeichen des Stückes. Dann eine Sequenz: der Bass F-G-A-Fis verwandelt dieses Cis in einen echten lokalen Leitton (D/Fis wird zu V6 von G). Die in Arpeggien behauptete Ankunft auf G (T. 11–12) ist die Mittelzäsur – dasselbe G wird noch als V von C gehört, im selben Augenblick, in dem es sich als I einrichtet. Der einstimmige T. 13 schließt die Überleitung: die linke Hand allein pendelt Cis-D und dann C-D, dasselbe Tonpaar, das zwei Funktionen derselben chromatischen Stufe voneinander scheidet."
+          },
+          {
+            "label": "Takte 14-17",
+            "titre": "Zweites Thema: ein periodisches Wiegen",
+            "chiffrage": "I6 – V7 | I6 – V7",
+            "fonctions": "T – D | T – D",
+            "texte": "In G-Dur schmiegt sich das zweite Thema in ein schlichtes Wiegen I6–V7, wobei die Figuration der linken Hand einen D-Orgelpunkt umspielt, während das C die Septime darüber einrichtet. Vorhalte G→Fis setzen den Schlusspunkt jeder Periode."
+          },
+          {
+            "label": "Takte 18-21",
+            "titre": "Die Sequenz: der vollständige Quintenzirkel",
+            "chiffrage": "I – IV – vii°6 – iii – vi6 – ii – V6/5 – I",
+            "fonctions": "T – SD – D – T – T – SD – D – T",
+            "texte": "Der analytische Gipfel der Exposition: acht Funktionen, zwei pro Takt, keine einzige Ausnahme – ein diatonischer Quintenzirkel, der in seiner Gänze durchlaufen wird (G-C-Fis°-h-Moll-e-Moll-a-Moll-D7-G), darüber die Melodie in exakter Sequenz absteigend."
+          },
+          {
+            "label": "Takte 22-28",
+            "titre": "Kadenz und Codetta",
+            "chiffrage": "ii6 (×2) – I6/4 (kadenzierend) – V7 (Triller) – I – I (tiefe 8ve) – I",
+            "fonctions": "SD – T – D – T",
+            "texte": "Die Kadenzformel wird mit Genuss gedehnt: zwei volle Takte ii6 (a-Moll über C, im Tremolo), dann der Kadenzquartsextakkord, der mit dem vorschriftsmäßigen Triller auf A verzierte V7, die Auflösung und eine Codetta in Oktavechos. Die Exposition schließt auf G – der Dominante der Haupttonart: der Vertrag der Sonatenform ist unterschrieben, und es liegt an der Durchführung, ihn zu lösen."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Das Lehrbuch, geschrieben von dem Stück, das es illustriert",
+            "texte": "Jeder Abschnitt der Exposition nimmt genau seinen Platz im Bauplan der Sonatenform ein – erstes Thema, modulierende Brücke, zweites Thema in der Dominante, vorkadenzielle Sequenz, Kadenz – ohne die geringste Abweichung. Es ist eben jenes Stück, aus dem Generationen von Traktaten ihren Musterplan gezogen haben."
+          },
+          {
+            "titre": "Eine einzige Modulation, drei verschiedene Gesten",
+            "texte": "Von C nach G zu gelangen verlangt nur eine Handvoll Takte, doch jede der drei Etappen (lokale Tonikalisierung, chromatische Sequenz, Ankunft an der Mittelzäsur) hat ihre eigene Logik – die klassische Modulation ist kein Sprung, sie ist eine mehrstufige Beweisführung."
+          },
+          {
+            "titre": "Der Quintenzirkel, ein universeller Kreislauf",
+            "texte": "Die Sequenz der T. 18–21 durchläuft den diatonischen Quintenzirkel vollständig – denselben Kreislauf, der in anderem Gewand (Mollgeschlecht, jazzartige Septakkorde) weit spätere Fortschreitungen strukturiert. Hier ist er eine Sequenz innerhalb der Form; anderswo kann eben dieser Kreislauf zur ganzen Form werden."
+          }
+        ]
+      }
     }
   },
   "cours29": {
@@ -4383,6 +5582,116 @@
       "btnEcouter": "▶ Anh&ouml;ren",
       "infoBoxObserver": "<strong>Zu beobachten:</strong> Vergleichen Sie den Bass beim 2. Akkord jeder Harmonisierung. Bach steigt zur Dominante G ab. Debussy steigt parallel auf. Der Unterschied liegt dort — in der Bewegungslogik des Basses.",
       "h2Quiz": "Quiz — Vergleichende Repertoireanalyse"
+    },
+    "conservatoire": {
+      "intuition": "Die Geschichte der Harmonie ist die Geschichte der Dissonanz, die zur Konsonanz wird.",
+      "reference": {
+        "badge": "Schönberg · Harmonielehre",
+        "citation": "Jede Dissonanz ist eine noch nicht aufgelöste Konsonanz. Das Ohr gewöhnt sich an alles — was heute schockiert, wird morgen selbstverständlich sein.",
+        "auteur": "Arnold Schönberg, 1911"
+      },
+      "voix": [
+        "Die historische Epoche eines Werkes an drei Indizien erkennen: Dichte der Chromatik, Vorhandensein oder Fehlen der Auflösung V–I, Behandlung der Dissonanzen.",
+        "Debussy mit seinen eigenen Werkzeugen analysieren (Farbe, Parallelführung, Modi) und nicht mit den Funktionen T/SD/D — seine Akkorde sind Farbflecken, keine Funktionen.",
+        "Der historische Kontext entschuldigt keine Analysefehler: Debussy beherrschte die Regeln, die er übertrat, vollkommen."
+      ],
+      "repertoire": {
+        "titre": "La Cathédrale engloutie (Préludes, Buch I, Nr. 10)",
+        "compositeur": "Claude Debussy"
+      },
+      "pieges": [
+        {
+          "erreur": "Glauben, Debussy habe keine harmonischen Regeln",
+          "correction": "Debussy beherrschte den Kontrapunkt und die klassische Harmonielehre vollkommen. Seine Freiheit ist eine bewusste, kalkulierte Übertretung, keine Unkenntnis."
+        },
+        {
+          "erreur": "Stil und Epoche verwechseln",
+          "correction": "Bach und Händel sind Zeitgenossen und doch sehr verschieden. Einen Komponisten allein aus seiner Epoche heraus zu analysieren genügt nicht — die individuelle Handschrift hat Vorrang."
+        },
+        {
+          "erreur": "Debussy mit den Funktionen T/SD/D analysieren",
+          "correction": "Debussy verweigert diese Funktionen. Seine Akkorde schreiten nach Farbe, Lage und melodischer Kontur fort — nicht nach Spannung und Auflösung. Bei Debussy nach „Dominanten“ zu suchen heißt, das Falsche zu suchen."
+        },
+        {
+          "erreur": "Den historischen Kontext in der Analyse ignorieren",
+          "correction": "Eine Quintparallele ist bei Bach ein Fehler. Bei Debussy ist sie ein gewollter Effekt (planing). Der Kontext entscheidet, ob es sich um einen Fehler oder um eine Technik handelt."
+        }
+      ],
+      "resume": [
+        "5 Epochen: Barock (Kontrapunkt + klare Funktionen) → Klassik (symmetrische Formen + bekräftigte Kadenzen) → Romantik (Chromatik + Modulationen) → Spätromantik (erweiterte Tonalität) → Impressionismus (Farbe ohne Funktionen)",
+        "Dieselbe Melodie, 5 Harmonisierungen: die Melodie C–E–G–C zeigt die stilistischen Unterschiede deutlicher als jedes Lehrbuch",
+        "Erkennungsmerkmal: Wie ist das Verhältnis zur Dominante? (Bach: zwingend → Debussy: nicht vorhanden)"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Keine feste funktionale Tonart — Pentatonik und Modi (mixolydisch), mit einer einzigen wirklichen Tonikalisierung (gis, T. 47-67).",
+        "metrique": "6/4. Tempo 60 zur punktierten Viertel, sehr wechselhaft (bis 120 im Höhepunkt, im Schluss auf 40 zurückfallend).",
+        "forme": "Ein Erzählbogen nach der Legende von Ys: das Auftauchen der Kathedrale, volles Geläut, das Versinken, ein Echo unter Wasser, die Rückkehr zur Stille.",
+        "sections": [
+          {
+            "label": "Takte 1-15",
+            "titre": "Die Glocken",
+            "chiffrage": "Leere Quinten + Pentatonik — planing G→F→E — Glocken auf C",
+            "fonctions": "? (keine Funktion, reiner Klang)",
+            "texte": "Der Eröffnungsakkord sagt alles: leere Quinten, über sechs Oktaven geschichtet (G1 bis D7), und darin ein vollständiges pentatonisches Aggregat {G-A-H-D-E} — keine Terz, kein Leitton, kein einziger Ton, der zwischen den Modi entscheiden würde. Der Bass sinkt anschließend G-F-E unter denselben Glocken: reinstes planing, die Akkorde gleiten parallel, ohne dass einer von ihnen „funktionierte“. Ein modales Thema schwebt in blanken Oktaven darüber, Monodie ohne Harmonie. Die Glocken kehren auf C wieder (T. 14): derselbe Klang, transponiert, weiterhin ohne Terz."
+          },
+          {
+            "label": "Takte 16-27",
+            "titre": "Das Auftauchen",
+            "chiffrage": "H-Dur (Orgelpunkt) — Es (Tritonus) — Quarten {G-C-D}",
+            "fonctions": "?",
+            "texte": "Parallelakkorde richten sich über einem H-Orgelpunkt ein — die Kathedrale, die „aus dem Nebel tritt“. Dann wird dieselbe Materie ohne jeden Übergang nach Es versetzt: ein Tritonussprung zwischen den beiden Ebenen, die antitonalste Beziehung überhaupt, hier als bloßer Beleuchtungswechsel eingesetzt. Quartenakkorde {G-C-D} und ein langer Bassabstieg bereiten den kommenden Gipfel vor."
+          },
+          {
+            "label": "Takte 28-41",
+            "titre": "Der Choral: der Höhepunkt ohne Dominante",
+            "chiffrage": "C-mixolydisch — G, F, d-Moll, a-Moll, e-Moll, B (♭VII), g-Moll (v) — C",
+            "fonctions": "? (paralleles Organum)",
+            "texte": "Die Kathedrale klingt aus voller Kehle: ein Orgelchoral in C-mixolydisch über unverrückbarem C-Orgelpunkt, parallele diatonische Dreiklänge, als riesiges Organum behandelt, mit der Signaturfarbe des Modus — dem B, der erniedrigten Septime (♭VII) — und dem Moll-v als Mixtur. Vierzehn Takte Triumph ohne die geringste funktionale Dominante: der größte Höhepunkt der Klavierliteratur, ausschließlich aus plagaler und paralleler Bewegung gebaut."
+          },
+          {
+            "label": "Takte 42-46",
+            "titre": "Das Versinken",
+            "chiffrage": "Quarten {G-C-D} — Bass B…As (chromatisch)",
+            "fonctions": "?",
+            "texte": "Über denselben Quartenakkorden sinkt der Bass in chromatischen Schritten (B, dann As), während hohe Glocken C-D am oberen Ende der Klaviatur läuten — die Kathedrale versinkt vom Bass her, während die Höhe weiterläutet."
+          },
+          {
+            "label": "Takte 47-67",
+            "titre": "Der Mittelteil: eine Reliquie der Grammatik auf dem Grund des Wassers",
+            "chiffrage": "gis-Orgelpunkt — Disø7 (Farbe) — Fis7 (Farbe) — Dis7 → Gis(7)",
+            "fonctions": "? — ? — D — T (die einzige echte Kadenz des Stückes)",
+            "texte": "Ein nahezu durchgehender gis-Orgelpunkt trägt eine klagende Wiederaufnahme des Themas. Zuerst die Farbe: ein halbverminderter Akkord (Disø7) pendelt über dem Orgelpunkt — weder Leitton noch übermäßige Sexte, hier reine Klangfarbe. Dann Fis7, wiederum Farbe. Und plötzlich, im dunkelsten Abschnitt des Stückes vergraben, eine echte V7-I-Fortschreitung (Dis7 nach Gis, mit ordnungsgemäß ausgeschriebenem Fisis und His): die einzige funktionale Kadenz der gesamten Cathédrale engloutie."
+          },
+          {
+            "label": "Takte 68-83",
+            "titre": "Übergang und Echo",
+            "chiffrage": "Dyaden im Tritonusabstand (Fis/Gis – C/D) — Echo des Chorals (Orgelpunkt C-G-D, ♭VII, v)",
+            "fonctions": "?",
+            "texte": "Ein Übergang, auf zwei Dyaden im Tritonusabstand reduziert, wie ein Wallen des Nebels. Dann kehrt der ganze Choral wieder, doch pianissimo, über einem zusammengesetzten Orgelpunkt (C-G-D) — dasselbe harmonische Raster wie im Höhepunkt und doch eine ganz andere Welt: die Funktion eines Akkordes ist hier seine Dynamik und seine Lage, nicht seine Bezifferung."
+          },
+          {
+            "label": "Takte 84-89",
+            "titre": "Der Schluss: die endlich gewährte Terz",
+            "chiffrage": "Pentatonische Glocken {G-A-H-D-E} — reines C-Dur (I)",
+            "fonctions": "? — T",
+            "texte": "Die pentatonischen Glocken schließen den Bogen, mit der Eröffnung identisch. Doch der allerletzte Akkord ist ein vollständiges C-Dur, über vier Oktaven ausgebreitet, pianissimo: die Terz (E), in allen Glocken des Stückes sorgsam vermieden, wird erst im allerletzten Wort gewährt."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Die Parallelführung als System, nicht als Provokation",
+            "texte": "Jeder gewohnte Parameter der funktionalen Harmonik findet hier einen Ersatz: der Modus ersetzt die Tonart, der Orgelpunkt ersetzt die Funktion, Lage und Dynamik ersetzen die Kadenz. Das ist keine Abwesenheit von Regeln — es ist ein vollkommen anderes System, mit derselben Strenge angewandt wie eine Fuge."
+          },
+          {
+            "titre": "Der halbverminderte Akkord, auf reine Klangfarbe reduziert",
+            "texte": "Der halbverminderte Akkord aus T. 55 bereitet nichts vor, hält nichts in der Schwebe, vertritt nichts: er ist eine Farbe über einem Orgelpunkt, ohne die geringste Auflösungspflicht. Dasselbe Gebilde, das anderswo das ganze Gewicht einer Kadenz oder einer enharmonischen Mehrdeutigkeit trägt, wird hier zum bloßen Klangobjekt."
+          },
+          {
+            "titre": "Eine Kadenz, eine einzige, vergraben",
+            "texte": "Auf neunundachtzig Takte kommt eine einzige echte V7-I-Fortschreitung — und sie ereignet sich im dunkelsten und intimsten Abschnitt des Stückes, beinahe versteckt. Die Kadenz, drei Jahrhunderte lang der Motor der tonalen Musik, ist hier nur noch ein flüchtiges Zitat inmitten einer ganz anderen Sprache."
+          }
+        ]
+      }
     }
   },
   "cours30": {
@@ -4460,6 +5769,123 @@
       "emprunteLabel": "Entlehnt aus:",
       "warnBoxModalInterchange": "<strong>Modal Interchange ≠ Modulation:</strong> Die Entlehnung ist vor&uuml;bergehend &mdash; die Tonika &auml;ndert sich nicht. In C-Dur erzeugt die Entlehnung von As (bVI) eine Farbe, aber C bleibt das Zentrum. Eine Modulation impliziert einen durch eine Kadenz best&auml;tigten Wechsel des tonalen Zentrums.",
       "h2Quiz": "Quiz — Impressionistische Harmonik und fortgeschrittene Modalit&auml;t"
+    },
+    "conservatoire": {
+      "intuition": "Wenn Debussy einen parallelen Nonakkord spielt, denkt er nicht „Spannung–Auflösung“ — er denkt „Himmelblau, das ins Violett übergeht“.",
+      "reference": {
+        "badge": "Messiaen · Technik meiner musikalischen Sprache",
+        "citation": "Die Modi mit begrenzten Transpositionsmöglichkeiten sind der Schlüssel zu meiner Sprache. Ihre innere Symmetrie erzeugt eine einzigartige, unnachahmliche Farbe.",
+        "auteur": "Olivier Messiaen, 1944"
+      },
+      "voix": [
+        "Das planing ist kein Fehler: es ist eine Parallelbewegung von Akkorden, in der die Farbe die Funktion ersetzt. Mit den Augen analysieren (nicht mit den Funktionen T/SD/D).",
+        "Die Ganztonleiter (6 gleich weit voneinander entfernte Töne) enthält keinen richtungweisenden Ton — das Schweben ist gewollt und keine aufzulösende Mehrdeutigkeit.",
+        "Die Modi Messiaens haben begrenzte Transpositionsmöglichkeiten: Modus 1 (die Ganztonleiter) lässt sich nur zweimal transponieren, bevor er wieder mit sich selbst zusammenfällt."
+      ],
+      "repertoire": {
+        "titre": "Voiles (Préludes, Buch I, Nr. 2)",
+        "compositeur": "Claude Debussy"
+      },
+      "pieges": [
+        {
+          "erreur": "Debussy mit den Funktionen T/SD/D analysieren",
+          "correction": "Die impressionistische Harmonik funktioniert über Farbe und Lage. In Debussys „Voiles“ nach einer Dominante zu suchen heißt, das Falsche zu suchen."
+        },
+        {
+          "erreur": "Glauben, das planing sei ein Fehler der Stimmführung",
+          "correction": "Das planing ist eine bewusste Technik — die Quint- und Oktavparallelen sind gewollt und erzeugen den Eindruck eines Klangblocks, der ohne Auflösung dahingleitet."
+        },
+        {
+          "erreur": "Ganztonleiter und pentatonische Leiter verwechseln",
+          "correction": "Ganztonleiter: 6 gleich weit voneinander entfernte Töne (lauter Ganztöne), übermäßige Akkorde. Pentatonik: 5 Töne ohne Halbton (C–D–E–G–A). Sehr verschiedene Farben."
+        },
+        {
+          "erreur": "Im Impressionismus nach einer funktionalen Auflösung suchen",
+          "correction": "Die Auflösung V–I wird bewusst vermieden. Die impressionistische Spannung ist sinnlich (Farbe, Lage, Dynamik) und nicht funktional."
+        }
+      ],
+      "resume": [
+        "Planing: Verschiebung eines ganzen Akkordes ohne Auflösung — diatonisch (derselbe Typ auf jeder Stufe) oder chromatisch (exakt derselbe Akkord transponiert)",
+        "Besondere Skalen: Ganzton (6 gleich weit entfernte Töne, übermäßige Akkorde) · oktatonisch (Ganzton/Halbton, verm7) · pentatonisch (5 Töne ohne Halbton)",
+        "Modi Messiaens: innere Symmetrie + begrenzte Transpositionen → einzigartige, wiedererkennbare Farbe (Modus 1 = Ganztonleiter, Modus 2 = oktatonisch)"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Keine — die Ganztonsammlung {C, D, E, Fis, Gis, B}, ohne Tonika und ohne konstruierbare Funktion.",
+        "metrique": "2/4. Modéré (44 zur Viertel zu Beginn, danach sehr wechselhaft).",
+        "forme": "Ein einziger Bogen aus Dichte und Lage (nicht aus harmonischer Spannung): Exposition — Anhäufung — pentatonischer Höhepunkt — Abschwellen — erloschene Coda.",
+        "sections": [
+          {
+            "label": "Takte 1-4",
+            "titre": "Das Thema: das Segel als Objekt",
+            "chiffrage": "Ganztöne — parallele große Terzen, ohne Bass",
+            "fonctions": "? (keine konstruierbare Funktion)",
+            "texte": "Parallele große Terzen sinken ohne jeden Bass abwärts (Gis/E → Fis/D → E/C → D/B): das Thema gleitet durch die Ganztonsammlung wie über eine Fläche ohne Relief, ohne den geringsten Anhaltspunkt einer hierarchisierten Tonhöhe."
+          },
+          {
+            "label": "Takte 5-14",
+            "titre": "Der Orgelpunkt richtet sich ein",
+            "chiffrage": "Ganztöne — B-Orgelpunkt",
+            "fonctions": "?",
+            "texte": "Ein B-Orgelpunkt richtet sich im Bass ein — er wird dort siebenundfünfzig Takte lang bleiben, bis T. 61. Terzmotive und Abstiege wiederholen sich pianissimo darüber."
+          },
+          {
+            "label": "Takte 15-22",
+            "titre": "Das übermäßige Organum",
+            "chiffrage": "Ganztöne — parallele übermäßige Dreiklänge (As-C-E, B-D-Fis)",
+            "fonctions": "?",
+            "texte": "Unter dem Thema enthüllt das Begleitostinato die einzige „Harmonie“, die die Sammlung zulässt: parallele übermäßige Dreiklänge — der übermäßige Dreiklang ist der einzige, den die Ganztonleiter hervorbringen kann. Debussy macht daraus sein Organum, ein unmittelbares Echo der parallelen Dreiklänge der Cathédrale engloutie."
+          },
+          {
+            "label": "Takte 23-32",
+            "titre": "Die Fis-Schicht und die chromatische Verzierung",
+            "chiffrage": "Ganztöne — tiefe Schicht auf Fis; isolierte chromatische Figur (T. 31)",
+            "fonctions": "?",
+            "texte": "Eine tiefe Schicht richtet sich auf Fis ein, dem anderen Pol der Sammlung. Takt 31 bringt die einzige wirkliche Ausnahme des ganzen Stückes: eine kleine chromatische Figur (der Doppelschlag C-D-Des-C, das Gleiten Fis-G-As), die die einzigen der Sammlung fremden Töne hören lässt — ornamentale Chromatik, keine Harmonie, die Ausnahme, die die Regel bestätigt."
+          },
+          {
+            "label": "Takte 33-41",
+            "titre": "Verstärkung",
+            "chiffrage": "Ganztöne (unverändert)",
+            "fonctions": "?",
+            "texte": "Die Sammlung ändert sich nicht; was sich ändert, sind Dichte und Lage — Serrez, dim. molto, Cédez. Die Steigerung vollzieht sich über Parameter, die die klassische Harmonik als bloße Hilfsmittel behandelte."
+          },
+          {
+            "label": "Takte 42-47",
+            "titre": "Der Höhepunkt: Wechsel des Alphabets",
+            "chiffrage": "Pentatonik der schwarzen Tasten {Des, Es, Ges, As, B}",
+            "fonctions": "?",
+            "texte": "Der einzige Augenblick des ganzen Stückes, in dem sich wirklich etwas ändert — und es ist weder ein Akkord noch eine Tonart, es ist die gesamte Sammlung. Glissandi und pentatonische Aufschwünge, mf dann f (das einzige f des Stückes), Emporté: die einzige „Modulation“ von Voiles ist dieses Umkippen von einem Alphabet in ein anderes."
+          },
+          {
+            "label": "Takte 48-61",
+            "titre": "Rückkehr und Abschwellen",
+            "chiffrage": "Ganztöne — wieder aufgenommener B-Orgelpunkt",
+            "fonctions": "?",
+            "texte": "Thema und Ostinato kehren in Schichten übereinandergelegt wieder, pianissimo, über demselben B-Orgelpunkt wie zu Beginn."
+          },
+          {
+            "label": "Takte 62-64",
+            "titre": "Coda: das Stück erlischt",
+            "chiffrage": "Fis-Orgelpunkt — blanke Terz C-E (×2), ohne Bass",
+            "fonctions": "?",
+            "texte": "Der Orgelpunkt gibt in den drei letzten Takten das B zugunsten des Fis auf, getragen von sanften Wischern durch die Sammlung. Dann erscheint zweimal die Terz C-E allein, ohne Bass — das Stück schließt nicht, es erlischt."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Eine Sammlung, die Funktion unmöglich macht",
+            "texte": "Die Ganztonleiter enthält weder eine reine Quinte noch einen Leitton noch einen Dur- oder Molldreiklang: keine Dominante, keine Kadenz ist in ihr überhaupt konstruierbar. Wo die Cathédrale engloutie die Funktion vermied und dennoch eine, vergraben, bewahrte, macht Voiles sie durch Konstruktion unmöglich — man verzichtet nicht mehr auf die Kadenz, man wählt ein Material, in dem es sie gar nicht gibt."
+          },
+          {
+            "titre": "Die Form als Dichtekurve",
+            "texte": "Da keine harmonische Spannung zur Verfügung steht, zeichnen die Anzahl der Töne pro Takt, die Lage und die Dynamik die Form — eine allmähliche Anhäufung bis zum pentatonischen Höhepunkt, dann ein Abschwellen bis zum Erlöschen. Der B-Orgelpunkt, die einzige überlebende Hierarchie, ist nur deshalb „Zentrum“, weil er ausgehalten wird."
+          },
+          {
+            "titre": "Die übermäßige Sexte, auf eine Teilmenge reduziert",
+            "texte": "Der gespannteste Akkord der romantischen Chromatik — die französische übermäßige Sexte, jene des dramatischen Gipfels bei Chopin — ist, Ton für Ton, nichts anderes als eine Teilmenge der Ganztonsammlung, in der Debussy seine Segel vierundsechzig Takte lang schweben lässt. Dasselbe Material, Höchstspannung zur Schwerelosigkeit geworden."
+          }
+        ]
+      }
     }
   },
   "cours31": {
@@ -4817,6 +6243,91 @@
       "infoBoxMorricone": "<strong>Morricone und Leone:</strong> Morricone komponierte VOR den Dreharbeiten. Leone zeigte die Musik den Schauspielern am Set — sie spielten w&auml;hrend des H&ouml;rens. Die Musik diktierte den Rhythmus und die Emotion des Spiels, das Gegenteil der klassischen Methode. Diese einzigartige Zusammenarbeit erkl&auml;rt die perfekte Fusion von Bild und Ton in ihren Filmen.",
       "warnBoxLeitmotif": "<strong>Fortgeschrittene Technik:</strong> Ein Leitmotiv in Dur, das zu Moll wird, ist m&auml;chtiger als ein neues trauriges Thema. Warum? Der Zuschauer hat bereits eine emotionale Verbindung zum urspr&uuml;nglichen Thema — seine Transformation verst&auml;rkt die Wirkung. Ein Leitmotiv zu schaffen bedeutet, in eine emotionale Ressource zu investieren, die der Komponist w&auml;hrend des gesamten Films nutzen kann.",
       "h2Quiz": "Quiz — Filmharmonik"
+    },
+    "conservatoire": {
+      "intuition": "Filmmusik erzählt nicht, was wir sehen — sie sagt, was wir angesichts des Gesehenen empfinden. Das ist der Unterschied zwischen Kommentar und Offenbarung.",
+      "reference": {
+        "badge": "Morricone · Gespräch mit Bonini, 2016",
+        "citation": "Die Musik ist die unsichtbare Sprache des Films. Sergio gab mir die Bilder, und ich komponierte, ohne hinzusehen — ich komponierte die Emotionen, die der Zuschauer empfinden sollte.",
+        "auteur": "Ennio Morricone, Komponist, 2016"
+      },
+      "voix": [
+        "Der unaufgelöste Tritonus ist das wirksamste Spannungsmittel des Kinos. Eine einzige in der Schwebe gelassene übermäßige Quarte, ohne Auflösung, versetzt den Zuschauer in Alarmbereitschaft. Das menschliche Gehirn erwartet die Auflösung — und der Komponist kann sich dieses Wartens bemächtigen.",
+        "Ein harmonisch verwandeltes Leitmotiv wirkt stärker als ein neues Thema. Wenn Williams' Imperial March ins Moll-Dur kippt oder von einer einzelnen Harfe gespielt wird, ist das ergreifender als jede von Grund auf neu erfundene Melodie.",
+        "John Williams, Hans Zimmer und Ennio Morricone teilen ein Geheimnis: Ihre Harmonien sind oft schlicht (I–V–VI–IV), ihre Instrumentierung dagegen außergewöhnlich. Die emotionale Wucht kommt von der Klangfarbe, nicht von harmonischer Komplexität."
+      ],
+      "repertoire": {
+        "titre": "Il Buono, il Brutto, il Cattivo (Hauptthema, vollständig)",
+        "compositeur": "Ennio Morricone"
+      },
+      "pieges": [
+        {
+          "erreur": "Zu glauben, Filmmusik müsse harmonisch komplex sein, um zu wirken",
+          "correction": "Die Verbindung I–V–VI–IV (verwendet in Zimmers „Time“ und in Williams' „Can't Help Falling in Love“) erzeugt mehr Emotion als komplexe Harmonik, weil sie das Ohr freimacht für Klangfarbe, Dynamik und Melodie."
+        },
+        {
+          "erreur": "Für alle Emotionen dasselbe harmonische Register verwenden",
+          "correction": "Jede Emotion hat ihre harmonische Landkarte: Tritonus (Spannung), absteigendes Moll (Trauer), Dur mit leerer Quinte (Heldentum), phrygisch (Geheimnis). Die falsche harmonische Farbe zerstört die emotionale Wirkung."
+        },
+        {
+          "erreur": "Underscoring und Source Music verwechseln",
+          "correction": "Underscoring ist Musik, die die Figuren nicht hören (Hintergrundmusik). Source Music ist Musik innerhalb der Diegese (Radio, Orchester auf der Bühne). Die Harmonik kann dieselbe sein; die erzählerische Funktion ist die entgegengesetzte."
+        }
+      ],
+      "resume": [
+        "Landkarte der Emotionen: unaufgelöster Tritonus (Spannung) · absteigendes Moll (Trauer) · Dur mit leerer Quinte (Heldentum) · phrygisch/vermindert (Geheimnis) · add9 (Liebe)",
+        "Leitmotiv: ein Thema, das an eine Figur oder eine Idee gebunden ist und sich im Lauf der Erzählung harmonisch verwandelt",
+        "Die emotionale Wucht des Kinos kommt von der Instrumentierung, nicht von harmonischer Komplexität — I–V–VI–IV kann episch klingen, wenn die Orchestrierung stimmt"
+      ],
+      "analyseNarrative": {
+        "tonalite": "D-Äolisch mit dorischer Färbung (das H des IV. Akkords) — keinerlei klassische Funktionstonalität.",
+        "metrique": "2/2. Fast tempo (in 2), ♩ = 200.",
+        "forme": "Eine Form mit Rücksprüngen: Strophe (1-49) — To Coda (50) — das Ereignis (51-58) — Wiederholung der Strophe (59-89) — D.S. al Coda (90) — das Ereignis ein zweites Mal (91-94) — Coda im Decrescendo (95-111).",
+        "sections": [
+          {
+            "label": "Takte 1-16",
+            "titre": "Der Ruf und der vollständige Vorrat des Modus",
+            "chiffrage": "Bordun — i (leere Quinte) — IV — ♭VII — v",
+            "fonctions": "? (keine Funktion konstruierbar: modal, nicht tonal)",
+            "texte": "Ein Bordun aus D-F-G-A legt die Farbe fest, bevor der eigentliche Ruf einsetzt — die Quarte A-D, der berühmte „Kojotenruf“ —, harmonisiert von einer leeren Quinte (D-A, ohne Terz): dieselbe Eröffnungsgeste wie in La Cathédrale engloutie, das nackte Intervall vor aller Harmonie. Die Strophe entfaltet dann das vollständige Vokabular des Modus: i (d-Moll), IV (G-Dur, mit seinem dorischen H — die Folk-Farbe schlechthin), ♭VII (C-Dur, jener Akkord, den die klassische Tonalität verbot), v (a-Moll, eine Dominante ohne Leitton)."
+          },
+          {
+            "label": "Takte 27-49",
+            "titre": "Die Bridge",
+            "chiffrage": "v — ♭III (F) — ♭VII (C)",
+            "fonctions": "?",
+            "texte": "Die Bridge wechselt auf die Seite der Paralleltonart — v, ♭III, ♭VII —, während Streicher und Stimmen darüber schweben, weiterhin ohne den geringsten Leitton."
+          },
+          {
+            "label": "Takte 51-58 (Wiederholung 91-94)",
+            "titre": "Das Ereignis: die einzige Dominante",
+            "chiffrage": "♭V (As) → V7 (A7, mit dem einzigen cis des Stücks)",
+            "fonctions": "? → D",
+            "texte": "Dann das Ereignis: ein Akkord im Tritonusabstand zur Tonika (As-Dur, ♭V) taucht aus dem Nichts auf und gleitet auf A7 — die einzige echte funktionale Dominante des ganzen Stücks, mit dem einzigen cis der gesamten Transkription, aufgespart für den Augenblick der dramatischen Wende vor der sofortigen Rückkehr in eine Welt ohne Leittöne. Die Form mit Rücksprüngen (To Coda T. 50, D.S. al Coda T. 90) lässt eben diese Geste zweimal erklingen."
+          },
+          {
+            "label": "Takte 95-111",
+            "titre": "Die Coda",
+            "chiffrage": "der sich entfernende Ruf (dim.) — leere Quinte (106-109) — vollständige Auflösung (110)",
+            "fonctions": "? — T",
+            "texte": "Die Coda bringt den Ruf zurück, der sich im Decrescendo durch Passagen in nackten Quinten entfernt — bis der allerletzte ausgehaltene Klang die kleine Terz wieder einführt: Das Stück schließt auf einem vollständigen d-Moll-Akkord, nicht in der Wüste einer leeren Quinte."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Bachs Ökonomie, umgekehrt",
+            "texte": "Im Bach-Choral war das Modale die farbige Ausnahme innerhalb einer funktionalen Welt (ein schlichtes durchgehendes Moll-v). Hier ist die Dominante der Spezialeffekt einer modalen Welt — ein einziger Takt echter Funktion auf hundertelf. Ein Jahrhundert Harmoniegeschichte, zusammengefasst in einer vollständigen Umkehrung der Proportionen."
+          },
+          {
+            "titre": "Die Klangfarbe als Formparameter",
+            "texte": "Über sieben Stimmen hinweg wandert der Ruf von der Okarina zur Singstimme, zur E-Gitarre, zur Trompete — und es ist dieser Wechsel der Klangfarben, nicht die Harmonik, der die Form gliedert. Die Lehre, die Debussy theoretisch formuliert hatte (Lage und Dynamik anstelle der Kadenz), auf dem Weg über den Western in die Weltsprache des Alltags überführt."
+          },
+          {
+            "titre": "Eine Sprache, die zur Muttersprache wurde",
+            "texte": "Das Äolisch mit ♭VII dieses Themas ist seit 1966 zum harmonischen Grundvokabular von Rock, Pop und Bildmusik geworden — dieselbe modale Ökonomie, verbreitet an Hunderte Millionen von Hörern."
+          }
+        ]
+      }
     }
   },
   "cours35": {
@@ -4919,6 +6430,98 @@
       "row4Eviter": "nat&uuml;rliche 13 (verwende b13)",
       "warnBoxVoicings": "<strong>H&auml;ufiger Fehler:</strong> Chord Scale und Modus verwechseln. Eine Chord Scale ist immer an einen bestimmten Akkord in einem pr&auml;zisen harmonischen Kontext gebunden. CMaj7 in C-Dur verwendet standardm&auml;&szlig;ig das Ionisch — aber wenn man die lydische Farbe (#11) m&ouml;chte, w&auml;hlt man Lydisch. Der Kontext (tonal oder modal) bestimmt die Chord Scale, nicht das Schema allein.",
       "h2Quiz": "Quiz — Reharmonisation und Voicings"
+    },
+    "conservatoire": {
+      "intuition": "Miles Davis sagte: „Spiel nicht, was da ist — spiel, was nicht da ist.“ Genau das ist Reharmonisation: die Möglichkeiten hören, die die Melodie nicht vorschreibt.",
+      "reference": {
+        "badge": "Levine · The Jazz Theory Book, 1995",
+        "citation": "Reharmonisation ist kein Schummeln — sie ist ein Gespräch zwischen dem ursprünglichen Komponisten und dem Jazzmusiker. Du achtest die Melodie und lädst die Harmonie ein, anders zu tanzen.",
+        "auteur": "Mark Levine, The Jazz Theory Book, 1995"
+      },
+      "voix": [
+        "Die Guide Tones (Terz und Septime des Akkords) sind die Töne, die die harmonische Farbe festlegen. Achte beim Reharmonisieren darauf, dass die Melodie nicht an den Guide Tones des neuen Akkords reibt — das ist die Hauptbedingung.",
+        "Das Shell Voicing (Grundton + 3 + 7, ohne Quinte) klingt moderner und lässt mehr Raum für Melodie und Basslinie. Die Quinte wegzulassen verarmt den Akkord nicht — es klärt ihn.",
+        "Kind of Blue von Miles Davis wurde ohne Probe eingespielt — die Musiker lernten die Changes erst im Studio kennen. Das ist keine völlige Improvisation: Es ist eine präzise modale Struktur mit völliger Freiheit im Inneren. Der Unterschied ist entscheidend."
+      ],
+      "repertoire": {
+        "titre": "Blue in Green (Kind of Blue, vollständig)",
+        "compositeur": "Miles Davis / Bill Evans (Urheberschaft umstritten)"
+      },
+      "pieges": [
+        {
+          "erreur": "Reharmonisieren, ohne die Melodietöne zu berücksichtigen",
+          "correction": "Die Melodie ist bei einer Reharmonisation unantastbar. Jeder gewählte Akkord muss den Melodieton als Grundton, Terz, Quinte, Septime oder als verfügbare Option zulassen — niemals als Avoid Note."
+        },
+        {
+          "erreur": "Die Tritonussubstitution unterschiedslos auf alle Akkorde anwenden",
+          "correction": "Die Tritonussubstitution funktioniert nur bei Dominantakkorden (V7). Auf IMaj7 oder IIm7 angewandt erzeugt sie eine stilfremde Dissonanz, weil die Guide Tones dann nicht mehr gemeinsam sind."
+        },
+        {
+          "erreur": "Chord Scale und Modus verwechseln",
+          "correction": "Eine Chord Scale ist eine Skala, die über einen bestimmten Akkord in einem bestimmten tonalen Zusammenhang gespielt wird. CMaj7 in C-Dur → ionische Skala (oder lydisch). Modales CMaj7 → jede passende Durskala ist möglich. Der harmonische Kontext bestimmt die Chord Scale."
+        }
+      ],
+      "resume": [
+        "Reharmonisation: diatonische Substitution (I↔VI↔III) · Tritonussubstitution (V7→bII7) · Modal Interchange · Chromatic Mediant",
+        "Guide Tones: Terz + Septime des Akkords — die Melodie darf beim Reharmonisieren nie an ihnen reiben",
+        "Professionelle Voicings: Shell (1-3-7) · Drop 2 · Bill Evans (7-9 ohne Grundton) · So What quartal"
+      ],
+      "analyseNarrative": {
+        "tonalite": "Ein dezentriertes d-Moll / ein implizites B-Dur — die Mehrdeutigkeit ist kein Hörfehler, sie ist das Thema des Stücks. Das Material ist echt funktional (überall wirkliche Dominanten), aber in eine Umlaufbahn gebracht, ohne sich je dauerhaft auf ein Zentrum festzulegen.",
+        "metrique": "3/4 rubato, Vorzeichnung mit einem b. Nominaltempo 172 (nur Richtwert — das Stück wird rubato gespielt). „Sempre dopo“-Pedal ab dem zweiten Takt: Legato-Nachtreten nach jeder neuen Harmonie, die Signatur Evans/Debussy.",
+        "forme": "Ein Zyklus von zehn funktionalen Takten (weder die zwölf des Blues noch die Achtervielfachen des Songs), pro Chorus über gut zwanzig Takte im 3/4 gestreckt: B♭maj9 – A7 – Dm9 – E7 – Am9 – Dm9 – B♭maj7 – A7 – Dm – (Cm9–F13). Das abschließende Turnaround ist ein ii–V von B, nicht von D: Der Zyklus führt nie zu seiner Tonika zurück, er führt zu seinem eigenen harmonischen Ausgangspunkt zurück — und der ist nicht die Tonika. In den Soloteilen verdichtet sich der Zyklus (Harmonien mit halbierten Dauern, entsprechende Anmerkung in der Datei bei T. 77): dieselbe tonale Drift, nur schneller abgespielt.",
+        "sections": [
+          {
+            "label": "Takte 0-9 (Intro und erster Umlauf des Zyklus)",
+            "titre": "Ein Zentrum, das sich ankündigt, ohne sich durchzusetzen",
+            "chiffrage": "Dm13 (Intro) → B♭maj9 → A7 → Dm9",
+            "fonctions": "T (i, rubato) → ? (♭VI/I mehrdeutig) → D (echte V) → T (i, echte Auflösung)",
+            "texte": "Das Rubato-Intro setzt d-Moll (Dm13) als Zentrum — doch der folgende Zyklus beginnt auf B-Dur mit None, einem Akkord, dessen Identität schon im ersten Takt doppelt ist: erniedrigte sechste Stufe von d-Moll oder implizite Tonika eines B-Dur, das immer wieder durchscheint, ohne sich je zu erklären. Das anschließende A7 ist dagegen eine echte Dominante von d-Moll, und das Dm9, das sie aufnimmt, ist eine echte Auflösung — das Stück ist nicht atonal, es ist bruchstückweise funktional."
+          },
+          {
+            "label": "Takte 9-32 (der Zehn-Takte-Kreis)",
+            "titre": "Ein ii–V, das nie zur Tonika zurückführt",
+            "chiffrage": "E7 → Am9 → B♭maj7 → A7 → Dm13 → (Cm9–F13)",
+            "fonctions": "D (V7 abgelenkt) → T (v, Moll-Auflösung) → ? (♭VI) → D (V) → T (i) → ? (dezentriertes Turnaround)",
+            "texte": "E7 ist eine echte Dominante — aber sie löst sich nach a-Moll auf, nie nach A-Dur: eine Molldominante, eine fünfte Stufe, die genau die Hierarchie verweigert, die sie ankündigt. Der Zyklus schließt seinen ersten Umlauf auf Dm13 und kippt dann in das Turnaround Cm9–F13: ein völlig regelkonformes ii–V, aber von B, nicht von D. Das ist die Geste, die die Form im Wortsinn kreisförmig macht — der Zyklus kehrt nie zu seinem vermeintlichen Zentrum zurück, sondern zu seinem eigenen Ausgangspunkt, und der ist nicht dieses Zentrum. d-Moll existiert, dreimal im Zyklus behauptet, aber es steht nie am Anfang eines Abschnitts: Die Tonart ist da, doch aus der Mitte gerückt."
+          },
+          {
+            "label": "Takte 38-39 (die abgelenkten Dominanten, an ihrer dichtesten Stelle)",
+            "titre": "Alteration als Dichte, nicht als aufzulösende Spannung",
+            "chiffrage": "B♭7(#9#11)/Bass B♭1 → A7 (♭9 + #9 + große 13)",
+            "fonctions": "D (subV von A7) → D (V, gesättigt)",
+            "texte": "In T. 38 enthüllt das B1 im Bass unter einer chromatischen Bewegung einen Tritonus-Substitutakkord (subV), der auf A7 gleitet — das „B7“ des Transkribenten ist ein Halbton-Druckfehler, die gefährlichste Sorte, fürs Ohr wie fürs Notenbild. Der folgende Takt sättigt dieses A7: kleine None (b) und übermäßige None (c) stehen zugleich mit der Terz (cis) und einer großen Tredezime (fis, die helle Farbe — hier keine kleine Tredezime, im ganzen Takt kein einziges f). Das seit dem Vortakt gehaltene Pedal lässt diese aufsteigende lineare Geste gemeinsam erklingen: Evans behandelt die Alteration als Farbe, die sich anhäuft, nicht als Spannung, die nach Auflösung verlangt."
+          },
+          {
+            "label": "Takte 77 und 219 (dieselbe fehlerhafte Enharmonik, zweimal)",
+            "titre": "Eine Schreibweise, die kein Instrumentalist lesen kann",
+            "chiffrage": "B-Dur (im Notentext „A# major“, an beiden Stellen)",
+            "fonctions": "? (Farbe, keine Funktion)",
+            "texte": "Zweimal in der Transkription ist derselbe B-Dur-Akkord (F–B–D) als „A# major“ geschrieben — enharmonisch exakt, beim Lesen aber unbrauchbar für einen Instrumentalisten, der ein Fisis oder ein Cisis sähe, wo die Hand schlicht ein F greift. Die Korrektur ändert keine einzige klingende Tonhöhe; sie macht den Text nur spielbar."
+          },
+          {
+            "label": "Takte 308-310 (der Schluss: die Farbe als letztes Wort)",
+            "titre": "Weder Dur noch Moll — das letzte Wort ist eine Klangfarbe",
+            "chiffrage": "D–E–A (sus2) → D + A + cis (geschrieben des): ∆7 ohne Terz",
+            "fonctions": "? (Schlussfarbe, keine Funktion greift)",
+            "texte": "Das Stück erlischt auf einer schwebenden Farbe (D-E-A, eine None ohne Terz), bevor es auf einem großen Septakkord schließt, dem die Terz vollständig fehlt: D, A (die Quinte), cis (die große Septime, aus Schreibversehen als des notiert — der Leitton von D, genau in dem Augenblick, in dem er aufhört, als solcher zu funktionieren). Weder Dur noch Moll: die ∆7 als reine Schlussfarbe, genau jener Klang, den Satie 1888 als Eröffnungsprovokation hingesetzt hatte (das Schaukeln Gmaj7/Dmaj7 der Gymnopédie) und der siebzig Jahre später zum selbstverständlichen letzten Wort einer Ballade geworden ist."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "1959, das Jahr mit zwei Antworten",
+            "texte": "Im selben Jahr, auf derselben Platte, zwei entgegengesetzte Lösungen für dasselbe Problem (hat die tonale Funktion noch eine Zukunft?): Giant Steps treibt die Dominante durch hyperaktive Symmetrie an ihre Grenze (drei Tonarten im Abstand einer großen Terz, der Kreis geschlossen); Blue in Green hält dieselben Materialien (ii-V, subV, Alterationen) in einem dezentrierten Kreis in der Schwebe, der sich nie auf seiner Tonika schließt. Dasselbe Vokabular, zwei Schicksale."
+          },
+          {
+            "titre": "Das Erbe Evans/Debussy",
+            "texte": "Das „sempre dopo“-Pedal, der maj7 ohne Terz als Schlussfarbe, die modale Mehrdeutigkeit des tonalen Zentrums: Bill Evans erbt Debussys Vokabular unmittelbar und spritzt es in eine zweiunddreißigtaktige Form ein, die zum Zehn-Takte-Zyklus umgearbeitet ist. Die Brücke zwischen diesem Projekt und seiner eigenen Vorgeschichte (Voiles, La Cathédrale engloutie) schließt sich hier."
+          },
+          {
+            "titre": "Der sub-V, immer dieselbe Geste",
+            "texte": "Der in T. 38 gehörte Tritonus-Substitut (B♭7 für A7) ist derselbe Mechanismus wie andernorts in diesem Korpus — eine Dominante, ersetzt durch jene, die im Tritonusabstand ihre Leittöne mit ihr teilt. Hier ist es eine Durchgangstextur innerhalb einer Improvisation; anderswo eine gelehrte Regel der Reharmonisation. Dasselbe Werkzeug, zwei Verwendungen."
+          }
+        ]
+      }
     }
   },
   "cours36": {

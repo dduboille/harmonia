@@ -514,7 +514,7 @@
           },
           {
             "titre": "The fan-shaped resolution",
-            "texte": "Both augmented sixths resolve in the same way: their two outer notes (F and D♯) converge in contrary motion, each by a semitone, onto the unison E — the dominant. This is the signature of every augmented sixth, however rich its scoring may be (Italian, French, German)."
+            "texte": "Both augmented sixths resolve in the same way: their two outer notes (F and D♯) diverge in contrary motion, each by a semitone, onto the octave E — the dominant. This is the signature of every augmented sixth, however rich its scoring may be (Italian, French, German)."
           },
           {
             "titre": "A modal borrowing, not merely a chromatic one",
@@ -1087,7 +1087,70 @@
         "Pivot chord = common to both the departing and arriving key",
         "Closely related modulations: relative, parallel, fifth above/below",
         "Always confirm with a cadence in the new key"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "C# minor (key signature of four sharps).",
+        "metrique": "4/4, with the continuous triplet-eighth accompaniment in the right hand — the movement's famous ostinato figure. Each measure changes harmonic color only once or twice beneath this constant murmur.",
+        "forme": "Nine measures that sketch a complete phrase: a tonic gesture enriched by a Neapolitan color, a chromatic dominant pedal, a brief return to the tonic, then a gradual tipping toward the relative major (E major), on which the phrase ends without ever coming home — exactly the ground in which a pivot chord toward a new key can take root, the subject of this lesson.",
+        "sections": [
+          {
+            "label": "Measures 1-2",
+            "titre": "The tonic and its first passing color",
+            "chiffrage": "C#m | C#m7",
+            "fonctions": "I | I4/2",
+            "texte": "The broken arpeggio in the right hand first lays down the tonic triad in root position (<strong>I</strong>). Measure 2 adds a seventh to it (B), in third inversion (<strong>I4/2</strong>): the bass descends by a whole tone (C#→B) without any change of function — a simple passing coloration, still the tonic."
+          },
+          {
+            "label": "Measure 3",
+            "titre": "The Neapolitan sixth",
+            "chiffrage": "A | D/F#",
+            "fonctions": "VI | N6",
+            "texte": "The first chord of color: <strong>VI</strong> (A major), the relative major of the key, which prolongs the tonic function. The second is this piece's harmonic calling card: the <strong>Neapolitan sixth</strong> — a major chord built on the lowered second degree (D, in place of the diatonic D#), always used in first inversion (F# in the bass, its third). It is the most famous chromatic chord in the Romantic repertoire for coloring a subdominant."
+          },
+          {
+            "label": "Measure 4",
+            "titre": "A chromatic dominant pedal",
+            "chiffrage": "G#7/B# — Cm/G# — G#7",
+            "fonctions": "V6/5 — (chromatic color) — V7",
+            "texte": "The whole measure rests on a <strong>G# pedal</strong> (the dominant) held in the bass without interruption. Between the two dominant chords (first in first inversion, then in root position), Beethoven slips in a C minor chord — a simple chromatic neighbor above the pedal, which never alters the overall dominant function of the measure."
+          },
+          {
+            "label": "Measures 5-6",
+            "titre": "A brief return to the tonic",
+            "chiffrage": "C#m | G#7/B#",
+            "fonctions": "I | V6/5",
+            "texte": "A brief return home before a fresh dominant preparation, reproducing almost note for note the gesture of measures 1 and 4 — this tonic-dominant breathing is the rhythmic engine of the whole movement."
+          },
+          {
+            "label": "Measure 7",
+            "titre": "Tonic, then minor subdominant",
+            "chiffrage": "C#m — F#m",
+            "fonctions": "I — iv",
+            "texte": "The figuring reads “IV6” for the second chord, but the only note actually played in the bass at that moment is F# — the A heard at the same time lies in an inner voice, not in the bass. This is therefore a <strong>iv</strong> chord in root position (F# minor), the minor subdominant, and not its first inversion."
+          },
+          {
+            "label": "Measures 8-9",
+            "titre": "Tonicization of the relative major",
+            "chiffrage": "E/B (pedal) — B7 — E",
+            "fonctions": "D (preparatory) — D — T (new color)",
+            "texte": "A B pedal settles into the bass for the whole of measure 8. In its first half the upper voices form no more than a plain E major chord (<strong>III6/4</strong>): the true applied dominant arrives only in the second half, when the seventh (D#) appears and turns the chord into <strong>B7 (V7/III)</strong>. The resolution in measure 9 onto <strong>E major (III)</strong> closes the phrase — not at home on the tonic, but on its relative major. And C# minor is precisely the relative minor of E major: the set of chords the two keys hold in common (beginning with the tonic of one, which is the vi of the other) is exactly the relationship a pivot chord exploits — this phrase stops at the very edge of a modulation without crossing it."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "A single pedal, two colors",
+            "texte": "In measures 4 and 8, Beethoven holds one single note in the bass (G#, then B) while the upper voices change chords above it — the pedal gives the measure its coherence even when the harmony seems to be moving."
+          },
+          {
+            "titre": "The Neapolitan, signature of the piece",
+            "texte": "The chord of measure 3 (D/F#, N6) is one of the harmonic emblems of this movement — a chromatic borrowing so characteristic that it has given its name to a whole category of chords in classical theory."
+          },
+          {
+            "titre": "An ending left open on the relative major",
+            "texte": "By stopping on III rather than returning to I, this excerpt merely hints at modulation — it lays the ground (the chord common to both keys) without setting the modulation off, exactly the distinction this lesson seeks to make audible."
+          }
+        ]
+      }
     }
   },
   "cours9": {
@@ -2869,6 +2932,91 @@
       "sectionCompositeursLabel": "Composers",
       "sectionAnalyseLabel": "Comparative Analysis",
       "sectionQuizLabel": "Quiz"
+    },
+    "conservatoire": {
+      "intuition": "A chord does not have to move in order to become an event — if it never changes again and is struck with accents that fall somewhere different each time, then rhythm alone takes charge of the entire discourse.",
+      "reference": {
+        "badge": "Stravinsky · on The Rite of Spring",
+        "citation": "I was the vessel through which Le Sacre passed.",
+        "auteur": "Igor Stravinsky (reported by Robert Craft)"
+      },
+      "voix": [
+        "Two perfectly consonant chords (a triad, a dominant seventh) can be stacked at the smallest possible distance — a semitone — to create the most brutal collision in the whole polytonal vocabulary.",
+        "Once it has been set down, a polychord can remain completely motionless for several measures: it is then rhythm (accents that change place with every repetition) that produces the musical event, not harmony.",
+        "Dissonance has more than one role: it can be an isolated event, a drama, a suspension, a state, a vocabulary — or, as here, pure percussion."
+      ],
+      "repertoire": {
+        "titre": "The Augurs Chord (teaching piece)",
+        "compositeur": "After Igor Stravinsky, The Rite of Spring — The Augurs of Spring (1913)"
+      },
+      "pieges": [
+        {
+          "erreur": "Looking for harmonic development or resolution in the hammering of the Augurs chord",
+          "correction": "There is none: the vertical sonority stays rigorously identical from the first blow to the last — only the rhythmic accents shift from one repetition to the next. The analysis must bear on rhythm, not hunt for a progression that does not exist."
+        },
+        {
+          "erreur": "Confusing this polychord with the Petrushka chord (Stravinsky, 1911) on the grounds that both superimpose two consonant objects",
+          "correction": "The two sit at opposite extremes of adjacency: Petrushka stacks two triads a TRITONE apart (the maximum distance, no note rubbing against another), while the Augurs chord stacks a triad and a seventh chord a SEMITONE apart (the minimum distance, every note of the triad rubbing against a note of the seventh chord)."
+        },
+        {
+          "erreur": "Analysing this teaching piece as a transcription of The Rite of Spring",
+          "correction": "It is an entirely original piece, composed to illustrate the phenomenon — The Rite of Spring remains under copyright in France until 2042, and not one of its notes is reproduced here."
+        }
+      ],
+      "resume": [
+        "The Augurs chord (Stravinsky, 1913) superimposes a major triad and a dominant seventh chord a semitone apart — the most brutal collision possible, since every note of the triad rubs directly against a note of the seventh chord.",
+        "Once it has been set down, the chord never changes again: the event is produced by rhythm (accents displaced at each repetition), not by harmony — dissonance treated as percussion rather than as tension.",
+        "Compared with the Petrushka chord (two triads a tritone apart, 1911), the Augurs chord chooses the opposite extreme of adjacency — two answers from Stravinsky, two years apart, to the same question: what is to be done with tonal function?"
+      ],
+      "analyseNarrative": {
+        "tonalite": "No single key — two consonant objects (a dominant seventh, a major triad) superimposed a semitone apart.",
+        "metrique": "4/4. No tempo indicated (demonstration piece); mm. 4-5 in eighth notes to depict the rhythmic hammering.",
+        "forme": "A demonstration in six measures: the two objects separately, their collision, two measures of hammering with displaced accents, then the final held chord.",
+        "sections": [
+          {
+            "label": "Measures 1-2",
+            "titre": "The two objects, separate",
+            "chiffrage": "E♭7 | F♭ major",
+            "fonctions": "? | ?",
+            "texte": "E♭7 first: an utterly ordinary dominant seventh. Then F♭ major — spelled this way rather than “E major” so as to keep the same notational logic as the source that inspired this teaching piece — its immediate neighbour, a semitone higher. Taken separately, each of the two is entirely commonplace."
+          },
+          {
+            "label": "Measure 3",
+            "titre": "The collision: the Augurs chord",
+            "chiffrage": "F♭ major + E♭7, superimposed",
+            "fonctions": "?",
+            "texte": "The two objects sound together, each perfectly intact. But here, unlike a collision at the tritone (the Petrushka chord, where the two triads share no adjacent note), EVERY note of the upper triad is crushed a semitone away from a note of the lower seventh chord: the root of the triad against the root of the seventh chord, its third against the third of the seventh chord, its fifth against the fifth of the seventh chord. Three simultaneous frictions, at the smallest interval available."
+          },
+          {
+            "label": "Measures 4-5",
+            "titre": "The hammering: harmony frozen, rhythm on the move",
+            "chiffrage": "F♭ major + E♭7 (invariant)",
+            "fonctions": "?",
+            "texte": "The chord does not change a single note for two whole measures of hammered eighth notes — but the accents do change place with every repetition. It is the complete reversal of ordinary harmonic writing: normally the chord moves over a stable rhythm; here it is the other way round. Dissonance is no longer a tension awaiting its resolution: it has become an object one strikes, exactly like a drum."
+          },
+          {
+            "label": "Measure 6",
+            "titre": "The final held chord",
+            "chiffrage": "F♭ major + E♭7, under a fermata",
+            "fonctions": "?",
+            "texte": "The same chord, unchanged since measure 3, closes under a fermata. Nothing has been “resolved” — the object has simply stopped being struck."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The sixth regime: dissonance as percussion",
+            "texte": "A chord can be heard as an isolated event, as a drama that unfolds, as a tension suspended indefinitely, as a stable state one inhabits, or as the colour of a vocabulary — but there is a sixth regime, in which the vertical sonority no longer moves at all and RHYTHM alone produces the event. The Augurs chord never resolves: it is struck, with accents falling somewhere different each time, until the hammering itself becomes the subject."
+          },
+          {
+            "titre": "Two polychords, the two extremes of adjacency",
+            "texte": "Compared with the Petrushka chord (two triads a tritone apart, the maximum distance between two centres), this one chooses the opposite extreme: two consonant objects pressed against each other at the semitone, the minimum distance. The result is more brutal, because every note of the upper triad rubs directly against a note of the seventh chord — the dissonance is no longer a mere neighbouring of systems, it is a crushing."
+          },
+          {
+            "titre": "A line of descent reaching all the way to rock",
+            "texte": "Treating dissonance as an object to be struck rather than as a tension to be resolved became, long after 1913, a common principle of amplified music — the chord struck in a loop, with no progression, where it is rhythmic intensity that carries the discourse rather than harmonic succession."
+          }
+        ]
+      }
     }
   },
   "cours20": {
@@ -2910,6 +3058,105 @@
       "sectionCompositeurs": "Composers",
       "sectionAnalyse": "Comparative Analysis",
       "sectionQuiz": "Quiz"
+    },
+    "conservatoire": {
+      "intuition": "Harmony can stop representing a feeling in order to narrate an action: Berlioz interrupts a melody in mid-flight and replaces it with a fall of an octave — the refused resolution, pushed until it becomes a literal gesture.",
+      "reference": {
+        "badge": "Berlioz · Mémoires",
+        "citation": "I spent the night dreaming of death, with a frenzied enthusiasm.",
+        "auteur": "Hector Berlioz, on the genesis of the Symphonie fantastique"
+      },
+      "voix": [
+        "One and the same melodic formula (here, a descending scale) can carry two opposite affects depending on its rhythmic context — the lament becomes a funeral march without a single note changing.",
+        "A physical interruption (a phrase cut off short, replaced by an abrupt leap) can function as a genuine narrative gesture — harmony no longer colours an emotion, it recounts a specific event.",
+        "A change of mode (minor to major) can be used as a stage direction rather than as a mere colour — here, the switch literally marks the passage from one scene to another."
+      ],
+      "repertoire": {
+        "titre": "Symphonie fantastique, 4th movement — March to the Scaffold (arr. string trio)",
+        "compositeur": "Hector Berlioz"
+      },
+      "pieges": [
+        {
+          "erreur": "Looking for a complex or chromatic chord to explain the effect of the “blade” (m. 169)",
+          "correction": "It is the opposite: the chord there is stripped to the extreme (a plain G, without a third), and the effect comes from a RHYTHMIC gesture — a fall of an octave synchronised between the outermost instruments — not from an unusual harmony."
+        },
+        {
+          "erreur": "Analysing theme 2 (m. 62, in B♭ major) as a Classical modulation prepared by a dominant",
+          "correction": "There is no preparation: the relative major installs itself directly, by simple juxtaposition of contrasting blocks — the crowd's fanfare follows the funeral theme with no transition, by design."
+        },
+        {
+          "erreur": "Treating the final turn to the major (m. 170) as a merely decorative Picardy third",
+          "correction": "Here the change of mode has an explicit NARRATIVE function (the crowd exulting after the execution) — the mode becomes a stage direction, not just a harmonic colour."
+        }
+      ],
+      "resume": [
+        "A descending G minor scale (theme 1) takes up the old formula of the Baroque lament and turns it, by rhythmic context alone, into a funeral march — proof that musical meaning never resides in pitch alone.",
+        "The blade (m. 169) interrupts the idée fixe in mid-flight and replaces it with a fall of an octave synchronised in the two outermost instruments — the refused resolution pushed as far as the literal gesture.",
+        "The final switch to G major (m. 170) functions as a stage direction rather than a colour: harmony stops representing an affect in order to narrate an action, the crowd exulting."
+      ],
+      "analyseNarrative": {
+        "tonalite": "G minor from the start until the scene of the blade (m. 169) — with a long incursion into its relative major, B♭, for theme 2 — then a final and definitive switch to G MAJOR for the last nine measures.",
+        "metrique": "4/4. Tempo di marcia (quarter note = 144), with a marked slowing (rit., 144→120) at measure 165, an “a tempo” at 170, then a last rit. in the very final measures up to the closing fermata.",
+        "forme": "Introduction (m. 1-16) — theme 1, the march-lament (m. 17-61) — theme 2, the fanfare in B♭ (m. 62-76) — development, alternations and combinations (m. 77-163) — the idée fixe, one last time (m. 164-168) — the blade (m. 169) — triumphal G major up to the closing fermata (m. 170-178).",
+        "sections": [
+          {
+            "label": "Measures 1-16",
+            "titre": "Introduction: the march approaches, pianissimo",
+            "chiffrage": "i (G-B♭, drone without the fifth)",
+            "fonctions": "T",
+            "texte": "Everything begins with a simple held minor third, pianissimo, staccato: G in the viola and the violin, B♭ in the viola, doubled at the octave in the cello — no fifth yet, no real harmony yet, just a colour that settles in and repeats itself, like a footstep approaching from far off."
+          },
+          {
+            "label": "Measures 17-61",
+            "titre": "Theme 1: the lament-scale become a march",
+            "chiffrage": "i (descending natural G minor scale)",
+            "fonctions": "T",
+            "texte": "Entrusted to the low strings alone, a descending scale runs through nearly two octaves of natural G minor — exactly the kind of line that, across centuries of music, has carried mourning and complaint (Purcell's descending tetrachord, the chromatic bass of so many Baroque laments). Here the same melodic formula changes meaning without changing a single note: the dotted rhythm, the marching gait turn it into a funeral cortège. That is where Berlioz's irony lies — parading the condemned man to the very formula of mourning."
+          },
+          {
+            "label": "Measures 62-76",
+            "titre": "Theme 2: the fanfare in B♭, the crowd",
+            "chiffrage": "III (B♭ major, the relative)",
+            "fonctions": "?",
+            "texte": "With no preparatory dominant, the music tips into its relative major for a blazing fanfare — the cynical counterpart of the funeral theme that precedes it: the crowd coming to watch the spectacle. The contrast is total, but the kinship remains audible: the two themes share the same key signature, the same basic material; only the colour (mode, register, rhythm) sets them against each other."
+          },
+          {
+            "label": "Measures 77-163",
+            "titre": "Development: alternations, pizzicati, a remembered horn call",
+            "chiffrage": "(combinations of the two themes, pizz./arco in bursts)",
+            "fonctions": "T / ?",
+            "texte": "The two themes cross, relieve one another, interrupt one another — a great play of alternation between pizzicato and arco that mimes the mechanics of the cortège on the march. At the heart of this development, a brief horn call (twice, note for note identical): in the original orchestra this motive is given to distant horns — here the string trio preserves its echo, a discreet nod to the large forces from which this arrangement is drawn."
+          },
+          {
+            "label": "Measures 164-169",
+            "titre": "The idée fixe, one last time — then the blade",
+            "chiffrage": "i … (silence) … bare G",
+            "fonctions": "T … ? … ?",
+            "texte": "Dolce assai e appassionato: in the violin, the melody of the beloved rises one final time, G-A-B♭-C-D climbing little by little towards B♮ and then C6 — a tender thought, almost suspended outside time. Then, at measure 165, nothing: the only entirely silent measure in the whole piece, a rit. that is not merely a slowing but a real severing of the discourse. And at measure 169, the execution: the phrase is cut off in mid-flight, replaced by a dry fall of one octave, doubled in the two outermost instruments (violin and cello) at exactly the same instant — the blade, then the head falling."
+          },
+          {
+            "label": "Measures 170-178",
+            "titre": "Triumphal G major: the hammered third, up to the fermata",
+            "chiffrage": "I (G-B♮-D, hammered)",
+            "fonctions": "T",
+            "texte": "A tempo, the Picardy third settles in and no longer budges: B natural hammered in ostinato for seven measures, then fanfare arpeggios — the major mode as pure stagecraft, the crowd exulting while the curtain falls. The piece ends on a G major chord spread across nearly four octaves, under a fermata."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The guillotined resolution",
+            "texte": "The device of “the refused resolution” runs through this corpus from Bach (an evaded seventh) and Beethoven (a deceptive cadence) all the way to Wagner (a tension never untied): Berlioz, in 1830, gives the most literal version of it imaginable — a melodic phrase cut off short, in mid-flight, replaced by a physical fall of one octave. The shift from minor to major that follows is no longer merely a colour: it is a STAGE DIRECTION, harmony ceasing to represent an affect in order to narrate an action."
+          },
+          {
+            "titre": "An old formula, a new meaning",
+            "texte": "The descending scale of theme 1 is, note for note, the same gesture as the lament tetrachords that have run through this corpus since the seventeenth century — only the context (the march tempo, the dotted rhythm) makes it a funeral cortège rather than an intimate complaint. The same melodic formula, two opposite affects: proof that meaning in music never resides in pitch alone."
+          },
+          {
+            "titre": "1830, the missing decade",
+            "texte": "This piece fills a gap in the corpus's genealogy of harmonic dramaturgy, between Beethoven (1808) and Chopin (1839): Haydn makes the shared code laugh (1791), Beethoven dramatises it (1798-1808), Berlioz NARRATIVISES it (1830, programme music), Chopin internalises it (1839), Wagner suspends it indefinitely (1859). Five stations, over five pieces, of a single thread that continues as far as Morricone within this same corpus."
+          }
+        ]
+      }
     }
   },
   "cours19": {
@@ -3091,6 +3338,98 @@
       "exDebussyDesc": "Orchestral impressionism at its finest: solo flute, harp, muted strings, stopped horns, woodwinds in half-tints. Each instrument in its most poetic register. No loud brass — everything is suggestion and colour.",
       "exBeethovenName": "Beethoven — Symphony No. 5, Op. 67 (1808)",
       "exBeethovenDesc": "A model of economy of means: a 4-note motif distributed across all families. The orchestration follows the intensity of the discourse — strings + woodwinds at p, tutti fortissimo at key moments. Every instrument in its rightful place."
+    },
+    "conservatoire": {
+      "intuition": "A single harmony held for 84 measures, a single displacement, a single accident — Boléro pushes harmonic immobility to its breaking point, and demonstrates that all the tension of a work can be lodged somewhere other than in its chords.",
+      "reference": {
+        "badge": "Ravel · on Boléro",
+        "citation": "It is orchestration without music.",
+        "auteur": "Maurice Ravel (as reported by his biographers)"
+      },
+      "voix": [
+        "A pedal can hold up an entire work: here the bass never leaves C and G for 84 consecutive measures — all the tension one expects from harmony is delegated to the crescendo and to the thickening of the texture.",
+        "A modulation with neither preparation nor pivot (here, an ascending major third, C → E) remains legible to the ear even without any transitional chord — the displacement alone is enough to constitute an event, precisely because nothing else has moved before it.",
+        "A foreign note obstinately repeated (not a line that progresses) can create a tension as strong as any real melodic development — the “grating” of the return comes from the repetition of a single rough edge, not from its evolution."
+      ],
+      "repertoire": {
+        "titre": "Boléro (harmonised piano arrangement)",
+        "compositeur": "Maurice Ravel"
+      },
+      "pieges": [
+        {
+          "erreur": "Looking for a complex harmonic progression in the first 84 measures of Boléro",
+          "correction": "There is none: the left hand plays nothing but C and G from the beginning to the end of this section, verified measure by measure without exception. The whole musical construction comes from the crescendo and the orchestration, not from the harmony."
+        },
+        {
+          "erreur": "Believing that the “chromatic line” announced at the return (m. 93-96) is a melodic line progressing step by step",
+          "correction": "Note-by-note verification: these four measures repeat EXACTLY the same figure, with a single foreign note (A♭) repeated identically each time — this is not a line that advances, but a going-over. The real line that descends step by step appears only in the following measure, in the chord of the crash itself."
+        },
+        {
+          "erreur": "Analysing the crash chord (m. 97) as a seventh or altered ninth chord from the usual tonal vocabulary",
+          "correction": "It is a non-functional polychord: two incompatible stacks (C-F and A♭-B-D♭) slammed down together, which cannot be reduced to a single figurable chord within the tonal system — hence the figuring “?”, not an empty box but a genuine analytical category."
+        }
+      ],
+      "resume": [
+        "Boléro (Ravel, 1928) holds 84 measures over a single C-G pedal — the limiting case of immobile harmony: all the tension of the work comes from the crescendo and the texture, not from the chords.",
+        "The work's one modulation (C → E, m. 85-92) is a displacement by a major third with neither preparation nor pivot — the interval that divides the octave into three equal parts, owing nothing to the logic of fifths.",
+        "The only real harmonic disorder in the work is its last loud chord (m. 97): a non-functional polychord (C-F against A♭-B-D♭) — in a piece without harmonic tension, dissonance no longer resolves, it breaks."
+      ],
+      "analyseNarrative": {
+        "tonalite": "C major from first bar to last — a single genuine tonicisation, in E major (m. 85-92), never confirmed by a cadence and never meant to last.",
+        "metrique": "3/4. Tempo di bolero, moderato assai (quarter note = 72). pp at the outset, the ostinato boléro rhythm in the right hand from the very first measure.",
+        "forme": "One immense crescendo over a pedal (m. 1-84, 86% of the piece), a single tonicisation in E (m. 85-92), a return that grates (m. 93-96), a crash (m. 97) and a bare collapse (m. 98).",
+        "sections": [
+          {
+            "label": "Measures 1-84",
+            "titre": "The C-G pedal: one chord for 84 measures",
+            "chiffrage": "I (unbroken C-G pedal)",
+            "fonctions": "T, from beginning to end",
+            "texte": "Verified measure by measure, the left hand never leaves C and G — the fifth beaten out in boléro rhythm, without a single exception, for 84 consecutive measures. The work's two themes (one diatonic, the other more highly coloured) alternate above it, but both rest on exactly the same pedal: all the tension of this section comes neither from a chord nor from a cadence, but from the crescendo and from the accumulation of voices progressively added to the texture."
+          },
+          {
+            "label": "Measures 85-92",
+            "titre": "E major: the work's one harmonic event",
+            "chiffrage": "III (E, with an internal I-...-V cycle on E-B)",
+            "fonctions": "? (non-functional: no preparation, no pivot)",
+            "texte": "After 84 immobile measures, an abrupt displacement by an ascending major third, with neither preparation nor pivot: C becomes E. Within this new colour, however, the left hand is no longer the frozen drone of the preceding pedal: each measure pulses in itself, from E (beat 1) towards B (beat 3), a miniature tonic-dominant cycle. Then, without anything in the text of the score announcing it, this “dominant” begins to slide from one measure to the next — B, then F♯-B, then G — quietly leading the ear back towards C even before the return has been consummated."
+          },
+          {
+            "label": "Measures 93-96",
+            "titre": "The return that grates: a repeated note, not a line that progresses",
+            "chiffrage": "I (C-G, with a foreign A♭)",
+            "fonctions": "T",
+            "texte": "The return to C is clear-cut. But what settles in there is not a melodic line that advances: it is EXACTLY the same figure, repeated four times identically — the C-G pedal, then a single isolated A♭ in the middle of the measure, then G. This foreign note (the lowered sixth degree, borrowed from the minor mode) never moves: it comes back, obsessively, in the same place, in the same measures, without ever resolving or developing. It is this identical repetition of a rough edge that “grates” — not a trajectory, a going-over."
+          },
+          {
+            "label": "Measure 97",
+            "titre": "The crash: the piece's only real harmonic disorder",
+            "chiffrage": "C-F (right hand) against A♭-B-D♭ (left hand) — a polychord",
+            "fonctions": "?",
+            "texte": "After 96 measures of an utterly simple syntax, the one moment where the writing loses all functional logic: two incompatible stacks slammed down together, C-F on one side, A♭-B-D♭ on the other — five pitch classes that form no identifiable chord in the tonal vocabulary. It is only at this instant, and nowhere before, that a real line descending step by step appears: A♭-G-F-E♭-D♭ in the right hand, right through to the end of the measure."
+          },
+          {
+            "label": "Measure 98",
+            "titre": "Final collapse: bare C-G",
+            "chiffrage": "I, without the third",
+            "fonctions": "T",
+            "texte": "After the din, nothing but an open fifth, C-G — the same fifth that had held the whole piece up since its first measure, but alone now, stripped of everything that had accumulated above it for 97 measures. The piece does not close with a cadence: it stops, dead, on the very interval that had kept it standing."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The limiting case of immobile harmony",
+            "texte": "This piece takes to an industrial scale what the corpus has already encountered on a smaller one (Satie's eight-measure pedal, the sixty-four measures of Voiles): 86% of the work rests on one and the same function. All the tension expected of tonal harmony is here delegated elsewhere — to the crescendo, to the thickness of the texture, to the accumulation of voices — while the chord itself does not move."
+          },
+          {
+            "titre": "The major third, a displacement that owes nothing to the fifths",
+            "texte": "The piece's only real modulation (C → E) passes through no pivot chord and no preparatory dominant: it is a displacement by a major third, the very interval that divides the octave into three equal parts — the one in Coltrane's cycle in Giant Steps, the one in the augmented triad of Voiles. When an entire work rests on a single tension, the displacement it allows itself has no reason to follow the logic of fifths."
+          },
+          {
+            "titre": "A repeated note rather than a line: the true nature of the “grating”",
+            "texte": "The most instructive passage in the piece is not where you would expect it: what “grates” at measures 93-96 is not a chromatic line that advances, but a single foreign note, obstinately repeated identically. The real line that progresses step by step appears only a measure later, INSIDE the crash itself — a reminder that one must always check what the notes actually play, not merely what a structural marker announces."
+          }
+        ]
+      }
     }
   },
   "cours18": {
@@ -3223,6 +3562,98 @@
       "quizPoolSize": "questions in the pool",
       "quizNextQuestion": "Next question →",
       "quizSeeScore": "See my score"
+    },
+    "conservatoire": {
+      "intuition": "An entire 36-measure strophe, played again almost identically — and checking it note by note shows that “almost” is exactly the right word: even the strictest repetition always lets a few minute discrepancies through, to anyone who knows how to look for them.",
+      "reference": {
+        "badge": "Sibelius · on the symphony (to Mahler, 1907)",
+        "citation": "I admired its severity of style and the profound logic that creates an inner connection between all the motifs.",
+        "auteur": "Jean Sibelius, as reported by Karl Ekman"
+      },
+      "voix": [
+        "Repeating material identically is never entirely neutral: the reprise of a large section can allow itself minute redistributions (a changed voicing, a substituted melodic note) that go unnoticed by the ear without ever amounting to an absolute copy-and-paste.",
+        "One and the same melodic cell (here, a descending tetrachord) can be developed by changing only its harmonic clothing — the tetrachord stays, the chords that accompany it change.",
+        "The technique of motivic development is not confined to a short motive: it can be applied on the scale of an entire strophe, including when that strophe is for the most part repeated without change."
+      ],
+      "repertoire": {
+        "titre": "Étude, Op. 76 No. 2 (Thirteen Pieces)",
+        "compositeur": "Jean Sibelius"
+      },
+      "pieges": [
+        {
+          "erreur": "Believing that a large-scale reprise (an entire section played again) is necessarily a 100% copy-and-paste",
+          "correction": "Checking this piece note by note shows that 30 of the 36 measures of the reprise are strictly identical — but 6 are not (a redistributed voicing at the entry, 3 isolated melodic substitutions, and the closing clausula, which varies explicitly). Large-scale repetition almost always lets small discrepancies through."
+        },
+        {
+          "erreur": "Looking for a real modulation in this piece's unusual harmonic colours (♭13, Andalusian tetrachord)",
+          "correction": "The piece stays in A minor from first bar to last — the Aeolian ♭13 on the V7 and the Phrygian tetrachord of section B are COLOURS laid over the same tonic, not modulations to another key."
+        },
+        {
+          "erreur": "Analysing the descent ♭VII7-♭VI∆7-V7-i as a succession of chords with no connection between them",
+          "correction": "These four chords harmonise one and the same fixed melodic line (the Phrygian tetrachord A-G-F-E) — each chord is at the service of that line, not a functional progression independent of it."
+        }
+      ],
+      "resume": [
+        "Motivic development can be applied on the scale of an entire strophe: this Sibelius étude repeats a 36-measure strophe almost identically, but not entirely — 6 measures out of 36 carry minute discrepancies, including the closing clausula, which varies explicitly.",
+        "One and the same fixed melodic line (here, a descending Phrygian tetrachord) can be developed by changing only its harmonic clothing: the tetrachord stays, the chords that accompany it (♭VII7-♭VI∆7-V7-i) are new.",
+        "The paradox of repetition: repeating identically and transforming a minute detail can produce, to the ear, the impression of one and the same thing."
+      ],
+      "analyseNarrative": {
+        "tonalite": "A minor from first bar to last — never a real modulation, only colours (Aeolian ♭13, Andalusian tetrachord) laid over the same tonic.",
+        "metrique": "2/4. Leggiero, ♩=60, moto perpetuo (unbroken arpeggios from first bar to last).",
+        "forme": "A 36-measure strophe in three sections (A m. 1-16, B m. 17-28, A' m. 29-36) played twice in full (m. 37-72 = m. 1-36), with a varied closing clausula.",
+        "sections": [
+          {
+            "label": "Measures 1-16",
+            "titre": "A: the textbook i-V alternation — and the Aeolian ♭13 from the outset",
+            "chiffrage": "i | V7♭13 | ... iv (pedal) ... III∆7 6/4 ... | (chromatic neighbours) | V (closed period)",
+            "fonctions": "T | D ... SD ... ? ... | D | D",
+            "texte": "A textbook period built on the simplest tonic-dominant polarity — but from the second measure onwards the V7 carries a C natural that is anything but diatonic: the minor sixth of the Aeolian mode (♭13), placed there from the outset without any modulation calling for it. The detour passes through a iv over an A pedal, then a III∆7 in 6/4 that brushes against the relative major without ever establishing it, before chromatic neighbours (D♯, F♯) tighten the tension onto V. The period closes, then repeats note for note."
+          },
+          {
+            "label": "Measures 17-28",
+            "titre": "B: the Andalusian descent and the ascending chain",
+            "chiffrage": "♭VII7 – ♭VI∆7 – V7 – i | ♭VII7 → V7 (ascending chain, cresc.) → V (climax, ff)",
+            "fonctions": "? – ? – D – T | ? → D → D",
+            "texte": "The heart of the piece, and a descent with nothing Classical left about it: the Phrygian tetrachord A-G-F-E, harmonised in colour sevenths (G7-F∆7-E7-Am) — the same gesture as Purcell's lament (course 38), but in a diatonic, dancing version, with the harmonic clothing of the early twentieth century. Then the reverse: an ascending chain of dominants (G7 → A7 → B7, in crescendo) hoists the line up to a fortissimo climax on V, where the high note is balanced by its chromatic neighbour — the ♭6→5 already encountered elsewhere in this corpus, promoted here to the status of a summit figure."
+          },
+          {
+            "label": "Measures 29-36",
+            "titre": "A': the Aeolian dominant in full",
+            "chiffrage": "V7♭9♭13 ...",
+            "fonctions": "D ...",
+            "texte": "The darkened reprise opens on the most saturated chord in the whole piece: a V7 carrying its minor ninth and its minor thirteenth SIMULTANEOUSLY — the Aeolian dominant complete, the same aggregate as Beethoven's Grave or Chopin's cadences, here a mere passing colour, pianissimo. A chromatic descent in the bass closes the strophe on the tonic."
+          },
+          {
+            "label": "Measures 37-69",
+            "titre": "The great reprise: almost identical",
+            "chiffrage": "(the entire strophe, played again)",
+            "fonctions": "(identical)",
+            "texte": "The whole 36-measure strophe returns, and the vast majority of it is a note-for-note replica (30 of the 36 measures, checked one by one) — but not absolutely all of it: the reprise opens on a slightly redistributed left-hand voicing (a gesture of relaunch), and three isolated measures each carry a single different melodic note. The repetition is therefore not a simple copy-and-paste: it is a device that allows itself minute discrepancies, invisible unless you hunt them down one at a time — the very paradox of repetition in music, where repeating identically and transforming one tiny detail can produce, to the ear, a rigorously similar impression."
+          },
+          {
+            "label": "Measures 70-72",
+            "titre": "The closing clausula: poco rit., the minor owned to the end",
+            "chiffrage": "... i (A1)",
+            "fonctions": "... T",
+            "texte": "The only variation announced in advance: the very end. A poco rit. slows the moto perpetuo for the first time in the piece, and the strophe ends on the lowest note of the whole work (A1) — an A minor chord that keeps its minor third right to the end, with no Picardy third: the modal colour of the piece is owned through to the very last sonority."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The paradox of repetition, on the scale of the whole form",
+            "texte": "This étude pushes to the extreme what the course explores at the scale of the motive: here it is an ENTIRE 36-measure strophe that is repeated — and note-by-note checking reveals that the repetition is never quite total (30 measures out of 36 strictly identical, but a slightly redistributed reprise and 3 isolated melodic substitutions). Repeating identically and transforming a minute detail can produce, to the ear, the impression of one and the same thing: musical material can repeat itself without ever being a simple copy-and-paste."
+          },
+          {
+            "titre": "New vocabulary on an old syntax",
+            "texte": "The systematic Aeolian ♭13 and the descent in colour sevenths (G7-F∆7-E7-i) belong to the harmonic vocabulary of the early twentieth century — but the form that carries them (closed period, clear-cut cadences, i-V alternation) retains a wholly Classical clarity. The vocabulary changes; the formal grammar does not budge."
+          },
+          {
+            "titre": "Corpus link: the Andalusian descent and Purcell's lament",
+            "texte": "The Phrygian tetrachord harmonised in sevenths (♭VII7-♭VI∆7-V7-i) of section B takes up, in entirely different clothing, the same principle as the descending chromatic tetrachord of the ground in Dido's Lament (course 38, 1689): a fixed, ancient melodic line, rediscovered as a harmonic grid at very nearly every major period in the history of tonality."
+          }
+        ]
+      }
     }
   },
   "cours17": {
@@ -3333,6 +3764,119 @@
       "headerBadge": "Level 2 · Lesson 17",
       "headerTitle": "The musical phrase and form",
       "beethovenFormulaCaption": "Sol – Sol – Sol – Mib  (3 repetitions + minor third drop)"
+    },
+    "conservatoire": {
+      "intuition": "An eight-bar phrase, a bare arpeggio, a textbook tonic-dominant alternation — and yet Haydn draws a coup de théâtre out of it. The simplest form can carry the most effective surprise, provided you know exactly where to place the accent.",
+      "reference": {
+        "badge": "Haydn · Symphony No. 94 “Surprise”",
+        "citation": "That will make the ladies jump.",
+        "auteur": "Joseph Haydn, on the stroke at measure 16 (as reported by his biographers)"
+      },
+      "voix": [
+        "A Classical phrase divides into motive, development and cadence — the Surprise theme lays this anatomy bare in the most stripped-down state imaginable: eight measures, a single arpeggio, a single polarity (tonic-dominant).",
+        "The repeat of a phrase can replay exactly the same material note for note while completely changing its effect — here, simply by changing the dynamic (p, then pp, then, suddenly, ff).",
+        "A binary form (theme = two halves A/B, and each variation likewise) organises the phrase on a larger scale: the surprise itself falls exactly at the moment when the repeat of the A section was about to close in on itself."
+      ],
+      "repertoire": {
+        "titre": "Symphony No. 94 “Surprise”, 2nd movement (Andante)",
+        "compositeur": "Joseph Haydn"
+      },
+      "pieges": [
+        {
+          "erreur": "Looking for a strange or chromatic harmony to explain the surprise effect at measure 16",
+          "correction": "The chord is a plain V, exactly the one the theme's half cadence was calling for — the effect lies not in the chord but in its dynamic (ff after two p/pp phrases) and in its placement on a weak beat. A phrase can surprise without any harmonic rule being broken."
+        },
+        {
+          "erreur": "Believing that so simple a theme (an arpeggio, a I-V alternation) is a flaw in the writing",
+          "correction": "The bareness of the theme is a strategy, not a weakness: the material has to be minimal so that the four variations have room to dress it up, and so that the surprise stands out against a background of total innocence."
+        },
+        {
+          "erreur": "Analysing each variation as a harmonically independent piece",
+          "correction": "Except for Variation II (the minore, the only real excursion away from the tonic), every variation keeps the SAME harmonic frame as the theme — only the texture (countermelody, hammered octaves, repeated notes, fanfare) changes from one variation to the next."
+        }
+      ],
+      "resume": [
+        "A Classical phrase articulates into motive + development + cadence — the Surprise theme (Haydn, 1791) presents it in its barest state: naked arpeggio, I-V alternation, half cadences at measures 4 and 8.",
+        "Binary form with repeats organises theme AND variations on a larger scale than the phrase alone: each half is repeated, and it is precisely on a repeat (pp) that Haydn places his coup de théâtre (m. 16, ff).",
+        "Humour is a harmonic category in its own right: measure 16 breaks no rule (a plain V), it changes only the status — dynamic, orchestration — of that chord. Nothing proves the existence of a norm better than the possibility of laughing at it."
+      ],
+      "analyseNarrative": {
+        "tonalite": "C major from first bar to last — the only excursion away from the tonic is the passage through C minor in Variation II (m. 49-74).",
+        "metrique": "2/4. Andante (♩=64), with a slight broadening (♩=58) exactly at the start of the coda (m. 135).",
+        "forme": "Theme and four variations with coda, binary form with repeats (theme m. 1-16, Variation I m. 17-48 [in 2 halves A/B], II m. 49-74, III m. 75-98, IV m. 99-134, coda m. 135-148).",
+        "sections": [
+          {
+            "label": "Measures 1-8",
+            "titre": "The theme: a calculated bareness",
+            "chiffrage": "I ... V (antecedent) | I ... V (consequent)",
+            "fonctions": "T ... D | T ... D",
+            "texte": "Eight measures of deliberate plainness: the C major arpeggio picked out note by note (C-E, then G-E), the most elementary harmony in the Classical language — tonic-dominant polarity in its pure state, punctuated by a half cadence on G at measure 4 and again at measure 8. A nursery-rhyme theme was needed so that the variations would have everything to dress up, and so that the surprise would stand out against a background of innocence."
+          },
+          {
+            "label": "Measures 9-16",
+            "titre": "The pp repeat, and the surprise",
+            "chiffrage": "I ... V",
+            "fonctions": "T ... D",
+            "texte": "The same theme returns note for note, but pianissimo — the lullaby as a trap, the listener invited to doze off. Then, at measure 16, the chord: a G major spread across the whole keyboard (G2 to G5), ff, on a weak beat. Harmonically it is perfectly ordinary — the V that the theme's half cadence was calling for in any case. Nothing foreign, nothing chromatic: the surprise is a dynamic and an orchestration, not a harmony."
+          },
+          {
+            "label": "Measures 17-32",
+            "titre": "B: the return (the binary form of the theme)",
+            "chiffrage": "I ...",
+            "fonctions": "T ...",
+            "texte": "After the jolt, the second half of the theme closes its binary form: a brief detour, then the assured return to the tonic, as though nothing had happened."
+          },
+          {
+            "label": "Measures 33-48",
+            "titre": "Variation I: the theme + a countermelody",
+            "chiffrage": "I ...",
+            "fonctions": "T ...",
+            "texte": "The theme remains intact — the same C-E-G arpeggio, the same framework — but a countermelody in sixteenth notes comes to dress it. Variation by addition: the harmony does not change, only the texture grows richer."
+          },
+          {
+            "label": "Measures 49-74",
+            "titre": "Variation II: the minore",
+            "chiffrage": "i ... (detours towards III, E♭ major)",
+            "fonctions": "T ... SD/D",
+            "texte": "The regulation shadow of the Classical variation cycle: C minor, ff, a C and then an E♭ hammered out across the whole keyboard before detours towards E♭ major (the relative major) — the only real harmonic excursion in the entire movement, between two outer halves that themselves remain firmly anchored on the tonic."
+          },
+          {
+            "label": "Measures 75-98",
+            "titre": "Variation III: repeated notes",
+            "chiffrage": "I ...",
+            "fonctions": "T ...",
+            "texte": "Back to the major: the same C major chord struck four times in a row, then its first inversion four times more — repeated notes and dialogues in the upper parts, the textural opposite of the florid countermelody of Variation I."
+          },
+          {
+            "label": "Measures 99-134",
+            "titre": "Variation IV: fanfare, and the fermata",
+            "chiffrage": "I ... vii°6 (suspensive)",
+            "fonctions": "T ... D",
+            "texte": "The fanfare tutti: the theme in brassy glory, projected in arpeggios that climb to the top of the keyboard, then a second half, dolce, that calms the dynamic. The variation halts on a suspensive fermata at measure 134 — a C diminished chord (first inversion, E♭ in the bass) that holds the breath before the coda."
+          },
+          {
+            "label": "Measures 135-148",
+            "titre": "Coda: tenderness",
+            "chiffrage": "V (pedal) ... V7 (complete, m. 140) ... I",
+            "fonctions": "D ... D ... T",
+            "texte": "The finest harmonic moment of the movement: the theme falls asleep again pianissimo over a dominant pedal, thickens for an instant into a complete G7 at measure 140 — D and F are already sounding, held over from the previous measure, only G and B are struck anew: the one seventh in the piece that is truly savoured, at the softest dynamic of the whole movement — then resolves onto the last two measures of C major. The joke opened the movement; a tenderness closes it."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The surprise is a dynamic, not a harmony",
+            "texte": "The chord at measure 16 is a V in exactly its rightful place, the one the theme's half cadence was calling for in any case — nothing foreign, nothing chromatic. Haydn demonstrates by absurdity that the effect lies not in the chord but in its status: the same V, murmured, lulls you to sleep; hammered out, it makes you jump. The exact comic counterpart of the sforzandos in Beethoven's Grave (his pupil, seven years later): the same rhetorical lever, turned towards laughter."
+          },
+          {
+            "titre": "The degree zero of K. 545, pushed as far as deliberate innocence",
+            "texte": "The Surprise theme (the naked arpeggio, the tonic-dominant alternation) is even more stripped down than that of Mozart's Sonata K. 545 (course 28, three years earlier) — Mozart kept things simple out of elegance, Haydn keeps them simple out of strategy: a nursery-rhyme theme is needed so that the four variations have everything to dress up, and so that the surprise stands out against a background of innocence."
+          },
+          {
+            "titre": "Humour as a harmonic category",
+            "texte": "Between K. 545 (transparent grammar) and the Pathétique (dramatised grammar), the Surprise documents a third path: grammar at play, in the ludic sense. Nothing proves the existence of a norm better than the possibility of laughing at it — measure 16 is the demonstration, in a single chord, that Classical tonality was a shared language, the precondition for everything the rest of the corpus goes on to recount, when that same language becomes dramatised, suspended, dissolved and reinvented."
+          }
+        ]
+      }
     }
   },
   "cours11": {
@@ -3550,6 +4094,91 @@
       "exerciceLabel": "Exercise:",
       "verificationLabel": "Melodic check:",
       "principeLabel": "Principle:"
+    },
+    "conservatoire": {
+      "intuition": "A motionless ostinato is not a constraint — it is a fixed ground on which a single curve (the density of notes foreign to the key) can carry, all by itself, the entire form of a piece.",
+      "reference": {
+        "badge": "Bill Evans · liner notes, Kind of Blue",
+        "citation": "There is a Japanese visual art in which the artist is forced to be spontaneous. He must paint on a thin stretched parchment with a special brush... Erasures or changes are impossible.",
+        "auteur": "Bill Evans, “Improvisation in Jazz,” liner notes to Kind of Blue (1959)"
+      },
+      "voix": [
+        "An ostinato built on two colour chords (a major seventh, an unresolved neighbouring chord) can sustain an entire piece without ever producing a single cadence.",
+        "When the accompanying harmony stays rigorously fixed, one melodic parameter alone — the density of notes foreign to the key — can carry the whole formal curve of a piece.",
+        "A suspended fourth (a “sus” chord) that never resolves to the third is not a dominant kept waiting: it is a second colour, of the same rank as the first."
+      ],
+      "repertoire": {
+        "titre": "The Pendulum (teaching piece)",
+        "compositeur": "After Bill Evans, Peace Piece (1958)"
+      },
+      "pieges": [
+        {
+          "erreur": "Labelling the G chord as a plain G7 calling for its resolution on C",
+          "correction": "It is a G9sus: the fourth (C) is never replaced by the third (B). A G7 calls for a resolution; a G9sus floats alongside, with no directed tension — that nuance of notation changes the whole meaning of what we hear."
+        },
+        {
+          "erreur": "Looking for a harmonic progression to account for the wave of tension in the piece",
+          "correction": "There is none: the ostinato does not change a single note from beginning to end. The whole curve of tension comes exclusively from the right hand (the density of notes foreign to the key), not from any movement of chords."
+        },
+        {
+          "erreur": "Treating the major seventh of the opening chord as a dissonance that ought to resolve",
+          "correction": "In this idiom the major seventh belongs to the constitutive colour of the chord — it is neither prepared nor resolved, it IS the opening sonority."
+        }
+      ],
+      "resume": [
+        "An ostinato built on two colour chords (C∆7, G9sus) can sustain an entire piece without ever producing a single cadence — function gives way to pure colour.",
+        "The G9sus is not a G7: its fourth never resolves to the third, which makes it a second colour rather than a dominant kept waiting.",
+        "While the harmony stays fixed, the density of notes foreign to the key in the melody can carry the whole form by itself — a wave that rises and then subsides above a motionless ground."
+      ],
+      "analyseNarrative": {
+        "tonalite": "C major — but never a cadence: a rocking between two colour chords (C∆7, G9sus) that never resolve into one another.",
+        "metrique": "4/4. The left-hand ostinato is rigorously IDENTICAL, note for note, in each of the 8 measures.",
+        "forme": "The pendulum sets itself going alone (mm. 1-2), the right hand enters in pure diatonicism (mm. 3-4), a chromatic wave rises and then subsides (mm. 5-7), and everything closes on absolute white, with no cadence (m. 8).",
+        "sections": [
+          {
+            "label": "Measures 1-2",
+            "titre": "The pendulum sets itself going",
+            "chiffrage": "C∆7 | G9sus",
+            "fonctions": "T | ?",
+            "texte": "The left hand alone lays down the two colours that will carry the whole piece: C∆7 (major seventh included, never treated as a dissonance to be resolved), then G9sus — a suspended fourth that is NEVER brought back to its third. This is not a dominant waiting for C: it is a second colour, of the same standing as the first."
+          },
+          {
+            "label": "Measures 3-4",
+            "titre": "Complete diatonicism",
+            "chiffrage": "C∆7 → G9sus (unchanged)",
+            "fonctions": "?",
+            "texte": "The right hand enters, and for these two measures it does not touch a single note foreign to C major — not the slightest accidental. The ostinato, meanwhile, has not budged by so much as an eighth note."
+          },
+          {
+            "label": "Measures 5-7",
+            "titre": "The chromatic wave",
+            "chiffrage": "C∆7 → G9sus (still unchanged)",
+            "fonctions": "?",
+            "texte": "A first foreign note (m. 5), then the summit: a spray of four altered notes stacked all at once (m. 6), thrown against an ostinato that does not flinch — then the ebb (m. 7), a single foreign note once more. Dissonance here is neither prepared nor resolved: it rises and falls like a tide, while underneath nothing changes."
+          },
+          {
+            "label": "Measure 8",
+            "titre": "Return to absolute white",
+            "chiffrage": "C∆7 → G9sus, held",
+            "fonctions": "T",
+            "texte": "The final C is not a resolution in the classical sense — the ostinato carrying it is exactly the same as in measure 1. It is a return of colour, not a cadence."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The same pendulum, another century",
+            "texte": "A major seventh never treated as a dissonance, a neighbouring chord with no functional link, not a single cadence across the whole span: it is the same principle as a rocking between two colour chords already encountered in this corpus, carried over from the French post-Romantic piano to the jazz piano — function gives way to pure colour."
+          },
+          {
+            "titre": "A single parameter makes the whole form",
+            "texte": "While the accompanying harmony remains rigorously motionless, one parameter alone carries the entire form: the density of notes foreign to the key in the right hand, which rises and then falls like a curve. The same principle as a piece that moves along one axis only (timbre, register, density) while the chord itself stays fixed."
+          },
+          {
+            "titre": "The ostinato become a cell",
+            "texte": "A two-chord ostinato conceived for a solitary meditation at the piano can become, a few months later, the harmonic footing of an entirely different number — the same repeated cell, reused exactly as it stands in a collective, improvised context. An ostinato is not merely an accompaniment: it is an object that can travel from one piece to another."
+          }
+        ]
+      }
     }
   },
   "cours23": {
@@ -3596,6 +4225,98 @@
       "quizScoreLow": "Keep listening to the progressions of each style — the ear learns!",
       "quizNextBtn": "Next question →",
       "quizSeeScoreBtn": "See my score"
+    },
+    "conservatoire": {
+      "intuition": "Imitating an older style never entirely erases the period it comes from — every detour leaves a fingerprint of the moment when it was written, however discreet that fingerprint may be.",
+      "reference": {
+        "badge": "Grieg · on the Holberg Suite",
+        "citation": "Fra Holbergs tid — from Holberg's time.",
+        "auteur": "Edvard Grieg, subtitle of the Holberg Suite op. 40 (1884)"
+      },
+      "voix": [
+        "A neo-archaism reproduces the FRAMEWORK of an older style (here, the Baroque prelude in moto perpetuo over a pedal) while letting the harmonic reflexes of its own real period show through in the details.",
+        "A pedal point can hesitate between major and minor without ever settling — a modal ambiguity the Baroque would never have allowed itself, and which here betrays the hand of a nineteenth-century composer.",
+        "A deceptive resolution (a ii-V surfacing where the ear expected a direct resolution) can slip into the very heart of a page that otherwise scrupulously observes eighteenth-century syntax."
+      ],
+      "repertoire": {
+        "titre": "Holberg Suite op. 40, I. Praeludium",
+        "compositeur": "Edvard Grieg"
+      },
+      "pieges": [
+        {
+          "erreur": "Analysing this prelude as a purely Baroque piece, without looking for traces of the period it was actually written in (1884)",
+          "correction": "The framework is Baroque (tonic pedal, moto perpetuo, oscillation between 6/4 and diminished chords over a dominant pedal), but several details betray Romanticism: the structural fz/ff dynamics, the dominant pedal that hesitates between major and minor (mm. 38-39), the deceptive resolution (mm. 40-41), and the fleeting augmented eleventh of the coda (m. 70)."
+        },
+        {
+          "erreur": "Looking for a classical preparation of the deceptive resolution in measures 40-41",
+          "correction": "There is none: the dominant pedal of E (B, nine measures) ought to resolve to E minor, but slides straight into ii7-V7 of G (Am7-D7) — a pure Romantic reflex of thwarted expectation, at the heart of an otherwise very regular page."
+        },
+        {
+          "erreur": "Treating the augmented eleventh of measure 70 as a mere passing note with no analytical consequence",
+          "correction": "It is a genuine, deliberate harmonic colour (an F♯ added to a C major chord) — a sonority no eighteenth-century grammar would have produced, and which for the space of an instant signs the hand of a nineteenth-century composer."
+        }
+      ],
+      "resume": [
+        "The Holberg Suite (Grieg, 1884) is a deliberate neo-archaism: a Baroque prelude in moto perpetuo over a tonic pedal, written with the harmonic means of late Romanticism — fifteen years before Ravel's Pavane, forty years before Stravinsky's neoclassicism.",
+        "The dominant pedal of E (mm. 30-39, nine measures) explicitly alternates major and minor (D♯ against D natural) before sliding into a deceptive resolution (Am7-D7) rather than resolving as expected — two typically Romantic reflexes inside an otherwise Baroque machine.",
+        "Every imitation of an older style leaves its own fingerprints: here the structural dynamics, the modal ambiguity of the pedal, the deceptive resolution and the augmented eleventh of the coda (m. 70) betray 1884 beneath the eighteenth-century mask."
+      ],
+      "analyseNarrative": {
+        "tonalite": "G major — with a firmly established detour through the second theme in D (V) and an episode in the relative minor, E minor, at its centre.",
+        "metrique": "4/4. Allegro vivace (quarter note = 154), f — an unbroken moto perpetuo from beginning to end.",
+        "forme": "Baroque prelude form in three panels: exposition (mm. 1-22, two themes and their reprise), development (mm. 23-41, the episode in the relative minor and its dominant pedal), recapitulation and coda (mm. 42-72).",
+        "sections": [
+          {
+            "label": "Measures 1-8",
+            "titre": "The Baroque prelude: tonic pedal, then express modulation",
+            "chiffrage": "I (pedal) → V",
+            "fonctions": "T → D",
+            "texte": "The moto perpetuo settles in at once over a sustained tonic pedal (G1, verified as sounding without interruption for four measures) — the very principle of Bach's arpeggio preludes, pushed to its highest degree of purity. Then, with no detour, an express modulation installs the dominant, D."
+          },
+          {
+            "label": "Measures 9-22",
+            "titre": "The second theme, the retransition, the reprise",
+            "chiffrage": "I in D … D7/F♯ → I",
+            "fonctions": "T … D → T",
+            "texte": "A cantabile second theme sings in D, in sequences. Then, in measures 19-20, a D7 with F♯ in the bass carries a C natural that does not belong to the key of D — the seventh that quietly recalls G, drawing the ear back towards the main key before the reprise has even taken place. The opening motif returns, fp."
+          },
+          {
+            "label": "Measures 23-41",
+            "titre": "The episode in the relative minor: the dominant pedal and its two faces",
+            "chiffrage": "B7 → e … A♯°7/C → B (pedal) → Am7 – D7",
+            "fonctions": "D → T … ? → D → SD – D",
+            "texte": "A ff secondary dominant (B7) installs the relative minor, E. A sequence of seventh chords over a descending bass leads to the only genuinely Romantic bite in the piece (fz): a complete diminished seventh chord, built on A♯, with C in the bass. Then comes the structural centrepiece — nine measures of pedal on B, the dominant of E, with oscillations alternating the tonic in 6/4 and a diminished chord, exactly as in a Bach prelude. But Grieg slips HIS own ambiguity into it: the pedal hesitates explicitly between B major (D♯, m. 38) and B minor (D natural, m. 39) — confirmed note for note. Then, instead of resolving towards E as expected, the music slides into Am7-D7: the ii-V of G coming in through the window, a pure Romantic reflex of deceptive resolution inside an otherwise thoroughly Baroque machine."
+          },
+          {
+            "label": "Measures 42-55",
+            "titre": "Recapitulation: the plagal expansion",
+            "chiffrage": "I … G7/F → IV … I",
+            "fonctions": "T … ? → SD … T",
+            "texte": "The return of the main key (fz) is enriched by a colour of which Grieg's Baroque is fond: plagal expansion. A G7 with F in the bass (V4/2 of IV) opens the door straight onto IV, before a broad ff cadence descends a chain of seventh chords back to the tonic."
+          },
+          {
+            "label": "Measures 56-72",
+            "titre": "Tranquillo and coda: #11 and the final window of return",
+            "chiffrage": "I (pedal) … IV(#11) … V7 – I",
+            "fonctions": "T … SD … D – T",
+            "texte": "The tranquillo sings the closing theme over a new tonic pedal. The coda stacks one last cycle of secondary dominants, with a fleeting colour in measure 70: an F♯ over a C major chord — the augmented eleventh, a note belonging to no eighteenth-century grammar, which for the space of an instant betrays the hand of a nineteenth-century composer. The V7-I cadence closes the piece."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Neo-archaism: a Bach prelude written in 1884",
+            "texte": "The whole framework (opening tonic pedal, alternation of 6/4 and diminished chords over a dominant pedal, unbroken moto perpetuo) faithfully reproduces the design of the Baroque arpeggio prelude. But every detour leaves a nineteenth-century fingerprint: the structural fz and ff dynamics, the pedal hesitating between major and minor, the deceptive resolution instead of the expected one, the fleeting augmented eleventh of the coda. The past one imitates is never entirely neutral — it is always told through the reflexes of the one doing the imitating."
+          },
+          {
+            "titre": "A dated chain of backward glances",
+            "texte": "1884: Grieg writes an eighteenth-century prelude with the harmonic means of late Romanticism — fifteen years before Ravel's neo-Renaissance Pavane, forty years before Stravinsky's neoclassicism. The “return to the past” as a compositional gesture is therefore not an isolated phenomenon of the early twentieth century: it runs through several generations, and each one leaves its own mark on it."
+          },
+          {
+            "titre": "The same device as the Pavane, fifteen years before it",
+            "texte": "The sequence of diatonic seventh chords over a descending bass (mm. 27-28) is exactly the device Ravel would use in his Pavane pour une infante défunte (1899) — a bass descending by step beneath a chain of seventh chords, one of the most recognizable harmonic signatures of the “old style” revisited through modern language."
+          }
+        ]
+      }
     }
   },
   "cours24": {
@@ -3652,6 +4373,105 @@
       "h3Stylistique": "Stylistic use through the ages",
       "bassePremierRenversement": "Always in first inversion — bass on bVI:",
       "bassePremierRenversementDesc": "Ab (bVI) is invariably in the bass → it descends by semitone to G (dominant fifth)"
+    },
+    "conservatoire": {
+      "intuition": "A chord that compresses the whole tonal tension into a single point — like a spring ready to release towards the dominant.",
+      "reference": {
+        "badge": "Aldwell & Schachter · Harmony and Voice Leading",
+        "citation": "The augmented sixth chord is the most intensely dissonant pre-dominant chord in tonal music; its two characteristic tones resolve outward by half step to the dominant fifth.",
+        "auteur": "Aldwell & Schachter, 2003"
+      },
+      "voix": [
+        "The augmented sixth (A♭–F♯) always resolves to the dominant fifth (G–G) by obligatory contrary motion",
+        "The bass is invariably on bVI (A♭ in C major) — first inversion is constitutive of the chord",
+        "The German sixth (bVI–I–bIII–#IV) is enharmonically identical to a V7/IV — its resolution differs radically"
+      ],
+      "repertoire": {
+        "titre": "Prelude op. 28 no. 20",
+        "compositeur": "Frédéric Chopin"
+      },
+      "pieges": [
+        {
+          "erreur": "Forgetting the contrary motion: making A♭ and F♯ rise together",
+          "correction": "A♭ descends to G, F♯ rises to G — the outer voices must converge on the dominant fifth"
+        },
+        {
+          "erreur": "Resolving the German sixth like a V7/IV (towards IV) rather than towards V",
+          "correction": "Ger+6 resolves towards V by contrary motion; V7/IV resolves towards IV — same notes, opposite resolutions"
+        },
+        {
+          "erreur": "Placing the augmented sixth outside the pre-dominant context (not before V or I6/4–V)",
+          "correction": "The augmented sixth is idiomatic only in the pre-dominant zone, always immediately before the dominant"
+        }
+      ],
+      "resume": [
+        "3 types: It+6 (bVI–I–#IV), Fr+6 (bVI–I–II–#IV), Ger+6 (bVI–I–bIII–#IV)",
+        "Universal resolution: augmented sixth → dominant fifth, by contrary motion",
+        "Ger+6 = enharmonic equivalent of V7/IV — same notes, wholly different contexts and resolutions"
+      ],
+      "analyseNarrative": {
+        "tonalite": "C minor (key signature of three flats). Two passing excursions: A♭ major (the relative) in measure 2, then G major (the dominant) tonicized in measures 3-4 by a chain of secondary dominants.",
+        "metrique": "4/4. Largo, very slow (quarter note = 40 — absent from the source file, added).",
+        "forme": "13 measures = A (measures 1-4) + B (measures 5-8) + B taken up unchanged (measures 9-12) + final chord (measure 13). A funeral chorale in homorhythmic chords, four to a measure — one chord per beat, 49 harmonies in all. The dynamics (added, absent from the source file) organize a steady ebbing: ff (measures 1-4), p (measures 5-8), pp for the repeat (measures 9-12) — a procession moving away into the distance.",
+        "sections": [
+          {
+            "label": "Measure 1",
+            "titre": "The parent cadence",
+            "chiffrage": "Cm (i) – Fm7 (iv7) – G7 (V7) – Cm (i)",
+            "fonctions": "i – SD7 – D – i",
+            "texte": "The complete cadential formula in a single breath. The iv carries its seventh (E♭ over F-A♭-C: Fm7), inherited from the preceding tonic. Over the V7, the E♭ struck together with the chord on beat 3 is a <strong>♭13</strong> appoggiatura that resolves to D only at the end of the beat — this E♭→D sigh over the dominant will return at every cadence of the prelude."
+          },
+          {
+            "label": "Measure 2",
+            "titre": "The same block, transposed to the relative",
+            "chiffrage": "A♭ major (I) – D♭ major (IV) – E♭7 (V7) – A♭ major (I)",
+            "fonctions": "T – SD – D – T (in A♭)",
+            "texte": "The entire formula of measure 1 is played again just as it stands, transposed as a block into A♭ major (I-IV-V7-I, with the same C→B♭ appoggiatura over the E♭7) — a brutal real sequence, with no transition."
+          },
+          {
+            "label": "Measures 3-4",
+            "titre": "The return by chain of dominants",
+            "chiffrage": "G7 (V7) – C7 (V7/iv) – Fm (iv) – C major (IV/V) | D7 (V7/V) – G (V) – D7 (V7/V) – G (V)",
+            "fonctions": "D – D – SD – SD (towards V) | D – D – D – D (half cadence)",
+            "texte": "G7 does not resolve to C minor: it slides towards C7 (<strong>V7/iv</strong>), then F minor, then a C MAJOR (E♮, the fourth chord of the measure) that works as IV of G. The phrase tips over towards the dominant and settles there: D7-G-D7-G, tonicization of V and half cadence. The balance sheet of period A: C minor → A♭ → circle of fifths → dominant, in four measures."
+          },
+          {
+            "label": "Measures 5-6",
+            "titre": "The chromatic lament and the French sixth",
+            "chiffrage": "Cm (i) – A♭ major/C (VI6) – B°7 (vii°7) – Gm/B♭ (v6) | Am7 (passing chord) – Fr+6 (D7♭5/A♭) – G (V) – G7/F (V4/2)",
+            "fonctions": "T – T – D – D (passing minor) | ? – D – D – D",
+            "texte": "Beneath a melody climbing into the treble, the bass begins a complete chromatic descent across two measures: C-C-B-B♭-A-A♭-G-F, harmonized chord by chord — including an <strong>incomplete vii°7</strong> (B-D-A♭, the diminished seventh without its root, the imprint of a G7♭9). Alongside it the alto traces A♭-F♯-G, a chromatic double neighbour around the fifth. Then the summit: A♭-C-D-F♯, the <strong>French augmented sixth</strong> — legible also, in jazz notation, as a D7(♭5) over an A♭ bass — which crushes its double dissonance onto V, prolonged as V4/2."
+          },
+          {
+            "label": "Measures 7-8",
+            "titre": "The widened cadence, and the Neapolitan",
+            "chiffrage": "Cm/E♭ (i6) – Fm (iv) – G/B (V6) – Cm (i) | A♭ major (VI) – D♭ major (♭II) – G7 (V7) – Cm (i)",
+            "fonctions": "T – SD – D – T | T – SD (Neapolitan) – D – T",
+            "texte": "The 4/2 of measure 6 resolves onto i6, then the widened cadence iv-V6-i. Measure 8 replays the chords of measure 2, reinterpreted: the A♭ is no longer a local tonic but <strong>VI</strong>, and the D♭ major, which was IV of A♭, becomes <strong>♭II</strong> — the Neapolitan sixth in root position, linked directly to V7 (with the same ♭13 appoggiatura as in measure 1). The same two chords thus change meaning between measure 2 and measure 8: diatonic in a neighbouring key there, chromatic in the main key here."
+          },
+          {
+            "label": "Measures 9-13",
+            "titre": "The echoed reprise, and the bare ending",
+            "chiffrage": "(complete reprise of 5-8, sonority by sonority) | Cm (i, final)",
+            "fonctions": "(identical to 5-8, in pp) | i",
+            "texte": "Measures 9-12 take up 5-8 note for note — in the original, only the dynamic marking (pp) turns the repetition into an echo. Measure 13 closes the prelude on a bare tonic chord, with no Picardy third: the minor mode owned right to the end."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Three Romantic colours brought together",
+            "texte": "The chromatic lament bass (the Baroque legacy of the descending tetrachord), the Neapolitan sixth and the French augmented sixth all three appear within these 13 measures — the very tool kit of Romantic chromaticism."
+          },
+          {
+            "titre": "The same chord, twice, two meanings",
+            "texte": "A♭ major and D♭ major return in measure 8 with the same notes as in measure 2 — but diatonic and passing there (in a neighbouring key), chromatic and heavy with meaning here (VI and ♭II of the tonic)."
+          },
+          {
+            "titre": "A cadential tic that becomes grammar",
+            "texte": "The ♭6→5 appoggiatura over the dominant (E♭→D in measure 1) returns at every cadence of the prelude — one and the same expressive gesture, repeated until it becomes a habit of writing rather than an accident."
+          }
+        ]
+      }
     }
   },
   "cours25": {
@@ -3717,6 +4537,84 @@
       "masquerBtn": "▲ Hide",
       "explorerBtn": "▼ Explore",
       "ecouter": "▶ Listen"
+    },
+    "conservatoire": {
+      "intuition": "Chromaticism is tonality looking at itself in a distorting mirror — the same logic, but pushed to its limits.",
+      "reference": {
+        "badge": "Schönberg · Harmonielehre",
+        "citation": "Dissonance is not the opposite of consonance — it is a more distant consonance, one the ear has yet to learn to hear.",
+        "auteur": "Arnold Schönberg, 1911"
+      },
+      "voix": [
+        "Ascending chromaticism (leading-tone inflection) strengthens the pull towards the target note by rising semitone",
+        "Descending chromaticism (darkening) creates an expressive tension that calls for resolution by falling semitone",
+        "Every chromatic note must resolve in the direction of its alteration: ♯ rises, ♭ falls — never the reverse"
+      ],
+      "repertoire": {
+        "titre": "Prelude to Tristan und Isolde",
+        "compositeur": "Richard Wagner"
+      },
+      "pieges": [
+        {
+          "erreur": "Gratuitous chromaticism with no harmonic direction — a pile-up of altered notes with no logic of resolution",
+          "correction": "Every chromatic note creates a pull towards its resolution; chromaticism is a logic, not an ornament"
+        },
+        {
+          "erreur": "Enharmonic confusion: treating G♯ and A♭ as equivalent without distinguishing their direction of resolution",
+          "correction": "G♯ rises to A (ascending chromaticism), A♭ falls to G (descending chromaticism) — the enharmonic spelling changes everything"
+        },
+        {
+          "erreur": "Losing the tonal centre by piling up chromaticisms with no diatonic anchor",
+          "correction": "Keep at least one diatonic reference chord before stringing chromaticisms together or modulating enharmonically"
+        }
+      ],
+      "resume": [
+        "Chromatic lines: lament bass (descending), leading-tone inflection (ascending), chromatic neighbour tone",
+        "The Tristan chord: F–B–D♯–G♯ — a deliberate functional ambiguity, debated to this day",
+        "Enharmonic modulation: the dim7 gives access to 4 different keys depending on the reading chosen"
+      ],
+      "analyseNarrative": {
+        "tonalite": "A minor — never confirmed by a tonic chord in this excerpt: the whole piece flees resolution.",
+        "metrique": "6/8. Lento (dotted quarter = 52.5).",
+        "forme": "Three statements of the same summoning motif (upbeat + chord + resolution), each one degree more tense than the last.",
+        "sections": [
+          {
+            "label": "Upbeat – m. 3",
+            "titre": "The Tristan chord: two readings of a single sound",
+            "chiffrage": "Fø7 (m. 2) – E7 (m. 3)",
+            "fonctions": "? (Tristan) – V7",
+            "texte": "The motif opens with a three-note upbeat (A-F-E) that rises and then falls back, like a question. At m. 2 the four voices freeze on F-B-D♯-G♯: the most commented-upon chord in the history of harmony. Read vertically, it is a simple dominant seventh with diminished fifth on F (Fø7), a self-sufficient sonority calling for no particular resolution. But G♯ is an appoggiatura: it rises to A, and the chord that then appears — F-A-B-D♯ — is a French augmented sixth in due form, one that pulls mechanically towards the fifth of the dominant. The two readings do not contradict each other: they coexist, and it is this very ambiguity that produces the whole effect of the passage. The resolution arrives at m. 3 on E7 (V7 of A minor), by way of a second appoggiatura in the low register (A♯→B)."
+          },
+          {
+            "label": "Measures 4–7",
+            "titre": "The same chord, a minor third higher",
+            "chiffrage": "G♯ø7 (m. 6) – G7 (m. 7)",
+            "fonctions": "? (Tristan) – V7/C",
+            "texte": "After a silence that prolongs the upbeat, the motif returns note for note, transposed up a minor third. The chord at m. 6 is the same sonority as the one at m. 2, merely displaced: its resolution by appoggiatura produces A♭-C-D-F♯, a French augmented sixth strictly identical — note for note — to the one in the Chopin Prelude studied earlier. Two composers, a century apart, radically different harmonic idioms, and yet exactly the same stack of four notes at the same point in the phrase. This time the resolution slides towards G7, the dominant no longer of A minor but of C major: the second phrase opens up a new tonal region without ever settling in it."
+          },
+          {
+            "label": "Measures 8–13",
+            "titre": "A tension that is never answered",
+            "chiffrage": "Dø7/C (mm. 10, 12) – B7 (mm. 11, 13)",
+            "fonctions": "? (Tristan) – V7/E, then a suspended V7",
+            "texte": "The third statement is the longest: the upbeat stretches out into a chromatic descent (D-B-B♭-A) that delays the arrival of the chord. When it does appear at m. 10, its seventh (C) has moved into the bass, and the two upper voices diverge instead of converging — one rising (D-D♯-E), the other falling (F-E) — before a fleeting augmented triad, C-E-G♯, crosses the very last instant of the bar. The resolution, at m. 11, falls on B7 (V7 of E), with its own appoggiatura (E♯→F♯) and a doubly held fermata. The chord returns an octave higher at m. 12, like an echo, before dropping one last time onto B7 at m. 13 — but this time with no resolution at all: the dominant is left hanging, and the excerpt stops on the tension itself."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "One chord, two grammars",
+            "texte": "The Tristan chord can be read either as a self-sufficient vertical sonority (a dominant seventh with diminished fifth) or as an appoggiatura over a French augmented sixth. Neither reading cancels the other: the argument over which one is “the true one” has been running for more than a century, and it is precisely this refusal to decide that has made the chord so famous."
+          },
+          {
+            "titre": "The same sonority, two composers",
+            "texte": "Once resolved by appoggiatura, the transposed version of the chord (m. 6) yields A♭-C-D-F♯, exactly the French augmented sixth of the Chopin Prelude studied in the previous lesson. The same stack of notes, the same function, in two harmonic languages that nonetheless seem worlds apart."
+          },
+          {
+            "titre": "A tension never answered",
+            "texte": "The excerpt ends on a dominant (B7) that does not resolve: the expected tonic never arrives in these thirteen bars. This deferral of resolution — Wagner's “endless melody” — is already at work from the very opening of the Prelude."
+          }
+        ]
+      }
     }
   },
   "cours30": {
@@ -3794,6 +4692,123 @@
       "emprunteLabel": "Borrowed from:",
       "warnBoxModalInterchange": "<strong>Modal interchange ≠ modulation:</strong> Modal borrowing is temporary — the tonic does not change. In C major, borrowing Ab (bVI) creates a colour, but C remains the centre. A modulation implies a change of tonal centre confirmed by a cadence.",
       "h2Quiz": "Quiz — Impressionist harmony and advanced modality"
+    },
+    "conservatoire": {
+      "intuition": "When Debussy plays a parallel ninth chord, he is not thinking “tension-resolution” — he is thinking “sky blue shading into violet”.",
+      "reference": {
+        "badge": "Messiaen · The Technique of My Musical Language",
+        "citation": "The modes of limited transposition are the key to my language. Their internal symmetry creates a unique and inimitable colour.",
+        "auteur": "Olivier Messiaen, 1944"
+      },
+      "voix": [
+        "Planing is not a mistake: it is a movement of chords in parallel in which colour replaces function. Analyse it with your eyes (not with T/SD/D functions).",
+        "The whole-tone scale (6 equidistant notes) contains no directional note — the drifting is intended, not an ambiguity waiting to be resolved.",
+        "Messiaen's modes have limited transpositions: mode 1 (the whole-tone scale) can only be transposed twice before it comes back to itself."
+      ],
+      "repertoire": {
+        "titre": "Voiles (Préludes, Book I, No. 2)",
+        "compositeur": "Claude Debussy"
+      },
+      "pieges": [
+        {
+          "erreur": "Analysing Debussy with T/SD/D functions",
+          "correction": "Impressionist harmony works through colour and register. Looking for a dominant in Debussy's “Voiles” is looking for the wrong thing."
+        },
+        {
+          "erreur": "Believing that planing is a voice-leading error",
+          "correction": "Planing is a deliberate technique — the parallel fifths and octaves are wanted, in order to create the effect of a block of sound sliding without resolution."
+        },
+        {
+          "erreur": "Confusing the whole-tone scale with the pentatonic scale",
+          "correction": "Whole-tone scale: 6 equidistant notes (all whole tones), augmented chords. Pentatonic: 5 notes with no semitone (C–D–E–G–A). Very different colours."
+        },
+        {
+          "erreur": "Looking for a functional resolution in Impressionism",
+          "correction": "The V–I resolution is deliberately avoided. Impressionist tension is sensory (colour, register, dynamic) and not functional."
+        }
+      ],
+      "resume": [
+        "Planing: displacement of a whole chord without resolution — diatonic (the same type on every degree) or chromatic (the exact same chord transposed)",
+        "Special scales: whole-tone (6 equidistant notes, augmented chords) · octatonic (tone/semitone, dim7) · pentatonic (5 notes with no semitone)",
+        "Messiaen's modes: internal symmetry + limited transpositions → a unique and recognisable colour (mode 1 = whole-tone scale, mode 2 = octatonic)"
+      ],
+      "analyseNarrative": {
+        "tonalite": "None — the whole-tone collection {C, D, E, F♯, G♯, B♭}, with neither tonic nor any constructible function.",
+        "metrique": "2/4. Modéré (44 to the quarter note at the outset, highly variable thereafter).",
+        "forme": "A single arch shaped by density and register (not by harmonic tension): exposition — accumulation — pentatonic climax — subsiding — an extinguished coda.",
+        "sections": [
+          {
+            "label": "Measures 1-4",
+            "titre": "The theme: the veil as object",
+            "chiffrage": "Whole tones — parallel major thirds, no bass",
+            "fonctions": "? (no constructible function)",
+            "texte": "Parallel major thirds descend with no bass at all (G♯/E → F♯/D → E/C → D/B♭): the theme slides through the whole-tone collection as over a surface without relief, without the slightest landmark of hierarchised pitch."
+          },
+          {
+            "label": "Measures 5-14",
+            "titre": "The pedal settles in",
+            "chiffrage": "Whole tones — B♭ pedal",
+            "fonctions": "?",
+            "texte": "A B♭ pedal settles into the bass — and will remain there for fifty-seven measures, all the way to m. 61. Motifs in thirds and descending figures repeat pianissimo above it."
+          },
+          {
+            "label": "Measures 15-22",
+            "titre": "The augmented organum",
+            "chiffrage": "Whole tones — parallel augmented triads (A♭-C-E, B♭-D-F♯)",
+            "fonctions": "?",
+            "texte": "Beneath the theme, the accompanying ostinato reveals the only “harmony” the collection permits: parallel augmented triads — the augmented triad being the only one the whole-tone scale can produce. Debussy makes it his organum, a direct echo of the parallel triads of La Cathédrale engloutie."
+          },
+          {
+            "label": "Measures 23-32",
+            "titre": "The F♯ stratum and the chromatic ornament",
+            "chiffrage": "Whole tones — low stratum on F♯; isolated chromatic figure (m. 31)",
+            "fonctions": "?",
+            "texte": "A low stratum settles on F♯, the collection's other pole. Measure 31 introduces the one real exception in the whole piece: a small chromatic figure (the turn C-D-D♭-C, the slide F♯-G-A♭) that sounds the only pitches foreign to the collection — ornamental chromaticism, not harmony, the exception that proves the rule."
+          },
+          {
+            "label": "Measures 33-41",
+            "titre": "Amplification",
+            "chiffrage": "Whole tones (unchanged)",
+            "fonctions": "?",
+            "texte": "The collection does not change; what changes is density and register — Serrez, dim. molto, Cédez. The intensification is achieved through parameters that classical harmony treated as mere auxiliaries."
+          },
+          {
+            "label": "Measures 42-47",
+            "titre": "The climax: a change of alphabet",
+            "chiffrage": "Black-key pentatonic {D♭, E♭, G♭, A♭, B♭}",
+            "fonctions": "?",
+            "texte": "The only moment in the whole piece where something really changes — and it is neither a chord nor a key, it is the entire collection. Glissandi and pentatonic flurries, mf then f (the only f in the piece), Emporté: the sole “modulation” in Voiles is this tipping over from one alphabet into another."
+          },
+          {
+            "label": "Measures 48-61",
+            "titre": "Return and subsidence",
+            "chiffrage": "Whole tones — the B♭ pedal resumed",
+            "fonctions": "?",
+            "texte": "Theme and ostinato return superimposed in strata, pianissimo, over the same B♭ pedal as at the beginning."
+          },
+          {
+            "label": "Measures 62-64",
+            "titre": "Coda: the piece goes out",
+            "chiffrage": "F♯ pedal — bare third C-E (×2), no bass",
+            "fonctions": "?",
+            "texte": "The pedal abandons B♭ for F♯ over the last three measures, carried by soft sweeps through the collection. Then the third C-E appears alone twice, with no bass — the piece does not conclude, it goes out like a light."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "A collection that makes function impossible",
+            "texte": "The whole-tone scale contains neither a perfect fifth, nor a leading note, nor a major or minor triad: no dominant and no cadence is so much as constructible within it. Where La Cathédrale engloutie avoided function while still keeping one, buried, Voiles makes it impossible by construction — one no longer renounces the cadence, one chooses a material in which it does not exist."
+          },
+          {
+            "titre": "Form as a curve of density",
+            "texte": "With no harmonic tension available, it is the number of pitches per measure, the register and the dynamic that draw the form — a gradual accumulation up to the pentatonic climax, then a subsiding into extinction. The B♭ pedal, the only hierarchy that survives, is a “centre” only because it is held."
+          },
+          {
+            "titre": "The augmented sixth, reduced to a subset",
+            "texte": "The most highly charged chord of Romantic chromaticism — the French augmented sixth, the one at Chopin's dramatic summit — is, note for note, no more than a subset of the whole-tone collection in which Debussy lets his veils float for sixty-four measures. The same material, maximum tension turned into weightlessness."
+          }
+        ]
+      }
     }
   },
   "cours31": {
@@ -4084,6 +5099,105 @@
       "btnUrlinie321": "▶ Urlinie 3̂–2̂–1̂",
       "btnUrlinie54321": "▶ Urlinie 5̂–4̂–3̂–2̂–1̂",
       "btnBassbrechung": "▶ Bassbrechung I–V–I"
+    },
+    "conservatoire": {
+      "intuition": "A forty-minute symphony is often I–V–I on a vast scale, with ornaments.",
+      "reference": {
+        "badge": "Schenker · Der freie Satz",
+        "citation": "All tonal music rests on one and the same fundamental structure: a descent in the soprano and an arpeggiation of the fifth in the bass. The rest is nothing but ornamentation.",
+        "auteur": "Heinrich Schenker, 1935"
+      },
+      "voix": [
+        "Distinguish surface harmony (every chord) from structural harmony (the tonal pillars): a prolongation can make a single chord 'last' for several bars.",
+        "The Urlinie always descends to 1̂ (the tonic) — identify the starting note (3̂, 5̂ or 8̂) and trace the fundamental melodic descent.",
+        "Do not analyse each chord in isolation: look for the functional group (T, SD, D), then for the prolongation that realizes it."
+      ],
+      "repertoire": {
+        "titre": "Jesu, meine Freude (complete chorale, 19 measures)",
+        "compositeur": "J. Crüger / harmonization in the tradition of J. S. Bach (BWV 227)"
+      },
+      "pieges": [
+        {
+          "erreur": "Analysing every chord without seeing the overall structure",
+          "correction": "Begin by identifying the pillars: the opening (I), the medial cadence, the final cadence (V–I). Everything else is prolongation."
+        },
+        {
+          "erreur": "Confusing surface harmony with structural harmony",
+          "correction": "A neighbouring or passing chord (between two chords belonging to the same pillar) is not a structural pillar — it prolongs the main chord."
+        },
+        {
+          "erreur": "Reducing too quickly, without intermediate stages",
+          "correction": "Reduce in 3 stages: 1) write down every chord, 2) group them by function (T/SD/D), 3) identify the principal prolongation."
+        }
+      ],
+      "resume": [
+        "Layered analysis: surface (every chord) → middleground (functions grouped together) → background (a single T→D→T prolongation)",
+        "Urlinie: a soprano descent from 3̂, 5̂ or 8̂ down to 1̂ — the fundamental line of the melodic argument",
+        "Bassbrechung: the bass arch I–V–I — the tonal structure on the scale of the entire work"
+      ],
+      "analyseNarrative": {
+        "tonalite": "B minor.",
+        "metrique": "4/4. Tempo quarter = 64.",
+        "forme": "Bar form AAB: Stollen (3 phrases, mm. 1–6) repeated note for note (mm. 7–12), then Abgesang (mm. 13–19).",
+        "sections": [
+          {
+            "label": "Phrase 1 (mm. 1–2)",
+            "titre": "A bass descent that parcels out the tonic",
+            "chiffrage": "i – v6 – iv6 – vii°4/2 – VI – iiø6/5 – V7 – i",
+            "fonctions": "T (prolonged) – SD – T (authentic cadence)",
+            "texte": "The bass descends by step (B-A-G) beneath a held soprano note, each step carrying its own chord — i, v6, iv6 — before a passing chord slips in on the upbeat: a diminished seventh on the leading tone in third inversion (vii°4/2, the seventh in the bass), which resolves onto VI. The cadence that follows presents the first half-diminished chord of the piece (iiø6/5) before the V7 and the tonic."
+          },
+          {
+            "label": "Phrase 2 (mm. 3–4)",
+            "titre": "A tonicization in a flash, a climb back to the dominant",
+            "chiffrage": "i – V/A – I6/A – III – i – i6 – V",
+            "fonctions": "T – (passing tonicization) – T – D (half cadence)",
+            "texte": "A brief detour tonicizes A major (its own dominant, E, appears for the space of a single chord) before sliding onto III (D). The bass then climbs back by step (B-C♯-D-E) towards the half cadence on F♯ major, which closes the phrase on the dominant."
+          },
+          {
+            "label": "Phrase 3 (mm. 5–6) — and its repeat (mm. 7–12)",
+            "titre": "The 4–3 suspension and the tonic held under a fermata",
+            "chiffrage": "VI – i6/4 – V (4–3 suspension) – V7 – i (fermata)",
+            "fonctions": "T – T (cadential) – D – T",
+            "texte": "The finest cadence of the Stollen: over the dominant, an inner voice holds B against the F♯ in the bass (a 4–3 suspension) and gives way only on the very last beat of the bar — the chord becomes a complete V7 only at the instant of resolution itself. The tonic that follows is held under a fermata. The whole six bars (mm. 1–6) then return note for note (mm. 7–12): the same bass, the same chords, the same resolution of the suspension — a Stollen written out in full, not merely indicated by a repeat sign."
+          },
+          {
+            "label": "Abgesang, phrases 4–5 (mm. 13–14)",
+            "titre": "The only stretch of major in the whole chorale",
+            "chiffrage": "i – III – V6/5/III – III – ii6/5 – V7/III – III",
+            "fonctions": "T – (modulation to the relative) – SD – D – T",
+            "texte": "The Abgesang opens with a genuine modulation to the relative major (D), properly installed by its own secondary dominant (A7) and then confirmed by a full cadence (ii6/5 – V7 – I) in D major — the only moment in the whole piece that frankly leaves the minor mode."
+          },
+          {
+            "label": "Phrase 6 (mm. 15–17)",
+            "titre": "The dramatic summit",
+            "chiffrage": "III – vii°/A – I6/A – III – i – v – iiø4/3 of F♯ – V7/v – F♯: I = B minor: V",
+            "fonctions": "T – T (passing) – T (minor) – D (arrival on the majorized dominant)",
+            "texte": "A return to B minor by way of its own dominant (F♯ minor), then a second half-diminished chord (iiø4/3 of F♯, this time the subdominant of the dominant) which prepares a C♯7 (V7/v) resolving onto F♯ major — a complete ii–V–i towards the dominant, but with the final chord turned major. This bar carries an editorial slip: the E♯ expected in the C♯7 is notated as F natural in an inner voice, an enharmonic spelling that would make the reading absurd for a singer reading that third in the choir rather than playing it at the keyboard. The following bar opens out into rests after its first chord — the breathing of the German text, preserved by the hymn."
+          },
+          {
+            "label": "Final phrase (mm. 18–19)",
+            "titre": "The cadential formula in full",
+            "chiffrage": "iv6 – cadential i6/4 – iiø6/5 – V7 – I",
+            "fonctions": "SD – T (cadential) – SD – D – T",
+            "texte": "The final cadence deploys the complete formula — subdominant, cadential tonic, half-diminished chord, dominant, tonic — and the last chord carries the only D♯ in the whole piece: a Picardy third, sung by the lowest inner voice above the bass."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "A single prolongation for the whole Stollen",
+            "texte": "Beneath the many surface chords (v6, iv6, vii°4/2, VI, iiø6/5…), the Stollen in fact carries out one single structural gesture: a tonic that arpeggiates towards its dominant (the half cadence of m. 4) before returning to it (the fermata of m. 6). Everything else — every chord figured phrase by phrase — prolongs one or other pole of this i–V–i framework, without ever calling it into question."
+          },
+          {
+            "titre": "From the summit to the tonic: a single melodic line",
+            "texte": "The soprano opens on the fifth (F♯) and closes the piece on the tonic (B): the same descending trajectory that organizes the surface melody — each phrase rising and then falling back — is found again, on a far larger scale, in the form of the whole chorale."
+          },
+          {
+            "titre": "The diminished chord: nothing but an interval filled in",
+            "texte": "The diminished seventh of m. 1 and the half-diminished chords of mm. 2, 16 and 18 look, on the surface, like dramatic events. Reduced to their structural function, they are no more than harmonized chromatic passing notes — the bass could have descended without them. Ornament makes the colour; it does not make the structure."
+          }
+        ]
+      }
     }
   },
   "cours28": {
@@ -4160,6 +5274,109 @@
       "btnEcouterMotif": "▶ Listen to the main motif",
       "infoBoxRetenir": "<strong>Key takeaway:</strong> Bach (harmonic arpeggiation) → no distinct themes, contrapuntal logic. Mozart K. 331 (theme and variations) → a single transformed theme. Beethoven op. 13 (enriched sonata form) → two themes, harmonic tension, and return of the opening Grave in the development.",
       "h2Quiz": "Quiz — Musical forms"
+    },
+    "conservatoire": {
+      "intuition": "Form is harmony unfolding in time.",
+      "reference": {
+        "badge": "Schönberg · Fundamentals of Musical Composition",
+        "citation": "Musical form is not a mould into which one pours the music — it is the logical consequence of thematic and harmonic development.",
+        "auteur": "Arnold Schönberg, 1967"
+      },
+      "voix": [
+        "In sonata form, the second theme is always in the TONIC in the recapitulation — even if it was in the dominant in the exposition. It is the harmonic resolution of the entire form.",
+        "The development MUST modulate: staying in the main key throughout the development is a serious formal fault.",
+        "Distinguish phrase form (antecedent–consequent) from large-scale form (exposition–development–recapitulation) — two distinct hierarchical levels."
+      ],
+      "repertoire": {
+        "titre": "Sonata in C major K. 545, first movement — complete exposition",
+        "compositeur": "Wolfgang Amadeus Mozart"
+      },
+      "pieges": [
+        {
+          "erreur": "Confusing phrase form with large-scale form",
+          "correction": "Phrase form (a 4-bar antecedent + a 4-bar consequent) is a micro level. Large-scale form (sonata, rondo) is a macro level lasting several minutes."
+        },
+        {
+          "erreur": "Putting the second theme in the dominant in the recapitulation (in the major mode)",
+          "correction": "In the recapitulation the second theme ALWAYS returns in the tonic. That is the fundamental harmonic resolution of sonata form — without it there is no resolution."
+        },
+        {
+          "erreur": "A development without modulations",
+          "correction": "The development must travel through several keys — that is its dramatic role. A development that stays in the main key misses its purpose."
+        },
+        {
+          "erreur": "A recapitulation identical to the exposition",
+          "correction": "The recapitulation always differs from the exposition on one crucial point: the second theme is in the tonic, not in the dominant. Often the transition is shortened as well."
+        }
+      ],
+      "resume": [
+        "Sonata form: Exposition (T1 in the tonic + T2 in the dominant) → Development (modulations) → Recapitulation (T1 and T2 both in the TONIC)",
+        "Simple forms: binary (AB, tonally unstable→stable) · ternary (ABA) · rondo (ABACA, cyclical return)",
+        "Analysis: identify the sections by their key, not only by their themes"
+      ],
+      "analyseNarrative": {
+        "tonalite": "C major, modulating to G major (the dominant) for the second theme.",
+        "metrique": "4/4. Tempo quarter = 140.",
+        "forme": "Sonata-form exposition: first theme (1–4), scales (5–8), modulating transition (9–13), second theme (14–17), descending-fifths sequence (18–21), cadence and codetta (22–28).",
+        "sections": [
+          {
+            "label": "Measures 1-4",
+            "titre": "First theme: harmony as breathing",
+            "chiffrage": "I | V4/3–I | IV6/4–I | V6–I",
+            "fonctions": "T | D–T | SD–T | D–T",
+            "texte": "Four bars, four function-and-tonic pairs: each bar steps away from the tonic by way of a gentle inversion (the seventh of the V4/3 within the Alberti bass, the neighbouring six-four of the IV) before falling straight back onto it. The tonic is never left for more than half a beat — the simplest harmony imaginable, yet laid out with no economy whatsoever."
+          },
+          {
+            "label": "Measures 5-8",
+            "titre": "The scales: a harmony slower than the virtuosity",
+            "chiffrage": "IV | I6 | V4/3 → V6/5 | I",
+            "fonctions": "SD | T | D | T",
+            "texte": "The runs that terrify students carry, harmonically, no more than one chord per bar (two in m. 7): the left hand marks out half notes while the right hand unwinds its scales. Virtuosity is always laid over a harmonic rhythm slower than itself."
+          },
+          {
+            "label": "Measures 9-13",
+            "titre": "The transition: a modulation in three gestures",
+            "chiffrage": "ii (C♯, melodic minor) – G: V6 (sequence F-G-A-F♯) – G: I (= C: V) – link C♯→C♮",
+            "fonctions": "SD – D (G) – T (G) / D (C)",
+            "texte": "First ii (D minor), whose rising melodic-minor scale sounds the C♯ — the first accidental in the piece. Then a sequence: the bass F-G-A-F♯ converts that C♯ into a genuine local leading tone (D/F♯ becomes V6 of G). The arrival on G (mm. 11–12), asserted in arpeggios, is the medial caesura — that same G is still heard as V of C at the very moment it settles in as I. Measure 13, a single unaccompanied line, closes the transition: the left hand alone oscillates C♯-D and then C♮-D, the same pair of notes separating two functions of the same chromatic degree."
+          },
+          {
+            "label": "Measures 14-17",
+            "titre": "Second theme: a periodic rocking",
+            "chiffrage": "I6 – V7 | I6 – V7",
+            "fonctions": "T – D | T – D",
+            "texte": "In G major the second theme curls up over a simple I6–V7 rocking, the left-hand figuration decorating a D pedal while the C♮ installs the seventh above it. Appoggiaturas G→F♯ punctuate the ending of each period."
+          },
+          {
+            "label": "Measures 18-21",
+            "titre": "The sequence: the complete circle of fifths",
+            "chiffrage": "I – IV – vii°6 – iii – vi6 – ii – V6/5 – I",
+            "fonctions": "T – SD – D – T – T – SD – D – T",
+            "texte": "The analytical summit of the exposition: eight functions, two per bar, not one exception — a diatonic circle of fifths traversed in its entirety (G-C-F♯°-Bm-Em-Am-D7-G), with the melody descending above it in an exact sequence."
+          },
+          {
+            "label": "Measures 22-28",
+            "titre": "Cadence and codetta",
+            "chiffrage": "ii6 (×2) – I6/4 (cadential) – V7 (trill) – I – I (low 8ve) – I",
+            "fonctions": "SD – T – D – T",
+            "texte": "The cadential formula is stretched out with relish: two full bars of ii6 (A minor over C, in tremolo), then the cadential six-four, the V7 adorned with the regulation trill on A, the resolution, and a codetta in octave echoes. The exposition closes on G — the dominant of the main key: the contract of sonata form is signed, and it falls to the development to untie it."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The textbook written by the piece that illustrates it",
+            "texte": "Every section of the exposition occupies its exact place in the plan of sonata form — first theme, modulating bridge, second theme in the dominant, pre-cadential sequence, cadence — without the slightest deviation. This is the very piece from which generations of treatises drew their model plan."
+          },
+          {
+            "titre": "A single modulation, three distinct gestures",
+            "texte": "Getting from C to G takes only a handful of bars, but each of its three stages (local tonicization, chromatic sequence, arrival at the medial caesura) has its own logic — classical modulation is not a leap, it is a demonstration in several steps."
+          },
+          {
+            "titre": "The circle of fifths, a universal circuit",
+            "texte": "The sequence of mm. 18–21 runs through the whole diatonic circle of fifths — the same circuit that, dressed differently (minor mode, jazz-style sevenths), structures progressions written far later. Here it is a sequence inside the form; elsewhere, that same circuit can become the entire form."
+          }
+        ]
+      }
     }
   },
   "cours29": {
@@ -4227,6 +5444,116 @@
       "btnEcouter": "▶ Listen",
       "infoBoxObserver": "<strong>To observe:</strong> compare the bass on the 2nd chord of each harmonization. Bach descends toward the dominant G. Debussy rises in parallel motion. The difference lies there — in the logic of bass movement.",
       "h2Quiz": "Quiz — Comparative repertoire analysis"
+    },
+    "conservatoire": {
+      "intuition": "The history of harmony is the history of dissonance turning into consonance.",
+      "reference": {
+        "badge": "Schönberg · Theory of Harmony",
+        "citation": "Every dissonance is a consonance that has not yet been resolved. The ear grows accustomed to anything — what shocks today will be commonplace tomorrow.",
+        "auteur": "Arnold Schönberg, 1911"
+      },
+      "voix": [
+        "Identify the historical period of a work from three clues: the density of the chromaticism, the presence or absence of a V–I resolution, and the treatment of dissonance.",
+        "Analyse Debussy with his own tools (colour, parallelism, modes) and not with T/SD/D functions — his chords are patches of colour, not functions.",
+        "Historical context is no excuse for analytical mistakes: Debussy knew perfectly well the rules he was breaking."
+      ],
+      "repertoire": {
+        "titre": "La Cathédrale engloutie (Préludes, Book I, No. 10)",
+        "compositeur": "Claude Debussy"
+      },
+      "pieges": [
+        {
+          "erreur": "Believing that Debussy has no harmonic rules",
+          "correction": "Debussy had a complete mastery of counterpoint and of classical harmony. His freedom is a conscious, calculated transgression, not ignorance."
+        },
+        {
+          "erreur": "Confusing style with period",
+          "correction": "Bach and Handel are contemporaries, yet very different. Analysing a composer by his period alone is not enough — individual signatures come first."
+        },
+        {
+          "erreur": "Analysing Debussy with T/SD/D functions",
+          "correction": "Debussy refuses those functions. His chords progress by colour, register and melodic contour — not by tension and resolution. Looking for “dominants” in Debussy is looking for the wrong thing."
+        },
+        {
+          "erreur": "Ignoring historical context in an analysis",
+          "correction": "A parallel fifth in Bach is a mistake. In Debussy it is a deliberate effect (planing). Context decides whether it is an error or a technique."
+        }
+      ],
+      "resume": [
+        "5 periods: Baroque (counterpoint + clear functions) → Classical (symmetrical forms + affirmed cadences) → Romantic (chromaticism + modulations) → Post-Romantic (extended tonality) → Impressionist (colour without functions)",
+        "The same melody, 5 harmonisations: the melody C–E–G–C reveals stylistic differences better than any treatise",
+        "Criterion for identification: what is the relationship to the dominant? (Bach: obligatory → Debussy: non-existent)"
+      ],
+      "analyseNarrative": {
+        "tonalite": "No fixed functional key — pentatonicism and modes (Mixolydian), with a single real tonicisation (G♯, m. 47-67).",
+        "metrique": "6/4. Tempo 60 to the dotted quarter note, highly variable (up to 120 at the climax, falling back to 40 at the close).",
+        "forme": "A narrative arch following the legend of Ys: the cathedral rising from the water, full peal of bells, the engulfing, an underwater echo, the return to silence.",
+        "sections": [
+          {
+            "label": "Measures 1-15",
+            "titre": "The bells",
+            "chiffrage": "Open fifths + pentatonicism — planing G→F→E — bells on C",
+            "fonctions": "? (no function, pure sonority)",
+            "texte": "The opening chord says it all: open fifths stacked across six octaves (G1 to D7), and inside them a complete pentatonic aggregate {G-A-B-D-E} — no third, no leading note, not one pitch that would decide between the modes. The bass then descends G-F-E beneath the same bells: planing pure and simple, the chords sliding in parallel without any one of them “functioning”. A modal theme floats above in bare octaves, monody without harmony. The bells return on C (m. 14): the same sonority, transposed, still without a third."
+          },
+          {
+            "label": "Measures 16-27",
+            "titre": "The rising",
+            "chiffrage": "B major (pedal) — E♭ (tritone) — fourths {G-C-D}",
+            "fonctions": "?",
+            "texte": "Parallel chords settle over a B pedal — the cathedral “emerging from the mist”. Then, with no transition, the same material is transposed to E♭: a tritone leap between the two planes, the most anti-tonal relationship there is, used here as a simple change of lighting. Fourth-chords {G-C-D} and a long descent in the bass prepare the summit to come."
+          },
+          {
+            "label": "Measures 28-41",
+            "titre": "The chorale: the climax without a dominant",
+            "chiffrage": "C Mixolydian — G, F, D minor, A minor, E minor, B♭ (♭VII), G minor (v) — C",
+            "fonctions": "? (parallel organum)",
+            "texte": "The cathedral sounds at full voice: an organ chorale in C Mixolydian over an immovable C pedal, parallel diatonic triads treated as a giant organum, with the mode's signature colour — the B♭, the lowered seventh (♭VII) — and the minor v as mixture. Fourteen measures of triumph without the slightest functional dominant: the greatest climax in the piano literature, built exclusively out of plagal and parallel motion."
+          },
+          {
+            "label": "Measures 42-46",
+            "titre": "The engulfing",
+            "chiffrage": "Fourths {G-C-D} — bass B♭…A♭ (chromatic)",
+            "fonctions": "?",
+            "texte": "Over the same fourth-chords the bass sinks by chromatic steps (B♭, then A♭), while high bells ring C-D at the top of the keyboard — the cathedral goes under from the bass upwards while the treble keeps on chiming."
+          },
+          {
+            "label": "Measures 47-67",
+            "titre": "The middle section: a relic of grammar at the bottom of the sea",
+            "chiffrage": "G♯ pedal — D♯ø7 (colour) — F♯7 (colour) — D♯7 → G♯(7)",
+            "fonctions": "? — ? — D — T (the only true cadence in the piece)",
+            "texte": "An almost unbroken G♯ pedal carries a lamenting reprise of the theme. Colour first: a half-diminished chord (D♯ø7) rocks over the pedal — neither leading note nor augmented sixth, here pure timbre. Then F♯7, colour once again. And suddenly, buried in the darkest section of the piece, a genuine V7-I progression (D♯7 to G♯, with F## and B♯ duly spelled out): the only functional cadence in the whole of La Cathédrale engloutie."
+          },
+          {
+            "label": "Measures 68-83",
+            "titre": "Transition and echo",
+            "chiffrage": "Dyads a tritone apart (F♯/G♯ – C/D) — echo of the chorale (C-G-D pedal, ♭VII, v)",
+            "fonctions": "?",
+            "texte": "A transition reduced to two dyads a tritone apart, like a pulse of mist. Then the whole chorale returns, but pianissimo, over a composite pedal (C-G-D) — the same harmonic grid as at the climax, and yet another world entirely: here the function of a chord is its dynamic and its register, not its figuring."
+          },
+          {
+            "label": "Measures 84-89",
+            "titre": "The conclusion: the third granted at last",
+            "chiffrage": "Pentatonic bells {G-A-B-D-E} — pure C major (I)",
+            "fonctions": "? — T",
+            "texte": "The pentatonic bells close the arch, identical to the opening. But the very last chord is a complete C major, spread across four octaves, pianissimo: the third (E), carefully avoided in every bell of the piece, is granted only in the very last word."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Parallelism as a system, not as a provocation",
+            "texte": "Every usual parameter of functional harmony finds a substitute here: mode replaces key, the pedal replaces function, register and dynamic replace the cadence. This is not an absence of rules — it is an entirely different system, applied with the same rigour as a fugue."
+          },
+          {
+            "titre": "The half-diminished chord, reduced to pure timbre",
+            "texte": "The half-diminished chord in m. 55 prepares nothing, suspends nothing, substitutes for nothing: it is a colour over a pedal, with not the slightest obligation to resolve. The very aggregate that elsewhere carries the whole weight of a cadence or of an enharmonic ambiguity becomes here a simple sound object."
+          },
+          {
+            "titre": "One cadence, one only, buried",
+            "texte": "In eighty-nine measures, a single genuine V7-I progression — and it occurs in the darkest and most intimate section of the piece, almost hidden. The cadence, the engine of tonal music for three centuries, is no more here than a fleeting quotation in the middle of a wholly different language."
+          }
+        ]
+      }
     }
   },
   "cours26": {
@@ -4324,6 +5651,105 @@
       "btnVoirCorrection": "Show answer",
       "btnMasquerCorrection": "Hide answer",
       "btnNouvellesQuestions": "New questions"
+    },
+    "conservatoire": {
+      "intuition": "A given bass is the skeleton — the harmonization is the flesh and blood the musician gives it.",
+      "reference": {
+        "badge": "Dubois · Traité d'Harmonie",
+        "citation": "The art of harmonizing a bass is nothing other than the art of thinking musically: every bass note already carries, in germ, the voices that rise above it.",
+        "auteur": "Théodore Dubois, 1901"
+      },
+      "voix": [
+        "Work out the function of each bass note before choosing the chord: is it a root (root position), a third (first inversion) or a fifth (second inversion)?",
+        "The cadential six-four appears only on a strong beat, obligatorily followed by V and then I — never on a weak beat",
+        "Identify the non-chord tones in the soprano (passing tone, neighbour tone, suspension) before harmonizing, so as not to build false chords on notes that are not chord tones"
+      ],
+      "repertoire": {
+        "titre": "Wachet auf, ruft uns die Stimme (chorale prelude BWV 645)",
+        "compositeur": "Johann Sebastian Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Changing chord on every fast note of the soprano",
+          "correction": "Short notes are often passing or neighbour tones — harmonize according to the rhythmic structure, not according to every individual note"
+        },
+        {
+          "erreur": "Placing a six-four on a weak beat, or without its obligatory resolution through V",
+          "correction": "The cadential six-four occurs exclusively on a strong beat (2nd or 4th beat), always followed by a V resolving to I"
+        },
+        {
+          "erreur": "Ignoring the non-chord tones and building incorrect chords on neighbour or passing notes",
+          "correction": "First identify passing tones, neighbour tones, suspensions and anticipations — then harmonize the chord tones only"
+        }
+      ],
+      "resume": [
+        "Given bass: identify root/third/fifth, propose 2–3 possible chords, choose according to T→SD→D→T",
+        "Given soprano: long notes = chord tones to be harmonized, short notes = potentially non-chord tones",
+        "Cadential six-four: on a strong beat only, with an obligatory and immediate V–I resolution"
+      ],
+      "analyseNarrative": {
+        "tonalite": "E♭ major, with two passing excursions (C minor, G minor) in the Abgesang.",
+        "metrique": "4/4. Tempo quarter = 68 (Lento).",
+        "forme": "Ornamented chorale in bar form (AAB): ritornello (R1) — Stollen (two phrases repeated identically + a third) — return of the ritornello (R2) — Abgesang (four closing phrases + climax) — concluding ritornello. This piano transcription writes the Stollen out only once (54 bars), where the version for organ and voice writes it twice in succession.",
+        "sections": [
+          {
+            "label": "Upbeat – m. 13",
+            "titre": "The ritornello: pedal point, then tonicization of the dominant",
+            "chiffrage": "E♭ (ped.) – A♭/E♭ – F7 – B♭ – E♭: V7/V",
+            "fonctions": "T – SD/T – D (secondary dominant) – D – pivot",
+            "texte": "Twelve bars before the chorale even enters: a ritornello built over a tonic pedal (E♭ held in the bass) crossed by an alternation of I and IV, then a short sequence that tips towards the dominant — the A♮ of mm. 9–10 tonicizes B♭ by way of its own dominant seventh chord (F7). Measure 13 closes the section on a double meaning: B♭ is first heard as a local tonic (I of B♭) before being immediately reinterpreted as V of E♭ — the exact hinge by which the ritornello reaches the chorale."
+          },
+          {
+            "label": "Measures 14–20",
+            "titre": "The chorale enters, on the submediant",
+            "chiffrage": "Cm7 (vi7) – E♭ – A♭ – B♭7",
+            "fonctions": "T – T – SD – D",
+            "texte": "The chorale enters at m. 14, on the third beat — but not on the tonic. The first chord to carry the beginning of the melody (the rising E♭-G, the very incipit of “Wachet auf”) is a C minor chord with a seventh: vi7, a false harmonic entry that delays the arrival of the real tonic by a whole phrase. The B♭ that follows, repeated four times in a row (m. 15) before settling onto C-B♭ in long values (m. 16), traces the chorale's characteristic phrase-ending. A second entry (m. 17, again on vi) prepares a cadence on the dominant, reached at m. 20 after a tonicization by F7."
+          },
+          {
+            "label": "Measures 21–24",
+            "titre": "Third phrase: back to the tonic",
+            "chiffrage": "B♭7 – E♭ – A♭ – B♭",
+            "fonctions": "D – T – SD – D",
+            "texte": "The third phrase of the Stollen closes the first half of the chorale on E♭, before one last harmonic gesture (IV–V) prepares the return of the ritornello."
+          },
+          {
+            "label": "Measures 25–30",
+            "titre": "R2: the ritornello, note for note",
+            "chiffrage": "E♭ – F7 – B♭ – E♭ – B♭ (pivot)",
+            "fonctions": "T – D (secondary dominant) – D – T – D",
+            "texte": "The second half of the opening ritornello returns unchanged — the same progression, the same tonicization of B♭ by F7, the same closing pivot chord — only the pianistic registration differs from one occurrence to the other. The file itself annotates this reprise as covering exactly mm. 8 to 13 of the opening, pivot included: a repetition written out in full, not a mere repeat sign."
+          },
+          {
+            "label": "Measures 31–43",
+            "titre": "The Abgesang: two modal excursions",
+            "chiffrage": "B♭ – E♭ – G/B: V6/Cm – Cm – A♭ – G7 – Cm (cad.) – D/F♯: V6/Gm – Gm (cad.)",
+            "fonctions": "D – T – D then T (C minor) – T – D – T (G minor)",
+            "texte": "The closing phrases of the chorale venture, for the first time, outside E♭ major. A B♮ (m. 34) tips the harmony towards C minor — the relative of E♭ — with a full cadence at m. 37. Then an F♯ (m. 40) opens a second excursion, this time towards G minor, cadencing at m. 43 before the text itself announces the return: “E♭: return”. Two successive tonicizations, each negotiated by its own dominant, before the chorale at last recovers its original tonic."
+          },
+          {
+            "label": "Measures 44–54",
+            "titre": "Climax and close",
+            "chiffrage": "Gm → E♭ – A♭ – B♭ – E♭ (climax) – A♭: V7/IV – B♭7 – E♭",
+            "fonctions": "T – SD – D – T – SD – D – T",
+            "texte": "The return to E♭ (m. 44) prepares the last phrases of the chorale, carried up to a climax in octaves (mm. 47–49) that culminates on a high note no organ and no voice could ever reach — the signature of the pianist-transcriber, not of the original chorale. The cantus firmus ends at m. 50 on a repeated E♭, before a brief concluding ritornello closes the piece: a coloristic D♭ (m. 51, a V7/IV brushed past without ever lingering on it) lends the final cadence a plagal flavour before it closes, perfectly conventionally, on the tonic chord."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "An entry that does not enter on the tonic",
+            "texte": "The chorale begins on vi7, not on I: the real tonic arrives only at the end of the first phrase. A lesson that transfers directly to the given bass / given soprano exercise — the first note of a melody does not necessarily demand a tonic chord beneath it."
+          },
+          {
+            "titre": "A ritornello written out again in full, note for note",
+            "texte": "The return of the ritornello (mm. 25–30) leaves nothing to chance: every chord, every tonicization of the first occurrence (mm. 8–13) comes back identical. A well-built progression can repeat itself without needing to vary."
+          },
+          {
+            "titre": "Two tonicizations, a single way back",
+            "texte": "C minor, then G minor: the only two incursions outside E♭ major in the whole chorale, each introduced by its own dominant and closed by its own cadence, before a return spelled out in so many words by the figuring itself."
+          }
+        ]
+      }
     }
   },
   "nav": {
@@ -4816,6 +6242,91 @@
       "infoBoxMorricone": "<strong>Morricone and Leone:</strong> Morricone composed BEFORE filming. Leone showed the music to actors on set — they played while listening. The music dictated the rhythm and emotion of the performance, the reverse of the classical method. This unique collaboration explains the perfect fusion of image and sound in their films.",
       "warnBoxLeitmotif": "<strong>Advanced technique:</strong> A leitmotif in major that becomes minor is more powerful than a new sad theme. Why? The viewer already has an emotional connection to the original theme — its transformation amplifies the impact. Creating a leitmotif is investing in an emotional resource the composer can exploit throughout the film.",
       "h2Quiz": "Quiz — Cinematic Harmony"
+    },
+    "conservatoire": {
+      "intuition": "Film music does not narrate what we see — it says what we feel in front of what we see. That is the difference between commentary and revelation.",
+      "reference": {
+        "badge": "Morricone · Interview with Bonini, 2016",
+        "citation": "Music is the invisible language of film. Sergio gave me the images and I composed without looking at them — I composed the emotions he wanted the audience to feel.",
+        "auteur": "Ennio Morricone, composer, 2016"
+      },
+      "voix": [
+        "The unresolved tritone is the most effective tension device in cinema. A single augmented fourth left hanging, never resolved, puts the viewer on the alert. The human brain waits for the resolution — and the composer can take possession of that wait.",
+        "A leitmotif transformed harmonically is more powerful than a new theme. When Williams's Imperial March tips into minor-major, or is played by a single harp, it is more heartbreaking than any melody invented from scratch.",
+        "John Williams, Hans Zimmer and Ennio Morricone share a secret: their harmonies are often plain (I–V–VI–IV), but their orchestration is exceptional. The emotional power comes from timbre, not from harmonic complexity."
+      ],
+      "repertoire": {
+        "titre": "Il Buono, il Brutto, il Cattivo (main theme, complete)",
+        "compositeur": "Ennio Morricone"
+      },
+      "pieges": [
+        {
+          "erreur": "Thinking that film music has to be harmonically complex in order to work",
+          "correction": "The I–V–VI–IV progression (used in Zimmer's “Time” and in Williams's “Can't Help Falling in Love”) creates more emotion than complex harmony does, because it frees the ear to concentrate on timbre, dynamics and melody."
+        },
+        {
+          "erreur": "Using the same harmonic register for every emotion",
+          "correction": "Each emotion has its own harmonic map: tritone (tension), descending minor (sadness), major with an open fifth (heroism), Phrygian (mystery). Choosing the wrong harmonic colour destroys the emotional effect."
+        },
+        {
+          "erreur": "Confusing underscoring with source music",
+          "correction": "Underscoring is music the characters do not hear (background scoring). Source music is music inside the diegesis (a radio, a band on screen). The harmony may be identical; the narrative function is the opposite."
+        }
+      ],
+      "resume": [
+        "Map of the emotions: unresolved tritone (tension) · descending minor (sadness) · major with open fifth (heroism) · Phrygian/diminished (mystery) · add9 (love)",
+        "Leitmotif: a theme attached to a character or an idea, transformed harmonically as the story unfolds",
+        "The emotional power of cinema comes from orchestration, not from harmonic complexity — I–V–VI–IV can be epic if the scoring is right"
+      ],
+      "analyseNarrative": {
+        "tonalite": "D Aeolian tinged with Dorian (the B♮ of the IV chord) — no classical functional key whatsoever.",
+        "metrique": "2/2. Fast tempo (in 2), ♩ = 200.",
+        "forme": "A form built on repeat signs: verse (1-49) — To Coda (50) — the event (51-58) — verse repeated (59-89) — D.S. al Coda (90) — the event a second time (91-94) — coda in decrescendo (95-111).",
+        "sections": [
+          {
+            "label": "Measures 1-16",
+            "titre": "The call and the complete modal set",
+            "chiffrage": "drone — i (open fifth) — IV — ♭VII — v",
+            "fonctions": "? (no function can be built here — modal, not tonal)",
+            "texte": "A D-F-G-A drone establishes the colour before the call proper — the fourth A-D, the famous “coyote howl” — comes in, harmonised by an open fifth (D-A, no third): the same inaugural gesture as La Cathédrale engloutie, the bare interval before any harmony at all. The verse then unfolds the complete vocabulary of the mode: i (D minor), IV (G major, with its Dorian B natural — the folk colour par excellence), ♭VII (C major, the chord classical tonality forbade), v (A minor, a dominant with no leading tone)."
+          },
+          {
+            "label": "Measures 27-49",
+            "titre": "The bridge",
+            "chiffrage": "v — ♭III (F) — ♭VII (C)",
+            "fonctions": "?",
+            "texte": "The bridge moves over to the relative side — v, ♭III, ♭VII — with strings and voices hovering above, still without the slightest leading tone."
+          },
+          {
+            "label": "Measures 51-58 (repeated at 91-94)",
+            "titre": "The event: the one and only dominant",
+            "chiffrage": "♭V (A♭) → V7 (A7, carrying the only C♯ in the piece)",
+            "fonctions": "? → D",
+            "texte": "Then comes the event: a chord a tritone away from the tonic (A♭ major, ♭V) rises out of nowhere and slides onto A7 — the only genuine functional dominant in the whole piece, containing the only C♯ in the entire transcription, kept in reserve for the moment of dramatic reversal before the immediate return to a world without leading tones. The repeat structure (To Coda at m. 50, D.S. al Coda at m. 90) makes this same gesture sound twice."
+          },
+          {
+            "label": "Measures 95-111",
+            "titre": "The coda",
+            "chiffrage": "the call receding (dim.) — open fifth (106-109) — complete resolution (110)",
+            "fonctions": "? — T",
+            "texte": "The coda brings the call back, receding in a decrescendo through passages in bare fifths — until the very last held chord finally reintroduces the minor third: the piece closes on a complete D minor chord, not on the desert of an open fifth."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Bach's economy, inverted",
+            "texte": "In the Bach chorale, the modal was the coloured exception within a functional world (a single passing minor v). Here the dominant is the special effect of a modal world — one single bar of true function out of a hundred and eleven. A century of harmonic history summed up in a complete reversal of the proportions."
+          },
+          {
+            "titre": "Timbre as a formal parameter",
+            "texte": "Across seven parts the call travels from ocarina to voice, to electric guitar, to trumpet — and it is this rotation of timbre, not the harmony, that articulates the form. The lesson Debussy had theorised (register and dynamics taking over from the cadence), carried into a worldwide vernacular by way of the western."
+          },
+          {
+            "titre": "A language that became a mother tongue",
+            "texte": "The ♭VII Aeolian of this theme has been, ever since 1966, the basic harmonic vocabulary of rock, of pop and of screen music — the same modal economy, broadcast to hundreds of millions of listeners."
+          }
+        ]
+      }
     }
   },
   "cours35": {
@@ -4918,6 +6429,98 @@
       "row4Eviter": "natural 13 (use b13)",
       "warnBoxVoicings": "<strong>Common mistake:</strong> Confusing chord scale and mode. A chord scale is always tied to a specific chord in a precise harmonic context. CMaj7 in C major uses ionian by default — but if you want the lydian color (#11), you choose lydian. The context (tonal or modal) determines the chord scale, not the chart alone.",
       "h2Quiz": "Quiz — Reharmonisation and voicings"
+    },
+    "conservatoire": {
+      "intuition": "Miles Davis used to say: “Don't play what's there — play what isn't there.” Reharmonisation is exactly that: hearing the possibilities the melody does not impose.",
+      "reference": {
+        "badge": "Levine · The Jazz Theory Book, 1995",
+        "citation": "Reharmonisation is not cheating — it is a conversation between the original composer and the jazz musician. You respect the melody, and you invite the harmony to dance differently.",
+        "auteur": "Mark Levine, The Jazz Theory Book, 1995"
+      },
+      "voix": [
+        "Guide tones (the third and the seventh of the chord) are the notes that define the harmonic colour. When you reharmonise, make sure the melody does not rub against the guide tones of the new chord — that is the principal constraint.",
+        "The shell voicing (root + 3rd + 7th, no fifth) sounds more modern and leaves more room for the melody and the bass line. Removing the fifth does not impoverish the chord — it clarifies it.",
+        "Miles Davis's Kind of Blue was recorded with no rehearsal — the musicians discovered the charts in the studio. This is not total improvisation: it is a precise modal structure with total freedom inside it. The difference is essential."
+      ],
+      "repertoire": {
+        "titre": "Blue in Green (Kind of Blue, complete)",
+        "compositeur": "Miles Davis / Bill Evans (disputed authorship)"
+      },
+      "pieges": [
+        {
+          "erreur": "Reharmonising without respecting the notes of the melody",
+          "correction": "The melody is untouchable in a reharmonisation. Every chord chosen must allow the melodic note to be the root, the third, the fifth, the seventh or an available extension — never an avoid note."
+        },
+        {
+          "erreur": "Using tritone substitution indiscriminately on every chord",
+          "correction": "Tritone substitution only works on dominant chords (V7). Applying it to IMaj7 or IIm7 produces a dissonance that is outside the style, because the guide tones are no longer shared."
+        },
+        {
+          "erreur": "Confusing chord scale and mode",
+          "correction": "A chord scale is a scale played over one specific chord in one specific tonal context. CMaj7 in C major → Ionian scale (or Lydian). Modal CMaj7 → any appropriate major scale may be used. The harmonic context determines the chord scale."
+        }
+      ],
+      "resume": [
+        "Reharmonisation: diatonic substitution (I↔VI↔III) · tritone substitution (V7→bII7) · modal interchange · chromatic mediant",
+        "Guide tones: third + seventh of the chord — never let the melody rub against them when reharmonising",
+        "Professional voicings: shell (1-3-7) · drop 2 · Bill Evans (7-9 without the root) · So What quartal"
+      ],
+      "analyseNarrative": {
+        "tonalite": "An off-centre D minor / an implicit B♭ major — the ambiguity is not a failure of hearing, it is the subject of the piece. The material is genuinely functional (real dominants, everywhere) but set in orbit without ever settling durably on a centre.",
+        "metrique": "3/4 rubato, key signature of one flat. Nominal tempo 172 (indicative only — the piece is played rubato). “Sempre dopo” pedalling from the second bar onwards: legato re-pedalling after every new harmony, the Evans/Debussy signature.",
+        "forme": "A ten-bar functional cycle (neither the twelve of the blues nor the multiples of eight of the song), spread over some twenty bars of 3/4 per chorus: B♭maj9 – A7 – Dm9 – E7 – Am9 – Dm9 – B♭maj7 – A7 – Dm – (Cm9–F13). The closing turnaround is a ii–V of B♭, not of D: the cycle never leads back to its tonic, it leads back to its own harmonic point of departure — which is not the tonic. During the solo sections the cycle contracts (harmonies with halved durations, an annotation present in the file at m. 77): the same tonal drift, replayed faster.",
+        "sections": [
+          {
+            "label": "Measures 0-9 (the intro and the first turn of the cycle)",
+            "titre": "A centre that announces itself without imposing itself",
+            "chiffrage": "Dm13 (intro) → B♭maj9 → A7 → Dm9",
+            "fonctions": "T (i, rubato) → ? (♭VI/I ambiguous) → D (real V) → T (i, real resolution)",
+            "texte": "The rubato intro sets D minor (Dm13) as the centre — but the cycle that follows opens on B♭ major 9, a chord whose identity is double from the very first bar: the lowered sixth degree of D minor, or the implicit tonic of a B♭ major that keeps surfacing without ever declaring itself. The A7 that follows is, by contrast, a real dominant of D minor, and the Dm9 that receives it is a real resolution — the piece is not atonal, it is functional in fragments."
+          },
+          {
+            "label": "Measures 9-32 (the ten-bar circle)",
+            "titre": "A ii–V that never leads back to the tonic",
+            "chiffrage": "E7 → Am9 → B♭maj7 → A7 → Dm13 → (Cm9–F13)",
+            "fonctions": "D (V7 deflected) → T (v, minor resolution) → ? (♭VI) → D (V) → T (i) → ? (off-centre turnaround)",
+            "texte": "E7 is a real dominant — but it resolves onto A minor, never onto A major: a minor dominant, a fifth degree that refuses the very hierarchy it announces. The cycle closes its first turn on Dm13, then tips into the Cm9–F13 turnaround: a perfectly regular ii–V, but of B♭, not of D. This is the gesture that makes the form circular in the literal sense — the cycle never returns to its supposed centre, it returns to its own point of departure, which is not that centre. D minor does exist, asserted three times within the cycle, but it never occupies the beginning of a section: the key is there, but off-centre."
+          },
+          {
+            "label": "Measures 38-39 (the deflected dominants, at their densest)",
+            "titre": "Alteration as density, not as a tension to be resolved",
+            "chiffrage": "B♭7(#9#11)/bass B♭1 → A7 (♭9 + #9 + natural 13)",
+            "fonctions": "D (subV of A7) → D (V, saturated)",
+            "texte": "At m. 38 the B♭1 in the bass, beneath a chromatic movement, reveals a tritone-substitute chord (subV) sliding onto A7 — the transcriber's “B7” is a one-semitone slip, the most dangerous kind for the ear as well as on the page. The following bar saturates that A7: a flat ninth (B♭) and a sharp ninth (C natural) coexist with the third (C♯) and a natural thirteenth (F♯, the bright colour — no flat thirteenth here, not a single F natural in the whole bar). The pedal held over from the previous bar makes this ascending linear gesture sound all at once: Evans treats alteration as a colour that accumulates, not as a tension that calls for its resolution."
+          },
+          {
+            "label": "Measures 77 and 219 (the same faulty enharmonic spelling, twice)",
+            "titre": "A spelling no instrumentalist can read",
+            "chiffrage": "B♭ major (the file's “A# major”, at both occurrences)",
+            "fonctions": "? (colour, not function)",
+            "texte": "Twice in the transcription the same B♭ major chord (F–B♭–D) is spelled “A# major” — an exact enharmonic equivalent, but unreadable for a player, who would see an F♯♯ or a C♯♯ where the hand simply plays an F natural. The correction changes no actual pitch; it merely makes the score playable."
+          },
+          {
+            "label": "Measures 308-310 (the ending: colour as the last word)",
+            "titre": "Neither major nor minor — the last word is a timbre",
+            "chiffrage": "D–E–A (sus2) → D + A + C♯ (written D♭): ∆7 without a third",
+            "fonctions": "? (terminal colour, no function applies)",
+            "texte": "The piece dies away on a suspended colour (D-E-A, a ninth without a third) before closing on a major-seventh chord wholly deprived of its third: D, A (the fifth), C♯ (the major seventh, notated D♭ by an accident of writing — the leading tone of D, at the very instant it ceases to function as one). Neither major nor minor: the ∆7 as pure terminal colour, exactly the sonority Satie set down in 1888 as an inaugural provocation (the Gmaj7/Dmaj7 rocking of the Gymnopédie), and which seventy years later has become the natural last word of a ballad."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "1959, the year of two answers",
+            "texte": "In the same year, on the same record, two opposite solutions to the same problem (does tonal function still have a future?): Giant Steps pushes the dominant to its limit through hyperactive symmetry (three keys a major third apart, the cycle closed); Blue in Green suspends the same materials (ii-V, subV, alterations) in an off-centre circle that never closes on its tonic. The same vocabulary, two destinies."
+          },
+          {
+            "titre": "The Evans/Debussy inheritance",
+            "texte": "The “sempre dopo” pedalling, the maj7 without a third as terminal colour, the modal ambiguity of the tonal centre: Bill Evans inherits Debussy's vocabulary directly, and reinjects it into a thirty-two-bar form reworked as a ten-bar cycle. The bridge between this project and its own past (Voiles, La Cathédrale engloutie) closes here."
+          },
+          {
+            "titre": "The sub-V, always the same gesture",
+            "texte": "The tritone substitute heard at m. 38 (B♭7 for A7) is the same mechanism as elsewhere in this corpus — a dominant replaced by the one that shares its leading tones a tritone away. Here it is a passing texture inside an improvisation; elsewhere, a taught rule of reharmonisation. The same tool, two uses."
+          }
+        ]
+      }
     }
   },
   "cours36": {

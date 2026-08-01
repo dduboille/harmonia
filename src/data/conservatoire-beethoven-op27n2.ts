@@ -3069,7 +3069,7 @@ export const BEETHOVEN_OP27N2_ANALYSE_NARRATIVE: AnalyseNarrative = {
       texte:
         "L'arpège brisé de la main droite pose d'abord la triade de tonique à l'état " +
         "fondamental (<strong>I</strong>). La mesure 2 y ajoute une septième (Si), en " +
-        "3ᵉ renversement (<strong>I4/2</strong>) : la basse descend d'un demi-ton (Do#→Si) " +
+        "3ᵉ renversement (<strong>I4/2</strong>) : la basse descend d'un ton (Do#→Si) " +
         "sans que la fonction change — c'est une simple coloration de passage, toujours la " +
         "tonique.",
     },
@@ -3079,8 +3079,8 @@ export const BEETHOVEN_OP27N2_ANALYSE_NARRATIVE: AnalyseNarrative = {
       chiffrage: "La | Ré/Fa#",
       fonctions: "VI | N6",
       texte:
-        "Premier accord de couleur : <strong>VI</strong> (La majeur), le relatif majeur du " +
-        "ton, qui prolonge la fonction tonique. Le second est la carte de visite " +
+        "Premier accord de couleur : <strong>VI</strong> (La majeur), la sus-dominante, " +
+        "qui prolonge la fonction tonique. Le second est la carte de visite " +
         "harmonique de cette pièce : la <strong>sixte napolitaine</strong> — un accord " +
         "majeur construit sur le 2ᵉ degré abaissé (Ré, à la place du Ré# diatonique), " +
         "toujours utilisé en 1ᵉʳ renversement (basse Fa#, sa tierce). C'est l'accord " +

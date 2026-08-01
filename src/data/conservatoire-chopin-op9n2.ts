@@ -4797,7 +4797,7 @@ export const CHOPIN_OP9_N2_ANALYSE: MesureAnalyse[] = [
  * fourni par Dany, généré ailleurs). Le conflit IV6/IIø7 déjà réglé plus haut
  * (cf. commentaire d'en-tête) sert de socle : la basse conserve mib au pédalier
  * (marques `keyboardPedalUp` explicites dans le MusicXML) pendant que la main
- * dessine un IIe degré demi-diminué (fa-lab-sib♮-mib) au-dessus.
+ * dessine un IIe degré demi-diminué (fa-lab-dob-mib) au-dessus.
  *
  * Une précision vérifiée mais nuancée par rapport au premier jet : la basse de
  * la mesure 4 (V7-VII/VI-VI-V6/5/V) ne descend pas ENTIÈREMENT par degrés
@@ -4823,7 +4823,7 @@ export const CHOPIN_OP9_N2_ANALYSE_NARRATIVE: AnalyseNarrative = {
       chiffrage: "Mib  →  Fm7♭5/Mib  →  Mib  →  Mib/Ré",
       fonctions: "I  →  IIø7  →  I  →  I7",
       texte:
-        "La main gauche arpège l'accord de tonique (mib-sol-sib) en croches. Au 2e temps, la basse TIENT le mib au pédalier pendant que la main dessine un <strong>IIe degré demi-diminué</strong> (fa-lab-sib♮-mib) — un accord emprunté à mib mineur, qui colore la tonique sans jamais la quitter réellement : c'est le pédalier, pas l'oreille harmonique, qui continue d'ancrer mib. Le 4e temps enrichit la tonique de sa 7e majeure (ré) avant de relancer la phrase.",
+        "La main gauche arpège l'accord de tonique (mib-sol-sib) en croches. Au 2e temps, la basse TIENT le mib au pédalier pendant que la main dessine un <strong>IIe degré demi-diminué</strong> (fa-lab-dob-mib) — un accord emprunté à mib mineur, qui colore la tonique sans jamais la quitter réellement : c'est le pédalier, pas l'oreille harmonique, qui continue d'ancrer mib. Le 4e temps enrichit la tonique de sa 7e majeure (ré) avant de relancer la phrase.",
     },
     {
       label: "Mesure 3",
