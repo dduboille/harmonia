@@ -291,7 +291,56 @@
         "4 cadences: perfect, imperfect, half cadence (I–V), deceptive (V–VI)",
         "Perfect cadence = tonic chord in root position",
         "Cadence structures form: period, section, movement"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "E minor (i) — confirmed by the omnipresent I pole (Em) and by the dominant V (B7) with its raised leading tone (D♯, characteristic of the harmonic minor).",
+        "metrique": "4/4",
+        "forme": "Two four-measure phrases: the first (mm. 1–4) sets out from I, passes through a harmonic sequence and comes to rest on a half cadence on V7; the second (mm. 5–8) resolves with a perfect cadence as early as m. 6, then restates the opening motif an octave higher by way of conclusion.",
+        "sections": [
+          {
+            "label": "Measures 1–2",
+            "titre": "Opening motif — the Dorian sixth",
+            "chiffrage": "Em – Bm – Am6 – Em  |  Am6 – B7 – Em",
+            "fonctions": "i – v – iv6 – i  |  iv6 – V7 – i",
+            "texte": "The opening motif installs the tonic through a stepwise descent in the upper voices (B–B–A–G). The <strong>Am6</strong> chord (A–C–E–F♯) that prepares each return to i is not a genuine sixth degree: the F♯ is an <em>added sixth</em> (a Dorian colour) above the iv (Am), not a seventh. Measure 2 closes the phrase with a classic iv6 → V7 → i motion, the D♯ leading tone of the B7 rising to E."
+          },
+          {
+            "label": "Measures 3–4",
+            "titre": "Harmonic sequence and half cadence",
+            "chiffrage": "A – D – G  |  Em – B7",
+            "fonctions": "V/VII – VII – III  |  i – V7",
+            "texte": "A descending sequence by fifths (A→D→G): <strong>A</strong> (with its C♯, a borrowed leading tone) acts as the secondary dominant of <strong>D</strong> (the seventh degree), which in turn resolves onto <strong>G</strong>, the relative major (the third degree). Measure 4 returns to i before coming to rest on V7 — a <em>half cadence</em> that suspends the first phrase without concluding it."
+          },
+          {
+            "label": "Measures 5–6",
+            "titre": "Suspension and perfect cadence",
+            "chiffrage": "C – Em – B7sus(4-3)  |  Em",
+            "fonctions": "VI – i – V4/3  |  i",
+            "texte": "A detour through the sixth degree (C) before settling back onto i, then a <strong>B7sus</strong> (B–E–F♯–A): the E (the suspended fourth) colours the dominant first, before the D♯ (the third, the leading tone of the key) joins the upper voice on the last beat. Measure 6 concludes with a <strong>perfect cadence</strong>: E minor sounds here in whole notes, the root in the BASS AND in the SOPRANO (E3/E5) — exactly the condition this lesson lays down for recognising a perfect cadence."
+          },
+          {
+            "label": "Measures 7–8",
+            "titre": "Restatement at the octave",
+            "chiffrage": "Em – Bm – Am6 – Em  |  Am6 – B7 – Em",
+            "fonctions": "i – v – iv6 – i  |  iv6 – V7 – i",
+            "texte": "An EXACT restatement of the harmonies of mm. 1–2, note for note, but transposed an octave higher (B5–B5–A5–G5 instead of B4–B4–A4–G4) — an echo that closes the excerpt with the very sonority that had opened it, this time without pausing for breath: the motif carries its own iv6–V7–i motion all the way through."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The Dorian sixth (Am6)",
+            "texte": "The friction between the F♯ (the sixth above iv) and the C natural gives a colour at once melancholy and refined, borrowed from the Dorian mode — a stylistic trait that returns four times in the excerpt (mm. 1, 2, 7 and 8)."
+          },
+          {
+            "titre": "Voice leading",
+            "texte": "The upper voice (soprano) almost always proceeds by step; the bass, for its part, alternates held notes with leaps from chord to chord — a simple counterpoint, typical of Bach's chorale writing reduced for piano."
+          },
+          {
+            "titre": "Two cadences, two functions",
+            "texte": "The half cadence of m. 4 (on V7) creates the expectation; the perfect cadence of m. 6 (i, with the root doubled in bass and soprano) resolves it. The restatement in mm. 7–8 no longer seeks to conclude — it closes the loop."
+          }
+        ]
+      }
     }
   },
   "cours5": {
@@ -402,7 +451,77 @@
         "Borrowing = chord from a parallel or relative key",
         "Neapolitan sixth: bII6 → V → I",
         "Modal mixture: major chords on naturally minor degrees"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "A minor (i). The leading tone (G♯) appears only in the chords that call for it (V, V7) — elsewhere the excerpt explores genuine borrowed colors, and not merely the harmonic minor scale.",
+        "metrique": "4/4.",
+        "forme": "The opening theme (mm. 1–2) returns reharmonized and redirected toward F (mm. 5–6), the note that serves as the bass of both augmented sixths in the excerpt: the Italian one first (m. 4, recalled in m. 9), then the French one (m. 10, one note richer). The excerpt breaks off suspended on the dominant (m. 10) — the phrase continues beyond these ten measures.",
+        "sections": [
+          {
+            "label": "Measures 1-2",
+            "titre": "The theme, in bare octaves",
+            "chiffrage": "Am",
+            "fonctions": "i",
+            "texte": "Melody and bass play EXACTLY the same line, an octave apart (C-B-A, then a sustained E): no vertical harmony at all, only the minor mode laid bare, pianissimo. The third (C) tints the key with its melancholy color from the very first note."
+          },
+          {
+            "label": "Measure 3",
+            "titre": "A tonic-dominant oscillation over a stepwise descending bass",
+            "chiffrage": "Am/C  →  E7/B  →  Am  →  E/G♯",
+            "fonctions": "i6  →  V4/3  →  i  →  V6",
+            "texte": "Four chords in a single measure, but one guiding line: the bass descends C-B-A-G♯, step by step. The G♯ (the leading tone) closes the measure on the dominant in first inversion — the i-V alternation anchors the key firmly before the borrowing that is about to follow."
+          },
+          {
+            "label": "Measure 4",
+            "titre": "The Italian augmented sixth",
+            "chiffrage": "It+6 (F-A-D♯)  →  E",
+            "fonctions": "SD (borrowed)  →  V",
+            "texte": "The first chromatic borrowing of the excerpt: over an F in the bass (the lowered sixth degree), the chord F-A-D♯ forms an <strong>augmented sixth</strong> — the interval F-D♯ (ten semitones) that gives the chord its name. The two outer notes move apart in contrary motion, each by a semitone: the F falls to E (in the bass), the D♯ rises to E (above) — a fan-shaped resolution onto the unison E, which becomes the dominant. A half cadence of great tension."
+          },
+          {
+            "label": "Measures 5-6",
+            "titre": "The same motive, reharmonized and redirected",
+            "chiffrage": "Bdim",
+            "fonctions": "ii°",
+            "texte": "The opening motive returns with the same intervals, one degree higher (D-C-B, then a sustained F instead of E) — but harmonized this time on the diminished second degree (B-D-F), the only diminished triad in the excerpt. The sustained F that ends the phrase is no accident: it is the very note that serves as the bass of both augmented sixths in the excerpt."
+          },
+          {
+            "label": "Measure 7",
+            "titre": "The same gesture as measure 3, one color short",
+            "chiffrage": "E7/D  →  Am/C  →  E/B  →  Am",
+            "fonctions": "V4/2  →  i6  →  V6/4  →  i",
+            "texte": "The same principle as in measure 3 (a bass line linking i and V) returns, launched this time by the seventh of the dominant (E7 in third inversion, D in the bass). The third chord (E-B, V6/4) omits its own third (G♯) — a dominant reduced to its root and its fifth, stripped of its leading-tone color."
+          },
+          {
+            "label": "Measure 8",
+            "titre": "A modal borrowing, then a pivot toward the dominant",
+            "chiffrage": "Em/G  →  F♯m7",
+            "fonctions": "v (borrowed)  →  ii7/V",
+            "texte": "Modal coloring, pure and simple: the leading tone (G♯) withdraws, replaced by the G natural of the OLD minor mode — the dominant chord turns minor (v, not V), a borrowing from the oldest mode of the key. It moves on to an F♯m7 (without its fifth, C♯): the ii7 OF THE DOMINANT, which prepares the return of E as the pole of attraction."
+          },
+          {
+            "label": "Measures 9-10",
+            "titre": "It+6 recalled, then Fr+6 — the excerpt closes in suspense",
+            "chiffrage": "It+6  →  Fr+6 (F-A-B-D♯)  →  E",
+            "fonctions": "SD (borrowed)  →  SD (borrowed)  →  V",
+            "texte": "The Italian sixth (F-A-D♯) returns unchanged, then takes on one further note in measure 10: the <strong>French</strong> sixth adds the B (F-A-B-D♯) — the major second A-B that makes it more biting than the Italian. The two sixths share the same bass (F) and the same fan-shaped resolution onto E. The excerpt stops here, suspended on the dominant: the phrase continues beyond these ten measures."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "A single pivot note for two sixths",
+            "texte": "F (the lowered sixth degree) is the bass of both augmented sixths in the excerpt (measures 4 and 9-10) — Italian first (three notes), French next (four notes, with the added B). One single note, two borrowed colors."
+          },
+          {
+            "titre": "The fan-shaped resolution",
+            "texte": "Both augmented sixths resolve in the same way: their two outer notes (F and D♯) converge in contrary motion, each by a semitone, onto the unison E — the dominant. This is the signature of every augmented sixth, however rich its scoring may be (Italian, French, German)."
+          },
+          {
+            "titre": "A modal borrowing, not merely a chromatic one",
+            "texte": "Measure 8 borrows from the OLD (natural) minor mode: the dominant there loses its leading tone (G♯→G) and becomes a minor chord. A borrowing of mode, alongside the chromatic borrowings of the augmented sixths — two faces of the same principle: leaving the scale without leaving the key."
+          }
+        ]
+      }
     }
   },
   "cours6": {
@@ -601,7 +720,70 @@
         "Non-harmonic tones: passing, neighbor, suspension, anticipation, escape, cambiata",
         "Suspension: preparation → dissonance → resolution",
         "Pedal point: sustained note under changing harmonies"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "E♭ major (I) — here the key signature (three flats) really does encode the key (unlike pieces in minor, where a key signature never distinguishes a key from its relative).",
+        "metrique": "12/8 (four beats, each a dotted quarter note).",
+        "forme": "The upbeat (a single B♭, the melodic dominant) launches the theme. Measures 2 to 5 lay out the complete phrase — tonic colored by a chromatic borrowing over a pedal, secondary dominant toward the second degree, a progression toward the dominant of the dominant, perfect cadence. Measures 6 to 9 repeat it note for note (same figuring), Chopin varying only the ornamentation of the melody.",
+        "sections": [
+          {
+            "label": "Measure 1",
+            "titre": "The upbeat",
+            "chiffrage": "(B♭ alone)",
+            "fonctions": "—",
+            "texte": "A single note, B♭4 — the melodic dominant of the key — launches the theme before the harmony has even begun. Nothing in the left hand: silence prepares the entrance."
+          },
+          {
+            "label": "Measure 2",
+            "titre": "The tonic, colored by a chromatic borrowing over a pedal",
+            "chiffrage": "E♭  →  Fm7♭5/E♭  →  E♭  →  E♭/D",
+            "fonctions": "I  →  IIø7  →  I  →  I7",
+            "texte": "The left hand arpeggiates the tonic chord (E♭-G-B♭) in eighth notes. On the second beat, the bass HOLDS the E♭ with the sustain pedal while the hand traces a <strong>half-diminished second degree</strong> (F-A♭-B♮-E♭) — a chord borrowed from E♭ minor, which colors the tonic without ever really leaving it: it is the pedal, not harmonic hearing, that keeps E♭ anchored. The fourth beat enriches the tonic with its major seventh (D) before setting the phrase going again."
+          },
+          {
+            "label": "Measure 3",
+            "titre": "Secondary dominant toward the second degree",
+            "chiffrage": "C7  →  Fm",
+            "fonctions": "V7/II  →  II",
+            "texte": "C7 (C-E-G-B♭) is the dominant of the second degree (F minor) — a passing tonicization that colors the progression without ever leaving E♭ major for good. The melody unfolds a grouped neighbor figure (a bel canto <em>turn</em>) around this motion."
+          },
+          {
+            "label": "Measure 4",
+            "titre": "Progression toward the dominant of the dominant",
+            "chiffrage": "B♭7  →  Bdim7  →  Cm  →  F7/A",
+            "fonctions": "V7  →  VII/VI  →  VI  →  V6/5/V",
+            "texte": "The bass climbs by semitones (B♭→B♮→C) before a leap of a third to A: a diminished seventh chord on the leading tone of the sixth degree (B°7) pushes toward C minor (VI), which in turn prepares — by way of a fresh secondary dominant (F7, with A in the bass) — the arrival of the dominant."
+          },
+          {
+            "label": "Measure 5",
+            "titre": "Perfect cadence",
+            "chiffrage": "B♭7  →  E♭",
+            "fonctions": "V7  →  I",
+            "texte": "The dominant resolves onto the tonic: the first phrase closes. The melody unfurls its swiftest run there (thirty-second notes), an ornamented cadential flourish typical of Chopin's bel canto manner."
+          },
+          {
+            "label": "Measures 6-9",
+            "titre": "The phrase, note for note — except the melody",
+            "chiffrage": "(identical to measures 2-5)",
+            "fonctions": "I → IIø7 → I → I7 → V7/II → II → V7 → VII/VI → VI → V6/5/V → V7 → I",
+            "texte": "The harmony and the bass repeat unchanged. Only the ornamentation of the melody changes: measure 8 superimposes a long <strong>trill</strong> written out note for note (F-G alternating, twenty-four eighth notes) over the same V7-VII/VI-VI-V6/5/V progression — a delayed cadence that resolves at last in measure 9, on the same perfect cadence as in measure 5."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "A pedal can carry a borrowing without betraying it",
+            "texte": "The half-diminished second degree of measure 2 casts a chromatic shadow over the tonic — but since the E♭ stays held by the sustain pedal while it sounds, the ear never loses the thread of the tonic. The borrowing decorates; it does not displace the tonal center."
+          },
+          {
+            "titre": "A sequence is not always entirely stepwise",
+            "texte": "The bass of measure 4 begins with strict chromatic motion (B♭-B♮-C) but closes with a leap of a third (C-A) — the support of a secondary dominant, not one more step. Not every harmonic “sequence” is an entirely stepwise bass line."
+          },
+          {
+            "titre": "Repetition serves the ornament, not the harmony",
+            "texte": "Measures 6-9 take up the harmony and the bass of measures 2-5 without the slightest change — it is the melody, and the melody alone, that renews itself (the trill of measure 8 being the most spectacular instance). A lesson in bel canto style: ornamentation is where variation lives, while the harmonic structure remains the stable frame."
+          }
+        ]
+      }
     }
   },
   "cours7": {
@@ -701,7 +883,70 @@
         "V7/X → X: temporary tonicization",
         "Alterations always resolved in the chromatic direction",
         "Common in jazz and Romantic-era music"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "A major (key signature of three sharps). The whole phrase gravitates toward the dominant (E): every slightly extended resting point is tonicized there a second time by way of its own secondary dominant (V/IV, then twice V/V) — the very illustration of this lesson's topic.",
+        "metrique": "3/4, Andante teneramente. A one-beat anacrusis (upbeat on the third beat).",
+        "forme": "A single large eight-measure phrase (plus upbeat), in one continuous ascending gesture: it does not close on the tonic but comes to rest in a half cadence, heightened by its own secondary dominant (V7/V → V), left suspended for what follows.",
+        "sections": [
+          {
+            "label": "Upbeat & measure 1",
+            "titre": "The tonic, then the subdominant in second inversion",
+            "chiffrage": "A | D/A",
+            "fonctions": "I | IV6/4",
+            "texte": "The upbeat gently sets down degree <strong>I</strong> (A major). Measure 1 settles onto <strong>IV6/4</strong> (D major, fifth in the bass): the bass stays on A — which is the tonic of the piece, but plays here the role of a mere fifth of the IV chord — before a brief neighbor tone (F#) that prepares the next measure. No accidentals as yet: we are at the heart of the home key."
+          },
+          {
+            "label": "Measures 2-3",
+            "titre": "Resolution of the subdominant, a small cadential progression",
+            "chiffrage": "D/F# – D | E7/D – A/C# – Bm/D",
+            "fonctions": "IV6 – IV | V4/2 – I6 – ii6",
+            "texte": "Measure 2 completes the subdominant: first inversion (<em>IV6</em>, F# in the bass), then root position (<em>IV</em>). Measure 3 links three chords over a stepwise descending bass (D–C#–D): a passing dominant in third inversion (<strong>V4/2</strong>), the tonic in first inversion (<strong>I6</strong>), then <strong>ii6</strong> — a small cadential motion that rounds off the first half-phrase without ever coming to a stop."
+          },
+          {
+            "label": "Measure 4",
+            "titre": "A cadential 6/4, then the secondary dominant of IV",
+            "chiffrage": "A/E (cadential 6/4) – E – vii°/G",
+            "fonctions": "D – D – vii°6/4/IV",
+            "texte": "The first chord is written “I6/4,” but its bass (E) is exactly that of the <strong>V</strong> chord which follows immediately without moving: this is a textbook <em>cadential 6/4</em>, a mere neighbor decoration of the dominant — hence its function <strong>D</strong> and not tonic, despite the spelling “I.” The third beat introduces the first genuine chromatic color of the piece: a diminished triad on C# (C#-E-G), whose G is marked as an accidental in the score — it replaces the diatonic G# of the key. This is the secondary dominant (the leading-tone chord) of the subdominant, in second inversion (<strong>vii°6/4/IV</strong>): the G natural will resolve to the third of the D chord in the following measure."
+          },
+          {
+            "label": "Measures 5-6",
+            "titre": "A return, then the Dominant of the Dominant",
+            "chiffrage": "D/F# – A/E (cadential 6/4) | B7/D# – B7/A",
+            "fonctions": "IV6 – D | V6/5/V – V4/2/V",
+            "texte": "Measure 5 takes up the gesture of measures 1-2 exactly (IV6, then a fresh cadential 6/4 over the dominant). Measure 6 introduces the second and most important accidental of the piece: a <strong>D#</strong>, an artificial leading tone foreign to the key of A major. It turns the harmony into B7 — the dominant of E, that is, <strong>the dominant of the dominant (V/V)</strong> — first in first inversion (<em>V6/5/V</em>), then in third inversion, seventh in the bass (<em>V4/2/V</em>): precisely the mechanism announced by the lesson."
+          },
+          {
+            "label": "Measure 7",
+            "titre": "The ambiguous chord: added sixth or altered seventh?",
+            "chiffrage": "G#-B-D#-F# (B6 ≈ G#m7) – A – B7",
+            "fonctions": "altered leading tone (D) – I – V7/V",
+            "texte": "This chord gives pause, and rightly so: the four notes actually played (G#, B, D#, F#, with G# in the bass) form a classically ambiguous sonority. Read from B (the “theoretical” bass of the figuring), they are the notes of a B major chord with an <em>added sixth</em> in the bass. But read from the note that is really lowest (G#), they are exactly those of a <strong>G# minor 7</strong> in root position — the same ambiguity as “C6 = Am7.” It is this second reading that best explains what follows: G# is the leading tone of the key and rises quite naturally to <strong>A</strong> (the <em>I</em> that arrives on the second beat), while D# — the same chromatic leading tone as in measures 5-6 — keeps pulling toward E. The third beat immediately relaunches <strong>V7/V</strong>: this measure does no more than breathe for a fraction of a second on the tonic before setting off again toward the dominant."
+          },
+          {
+            "label": "Measure 8",
+            "titre": "A half cadence reinforced by its own dominant",
+            "chiffrage": "B7/E → E",
+            "fonctions": "V7/V → V",
+            "texte": "The phrase comes to rest on the dominant (E major), not on the tonic: a <strong>half cadence</strong>. But Brahms reinforces it by having it preceded one last time by its own secondary dominant (<strong>V7/V</strong>), over an E pedal in the bass — so the E chord never really arrives “at rest”: it remains suspended, open onto the rest of the piece."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "A phrase entirely turned toward the dominant",
+            "texte": "The piece sets out from the tonic but never really settles there: as early as measure 1 the bass already carries the note E (the dominant) beneath a subdominant guise, and two thirds of the phrase (measures 4 to 8) tonicize in turn the IV and then, twice, the V itself. The closing half cadence therefore comes as no surprise: it is the logical outcome of a phrase built as a march toward E."
+          },
+          {
+            "titre": "One and the same kind of accidental, two different destinations",
+            "texte": "The G natural of measure 4 and the D# of measures 6-7 play exactly the same role (a borrowed chromatic leading tone) but point toward two different degrees — the IV for one, the V for the other. No accidental here is decorative: each announces precisely the chord it tonicizes."
+          },
+          {
+            "titre": "When a single melodic line supports two readings",
+            "texte": "The chord of measure 7 is a reminder that one and the same group of notes can be analyzed in two equally correct ways (added sixth / relative seventh chord) — in such a case it is voice leading that decides between the two readings."
+          }
+        ]
+      }
     }
   },
   "cours8": {
@@ -997,7 +1242,70 @@
         "Tonal sequence: transposition in the same key (diatonic intervals)",
         "Real sequence: exact transposition (identical chromatic intervals)",
         "Chromaticism: non-diatonic alterations enriching harmony without modulating"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "D minor (key signature of one flat, B♭).",
+        "metrique": "3/4 — the sarabande/chaconne rhythm, with its characteristic tension on the second beat.",
+        "forme": "A ground-bass theme (a two-beat upbeat, then four bars) played twice in succession (measures 1-4, then 5-8): this is the very principle of chaconne variation. The figuration grows steadily more elaborate, and the melodic voice proper only appears from the second statement onwards (measure 7) — until then, everything rests on a single arpeggiated bass line.",
+        "sections": [
+          {
+            "label": "Upbeat (m. 0)",
+            "titre": "The opening chord",
+            "chiffrage": "Dm",
+            "fonctions": "i",
+            "texte": "The piece opens on a broken tonic chord (D-F-A), sounded twice across the two beats of the upbeat — a gesture of affirmation before the first bar has even properly begun."
+          },
+          {
+            "label": "Measure 1",
+            "titre": "From supertonic to dominant",
+            "chiffrage": "Em7b5/D — A7/C#",
+            "fonctions": "iiø4/2 — V6/5",
+            "texte": "First link in the chromatic descent of the bass (D→C#): a half-diminished supertonic chord in <strong>third inversion</strong> (the 7th, D, in the bass), sliding towards the dominant with its leading tone (C#) in <strong>first inversion</strong>. This harmonic tension created by holding the bass back is typical of sarabande writing."
+          },
+          {
+            "label": "Measure 2",
+            "titre": "Tonic, then the colour of VI",
+            "chiffrage": "Dm — B♭",
+            "fonctions": "I — VI",
+            "texte": "Return to the tonic in root position, then a touch of colour from <strong>VI</strong> (B♭ major) — the bass continues its diatonic descent (D→B♭). A brief passing note (C) closes the bar and prepares what follows."
+          },
+          {
+            "label": "Measures 3-4",
+            "titre": "Subdominant, passing 6/4 and cadence",
+            "chiffrage": "Gm — Dm/A — A7/C# — Dm",
+            "fonctions": "iv — i6/4 — V7 — I",
+            "texte": "The minor subdominant (<strong>iv</strong>) leads to a tonic chord in second inversion (<strong>i6/4</strong>, bass A) which carries the bass descent further still (B♭→G→D/A), before a swift run of sixteenth notes in the bass plunges towards the dominant seventh chord (<strong>V7</strong>). Another rapid flourish in the bass opens measure 4, then comes the resolution: this authentic cadence closes the first complete statement of the ground bass, four bars after the upbeat."
+          },
+          {
+            "label": "Measures 5-6",
+            "titre": "Second statement: note for note identical",
+            "chiffrage": "Em7b5/D — A7/C# | Dm — B♭",
+            "fonctions": "iiø4/2 — V6/5 | I — VI",
+            "texte": "The second statement of the ground bass begins by taking up measures 1 and 2 exactly, without the slightest harmonic variant — only the figuration that clothes them changes from one statement to the next, and that is the essence of chaconne variation."
+          },
+          {
+            "label": "Measures 7-8",
+            "titre": "A different inversion, and the entrance of the melody",
+            "chiffrage": "Em7b5/G — A — A7 — Dm",
+            "fonctions": "iiø6/5 — V — V7 — I",
+            "texte": "Here the ground bass at last acquires a true melodic voice above it (until now the piece has been a single line). The same half-diminished supertonic chord heard in measures 1 and 5 returns, but this time in <strong>first inversion</strong> (the third, G, in the bass — not the 7th): the ground bass is therefore not rigorously identical at every statement; Bach varies the harmony too, not only the ornamentation. The dominant arrives first as a plain triad (<strong>V</strong>), then its 7th (G) appears — not in the bass, but within the melodic ornament itself — to form <strong>V7</strong> just before the authentic cadence that closes this second statement at measure 8."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "One bass, told twice",
+            "texte": "Measures 1-2 and 5-6 share exactly the same harmonic labels — the clearest proof that a chaconne varies the figuration (the shape of the notes) far more than the underlying harmony, which often stays fixed from one statement to the next."
+          },
+          {
+            "titre": "But not entirely fixed",
+            "texte": "Measures 3 and 7 show that Bach also allows himself genuine harmonic variants (different chords, different inversions of the same chord) — the ground bass is a guide, not an absolute straitjacket."
+          },
+          {
+            "titre": "The melody is born from the bass",
+            "texte": "For six measures the whole piece is nothing but a single arpeggiated line. The melodic voice proper appears only at measure 7 — a late entrance that marks a genuine turning point in the discourse."
+          }
+        ]
+      }
     }
   },
   "cours1": {
@@ -1114,7 +1422,56 @@
         "Scale = 7 degrees, 2 diatonic semitones",
         "Leading tone must ascend",
         "Greek modes derived from rotations of the major scale"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "C major — no accidentals in the key signature. The scale's only two natural diatonic semitones (E–F, between the third and fourth degrees, and B–C, between the seventh and the first) drive the whole piece.",
+        "metrique": "4/4",
+        "forme": "The entire excerpt (mm. 1–8) rests on a bass plan of just TWO pedal notes: C (mm. 1–2 and 4–6, with a brief neighbour B in m. 3), then B (mm. 7–8, the leading tone held to the end of the excerpt). Above these pedals the harmony changes colour through the movement of the upper voices alone — the bass itself barely stirs.",
+        "sections": [
+          {
+            "label": "Measures 1–3",
+            "titre": "A tonic pedal, decorated by its neighbour",
+            "chiffrage": "C  |  Dm7/C  |  G7/B",
+            "fonctions": "I  |  ii2  |  V6/5 (read as prolonged i)",
+            "texte": "The bass holds C through the first two measures: the chord moves only ABOVE it — first the arpeggio C–E–G (I), then D–F–A which, combined with that held C, spells out a <strong>Dm7 in third inversion</strong> (ii2). In m. 3 the bass steps down a whole tone to B: the SHAPE of the chord (G–B–D–F) is indeed that of a G7 in first inversion (V6/5) — but Bach uses it here as a simple <em>lower neighbour</em> to the C pedal, not as a true dominant awaiting resolution. Hence the figure “V6/5(T)”: the shape is that of a dominant, the FUNCTION remains tonic."
+          },
+          {
+            "label": "Measures 4–5",
+            "titre": "Back to the tonic, then to its substitute",
+            "chiffrage": "C  |  Am/C",
+            "fonctions": "i  |  vi6",
+            "texte": "The neighbour resolves: the B in the bass climbs back to C (m. 4), while the F and D of the upper voices fall back to E and C — the tonic chord is recovered note for note as in m. 1. Measure 5 changes colour WITHOUT changing the bass: the held C becomes the <strong>third</strong> of an A minor chord (vi6), the most direct substitute for the tonic — it shares two notes with it (C and E)."
+          },
+          {
+            "label": "Measure 6",
+            "titre": "The only accidental in the excerpt",
+            "chiffrage": "D7/C",
+            "fonctions": "V2/V",
+            "texte": "The first real harmonic shift since the opening: the bass stays on C (which now becomes the seventh rather than the root), but the harmony above turns into a <strong>complete D7</strong> (D–F♯–A–C). The F♯, the only note foreign to the key signature in the whole excerpt, is an ARTIFICIAL leading tone pulling towards G: Bach is now aiming at the dominant (V), not yet at the tonic."
+          },
+          {
+            "label": "Measures 7–8",
+            "titre": "The dominant, then a tonic that does not quite close",
+            "chiffrage": "G/B  |  Cmaj7/B",
+            "fonctions": "V6  |  IΔ2",
+            "texte": "The bass at last steps down to B — the leading tone of the key — and stays there for the last two measures: first under a G major chord (V6), then under the arrival of the tonic (m. 8). But this tonic is not in its most stable state: its <strong>major seventh</strong> (B itself, since the bass does not move) tints it with a suspended tension that calls for the rest of the piece rather than closing it."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Two pedals, a single gesture",
+            "texte": "The entire harmony of the excerpt rests on two bass notes: C (mm. 1 to 6, with a brief detour to its neighbour B in m. 3), then B (mm. 7–8). The musical motion does not come from the bass, which barely moves — it comes from the upper voices, which redraw the chord above it."
+          },
+          {
+            "titre": "The two diatonic semitones",
+            "texte": "E–F (in the Dm7 of m. 2 and its surroundings) and B–C (the leading tone, mm. 3 and 7–8) are the only two natural semitones in C major — they generate all the tension of the piece, without a single accidental until m. 6."
+          },
+          {
+            "titre": "Colour follows function, not shape",
+            "texte": "Measure 3 has the SHAPE of a dominant (G7) but the FUNCTION of a prolonged tonic — hence its blue colour despite the figure “V6/5”. In tonal harmony, function always outweighs surface appearance."
+          }
+        ]
+      }
     }
   },
   "cours2": {
@@ -1244,7 +1601,56 @@
         "Triad = root + third + fifth",
         "Major triad: major third + perfect fifth",
         "Inversions: 1st (third in bass), 2nd (fifth in bass)"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "A♭ major (four flats in the key signature: B♭, E♭, A♭, D♭).",
+        "metrique": "2/4.",
+        "forme": "Two four-measure phrases. The first (mm. 1–4) asserts the tonic in its three guises (root position, first inversion, root position) and then reaches the dominant. The second (mm. 5–8) opens with a rare move — the dominant slides DIRECTLY to the subdominant, without passing through the tonic — before closing the phrase with a full return to I.",
+        "sections": [
+          {
+            "label": "Measures 1–3",
+            "titre": "Three guises of the tonic",
+            "chiffrage": "Ab  |  Ab/C  |  Ab",
+            "fonctions": "I  |  I6  |  I",
+            "texte": "Measure 1 states the tonic chord in root position: the root (A♭) is doubled between the bass and the accompaniment, while the melody sings the third (C). Measure 2 inverts the same chord — the bass now carries the <strong>third</strong> (C) and no longer the root: this is the first inversion (I6), which lightens the bass without changing the function (still blue, still tonic). Measure 3 returns to root position, the bass dropping back to A♭."
+          },
+          {
+            "label": "Measures 4–5",
+            "titre": "The dominant, then a “retrogression” to the subdominant",
+            "chiffrage": "Eb  |  Db",
+            "fonctions": "V  |  IV",
+            "texte": "The first change of function in the excerpt: the chord E♭–G–B♭ (V), in root position, turns everything red. It is a plain triad, WITHOUT a seventh — the G (the leading tone of the key) is indeed present, ready to pull towards the tonic. But instead of resolving to I as the ear expects, the harmony steps back to the subdominant (m. 5, D♭ major): a genuine <strong>retrogression</strong>, not a shortcut in the writing — the repose on the tonic will have to wait three more measures."
+          },
+          {
+            "label": "Measures 6–7",
+            "titre": "A passing chord, then the only minor triad in the excerpt",
+            "chiffrage": "Ab/C  |  Bbm",
+            "fonctions": "I6  |  ii",
+            "texte": "The bass descends by step (D♭ → C → B♭), linking the subdominant of m. 5 to the ii of m. 7 by way of a brief return to the tonic in first inversion (m. 6 — a PASSING chord, not a real point of rest). Measure 7 introduces B♭ minor (ii), the <strong>only minor triad in the whole excerpt</strong>: orange, like IV — the two degrees of the subdominant family."
+          },
+          {
+            "label": "Measure 8",
+            "titre": "Return and closure",
+            "chiffrage": "Ab",
+            "fonctions": "I",
+            "texte": "The bass completes its descent on A♭, doubled at the octave in the low register: the phrase closes on the tonic. The melody ends with a complete arpeggio of the chord (A♭–C–E♭–A♭), after a brief appoggiatura."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The colour code always follows the function",
+            "texte": "Blue = tonic (I, I6), orange = subdominant (IV, ii), red = dominant (V) — the same convention as in the other conservatory scores. Here, unlike in the Bach Prelude (lesson 1), no colour contradicts its own figure: each shade corresponds exactly to the shape of the chord."
+          },
+          {
+            "titre": "The V→IV retrogression",
+            "texte": "Resolving a dominant is not a mechanical obligation: here it slides to the subdominant before the tonic returns, only in m. 8 — worth noticing precisely by contrast with the V→I expectation set up by the general rule."
+          },
+          {
+            "titre": "A single minor triad",
+            "texte": "Across the eight measures only one chord is minor: the ii (B♭ minor) of m. 7 — the overall colour remains resolutely major, in the image of the key itself (A♭ major)."
+          }
+        ]
+      }
     }
   },
   "cours3": {
@@ -1377,7 +1783,56 @@
         "Functions: Tonic (I, III, VI), Dominant (V, VII), Subdominant (II, IV)",
         "Authentic cadence V–I = strong closure",
         "The tritone in V7 resolves: B→C, F→E"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "G minor (i) — two flats in the key signature (B♭, E♭). The minor mode is INFERRED by tonal-profile correlation (there is no <mode> tag in the MuseScore export): it is confirmed by the omnipresence of the I pole (Gm) and by the dominant D7 with its leading tone F♯, the only note foreign to the key signature in the whole excerpt.",
+        "metrique": "C (4/4, alla breve).",
+        "forme": "The famous opening theme rests on a pedal — the fifth of the tonic (D), held in the bass for four measures — then slides by a single semitone to an enriched subdominant (IIø7, mm. 5–6), before the cadential progression IIø7–V7–I that this lesson teaches (mm. 7 to 9, m. 9 being a half measure so as to reach the resolution).",
+        "sections": [
+          {
+            "label": "Measures 1–4",
+            "titre": "The theme, over the fifth of the tonic held in the bass",
+            "chiffrage": "Gm/D",
+            "fonctions": "i6/4",
+            "texte": "The left hand spins out a steady motif in eighth notes (G–D–G–B♭: the root, the fifth, the root and the third of G minor). It is a TONIC chord throughout, but with its own FIFTH (D) in the bass — not an independent dominant pedal, merely one of the notes of the tonic itself. Above it, the famous anacrustic motif (E♭–D–D) launches the theme, unfolded across the four measures."
+          },
+          {
+            "label": "Measures 5–6",
+            "titre": "The enriched subdominant, reached by step",
+            "chiffrage": "Am7b5/Eb",
+            "fonctions": "ii+4/3",
+            "texte": "The bass moves from D to E♭ by a single semitone — without the slightest leap — to reach a half-diminished seventh chord (A–C–E♭–G, the half-diminished second degree), this time with its OWN fifth (E♭) in the bass. This is the orange colour: the enriched subdominant moves decisively away from the tonic."
+          },
+          {
+            "label": "Measures 7–8",
+            "titre": "The dominant and its tension",
+            "chiffrage": "D7  |  D/A then D7/A",
+            "fonctions": "V7  |  V6/4 then V7+6",
+            "texte": "The leading tone of the key (F♯, the only accidental in the whole excerpt) appears at last in m. 7: together with the C (the seventh of the chord) it forms the <strong>tritone</strong> that carries the entire tension of the dominant. In m. 8 the bass stays close by (D, A, F♯): the same dominant chord, first heard as a triad in second inversion (V6/4), then enriched by its seventh (V7, still in second inversion, hence the “+6”)."
+          },
+          {
+            "label": "Measure 9",
+            "titre": "Return — not yet a closed cadence",
+            "chiffrage": "Gm/D",
+            "fonctions": "i6/4",
+            "texte": "The tension subsides onto the tonic — but still in second inversion (i6/4), exactly the texture that opened the excerpt. This is not an authentic cadence in the strict sense (which would require the root in the bass): rather a return to the opening idea, the loop that rounds off the phrase in order to launch the theme again."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "One note, two functions",
+            "texte": "The D carries the whole harmony of the first four measures (the fifth of the tonic); then, a semitone higher in the bass (E♭), it slides the harmony towards the subdominant — a shift of a single semitone is enough to change the function completely."
+          },
+          {
+            "titre": "The tritone, engine of the dominant",
+            "texte": "F♯ (the leading tone) and C (the seventh) form the interval that pushes everything towards resolution — the only accidental foreign to the key signature in the whole excerpt, reserved for the two measures of dominant harmony."
+          },
+          {
+            "titre": "A cadence that does not quite close",
+            "texte": "IIø7–V7–I is indeed the cadential progression this lesson teaches, but here it loops back onto a I in second inversion (as at the start), not onto a root in the bass — the tension subsides without the phrase closing completely."
+          }
+        ]
+      }
     }
   },
   "cours10": {
@@ -1466,7 +1921,70 @@
         "7 modes = 7 rotations of the same scale, each with its own tonic",
         "The Dorian colors the minor with a major 6th: the most used mode in modal jazz",
         "\"So What\" (Miles Davis, 1959): a vamp in D Dorian, with no functional harmony"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "D dorian — no key signature, but this is neither C major nor A minor: the modal centre is D (the second degree of C major, taken as the point of departure).",
+        "metrique": "4/4.",
+        "forme": "A two-bar modal vamp (a call from the bass alone, then an answer in chords), repeated four times in succession (measures 1-2, 3-4, 5-6, 7-8) before the pick-up into the repeat (measure 9, which also carries the first ending written into the score). Not one of the nine measures contains a dominant: the piece never cadences, it colours a single tonal centre from beginning to end — the exact counter-example to the nine preceding pieces of this conservatory course, all of them built on functional progressions.",
+        "sections": [
+          {
+            "label": "Measure 1",
+            "titre": "The call: the bass alone",
+            "chiffrage": "Dm7 (N.C.)",
+            "fonctions": "I",
+            "texte": "The double bass states the tune's riff entirely on its own — an eighth-note pick-up, then a rising line (D-A-B-C-D-E) that closes back onto C. No vertical chord is written (<em>N.C.</em>, “no chord”): only the label “I” beneath the bass staff tells us that D remains the modal centre, even with no harmony laid down."
+          },
+          {
+            "label": "Measure 2",
+            "titre": "The answer: two rootless chords",
+            "chiffrage": "Em7 – Dm7",
+            "fonctions": "II7 – I7",
+            "texte": "The piano answers with two brief chords, each without its root written out: D-G-B (the 3rd, 5th and 7th of Em7, without the E) on beat 3, then C-F-A (the same degrees of Dm7, without the D) on the offbeat that follows. In this modal context, <strong>II7 prepares no dominant at all</strong>: it is a colour that falls straight back onto the modal tonic, without ever passing through a classical tension chord."
+          },
+          {
+            "label": "Measures 3-6",
+            "titre": "The cycle repeats",
+            "chiffrage": "Dm7 | Em7 – Dm7  ·  Dm7 | Em7 – Dm7",
+            "fonctions": "I | II7 – I7  ·  I | II7 – I7",
+            "texte": "Measures 3 and 5 take up the bass riff of measure 1 note for note. Measures 4 and 6 give the same chordal answer as measure 2 — only the bass varies discreetly (a D-A round trip in measure 4, a single D in measure 6). Nothing moves harmonically: it is repetition that builds this tune, not a progression."
+          },
+          {
+            "label": "Measure 7",
+            "titre": "A different breath",
+            "chiffrage": "(N.C.)",
+            "fonctions": "—",
+            "texte": "The only real variation in the whole excerpt: instead of the rising riff, the bass repeats the same note three times (E), in a syncopated rhythm (one note held across beat 2). No label accompanies this measure — it is the only one in the entire excerpt to carry none at all, not even a “I”: the tension of the call stays open longer here than anywhere else before the answer returns."
+          },
+          {
+            "label": "Measure 8",
+            "titre": "Last answer before the repeat",
+            "chiffrage": "Dm7 | Em7 – Dm7",
+            "fonctions": "I | II7 – I7",
+            "texte": "The cycle closes as in measures 2, 4 and 6: the same answer in two rootless chords. Nothing yet signals the end of the section — it is the following measure that carries the repeat mark."
+          },
+          {
+            "label": "Measure 9",
+            "titre": "Pick-up and first ending",
+            "chiffrage": "Dm7 (N.C.)",
+            "fonctions": "I",
+            "texte": "The bass riff of measure 1 returns unchanged. It is also on this measure, and on this one alone, that the score carries the <strong>first ending</strong> of the repeat (the repeat barline begins at measure 2): after this measure the cycle starts again from measure 2, before a second ending (outside this excerpt) carries the tune onward."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "One colour, never a cadence",
+            "texte": "No dominant chord appears in these nine measures. The II7 (Em7) is never a predominant preparing a resolution: it is a simple colouring that drops straight back onto the modal tonic — the opposite of everything the first nine pieces of this conservatory course teach."
+          },
+          {
+            "titre": "Repetition as the engine",
+            "texte": "The tune does not develop through a chain of chords but through the almost exact repetition of a single two-bar module — only measure 7 departs from it, by a simple change of rhythm in the bass, without ever introducing a new chord."
+          },
+          {
+            "titre": "“Rootless” chords",
+            "texte": "The two chords of the answer (Em7, Dm7) are written without their root: a voicing technique highly characteristic of jazz piano, where the bass already supplies the root and the right hand concentrates on colour (3rd, 5th, 7th)."
+          }
+        ]
+      }
     }
   },
   "cours12": {
@@ -1570,7 +2088,70 @@
         "subV7 = a dominant chord built a tritone above (or below) V7",
         "Both chords share the 3rd and 7th (simply swapped): same tension, different resolution",
         "\"Satin Doll\" (Ellington): Db7 replaces G7 (subV7) right before the return to C major"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "C major (no key signature) — but never asserted directly before measure 7: the whole phrase is nothing but a chain of ii-V pairs that settles onto the tonic only at the very end.",
+        "metrique": "4/4.",
+        "forme": "8 measures = the A phrase of the standard: a sequence of ii-V pairs (or their substitutes) rising step by step before resolving onto C major at measure 7, then immediately relaunching the cycle towards a repeat of the section.",
+        "sections": [
+          {
+            "label": "Measures 1-2",
+            "titre": "ii7-V7, the basic pattern",
+            "chiffrage": "Dm7 – G7",
+            "fonctions": "II7 – V7",
+            "texte": "The excerpt opens on the most classic progression in jazz: ii7-V7 in C major. The bass slides chromatically (E♭) right at the end of measure 1 — a passing note descending a semitone to the root (D) that opens measure 2."
+          },
+          {
+            "label": "Measures 3-4",
+            "titre": "iii7-V7/II, the sequence rises",
+            "chiffrage": "Em7 – A7",
+            "fonctions": "III7 – V7/II",
+            "texte": "The same ii-V pair moves up a third: Em7 (iii7, a chord of the tonic family), then A7, the secondary dominant of degree ii (<strong>V7/II</strong>) — a colour that prepares a return to Dm7 which never arrives within this excerpt. The bass resumes its chromatic slide at the end of the measure, this time towards E."
+          },
+          {
+            "label": "Measure 5",
+            "titre": "vi7-V7/V, a well-dressed dominant of the dominant",
+            "chiffrage": "Am7 – D7",
+            "fonctions": "VI7 – V7/V",
+            "texte": "Another ii-V pair, transposed once more. The voicings grow markedly richer here: Am7 sounds with neither root nor third — only 5th, 7th and <strong>11th</strong> (E-G-D). D7 (V7/V) adds the <strong>9th</strong> (E) and the <strong>11th</strong> (G) to its minor 7th (C) — a far richer chord than a textbook D7."
+          },
+          {
+            "label": "Measure 6",
+            "titre": "bVI7-subV7, the tritone substitution",
+            "chiffrage": "Abm7 – Db7",
+            "fonctions": "bVI7 – subV7",
+            "texte": "The key moment of the lesson: instead of the expected ii7-V7 (Dm7-G7), the score gives Abm7-Db7. Db7 (<strong>subV7</strong>) replaces G7 by tritone substitution — in theory the two chords share the same tritone (F-B), which this particular realisation sounds only through the B (the 7th of Db7). On the last offbeat of the measure, the right hand already anticipates the chord of resolution (Cmaj9) and holds it tied across the barline."
+          },
+          {
+            "label": "Measure 7",
+            "titre": "Resolution — already under way before it arrives",
+            "chiffrage": "Cmaj9 – Dm9",
+            "fonctions": "Imaj9 – II9",
+            "texte": "Resolution at last onto the tonic — prepared from the end of the previous measure: Cmaj9 (major 7th B, 9th D) occupies the first two beats without even being re-struck, before the bass slides towards Dm9 to set the cycle going again."
+          },
+          {
+            "label": "Measure 8",
+            "titre": "A chromatic passage towards the relaunch",
+            "chiffrage": "Ebdim7 – Em7",
+            "fonctions": "— – III7",
+            "texte": "A <strong>complete diminished seventh chord</strong> (E♭-F♯-A-C, checked note by note) serves as a chromatic passing sonority, extending the rising bass line begun in measure 7 (C-D-E♭-E) up to Em7 (iii7), which closes this phrase and relaunches the cycle towards a repeat of the A section."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "One sequence, transposed three times",
+            "texte": "ii7-V7 (measures 1-2), iii7-V7/II (measures 3-4), vi7-V7/V (measure 5): the same harmonic gesture, replayed at three different pitch levels, before the tritone substitution (measure 6) replaces it one last time to bring the tonic back at last."
+          },
+          {
+            "titre": "The substitution, simply a movement of the bass",
+            "texte": "Replacing G7 with Db7 changes almost nothing to the ear (same tritone, same tension) — but it turns the resolution of the bass from a leap of a fourth (G→C) into a plain descending semitone (D♭→C): the real reason jazz musicians use it so much."
+          },
+          {
+            "titre": "The resolution is there before it even arrives",
+            "texte": "The tonic chord (Cmaj9) is already sounding, tied over from the previous measure, when measure 7 officially begins — a rhythmic give-and-take typical of jazz that blurs the border between tension and resolution."
+          }
+        ]
+      }
     }
   },
   "cours14": {
@@ -1684,7 +2265,63 @@
         "Modal harmony = a color held in place, not tension followed by resolution (unlike tonal harmony)",
         "The V7→I motion is avoided: it would introduce the leading tone and break the mode's atmosphere",
         "\"First Gymnopédie\" (Satie): IVmaj7-Imaj7 looping over 9 measures, never a dominant"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "D major (two sharps) — but the excerpt never once lets the D chord be heard as a point of firm arrival: it <strong>begins and ends on G</strong> (IV), which occupies 5 of its 9 measures. A reading in <strong>G Lydian</strong> (with C# as the #4) is just as defensible on the strength of this excerpt alone — the two readings share exactly the same two sharps. The remainder of the piece (outside this excerpt) will settle the matter in favour of D major.",
+        "metrique": "3/4. No tempo or character marking in this file (the original carries “Lent et douloureux”, not reproduced here) — quarter note = 60 added as an editorial choice, for synchronised playback.",
+        "forme": "9 measures = a strict harmonic pendulum between two major-seventh chords, IVmaj7 (G) and Imaj7 (D), without the dominant (A) ever being sounded: measures 1-4, the accompaniment alone sets the rocking in place; measures 5-9, the melody enters and descends an octave (F#5 to F#4), systematically crossing the “coloured” degrees of each chord (7th, 9th, 11th, #11) rather than its stable notes.",
+        "sections": [
+          {
+            "label": "Measures 1-4",
+            "titre": "The harmonic pendulum, with no melody",
+            "chiffrage": "Gmaj7 – Dmaj7 – Gmaj7 – Dmaj7",
+            "fonctions": "IV – I – IV – I",
+            "texte": "The texture is frozen for the first four measures: a deep bass note held right through the measure (G2, then D2), a quarter rest, then a three-note chord struck on the second beat and held to the end (B3-D4-F#4 over G; A3-C#4-F#4 over D) — the celebrated rocking of a sarabande stripped bare. <strong>F#4</strong> is the only note that remains at exactly the same pitch in both voicings: a pivot, without which the two chords would have nothing left in common to the ear. No dominant (A) ever appears: with no V there can be no cadence — the IV-I alternation is a static plagal oscillation, suspending tonal direction rather than building it. Tellingly, the excerpt opens directly on the subdominant, not on the tonic."
+          },
+          {
+            "label": "Measure 5",
+            "titre": "The melody enters: seventh, then ninth",
+            "chiffrage": "Gmaj9",
+            "fonctions": "IV(9)",
+            "texte": "After a rest, the melody enters on <strong>F#5</strong> — the major seventh of G, exactly two octaves above the F#4 of the accompaniment — then leaps up to <strong>A5</strong>, the ninth. The score explicitly figures this chord as “Gmaj9” (not simply “maj7”): the melody touches precisely the extension the figuring announces. From the very first breath, two “dissonant” notes set down as self-evident, with no preparation whatsoever."
+          },
+          {
+            "label": "Measure 6",
+            "titre": "The one “resolved” gesture in the excerpt",
+            "chiffrage": "Dmaj7",
+            "fonctions": "I",
+            "texte": "G5 on the first beat is an <strong>11th</strong> over the tonic chord (D) — the only melodic dissonance in the whole excerpt that steps back down, to F#5 (the third), yet on a weak beat and without preparation. The line then drops a fourth to C#5, the seventh of D."
+          },
+          {
+            "label": "Measure 7",
+            "titre": "The climb towards the #11",
+            "chiffrage": "Gmaj7(#11)",
+            "fonctions": "IV(#11)",
+            "texte": "A stepwise ascent B4-C#5-D5 (third to fifth, by way of C#). Here again the figuring announces the colour precisely: this is the ONLY measure in the entire excerpt where a “(#11)” is added to the G chord, and it is exactly the note the melody touches in passing."
+          },
+          {
+            "label": "Measures 8-9",
+            "titre": "The stable fifth, then the major seventh left hanging",
+            "chiffrage": "Dmaj7 – Gmaj7",
+            "fonctions": "I – IV",
+            "texte": "A4, held through the whole of measure 8: the fifth of D, the only fully consonant and stable note in the entire melodic phrase. Then F#4, held through the whole of measure 9: the major seventh of G, one octave below the F#5 that opened the melody in measure 5. The excerpt closes in complete suspension, without the slightest cadence — a descending arc of exactly one octave, from the high F# to the low one."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Only one genuinely common note: F#",
+            "texte": "G-B-D-F# and D-F#-A-C# share two notes in theory (D and F#), but in the actual voicings of the accompaniment only F#4 stays at exactly the same pitch — the D changes octave each time (bass, or middle of the chord). It is this slender thread that holds the two colours together."
+          },
+          {
+            "titre": "The major seventh as colour, not as dissonance",
+            "texte": "Neither the F# of G nor the C# of D is prepared or resolved — a treatment unthinkable in strict tonal harmony (that of the Bach Invention analysed in the previous lesson), where a major seventh is a dissonance to be directed somewhere. Here it is a stable state, constitutive of the chord: the most radical gesture in the piece."
+          },
+          {
+            "titre": "G Lydian or D major? Nothing decides",
+            "texte": "Over these nine measures alone the two tonal readings remain equally valid — which is precisely the effect sought. In Bach, every chord justifies itself through the voice leading; in Satie, harmony is a repeated sonic object with no voice leading at all (block chords, no lines answering one another): the same reading exercise, two opposing grammars."
+          }
+        ]
+      }
     }
   },
   "cours13": {
@@ -1805,7 +2442,70 @@
         "Counterpoint = two melodically independent voices that agree vertically",
         "Fux's 5 species: note against note, 2 against 1, syncopations/suspensions, florid figures, florid counterpoint",
         "Invention No. 1 BWV 772 (Bach): subject and answer traded between the two hands, modulating to the dominant"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "C major (no key signature) at the outset — but the pivot chord in measure 4 tips the piece towards its dominant, G major, where it settles for good through to the end of the excerpt (measures 7-8).",
+        "metrique": "4/4.",
+        "forme": "8 measures = the opening phrase of the Invention: the subject stated in the soprano, then in the bass an octave lower (measure 1), the end of the subject and a touch of dominant colour (measure 2), a diatonic sequence by way of transition (measure 3), pivot chord and modulation to G major (measure 4), the dominant prepared and then resolved by a detour (measures 5-6), the subject restated in the bass at its transposition and a half cadence on the new dominant (measures 7-8).",
+        "sections": [
+          {
+            "label": "Measure 1",
+            "titre": "The subject, stated then imitated at the octave",
+            "chiffrage": "C (I)",
+            "fonctions": "I",
+            "texte": "The subject appears first in the soprano: C-D-E-F-D-E-C (beats 1-2), a pure tonic arpeggio threaded through with stepwise motion. On beats 3-4 it migrates to the bass, <strong>an octave lower</strong>, while the soprano holds a countersubject within the tonic chord (G-C-B-C). The F3 that falls on the downbeat of beat 4 in the bass belongs to that melodic line of the subject, not to the harmony: there is no call to figure a subdominant chord here — the whole measure is nothing but a prolonged tonic."
+          },
+          {
+            "label": "Measure 2",
+            "titre": "The answer, and a touch of dominant seventh",
+            "chiffrage": "G (V) – G7 (V7)",
+            "fonctions": "V – V7",
+            "texte": "The bass completes the subject by descending an octave (G3-G2), then sets out again on G (G-A-B-C-A-B-G) while the soprano answers above. On the last beat, a lower neighbour in the soprano (G-F♮-G) sounds the F natural that colours G into <strong>G7 (V7)</strong> — exactly the figure written at that precise point in the score."
+          },
+          {
+            "label": "Measure 3",
+            "titre": "Ascending diatonic sequence",
+            "chiffrage": "Am/C (vi6) – Dm (ii) – C/E (I6) – Am (vi)",
+            "fonctions": "vi6 – ii – I6 – vi",
+            "texte": "Four chords in sequence over a stepwise ascending bass (C-D-E-F-G-A-B). Right at the end of the measure, an <strong>unfigured passing chord</strong> forms between the two voices — B (bass) - D - F (soprano), a complete diminished vii° — and presses naturally towards the C of the following measure: a fine point of analysis that the roman-numeral figuring, holding “vi” to the very end of the measure, does not show, but which the actual pitches confirm."
+          },
+          {
+            "label": "Measure 4",
+            "titre": "The pivot chord and the tip into G major",
+            "chiffrage": "C (I=IV) – D7/F# (V6/5) – D7/A (V4/3) – D7/C (V4/2)",
+            "fonctions": "IV – V6/5 – V4/3 – V4/2 (already in G major)",
+            "texte": "The hinge of the whole excerpt: the C that opens the measure is at once <strong>I of C major</strong> and <strong>IV of G major</strong> — a pivot chord in the strictest sense. The three beats that follow lay out the dominant of the new key as a fully arpeggiated bass line (F#-A-C), passing through all three of its inversions (V6/5, V4/3, V4/2); the F# arrives in the bass precisely on the third eighth note of the measure, the leading note of G that confirms the colour of the new tonic. The C (the seventh of D7) held in the bass at the end of the measure is tied across the bar line: its resolution is deferred to measure 5."
+          },
+          {
+            "label": "Measures 5-6",
+            "titre": "The deferred resolution, then the real tonic",
+            "chiffrage": "D7/C (V4/2) – G (I) – G (I) – C (IV) | Em (vi) – G (I) – G/B (I6) – D (V)",
+            "fonctions": "D (V4/2, prolonged) – T – T – SD | T (vi) – T – T (I6) – D",
+            "texte": "The held seventh (C) does not resolve down to B as expected: the bass escapes from it by an ascending scale (D-E-F#) and reaches the tonic directly in root position (G), <strong>an evaded resolution</strong>. The dotted C5 that follows in the soprano is an accented dissonance which rises to D5 instead of falling — an unusual treatment that stretches the tension out one beat further. In measure 6 the bass hesitates for a moment between G (I) and a fleeting return to E (vi) before settling on B (I6, a held note); a passing C3 then links B to D, which opens the cadence: a genuine 6-5 suspension (B4 to A4) carried over the bass D3-D2, <strong>with no seventh whatsoever</strong> (there is no C anywhere in the rest of the measure) — a plain D major chord, not D7."
+          },
+          {
+            "label": "Measures 7-8",
+            "titre": "The subject returns in the bass, half cadence",
+            "chiffrage": "G (I) – G/D (I6/4) – D7/F# (V6/5) | D (V) – D7 (V7)",
+            "fonctions": "I – I6/4 – V6/5 | V – V7",
+            "texte": "The subject reappears, this time wholly <strong>in the bass</strong> and on G (G-A-B-C-A-B-G): a restatement a fifth above its original entry in measure 1, in the key now firmly in place. After a brief passage through six-four position (I6/4) and then the inverted dominant (V6/5, F#3 beneath C5), the bass comes to rest on G on the upbeat to the final beat. Measure 8 launches the subject again on D while the soprano holds an F#4; the notes A-B-C that follow in the soprano sound a C natural — the seventh that installs <strong>D7 (V7)</strong>, confirmed in the bass by the motion D-C-D. The excerpt breaks off on this open dominant, at full tension, just before the Invention goes on."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "One subject, two voices, a single idea",
+            "texte": "The whole excerpt rests on a single melodic motif (C-D-E-F-D-E-C, or its transpositions) that migrates ceaselessly between soprano and bass — stated in the soprano (measure 1), imitated in the bass an octave lower (still measure 1), then restated in the bass on the new degree (measures 7-8): the very principle of invention counterpoint, in which one line alone generates the entire two-part discourse."
+          },
+          {
+            "titre": "A modulation through the nearest door",
+            "texte": "C major tips over into G major, its dominant — the most natural modulation there is, set in motion by a pivot chord (C = I/IV, measure 4) and then confirmed by a secondary dominant arpeggiated in full in the bass (D7 through all three of its inversions). From that moment on, the figuring reasons in the key of arrival."
+          },
+          {
+            "titre": "Resolutions delayed, never fudged",
+            "texte": "Twice in this excerpt a prepared dissonance is denied its most expected resolution: the seventh of measure 4 escapes by way of a scale instead of falling (measure 5), and the accented C5 in the soprano rises to D5 rather than the reverse — two detours that stretch the tension without ever betraying it."
+          }
+        ]
+      }
     }
   },
   "cours16": {
@@ -1912,7 +2612,77 @@
         "Reharmonizing = replacing the chords under an untouched melody, keeping every melody note compatible with its new chord",
         "Secondary dominants (V/V, V/IV) and tritone substitutes are the most common tools",
         "\"My Funny Valentine\" (Bill Evans): minor cadence iiø7-V7alt-i preceded by a subdominant excursion (IV9-IV13sus)"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "C minor (three flats). The standard changes of the A section are famous for their <em>line cliché</em>: Cm-Cm(maj7)-Cm7-Cm6, the descending line C-B-B♭-A over a tonic pedal, before Abmaj7-Fm7-Dø7-G7. This transcription does not play the line: it <strong>compresses it and replaces it</strong>.",
+        "metrique": "4/4.",
+        "forme": "9 measures = the first A section of the standard. The model's horizontal line cliché is verticalised in the very first chord (measure 1); the two measures thus freed up (2-3) are filled with altered turnarounds and with a reharmonisation of the same melody; two chords of the changes (Abmaj7/Fm7) are merged into one (measure 5); and the arrival of the iiø7 (measures 7-8) itself becomes a formal gesture — an arching wave, not simply a chord.",
+        "sections": [
+          {
+            "label": "Measure 1",
+            "titre": "The line cliché already summed up in a single chord",
+            "chiffrage": "Cm6/9",
+            "fonctions": "i(6/9)",
+            "texte": "Bass C3, and above it A♮3-D4-E♭4-G4: root, major sixth, ninth, third, fifth — a complete <strong>Cm6/9</strong>. The A♮, the point of arrival of the standard line cliché (C-B-B♭-<em>A</em>), is thereby integrated vertically from the very first chord: four measures of horizontal harmony summed up in one voicing. The friction between D4 and E♭4 (a minor second at the heart of the chord) is the cluster signature of the whole transcription. The melody enters as an upbeat halfway through the second beat: C5-D5-E♭5, the generative cell of the theme, marked <em>p</em>."
+          },
+          {
+            "label": "Measure 2",
+            "titre": "The substituted turnaround, entirely altered",
+            "chiffrage": "D7(♯9♭13) – G7(♭9♭13)",
+            "fonctions": "II7 alt (V/V) – V7 alt",
+            "texte": "In place of measures 2-3 of the standard cliché, a fully altered II7-V7 turnaround. D7: a 3-7 shell in the bass (F♯3-C4), F♮4 (= E♯, the ♯9), B♭4 (♭13) and the root in the soprano. G7 (placed as an anticipation, an eighth note then a dotted quarter): a 7-3 shell (F♮3-B♮3) — the voice leading between the shells is exact, F♯→F♮, C→B, each voice falling by a semitone — capped by E♭ (♭13), A♭ (♭9), and the fifth on top. These ♭9/♭13 over G7 are the notes of C harmonic minor: the alteration is no exoticism, it is the key itself."
+          },
+          {
+            "label": "Measure 3",
+            "titre": "The same melody, an adverse harmonisation",
+            "chiffrage": "Cm6/9 → C7(♯11)",
+            "fonctions": "i → V7/iv",
+            "texte": "The voicing of measure 1 returns exactly (the same four notes), and the melody launches the cell C-D-E♭ once more. But the harmony tips over on the <strong>fourth beat</strong> (the D4 of the third beat is no more than a passing note in the bass): E♮4-F♯4 light up above B♭3 — third, Lydian ♯11 and seventh of a rootless C7, functioning as V7/iv towards F minor. The same melody, the opposite harmonisation: the excerpt's first lesson in reharmonisation. Crescendo marked."
+          },
+          {
+            "label": "Measure 4",
+            "titre": "The chromatic wave",
+            "chiffrage": "Aø(9) – G♭13(♯11) – F13(♯11)",
+            "fonctions": "V/iv – subV/iv – (planing)",
+            "texte": "The densest measure of all. Aø9 (A3 in the bass, E♭-G-B♮(the ninth)-D above, without the third, C) functions as V/iv towards F minor. Then G♭13(♯11): the tritone substitute for C7, in a complete voicing (G♭-B♭ in the bass, F♭-A♭-C-E♭ above). And then the remarkable gesture: F13(♯11) is exactly the same structure slid down a semitone (F-A / E♭-G-B♮-D) — <strong>parallel planing</strong>, every voice descending a semitone as a single block. Diminuendo marked: the wave falls back."
+          },
+          {
+            "label": "Measures 5-6",
+            "titre": "Two chords merged, then the descent towards the iiø",
+            "chiffrage": "Fm9 – F13sus9 – Fm9/E♭",
+            "fonctions": "iv9 – iv(sus)",
+            "texte": "Fm9 (bass F2-C3 in tied whole notes): three successive positions of the same chord in the right hand — G-A♭-C (9/3/5, another second-cluster), B♭-D♮ (the 11th and the <em>Dorian</em> 13th, not the flattened sixth of the natural minor), then A♭-C-E♭ (3/5/7). The standard changes give Abmaj7 and THEN Fm7 here — two relative chords that the transcription <strong>merges into a single spread-out Fm9</strong> (Fm9 already contains every note of Abmaj7). Measure 6: F13sus9 (11, 13, 9, 7, no third), then the bass slides down to E♭ beneath F3 (Fm9/E♭): F→E♭→D, the obligatory passage of the changes (measures 6-7 of the standard) — the one place where this transcription follows them to the letter."
+          },
+          {
+            "label": "Measures 7-8",
+            "titre": "The arc around the iiø: summit, then descent",
+            "chiffrage": "Dø7 (ascending arpeggio) → G7(♯9♭13)",
+            "fonctions": "iiø7 – V7 alt",
+            "texte": "The whole of measure 7 is a triplet arpeggio running across both hands: the bass spells out D2-D3-F3-A♭3-C4-E♭4 (the complete ø7 chord, plus a ♭9 spilling over), while the right hand piles up three-note voicings rising in parallel as far as A♭4-C5-G5 — the highest point of the entire excerpt. Measure 8 comes back down in an almost symmetrical gesture (the same three-note stacks, traversed in reverse), the bass descending E♭4-D4-A♭3-F3, before landing on the third beat on G7(♯9♭13): G2 in the bass, an F3 shell, then B♮-E♭-F-B♭ (3-♭13-7-♯9). The melody descends A♭-G-F in a triplet — the A♭ a passing ♭9: the chord thus accumulates a ♯9 and a melodic ♭9, a saturated dominant just before the resolution."
+          },
+          {
+            "label": "Measure 9",
+            "titre": "The bare resolution",
+            "chiffrage": "Cm",
+            "fonctions": "i",
+            "texte": "A deliberately stripped-down resolution after the swell that came before. Melody E♭4 (a dotted half note); in the bass, D4→C4: a 9-8 appoggiatura that resolves — the sole ornament in an otherwise empty measure. Then the triplet F4-G4 launches a fresh upbeat towards the continuation of the theme, cut off here."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "The tritone substitute, without even resolving",
+            "texte": "G♭13(♯11) (measure 4) is the classic tritone substitute for C7 — but instead of resolving to F minor like the expected subV7, it slides down a single semitone to F13(♯11), an identical structure. Substitution becomes a purely chromatic device here (<em>planing</em>), detached from any idea of resolution — colour takes precedence over function."
+          },
+          {
+            "titre": "The line cliché, horizontal then vertical",
+            "texte": "The standard unfurls Cm-Cm(maj7)-Cm7-Cm6 across four measures; this transcription stacks the same notes (including the A of the cliché) into a single Cm6/9 from measure 1 onwards, freeing all the remaining space for reharmonisation."
+          },
+          {
+            "titre": "The voicing as an autonomous expressive object",
+            "texte": "In Bach (Invention no. 1, lesson 13), form is born of voice leading; in Satie (Gymnopédie, lesson 14), of repetition; in the bare jazz changes (Autumn Leaves, lesson 15), of functional succession. Here the texture itself — the arch of measures 7-8, the planing of measure 4 — becomes a formal event: the voicing, and not merely the chord it carries, is the subject."
+          }
+        ]
+      }
     }
   },
   "cours15": {
@@ -1996,7 +2766,70 @@
         "A chain of secondary dominants (V7/III, subV7/VI, V7/V...) briefly tonicizes each degree before the final resolution",
         "The tritone substitute replaces a dominant with its tritone: same tension (3rd/7th swapped), chromatic bass",
         "\"Autumn Leaves\" (Kosma): descending iv-VII-III-VI-ii°/V-V-i sequence, then a V7/IV turnaround that closes the loop"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "G minor, with its relative B♭ major permanently on the horizon — the very principle of the “Autumn Leaves” changes, which loop between the two poles by way of a chain of descending fifths (C→F→B♭→E♭→A→D→G). In this arrangement, almost every chord of the sequence is in fact a <strong>secondary dominant</strong> towards the degree that follows.",
+        "metrique": "4/4. Tempo 120 (medium swing).",
+        "forme": "10 measures = a one-beat pickup (measure 1) + the complete A section of the standard (measures 2-9, eight measures) + the start of its repeat (measure 10) — the pickup motif in fact returns at the end of measure 9, confirming that the form loops back on itself.",
+        "sections": [
+          {
+            "label": "Measure 1",
+            "titre": "The pickup, and its bitonal ambiguity",
+            "chiffrage": "(no harmony)",
+            "fonctions": "—",
+            "texte": "Three ascending stepwise eighth notes, G-A-B♭, the left hand silent. A figure open to two readings: <strong>1̂-2̂-3̂ in G minor</strong> (tonic, second degree, minor third) or, viewed from the relative pole, <strong>6̂-7̂-1̂ in B♭ major</strong> (submediant, leading note, tonic) — the ambiguity of the two twin keys laid out from the upbeat, before the first chord has even sounded."
+          },
+          {
+            "label": "Measures 2-3",
+            "titre": "Cm9, then F7: the sequence sets off, the 13th hardens",
+            "chiffrage": "Cm9 – F7(♭13)",
+            "fonctions": "iv7 [ii7] – V7/III",
+            "texte": "The chord marking in the file already reads “m9”, not “m7”: D4 (the ninth) is indeed held in the bass beneath the struck E♭4-B♭4, under the E♭5 of the melody — a complete <strong>Cm9</strong> from the written symbol onwards; only the simplified roman numeral (“IV7”) leaves the ninth unspecified. In measure 3 the inner voice descends D4→D♭4 (<strong>13th→♭13</strong>) while the A3 (the third) is held on — an F7 that hardens as the measure unfolds, prepared by a chromatic acciaccatura (C♯4) at its head."
+          },
+          {
+            "label": "Measure 4",
+            "titre": "IIImaj7, then the first arranger's gesture",
+            "chiffrage": "B♭maj7 – E7",
+            "fonctions": "IIImaj7 – subV7/VI",
+            "texte": "B♭maj7 treats its major seventh (A) as a stable colour, exactly as in Satie (previous lesson). Then, absent from the most common changes: a <strong>rootless E7</strong> (G♯3 = third, F♯3 = ninth, D = seventh), the tritone substitute for B♭7 (V7/VI). The bass travels B♭2-F3-E♭2-D3 across the whole measure — four distinct pitches that come to rest on D, never returning to the E♭."
+          },
+          {
+            "label": "Measures 5-6",
+            "titre": "A Satie-like VImaj7, then the peak of tension",
+            "chiffrage": "E♭maj9 – A7(♯9,♭13,♭5)",
+            "fonctions": "VImaj7 – V7/V",
+            "texte": "A close-voiced E♭maj9 (F3 = ninth, G3 = third, D4 = major seventh) prolongs the motionless colour. Measure 6 replaces the expected diatonic ii° (Am7♭5) with its dominantised version: a <strong>fully altered A7</strong> — C♮5 held (♯9), F4 (♭13, after a chromatic F♯), E♭4 (♭5) inside the triplet, and G♯3→G♮3 in the bass, grinding against the seventh before falling into line with it. The peak of tension of the whole excerpt, in exactly its rightful place ahead of the principal dominant."
+          },
+          {
+            "label": "Measure 7",
+            "titre": "V7, the 4-3 resolution crossed with the ♭9",
+            "chiffrage": "D9sus4 – D7(♭9)",
+            "fonctions": "V7",
+            "texte": "Built in two stages: first a complete <strong>D9sus4</strong> (D-G-A-C-E: fourth, fifth, seventh, ninth), then the suspension resolves (G3→F♯3, a 4-3 motion) at exactly the moment the melody sets down E♭4 — the <strong>♭9</strong> — held as a half note: resolution and fresh dissonance exchanged within one and the same gesture."
+          },
+          {
+            "label": "Measures 8-10",
+            "titre": "Return, turnaround, and a truncated repeat",
+            "chiffrage": "Gm7→Gm6→Gm(♭6) – G7(♭9) – Cm7",
+            "fonctions": "i – V7/IV – iv7",
+            "texte": "Measure 8 (<strong>Gm7→Gm6→Gm(♭6)</strong>, three chords in succession) is a <em>line cliché</em> (F→E♮→E♭, 7th-6th-♭6th) over a static minor tonic. Measure 9 (<strong>G7(add ♭9)</strong>, roman numeral “V7/IV”) sounds G-B-D-F-A♭ complete between the two hands, the secondary dominant that prepares the return of Cm7 while the melody launches the pickup motif again. Measure 10 reopens the loop: Cm7 with the 11th (F5) at the top of the voicing, an ascending arpeggiated triplet, and a bass that comes to rest on a chromatic B♮ — the excerpt is cut off before its target can reveal itself."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Two substitutions, two different logics",
+            "texte": "The E7 inserted in measure 4 ADDS a chord absent from the most common changes (a chromatic approach by tritone substitute). The A7 of measure 6 REPLACES a chord already there (the diatonic ii°, Am7♭5) with its dominantised version, on the same root. Two quite distinct reharmonisation techniques, brought together in this single chorus."
+          },
+          {
+            "titre": "Almost every chord is a secondary dominant",
+            "texte": "V7/III, subV7/VI, V7/V, V7/IV: the descending sequence of “Autumn Leaves” strings together passing tonicisations rather than bare diatonic degrees — the very vocabulary of lesson 15."
+          },
+          {
+            "titre": "Dissonance as the default material",
+            "texte": "After Bach (dissonance as contrapuntal event) and Satie (dissonance as motionless colour), this arrangement reveals a third regime: 9ths, 13ths and ♭9s are neither prepared nor resolved in the classical sense — they are the chord's norm, managed through degrees of alteration (13→♭13, sus4→♭9, fully altered) along a cycle of fifths that Bach would have recognised."
+          }
+        ]
+      }
     }
   },
   "cours21": {
@@ -2610,7 +3443,63 @@
         "9th = 2nd degree an octave up, 11th = 4th, 13th = 6th",
         "#9 and b9 are typical tensions of the altered dominant chord",
         "\"All the Things You Are\" (Kern/Hammerstein): an introductory vamp built entirely on altered dominant chords (#9)"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "A♭ major (key signature of four flats) — but this introductory vamp never settles into it: it alternates two altered dominants without ever resolving onto A♭.",
+        "metrique": "4/4, swing (uneven eighths), quarter note = 140.",
+        "forme": "A two-bar vamp (a held chord, then a neighbour-note figure in the bass) repeated before the standard itself begins, at measure 9 of the original file (not included here; it opens on F minor) — this introduction is only a chromatic preparation, not yet the tune.",
+        "sections": [
+          {
+            "label": "Measure 1",
+            "titre": "The upbeat",
+            "chiffrage": "(rest) — A",
+            "fonctions": "—",
+            "texte": "The excerpt opens on a rest, then on a single bass note (A natural), which immediately falls a semitone to A♭ — the <strong>5th</strong> of the chord that arrives in the next measure, not its root. So this is not a tonal upbeat: it is a colour approached by chromatic step."
+          },
+          {
+            "label": "Measures 2-3",
+            "titre": "Db7(#9), the tritone substitution",
+            "chiffrage": "Db7(#9)",
+            "fonctions": "SubV/V",
+            "texte": "The bass lays down the root (D♭) then the fifth (A♭); on the offbeat the right hand strikes the three notes that carry the whole colour of the chord: F (the third), B natural (spelled as the minor 7th) and E natural (<strong>the augmented 9th</strong>) — neither root nor fifth in that hand: the tensions alone carry the harmonic identity. Db7 replaces G7 by tritone substitution (the same F–B tritone), leading towards C7 in the following measure."
+          },
+          {
+            "label": "Measures 4-5",
+            "titre": "C7(#9), the dominant of the relative minor",
+            "chiffrage": "C7(#9)",
+            "fonctions": "V7/VI",
+            "texte": "The same gesture, a third lower: here again the right hand plays only the third (E), the 7th (B♭) and the augmented 9th (E♭) — with no root and no fifth. This is the secondary dominant of the key's relative minor (F minor), which does not appear until measure 9 of the original file. Measure 5 ornaments this harmony with a descending line in the right hand (A♭-G-C-F-A) before the cycle sets off again."
+          },
+          {
+            "label": "Measures 6-7",
+            "titre": "Db7(#9) returns, with a richer colour",
+            "chiffrage": "Db7(#9)",
+            "fonctions": "SubV7/V",
+            "texte": "The same chord comes back — but not identically. The analytical label changes this time (<strong>“SubV7/V”</strong> rather than “SubV/V”), and the right hand has grown richer: its shape brushes past other colours along the way — a 13th (B♭) and an augmented 11th (G) — absent from the first statement in measures 2-3. A vamp that repeats may therefore allow itself a little more colour with each return: this is the very spirit of the extensions taught in this lesson."
+          },
+          {
+            "label": "Measure 8",
+            "titre": "A last C7(#9), ending in suspense",
+            "chiffrage": "C7(#9)",
+            "fonctions": "V7/VI",
+            "texte": "The final chord of the excerpt: C7(#9), also voiced more richly than at its first appearance (the right hand adds the fifth, absent in measure 4). The excerpt stops here, at full tension — the standard begins just afterwards, at measure 9 of the original file, on F minor."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Tensions with neither root nor fifth",
+            "texte": "The two chords of this vamp (Db7(#9), C7(#9)) are voiced in exactly the same way: the bass carries the root and the fifth, the right hand plays only the third, the 7th and the altered 9th — a classic rootless jazz-piano voicing in which the tensions do all the work of colour."
+          },
+          {
+            "titre": "The colour grows richer with every return",
+            "texte": "The vamp is not simply copied out again: on its return (measures 6-8) the right hand adds touches of the 13th and the augmented 11th that were absent from the first statement — a repeated vamp is never quite identical to itself."
+          },
+          {
+            "titre": "A first taste of alteration before the tune",
+            "texte": "This introduction never touches the tune's tonic (A♭): it prepares the ear with two altered dominants before the standard proper — far more diatonic — begins at measure 9."
+          }
+        ]
+      }
     }
   },
   "cours22": {

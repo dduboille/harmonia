@@ -291,7 +291,56 @@
         "4 cadências: perfeita, imperfeita, meia-cadência (I–V), interrompida (V–VI)",
         "Cadência perfeita = acorde de tônica em posição fundamental",
         "A cadência estrutura a forma: período, seção, movimento"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Mi menor (i) — confirmada pelo polo I (Mim), omnipresente, e pela dominante V (Si7) com a sua sensível elevada (ré♯, própria do menor harmónico).",
+        "metrique": "4/4",
+        "forme": "Duas frases de 4 compassos: a primeira (c. 1-4) parte do I, atravessa uma marcha harmónica e detém-se numa semicadência sobre V7; a segunda (c. 5-8) resolve com uma cadência perfeita logo no compasso 6 e retoma depois o motivo de abertura uma oitava acima, a título de conclusão.",
+        "sections": [
+          {
+            "label": "Compassos 1-2",
+            "titre": "Motivo de abertura — a sexta dórica",
+            "chiffrage": "Em – Bm – Am6 – Em  |  Am6 – B7 – Em",
+            "fonctions": "i – v – iv6 – i  |  iv6 – V7 – i",
+            "texte": "O motivo de abertura instala a tónica através de um movimento conjunto descendente nas vozes superiores (si-si-lá-sol). O acorde <strong>Am6</strong> (lá-dó-mi-fá♯) que prepara cada regresso ao i não é um verdadeiro sexto grau: o fá♯ é uma <em>sexta acrescentada</em> (cor dórica) acima do iv (Am), e não uma sétima. O compasso 2 fecha a frase com um movimento clássico iv6 → V7 → i, com a sensível ré♯ do si7 a subir ao mi."
+          },
+          {
+            "label": "Compassos 3-4",
+            "titre": "Marcha harmónica e semicadência",
+            "chiffrage": "A – D – G  |  Em – B7",
+            "fonctions": "V/VII – VII – III  |  i – V7",
+            "texte": "Marcha descendente por quintas (lá→ré→sol): <strong>A</strong> (com o seu dó♯, sensível emprestada) age como dominante secundária de <strong>D</strong> (sétimo grau), que por sua vez resolve em <strong>G</strong>, o relativo maior (terceiro grau). O compasso 4 regressa ao i antes de se deter sobre o V7 — uma <em>semicadência</em> que suspende a primeira frase sem a concluir."
+          },
+          {
+            "label": "Compassos 5-6",
+            "titre": "Retardo e cadência perfeita",
+            "chiffrage": "C – Em – B7sus(4-3)  |  Em",
+            "fonctions": "VI – i – V4/3  |  i",
+            "texte": "Desvio pelo sexto grau (C) antes de repousar sobre o i, e depois um <strong>B7sus</strong> (si-mi-fá♯-lá): o mi (quarta suspensa) colore primeiro a dominante, antes de o ré♯ (terceira, sensível do tom) alcançar a voz superior no último tempo. O compasso 6 conclui com uma <strong>cadência perfeita</strong>: o mi menor soa em semibreve, com a fundamental no BAIXO E no SOPRANO (mi3/mi5), exatamente a condição que esta lição estabelece para se reconhecer uma cadência perfeita."
+          },
+          {
+            "label": "Compassos 7-8",
+            "titre": "Retoma à oitava",
+            "chiffrage": "Em – Bm – Am6 – Em  |  Am6 – B7 – Em",
+            "fonctions": "i – v – iv6 – i  |  iv6 – V7 – i",
+            "texte": "Retoma EXATA da cifra dos compassos 1-2, nota por nota, mas transposta uma oitava acima (si5-si5-lá5-sol5 em vez de si4-si4-lá4-sol4) — um eco que fecha o excerto com a mesma sonoridade que o abrira, desta vez sem retomar fôlego: o motivo leva até ao fim o seu próprio movimento iv6-V7-i."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "A sexta dórica (Am6)",
+            "texte": "O atrito entre o fá♯ (sexta do iv) e o dó natural dá uma cor ao mesmo tempo melancólica e requintada, tomada de empréstimo ao modo dórico — um traço de estilo que regressa 4 vezes no excerto (c. 1, 2, 7 e 8)."
+          },
+          {
+            "titre": "Condução das vozes",
+            "texte": "A voz superior (soprano) procede quase sempre por movimento conjunto; o baixo, esse, alterna notas sustentadas e saltos de acorde para acorde — um contraponto simples, típico da escrita coral de Bach reduzida ao piano."
+          },
+          {
+            "titre": "Duas cadências, duas funções",
+            "texte": "A semicadência do compasso 4 (sobre V7) cria a expectativa; a cadência perfeita do compasso 6 (i, com a fundamental duplicada no baixo e no soprano) resolve-a. A retoma dos compassos 7-8 já não procura concluir — fecha o círculo."
+          }
+        ]
+      }
     }
   },
   "cours5": {
@@ -402,7 +451,77 @@
         "Empréstimo = acorde de uma tonalidade paralela ou relativa",
         "Sexta napolitana: bII6 → V → I",
         "Região modal: acordes maiores sobre graus naturalmente menores"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Lá menor (i). A sensível (sol♯) só aparece nos acordes que a exigem (V, V7) — no resto, o excerto explora verdadeiras cores de empréstimo, e não apenas a escala menor harmónica.",
+        "metrique": "4/4.",
+        "forme": "O tema inicial (c. 1-2) regressa reharmonizado e reorientado para fá (c. 5-6), a nota que serve de baixo às duas sextas aumentadas do excerto: primeiro a italiana (c. 4, retomada no c. 9), depois a francesa (c. 10, mais rica de uma nota). O excerto detém-se suspenso sobre a dominante (c. 10) — a frase continua para lá destes dez compassos.",
+        "sections": [
+          {
+            "label": "Compassos 1-2",
+            "titre": "O tema, em uníssono à oitava",
+            "chiffrage": "Lám",
+            "fonctions": "i",
+            "texte": "Canto e baixo tocam EXATAMENTE a mesma linha, à oitava (dó-si-lá, depois um mi prolongado): nenhuma harmonia vertical, apenas o modo menor exposto a nu, em pianissimo. A terceira (dó) tinge a tonalidade com a sua cor melancólica logo desde a primeira nota."
+          },
+          {
+            "label": "Compasso 3",
+            "titre": "Uma oscilação tónica-dominante sobre um baixo que desce por graus conjuntos",
+            "chiffrage": "Lám/Dó  →  Mi7/Si  →  Lám  →  Mi/Sol♯",
+            "fonctions": "i6  →  V4/3  →  i  →  V6",
+            "texte": "Quatro acordes num único compasso, mas uma só linha diretriz: o baixo desce dó-si-lá-sol♯, grau a grau. O sol♯ (a sensível) fecha o compasso sobre a dominante em primeira inversão — a alternância i-V ancora solidamente a tonalidade antes do empréstimo que se segue."
+          },
+          {
+            "label": "Compasso 4",
+            "titre": "A sexta aumentada italiana",
+            "chiffrage": "It+6 (fá-lá-ré♯)  →  Mi",
+            "fonctions": "SD (empréstimo)  →  V",
+            "texte": "Primeiro empréstimo cromático do excerto: sobre um fá no baixo (o VI grau abaixado), o acorde fá-lá-ré♯ forma uma <strong>sexta aumentada</strong> — o intervalo fá-ré♯ (dez semitons) que dá o nome ao acorde. As duas notas extremas divergem por movimento contrário, cada uma um semitom: o fá desce ao mi (no baixo), o ré♯ sobe ao mi (acima) — uma resolução em leque sobre o uníssono mi, que se torna a dominante. Uma semicadência de enorme tensão."
+          },
+          {
+            "label": "Compassos 5-6",
+            "titre": "O mesmo motivo, reharmonizado e reorientado",
+            "chiffrage": "Sidim",
+            "fonctions": "ii°",
+            "texte": "O motivo inicial regressa com os mesmos intervalos, um grau acima (ré-dó-si, depois um fá prolongado em vez do mi) — mas harmonizado desta vez sobre o II grau diminuto (si-ré-fá), a única tríade diminuta do excerto. O fá prolongado que encerra a frase não é casual: é a mesma nota que serve de baixo às duas sextas aumentadas do excerto."
+          },
+          {
+            "label": "Compasso 7",
+            "titre": "O mesmo gesto do compasso 3, com uma cor a menos",
+            "chiffrage": "Mi7/Ré  →  Lám/Dó  →  Mi/Si  →  Lám",
+            "fonctions": "V4/2  →  i6  →  V6/4  →  i",
+            "texte": "O mesmo princípio do compasso 3 (um baixo que liga i e V) regressa, desta vez desencadeado pela sétima da dominante (Mi7 em terceira inversão, ré no baixo). O terceiro acorde (mi-si, V6/4) omite a sua própria terceira (sol♯): uma dominante reduzida à fundamental e à quinta, sem a sua cor de sensível."
+          },
+          {
+            "label": "Compasso 8",
+            "titre": "Um empréstimo modal e depois um pivô para a dominante",
+            "chiffrage": "Mim/Sol  →  Fá♯m7",
+            "fonctions": "v (empréstimo)  →  ii7/V",
+            "texte": "Coloração modal em estado puro: a sensível (sol♯) apaga-se e dá lugar ao sol natural do ANTIGO modo menor — o acorde de dominante torna-se menor (v, não V), um empréstimo ao modo mais antigo da tonalidade. Encadeia com um Fá♯m7 (sem a quinta, dó♯): o ii7 DA DOMINANTE, que prepara o regresso de mi como polo de atração."
+          },
+          {
+            "label": "Compassos 9-10",
+            "titre": "It+6 retomada, depois Fr+6 — o excerto fecha em suspenso",
+            "chiffrage": "It+6  →  Fr+6 (fá-lá-si-ré♯)  →  Mi",
+            "fonctions": "SD (empréstimo)  →  SD (empréstimo)  →  V",
+            "texte": "A sexta italiana (fá-lá-ré♯) regressa igual e ganha uma nota suplementar no compasso 10: a sexta <strong>francesa</strong> acrescenta o si (fá-lá-si-ré♯) — a segunda maior lá-si, que a torna mais mordente do que a italiana. As duas sextas partilham o mesmo baixo (fá) e a mesma resolução em leque sobre mi. O excerto detém-se aqui, suspenso sobre a dominante: a frase continua para lá destes dez compassos."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Uma única nota-pivô para duas sextas",
+            "texte": "Fá (o VI grau abaixado) serve de baixo às duas sextas aumentadas do excerto (compassos 4 e 9-10) — primeiro a italiana (três sons), depois a francesa (quatro sons, com o si acrescentado). Uma só nota, duas cores de empréstimo."
+          },
+          {
+            "titre": "A resolução em leque",
+            "texte": "As duas sextas aumentadas resolvem da mesma maneira: as suas duas notas extremas (fá e ré♯) convergem por movimento contrário, cada uma um semitom, sobre o uníssono mi — a dominante. É a assinatura de toda a sexta aumentada, seja qual for a sua riqueza (italiana, francesa, alemã)."
+          },
+          {
+            "titre": "Um empréstimo modal, não apenas cromático",
+            "texte": "O compasso 8 toma emprestado ao ANTIGO modo menor (natural): a dominante perde aí a sua sensível (sol♯→sol) para se tornar um acorde menor. Um empréstimo de modo, a par dos empréstimos cromáticos das sextas aumentadas — duas faces do mesmo princípio: sair da escala sem abandonar a tonalidade."
+          }
+        ]
+      }
     }
   },
   "cours6": {
@@ -601,7 +720,70 @@
         "Notas estranhas: passagem, bordadura, suspensão, antecipação, escapada, cambiata",
         "Suspensão: preparação → dissonância → resolução",
         "Pedal: nota sustentada sob harmonias mutáveis"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Mi bemol maior (I) — aqui a armação de clave (três bemóis) codifica realmente a tonalidade (ao contrário das peças em menor, onde a armação nunca distingue um tom do seu relativo).",
+        "metrique": "12/8 (quatro tempos, cada um uma semínima com ponto).",
+        "forme": "A anacruse (um só si♭, a dominante melódica) lança o tema. Os compassos 2 a 5 expõem a frase completa: tónica colorida por um empréstimo cromático sobre pedal, dominante secundária para o II grau, progressão para a dominante da dominante, cadência perfeita. Os compassos 6 a 9 repetem-na nota por nota (a mesma cifragem); Chopin varia apenas a ornamentação do canto.",
+        "sections": [
+          {
+            "label": "Compasso 1",
+            "titre": "A anacruse",
+            "chiffrage": "(si♭ só)",
+            "fonctions": "—",
+            "texte": "Uma só nota, si♭4 — a dominante melódica do tom — lança o tema antes mesmo de a harmonia começar. Nada na mão esquerda: o silêncio prepara a entrada."
+          },
+          {
+            "label": "Compasso 2",
+            "titre": "A tónica, colorida por um empréstimo cromático sobre pedal",
+            "chiffrage": "Mi♭  →  Fám7♭5/Mi♭  →  Mi♭  →  Mi♭/Ré",
+            "fonctions": "I  →  IIø7  →  I  →  I7",
+            "texte": "A mão esquerda arpeja o acorde de tónica (mi♭-sol-si♭) em colcheias. No 2.º tempo, o baixo MANTÉM o mi♭ com o pedal enquanto a mão desenha um <strong>II grau meio-diminuto</strong> (fá-lá♭-si♮-mi♭): um acorde tomado de empréstimo a mi♭ menor, que colore a tónica sem nunca a abandonar realmente; é o pedal, e não o ouvido harmónico, que continua a ancorar o mi♭. O 4.º tempo enriquece a tónica com a sua sétima maior (ré) antes de relançar a frase."
+          },
+          {
+            "label": "Compasso 3",
+            "titre": "Dominante secundária para o II grau",
+            "chiffrage": "Dó7  →  Fám",
+            "fonctions": "V7/II  →  II",
+            "texte": "Dó7 (dó-mi-sol-si♭) é a dominante do II grau (fá menor): uma tonicização passageira que colore a progressão sem nunca abandonar de vez mi♭ maior. O canto desdobra uma bordadura em grupo (um <em>grupeto</em> belcantista) em torno deste movimento."
+          },
+          {
+            "label": "Compasso 4",
+            "titre": "Progressão para a dominante da dominante",
+            "chiffrage": "Si♭7  →  Sidim7  →  Dóm  →  Fá7/Lá",
+            "fonctions": "V7  →  VII/VI  →  VI  →  V6/5/V",
+            "texte": "O baixo sobe por semitons (si♭→si♮→dó) antes de um salto de terceira para o lá: um acorde de sétima diminuta sobre a sensível do VI grau (si°7) empurra para dó menor (VI), que por sua vez prepara — através de uma nova dominante secundária (Fá7, com o lá no baixo) — a chegada da dominante."
+          },
+          {
+            "label": "Compasso 5",
+            "titre": "Cadência perfeita",
+            "chiffrage": "Si♭7  →  Mi♭",
+            "fonctions": "V7  →  I",
+            "texte": "A dominante resolve sobre a tónica: a primeira frase fecha-se. O canto desdobra aí o seu traço mais veloz (fusas), uma cadência ornamentada típica do estilo belcantista de Chopin."
+          },
+          {
+            "label": "Compassos 6-9",
+            "titre": "A frase, nota por nota — exceto o canto",
+            "chiffrage": "(idêntico aos compassos 2-5)",
+            "fonctions": "I → IIø7 → I → I7 → V7/II → II → V7 → VII/VI → VI → V6/5/V → V7 → I",
+            "texte": "A harmonia e o baixo repetem-se tal e qual. Só muda a ornamentação do canto: o compasso 8 sobrepõe-lhe um longo <strong>trilo</strong> escrito nota por nota (fá-sol em alternância, vinte e quatro colcheias) sobre a mesma progressão V7-VII/VI-VI-V6/5/V — um retardo da cadência que resolve por fim no compasso 9, sobre a mesma cadência perfeita do compasso 5."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Um pedal pode sustentar um empréstimo sem o atraiçoar",
+            "texte": "O II grau meio-diminuto do compasso 2 lança uma sombra cromática sobre a tónica, mas como o mi♭ permanece retido pelo pedal enquanto soa, o ouvido nunca perde o fio da tónica. O empréstimo decora, não desloca o centro tonal."
+          },
+          {
+            "titre": "Uma progressão nem sempre é inteiramente conjunta",
+            "texte": "O baixo do compasso 4 começa com um movimento cromático estrito (si♭-si♮-dó) mas fecha-se com um salto de terceira (dó-lá): o apoio de uma dominante secundária, e não mais um passo. Nem todas as «progressões» harmónicas são linhas de baixo inteiramente conjuntas."
+          },
+          {
+            "titre": "A repetição serve a ornamentação, não a harmonia",
+            "texte": "Os compassos 6-9 retomam a harmonia e o baixo dos compassos 2-5 sem a menor alteração: é o canto, e só ele, que se renova (o trilo do compasso 8 é o exemplo mais espetacular). Uma lição de estilo belcantista: a ornamentação é o lugar da variação, enquanto a estrutura harmónica permanece o quadro estável."
+          }
+        ]
+      }
     }
   },
   "cours7": {
@@ -701,7 +883,70 @@
         "V7/X → X: tonicização temporária",
         "Alterações sempre resolvidas no sentido cromático",
         "Frequentes em jazz e música do período romântico"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Lá maior (armação de 3 sustenidos). Toda a frase gravita para a dominante (Mi): cada paragem um pouco mais longa é aí tonicizada uma segunda vez através da sua própria dominante secundária (V/IV e depois, duas vezes, V/V) — o exemplo mesmo do tema desta lição.",
+        "metrique": "3/4, Andante teneramente. Anacruse de um só tempo (entrada no 3.º tempo).",
+        "forme": "Uma única grande frase de 8 compassos (mais a anacruse), num só gesto ascendente: não fecha sobre a tónica, mas detém-se em semicadência, realçada pela sua própria dominante secundária (V7/V → V), suspensa à espera do que se segue.",
+        "sections": [
+          {
+            "label": "Anacruse e compasso 1",
+            "titre": "A tónica e depois a subdominante em segunda inversão",
+            "chiffrage": "Lá | Ré/Lá",
+            "fonctions": "I | IV6/4",
+            "texte": "A anacruse pousa suavemente o grau <strong>I</strong> (Lá maior). O compasso 1 instala-se sobre <strong>IV6/4</strong> (Ré maior, quinta no baixo): o baixo permanece no lá — que é a tónica da peça, mas desempenha aqui o simples papel de quinta do acorde de IV — antes de uma breve bordadura (fá#) que prepara o compasso seguinte. Nenhuma alteração por enquanto: estamos no coração do tom principal."
+          },
+          {
+            "label": "Compassos 2-3",
+            "titre": "Resolução da subdominante, pequena progressão cadencial",
+            "chiffrage": "Ré/Fá# – Ré | Mi7/Ré – Lá/Dó# – Sim/Ré",
+            "fonctions": "IV6 – IV | V4/2 – I6 – ii6",
+            "texte": "O compasso 2 conclui a subdominante: primeira inversão (<em>IV6</em>, fá# no baixo) e depois estado fundamental (<em>IV</em>). O compasso 3 encadeia três acordes sobre uma descida conjunta do baixo (ré–dó#–ré): uma dominante de passagem em terceira inversão (<strong>V4/2</strong>), a tónica em primeira inversão (<strong>I6</strong>) e depois <strong>ii6</strong> — um pequeno movimento cadencial que fecha a primeira semifrase sem nunca parar."
+          },
+          {
+            "label": "Compasso 4",
+            "titre": "Um 6/4 cadencial e depois a dominante secundária do IV",
+            "chiffrage": "Lá/Mi (6/4 cadencial) – Mi – vii°/Sol",
+            "fonctions": "D – D – vii°6/4/IV",
+            "texte": "O primeiro acorde escreve-se «I6/4», mas o seu baixo (mi) é exatamente o do acorde de <strong>V</strong> que lhe sucede imediatamente sem se mover: é um clássico <em>6/4 cadencial</em>, uma simples bordadura da dominante — daí a sua função <strong>D</strong> e não de tónica, apesar da grafia «I». O 3.º tempo introduz a primeira verdadeira cor cromática da peça: uma tríade diminuta sobre dó# (dó#-mi-sol), cujo sol vem marcado na partitura como alteração acidental — substitui o sol# diatónico do tom. É a dominante secundária (o acorde de sensível) da subdominante, em segunda inversão (<strong>vii°6/4/IV</strong>): o sol natural vai resolver na terceira do acorde de Ré no compasso seguinte."
+          },
+          {
+            "label": "Compassos 5-6",
+            "titre": "Regresso e depois a Dominante da Dominante",
+            "chiffrage": "Ré/Fá# – Lá/Mi (6/4 cadencial) | Si7/Ré# – Si7/Lá",
+            "fonctions": "IV6 – D | V6/5/V – V4/2/V",
+            "texte": "O compasso 5 retoma exatamente o gesto dos compassos 1-2 (IV6 e depois um novo 6/4 cadencial sobre a dominante). O compasso 6 introduz a segunda e mais importante alteração da peça: um <strong>ré#</strong>, sensível artificial que não pertence ao tom de Lá maior. Transforma a harmonia num Si7 — a dominante de Mi, ou seja, <strong>a dominante da dominante (V/V)</strong> —, primeiro em primeira inversão (<em>V6/5/V</em>) e depois em terceira inversão, com a sétima no baixo (<em>V4/2/V</em>): exatamente o mecanismo anunciado pela lição."
+          },
+          {
+            "label": "Compasso 7",
+            "titre": "O acorde ambíguo: sexta acrescentada ou sétima alterada?",
+            "chiffrage": "sol#-si-ré#-fá# (Si6 ≈ Sol#m7) – Lá – Si7",
+            "fonctions": "sensível alterada (D) – I – V7/V",
+            "texte": "Este acorde dá que hesitar, e com razão: as quatro notas realmente tocadas (sol#, si, ré#, fá#, com sol# no baixo) formam uma sonoridade classicamente ambígua. Lidas a partir do si (o baixo «teórico» da cifragem), são as notas de um Si maior com <em>sexta acrescentada</em> no baixo. Mas lidas a partir da nota realmente mais grave (sol#), são exatamente as de um <strong>Sol# menor com sétima</strong> em estado fundamental: a mesma ambiguidade de «Dó6 = Lám7». É esta segunda leitura que melhor explica o que se segue: o sol# é a sensível do tom e sobe com toda a naturalidade para <strong>Lá</strong> (o <em>I</em> que chega no 2.º tempo), enquanto o ré# — a mesma sensível cromática dos compassos 5-6 — continua a puxar para mi. O 3.º tempo relança de imediato <strong>V7/V</strong>: este compasso não faz mais do que respirar uma fração de segundo sobre a tónica antes de voltar a partir para a dominante."
+          },
+          {
+            "label": "Compasso 8",
+            "titre": "Semicadência reforçada pela sua própria dominante",
+            "chiffrage": "Si7/Mi → Mi",
+            "fonctions": "V7/V → V",
+            "texte": "A frase detém-se sobre a dominante (Mi maior) e não sobre a tónica: uma <strong>semicadência</strong>. Mas Brahms reforça-a fazendo-a preceder uma última vez da sua própria dominante secundária (<strong>V7/V</strong>), sobre um pedal de mi no baixo: o acorde de Mi nunca chega assim verdadeiramente «ao repouso»; permanece em suspenso, aberto à continuação da peça."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Uma frase inteiramente voltada para a dominante",
+            "texte": "A peça parte da tónica mas nunca se detém verdadeiramente nela: logo no compasso 1 o baixo traz já a nota mi (a dominante) sob uma roupagem de subdominante, e dois terços da frase (compassos 4 a 8) tonicizam sucessivamente o IV e depois, duas vezes, o próprio V. A semicadência final não é, por isso, nenhuma surpresa: é o desfecho lógico de uma frase construída como uma marcha para Mi."
+          },
+          {
+            "titre": "Uma mesma alteração, dois destinos diferentes",
+            "texte": "O sol natural do compasso 4 e o ré# dos compassos 6-7 desempenham exatamente o mesmo papel (sensível cromática tomada de empréstimo) mas apontam para dois graus diferentes: o IV para um, o V para o outro. Nenhuma alteração é decorativa: cada uma anuncia com precisão o acorde que toniciza."
+          },
+          {
+            "titre": "Quando uma só linha melódica admite duas leituras",
+            "texte": "O acorde do compasso 7 recorda que um mesmo grupo de notas pode ser analisado de duas maneiras igualmente corretas (sexta acrescentada / acorde de sétima da relativa): nesse caso é a condução das vozes que decide entre as duas leituras."
+          }
+        ]
+      }
     }
   },
   "cours8": {
@@ -997,7 +1242,70 @@
         "Marcha tonal: transposição no mesmo tom (intervalos diatônicos)",
         "Marcha real: transposição exata (intervalos cromáticos idênticos)",
         "Cromatismo: alterações não diatônicas enriquecendo a harmonia sem modular"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Ré menor (armadura de um bemol, Si♭).",
+        "metrique": "3/4 — o ritmo de sarabanda/chacona, com a sua tensão característica no 2.º tempo.",
+        "forme": "Um tema de baixo ostinato (uma anacrusa de dois tempos e depois quatro compassos) percorrido duas vezes seguidas (compassos 1-4 e depois 5-8): é o próprio princípio da variação em chacona. A figuração vai-se complicando progressivamente e a voz melódica propriamente dita só surge a partir da segunda repetição (compasso 7); até aí, tudo assenta numa única linha de baixo arpejada.",
+        "sections": [
+          {
+            "label": "Anacrusa (c. 0)",
+            "titre": "O acorde de abertura",
+            "chiffrage": "Rém",
+            "fonctions": "i",
+            "texte": "A peça abre sobre o acorde de tónica quebrado (Ré-Fá-Lá), repetido duas vezes ao longo dos dois tempos da anacrusa — um gesto de afirmação antes mesmo de o compasso começar verdadeiramente."
+          },
+          {
+            "label": "Compasso 1",
+            "titre": "Da supertónica à dominante",
+            "chiffrage": "Mim7b5/Ré — Lá7/Dó#",
+            "fonctions": "iiø4/2 — V6/5",
+            "texte": "Primeiro elo da descida cromática do baixo (Ré→Dó#): um acorde de supertónica meio-diminuto na <strong>3.ª inversão</strong> (a 7.ª, Ré, no baixo), que desliza para a dominante com sensível (Dó#) na <strong>1.ª inversão</strong>. Esta tensão harmónica por retardamento do baixo é típica da escrita das sarabandas."
+          },
+          {
+            "label": "Compasso 2",
+            "titre": "Tónica e depois a cor do VI",
+            "chiffrage": "Rém — Sib",
+            "fonctions": "I — VI",
+            "texte": "Regresso à tónica no estado fundamental e, em seguida, uma coloração pelo <strong>VI</strong> (Si♭ maior) — o baixo prossegue a sua descida diatónica (Ré→Si♭). Uma breve nota de passagem (Dó) fecha o compasso e prepara o que se segue."
+          },
+          {
+            "label": "Compassos 3-4",
+            "titre": "Subdominante, 6/4 de passagem e cadência",
+            "chiffrage": "Solm — Rém/Lá — Lá7/Dó# — Rém",
+            "fonctions": "iv — i6/4 — V7 — I",
+            "texte": "A subdominante menor (<strong>iv</strong>) conduz a um acorde de tónica na 2.ª inversão (<strong>i6/4</strong>, baixo Lá) que prolonga ainda a descida do baixo (Si♭→Sol→Ré/Lá), antes de um rápido traço em semicolcheias no baixo mergulhar no acorde de dominante com sétima (<strong>V7</strong>). Nova escala rápida no baixo à abertura do compasso 4 e depois a resolução: esta cadência autêntica fecha a primeira passagem completa do baixo ostinato, quatro compassos após a anacrusa."
+          },
+          {
+            "label": "Compassos 5-6",
+            "titre": "Segunda passagem: nota por nota idêntica",
+            "chiffrage": "Mim7b5/Ré — Lá7/Dó# | Rém — Sib",
+            "fonctions": "iiø4/2 — V6/5 | I — VI",
+            "texte": "A segunda repetição do baixo ostinato começa por retomar de forma idêntica os compassos 1 e 2, sem a mínima variante harmónica — apenas muda a figuração que os reveste de uma repetição para a outra, a essência da variação em chacona."
+          },
+          {
+            "label": "Compassos 7-8",
+            "titre": "Outra inversão e a entrada da melodia",
+            "chiffrage": "Mim7b5/Sol — Lá — Lá7 — Rém",
+            "fonctions": "iiø6/5 — V — V7 — I",
+            "texte": "Aqui, o baixo ostinato ganha finalmente uma verdadeira voz melódica por cima de si (até então, a peça era apenas uma única linha). O mesmo acorde de supertónica meio-diminuta dos compassos 1 e 5 regressa, mas desta vez na <strong>1.ª inversão</strong> (a terceira, Sol, no baixo — e não a 7.ª): o baixo ostinato não é, portanto, rigorosamente idêntico em cada passagem; Bach varia também a harmonia, e não apenas a ornamentação. A dominante chega primeiro como tríade simples (<strong>V</strong>) e depois surge a sua 7.ª (Sol) — não no baixo, mas no próprio ornamento melódico — para formar <strong>V7</strong> mesmo antes da cadência autêntica que fecha esta segunda repetição no compasso 8."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Um só baixo, contado duas vezes",
+            "texte": "Os compassos 1-2 e 5-6 partilham exatamente a mesma cifragem — a prova mais clara de que a chacona varia a figuração (o desenho das notas) muito mais do que a harmonia subjacente, que permanece frequentemente fixa de uma repetição para a outra."
+          },
+          {
+            "titre": "Mas não completamente fixo",
+            "texte": "Os compassos 3 e 7 mostram que Bach se permite também verdadeiras variantes harmónicas (acordes diferentes, inversões diferentes do mesmo acorde) — o baixo ostinato é um guia, não um colete-de-forças absoluto."
+          },
+          {
+            "titre": "A melodia nasce do baixo",
+            "texte": "Durante seis compassos, toda a peça não é mais do que uma única linha arpejada. A voz melódica propriamente dita só surge no compasso 7 — uma entrada tardia que marca um verdadeiro momento de viragem no discurso."
+          }
+        ]
+      }
     }
   },
   "cours1": {
@@ -1114,7 +1422,56 @@
         "Escala = 7 graus, 2 semitons diatônicos",
         "Sensível obrigatoriamente ascendente",
         "Modos gregos derivados das rotações da escala maior"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Dó maior — sem alterações na armação de clave. Os dois únicos meios-tons diatónicos naturais da escala (mi-fá, entre os graus III e IV, e si-dó, entre o VII e o I) são o motor de toda a peça.",
+        "metrique": "4/4",
+        "forme": "Todo o excerto (c. 1-8) assenta num plano de baixo com apenas DUAS notas de pedal: dó (c. 1-2 e 4-6, com uma breve bordadura si no compasso 3) e depois si (c. 7-8, a sensível mantida até ao fim do excerto). Acima destes pedais, a harmonia muda de cor apenas pelo movimento das vozes superiores — o baixo, esse, quase não se mexe.",
+        "sections": [
+          {
+            "label": "Compassos 1-3",
+            "titre": "Um pedal de tónica, ornamentado pela sua bordadura",
+            "chiffrage": "C  |  Dm7/C  |  G7/B",
+            "fonctions": "I  |  ii2  |  V6/5 (lido como i prolongado)",
+            "texte": "O baixo sustenta o dó nos dois primeiros compassos: o acorde move-se apenas POR CIMA dele — primeiro o arpejo dó-mi-sol (I), depois ré-fá-lá que, combinado com esse dó sustentado, desenha um <strong>Dm7 na terceira inversão</strong> (ii2). No compasso 3 o baixo desce um tom até si: a FORMA do acorde (sol-si-ré-fá) é de facto a de um G7 na primeira inversão (V6/5) — mas Bach usa-a aqui como simples <em>bordadura inferior</em> do pedal de dó, e não como uma verdadeira dominante à espera de resolução. Daí a cifra «V6/5(T)»: a forma é a de uma dominante, mas a FUNÇÃO continua a ser de tónica."
+          },
+          {
+            "label": "Compassos 4-5",
+            "titre": "Regresso à tónica e, depois, ao seu substituto",
+            "chiffrage": "C  |  Am/C",
+            "fonctions": "i  |  vi6",
+            "texte": "A bordadura resolve-se: o si do baixo volta a subir ao dó (compasso 4), enquanto o fá e o ré das vozes superiores descem ao mi e ao dó — o acorde de tónica reaparece nota por nota como no compasso 1. O compasso 5 muda de cor SEM mudar de baixo: o dó sustentado torna-se a <strong>terceira</strong> de um acorde de lá menor (vi6), o substituto mais direto da tónica, com a qual partilha duas notas (dó e mi)."
+          },
+          {
+            "label": "Compasso 6",
+            "titre": "A única alteração do excerto",
+            "chiffrage": "D7/C",
+            "fonctions": "V2/V",
+            "texte": "Primeira verdadeira deslocação harmónica desde o início do excerto: o baixo permanece no dó (que passa a ser a sétima, e já não a fundamental), mas a harmonia acima transforma-se num <strong>Ré7 completo</strong> (ré-fá♯-lá-dó). O fá♯, única nota estranha à armação em todo o excerto, é uma sensível ARTIFICIAL que puxa para sol: Bach visa agora a dominante (V), ainda não a tónica."
+          },
+          {
+            "label": "Compassos 7-8",
+            "titre": "A dominante e uma tónica que não fecha inteiramente",
+            "chiffrage": "G/B  |  Cmaj7/B",
+            "fonctions": "V6  |  IΔ2",
+            "texte": "O baixo desce finalmente ao si — a sensível do tom — e aí permanece durante os dois últimos compassos: primeiro sob um acorde de sol maior (V6), depois sob a chegada da tónica (compasso 8). Mas esta tónica não se apresenta no seu estado mais estável: a sua <strong>sétima maior</strong> (justamente o si, pois o baixo não se move) tinge-a de uma tensão suspensa que chama a continuação da peça em vez de a encerrar."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Dois pedais, um só gesto",
+            "texte": "Toda a harmonia do excerto assenta em duas notas de baixo: dó (c. 1 a 6, com um breve desvio pela sua bordadura si no compasso 3) e depois si (c. 7-8). O movimento musical não vem do baixo, que quase não se desloca — vem das vozes superiores, que redesenham o acorde por cima dele."
+          },
+          {
+            "titre": "Os dois meios-tons diatónicos",
+            "texte": "Mi-fá (no Dm7 do compasso 2 e no que o rodeia) e si-dó (a sensível, compassos 3 e 7-8) são os dois únicos meios-tons naturais de dó maior: são eles que criam toda a tensão da peça, sem uma única alteração até ao compasso 6."
+          },
+          {
+            "titre": "A cor segue a função, não a forma",
+            "texte": "O compasso 3 tem a FORMA de uma dominante (G7) mas a FUNÇÃO de uma tónica prolongada — daí a sua cor azul, apesar da cifra «V6/5». Na harmonia tonal, é sempre a função que prevalece sobre a aparência de superfície."
+          }
+        ]
+      }
     }
   },
   "cours2": {
@@ -1245,7 +1602,56 @@
         "Tríade = fundamental + terça + quinta",
         "Acorde perfeito maior: terça M + quinta J",
         "Inversões: 1ª (terça no baixo), 2ª (quinta no baixo)"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Lá bemol maior (4 bemóis na armação: si♭, mi♭, lá♭, ré♭).",
+        "metrique": "2/4.",
+        "forme": "Duas frases de 4 compassos. A primeira (c. 1-4) afirma a tónica sob os seus três rostos (estado fundamental, primeira inversão, estado fundamental) e atinge depois a dominante. A segunda (c. 5-8) abre com um movimento raro — a dominante desliza DIRETAMENTE para a subdominante, sem passar pela tónica — antes de fechar a frase com um regresso pleno a I.",
+        "sections": [
+          {
+            "label": "Compassos 1-3",
+            "titre": "Três rostos da tónica",
+            "chiffrage": "Ab  |  Ab/C  |  Ab",
+            "fonctions": "I  |  I6  |  I",
+            "texte": "O compasso 1 apresenta o acorde de tónica no estado fundamental: a fundamental (lá♭) está duplicada entre o baixo e o acompanhamento, enquanto o canto entoa a terceira (dó). O compasso 2 inverte o mesmo acorde — o baixo leva agora a <strong>terceira</strong> (dó) e já não a fundamental: é a primeira inversão (I6), que aligeira o baixo sem mudar a função (continua azul, continua tónica). O compasso 3 regressa ao estado fundamental, com o baixo a descer de novo ao lá♭."
+          },
+          {
+            "label": "Compassos 4-5",
+            "titre": "A dominante e depois uma «retrogressão» para a subdominante",
+            "chiffrage": "Eb  |  Db",
+            "fonctions": "V  |  IV",
+            "texte": "Primeira mudança de função do excerto: o acorde mi♭-sol-si♭ (V), no estado fundamental, tinge tudo de vermelho. É uma tríade simples, SEM sétima — o sol (sensível do tom) está lá, pronto a puxar para a tónica. Mas, em vez de resolver em I como o ouvido espera, a harmonia recua para a subdominante (compasso 5, ré♭ maior): uma <strong>retrogressão</strong> autêntica, e não uma simplificação de escrita — o repouso sobre a tónica ainda esperará três compassos."
+          },
+          {
+            "label": "Compassos 6-7",
+            "titre": "Um acorde de passagem e a única tríade menor do excerto",
+            "chiffrage": "Ab/C  |  Bbm",
+            "fonctions": "I6  |  ii",
+            "texte": "O baixo desce por graus conjuntos (ré♭ → dó → si♭), ligando a subdominante do compasso 5 ao ii do compasso 7 através de um breve regresso à tónica na primeira inversão (compasso 6 — um acorde de PASSAGEM, não um verdadeiro repouso). O compasso 7 introduz si♭ menor (ii), a <strong>única tríade menor de todo o excerto</strong>: cor laranja, como IV — os dois graus da família da subdominante."
+          },
+          {
+            "label": "Compasso 8",
+            "titre": "Regresso e conclusão",
+            "chiffrage": "Ab",
+            "fonctions": "I",
+            "texte": "O baixo termina a sua descida em lá♭, duplicado à oitava no grave: a frase fecha-se sobre a tónica. O canto conclui com um arpejo completo do acorde (lá♭-dó-mi♭-lá♭), depois de uma breve apogiatura."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "O código de cores segue sempre a função",
+            "texte": "Azul = tónica (I, I6), laranja = subdominante (IV, ii), vermelho = dominante (V) — a mesma convenção das outras partituras do conservatório. Aqui, ao contrário do Prelúdio de Bach (lição 1), nenhuma cor contradiz a sua própria cifra: cada matiz corresponde exatamente à forma do acorde."
+          },
+          {
+            "titre": "A retrogressão V→IV",
+            "texte": "Resolver uma dominante não é uma obrigação mecânica: aqui ela desliza para a subdominante antes de a tónica regressar, apenas no compasso 8 — algo a notar justamente por contraste com a expectativa V→I que a regra geral instala."
+          },
+          {
+            "titre": "Uma única tríade menor",
+            "texte": "Nos 8 compassos, um só acorde é menor: o ii (si♭ menor) do compasso 7 — a cor de conjunto mantém-se decididamente maior, à imagem da tonalidade (lá bemol maior)."
+          }
+        ]
+      }
     }
   },
   "cours3": {
@@ -1378,7 +1784,56 @@
         "Funções: Tônica (I, III, VI), Dominante (V, VII), Subdominante (II, IV)",
         "Cadência autêntica V–I = fechamento forte",
         "O trítono em V7 resolve: si→dó, fá→mi"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Sol menor (i) — 2 bemóis na armação (si♭, mi♭). Modo menor INFERIDO por correlação de perfil tonal (não há qualquer etiqueta <mode> na exportação do MuseScore): confirmam-no a omnipresença do polo I (Solm) e a dominante Ré7 com a sua sensível fá♯, única nota estranha à armação em todo o excerto.",
+        "metrique": "C (4/4, alla breve).",
+        "forme": "O célebre tema de abertura assenta num pedal — a quinta da tónica (ré), sustentada no baixo durante 4 compassos — e desliza depois por um simples meio-tom para uma subdominante enriquecida (IIø7, compassos 5-6), antes da progressão cadencial IIø7-V7-I que esta lição ensina (compassos 7 a 9, com um compasso 9 incompleto para se chegar à resolução).",
+        "sections": [
+          {
+            "label": "Compassos 1-4",
+            "titre": "O tema, sobre a quinta da tónica sustentada no baixo",
+            "chiffrage": "Gm/D",
+            "fonctions": "i6/4",
+            "texte": "A mão esquerda desfia um motivo regular em colcheias (sol-ré-sol-si♭: a fundamental, a quinta, a fundamental e a terceira de sol menor). É um acorde de TÓNICA do princípio ao fim, mas com a sua própria QUINTA (ré) no baixo — não um pedal de dominante independente, apenas um dos sons da própria tónica. Por cima, o célebre motivo anacrústico (mi♭-ré-ré) lança o tema, desenvolvido ao longo dos 4 compassos."
+          },
+          {
+            "label": "Compassos 5-6",
+            "titre": "A subdominante enriquecida, por grau conjunto",
+            "chiffrage": "Am7b5/Eb",
+            "fonctions": "ii+4/3",
+            "texte": "O baixo passa de ré a mi♭ por um simples meio-tom — sem o menor salto — para alcançar um acorde de quinta diminuta e sétima (lá-dó-mi♭-sol, segundo grau meio-diminuto), desta vez com a sua PRÓPRIA quinta (mi♭) no baixo. É a cor laranja: a subdominante enriquecida afasta-se francamente da tónica."
+          },
+          {
+            "label": "Compassos 7-8",
+            "titre": "A dominante e a sua tensão",
+            "chiffrage": "D7  |  D/A depois D7/A",
+            "fonctions": "V7  |  V6/4 depois V7+6",
+            "texte": "A sensível do tom (fá♯, única alteração de todo o excerto) surge finalmente no compasso 7: forma, com o dó (sétima do acorde), o <strong>trítono</strong> que carrega toda a tensão da dominante. No compasso 8 o baixo mantém-se próximo (ré, lá, fá♯): o mesmo acorde de dominante, ouvido primeiro como tríade na segunda inversão (V6/4) e depois enriquecido com a sua sétima (V7, ainda na segunda inversão, daí o «+6»)."
+          },
+          {
+            "label": "Compasso 9",
+            "titre": "Regresso — ainda não uma cadência fechada",
+            "chiffrage": "Gm/D",
+            "fonctions": "i6/4",
+            "texte": "A tensão descai sobre a tónica — mas sempre na segunda inversão (i6/4), exatamente a textura que abria o excerto. Não é uma cadência autêntica em sentido estrito (que exigiria a fundamental no baixo): antes um regresso à ideia de abertura, o ciclo que fecha a frase para relançar o tema."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Uma nota, duas funções",
+            "texte": "O ré suporta toda a harmonia dos 4 primeiros compassos (quinta da tónica) e depois, um semitom acima no baixo (mi♭), faz deslizar a harmonia para a subdominante — um deslocamento de um único meio-tom basta para mudar completamente de função."
+          },
+          {
+            "titre": "O trítono, motor da dominante",
+            "texte": "Fá♯ (a sensível) e dó (a sétima) formam o intervalo que empurra tudo para a resolução — a única alteração estranha à armação em todo o excerto, reservada aos 2 compassos de dominante."
+          },
+          {
+            "titre": "Uma cadência que não fecha inteiramente",
+            "texte": "IIø7-V7-I é de facto a progressão cadencial que esta lição ensina, mas aqui ela desemboca num I na segunda inversão (como no início) e não numa fundamental no baixo — a tensão descai sem que a frase se feche por completo."
+          }
+        ]
+      }
     }
   },
   "cours10": {
@@ -1467,7 +1922,70 @@
         "7 modos = 7 rotações da mesma escala, cada um com a sua própria tónica",
         "O dórico colore o menor com uma 6ª maior: o modo mais usado no jazz modal",
         "«So What» (Miles Davis, 1959): um vamp em ré dórico, sem harmonia funcional"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Ré dórico — nenhuma alteração na armadura, mas não se trata nem de Dó maior nem de Lá menor: o centro modal é Ré (2.º grau de Dó maior tomado como ponto de partida).",
+        "metrique": "4/4.",
+        "forme": "Um vamp modal de dois compassos (chamada do baixo sozinho, depois resposta em acordes), repetido quatro vezes seguidas (compassos 1-2, 3-4, 5-6, 7-8) antes da anacrusa de retoma (compasso 9, que traz também a primeira casa da repetição escrita na partitura). Nenhum dos 9 compassos contém uma dominante: a peça nunca cadencia, colore um único centro tonal do princípio ao fim — o exato contraexemplo das 9 peças anteriores do conservatório, todas assentes em encadeamentos funcionais.",
+        "sections": [
+          {
+            "label": "Compasso 1",
+            "titre": "A chamada: o baixo sozinho",
+            "chiffrage": "Dm7 (N.C.)",
+            "fonctions": "I",
+            "texte": "O contrabaixo expõe sozinho o riff temático do tema — uma anacrusa de colcheia e depois uma linha ascendente (Ré-Lá-Si-Dó-Ré-Mi) que se fecha sobre Dó. Não está escrito nenhum acorde vertical (<em>N.C.</em>, «no chord»): apenas a cifragem «I» sob a pauta do baixo indica que Ré continua a ser o centro modal, mesmo sem harmonia exposta."
+          },
+          {
+            "label": "Compasso 2",
+            "titre": "A resposta: dois acordes rootless",
+            "chiffrage": "Em7 – Dm7",
+            "fonctions": "II7 – I7",
+            "texte": "O piano responde com dois acordes breves, cada um sem a sua fundamental escrita: Ré-Sol-Si (a 3.ª, a 5.ª e a 7.ª de Em7, sem o Mi) no 3.º tempo e, em seguida, Dó-Fá-Lá (os mesmos graus de Dm7, sem o Ré) no contratempo seguinte. Neste contexto modal, <strong>II7 não prepara dominante nenhuma</strong>: é uma cor que volta a cair diretamente sobre a tónica modal, sem nunca passar por um acorde de tensão clássico."
+          },
+          {
+            "label": "Compassos 3-6",
+            "titre": "O ciclo repete-se",
+            "chiffrage": "Dm7 | Em7 – Dm7  ·  Dm7 | Em7 – Dm7",
+            "fonctions": "I | II7 – I7  ·  I | II7 – I7",
+            "texte": "Os compassos 3 e 5 retomam nota por nota o riff de baixo do compasso 1. Os compassos 4 e 6 retomam a mesma resposta em acordes do compasso 2 — apenas o baixo varia discretamente (uma ida e volta Ré-Lá no compasso 4, um Ré isolado no compasso 6). Nada se move harmonicamente: é a repetição que constrói o tema, não uma progressão."
+          },
+          {
+            "label": "Compasso 7",
+            "titre": "Uma respiração diferente",
+            "chiffrage": "(N.C.)",
+            "fonctions": "—",
+            "texte": "Única variação verdadeira de todo o excerto: em vez do riff ascendente, o baixo repete três vezes a mesma nota (Mi), num ritmo sincopado (uma nota ligada por cima do 2.º tempo). Nenhuma cifragem acompanha este compasso — é o único de todo o excerto a não ter nenhuma, nem sequer um «I»: a tensão da chamada permanece aberta mais tempo do que em qualquer outro sítio antes de a resposta regressar."
+          },
+          {
+            "label": "Compasso 8",
+            "titre": "Última resposta antes da retoma",
+            "chiffrage": "Dm7 | Em7 – Dm7",
+            "fonctions": "I | II7 – I7",
+            "texte": "O ciclo fecha-se como nos compassos 2, 4 e 6: a mesma resposta em dois acordes rootless. Nada assinala ainda o fim da secção — é o compasso seguinte que traz a marca de repetição."
+          },
+          {
+            "label": "Compasso 9",
+            "titre": "Anacrusa e primeira casa",
+            "chiffrage": "Dm7 (N.C.)",
+            "fonctions": "I",
+            "texte": "O riff de baixo do compasso 1 regressa idêntico. É também neste compasso, e apenas nele, que a partitura traz a <strong>primeira casa</strong> da repetição (a barra de repetição arranca no compasso 2): depois deste compasso, o ciclo recomeça a partir do compasso 2, antes de uma segunda casa (fora deste excerto) prosseguir o tema."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Uma só cor, nunca uma cadência",
+            "texte": "Nenhum acorde de dominante surge nestes 9 compassos. O II7 (Em7) nunca é um predominante que prepare uma resolução: é uma simples coloração que volta a cair diretamente sobre a tónica modal, no extremo oposto de tudo o que ensinam as 9 primeiras peças do conservatório."
+          },
+          {
+            "titre": "A repetição como motor",
+            "texte": "O tema não se desenvolve por encadeamento de acordes, mas pela repetição quase exata de um mesmo módulo de 2 compassos — só o compasso 7 se afasta dele, através de uma simples mudança de ritmo no baixo, sem nunca introduzir um acorde novo."
+          },
+          {
+            "titre": "Acordes «rootless»",
+            "texte": "Os dois acordes da resposta (Em7, Dm7) estão escritos sem a sua fundamental: uma técnica de voicing muito característica do piano de jazz, em que o baixo já traz a fundamental e a mão direita se concentra na cor (3.ª, 5.ª, 7.ª)."
+          }
+        ]
+      }
     }
   },
   "cours11": {
@@ -1578,7 +2096,63 @@
         "9ª = 2º grau na oitava superior, 11ª = 4º, 13ª = 6º",
         "#9 e b9 são tensões típicas do acorde de dominante alterado",
         "«All the Things You Are» (Kern/Hammerstein): um vamp introdutório construído inteiramente com acordes de dominante alterados (#9)"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Lá bemol maior (armadura de quatro bemóis) — mas este vamp de introdução nunca se ancora nela: alterna duas dominantes alteradas sem nunca resolver em Lá♭.",
+        "metrique": "4/4, swing (colcheias desiguais), semínima = 140.",
+        "forme": "Um vamp de 2 compassos (acorde sustentado e depois bordadura no baixo) repetido antes de o próprio standard começar, no compasso 9 do ficheiro original (aqui não incluído; abre sobre Fá menor) — esta introdução é apenas uma preparação cromática, ainda não o tema.",
+        "sections": [
+          {
+            "label": "Compasso 1",
+            "titre": "A anacrusa",
+            "chiffrage": "(silêncio) — Lá",
+            "fonctions": "—",
+            "texte": "O excerto abre com um silêncio e depois uma única nota no baixo (Lá natural), que desce logo um meio-tom para Lá♭ — a <strong>5.ª</strong> do acorde que chega no compasso seguinte, e não a sua fundamental. Não se trata, portanto, de uma anacrusa tonal: é uma cor que se aproxima por grau conjunto cromático."
+          },
+          {
+            "label": "Compassos 2-3",
+            "titre": "Db7(#9), a substituição de trítono",
+            "chiffrage": "Db7(#9)",
+            "fonctions": "SubV/V",
+            "texte": "O baixo apresenta a fundamental (Ré♭) e depois a quinta (Lá♭); a mão direita ataca, em contratempo, as três notas que dão todo o colorido ao acorde: Fá (terceira), Si natural (grafado como 7.ª menor) e Mi natural (<strong>a 9.ª aumentada</strong>) — nem fundamental nem quinta nesta mão: são as tensões, sozinhas, que sustentam a identidade harmónica. Db7 substitui G7 por substituição de trítono (o mesmo trítono Fá-Si), conduzindo a C7 no compasso seguinte."
+          },
+          {
+            "label": "Compassos 4-5",
+            "titre": "C7(#9), a dominante da relativa menor",
+            "chiffrage": "C7(#9)",
+            "fonctions": "V7/VI",
+            "texte": "O mesmo gesto, uma terceira abaixo: também aqui a mão direita toca apenas a terceira (Mi), a 7.ª (Si♭) e a 9.ª aumentada (Mi♭) — sem fundamental nem quinta. É a dominante secundária da relativa menor do tom (Fá menor), que só surge no compasso 9 do ficheiro original. O compasso 5 orna esta harmonia com uma linha descendente na mão direita (Lá♭-Sol-Dó-Fá-Lá) antes de o ciclo recomeçar."
+          },
+          {
+            "label": "Compassos 6-7",
+            "titre": "Regresso de Db7(#9), uma cor mais rica",
+            "chiffrage": "Db7(#9)",
+            "fonctions": "SubV7/V",
+            "texte": "O mesmo acorde regressa — mas não de forma idêntica. A cifragem muda desta vez (<strong>«SubV7/V»</strong> em vez de «SubV/V») e a mão direita enriqueceu-se: o seu desenho toca de passagem outras cores — uma 13.ª (Si♭) e uma 11.ª aumentada (Sol) — ausentes da primeira passagem dos compassos 2-3. Um vamp que se repete pode, portanto, permitir-se um pouco mais de cor a cada regresso: é o próprio espírito das extensões que esta lição ensina."
+          },
+          {
+            "label": "Compasso 8",
+            "titre": "Último C7(#9), fim em suspensão",
+            "chiffrage": "C7(#9)",
+            "fonctions": "V7/VI",
+            "texte": "Último acorde do excerto: C7(#9), também ele com um voicing mais rico do que na primeira aparição (a mão direita acrescenta-lhe a quinta, ausente no compasso 4). O excerto pára aqui, em plena tensão — o standard começa logo a seguir, no compasso 9 do ficheiro original, sobre Fá menor."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Tensões sem fundamental nem quinta",
+            "texte": "Os dois acordes deste vamp (Db7(#9), C7(#9)) têm exatamente o mesmo voicing: o baixo leva a fundamental e a quinta, e a mão direita toca apenas a terceira, a 7.ª e a 9.ª alterada — um voicing rootless clássico do piano de jazz, onde são as tensões que fazem todo o trabalho de cor."
+          },
+          {
+            "titre": "A cor enriquece-se a cada regresso",
+            "texte": "O vamp não é simplesmente copiado: no seu regresso (compassos 6-8), a mão direita acrescenta toques de 13.ª e de 11.ª aumentada ausentes da primeira passagem — um vamp repetido nunca é totalmente idêntico a si próprio."
+          },
+          {
+            "titre": "Um primeiro sabor de alteração antes do tema",
+            "texte": "Esta introdução nunca toca a tónica da peça (Lá♭): prepara o ouvido com duas dominantes alteradas antes de o verdadeiro standard — muito mais diatónico — começar no compasso 9."
+          }
+        ]
+      }
     }
   },
   "cours12": {
@@ -1682,7 +2256,70 @@
         "subV7 = acorde de dominante construído um trítono acima (ou abaixo) de V7",
         "Os dois acordes partilham 3ª e 7ª (apenas trocadas): mesma tensão, resolução diferente",
         "«Satin Doll» (Ellington): Réb7 substitui Sol7 (subV7) mesmo antes do regresso a Dó maior"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Dó maior (armadura sem alterações) — mas nunca afirmado diretamente antes do compasso 7: toda a frase não é mais do que uma cadeia de ii-V que só assenta na tónica mesmo no final.",
+        "metrique": "4/4.",
+        "forme": "8 compassos = a frase A do standard: uma marcha de pares ii-V (ou dos seus substitutos) que sobe grau a grau antes de resolver em Dó maior no compasso 7 e de relançar de imediato o ciclo rumo a uma repetição da secção.",
+        "sections": [
+          {
+            "label": "Compassos 1-2",
+            "titre": "ii7-V7, a marcha de base",
+            "chiffrage": "Dm7 – G7",
+            "fonctions": "II7 – V7",
+            "texte": "O excerto abre com o encadeamento mais clássico do jazz: ii7-V7 em Dó maior. O baixo desliza cromaticamente (Mi♭) mesmo no final do compasso 1 — uma nota de passagem que desce um meio-tom até à fundamental (Ré) com que abre o compasso 2."
+          },
+          {
+            "label": "Compassos 3-4",
+            "titre": "iii7-V7/II, a marcha sobe",
+            "chiffrage": "Em7 – A7",
+            "fonctions": "III7 – V7/II",
+            "texte": "O mesmo par ii-V sobe uma terceira: Em7 (iii7, um acorde da família da tónica) e depois A7, a dominante secundária do grau ii (<strong>V7/II</strong>) — uma cor que prepara um regresso a Dm7 que já não chega neste excerto. O baixo retoma o seu deslize cromático no fim do compasso, desta vez rumo a Mi."
+          },
+          {
+            "label": "Compasso 5",
+            "titre": "vi7-V7/V, uma dominante da dominante bem ornamentada",
+            "chiffrage": "Am7 – D7",
+            "fonctions": "VI7 – V7/V",
+            "texte": "Novo par ii-V, mais uma vez transposto. Os voicings enriquecem-se aqui de forma nítida: Am7 soa sem fundamental nem terceira — apenas 5.ª, 7.ª e <strong>11.ª</strong> (Mi-Sol-Ré). D7 (V7/V) acrescenta a <strong>9.ª</strong> (Mi) e a <strong>11.ª</strong> (Sol) à sua 7.ª menor (Dó) — um acorde bem mais rico do que um simples D7 de manual."
+          },
+          {
+            "label": "Compasso 6",
+            "titre": "bVI7-subV7, a substituição de trítono",
+            "chiffrage": "Abm7 – Db7",
+            "fonctions": "bVI7 – subV7",
+            "texte": "O momento-chave da lição: em vez do ii7-V7 esperado (Dm7-G7), a partitura dá Abm7-Db7. Db7 (<strong>subV7</strong>) substitui G7 por substituição de trítono — em teoria, os dois acordes partilham o mesmo trítono (Fá-Si), que esta realização concreta só faz soar através do Si (7.ª de Db7). No último contratempo do compasso, a mão direita antecipa já o acorde de resolução (Cmaj9) e mantém-no ligado por cima da barra de compasso."
+          },
+          {
+            "label": "Compasso 7",
+            "titre": "Resolução — já iniciada antes de chegar",
+            "chiffrage": "Cmaj9 – Dm9",
+            "fonctions": "Imaj9 – II9",
+            "texte": "Resolução, enfim, sobre a tónica — preparada desde o fim do compasso anterior: Cmaj9 (7.ª maior Si, 9.ª Ré) ocupa os dois primeiros tempos sem sequer ser reatacado, antes de o baixo deslizar para Dm9 e dar início ao relançamento do ciclo."
+          },
+          {
+            "label": "Compasso 8",
+            "titre": "Uma passagem cromática rumo ao relançamento",
+            "chiffrage": "Ebdim7 – Em7",
+            "fonctions": "— – III7",
+            "texte": "Um acorde de <strong>sétima diminuta completo</strong> (Mi♭-Fá♯-Lá-Dó, verificado nota a nota) serve de passagem cromática, prolongando a linha de baixo ascendente iniciada no compasso 7 (Dó-Ré-Mi♭-Mi) até Em7 (iii7), que fecha esta frase e relança o ciclo rumo a uma repetição da secção A."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Uma só marcha, transposta três vezes",
+            "texte": "ii7-V7 (compassos 1-2), iii7-V7/II (compassos 3-4), vi7-V7/V (compasso 5): o mesmo gesto harmónico, tocado em três alturas diferentes, antes de a substituição de trítono (compasso 6) o vir substituir uma última vez para trazer finalmente a tónica."
+          },
+          {
+            "titre": "A substituição, um simples movimento de baixo",
+            "texte": "Substituir G7 por Db7 quase nada muda ao ouvido (mesmo trítono, mesma tensão) — mas transforma a resolução do baixo de um salto de quarta (Sol→Dó) num simples meio-tom descendente (Ré♭→Dó): a verdadeira razão pela qual os jazzistas tanto a usam."
+          },
+          {
+            "titre": "A resolução já lá está antes mesmo de chegar",
+            "texte": "O acorde de tónica (Cmaj9) já está sustentado, ligado desde o compasso anterior, quando o compasso 7 começa oficialmente — uma respiração rítmica típica do jazz que esbate a fronteira entre tensão e resolução."
+          }
+        ]
+      }
     }
   },
   "cours13": {
@@ -1803,7 +2440,70 @@
         "Contraponto = duas vozes melodicamente independentes que concordam verticalmente",
         "As 5 espécies de Fux: nota contra nota, 2 contra 1, síncopas/retardos, floreios, contraponto florido",
         "Invenção n.º 1 BWV 772 (Bach): sujeito e resposta trocados entre as duas mãos, modula para a dominante"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Dó maior (armadura sem alterações) à partida — mas o acorde pivô do compasso 4 faz bascular a peça para a sua dominante, Sol maior, onde se instala duradouramente até ao fim do excerto (compassos 7-8).",
+        "metrique": "4/4.",
+        "forme": "8 compassos = a 1.ª frase da Invention: exposição do sujeito no soprano e depois no baixo à oitava (compasso 1), fim do sujeito e cor de dominante (compasso 2), marcha diatónica de transição (compasso 3), acorde pivô e modulação para Sol maior (compasso 4), dominante preparada e depois resolvida com um desvio (compassos 5-6), reexposição do sujeito transposto no baixo e cadência suspensiva sobre a nova dominante (compassos 7-8).",
+        "sections": [
+          {
+            "label": "Compasso 1",
+            "titre": "O sujeito, exposto e depois imitado à oitava",
+            "chiffrage": "Dó (I)",
+            "fonctions": "I",
+            "texte": "O sujeito surge primeiro no soprano: Dó-Ré-Mi-Fá-Ré-Mi-Dó (tempos 1-2), puro arpejo da tónica entrelaçado com graus conjuntos. Nos tempos 3-4, migra para o baixo, <strong>uma oitava abaixo</strong>, enquanto o soprano sustenta um contra-sujeito dentro do acorde de tónica (Sol-Dó-Si-Dó). O Fá3 que aparece na parte forte do tempo 4 no baixo pertence a essa linha melódica do sujeito, e não à harmonia: é inútil cifrar aí um acorde de subdominante, todo o compasso não é senão uma tónica prolongada."
+          },
+          {
+            "label": "Compasso 2",
+            "titre": "A resposta, e uma cor de sétima da dominante",
+            "chiffrage": "Sol (V) – Sol7 (V7)",
+            "fonctions": "V – V7",
+            "texte": "O baixo conclui o sujeito descendo uma oitava (Sol3-Sol2) e retoma-o de seguida sobre Sol (Sol-Lá-Si-Dó-Lá-Si-Sol), enquanto o soprano responde por cima. No último tempo, uma bordadura inferior do soprano (Sol-Fá♮-Sol) faz ouvir o Fá natural que colore Sol em <strong>Sol7 (V7)</strong> — exatamente a cifra inscrita neste ponto preciso da partitura."
+          },
+          {
+            "label": "Compasso 3",
+            "titre": "Marcha diatónica ascendente",
+            "chiffrage": "Lám/Dó (vi6) – Rém (ii) – Dó/Mi (I6) – Lám (vi)",
+            "fonctions": "vi6 – ii – I6 – vi",
+            "texte": "Quatro acordes em marcha, com baixo conjunto ascendente (Dó-Ré-Mi-Fá-Sol-Lá-Si). Mesmo no final do compasso forma-se entre as duas vozes um <strong>acorde de passagem não cifrado</strong> — Si (baixo) - Ré - Fá (soprano), um vii° diminuto completo — que empurra naturalmente para o Dó do compasso seguinte: um pormenor de análise fina que a cifra romana, ao manter « vi » até ao fim do compasso, não revela, mas que as alturas reais confirmam."
+          },
+          {
+            "label": "Compasso 4",
+            "titre": "O acorde pivô e a báscula para Sol maior",
+            "chiffrage": "Dó (I=IV) – Ré7/Fá# (V6/5) – Ré7/Lá (V4/3) – Ré7/Dó (V4/2)",
+            "fonctions": "IV – V6/5 – V4/3 – V4/2 (já em Sol maior)",
+            "texte": "Momento charneira do excerto: o Dó que abre o compasso é ao mesmo tempo <strong>I de Dó maior</strong> e <strong>IV de Sol maior</strong> — um acorde pivô no sentido estrito. Os três tempos seguintes compõem a dominante da nova tonalidade num acorde inteiramente arpejado no baixo (Fá#-Lá-Dó), passando pelas suas três inversões (V6/5, V4/3, V4/2); o Fá# aparece primeiro no baixo exatamente na 3.ª colcheia do compasso, sensível de Sol que confirma a cor da nova tónica. O Dó (7.ª de Ré7) sustentado no baixo no final do compasso está ligado por cima da barra de compasso: a sua resolução fica diferida para o compasso 5."
+          },
+          {
+            "label": "Compassos 5-6",
+            "titre": "A resolução diferida, e depois a verdadeira tónica",
+            "chiffrage": "Ré7/Dó (V4/2) – Sol (I) – Sol (I) – Dó (IV) | Mim (vi) – Sol (I) – Sol/Si (I6) – Ré (V)",
+            "fonctions": "D (V4/2, prolongado) – T – T – SD | T (vi) – T – T (I6) – D",
+            "texte": "A 7.ª sustentada (Dó) não resolve para Si como seria de esperar: o baixo escapa-se por uma escala ascendente (Ré-Mi-Fá#) e alcança diretamente a tónica em estado fundamental (Sol), <strong>uma resolução evitada</strong>. O Dó5 pontuado que se segue no soprano é uma dissonância acentuada que sobe para Ré5 em vez de descer — tratamento invulgar, que prolonga a tensão por mais um tempo. No compasso 6, o baixo hesita um instante entre Sol (I) e um regresso furtivo a Mi (vi) antes de se fixar em Si (I6, nota sustentada); um Dó3 de passagem liga depois Si a Ré, que abre a cadência: um verdadeiro retardo 6-5 (Si4 para Lá4) suportado pelo baixo Ré3-Ré2, <strong>sem qualquer 7.ª</strong> (nenhum Dó em todo o final do compasso) — um Ré maior simples, não Ré7."
+          },
+          {
+            "label": "Compassos 7-8",
+            "titre": "O sujeito regressa ao baixo, cadência suspensiva",
+            "chiffrage": "Sol (I) – Sol/Ré (I6/4) – Ré7/Fá# (V6/5) | Ré (V) – Ré7 (V7)",
+            "fonctions": "I – I6/4 – V6/5 | V – V7",
+            "texte": "O sujeito reaparece, desta vez inteiramente <strong>no baixo</strong> e sobre Sol (Sol-Lá-Si-Dó-Lá-Si-Sol): uma reexposição à quinta do seu enunciado inicial do compasso 1, já na tonalidade entretanto instalada. Depois de uma breve passagem pela posição de quarta e sexta (I6/4) e pela dominante invertida (V6/5, Fá#3 sob Dó5), o baixo pousa em Sol na parte fraca do último tempo. O compasso 8 relança o sujeito sobre Ré enquanto o soprano sustenta um Fá#4; as notas Lá-Si-Dó que se seguem no soprano fazem ouvir um Dó natural — a 7.ª que instala <strong>Ré7 (V7)</strong>, confirmada no baixo pelo movimento Ré-Dó-Ré. O excerto detém-se sobre esta dominante em aberto, em plena tensão, mesmo antes da continuação da Invention."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Um sujeito, duas vozes, uma só ideia",
+            "texte": "Todo o excerto assenta num único motivo melódico (Dó-Ré-Mi-Fá-Ré-Mi-Dó ou as suas transposições) que migra incessantemente entre soprano e baixo — exposto no soprano (compasso 1), imitado no baixo uma oitava abaixo (ainda no compasso 1), depois reexposto no baixo sobre o novo grau (compassos 7-8): o próprio princípio do contraponto de invenção, em que uma única linha gera todo o discurso a duas vozes."
+          },
+          {
+            "titre": "Uma modulação pela porta mais próxima",
+            "texte": "Dó maior bascula para Sol maior, a sua dominante — a modulação mais natural que existe, iniciada por um acorde pivô (Dó = I/IV, compasso 4) e depois confirmada por uma dominante secundária inteiramente arpejada no baixo (Ré7 nas suas três inversões). A partir desse instante, a cifragem raciocina já na tonalidade de chegada."
+          },
+          {
+            "titre": "Resoluções retardadas, nunca despachadas",
+            "texte": "Duas vezes neste excerto, uma dissonância preparada não obtém a resolução mais previsível: a 7.ª do compasso 4 escapa-se por uma escala em vez de descer (compasso 5), e o Dó5 acentuado do soprano sobe para Ré5 em vez do inverso — dois desvios que prolongam a tensão sem nunca a atraiçoar."
+          }
+        ]
+      }
     }
   },
   "cours14": {
@@ -1917,7 +2617,63 @@
         "Harmonia modal = cor mantida, não tensão seguida de resolução (ao contrário da harmonia tonal)",
         "O movimento V7→I é evitado: introduziria a sensível e quebraria a atmosfera do modo",
         "«Primeira Gymnopédie» (Satie): IVmaj7-Imaj7 em loop por 9 compassos, nunca uma dominante"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Ré maior (armadura de 2 sustenidos) — mas o excerto nunca faz ouvir o acorde de Ré numa posição de chegada afirmada: <strong>começa e termina em Sol</strong> (IV), que ocupa 5 dos 9 compassos. Uma leitura em <strong>Sol lídio</strong> (com Dó# como #4) é igualmente defensável só com este excerto — as duas leituras partilham exatamente os mesmos 2 sustenidos. A continuação da peça (fora deste excerto) decidirá a favor de Ré maior.",
+        "metrique": "3/4. Nenhum andamento nem carácter neste ficheiro (o original traz « Lent et douloureux », não retomado aqui) — semínima a 60 acrescentada por opção editorial, para a leitura sincronizada.",
+        "forme": "9 compassos = um pêndulo harmónico estrito entre dois acordes de 7.ª maior, IVmaj7 (Sol) e Imaj7 (Ré), sem nunca fazer ouvir a dominante (Lá): compassos 1-4, só o acompanhamento instala o balanceio; compassos 5-9, a melodia entra e desce uma oitava (Fá#5 a Fá#4), atravessando sistematicamente os graus « coloridos » de cada acorde (7.ª, 9.ª, 11.ª, #11) em vez das suas notas estáveis.",
+        "sections": [
+          {
+            "label": "Compassos 1-4",
+            "titre": "O pêndulo harmónico, sem melodia",
+            "chiffrage": "SolMaj7 – RéMaj7 – SolMaj7 – RéMaj7",
+            "fonctions": "IV – I – IV – I",
+            "texte": "Textura imóvel nos 4 primeiros compassos: um baixo profundo sustentado durante todo o compasso (Sol2, depois Ré2), uma pausa de semínima e, a seguir, um acorde de 3 sons em bloco no 2.º tempo, mantido até ao fim (Si3-Ré4-Fá#4 sobre Sol; Lá3-Dó#4-Fá#4 sobre Ré) — o famoso balanceio de sarabanda despojada. <strong>Fá#4</strong> é a única nota que permanece exatamente à mesma altura nos dois voicings: um pivô, sem o qual os dois acordes já nada teriam em comum ao ouvido. Nenhuma dominante (Lá) chega alguma vez a aparecer: sem V, não há cadência — a alternância IV-I é uma oscilação plagal estática, que suspende a direção tonal em vez de a construir. Facto notável, o excerto abre diretamente sobre a subdominante, e não sobre a tónica."
+          },
+          {
+            "label": "Compasso 5",
+            "titre": "A melodia entra: 7.ª, depois 9.ª",
+            "chiffrage": "SolMaj9",
+            "fonctions": "IV(9)",
+            "texte": "Depois de um silêncio, a melodia entra em <strong>Fá#5</strong> — a 7.ª maior de Sol, exatamente duas oitavas acima do Fá#4 do acompanhamento — e salta em seguida para <strong>Lá5</strong>, a 9.ª. A partitura cifra explicitamente este acorde como « Solmaj9 » (e não simplesmente « maj7 »): a melodia toca com toda a precisão a extensão que a cifra anuncia. Logo à partida, duas notas « dissonantes » colocadas como uma evidência, sem preparação nenhuma."
+          },
+          {
+            "label": "Compasso 6",
+            "titre": "O único gesto « resolvido » do excerto",
+            "chiffrage": "RéMaj7",
+            "fonctions": "I",
+            "texte": "Sol5 no 1.º tempo é uma <strong>11.ª</strong> sobre o acorde de tónica (Ré) — a única dissonância melódica de todo o excerto que desce por movimento conjunto, para Fá#5 (a terceira), mas em tempo fraco e sem preparação. A linha cai de seguida uma quarta, para Dó#5, a 7.ª de Ré."
+          },
+          {
+            "label": "Compasso 7",
+            "titre": "A subida até ao #11",
+            "chiffrage": "SolMaj7(#11)",
+            "fonctions": "IV(#11)",
+            "texte": "Subida conjunta Si4-Dó#5-Ré5 (terceira – quinta, passando por Dó#). Também desta vez a cifra anuncia com precisão a cor: é o ÚNICO compasso de todo o excerto em que se acrescenta um « (#11) » ao acorde de Sol, e é exatamente essa a nota que a melodia toca de passagem."
+          },
+          {
+            "label": "Compassos 8-9",
+            "titre": "A quinta estável, e depois a 7.ª maior suspensa",
+            "chiffrage": "RéMaj7 – SolMaj7",
+            "fonctions": "I – IV",
+            "texte": "Lá4, sustentado durante todo o compasso 8: a quinta de Ré, única nota plenamente consonante e estável de toda a frase melódica. Depois Fá#4, sustentado durante todo o compasso 9: a 7.ª maior de Sol, uma oitava abaixo do Fá#5 que abria a melodia no compasso 5. O excerto encerra-se assim em suspensão completa, sem a mínima cadência — um arco descendente de exatamente uma oitava, do Fá# agudo ao Fá# grave."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Uma única verdadeira nota comum: Fá#",
+            "texte": "Sol-Si-Ré-Fá# e Ré-Fá#-Lá-Dó# partilham em teoria duas notas (Ré e Fá#), mas nos voicings reais do acompanhamento só Fá#4 permanece exatamente à mesma altura — o Ré muda de oitava de cada vez (baixo ou centro do acorde). É este fio ténue que mantém as duas cores unidas."
+          },
+          {
+            "titre": "A 7.ª maior como cor, não como dissonância",
+            "texte": "Nem o Fá# de Sol nem o Dó# de Ré são preparados ou resolvidos — um tratamento impensável na harmonia tonal estrita (a da Invention de Bach, analisada no curso anterior), onde uma 7.ª maior é uma dissonância que é preciso conduzir. Aqui, é um estado estável, constitutivo do acorde: o gesto mais radical da peça."
+          },
+          {
+            "titre": "Sol lídio ou Ré maior? Nada decide",
+            "texte": "Apenas com estes 9 compassos, as duas leituras tonais mantêm-se igualmente válidas — e é precisamente esse o efeito procurado. Em Bach, cada acorde justifica-se pela condução das vozes; em Satie, a harmonia é um objeto sonoro repetido, sem condução das vozes (acordes em bloco, sem linhas que se respondam): o mesmo exercício de leitura, duas gramáticas opostas."
+          }
+        ]
+      }
     }
   },
   "cours15": {
@@ -2001,7 +2757,70 @@
         "Uma cadeia de dominantes secundárias (V7/III, subV7/VI, V7/V...) toniciza brevemente cada grau antes da resolução final",
         "O substituto tritônico substitui uma dominante pelo seu trítono: mesma tensão (3ª/7ª trocadas), baixo cromático",
         "«Autumn Leaves» (Kosma): sequência descendente iv-VII-III-VI-ii°/V-V-i, seguida de um turnaround V7/IV que fecha o ciclo"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Sol menor, com o seu relativo Si♭ maior permanentemente no horizonte — o próprio princípio da grelha de « Autumn Leaves », que oscila entre os dois polos através de um encadeamento de quintas descendentes (Dó→Fá→Si♭→Mi♭→Lá→Ré→Sol). Neste arranjo, quase todos os acordes da marcha são, de facto, uma <strong>dominante secundária</strong> em direção ao grau seguinte.",
+        "metrique": "4/4. Andamento 120 (medium swing).",
+        "forme": "10 compassos = uma anacruse de um tempo (compasso 1) + a secção A completa do standard (compassos 2-9, 8 compassos) + o início da sua repetição (compasso 10) — de resto, o motivo da anacruse regressa no final do compasso 9, confirmando que a forma se fecha sobre si mesma.",
+        "sections": [
+          {
+            "label": "Compasso 1",
+            "titre": "A anacruse, e a sua ambiguidade bitonal",
+            "chiffrage": "(sem harmonia)",
+            "fonctions": "—",
+            "texte": "Três colcheias conjuntas ascendentes, Sol-Lá-Sib, mão esquerda muda. Uma figura de dupla leitura: <strong>1̂-2̂-3̂ de Sol menor</strong> (tónica, 2.º grau, terceira menor) ou, vista a partir do polo relativo, <strong>6̂-7̂-1̂ de Si♭ maior</strong> (sobredominante, sensível, tónica) — a ambiguidade das duas tonalidades gémeas exposta logo na anacruse, antes mesmo do primeiro acorde."
+          },
+          {
+            "label": "Compassos 2-3",
+            "titre": "Cm9, depois F7: a marcha arranca, a 13.ª endurece",
+            "chiffrage": "Cm9 – F7(♭13)",
+            "fonctions": "iv7 [ii7] – V7/III",
+            "texte": "A etiqueta de acorde do ficheiro diz já « m9 », e não « m7 »: Ré4 (9.ª) está de facto sustentado no baixo, sob Mi♭4-Si♭4 em bloco e sob o Mi♭5 da melodia — um <strong>Cm9</strong> completo já no próprio símbolo escrito; apenas a cifra romana simplificada (« IV7 ») não precisa a 9.ª. No compasso 3, a voz interna desce Ré4→Ré♭4 (<strong>13.ª→♭13</strong>) enquanto o Lá3 (terceira) se mantém sustentado — um F7 que endurece no decorrer do compasso, preparado por uma acciaccatura cromática (Dó♯4) no início."
+          },
+          {
+            "label": "Compasso 4",
+            "titre": "IIImaj7, e depois o primeiro gesto de arranjador",
+            "chiffrage": "B♭maj7 – E7",
+            "fonctions": "IIImaj7 – subV7/VI",
+            "texte": "B♭maj7 trata a sua 7.ª maior (Lá) como cor estável, exatamente como em Satie (curso anterior). Depois, ausente da grelha mais corrente: um <strong>E7 sem fundamental</strong> (Sol♯3=terceira, Fá♯3=9.ª, Ré=7.ª), substituto de trítono de B♭7 (V7/VI). O baixo percorre Si♭2-Fá3-Mi♭2-Ré3 ao longo de todo o compasso — quatro alturas distintas que se detêm em Ré, sem regressar ao Mi♭."
+          },
+          {
+            "label": "Compassos 5-6",
+            "titre": "VImaj7 ao modo de Satie, e depois o cume da tensão",
+            "chiffrage": "E♭maj9 – A7(♯9,♭13,♭5)",
+            "fonctions": "VImaj7 – V7/V",
+            "texte": "E♭maj9 em posição cerrada (Fá3=9.ª, Sol3=3.ª, Ré4=7.ª maior) prolonga a cor imóvel. O compasso 6 substitui o ii° diatónico esperado (Am7♭5) pela sua versão dominantizada: um <strong>A7 inteiramente alterado</strong> — Dó♮5 sustentado (♯9), Fá4 (♭13, depois de um Fá♯ cromático), Mi♭4 (♭5) na tercina, e Sol♯3→Sol♮3 no baixo, que roça a 7.ª antes de se acomodar nela. O cume de tensão de todo o excerto, exatamente no seu lugar, mesmo antes da dominante principal."
+          },
+          {
+            "label": "Compasso 7",
+            "titre": "V7, a resolução 4-3 cruzada com a ♭9",
+            "chiffrage": "D9sus4 – D7(♭9)",
+            "fonctions": "V7",
+            "texte": "Construção em dois tempos: primeiro um <strong>D9sus4</strong> completo (Ré-Sol-Lá-Dó-Mi, quarta-quinta-7.ª-9.ª), depois a suspensão resolve (Sol3→Fá♯3, movimento 4-3) exatamente no momento em que a melodia coloca Mi♭4 — a <strong>♭9</strong> — sustentado em mínima: resolução e nova dissonância trocadas num só gesto."
+          },
+          {
+            "label": "Compassos 8-10",
+            "titre": "Regresso, turnaround e repetição cortada",
+            "chiffrage": "Gm7→Gm6→Gm(♭6) – G7(♭9) – Cm7",
+            "fonctions": "i – V7/IV – iv7",
+            "texte": "O compasso 8 (<strong>Gm7→Gm6→Gm(♭6)</strong>, 3 acordes sucessivos) é um <em>line cliché</em> (Fá→Mi♮→Mi♭, 7.ª-6.ª-♭6.ª) sobre tónica menor estática. O compasso 9 (<strong>G7(add ♭9)</strong>, romano « V7/IV ») faz ouvir Sol-Si-Ré-Fá-Lá♭ por completo entre as duas mãos, a dominante secundária que prepara o regresso de Cm7 enquanto a melodia relança o motivo da anacruse. O compasso 10 reabre o ciclo: Cm7 com a 11.ª (Fá5) no topo do voicing, tercina arpejada ascendente, baixo que se detém num Si♮ cromático — o excerto é cortado antes de o seu alvo se revelar."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Duas substituições, duas lógicas diferentes",
+            "texte": "O E7 inserido no compasso 4 ACRESCENTA um acorde ausente da grelha mais corrente (uma aproximação cromática por substituto de trítono). O A7 do compasso 6 SUBSTITUI um acorde já presente (o ii° diatónico Am7♭5) pela sua versão dominantizada, sobre a mesma fundamental. Duas técnicas de reharmonização bem distintas, ambas reunidas neste único chorus."
+          },
+          {
+            "titre": "Quase todos os acordes são uma dominante secundária",
+            "texte": "V7/III, subV7/VI, V7/V, V7/IV: a marcha descendente de « Autumn Leaves » encadeia tonicizações de passagem em vez de graus diatónicos nus — o próprio vocabulário do curso 15."
+          },
+          {
+            "titre": "A dissonância como material por defeito",
+            "texte": "Depois de Bach (dissonância = acontecimento contrapontístico) e de Satie (dissonância = cor imóvel), este arranjo mostra um terceiro regime: 9.ª, 13.ª e ♭9 não são preparadas nem resolvidas no sentido clássico — são a norma do acorde, geridas por graus de alteração (13→♭13, sus4→♭9, alterado completo) ao longo de um ciclo de quintas que Bach teria reconhecido."
+          }
+        ]
+      }
     }
   },
   "cours16": {
@@ -2108,7 +2927,77 @@
         "Reharmonizar = substituir os acordes sob uma melodia intacta, mantendo cada nota melódica compatível com seu novo acorde",
         "Dominantes secundárias (V/V, V/IV) e substitutos tritônicos são as ferramentas mais comuns",
         "«My Funny Valentine» (Bill Evans): cadência menor iiø7-V7alt-i precedida de uma incursão pela subdominante (IV9-IV13sus)"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Dó menor (armadura de 3 bemóis). A grelha padrão da secção A é célebre pelo seu <em>line cliché</em>: Cm-Cm(maj7)-Cm7-Cm6, a linha descendente Dó-Si-Sib-Lá sobre pedal de tónica, antes de Abmaj7-Fm7-Dø7-G7. Esta transcrição não toca a linha: <strong>comprime-a e substitui-a</strong>.",
+        "metrique": "4/4.",
+        "forme": "9 compassos = a 1.ª secção A do standard. O line cliché horizontal do modelo é verticalizado logo no primeiro acorde (compasso 1); os dois compassos assim libertados (2-3) são preenchidos com turnarounds alterados e com uma reharmonização da mesma melodia; dois acordes da grelha (Abmaj7/Fm7) são fundidos num só (compasso 5); e a chegada do iiø7 (compassos 7-8) torna-se ela própria um gesto formal — uma vaga em arco, não um simples acorde.",
+        "sections": [
+          {
+            "label": "Compasso 1",
+            "titre": "O line cliché já resumido num único acorde",
+            "chiffrage": "Cm6/9",
+            "fonctions": "i(6/9)",
+            "texte": "Baixo Dó3 e, por cima, Lá♮3-Ré4-Mib4-Sol4: fundamental, 6.ª maior, 9.ª, terceira, quinta — um <strong>Cm6/9</strong> completo. O Lá♮, ponto de chegada do line cliché padrão (Dó-Si-Sib-<em>Lá</em>), fica assim integrado verticalmente logo no primeiro acorde: quatro compassos de harmonia horizontal resumidos num único voicing. O atrito Ré4/Mib4 (segunda menor no coração do acorde) é a assinatura-cluster de toda a transcrição. A melodia entra em anacruse a meio do 2.º tempo: Dó5-Ré5-Mib5, a célula geradora do tema, na dinâmica <em>p</em>."
+          },
+          {
+            "label": "Compasso 2",
+            "titre": "O turnaround substituído, inteiramente alterado",
+            "chiffrage": "D7(♯9♭13) – G7(♭9♭13)",
+            "fonctions": "II7 alt (V/V) – V7 alt",
+            "texte": "No lugar dos compassos 2-3 do cliché padrão, um turnaround II7-V7 inteiramente alterado. D7: shell 3-7 no baixo (Fá♯3-Dó4), Fá♮4 (=Mi♯, ♯9), Sib4 (♭13) e a fundamental no soprano. G7 (colocado em antecipação, colcheia e depois semínima com ponto): shell 7-3 (Fá♮3-Si♮3) — a condução das vozes dos shells é exata, Fá♯→Fá♮, Dó→Si, cada voz desce meio-tom — encimado por Mib (♭13), Lab (♭9) e a quinta no topo. Estas ♭9/♭13 sobre G7 são as notas do menor harmónico de Dó: a alteração não é um exotismo, é a própria tonalidade."
+          },
+          {
+            "label": "Compasso 3",
+            "titre": "Mesma melodia, harmonização adversa",
+            "chiffrage": "Cm6/9 → C7(♯11)",
+            "fonctions": "i → V7/iv",
+            "texte": "Regresso exato do voicing do compasso 1 (as mesmas quatro notas), e a melodia relança a célula Dó-Ré-Mib. Mas a harmonia bascula no <strong>4.º tempo</strong> (o Ré4 do 3.º tempo é apenas uma nota de passagem no baixo): Mi♮4-Fá♯4 acendem-se sobre Sib3 — terceira, ♯11 lídia e 7.ª de um C7 rootless, com função de V7/iv em direção a Fá menor. A mesma melodia, harmonização oposta: a primeira lição de reharmonização do excerto. Crescendo indicado."
+          },
+          {
+            "label": "Compasso 4",
+            "titre": "A vaga cromática",
+            "chiffrage": "Aø(9) – G♭13(♯11) – F13(♯11)",
+            "fonctions": "V/iv – subV/iv – (planing)",
+            "texte": "O compasso mais denso. Aø9 (Lá3 no baixo, Mib-Sol-Si♮(9.ª)-Ré por cima, sem a terceira Dó) funciona como V/iv em direção a Fá menor. Depois G♭13(♯11): o substituto de trítono de C7, em voicing completo (Solb-Sib no baixo, Fab-Lab-Dó-Mib por cima). E o gesto notável: F13(♯11) é exatamente a mesma estrutura deslizada meio-tom abaixo (Fá-Lá / Mib-Sol-Si♮-Ré) — <strong>planing paralelo</strong>, cada voz desce meio-tom em bloco. Diminuendo indicado: a vaga volta a baixar."
+          },
+          {
+            "label": "Compassos 5-6",
+            "titre": "Dois acordes fundidos, e depois a descida até ao iiø",
+            "chiffrage": "Fm9 – F13sus9 – Fm9/E♭",
+            "fonctions": "iv9 – iv(sus)",
+            "texte": "Fm9 (baixo Fá2-Dó3 em semibreves ligadas): três posições sucessivas do mesmo acorde na mão direita — Sol-Lab-Dó (9/3/5, mais um cluster de segunda), Sib-Ré♮ (11.ª e 13.ª <em>dórica</em>, e não a 6.ª bemolizada do menor natural), e depois Lab-Dó-Mib (3/5/7). A grelha padrão dá aqui Abmaj7 E DEPOIS Fm7 — dois acordes relativos que a transcrição <strong>funde num único Fm9 desdobrado</strong> (Fm9 já contém todos os sons de Abmaj7). Compasso 6: F13sus9 (11, 13, 9, 7, sem terceira), e depois o baixo desliza para Mib sob Fá3 (Fm9/E♭): Fá→Mib→Ré, a passagem obrigatória da grelha (compassos 6-7 do standard) — o único sítio em que esta transcrição a segue à letra."
+          },
+          {
+            "label": "Compassos 7-8",
+            "titre": "O arco em torno do iiø: cume, e depois descida",
+            "chiffrage": "Dø7 (arpejo ascendente) → Sol7(♯9♭13)",
+            "fonctions": "iiø7 – V7 alt",
+            "texte": "Todo o compasso 7 é um arpejo em tercinas que atravessa as duas mãos: o baixo debulha Ré2-Ré3-Fá3-Lab3-Dó4-Mib4 (o acorde ø7 completo, mais uma ♭9 que transborda), enquanto a mão direita empilha voicings de três sons que sobem em paralelo até Lab4-Dó5-Sol5 — o ponto mais agudo de todo o excerto. O compasso 8 volta a descer num gesto quase simétrico (os mesmos empilhamentos de três sons, percorridos em sentido inverso), com o baixo a descer Mib4-Ré4-Lab3-Fá3, antes de aterrar no 3.º tempo em G7(♯9♭13): Sol2 no baixo, shell Fá3, depois Si♮-Mib-Fá-Sib (3-♭13-7-♯9). A melodia desce Lab-Sol-Fá em tercina — Lab (♭9 de passagem): o acorde acumula assim ♯9 e ♭9 melódica, dominante saturada mesmo antes da resolução."
+          },
+          {
+            "label": "Compasso 9",
+            "titre": "A resolução nua",
+            "chiffrage": "Cm",
+            "fonctions": "i",
+            "texte": "Resolução deliberadamente despojada depois da ondulação anterior. Melodia Mib4 (mínima com ponto); no baixo, Ré4→Dó4: uma apojatura 9-8 que resolve — o único ornamento de um compasso de resto vazio. Depois, a tercina Fá4-Sol4 relança uma nova anacruse em direção à continuação do tema, aqui cortada."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "O substituto de trítono, sem sequer resolver",
+            "texte": "G♭13(♯11) (compasso 4) é o substituto de trítono clássico de C7 — mas, em vez de resolver para Fá menor como seria de esperar de um subV7, desliza um simples meio-tom para F13(♯11), uma estrutura idêntica. A substituição torna-se aqui um procedimento puramente cromático (o <em>planing</em>), desligado de qualquer ideia de resolução — a cor prevalece sobre a função."
+          },
+          {
+            "titre": "O line cliché, horizontal e depois vertical",
+            "texte": "O standard desenrola Cm-Cm(maj7)-Cm7-Cm6 ao longo de 4 compassos; esta transcrição empilha as mesmas notas (incluindo o Lá do cliché) num único Cm6/9 logo no compasso 1, libertando todo o resto do espaço para a reharmonização."
+          },
+          {
+            "titre": "O voicing como objeto expressivo autónomo",
+            "texte": "Em Bach (Invention n°1, curso 13), a forma nasce da condução das vozes; em Satie (Gymnopédie, curso 14), da repetição; na grelha de jazz nua (Autumn Leaves, curso 15), do encadeamento funcional. Aqui, a própria textura — o arco dos compassos 7-8, o planing do compasso 4 — torna-se um acontecimento formal: o voicing, e não apenas o acorde que ele suporta, é o assunto."
+          }
+        ]
+      }
     }
   },
   "cours17": {

@@ -291,7 +291,56 @@
         "4 cadenze: perfetta, imperfetta, semicadenza (I–V), d'inganno (V–VI)",
         "Cadenza perfetta = accordo di tonica in posizione fondamentale",
         "La cadenza struttura la forma: periodo, sezione, movimento"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Mi minore (i) — confermata dal polo I (Mim), onnipresente, e dalla dominante V (Si7) con la sua sensibile innalzata (re♯, propria del minore armonico).",
+        "metrique": "4/4",
+        "forme": "Due frasi di 4 battute: la prima (c. 1-4) muove dal I, attraversa una progressione armonica e si arresta in semicadenza sul V7; la seconda (c. 5-8) risolve con una cadenza perfetta già alla battuta 6 e riprende poi il motivo d'apertura un'ottava sopra a mo' di conclusione.",
+        "sections": [
+          {
+            "label": "Battute 1-2",
+            "titre": "Motivo d'apertura — la sesta dorica",
+            "chiffrage": "Em – Bm – Am6 – Em  |  Am6 – B7 – Em",
+            "fonctions": "i – v – iv6 – i  |  iv6 – V7 – i",
+            "texte": "Il motivo d'apertura insedia la tonica con un movimento congiunto discendente alle voci superiori (si-si-la-sol). L'accordo <strong>Am6</strong> (la-do-mi-fa♯) che prepara ogni ritorno al i non è un vero sesto grado: il fa♯ è una <em>sesta aggiunta</em> (colore dorico) sopra il iv (Am), non una settima. La battuta 2 richiude la frase con un classico movimento iv6 → V7 → i, con la sensibile re♯ del si7 che sale al mi."
+          },
+          {
+            "label": "Battute 3-4",
+            "titre": "Progressione armonica e semicadenza",
+            "chiffrage": "A – D – G  |  Em – B7",
+            "fonctions": "V/VII – VII – III  |  i – V7",
+            "texte": "Progressione discendente per quinte (la→re→sol): <strong>A</strong> (con il suo do♯, sensibile presa in prestito) agisce da dominante secondaria di <strong>D</strong> (settimo grado), che a sua volta risolve su <strong>G</strong>, il relativo maggiore (terzo grado). La battuta 4 torna al i prima di arrestarsi sul V7 — una <em>semicadenza</em> che sospende la prima frase senza concluderla."
+          },
+          {
+            "label": "Battute 5-6",
+            "titre": "Ritardo e cadenza perfetta",
+            "chiffrage": "C – Em – B7sus(4-3)  |  Em",
+            "fonctions": "VI – i – V4/3  |  i",
+            "texte": "Deviazione verso il sesto grado (C) prima di posarsi sul i, poi un <strong>B7sus</strong> (si-mi-fa♯-la): il mi (quarta sospesa) colora dapprima la dominante, prima che il re♯ (terza, sensibile del tono) raggiunga la voce superiore sull'ultimo tempo. La battuta 6 conclude con una <strong>cadenza perfetta</strong>: il mi minore vi risuona in semibreve, con la fondamentale al BASSO E al SOPRANO (mi3/mi5), esattamente la condizione che questa lezione pone per riconoscere una cadenza perfetta."
+          },
+          {
+            "label": "Battute 7-8",
+            "titre": "Ripresa all'ottava",
+            "chiffrage": "Em – Bm – Am6 – Em  |  Am6 – B7 – Em",
+            "fonctions": "i – v – iv6 – i  |  iv6 – V7 – i",
+            "texte": "Ripresa ESATTA della cifratura delle battute 1-2, nota per nota, ma trasposta un'ottava sopra (si5-si5-la5-sol5 invece di si4-si4-la4-sol4) — un'eco che richiude l'estratto sulla stessa sonorità che l'aveva aperto, questa volta senza riprendere fiato: il motivo porta fino in fondo il proprio movimento iv6-V7-i."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "La sesta dorica (Am6)",
+            "texte": "L'attrito tra il fa♯ (sesta del iv) e il do naturale dà un colore insieme malinconico e raffinato, mutuato dal modo dorico: un tratto di stile che ritorna 4 volte nell'estratto (c. 1, 2, 7 e 8)."
+          },
+          {
+            "titre": "Condotta delle voci",
+            "texte": "La voce superiore (soprano) procede quasi sempre per moto congiunto; il basso, invece, alterna note tenute e salti di accordo in accordo: un contrappunto semplice, tipico della scrittura corale di Bach ridotta al pianoforte."
+          },
+          {
+            "titre": "Due cadenze, due funzioni",
+            "texte": "La semicadenza della battuta 4 (sul V7) crea l'attesa; la cadenza perfetta della battuta 6 (i, con la fondamentale raddoppiata al basso e al soprano) la risolve. La ripresa delle battute 7-8 non cerca più di concludere: richiude il cerchio."
+          }
+        ]
+      }
     }
   },
   "cours5": {
@@ -402,7 +451,77 @@
         "Prestito = accordo di una tonalità parallela o relativa",
         "Sesta napoletana: bII6 → V → I",
         "Regione modale: accordi maggiori su gradi naturalmente minori"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "La minore (i). La sensibile (sol♯) compare soltanto negli accordi che la richiedono (V, V7) — altrove il brano esplora vere e proprie tinte di prestito, e non semplicemente la scala minore armonica.",
+        "metrique": "4/4.",
+        "forme": "Il tema iniziale (c. 1-2) ritorna riarmonizzato e riorientato verso fa (c. 5-6), la nota che fa da basso alle due seste eccedenti del brano: prima l'italiana (c. 4, ripresa alla c. 9), poi la francese (c. 10, più ricca di una nota). Il brano si arresta sospeso sulla dominante (c. 10) — la frase prosegue oltre queste dieci battute.",
+        "sections": [
+          {
+            "label": "Battute 1-2",
+            "titre": "Il tema, all'unisono all'ottava",
+            "chiffrage": "Lam",
+            "fonctions": "i",
+            "texte": "Canto e basso suonano ESATTAMENTE la stessa linea, all'ottava (do-si-la, poi un mi tenuto): nessuna armonia verticale, soltanto il modo minore esposto a nudo, in pianissimo. La terza (do) tinge la tonalità del suo colore malinconico fin dalla prima nota."
+          },
+          {
+            "label": "Battuta 3",
+            "titre": "Un'oscillazione tonica-dominante su un basso che scende per gradi congiunti",
+            "chiffrage": "Lam/Do  →  Mi7/Si  →  Lam  →  Mi/Sol♯",
+            "fonctions": "i6  →  V4/3  →  i  →  V6",
+            "texte": "Quattro accordi in una sola battuta, ma un'unica linea direttrice: il basso scende do-si-la-sol♯, grado dopo grado. Il sol♯ (la sensibile) chiude la battuta sulla dominante in primo rivolto — l'alternanza i-V ancora saldamente la tonalità prima del prestito che sta per arrivare."
+          },
+          {
+            "label": "Battuta 4",
+            "titre": "La sesta eccedente italiana",
+            "chiffrage": "It+6 (fa-la-re♯)  →  Mi",
+            "fonctions": "SD (prestito)  →  V",
+            "texte": "Primo prestito cromatico del brano: su un fa al basso (il VI grado abbassato), l'accordo fa-la-re♯ forma una <strong>sesta eccedente</strong> — l'intervallo fa-re♯ (dieci semitoni) che dà il nome all'accordo. Le due note estreme divergono per moto contrario, ciascuna di un semitono: il fa scende al mi (al basso), il re♯ sale al mi (sopra) — una risoluzione a ventaglio verso l'unisono mi, che diventa la dominante. Una semicadenza di grande tensione."
+          },
+          {
+            "label": "Battute 5-6",
+            "titre": "Lo stesso motivo, riarmonizzato e riorientato",
+            "chiffrage": "Sidim",
+            "fonctions": "ii°",
+            "texte": "Il motivo iniziale ritorna con gli stessi intervalli, un grado più in alto (re-do-si, poi un fa tenuto al posto del mi) — ma questa volta armonizzato sul II grado diminuito (si-re-fa), l'unica triade diminuita del brano. Il fa tenuto che chiude la frase non è casuale: è la stessa nota che fa da basso alle due seste eccedenti del brano."
+          },
+          {
+            "label": "Battuta 7",
+            "titre": "Lo stesso gesto della battuta 3, con un colore in meno",
+            "chiffrage": "Mi7/Re  →  Lam/Do  →  Mi/Si  →  Lam",
+            "fonctions": "V4/2  →  i6  →  V6/4  →  i",
+            "texte": "Lo stesso principio della battuta 3 (un basso che collega i e V) ritorna, avviato questa volta dalla settima della dominante (Mi7 in terzo rivolto, re al basso). Il terzo accordo (mi-si, V6/4) omette la propria terza (sol♯): una dominante ridotta alla fondamentale e alla quinta, priva del suo colore di sensibile."
+          },
+          {
+            "label": "Battuta 8",
+            "titre": "Un prestito modale, poi un perno verso la dominante",
+            "chiffrage": "Mim/Sol  →  Fa♯m7",
+            "fonctions": "v (prestito)  →  ii7/V",
+            "texte": "Colorazione modale allo stato puro: la sensibile (sol♯) si ritira e cede il posto al sol naturale del modo minore ANTICO — l'accordo di dominante si fa minore (v, non V), un prestito dal modo più antico della tonalità. Si concatena con un Fa♯m7 (senza la quinta, do♯): il ii7 DELLA DOMINANTE, che prepara il ritorno di mi come polo di attrazione."
+          },
+          {
+            "label": "Battute 9-10",
+            "titre": "It+6 ripresa, poi Fr+6 — il brano si chiude in sospeso",
+            "chiffrage": "It+6  →  Fr+6 (fa-la-si-re♯)  →  Mi",
+            "fonctions": "SD (prestito)  →  SD (prestito)  →  V",
+            "texte": "La sesta italiana (fa-la-re♯) ritorna identica e alla battuta 10 si colora di una nota in più: la sesta <strong>francese</strong> aggiunge il si (fa-la-si-re♯) — la seconda maggiore la-si, che la rende più mordente dell'italiana. Le due seste condividono lo stesso basso (fa) e la stessa risoluzione a ventaglio verso mi. Il brano si arresta qui, sospeso sulla dominante: la frase prosegue oltre queste dieci battute."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Una sola nota-perno per due seste",
+            "texte": "Fa (il VI grado abbassato) fa da basso a entrambe le seste eccedenti del brano (battute 4 e 9-10) — prima l'italiana (tre suoni), poi la francese (quattro suoni, con il si in più). Una sola nota, due tinte di prestito."
+          },
+          {
+            "titre": "La risoluzione a ventaglio",
+            "texte": "Le due seste eccedenti si risolvono allo stesso modo: le loro due note estreme (fa e re♯) convergono per moto contrario, ciascuna di un semitono, verso l'unisono mi — la dominante. È la firma di ogni sesta eccedente, quale che sia la sua ricchezza (italiana, francese, tedesca)."
+          },
+          {
+            "titre": "Un prestito modale, non soltanto cromatico",
+            "texte": "La battuta 8 attinge al modo minore ANTICO (naturale): la dominante vi perde la sensibile (sol♯→sol) per farsi accordo minore. Un prestito di modo, accanto ai prestiti cromatici delle seste eccedenti — due volti dello stesso principio: uscire dalla scala senza lasciare la tonalità."
+          }
+        ]
+      }
     }
   },
   "cours6": {
@@ -601,7 +720,70 @@
         "Note estranee: passaggio, ornamento, sincope, anticipazione, sfuggita, cambiata",
         "Sincope: preparazione → dissonanza → risoluzione",
         "Pedale: nota sostenuta sotto armonie mutevoli"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Mi bemolle maggiore (I) — qui l'armatura di chiave (tre bemolli) codifica davvero la tonalità (a differenza dei brani in minore, dove l'armatura non distingue mai una tonalità dalla sua relativa).",
+        "metrique": "12/8 (quattro movimenti, ciascuno una semiminima puntata).",
+        "forme": "L'anacrusi (un solo si♭, la dominante melodica) mette in moto il tema. Le battute da 2 a 5 espongono la frase completa: tonica colorata da un prestito cromatico su pedale, dominante secondaria verso il II grado, progressione verso la dominante della dominante, cadenza perfetta. Le battute da 6 a 9 la ripetono nota per nota (stessa siglatura); Chopin varia soltanto l'ornamentazione del canto.",
+        "sections": [
+          {
+            "label": "Battuta 1",
+            "titre": "L'anacrusi",
+            "chiffrage": "(si♭ solo)",
+            "fonctions": "—",
+            "texte": "Una sola nota, si♭4 — la dominante melodica della tonalità — mette in moto il tema prima ancora che l'armonia cominci. Nulla alla mano sinistra: il silenzio prepara l'entrata."
+          },
+          {
+            "label": "Battuta 2",
+            "titre": "La tonica, colorata da un prestito cromatico su pedale",
+            "chiffrage": "Mi♭  →  Fam7♭5/Mi♭  →  Mi♭  →  Mi♭/Re",
+            "fonctions": "I  →  IIø7  →  I  →  I7",
+            "texte": "La mano sinistra arpeggia l'accordo di tonica (mi♭-sol-si♭) in crome. Sul 2° movimento il basso TIENE il mi♭ con il pedale mentre la mano disegna un <strong>II grado semidiminuito</strong> (fa-la♭-si♮-mi♭): un accordo preso in prestito da mi♭ minore, che colora la tonica senza mai abbandonarla davvero; è il pedale, non l'orecchio armonico, a continuare ad ancorare il mi♭. Il 4° movimento arricchisce la tonica della sua settima maggiore (re) prima di rilanciare la frase."
+          },
+          {
+            "label": "Battuta 3",
+            "titre": "Dominante secondaria verso il II grado",
+            "chiffrage": "Do7  →  Fam",
+            "fonctions": "V7/II  →  II",
+            "texte": "Do7 (do-mi-sol-si♭) è la dominante del II grado (fa minore): una tonicizzazione passeggera che colora la progressione senza mai lasciare davvero mi♭ maggiore. Il canto dispiega un ricamo in gruppo (un <em>gruppetto</em> belcantistico) attorno a questo movimento."
+          },
+          {
+            "label": "Battuta 4",
+            "titre": "Progressione verso la dominante della dominante",
+            "chiffrage": "Si♭7  →  Sidim7  →  Dom  →  Fa7/La",
+            "fonctions": "V7  →  VII/VI  →  VI  →  V6/5/V",
+            "texte": "Il basso sale per semitoni (si♭→si♮→do) prima di un salto di terza verso il la: un accordo di settima diminuita sulla sensibile del VI grado (si°7) spinge verso do minore (VI), che a sua volta prepara — attraverso una nuova dominante secondaria (Fa7, con il la al basso) — l'arrivo della dominante."
+          },
+          {
+            "label": "Battuta 5",
+            "titre": "Cadenza perfetta",
+            "chiffrage": "Si♭7  →  Mi♭",
+            "fonctions": "V7  →  I",
+            "texte": "La dominante si risolve sulla tonica: la prima frase si chiude. Il canto vi dispiega il suo tratto più veloce (biscrome), una cadenza ornata tipica dello stile belcantistico di Chopin."
+          },
+          {
+            "label": "Battute 6-9",
+            "titre": "La frase, nota per nota — tranne il canto",
+            "chiffrage": "(identico alle battute 2-5)",
+            "fonctions": "I → IIø7 → I → I7 → V7/II → II → V7 → VII/VI → VI → V6/5/V → V7 → I",
+            "texte": "L'armonia e il basso si ripetono identici. Cambia soltanto l'ornamentazione del canto: la battuta 8 vi sovrappone un lungo <strong>trillo</strong> scritto nota per nota (fa-sol alternati, ventiquattro crome) sopra la stessa progressione V7-VII/VI-VI-V6/5/V — un ritardo della cadenza che si risolve finalmente alla battuta 9, sulla stessa cadenza perfetta della battuta 5."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Un pedale può reggere un prestito senza tradirlo",
+            "texte": "Il II grado semidiminuito della battuta 2 getta un'ombra cromatica sulla tonica, ma poiché il mi♭ resta tenuto dal pedale mentre l'accordo suona, l'orecchio non perde mai il filo della tonica. Il prestito decora, non sposta il centro tonale."
+          },
+          {
+            "titre": "Una progressione non è sempre interamente congiunta",
+            "texte": "Il basso della battuta 4 comincia con un movimento cromatico rigoroso (si♭-si♮-do) ma si chiude con un salto di terza (do-la): l'appoggio di una dominante secondaria, non un passo in più. Non tutte le «progressioni» armoniche sono linee di basso interamente congiunte."
+          },
+          {
+            "titre": "La ripetizione serve l'ornamentazione, non l'armonia",
+            "texte": "Le battute 6-9 riprendono l'armonia e il basso delle battute 2-5 senza il minimo cambiamento: è il canto, e soltanto il canto, a rinnovarsi (il trillo della battuta 8 ne è l'esempio più spettacolare). Una lezione di stile belcantistico: l'ornamentazione è il luogo della variazione, mentre la struttura armonica resta la cornice stabile."
+          }
+        ]
+      }
     }
   },
   "cours7": {
@@ -701,7 +883,70 @@
         "V7/X → X: tonicizzazione temporanea",
         "Alterazioni sempre risolte in senso cromatico",
         "Frequenti nel jazz e nella musica del periodo romantico"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "La maggiore (armatura di tre diesis). Tutta la frase gravita verso la dominante (Mi): ogni sosta un po' prolungata vi viene tonicizzata una seconda volta attraverso la propria dominante secondaria (V/IV e poi, due volte, V/V) — l'esempio stesso del tema di questa lezione.",
+        "metrique": "3/4, Andante teneramente. Anacrusi di un solo movimento (attacco sul 3° movimento).",
+        "forme": "Un'unica grande frase di 8 battute (più l'anacrusi), in un solo gesto ascendente: non si chiude sulla tonica ma si arresta in semicadenza, esaltata dalla propria dominante secondaria (V7/V → V), sospesa in attesa del seguito.",
+        "sections": [
+          {
+            "label": "Anacrusi e battuta 1",
+            "titre": "La tonica, poi la sottodominante in secondo rivolto",
+            "chiffrage": "La | Re/La",
+            "fonctions": "I | IV6/4",
+            "texte": "L'anacrusi posa dolcemente il grado <strong>I</strong> (La maggiore). La battuta 1 si insedia su <strong>IV6/4</strong> (Re maggiore, quinta al basso): il basso resta sul la — che è la tonica del brano, ma svolge qui il semplice ruolo di quinta dell'accordo di IV — prima di un breve ricamo (fa#) che prepara la battuta seguente. Nessuna alterazione per ora: siamo nel cuore della tonalità principale."
+          },
+          {
+            "label": "Battute 2-3",
+            "titre": "Risoluzione della sottodominante, piccola progressione cadenzale",
+            "chiffrage": "Re/Fa# – Re | Mi7/Re – La/Do# – Sim/Re",
+            "fonctions": "IV6 – IV | V4/2 – I6 – ii6",
+            "texte": "La battuta 2 conclude la sottodominante: primo rivolto (<em>IV6</em>, fa# al basso), poi stato fondamentale (<em>IV</em>). La battuta 3 concatena tre accordi su una discesa congiunta del basso (re–do#–re): una dominante di passaggio in terzo rivolto (<strong>V4/2</strong>), la tonica in primo rivolto (<strong>I6</strong>), poi <strong>ii6</strong> — un piccolo movimento cadenzale che chiude la prima semifrase senza mai arrestarsi."
+          },
+          {
+            "label": "Battuta 4",
+            "titre": "Un 6/4 cadenzale, poi la dominante secondaria del IV",
+            "chiffrage": "La/Mi (6/4 cadenzale) – Mi – vii°/Sol",
+            "fonctions": "D – D – vii°6/4/IV",
+            "texte": "Il primo accordo si scrive «I6/4», ma il suo basso (mi) è esattamente quello dell'accordo di <strong>V</strong> che lo segue immediatamente senza muoversi: è un classico <em>6/4 cadenzale</em>, un semplice ricamo della dominante — di qui la sua funzione <strong>D</strong> e non di tonica, malgrado la grafia «I». Il 3° movimento introduce il primo vero colore cromatico del brano: una triade diminuita su do# (do#-mi-sol), il cui sol è segnato in partitura come alterazione accidentale — sostituisce il sol# diatonico della tonalità. È la dominante secondaria (l'accordo di sensibile) della sottodominante, in secondo rivolto (<strong>vii°6/4/IV</strong>): il sol naturale si risolverà sulla terza dell'accordo di Re alla battuta seguente."
+          },
+          {
+            "label": "Battute 5-6",
+            "titre": "Ritorno, poi la Dominante della Dominante",
+            "chiffrage": "Re/Fa# – La/Mi (6/4 cadenzale) | Si7/Re# – Si7/La",
+            "fonctions": "IV6 – D | V6/5/V – V4/2/V",
+            "texte": "La battuta 5 riprende esattamente il gesto delle battute 1-2 (IV6, poi un nuovo 6/4 cadenzale sulla dominante). La battuta 6 introduce la seconda e più importante alterazione del brano: un <strong>re#</strong>, sensibile artificiale che non appartiene alla tonalità di La maggiore. Trasforma l'armonia in Si7 — la dominante di Mi, cioè <strong>la dominante della dominante (V/V)</strong> — dapprima in primo rivolto (<em>V6/5/V</em>), poi in terzo rivolto, con la settima al basso (<em>V4/2/V</em>): esattamente il meccanismo annunciato dalla lezione."
+          },
+          {
+            "label": "Battuta 7",
+            "titre": "L'accordo ambiguo: sesta aggiunta o settima alterata?",
+            "chiffrage": "sol#-si-re#-fa# (Si6 ≈ Sol#m7) – La – Si7",
+            "fonctions": "sensibile alterata (D) – I – V7/V",
+            "texte": "Questo accordo fa esitare, e a ragione: le quattro note realmente suonate (sol#, si, re#, fa#, con sol# al basso) formano una sonorità classicamente ambigua. Lette a partire dal si (il basso «teorico» della siglatura), sono le note di un Si maggiore con <em>sesta aggiunta</em> al basso. Ma lette a partire dalla nota realmente più grave (sol#), sono esattamente quelle di un <strong>Sol# minore settima</strong> in stato fondamentale: la stessa ambiguità di «Do6 = Lam7». È questa seconda lettura a spiegare meglio il seguito: il sol# è la sensibile della tonalità e sale con tutta naturalezza verso <strong>La</strong> (il <em>I</em> che arriva sul 2° movimento), mentre il re# — la stessa sensibile cromatica delle battute 5-6 — continua a tirare verso mi. Il 3° movimento rilancia subito <strong>V7/V</strong>: questa battuta non fa che respirare una frazione di secondo sulla tonica prima di ripartire verso la dominante."
+          },
+          {
+            "label": "Battuta 8",
+            "titre": "Semicadenza rafforzata dalla propria dominante",
+            "chiffrage": "Si7/Mi → Mi",
+            "fonctions": "V7/V → V",
+            "texte": "La frase si arresta sulla dominante (Mi maggiore) e non sulla tonica: una <strong>semicadenza</strong>. Ma Brahms la rafforza facendola precedere un'ultima volta dalla propria dominante secondaria (<strong>V7/V</strong>), su un pedale di mi al basso: l'accordo di Mi non giunge dunque mai davvero «al riposo»; resta sospeso, aperto sul seguito del brano."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Una frase interamente rivolta verso la dominante",
+            "texte": "Il brano parte dalla tonica ma non vi si ferma mai davvero: già alla battuta 1 il basso porta la nota mi (la dominante) sotto una veste di sottodominante, e due terzi della frase (battute 4-8) tonicizzano a turno il IV e poi, due volte, il V stesso. La semicadenza finale non è dunque una sorpresa: è l'esito logico di una frase costruita come una marcia verso Mi."
+          },
+          {
+            "titre": "Una stessa alterazione, due destinazioni diverse",
+            "texte": "Il sol naturale della battuta 4 e il re# delle battute 6-7 svolgono esattamente lo stesso ruolo (sensibile cromatica presa in prestito) ma puntano verso due gradi diversi: il IV per l'uno, il V per l'altro. Nessuna alterazione è decorativa: ciascuna annuncia con precisione l'accordo che tonicizza."
+          },
+          {
+            "titre": "Quando una sola linea melodica sostiene due letture",
+            "texte": "L'accordo della battuta 7 ricorda che uno stesso gruppo di note può essere analizzato in due modi ugualmente corretti (sesta aggiunta / accordo di settima della relativa): in casi simili è la condotta delle parti a decidere fra le due letture."
+          }
+        ]
+      }
     }
   },
   "cours8": {
@@ -997,7 +1242,70 @@
         "Marcia tonale: trasposizione nello stesso tono (intervalli diatonici)",
         "Marcia reale: trasposizione esatta (intervalli cromatici identici)",
         "Cromatismo: alterazioni non diatoniche che arricchiscono l'armonia senza modulare"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Re minore (armatura di un bemolle, Si♭).",
+        "metrique": "3/4 — il ritmo di sarabanda/ciaccona, con la sua tensione caratteristica sul 2° tempo.",
+        "forme": "Un tema di basso ostinato (un'anacrusi di due tempi, poi quattro misure) percorso due volte di seguito (misure 1-4, poi 5-8): è il principio stesso della variazione in ciaccona. La figurazione si complica progressivamente e la voce melodica propriamente detta compare solo a partire dalla seconda ripetizione (misura 7); fino a quel momento tutto poggia su un'unica linea di basso arpeggiata.",
+        "sections": [
+          {
+            "label": "Anacrusi (c. 0)",
+            "titre": "L'accordo d'apertura",
+            "chiffrage": "Rem",
+            "fonctions": "i",
+            "texte": "Il brano si apre sull'accordo di tonica spezzato (Re-Fa-La), ribattuto due volte sui due tempi dell'anacrusi: un gesto di affermazione ancor prima che la misura cominci davvero."
+          },
+          {
+            "label": "Misura 1",
+            "titre": "Dalla sopratonica alla dominante",
+            "chiffrage": "Mim7b5/Re — La7/Do#",
+            "fonctions": "iiø4/2 — V6/5",
+            "texte": "Primo anello della discesa cromatica del basso (Re→Do#): un accordo di sopratonica semidiminuito in <strong>3° rivolto</strong> (la 7ª, Re, al basso), che scivola verso la dominante con sensibile (Do#) in <strong>1° rivolto</strong>. Questa tensione armonica ottenuta trattenendo il basso è tipica della scrittura delle sarabande."
+          },
+          {
+            "label": "Misura 2",
+            "titre": "Tonica, poi il colore del VI",
+            "chiffrage": "Rem — Sib",
+            "fonctions": "I — VI",
+            "texte": "Ritorno alla tonica allo stato fondamentale, poi una colorazione tramite il <strong>VI</strong> (Si♭ maggiore): il basso prosegue la sua discesa diatonica (Re→Si♭). Una breve nota di passaggio (Do) chiude la misura e prepara il seguito."
+          },
+          {
+            "label": "Misure 3-4",
+            "titre": "Sottodominante, 6/4 di passaggio e cadenza",
+            "chiffrage": "Solm — Rem/La — La7/Do# — Rem",
+            "fonctions": "iv — i6/4 — V7 — I",
+            "texte": "La sottodominante minore (<strong>iv</strong>) conduce a un accordo di tonica in 2° rivolto (<strong>i6/4</strong>, basso La) che prolunga ancora la discesa del basso (Si♭→Sol→Re/La), prima che un rapido tratto in semicrome al basso precipiti verso l'accordo di dominante con settima (<strong>V7</strong>). Nuova rapida scala al basso all'inizio della misura 4, poi la risoluzione: questa cadenza autentica chiude il primo passaggio completo del basso ostinato, quattro misure dopo l'anacrusi."
+          },
+          {
+            "label": "Misure 5-6",
+            "titre": "Secondo passaggio: nota per nota identico",
+            "chiffrage": "Mim7b5/Re — La7/Do# | Rem — Sib",
+            "fonctions": "iiø4/2 — V6/5 | I — VI",
+            "texte": "La seconda ripetizione del basso ostinato comincia riprendendo in modo identico le misure 1 e 2, senza la minima variante armonica: cambia soltanto la figurazione che le riveste da una ripetizione all'altra, l'essenza stessa della variazione in ciaccona."
+          },
+          {
+            "label": "Misure 7-8",
+            "titre": "Un altro rivolto e l'ingresso della melodia",
+            "chiffrage": "Mim7b5/Sol — La — La7 — Rem",
+            "fonctions": "iiø6/5 — V — V7 — I",
+            "texte": "Qui il basso ostinato si orna finalmente di una vera voce melodica al di sopra di sé (fino a questo punto il brano era una sola linea). Lo stesso accordo di sopratonica semidiminuita delle misure 1 e 5 ritorna, ma questa volta in <strong>1° rivolto</strong> (la terza, Sol, al basso — non la 7ª): il basso ostinato non è dunque rigorosamente identico a ogni passaggio, Bach varia anche l'armonia, non soltanto l'ornamentazione. La dominante arriva dapprima come semplice triade (<strong>V</strong>), poi compare la sua 7ª (Sol) — non al basso, ma nell'ornamento melodico stesso — per formare <strong>V7</strong> appena prima della cadenza autentica che chiude questa seconda ripetizione alla misura 8."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Un solo basso, raccontato due volte",
+            "texte": "Le misure 1-2 e 5-6 condividono esattamente la stessa siglatura: la prova più netta che la ciaccona varia la figurazione (il disegno delle note) assai più dell'armonia sottostante, che resta spesso fissa da una ripetizione all'altra."
+          },
+          {
+            "titre": "Ma non del tutto immobile",
+            "texte": "Le misure 3 e 7 mostrano che Bach si concede anche vere varianti armoniche (accordi diversi, rivolti diversi dello stesso accordo): il basso ostinato è una guida, non una gabbia assoluta."
+          },
+          {
+            "titre": "La melodia nasce dal basso",
+            "texte": "Per sei misure l'intero brano non è che un'unica linea arpeggiata. La voce melodica propriamente detta compare solo alla misura 7: un ingresso tardivo che segna un vero momento di svolta nel discorso."
+          }
+        ]
+      }
     }
   },
   "cours1": {
@@ -1114,7 +1422,56 @@
         "Scala = 7 gradi, 2 semitoni diatonici",
         "Sensibile obbligatoriamente ascendente",
         "Modi greci derivati dalle rotazioni della scala maggiore"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Do maggiore — nessuna alterazione in chiave. I due soli semitoni diatonici naturali della scala (mi-fa, tra il III e il IV grado, e si-do, tra il VII e il I) sono il motore di tutto il brano.",
+        "metrique": "4/4",
+        "forme": "L'intero estratto (c. 1-8) poggia su un piano di basso di sole DUE note di pedale: do (c. 1-2 e 4-6, con una breve nota di volta si alla battuta 3) e poi si (c. 7-8, la sensibile tenuta fino alla fine dell'estratto). Sopra questi pedali l'armonia cambia colore per il solo movimento delle voci superiori — il basso, invece, si muove appena.",
+        "sections": [
+          {
+            "label": "Battute 1-3",
+            "titre": "Un pedale di tonica, ornato dalla sua nota di volta",
+            "chiffrage": "C  |  Dm7/C  |  G7/B",
+            "fonctions": "I  |  ii2  |  V6/5 (letto come i prolungato)",
+            "texte": "Il basso tiene il do per le prime due battute: l'accordo si muove solo AL DI SOPRA di esso — dapprima l'arpeggio do-mi-sol (I), poi re-fa-la che, unito a quel do tenuto, disegna un <strong>Dm7 in terzo rivolto</strong> (ii2). Alla battuta 3 il basso scende di un tono al si: la FORMA dell'accordo (sol-si-re-fa) è proprio quella di un G7 in primo rivolto (V6/5), ma Bach la impiega qui come semplice <em>nota di volta inferiore</em> del pedale di do, non come una vera dominante in attesa di risoluzione. Di qui la sua cifratura «V6/5(T)»: la forma è quella di una dominante, la FUNZIONE resta di tonica."
+          },
+          {
+            "label": "Battute 4-5",
+            "titre": "Ritorno alla tonica, poi al suo sostituto",
+            "chiffrage": "C  |  Am/C",
+            "fonctions": "i  |  vi6",
+            "texte": "La nota di volta si risolve: il si del basso risale al do (battuta 4), mentre il fa e il re delle voci superiori ridiscendono al mi e al do — l'accordo di tonica è ritrovato nota per nota come alla battuta 1. La battuta 5 cambia colore SENZA cambiare basso: il do tenuto diventa la <strong>terza</strong> di un accordo di la minore (vi6), il sostituto più diretto della tonica, con cui condivide due suoni (do e mi)."
+          },
+          {
+            "label": "Battuta 6",
+            "titre": "L'unica alterazione dell'estratto",
+            "chiffrage": "D7/C",
+            "fonctions": "V2/V",
+            "texte": "Primo vero spostamento armonico dall'inizio dell'estratto: il basso resta sul do (che ne diventa la settima, e non più la fondamentale), ma l'armonia soprastante si trasforma in un <strong>Re7 completo</strong> (re-fa♯-la-do). Il fa♯, unica nota estranea all'armatura di tutto l'estratto, è una sensibile ARTIFICIALE che tira verso il sol: Bach punta ora alla dominante (V), non ancora alla tonica."
+          },
+          {
+            "label": "Battute 7-8",
+            "titre": "La dominante, poi una tonica che non si richiude del tutto",
+            "chiffrage": "G/B  |  Cmaj7/B",
+            "fonctions": "V6  |  IΔ2",
+            "texte": "Il basso scende finalmente sul si — la sensibile del tono — e vi rimane per le ultime due battute: prima sotto un accordo di sol maggiore (V6), poi sotto l'arrivo della tonica (battuta 8). Ma questa tonica non è nel suo stato più stabile: la sua <strong>settima maggiore</strong> (proprio il si, giacché il basso non si muove) la colora di una tensione sospesa che invoca il seguito del brano invece di chiuderlo."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Due pedali, un solo gesto",
+            "texte": "Tutta l'armonia dell'estratto poggia su due note di basso: do (c. 1-6, con una breve deviazione verso la sua nota di volta si alla battuta 3) e poi si (c. 7-8). Il movimento musicale non nasce dal basso, che si sposta appena — nasce dalle voci superiori, che ridisegnano l'accordo al di sopra di esso."
+          },
+          {
+            "titre": "I due semitoni diatonici",
+            "texte": "Mi-fa (nel Dm7 della battuta 2 e nel suo intorno) e si-do (la sensibile, battute 3 e 7-8) sono i due soli semitoni naturali di do maggiore: sono loro a creare tutta la tensione del brano, senza una sola alterazione fino alla battuta 6."
+          },
+          {
+            "titre": "Il colore segue la funzione, non la forma",
+            "texte": "La battuta 3 ha la FORMA di una dominante (G7) ma la FUNZIONE di una tonica prolungata: di qui il suo colore azzurro, malgrado la cifratura «V6/5». Nell'armonia tonale è sempre la funzione a prevalere sull'apparenza di superficie."
+          }
+        ]
+      }
     }
   },
   "cours2": {
@@ -1245,7 +1602,56 @@
         "Triade = fondamentale + terza + quinta",
         "Accordo perfetto maggiore: terza M + quinta G",
         "Rivolti: 1° (terza al basso), 2° (quinta al basso)"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "La bemolle maggiore (4 bemolli in chiave: si♭, mi♭, la♭, re♭).",
+        "metrique": "2/4.",
+        "forme": "Due frasi di 4 battute. La prima (c. 1-4) afferma la tonica nei suoi tre volti (stato fondamentale, primo rivolto, stato fondamentale) e raggiunge poi la dominante. La seconda (c. 5-8) si apre con un movimento raro — la dominante scivola DIRETTAMENTE verso la sottodominante, senza passare dalla tonica — prima di richiudere la frase con un ritorno pieno a I.",
+        "sections": [
+          {
+            "label": "Battute 1-3",
+            "titre": "Tre volti della tonica",
+            "chiffrage": "Ab  |  Ab/C  |  Ab",
+            "fonctions": "I  |  I6  |  I",
+            "texte": "La battuta 1 espone l'accordo di tonica allo stato fondamentale: la fondamentale (la♭) è raddoppiata tra il basso e l'accompagnamento, mentre il canto intona la terza (do). La battuta 2 rivolta lo stesso accordo — il basso porta ora la <strong>terza</strong> (do) e non più la fondamentale: è il primo rivolto (I6), che alleggerisce il basso senza cambiare la funzione (sempre azzurro, sempre tonica). La battuta 3 torna allo stato fondamentale, con il basso che ridiscende sul la♭."
+          },
+          {
+            "label": "Battute 4-5",
+            "titre": "La dominante, poi una «retrogressione» verso la sottodominante",
+            "chiffrage": "Eb  |  Db",
+            "fonctions": "V  |  IV",
+            "texte": "Primo cambio di funzione dell'estratto: l'accordo mi♭-sol-si♭ (V), allo stato fondamentale, colora tutto di rosso. È una triade semplice, SENZA settima — il sol (sensibile del tono) è ben presente, pronto a tirare verso la tonica. Ma invece di risolvere su I come l'orecchio si attende, l'armonia indietreggia verso la sottodominante (battuta 5, re♭ maggiore): una <strong>retrogressione</strong> autentica, non una semplificazione di scrittura — il riposo sulla tonica attenderà ancora tre battute."
+          },
+          {
+            "label": "Battute 6-7",
+            "titre": "Un accordo di passaggio, poi l'unica triade minore dell'estratto",
+            "chiffrage": "Ab/C  |  Bbm",
+            "fonctions": "I6  |  ii",
+            "texte": "Il basso ridiscende per gradi congiunti (re♭ → do → si♭), collegando la sottodominante della battuta 5 al ii della battuta 7 attraverso un breve ritorno alla tonica in primo rivolto (battuta 6 — un accordo di PASSAGGIO, non un vero riposo). La battuta 7 introduce si♭ minore (ii), l'<strong>unica triade minore di tutto l'estratto</strong>: colore arancione, come IV — i due gradi della famiglia della sottodominante."
+          },
+          {
+            "label": "Battuta 8",
+            "titre": "Ritorno e chiusura",
+            "chiffrage": "Ab",
+            "fonctions": "I",
+            "texte": "Il basso compie la sua discesa sul la♭, raddoppiato all'ottava nel registro grave: la frase si richiude sulla tonica. Il canto conclude con un arpeggio completo dell'accordo (la♭-do-mi♭-la♭), dopo una breve appoggiatura."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Il codice dei colori segue sempre la funzione",
+            "texte": "Azzurro = tonica (I, I6), arancione = sottodominante (IV, ii), rosso = dominante (V) — la stessa convenzione delle altre partiture del conservatorio. Qui, a differenza del Preludio di Bach (lezione 1), nessun colore contraddice la propria cifratura: ogni tinta corrisponde esattamente alla forma dell'accordo."
+          },
+          {
+            "titre": "La retrogressione V→IV",
+            "texte": "Risolvere una dominante non è un obbligo meccanico: qui essa scivola verso la sottodominante prima che la tonica ritorni, soltanto alla battuta 8 — da rilevare proprio per contrasto con l'attesa V→I posta dalla regola generale."
+          },
+          {
+            "titre": "Una sola triade minore",
+            "texte": "Sulle 8 battute un solo accordo è minore: il ii (si♭ minore) della battuta 7 — il colore d'insieme resta decisamente maggiore, a immagine della tonalità (la bemolle maggiore)."
+          }
+        ]
+      }
     }
   },
   "cours3": {
@@ -1378,7 +1784,56 @@
         "Funzioni: Tonica (I, III, VI), Dominante (V, VII), Sottodominante (II, IV)",
         "Cadenza autentica V–I = chiusura forte",
         "Il tritono in V7 risolve: si→do, fa→mi"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Sol minore (i) — 2 bemolli in chiave (si♭, mi♭). Modo minore DEDOTTO per correlazione di profilo tonale (nessun tag <mode> nell'esportazione MuseScore): lo confermano l'onnipresenza del polo I (Solm) e la dominante Re7 con la sua sensibile fa♯, unica nota estranea all'armatura di tutto l'estratto.",
+        "metrique": "C (4/4, alla breve).",
+        "forme": "Il celebre tema d'apertura poggia su un pedale — la quinta della tonica (re), tenuta al basso per 4 battute — e scivola poi per un semplice semitono verso una sottodominante arricchita (IIø7, battute 5-6), prima della progressione cadenzale IIø7-V7-I che questa lezione insegna (battute da 7 a 9, con una battuta 9 incompleta per giungere fino alla risoluzione).",
+        "sections": [
+          {
+            "label": "Battute 1-4",
+            "titre": "Il tema, sulla quinta della tonica tenuta al basso",
+            "chiffrage": "Gm/D",
+            "fonctions": "i6/4",
+            "texte": "La mano sinistra sgrana un motivo regolare in crome (sol-re-sol-si♭: la fondamentale, la quinta, la fondamentale e la terza di sol minore). È un accordo di TONICA per tutto il tratto, ma con la propria QUINTA (re) al basso — non un pedale di dominante indipendente, soltanto uno dei suoni della tonica stessa. Al di sopra, il celebre motivo anacrusico (mi♭-re-re) avvia il tema, sviluppato lungo le 4 battute."
+          },
+          {
+            "label": "Battute 5-6",
+            "titre": "La sottodominante arricchita, per grado congiunto",
+            "chiffrage": "Am7b5/Eb",
+            "fonctions": "ii+4/3",
+            "texte": "Il basso passa da re a mi♭ per un semplice semitono — senza il minimo salto — per raggiungere un accordo di quinta diminuita e settima (la-do-mi♭-sol, secondo grado semidiminuito), questa volta con la PROPRIA quinta (mi♭) al basso. È il colore arancione: la sottodominante arricchita si allontana nettamente dalla tonica."
+          },
+          {
+            "label": "Battute 7-8",
+            "titre": "La dominante e la sua tensione",
+            "chiffrage": "D7  |  D/A poi D7/A",
+            "fonctions": "V7  |  V6/4 poi V7+6",
+            "texte": "La sensibile del tono (fa♯, unica alterazione di tutto l'estratto) compare finalmente alla battuta 7: forma, con il do (settima dell'accordo), il <strong>tritono</strong> che regge tutta la tensione della dominante. Alla battuta 8 il basso resta nei paraggi (re, la, fa♯): lo stesso accordo di dominante, dapprima udito come triade in secondo rivolto (V6/4), poi arricchito della sua settima (V7, sempre in secondo rivolto, di qui il «+6»)."
+          },
+          {
+            "label": "Battuta 9",
+            "titre": "Ritorno — non ancora una cadenza chiusa",
+            "chiffrage": "Gm/D",
+            "fonctions": "i6/4",
+            "texte": "La tensione ricade sulla tonica — ma sempre in secondo rivolto (i6/4), esattamente la tessitura che apriva l'estratto. Non è una cadenza autentica in senso stretto (che esigerebbe la fondamentale al basso): piuttosto un ritorno all'idea d'apertura, l'anello che richiude la frase per rilanciare il tema."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Una nota, due funzioni",
+            "texte": "Il re regge tutta l'armonia delle prime 4 battute (quinta della tonica) e poi, un semitono più in alto al basso (mi♭), fa scivolare l'armonia verso la sottodominante: uno spostamento di un solo semitono basta a cambiare completamente funzione."
+          },
+          {
+            "titre": "Il tritono, motore della dominante",
+            "texte": "Fa♯ (la sensibile) e do (la settima) formano l'intervallo che spinge tutto verso la risoluzione: l'unica alterazione estranea all'armatura di tutto l'estratto, riservata alle 2 battute di dominante."
+          },
+          {
+            "titre": "Una cadenza che non richiude del tutto",
+            "texte": "IIø7-V7-I è proprio la progressione cadenzale che questa lezione insegna, ma qui sfocia su un I in secondo rivolto (come in partenza) e non su una fondamentale al basso: la tensione ricade senza che la frase si chiuda completamente."
+          }
+        ]
+      }
     }
   },
   "cours10": {
@@ -1467,7 +1922,70 @@
         "7 modi = 7 rotazioni della stessa scala, ciascuno con la propria tonica",
         "Il dorico colora il minore con una 6ª maggiore: il modo più usato nel jazz modale",
         "«So What» (Miles Davis, 1959): un vamp in re dorico, senza armonia funzionale"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Re dorico — nessuna alterazione in chiave, ma non si tratta né di Do maggiore né di La minore: il centro modale è Re (2° grado di Do maggiore preso come punto di partenza).",
+        "metrique": "4/4.",
+        "forme": "Un vamp modale di due misure (chiamata del basso solo, poi risposta in accordi), ripetuto quattro volte di seguito (misure 1-2, 3-4, 5-6, 7-8) prima dell'anacrusi della ripresa (misura 9, che porta anche la prima volta del ritornello annotato in partitura). Nessuna delle 9 misure contiene una dominante: il brano non cadenza mai, colora un unico centro tonale dall'inizio alla fine — l'esatto controesempio dei 9 brani precedenti del conservatorio, tutti fondati su concatenazioni funzionali.",
+        "sections": [
+          {
+            "label": "Misura 1",
+            "titre": "La chiamata: il basso solo",
+            "chiffrage": "Dm7 (N.C.)",
+            "fonctions": "I",
+            "texte": "Il contrabbasso espone da solo il riff tematico del brano — un'anacrusi di croma, poi una linea ascendente (Re-La-Si-Do-Re-Mi) che si richiude su Do. Non è scritto alcun accordo verticale (<em>N.C.</em>, «no chord»): soltanto la siglatura «I» sotto il pentagramma del basso indica che Re resta il centro modale, anche senza un'armonia esposta."
+          },
+          {
+            "label": "Misura 2",
+            "titre": "La risposta: due accordi rootless",
+            "chiffrage": "Em7 – Dm7",
+            "fonctions": "II7 – I7",
+            "texte": "Il pianoforte risponde con due accordi brevi, ciascuno privo della fondamentale scritta: Re-Sol-Si (3ª, 5ª e 7ª di Em7, senza il Mi) sul 3° tempo, poi Do-Fa-La (gli stessi gradi di Dm7, senza il Re) sul contrattempo successivo. In questo contesto modale, <strong>II7 non prepara alcuna dominante</strong>: è un colore che ricade direttamente sulla tonica modale, senza mai passare per un accordo di tensione classico."
+          },
+          {
+            "label": "Misure 3-6",
+            "titre": "Il ciclo si ripete",
+            "chiffrage": "Dm7 | Em7 – Dm7  ·  Dm7 | Em7 – Dm7",
+            "fonctions": "I | II7 – I7  ·  I | II7 – I7",
+            "texte": "Le misure 3 e 5 riprendono nota per nota il riff di basso della misura 1. Le misure 4 e 6 riprendono la stessa risposta in accordi della misura 2 — solo il basso varia con discrezione (un andirivieni Re-La alla misura 4, un solo Re alla misura 6). Nulla si muove sul piano armonico: è la ripetizione a costruire il brano, non una progressione."
+          },
+          {
+            "label": "Misura 7",
+            "titre": "Un respiro diverso",
+            "chiffrage": "(N.C.)",
+            "fonctions": "—",
+            "texte": "Unica vera variazione dell'intero estratto: invece del riff ascendente, il basso ripete tre volte la stessa nota (Mi), in un ritmo sincopato (una nota tenuta a cavallo del 2° tempo). Nessuna siglatura accompagna questa misura — è l'unica di tutto l'estratto a non portarne alcuna, nemmeno un «I»: la tensione della chiamata resta aperta più a lungo che altrove, prima che la risposta ritorni."
+          },
+          {
+            "label": "Misura 8",
+            "titre": "Ultima risposta prima della ripresa",
+            "chiffrage": "Dm7 | Em7 – Dm7",
+            "fonctions": "I | II7 – I7",
+            "texte": "Il ciclo si richiude come alle misure 2, 4 e 6: la stessa risposta in due accordi rootless. Nulla segnala ancora la fine della sezione — è la misura seguente a portare il segno di ritornello."
+          },
+          {
+            "label": "Misura 9",
+            "titre": "Anacrusi e prima volta",
+            "chiffrage": "Dm7 (N.C.)",
+            "fonctions": "I",
+            "texte": "Il riff di basso della misura 1 ritorna identico. È anche su questa misura, e soltanto su di essa, che la partitura porta la <strong>prima volta</strong> del ritornello (la barra di ritornello parte dalla misura 2): dopo questa misura il ciclo ricomincia dalla misura 2, prima che una seconda volta (fuori da questo estratto) prosegua il brano."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Un solo colore, mai una cadenza",
+            "texte": "In queste 9 misure non compare alcun accordo di dominante. Il II7 (Em7) non è mai un predominante che prepara una risoluzione: è una semplice colorazione che ricade direttamente sulla tonica modale, all'opposto di tutto ciò che insegnano i primi 9 brani del conservatorio."
+          },
+          {
+            "titre": "La ripetizione come motore",
+            "texte": "Il brano non si sviluppa per concatenazione di accordi, ma per la ripetizione quasi esatta di uno stesso modulo di 2 misure — solo la misura 7 se ne discosta, con un semplice cambio di ritmo al basso, senza mai introdurre un accordo nuovo."
+          },
+          {
+            "titre": "Accordi «rootless»",
+            "texte": "I due accordi della risposta (Em7, Dm7) sono scritti senza la loro fondamentale: una tecnica di voicing molto caratteristica del pianoforte jazz, in cui il basso porta già la fondamentale e la mano destra si concentra sul colore (3ª, 5ª, 7ª)."
+          }
+        ]
+      }
     }
   },
   "cours11": {
@@ -1578,7 +2096,63 @@
         "9ª = 2° grado all'ottava superiore, 11ª = 4°, 13ª = 6°",
         "#9 e b9 sono tensioni tipiche dell'accordo di dominante alterato",
         "«All the Things You Are» (Kern/Hammerstein): un vamp introduttivo costruito interamente su accordi di dominante alterati (#9)"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "La bemolle maggiore (armatura di quattro bemolli) — ma questo vamp introduttivo non vi si àncora mai: alterna due dominanti alterate senza mai risolvere su La♭.",
+        "metrique": "4/4, swing (crome ineguali), semiminima = 140.",
+        "forme": "Un vamp di 2 misure (accordo tenuto, poi ricamo al basso) ripetuto prima che cominci lo standard vero e proprio, alla misura 9 del file originale (qui non riportata; si apre su Fa minore) — questa introduzione è soltanto una preparazione cromatica, non ancora il tema.",
+        "sections": [
+          {
+            "label": "Misura 1",
+            "titre": "L'anacrusi",
+            "chiffrage": "(silenzio) — La",
+            "fonctions": "—",
+            "texte": "L'estratto si apre su una pausa, poi su una sola nota al basso (La naturale), che scende subito di un semitono verso La♭ — la <strong>5ª</strong> dell'accordo che arriva nella misura seguente, non la sua fondamentale. Non si tratta dunque di un'anacrusi tonale: è un colore che si avvicina per grado congiunto cromatico."
+          },
+          {
+            "label": "Misure 2-3",
+            "titre": "Db7(#9), la sostituzione di tritono",
+            "chiffrage": "Db7(#9)",
+            "fonctions": "SubV/V",
+            "texte": "Il basso pone la fondamentale (Re♭) e poi la quinta (La♭); la mano destra piazza, sul contrattempo, le tre note che fanno tutto il colore dell'accordo: Fa (terza), Si naturale (scritto come 7ª minore) e Mi naturale (<strong>la 9ª aumentata</strong>) — né fondamentale né quinta in questa mano: sono le sole tensioni a portare l'identità armonica. Db7 sostituisce G7 per sostituzione di tritono (stesso tritono Fa-Si), conducendo a C7 nella misura successiva."
+          },
+          {
+            "label": "Misure 4-5",
+            "titre": "C7(#9), la dominante della relativa minore",
+            "chiffrage": "C7(#9)",
+            "fonctions": "V7/VI",
+            "texte": "Stesso gesto, una terza più in basso: anche qui la mano destra suona soltanto terza (Mi), 7ª (Si♭) e 9ª aumentata (Mi♭) — senza fondamentale né quinta. È la dominante secondaria della relativa minore della tonalità (Fa minore), che compare solo alla misura 9 del file originale. La misura 5 orna questa armonia con una linea discendente alla mano destra (La♭-Sol-Do-Fa-La) prima che il ciclo riparta."
+          },
+          {
+            "label": "Misure 6-7",
+            "titre": "Ritorno di Db7(#9), un colore più ricco",
+            "chiffrage": "Db7(#9)",
+            "fonctions": "SubV7/V",
+            "texte": "Lo stesso accordo ritorna — ma non identico. La siglatura cambia questa volta (<strong>«SubV7/V»</strong> anziché «SubV/V»), e la mano destra si è arricchita: il suo disegno sfiora di passaggio altri colori — una 13ª (Si♭) e un'11ª aumentata (Sol) — assenti dal primo passaggio delle misure 2-3. Un vamp che si ripete può dunque concedersi un po' più di colore a ogni ritorno: è proprio lo spirito delle estensioni che questa lezione insegna."
+          },
+          {
+            "label": "Misura 8",
+            "titre": "Ultimo C7(#9), finale in sospensione",
+            "chiffrage": "C7(#9)",
+            "fonctions": "V7/VI",
+            "texte": "Ultimo accordo dell'estratto: C7(#9), anch'esso con un voicing più ricco rispetto alla prima apparizione (la mano destra vi aggiunge la quinta, assente alla misura 4). L'estratto si ferma qui, in piena tensione — lo standard comincia subito dopo, alla misura 9 del file originale, su Fa minore."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Tensioni senza fondamentale né quinta",
+            "texte": "I due accordi di questo vamp (Db7(#9), C7(#9)) hanno esattamente lo stesso voicing: il basso porta la fondamentale e la quinta, la mano destra suona solo la terza, la 7ª e la 9ª alterata — un voicing rootless classico del pianoforte jazz, in cui sono le tensioni a fare tutto il lavoro di colore."
+          },
+          {
+            "titre": "Il colore si arricchisce a ogni ritorno",
+            "texte": "Il vamp non è semplicemente ricopiato: al suo ritorno (misure 6-8) la mano destra aggiunge tocchi di 13ª e di 11ª aumentata assenti dal primo passaggio — un vamp ripetuto non è mai del tutto identico a se stesso."
+          },
+          {
+            "titre": "Un primo assaggio di alterazione prima del tema",
+            "texte": "Questa introduzione non tocca mai la tonica del brano (La♭): prepara l'orecchio con due dominanti alterate prima che il vero standard — molto più diatonico — cominci alla misura 9."
+          }
+        ]
+      }
     }
   },
   "cours12": {
@@ -1682,7 +2256,70 @@
         "subV7 = accordo di dominante costruito un tritono sopra (o sotto) il V7",
         "I due accordi condividono 3ª e 7ª (semplicemente scambiate): stessa tensione, risoluzione diversa",
         "«Satin Doll» (Ellington): Réb7 sostituisce Sol7 (subV7) appena prima del ritorno a Do maggiore"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Do maggiore (armatura senza alterazioni) — ma mai affermato direttamente prima della misura 7: l'intera frase non è che una catena di ii-V che si posa sulla tonica soltanto alla fine.",
+        "metrique": "4/4.",
+        "forme": "8 misure = la frase A dello standard: una progressione di coppie ii-V (o dei loro sostituti) che sale grado per grado prima di risolvere su Do maggiore alla misura 7, per poi rilanciare subito il ciclo verso una ripresa della sezione.",
+        "sections": [
+          {
+            "label": "Misure 1-2",
+            "titre": "ii7-V7, la progressione di base",
+            "chiffrage": "Dm7 – G7",
+            "fonctions": "II7 – V7",
+            "texte": "L'estratto si apre sulla concatenazione più classica del jazz: ii7-V7 in Do maggiore. Il basso scivola cromaticamente (Mi♭) proprio alla fine della misura 1 — una nota di passaggio che scende di un semitono verso la fondamentale (Re) con cui si apre la misura 2."
+          },
+          {
+            "label": "Misure 3-4",
+            "titre": "iii7-V7/II, la progressione risale",
+            "chiffrage": "Em7 – A7",
+            "fonctions": "III7 – V7/II",
+            "texte": "La stessa coppia ii-V risale di una terza: Em7 (iii7, un accordo della famiglia di tonica) e poi A7, la dominante secondaria del grado ii (<strong>V7/II</strong>) — un colore che prepara un ritorno a Dm7 che in questo estratto non arriva più. Il basso riprende il suo scivolamento cromatico a fine misura, questa volta verso Mi."
+          },
+          {
+            "label": "Misura 5",
+            "titre": "vi7-V7/V, una dominante della dominante ben adornata",
+            "chiffrage": "Am7 – D7",
+            "fonctions": "VI7 – V7/V",
+            "texte": "Nuova coppia ii-V, di nuovo trasposta. I voicing si arricchiscono qui in modo netto: Am7 suona senza fondamentale né terza — solo 5ª, 7ª e <strong>11ª</strong> (Mi-Sol-Re). D7 (V7/V) aggiunge la <strong>9ª</strong> (Mi) e l'<strong>11ª</strong> (Sol) alla sua 7ª minore (Do) — un accordo assai più ricco di un semplice D7 da manuale."
+          },
+          {
+            "label": "Misura 6",
+            "titre": "bVI7-subV7, la sostituzione di tritono",
+            "chiffrage": "Abm7 – Db7",
+            "fonctions": "bVI7 – subV7",
+            "texte": "Il momento chiave della lezione: al posto del ii7-V7 atteso (Dm7-G7), la partitura propone Abm7-Db7. Db7 (<strong>subV7</strong>) sostituisce G7 per sostituzione di tritono — i due accordi condividono in teoria lo stesso tritono (Fa-Si), che questa realizzazione fa risuonare soltanto attraverso il Si (7ª di Db7). Sull'ultimo contrattempo della misura, la mano destra anticipa già l'accordo di risoluzione (Cmaj9) e lo tiene legato al di là della stanghetta."
+          },
+          {
+            "label": "Misura 7",
+            "titre": "Risoluzione — già avviata prima di arrivare",
+            "chiffrage": "Cmaj9 – Dm9",
+            "fonctions": "Imaj9 – II9",
+            "texte": "Risoluzione finalmente sulla tonica — preparata fin dalla fine della misura precedente: Cmaj9 (7ª maggiore Si, 9ª Re) occupa i primi due tempi senza nemmeno essere riattaccato, prima che il basso scivoli verso Dm9 per avviare il rilancio del ciclo."
+          },
+          {
+            "label": "Misura 8",
+            "titre": "Un passaggio cromatico verso il rilancio",
+            "chiffrage": "Ebdim7 – Em7",
+            "fonctions": "— – III7",
+            "texte": "Un accordo di <strong>settima diminuita completo</strong> (Mi♭-Fa♯-La-Do, verificato nota per nota) funge da passaggio cromatico, prolungando la linea di basso ascendente iniziata alla misura 7 (Do-Re-Mi♭-Mi) fino a Em7 (iii7), che chiude questa frase e rilancia il ciclo verso una ripresa della sezione A."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Un'unica progressione, trasposta tre volte",
+            "texte": "ii7-V7 (misure 1-2), iii7-V7/II (misure 3-4), vi7-V7/V (misura 5): lo stesso gesto armonico, rigiocato a tre altezze diverse, prima che la sostituzione di tritono (misura 6) venga a sostituirlo un'ultima volta per riportare finalmente la tonica."
+          },
+          {
+            "titre": "La sostituzione, un semplice movimento di basso",
+            "texte": "Sostituire G7 con Db7 non cambia quasi nulla all'orecchio (stesso tritono, stessa tensione) — ma trasforma la risoluzione del basso da un salto di quarta (Sol→Do) in un semplice semitono discendente (Re♭→Do): la vera ragione per cui i jazzisti la usano tanto."
+          },
+          {
+            "titre": "La risoluzione è già lì prima ancora di arrivare",
+            "texte": "L'accordo di tonica (Cmaj9) è già tenuto, legato dalla misura precedente, quando la misura 7 comincia ufficialmente — una respirazione ritmica tipica del jazz che sfuma il confine tra tensione e risoluzione."
+          }
+        ]
+      }
     }
   },
   "cours13": {
@@ -1803,7 +2440,70 @@
         "Contrappunto = due voci melodicamente indipendenti che si accordano verticalmente",
         "Le 5 specie di Fux: nota contro nota, 2 contro 1, sincopi/ritardi, fioretti, contrappunto fiorito",
         "Invenzione n. 1 BWV 772 (Bach): soggetto e risposta scambiati tra le due mani, modula verso la dominante"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Do maggiore (armatura senza alterazioni) all'inizio — ma l'accordo pivot della battuta 4 fa scivolare il brano verso la sua dominante, Sol maggiore, dove si installa stabilmente fino alla fine dell'estratto (battute 7-8).",
+        "metrique": "4/4.",
+        "forme": "8 battute = la prima frase dell'Invention: esposizione del soggetto al soprano, poi al basso all'ottava (battuta 1), fine del soggetto e colore di dominante (battuta 2), progressione diatonica di transizione (battuta 3), accordo pivot e modulazione a Sol maggiore (battuta 4), dominante preparata e poi risolta con una deviazione (battute 5-6), riesposizione del soggetto trasposto al basso e cadenza sospesa sulla nuova dominante (battute 7-8).",
+        "sections": [
+          {
+            "label": "Battuta 1",
+            "titre": "Il soggetto, esposto e poi imitato all'ottava",
+            "chiffrage": "Do (I)",
+            "fonctions": "I",
+            "texte": "Il soggetto compare dapprima al soprano: Do-Re-Mi-Fa-Re-Mi-Do (tempi 1-2), puro arpeggio della tonica intrecciato a gradi congiunti. Ai tempi 3-4 migra al basso, <strong>un'ottava più in basso</strong>, mentre il soprano tiene un controsoggetto interno all'accordo di tonica (Sol-Do-Si-Do). Il Fa3 che compare sul battere del quarto tempo al basso appartiene a questa linea melodica del soggetto, non all'armonia: inutile cifrarvi un accordo di sottodominante, l'intera battuta non è che una tonica prolungata."
+          },
+          {
+            "label": "Battuta 2",
+            "titre": "La risposta, e un colore di settima di dominante",
+            "chiffrage": "Sol (V) – Sol7 (V7)",
+            "fonctions": "V – V7",
+            "texte": "Il basso conclude il soggetto scendendo di un'ottava (Sol3-Sol2), poi lo riattacca su Sol (Sol-La-Si-Do-La-Si-Sol) mentre il soprano risponde al di sopra. Sull'ultimo tempo, un ricamo inferiore del soprano (Sol-Fa♮-Sol) fa udire il Fa naturale che colora Sol in <strong>Sol7 (V7)</strong> — esattamente la cifratura riportata in quel punto preciso della partitura."
+          },
+          {
+            "label": "Battuta 3",
+            "titre": "Progressione diatonica ascendente",
+            "chiffrage": "Lam/Do (vi6) – Rem (ii) – Do/Mi (I6) – Lam (vi)",
+            "fonctions": "vi6 – ii – I6 – vi",
+            "texte": "Quattro accordi in progressione, con basso congiunto ascendente (Do-Re-Mi-Fa-Sol-La-Si). Proprio alla fine della battuta si forma tra le due voci un <strong>accordo di passaggio non cifrato</strong> — Si (basso) - Re - Fa (soprano), un vii° diminuito completo — che spinge naturalmente verso il Do della battuta successiva: un dettaglio d'analisi fine che la cifratura romana, la quale mantiene « vi » fino in fondo alla battuta, non restituisce, ma che le altezze reali confermano."
+          },
+          {
+            "label": "Battuta 4",
+            "titre": "L'accordo pivot e il passaggio a Sol maggiore",
+            "chiffrage": "Do (I=IV) – Re7/Fa# (V6/5) – Re7/La (V4/3) – Re7/Do (V4/2)",
+            "fonctions": "IV – V6/5 – V4/3 – V4/2 (già in Sol maggiore)",
+            "texte": "Momento cardine dell'estratto: il Do che apre la battuta è al tempo stesso <strong>I di Do maggiore</strong> e <strong>IV di Sol maggiore</strong> — un accordo pivot in senso stretto. I tre tempi seguenti compongono la dominante della nuova tonalità in un arpeggio perfettamente disteso al basso (Fa#-La-Do), attraversandone i tre rivolti (V6/5, V4/3, V4/2); il Fa# appare per la prima volta al basso esattamente sulla terza croma della battuta, sensibile di Sol che conferma il colore della nuova tonica. Il Do (settima di Re7) tenuto al basso alla fine della battuta è legato oltre la stanghetta: la sua risoluzione è differita alla battuta 5."
+          },
+          {
+            "label": "Battute 5-6",
+            "titre": "La risoluzione differita, poi la vera tonica",
+            "chiffrage": "Re7/Do (V4/2) – Sol (I) – Sol (I) – Do (IV) | Mim (vi) – Sol (I) – Sol/Si (I6) – Re (V)",
+            "fonctions": "D (V4/2, prolungato) – T – T – SD | T (vi) – T – T (I6) – D",
+            "texte": "La settima tenuta (Do) non risolve verso Si come ci si aspetterebbe: il basso le sfugge con una scala ascendente (Re-Mi-Fa#) e raggiunge direttamente la tonica allo stato fondamentale (Sol), <strong>una risoluzione evitata</strong>. Il Do5 puntato che segue al soprano è una dissonanza accentata che sale verso Re5 invece di ridiscendere — un trattamento inconsueto, che prolunga la tensione di un tempo in più. Alla battuta 6 il basso esita un istante tra Sol (I) e un fugace ritorno su Mi (vi) prima di fissarsi su Si (I6, nota tenuta); un Do3 di passaggio collega poi Si a Re, che apre la cadenza: un vero ritardo 6-5 (Si4 verso La4) sostenuto dal basso Re3-Re2, <strong>senza alcuna settima</strong> (nessun Do in tutta la fine della battuta) — un Re maggiore semplice, non Re7."
+          },
+          {
+            "label": "Battute 7-8",
+            "titre": "Il soggetto torna al basso, cadenza sospesa",
+            "chiffrage": "Sol (I) – Sol/Re (I6/4) – Re7/Fa# (V6/5) | Re (V) – Re7 (V7)",
+            "fonctions": "I – I6/4 – V6/5 | V – V7",
+            "texte": "Il soggetto riappare, questa volta interamente <strong>al basso</strong> e su Sol (Sol-La-Si-Do-La-Si-Sol): una riesposizione alla quinta del suo enunciato iniziale della battuta 1, nella tonalità ormai insediata. Dopo un breve passaggio per la posizione di quarta e sesta (I6/4) e poi per la dominante rivoltata (V6/5, Fa#3 sotto Do5), il basso si posa su Sol sul levare dell'ultimo tempo. La battuta 8 rilancia il soggetto su Re mentre il soprano tiene un Fa#4; le note La-Si-Do che seguono al soprano fanno udire un Do naturale — la settima che insedia <strong>Re7 (V7)</strong>, confermata al basso dal movimento Re-Do-Re. L'estratto si ferma su questa dominante aperta, in piena tensione, appena prima del seguito dell'Invention."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Un soggetto, due voci, una sola idea",
+            "texte": "Tutto l'estratto poggia su un unico motivo melodico (Do-Re-Mi-Fa-Re-Mi-Do o le sue trasposizioni) che migra senza sosta tra soprano e basso — esposto al soprano (battuta 1), imitato al basso un'ottava più in basso (ancora battuta 1), poi riesposto al basso sul nuovo grado (battute 7-8): il principio stesso del contrappunto d'invenzione, in cui una sola linea genera tutto il discorso a due voci."
+          },
+          {
+            "titre": "Una modulazione dalla porta più vicina",
+            "texte": "Do maggiore scivola verso Sol maggiore, la sua dominante — la modulazione più naturale che ci sia, avviata da un accordo pivot (Do = I/IV, battuta 4) e poi confermata da una dominante secondaria interamente arpeggiata al basso (Re7 nei suoi tre rivolti). Da quell'istante la cifratura ragiona nella tonalità d'arrivo."
+          },
+          {
+            "titre": "Risoluzioni ritardate, mai sbrigative",
+            "texte": "Due volte in questo estratto una dissonanza preparata non ottiene la risoluzione più attesa: la settima della battuta 4 sfugge con una scala invece di ridiscendere (battuta 5), e il Do5 accentato del soprano sale verso Re5 anziché il contrario — due deviazioni che prolungano la tensione senza mai tradirla."
+          }
+        ]
+      }
     }
   },
   "cours14": {
@@ -1917,7 +2617,63 @@
         "Armonia modale = colore mantenuto, non tensione seguita da risoluzione (a differenza dell'armonia tonale)",
         "Il movimento V7→I è evitato: introdurrebbe la sensibile e romperebbe l'atmosfera del modo",
         "«Prima Gymnopédie» (Satie): IVmaj7-Imaj7 in loop su 9 battute, mai una dominante"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Re maggiore (armatura di 2 diesis) — ma l'estratto non fa mai udire l'accordo di Re in una posizione d'arrivo affermata: <strong>comincia e finisce su Sol</strong> (IV), che occupa 5 battute su 9. Una lettura in <strong>Sol lidio</strong> (con Do# come #4) è altrettanto difendibile su questo solo estratto — le due letture condividono esattamente gli stessi 2 diesis. Il seguito del brano (fuori da questo estratto) deciderà a favore di Re maggiore.",
+        "metrique": "3/4. Nessuna indicazione di tempo né di carattere in questo file (l'originale reca « Lent et douloureux », qui non riportata) — 60 alla semiminima aggiunto per scelta editoriale, per la lettura sincronizzata.",
+        "forme": "9 battute = un pendolo armonico rigoroso tra due accordi di settima maggiore, IVmaj7 (Sol) e Imaj7 (Re), senza mai far udire la dominante (La): battute 1-4, il solo accompagnamento installa il dondolio; battute 5-9, la melodia entra e scende di un'ottava (da Fa#5 a Fa#4) attraversando sistematicamente i gradi « colorati » di ciascun accordo (settima, nona, undicesima, #11) anziché le sue note stabili.",
+        "sections": [
+          {
+            "label": "Battute 1-4",
+            "titre": "Il pendolo armonico, senza melodia",
+            "chiffrage": "SolMaj7 – ReMaj7 – SolMaj7 – ReMaj7",
+            "fonctions": "IV – I – IV – I",
+            "texte": "Tessuto immobile nelle prime 4 battute: un basso profondo tenuto per tutta la battuta (Sol2, poi Re2), una pausa di semiminima, poi un accordo di tre suoni placcato sul secondo tempo e tenuto fino alla fine (Si3-Re4-Fa#4 su Sol; La3-Do#4-Fa#4 su Re) — il celebre dondolio di sarabanda spoglia. <strong>Fa#4</strong> è l'unica nota che resta esattamente alla stessa altezza nei due voicing: un perno, senza il quale i due accordi non avrebbero più nulla in comune all'orecchio. Nessuna dominante (La) compare mai: senza V, nessuna cadenza — l'alternanza IV-I è un'oscillazione plagale statica, che sospende la direzione tonale anziché costruirla. Da notare che l'estratto si apre direttamente sulla sottodominante, non sulla tonica."
+          },
+          {
+            "label": "Battuta 5",
+            "titre": "La melodia entra: settima, poi nona",
+            "chiffrage": "SolMaj9",
+            "fonctions": "IV(9)",
+            "texte": "Dopo un silenzio, la melodia entra su <strong>Fa#5</strong> — la settima maggiore di Sol, esattamente due ottave sopra il Fa#4 dell'accompagnamento — poi salta verso <strong>La5</strong>, la nona. La partitura cifra esplicitamente questo accordo « Solmaj9 » (non semplicemente « maj7 »): la melodia tocca con la massima precisione l'estensione che la cifratura annuncia. Fin da subito, due note « dissonanti » poste come un'evidenza, senza alcuna preparazione."
+          },
+          {
+            "label": "Battuta 6",
+            "titre": "L'unico gesto « risolto » dell'estratto",
+            "chiffrage": "ReMaj7",
+            "fonctions": "I",
+            "texte": "Sol5 sul primo tempo è un'<strong>undicesima</strong> sull'accordo di tonica (Re) — l'unica dissonanza melodica di tutto l'estratto che ridiscende per moto congiunto, verso Fa#5 (la terza), ma su tempo debole e senza preparazione. La linea precipita poi di una quarta verso Do#5, la settima di Re."
+          },
+          {
+            "label": "Battuta 7",
+            "titre": "La salita verso il #11",
+            "chiffrage": "SolMaj7(#11)",
+            "fonctions": "IV(#11)",
+            "texte": "Salita congiunta Si4-Do#5-Re5 (terza – quinta, passando per Do#). Anche questa volta la cifratura annuncia con precisione il colore: è l'UNICA battuta di tutto l'estratto in cui un « (#11) » viene aggiunto all'accordo di Sol, ed è esattamente la nota che la melodia tocca di passaggio."
+          },
+          {
+            "label": "Battute 8-9",
+            "titre": "La quinta stabile, poi la settima maggiore sospesa",
+            "chiffrage": "ReMaj7 – SolMaj7",
+            "fonctions": "I – IV",
+            "texte": "La4, tenuto per tutta la battuta 8: la quinta di Re, unica nota pienamente consonante e stabile di tutta la frase melodica. Poi Fa#4, tenuto per tutta la battuta 9: la settima maggiore di Sol, un'ottava sotto il Fa#5 che apriva la melodia alla battuta 5. L'estratto si richiude così in sospensione totale, senza la minima cadenza — un arco discendente di un'ottava esatta, dal Fa# acuto al Fa# grave."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Una sola vera nota comune: Fa#",
+            "texte": "Sol-Si-Re-Fa# e Re-Fa#-La-Do# condividono in teoria due note (Re e Fa#), ma nei voicing reali dell'accompagnamento solo Fa#4 resta esattamente alla stessa altezza — il Re cambia ottava ogni volta (basso oppure centro dell'accordo). È questo filo sottile a tenere insieme i due colori."
+          },
+          {
+            "titre": "La settima maggiore come colore, non come dissonanza",
+            "texte": "Né il Fa# di Sol né il Do# di Re sono preparati o risolti — un trattamento impensabile nell'armonia tonale rigorosa (quella dell'Invention di Bach analizzata nel corso precedente), dove una settima maggiore è una dissonanza da condurre. Qui è uno stato stabile, costitutivo dell'accordo: il gesto più radicale del brano."
+          },
+          {
+            "titre": "Sol lidio o Re maggiore? Nulla lo decide",
+            "texte": "Su queste sole 9 battute le due letture tonali restano ugualmente valide — ed è precisamente l'effetto ricercato. In Bach ogni accordo si giustifica attraverso la condotta delle parti; in Satie l'armonia è un oggetto sonoro ripetuto, senza condotta delle parti (accordi placcati, nessuna linea che si risponde): stesso esercizio di lettura, due grammatiche opposte."
+          }
+        ]
+      }
     }
   },
   "cours15": {
@@ -2001,7 +2757,70 @@
         "Una catena di dominanti secondarie (V7/III, subV7/VI, V7/V...) tonicizza brevemente ogni grado prima della risoluzione finale",
         "Il sostituto di tritono sostituisce una dominante con il suo tritono: stessa tensione (3ª/7ª scambiate), basso cromatico",
         "«Autumn Leaves» (Kosma): sequenza discendente iv-VII-III-VI-ii°/V-V-i, poi un turnaround V7/IV che chiude il ciclo"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Sol minore, con il suo relativo Si♭ maggiore costantemente all'orizzonte — il principio stesso della griglia di « Autumn Leaves », che oscilla tra i due poli attraverso una catena di quinte discendenti (Do→Fa→Si♭→Mi♭→La→Re→Sol). In questo arrangiamento quasi ogni accordo della progressione è in realtà una <strong>dominante secondaria</strong> verso il grado successivo.",
+        "metrique": "4/4. Tempo 120 (medium swing).",
+        "forme": "10 battute = un'anacrusi di un tempo (battuta 1) + la sezione A completa dello standard (battute 2-9, 8 battute) + l'inizio della sua ripresa (battuta 10) — il motivo dell'anacrusi ritorna del resto alla fine della battuta 9, a conferma che la forma si richiude su se stessa.",
+        "sections": [
+          {
+            "label": "Battuta 1",
+            "titre": "L'anacrusi, e la sua ambiguità bitonale",
+            "chiffrage": "(senza armonia)",
+            "fonctions": "—",
+            "texte": "Tre crome congiunte ascendenti, Sol-La-Sib, mano sinistra muta. Una figura a doppia lettura: <strong>1̂-2̂-3̂ di Sol minore</strong> (tonica, secondo grado, terza minore) oppure, vista dal polo relativo, <strong>6̂-7̂-1̂ di Si♭ maggiore</strong> (sopraddominante, sensibile, tonica) — l'ambiguità delle due tonalità gemelle posta fin dal levare, prima ancora del primo accordo."
+          },
+          {
+            "label": "Battute 2-3",
+            "titre": "Cm9, poi F7: la progressione parte, la tredicesima si indurisce",
+            "chiffrage": "Cm9 – F7(♭13)",
+            "fonctions": "iv7 [ii7] – V7/III",
+            "texte": "L'etichetta d'accordo del file dice già « m9 », non « m7 »: Re4 (nona) è effettivamente tenuto al basso sotto Mi♭4-Si♭4 placcati, sotto il Mi♭5 della melodia — un <strong>Cm9</strong> completo già nel simbolo scritto; solo la cifra romana semplificata (« IV7 ») non precisa la nona. Alla battuta 3 la voce interna scende Re4→Re♭4 (<strong>tredicesima→♭13</strong>) mentre il La3 (terza) resta tenuto — un F7 che si indurisce nel corso della battuta, preparato da un'acciaccatura cromatica (Do♯4) in testa."
+          },
+          {
+            "label": "Battuta 4",
+            "titre": "IIImaj7, poi il primo gesto d'arrangiatore",
+            "chiffrage": "B♭maj7 – E7",
+            "fonctions": "IIImaj7 – subV7/VI",
+            "texte": "B♭maj7 tratta la sua settima maggiore (La) come un colore stabile, esattamente come in Satie (corso precedente). Poi, assente dalla griglia più diffusa: un <strong>E7 senza fondamentale</strong> (Sol♯3=terza, Fa♯3=nona, Re=settima), sostituto di tritono di B♭7 (V7/VI). Il basso percorre Si♭2-Fa3-Mi♭2-Re3 sull'intera battuta — quattro altezze distinte che si arrestano su Re, senza tornare al Mi♭."
+          },
+          {
+            "label": "Battute 5-6",
+            "titre": "VImaj7 alla Satie, poi il culmine della tensione",
+            "chiffrage": "E♭maj9 – A7(♯9,♭13,♭5)",
+            "fonctions": "VImaj7 – V7/V",
+            "texte": "E♭maj9 in posizione stretta (Fa3=nona, Sol3=terza, Re4=settima maggiore) prolunga il colore immobile. La battuta 6 sostituisce il ii° diatonico atteso (Am7♭5) con la sua versione dominantizzata: un <strong>A7 interamente alterato</strong> — Do♮5 tenuto (♯9), Fa4 (♭13, dopo un Fa♯ cromatico), Mi♭4 (♭5) nella terzina, e Sol♯3→Sol♮3 al basso che sfrega contro la settima prima di adagiarvisi. Il culmine di tensione di tutto l'estratto, esattamente al posto giusto prima della dominante principale."
+          },
+          {
+            "label": "Battuta 7",
+            "titre": "V7, la risoluzione 4-3 incrociata con la ♭9",
+            "chiffrage": "D9sus4 – D7(♭9)",
+            "fonctions": "V7",
+            "texte": "Costruzione in due tempi: dapprima un <strong>D9sus4</strong> completo (Re-Sol-La-Do-Mi: quarta, quinta, settima, nona), poi la sospensione si risolve (Sol3→Fa♯3, movimento 4-3) esattamente nel momento in cui la melodia posa Mi♭4 — la <strong>♭9</strong> — tenuto in minima: risoluzione e nuova dissonanza scambiate nello stesso gesto."
+          },
+          {
+            "label": "Battute 8-10",
+            "titre": "Ritorno, turnaround e ripresa interrotta",
+            "chiffrage": "Gm7→Gm6→Gm(♭6) – G7(♭9) – Cm7",
+            "fonctions": "i – V7/IV – iv7",
+            "texte": "La battuta 8 (<strong>Gm7→Gm6→Gm(♭6)</strong>, 3 accordi successivi) è un <em>line cliché</em> (Fa→Mi♮→Mi♭, settima-sesta-♭6) su tonica minore statica. La battuta 9 (<strong>G7(add ♭9)</strong>, romano « V7/IV ») fa udire Sol-Si-Re-Fa-La♭ al completo tra le due mani: la dominante secondaria che prepara il ritorno di Cm7 mentre la melodia rilancia il motivo dell'anacrusi. La battuta 10 riapre il giro: Cm7 con l'undicesima (Fa5) al vertice del voicing, terzina arpeggiata ascendente, basso che si ferma su un Si♮ cromatico — l'estratto è tagliato prima che il suo bersaglio si riveli."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Due sostituzioni, due logiche differenti",
+            "texte": "L'E7 inserito alla battuta 4 AGGIUNGE un accordo assente dalla griglia più diffusa (un approccio cromatico per sostituto di tritono). L'A7 della battuta 6 SOSTITUISCE un accordo già presente (il ii° diatonico Am7♭5) con la sua versione dominantizzata, sulla stessa fondamentale. Due tecniche di riarmonizzazione ben distinte, riunite entrambe in questo solo chorus."
+          },
+          {
+            "titre": "Quasi ogni accordo è una dominante secondaria",
+            "texte": "V7/III, subV7/VI, V7/V, V7/IV: la progressione discendente di « Autumn Leaves » concatena tonicizzazioni di passaggio anziché gradi diatonici nudi — il vocabolario stesso del corso 15."
+          },
+          {
+            "titre": "La dissonanza come materiale di partenza",
+            "texte": "Dopo Bach (dissonanza = evento contrappuntistico) e Satie (dissonanza = colore immobile), questo arrangiamento mostra un terzo regime: nona, tredicesima e ♭9 non sono né preparate né risolte in senso classico — sono la norma dell'accordo, gestite per gradi di alterazione (13→♭13, sus4→♭9, alterato completo) lungo un ciclo di quinte che Bach avrebbe riconosciuto."
+          }
+        ]
+      }
     }
   },
   "cours16": {
@@ -2108,7 +2927,77 @@
         "Riarmonizzare = sostituire gli accordi sotto una melodia intatta, mantenendo ogni nota melodica compatibile con il suo nuovo accordo",
         "Le dominanti secondarie (V/V, V/IV) e i sostituti di tritono sono gli strumenti più comuni",
         "«My Funny Valentine» (Bill Evans): cadenza minore iiø7-V7alt-i preceduta da un'escursione verso la sottodominante (IV9-IV13sus)"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Do minore (armatura di 3 bemolli). La griglia standard della sezione A è celebre per il suo <em>line cliché</em>: Cm-Cm(maj7)-Cm7-Cm6, la linea discendente Do-Si-Sib-La su pedale di tonica, prima di Abmaj7-Fm7-Dø7-G7. Questa trascrizione non suona la linea: la <strong>comprime e la sostituisce</strong>.",
+        "metrique": "4/4.",
+        "forme": "9 battute = la prima sezione A dello standard. Il line cliché orizzontale del modello è verticalizzato fin dal primo accordo (battuta 1); le due battute così liberate (2-3) vengono riempite di turnaround alterati e di una riarmonizzazione della stessa melodia; due accordi della griglia (Abmaj7/Fm7) sono fusi in uno solo (battuta 5); e l'arrivo del iiø7 (battute 7-8) diventa esso stesso un gesto formale — un'onda ad arco, non un semplice accordo.",
+        "sections": [
+          {
+            "label": "Battuta 1",
+            "titre": "Il line cliché già riassunto in un solo accordo",
+            "chiffrage": "Cm6/9",
+            "fonctions": "i(6/9)",
+            "texte": "Basso Do3 e, al di sopra, La♮3-Re4-Mib4-Sol4: fondamentale, sesta maggiore, nona, terza, quinta — un <strong>Cm6/9</strong> completo. Il La♮, punto d'arrivo del line cliché standard (Do-Si-Sib-<em>La</em>), è così integrato verticalmente fin dal primo accordo: quattro battute di armonia orizzontale riassunte in un unico voicing. Lo sfregamento Re4/Mib4 (seconda minore nel cuore dell'accordo) è il cluster-firma di tutta la trascrizione. La melodia entra in levare a metà del secondo tempo: Do5-Re5-Mib5, la cellula generatrice del tema, sulla dinamica <em>p</em>."
+          },
+          {
+            "label": "Battuta 2",
+            "titre": "Il turnaround sostituito, interamente alterato",
+            "chiffrage": "D7(♯9♭13) – G7(♭9♭13)",
+            "fonctions": "II7 alt (V/V) – V7 alt",
+            "texte": "Al posto delle battute 2-3 del cliché standard, un turnaround II7-V7 interamente alterato. D7: shell 3-7 al basso (Fa♯3-Do4), Fa♮4 (=Mi♯, ♯9), Sib4 (♭13) e la fondamentale al soprano. G7 (collocato in anticipo, croma poi semiminima puntata): shell 7-3 (Fa♮3-Si♮3) — il voice-leading degli shell è esatto, Fa♯→Fa♮, Do→Si, ogni voce scende di un semitono — sormontato da Mib (♭13), Lab (♭9), quinta al vertice. Queste ♭9/♭13 su G7 sono le note del minore armonico di Do: l'alterazione non è un esotismo, è la tonalità stessa."
+          },
+          {
+            "label": "Battuta 3",
+            "titre": "Stessa melodia, armonizzazione avversa",
+            "chiffrage": "Cm6/9 → C7(♯11)",
+            "fonctions": "i → V7/iv",
+            "texte": "Ritorno esatto del voicing della battuta 1 (le stesse quattro note), e la melodia rilancia la cellula Do-Re-Mib. Ma l'armonia bascula sul <strong>quarto tempo</strong> (il Re4 del terzo tempo non è che una nota di passaggio al basso): Mi♮4-Fa♯4 si accendono su Sib3 — terza, ♯11 lidia e settima di un C7 rootless, funzione V7/iv verso Fa minore. Stessa melodia, armonizzazione opposta: la prima lezione di riarmonizzazione dell'estratto. Crescendo indicato."
+          },
+          {
+            "label": "Battuta 4",
+            "titre": "L'onda cromatica",
+            "chiffrage": "Aø(9) – G♭13(♯11) – F13(♯11)",
+            "fonctions": "V/iv – subV/iv – (planing)",
+            "texte": "La battuta più densa. Aø9 (La3 al basso, Mib-Sol-Si♮(nona)-Re al di sopra, senza la terza Do) funziona come V/iv verso Fa minore. Poi G♭13(♯11): il sostituto di tritono di C7, voicing completo (Solb-Sib al basso, Fab-Lab-Do-Mib al di sopra). E il gesto notevole: F13(♯11) è esattamente la stessa struttura scivolata un semitono più in basso (Fa-La / Mib-Sol-Si♮-Re) — un <strong>planing parallelo</strong>, ogni voce scende di un semitono in blocco. Diminuendo indicato: l'onda ricade."
+          },
+          {
+            "label": "Battute 5-6",
+            "titre": "Due accordi fusi, poi la discesa verso il iiø",
+            "chiffrage": "Fm9 – F13sus9 – Fm9/E♭",
+            "fonctions": "iv9 – iv(sus)",
+            "texte": "Fm9 (basso Fa2-Do3 in semibrevi legate): tre posizioni successive dello stesso accordo alla mano destra — Sol-Lab-Do (9/3/5, ancora un cluster di seconda), Sib-Re♮ (undicesima e tredicesima <em>dorica</em>, non la sesta bemollizzata del minore naturale), poi Lab-Do-Mib (3/5/7). La griglia standard dà qui Abmaj7 E POI Fm7 — due accordi relativi che la trascrizione <strong>fonde in un unico Fm9 disteso</strong> (Fm9 contiene già tutti i suoni di Abmaj7). Battuta 6: F13sus9 (11, 13, 9, 7, senza terza), poi il basso scivola verso Mib sotto Fa3 (Fm9/E♭): Fa→Mib→Re, il passaggio obbligato della griglia (battute 6-7 dello standard) — l'unico punto in cui questa trascrizione la segue alla lettera."
+          },
+          {
+            "label": "Battute 7-8",
+            "titre": "L'arco attorno al iiø: culmine, poi discesa",
+            "chiffrage": "Dø7 (arpeggio ascendente) → Sol7(♯9♭13)",
+            "fonctions": "iiø7 – V7 alt",
+            "texte": "Tutta la battuta 7 è un arpeggio in terzine che attraversa le due mani: il basso sgrana Re2-Re3-Fa3-Lab3-Do4-Mib4 (l'accordo ø7 completo, più una ♭9 che deborda), mentre la mano destra impila voicing di tre suoni che salgono in parallelo fino a Lab4-Do5-Sol5 — il punto più acuto di tutto l'estratto. La battuta 8 ridiscende con un gesto quasi simmetrico (le stesse impilature di tre suoni, percorse in senso inverso), con il basso che riscende Mib4-Re4-Lab3-Fa3, prima di atterrare sul terzo tempo su G7(♯9♭13): Sol2 al basso, shell Fa3, poi Si♮-Mib-Fa-Sib (3-♭13-7-♯9). La melodia scende Lab-Sol-Fa in terzina — Lab (♭9 di passaggio): l'accordo cumula così ♯9 e ♭9 melodica, dominante satura appena prima della risoluzione."
+          },
+          {
+            "label": "Battuta 9",
+            "titre": "La risoluzione nuda",
+            "chiffrage": "Cm",
+            "fonctions": "i",
+            "texte": "Risoluzione volutamente spoglia dopo la mareggiata precedente. Melodia Mib4 (minima puntata); al basso, Re4→Do4: un'appoggiatura 9-8 che risolve — l'unico ornamento di una battuta per il resto vuota. Poi la terzina Fa4-Sol4 rilancia un nuovo levare verso il seguito del tema, qui interrotto."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Il sostituto di tritono, senza nemmeno risolvere",
+            "texte": "G♭13(♯11) (battuta 4) è il classico sostituto di tritono di C7 — ma invece di risolvere verso Fa minore come farebbe un subV7 atteso, scivola di un semplice semitono verso F13(♯11), una struttura identica. La sostituzione diventa qui un procedimento puramente cromatico (il <em>planing</em>), staccato da ogni idea di risoluzione — il colore prevale sulla funzione."
+          },
+          {
+            "titre": "Il line cliché, orizzontale poi verticale",
+            "texte": "Lo standard svolge Cm-Cm(maj7)-Cm7-Cm6 su 4 battute; questa trascrizione impila le stesse note (compreso il La del cliché) in un unico Cm6/9 fin dalla battuta 1, liberando tutto il resto dello spazio per la riarmonizzazione."
+          },
+          {
+            "titre": "Il voicing come oggetto espressivo autonomo",
+            "texte": "In Bach (Invention n°1, corso 13) la forma nasce dalla condotta delle parti; in Satie (Gymnopédie, corso 14), dalla ripetizione; nella griglia jazz nuda (Autumn Leaves, corso 15), dal concatenamento funzionale. Qui è il tessuto stesso — l'arco delle battute 7-8, il planing della battuta 4 — a diventare un evento formale: il soggetto è il voicing, non soltanto l'accordo che esso porta."
+          }
+        ]
+      }
     }
   },
   "cours17": {

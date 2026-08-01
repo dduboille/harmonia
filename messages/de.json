@@ -291,7 +291,56 @@
         "4 Kadenzen: vollkommen, unvollkommen, Halbkadenz (I–V), Trugkadenz (V–VI)",
         "Vollkommene Kadenz = Tonika-Akkord in Grundstellung",
         "Die Kadenz strukturiert die Form: Periode, Abschnitt, Satz"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "e-Moll (i) — bestätigt durch den allgegenwärtigen I-Pol (Em) und durch die Dominante V (H7) mit ihrem erhöhten Leitton (Dis, dem harmonischen Moll eigen).",
+        "metrique": "4/4",
+        "forme": "Zwei viertaktige Phrasen: die erste (T. 1–4) geht vom I aus, durchläuft eine harmonische Sequenz und bleibt in einem Halbschluss auf V7 stehen; die zweite (T. 5–8) löst schon in T. 6 mit einem vollkommenen Ganzschluss auf und wiederholt dann das Eröffnungsmotiv eine Oktave höher als Abschluss.",
+        "sections": [
+          {
+            "label": "Takte 1–2",
+            "titre": "Eröffnungsmotiv — die dorische Sexte",
+            "chiffrage": "Em – Bm – Am6 – Em  |  Am6 – B7 – Em",
+            "fonctions": "i – v – iv6 – i  |  iv6 – V7 – i",
+            "texte": "Das Eröffnungsmotiv setzt die Tonika durch eine schrittweise Abwärtsbewegung in den Oberstimmen (H–H–A–G). Der Akkord <strong>Am6</strong> (A–C–E–Fis), der jede Rückkehr zum i vorbereitet, ist keine echte sechste Stufe: das Fis ist eine <em>hinzugefügte Sexte</em> (dorische Farbe) über dem iv (Am), keine Septime. Takt 2 schließt die Phrase mit der klassischen Wendung iv6 → V7 → i, wobei der Leitton Dis des H7 zum E aufsteigt."
+          },
+          {
+            "label": "Takte 3–4",
+            "titre": "Harmonische Sequenz und Halbschluss",
+            "chiffrage": "A – D – G  |  Em – B7",
+            "fonctions": "V/VII – VII – III  |  i – V7",
+            "texte": "Absteigende Quintsequenz (A→D→G): <strong>A</strong> (mit seinem Cis, einem entlehnten Leitton) wirkt als Zwischendominante zu <strong>D</strong> (der siebten Stufe), das seinerseits nach <strong>G</strong> auflöst, der Durparallele (der dritten Stufe). Takt 4 kehrt zum i zurück, bevor er auf dem V7 innehält — ein <em>Halbschluss</em>, der die erste Phrase in der Schwebe lässt, ohne sie abzuschließen."
+          },
+          {
+            "label": "Takte 5–6",
+            "titre": "Vorhalt und vollkommener Ganzschluss",
+            "chiffrage": "C – Em – B7sus(4-3)  |  Em",
+            "fonctions": "VI – i – V4/3  |  i",
+            "texte": "Ein Abstecher zur sechsten Stufe (C), bevor sich der Satz wieder auf dem i niederlässt, dann ein <strong>B7sus</strong> (H–E–Fis–A): das E (die vorgehaltene Quarte) färbt zunächst die Dominante, ehe das Dis (die Terz, der Leitton der Tonart) auf der letzten Zählzeit in die Oberstimme tritt. Takt 6 schließt mit einem <strong>vollkommenen Ganzschluss</strong>: e-Moll erklingt hier in ganzen Noten, der Grundton im BASS UND im SOPRAN (E3/E5) — genau die Bedingung, die diese Lektion für das Erkennen eines vollkommenen Ganzschlusses aufstellt."
+          },
+          {
+            "label": "Takte 7–8",
+            "titre": "Wiederaufnahme in der Oktave",
+            "chiffrage": "Em – Bm – Am6 – Em  |  Am6 – B7 – Em",
+            "fonctions": "i – v – iv6 – i  |  iv6 – V7 – i",
+            "texte": "EXAKTE Wiederaufnahme der Bezifferung der T. 1–2, Note für Note, jedoch eine Oktave höher versetzt (H5–H5–A5–G5 statt H4–H4–A4–G4) — ein Echo, das den Ausschnitt mit demselben Klang schließt, mit dem er begonnen hatte, diesmal ohne noch einmal Atem zu holen: das Motiv führt seine eigene Bewegung iv6–V7–i bis zum Ende durch."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Die dorische Sexte (Am6)",
+            "texte": "Die Reibung zwischen dem Fis (der Sexte über iv) und dem reinen C ergibt eine zugleich melancholische und erlesene Farbe, dem dorischen Modus entlehnt — ein Stilzug, der im Ausschnitt viermal wiederkehrt (T. 1, 2, 7 und 8)."
+          },
+          {
+            "titre": "Stimmführung",
+            "texte": "Die Oberstimme (Sopran) schreitet fast immer stufenweise fort; der Bass hingegen wechselt zwischen gehaltenen Tönen und Sprüngen von Akkord zu Akkord — ein schlichter Kontrapunkt, typisch für Bachs auf das Klavier reduzierten Choralsatz."
+          },
+          {
+            "titre": "Zwei Kadenzen, zwei Funktionen",
+            "texte": "Der Halbschluss in T. 4 (auf V7) erzeugt die Erwartung; der vollkommene Ganzschluss in T. 6 (i, mit im Bass und im Sopran verdoppeltem Grundton) löst sie ein. Die Wiederaufnahme in T. 7–8 sucht keinen Abschluss mehr — sie schließt den Kreis."
+          }
+        ]
+      }
     }
   },
   "cours5": {
@@ -402,7 +451,77 @@
         "Entlehnung = Akkord aus einer parallelen oder verwandten Tonart",
         "Neapolitanische Sexte: bII6 → V → I",
         "Modale Region: Dur-Akkorde auf natürlich kleinen Stufen"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "a-Moll (i). Der Leitton (Gis) erscheint nur in den Akkorden, die ihn verlangen (V, V7) – sonst erkundet der Ausschnitt echte entlehnte Farben und nicht bloß die harmonische Molltonleiter.",
+        "metrique": "4/4.",
+        "forme": "Das Anfangsthema (T. 1–2) kehrt umharmonisiert wieder und wird nach F umgelenkt (T. 5–6) – jenem Ton, der beiden übermäßigen Sextakkorden des Ausschnitts als Bass dient: zuerst dem italienischen (T. 4, wieder aufgegriffen in T. 9), dann dem französischen (T. 10, um eine Note reicher). Der Ausschnitt bricht schwebend auf der Dominante ab (T. 10) – die Phrase geht über diese zehn Takte hinaus weiter.",
+        "sections": [
+          {
+            "label": "Takte 1-2",
+            "titre": "Das Thema, im nackten Oktavunisono",
+            "chiffrage": "Am",
+            "fonctions": "i",
+            "texte": "Melodie und Bass spielen GENAU dieselbe Linie im Oktavabstand (C-H-A, dann ein ausgehaltenes E): keinerlei vertikale Harmonie, nur der bloßgelegte Mollmodus, im Pianissimo. Die Terz (C) färbt die Tonart schon mit der ersten Note in ihrem melancholischen Ton."
+          },
+          {
+            "label": "Takt 3",
+            "titre": "Ein Pendeln zwischen Tonika und Dominante über schrittweise fallendem Bass",
+            "chiffrage": "Am/C  →  E7/H  →  Am  →  E/Gis",
+            "fonctions": "i6  →  V4/3  →  i  →  V6",
+            "texte": "Vier Akkorde in einem einzigen Takt, aber nur eine leitende Linie: Der Bass sinkt Schritt für Schritt hinab, C-H-A-Gis. Das Gis (der Leitton) schließt den Takt auf der Dominante in erster Umkehrung – der Wechsel i-V verankert die Tonart fest, bevor die Entlehnung folgt."
+          },
+          {
+            "label": "Takt 4",
+            "titre": "Die italienische übermäßige Sexte",
+            "chiffrage": "It+6 (F-A-Dis)  →  E",
+            "fonctions": "SD (entlehnt)  →  V",
+            "texte": "Die erste chromatische Entlehnung des Ausschnitts: Über einem F im Bass (der tiefalterierten sechsten Stufe) bildet der Akkord F-A-Dis eine <strong>übermäßige Sexte</strong> – jenes Intervall F-Dis (zehn Halbtöne), das dem Akkord seinen Namen gibt. Die beiden Außentöne streben in Gegenbewegung auseinander, jeder um einen Halbton: Das F sinkt zum E (im Bass), das Dis steigt zum E (darüber) – eine fächerförmige Auflösung auf das Unisono E, das zur Dominante wird. Ein Halbschluss von großer Spannung."
+          },
+          {
+            "label": "Takte 5-6",
+            "titre": "Dasselbe Motiv, umharmonisiert und umgelenkt",
+            "chiffrage": "Hdim",
+            "fonctions": "ii°",
+            "texte": "Das Anfangsmotiv kehrt mit denselben Intervallen eine Stufe höher wieder (D-C-H, dann ein ausgehaltenes F statt des E) – diesmal jedoch über der verminderten zweiten Stufe harmonisiert (H-D-F), dem einzigen verminderten Dreiklang des Ausschnitts. Das ausgehaltene F am Ende der Phrase ist kein Zufall: Es ist genau der Ton, der beiden übermäßigen Sextakkorden des Ausschnitts als Bass dient."
+          },
+          {
+            "label": "Takt 7",
+            "titre": "Dieselbe Geste wie in Takt 3, eine Farbe weniger",
+            "chiffrage": "E7/D  →  Am/C  →  E/H  →  Am",
+            "fonctions": "V4/2  →  i6  →  V6/4  →  i",
+            "texte": "Dasselbe Prinzip wie in Takt 3 (ein Bass, der i und V verbindet) kehrt wieder, diesmal von der Septime der Dominante angestoßen (E7 in dritter Umkehrung, D im Bass). Der dritte Akkord (E-H, V6/4) lässt seine eigene Terz (Gis) aus – eine Dominante, auf Grundton und Quinte reduziert, ohne ihre Leittonfarbe."
+          },
+          {
+            "label": "Takt 8",
+            "titre": "Eine Modusentlehnung, dann ein Pivot zur Dominante",
+            "chiffrage": "Em/G  →  Fism7",
+            "fonctions": "v (entlehnt)  →  ii7/V",
+            "texte": "Reine modale Einfärbung: Der Leitton (Gis) tritt zurück und weicht dem G des ALTEN Mollmodus – der Dominantakkord wird zum Mollakkord (v, nicht V), eine Entlehnung aus dem ältesten Modus der Tonart. Er führt weiter zu einem Fism7 (ohne seine Quinte Cis): dem ii7 DER DOMINANTE, der die Rückkehr des E als Anziehungspol vorbereitet."
+          },
+          {
+            "label": "Takte 9-10",
+            "titre": "It+6 wieder aufgegriffen, dann Fr+6 – der Ausschnitt schließt in der Schwebe",
+            "chiffrage": "It+6  →  Fr+6 (F-A-H-Dis)  →  E",
+            "fonctions": "SD (entlehnt)  →  SD (entlehnt)  →  V",
+            "texte": "Die italienische Sexte (F-A-Dis) kehrt unverändert wieder und erhält in Takt 10 eine weitere Note: Die <strong>französische</strong> Sexte fügt das H hinzu (F-A-H-Dis) – die große Sekunde A-H macht sie bissiger als die italienische. Beide Sexten teilen denselben Bass (F) und dieselbe fächerförmige Auflösung nach E. Der Ausschnitt hält hier inne, schwebend auf der Dominante: Die Phrase geht über diese zehn Takte hinaus weiter."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Ein einziger Pivotton für zwei Sexten",
+            "texte": "F (die tiefalterierte sechste Stufe) dient beiden übermäßigen Sexten des Ausschnitts als Bass (Takt 4 sowie Takte 9-10) – zuerst der italienischen (drei Töne), dann der französischen (vier Töne, mit dem zusätzlichen H). Ein einziger Ton, zwei entlehnte Farben."
+          },
+          {
+            "titre": "Die fächerförmige Auflösung",
+            "texte": "Beide übermäßigen Sexten lösen sich auf dieselbe Weise auf: Ihre beiden Außentöne (F und Dis) laufen in Gegenbewegung zusammen, jeder um einen Halbton, auf das Unisono E – die Dominante. Das ist die Signatur jeder übermäßigen Sexte, wie reich sie auch besetzt sein mag (italienisch, französisch, deutsch)."
+          },
+          {
+            "titre": "Eine Modusentlehnung, nicht nur eine chromatische",
+            "texte": "Takt 8 entlehnt dem ALTEN (natürlichen) Mollmodus: Die Dominante verliert dort ihren Leitton (Gis→G) und wird zum Mollakkord. Eine Entlehnung des Modus, neben den chromatischen Entlehnungen der übermäßigen Sexten – zwei Gesichter desselben Prinzips: die Tonleiter verlassen, ohne die Tonart zu verlassen."
+          }
+        ]
+      }
     }
   },
   "cours6": {
@@ -601,7 +720,70 @@
         "Fremde Töne: Durchgang, Wechselton, Synkope, Antizipation, Ausfallsschritt, Cambiata",
         "Synkope: Vorbereitung → Dissonanz → Auflösung",
         "Orgelpunkt: gehaltene Note unter wechselnden Harmonien"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "Es-Dur (I) – die Vorzeichnung (drei ♭) kodiert hier tatsächlich die Tonart (anders als bei Stücken in Moll, wo die Vorzeichnung eine Tonart nie von ihrer Paralleltonart unterscheidet).",
+        "metrique": "12/8 (vier Schläge, jeder eine punktierte Viertel).",
+        "forme": "Der Auftakt (ein einziges B, die melodische Dominante) setzt das Thema in Gang. Die Takte 2 bis 5 stellen die vollständige Phrase auf – Tonika, gefärbt von einer chromatischen Entlehnung über einem Orgelpunkt, Zwischendominante zur zweiten Stufe, Fortschreitung zur Dominante der Dominante, authentischer Ganzschluss. Die Takte 6 bis 9 wiederholen sie Note für Note (dieselbe Bezifferung), wobei Chopin allein die Verzierung der Melodie verändert.",
+        "sections": [
+          {
+            "label": "Takt 1",
+            "titre": "Der Auftakt",
+            "chiffrage": "(B allein)",
+            "fonctions": "—",
+            "texte": "Ein einziger Ton, B4 – die melodische Dominante der Tonart – setzt das Thema in Gang, noch bevor die Harmonie überhaupt beginnt. Nichts in der linken Hand: Die Stille bereitet den Einsatz vor."
+          },
+          {
+            "label": "Takt 2",
+            "titre": "Die Tonika, gefärbt von einer chromatischen Entlehnung über einem Orgelpunkt",
+            "chiffrage": "Es  →  Fm7♭5/Es  →  Es  →  Es/D",
+            "fonctions": "I  →  IIø7  →  I  →  I7",
+            "texte": "Die linke Hand arpeggiert den Tonikaakkord (Es-G-B) in Achteln. Auf dem zweiten Schlag HÄLT der Bass das Es mit dem Pedal fest, während die Hand eine <strong>halbverminderte zweite Stufe</strong> zeichnet (F-As-H-Es) – ein aus es-Moll entlehnter Akkord, der die Tonika färbt, ohne sie je wirklich zu verlassen: Es ist das Pedal und nicht das harmonische Ohr, das Es weiterhin verankert. Der vierte Schlag bereichert die Tonika um ihre große Septime (D), bevor die Phrase neu anhebt."
+          },
+          {
+            "label": "Takt 3",
+            "titre": "Zwischendominante zur zweiten Stufe",
+            "chiffrage": "C7  →  Fm",
+            "fonctions": "V7/II  →  II",
+            "texte": "C7 (C-E-G-B) ist die Dominante der zweiten Stufe (f-Moll) – eine vorübergehende Tonikalisierung, die die Fortschreitung färbt, ohne Es-Dur je endgültig zu verlassen. Die Melodie entfaltet um diese Bewegung herum eine gruppierte Wechselnotenfigur (einen Belcanto-<em>Doppelschlag</em>)."
+          },
+          {
+            "label": "Takt 4",
+            "titre": "Fortschreitung zur Dominante der Dominante",
+            "chiffrage": "B7  →  Hdim7  →  Cm  →  F7/A",
+            "fonctions": "V7  →  VII/VI  →  VI  →  V6/5/V",
+            "texte": "Der Bass klettert in Halbtönen hinauf (B→H→C), bevor er einen Terzsprung zum A macht: Ein verminderter Septakkord über dem Leitton der sechsten Stufe (H°7) drängt nach c-Moll (VI), das seinerseits – über eine neue Zwischendominante (F7, A im Bass) – das Eintreffen der Dominante vorbereitet."
+          },
+          {
+            "label": "Takt 5",
+            "titre": "Authentischer Ganzschluss",
+            "chiffrage": "B7  →  Es",
+            "fonctions": "V7  →  I",
+            "texte": "Die Dominante löst sich in die Tonika auf: Die erste Phrase schließt. Die Melodie entfaltet dabei ihre schnellste Figur (Zweiunddreißigstel), eine verzierte Kadenzfloskel, wie sie für Chopins Belcanto-Stil typisch ist."
+          },
+          {
+            "label": "Takte 6-9",
+            "titre": "Die Phrase, Note für Note – außer der Melodie",
+            "chiffrage": "(identisch mit den Takten 2-5)",
+            "fonctions": "I → IIø7 → I → I7 → V7/II → II → V7 → VII/VI → VI → V6/5/V → V7 → I",
+            "texte": "Harmonie und Bass wiederholen sich unverändert. Allein die Verzierung der Melodie ändert sich: Takt 8 legt einen langen, Note für Note ausgeschriebenen <strong>Triller</strong> darüber (F-G im Wechsel, vierundzwanzig Achtel), über derselben Fortschreitung V7-VII/VI-VI-V6/5/V – eine Kadenzverzögerung, die sich endlich in Takt 9 auflöst, im selben authentischen Ganzschluss wie in Takt 5."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Ein Orgelpunkt kann eine Entlehnung tragen, ohne sie zu verraten",
+            "texte": "Die halbverminderte zweite Stufe aus Takt 2 legt einen chromatischen Schatten über die Tonika – da das Es aber während ihres Erklingens vom Pedal gehalten bleibt, verliert das Ohr den Faden der Tonika nie. Die Entlehnung schmückt, sie verschiebt das tonale Zentrum nicht."
+          },
+          {
+            "titre": "Eine Sequenz verläuft nicht immer durchweg schrittweise",
+            "texte": "Der Bass in Takt 4 beginnt mit strikt chromatischer Bewegung (B-H-C), schließt aber mit einem Terzsprung (C-A) – der Stütze einer Zwischendominante, nicht mit einem weiteren Schritt. Nicht jede harmonische „Sequenz“ ist eine durchweg schrittweise Basslinie."
+          },
+          {
+            "titre": "Die Wiederholung dient der Verzierung, nicht der Harmonie",
+            "texte": "Die Takte 6-9 übernehmen Harmonie und Bass der Takte 2-5 ohne die geringste Änderung – allein die Melodie erneuert sich (der Triller in Takt 8 ist das spektakulärste Beispiel). Eine Lektion im Belcanto-Stil: Die Verzierung ist der Ort der Variation, die harmonische Struktur bleibt der stabile Rahmen."
+          }
+        ]
+      }
     }
   },
   "cours7": {
@@ -701,7 +883,70 @@
         "V7/X → X: vorübergehende Tonikalisierung",
         "Alterationen stets in chromatischer Richtung aufgelöst",
         "Häufig in Jazz und Musik der Romantik"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "A-Dur (Vorzeichnung mit drei Kreuzen). Die ganze Phrase strebt zur Dominante (E) hin: Jeder etwas längere Haltepunkt wird dort ein zweites Mal über seine eigene Zwischendominante tonikalisiert (V/IV, dann zweimal V/V) – das Musterbeispiel für das Thema dieser Lektion.",
+        "metrique": "3/4, Andante teneramente. Auftakt von einem einzigen Schlag (Einsatz auf dem dritten Schlag).",
+        "forme": "Eine einzige große Phrase von acht Takten (plus Auftakt), in einer einzigen aufsteigenden Geste: Sie schließt nicht auf der Tonika, sondern hält in einem Halbschluss inne, gesteigert durch ihre eigene Zwischendominante (V7/V → V), offen für das Folgende.",
+        "sections": [
+          {
+            "label": "Auftakt & Takt 1",
+            "titre": "Die Tonika, dann die Subdominante in zweiter Umkehrung",
+            "chiffrage": "A | D/A",
+            "fonctions": "I | IV6/4",
+            "texte": "Der Auftakt setzt sanft die Stufe <strong>I</strong> (A-Dur). Takt 1 lässt sich auf <strong>IV6/4</strong> nieder (D-Dur, Quinte im Bass): Der Bass bleibt auf A – dem Grundton des Stücks, der hier aber nur die Rolle der Quinte des IV-Akkords spielt – bevor eine kurze Wechselnote (Fis) den nächsten Takt vorbereitet. Noch keinerlei Alteration: Wir befinden uns im Herzen der Haupttonart."
+          },
+          {
+            "label": "Takte 2-3",
+            "titre": "Auflösung der Subdominante, kleine Kadenzfortschreitung",
+            "chiffrage": "D/Fis – D | E7/D – A/Cis – Hm/D",
+            "fonctions": "IV6 – IV | V4/2 – I6 – ii6",
+            "texte": "Takt 2 vollendet die Subdominante: erste Umkehrung (<em>IV6</em>, Fis im Bass), dann Grundstellung (<em>IV</em>). Takt 3 reiht drei Akkorde über einem schrittweise fallenden Bass aneinander (D–Cis–D): eine Durchgangsdominante in dritter Umkehrung (<strong>V4/2</strong>), die Tonika in erster Umkehrung (<strong>I6</strong>), dann <strong>ii6</strong> – eine kleine Kadenzbewegung, die die erste Halbphrase abrundet, ohne je innezuhalten."
+          },
+          {
+            "label": "Takt 4",
+            "titre": "Ein Kadenzquartsextakkord, dann die Zwischendominante der IV. Stufe",
+            "chiffrage": "A/E (Kadenzquartsextakkord) – E – vii°/G",
+            "fonctions": "D – D – vii°6/4/IV",
+            "texte": "Der erste Akkord wird als „I6/4“ notiert, doch sein Bass (E) ist genau derjenige des <strong>V</strong>-Akkords, der ihm unmittelbar und ohne Bassbewegung folgt: ein klassischer <em>Kadenzquartsextakkord</em>, eine bloße Wechselnotenverzierung der Dominante – daher seine Funktion <strong>D</strong> und nicht Tonika, trotz der Schreibweise „I“. Der dritte Schlag bringt die erste echte chromatische Farbe des Stücks: einen verminderten Dreiklang über Cis (Cis-E-G), dessen G in der Partitur als Versetzungszeichen erscheint – es ersetzt das leitereigene Gis der Tonart. Es ist die Zwischendominante (der Leittonklang) der Subdominante, in zweiter Umkehrung (<strong>vii°6/4/IV</strong>): Das G wird sich im folgenden Takt in die Terz des D-Akkords auflösen."
+          },
+          {
+            "label": "Takte 5-6",
+            "titre": "Rückkehr, dann die Dominante der Dominante",
+            "chiffrage": "D/Fis – A/E (Kadenzquartsextakkord) | H7/Dis – H7/A",
+            "fonctions": "IV6 – D | V6/5/V – V4/2/V",
+            "texte": "Takt 5 greift die Geste der Takte 1-2 genau wieder auf (IV6, dann ein neuer Kadenzquartsextakkord über der Dominante). Takt 6 bringt die zweite und wichtigste Alteration des Stücks: ein <strong>Dis</strong>, ein künstlicher Leitton, der nicht zu A-Dur gehört. Er verwandelt die Harmonie in H7 – die Dominante von E, also <strong>die Dominante der Dominante (V/V)</strong> – zuerst in erster Umkehrung (<em>V6/5/V</em>), dann in dritter Umkehrung, die Septime im Bass (<em>V4/2/V</em>): genau der Mechanismus, den die Lektion ankündigt."
+          },
+          {
+            "label": "Takt 7",
+            "titre": "Der mehrdeutige Akkord: hinzugefügte Sexte oder alterierter Septakkord?",
+            "chiffrage": "Gis-H-Dis-Fis (H6 ≈ Gism7) – A – H7",
+            "fonctions": "alterierter Leitton (D) – I – V7/V",
+            "texte": "Dieser Akkord lässt zögern, und das zu Recht: Die vier tatsächlich gespielten Töne (Gis, H, Dis, Fis, mit Gis im Bass) bilden eine klassisch mehrdeutige Klanggestalt. Von H aus gelesen (dem „theoretischen“ Bass der Bezifferung), sind es die Töne eines H-Dur-Akkords mit <em>hinzugefügter Sexte</em> im Bass. Vom wirklich tiefsten Ton aus gelesen (Gis), sind es genau die eines <strong>gis-Moll-Septakkords</strong> in Grundstellung – dieselbe Mehrdeutigkeit wie bei „C6 = am7“. Diese zweite Lesart erklärt das Folgende am besten: Gis ist der Leitton der Tonart und steigt ganz natürlich zum <strong>A</strong> hinauf (dem <em>I</em>, das auf dem zweiten Schlag eintrifft), während Dis – derselbe chromatische Leitton wie in den Takten 5-6 – weiterhin zum E hin zieht. Der dritte Schlag setzt sogleich <strong>V7/V</strong> wieder in Gang: Dieser Takt atmet nur einen Sekundenbruchteil lang auf der Tonika, bevor er erneut zur Dominante aufbricht."
+          },
+          {
+            "label": "Takt 8",
+            "titre": "Halbschluss, verstärkt durch seine eigene Dominante",
+            "chiffrage": "H7/E → E",
+            "fonctions": "V7/V → V",
+            "texte": "Die Phrase hält auf der Dominante inne (E-Dur), nicht auf der Tonika: ein <strong>Halbschluss</strong>. Doch Brahms verstärkt ihn, indem er ihm ein letztes Mal seine eigene Zwischendominante voranstellt (<strong>V7/V</strong>), über einem E-Orgelpunkt im Bass – der E-Akkord kommt daher nie wirklich „zur Ruhe“: Er bleibt in der Schwebe, offen für den Fortgang des Stücks."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Eine Phrase, die ganz zur Dominante hin gewendet ist",
+            "texte": "Das Stück geht von der Tonika aus, hält dort aber nie wirklich inne: Schon in Takt 1 trägt der Bass den Ton E (die Dominante) unter einem subdominantischen Gewand, und zwei Drittel der Phrase (Takte 4 bis 8) tonikalisieren nacheinander die IV. und dann, zweimal, die V. Stufe selbst. Der abschließende Halbschluss überrascht daher nicht: Er ist das folgerichtige Ziel einer Phrase, die als Marsch auf E hin gebaut ist."
+          },
+          {
+            "titre": "Dieselbe Art von Alteration, zwei verschiedene Ziele",
+            "texte": "Das G in Takt 4 und das Dis in den Takten 6-7 spielen genau dieselbe Rolle (ein entlehnter chromatischer Leitton), zielen aber auf zwei verschiedene Stufen – das eine auf die IV., das andere auf die V. Keine Alteration ist hier dekorativ: Jede kündigt genau den Akkord an, den sie tonikalisiert."
+          },
+          {
+            "titre": "Wenn eine einzige melodische Linie zwei Lesarten trägt",
+            "texte": "Der Akkord aus Takt 7 erinnert daran, dass ein und dieselbe Tongruppe auf zwei gleichermaßen richtige Weisen analysiert werden kann (hinzugefügte Sexte / Septakkord der Parallele) – in solchen Fällen entscheidet die Stimmführung zwischen den beiden Lesarten."
+          }
+        ]
+      }
     }
   },
   "cours8": {
@@ -997,7 +1242,70 @@
         "Tonale Sequenz: Transposition in derselben Tonart (diatonische Intervalle)",
         "Reale Sequenz: exakte Transposition (identische chromatische Intervalle)",
         "Chromatik: nicht-diatonische Alterationen, die die Harmonie bereichern, ohne zu modulieren"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "d-Moll (ein b als Vorzeichnung, B).",
+        "metrique": "3/4 — der Sarabanden- bzw. Chaconne-Rhythmus mit seiner charakteristischen Spannung auf der zweiten Zählzeit.",
+        "forme": "Ein Ostinatobass-Thema (ein Auftakt von zwei Zählzeiten, dann vier Takte), zweimal hintereinander durchlaufen (Takte 1-4, dann 5-8): genau darin besteht das Prinzip der Chaconne-Variation. Die Figuration wird zusehends komplexer, und die eigentliche Melodiestimme tritt erst ab der zweiten Wiederholung ein (Takt 7) — bis dahin ruht alles auf einer einzigen arpeggierten Basslinie.",
+        "sections": [
+          {
+            "label": "Auftakt (T. 0)",
+            "titre": "Der Eröffnungsakkord",
+            "chiffrage": "Dm",
+            "fonctions": "i",
+            "texte": "Das Stück beginnt mit dem gebrochenen Tonikaakkord (D-F-A), zweimal über die beiden Auftaktzählzeiten gespielt — eine Geste der Behauptung, noch ehe der erste Takt wirklich einsetzt."
+          },
+          {
+            "label": "Takt 1",
+            "titre": "Von der Supertonika zur Dominante",
+            "chiffrage": "Em7b5/D — A7/Cis",
+            "fonctions": "iiø4/2 — V6/5",
+            "texte": "Erstes Glied des chromatischen Bassabstiegs (D→Cis): ein halbverminderter Supertonika-Akkord in <strong>dritter Umkehrung</strong> (die Septime, D, im Bass), der zur Dominante mit Leitton (Cis) in <strong>erster Umkehrung</strong> hinübergleitet. Diese harmonische Spannung durch den zurückgehaltenen Bass ist typisch für den Sarabandensatz."
+          },
+          {
+            "label": "Takt 2",
+            "titre": "Tonika, dann die Farbe der VI",
+            "chiffrage": "Dm — B",
+            "fonctions": "I — VI",
+            "texte": "Rückkehr zur Tonika in Grundstellung, dann eine Einfärbung durch die <strong>VI</strong> (B-Dur) — der Bass setzt seinen diatonischen Abstieg fort (D→B). Eine kurze Durchgangsnote (C) schließt den Takt und bereitet das Folgende vor."
+          },
+          {
+            "label": "Takte 3-4",
+            "titre": "Subdominante, Durchgangs-6/4 und Kadenz",
+            "chiffrage": "Gm — Dm/A — A7/Cis — Dm",
+            "fonctions": "iv — i6/4 — V7 — I",
+            "texte": "Die Mollsubdominante (<strong>iv</strong>) führt zu einem Tonikaakkord in zweiter Umkehrung (<strong>i6/4</strong>, Bass A), der den Bassabstieg noch weiter trägt (B→G→D/A), bevor ein rascher Sechzehntellauf im Bass zum Dominantseptakkord (<strong>V7</strong>) hinabstürzt. Erneut ein rascher Lauf im Bass zu Beginn von Takt 4, dann die Auflösung: Diese authentische Kadenz schließt den ersten vollständigen Durchgang des Ostinatobasses ab, vier Takte nach dem Auftakt."
+          },
+          {
+            "label": "Takte 5-6",
+            "titre": "Zweiter Durchgang: Note für Note identisch",
+            "chiffrage": "Em7b5/D — A7/Cis | Dm — B",
+            "fonctions": "iiø4/2 — V6/5 | I — VI",
+            "texte": "Die zweite Wiederholung des Ostinatobasses beginnt damit, die Takte 1 und 2 unverändert aufzugreifen, ohne die geringste harmonische Variante — nur die Figuration, die sie einkleidet, wechselt von Durchgang zu Durchgang: Das ist das Wesen der Chaconne-Variation."
+          },
+          {
+            "label": "Takte 7-8",
+            "titre": "Eine andere Umkehrung — und der Eintritt der Melodie",
+            "chiffrage": "Em7b5/G — A — A7 — Dm",
+            "fonctions": "iiø6/5 — V — V7 — I",
+            "texte": "Hier erhält der Ostinatobass endlich eine echte Melodiestimme über sich (bis dahin war das Stück nur eine einzige Linie). Derselbe halbverminderte Supertonika-Akkord wie in den Takten 1 und 5 kehrt wieder, diesmal jedoch in <strong>erster Umkehrung</strong> (die Terz, G, im Bass — nicht die Septime): Der Ostinatobass ist also nicht bei jedem Durchgang streng identisch, Bach variiert auch die Harmonie, nicht nur die Verzierung. Die Dominante erscheint zunächst als schlichter Dreiklang (<strong>V</strong>), dann tritt ihre Septime (G) hinzu — nicht im Bass, sondern in der melodischen Verzierung selbst —, um kurz vor der authentischen Kadenz, die diese zweite Wiederholung in Takt 8 abschließt, <strong>V7</strong> zu bilden."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Ein einziger Bass, zweimal erzählt",
+            "texte": "Die Takte 1-2 und 5-6 tragen genau dieselbe Bezifferung — der deutlichste Beleg dafür, dass die Chaconne die Figuration (das Notenbild) weit stärker variiert als die zugrunde liegende Harmonie, die von Durchgang zu Durchgang oft unverändert bleibt."
+          },
+          {
+            "titre": "Aber doch nicht völlig starr",
+            "texte": "Die Takte 3 und 7 zeigen, dass Bach sich auch echte harmonische Varianten erlaubt (andere Akkorde, andere Umkehrungen desselben Akkords) — der Ostinatobass ist ein Leitfaden, kein absolutes Korsett."
+          },
+          {
+            "titre": "Die Melodie entsteht aus dem Bass",
+            "texte": "Sechs Takte lang ist das ganze Stück nichts als eine einzige arpeggierte Linie. Die eigentliche Melodiestimme erscheint erst in Takt 7 — ein später Einsatz, der einen echten Wendepunkt im Verlauf markiert."
+          }
+        ]
+      }
     }
   },
   "cours1": {
@@ -1114,7 +1422,56 @@
         "Tonleiter = 7 Stufen, 2 diatonische Halbtöne",
         "Leitton obligatorisch aufwärts",
         "Griechische Modi als Rotationen der Durtonleiter"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "C-Dur — keine Vorzeichen. Die beiden einzigen natürlichen diatonischen Halbtöne der Tonleiter (E–F zwischen der III. und der IV. Stufe, H–C zwischen der VII. und der I.) sind die Triebkraft des gesamten Stücks.",
+        "metrique": "4/4",
+        "forme": "Der ganze Ausschnitt (T. 1–8) ruht auf einem Bassplan aus nur ZWEI Orgelpunkttönen: C (T. 1–2 und 4–6, mit einer kurzen Wechselnote H in T. 3), dann H (T. 7–8, der bis zum Ende des Ausschnitts gehaltene Leitton). Über diesen Orgelpunkten wechselt die Harmonie ihre Farbe allein durch die Bewegung der Oberstimmen — der Bass selbst rührt sich kaum.",
+        "sections": [
+          {
+            "label": "Takte 1–3",
+            "titre": "Ein Tonika-Orgelpunkt, von seiner Wechselnote umspielt",
+            "chiffrage": "C  |  Dm7/C  |  G7/B",
+            "fonctions": "I  |  ii2  |  V6/5 (als verlängertes i gelesen)",
+            "texte": "Der Bass hält in den ersten beiden Takten das C: der Akkord bewegt sich nur DARÜBER — zunächst das Arpeggio C–E–G (I), dann D–F–A, das zusammen mit diesem gehaltenen C einen <strong>Dm7 in der dritten Umkehrung</strong> (ii2) ergibt. In T. 3 sinkt der Bass einen Ganzton auf H: die GESTALT des Akkords (G–H–D–F) ist tatsächlich die eines G7 in erster Umkehrung (V6/5) — doch Bach verwendet ihn hier als bloße <em>untere Wechselnote</em> zum C-Orgelpunkt, nicht als echte, auf Auflösung wartende Dominante. Daher die Bezifferung „V6/5(T)“: die Gestalt ist die einer Dominante, die FUNKTION bleibt die der Tonika."
+          },
+          {
+            "label": "Takte 4–5",
+            "titre": "Rückkehr zur Tonika, dann zu ihrem Stellvertreter",
+            "chiffrage": "C  |  Am/C",
+            "fonctions": "i  |  vi6",
+            "texte": "Die Wechselnote löst sich auf: das H des Basses steigt wieder zum C (T. 4), während F und D der Oberstimmen zu E und C zurücksinken — der Tonikaakkord ist Note für Note wiederhergestellt wie in T. 1. Takt 5 wechselt die Farbe, OHNE den Bass zu wechseln: das gehaltene C wird zur <strong>Terz</strong> eines a-Moll-Akkords (vi6), des unmittelbarsten Stellvertreters der Tonika — er teilt zwei Töne mit ihr (C und E)."
+          },
+          {
+            "label": "Takt 6",
+            "titre": "Das einzige Vorzeichen des Ausschnitts",
+            "chiffrage": "D7/C",
+            "fonctions": "V2/V",
+            "texte": "Die erste wirkliche harmonische Verschiebung seit Beginn des Ausschnitts: der Bass bleibt auf C (das nun zur Septime wird und nicht mehr Grundton ist), doch die Harmonie darüber verwandelt sich in einen <strong>vollständigen D7</strong> (D–Fis–A–C). Das Fis, der einzige der Vorzeichnung fremde Ton des ganzen Ausschnitts, ist ein KÜNSTLICHER Leitton, der zum G drängt: Bach zielt nun auf die Dominante (V), noch nicht auf die Tonika."
+          },
+          {
+            "label": "Takte 7–8",
+            "titre": "Die Dominante, dann eine Tonika, die sich nicht ganz schließt",
+            "chiffrage": "G/B  |  Cmaj7/B",
+            "fonctions": "V6  |  IΔ2",
+            "texte": "Endlich sinkt der Bass auf das H — den Leitton der Tonart — und bleibt dort für die letzten beiden Takte: zuerst unter einem G-Dur-Akkord (V6), dann unter dem Eintritt der Tonika (T. 8). Doch diese Tonika steht nicht in ihrer stabilsten Gestalt: ihre <strong>große Septime</strong> (eben das H, denn der Bass bewegt sich nicht) färbt sie mit einer schwebenden Spannung, die den Fortgang des Stücks herbeiruft, statt es abzuschließen."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Zwei Orgelpunkte, eine einzige Geste",
+            "texte": "Die gesamte Harmonik des Ausschnitts ruht auf zwei Basstönen: C (T. 1 bis 6, mit einem kurzen Abstecher zur Wechselnote H in T. 3), dann H (T. 7–8). Die musikalische Bewegung kommt nicht vom Bass, der sich kaum rührt — sie kommt von den Oberstimmen, die den Akkord über ihm immer neu zeichnen."
+          },
+          {
+            "titre": "Die beiden diatonischen Halbtöne",
+            "texte": "E–F (im Dm7 von T. 2 und dessen Umfeld) und H–C (der Leitton, T. 3 sowie 7–8) sind die einzigen beiden natürlichen Halbtöne in C-Dur — sie erzeugen die ganze Spannung des Stücks, ohne ein einziges Vorzeichen bis T. 6."
+          },
+          {
+            "titre": "Die Farbe folgt der Funktion, nicht der Gestalt",
+            "texte": "Takt 3 hat die GESTALT einer Dominante (G7), aber die FUNKTION einer verlängerten Tonika — daher seine blaue Farbe trotz der Bezifferung „V6/5“. In der tonalen Harmonik hat die Funktion stets Vorrang vor dem Oberflächeneindruck."
+          }
+        ]
+      }
     }
   },
   "cours2": {
@@ -1245,7 +1602,56 @@
         "Dreikling = Grundton + Terz + Quinte",
         "Dur-Dreiklang: große Terz + reine Quinte",
         "Umkehrungen: 1. (Terz im Bass), 2. (Quinte im Bass)"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "As-Dur (vier Vorzeichen: B, Es, As, Des).",
+        "metrique": "2/4.",
+        "forme": "Zwei viertaktige Phrasen. Die erste (T. 1–4) behauptet die Tonika in ihren drei Gestalten (Grundstellung, erste Umkehrung, Grundstellung) und erreicht dann die Dominante. Die zweite (T. 5–8) beginnt mit einer seltenen Wendung — die Dominante gleitet UNMITTELBAR zur Subdominante, ohne die Tonika zu berühren — bevor sie die Phrase mit einer vollständigen Rückkehr zu I abschließt.",
+        "sections": [
+          {
+            "label": "Takte 1–3",
+            "titre": "Drei Gestalten der Tonika",
+            "chiffrage": "Ab  |  Ab/C  |  Ab",
+            "fonctions": "I  |  I6  |  I",
+            "texte": "Takt 1 stellt den Tonikaakkord in Grundstellung auf: der Grundton (As) ist zwischen Bass und Begleitung verdoppelt, während der Gesang die Terz (C) anstimmt. Takt 2 kehrt denselben Akkord um — der Bass trägt nun die <strong>Terz</strong> (C) und nicht mehr den Grundton: das ist die erste Umkehrung (I6), die den Bass erleichtert, ohne die Funktion zu ändern (weiterhin blau, weiterhin Tonika). Takt 3 kehrt in die Grundstellung zurück, der Bass sinkt wieder auf das As."
+          },
+          {
+            "label": "Takte 4–5",
+            "titre": "Die Dominante, dann eine „Rückschreitung“ zur Subdominante",
+            "chiffrage": "Eb  |  Db",
+            "fonctions": "V  |  IV",
+            "texte": "Der erste Funktionswechsel des Ausschnitts: der Akkord Es–G–B (V) in Grundstellung färbt alles rot. Es ist ein einfacher Dreiklang, OHNE Septime — das G (der Leitton der Tonart) ist durchaus vorhanden und bereit, zur Tonika zu drängen. Doch statt sich, wie das Ohr erwartet, nach I aufzulösen, weicht die Harmonie zur Subdominante zurück (T. 5, Des-Dur): eine echte <strong>Rückschreitung</strong>, keine satztechnische Vereinfachung — die Ruhe auf der Tonika lässt noch drei Takte auf sich warten."
+          },
+          {
+            "label": "Takte 6–7",
+            "titre": "Ein Durchgangsakkord, dann der einzige Mollklang des Ausschnitts",
+            "chiffrage": "Ab/C  |  Bbm",
+            "fonctions": "I6  |  ii",
+            "texte": "Der Bass steigt schrittweise abwärts (Des → C → B) und verbindet die Subdominante von T. 5 mit dem ii von T. 7 über eine kurze Rückkehr zur Tonika in erster Umkehrung (T. 6 — ein DURCHGANGSakkord, kein wirklicher Ruhepunkt). Takt 7 bringt b-Moll (ii), den <strong>einzigen Mollklang des ganzen Ausschnitts</strong>: orange wie IV — die beiden Stufen der Subdominantfamilie."
+          },
+          {
+            "label": "Takt 8",
+            "titre": "Rückkehr und Abschluss",
+            "chiffrage": "Ab",
+            "fonctions": "I",
+            "texte": "Der Bass vollendet seinen Abstieg auf dem As, in der Tiefe oktavisch verdoppelt: die Phrase schließt auf der Tonika. Der Gesang endet nach einem kurzen Vorhalt mit einem vollständigen Arpeggio des Akkords (As–C–Es–As)."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Der Farbcode folgt stets der Funktion",
+            "texte": "Blau = Tonika (I, I6), Orange = Subdominante (IV, ii), Rot = Dominante (V) — dieselbe Konvention wie in den übrigen Partituren des Konservatoriums. Anders als im Bach-Präludium (Lektion 1) widerspricht hier keine Farbe ihrer eigenen Bezifferung: jeder Farbton entspricht genau der Gestalt des Akkords."
+          },
+          {
+            "titre": "Die Rückschreitung V→IV",
+            "texte": "Eine Dominante aufzulösen ist keine mechanische Pflicht: hier gleitet sie zur Subdominante, bevor die Tonika erst in T. 8 zurückkehrt — gerade im Gegensatz zur Erwartung V→I, die die allgemeine Regel aufbaut, ist das zu bemerken."
+          },
+          {
+            "titre": "Ein einziger Mollklang",
+            "texte": "In den acht Takten ist nur ein einziger Akkord Moll: das ii (b-Moll) in T. 7 — die Gesamtfarbe bleibt entschieden dur, ganz im Bild der Tonart (As-Dur)."
+          }
+        ]
+      }
     }
   },
   "cours3": {
@@ -1378,7 +1784,56 @@
         "Funktionen: Tonika (I, III, VI), Dominante (V, VII), Subdominante (II, IV)",
         "Authentische Kadenz V–I = starker Abschluss",
         "Der Tritonus in V7 löst sich auf: H→C, F→E"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "g-Moll (i) — zwei Vorzeichen (B, Es). Das Mollgeschlecht ist durch Korrelation des Tonalitätsprofils ERSCHLOSSEN (im MuseScore-Export fehlt jede <mode>-Angabe): bestätigt wird es durch die Allgegenwart des I-Pols (Gm) und durch die Dominante D7 mit ihrem Leitton Fis, dem einzigen der Vorzeichnung fremden Ton des ganzen Ausschnitts.",
+        "metrique": "C (4/4, alla breve).",
+        "forme": "Das berühmte Eröffnungsthema ruht auf einem Orgelpunkt — der Quinte der Tonika (D), vier Takte lang im Bass gehalten — und gleitet dann über einen einzigen Halbton zu einer angereicherten Subdominante (IIø7, T. 5–6), bevor die kadenzielle Fortschreitung IIø7–V7–I einsetzt, die diese Lektion lehrt (T. 7 bis 9, wobei T. 9 ein halber Takt ist, um bis zur Auflösung zu gelangen).",
+        "sections": [
+          {
+            "label": "Takte 1–4",
+            "titre": "Das Thema über der im Bass gehaltenen Quinte der Tonika",
+            "chiffrage": "Gm/D",
+            "fonctions": "i6/4",
+            "texte": "Die linke Hand reiht ein gleichmäßiges Achtelmotiv auf (G–D–G–B: Grundton, Quinte, Grundton und Terz von g-Moll). Es ist durchweg ein TONIKA-Akkord, jedoch mit seiner eigenen QUINTE (D) im Bass — kein selbständiger Dominantorgelpunkt, sondern nur einer der Töne der Tonika selbst. Darüber setzt das berühmte auftaktige Motiv (Es–D–D) das Thema in Gang, das über die vier Takte hin entfaltet wird."
+          },
+          {
+            "label": "Takte 5–6",
+            "titre": "Die angereicherte Subdominante, schrittweise erreicht",
+            "chiffrage": "Am7b5/Eb",
+            "fonctions": "ii+4/3",
+            "texte": "Der Bass geht über einen einzigen Halbton von D nach Es — ohne den geringsten Sprung — und erreicht einen halbverminderten Septakkord (A–C–Es–G, die halbverminderte zweite Stufe), diesmal mit seiner EIGENEN Quinte (Es) im Bass. Das ist die orange Farbe: die angereicherte Subdominante entfernt sich entschieden von der Tonika."
+          },
+          {
+            "label": "Takte 7–8",
+            "titre": "Die Dominante und ihre Spannung",
+            "chiffrage": "D7  |  D/A dann D7/A",
+            "fonctions": "V7  |  V6/4 dann V7+6",
+            "texte": "Der Leitton der Tonart (Fis, das einzige Vorzeichen des ganzen Ausschnitts) erscheint endlich in T. 7: zusammen mit dem C (der Septime des Akkords) bildet er den <strong>Tritonus</strong>, der die gesamte Spannung der Dominante trägt. In T. 8 bleibt der Bass in der Nähe (D, A, Fis): derselbe Dominantakkord, zunächst als Dreiklang in zweiter Umkehrung gehört (V6/4), dann um seine Septime bereichert (V7, weiterhin in zweiter Umkehrung, daher das „+6“)."
+          },
+          {
+            "label": "Takt 9",
+            "titre": "Rückkehr — noch keine geschlossene Kadenz",
+            "chiffrage": "Gm/D",
+            "fonctions": "i6/4",
+            "texte": "Die Spannung fällt auf die Tonika zurück — doch weiterhin in zweiter Umkehrung (i6/4), genau der Satz, mit dem der Ausschnitt begann. Das ist keine authentische Kadenz im strengen Sinn (die den Grundton im Bass verlangte), eher eine Rückkehr zur Eröffnungsidee, die Schleife, die die Phrase schließt, um das Thema erneut anzustoßen."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Ein Ton, zwei Funktionen",
+            "texte": "Das D trägt die gesamte Harmonik der ersten vier Takte (Quinte der Tonika); einen Halbton höher im Bass (Es) lässt es die Harmonie dann zur Subdominante gleiten — eine Verschiebung um einen einzigen Halbton genügt, um die Funktion vollständig zu ändern."
+          },
+          {
+            "titre": "Der Tritonus, Motor der Dominante",
+            "texte": "Fis (der Leitton) und C (die Septime) bilden das Intervall, das alles zur Auflösung drängt — das einzige der Vorzeichnung fremde Vorzeichen des ganzen Ausschnitts, den beiden Dominanttakten vorbehalten."
+          },
+          {
+            "titre": "Eine Kadenz, die nicht ganz schließt",
+            "texte": "IIø7–V7–I ist tatsächlich die kadenzielle Fortschreitung, die diese Lektion lehrt, doch hier mündet sie in ein I in zweiter Umkehrung (wie zu Beginn) und nicht in einen Grundton im Bass — die Spannung fällt ab, ohne dass sich die Phrase ganz schließt."
+          }
+        ]
+      }
     }
   },
   "cours10": {
@@ -1467,7 +1922,70 @@
         "7 Modi = 7 Rotationen derselben Tonleiter, jede mit ihrer eigenen Tonika",
         "Dorisch färbt Moll mit einer großen Sexte: der meistgenutzte Modus im modalen Jazz",
         "„So What“ (Miles Davis, 1959): ein Vamp in D-Dorisch, ohne funktionale Harmonik"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "d-dorisch — keine Vorzeichen, aber weder C-Dur noch a-Moll: Das modale Zentrum ist D (die zweite Stufe von C-Dur, als Ausgangspunkt genommen).",
+        "metrique": "4/4.",
+        "forme": "Ein modaler Vamp von zwei Takten (Ruf des Basses allein, dann Antwort in Akkorden), viermal hintereinander wiederholt (Takte 1-2, 3-4, 5-6, 7-8) vor dem Auftakt zur Wiederholung (Takt 9, der zugleich die erste Klammer der in der Partitur notierten Wiederholung trägt). Keiner der 9 Takte enthält eine Dominante: Das Stück kadenziert nie, es färbt von Anfang bis Ende ein einziges tonales Zentrum ein — das exakte Gegenbeispiel zu den neun vorangegangenen Stücken des Konservatoriumskurses, die alle auf funktionalen Verkettungen beruhen.",
+        "sections": [
+          {
+            "label": "Takt 1",
+            "titre": "Der Ruf: der Bass allein",
+            "chiffrage": "Dm7 (N.C.)",
+            "fonctions": "I",
+            "texte": "Der Kontrabass stellt das Riff des Stücks ganz allein vor — ein Achtelauftakt, dann eine aufsteigende Linie (D-A-H-C-D-E), die auf C zurückfällt. Kein vertikaler Akkord ist notiert (<em>N.C.</em>, „no chord“): Nur die Bezifferung „I“ unter dem Basssystem zeigt an, dass D das modale Zentrum bleibt, auch ohne ausgesetzte Harmonie."
+          },
+          {
+            "label": "Takt 2",
+            "titre": "Die Antwort: zwei rootless Akkorde",
+            "chiffrage": "Em7 – Dm7",
+            "fonctions": "II7 – I7",
+            "texte": "Das Klavier antwortet mit zwei kurzen Akkorden, jeweils ohne notierten Grundton: D-G-H (Terz, Quinte und Septime von Em7, ohne das E) auf der dritten Zählzeit, dann C-F-A (dieselben Stufen von Dm7, ohne das D) auf dem darauffolgenden Nachschlag. In diesem modalen Zusammenhang <strong>bereitet II7 keinerlei Dominante vor</strong>: Es ist eine Farbe, die unmittelbar auf die modale Tonika zurückfällt, ohne je über einen klassischen Spannungsakkord zu gehen."
+          },
+          {
+            "label": "Takte 3-6",
+            "titre": "Der Zyklus wiederholt sich",
+            "chiffrage": "Dm7 | Em7 – Dm7  ·  Dm7 | Em7 – Dm7",
+            "fonctions": "I | II7 – I7  ·  I | II7 – I7",
+            "texte": "Die Takte 3 und 5 greifen das Bassriff aus Takt 1 Note für Note auf. Die Takte 4 und 6 bringen dieselbe Akkordantwort wie Takt 2 — nur der Bass variiert unauffällig (ein Hin und Her D-A in Takt 4, ein einzelnes D in Takt 6). Harmonisch bewegt sich nichts: Es ist die Wiederholung, die dieses Stück aufbaut, nicht eine Progression."
+          },
+          {
+            "label": "Takt 7",
+            "titre": "Ein anderes Atemholen",
+            "chiffrage": "(N.C.)",
+            "fonctions": "—",
+            "texte": "Die einzige echte Variante des ganzen Ausschnitts: Statt des aufsteigenden Riffs wiederholt der Bass dreimal denselben Ton (E), in synkopiertem Rhythmus (ein über die zweite Zählzeit gebundener Ton). Keine Bezifferung begleitet diesen Takt — er ist der einzige des gesamten Ausschnitts ohne jede Angabe, nicht einmal ein „I“: Die Spannung des Rufes bleibt hier länger offen als anderswo, bevor die Antwort zurückkehrt."
+          },
+          {
+            "label": "Takt 8",
+            "titre": "Letzte Antwort vor der Wiederholung",
+            "chiffrage": "Dm7 | Em7 – Dm7",
+            "fonctions": "I | II7 – I7",
+            "texte": "Der Zyklus schließt sich wie in den Takten 2, 4 und 6: dieselbe Antwort in zwei rootless Akkorden. Noch kündigt nichts das Ende des Abschnitts an — erst der folgende Takt trägt das Wiederholungszeichen."
+          },
+          {
+            "label": "Takt 9",
+            "titre": "Auftakt und erste Klammer",
+            "chiffrage": "Dm7 (N.C.)",
+            "fonctions": "I",
+            "texte": "Das Bassriff aus Takt 1 kehrt unverändert wieder. Auf diesem Takt, und nur auf ihm, trägt die Partitur zugleich die <strong>erste Klammer</strong> der Wiederholung (das Wiederholungszeichen beginnt in Takt 2): Nach diesem Takt setzt der Zyklus wieder bei Takt 2 ein, bevor eine zweite Klammer (außerhalb dieses Ausschnitts) das Stück fortführt."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Eine einzige Farbe, nie eine Kadenz",
+            "texte": "In diesen 9 Takten erscheint kein einziger Dominantakkord. Der II7 (Em7) ist nie eine Prädominante, die eine Auflösung vorbereitet: Er ist eine bloße Einfärbung, die unmittelbar auf die modale Tonika zurückfällt — das Gegenteil dessen, was die ersten neun Stücke des Konservatoriumskurses lehren."
+          },
+          {
+            "titre": "Die Wiederholung als Motor",
+            "texte": "Das Stück entwickelt sich nicht durch Akkordverkettungen, sondern durch die fast exakte Wiederholung ein und desselben zweitaktigen Moduls — allein Takt 7 weicht davon ab, durch eine bloße Rhythmusänderung im Bass, ohne je einen neuen Akkord einzuführen."
+          },
+          {
+            "titre": "„Rootless“ Akkorde",
+            "texte": "Die beiden Akkorde der Antwort (Em7, Dm7) sind ohne ihren Grundton notiert: eine für das Jazzklavier höchst charakteristische Voicing-Technik, bei der der Bass den Grundton bereits liefert und die rechte Hand sich ganz auf die Farbe konzentriert (Terz, Quinte, Septime)."
+          }
+        ]
+      }
     }
   },
   "cours11": {
@@ -1578,7 +2096,63 @@
         "9 = 2. Stufe eine Oktave höher, 11 = 4. Stufe, 13 = 6. Stufe",
         "#9 und b9 sind typische Spannungen des alterierten Dominantakkords",
         "„All the Things You Are“ (Kern/Hammerstein): ein einleitender Vamp, vollständig aus alterierten Dominantakkorden (#9) gebaut"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "As-Dur (Vorzeichnung mit vier b) — doch dieser Einleitungsvamp verankert sich nie darin: Er wechselt zwischen zwei alterierten Dominanten, ohne je nach As aufzulösen.",
+        "metrique": "4/4, Swing (ungerade Achtel), Viertel = 140.",
+        "forme": "Ein Vamp von 2 Takten (ausgehaltener Akkord, dann eine Wechselnote im Bass), wiederholt, bevor der Standard selbst einsetzt — in Takt 9 der Originaldatei (hier nicht wiedergegeben; er beginnt auf f-Moll). Diese Einleitung ist nur eine chromatische Vorbereitung, noch nicht das Thema.",
+        "sections": [
+          {
+            "label": "Takt 1",
+            "titre": "Der Auftakt",
+            "chiffrage": "(Pause) — A",
+            "fonctions": "—",
+            "texte": "Der Ausschnitt beginnt mit einer Pause, dann mit einer einzelnen Bassnote (A, aufgelöst), die sogleich einen Halbton zum As hinabsinkt — die <strong>Quinte</strong> des Akkords, der im folgenden Takt eintritt, nicht dessen Grundton. Es handelt sich also nicht um einen tonalen Auftakt, sondern um eine Farbe, die sich im chromatischen Sekundschritt nähert."
+          },
+          {
+            "label": "Takte 2-3",
+            "titre": "Db7(#9), die Tritonussubstitution",
+            "chiffrage": "Db7(#9)",
+            "fonctions": "SubV/V",
+            "texte": "Der Bass setzt den Grundton (Des) und dann die Quinte (As); die rechte Hand greift auf dem Nachschlag die drei Töne, die die ganze Farbe des Akkords ausmachen: F (die Terz), H (als kleine Septime notiert) und E (<strong>die übermäßige None</strong>) — weder Grundton noch Quinte in dieser Hand: Allein die Tensions tragen die harmonische Identität. Db7 ersetzt G7 durch Tritonussubstitution (derselbe Tritonus F–H) und führt zu C7 im folgenden Takt."
+          },
+          {
+            "label": "Takte 4-5",
+            "titre": "C7(#9), die Dominante der Mollparallele",
+            "chiffrage": "C7(#9)",
+            "fonctions": "V7/VI",
+            "texte": "Dieselbe Geste, eine Terz tiefer: Auch hier spielt die rechte Hand nur Terz (E), Septime (B) und übermäßige None (Es) — ohne Grundton und ohne Quinte. Es ist die Zwischendominante zur Mollparallele der Tonart (f-Moll), die erst in Takt 9 der Originaldatei erscheint. Takt 5 verziert diese Harmonie mit einer absteigenden Linie in der rechten Hand (As-G-C-F-A), bevor der Zyklus von Neuem beginnt."
+          },
+          {
+            "label": "Takte 6-7",
+            "titre": "Rückkehr von Db7(#9), eine reichere Farbe",
+            "chiffrage": "Db7(#9)",
+            "fonctions": "SubV7/V",
+            "texte": "Derselbe Akkord kehrt wieder — aber nicht unverändert. Die Bezifferung ändert sich diesmal (<strong>„SubV7/V“</strong> statt „SubV/V“), und die rechte Hand ist reicher geworden: Ihr Verlauf streift im Vorübergehen weitere Farben — eine Tredezime (B) und eine übermäßige Undezime (G) —, die im ersten Durchgang der Takte 2-3 fehlten. Ein sich wiederholender Vamp darf sich also bei jeder Rückkehr ein wenig mehr Farbe erlauben: Genau das ist der Geist der Optionstöne, die diese Lektion lehrt."
+          },
+          {
+            "label": "Takt 8",
+            "titre": "Letztes C7(#9), Ende in der Schwebe",
+            "chiffrage": "C7(#9)",
+            "fonctions": "V7/VI",
+            "texte": "Der letzte Akkord des Ausschnitts: C7(#9), ebenfalls reicher gesetzt als bei seinem ersten Auftreten (die rechte Hand fügt die Quinte hinzu, die in Takt 4 fehlte). Der Ausschnitt bricht hier ab, in voller Spannung — der Standard beginnt unmittelbar danach, in Takt 9 der Originaldatei, auf f-Moll."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Tensions ohne Grundton und ohne Quinte",
+            "texte": "Die beiden Akkorde dieses Vamps (Db7(#9), C7(#9)) sind genau gleich gesetzt: Der Bass trägt Grundton und Quinte, die rechte Hand spielt nur die Terz, die Septime und die alterierte None — ein klassisches rootless Voicing des Jazzklaviers, in dem die Tensions die gesamte Farbarbeit leisten."
+          },
+          {
+            "titre": "Die Farbe wird bei jeder Rückkehr reicher",
+            "texte": "Der Vamp wird nicht einfach abgeschrieben: Bei seiner Wiederkehr (Takte 6-8) fügt die rechte Hand Tupfer von Tredezime und übermäßiger Undezime hinzu, die im ersten Durchgang fehlten — ein wiederholter Vamp gleicht sich nie ganz selbst."
+          },
+          {
+            "titre": "Ein erster Vorgeschmack auf Alteration vor dem Thema",
+            "texte": "Diese Einleitung berührt die Tonika des Stücks (As) nie: Sie bereitet das Ohr mit zwei alterierten Dominanten vor, ehe der eigentliche Standard — weit diatonischer — in Takt 9 einsetzt."
+          }
+        ]
+      }
     }
   },
   "cours12": {
@@ -1682,7 +2256,70 @@
         "subV7 = ein Dominantakkord, einen Tritonus über (oder unter) V7 aufgebaut",
         "Beide Akkorde teilen Terz und Septime (nur vertauscht): gleiche Spannung, andere Auflösung",
         "„Satin Doll“ (Ellington): Db7 ersetzt G7 (subV7) unmittelbar vor der Rückkehr nach C-Dur"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "C-Dur (ohne Vorzeichen) — doch vor Takt 7 nie unmittelbar bestätigt: Die ganze Phrase ist nichts als eine Kette von ii-V-Paaren, die sich erst ganz am Ende auf die Tonika setzt.",
+        "metrique": "4/4.",
+        "forme": "8 Takte = die A-Phrase des Standards: eine Sequenz von ii-V-Paaren (oder deren Substituten), die Stufe um Stufe aufsteigt, bevor sie in Takt 7 nach C-Dur auflöst und den Zyklus sogleich wieder in Richtung einer Wiederholung des Abschnitts anstößt.",
+        "sections": [
+          {
+            "label": "Takte 1-2",
+            "titre": "ii7-V7, das Grundmodell",
+            "chiffrage": "Dm7 – G7",
+            "fonctions": "II7 – V7",
+            "texte": "Der Ausschnitt beginnt mit der klassischsten Verbindung des Jazz: ii7-V7 in C-Dur. Ganz am Ende von Takt 1 gleitet der Bass chromatisch (Es) — eine Durchgangsnote, die einen Halbton zum Grundton (D) hinabführt, mit dem Takt 2 einsetzt."
+          },
+          {
+            "label": "Takte 3-4",
+            "titre": "iii7-V7/II, die Sequenz steigt",
+            "chiffrage": "Em7 – A7",
+            "fonctions": "III7 – V7/II",
+            "texte": "Dasselbe ii-V-Paar steigt um eine Terz: Em7 (iii7, ein Akkord der Tonikafamilie), dann A7, die Zwischendominante zur II. Stufe (<strong>V7/II</strong>) — eine Farbe, die eine Rückkehr zu Dm7 vorbereitet, die in diesem Ausschnitt nicht mehr eintritt. Am Taktende nimmt der Bass sein chromatisches Gleiten wieder auf, diesmal in Richtung E."
+          },
+          {
+            "label": "Takt 5",
+            "titre": "vi7-V7/V, eine reich ausgestattete Doppeldominante",
+            "chiffrage": "Am7 – D7",
+            "fonctions": "VI7 – V7/V",
+            "texte": "Ein weiteres ii-V-Paar, erneut transponiert. Die Voicings werden hier deutlich reicher: Am7 klingt ohne Grundton und ohne Terz — nur Quinte, Septime und <strong>Undezime</strong> (E-G-D). D7 (V7/V) fügt seiner kleinen Septime (C) die <strong>None</strong> (E) und die <strong>Undezime</strong> (G) hinzu — ein weit reicherer Akkord als ein simpler Lehrbuch-D7."
+          },
+          {
+            "label": "Takt 6",
+            "titre": "bVI7-subV7, die Tritonussubstitution",
+            "chiffrage": "Abm7 – Db7",
+            "fonctions": "bVI7 – subV7",
+            "texte": "Der Schlüsselmoment der Lektion: Statt des erwarteten ii7-V7 (Dm7-G7) bringt die Partitur Abm7-Db7. Db7 (<strong>subV7</strong>) ersetzt G7 durch Tritonussubstitution — theoretisch teilen beide Akkorde denselben Tritonus (F-H), den diese konkrete Aussetzung allein durch das H (die Septime von Db7) hörbar macht. Auf dem letzten Nachschlag des Taktes nimmt die rechte Hand den Auflösungsakkord (Cmaj9) bereits vorweg und hält ihn über den Taktstrich hinweg gebunden."
+          },
+          {
+            "label": "Takt 7",
+            "titre": "Auflösung — schon begonnen, ehe sie eintrifft",
+            "chiffrage": "Cmaj9 – Dm9",
+            "fonctions": "Imaj9 – II9",
+            "texte": "Endlich die Auflösung auf der Tonika — vorbereitet schon am Ende des vorangehenden Taktes: Cmaj9 (große Septime H, None D) füllt die ersten beiden Zählzeiten, ohne überhaupt neu angeschlagen zu werden, bevor der Bass zu Dm9 gleitet und den Zyklus von Neuem anstößt."
+          },
+          {
+            "label": "Takt 8",
+            "titre": "Ein chromatischer Durchgang zum Neustart",
+            "chiffrage": "Ebdim7 – Em7",
+            "fonctions": "— – III7",
+            "texte": "Ein <strong>vollständiger verminderter Septakkord</strong> (Es-Fis-A-C, Ton für Ton geprüft) dient als chromatischer Durchgang und verlängert die in Takt 7 begonnene aufsteigende Basslinie (C-D-Es-E) bis zu Em7 (iii7), das diese Phrase abschließt und den Zyklus zu einer Wiederholung des A-Teils zurückführt."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Eine einzige Sequenz, dreimal transponiert",
+            "texte": "ii7-V7 (Takte 1-2), iii7-V7/II (Takte 3-4), vi7-V7/V (Takt 5): dieselbe harmonische Geste, auf drei verschiedenen Tonhöhen gespielt, bevor die Tritonussubstitution (Takt 6) sie ein letztes Mal ersetzt, um endlich die Tonika zurückzubringen."
+          },
+          {
+            "titre": "Die Substitution, bloß eine Bassbewegung",
+            "texte": "G7 durch Db7 zu ersetzen ändert fürs Ohr fast nichts (derselbe Tritonus, dieselbe Spannung) — verwandelt aber die Auflösung des Basses aus einem Quartsprung (G→C) in einen schlichten absteigenden Halbton (Des→C): der wahre Grund, weshalb Jazzmusiker sie so häufig einsetzen."
+          },
+          {
+            "titre": "Die Auflösung ist da, ehe sie ankommt",
+            "texte": "Der Tonikaakkord (Cmaj9) klingt bereits, übergebunden aus dem vorangehenden Takt, wenn Takt 7 offiziell beginnt — eine für den Jazz typische rhythmische Atmung, die die Grenze zwischen Spannung und Auflösung verwischt."
+          }
+        ]
+      }
     }
   },
   "cours13": {
@@ -1803,7 +2440,70 @@
         "Kontrapunkt = zwei melodisch unabhängige Stimmen, die vertikal übereinstimmen",
         "Fuxens 5 Gattungen: Note gegen Note, 2 gegen 1, Synkopen/Vorhalte, figurierter Kontrapunkt, blumiger Kontrapunkt",
         "Invention Nr. 1 BWV 772 (Bach): Subjekt und Antwort wandern zwischen den Händen, moduliert zur Dominante"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "C-Dur (ohne Vorzeichen) zu Beginn — doch der Pivotakkord in Takt 4 lässt das Stück in seine Dominante kippen, nach G-Dur, wo es sich bis zum Ende des Ausschnitts dauerhaft einrichtet (Takte 7-8).",
+        "metrique": "4/4.",
+        "forme": "8 Takte = die erste Phrase der Invention: Exposition des Themas im Sopran, dann im Bass in der Oktave (Takt 1), Ende des Themas und dominantische Färbung (Takt 2), diatonische Sequenz als Überleitung (Takt 3), Pivotakkord und Modulation nach G-Dur (Takt 4), Dominante vorbereitet und dann über einen Umweg aufgelöst (Takte 5-6), Wiederaufnahme des transponierten Themas im Bass und Halbschluss auf der neuen Dominante (Takte 7-8).",
+        "sections": [
+          {
+            "label": "Takt 1",
+            "titre": "Das Thema, exponiert und dann in der Oktave imitiert",
+            "chiffrage": "C (I)",
+            "fonctions": "I",
+            "texte": "Das Thema erscheint zuerst im Sopran: C-D-E-F-D-E-C (Zählzeiten 1-2), ein reines Tonika-Arpeggio, durchzogen von Sekundschritten. Auf den Zählzeiten 3-4 wandert es in den Bass, <strong>eine Oktave tiefer</strong>, während der Sopran ein Gegenthema innerhalb des Tonikaakkords hält (G-C-H-C). Das F3, das im Bass auf die Zählzeit 4 fällt, gehört zu dieser melodischen Linie des Themas und nicht zur Harmonie: Es besteht kein Anlass, hier einen Subdominantakkord zu beziffern — der ganze Takt ist nichts anderes als eine verlängerte Tonika."
+          },
+          {
+            "label": "Takt 2",
+            "titre": "Die Antwort und eine dominantseptimische Färbung",
+            "chiffrage": "G (V) – G7 (V7)",
+            "fonctions": "V – V7",
+            "texte": "Der Bass vollendet das Thema mit einem Abstieg um eine Oktave (G3-G2) und setzt es dann erneut auf G an (G-A-H-C-A-H-G), während der Sopran darüber antwortet. Auf der letzten Zählzeit lässt eine untere Wechselnote des Soprans (G-F-G) das F hören, das G zu <strong>G7 (V7)</strong> einfärbt — genau die Bezifferung, die an dieser Stelle in der Partitur steht."
+          },
+          {
+            "label": "Takt 3",
+            "titre": "Aufsteigende diatonische Sequenz",
+            "chiffrage": "a-Moll/C (vi6) – d-Moll (ii) – C/E (I6) – a-Moll (vi)",
+            "fonctions": "vi6 – ii – I6 – vi",
+            "texte": "Vier Akkorde in Sequenz über einem stufenweise aufsteigenden Bass (C-D-E-F-G-A-H). Ganz am Ende des Taktes bildet sich zwischen den beiden Stimmen ein <strong>unbezifferter Durchgangsakkord</strong> — H (Bass) - D - F (Sopran), ein vollständiger verminderter vii° — und drängt ganz natürlich zum C des folgenden Taktes: eine feine analytische Beobachtung, die die Stufenbezifferung, die „vi“ bis zum Taktende festhält, nicht wiedergibt, die die tatsächlichen Tonhöhen aber bestätigen."
+          },
+          {
+            "label": "Takt 4",
+            "titre": "Der Pivotakkord und das Umkippen nach G-Dur",
+            "chiffrage": "C (I=IV) – D7/Fis (V6/5) – D7/A (V4/3) – D7/C (V4/2)",
+            "fonctions": "IV – V6/5 – V4/3 – V4/2 (bereits in G-Dur)",
+            "texte": "Der Angelpunkt des gesamten Ausschnitts: Das C, das den Takt eröffnet, ist zugleich <strong>I von C-Dur</strong> und <strong>IV von G-Dur</strong> — ein Pivotakkord im strengsten Sinne. Die drei folgenden Zählzeiten bilden die Dominante der neuen Tonart als vollständig gebrochenen Akkord im Bass (Fis-A-C) und durchlaufen dabei alle drei Umkehrungen (V6/5, V4/3, V4/2); das Fis erscheint im Bass genau auf der dritten Achtel des Taktes — der Leitton zu G, der die Farbe der neuen Tonika bestätigt. Das am Taktende im Bass gehaltene C (die Septime von D7) ist über den Taktstrich hinweg gebunden: Seine Auflösung wird auf Takt 5 verschoben."
+          },
+          {
+            "label": "Takte 5-6",
+            "titre": "Die aufgeschobene Auflösung, dann die wirkliche Tonika",
+            "chiffrage": "D7/C (V4/2) – G (I) – G (I) – C (IV) | e-Moll (vi) – G (I) – G/H (I6) – D (V)",
+            "fonctions": "D (V4/2, verlängert) – T – T – SD | T (vi) – T – T (I6) – D",
+            "texte": "Die gehaltene Septime (C) löst sich nicht wie erwartet abwärts nach H auf: Der Bass entweicht ihr über eine aufsteigende Tonleiter (D-E-Fis) und erreicht die Tonika unmittelbar in Grundstellung (G) — <strong>eine ausweichende Auflösung</strong>. Das anschließende punktierte C5 im Sopran ist eine betonte Dissonanz, die nach D5 aufsteigt, statt abwärts zu gehen — eine ungewöhnliche Behandlung, die die Spannung um eine weitere Zählzeit dehnt. In Takt 6 schwankt der Bass einen Augenblick zwischen G (I) und einer flüchtigen Rückkehr nach E (vi), bevor er sich auf H festlegt (I6, gehaltener Ton); ein durchgehendes C3 verbindet dann H mit D, das die Kadenz eröffnet: ein echter 6-5-Vorhalt (H4 nach A4) über dem Bass D3-D2, <strong>ganz ohne Septime</strong> (im gesamten Rest des Taktes erklingt kein einziges C) — ein schlichter D-Dur-Akkord, kein D7."
+          },
+          {
+            "label": "Takte 7-8",
+            "titre": "Das Thema kehrt im Bass wieder, Halbschluss",
+            "chiffrage": "G (I) – G/D (I6/4) – D7/Fis (V6/5) | D (V) – D7 (V7)",
+            "fonctions": "I – I6/4 – V6/5 | V – V7",
+            "texte": "Das Thema erscheint erneut, diesmal vollständig <strong>im Bass</strong> und auf G (G-A-H-C-A-H-G): eine Wiederaufnahme eine Quinte über seinem ursprünglichen Einsatz in Takt 1, in der nun fest etablierten Tonart. Nach einem kurzen Durchgang durch den Quartsextakkord (I6/4) und dann die umgekehrte Dominante (V6/5, Fis3 unter C5) lässt sich der Bass auf dem Auftakt zur letzten Zählzeit auf G nieder. Takt 8 setzt das Thema erneut auf D an, während der Sopran ein Fis4 aushält; die anschließenden Töne A-H-C lassen im Sopran ein C hören — die Septime, die <strong>D7 (V7)</strong> etabliert und im Bass durch die Bewegung D-C-D bestätigt wird. Der Ausschnitt bricht auf dieser offenen Dominante ab, in voller Spannung, unmittelbar bevor die Invention weitergeht."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Ein Thema, zwei Stimmen, eine einzige Idee",
+            "texte": "Der gesamte Ausschnitt beruht auf einem einzigen melodischen Motiv (C-D-E-F-D-E-C oder seinen Transpositionen), das unablässig zwischen Sopran und Bass wandert — exponiert im Sopran (Takt 1), im Bass eine Oktave tiefer imitiert (noch immer Takt 1), dann im Bass auf der neuen Stufe wiederaufgenommen (Takte 7-8): das Prinzip des Inventionskontrapunkts schlechthin, bei dem eine einzige Linie den gesamten zweistimmigen Diskurs hervorbringt."
+          },
+          {
+            "titre": "Eine Modulation durch die nächstgelegene Tür",
+            "texte": "C-Dur kippt nach G-Dur, seiner Dominante — die natürlichste aller Modulationen, angestoßen von einem Pivotakkord (C = I/IV, Takt 4) und anschließend durch eine im Bass vollständig gebrochene Zwischendominante bestätigt (D7 in allen drei Umkehrungen). Von diesem Augenblick an denkt die Bezifferung in der Zieltonart."
+          },
+          {
+            "titre": "Auflösungen, die hinausgezögert, aber nie überstürzt werden",
+            "texte": "Zweimal wird in diesem Ausschnitt einer vorbereiteten Dissonanz die erwartetste Auflösung verweigert: Die Septime aus Takt 4 entweicht über eine Tonleiter, statt abwärts zu gehen (Takt 5), und das betonte C5 im Sopran steigt nach D5 auf statt umgekehrt — zwei Umwege, die die Spannung dehnen, ohne sie je zu verraten."
+          }
+        ]
+      }
     }
   },
   "cours14": {
@@ -1917,7 +2617,63 @@
         "Modale Harmonik = gehaltene Klangfarbe, nicht Spannung gefolgt von Auflösung (anders als in der tonalen Harmonik)",
         "Die Bewegung V7→I wird vermieden: sie würde den Leitton einführen und die Atmosphäre des Modus brechen",
         "„Erste Gymnopédie\" (Satie): IVmaj7-Imaj7 in Schleife über 9 Takte, nie eine Dominante"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "D-Dur (Vorzeichnung mit zwei Kreuzen) — doch der Ausschnitt lässt den D-Akkord nie als entschiedenes Ziel erklingen: Er <strong>beginnt und endet auf G</strong> (IV), das 5 seiner 9 Takte einnimmt. Eine Lesart in <strong>G-Lydisch</strong> (mit Cis als #4) ist allein auf der Grundlage dieses Ausschnitts ebenso vertretbar — beide Lesarten teilen exakt dieselben zwei Kreuze. Der weitere Verlauf des Stückes (außerhalb dieses Ausschnitts) wird die Frage zugunsten von D-Dur entscheiden.",
+        "metrique": "3/4. In dieser Datei weder Tempo- noch Charakterangabe (das Original trägt „Lent et douloureux“, hier nicht übernommen) — Viertel = 60 als redaktionelle Entscheidung für die synchronisierte Wiedergabe ergänzt.",
+        "forme": "9 Takte = ein strenges harmonisches Pendel zwischen zwei Großseptakkorden, IVmaj7 (G) und Imaj7 (D), ohne dass die Dominante (A) je erklänge: In den Takten 1-4 richtet die Begleitung allein das Schaukeln ein; in den Takten 5-9 tritt die Melodie ein und sinkt um eine Oktave (Fis5 bis Fis4), wobei sie systematisch die „farbigen“ Töne jedes Akkords berührt (Septime, None, Undezime, #11) statt seiner stabilen Töne.",
+        "sections": [
+          {
+            "label": "Takte 1-4",
+            "titre": "Das harmonische Pendel, ohne Melodie",
+            "chiffrage": "Gmaj7 – Dmaj7 – Gmaj7 – Dmaj7",
+            "fonctions": "IV – I – IV – I",
+            "texte": "Erstarrte Textur in den ersten vier Takten: ein tiefer, durch den ganzen Takt ausgehaltener Basston (G2, dann D2), eine Viertelpause, danach ein dreitöniger Akkord, auf der zweiten Zählzeit angeschlagen und bis zum Taktende gehalten (H3-D4-Fis4 über G; A3-Cis4-Fis4 über D) — das berühmte Wiegen einer bis aufs Skelett reduzierten Sarabande. <strong>Fis4</strong> ist der einzige Ton, der in beiden Lagen exakt auf derselben Höhe bleibt: ein Angelpunkt, ohne den die beiden Akkorde fürs Ohr nichts mehr gemeinsam hätten. Eine Dominante (A) erscheint niemals: ohne V keine Kadenz — der Wechsel IV-I ist eine statische plagale Schaukelbewegung, die die tonale Richtung eher aufhebt, als dass sie sie aufbaute. Bemerkenswert: Der Ausschnitt beginnt unmittelbar auf der Subdominante, nicht auf der Tonika."
+          },
+          {
+            "label": "Takt 5",
+            "titre": "Die Melodie tritt ein: Septime, dann None",
+            "chiffrage": "Gmaj9",
+            "fonctions": "IV(9)",
+            "texte": "Nach einer Pause setzt die Melodie auf <strong>Fis5</strong> ein — der großen Septime von G, genau zwei Oktaven über dem Fis4 der Begleitung — und springt dann zu <strong>A5</strong>, der None. Die Partitur beziffert diesen Akkord ausdrücklich als „Gmaj9“ (nicht bloß „maj7“): Die Melodie berührt exakt jene Erweiterung, die die Bezifferung ankündigt. Von der ersten Sekunde an zwei „dissonante“ Töne, wie selbstverständlich hingesetzt, gänzlich ohne Vorbereitung."
+          },
+          {
+            "label": "Takt 6",
+            "titre": "Die einzige „aufgelöste“ Geste des Ausschnitts",
+            "chiffrage": "Dmaj7",
+            "fonctions": "I",
+            "texte": "G5 auf der ersten Zählzeit ist eine <strong>Undezime</strong> über dem Tonikaakkord (D) — die einzige melodische Dissonanz des ganzen Ausschnitts, die stufenweise wieder absteigt, nach Fis5 (der Terz), allerdings auf unbetonter Zählzeit und ohne Vorbereitung. Anschließend fällt die Linie um eine Quarte nach Cis5, der Septime von D."
+          },
+          {
+            "label": "Takt 7",
+            "titre": "Der Aufstieg zur #11",
+            "chiffrage": "Gmaj7(#11)",
+            "fonctions": "IV(#11)",
+            "texte": "Stufenweiser Aufstieg H4-Cis5-D5 (Terz – Quinte, über Cis hinweg). Auch hier kündigt die Bezifferung die Farbe genau an: Dies ist der EINZIGE Takt des gesamten Ausschnitts, in dem dem G-Akkord ein „(#11)“ hinzugefügt wird — und genau diesen Ton streift die Melodie im Vorübergehen."
+          },
+          {
+            "label": "Takte 8-9",
+            "titre": "Die stabile Quinte, dann die schwebende große Septime",
+            "chiffrage": "Dmaj7 – Gmaj7",
+            "fonctions": "I – IV",
+            "texte": "A4, durch den ganzen Takt 8 ausgehalten: die Quinte von D, der einzige vollkommen konsonante und stabile Ton der gesamten melodischen Phrase. Danach Fis4, durch den ganzen Takt 9 ausgehalten: die große Septime von G, eine Oktave unter dem Fis5, das die Melodie in Takt 5 eröffnet hatte. So schließt der Ausschnitt in vollkommener Schwebe, ohne die geringste Kadenz — ein absteigender Bogen von genau einer Oktave, vom hohen Fis zum tiefen."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Nur ein einziger wirklich gemeinsamer Ton: Fis",
+            "texte": "G-H-D-Fis und D-Fis-A-Cis haben theoretisch zwei Töne gemeinsam (D und Fis), doch in den tatsächlichen Lagen der Begleitung bleibt allein Fis4 exakt auf derselben Höhe — das D wechselt jedes Mal die Oktave (Bass oder Akkordmitte). Dieser dünne Faden ist es, der die beiden Farben zusammenhält."
+          },
+          {
+            "titre": "Die große Septime als Farbe, nicht als Dissonanz",
+            "texte": "Weder das Fis von G noch das Cis von D wird vorbereitet oder aufgelöst — eine Behandlung, die in der strengen tonalen Harmonik (derjenigen der im vorigen Kurs analysierten Bach-Invention) undenkbar wäre, wo eine große Septime eine Dissonanz ist, die geführt werden muss. Hier ist sie ein stabiler Zustand, konstitutiver Bestandteil des Akkords: die radikalste Geste des Stückes."
+          },
+          {
+            "titre": "G-Lydisch oder D-Dur? Nichts entscheidet",
+            "texte": "Über diese neun Takte hinweg bleiben beide tonalen Lesarten gleichermaßen gültig — und genau das ist die beabsichtigte Wirkung. Bei Bach rechtfertigt sich jeder Akkord durch die Stimmführung; bei Satie ist die Harmonie ein wiederholtes Klangobjekt ohne jede Stimmführung (blockhaft angeschlagene Akkorde, keine einander antwortenden Linien): dieselbe Leseübung, zwei entgegengesetzte Grammatiken."
+          }
+        ]
+      }
     }
   },
   "cours15": {
@@ -2001,7 +2757,70 @@
         "Eine Kette von Zwischendominanten (V7/III, subV7/VI, V7/V...) tonisiert kurz jede Stufe vor der endgültigen Auflösung",
         "Der Tritonus-Ersatz ersetzt eine Dominante durch ihren Tritonus: gleiche Spannung (Terz/Septime vertauscht), chromatischer Bass",
         "„Autumn Leaves\" (Kosma): absteigende iv-VII-III-VI-ii°/V-V-i-Folge, dann ein V7/IV-Turnaround, der den Kreis schließt"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "g-Moll, mit seiner Paralleltonart B-Dur ständig am Horizont — genau das Prinzip des Schemas von „Autumn Leaves“, das über eine Kette absteigender Quinten (C→F→B→Es→A→D→G) zwischen den beiden Polen kreist. In diesem Arrangement ist fast jeder Akkord der Sequenz in Wahrheit eine <strong>Zwischendominante</strong> zur jeweils folgenden Stufe.",
+        "metrique": "4/4. Tempo 120 (medium swing).",
+        "forme": "10 Takte = ein Auftakt von einer Zählzeit (Takt 1) + der vollständige A-Teil des Standards (Takte 2-9, acht Takte) + der Beginn seiner Wiederholung (Takt 10) — das Auftaktmotiv kehrt im Übrigen am Ende von Takt 9 wieder und bestätigt damit, dass die Form in sich selbst zurückläuft.",
+        "sections": [
+          {
+            "label": "Takt 1",
+            "titre": "Der Auftakt und seine bitonale Doppeldeutigkeit",
+            "chiffrage": "(ohne Harmonie)",
+            "fonctions": "—",
+            "texte": "Drei aufsteigende Achtel in Sekundschritten, G-A-B, die linke Hand schweigt. Eine Figur mit doppelter Lesart: <strong>1̂-2̂-3̂ von g-Moll</strong> (Tonika, zweite Stufe, kleine Terz) oder, vom parallelen Pol aus betrachtet, <strong>6̂-7̂-1̂ von B-Dur</strong> (Submediante, Leitton, Tonika) — die Doppeldeutigkeit der beiden Zwillingstonarten schon im Auftakt aufgespannt, noch bevor der erste Akkord erklingt."
+          },
+          {
+            "label": "Takte 2-3",
+            "titre": "Cm9, dann F7: die Sequenz setzt ein, die 13 verhärtet sich",
+            "chiffrage": "Cm9 – F7(♭13)",
+            "fonctions": "iv7 [ii7] – V7/III",
+            "texte": "Die Akkordangabe der Datei sagt bereits „m9“, nicht „m7“: D4 (die None) wird tatsächlich im Bass unter dem angeschlagenen Es4-B4 ausgehalten, unter dem Es5 der Melodie — ein vollständiger <strong>Cm9</strong> schon im geschriebenen Symbol; einzig die vereinfachte Stufenbezeichnung („IV7“) lässt die None unerwähnt. In Takt 3 sinkt die Mittelstimme D4→Des4 (<strong>13 → ♭13</strong>), während das A3 (die Terz) liegen bleibt — ein F7, der sich im Laufe des Taktes verhärtet, vorbereitet durch eine chromatische Acciaccatura (Cis4) am Taktanfang."
+          },
+          {
+            "label": "Takt 4",
+            "titre": "IIImaj7, dann die erste Arrangeurgeste",
+            "chiffrage": "B♭maj7 – E7",
+            "fonctions": "IIImaj7 – subV7/VI",
+            "texte": "B♭maj7 behandelt seine große Septime (A) als stabile Farbe, ganz wie bei Satie (voriger Kurs). Dann, im gebräuchlichsten Schema gar nicht vorhanden: ein <strong>E7 ohne Grundton</strong> (Gis3 = Terz, Fis3 = None, D = Septime), der Tritonussubstitut von B♭7 (V7/VI). Der Bass durchmisst über den ganzen Takt B2-F3-Es2-D3 — vier verschiedene Tonhöhen, die auf D innehalten, ohne zum Es zurückzukehren."
+          },
+          {
+            "label": "Takte 5-6",
+            "titre": "Ein satiehaftes VImaj7, dann der Spannungsgipfel",
+            "chiffrage": "E♭maj9 – A7(♯9,♭13,♭5)",
+            "fonctions": "VImaj7 – V7/V",
+            "texte": "Ein eng gesetztes E♭maj9 (F3 = None, G3 = Terz, D4 = große Septime) verlängert die unbewegte Farbe. Takt 6 ersetzt das erwartete diatonische ii° (Am7♭5) durch dessen dominantisierte Fassung: einen <strong>vollständig alterierten A7</strong> — C5 ausgehalten (♯9), F4 (♭13, nach einem chromatischen Fis), Es4 (♭5) innerhalb der Triole, und Gis3→G3 im Bass, das sich an der Septime reibt, bevor es sich ihr fügt. Der Spannungsgipfel des gesamten Ausschnitts, genau an der richtigen Stelle vor der Hauptdominante."
+          },
+          {
+            "label": "Takt 7",
+            "titre": "V7, die 4-3-Auflösung, gekreuzt mit der ♭9",
+            "chiffrage": "D9sus4 – D7(♭9)",
+            "fonctions": "V7",
+            "texte": "Konstruktion in zwei Schritten: zuerst ein vollständiger <strong>D9sus4</strong> (D-G-A-C-E: Quarte, Quinte, Septime, None), dann löst sich der Vorhalt auf (G3→Fis3, eine 4-3-Bewegung) genau in dem Augenblick, in dem die Melodie Es4 setzt — die <strong>♭9</strong> — als Halbe ausgehalten: Auflösung und neue Dissonanz in ein und derselben Geste ausgetauscht."
+          },
+          {
+            "label": "Takte 8-10",
+            "titre": "Rückkehr, Turnaround und abgeschnittene Wiederholung",
+            "chiffrage": "Gm7→Gm6→Gm(♭6) – G7(♭9) – Cm7",
+            "fonctions": "i – V7/IV – iv7",
+            "texte": "Takt 8 (<strong>Gm7→Gm6→Gm(♭6)</strong>, drei aufeinanderfolgende Akkorde) ist ein <em>line cliché</em> (F→E→Es, Septime-Sexte-♭Sexte) über statischer Molltonika. Takt 9 (<strong>G7(add ♭9)</strong>, römisch „V7/IV“) lässt zwischen beiden Händen vollständig G-H-D-F-As erklingen, die Zwischendominante, die die Rückkehr des Cm7 vorbereitet, während die Melodie das Auftaktmotiv erneut anstimmt. Takt 10 öffnet die Schleife wieder: Cm7 mit der Undezime (F5) an der Spitze des Voicings, eine aufsteigend gebrochene Triole, und ein Bass, der auf einem chromatischen H innehält — der Ausschnitt bricht ab, bevor sein Ziel sich zeigen kann."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Zwei Substitutionen, zwei verschiedene Logiken",
+            "texte": "Der in Takt 4 eingeschobene E7 FÜGT einen Akkord HINZU, der im gebräuchlichsten Schema fehlt (eine chromatische Annäherung durch Tritonussubstitut). Der A7 aus Takt 6 ERSETZT einen bereits vorhandenen Akkord (das diatonische ii°, Am7♭5) durch dessen dominantisierte Fassung, auf demselben Grundton. Zwei klar voneinander unterschiedene Reharmonisierungstechniken, in diesem einen Chorus vereint."
+          },
+          {
+            "titre": "Fast jeder Akkord ist eine Zwischendominante",
+            "texte": "V7/III, subV7/VI, V7/V, V7/IV: Die absteigende Sequenz von „Autumn Leaves“ reiht Durchgangstonikalisierungen aneinander statt nackter diatonischer Stufen — genau das Vokabular von Kurs 15."
+          },
+          {
+            "titre": "Die Dissonanz als Standardmaterial",
+            "texte": "Nach Bach (Dissonanz = kontrapunktisches Ereignis) und Satie (Dissonanz = unbewegte Farbe) zeigt dieses Arrangement ein drittes Regime: None, Tredezime und ♭9 werden im klassischen Sinne weder vorbereitet noch aufgelöst — sie sind die Norm des Akkords, gesteuert über Alterationsgrade (13→♭13, sus4→♭9, vollständig alteriert) entlang eines Quintenzirkels, den Bach wiedererkannt hätte."
+          }
+        ]
+      }
     }
   },
   "cours16": {
@@ -2108,7 +2927,77 @@
         "Reharmonisieren = die Akkorde unter einer unangetasteten Melodie ersetzen, wobei jede Melodienote mit ihrem neuen Akkord kompatibel bleibt",
         "Zwischendominanten (V/V, V/IV) und Tritonus-Ersatzakkorde sind die gängigsten Werkzeuge",
         "„My Funny Valentine\" (Bill Evans): Moll-Kadenz iiø7-V7alt-i, der ein Ausflug zur Subdominante vorausgeht (IV9-IV13sus)"
-      ]
+      ],
+      "analyseNarrative": {
+        "tonalite": "c-Moll (Vorzeichnung mit drei ♭). Das Standardschema des A-Teils ist berühmt für sein <em>line cliché</em>: Cm-Cm(maj7)-Cm7-Cm6, die absteigende Linie C-H-B-A über einem Tonikaorgelpunkt, vor Abmaj7-Fm7-Dø7-G7. Diese Transkription spielt die Linie nicht: Sie <strong>verdichtet und ersetzt sie</strong>.",
+        "metrique": "4/4.",
+        "forme": "9 Takte = der erste A-Teil des Standards. Das horizontale line cliché des Modells wird schon im ersten Akkord vertikalisiert (Takt 1); die beiden dadurch frei gewordenen Takte (2-3) werden mit alterierten Turnarounds und mit einer Reharmonisierung derselben Melodie gefüllt; zwei Akkorde des Schemas (Abmaj7/Fm7) werden zu einem einzigen verschmolzen (Takt 5); und der Eintritt des iiø7 (Takte 7-8) wird selbst zur formalen Geste — eine bogenförmige Welle, nicht bloß ein Akkord.",
+        "sections": [
+          {
+            "label": "Takt 1",
+            "titre": "Das line cliché, schon in einem einzigen Akkord zusammengefasst",
+            "chiffrage": "Cm6/9",
+            "fonctions": "i(6/9)",
+            "texte": "Bass C3, darüber A3-D4-Es4-G4: Grundton, große Sexte, None, Terz, Quinte — ein vollständiger <strong>Cm6/9</strong>. Das A, Zielpunkt des Standard-line-clichés (C-H-B-<em>A</em>), ist damit schon im allerersten Akkord vertikal integriert: vier Takte horizontaler Harmonie, zusammengefasst in einem einzigen Voicing. Die Reibung D4/Es4 (eine kleine Sekunde im Herzen des Akkords) ist die Cluster-Signatur der gesamten Transkription. Die Melodie tritt auftaktig in der Mitte der zweiten Zählzeit ein: C5-D5-Es5, die Keimzelle des Themas, in der Dynamik <em>p</em>."
+          },
+          {
+            "label": "Takt 2",
+            "titre": "Der substituierte Turnaround, durchgehend alteriert",
+            "chiffrage": "D7(♯9♭13) – G7(♭9♭13)",
+            "fonctions": "II7 alt (V/V) – V7 alt",
+            "texte": "Anstelle der Takte 2-3 des Standardclichés ein vollständig alterierter II7-V7-Turnaround. D7: Shell 3-7 im Bass (Fis3-C4), F4 (= Eis, ♯9), B4 (♭13) und der Grundton im Sopran. G7 (antizipiert gesetzt, Achtel und dann punktierte Viertel): Shell 7-3 (F3-H3) — die Stimmführung der Shells ist exakt, Fis→F, C→H, jede Stimme sinkt um einen Halbton — überlagert von Es (♭13), As (♭9) und der Quinte an der Spitze. Diese ♭9/♭13 über G7 sind die Töne des harmonischen c-Moll: Die Alteration ist keine Exotik, sie ist die Tonart selbst."
+          },
+          {
+            "label": "Takt 3",
+            "titre": "Dieselbe Melodie, gegenläufig harmonisiert",
+            "chiffrage": "Cm6/9 → C7(♯11)",
+            "fonctions": "i → V7/iv",
+            "texte": "Exakte Wiederkehr des Voicings aus Takt 1 (dieselben vier Töne), und die Melodie stimmt die Zelle C-D-Es erneut an. Doch die Harmonie kippt auf der <strong>vierten Zählzeit</strong> (das D4 der dritten Zählzeit ist nur ein Durchgangston im Bass): E4-Fis4 leuchten über B3 auf — Terz, lydische ♯11 und Septime eines C7 ohne Grundton, in der Funktion V7/iv nach f-Moll. Dieselbe Melodie, die entgegengesetzte Harmonisierung: die erste Reharmonisierungslektion des Ausschnitts. Crescendo notiert."
+          },
+          {
+            "label": "Takt 4",
+            "titre": "Die chromatische Welle",
+            "chiffrage": "Aø(9) – G♭13(♯11) – F13(♯11)",
+            "fonctions": "V/iv – subV/iv – (planing)",
+            "texte": "Der dichteste Takt von allen. Aø9 (A3 im Bass, darüber Es-G-H(die None)-D, ohne die Terz C) fungiert als V/iv nach f-Moll. Dann G♭13(♯11): der Tritonussubstitut von C7, in vollständigem Voicing (Ges-B im Bass, Fes-As-C-Es darüber). Und dann die bemerkenswerte Geste: F13(♯11) ist exakt dieselbe Struktur, um einen Halbton nach unten verschoben (F-A / Es-G-H-D) — <strong>paralleles Planing</strong>, jede Stimme sinkt als Block um einen Halbton. Diminuendo notiert: Die Welle fällt zurück."
+          },
+          {
+            "label": "Takte 5-6",
+            "titre": "Zwei verschmolzene Akkorde, dann der Abstieg zum iiø",
+            "chiffrage": "Fm9 – F13sus9 – Fm9/E♭",
+            "fonctions": "iv9 – iv(sus)",
+            "texte": "Fm9 (Bass F2-C3 in gebundenen Ganzen): drei aufeinanderfolgende Lagen desselben Akkords in der rechten Hand — G-As-C (9/3/5, wiederum ein Sekundcluster), B-D (Undezime und <em>dorische</em> Tredezime, nicht die erniedrigte Sexte des natürlichen Molls), dann As-C-Es (3/5/7). Das Standardschema gibt hier Abmaj7 UND DANN Fm7 — zwei im Parallelverhältnis stehende Akkorde, die die Transkription <strong>zu einem einzigen, weit gespreizten Fm9 verschmilzt</strong> (Fm9 enthält bereits sämtliche Töne von Abmaj7). Takt 6: F13sus9 (11, 13, 9, 7, ohne Terz), dann gleitet der Bass unter F3 nach Es (Fm9/E♭): F→Es→D, die Pflichtstation des Schemas (Takte 6-7 des Standards) — die einzige Stelle, an der diese Transkription ihm buchstabengetreu folgt."
+          },
+          {
+            "label": "Takte 7-8",
+            "titre": "Der Bogen um das iiø: Gipfel, dann Abstieg",
+            "chiffrage": "Dø7 (aufsteigendes Arpeggio) → G7(♯9♭13)",
+            "fonctions": "iiø7 – V7 alt",
+            "texte": "Der gesamte Takt 7 ist ein Triolen-Arpeggio, das beide Hände durchquert: Der Bass reiht D2-D3-F3-As3-C4-Es4 auf (der vollständige ø7-Akkord, dazu eine überschießende ♭9), während die rechte Hand dreitönige Voicings übereinanderschichtet, die parallel aufsteigen bis zu As4-C5-G5 — dem höchsten Punkt des ganzen Ausschnitts. Takt 8 steigt in einer nahezu symmetrischen Geste wieder ab (dieselben dreitönigen Schichtungen, in umgekehrter Richtung durchlaufen), der Bass sinkt Es4-D4-As3-F3, bevor er auf der dritten Zählzeit auf G7(♯9♭13) landet: G2 im Bass, Shell F3, dann H-Es-F-B (3-♭13-7-♯9). Die Melodie sinkt in einer Triole As-G-F — das As eine durchgehende ♭9: So häuft der Akkord ♯9 und melodische ♭9 zugleich an, eine gesättigte Dominante unmittelbar vor der Auflösung."
+          },
+          {
+            "label": "Takt 9",
+            "titre": "Die nackte Auflösung",
+            "chiffrage": "Cm",
+            "fonctions": "i",
+            "texte": "Eine nach dem vorangegangenen Wogen bewusst kahl gehaltene Auflösung. Melodie Es4 (punktierte Halbe); im Bass D4→C4: eine 9-8-Appoggiatur, die sich auflöst — das einzige Ornament eines ansonsten leeren Taktes. Danach stimmt die Triole F4-G4 einen neuen Auftakt zur Fortsetzung des Themas an, die hier abgeschnitten ist."
+          }
+        ],
+        "synthese": [
+          {
+            "titre": "Der Tritonussubstitut, ohne sich überhaupt aufzulösen",
+            "texte": "G♭13(♯11) (Takt 4) ist der klassische Tritonussubstitut von C7 — doch statt sich wie ein erwarteter subV7 nach f-Moll aufzulösen, gleitet er um einen schlichten Halbton nach F13(♯11), eine identische Struktur. Die Substitution wird hier zu einem rein chromatischen Verfahren (dem <em>planing</em>), losgelöst von jeder Vorstellung einer Auflösung — die Farbe hat Vorrang vor der Funktion."
+          },
+          {
+            "titre": "Das line cliché, erst horizontal, dann vertikal",
+            "texte": "Der Standard entfaltet Cm-Cm(maj7)-Cm7-Cm6 über vier Takte; diese Transkription schichtet dieselben Töne (darunter das A des Clichés) schon in Takt 1 zu einem einzigen Cm6/9 und macht damit den gesamten übrigen Raum für die Reharmonisierung frei."
+          },
+          {
+            "titre": "Das Voicing als eigenständiges Ausdrucksobjekt",
+            "texte": "Bei Bach (Invention n°1, Kurs 13) entsteht die Form aus der Stimmführung; bei Satie (Gymnopédie, Kurs 14) aus der Wiederholung; im nackten Jazzschema (Autumn Leaves, Kurs 15) aus der funktionalen Verkettung. Hier wird die Textur selbst — der Bogen der Takte 7-8, das Planing in Takt 4 — zum formalen Ereignis: Das Voicing, und nicht bloß der Akkord, den es trägt, ist der Gegenstand."
+          }
+        ]
+      }
     }
   },
   "cours17": {
