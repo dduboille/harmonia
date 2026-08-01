@@ -10,6 +10,7 @@ import { FONC_STYLE, CAT_STYLE } from "@/components/StudioAnalyse";
 import { parseMusicXML } from "@/lib/musicxml-parse";
 import { planifierLecture } from "@/lib/studio-playback";
 import { CONSERVATOIRE_DATA, type CoursConservatoireData } from "@/data/conservatoireData";
+import { fusionnerConservatoire, type SurcoucheConservatoire } from "@/lib/conservatoire-i18n";
 
 const ACCENT = "#2D5A8E";
 const ACCENT_BG = "#EEF3FA";
@@ -34,6 +35,8 @@ function parseNote(s: string): [string, number] {
   return ["C", 4];
 }
 
+type CleCours1a16 = `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16}`;
+
 export function VueConservatoire({
   courseNum,
   data: dataProp,
@@ -45,39 +48,26 @@ export function VueConservatoire({
   const locale = (params?.locale as string) ?? "fr";
   const pianoRef = useRef<PianoPlayerRef>(null);
   const tc = useTranslations("common");
-  const tcons = useTranslations("conservatoire");
 
-  const ck = `cours${courseNum}` as const;
-  const data: CoursConservatoireData = courseNum ? {
-    intuition: tcons(`${ck}.intuition` as any),
-    reference: {
-      badge: tcons(`${ck}.badge` as any),
-      citation: tcons(`${ck}.citation` as any),
-      auteur: tcons(`${ck}.auteur` as any),
-    },
-    voix: [
-      tcons(`${ck}.voix0` as any),
-      tcons(`${ck}.voix1` as any),
-      tcons(`${ck}.voix2` as any),
-    ].filter(Boolean),
-    repertoire: {
-      titre: tcons(`${ck}.titre` as any),
-      compositeur: tcons(`${ck}.compositeur` as any),
-      notes: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16}`].repertoire.notes,
-      musicxml: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16}`].repertoire.musicxml,
-      analyse: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16}`].repertoire.analyse,
-      analyseNarrative: CONSERVATOIRE_DATA[ck as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16}`].repertoire.analyseNarrative,
-    },
-    pieges: [{
-      erreur: tcons(`${ck}.piege0erreur` as any),
-      correction: tcons(`${ck}.piege0correction` as any),
-    }],
-    resume: [
-      tcons(`${ck}.resume0` as any),
-      tcons(`${ck}.resume1` as any),
-      tcons(`${ck}.resume2` as any),
-    ].filter(Boolean),
-  } : (dataProp ?? CONSERVATOIRE_DATA[`cours${courseNum!}` as `cours${1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16}`]);
+  // Le numéro du cours vient de la route (/[locale]/cours/[id]) : ce composant
+  // n'est rendu que là. Cela évite d'avoir à le passer en prop depuis les 48
+  // composants de cours, dont 32 ne fournissent aujourd'hui que `data`.
+  const numRoute = parseInt(String(params?.id ?? ""), 10);
+  const num = courseNum ?? (Number.isFinite(numRoute) ? numRoute : 0);
+
+  // Source FRANÇAISE : structure de référence (partition, pastilles) et repli
+  // quand une traduction manque encore.
+  const fr: CoursConservatoireData =
+    dataProp ?? CONSERVATOIRE_DATA[`cours${num}` as CleCours1a16];
+
+  // Surcouche traduite, dans le namespace du cours affiché (déjà filtré par
+  // page côté serveur : seul le cours courant est envoyé au client).
+  const tcours = useTranslations(`cours${num}` as never);
+  const surcouche: SurcoucheConservatoire | undefined = tcours.has("conservatoire")
+    ? (tcours.raw("conservatoire") as SurcoucheConservatoire)
+    : undefined;
+
+  const data = fusionnerConservatoire(fr, surcouche);
 
   const playRepertoire = useCallback(() => {
     data.repertoire.notes.forEach((n, i) => {

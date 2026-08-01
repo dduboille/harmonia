@@ -264,6 +264,34 @@
       "maitrePeriod": "1732–1809",
       "maitreAnecdote": "In seiner Sinfonie Nr. 94, bekannt als die «Surprise»-Sinfonie, setzt Haydn eine unerwartete Kadenz ein, um sein Publikum aufzuschrecken. Nach einer langen, ruhigen Phrase bricht ein Fortissimo-Akkord genau dort herein, wo der Zuhörer eine stille Auflösung erwartet hatte. Haydn liebte es, mit Erwartungen zu spielen — für ihn war die Kadenz nicht nur ein Abschluss, sondern ein dramatisches Mittel.",
       "maitreLesson": "Die Kadenz ist die Interpunktion der Musik: Sie kann bekräftigen, in Frage stellen oder überraschen."
+    },
+    "conservatoire": {
+      "intuition": "Die Kadenz ist die Interpunktion des musikalischen Diskurses — ein Komma, ein Semikolon, ein Punkt je nach Art.",
+      "reference": {
+        "badge": "Aldwell & Schachter · Harmony and Voice Leading",
+        "citation": "Kadenzen gliedern die musikalische Form auf jeder Ebene, von der Phrase bis zum ganzen Werk.",
+        "auteur": "Aldwell & Schachter, 2003"
+      },
+      "voix": [
+        "Die vollkommene Kadenz (V–I) verlangt den Grundton im Bass UND im Sopran",
+        "Die unvollkommene Kadenz (V–I mit Terz im Sopran) schließt weniger endgültig",
+        "Die Trugkadenz (V–VI) durchkreuzt die Erwartung — expressiver Einsatz"
+      ],
+      "repertoire": {
+        "titre": "Choral BWV 227 'Jesu, meine Freude'",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Eine Trugkadenz am Ende eines Stücks setzen",
+          "correction": "Die Trugkadenz belebt den Diskurs neu — die vollkommene Kadenz für Schlüsse reservieren"
+        }
+      ],
+      "resume": [
+        "4 Kadenzen: vollkommen, unvollkommen, Halbkadenz (I–V), Trugkadenz (V–VI)",
+        "Vollkommene Kadenz = Tonika-Akkord in Grundstellung",
+        "Die Kadenz strukturiert die Form: Periode, Abschnitt, Satz"
+      ]
     }
   },
   "cours5": {
@@ -347,6 +375,34 @@
       "maitreCardConcept": "Entlehnungen & klassische Progressionen",
       "maitreCardAnecdote": "Chopin besaß eine außergewöhnliche Fähigkeit, Mollakkorde in einer Durtonart zu 'entleihen', um die emotionale Farbe einer Phrase augenblicklich zu verändern. Seine Zeitgenossen beschrieben diesen Effekt als eine Wolke, die vor der Sonne vorüberzieht — in einem einzigen Akkord wechselte die Atmosphäre vom Hellen ins Stürmische, ohne die Tonart jemals zu verlassen.",
       "maitreCardLesson": "Wir wechseln nicht die Tonart — wir wechseln vorübergehend die Beleuchtung."
+    },
+    "conservatoire": {
+      "intuition": "Die Modalentlehnung ist das Chiaroscuro der Tonalharmonik — eine fremde Note, die färbt, ohne die Tonalität zu brechen.",
+      "reference": {
+        "badge": "Gallon & Truchot · Précis d'harmonie",
+        "citation": "Entlehnung ist eine abgebrochene Modulation, die die harmonische Palette bereichert, ohne die Tonart zu verlassen.",
+        "auteur": "Jean Gallon, 1947"
+      },
+      "voix": [
+        "Der neapolitanische Sextakkord (bII in erster Umkehrung) bereitet die Dominante vor",
+        "Mollregions-Akkorde (bVI, bVII) werden in Dur häufig entlehnt",
+        "Chromatische Alterationen in Richtung ihrer Spannung auflösen"
+      ],
+      "repertoire": {
+        "titre": "Sonate D.845 Satz I",
+        "compositeur": "F. Schubert"
+      },
+      "pieges": [
+        {
+          "erreur": "Entlehnen ohne die Alterationen aufzulösen",
+          "correction": "Jede entliehene Note erzeugt eine Spannung, die in den betroffenen Stimmen aufgelöst werden muss"
+        }
+      ],
+      "resume": [
+        "Entlehnung = Akkord aus einer parallelen oder verwandten Tonart",
+        "Neapolitanische Sexte: bII6 → V → I",
+        "Modale Region: Dur-Akkorde auf natürlich kleinen Stufen"
+      ]
     }
   },
   "cours6": {
@@ -518,6 +574,34 @@
       "ac4Desc": "Jede Stimme ist ein melodisch eigenständiges Motiv. Erfordert die Beherrschung der Stimmführung.",
       "ac4Usage": "Fugen, Inventionen, Bach-Choräle.",
       "ac4Tension": "Sehr hoch — maximale polyphone Dichte."
+    },
+    "conservatoire": {
+      "intuition": "Fremde Töne sind der Pfeffer der Harmonie — sie erzeugen die Dissonanz, die Konsonanz begehrenswert macht.",
+      "reference": {
+        "badge": "Piston · Harmony",
+        "citation": "Nicht-harmonische Töne sind das Gewürz der musikalischen Textur; mit Bedacht eingesetzt fügen sie Abwechslung und Vorwärtsbewegung hinzu.",
+        "auteur": "Walter Piston, 1941"
+      },
+      "voix": [
+        "Die Synkope wird konsonant vorbereitet, dissonant angeschlagen, abwärts aufgelöst",
+        "Eine Tonika- oder Dominantpedal kann fremde Harmonien tragen",
+        "Wechseltöne (Hilfsnoten) verdoppeln niemals den Bass an ihrem Dissonanzpunkt"
+      ],
+      "repertoire": {
+        "titre": "Nocturne op.9 Nr.2",
+        "compositeur": "F. Chopin"
+      },
+      "pieges": [
+        {
+          "erreur": "Eine Synkope aufwärts auflösen",
+          "correction": "Die Synkope löst sich stets durch Abwärtsbewegung auf (außer seltenen Barockausnahmen)"
+        }
+      ],
+      "resume": [
+        "Fremde Töne: Durchgang, Wechselton, Synkope, Antizipation, Ausfallsschritt, Cambiata",
+        "Synkope: Vorbereitung → Dissonanz → Auflösung",
+        "Orgelpunkt: gehaltene Note unter wechselnden Harmonien"
+      ]
     }
   },
   "cours7": {
@@ -590,6 +674,34 @@
       "chainesTip": "<strong>Kombination möglich:</strong> Bei einer Tonikalisierung koexistieren alle Regeln. Man kann diatonische Substitutionen, Entlehnungen aus der gleichnamigen Tonart und den Neapolitaner kombinieren — vorausgesetzt, man bezieht sich auf den Tritonus der vorübergehenden Tonart.",
       "inversionH3": "Die richtige Umkehrung wählen",
       "inversionP": "Wählen Sie für jede Progression die Umkehrung, die die beste Stimmführung gewährleistet."
+    },
+    "conservatoire": {
+      "intuition": "Die Nebendominante ist ein Sonnenstrahl aus einer anderen Tonart — sie tonikalisiert vorübergehend eine Stufe, ohne wirklich zu modulieren.",
+      "reference": {
+        "badge": "Levine · The Jazz Theory Book",
+        "citation": "Nebendominanten tonikalisieren Skalenstufen vorübergehend und erzeugen harmonische Farbe ohne vollständige Modulation.",
+        "auteur": "Mark Levine, 1995"
+      },
+      "voix": [
+        "V/V (Dominante der Dominante) hebt die authentische Kadenz an",
+        "Jede Stufe außer VII kann von ihrer Nebendominante vorbereitet werden",
+        "Nebendominanten führen chromatische Alterationen ein, die aufgelöst werden müssen"
+      ],
+      "repertoire": {
+        "titre": "Intermezzo op.118 Nr.2",
+        "compositeur": "J. Brahms"
+      },
+      "pieges": [
+        {
+          "erreur": "V/IV in Dur anwenden (erzeugt einen unerwarteten Moll-IV-Akkord)",
+          "correction": "Die Qualität des tonikalisiertem Akkords prüfen, bevor die Nebendominante angewendet wird"
+        }
+      ],
+      "resume": [
+        "V7/X → X: vorübergehende Tonikalisierung",
+        "Alterationen stets in chromatischer Richtung aufgelöst",
+        "Häufig in Jazz und Musik der Romantik"
+      ]
     }
   },
   "cours8": {
@@ -703,6 +815,34 @@
       "maitreCardConcept": "Modulation durch Drehpunktakkord",
       "maitreCardAnecdote": "In seinen sogenannten 'Dissonanz'-Quartetten verwendet Mozart Drehpunktakkorde so subtil, dass die Musiker der damaligen Zeit glaubten, es handle sich um Druckfehler in der Partitur. Der Übergang von einer Tonart zur anderen war so natürlich, dass das Ohr den Wechsel nicht wahrnahm — es bemerkte erst hinterher, dass es sich in einem neuen musikalischen Land befand.",
       "maitreCardLesson": "Die Modulation ist eine Reise: der Drehpunktakkord ist das unsichtbare Tor zu einer neuen Welt."
+    },
+    "conservatoire": {
+      "intuition": "Der Ausweichungsakkord ist die Brücke zwischen zwei Tonarten — derselbe Akkord, zwei Funktionen, ein unmerklicher Übergang.",
+      "reference": {
+        "badge": "Aldwell & Schachter · Harmony and Voice Leading",
+        "citation": "Der Ausweichungsakkord gehört beiden Tonarten gleichzeitig an und macht die Modulation weich und logisch.",
+        "auteur": "Aldwell & Schachter, 2003"
+      },
+      "voix": [
+        "Den Ausweichungsakkord unter den beiden Tonarten gemeinsamen Akkorden wählen",
+        "Die neue Tonart durch eine authentische Kadenz nach dem Ausweichungsakkord bestätigen",
+        "Die Modulation zu benachbarten Tonarten (±1 Kreuz/b) ist am fließendsten"
+      ],
+      "repertoire": {
+        "titre": "Sonate op.27 Nr.2 'Mondschein' Satz I",
+        "compositeur": "L. van Beethoven"
+      },
+      "pieges": [
+        {
+          "erreur": "Einen verminderten Akkord als Ausweichungsakkord verwenden (zu viel Mehrdeutigkeit)",
+          "correction": "Dur- oder Moll-Akkorde als Ausweichungsakkord bevorzugen, um tonale Klarheit zu gewährleisten"
+        }
+      ],
+      "resume": [
+        "Ausweichungsakkord = gemeinsam in Ausgangs- und Zieltonart",
+        "Nahe Modulationen: Paralleltonart, Varianttonart, Quinte auf-/abwärts",
+        "Stets durch Kadenz in der neuen Tonart bestätigen"
+      ]
     }
   },
   "cours9": {
@@ -830,6 +970,34 @@
       "maitreCardConcept": "Fortgeschrittene Modulationen & Orgelpunkte",
       "maitreCardAnecdote": "Im Erlkönig verwendet Schubert einen Orgelpunkt im Klavier — eine tiefe, hartnäckig wiederholte Note — um den obsessiven Galopp des Pferdes zu simulieren. Währenddessen gerät die Harmonie außer Kontrolle und moduliert in immer dunklere Tonarten. Der Orgelpunkt bleibt fest wie ein Anker, während alles um ihn herum versinkt.",
       "maitreCardLesson": "Der Orgelpunkt erzeugt eine starke psychologische Spannung, indem er fest bleibt, während sich alles um ihn herum bewegt."
+    },
+    "conservatoire": {
+      "intuition": "Die harmonische Sequenz ist die Wiederholung eines melodisch-harmonischen Motivs in regelmäßigen Abständen — sie schafft eine innere Logik, die auch ohne Theoriekenntnisse wahrnehmbar ist.",
+      "reference": {
+        "badge": "Schönberg · Harmonielehre",
+        "citation": "Sequenzen sind das mächtigste Mittel der tonalen Entwicklung; sie erzeugen sowohl Erwartung als auch Überraschung.",
+        "auteur": "Arnold Schönberg, 1911"
+      },
+      "voix": [
+        "Die harmonische Sequenz transponiert das Muster in derselben Intervallqualität",
+        "Tonale Sequenzen bleiben in der Tonart; reale Sequenzen verlassen sie",
+        "Gemeinsame Töne (Liegetöne) untermauern chromatische Übergänge"
+      ],
+      "repertoire": {
+        "titre": "Chaconne BWV 1004",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Eine reale Sequenz schreiben und dabei alle Vorzeichen der Ausgangstonart beibehalten",
+          "correction": "Die reale Sequenz transponiert Intervalle exakt; die Vorzeichen ändern sich je nach Stufe"
+        }
+      ],
+      "resume": [
+        "Tonale Sequenz: Transposition in derselben Tonart (diatonische Intervalle)",
+        "Reale Sequenz: exakte Transposition (identische chromatische Intervalle)",
+        "Chromatik: nicht-diatonische Alterationen, die die Harmonie bereichern, ohne zu modulieren"
+      ]
     }
   },
   "cours1": {
@@ -919,6 +1087,34 @@
       "intNaturePerfAug": "rein / übermäßig",
       "intNatureDimPerfAug": "verm. / rein / überm.",
       "intNaturePerf": "rein"
+    },
+    "conservatoire": {
+      "intuition": "Vor jeder Theorie ist die Tonleiter eine physische Erfahrung — die Spannung der Halbtöne und die Auflösung zur Tonika zu spüren.",
+      "reference": {
+        "badge": "Dubois · Traité d'Harmonie",
+        "citation": "Die Tonleiter ist das Alphabet des Musikers; ohne sie lässt sich kein Satz schreiben.",
+        "auteur": "Théodore Dubois, 1901"
+      },
+      "voix": [
+        "Die diatonischen Halbtöne (E–F, H–C) erzeugen die grundlegenden harmonischen Spannungen",
+        "Jede Stufe hat eine Funktion: Tonika, Dominante, Subdominante",
+        "Der Leitton (VII) steigt im Sopran obligatorisch zur Tonika auf"
+      ],
+      "repertoire": {
+        "titre": "Präludium in C-Dur BWV 846",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Die natürliche Molltonleiter auf der Dominante verwenden",
+          "correction": "Den Leitton (VII#) im harmonischen Mollkontext stets erhöhen"
+        }
+      ],
+      "resume": [
+        "Tonleiter = 7 Stufen, 2 diatonische Halbtöne",
+        "Leitton obligatorisch aufwärts",
+        "Griechische Modi als Rotationen der Durtonleiter"
+      ]
     }
   },
   "cours2": {
@@ -1022,6 +1218,34 @@
       "invDesc2": "Die Quinte liegt im Bass. Instabiler, oft als Durchgangsakkord verwendet.",
       "invDesc3": "Die Septime liegt im Bass. Sehr schwebende Klangfarbe — drängt stark zur Auflösung.",
       "invNomsFondamental": "Grundstellung"
+    },
+    "conservatoire": {
+      "intuition": "Ein Akkord ist keine Schichtung von Tönen, sondern eine Spannung zwischen ihnen — Intervalle zu verstehen heißt, Harmonie zu hören, bevor man sie liest.",
+      "reference": {
+        "badge": "Piston · Harmony",
+        "citation": "Jeder Akkord hat eine Persönlichkeit, die durch die in ihm enthaltenen Intervalle bestimmt wird.",
+        "auteur": "Walter Piston, 1941"
+      },
+      "voix": [
+        "Der Dominantakkord (V) enthält den Tritonus H–F, der sich zum Tonika-Akkord auflöst",
+        "Quintparallelen und Oktavparallelen zwischen Stimmen sind verboten",
+        "Den Grundton im Grundakkord verdoppeln, die Terz in der ersten Umkehrung"
+      ],
+      "repertoire": {
+        "titre": "Sonate op.13 'Pathétique' Satz II",
+        "compositeur": "L. van Beethoven"
+      },
+      "pieges": [
+        {
+          "erreur": "Die Terz des Dominantakkords (Leitton) verdoppeln",
+          "correction": "Grundton oder Quinte verdoppeln, niemals den Leitton"
+        }
+      ],
+      "resume": [
+        "Dreikling = Grundton + Terz + Quinte",
+        "Dur-Dreiklang: große Terz + reine Quinte",
+        "Umkehrungen: 1. (Terz im Bass), 2. (Quinte im Bass)"
+      ]
     }
   },
   "cours3": {
@@ -1127,6 +1351,34 @@
       "maitreCardConcept": "Stimmführung",
       "maitreCardAnecdote": "Brahms war besessen von der Reinheit des vierstimmigen Satzes. Er jagte parallele Quinten und Oktaven wie absolute Geschmacksvergehen und markierte die Partituren seiner Schüler mit roter Tinte. Er sagte, dass zwei Stimmen, die sich zusammen in Quinten bewegen, aufhören, als unabhängige Stimmen zu existieren — sie werden zu ein und derselben Klangfarbe.",
       "maitreCardLesson": "Stimmführung ist die Kunst, jede melodische Linie unabhängig und fließend zu gestalten."
+    },
+    "conservatoire": {
+      "intuition": "Die harmonische Funktion ist die dramaturgische Rolle jedes Akkords im musikalischen Diskurs — Tonika ruht, Dominante spannt, Subdominante bereitet vor.",
+      "reference": {
+        "badge": "Schönberg · Harmonielehre",
+        "citation": "Die Harmonie ist nicht Selbstzweck, sondern Mittel des Ausdrucks.",
+        "auteur": "Arnold Schönberg, 1911"
+      },
+      "voix": [
+        "Die authentische Progression V–I ist die Kadenz schlechthin",
+        "Die plagale Kadenz IV–I schließt sanft ab (Amen-Kadenz)",
+        "Bassbewegungen durch unaufgelösten Tritonus vermeiden"
+      ],
+      "repertoire": {
+        "titre": "Symphonie Nr.40 KV550, Satz I",
+        "compositeur": "W.A. Mozart"
+      },
+      "pieges": [
+        {
+          "erreur": "Die Folge IV–V–IV verketten (funktionale Rückwärtsbewegung)",
+          "correction": "Die tonale Richtung einhalten: T → S → D → T"
+        }
+      ],
+      "resume": [
+        "Funktionen: Tonika (I, III, VI), Dominante (V, VII), Subdominante (II, IV)",
+        "Authentische Kadenz V–I = starker Abschluss",
+        "Der Tritonus in V7 löst sich auf: H→C, F→E"
+      ]
     }
   },
   "cours10": {
@@ -1188,6 +1440,34 @@
       "maitreLesson": "Ein Modus ist keine Tonleiter mit einer anderen Note — er ist eine harmonische Farbe, eine Art, die Welt zu hören.",
       "maitrePeriod": "1926–1991",
       "maitreConcept": "Modi"
+    },
+    "conservatoire": {
+      "intuition": "Ein Modus ist dieselbe Durtonleiter, nur von einer anderen Stufe aus betrachtet — die Landschaft bleibt gleich, nur der Hörpunkt ändert sich, und mit ihm die gesamte Klangfarbe der Musik.",
+      "reference": {
+        "badge": "Russell · Lydian Chromatic Concept",
+        "citation": "Jeder Modus trägt seine eigene tonale Schwerkraft, unabhängig von jeder klassischen harmonischen Funktion.",
+        "auteur": "George Russell, 1953"
+      },
+      "voix": [
+        "Dorisch (2. Stufe) ist der hellste Molltonmodus: seine große Sexte unterscheidet ihn von der natürlichen Molltonleiter",
+        "Ein modales Stück kann taktelang auf einem einzigen Akkord verharren — Klangfarbe ersetzt harmonische Bewegung",
+        "Ohne Dominante oder Kadenz ist es die charakteristische Stufe des Modus (hier die Sexte des Dorischen), die seine ganze Identität trägt"
+      ],
+      "repertoire": {
+        "titre": "So What",
+        "compositeur": "Miles Davis"
+      },
+      "pieges": [
+        {
+          "erreur": "Eine V–I-Kadenz in einem modalen Stück wie „So What“ suchen",
+          "correction": "Modale Musik kadenziert nicht: sie färbt ein festes tonales Zentrum, ohne sich je davon zu entfernen oder über eine Dominante dorthin zurückzukehren"
+        }
+      ],
+      "resume": [
+        "7 Modi = 7 Rotationen derselben Tonleiter, jede mit ihrer eigenen Tonika",
+        "Dorisch färbt Moll mit einer großen Sexte: der meistgenutzte Modus im modalen Jazz",
+        "„So What“ (Miles Davis, 1959): ein Vamp in D-Dorisch, ohne funktionale Harmonik"
+      ]
     }
   },
   "cours11": {
@@ -1271,6 +1551,34 @@
       "quizPoolInfo": "Fragen im Pool",
       "quizNextBtn": "Nächste Frage →",
       "quizFinishBtn": "Mein Ergebnis anzeigen"
+    },
+    "conservatoire": {
+      "intuition": "Eine Erweiterung ist eine Klangfarbe, die über der 7 gestapelt wird — die 9, die 11 und die 13 ändern nicht die Funktion des Akkords, sie bereichern nur seine Klangfarbe, ohne sie zu verraten.",
+      "reference": {
+        "badge": "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
+        "citation": "Jede verfügbare Spannung färbt den Akkord, ohne seine grundlegende Funktion zu ändern, sofern die Vermeidungstöne der zugrunde liegenden Tonleiter beachtet werden.",
+        "auteur": "Barrie Nettles & Richard Graf, 1997"
+      },
+      "voix": [
+        "Die 9 (groß), die 11 (rein oder übermäßig) und die 13 (groß) sind die konsonantesten Spannungen der Septakkorde",
+        "Eine Alteration (b9, #9, #11, b13) färbt einen Dominantakkord stark, ohne seine Funktion zu ändern",
+        "Bei einem Moll-7-Akkord ist die 9 fast immer verfügbar; die reine 11 stößt sich an der großen Terz eines Durakkords"
+      ],
+      "repertoire": {
+        "titre": "All the Things You Are",
+        "compositeur": "Jerome Kern"
+      },
+      "pieges": [
+        {
+          "erreur": "Die reine 11 zu einem Dominant- oder Durakkord hinzufügen (sie stößt sich an der Terz)",
+          "correction": "Auf diesen Akkorden die übermäßige 11 (#11) bevorzugen, oder die Erweiterung weglassen"
+        }
+      ],
+      "resume": [
+        "9 = 2. Stufe eine Oktave höher, 11 = 4. Stufe, 13 = 6. Stufe",
+        "#9 und b9 sind typische Spannungen des alterierten Dominantakkords",
+        "„All the Things You Are“ (Kern/Hammerstein): ein einleitender Vamp, vollständig aus alterierten Dominantakkorden (#9) gebaut"
+      ]
     }
   },
   "cours12": {
@@ -1347,6 +1655,34 @@
       "quizFeedbackKeepGoing": "Hör weiter beiden Auflösungen zu — das Gehör bildet sich durch Vergleich!",
       "quizNextBtn": "Nächste Frage →",
       "quizScoreBtn": "Mein Ergebnis ansehen"
+    },
+    "conservatoire": {
+      "intuition": "Zwei Dominantakkorde im Tritonusabstand teilen exakt denselben Tritonus — ihre Spannung ist identisch, nur die Auflösungsrichtung des Basses ändert sich.",
+      "reference": {
+        "badge": "Mulholland & Hojnacki · The Berklee Book of Jazz Harmony",
+        "citation": "Jeder Dominantakkord kann durch den einen Tritonus entfernt aufgebauten ersetzt werden: beide teilen dieselbe Terz und Septime, nur vertauscht.",
+        "auteur": "Joe Mulholland & Tom Hojnacki, 2013"
+      },
+      "voix": [
+        "V7 und bII7 (subV7) teilen denselben Tritonus (Terz und Septime vertauscht) — die Auflösungsspannung ist identisch",
+        "Der Tritonus-Ersatz erzeugt eine absteigende chromatische Bassbewegung zum Auflösungsakkord",
+        "Er wirkt besonders gut unmittelbar vor einem Tonikaakkord"
+      ],
+      "repertoire": {
+        "titre": "Satin Doll",
+        "compositeur": "Duke Ellington"
+      },
+      "pieges": [
+        {
+          "erreur": "Den Tritonus-Ersatz auf einen Akkord anwenden, der kein echter funktionaler V7 ist",
+          "correction": "subV7 nur für Dominanten (V7 oder Zwischendominanten) verwenden, nie für einen Tonika- oder Subdominantakkord"
+        }
+      ],
+      "resume": [
+        "subV7 = ein Dominantakkord, einen Tritonus über (oder unter) V7 aufgebaut",
+        "Beide Akkorde teilen Terz und Septime (nur vertauscht): gleiche Spannung, andere Auflösung",
+        "„Satin Doll“ (Ellington): Db7 ersetzt G7 (subV7) unmittelbar vor der Rückkehr nach C-Dur"
+      ]
     }
   },
   "cours13": {
@@ -1440,6 +1776,34 @@
       "maitreLesson": "Zwei unabhängige Stimmen zu schreiben ist schwieriger als eine einzige komplexe Stimme zu schreiben. Jede Stimme muss ihr eigenes Leben haben — und dennoch müssen sie gemeinsam eine kohärente Harmonie bilden.",
       "maitrePeriod": "1660–1741",
       "maitreConcept": "Kontrapunkt"
+    },
+    "conservatoire": {
+      "intuition": "Kontrapunkt bedeutet, eine zweite Stimme mit eigenem melodischen Leben zu schreiben, die dennoch in jedem Moment mit der ersten übereinstimmt — zwei Linien im Dialog, niemals nur verdoppelte Harmonie.",
+      "reference": {
+        "badge": "Fux · Gradus ad Parnassum",
+        "citation": "Kontrapunkt ist die Kunst, Stimmen oder Teile so zu verbinden, dass sie nach bestimmten festen Regeln miteinander übereinstimmen.",
+        "auteur": "Johann Joseph Fux, 1725"
+      },
+      "voix": [
+        "Note gegen Note (1. Gattung): vollkommene Konsonanzen (Oktave, Quinte) werden am besten durch Gegen- oder Seitenbewegung erreicht",
+        "Gegenbewegung zwischen den beiden Stimmen ist der sicherste Weg, um parallele Quinten und Oktaven zu vermeiden",
+        "Jede Stimme behält ihre melodische Eigenständigkeit — keine Stimmkreuzung, kein anhaltender Unisono"
+      ],
+      "repertoire": {
+        "titre": "Invention Nr. 1 BWV 772",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Beide Stimmen in gleicher Richtung auf eine Quinte oder Oktave zubewegen",
+          "correction": "Bei vollkommenen Konsonanzen Gegen- oder Seitenbewegung bevorzugen"
+        }
+      ],
+      "resume": [
+        "Kontrapunkt = zwei melodisch unabhängige Stimmen, die vertikal übereinstimmen",
+        "Fuxens 5 Gattungen: Note gegen Note, 2 gegen 1, Synkopen/Vorhalte, figurierter Kontrapunkt, blumiger Kontrapunkt",
+        "Invention Nr. 1 BWV 772 (Bach): Subjekt und Antwort wandern zwischen den Händen, moduliert zur Dominante"
+      ]
     }
   },
   "cours14": {
@@ -1526,6 +1890,34 @@
       "maitrePeriod": "1862–1918",
       "maitreConcept": "Modale Harmonik",
       "questionLabel": "Frage"
+    },
+    "conservatoire": {
+      "intuition": "Modale Harmonik baut keine Spannung auf, die aufgelöst werden muss — sie setzt eine Klangfarbe und hält sie, indem sie genau die Bewegung zur Dominante vermeidet, die den Zauber brechen würde.",
+      "reference": {
+        "badge": "Messiaen · Technik meiner musikalischen Sprache",
+        "citation": "Der Reiz der Unmöglichkeiten liegt vor allem in dieser Unmöglichkeit selbst, den Modus zu verlassen, ohne umzukehren: das verleiht diesen Harmonien ihre ganz besondere Atmosphäre.",
+        "auteur": "Olivier Messiaen, 1944"
+      },
+      "voix": [
+        "Modale Harmonik oszilliert um die Tonika durch Klangfarbe, nicht durch aufzulösende Spannung",
+        "V7→I vermeiden: diese Verbindung führt den im Modus fehlenden Leitton ein und bricht die modale Atmosphäre",
+        "Ein einziger „charakteristischer\" Akkord (mit dem unterscheidenden Ton des Modus) genügt, um die Klangfarbe zu setzen"
+      ],
+      "repertoire": {
+        "titre": "Erste Gymnopédie",
+        "compositeur": "Erik Satie"
+      },
+      "pieges": [
+        {
+          "erreur": "Eine Dominante oder tonale Auflösung in einer Progression suchen, die keine hat",
+          "correction": "Ein koloristisches Schwingen (z. B. IV-I ganz ohne V) als solches erkennen und analysieren, nicht als „unvollständige\" Tonalität"
+        }
+      ],
+      "resume": [
+        "Modale Harmonik = gehaltene Klangfarbe, nicht Spannung gefolgt von Auflösung (anders als in der tonalen Harmonik)",
+        "Die Bewegung V7→I wird vermieden: sie würde den Leitton einführen und die Atmosphäre des Modus brechen",
+        "„Erste Gymnopédie\" (Satie): IVmaj7-Imaj7 in Schleife über 9 Takte, nie eine Dominante"
+      ]
     }
   },
   "cours15": {
@@ -1582,6 +1974,34 @@
       "quizPoolLabel": "Fragen im Pool",
       "quizNextBtn": "Nächste Frage →",
       "quizFinishBtn": "Mein Ergebnis sehen"
+    },
+    "conservatoire": {
+      "intuition": "Der II-V-I ist keine feste Formel — er ist ein Gerüst, das der Jazz mit Erweiterungen, Substitutionen und Zwischendominanten ausstattet, Glied für Glied, ohne je den Faden zurück zur Tonika zu verlieren.",
+      "reference": {
+        "badge": "Aebersold · Jazz Handbook",
+        "citation": "Der Jazzmusiker spielt keine Akkorde: er spielt Linien, die die Geschichte der Akkorde erzählen und dabei stets den kommenden vorwegnehmen.",
+        "auteur": "Jamey Aebersold, 1967"
+      },
+      "voix": [
+        "Eine Zwischendominante (V7/X) tonisiert kurz die Stufe X, bevor sie dorthin auflöst",
+        "Der Tritonus-Ersatz (subV7) ersetzt eine Dominante durch den Septakkord einen Tritonus entfernt — gleiche Spannung, ein Bass, der chromatisch abwärts geht",
+        "Eine Kette von Zwischendominanten bildet eine absteigende Quintenfolge, das Rückgrat vieler Standards"
+      ],
+      "repertoire": {
+        "titre": "Autumn Leaves",
+        "compositeur": "Joseph Kosma"
+      },
+      "pieges": [
+        {
+          "erreur": "Jeden Akkord isoliert analysieren, ohne die vorausgehende Zwischendominante zu erkennen",
+          "correction": "Immer prüfen, ob ein Dominantakkord einen Halbton oder eine Quinte weiter zu einer anderen Stufe als der Tonika auflöst — das ist eine Zwischendominante (V7/X)"
+        }
+      ],
+      "resume": [
+        "Eine Kette von Zwischendominanten (V7/III, subV7/VI, V7/V...) tonisiert kurz jede Stufe vor der endgültigen Auflösung",
+        "Der Tritonus-Ersatz ersetzt eine Dominante durch ihren Tritonus: gleiche Spannung (Terz/Septime vertauscht), chromatischer Bass",
+        "„Autumn Leaves\" (Kosma): absteigende iv-VII-III-VI-ii°/V-V-i-Folge, dann ein V7/IV-Turnaround, der den Kreis schließt"
+      ]
     }
   },
   "cours16": {
@@ -1661,6 +2081,34 @@
       "maitreCardConcept": "Reharmonisierung & Jazz-Impressionismus",
       "maitreCardAnecdote": "Evans spielt Autumn Leaves auf seinem ersten Soloalbum (1956), und der Hörer erkennt die vertraute Melodie — doch die Akkorde haben sich verändert. FMaj7 wurde zu Fm, G7 wurde zu Db7. Ohne eine einzige Note von Joseph Kosmas Melodie zu verändern, verwandelte Evans einen Frühlingsstandard in ein melancholisches Nocturne.",
       "maitreCardLesson": "Reharmonisierung ist keine Virtuosität — es ist Zuhören. Bevor man einen Akkord substituiert, sollte man sich fragen: Ist die Melodie noch zu hören? Sagt der neue Akkord etwas, das das Original nicht sagen konnte?"
+    },
+    "conservatoire": {
+      "intuition": "Reharmonisieren heißt nicht, eine Melodie zu ersetzen — es heißt, ihr neue Weggefährten zu finden: jeder ersetzte Akkord muss die Melodienote weiterhin tragen, ohne sie zu verraten.",
+      "reference": {
+        "badge": "Levine · The Jazz Piano Book",
+        "citation": "Eine gute Reharmonisierung ändert nicht, was die Melodie spielt — sie ändert, was sie erzählt.",
+        "auteur": "Mark Levine, 1989"
+      },
+      "voix": [
+        "Vor der Bestätigung eines ersetzten Akkords prüfen, ob jede Melodienote weiterhin die 1., 3., 5., 7. Stufe oder eine Erweiterung des neuen Akkords ist",
+        "Eine Zwischendominante kann einen diatonischen Akkord durch ihre eigene V7 ersetzen (z. B. V/IV statt eines entlehnten Akkords)",
+        "Schrittweise Bewegung in den Innenstimmen bevorzugen — eine technisch korrekte, aber ruckartige Reharmonisierung klingt immer falsch"
+      ],
+      "repertoire": {
+        "titre": "My Funny Valentine",
+        "compositeur": "Richard Rodgers"
+      },
+      "pieges": [
+        {
+          "erreur": "Eine Zwischendominante einführen, deren Erweiterung einer bereits in der Melodie vorhandenen Note widerspricht",
+          "correction": "Die neue Akkordfarbe immer mit der tatsächlichen Melodienote abgleichen, bevor man sie bestätigt"
+        }
+      ],
+      "resume": [
+        "Reharmonisieren = die Akkorde unter einer unangetasteten Melodie ersetzen, wobei jede Melodienote mit ihrem neuen Akkord kompatibel bleibt",
+        "Zwischendominanten (V/V, V/IV) und Tritonus-Ersatzakkorde sind die gängigsten Werkzeuge",
+        "„My Funny Valentine\" (Bill Evans): Moll-Kadenz iiø7-V7alt-i, der ein Ausflug zur Subdominante vorausgeht (IV9-IV13sus)"
+      ]
     }
   },
   "cours17": {
@@ -3954,264 +4402,6 @@
       "quizPoolInfo": "Fragen insgesamt",
       "quizNextBtn": "Nächste Frage →",
       "quizFinishBtn": "Punktzahl ansehen →"
-    }
-  },
-  "conservatoire": {
-    "cours1": {
-      "intuition": "Vor jeder Theorie ist die Tonleiter eine physische Erfahrung — die Spannung der Halbtöne und die Auflösung zur Tonika zu spüren.",
-      "badge": "Dubois · Traité d'Harmonie",
-      "citation": "Die Tonleiter ist das Alphabet des Musikers; ohne sie lässt sich kein Satz schreiben.",
-      "auteur": "Théodore Dubois, 1901",
-      "voix0": "Die diatonischen Halbtöne (E–F, H–C) erzeugen die grundlegenden harmonischen Spannungen",
-      "voix1": "Jede Stufe hat eine Funktion: Tonika, Dominante, Subdominante",
-      "voix2": "Der Leitton (VII) steigt im Sopran obligatorisch zur Tonika auf",
-      "piege0erreur": "Die natürliche Molltonleiter auf der Dominante verwenden",
-      "piege0correction": "Den Leitton (VII#) im harmonischen Mollkontext stets erhöhen",
-      "resume0": "Tonleiter = 7 Stufen, 2 diatonische Halbtöne",
-      "resume1": "Leitton obligatorisch aufwärts",
-      "resume2": "Griechische Modi als Rotationen der Durtonleiter",
-      "titre": "Präludium in C-Dur BWV 846",
-      "compositeur": "J.S. Bach"
-    },
-    "cours2": {
-      "intuition": "Ein Akkord ist keine Schichtung von Tönen, sondern eine Spannung zwischen ihnen — Intervalle zu verstehen heißt, Harmonie zu hören, bevor man sie liest.",
-      "badge": "Piston · Harmony",
-      "citation": "Jeder Akkord hat eine Persönlichkeit, die durch die in ihm enthaltenen Intervalle bestimmt wird.",
-      "auteur": "Walter Piston, 1941",
-      "voix0": "Der Dominantakkord (V) enthält den Tritonus H–F, der sich zum Tonika-Akkord auflöst",
-      "voix1": "Quintparallelen und Oktavparallelen zwischen Stimmen sind verboten",
-      "voix2": "Den Grundton im Grundakkord verdoppeln, die Terz in der ersten Umkehrung",
-      "piege0erreur": "Die Terz des Dominantakkords (Leitton) verdoppeln",
-      "piege0correction": "Grundton oder Quinte verdoppeln, niemals den Leitton",
-      "resume0": "Dreikling = Grundton + Terz + Quinte",
-      "resume1": "Dur-Dreiklang: große Terz + reine Quinte",
-      "resume2": "Umkehrungen: 1. (Terz im Bass), 2. (Quinte im Bass)",
-      "titre": "Sonate op.13 'Pathétique' Satz II",
-      "compositeur": "L. van Beethoven"
-    },
-    "cours3": {
-      "intuition": "Die harmonische Funktion ist die dramaturgische Rolle jedes Akkords im musikalischen Diskurs — Tonika ruht, Dominante spannt, Subdominante bereitet vor.",
-      "badge": "Schönberg · Harmonielehre",
-      "citation": "Die Harmonie ist nicht Selbstzweck, sondern Mittel des Ausdrucks.",
-      "auteur": "Arnold Schönberg, 1911",
-      "voix0": "Die authentische Progression V–I ist die Kadenz schlechthin",
-      "voix1": "Die plagale Kadenz IV–I schließt sanft ab (Amen-Kadenz)",
-      "voix2": "Bassbewegungen durch unaufgelösten Tritonus vermeiden",
-      "piege0erreur": "Die Folge IV–V–IV verketten (funktionale Rückwärtsbewegung)",
-      "piege0correction": "Die tonale Richtung einhalten: T → S → D → T",
-      "resume0": "Funktionen: Tonika (I, III, VI), Dominante (V, VII), Subdominante (II, IV)",
-      "resume1": "Authentische Kadenz V–I = starker Abschluss",
-      "resume2": "Der Tritonus in V7 löst sich auf: H→C, F→E",
-      "titre": "Symphonie Nr.40 KV550, Satz I",
-      "compositeur": "W.A. Mozart"
-    },
-    "cours4": {
-      "intuition": "Die Kadenz ist die Interpunktion des musikalischen Diskurses — ein Komma, ein Semikolon, ein Punkt je nach Art.",
-      "badge": "Aldwell & Schachter · Harmony and Voice Leading",
-      "citation": "Kadenzen gliedern die musikalische Form auf jeder Ebene, von der Phrase bis zum ganzen Werk.",
-      "auteur": "Aldwell & Schachter, 2003",
-      "voix0": "Die vollkommene Kadenz (V–I) verlangt den Grundton im Bass UND im Sopran",
-      "voix1": "Die unvollkommene Kadenz (V–I mit Terz im Sopran) schließt weniger endgültig",
-      "voix2": "Die Trugkadenz (V–VI) durchkreuzt die Erwartung — expressiver Einsatz",
-      "piege0erreur": "Eine Trugkadenz am Ende eines Stücks setzen",
-      "piege0correction": "Die Trugkadenz belebt den Diskurs neu — die vollkommene Kadenz für Schlüsse reservieren",
-      "resume0": "4 Kadenzen: vollkommen, unvollkommen, Halbkadenz (I–V), Trugkadenz (V–VI)",
-      "resume1": "Vollkommene Kadenz = Tonika-Akkord in Grundstellung",
-      "resume2": "Die Kadenz strukturiert die Form: Periode, Abschnitt, Satz",
-      "titre": "Choral BWV 227 'Jesu, meine Freude'",
-      "compositeur": "J.S. Bach"
-    },
-    "cours5": {
-      "intuition": "Die Modalentlehnung ist das Chiaroscuro der Tonalharmonik — eine fremde Note, die färbt, ohne die Tonalität zu brechen.",
-      "badge": "Gallon & Truchot · Précis d'harmonie",
-      "citation": "Entlehnung ist eine abgebrochene Modulation, die die harmonische Palette bereichert, ohne die Tonart zu verlassen.",
-      "auteur": "Jean Gallon, 1947",
-      "voix0": "Der neapolitanische Sextakkord (bII in erster Umkehrung) bereitet die Dominante vor",
-      "voix1": "Mollregions-Akkorde (bVI, bVII) werden in Dur häufig entlehnt",
-      "voix2": "Chromatische Alterationen in Richtung ihrer Spannung auflösen",
-      "piege0erreur": "Entlehnen ohne die Alterationen aufzulösen",
-      "piege0correction": "Jede entliehene Note erzeugt eine Spannung, die in den betroffenen Stimmen aufgelöst werden muss",
-      "resume0": "Entlehnung = Akkord aus einer parallelen oder verwandten Tonart",
-      "resume1": "Neapolitanische Sexte: bII6 → V → I",
-      "resume2": "Modale Region: Dur-Akkorde auf natürlich kleinen Stufen",
-      "titre": "Sonate D.845 Satz I",
-      "compositeur": "F. Schubert"
-    },
-    "cours6": {
-      "intuition": "Fremde Töne sind der Pfeffer der Harmonie — sie erzeugen die Dissonanz, die Konsonanz begehrenswert macht.",
-      "badge": "Piston · Harmony",
-      "citation": "Nicht-harmonische Töne sind das Gewürz der musikalischen Textur; mit Bedacht eingesetzt fügen sie Abwechslung und Vorwärtsbewegung hinzu.",
-      "auteur": "Walter Piston, 1941",
-      "voix0": "Die Synkope wird konsonant vorbereitet, dissonant angeschlagen, abwärts aufgelöst",
-      "voix1": "Eine Tonika- oder Dominantpedal kann fremde Harmonien tragen",
-      "voix2": "Wechseltöne (Hilfsnoten) verdoppeln niemals den Bass an ihrem Dissonanzpunkt",
-      "piege0erreur": "Eine Synkope aufwärts auflösen",
-      "piege0correction": "Die Synkope löst sich stets durch Abwärtsbewegung auf (außer seltenen Barockausnahmen)",
-      "resume0": "Fremde Töne: Durchgang, Wechselton, Synkope, Antizipation, Ausfallsschritt, Cambiata",
-      "resume1": "Synkope: Vorbereitung → Dissonanz → Auflösung",
-      "resume2": "Orgelpunkt: gehaltene Note unter wechselnden Harmonien",
-      "titre": "Nocturne op.9 Nr.2",
-      "compositeur": "F. Chopin"
-    },
-    "cours7": {
-      "intuition": "Die Nebendominante ist ein Sonnenstrahl aus einer anderen Tonart — sie tonikalisiert vorübergehend eine Stufe, ohne wirklich zu modulieren.",
-      "badge": "Levine · The Jazz Theory Book",
-      "citation": "Nebendominanten tonikalisieren Skalenstufen vorübergehend und erzeugen harmonische Farbe ohne vollständige Modulation.",
-      "auteur": "Mark Levine, 1995",
-      "voix0": "V/V (Dominante der Dominante) hebt die authentische Kadenz an",
-      "voix1": "Jede Stufe außer VII kann von ihrer Nebendominante vorbereitet werden",
-      "voix2": "Nebendominanten führen chromatische Alterationen ein, die aufgelöst werden müssen",
-      "piege0erreur": "V/IV in Dur anwenden (erzeugt einen unerwarteten Moll-IV-Akkord)",
-      "piege0correction": "Die Qualität des tonikalisiertem Akkords prüfen, bevor die Nebendominante angewendet wird",
-      "resume0": "V7/X → X: vorübergehende Tonikalisierung",
-      "resume1": "Alterationen stets in chromatischer Richtung aufgelöst",
-      "resume2": "Häufig in Jazz und Musik der Romantik",
-      "titre": "Intermezzo op.118 Nr.2",
-      "compositeur": "J. Brahms"
-    },
-    "cours8": {
-      "intuition": "Der Ausweichungsakkord ist die Brücke zwischen zwei Tonarten — derselbe Akkord, zwei Funktionen, ein unmerklicher Übergang.",
-      "badge": "Aldwell & Schachter · Harmony and Voice Leading",
-      "citation": "Der Ausweichungsakkord gehört beiden Tonarten gleichzeitig an und macht die Modulation weich und logisch.",
-      "auteur": "Aldwell & Schachter, 2003",
-      "voix0": "Den Ausweichungsakkord unter den beiden Tonarten gemeinsamen Akkorden wählen",
-      "voix1": "Die neue Tonart durch eine authentische Kadenz nach dem Ausweichungsakkord bestätigen",
-      "voix2": "Die Modulation zu benachbarten Tonarten (±1 Kreuz/b) ist am fließendsten",
-      "piege0erreur": "Einen verminderten Akkord als Ausweichungsakkord verwenden (zu viel Mehrdeutigkeit)",
-      "piege0correction": "Dur- oder Moll-Akkorde als Ausweichungsakkord bevorzugen, um tonale Klarheit zu gewährleisten",
-      "resume0": "Ausweichungsakkord = gemeinsam in Ausgangs- und Zieltonart",
-      "resume1": "Nahe Modulationen: Paralleltonart, Varianttonart, Quinte auf-/abwärts",
-      "resume2": "Stets durch Kadenz in der neuen Tonart bestätigen",
-      "titre": "Sonate op.27 Nr.2 'Mondschein' Satz I",
-      "compositeur": "L. van Beethoven"
-    },
-    "cours9": {
-      "intuition": "Die harmonische Sequenz ist die Wiederholung eines melodisch-harmonischen Motivs in regelmäßigen Abständen — sie schafft eine innere Logik, die auch ohne Theoriekenntnisse wahrnehmbar ist.",
-      "badge": "Schönberg · Harmonielehre",
-      "citation": "Sequenzen sind das mächtigste Mittel der tonalen Entwicklung; sie erzeugen sowohl Erwartung als auch Überraschung.",
-      "auteur": "Arnold Schönberg, 1911",
-      "voix0": "Die harmonische Sequenz transponiert das Muster in derselben Intervallqualität",
-      "voix1": "Tonale Sequenzen bleiben in der Tonart; reale Sequenzen verlassen sie",
-      "voix2": "Gemeinsame Töne (Liegetöne) untermauern chromatische Übergänge",
-      "piege0erreur": "Eine reale Sequenz schreiben und dabei alle Vorzeichen der Ausgangstonart beibehalten",
-      "piege0correction": "Die reale Sequenz transponiert Intervalle exakt; die Vorzeichen ändern sich je nach Stufe",
-      "resume0": "Tonale Sequenz: Transposition in derselben Tonart (diatonische Intervalle)",
-      "resume1": "Reale Sequenz: exakte Transposition (identische chromatische Intervalle)",
-      "resume2": "Chromatik: nicht-diatonische Alterationen, die die Harmonie bereichern, ohne zu modulieren",
-      "titre": "Chaconne BWV 1004",
-      "compositeur": "J.S. Bach"
-    },
-    "cours10": {
-      "intuition": "Ein Modus ist dieselbe Durtonleiter, nur von einer anderen Stufe aus betrachtet — die Landschaft bleibt gleich, nur der Hörpunkt ändert sich, und mit ihm die gesamte Klangfarbe der Musik.",
-      "badge": "Russell · Lydian Chromatic Concept",
-      "citation": "Jeder Modus trägt seine eigene tonale Schwerkraft, unabhängig von jeder klassischen harmonischen Funktion.",
-      "auteur": "George Russell, 1953",
-      "voix0": "Dorisch (2. Stufe) ist der hellste Molltonmodus: seine große Sexte unterscheidet ihn von der natürlichen Molltonleiter",
-      "voix1": "Ein modales Stück kann taktelang auf einem einzigen Akkord verharren — Klangfarbe ersetzt harmonische Bewegung",
-      "voix2": "Ohne Dominante oder Kadenz ist es die charakteristische Stufe des Modus (hier die Sexte des Dorischen), die seine ganze Identität trägt",
-      "titre": "So What",
-      "compositeur": "Miles Davis",
-      "piege0erreur": "Eine V–I-Kadenz in einem modalen Stück wie „So What“ suchen",
-      "piege0correction": "Modale Musik kadenziert nicht: sie färbt ein festes tonales Zentrum, ohne sich je davon zu entfernen oder über eine Dominante dorthin zurückzukehren",
-      "resume0": "7 Modi = 7 Rotationen derselben Tonleiter, jede mit ihrer eigenen Tonika",
-      "resume1": "Dorisch färbt Moll mit einer großen Sexte: der meistgenutzte Modus im modalen Jazz",
-      "resume2": "„So What“ (Miles Davis, 1959): ein Vamp in D-Dorisch, ohne funktionale Harmonik"
-    },
-    "cours11": {
-      "intuition": "Eine Erweiterung ist eine Klangfarbe, die über der 7 gestapelt wird — die 9, die 11 und die 13 ändern nicht die Funktion des Akkords, sie bereichern nur seine Klangfarbe, ohne sie zu verraten.",
-      "badge": "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
-      "citation": "Jede verfügbare Spannung färbt den Akkord, ohne seine grundlegende Funktion zu ändern, sofern die Vermeidungstöne der zugrunde liegenden Tonleiter beachtet werden.",
-      "auteur": "Barrie Nettles & Richard Graf, 1997",
-      "voix0": "Die 9 (groß), die 11 (rein oder übermäßig) und die 13 (groß) sind die konsonantesten Spannungen der Septakkorde",
-      "voix1": "Eine Alteration (b9, #9, #11, b13) färbt einen Dominantakkord stark, ohne seine Funktion zu ändern",
-      "voix2": "Bei einem Moll-7-Akkord ist die 9 fast immer verfügbar; die reine 11 stößt sich an der großen Terz eines Durakkords",
-      "titre": "All the Things You Are",
-      "compositeur": "Jerome Kern",
-      "piege0erreur": "Die reine 11 zu einem Dominant- oder Durakkord hinzufügen (sie stößt sich an der Terz)",
-      "piege0correction": "Auf diesen Akkorden die übermäßige 11 (#11) bevorzugen, oder die Erweiterung weglassen",
-      "resume0": "9 = 2. Stufe eine Oktave höher, 11 = 4. Stufe, 13 = 6. Stufe",
-      "resume1": "#9 und b9 sind typische Spannungen des alterierten Dominantakkords",
-      "resume2": "„All the Things You Are“ (Kern/Hammerstein): ein einleitender Vamp, vollständig aus alterierten Dominantakkorden (#9) gebaut"
-    },
-    "cours12": {
-      "intuition": "Zwei Dominantakkorde im Tritonusabstand teilen exakt denselben Tritonus — ihre Spannung ist identisch, nur die Auflösungsrichtung des Basses ändert sich.",
-      "badge": "Mulholland & Hojnacki · The Berklee Book of Jazz Harmony",
-      "citation": "Jeder Dominantakkord kann durch den einen Tritonus entfernt aufgebauten ersetzt werden: beide teilen dieselbe Terz und Septime, nur vertauscht.",
-      "auteur": "Joe Mulholland & Tom Hojnacki, 2013",
-      "voix0": "V7 und bII7 (subV7) teilen denselben Tritonus (Terz und Septime vertauscht) — die Auflösungsspannung ist identisch",
-      "voix1": "Der Tritonus-Ersatz erzeugt eine absteigende chromatische Bassbewegung zum Auflösungsakkord",
-      "voix2": "Er wirkt besonders gut unmittelbar vor einem Tonikaakkord",
-      "titre": "Satin Doll",
-      "compositeur": "Duke Ellington",
-      "piege0erreur": "Den Tritonus-Ersatz auf einen Akkord anwenden, der kein echter funktionaler V7 ist",
-      "piege0correction": "subV7 nur für Dominanten (V7 oder Zwischendominanten) verwenden, nie für einen Tonika- oder Subdominantakkord",
-      "resume0": "subV7 = ein Dominantakkord, einen Tritonus über (oder unter) V7 aufgebaut",
-      "resume1": "Beide Akkorde teilen Terz und Septime (nur vertauscht): gleiche Spannung, andere Auflösung",
-      "resume2": "„Satin Doll“ (Ellington): Db7 ersetzt G7 (subV7) unmittelbar vor der Rückkehr nach C-Dur"
-    },
-    "cours13": {
-      "intuition": "Kontrapunkt bedeutet, eine zweite Stimme mit eigenem melodischen Leben zu schreiben, die dennoch in jedem Moment mit der ersten übereinstimmt — zwei Linien im Dialog, niemals nur verdoppelte Harmonie.",
-      "badge": "Fux · Gradus ad Parnassum",
-      "citation": "Kontrapunkt ist die Kunst, Stimmen oder Teile so zu verbinden, dass sie nach bestimmten festen Regeln miteinander übereinstimmen.",
-      "auteur": "Johann Joseph Fux, 1725",
-      "voix0": "Note gegen Note (1. Gattung): vollkommene Konsonanzen (Oktave, Quinte) werden am besten durch Gegen- oder Seitenbewegung erreicht",
-      "voix1": "Gegenbewegung zwischen den beiden Stimmen ist der sicherste Weg, um parallele Quinten und Oktaven zu vermeiden",
-      "voix2": "Jede Stimme behält ihre melodische Eigenständigkeit — keine Stimmkreuzung, kein anhaltender Unisono",
-      "titre": "Invention Nr. 1 BWV 772",
-      "compositeur": "J.S. Bach",
-      "piege0erreur": "Beide Stimmen in gleicher Richtung auf eine Quinte oder Oktave zubewegen",
-      "piege0correction": "Bei vollkommenen Konsonanzen Gegen- oder Seitenbewegung bevorzugen",
-      "resume0": "Kontrapunkt = zwei melodisch unabhängige Stimmen, die vertikal übereinstimmen",
-      "resume1": "Fuxens 5 Gattungen: Note gegen Note, 2 gegen 1, Synkopen/Vorhalte, figurierter Kontrapunkt, blumiger Kontrapunkt",
-      "resume2": "Invention Nr. 1 BWV 772 (Bach): Subjekt und Antwort wandern zwischen den Händen, moduliert zur Dominante"
-    },
-    "cours14": {
-      "intuition": "Modale Harmonik baut keine Spannung auf, die aufgelöst werden muss — sie setzt eine Klangfarbe und hält sie, indem sie genau die Bewegung zur Dominante vermeidet, die den Zauber brechen würde.",
-      "badge": "Messiaen · Technik meiner musikalischen Sprache",
-      "citation": "Der Reiz der Unmöglichkeiten liegt vor allem in dieser Unmöglichkeit selbst, den Modus zu verlassen, ohne umzukehren: das verleiht diesen Harmonien ihre ganz besondere Atmosphäre.",
-      "auteur": "Olivier Messiaen, 1944",
-      "voix0": "Modale Harmonik oszilliert um die Tonika durch Klangfarbe, nicht durch aufzulösende Spannung",
-      "voix1": "V7→I vermeiden: diese Verbindung führt den im Modus fehlenden Leitton ein und bricht die modale Atmosphäre",
-      "voix2": "Ein einziger „charakteristischer\" Akkord (mit dem unterscheidenden Ton des Modus) genügt, um die Klangfarbe zu setzen",
-      "titre": "Erste Gymnopédie",
-      "compositeur": "Erik Satie",
-      "piege0erreur": "Eine Dominante oder tonale Auflösung in einer Progression suchen, die keine hat",
-      "piege0correction": "Ein koloristisches Schwingen (z. B. IV-I ganz ohne V) als solches erkennen und analysieren, nicht als „unvollständige\" Tonalität",
-      "resume0": "Modale Harmonik = gehaltene Klangfarbe, nicht Spannung gefolgt von Auflösung (anders als in der tonalen Harmonik)",
-      "resume1": "Die Bewegung V7→I wird vermieden: sie würde den Leitton einführen und die Atmosphäre des Modus brechen",
-      "resume2": "„Erste Gymnopédie\" (Satie): IVmaj7-Imaj7 in Schleife über 9 Takte, nie eine Dominante"
-    },
-    "cours15": {
-      "intuition": "Der II-V-I ist keine feste Formel — er ist ein Gerüst, das der Jazz mit Erweiterungen, Substitutionen und Zwischendominanten ausstattet, Glied für Glied, ohne je den Faden zurück zur Tonika zu verlieren.",
-      "badge": "Aebersold · Jazz Handbook",
-      "citation": "Der Jazzmusiker spielt keine Akkorde: er spielt Linien, die die Geschichte der Akkorde erzählen und dabei stets den kommenden vorwegnehmen.",
-      "auteur": "Jamey Aebersold, 1967",
-      "voix0": "Eine Zwischendominante (V7/X) tonisiert kurz die Stufe X, bevor sie dorthin auflöst",
-      "voix1": "Der Tritonus-Ersatz (subV7) ersetzt eine Dominante durch den Septakkord einen Tritonus entfernt — gleiche Spannung, ein Bass, der chromatisch abwärts geht",
-      "voix2": "Eine Kette von Zwischendominanten bildet eine absteigende Quintenfolge, das Rückgrat vieler Standards",
-      "titre": "Autumn Leaves",
-      "compositeur": "Joseph Kosma",
-      "piege0erreur": "Jeden Akkord isoliert analysieren, ohne die vorausgehende Zwischendominante zu erkennen",
-      "piege0correction": "Immer prüfen, ob ein Dominantakkord einen Halbton oder eine Quinte weiter zu einer anderen Stufe als der Tonika auflöst — das ist eine Zwischendominante (V7/X)",
-      "resume0": "Eine Kette von Zwischendominanten (V7/III, subV7/VI, V7/V...) tonisiert kurz jede Stufe vor der endgültigen Auflösung",
-      "resume1": "Der Tritonus-Ersatz ersetzt eine Dominante durch ihren Tritonus: gleiche Spannung (Terz/Septime vertauscht), chromatischer Bass",
-      "resume2": "„Autumn Leaves\" (Kosma): absteigende iv-VII-III-VI-ii°/V-V-i-Folge, dann ein V7/IV-Turnaround, der den Kreis schließt"
-    },
-    "cours16": {
-      "intuition": "Reharmonisieren heißt nicht, eine Melodie zu ersetzen — es heißt, ihr neue Weggefährten zu finden: jeder ersetzte Akkord muss die Melodienote weiterhin tragen, ohne sie zu verraten.",
-      "badge": "Levine · The Jazz Piano Book",
-      "citation": "Eine gute Reharmonisierung ändert nicht, was die Melodie spielt — sie ändert, was sie erzählt.",
-      "auteur": "Mark Levine, 1989",
-      "voix0": "Vor der Bestätigung eines ersetzten Akkords prüfen, ob jede Melodienote weiterhin die 1., 3., 5., 7. Stufe oder eine Erweiterung des neuen Akkords ist",
-      "voix1": "Eine Zwischendominante kann einen diatonischen Akkord durch ihre eigene V7 ersetzen (z. B. V/IV statt eines entlehnten Akkords)",
-      "voix2": "Schrittweise Bewegung in den Innenstimmen bevorzugen — eine technisch korrekte, aber ruckartige Reharmonisierung klingt immer falsch",
-      "titre": "My Funny Valentine",
-      "compositeur": "Richard Rodgers",
-      "piege0erreur": "Eine Zwischendominante einführen, deren Erweiterung einer bereits in der Melodie vorhandenen Note widerspricht",
-      "piege0correction": "Die neue Akkordfarbe immer mit der tatsächlichen Melodienote abgleichen, bevor man sie bestätigt",
-      "resume0": "Reharmonisieren = die Akkorde unter einer unangetasteten Melodie ersetzen, wobei jede Melodienote mit ihrem neuen Akkord kompatibel bleibt",
-      "resume1": "Zwischendominanten (V/V, V/IV) und Tritonus-Ersatzakkorde sind die gängigsten Werkzeuge",
-      "resume2": "„My Funny Valentine\" (Bill Evans): Moll-Kadenz iiø7-V7alt-i, der ein Ausflug zur Subdominante vorausgeht (IV9-IV13sus)"
     }
   },
   "satb": {

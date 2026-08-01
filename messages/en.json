@@ -264,6 +264,34 @@
       "maitrePeriod": "1732–1809",
       "maitreAnecdote": "In his Symphony No. 94, known as the 'Surprise', Haydn uses an unexpected cadence to wake up his audience. After a long, gentle phrase, a fortissimo chord bursts in where the listener expected a quiet resolution. Haydn loved playing with expectations — for him, the cadence was not just a conclusion, it was a dramatic tool.",
       "maitreLesson": "The cadence is the punctuation of music: it can affirm, question or surprise."
+    },
+    "conservatoire": {
+      "intuition": "The cadence is the punctuation of musical discourse — a comma, a semicolon, a period depending on its type.",
+      "reference": {
+        "badge": "Aldwell & Schachter · Harmony and Voice Leading",
+        "citation": "Cadences articulate musical form at every level, from the phrase to the whole composition.",
+        "auteur": "Aldwell & Schachter, 2003"
+      },
+      "voix": [
+        "The perfect cadence (V–I) requires the root in both the bass AND the soprano",
+        "The imperfect cadence (V–I with third in soprano) concludes less definitively",
+        "The deceptive cadence (V–VI) thwarts expectation — expressive use"
+      ],
+      "repertoire": {
+        "titre": "Chorale BWV 227 'Jesu, meine Freude'",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Placing a deceptive cadence at the end of a piece",
+          "correction": "The deceptive cadence restarts the discourse — reserve the perfect cadence for conclusions"
+        }
+      ],
+      "resume": [
+        "4 cadences: perfect, imperfect, half cadence (I–V), deceptive (V–VI)",
+        "Perfect cadence = tonic chord in root position",
+        "Cadence structures form: period, section, movement"
+      ]
     }
   },
   "cours5": {
@@ -347,6 +375,34 @@
       "maitreCardConcept": "Borrowings & Classic Progressions",
       "maitreCardAnecdote": "Chopin had an extraordinary ability to 'borrow' minor chords in a major key to instantly shift the emotional color of a phrase. His contemporaries described the effect as a cloud passing before the sun — in a single chord, the atmosphere shifted from bright to stormy, without ever leaving the key.",
       "maitreCardLesson": "We don't change key — we temporarily change the lighting."
+    },
+    "conservatoire": {
+      "intuition": "Modal borrowing is the chiaroscuro of tonal harmony — a foreign note that colors without breaking the tonality.",
+      "reference": {
+        "badge": "Gallon & Truchot · Précis d'harmonie",
+        "citation": "Borrowing is an aborted modulation that enriches the harmonic palette without leaving the key.",
+        "auteur": "Jean Gallon, 1947"
+      },
+      "voix": [
+        "The Neapolitan sixth chord (bII in 1st inversion) prepares the dominant",
+        "Minor-mode chords (bVI, bVII) are frequently borrowed in major",
+        "Resolve chromatic alterations in the direction of their tension"
+      ],
+      "repertoire": {
+        "titre": "Sonata D.845 mvt.I",
+        "compositeur": "F. Schubert"
+      },
+      "pieges": [
+        {
+          "erreur": "Borrowing without resolving the alterations",
+          "correction": "Every borrowed note creates a tension that must resolve in the affected voices"
+        }
+      ],
+      "resume": [
+        "Borrowing = chord from a parallel or relative key",
+        "Neapolitan sixth: bII6 → V → I",
+        "Modal mixture: major chords on naturally minor degrees"
+      ]
     }
   },
   "cours6": {
@@ -518,6 +574,34 @@
       "ac4Desc": "Each voice is a melodically independent motif. Requires mastery of voice leading.",
       "ac4Usage": "Fugues, inventions, Bach chorales.",
       "ac4Tension": "Very high — maximum polyphonic density."
+    },
+    "conservatoire": {
+      "intuition": "Non-harmonic tones are the spice of harmony — they create the dissonance that makes consonance desirable.",
+      "reference": {
+        "badge": "Piston · Harmony",
+        "citation": "Non-harmonic tones are the spice of musical texture; used with discretion they add variety and forward motion.",
+        "auteur": "Walter Piston, 1941"
+      },
+      "voix": [
+        "The suspension is prepared consonant, struck dissonant, resolved downward",
+        "A tonic or dominant pedal can support foreign harmonies",
+        "Neighbor notes (auxiliary tones) never double the bass at their point of dissonance"
+      ],
+      "repertoire": {
+        "titre": "Nocturne op.9 No.2",
+        "compositeur": "F. Chopin"
+      },
+      "pieges": [
+        {
+          "erreur": "Resolving a suspension upward",
+          "correction": "A suspension always resolves by downward motion (except rare Baroque exceptions)"
+        }
+      ],
+      "resume": [
+        "Non-harmonic tones: passing, neighbor, suspension, anticipation, escape, cambiata",
+        "Suspension: preparation → dissonance → resolution",
+        "Pedal point: sustained note under changing harmonies"
+      ]
     }
   },
   "cours7": {
@@ -590,6 +674,34 @@
       "chainesTip": "<strong>Combination possible:</strong> in a tonicization, all rules coexist. You can combine diatonic substitutions, parallel-mode borrowing, Neapolitan — provided you reference the tritone of the temporary key.",
       "inversionH3": "Choose the correct inversion",
       "inversionP": "For each progression, choose the inversion that ensures the best voice leading."
+    },
+    "conservatoire": {
+      "intuition": "The secondary dominant is a ray of sunlight from another key — it momentarily tonicizes a degree without truly modulating.",
+      "reference": {
+        "badge": "Levine · The Jazz Theory Book",
+        "citation": "Secondary dominants temporarily tonicize scale degrees, creating harmonic color without full modulation.",
+        "auteur": "Mark Levine, 1995"
+      },
+      "voix": [
+        "V/V (dominant of the dominant) heightens the authentic cadence",
+        "Every degree except VII can be preceded by its secondary dominant",
+        "Secondary dominants introduce chromatic alterations that must resolve"
+      ],
+      "repertoire": {
+        "titre": "Intermezzo op.118 No.2",
+        "compositeur": "J. Brahms"
+      },
+      "pieges": [
+        {
+          "erreur": "Applying V/IV in major (produces an unexpected minor IV chord)",
+          "correction": "Check the quality of the tonicized chord before applying the secondary dominant"
+        }
+      ],
+      "resume": [
+        "V7/X → X: temporary tonicization",
+        "Alterations always resolved in the chromatic direction",
+        "Common in jazz and Romantic-era music"
+      ]
     }
   },
   "cours8": {
@@ -703,6 +815,34 @@
       "maitreCardConcept": "Modulation by pivot chord",
       "maitreCardAnecdote": "In his 'Dissonance' quartets, Mozart uses pivot chords so subtle that musicians of the time believed them to be printing errors in the score. The transition from one key to another was so natural that the ear did not perceive the change — it only realized afterward that it had arrived in a new musical country.",
       "maitreCardLesson": "Modulation is a journey: the pivot chord is the invisible gateway to a new world."
+    },
+    "conservatoire": {
+      "intuition": "The pivot chord is the bridge between two keys — the same chord, two functions, an imperceptible transition.",
+      "reference": {
+        "badge": "Aldwell & Schachter · Harmony and Voice Leading",
+        "citation": "The pivot chord belongs to both keys simultaneously, making the modulation smooth and logical.",
+        "auteur": "Aldwell & Schachter, 2003"
+      },
+      "voix": [
+        "Choose the pivot from among the chords common to both keys",
+        "Confirm the new key with an authentic cadence after the pivot",
+        "Modulation to neighboring keys (±1 sharp/flat) is the smoothest"
+      ],
+      "repertoire": {
+        "titre": "Sonata op.27 No.2 'Moonlight' mvt.I",
+        "compositeur": "L. van Beethoven"
+      },
+      "pieges": [
+        {
+          "erreur": "Using a diminished chord as a pivot (too much ambiguity)",
+          "correction": "Prefer major or minor chords as pivot to guarantee tonal clarity"
+        }
+      ],
+      "resume": [
+        "Pivot chord = common to both the departing and arriving key",
+        "Closely related modulations: relative, parallel, fifth above/below",
+        "Always confirm with a cadence in the new key"
+      ]
     }
   },
   "cours9": {
@@ -830,6 +970,34 @@
       "maitreCardConcept": "Advanced Modulations & Pedals",
       "maitreCardAnecdote": "In The Erlking, Schubert uses a pedal note at the piano — a low note obstinately repeated — to simulate the horse's obsessive gallop. Meanwhile the harmony goes wild, modulating into increasingly dark keys. The pedal stays fixed like an anchor while everything sinks around it.",
       "maitreCardLesson": "The pedal creates powerful psychological tension by staying fixed while everything moves around it."
+    },
+    "conservatoire": {
+      "intuition": "The harmonic sequence is the repetition of a melodic-harmonic pattern at regular intervals — it creates an internal logic perceptible even without theoretical knowledge.",
+      "reference": {
+        "badge": "Schönberg · Harmonielehre",
+        "citation": "Sequences are the most powerful tool of tonal development; they generate both expectation and surprise.",
+        "auteur": "Arnold Schönberg, 1911"
+      },
+      "voix": [
+        "The harmonic sequence transposes the pattern at the same interval quality",
+        "Tonal sequences stay in key; real sequences leave it",
+        "Common tones underpin chromatic transitions"
+      ],
+      "repertoire": {
+        "titre": "Chaconne BWV 1004",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Writing a real sequence while keeping all the accidentals of the original key",
+          "correction": "A real sequence transposes intervals exactly; accidentals change according to the degree"
+        }
+      ],
+      "resume": [
+        "Tonal sequence: transposition in the same key (diatonic intervals)",
+        "Real sequence: exact transposition (identical chromatic intervals)",
+        "Chromaticism: non-diatonic alterations enriching harmony without modulating"
+      ]
     }
   },
   "cours1": {
@@ -919,6 +1087,34 @@
       "intNaturePerfAug": "perfect / augmented",
       "intNatureDimPerfAug": "dim. / perfect / aug.",
       "intNaturePerf": "perfect"
+    },
+    "conservatoire": {
+      "intuition": "Before any theory, the scale is a physical experience — feeling the tension of semitones and the resolution toward the tonic.",
+      "reference": {
+        "badge": "Dubois · Traité d'Harmonie",
+        "citation": "The scale is the musician's alphabet; without it, no phrase can be written.",
+        "auteur": "Théodore Dubois, 1901"
+      },
+      "voix": [
+        "Diatonic semitones (E–F, B–C) create the fundamental harmonic tensions",
+        "Each scale degree has a function: tonic, dominant, subdominant",
+        "The leading tone (VII) must rise to the tonic in the soprano voice"
+      ],
+      "repertoire": {
+        "titre": "Prelude in C Major BWV 846",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Using the natural minor scale at the dominant",
+          "correction": "Always raise the leading tone (VII#) in a minor harmonic context"
+        }
+      ],
+      "resume": [
+        "Scale = 7 degrees, 2 diatonic semitones",
+        "Leading tone must ascend",
+        "Greek modes derived from rotations of the major scale"
+      ]
     }
   },
   "cours2": {
@@ -1021,6 +1217,34 @@
       "invDesc1": "The third is in the bass. The chord sounds lighter, more open — smooths the bass line.",
       "invDesc2": "The fifth is in the bass. More unstable, often used as a passing chord.",
       "invDesc3": "The seventh is in the bass. Very suspended colour — pushes strongly toward resolution."
+    },
+    "conservatoire": {
+      "intuition": "A chord is not a stack of notes but a tension between them — understanding intervals means hearing harmony before reading it.",
+      "reference": {
+        "badge": "Piston · Harmony",
+        "citation": "Every chord has a personality determined by the intervals it contains.",
+        "auteur": "Walter Piston, 1941"
+      },
+      "voix": [
+        "The dominant chord (V) contains the tritone B–F that resolves to the tonic chord",
+        "Parallel fifths and octaves between voices are forbidden",
+        "Double the root in root position, the third in first inversion"
+      ],
+      "repertoire": {
+        "titre": "Sonata op.13 'Pathétique' mvt.II",
+        "compositeur": "L. van Beethoven"
+      },
+      "pieges": [
+        {
+          "erreur": "Doubling the third of the dominant chord (leading tone)",
+          "correction": "Double the root or the fifth, never the leading tone"
+        }
+      ],
+      "resume": [
+        "Triad = root + third + fifth",
+        "Major triad: major third + perfect fifth",
+        "Inversions: 1st (third in bass), 2nd (fifth in bass)"
+      ]
     }
   },
   "cours3": {
@@ -1126,6 +1350,34 @@
       "maitreCardConcept": "Voice leading",
       "maitreCardAnecdote": "Brahms was obsessed with the purity of four-voice writing. He hunted parallel fifths and octaves as absolute offences against taste, marking his students' scores in red. He said that two voices moving together in fifths cease to exist as independent voices — they become one and the same colour.",
       "maitreCardLesson": "Voice leading is the art of making each melodic line independent and fluid."
+    },
+    "conservatoire": {
+      "intuition": "Harmonic function is the dramaturgical role of each chord in the musical discourse — tonic rests, dominant tensions, subdominant prepares.",
+      "reference": {
+        "badge": "Schönberg · Harmonielehre",
+        "citation": "Harmony is not an end in itself, but a means of expression.",
+        "auteur": "Arnold Schönberg, 1911"
+      },
+      "voix": [
+        "The authentic progression V–I is the cadence par excellence",
+        "The plagal cadence IV–I concludes gently (amen cadence)",
+        "Avoid bass movements by unresolved tritone"
+      ],
+      "repertoire": {
+        "titre": "Symphony No.40 KV550, mvt.I",
+        "compositeur": "W.A. Mozart"
+      },
+      "pieges": [
+        {
+          "erreur": "Chaining IV–V–IV (functional regression)",
+          "correction": "Respect tonal direction: T → S → D → T"
+        }
+      ],
+      "resume": [
+        "Functions: Tonic (I, III, VI), Dominant (V, VII), Subdominant (II, IV)",
+        "Authentic cadence V–I = strong closure",
+        "The tritone in V7 resolves: B→C, F→E"
+      ]
     }
   },
   "cours10": {
@@ -1187,6 +1439,34 @@
       "maitreLesson": "A mode is not a scale with one different note — it is a harmonic color, a way of hearing the world.",
       "maitrePeriod": "1926–1991",
       "maitreConcept": "Modes"
+    },
+    "conservatoire": {
+      "intuition": "A mode is the same major scale seen from a different degree — the landscape doesn't change, only the listening point does, and with it the entire color of the music.",
+      "reference": {
+        "badge": "Russell · Lydian Chromatic Concept",
+        "citation": "Each mode carries its own tonal gravity, independent of any classical harmonic function.",
+        "auteur": "George Russell, 1953"
+      },
+      "voix": [
+        "The Dorian (2nd degree) is the brightest minor mode: its major 6th sets it apart from the natural minor scale",
+        "A modal piece can stay on a single chord for measures on end — color replaces harmonic motion",
+        "Without a dominant or a cadence, it's the mode's characteristic degree (here the Dorian's 6th) that carries its whole identity"
+      ],
+      "repertoire": {
+        "titre": "So What",
+        "compositeur": "Miles Davis"
+      },
+      "pieges": [
+        {
+          "erreur": "Looking for a V–I cadence in a modal piece like \"So What\"",
+          "correction": "Modal music doesn't cadence: it colors a fixed tonal center, never moving away from it or returning to it via a dominant"
+        }
+      ],
+      "resume": [
+        "7 modes = 7 rotations of the same scale, each with its own tonic",
+        "The Dorian colors the minor with a major 6th: the most used mode in modal jazz",
+        "\"So What\" (Miles Davis, 1959): a vamp in D Dorian, with no functional harmony"
+      ]
     }
   },
   "cours12": {
@@ -1263,6 +1543,34 @@
       "quizFeedbackKeepGoing": "Keep listening to both resolutions — the ear is trained through comparison!",
       "quizNextBtn": "Next question →",
       "quizScoreBtn": "See my score"
+    },
+    "conservatoire": {
+      "intuition": "Two dominant chords a tritone apart share the exact same tritone — their tension is identical, only the direction the bass resolves in changes.",
+      "reference": {
+        "badge": "Mulholland & Hojnacki · The Berklee Book of Jazz Harmony",
+        "citation": "Any dominant chord can be replaced by the one built a tritone away: the two share the same 3rd and 7th, simply swapped.",
+        "auteur": "Joe Mulholland & Tom Hojnacki, 2013"
+      },
+      "voix": [
+        "V7 and bII7 (subV7) share the same tritone (3rd and 7th swapped) — the resolution tension is identical",
+        "Tritone substitution creates a descending chromatic bass motion into the resolution chord",
+        "It's especially effective right before a tonic chord"
+      ],
+      "repertoire": {
+        "titre": "Satin Doll",
+        "compositeur": "Duke Ellington"
+      },
+      "pieges": [
+        {
+          "erreur": "Using tritone substitution on a chord that isn't a genuine functional V7",
+          "correction": "Reserve subV7 for dominants (V7 or secondary dominants), never for a tonic or subdominant chord"
+        }
+      ],
+      "resume": [
+        "subV7 = a dominant chord built a tritone above (or below) V7",
+        "Both chords share the 3rd and 7th (simply swapped): same tension, different resolution",
+        "\"Satin Doll\" (Ellington): Db7 replaces G7 (subV7) right before the return to C major"
+      ]
     }
   },
   "cours14": {
@@ -1349,6 +1657,34 @@
       "maitrePeriod": "1862–1918",
       "maitreConcept": "Modal harmony",
       "questionLabel": "Question"
+    },
+    "conservatoire": {
+      "intuition": "Modal harmony doesn't build tension to resolve — it sets a color and holds it, carefully avoiding the move to the dominant that would break the spell.",
+      "reference": {
+        "badge": "Messiaen · The Technique of My Musical Language",
+        "citation": "The charm of impossibilities lies above all in this very impossibility of escaping the mode without turning back: this is what gives these harmonies their very particular atmosphere.",
+        "auteur": "Olivier Messiaen, 1944"
+      },
+      "voix": [
+        "Modal harmony oscillates around the tonic through color, not through tension to resolve",
+        "Avoid V7→I: this progression introduces the leading tone missing from the mode and breaks the modal atmosphere",
+        "A single \"characteristic\" chord (containing the mode's distinctive note) is enough to set the color"
+      ],
+      "repertoire": {
+        "titre": "First Gymnopédie",
+        "compositeur": "Erik Satie"
+      },
+      "pieges": [
+        {
+          "erreur": "Looking for a dominant or a tonal resolution in a progression that has none",
+          "correction": "Recognize a coloristic oscillation (e.g. IV-I with no V at all) and analyze it as such, not as an \"incomplete\" tonality"
+        }
+      ],
+      "resume": [
+        "Modal harmony = a color held in place, not tension followed by resolution (unlike tonal harmony)",
+        "The V7→I motion is avoided: it would introduce the leading tone and break the mode's atmosphere",
+        "\"First Gymnopédie\" (Satie): IVmaj7-Imaj7 looping over 9 measures, never a dominant"
+      ]
     }
   },
   "cours13": {
@@ -1442,6 +1778,34 @@
       "maitreLesson": "Writing two independent voices is harder than writing one complex voice. Each voice must have its own life — and yet, together, they must form a coherent harmony.",
       "maitrePeriod": "1660–1741",
       "maitreConcept": "Counterpoint"
+    },
+    "conservatoire": {
+      "intuition": "Counterpoint means writing a second voice with a melodic life of its own that still agrees with the first at every instant — two lines answering each other, never just doubled harmony.",
+      "reference": {
+        "badge": "Fux · Gradus ad Parnassum",
+        "citation": "Counterpoint is the art of combining voices or parts so that they agree with one another according to certain fixed laws.",
+        "auteur": "Johann Joseph Fux, 1725"
+      },
+      "voix": [
+        "Note against note (1st species): perfect consonances (octave, 5th) are best approached by contrary or oblique motion",
+        "Contrary motion between the two voices is the surest way to avoid parallel fifths and octaves",
+        "Each voice keeps its melodic independence — no crossing, no prolonged unison"
+      ],
+      "repertoire": {
+        "titre": "Invention No. 1 BWV 772",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Moving both voices in the same direction into a fifth or an octave",
+          "correction": "Prefer contrary or oblique motion when approaching perfect consonances"
+        }
+      ],
+      "resume": [
+        "Counterpoint = two melodically independent voices that agree vertically",
+        "Fux's 5 species: note against note, 2 against 1, syncopations/suspensions, florid figures, florid counterpoint",
+        "Invention No. 1 BWV 772 (Bach): subject and answer traded between the two hands, modulating to the dominant"
+      ]
     }
   },
   "cours16": {
@@ -1521,6 +1885,34 @@
       "maitreCardConcept": "Reharmonization & jazz impressionism",
       "maitreCardAnecdote": "Evans plays Autumn Leaves on his first solo album (1956) and the listener recognizes the familiar melody — but the chords have changed. FMaj7 became Fm, G7 became Db7. Without altering a single note of Joseph Kosma's melody, Evans transformed a springtime standard into a melancholy nocturne.",
       "maitreCardLesson": "Reharmonization is not virtuosity — it's listening. Before substituting a chord, ask yourself: can the melody still be heard? Does the new chord say something the original could not?"
+    },
+    "conservatoire": {
+      "intuition": "Reharmonizing isn't about replacing a melody — it's about finding it new traveling companions: every substituted chord must still carry the melody note without betraying it.",
+      "reference": {
+        "badge": "Levine · The Jazz Piano Book",
+        "citation": "A good reharmonization doesn't change what the melody plays — it changes what it says.",
+        "auteur": "Mark Levine, 1989"
+      },
+      "voix": [
+        "Before validating a substituted chord, check that each melody note is still the 1st, 3rd, 5th, 7th, or an extension of the new chord",
+        "A secondary dominant can replace a diatonic chord with its own V7 (e.g. V/IV instead of a borrowed chord)",
+        "Favor stepwise motion in the inner voices — a technically correct but jarring reharmonization always sounds wrong"
+      ],
+      "repertoire": {
+        "titre": "My Funny Valentine",
+        "compositeur": "Richard Rodgers"
+      },
+      "pieges": [
+        {
+          "erreur": "Introducing a secondary dominant whose extension contradicts a note already present in the melody",
+          "correction": "Always check the new chord color against the actual melody note before validating it"
+        }
+      ],
+      "resume": [
+        "Reharmonizing = replacing the chords under an untouched melody, keeping every melody note compatible with its new chord",
+        "Secondary dominants (V/V, V/IV) and tritone substitutes are the most common tools",
+        "\"My Funny Valentine\" (Bill Evans): minor cadence iiø7-V7alt-i preceded by a subdominant excursion (IV9-IV13sus)"
+      ]
     }
   },
   "cours15": {
@@ -1577,6 +1969,34 @@
       "quizPoolLabel": "questions in the pool",
       "quizNextBtn": "Next question →",
       "quizFinishBtn": "See my score"
+    },
+    "conservatoire": {
+      "intuition": "The II-V-I isn't a fixed formula — it's a skeleton that jazz dresses up with extensions, substitutions, and secondary dominants, link after link, without ever losing the thread back to the tonic.",
+      "reference": {
+        "badge": "Aebersold · Jazz Handbook",
+        "citation": "The jazz musician doesn't play chords: they play lines that tell the story of the chords, always anticipating the one that's coming next.",
+        "auteur": "Jamey Aebersold, 1967"
+      },
+      "voix": [
+        "A secondary dominant (V7/X) briefly tonicizes degree X before resolving to it",
+        "The tritone substitute (subV7) replaces a dominant with the 7th chord a tritone away — same tension, a bass line that descends by half-step",
+        "A chain of secondary dominants forms a descending sequence of fifths, the backbone of many standards"
+      ],
+      "repertoire": {
+        "titre": "Autumn Leaves",
+        "compositeur": "Joseph Kosma"
+      },
+      "pieges": [
+        {
+          "erreur": "Analyzing each chord in isolation without spotting the secondary dominant that precedes it",
+          "correction": "Always check whether a dominant chord resolves a half-step or a fifth away to a degree other than the tonic — that's a secondary dominant (V7/X)"
+        }
+      ],
+      "resume": [
+        "A chain of secondary dominants (V7/III, subV7/VI, V7/V...) briefly tonicizes each degree before the final resolution",
+        "The tritone substitute replaces a dominant with its tritone: same tension (3rd/7th swapped), chromatic bass",
+        "\"Autumn Leaves\" (Kosma): descending iv-VII-III-VI-ii°/V-V-i sequence, then a V7/IV turnaround that closes the loop"
+      ]
     }
   },
   "cours21": {
@@ -2163,6 +2583,34 @@
       "quizPoolInfo": "questions in the pool",
       "quizNextBtn": "Next question →",
       "quizFinishBtn": "See my score"
+    },
+    "conservatoire": {
+      "intuition": "An extension is a color stacked above the 7th — the 9th, 11th, and 13th don't change a chord's function, they enrich its timbre without betraying it.",
+      "reference": {
+        "badge": "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
+        "citation": "Each available tension colors the chord without changing its underlying function, provided the avoid notes of its underlying scale are respected.",
+        "auteur": "Barrie Nettles & Richard Graf, 1997"
+      },
+      "voix": [
+        "The 9th (major), 11th (perfect or augmented), and 13th (major) are the most consonant tensions of seventh chords",
+        "An alteration (b9, #9, #11, b13) strongly colors a dominant chord without changing its function",
+        "On a minor 7th chord the 9th is almost always available; the natural 11th clashes with the major 3rd of a major chord"
+      ],
+      "repertoire": {
+        "titre": "All the Things You Are",
+        "compositeur": "Jerome Kern"
+      },
+      "pieges": [
+        {
+          "erreur": "Adding the natural 11th to a dominant or major chord (it clashes with the 3rd)",
+          "correction": "Prefer the raised 11th (#11) on these chords, or omit the extension"
+        }
+      ],
+      "resume": [
+        "9th = 2nd degree an octave up, 11th = 4th, 13th = 6th",
+        "#9 and b9 are typical tensions of the altered dominant chord",
+        "\"All the Things You Are\" (Kern/Hammerstein): an introductory vamp built entirely on altered dominant chords (#9)"
+      ]
     }
   },
   "cours22": {
@@ -3953,264 +4401,6 @@
       "quizPoolInfo": "questions in total",
       "quizNextBtn": "Next question →",
       "quizFinishBtn": "See score →"
-    }
-  },
-  "conservatoire": {
-    "cours1": {
-      "intuition": "Before any theory, the scale is a physical experience — feeling the tension of semitones and the resolution toward the tonic.",
-      "badge": "Dubois · Traité d'Harmonie",
-      "citation": "The scale is the musician's alphabet; without it, no phrase can be written.",
-      "auteur": "Théodore Dubois, 1901",
-      "voix0": "Diatonic semitones (E–F, B–C) create the fundamental harmonic tensions",
-      "voix1": "Each scale degree has a function: tonic, dominant, subdominant",
-      "voix2": "The leading tone (VII) must rise to the tonic in the soprano voice",
-      "piege0erreur": "Using the natural minor scale at the dominant",
-      "piege0correction": "Always raise the leading tone (VII#) in a minor harmonic context",
-      "resume0": "Scale = 7 degrees, 2 diatonic semitones",
-      "resume1": "Leading tone must ascend",
-      "resume2": "Greek modes derived from rotations of the major scale",
-      "titre": "Prelude in C Major BWV 846",
-      "compositeur": "J.S. Bach"
-    },
-    "cours2": {
-      "intuition": "A chord is not a stack of notes but a tension between them — understanding intervals means hearing harmony before reading it.",
-      "badge": "Piston · Harmony",
-      "citation": "Every chord has a personality determined by the intervals it contains.",
-      "auteur": "Walter Piston, 1941",
-      "voix0": "The dominant chord (V) contains the tritone B–F that resolves to the tonic chord",
-      "voix1": "Parallel fifths and octaves between voices are forbidden",
-      "voix2": "Double the root in root position, the third in first inversion",
-      "piege0erreur": "Doubling the third of the dominant chord (leading tone)",
-      "piege0correction": "Double the root or the fifth, never the leading tone",
-      "resume0": "Triad = root + third + fifth",
-      "resume1": "Major triad: major third + perfect fifth",
-      "resume2": "Inversions: 1st (third in bass), 2nd (fifth in bass)",
-      "titre": "Sonata op.13 'Pathétique' mvt.II",
-      "compositeur": "L. van Beethoven"
-    },
-    "cours3": {
-      "intuition": "Harmonic function is the dramaturgical role of each chord in the musical discourse — tonic rests, dominant tensions, subdominant prepares.",
-      "badge": "Schönberg · Harmonielehre",
-      "citation": "Harmony is not an end in itself, but a means of expression.",
-      "auteur": "Arnold Schönberg, 1911",
-      "voix0": "The authentic progression V–I is the cadence par excellence",
-      "voix1": "The plagal cadence IV–I concludes gently (amen cadence)",
-      "voix2": "Avoid bass movements by unresolved tritone",
-      "piege0erreur": "Chaining IV–V–IV (functional regression)",
-      "piege0correction": "Respect tonal direction: T → S → D → T",
-      "resume0": "Functions: Tonic (I, III, VI), Dominant (V, VII), Subdominant (II, IV)",
-      "resume1": "Authentic cadence V–I = strong closure",
-      "resume2": "The tritone in V7 resolves: B→C, F→E",
-      "titre": "Symphony No.40 KV550, mvt.I",
-      "compositeur": "W.A. Mozart"
-    },
-    "cours4": {
-      "intuition": "The cadence is the punctuation of musical discourse — a comma, a semicolon, a period depending on its type.",
-      "badge": "Aldwell & Schachter · Harmony and Voice Leading",
-      "citation": "Cadences articulate musical form at every level, from the phrase to the whole composition.",
-      "auteur": "Aldwell & Schachter, 2003",
-      "voix0": "The perfect cadence (V–I) requires the root in both the bass AND the soprano",
-      "voix1": "The imperfect cadence (V–I with third in soprano) concludes less definitively",
-      "voix2": "The deceptive cadence (V–VI) thwarts expectation — expressive use",
-      "piege0erreur": "Placing a deceptive cadence at the end of a piece",
-      "piege0correction": "The deceptive cadence restarts the discourse — reserve the perfect cadence for conclusions",
-      "resume0": "4 cadences: perfect, imperfect, half cadence (I–V), deceptive (V–VI)",
-      "resume1": "Perfect cadence = tonic chord in root position",
-      "resume2": "Cadence structures form: period, section, movement",
-      "titre": "Chorale BWV 227 'Jesu, meine Freude'",
-      "compositeur": "J.S. Bach"
-    },
-    "cours5": {
-      "intuition": "Modal borrowing is the chiaroscuro of tonal harmony — a foreign note that colors without breaking the tonality.",
-      "badge": "Gallon & Truchot · Précis d'harmonie",
-      "citation": "Borrowing is an aborted modulation that enriches the harmonic palette without leaving the key.",
-      "auteur": "Jean Gallon, 1947",
-      "voix0": "The Neapolitan sixth chord (bII in 1st inversion) prepares the dominant",
-      "voix1": "Minor-mode chords (bVI, bVII) are frequently borrowed in major",
-      "voix2": "Resolve chromatic alterations in the direction of their tension",
-      "piege0erreur": "Borrowing without resolving the alterations",
-      "piege0correction": "Every borrowed note creates a tension that must resolve in the affected voices",
-      "resume0": "Borrowing = chord from a parallel or relative key",
-      "resume1": "Neapolitan sixth: bII6 → V → I",
-      "resume2": "Modal mixture: major chords on naturally minor degrees",
-      "titre": "Sonata D.845 mvt.I",
-      "compositeur": "F. Schubert"
-    },
-    "cours6": {
-      "intuition": "Non-harmonic tones are the spice of harmony — they create the dissonance that makes consonance desirable.",
-      "badge": "Piston · Harmony",
-      "citation": "Non-harmonic tones are the spice of musical texture; used with discretion they add variety and forward motion.",
-      "auteur": "Walter Piston, 1941",
-      "voix0": "The suspension is prepared consonant, struck dissonant, resolved downward",
-      "voix1": "A tonic or dominant pedal can support foreign harmonies",
-      "voix2": "Neighbor notes (auxiliary tones) never double the bass at their point of dissonance",
-      "piege0erreur": "Resolving a suspension upward",
-      "piege0correction": "A suspension always resolves by downward motion (except rare Baroque exceptions)",
-      "resume0": "Non-harmonic tones: passing, neighbor, suspension, anticipation, escape, cambiata",
-      "resume1": "Suspension: preparation → dissonance → resolution",
-      "resume2": "Pedal point: sustained note under changing harmonies",
-      "titre": "Nocturne op.9 No.2",
-      "compositeur": "F. Chopin"
-    },
-    "cours7": {
-      "intuition": "The secondary dominant is a ray of sunlight from another key — it momentarily tonicizes a degree without truly modulating.",
-      "badge": "Levine · The Jazz Theory Book",
-      "citation": "Secondary dominants temporarily tonicize scale degrees, creating harmonic color without full modulation.",
-      "auteur": "Mark Levine, 1995",
-      "voix0": "V/V (dominant of the dominant) heightens the authentic cadence",
-      "voix1": "Every degree except VII can be preceded by its secondary dominant",
-      "voix2": "Secondary dominants introduce chromatic alterations that must resolve",
-      "piege0erreur": "Applying V/IV in major (produces an unexpected minor IV chord)",
-      "piege0correction": "Check the quality of the tonicized chord before applying the secondary dominant",
-      "resume0": "V7/X → X: temporary tonicization",
-      "resume1": "Alterations always resolved in the chromatic direction",
-      "resume2": "Common in jazz and Romantic-era music",
-      "titre": "Intermezzo op.118 No.2",
-      "compositeur": "J. Brahms"
-    },
-    "cours8": {
-      "intuition": "The pivot chord is the bridge between two keys — the same chord, two functions, an imperceptible transition.",
-      "badge": "Aldwell & Schachter · Harmony and Voice Leading",
-      "citation": "The pivot chord belongs to both keys simultaneously, making the modulation smooth and logical.",
-      "auteur": "Aldwell & Schachter, 2003",
-      "voix0": "Choose the pivot from among the chords common to both keys",
-      "voix1": "Confirm the new key with an authentic cadence after the pivot",
-      "voix2": "Modulation to neighboring keys (±1 sharp/flat) is the smoothest",
-      "piege0erreur": "Using a diminished chord as a pivot (too much ambiguity)",
-      "piege0correction": "Prefer major or minor chords as pivot to guarantee tonal clarity",
-      "resume0": "Pivot chord = common to both the departing and arriving key",
-      "resume1": "Closely related modulations: relative, parallel, fifth above/below",
-      "resume2": "Always confirm with a cadence in the new key",
-      "titre": "Sonata op.27 No.2 'Moonlight' mvt.I",
-      "compositeur": "L. van Beethoven"
-    },
-    "cours9": {
-      "intuition": "The harmonic sequence is the repetition of a melodic-harmonic pattern at regular intervals — it creates an internal logic perceptible even without theoretical knowledge.",
-      "badge": "Schönberg · Harmonielehre",
-      "citation": "Sequences are the most powerful tool of tonal development; they generate both expectation and surprise.",
-      "auteur": "Arnold Schönberg, 1911",
-      "voix0": "The harmonic sequence transposes the pattern at the same interval quality",
-      "voix1": "Tonal sequences stay in key; real sequences leave it",
-      "voix2": "Common tones underpin chromatic transitions",
-      "piege0erreur": "Writing a real sequence while keeping all the accidentals of the original key",
-      "piege0correction": "A real sequence transposes intervals exactly; accidentals change according to the degree",
-      "resume0": "Tonal sequence: transposition in the same key (diatonic intervals)",
-      "resume1": "Real sequence: exact transposition (identical chromatic intervals)",
-      "resume2": "Chromaticism: non-diatonic alterations enriching harmony without modulating",
-      "titre": "Chaconne BWV 1004",
-      "compositeur": "J.S. Bach"
-    },
-    "cours10": {
-      "intuition": "A mode is the same major scale seen from a different degree — the landscape doesn't change, only the listening point does, and with it the entire color of the music.",
-      "badge": "Russell · Lydian Chromatic Concept",
-      "citation": "Each mode carries its own tonal gravity, independent of any classical harmonic function.",
-      "auteur": "George Russell, 1953",
-      "voix0": "The Dorian (2nd degree) is the brightest minor mode: its major 6th sets it apart from the natural minor scale",
-      "voix1": "A modal piece can stay on a single chord for measures on end — color replaces harmonic motion",
-      "voix2": "Without a dominant or a cadence, it's the mode's characteristic degree (here the Dorian's 6th) that carries its whole identity",
-      "titre": "So What",
-      "compositeur": "Miles Davis",
-      "piege0erreur": "Looking for a V–I cadence in a modal piece like \"So What\"",
-      "piege0correction": "Modal music doesn't cadence: it colors a fixed tonal center, never moving away from it or returning to it via a dominant",
-      "resume0": "7 modes = 7 rotations of the same scale, each with its own tonic",
-      "resume1": "The Dorian colors the minor with a major 6th: the most used mode in modal jazz",
-      "resume2": "\"So What\" (Miles Davis, 1959): a vamp in D Dorian, with no functional harmony"
-    },
-    "cours11": {
-      "intuition": "An extension is a color stacked above the 7th — the 9th, 11th, and 13th don't change a chord's function, they enrich its timbre without betraying it.",
-      "badge": "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
-      "citation": "Each available tension colors the chord without changing its underlying function, provided the avoid notes of its underlying scale are respected.",
-      "auteur": "Barrie Nettles & Richard Graf, 1997",
-      "voix0": "The 9th (major), 11th (perfect or augmented), and 13th (major) are the most consonant tensions of seventh chords",
-      "voix1": "An alteration (b9, #9, #11, b13) strongly colors a dominant chord without changing its function",
-      "voix2": "On a minor 7th chord the 9th is almost always available; the natural 11th clashes with the major 3rd of a major chord",
-      "titre": "All the Things You Are",
-      "compositeur": "Jerome Kern",
-      "piege0erreur": "Adding the natural 11th to a dominant or major chord (it clashes with the 3rd)",
-      "piege0correction": "Prefer the raised 11th (#11) on these chords, or omit the extension",
-      "resume0": "9th = 2nd degree an octave up, 11th = 4th, 13th = 6th",
-      "resume1": "#9 and b9 are typical tensions of the altered dominant chord",
-      "resume2": "\"All the Things You Are\" (Kern/Hammerstein): an introductory vamp built entirely on altered dominant chords (#9)"
-    },
-    "cours12": {
-      "intuition": "Two dominant chords a tritone apart share the exact same tritone — their tension is identical, only the direction the bass resolves in changes.",
-      "badge": "Mulholland & Hojnacki · The Berklee Book of Jazz Harmony",
-      "citation": "Any dominant chord can be replaced by the one built a tritone away: the two share the same 3rd and 7th, simply swapped.",
-      "auteur": "Joe Mulholland & Tom Hojnacki, 2013",
-      "voix0": "V7 and bII7 (subV7) share the same tritone (3rd and 7th swapped) — the resolution tension is identical",
-      "voix1": "Tritone substitution creates a descending chromatic bass motion into the resolution chord",
-      "voix2": "It's especially effective right before a tonic chord",
-      "titre": "Satin Doll",
-      "compositeur": "Duke Ellington",
-      "piege0erreur": "Using tritone substitution on a chord that isn't a genuine functional V7",
-      "piege0correction": "Reserve subV7 for dominants (V7 or secondary dominants), never for a tonic or subdominant chord",
-      "resume0": "subV7 = a dominant chord built a tritone above (or below) V7",
-      "resume1": "Both chords share the 3rd and 7th (simply swapped): same tension, different resolution",
-      "resume2": "\"Satin Doll\" (Ellington): Db7 replaces G7 (subV7) right before the return to C major"
-    },
-    "cours13": {
-      "intuition": "Counterpoint means writing a second voice with a melodic life of its own that still agrees with the first at every instant — two lines answering each other, never just doubled harmony.",
-      "badge": "Fux · Gradus ad Parnassum",
-      "citation": "Counterpoint is the art of combining voices or parts so that they agree with one another according to certain fixed laws.",
-      "auteur": "Johann Joseph Fux, 1725",
-      "voix0": "Note against note (1st species): perfect consonances (octave, 5th) are best approached by contrary or oblique motion",
-      "voix1": "Contrary motion between the two voices is the surest way to avoid parallel fifths and octaves",
-      "voix2": "Each voice keeps its melodic independence — no crossing, no prolonged unison",
-      "titre": "Invention No. 1 BWV 772",
-      "compositeur": "J.S. Bach",
-      "piege0erreur": "Moving both voices in the same direction into a fifth or an octave",
-      "piege0correction": "Prefer contrary or oblique motion when approaching perfect consonances",
-      "resume0": "Counterpoint = two melodically independent voices that agree vertically",
-      "resume1": "Fux's 5 species: note against note, 2 against 1, syncopations/suspensions, florid figures, florid counterpoint",
-      "resume2": "Invention No. 1 BWV 772 (Bach): subject and answer traded between the two hands, modulating to the dominant"
-    },
-    "cours14": {
-      "intuition": "Modal harmony doesn't build tension to resolve — it sets a color and holds it, carefully avoiding the move to the dominant that would break the spell.",
-      "badge": "Messiaen · The Technique of My Musical Language",
-      "citation": "The charm of impossibilities lies above all in this very impossibility of escaping the mode without turning back: this is what gives these harmonies their very particular atmosphere.",
-      "auteur": "Olivier Messiaen, 1944",
-      "voix0": "Modal harmony oscillates around the tonic through color, not through tension to resolve",
-      "voix1": "Avoid V7→I: this progression introduces the leading tone missing from the mode and breaks the modal atmosphere",
-      "voix2": "A single \"characteristic\" chord (containing the mode's distinctive note) is enough to set the color",
-      "titre": "First Gymnopédie",
-      "compositeur": "Erik Satie",
-      "piege0erreur": "Looking for a dominant or a tonal resolution in a progression that has none",
-      "piege0correction": "Recognize a coloristic oscillation (e.g. IV-I with no V at all) and analyze it as such, not as an \"incomplete\" tonality",
-      "resume0": "Modal harmony = a color held in place, not tension followed by resolution (unlike tonal harmony)",
-      "resume1": "The V7→I motion is avoided: it would introduce the leading tone and break the mode's atmosphere",
-      "resume2": "\"First Gymnopédie\" (Satie): IVmaj7-Imaj7 looping over 9 measures, never a dominant"
-    },
-    "cours15": {
-      "intuition": "The II-V-I isn't a fixed formula — it's a skeleton that jazz dresses up with extensions, substitutions, and secondary dominants, link after link, without ever losing the thread back to the tonic.",
-      "badge": "Aebersold · Jazz Handbook",
-      "citation": "The jazz musician doesn't play chords: they play lines that tell the story of the chords, always anticipating the one that's coming next.",
-      "auteur": "Jamey Aebersold, 1967",
-      "voix0": "A secondary dominant (V7/X) briefly tonicizes degree X before resolving to it",
-      "voix1": "The tritone substitute (subV7) replaces a dominant with the 7th chord a tritone away — same tension, a bass line that descends by half-step",
-      "voix2": "A chain of secondary dominants forms a descending sequence of fifths, the backbone of many standards",
-      "titre": "Autumn Leaves",
-      "compositeur": "Joseph Kosma",
-      "piege0erreur": "Analyzing each chord in isolation without spotting the secondary dominant that precedes it",
-      "piege0correction": "Always check whether a dominant chord resolves a half-step or a fifth away to a degree other than the tonic — that's a secondary dominant (V7/X)",
-      "resume0": "A chain of secondary dominants (V7/III, subV7/VI, V7/V...) briefly tonicizes each degree before the final resolution",
-      "resume1": "The tritone substitute replaces a dominant with its tritone: same tension (3rd/7th swapped), chromatic bass",
-      "resume2": "\"Autumn Leaves\" (Kosma): descending iv-VII-III-VI-ii°/V-V-i sequence, then a V7/IV turnaround that closes the loop"
-    },
-    "cours16": {
-      "intuition": "Reharmonizing isn't about replacing a melody — it's about finding it new traveling companions: every substituted chord must still carry the melody note without betraying it.",
-      "badge": "Levine · The Jazz Piano Book",
-      "citation": "A good reharmonization doesn't change what the melody plays — it changes what it says.",
-      "auteur": "Mark Levine, 1989",
-      "voix0": "Before validating a substituted chord, check that each melody note is still the 1st, 3rd, 5th, 7th, or an extension of the new chord",
-      "voix1": "A secondary dominant can replace a diatonic chord with its own V7 (e.g. V/IV instead of a borrowed chord)",
-      "voix2": "Favor stepwise motion in the inner voices — a technically correct but jarring reharmonization always sounds wrong",
-      "titre": "My Funny Valentine",
-      "compositeur": "Richard Rodgers",
-      "piege0erreur": "Introducing a secondary dominant whose extension contradicts a note already present in the melody",
-      "piege0correction": "Always check the new chord color against the actual melody note before validating it",
-      "resume0": "Reharmonizing = replacing the chords under an untouched melody, keeping every melody note compatible with its new chord",
-      "resume1": "Secondary dominants (V/V, V/IV) and tritone substitutes are the most common tools",
-      "resume2": "\"My Funny Valentine\" (Bill Evans): minor cadence iiø7-V7alt-i preceded by a subdominant excursion (IV9-IV13sus)"
     }
   },
   "satb": {

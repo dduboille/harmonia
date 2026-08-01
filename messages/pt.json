@@ -264,6 +264,34 @@
       "maitrePeriod": "1732–1809",
       "maitreAnecdote": "Em sua Sinfonia n.° 94, conhecida como «A Surpresa», Haydn utiliza uma cadência inesperada para despertar o público. Após uma longa frase suave, um acorde fortissimo irrompe exatamente onde o ouvinte esperava uma resolução tranquila. Haydn adorava brincar com as expectativas — para ele, a cadência não era apenas uma conclusão, mas uma ferramenta dramática.",
       "maitreLesson": "A cadência é a pontuação da música: ela pode afirmar, questionar ou surpreender."
+    },
+    "conservatoire": {
+      "intuition": "A cadência é a pontuação do discurso musical — uma vírgula, um ponto e vírgula, um ponto final conforme o tipo.",
+      "reference": {
+        "badge": "Aldwell & Schachter · Harmony and Voice Leading",
+        "citation": "As cadências articulam a forma musical em todos os níveis, da frase à composição inteira.",
+        "auteur": "Aldwell & Schachter, 2003"
+      },
+      "voix": [
+        "A cadência perfeita (V–I) exige a fundamental no baixo E no soprano",
+        "A cadência imperfeita (V–I com terça no soprano) conclui menos definitivamente",
+        "A cadência interrompida (V–VI) engana a expectativa — uso expressivo"
+      ],
+      "repertoire": {
+        "titre": "Coral BWV 227 'Jesu, meine Freude'",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Colocar uma cadência interrompida no final de uma peça",
+          "correction": "A cadência interrompida relança o discurso — reservar a cadência perfeita para as conclusões"
+        }
+      ],
+      "resume": [
+        "4 cadências: perfeita, imperfeita, meia-cadência (I–V), interrompida (V–VI)",
+        "Cadência perfeita = acorde de tônica em posição fundamental",
+        "A cadência estrutura a forma: período, seção, movimento"
+      ]
     }
   },
   "cours5": {
@@ -347,6 +375,34 @@
       "maitreCardConcept": "Empréstimos e progressões clássicas",
       "maitreCardAnecdote": "Chopin possuía uma capacidade extraordinária de 'tomar emprestados' acordes menores em tonalidade maior para mudar instantaneamente a cor emocional de uma frase. Seus contemporâneos descreviam esse efeito como uma nuvem que passa diante do sol — em um único acorde, a atmosfera passava do luminoso ao tempestuoso, sem jamais abandonar a tonalidade.",
       "maitreCardLesson": "Não mudamos de tonalidade — mudamos temporariamente de iluminação."
+    },
+    "conservatoire": {
+      "intuition": "O empréstimo modal é o claro-escuro da harmonia tonal — uma nota estranha que coloriza sem romper a tonalidade.",
+      "reference": {
+        "badge": "Gallon & Truchot · Précis d'harmonie",
+        "citation": "O empréstimo é uma modulação interrompida que enriquece a paleta harmônica sem sair da tonalidade.",
+        "auteur": "Jean Gallon, 1947"
+      },
+      "voix": [
+        "O acorde de sexta napolitana (bII em 1ª inversão) prepara a dominante",
+        "Os acordes de região menor (bVI, bVII) são frequentemente emprestados em maior",
+        "Resolver as alterações cromáticas na direção de sua tensão"
+      ],
+      "repertoire": {
+        "titre": "Sonata D.845 mvt.I",
+        "compositeur": "F. Schubert"
+      },
+      "pieges": [
+        {
+          "erreur": "Tomar emprestado sem resolver as alterações",
+          "correction": "Toda nota emprestada cria uma tensão que deve resolver-se nas vozes afetadas"
+        }
+      ],
+      "resume": [
+        "Empréstimo = acorde de uma tonalidade paralela ou relativa",
+        "Sexta napolitana: bII6 → V → I",
+        "Região modal: acordes maiores sobre graus naturalmente menores"
+      ]
     }
   },
   "cours6": {
@@ -518,6 +574,34 @@
       "ac4Desc": "Cada voz é um motivo melodicamente autônomo. Exige o domínio da condução de vozes.",
       "ac4Usage": "Fugas, invenções, corais de Bach.",
       "ac4Tension": "Muito elevada — densidade polifônica máxima."
+    },
+    "conservatoire": {
+      "intuition": "As notas estranhas são a pimenta da harmonia — criam a dissonância que torna a consonância desejável.",
+      "reference": {
+        "badge": "Piston · Harmony",
+        "citation": "Os sons não harmônicos são o tempero da textura musical; usados com discrição acrescentam variedade e movimento adiante.",
+        "auteur": "Walter Piston, 1941"
+      },
+      "voix": [
+        "A suspensão é preparada consonante, atacada dissonante, resolvida descendente",
+        "Um pedal de tônica ou dominante pode suportar harmonias estranhas",
+        "As bordaduras (notas auxiliares) nunca dobram o baixo em seu ponto de dissonância"
+      ],
+      "repertoire": {
+        "titre": "Noturno op.9 n°2",
+        "compositeur": "F. Chopin"
+      },
+      "pieges": [
+        {
+          "erreur": "Resolver uma suspensão para cima",
+          "correction": "A suspensão resolve sempre por movimento descendente (exceto raras exceções barrocas)"
+        }
+      ],
+      "resume": [
+        "Notas estranhas: passagem, bordadura, suspensão, antecipação, escapada, cambiata",
+        "Suspensão: preparação → dissonância → resolução",
+        "Pedal: nota sustentada sob harmonias mutáveis"
+      ]
     }
   },
   "cours7": {
@@ -590,6 +674,34 @@
       "chainesTip": "<strong>Combinação possível:</strong> em uma tonicização, todas as regras coexistem. Pode-se combinar substituições diatônicas, empréstimos do homônimo, napolitano — desde que se tome como referência o trítono da tonalidade temporária.",
       "inversionH3": "Escolher a inversão correta",
       "inversionP": "Para cada progressão, escolha a inversão que garanta a melhor condução de vozes."
+    },
+    "conservatoire": {
+      "intuition": "A dominante secundária é um raio de sol em outra tonalidade — toniciza momentaneamente um grau sem realmente modular.",
+      "reference": {
+        "badge": "Levine · The Jazz Theory Book",
+        "citation": "As dominantes secundárias tonicizam temporariamente os graus da escala, criando cor harmônica sem modulação completa.",
+        "auteur": "Mark Levine, 1995"
+      },
+      "voix": [
+        "V/V (dominante da dominante) eleva a cadência autêntica",
+        "Cada grau exceto VII pode ser precedido de sua dominante secundária",
+        "As dominantes secundárias introduzem alterações cromáticas a resolver"
+      ],
+      "repertoire": {
+        "titre": "Intermezzo op.118 n°2",
+        "compositeur": "J. Brahms"
+      },
+      "pieges": [
+        {
+          "erreur": "Aplicar V/IV em maior (produz um acorde de IV menor inesperado)",
+          "correction": "Verificar a qualidade do acorde tonicizado antes de aplicar a dominante secundária"
+        }
+      ],
+      "resume": [
+        "V7/X → X: tonicização temporária",
+        "Alterações sempre resolvidas no sentido cromático",
+        "Frequentes em jazz e música do período romântico"
+      ]
     }
   },
   "cours8": {
@@ -703,6 +815,34 @@
       "maitreCardConcept": "Modulação por acorde pivô",
       "maitreCardAnecdote": "Em seus quartetos chamados 'Dissonância', Mozart utiliza acordes pivô tão sutis que os músicos da época acreditavam se tratar de erros de impressão na partitura. A transição de uma tonalidade para outra era tão natural que o ouvido não percebia a mudança — só se dava conta depois de que se encontrava em um novo país musical.",
       "maitreCardLesson": "A modulação é uma viagem: o acorde pivô é a porta invisível para um novo mundo."
+    },
+    "conservatoire": {
+      "intuition": "O acorde pivô é a ponte entre duas tonalidades — o mesmo acorde, duas funções, uma transição imperceptível.",
+      "reference": {
+        "badge": "Aldwell & Schachter · Harmony and Voice Leading",
+        "citation": "O acorde pivô pertence simultaneamente às duas tonalidades, tornando a modulação suave e lógica.",
+        "auteur": "Aldwell & Schachter, 2003"
+      },
+      "voix": [
+        "Escolher o pivô entre os acordes comuns às duas tonalidades",
+        "Confirmar a nova tonalidade com uma cadência autêntica após o pivô",
+        "A modulação para tonalidades vizinhas (±1 sustenido/bemol) é a mais fluida"
+      ],
+      "repertoire": {
+        "titre": "Sonata op.27 n°2 'Claro de Lua' mvt.I",
+        "compositeur": "L. van Beethoven"
+      },
+      "pieges": [
+        {
+          "erreur": "Usar um acorde diminuto como pivô (ambiguidade excessiva)",
+          "correction": "Preferir acordes maiores ou menores como pivô para garantir a clareza tonal"
+        }
+      ],
+      "resume": [
+        "Acorde pivô = comum à tonalidade de partida e de chegada",
+        "Modulações próximas: relativas, paralelas, quinta superior/inferior",
+        "Confirmar sempre com cadência na nova tonalidade"
+      ]
     }
   },
   "cours9": {
@@ -830,6 +970,34 @@
       "maitreCardConcept": "Modulações avançadas e pedais",
       "maitreCardAnecdote": "Em O Rei dos Elfos, Schubert utiliza uma nota de pedal no piano — uma nota grave repetida obstinadament — para simular o galope obsessivo do cavalo. Enquanto isso, a harmonia enlouquece, modulando para tonalidades cada vez mais sombrias. O pedal permanece fixo como uma âncora enquanto tudo afunda ao redor.",
       "maitreCardLesson": "O pedal cria uma poderosa tensão psicológica ao permanecer fixo enquanto tudo se move ao redor."
+    },
+    "conservatoire": {
+      "intuition": "A marcha harmônica é a repetição de um motivo melódico-harmônico em intervalos regulares — cria uma lógica interna perceptível mesmo sem conhecimento teórico.",
+      "reference": {
+        "badge": "Schönberg · Harmonielehre",
+        "citation": "As sequências são a ferramenta mais poderosa do desenvolvimento tonal; geram tanto expectativa quanto surpresa.",
+        "auteur": "Arnold Schönberg, 1911"
+      },
+      "voix": [
+        "A marcha harmônica (sequência) se transpõe à mesma qualidade de intervalo",
+        "As marchas tonais mantêm a tonalidade; as reais a abandonam",
+        "As notas comuns fundamentam as transições cromáticas"
+      ],
+      "repertoire": {
+        "titre": "Chacona BWV 1004",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Realizar uma marcha real conservando todas as alterações do tom inicial",
+          "correction": "A marcha real transpõe exatamente os intervalos; as alterações mudam conforme o grau"
+        }
+      ],
+      "resume": [
+        "Marcha tonal: transposição no mesmo tom (intervalos diatônicos)",
+        "Marcha real: transposição exata (intervalos cromáticos idênticos)",
+        "Cromatismo: alterações não diatônicas enriquecendo a harmonia sem modular"
+      ]
     }
   },
   "cours1": {
@@ -919,6 +1087,34 @@
       "intNaturePerfAug": "justa / aumentada",
       "intNatureDimPerfAug": "dim. / justa / aum.",
       "intNaturePerf": "justa"
+    },
+    "conservatoire": {
+      "intuition": "Antes de qualquer teoria, a escala é uma experiência física — sentir a tensão dos semitons e a resolução em direção à tônica.",
+      "reference": {
+        "badge": "Dubois · Traité d'Harmonie",
+        "citation": "A escala é o alfabeto do músico; sem ela, nenhuma frase pode ser escrita.",
+        "auteur": "Théodore Dubois, 1901"
+      },
+      "voix": [
+        "Os semitons diatônicos (mi–fá, si–dó) criam as tensões harmônicas fundamentais",
+        "Cada grau possui uma função: tônica, dominante, subdominante",
+        "A sensível (VII) sobe obrigatoriamente em direção à tônica na voz do soprano"
+      ],
+      "repertoire": {
+        "titre": "Prelúdio em Dó maior BWV 846",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Usar a escala menor natural na dominante",
+          "correction": "Sempre elevar a sensível (VII#) no contexto harmônico menor"
+        }
+      ],
+      "resume": [
+        "Escala = 7 graus, 2 semitons diatônicos",
+        "Sensível obrigatoriamente ascendente",
+        "Modos gregos derivados das rotações da escala maior"
+      ]
     }
   },
   "cours2": {
@@ -1022,6 +1218,34 @@
       "invDesc2": "A quinta está no baixo. Mais instável, frequentemente usado como acorde de passagem.",
       "invDesc3": "A sétima está no baixo. Cor muito suspensa — impulsiona fortemente em direção à resolução.",
       "invNomsFondamental": "Estado fundamental"
+    },
+    "conservatoire": {
+      "intuition": "Um acorde não é uma sobreposição de notas mas uma tensão entre elas — compreender os intervalos é ouvir a harmonia antes de lê-la.",
+      "reference": {
+        "badge": "Piston · Harmony",
+        "citation": "Todo acorde tem uma personalidade determinada pelos intervalos que contém.",
+        "auteur": "Walter Piston, 1941"
+      },
+      "voix": [
+        "O acorde de dominante (V) contém o trítono si–fá que resolve no acorde de tônica",
+        "As quintas e oitavas paralelas entre vozes são proibidas",
+        "Dobrar a fundamental no estado fundamental, a terça no primeiro estado de inversão"
+      ],
+      "repertoire": {
+        "titre": "Sonata op.13 'Patética' mvt.II",
+        "compositeur": "L. van Beethoven"
+      },
+      "pieges": [
+        {
+          "erreur": "Dobrar a terça do acorde de dominante (sensível)",
+          "correction": "Dobrar a fundamental ou a quinta, nunca a sensível"
+        }
+      ],
+      "resume": [
+        "Tríade = fundamental + terça + quinta",
+        "Acorde perfeito maior: terça M + quinta J",
+        "Inversões: 1ª (terça no baixo), 2ª (quinta no baixo)"
+      ]
     }
   },
   "cours3": {
@@ -1127,6 +1351,34 @@
       "maitreCardConcept": "Condução de vozes",
       "maitreCardAnecdote": "Brahms era obcecado com a pureza da escrita a quatro vozes. Caçava quintas e oitavas paralelas como faltas de gosto absolutas, anotando em vermelho as cópias de seus alunos. Dizia que duas vozes que se movem juntas em quintas deixam de existir como vozes independentes — tornam-se uma única e mesma cor.",
       "maitreCardLesson": "A condução de vozes é a arte de tornar cada linha melódica independente e fluida."
+    },
+    "conservatoire": {
+      "intuition": "A função harmônica é o papel dramatúrgico de cada acorde no discurso musical — a tônica repousa, a dominante tende, a subdominante prepara.",
+      "reference": {
+        "badge": "Schönberg · Harmonielehre",
+        "citation": "A harmonia não é um fim em si mesma, mas um meio de expressão.",
+        "auteur": "Arnold Schönberg, 1911"
+      },
+      "voix": [
+        "A progressão autêntica V–I é a cadência por excelência",
+        "A cadência plagal IV–I conclui suavemente (cadência amém)",
+        "Evitar movimentos de baixo por trítono não resolvido"
+      ],
+      "repertoire": {
+        "titre": "Sinfonia n°40 KV550, mvt.I",
+        "compositeur": "W.A. Mozart"
+      },
+      "pieges": [
+        {
+          "erreur": "Encadear IV–V–IV (retrocesso funcional)",
+          "correction": "Respeitar o sentido tonal: T → S → D → T"
+        }
+      ],
+      "resume": [
+        "Funções: Tônica (I, III, VI), Dominante (V, VII), Subdominante (II, IV)",
+        "Cadência autêntica V–I = fechamento forte",
+        "O trítono em V7 resolve: si→dó, fá→mi"
+      ]
     }
   },
   "cours10": {
@@ -1188,6 +1440,34 @@
       "maitreLesson": "Um modo não é uma escala com uma nota diferente — é uma cor harmônica, uma maneira de ouvir o mundo.",
       "maitrePeriod": "1926–1991",
       "maitreConcept": "Modos"
+    },
+    "conservatoire": {
+      "intuition": "Um modo é a mesma escala maior vista a partir de outro grau — a paisagem não muda, só muda o ponto de escuta, e com ele toda a cor da música.",
+      "reference": {
+        "badge": "Russell · Lydian Chromatic Concept",
+        "citation": "Cada modo tem a sua própria gravidade tonal, independente de qualquer função harmónica clássica.",
+        "auteur": "George Russell, 1953"
+      },
+      "voix": [
+        "O dórico (2º grau) é o modo menor mais luminoso: a sua 6ª maior distingue-o da escala menor natural",
+        "Uma peça modal pode permanecer num único acorde durante vários compassos — a cor substitui o movimento harmónico",
+        "Sem dominante nem cadência, é o grau característico do modo (aqui a 6ª do dórico) que carrega toda a sua identidade"
+      ],
+      "repertoire": {
+        "titre": "So What",
+        "compositeur": "Miles Davis"
+      },
+      "pieges": [
+        {
+          "erreur": "Procurar uma cadência V–I numa peça modal como «So What»",
+          "correction": "A música modal não cadencia: colore um centro tonal fixo, sem nunca se afastar dele nem voltar através de uma dominante"
+        }
+      ],
+      "resume": [
+        "7 modos = 7 rotações da mesma escala, cada um com a sua própria tónica",
+        "O dórico colore o menor com uma 6ª maior: o modo mais usado no jazz modal",
+        "«So What» (Miles Davis, 1959): um vamp em ré dórico, sem harmonia funcional"
+      ]
     }
   },
   "cours11": {
@@ -1271,6 +1551,34 @@
       "quizPoolInfo": "questões no banco",
       "quizNextBtn": "Próxima questão →",
       "quizFinishBtn": "Ver minha pontuação"
+    },
+    "conservatoire": {
+      "intuition": "Uma extensão é uma cor que se empilha acima da 7ª — a 9ª, a 11ª e a 13ª não mudam a função do acorde, enriquecem o seu timbre sem o trair.",
+      "reference": {
+        "badge": "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
+        "citation": "Cada tensão disponível colore o acorde sem mudar a sua função fundamental, desde que sejam respeitadas as notas a evitar da escala em que se apoia.",
+        "auteur": "Barrie Nettles & Richard Graf, 1997"
+      },
+      "voix": [
+        "A 9ª (maior), a 11ª (justa ou aumentada) e a 13ª (maior) são as tensões mais consonantes dos acordes de sétima",
+        "Uma alteração (b9, #9, #11, b13) colore fortemente um acorde de dominante sem mudar a sua função",
+        "Num acorde menor 7, a 9ª está quase sempre disponível; a 11ª natural choca com a 3ª maior de um acorde maior"
+      ],
+      "repertoire": {
+        "titre": "All the Things You Are",
+        "compositeur": "Jerome Kern"
+      },
+      "pieges": [
+        {
+          "erreur": "Adicionar a 11ª natural a um acorde de dominante ou maior (choca com a 3ª)",
+          "correction": "Preferir a 11ª aumentada (#11) nestes acordes, ou omitir a extensão"
+        }
+      ],
+      "resume": [
+        "9ª = 2º grau na oitava superior, 11ª = 4º, 13ª = 6º",
+        "#9 e b9 são tensões típicas do acorde de dominante alterado",
+        "«All the Things You Are» (Kern/Hammerstein): um vamp introdutório construído inteiramente com acordes de dominante alterados (#9)"
+      ]
     }
   },
   "cours12": {
@@ -1347,6 +1655,34 @@
       "quizFeedbackKeepGoing": "Continue ouvindo as duas resoluções — o ouvido se educa pela comparação!",
       "quizNextBtn": "Próxima pergunta →",
       "quizScoreBtn": "Ver minha pontuação"
+    },
+    "conservatoire": {
+      "intuition": "Dois acordes de dominante situados a um trítono de distância partilham exatamente o mesmo trítono — a sua tensão é idêntica, só muda a direção em que o baixo resolve.",
+      "reference": {
+        "badge": "Mulholland & Hojnacki · The Berklee Book of Jazz Harmony",
+        "citation": "Qualquer acorde de dominante pode ser substituído pelo construído um trítono mais além: ambos partilham a mesma 3ª e 7ª, simplesmente trocadas.",
+        "auteur": "Joe Mulholland & Tom Hojnacki, 2013"
+      },
+      "voix": [
+        "V7 e bII7 (subV7) partilham o mesmo trítono (3ª e 7ª trocadas) — a tensão de resolução é idêntica",
+        "A substituição de trítono cria um movimento de baixo cromático descendente para o acorde de resolução",
+        "É particularmente eficaz mesmo antes de um acorde de tónica"
+      ],
+      "repertoire": {
+        "titre": "Satin Doll",
+        "compositeur": "Duke Ellington"
+      },
+      "pieges": [
+        {
+          "erreur": "Usar a substituição de trítono num acorde que não é um V7 funcional genuíno",
+          "correction": "Reservar subV7 para dominantes (V7 ou dominantes secundárias), nunca para um acorde de tónica ou subdominante"
+        }
+      ],
+      "resume": [
+        "subV7 = acorde de dominante construído um trítono acima (ou abaixo) de V7",
+        "Os dois acordes partilham 3ª e 7ª (apenas trocadas): mesma tensão, resolução diferente",
+        "«Satin Doll» (Ellington): Réb7 substitui Sol7 (subV7) mesmo antes do regresso a Dó maior"
+      ]
     }
   },
   "cours13": {
@@ -1440,6 +1776,34 @@
       "maitreLesson": "Escrever duas vozes independentes é mais difícil do que escrever uma única voz complexa. Cada voz deve ter sua própria vida — e, no entanto, juntas devem formar uma harmonia coerente.",
       "maitrePeriod": "1660–1741",
       "maitreConcept": "Contraponto"
+    },
+    "conservatoire": {
+      "intuition": "O contraponto consiste em escrever uma segunda voz com vida melódica própria que, ao mesmo tempo, concorde com a primeira a cada instante — duas linhas que se respondem, nunca uma simples harmonia duplicada.",
+      "reference": {
+        "badge": "Fux · Gradus ad Parnassum",
+        "citation": "O contraponto é a arte de combinar vozes ou partes de modo que concordem entre si segundo certas leis fixas.",
+        "auteur": "Johann Joseph Fux, 1725"
+      },
+      "voix": [
+        "Nota contra nota (1ª espécie): as consonâncias perfeitas (8ª, 5ª) abordam-se preferencialmente por movimento contrário ou oblíquo",
+        "O movimento contrário entre as duas vozes é a forma mais segura de evitar quintas e oitavas paralelas",
+        "Cada voz mantém a sua independência melódica — sem cruzamentos nem uníssonos prolongados"
+      ],
+      "repertoire": {
+        "titre": "Invenção n.º 1 BWV 772",
+        "compositeur": "J.S. Bach"
+      },
+      "pieges": [
+        {
+          "erreur": "Fazer avançar as duas vozes por movimento direto em direção a uma quinta ou uma oitava",
+          "correction": "Preferir o movimento contrário ou oblíquo para abordar as consonâncias perfeitas"
+        }
+      ],
+      "resume": [
+        "Contraponto = duas vozes melodicamente independentes que concordam verticalmente",
+        "As 5 espécies de Fux: nota contra nota, 2 contra 1, síncopas/retardos, floreios, contraponto florido",
+        "Invenção n.º 1 BWV 772 (Bach): sujeito e resposta trocados entre as duas mãos, modula para a dominante"
+      ]
     }
   },
   "cours14": {
@@ -1526,6 +1890,34 @@
       "maitrePeriod": "1862–1918",
       "maitreConcept": "Harmonia modal",
       "questionLabel": "Questão"
+    },
+    "conservatoire": {
+      "intuition": "A harmonia modal não cria tensão para resolver — ela estabelece uma cor e a mantém, evitando justamente o movimento em direção à dominante que quebraria o encanto.",
+      "reference": {
+        "badge": "Messiaen · Técnica da minha linguagem musical",
+        "citation": "O encanto das impossibilidades reside sobretudo nessa própria impossibilidade de sair do modo sem voltar atrás: é isso que dá a essas harmonias sua atmosfera tão particular.",
+        "auteur": "Olivier Messiaen, 1944"
+      },
+      "voix": [
+        "A harmonia modal oscila em torno da tônica por cor, não por tensão a resolver",
+        "Evitar V7→I: esse encadeamento introduz a sensível ausente do modo e quebra a atmosfera modal",
+        "Um acorde «característico» (contendo a nota distintiva do modo) basta para instalar a cor"
+      ],
+      "repertoire": {
+        "titre": "Primeira Gymnopédie",
+        "compositeur": "Erik Satie"
+      },
+      "pieges": [
+        {
+          "erreur": "Procurar uma dominante ou uma resolução tonal numa progressão que não tem nenhuma",
+          "correction": "Reconhecer uma oscilação colorista (ex. IV-I sem nunca V) e analisá-la como tal, não como uma tonalidade «incompleta»"
+        }
+      ],
+      "resume": [
+        "Harmonia modal = cor mantida, não tensão seguida de resolução (ao contrário da harmonia tonal)",
+        "O movimento V7→I é evitado: introduziria a sensível e quebraria a atmosfera do modo",
+        "«Primeira Gymnopédie» (Satie): IVmaj7-Imaj7 em loop por 9 compassos, nunca uma dominante"
+      ]
     }
   },
   "cours15": {
@@ -1582,6 +1974,34 @@
       "quizPoolLabel": "perguntas no banco",
       "quizNextBtn": "Próxima pergunta →",
       "quizFinishBtn": "Ver minha pontuação"
+    },
+    "conservatoire": {
+      "intuition": "O II-V-I não é uma fórmula fixa — é um esqueleto que o jazz veste com extensões, substituições e dominantes secundárias, elo após elo, sem nunca perder o fio que leva de volta à tônica.",
+      "reference": {
+        "badge": "Aebersold · Jazz Handbook",
+        "citation": "O músico de jazz não toca acordes: ele toca linhas que contam a história dos acordes, sempre antecipando o próximo.",
+        "auteur": "Jamey Aebersold, 1967"
+      },
+      "voix": [
+        "Uma dominante secundária (V7/X) toniciza brevemente o grau X antes de resolver nele",
+        "O substituto tritônico (subV7) substitui uma dominante pelo acorde de sétima a um trítono de distância — mesma tensão, baixo que desce por semitom",
+        "Uma cadeia de dominantes secundárias forma uma sequência descendente por quintas, a espinha dorsal de muitos standards"
+      ],
+      "repertoire": {
+        "titre": "Autumn Leaves",
+        "compositeur": "Joseph Kosma"
+      },
+      "pieges": [
+        {
+          "erreur": "Analisar cada acorde isoladamente sem perceber a dominante secundária que o precede",
+          "correction": "Verificar sempre se um acorde dominante resolve um semitom ou uma quinta adiante para um grau diferente da tônica — isso é uma dominante secundária (V7/X)"
+        }
+      ],
+      "resume": [
+        "Uma cadeia de dominantes secundárias (V7/III, subV7/VI, V7/V...) toniciza brevemente cada grau antes da resolução final",
+        "O substituto tritônico substitui uma dominante pelo seu trítono: mesma tensão (3ª/7ª trocadas), baixo cromático",
+        "«Autumn Leaves» (Kosma): sequência descendente iv-VII-III-VI-ii°/V-V-i, seguida de um turnaround V7/IV que fecha o ciclo"
+      ]
     }
   },
   "cours16": {
@@ -1661,6 +2081,34 @@
       "maitreCardConcept": "Rearmonização & impressionismo jazz",
       "maitreCardAnecdote": "Evans toca Autumn Leaves em seu primeiro álbum solo (1956) e o ouvinte reconhece a melodia familiar — mas os acordes mudaram. FMaj7 tornou-se Fm, G7 tornou-se Db7. Sem alterar uma única nota da melodia de Joseph Kosma, Evans transformou um standard primaveril em um noturno melancólico.",
       "maitreCardLesson": "A rearmonização não é virtuosismo — é escuta. Antes de substituir um acorde, pergunte-se: a melodia ainda se ouve? O novo acorde diz algo que o original não podia dizer?"
+    },
+    "conservatoire": {
+      "intuition": "Reharmonizar não é substituir uma melodia — é encontrar-lhe novos companheiros de viagem: cada acorde substituído ainda precisa carregar a nota melódica sem traí-la.",
+      "reference": {
+        "badge": "Levine · The Jazz Piano Book",
+        "citation": "Uma boa reharmonização não muda o que a melodia toca — muda o que ela conta.",
+        "auteur": "Mark Levine, 1989"
+      },
+      "voix": [
+        "Antes de validar um acorde substituído, verificar se cada nota melódica continua sendo a 1ª, 3ª, 5ª, 7ª ou uma extensão desse novo acorde",
+        "Uma dominante secundária pode substituir um acorde diatônico pelo seu próprio V7 (ex. V/IV no lugar de um acorde emprestado)",
+        "Preferir o movimento conjunto nas vozes internas — uma reharmonização correta mas brusca sempre soa errada"
+      ],
+      "repertoire": {
+        "titre": "My Funny Valentine",
+        "compositeur": "Richard Rodgers"
+      },
+      "pieges": [
+        {
+          "erreur": "Introduzir uma dominante secundária cuja extensão contradiz uma nota já presente na melodia",
+          "correction": "Sempre confrontar a nova cor do acorde com a nota melódica real antes de validá-la"
+        }
+      ],
+      "resume": [
+        "Reharmonizar = substituir os acordes sob uma melodia intacta, mantendo cada nota melódica compatível com seu novo acorde",
+        "Dominantes secundárias (V/V, V/IV) e substitutos tritônicos são as ferramentas mais comuns",
+        "«My Funny Valentine» (Bill Evans): cadência menor iiø7-V7alt-i precedida de uma incursão pela subdominante (IV9-IV13sus)"
+      ]
     }
   },
   "cours17": {
@@ -3954,264 +4402,6 @@
       "quizPoolInfo": "perguntas no total",
       "quizNextBtn": "Pergunta seguinte →",
       "quizFinishBtn": "Ver a pontuação →"
-    }
-  },
-  "conservatoire": {
-    "cours1": {
-      "intuition": "Antes de qualquer teoria, a escala é uma experiência física — sentir a tensão dos semitons e a resolução em direção à tônica.",
-      "badge": "Dubois · Traité d'Harmonie",
-      "citation": "A escala é o alfabeto do músico; sem ela, nenhuma frase pode ser escrita.",
-      "auteur": "Théodore Dubois, 1901",
-      "voix0": "Os semitons diatônicos (mi–fá, si–dó) criam as tensões harmônicas fundamentais",
-      "voix1": "Cada grau possui uma função: tônica, dominante, subdominante",
-      "voix2": "A sensível (VII) sobe obrigatoriamente em direção à tônica na voz do soprano",
-      "piege0erreur": "Usar a escala menor natural na dominante",
-      "piege0correction": "Sempre elevar a sensível (VII#) no contexto harmônico menor",
-      "resume0": "Escala = 7 graus, 2 semitons diatônicos",
-      "resume1": "Sensível obrigatoriamente ascendente",
-      "resume2": "Modos gregos derivados das rotações da escala maior",
-      "titre": "Prelúdio em Dó maior BWV 846",
-      "compositeur": "J.S. Bach"
-    },
-    "cours2": {
-      "intuition": "Um acorde não é uma sobreposição de notas mas uma tensão entre elas — compreender os intervalos é ouvir a harmonia antes de lê-la.",
-      "badge": "Piston · Harmony",
-      "citation": "Todo acorde tem uma personalidade determinada pelos intervalos que contém.",
-      "auteur": "Walter Piston, 1941",
-      "voix0": "O acorde de dominante (V) contém o trítono si–fá que resolve no acorde de tônica",
-      "voix1": "As quintas e oitavas paralelas entre vozes são proibidas",
-      "voix2": "Dobrar a fundamental no estado fundamental, a terça no primeiro estado de inversão",
-      "piege0erreur": "Dobrar a terça do acorde de dominante (sensível)",
-      "piege0correction": "Dobrar a fundamental ou a quinta, nunca a sensível",
-      "resume0": "Tríade = fundamental + terça + quinta",
-      "resume1": "Acorde perfeito maior: terça M + quinta J",
-      "resume2": "Inversões: 1ª (terça no baixo), 2ª (quinta no baixo)",
-      "titre": "Sonata op.13 'Patética' mvt.II",
-      "compositeur": "L. van Beethoven"
-    },
-    "cours3": {
-      "intuition": "A função harmônica é o papel dramatúrgico de cada acorde no discurso musical — a tônica repousa, a dominante tende, a subdominante prepara.",
-      "badge": "Schönberg · Harmonielehre",
-      "citation": "A harmonia não é um fim em si mesma, mas um meio de expressão.",
-      "auteur": "Arnold Schönberg, 1911",
-      "voix0": "A progressão autêntica V–I é a cadência por excelência",
-      "voix1": "A cadência plagal IV–I conclui suavemente (cadência amém)",
-      "voix2": "Evitar movimentos de baixo por trítono não resolvido",
-      "piege0erreur": "Encadear IV–V–IV (retrocesso funcional)",
-      "piege0correction": "Respeitar o sentido tonal: T → S → D → T",
-      "resume0": "Funções: Tônica (I, III, VI), Dominante (V, VII), Subdominante (II, IV)",
-      "resume1": "Cadência autêntica V–I = fechamento forte",
-      "resume2": "O trítono em V7 resolve: si→dó, fá→mi",
-      "titre": "Sinfonia n°40 KV550, mvt.I",
-      "compositeur": "W.A. Mozart"
-    },
-    "cours4": {
-      "intuition": "A cadência é a pontuação do discurso musical — uma vírgula, um ponto e vírgula, um ponto final conforme o tipo.",
-      "badge": "Aldwell & Schachter · Harmony and Voice Leading",
-      "citation": "As cadências articulam a forma musical em todos os níveis, da frase à composição inteira.",
-      "auteur": "Aldwell & Schachter, 2003",
-      "voix0": "A cadência perfeita (V–I) exige a fundamental no baixo E no soprano",
-      "voix1": "A cadência imperfeita (V–I com terça no soprano) conclui menos definitivamente",
-      "voix2": "A cadência interrompida (V–VI) engana a expectativa — uso expressivo",
-      "piege0erreur": "Colocar uma cadência interrompida no final de uma peça",
-      "piege0correction": "A cadência interrompida relança o discurso — reservar a cadência perfeita para as conclusões",
-      "resume0": "4 cadências: perfeita, imperfeita, meia-cadência (I–V), interrompida (V–VI)",
-      "resume1": "Cadência perfeita = acorde de tônica em posição fundamental",
-      "resume2": "A cadência estrutura a forma: período, seção, movimento",
-      "titre": "Coral BWV 227 'Jesu, meine Freude'",
-      "compositeur": "J.S. Bach"
-    },
-    "cours5": {
-      "intuition": "O empréstimo modal é o claro-escuro da harmonia tonal — uma nota estranha que coloriza sem romper a tonalidade.",
-      "badge": "Gallon & Truchot · Précis d'harmonie",
-      "citation": "O empréstimo é uma modulação interrompida que enriquece a paleta harmônica sem sair da tonalidade.",
-      "auteur": "Jean Gallon, 1947",
-      "voix0": "O acorde de sexta napolitana (bII em 1ª inversão) prepara a dominante",
-      "voix1": "Os acordes de região menor (bVI, bVII) são frequentemente emprestados em maior",
-      "voix2": "Resolver as alterações cromáticas na direção de sua tensão",
-      "piege0erreur": "Tomar emprestado sem resolver as alterações",
-      "piege0correction": "Toda nota emprestada cria uma tensão que deve resolver-se nas vozes afetadas",
-      "resume0": "Empréstimo = acorde de uma tonalidade paralela ou relativa",
-      "resume1": "Sexta napolitana: bII6 → V → I",
-      "resume2": "Região modal: acordes maiores sobre graus naturalmente menores",
-      "titre": "Sonata D.845 mvt.I",
-      "compositeur": "F. Schubert"
-    },
-    "cours6": {
-      "intuition": "As notas estranhas são a pimenta da harmonia — criam a dissonância que torna a consonância desejável.",
-      "badge": "Piston · Harmony",
-      "citation": "Os sons não harmônicos são o tempero da textura musical; usados com discrição acrescentam variedade e movimento adiante.",
-      "auteur": "Walter Piston, 1941",
-      "voix0": "A suspensão é preparada consonante, atacada dissonante, resolvida descendente",
-      "voix1": "Um pedal de tônica ou dominante pode suportar harmonias estranhas",
-      "voix2": "As bordaduras (notas auxiliares) nunca dobram o baixo em seu ponto de dissonância",
-      "piege0erreur": "Resolver uma suspensão para cima",
-      "piege0correction": "A suspensão resolve sempre por movimento descendente (exceto raras exceções barrocas)",
-      "resume0": "Notas estranhas: passagem, bordadura, suspensão, antecipação, escapada, cambiata",
-      "resume1": "Suspensão: preparação → dissonância → resolução",
-      "resume2": "Pedal: nota sustentada sob harmonias mutáveis",
-      "titre": "Noturno op.9 n°2",
-      "compositeur": "F. Chopin"
-    },
-    "cours7": {
-      "intuition": "A dominante secundária é um raio de sol em outra tonalidade — toniciza momentaneamente um grau sem realmente modular.",
-      "badge": "Levine · The Jazz Theory Book",
-      "citation": "As dominantes secundárias tonicizam temporariamente os graus da escala, criando cor harmônica sem modulação completa.",
-      "auteur": "Mark Levine, 1995",
-      "voix0": "V/V (dominante da dominante) eleva a cadência autêntica",
-      "voix1": "Cada grau exceto VII pode ser precedido de sua dominante secundária",
-      "voix2": "As dominantes secundárias introduzem alterações cromáticas a resolver",
-      "piege0erreur": "Aplicar V/IV em maior (produz um acorde de IV menor inesperado)",
-      "piege0correction": "Verificar a qualidade do acorde tonicizado antes de aplicar a dominante secundária",
-      "resume0": "V7/X → X: tonicização temporária",
-      "resume1": "Alterações sempre resolvidas no sentido cromático",
-      "resume2": "Frequentes em jazz e música do período romântico",
-      "titre": "Intermezzo op.118 n°2",
-      "compositeur": "J. Brahms"
-    },
-    "cours8": {
-      "intuition": "O acorde pivô é a ponte entre duas tonalidades — o mesmo acorde, duas funções, uma transição imperceptível.",
-      "badge": "Aldwell & Schachter · Harmony and Voice Leading",
-      "citation": "O acorde pivô pertence simultaneamente às duas tonalidades, tornando a modulação suave e lógica.",
-      "auteur": "Aldwell & Schachter, 2003",
-      "voix0": "Escolher o pivô entre os acordes comuns às duas tonalidades",
-      "voix1": "Confirmar a nova tonalidade com uma cadência autêntica após o pivô",
-      "voix2": "A modulação para tonalidades vizinhas (±1 sustenido/bemol) é a mais fluida",
-      "piege0erreur": "Usar um acorde diminuto como pivô (ambiguidade excessiva)",
-      "piege0correction": "Preferir acordes maiores ou menores como pivô para garantir a clareza tonal",
-      "resume0": "Acorde pivô = comum à tonalidade de partida e de chegada",
-      "resume1": "Modulações próximas: relativas, paralelas, quinta superior/inferior",
-      "resume2": "Confirmar sempre com cadência na nova tonalidade",
-      "titre": "Sonata op.27 n°2 'Claro de Lua' mvt.I",
-      "compositeur": "L. van Beethoven"
-    },
-    "cours9": {
-      "intuition": "A marcha harmônica é a repetição de um motivo melódico-harmônico em intervalos regulares — cria uma lógica interna perceptível mesmo sem conhecimento teórico.",
-      "badge": "Schönberg · Harmonielehre",
-      "citation": "As sequências são a ferramenta mais poderosa do desenvolvimento tonal; geram tanto expectativa quanto surpresa.",
-      "auteur": "Arnold Schönberg, 1911",
-      "voix0": "A marcha harmônica (sequência) se transpõe à mesma qualidade de intervalo",
-      "voix1": "As marchas tonais mantêm a tonalidade; as reais a abandonam",
-      "voix2": "As notas comuns fundamentam as transições cromáticas",
-      "piege0erreur": "Realizar uma marcha real conservando todas as alterações do tom inicial",
-      "piege0correction": "A marcha real transpõe exatamente os intervalos; as alterações mudam conforme o grau",
-      "resume0": "Marcha tonal: transposição no mesmo tom (intervalos diatônicos)",
-      "resume1": "Marcha real: transposição exata (intervalos cromáticos idênticos)",
-      "resume2": "Cromatismo: alterações não diatônicas enriquecendo a harmonia sem modular",
-      "titre": "Chacona BWV 1004",
-      "compositeur": "J.S. Bach"
-    },
-    "cours10": {
-      "intuition": "Um modo é a mesma escala maior vista a partir de outro grau — a paisagem não muda, só muda o ponto de escuta, e com ele toda a cor da música.",
-      "badge": "Russell · Lydian Chromatic Concept",
-      "citation": "Cada modo tem a sua própria gravidade tonal, independente de qualquer função harmónica clássica.",
-      "auteur": "George Russell, 1953",
-      "voix0": "O dórico (2º grau) é o modo menor mais luminoso: a sua 6ª maior distingue-o da escala menor natural",
-      "voix1": "Uma peça modal pode permanecer num único acorde durante vários compassos — a cor substitui o movimento harmónico",
-      "voix2": "Sem dominante nem cadência, é o grau característico do modo (aqui a 6ª do dórico) que carrega toda a sua identidade",
-      "titre": "So What",
-      "compositeur": "Miles Davis",
-      "piege0erreur": "Procurar uma cadência V–I numa peça modal como «So What»",
-      "piege0correction": "A música modal não cadencia: colore um centro tonal fixo, sem nunca se afastar dele nem voltar através de uma dominante",
-      "resume0": "7 modos = 7 rotações da mesma escala, cada um com a sua própria tónica",
-      "resume1": "O dórico colore o menor com uma 6ª maior: o modo mais usado no jazz modal",
-      "resume2": "«So What» (Miles Davis, 1959): um vamp em ré dórico, sem harmonia funcional"
-    },
-    "cours11": {
-      "intuition": "Uma extensão é uma cor que se empilha acima da 7ª — a 9ª, a 11ª e a 13ª não mudam a função do acorde, enriquecem o seu timbre sem o trair.",
-      "badge": "Nettles & Graf · The Chord Scale Theory & Jazz Harmony",
-      "citation": "Cada tensão disponível colore o acorde sem mudar a sua função fundamental, desde que sejam respeitadas as notas a evitar da escala em que se apoia.",
-      "auteur": "Barrie Nettles & Richard Graf, 1997",
-      "voix0": "A 9ª (maior), a 11ª (justa ou aumentada) e a 13ª (maior) são as tensões mais consonantes dos acordes de sétima",
-      "voix1": "Uma alteração (b9, #9, #11, b13) colore fortemente um acorde de dominante sem mudar a sua função",
-      "voix2": "Num acorde menor 7, a 9ª está quase sempre disponível; a 11ª natural choca com a 3ª maior de um acorde maior",
-      "titre": "All the Things You Are",
-      "compositeur": "Jerome Kern",
-      "piege0erreur": "Adicionar a 11ª natural a um acorde de dominante ou maior (choca com a 3ª)",
-      "piege0correction": "Preferir a 11ª aumentada (#11) nestes acordes, ou omitir a extensão",
-      "resume0": "9ª = 2º grau na oitava superior, 11ª = 4º, 13ª = 6º",
-      "resume1": "#9 e b9 são tensões típicas do acorde de dominante alterado",
-      "resume2": "«All the Things You Are» (Kern/Hammerstein): um vamp introdutório construído inteiramente com acordes de dominante alterados (#9)"
-    },
-    "cours12": {
-      "intuition": "Dois acordes de dominante situados a um trítono de distância partilham exatamente o mesmo trítono — a sua tensão é idêntica, só muda a direção em que o baixo resolve.",
-      "badge": "Mulholland & Hojnacki · The Berklee Book of Jazz Harmony",
-      "citation": "Qualquer acorde de dominante pode ser substituído pelo construído um trítono mais além: ambos partilham a mesma 3ª e 7ª, simplesmente trocadas.",
-      "auteur": "Joe Mulholland & Tom Hojnacki, 2013",
-      "voix0": "V7 e bII7 (subV7) partilham o mesmo trítono (3ª e 7ª trocadas) — a tensão de resolução é idêntica",
-      "voix1": "A substituição de trítono cria um movimento de baixo cromático descendente para o acorde de resolução",
-      "voix2": "É particularmente eficaz mesmo antes de um acorde de tónica",
-      "titre": "Satin Doll",
-      "compositeur": "Duke Ellington",
-      "piege0erreur": "Usar a substituição de trítono num acorde que não é um V7 funcional genuíno",
-      "piege0correction": "Reservar subV7 para dominantes (V7 ou dominantes secundárias), nunca para um acorde de tónica ou subdominante",
-      "resume0": "subV7 = acorde de dominante construído um trítono acima (ou abaixo) de V7",
-      "resume1": "Os dois acordes partilham 3ª e 7ª (apenas trocadas): mesma tensão, resolução diferente",
-      "resume2": "«Satin Doll» (Ellington): Réb7 substitui Sol7 (subV7) mesmo antes do regresso a Dó maior"
-    },
-    "cours13": {
-      "intuition": "O contraponto consiste em escrever uma segunda voz com vida melódica própria que, ao mesmo tempo, concorde com a primeira a cada instante — duas linhas que se respondem, nunca uma simples harmonia duplicada.",
-      "badge": "Fux · Gradus ad Parnassum",
-      "citation": "O contraponto é a arte de combinar vozes ou partes de modo que concordem entre si segundo certas leis fixas.",
-      "auteur": "Johann Joseph Fux, 1725",
-      "voix0": "Nota contra nota (1ª espécie): as consonâncias perfeitas (8ª, 5ª) abordam-se preferencialmente por movimento contrário ou oblíquo",
-      "voix1": "O movimento contrário entre as duas vozes é a forma mais segura de evitar quintas e oitavas paralelas",
-      "voix2": "Cada voz mantém a sua independência melódica — sem cruzamentos nem uníssonos prolongados",
-      "titre": "Invenção n.º 1 BWV 772",
-      "compositeur": "J.S. Bach",
-      "piege0erreur": "Fazer avançar as duas vozes por movimento direto em direção a uma quinta ou uma oitava",
-      "piege0correction": "Preferir o movimento contrário ou oblíquo para abordar as consonâncias perfeitas",
-      "resume0": "Contraponto = duas vozes melodicamente independentes que concordam verticalmente",
-      "resume1": "As 5 espécies de Fux: nota contra nota, 2 contra 1, síncopas/retardos, floreios, contraponto florido",
-      "resume2": "Invenção n.º 1 BWV 772 (Bach): sujeito e resposta trocados entre as duas mãos, modula para a dominante"
-    },
-    "cours14": {
-      "intuition": "A harmonia modal não cria tensão para resolver — ela estabelece uma cor e a mantém, evitando justamente o movimento em direção à dominante que quebraria o encanto.",
-      "badge": "Messiaen · Técnica da minha linguagem musical",
-      "citation": "O encanto das impossibilidades reside sobretudo nessa própria impossibilidade de sair do modo sem voltar atrás: é isso que dá a essas harmonias sua atmosfera tão particular.",
-      "auteur": "Olivier Messiaen, 1944",
-      "voix0": "A harmonia modal oscila em torno da tônica por cor, não por tensão a resolver",
-      "voix1": "Evitar V7→I: esse encadeamento introduz a sensível ausente do modo e quebra a atmosfera modal",
-      "voix2": "Um acorde «característico» (contendo a nota distintiva do modo) basta para instalar a cor",
-      "titre": "Primeira Gymnopédie",
-      "compositeur": "Erik Satie",
-      "piege0erreur": "Procurar uma dominante ou uma resolução tonal numa progressão que não tem nenhuma",
-      "piege0correction": "Reconhecer uma oscilação colorista (ex. IV-I sem nunca V) e analisá-la como tal, não como uma tonalidade «incompleta»",
-      "resume0": "Harmonia modal = cor mantida, não tensão seguida de resolução (ao contrário da harmonia tonal)",
-      "resume1": "O movimento V7→I é evitado: introduziria a sensível e quebraria a atmosfera do modo",
-      "resume2": "«Primeira Gymnopédie» (Satie): IVmaj7-Imaj7 em loop por 9 compassos, nunca uma dominante"
-    },
-    "cours15": {
-      "intuition": "O II-V-I não é uma fórmula fixa — é um esqueleto que o jazz veste com extensões, substituições e dominantes secundárias, elo após elo, sem nunca perder o fio que leva de volta à tônica.",
-      "badge": "Aebersold · Jazz Handbook",
-      "citation": "O músico de jazz não toca acordes: ele toca linhas que contam a história dos acordes, sempre antecipando o próximo.",
-      "auteur": "Jamey Aebersold, 1967",
-      "voix0": "Uma dominante secundária (V7/X) toniciza brevemente o grau X antes de resolver nele",
-      "voix1": "O substituto tritônico (subV7) substitui uma dominante pelo acorde de sétima a um trítono de distância — mesma tensão, baixo que desce por semitom",
-      "voix2": "Uma cadeia de dominantes secundárias forma uma sequência descendente por quintas, a espinha dorsal de muitos standards",
-      "titre": "Autumn Leaves",
-      "compositeur": "Joseph Kosma",
-      "piege0erreur": "Analisar cada acorde isoladamente sem perceber a dominante secundária que o precede",
-      "piege0correction": "Verificar sempre se um acorde dominante resolve um semitom ou uma quinta adiante para um grau diferente da tônica — isso é uma dominante secundária (V7/X)",
-      "resume0": "Uma cadeia de dominantes secundárias (V7/III, subV7/VI, V7/V...) toniciza brevemente cada grau antes da resolução final",
-      "resume1": "O substituto tritônico substitui uma dominante pelo seu trítono: mesma tensão (3ª/7ª trocadas), baixo cromático",
-      "resume2": "«Autumn Leaves» (Kosma): sequência descendente iv-VII-III-VI-ii°/V-V-i, seguida de um turnaround V7/IV que fecha o ciclo"
-    },
-    "cours16": {
-      "intuition": "Reharmonizar não é substituir uma melodia — é encontrar-lhe novos companheiros de viagem: cada acorde substituído ainda precisa carregar a nota melódica sem traí-la.",
-      "badge": "Levine · The Jazz Piano Book",
-      "citation": "Uma boa reharmonização não muda o que a melodia toca — muda o que ela conta.",
-      "auteur": "Mark Levine, 1989",
-      "voix0": "Antes de validar um acorde substituído, verificar se cada nota melódica continua sendo a 1ª, 3ª, 5ª, 7ª ou uma extensão desse novo acorde",
-      "voix1": "Uma dominante secundária pode substituir um acorde diatônico pelo seu próprio V7 (ex. V/IV no lugar de um acorde emprestado)",
-      "voix2": "Preferir o movimento conjunto nas vozes internas — uma reharmonização correta mas brusca sempre soa errada",
-      "titre": "My Funny Valentine",
-      "compositeur": "Richard Rodgers",
-      "piege0erreur": "Introduzir uma dominante secundária cuja extensão contradiz uma nota já presente na melodia",
-      "piege0correction": "Sempre confrontar a nova cor do acorde com a nota melódica real antes de validá-la",
-      "resume0": "Reharmonizar = substituir os acordes sob uma melodia intacta, mantendo cada nota melódica compatível com seu novo acorde",
-      "resume1": "Dominantes secundárias (V/V, V/IV) e substitutos tritônicos são as ferramentas mais comuns",
-      "resume2": "«My Funny Valentine» (Bill Evans): cadência menor iiø7-V7alt-i precedida de uma incursão pela subdominante (IV9-IV13sus)"
     }
   },
   "satb": {
