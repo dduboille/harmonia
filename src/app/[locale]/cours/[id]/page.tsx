@@ -4,7 +4,7 @@ import nextDynamic from "next/dynamic";
 import type { Metadata } from "next";
 import { auth } from "@clerk/nextjs/server";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import { getUserPlan } from "@/lib/progression";
 import { getCours, isFreeCours } from "@/lib/catalogue";
 import { CoursPaywall } from "@/components/Paywall";
@@ -81,15 +81,24 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const cours = getCours(parseInt(id));
   if (!cours) return {};
 
-  const title = `${cours.title} — Cours ${cours.num} | Harmonia`;
+  // Le titre et la description viennent des messages, pas de `catalogue.ts` :
+  // ce dernier n'existe qu'en français, si bien que /en, /es, /de, /pt et /it
+  // servaient tous des <title>, description et cartes OpenGraph françaises —
+  // alors même que le sitemap les déclare comme des versions localisées.
+  const tc = await getTranslations({ locale, namespace: `cours${cours.num}` as never });
+  const tp = await getTranslations({ locale, namespace: "paywall" });
+
+  const titreCours = tc("title");
+  const description = tc("subtitle");
+  const title = `${titreCours} — ${tp("coursNum", { num: cours.num })} | Harmonia`;
   const url = `https://www.getharmonia.app/${locale}/cours/${cours.num}`;
 
   return {
     title,
-    description: cours.desc,
+    description,
     alternates: { canonical: url },
-    openGraph: { title, description: cours.desc, url, type: "article" },
-    twitter: { card: "summary_large_image", title, description: cours.desc },
+    openGraph: { title, description, url, type: "article" },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 

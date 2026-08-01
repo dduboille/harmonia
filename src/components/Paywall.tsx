@@ -77,6 +77,12 @@ export async function CoursPaywall({
 }) {
   const isExercices = subject === "exercices";
   const t = await getTranslations({ locale, namespace: "paywall" });
+  // `cours` vient de catalogue.ts, qui n'existe qu'en français : le titre et la
+  // description affichés ici sont repris des messages, comme pour les
+  // métadonnées de la page de cours.
+  const tc = await getTranslations({ locale, namespace: `cours${cours.num}` as never });
+  const titreCours = tc("title");
+  const descCours = tc("subtitle");
 
   return (
     <main style={{ minHeight: "100vh", background: "#faf8f4", padding: "3rem 1rem" }}>
@@ -88,10 +94,10 @@ export async function CoursPaywall({
         </div>
 
         <h1 style={{ fontSize: "clamp(26px, 4vw, 36px)", fontWeight: 400, fontFamily: "Georgia, serif", color: "#1a1a1a", margin: "0 0 12px", lineHeight: 1.25 }}>
-          {isExercices ? t("exercicesTitle", { title: cours.title }) : cours.title}
+          {isExercices ? t("exercicesTitle", { title: titreCours }) : titreCours}
         </h1>
         <p style={{ fontSize: 16, color: "#4a4a4a", lineHeight: 1.7, fontFamily: "system-ui, sans-serif", margin: "0 0 20px" }}>
-          {cours.desc}
+          {descCours}
         </p>
 
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const, marginBottom: 36 }}>
