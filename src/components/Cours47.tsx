@@ -55,6 +55,8 @@ import { cours47Content, type Cours47Locale } from "@/data/cours47Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
 import StudioScore from "@/components/StudioScore";
+import { VueConservatoire } from "@/components/VueConservatoire";
+import { CONSERVATOIRE_DATA_47 } from "@/data/conservatoireData47";
 import { pieceVersMusicXML } from "@/lib/piece-vers-musicxml";
 import { specAudio, noteAudio } from "@/lib/cours-audio";
 import type { Piece, Note as PieceNote, Hauteur, LettreNote } from "@/lib/piece-model";
@@ -369,7 +371,7 @@ function AncresTable({ label, notes, headers }: { label: string; notes: string[]
 
 // ─── Composant ───────────────────────────────────────────────────────────────────
 
-const SECTIONS = ["conducteur", "cles", "transpo", "verticalite", "reduction", "equilibre", "quiz"] as const;
+const SECTIONS = ["conducteur", "cles", "transpo", "verticalite", "reduction", "equilibre", "conservatoire", "quiz"] as const;
 
 export default function Cours47() {
   const i18n = useCoursI18n("cours47");
@@ -428,7 +430,7 @@ export default function Cours47() {
       <nav style={S.nav}>
         {SECTIONS.map((id) => (
           <button key={id} style={S.pill(sec === id)} onClick={() => setSec(id)}>
-            {i18n.sectionLabel(id)}
+            {id === "conservatoire" ? "🎓 Conservatoire" : i18n.sectionLabel(id)}
           </button>
         ))}
       </nav>
@@ -652,6 +654,9 @@ export default function Cours47() {
           <div style={S.warn} dangerouslySetInnerHTML={{ __html: c.piegesWarn }} />
         </div>
       )}
+
+      {/* ══ SECTION CONSERVATOIRE ══ */}
+      {sec === "conservatoire" && <VueConservatoire data={CONSERVATOIRE_DATA_47} />}
 
       {/* ══ 7. ENTRAÎNEMENT ══ */}
       {sec === "quiz" && (
