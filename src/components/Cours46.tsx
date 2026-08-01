@@ -44,6 +44,8 @@ import { cours46Content, type Cours46Locale } from "@/data/cours46Content";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import MaitreCard from "@/components/MaitreCard";
 import StudioScore from "@/components/StudioScore";
+import { VueConservatoire } from "@/components/VueConservatoire";
+import { CONSERVATOIRE_DATA_46 } from "@/data/conservatoireData46";
 import { satbVersMusicXML } from "@/lib/satb-vers-musicxml";
 import { contrepointVersMusicXML, type CpVoix } from "@/lib/contrepoint-vers-musicxml";
 import { pieceVersMusicXML } from "@/lib/piece-vers-musicxml";
@@ -259,7 +261,7 @@ function LinkCard({ href, titre, desc, go, prominent }: {
 
 // ─── Composant ───────────────────────────────────────────────────────────────────
 
-const SECTIONS = ["intro", "carte", "squelette", "phrase", "voix", "fiche", "quiz"] as const;
+const SECTIONS = ["intro", "carte", "squelette", "phrase", "voix", "fiche", "conservatoire", "quiz"] as const;
 
 export default function Cours46() {
   const i18n = useCoursI18n("cours46");
@@ -343,7 +345,7 @@ export default function Cours46() {
       <nav style={S.nav}>
         {SECTIONS.map((id) => (
           <button key={id} style={S.pill(sec === id)} onClick={() => setSec(id)}>
-            {i18n.sectionLabel(id)}
+            {id === "conservatoire" ? "🎓 Conservatoire" : i18n.sectionLabel(id)}
           </button>
         ))}
       </nav>
@@ -505,6 +507,9 @@ export default function Cours46() {
           <div style={S.warn} dangerouslySetInnerHTML={{ __html: c.humiliteBox }} />
         </div>
       )}
+
+      {/* ══ SECTION CONSERVATOIRE ══ */}
+      {sec === "conservatoire" && <VueConservatoire data={CONSERVATOIRE_DATA_46} />}
 
       {/* ══ 7. ENTRAÎNEMENT ══ */}
       {sec === "quiz" && (
