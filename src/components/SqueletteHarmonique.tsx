@@ -125,9 +125,14 @@ export default function SqueletteHarmonique() {
   }, [sq, sel]);
 
   // ── Banque d'accords, dérivée de la tonalité + du niveau ─────────────────────
+  // L'armure EXACTE (et non déduite de la seule tonique) : le sélecteur connaît
+  // « Mib mineur », la palette doit donc écrire « Mibm » et non « Ré#m ».
   const palette = useMemo(
-    () => construirePalette(sq.tonalite.tonicPc, sq.tonalite.mode, sq.niveau),
-    [sq.tonalite.tonicPc, sq.tonalite.mode, sq.niveau],
+    () => construirePalette(
+      sq.tonalite.tonicPc, sq.tonalite.mode, sq.niveau,
+      armure(sq.tonalite.keySignature).fifths,
+    ),
+    [sq.tonalite.tonicPc, sq.tonalite.mode, sq.niveau, sq.tonalite.keySignature],
   );
 
   // ── Réalisation SATB + gravure ───────────────────────────────────────────────

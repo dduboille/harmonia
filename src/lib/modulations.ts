@@ -11,18 +11,24 @@
 import {
   analyzeChord,
   diatonicSet,
-  NOTE_FR,
   type Chord,
   type ChordResult,
 } from "./harmonic-analysis";
+import { nomNoteFr, armurePresumee } from "./orthographe-tonale";
 
 export interface Tonalite {
   tonicPc: number;
   mode: "major" | "minor";
 }
 
+/**
+ * Nom d'école d'une région tonale. L'orthographe suit l'armure de la région, pas
+ * une table chromatique : une modulation vers mi♭ mineur s'annonce « Mib mineur »
+ * et non « Ré# mineur », qui ne s'écrit dans aucun traité.
+ */
 export function nomTonalite(t: Tonalite): string {
-  return `${NOTE_FR[t.tonicPc] ?? "?"} ${t.mode === "major" ? "majeur" : "mineur"}`;
+  const nom = nomNoteFr(t.tonicPc, armurePresumee(t.tonicPc, t.mode));
+  return `${nom} ${t.mode === "major" ? "majeur" : "mineur"}`;
 }
 
 /**

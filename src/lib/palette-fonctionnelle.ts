@@ -12,11 +12,10 @@ import {
   analyzeChord,
   identifyChordFromNotes,
   pcOfDegree,
-  NOTE_FR,
-  NOTE_FR_BEMOL,
   type Fonction,
   type Categorie,
 } from "./harmonic-analysis";
+import { nomNoteFr, armurePresumee } from "./orthographe-tonale";
 
 export interface AccordPalette {
   id: string;          // = degree (unique dans une tonalité) : "V7", "ii6", "bII6"…
@@ -91,14 +90,18 @@ function candidatsChromatiques(tonicPc: number, mode: "major" | "minor"): Candid
 /**
  * Nom français d'un accord de palette, ORTHOGRAPHE COMPRISE.
  *
- * L'orthographe suit l'altération du degré : un emprunt bVI ou un napolitain bII
- * s'écrit en BÉMOLS (Lab, Réb), jamais en dièses (Sol#, Do#). Le chiffre romain
- * porte cette information — une table toute en dièses trahissait le nom, et l'élève
- * qui cherchait « Lab » ne trouvait qu'un « Sol# » méconnaissable.
+ * L'orthographe suit d'abord l'ARMURE : en mi♭ mineur (6 bémols) la tonique est
+ * « Mi♭m » et le VI « Do♭ », jamais « Ré♯m » ni « Si ». Une table chromatique
+ * figée ne peut pas le savoir — elle produisait un « Ré♯ mineur » que personne
+ * n'écrit, et l'élève qui cherchait « Mi♭ » ne le trouvait pas.
+ *
+ * Le chiffre romain garde le dernier mot quand il porte une altération : un
+ * emprunt ♭VI ou un napolitain ♭II s'écrit en bémols même en armure diésée, et
+ * une sensible ♯iv en dièses même en armure bémolisée.
  */
-function nomAccord(rootPc: number, quality: string, degree: string): string {
-  const table = degree.startsWith("b") ? NOTE_FR_BEMOL : NOTE_FR;
-  return (table[rootPc] ?? "?") + quality;
+function nomAccord(rootPc: number, quality: string, degree: string, fifths: number): string {
+  const forcer = degree.startsWith("b") ? "bemol" : degree.startsWith("#") ? "diese" : undefined;
+  return nomNoteFr(rootPc, fifths, forcer) + quality;
 }
 
 const CHROMATIQUES: Set<Categorie> = new Set([
@@ -112,7 +115,9 @@ function categoriesAutorisees(niveau: 1 | 2 | 3): Set<Categorie> {
   return new Set(["diatonique", "dominante_secondaire", "sensible_degre", "emprunt", "napolitain", "sixte_augmentee"]);
 }
 
-function etiqueter(c: Candidat, tonicPc: number, mode: "major" | "minor"): AccordPalette | null {
+function etiqueter(
+  c: Candidat, tonicPc: number, mode: "major" | "minor", fifths: number,
+): AccordPalette | null {
   const chord = identifyChordFromNotes(c.pcs, c.bassPc);
   if (!chord) return null;
   chord.spelled = undefined; // les recettes ne portent pas d'orthographe fine ; la sixte augm.
@@ -120,7 +125,7 @@ function etiqueter(c: Candidat, tonicPc: number, mode: "major" | "minor"): Accor
   const r = analyzeChord(chord, tonicPc, mode);
   return {
     id: r.degree,
-    nom: nomAccord(r.rootPc, r.quality, r.degree),
+    nom: nomAccord(r.rootPc, r.quality, r.degree, fifths),
     pcs: r.pcs,
     bassPc: c.bassPc,
     degree: r.degree,
@@ -131,6 +136,8 @@ function etiqueter(c: Candidat, tonicPc: number, mode: "major" | "minor"): Accor
 
 export function construirePalette(
   tonicPc: number, mode: "major" | "minor", niveau: 1 | 2 | 3,
+  /** Armure réelle (ParsedScore.fifths, Piece.armure). Déduite de la tonique si absente. */
+  fifths: number = armurePresumee(tonicPc, mode),
 ): GroupeFonctionnel[] {
   const candidats: Candidat[] = [];
 
@@ -168,7 +175,7 @@ export function construirePalette(
 
   const autorisees = categoriesAutorisees(niveau);
   const etiquetes = candidats
-    .map((c) => etiqueter(c, tonicPc, mode))
+    .map((c) => etiqueter(c, tonicPc, mode, fifths))
     .filter((a): a is AccordPalette => a !== null && autorisees.has(a.categorie));
 
   // Dédoublonnage par degré (deux recettes peuvent tomber sur la même étiquette).
@@ -192,16 +199,17 @@ export function construirePalette(
 /** Résout un id de palette OU un nom d'accord d'exercice ("C", "G7") en accord étiqueté. */
 export function resoudreAccord(
   idOuNom: string, tonicPc: number, mode: "major" | "minor",
+  fifths: number = armurePresumee(tonicPc, mode),
 ): AccordPalette | null {
   // 1) un id de palette ? (on régénère la palette du niveau maximal et on cherche)
-  for (const g of construirePalette(tonicPc, mode, 3)) {
+  for (const g of construirePalette(tonicPc, mode, 3, fifths)) {
     const trouve = g.accords.find((a) => a.id === idOuNom);
     if (trouve) return trouve;
   }
   // 2) sinon, un nom d'accord "Root+qualité", fondamentale à la basse.
   const pcs = nomVersPcs(idOuNom);
   if (!pcs) return null;
-  return etiqueter({ pcs, bassPc: pcs[0] }, tonicPc, mode);
+  return etiqueter({ pcs, bassPc: pcs[0] }, tonicPc, mode, fifths);
 }
 
 const NAME_PC: Record<string, number> = {

@@ -101,11 +101,27 @@ const FIFTHS_PC_MAJEUR = new Map<number, number>([
  * partage l'armure 2♭ de Si♭ majeur, et doit donc s'écrire en bémols lui aussi.
  */
 function armureConventionnelle(tonicPc: number, mode: "major" | "minor"): number {
+  // Une tonique a DEUX armures possibles quand elle tombe sur une touche noire :
+  // mi♭ mineur, ce sont 6 bémols, mais ré♯ mineur ce sont 6 dièses — même hauteur.
+  // On retient la plus simple, et à égalité stricte (6♭ contre 6♯) le côté bémol,
+  // qui est celui de l'usage : on écrit mi♭ mineur et sol♭ majeur, pas ré♯ mineur.
+  //
+  // Parcourir la table dans son ordre d'insertion, comme le faisait cette fonction,
+  // renvoyait la PREMIÈRE armure trouvée : les valeurs positives étant listées en
+  // premier, mi♭ mineur ressortait à +6 et tout s'écrivait en dièses — la tonique
+  // affichée « Ré♯m » au lieu de « Mi♭m ».
+  let meilleure = 0;
+  let meilleurScore = Infinity;
   for (const [fifths, majPc] of FIFTHS_PC_MAJEUR) {
     const pc = mode === "minor" ? (majPc + 9) % 12 : majPc;
-    if (pc === tonicPc) return fifths;
+    if (pc !== tonicPc) continue;
+    const score = Math.abs(fifths) * 2 + (fifths > 0 ? 1 : 0);
+    if (score < meilleurScore) {
+      meilleurScore = score;
+      meilleure = fifths;
+    }
   }
-  return 0;
+  return meilleure;
 }
 
 /**

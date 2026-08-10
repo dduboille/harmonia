@@ -89,3 +89,47 @@ describe("resoudreAccord — id de palette OU nom d'accord", () => {
     expect(resoudreAccord("???", DO, "major")).toBeNull();
   });
 });
+
+describe("construirePalette — l'orthographe suit l'armure, pas la touche du piano", () => {
+  const MIB = 3;   // mib mineur : 6 bémols
+  const nomDuDegre = (accords: { degree: string; nom: string }[], degre: string) =>
+    accords.find((a) => a.degree === degre)?.nom;
+
+  it("mib mineur : la tonique est « Mibm », jamais « Ré#m »", () => {
+    const accords = construirePalette(MIB, "minor", 2).flatMap((g) => g.accords);
+    expect(nomDuDegre(accords, "i")).toBe("Mibm");
+    expect(accords.every((a) => !a.nom.startsWith("Ré#"))).toBe(true);
+  });
+
+  it("mib mineur : les sept degrés portent leur nom d'armure", () => {
+    const accords = construirePalette(MIB, "minor", 2).flatMap((g) => g.accords);
+    expect(nomDuDegre(accords, "III")).toBe("Solb");
+    expect(nomDuDegre(accords, "iv")).toBe("Labm");
+    expect(nomDuDegre(accords, "VII")).toBe("Réb");
+    // Le VI s'écrit Dob : « Si » sonnerait pareil mais ne s'écrit pas en mib mineur.
+    expect(nomDuDegre(accords, "VI")).toBe("Dob");
+  });
+
+  it("mib majeur : I, IV et V sont Mib, Lab et Sib", () => {
+    const accords = construirePalette(MIB, "major", 1).flatMap((g) => g.accords);
+    expect(nomDuDegre(accords, "I")).toBe("Mib");
+    expect(nomDuDegre(accords, "IV")).toBe("Lab");
+    expect(nomDuDegre(accords, "V")).toBe("Sib");
+  });
+
+  it("une armure diésée garde ses dièses", () => {
+    const accords = construirePalette(4, "major", 1).flatMap((g) => g.accords);  // Mi majeur
+    expect(nomDuDegre(accords, "I")).toBe("Mi");
+    expect(nomDuDegre(accords, "IV")).toBe("La");
+    expect(nomDuDegre(accords, "V")).toBe("Si");
+    expect(accords.every((a) => !a.nom.includes("b"))).toBe(true);
+  });
+
+  it("l'armure explicite l'emporte sur la déduction quand elle est fournie", () => {
+    // Même hauteur de tonique (3), deux tonalités : mib mineur (6♭) et ré# mineur (6♯).
+    const enBemols = construirePalette(MIB, "minor", 1, -6).flatMap((g) => g.accords);
+    const enDieses = construirePalette(MIB, "minor", 1, 6).flatMap((g) => g.accords);
+    expect(nomDuDegre(enBemols, "i")).toBe("Mibm");
+    expect(nomDuDegre(enDieses, "i")).toBe("Ré#m");
+  });
+});
