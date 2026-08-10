@@ -13,14 +13,28 @@
  */
 
 import { KEY_ACCIDENTALS } from "@/lib/key-accidentals";
+import { nomNoteEn } from "@/lib/orthographe-tonale";
 
 export const NOMS_DIESES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 export const NOMS_BEMOLS = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
 export const NOMS_NEUTRE = ["C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
 
-/** Table d'orthographe des hauteurs d'après le nombre de quintes de l'armure. */
+/**
+ * Table d'orthographe des hauteurs d'après le nombre de quintes de l'armure.
+ *
+ * Les trois tables figées ci-dessus s'arrêtent aux cinq bémols usuels : ni `Cb`
+ * ni `Fb` n'y figurent, si bien qu'une armure à six ou sept bémols gravait un
+ * « B » là où mi♭ mineur écrit « Cb ». Au-delà du cas neutre, la table est donc
+ * calculée depuis le cycle des quintes, qui les atteint.
+ *
+ * Do majeur / la mineur gardent leur table écrite à la main : le choix d'y
+ * graver Réb plutôt que Do♯ (l'emprunt au mineur parallèle est plus courant
+ * qu'une sensible de dominante secondaire) est délibéré, et l'armure vide ne
+ * permet pas de le déduire.
+ */
 export function nomsPourArmure(fifths: number): string[] {
-  return fifths < 0 ? NOMS_BEMOLS : fifths > 0 ? NOMS_DIESES : NOMS_NEUTRE;
+  if (fifths === 0) return NOMS_NEUTRE;
+  return Array.from({ length: 12 }, (_, pc) => nomNoteEn(pc, fifths));
 }
 
 /** Glyphe d'altération affiché en fonction du nombre de demi-tons. */
@@ -36,11 +50,23 @@ export function decoderNom(nom: string): { step: string; alter: number } {
   return { step, alter };
 }
 
-/** MIDI → hauteur écrite, orthographiée selon la table de l'armure (`noms`). */
+/** Classe de hauteur de chaque lettre, pour retrouver l'octave d'une orthographe. */
+const PC_LETTRE: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+
+/**
+ * MIDI → hauteur écrite, orthographiée selon la table de l'armure (`noms`).
+ *
+ * L'octave se déduit de la LETTRE retenue, pas de la hauteur : Si3 et Do♭4 sont
+ * la même touche, mais « Do » appartient à l'octave suivante. Prendre
+ * `Math.floor(midi / 12) - 1` puis y coller un `Cb` gravait un Do♭3, une
+ * septième trop bas — inoffensif tant que la table ne contenait aucun `Cb`,
+ * faux dès qu'elle en contient.
+ */
 export function decoderMidi(midi: number, noms: string[]): { step: string; alter: number; octave: number } {
   const pc = ((midi % 12) + 12) % 12;
-  const octave = Math.floor(midi / 12) - 1;
-  return { ...decoderNom(noms[pc]), octave };
+  const { step, alter } = decoderNom(noms[pc]);
+  const octave = (midi - PC_LETTRE[step] - alter) / 12 - 1;
+  return { step, alter, octave };
 }
 
 /**
