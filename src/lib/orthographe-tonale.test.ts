@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { nomNoteFr, nomNoteEn, armurePresumee } from "./orthographe-tonale";
+import { nomNoteFr, nomNoteEn, nomEtOctaveEn, armurePresumee } from "./orthographe-tonale";
+import { noteToMidi } from "./satb-rules";
 
 /** Armures usuelles, pour lire les cas ci-dessous sans compter sur ses doigts. */
 const DO_MAJEUR = 0;
@@ -147,5 +148,85 @@ describe("armurePresumee — le repli quand seule la hauteur est connue", () => 
     // Fa# majeur (+6) et Solb majeur (-6) sont aussi simples l'un que l'autre ;
     // on retient le premier trouvé, ce qui reste cohérent d'un appel à l'autre.
     expect(Math.abs(armurePresumee(6, "major"))).toBe(6);
+  });
+});
+
+describe("nomNoteFr — l'équilibre distance / altération", () => {
+  const MIB_MINEUR = -6;
+
+  it("le VI de mib mineur est Dob, plus proche de l'armure qu'un Si sans altération", () => {
+    expect(nomNoteFr(11, MIB_MINEUR)).toBe("Dob");
+  });
+
+  it("mais le #4 reste un La bécarre, et non le Sibb que la seule distance donnerait", () => {
+    // Sibb est plus proche de l'armure que La ; la double altération le disqualifie.
+    expect(nomNoteFr(9, MIB_MINEUR)).toBe("La");
+  });
+
+  it("aucune armure ne produit de double altération sur une note diatonique", () => {
+    for (let f = -7; f <= 7; f++) {
+      for (let pc = 0; pc < 12; pc++) {
+        const n = nomNoteFr(pc, f);
+        // Une double altération reste possible sur une note très éloignée, mais
+        // jamais là où une orthographe à une seule altération est aussi proche.
+        if (/(##|bb)/.test(n)) {
+          const simple = ["Do", "Ré", "Mi", "Fa", "Sol", "La", "Si"].some(
+            (l) => nomNoteFr(pc, f) === l,
+          );
+          expect(simple, `armure=${f} pc=${pc} → ${n}`).toBe(false);
+        }
+      }
+    }
+  });
+});
+
+describe("nomNoteFr — la sensible haussée du mineur relève de l'appelant", () => {
+  it("en ré mineur, l'armure seule écrirait Réb : c'est à l'appelant de forcer le dièse", () => {
+    // Do# et Réb sont à distance égale de l'armure d'un bémol ; l'armure ne peut
+    // pas trancher. Les appelants qui connaissent le mode (générateur SATB,
+    // `noteFrContextuel`) forcent le dièse pour le 7e degré haussé.
+    expect(nomNoteFr(1, -1, "diese")).toBe("Do#");
+  });
+
+  it("en do mineur, forcer le dièse donne bien un Si bécarre, pas un Si#", () => {
+    expect(nomNoteFr(11, -3, "diese")).toBe("Si");
+  });
+});
+
+describe("nomEtOctaveEn — l'octave suit l'orthographe, pas la hauteur", () => {
+  const MIB_MINEUR = -6;
+
+  it("Si3 et Dob4 sont la même touche, mais pas la même octave écrite", () => {
+    // MIDI 59 : « Si » l'écrit à l'octave 3, « Dob » à l'octave 4.
+    expect(nomEtOctaveEn(59, 0)).toEqual({ name: "B", octave: 3 });
+    expect(nomEtOctaveEn(59, MIB_MINEUR)).toEqual({ name: "Cb", octave: 4 });
+  });
+
+  it("le nom rendu se relit TOUJOURS à la hauteur d'origine", () => {
+    // C'est l'invariant qui compte : sans lui, un Dob se relisait une septième
+    // trop bas et faussait tout le contrôle de conduite des voix.
+    for (let f = -7; f <= 7; f++) {
+      for (let midi = 36; midi <= 84; midi++) {
+        const { name, octave } = nomEtOctaveEn(midi, f);
+        expect(noteToMidi(name, octave), `armure=${f} midi=${midi} → ${name}${octave}`).toBe(midi);
+      }
+    }
+  });
+});
+
+describe("noteToMidi — lit toutes les orthographes", () => {
+  it("les altérations rares ne retombent plus silencieusement sur Do", () => {
+    expect(noteToMidi("Cb", 4)).toBe(59);   // = Si3
+    expect(noteToMidi("B", 3)).toBe(59);
+    expect(noteToMidi("Fb", 4)).toBe(64);   // = Mi4
+    expect(noteToMidi("E#", 4)).toBe(65);   // = Fa4
+    expect(noteToMidi("B#", 3)).toBe(60);   // = Do4
+  });
+
+  it("les orthographes usuelles restent inchangées", () => {
+    expect(noteToMidi("C", 4)).toBe(60);
+    expect(noteToMidi("C#", 4)).toBe(61);
+    expect(noteToMidi("Db", 4)).toBe(61);
+    expect(noteToMidi("Bb", 3)).toBe(58);
   });
 });

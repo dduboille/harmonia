@@ -105,13 +105,26 @@ export function noteName(name: string): string {
   return map[name] || name;
 }
 
+const LETTRE_PC: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+
+/**
+ * MIDI d'une note écrite, TOUTE orthographe comprise.
+ *
+ * L'ancienne version cherchait le nom dans une table de douze dièses après
+ * quelques `replace` : elle ne connaissait que les cinq bémols usuels, et tout
+ * le reste — Do♭, Fa♭, Mi♯, Si♯, les doubles altérations — tombait sur un
+ * `indexOf` à -1 silencieusement ramené à Do. Les armures à six et sept bémols
+ * étaient donc invalidables, et une seule note en Do♭ suffisait à fausser tout
+ * le contrôle de conduite des voix.
+ *
+ * On lit maintenant la lettre puis ses altérations, comme le fait déjà `pcDe`
+ * de `releve-model.ts`. Un Do♭ à l'octave 4 sonne bien un demi-ton sous Do4.
+ */
 export function noteToMidi(name: string, octave: number): number {
-  const base = CHROMATIC_ORDER.indexOf(
-    name.replace("b", "#").replace("Db", "C#")
-      .replace("Eb", "D#").replace("Gb", "F#")
-      .replace("Ab", "G#").replace("Bb", "A#")
-  );
-  return (octave + 1) * 12 + (base === -1 ? 0 : base);
+  const m = /^([A-G])(#{1,2}|b{1,2})?$/.exec(name);
+  if (!m) return (octave + 1) * 12;
+  const alteration = m[2] ? (m[2][0] === "#" ? m[2].length : -m[2].length) : 0;
+  return (octave + 1) * 12 + LETTRE_PC[m[1]] + alteration;
 }
 
 /** Pitch class (0-11) d'une case remplie. */

@@ -26,6 +26,8 @@
 import type { ProgressionTemplate } from "@/data/progressions-templates";
 import { voiceProgression, type ChordSpec, type SpecEntry, type VoicedMeasure } from "@/lib/voicing-ecole";
 import { validateSATB, type Measure } from "@/lib/satb-rules";
+import { armure } from "@/lib/midi-vers-musicxml";
+import { nomNoteEn, nomEtOctaveEn } from "@/lib/orthographe-tonale";
 
 // ── Types publics ──────────────────────────────────────────────────────────────
 
@@ -75,8 +77,19 @@ const MIN_QUAL = ["min","dim","maj","min","maj","maj","maj"] as const;
 
 // ── Helpers de nom ───────────────────────────────────────────────────────────
 
+/**
+ * Orthographe d'une hauteur DANS L'ARMURE de l'exercice.
+ *
+ * `FLAT_NAMES` ne contenait ni `Cb` ni `Fb` : les armures a 6 et 7 bemols en
+ * etaient donc inaccessibles, et mi bemol mineur ecrivait « B » la ou il faut
+ * « Cb ». On passe par le cycle des quintes, qui les atteint.
+ *
+ * La sensible haussee du mineur ne passe PAS par ici : `makeToEntry` la force en
+ * amont (Re m -> Do#, jamais Reb), car c'est une note chromatique que l'armure
+ * seule orthographierait a l'envers.
+ */
 function noteName(pc: number, key: string): string {
-  return FLAT_KEYS.has(key) ? FLAT_NAMES[pc % 12] : SHARP_NAMES[pc % 12];
+  return nomNoteEn(pc, armure(key).fifths);
 }
 
 // ── Orthographe de la sensible en mineur (miroir de exercises/generator.ts) ────
@@ -254,10 +267,12 @@ function makeToEntry(key: string, mode: "major"|"minor") {
   const ltPc = (tonicPc + 11) % 12;
   const ltName = mode === "minor" ? raisedSeventhSpelling(tonicNameOf(key), ltPc) : "";
   const ltForce = mode === "minor" && SAFE_NAMES.has(ltName);
+  const { fifths } = armure(key);
   return (midi: number): { name: string; octave: number } => {
-    const octave = Math.floor(midi / 12) - 1;
-    if (ltForce && pcOf(midi) === ltPc) return { name: ltName, octave };
-    return { name: noteName(pcOf(midi), key), octave };
+    if (ltForce && pcOf(midi) === ltPc) return { name: ltName, octave: Math.floor(midi / 12) - 1 };
+    // L'octave suit l'ORTHOGRAPHE : un Do♭ appartient à l'octave au-dessus du Si
+    // qui sonne comme lui, sans quoi la note se relit une septième trop bas.
+    return nomEtOctaveEn(midi, fifths);
   };
 }
 

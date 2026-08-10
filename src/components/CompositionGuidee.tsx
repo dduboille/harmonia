@@ -8,6 +8,7 @@ import StudioScore from './StudioScore';
 import { MELODIES } from '@/data/melodies-exercices';
 import type { MelodyExercise, MelodyNote } from '@/types/composition';
 import { construirePalette, resoudreAccord, type AccordPalette } from '@/lib/palette-fonctionnelle';
+import { armure } from '@/lib/midi-vers-musicxml';
 import { realiserSATB, type Voicing } from '@/lib/satb-voicing';
 import { corrigerHarmonisation, type CorrectionResult } from '@/lib/correction-harmonisation';
 import { compositionGuideeVersMusicXML, type AccompagnementSegment } from '@/lib/composition-guidee-vers-musicxml';
@@ -33,9 +34,14 @@ function midiToNameOct(midi: number): { name: string; octave: number } {
  * Tonalité de l'exercice → { classe de la tonique, mode } que le moteur attend.
  * "Am"/"Cm"/"Em" portent le suffixe `m` : on l'ôte pour lire la fondamentale.
  */
-function exerciseTonic(ex: MelodyExercise): { tonicPc: number; mode: 'major' | 'minor' } {
+function exerciseTonic(
+  ex: MelodyExercise,
+): { tonicPc: number; mode: 'major' | 'minor'; fifths: number } {
   const tonicPc = PC_FROM_NAME[ex.keySignature.replace(/m$/, '')] ?? 0;
-  return { tonicPc, mode: ex.isMinor ? 'minor' : 'major' };
+  // L'ARMURE, et pas seulement la hauteur de la tonique : une classe de hauteur
+  // ne distingue pas mi♭ mineur (6 bémols) de ré♯ mineur (6 dièses), et la
+  // palette écrirait « Ré#m » pour un exercice noté en mi♭ mineur.
+  return { tonicPc, mode: ex.isMinor ? 'minor' : 'major', fifths: armure(ex.keySignature).fifths };
 }
 
 /**
@@ -46,9 +52,9 @@ function exerciseTonic(ex: MelodyExercise): { tonicPc: number; mode: 'major' | '
  */
 function realiserPourJeton(
   jeton: string, sopMidi: number, prev: Voicing | null,
-  tonicPc: number, mode: 'major' | 'minor',
+  tonicPc: number, mode: 'major' | 'minor', fifths: number,
 ): Voicing | null {
-  const acc = resoudreAccord(jeton, tonicPc, mode);
+  const acc = resoudreAccord(jeton, tonicPc, mode, fifths);
   if (!acc) return null;
   return realiserSATB(acc.pcs, acc.bassPc, sopMidi, prev);
 }
@@ -93,7 +99,7 @@ function decouperMesures(notes: MelodyNote[], bpm: number): { indices: number[][
  */
 function construireAccompagnement(exercise: MelodyExercise, chords: string[][]): AccompagnementSegment[] {
   const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
-  const { tonicPc, mode } = exerciseTonic(exercise);
+  const { tonicPc, mode, fifths } = exerciseTonic(exercise);
   const { indices, milieux } = decouperMesures(exercise.notes, bpm);
   const segments: AccompagnementSegment[] = [];
   let prev: Voicing | null = null;
@@ -104,7 +110,7 @@ function construireAccompagnement(exercise: MelodyExercise, chords: string[][]):
     jetons.forEach((jeton, ci) => {
       const sopIdx = ci === 0 ? idxs[0] : milieux[mi];
       const sn = exercise.notes[sopIdx];
-      const v = realiserPourJeton(jeton, noteMidiValue(sn.note, sn.octave), prev, tonicPc, mode);
+      const v = realiserPourJeton(jeton, noteMidiValue(sn.note, sn.octave), prev, tonicPc, mode, fifths);
       if (!v) return; // jeton illisible : pas de voix d'accompagnement
       prev = v;
       segments.push({
@@ -183,10 +189,10 @@ function PaletteGrid({
   attempt: string[][];
   onChange: (mi: number, chords: string[]) => void;
 }) {
-  const { tonicPc, mode } = exerciseTonic(exercise);
+  const { tonicPc, mode, fifths } = exerciseTonic(exercise);
   const groupes = useMemo(
-    () => construirePalette(tonicPc, mode, exercise.difficulty),
-    [tonicPc, mode, exercise.difficulty],
+    () => construirePalette(tonicPc, mode, exercise.difficulty, fifths),
+    [tonicPc, mode, exercise.difficulty, fifths],
   );
   // id → accord, pour afficher le nom d'un accord déjà sélectionné.
   const parId = useMemo(() => {
@@ -498,6 +504,7 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
     bpm: number,
     tonicPc: number,
     mode: 'major' | 'minor',
+    fifths: number,
   ): Map<string, Voicing> {
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
     const map = new Map<string, Voicing>();
@@ -513,7 +520,7 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
       if (chord && !seen.has(key)) {
         seen.add(key);
         const sopMidi = noteMidiValue(note.note, note.octave);
-        const atb = realiserPourJeton(chord, sopMidi, prev, tonicPc, mode);
+        const atb = realiserPourJeton(chord, sopMidi, prev, tonicPc, mode, fifths);
         if (atb) {
           map.set(key, atb);
           prev = atb;
@@ -537,9 +544,9 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
     const piano = pianoRef.current;
     const beatSec = 60 / tempo;
     const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
-    const { tonicPc, mode } = exerciseTonic(exercise);
+    const { tonicPc, mode, fifths } = exerciseTonic(exercise);
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
-    const atbMap = buildATBMap(exercise.notes, attempt.map(m => m ?? []), bpm, tonicPc, mode);
+    const atbMap = buildATBMap(exercise.notes, attempt.map(m => m ?? []), bpm, tonicPc, mode, fifths);
 
     let globalBeat = 0;
     let measureIdx = 0;
@@ -585,9 +592,9 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
     const piano = pianoRef.current;
     const beatSec = 60 / tempo;
     const bpm = exercise.timeSignature === '4/4' ? 4 : 3;
-    const { tonicPc, mode } = exerciseTonic(exercise);
+    const { tonicPc, mode, fifths } = exerciseTonic(exercise);
     const dBeats: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
-    const atbMap = buildATBMap(exercise.notes, exercise.suggestedChords, bpm, tonicPc, mode);
+    const atbMap = buildATBMap(exercise.notes, exercise.suggestedChords, bpm, tonicPc, mode, fifths);
 
     let globalBeat = 0;
     let measureIdx = 0;
@@ -980,13 +987,13 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
                   {exercise.suggestedChords.map((sug, mi) => {
                     // Votre copie porte des ids de palette, la référence des noms d'accords.
                     // On compare sur le TERRAIN COMMUN : le degré rendu par le moteur.
-                    const { tonicPc, mode } = exerciseTonic(exercise);
+                    const { tonicPc, mode, fifths } = exerciseTonic(exercise);
                     const degresRef = new Set(
-                      sug.map(s => resoudreAccord(s, tonicPc, mode)?.degree).filter(Boolean),
+                      sug.map(s => resoudreAccord(s, tonicPc, mode, fifths)?.degree).filter(Boolean),
                     );
                     const myChords = attempt[mi] ?? [];
                     const match = myChords.some(
-                      c => degresRef.has(resoudreAccord(c, tonicPc, mode)?.degree),
+                      c => degresRef.has(resoudreAccord(c, tonicPc, mode, fifths)?.degree),
                     );
                     return (
                       <div key={mi} style={{ borderRadius: 6, overflow: 'hidden', border: `0.5px solid ${match ? '#a8d8a8' : '#e8e3db'}` }}>

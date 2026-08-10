@@ -11,11 +11,11 @@
 import type { MelodyExercise } from "@/types/composition";
 import {
   analyzeChord, annotateResolutions, identifyChordFromNotes,
-  NOTE_FR, type ChordResult, type Fonction,
+  type ChordResult, type Fonction,
 } from "./harmonic-analysis";
 import { resoudreAccord } from "./palette-fonctionnelle";
 import { classer, contigues, LIBELLE_ETRANGERE, type ContexteEtrangere, type TypeEtrangere } from "./notes-etrangeres";
-import type { ParsedNote } from "./musicxml-parse";
+import { noteNameFr, type ParsedNote } from "./musicxml-parse";
 import type { Voisinage } from "./voice-lines";
 
 const DUREE_BEATS: Record<string, number> = { whole: 4, half: 2, quarter: 1, eighth: 0.5 };
@@ -193,7 +193,9 @@ export function corrigerHarmonisation(
     if (estAccord || (typeEtr !== null && ETRANGERES_LEGITIMES.has(typeEtr))) expliquees++;
 
     notesMelodie.push({
-      nom: NOTE_FR[note.pc] ?? "?",
+      // L'orthographe ECRITE de la mélodie, pas une table chromatique : l'élève
+      // qui a saisi un Mib doit lire « Mib » dans la correction, jamais « Ré# ».
+      nom: noteNameFr(note.step, note.alter),
       mesure: note.measure,
       estAccord,
       type: estAccord ? null : typeEtr !== null ? LIBELLE_ETRANGERE[typeEtr] : null,

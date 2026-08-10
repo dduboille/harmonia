@@ -27,6 +27,8 @@ import PianoPlayer, { PianoPlayerRef, getInstrument } from "@/components/PianoPl
 import StudioScore, { StudioScoreRef } from "@/components/StudioScore";
 import FichesErreurs from "@/components/FichesErreurs";
 import { satbVersMusicXML } from "@/lib/satb-vers-musicxml";
+import { armure } from "@/lib/midi-vers-musicxml";
+import { nomEtOctaveEn } from "@/lib/orthographe-tonale";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -36,7 +38,6 @@ import type { NoteName, Voice, NoteEntry, Measure, ValidationError } from "@/lib
 import {
   VOICES,
   VOICE_RANGES,
-  CHROMATIC_ORDER,
   noteToMidi,
   noteName,
   validateSATB,
@@ -331,18 +332,16 @@ export default function HarmoniaEditor({
         const cur = { ...next[activeMeasure] };
         const v = cur[activeVoice];
         if (!v.name) return prev;
-        // Trouver position dans l'ordre chromatique
-        const normalized = v.name.replace("bb","").replace("##","")
-          .replace("b","").replace("#","").replace("n","");
-        // Utiliser noteName() pour normaliser vers dièses
-        const normSharp = noteName(v.name as string);
-        const idx = CHROMATIC_ORDER.indexOf(normSharp);
-        if (idx === -1) return prev;
-        let newIdx = idx + (e.key === "ArrowUp" ? 1 : -1);
-        let newOctave = v.octave;
-        if (newIdx > 11) { newIdx = 0; newOctave = Math.min(7, newOctave + 1); }
-        if (newIdx < 0)  { newIdx = 11; newOctave = Math.max(1, newOctave - 1); }
-        const newName = CHROMATIC_ORDER[newIdx] as NoteName;
+        // On transpose la HAUTEUR, puis on la réorthographie DANS L'ARMURE.
+        // L'ancienne version écrivait `CHROMATIC_ORDER[i]`, table toute en dièses :
+        // monter un Sol en mi♭ majeur y donnait un « Sol# » là où l'armure impose
+        // « Lab » — et la faute était écrite dans le modèle, pas seulement affichée.
+        const midi = noteToMidi(noteName(v.name as string), v.octave) + (e.key === "ArrowUp" ? 1 : -1);
+        const octaveVoulue = Math.floor(midi / 12) - 1;
+        if (octaveVoulue < 1 || octaveVoulue > 7) return prev;
+        const { name: nom, octave: oct } = nomEtOctaveEn(midi, armure(keySignature).fifths);
+        const newName = nom as NoteName;
+        const newOctave = oct;
         cur[activeVoice] = { name: newName, octave: newOctave };
         next[activeMeasure] = cur;
         // Audio

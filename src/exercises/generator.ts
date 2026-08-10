@@ -13,6 +13,8 @@ import type { SATBExercise } from "@/types/exercise";
 import { validateSATB } from "@/lib/satb-rules";
 import type { Measure } from "@/lib/satb-rules";
 import { voiceProgression, type ChordSpec } from "@/lib/voicing-ecole";
+import { armure } from "@/lib/midi-vers-musicxml";
+import { nomNoteEn, nomEtOctaveEn } from "@/lib/orthographe-tonale";
 
 // ─── Types internes ───────────────────────────────────────────────────────────
 
@@ -71,13 +73,12 @@ function noteIndex(note: string): number {
 }
 
 /** Transposes une note de `semitones` demi-tons, retourne note + octave */
-function transposeNote(rootNote: string, rootOctave: number, semitones: number, useFlats = false): { name: string; octave: number } {
+function transposeNote(rootNote: string, rootOctave: number, semitones: number, fifths = 0): { name: string; octave: number } {
   const base = noteIndex(rootNote);
   const total = base + semitones;
   const oct   = rootOctave + Math.floor(total / 12);
   const idx   = ((total % 12) + 12) % 12;
-  const sharp = CHROMATIC[idx];
-  return { name: useFlats ? (SHARP_TO_FLAT[sharp] ?? sharp) : sharp, octave: oct };
+  return { name: nomNoteEn(idx, fifths), octave: oct };
 }
 
 // ─── Orthographe de la sensible en mineur ─────────────────────────────────────
@@ -375,11 +376,13 @@ const POSITION_SHORT: Record<Position, string> = {
   0: "1 au S", 1: "3 au S", 2: "5 au S", 3: "7 au S",
 };
 
-function midiToNote(midi: number, useFlats = false): { name: string; octave: number } {
-  const oct  = Math.floor(midi / 12) - 1;
-  const idx  = ((midi % 12) + 12) % 12;
-  const sharp = CHROMATIC[idx];
-  return { name: useFlats ? (SHARP_TO_FLAT[sharp] ?? sharp) : sharp, octave: oct };
+/**
+ * Orthographie une hauteur DANS L'ARMURE. Le booléen « en bémols ? » qu'utilisait
+ * cette fonction ne pouvait pas distinguer 2 bémols de 6 : sa table s'arrêtait à
+ * Sib et n'atteignait ni Dob ni Fab, si bien que mi bémol mineur écrivait « B ».
+ */
+function midiToNote(midi: number, fifths = 0): { name: string; octave: number } {
+  return nomEtOctaveEn(midi, fifths);
 }
 
 // ─── R2a — voicings complets et conduite des voix ─────────────────────────────
@@ -480,7 +483,7 @@ export function generateExercisesForTemplate(
   const keys = ALL_KEY_DATA.filter(k => template.modes.includes(k.mode));
 
   for (const key of keys) {
-    const useFlats = FLAT_KEYS.has(key.keySignature);
+    const { fifths } = armure(key.keySignature);
     const tonicPc = noteIndex(key.root);
     const minor = key.mode === "minor";
 
@@ -490,7 +493,7 @@ export function generateExercisesForTemplate(
     const ltName = minor ? raisedSeventhSpelling(key.root, ltPc) : "";
     const ltForce = minor && SAFE_NAMES.has(ltName);
     const toEntry = (midi: number): NoteEntry => {
-      const base = midiToNote(midi, useFlats);
+      const base = midiToNote(midi, fifths);
       return ltForce && ((midi % 12) + 12) % 12 === ltPc ? { name: ltName, octave: base.octave } : base;
     };
 
@@ -498,7 +501,7 @@ export function generateExercisesForTemplate(
       // Préparer chaque accord : fondamentale transposée, intervalles/qualité effectifs.
       const chordInfos = template.chords.map(chord => {
         const degreeSemitones = degreeToSemitones(chord.degreeLabel, key.mode);
-        const chordRoot = transposeNote(key.root, 4, degreeSemitones, useFlats);
+        const chordRoot = transposeNote(key.root, 4, degreeSemitones, fifths);
         // En mineur : qualité diatoniquement correcte (i/iv mineurs, VI majeur,
         // iiø7). V7/V/V restent inchangés. En majeur : V/V → 7e de dominante,
         // IVm → triade mineure (emprunt).

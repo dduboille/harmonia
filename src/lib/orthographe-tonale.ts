@@ -66,11 +66,19 @@ function meilleurePosition(
     if (forcer === "diese" && alteration < 0) continue;
 
     const distance = Math.abs(p - centre);
-    // Critères, dans l'ordre : proximité de l'armure, puis simplicité de
-    // l'altération, puis — à égalité stricte — le côté de l'armure.
+    // Proximité de l'armure ET simplicité de l'altération se pèsent l'une contre
+    // l'autre ; ni l'une ni l'autre ne l'emporte seule.
+    //
+    // Trop de poids à la distance et le La bécarre de mi♭ mineur (le ♯4 des
+    // sixtes augmentées) devient un « Si♭♭ », plus proche de l'armure mais
+    // illisible. Trop de poids à l'altération et le VI de cette même tonalité
+    // devient un « Si », sans altération mais qu'on n'écrit jamais là. Un double
+    // dièse ou bémol coûte donc deux crans de distance : assez pour être écarté
+    // quand une note naturelle existe à distance comparable, pas assez pour
+    // renoncer à un Do♭ franchement plus proche qu'un Si.
     const score =
-      distance * 100 +
-      Math.abs(alteration) * 10 +
+      (distance + 2 * Math.abs(alteration)) * 10 +
+      // À égalité stricte, on suit le côté de l'armure.
       (fifths <= 0 ? (alteration > 0 ? 1 : 0) : alteration < 0 ? 1 : 0);
 
     if (score < meilleurScore) {
@@ -105,6 +113,32 @@ export function nomNoteEn(
 ): string {
   const { indice, alteration } = decomposer(meilleurePosition(pc, fifths, forcer));
   return LETTRES_EN[indice] + suffixe(alteration, { diese: "#", bemol: "b" });
+}
+
+/** Classe de hauteur de chaque lettre, pour retrouver l'octave d'une orthographe. */
+const PC_LETTRE_EN: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+
+/**
+ * Nom ANGLAIS et octave d'une note MIDI, orthographiés dans l'armure.
+ *
+ * L'octave ne peut pas se déduire de la seule hauteur : Si3 et Do♭4 sont la même
+ * touche, mais la lettre « Do » appartient à l'octave SUIVANTE. Calculer
+ * `Math.floor(midi / 12) - 1` puis coller un « Cb » dessus produit un Do♭3, soit
+ * un demi-ton sous Do3 — une septième plus bas que voulu. On déduit donc
+ * l'octave de l'orthographe retenue, de sorte que le nom rendu se relise
+ * toujours à la hauteur d'origine.
+ */
+export function nomEtOctaveEn(
+  midi: number,
+  fifths: number,
+  forcer?: "bemol" | "diese",
+): { name: string; octave: number } {
+  const position = meilleurePosition(((midi % 12) + 12) % 12, fifths, forcer);
+  const { indice, alteration } = decomposer(position);
+  const lettre = LETTRES_EN[indice];
+  // (octave + 1) * 12 + pcLettre + altération === midi
+  const octave = (midi - PC_LETTRE_EN[lettre] - alteration) / 12 - 1;
+  return { name: lettre + suffixe(alteration, { diese: "#", bemol: "b" }), octave };
 }
 
 /**
