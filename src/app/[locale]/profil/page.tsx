@@ -11,10 +11,13 @@ import { getUserPlan } from "@/lib/progression";
 import { supabaseAdmin } from "@/lib/supabase";
 import { COURS_COUNT } from "@/lib/catalogue";
 
+// Un plan n'est plus acheté : il vient de la licence d'un établissement, ou
+// c'est l'accès normal — que le mot « gratuit » décrivait mal, puisqu'il
+// suggérait un palier d'attente.
 const PLAN_LABEL: Record<string, string> = {
-  free:   "Gratuit",
-  pro:    "Pro mensuel",
-  annual: "Pro annuel",
+  free:   "Accès libre",
+  pro:    "Licence d'établissement",
+  annual: "Licence d'établissement",
 };
 
 const PLAN_COLOR: Record<string, string> = {
@@ -42,7 +45,7 @@ export default async function ProfilPage({ params }: Props) {
   const user = await currentUser();
   const plan = await getUserPlan(userId);
 
-  // Récupérer les infos d'abonnement
+  // La licence éventuelle de l'établissement (dates, statut)
   const { data: subscription } = await supabaseAdmin
     .from("user_subscriptions")
     .select("*")
@@ -129,10 +132,10 @@ export default async function ProfilPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Abonnement */}
+        {/* Accès */}
         <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "24px", marginBottom: 16 }}>
           <div style={{ fontSize: 12, fontWeight: 600, color: "#888", textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: 16 }}>
-            Abonnement
+            Accès
           </div>
 
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
@@ -159,37 +162,22 @@ export default async function ProfilPage({ params }: Props) {
                 achat individuel. */}
           </div>
 
-          {plan !== "free" && (
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-              {periodEnd && (
-                <div style={{ background: "#f4f1ec", borderRadius: 8, padding: "12px 16px" }}>
-                  <div style={{ fontSize: 11, color: "#6b6b6b", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: 4 }}>
-                    Renouvellement
-                  </div>
-                  <div style={{ fontSize: 14, color: "#1a1a1a", fontWeight: 500 }}>
-                    {periodEnd}
-                  </div>
-                </div>
-              )}
-              <div style={{ background: "#f4f1ec", borderRadius: 8, padding: "12px 16px" }}>
-                <div style={{ fontSize: 11, color: "#6b6b6b", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: 4 }}>
-                  Accès
-                </div>
-                <div style={{ fontSize: 14, color: "#1a1a1a", fontWeight: 500 }}>
-                  {COURS_COUNT} cours · 600+ exercices
-                </div>
-              </div>
-            </div>
-          )}
-
-          {plan !== "free" && (
-            <div style={{ marginTop: 16, padding: "12px 16px", background: "#f9f7f4", borderRadius: 8, fontSize: 12, color: "#6b6b6b" }}>
-              Pour annuler ou gérer ton abonnement, contacte-nous à{" "}
-              <a href="mailto:bonjour@getharmonia.app" style={{ color: "#185FA5" }}>
-                bonjour@getharmonia.app
-              </a>
-            </div>
-          )}
+          <div style={{ padding: "12px 16px", background: "#f9f7f4", borderRadius: 8, fontSize: 13, color: "#5f5f5f", lineHeight: 1.65 }}>
+            {plan === "free" ? (
+              <>
+                Les {COURS_COUNT} cours, leurs exercices et les analyses de partitions
+                sont ouverts sans condition. Seul l&rsquo;assistant, qui repose sur
+                l&rsquo;intelligence artificielle, demande la licence d&rsquo;un
+                établissement.
+              </>
+            ) : (
+              <>
+                Ton établissement a pris une licence : elle ouvre en plus l&rsquo;assistant
+                et le commentaire rédigé de l&rsquo;analyseur.
+                {periodEnd ? ` Elle court jusqu'au ${periodEnd}.` : ""}
+              </>
+            )}
+          </div>
         </div>
 
         {/* Actions */}

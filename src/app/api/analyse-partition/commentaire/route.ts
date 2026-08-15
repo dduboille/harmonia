@@ -37,8 +37,15 @@ export async function POST(req: Request) {
   const { userId } = await auth();
   if (!userId) return Response.json({ error: "Non autorisé" }, { status: 401 });
 
+  // Seule partie de l'analyseur à appeler un modèle, donc seule à rester
+  // réservée : l'analyse harmonique elle-même est ouverte à tous.
   const plan = await getUserPlan(userId);
-  if (plan === "free") return Response.json({ error: "Réservé au plan Pro" }, { status: 403 });
+  if (plan === "free") {
+    return Response.json(
+      { error: "Le commentaire rédigé est réservé aux établissements sous licence.", code: "reserveIa" },
+      { status: 403 },
+    );
+  }
 
   let body: { analysis: unknown };
   try {

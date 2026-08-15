@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { COURS, FREE_COURS } from "@/lib/catalogue";
+import { COURS } from "@/lib/catalogue";
 
 
 // ─── Méta par niveau ─────────────────────────────────────────────────────────
@@ -23,7 +23,7 @@ const LEVEL_META = {
 
 type TFunc = ReturnType<typeof useTranslations<"coursHub">>;
 
-function CoursCard({ cours, locale, level, t, locked }: { cours: typeof COURS[0]; locale: string; level: 1 | 2 | 3 | 4 | 5; t: TFunc; locked: boolean }) {
+function CoursCard({ cours, locale, level, t }: { cours: typeof COURS[0]; locale: string; level: 1 | 2 | 3 | 4 | 5; t: TFunc }) {
   const meta = LEVEL_META[level];
   return (
     <Link href={`/${locale}/cours/${cours.num}`} style={{ textDecoration: "none" }}>
@@ -53,16 +53,7 @@ function CoursCard({ cours, locale, level, t, locked }: { cours: typeof COURS[0]
               {t(meta.univ as Parameters<TFunc>[0])}
             </span>
           </div>
-          {locked ? (
-            <span style={{
-              fontSize: 10, fontWeight: 600,
-              color: "#8a5a10", background: "#FAEEDA",
-              padding: "2px 8px", borderRadius: 10,
-              fontFamily: "system-ui, sans-serif",
-            }}>
-              🔒 {t("locked")}
-            </span>
-          ) : (
+          {(
             <span style={{
               fontSize: 10, fontWeight: 500,
               color: "#0F6E56", background: "#E1F5EE",
@@ -106,17 +97,14 @@ function CoursCard({ cours, locale, level, t, locked }: { cours: typeof COURS[0]
 
 interface Props {
   level: 1 | 2 | 3 | 4 | 5;
-  /** Plan de l'utilisateur, résolu côté serveur. Absent = visiteur non connecté. */
-  plan?: "free" | "pro" | "annual";
 }
 
-export default function CoursLevel({ level, plan = "free" }: Props) {
+export default function CoursLevel({ level }: Props) {
   const params = useParams();
   const locale = (params?.locale as string) ?? "fr";
   const t = useTranslations("coursHub");
   const meta = LEVEL_META[level];
   const cours = COURS.filter(c => c.level === level);
-  const isLocked = (num: number) => plan === "free" && !FREE_COURS.includes(num);
 
   const sublabel = t(`sublabel${level}` as Parameters<TFunc>[0]);
   const levelTitle = t(`level${level}Title` as Parameters<TFunc>[0]);
@@ -166,7 +154,7 @@ export default function CoursLevel({ level, plan = "free" }: Props) {
           gap: 12,
         }}>
           {cours.map(c => (
-            <CoursCard key={c.num} cours={c} locale={locale} level={level} t={t} locked={isLocked(c.num)} />
+            <CoursCard key={c.num} cours={c} locale={locale} level={level} t={t} />
           ))}
         </div>
 

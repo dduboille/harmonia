@@ -52,7 +52,6 @@ const isPublicRoute = createRouteMatcher([
   // /api/subscribe n'est délibérément PAS ici : la route envoie un e-mail à
   // l'adresse fournie dans le corps de la requête. Ouverte, elle constituerait
   // un relais d'envoi anonyme au nom du domaine.
-  "/api/stripe/webhook",
   "/api/webhooks/clerk",
   "/api/contact-cursus",
   "/api/contact-conservatoire",

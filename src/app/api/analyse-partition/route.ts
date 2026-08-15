@@ -1,5 +1,4 @@
 import { auth } from "@clerk/nextjs/server";
-import { getUserPlan } from "@/lib/progression";
 import { unzipSync, strFromU8 } from "fflate";
 import { parseMusicXML } from "@/lib/musicxml-parse";
 import { analyserPartition } from "@/lib/analyse-resultat";
@@ -20,8 +19,9 @@ export async function POST(req: Request) {
   const { userId } = await auth();
   if (!userId) return Response.json({ error: "Non autorisé" }, { status: 401 });
 
-  const plan = await getUserPlan(userId);
-  if (plan === "free") return Response.json({ error: "Réservé au plan Pro" }, { status: 403 });
+  // Aucun contrôle de plan : cette route est entièrement algorithmique, elle ne
+  // coûte qu'un peu de calcul. Seul le commentaire rédigé, qui appelle un
+  // modèle, reste réservé — et il a sa propre route.
 
   let formData: FormData;
   try {

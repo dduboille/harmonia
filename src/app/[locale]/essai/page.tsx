@@ -11,8 +11,9 @@ import { redirect } from "next/navigation";
  * l'URL a circulé — elle était portée par le post LinkedIn de présentation du
  * répertoire, avec son code. Ceux qui suivront ce lien doivent trouver
  * l'explication de la gratuité, pas une 404 ni un formulaire qui refuse leur
- * code. La route `/api/trial/redeem` reste en place pour ne pas casser une
- * requête en vol ; elle n'est plus appelée par aucune page.
+ * code. Le système d'essai lui-même — la route de rachat, l'écran
+ * d'administration des codes et leur module — a été supprimé : il n'avait plus
+ * rien à débloquer.
  */
 export default async function EssaiRedirect({
   params,

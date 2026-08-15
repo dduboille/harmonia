@@ -3383,42 +3383,11 @@
     "level5topics": "Fugue & Choral,Cinéma,Jazz,Impressionnisme,Schenker",
     "freeNote": "Gratuit pour commencer · Cours 1 à 3 accessibles sans abonnement"
   },
-  "essai": {
-    "label": "Essai gratuit",
-    "titre": "14 jours de Pro, sans carte bancaire",
-    "intro": "Entrez votre code d'essai pour débloquer tous les cours et les fonctionnalités IA.",
-    "champLabel": "Code d'essai",
-    "bouton": "Activer mon essai",
-    "boutonEnCours": "Vérification...",
-    "succes": "Votre essai Pro de 14 jours est activé.",
-    "succesCta": "Aller au tableau de bord",
-    "pasDeCode": "Pas de code ? Voir les tarifs →",
-    "erreurs": {
-      "abonnementActif": "Vous avez déjà un abonnement actif — inutile d'utiliser un code d'essai.",
-      "dejaUtilise": "Vous avez déjà utilisé un essai.",
-      "introuvable": "Code introuvable.",
-      "inactif": "Ce code n'est plus actif.",
-      "limiteAtteinte": "Ce code a atteint sa limite d'utilisations.",
-      "requeteInvalide": "Requête invalide.",
-      "codeManquant": "Code manquant.",
-      "serveur": "Erreur serveur. Réessayez.",
-      "reseau": "Erreur réseau. Vérifiez votre connexion et réessayez.",
-      "inconnu": "Une erreur est survenue. Réessayez."
-    }
-  },
   "paywall": {
     "proLabel": "Réservé aux établissements",
     "proCta": "Comprendre pourquoi →",
     "proBack": "Retour au tableau de bord",
-    "breadcrumbCours": "Cours",
-    "coursNum": "Cours {num}",
-    "exercicesTitle": "Exercices — {title}",
-    "lockedCours": "Ce cours fait partie de l'abonnement",
-    "lockedExercices": "Ces exercices font partie de l'abonnement",
-    "lockedText": "Les cours 1 à {free} sont en accès libre. Débloquez les {count} cours, les exercices SATB de tous niveaux et le suivi de progression.",
-    "seePlans": "Voir les abonnements",
-    "startCours1": "Commencer par le cours 1",
-    "tryFree": "Essayer gratuitement"
+    "coursNum": "Cours {num}"
   },
   "landing": {
     "topbar": "Douze pièces, un seul récit — de Bach à Evans",
@@ -3672,7 +3641,6 @@
     "start": "Commencer",
     "continue": "Continuer",
     "review": "Revoir",
-    "upgradeAccess": "Réservé aux établissements →",
     "exercises": "exercices",
     "cours": "Cours"
   },

@@ -960,7 +960,7 @@ export default function CursusPage() {
             <p
               style={{ fontSize: 14, color: "#888", margin: 0, fontFamily: "system-ui, sans-serif" }}
             >
-              1 mois d'essai gratuit sur demande
+              Les cours et les exercices sont gratuits pour tous
             </p>
           </div>
           <div

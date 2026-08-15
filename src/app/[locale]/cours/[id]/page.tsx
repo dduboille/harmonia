@@ -2,12 +2,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import nextDynamic from "next/dynamic";
 import type { Metadata } from "next";
-import { auth } from "@clerk/nextjs/server";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
-import { getUserPlan } from "@/lib/progression";
-import { getCours, isFreeCours } from "@/lib/catalogue";
-import { CoursPaywall } from "@/components/Paywall";
+import { getCours } from "@/lib/catalogue";
 
 /**
  * Rendu à la demande : la page lit la session pour décider si elle sert le cours
@@ -109,11 +106,7 @@ export default async function CoursPage({ params }: { params: Promise<{ id: stri
   const C = COURS_COMPONENTS[num];
   if (!cours || !C) return notFound();
 
-  const { userId } = await auth();
-  const plan = userId ? await getUserPlan(userId) : "free";
 
-  // Déclaré que le cours soit servi ou verrouillé : l'aperçu payant reste une
-  // page de cours légitime aux yeux d'un moteur.
   const courseJsonLd = {
     "@context": "https://schema.org",
     "@type": "Course",
@@ -122,7 +115,7 @@ export default async function CoursPage({ params }: { params: Promise<{ id: stri
     inLanguage: locale,
     url: `https://www.getharmonia.app/${locale}/cours/${cours.num}`,
     provider: { "@type": "Organization", name: "Harmonia", url: "https://www.getharmonia.app" },
-    isAccessibleForFree: isFreeCours(num),
+    isAccessibleForFree: true,
     hasCourseInstance: { "@type": "CourseInstance", courseMode: "online" },
   };
   const jsonLdTag = (
@@ -131,15 +124,6 @@ export default async function CoursPage({ params }: { params: Promise<{ id: stri
       dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
     />
   );
-
-  if (plan === "free" && !isFreeCours(num)) {
-    return (
-      <>
-        {jsonLdTag}
-        <CoursPaywall locale={locale} cours={cours} signedIn={Boolean(userId)} />
-      </>
-    );
-  }
 
   // Le layout ne fournit que les namespaces partagés : on ajoute ici celui du
   // seul cours affiché, au lieu d'embarquer les 41 sur chaque page.

@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
  * production », mais il répondait bel et bien, et il aurait été le dernier
  * endroit du site à vendre des plans qui n'existent plus.
  *
- * Le composant `LandingPreview` n'est plus référencé nulle part.
+ * Le composant `LandingPreview` qu'il montait a été supprimé avec lui.
  */
 export default async function PreviewRedirect({
   params,

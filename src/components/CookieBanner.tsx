@@ -25,13 +25,6 @@ const COOKIES = [
     desc: "Mesurent les pages visitées de façon anonyme et agrégée, sans suivi individuel ni identifiant personnel.",
     required: false,
   },
-  {
-    icon: "💳",
-    name: "Paiement sécurisé",
-    provider: "Stripe",
-    desc: "Chargés uniquement sur les pages d'abonnement. Permettent à Stripe de prévenir la fraude lors du paiement.",
-    required: false,
-  },
 ];
 
 export default function CookieBanner({ locale }: Props) {

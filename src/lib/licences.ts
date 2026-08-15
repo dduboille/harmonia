@@ -5,7 +5,7 @@
  *
  * Logique PURE, sans accès à la base : les requêtes vivent dans
  * `licences-db.ts`. C'est ce qui rend les règles de validité testables sans
- * Supabase, comme pour `trial-codes.ts`.
+ * Supabase.
  *
  * Le modèle historique portait tout droit sur `user_subscriptions`, une ligne
  * par personne. Un établissement ne pouvait donc pas payer POUR ses élèves :

@@ -1,12 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { auth } from "@clerk/nextjs/server";
 import ExerciseCard from "@/components/ExerciseCard";
 import { ALL_EXERCISES } from "@/exercises/all-exercises";
 import { DIFFICULTY_LABEL, DIFFICULTY_COLOR } from "@/types/exercise";
-import { getUserPlan } from "@/lib/progression";
-import { getCours, isFreeCours } from "@/lib/catalogue";
-import { CoursPaywall } from "@/components/Paywall";
+import { getCours } from "@/lib/catalogue";
 
 export const dynamic = "force-dynamic";
 
@@ -24,13 +21,6 @@ export default async function ExercicesPage({
 
   const meta = { title: cours.title, badge: `Cours ${cours.num}` };
 
-  // Les exercices d'un cours payant étaient accessibles à tout compte gratuit :
-  // seul le bouton « voir la solution » consultait le plan.
-  const { userId } = await auth();
-  const plan = userId ? await getUserPlan(userId) : "free";
-  if (plan === "free" && !isFreeCours(coursId)) {
-    return <CoursPaywall locale={locale} cours={cours} signedIn={Boolean(userId)} subject="exercices" />;
-  }
 
   const exercises = ALL_EXERCISES.filter((e) => e.cours === coursId);
 

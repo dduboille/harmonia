@@ -19,13 +19,18 @@ export async function POST(req: Request) {
     return Response.json({ error: "Non autorisé" }, { status: 401 });
   }
 
+  // Avec le commentaire de l'analyseur, c'est l'un des deux seuls endroits du
+  // site à appeler un modèle — donc l'un des deux seuls à rester réservés.
   const plan = await getUserPlan(userId);
   if (plan === "free") {
-    return Response.json({ error: "Réservé au plan Pro" }, { status: 403 });
+    return Response.json(
+      { error: "L'assistant est réservé aux établissements sous licence.", code: "reserveIa" },
+      { status: 403 },
+    );
   }
 
-  // Chaque appel consomme des tokens facturés : un abonné pouvait solliciter
-  // l'assistant sans aucun plafond. La limite est par utilisateur, pas par IP.
+  // Chaque appel consomme des tokens facturés : un utilisateur couvert pouvait
+  // solliciter l'assistant sans aucun plafond. Limite par utilisateur, pas par IP.
   const limit = rateLimit(`assistant:${userId}`, 30, 10 * 60 * 1000);
   if (!limit.ok) return tooManyRequests(limit.retryAfter);
 

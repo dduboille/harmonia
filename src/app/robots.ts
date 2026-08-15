@@ -15,8 +15,8 @@ export default function robots(): MetadataRoute.Robots {
           // Comptes / progression personnelle : rien à indexer, contenu propre à chaque visiteur.
           "/fr/dashboard", "/en/dashboard", "/es/dashboard", "/de/dashboard", "/pt/dashboard", "/it/dashboard",
           "/fr/profil", "/en/profil", "/es/profil", "/de/profil", "/pt/profil", "/it/profil",
-          // Bac à sable de la landing (cf. LandingPreview.tsx) : contenu dupliqué/expérimental,
-          // jamais promu — indexé, il concurrencerait la vraie page d'accueil.
+          // Ancien bac à sable de la landing : il redirige désormais vers /demarche,
+          // et une redirection n'a rien à faire dans un index.
           "/fr/preview", "/en/preview", "/es/preview", "/de/preview", "/pt/preview", "/it/preview",
           // Ancienne vitrine conservatoire : elle redirige désormais vers /conservatoire,
           // l'unique page institutionnelle. On la garde interdite pour que les moteurs

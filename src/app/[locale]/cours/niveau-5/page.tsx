@@ -1,9 +1,7 @@
-import { auth } from "@clerk/nextjs/server";
 import CoursLevel from "@/components/CoursHub";
-import { getUserPlan } from "@/lib/progression";
 
+// Aucun cours n'étant plus verrouillé, la page n'a plus besoin de résoudre le
+// plan de l'utilisateur : elle ne consulte donc plus ni Clerk ni Supabase.
 export default async function Niveau5Page() {
-  const { userId } = await auth();
-  const plan = userId ? await getUserPlan(userId) : "free";
-  return <CoursLevel level={5} plan={plan} />;
+  return <CoursLevel level={5} />;
 }

@@ -21,7 +21,6 @@ interface SATBData {
   initialNotes?: Partial<Record<Voice, (NoteEntry | null)[]>>;
   hint?: string;
   devoirId?: string;
-  plan?: string;
   /** école = règles d'écriture complètes ; libre = conformité + tessitures, pour les exercices non tonals. */
   regles?: "ecole" | "libre";
 }
@@ -63,11 +62,10 @@ export default function ExerciceContent(props: ExerciceContentProps) {
   };
 
   if (props.type === "satb") {
-    const canToggle = props.plan && props.plan !== "free";
     const hint = getKeyAccidentalHint(props.keySignature);
     return (
       <div>
-        {canToggle && (
+        {(
           <div style={{ display:"flex", justifyContent:"flex-end", gap:4, marginBottom:8, fontFamily:"system-ui, sans-serif" }}>
             {([true, false] as const).map(val => (
               <button key={String(val)} onClick={() => setShowKS(val)}

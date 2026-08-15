@@ -6,7 +6,7 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { getAllProgress, coursStatsFromRows, getUserPlan, canAccessCours } from "@/lib/progression";
+import { getAllProgress, coursStatsFromRows, getUserPlan } from "@/lib/progression";
 import { ALL_EXERCISES } from "@/exercises/all-exercises";
 import { supabaseAdmin } from "@/lib/supabase";
 import MaClasseSection from "@/components/MaClasseSection";
@@ -101,9 +101,8 @@ export default async function DashboardPage({ params }: Props) {
   const coursStats = COURS_META.map(cours => {
     const totalInCours = ALL_EXERCISES.filter(e => e.cours === cours.id).length;
     const stats = coursStatsFromRows(parCours.get(cours.id) ?? [], cours.id, totalInCours);
-    const accessible = canAccessCours(cours.id, plan);
     const title = tHub(`c${cours.id}` as Parameters<typeof tHub>[0]);
-    return { ...cours, title, ...stats, accessible, totalInCours };
+    return { ...cours, title, ...stats, totalInCours };
   });
 
   const recentExercises = allProgress.slice(0, 5);
@@ -649,7 +648,6 @@ interface CoursCardData {
   completedExercises: number;
   totalInCours: number;
   progressPct: number;
-  accessible: boolean;
 }
 
 type DashT = Awaited<ReturnType<typeof getTranslations<"dashboard">>>;
@@ -662,12 +660,8 @@ function CoursCard({ cours, locale, t }: { cours: CoursCardData; locale: string;
       border: "0.5px solid #e8e3db",
       borderRadius: 10,
       padding: "16px",
-      opacity: cours.accessible ? 1 : 0.6,
       position: "relative" as const,
     }}>
-      {!cours.accessible && (
-        <div style={{ position: "absolute" as const, top: 12, right: 12, fontSize: 14 }}>🔒</div>
-      )}
 
       <div style={{ fontSize: 10, color: "#767676", fontWeight: 600, marginBottom: 4 }}>
         {t("cours")} {cours.id}
@@ -693,35 +687,19 @@ function CoursCard({ cours, locale, t }: { cours: CoursCardData; locale: string;
         </span>
       </div>
 
-      {cours.accessible ? (
-        <Link href={`/${locale}/cours/${cours.id}/exercices`} style={{
-          display: "block",
-          marginTop: 10,
-          padding: "6px 12px",
-          borderRadius: 6,
-          background: "#f4f1ec",
-          color: "#555",
-          fontSize: 12,
-          textDecoration: "none",
-          textAlign: "center" as const,
-        }}>
-          {action} →
-        </Link>
-      ) : (
-        <Link href={`/${locale}/upgrade`} style={{
-          display: "block",
-          marginTop: 10,
-          padding: "6px 12px",
-          borderRadius: 6,
-          background: "#FAEEDA",
-          color: "#BA7517",
-          fontSize: 12,
-          textDecoration: "none",
-          textAlign: "center" as const,
-        }}>
-          {t("upgradeAccess")}
-        </Link>
-      )}
+      <Link href={`/${locale}/cours/${cours.id}/exercices`} style={{
+        display: "block",
+        marginTop: 10,
+        padding: "6px 12px",
+        borderRadius: 6,
+        background: "#f4f1ec",
+        color: "#555",
+        fontSize: 12,
+        textDecoration: "none",
+        textAlign: "center" as const,
+      }}>
+        {action} →
+      </Link>
     </div>
   );
 }

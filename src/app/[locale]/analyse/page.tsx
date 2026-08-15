@@ -9,21 +9,21 @@ const TOOLS = [
     icon: "◎",
     title: "Analyser",
     desc: "Analyse harmonique de partition — chiffrage automatique, détection de cadences.",
-    pro: true,
+    pro: false,
   },
   {
     href: "studio",
     icon: "✎",
     title: "Studio de composition",
     desc: "Importez votre composition MusicXML — partition gravée, lecture audio et analyse harmonique.",
-    pro: true,
+    pro: false,
   },
   {
     href: "composer",
     icon: "✐",
     title: "Atelier de composition",
     desc: "Composez votre pièce à deux portées, note à note — gravure en direct et écoute.",
-    pro: true,
+    pro: false,
   },
   {
     href: "assistant",
@@ -64,7 +64,7 @@ export default function AnalyseHub() {
           Analyse
         </h1>
         <p style={{ fontSize: 15, color: "#666", margin: "0 0 48px", lineHeight: 1.5 }}>
-          Outils d'analyse avancés réservés aux abonnés Pro.
+          Analyse, gravure et composition, ouvertes à tous. Seul l'assistant, qui repose sur l'intelligence artificielle, demande une licence d'établissement.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>

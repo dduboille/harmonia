@@ -4365,42 +4365,11 @@
     "level5topics": "Fuge & Choral,Film,Jazz,Impressionismus,Schenker",
     "freeNote": "Kostenlos starten · Lektionen 1 bis 3 ohne Abonnement zugänglich"
   },
-  "essai": {
-    "label": "Kostenlose Testversion",
-    "titre": "14 Tage Pro, ohne Kreditkarte",
-    "intro": "Gib deinen Testcode ein, um alle Kurse und die KI-Funktionen freizuschalten.",
-    "champLabel": "Testcode",
-    "bouton": "Testversion aktivieren",
-    "boutonEnCours": "Wird geprüft...",
-    "succes": "Deine 14-tägige Pro-Testversion ist aktiv.",
-    "succesCta": "Zum Dashboard",
-    "pasDeCode": "Kein Code? Preise ansehen →",
-    "erreurs": {
-      "abonnementActif": "Du hast bereits ein aktives Abonnement — ein Testcode ist nicht nötig.",
-      "dejaUtilise": "Du hast bereits eine Testversion genutzt.",
-      "introuvable": "Code nicht gefunden.",
-      "inactif": "Dieser Code ist nicht mehr aktiv.",
-      "limiteAtteinte": "Dieser Code hat sein Nutzungslimit erreicht.",
-      "requeteInvalide": "Ungültige Anfrage.",
-      "codeManquant": "Code fehlt.",
-      "serveur": "Serverfehler. Bitte versuche es erneut.",
-      "reseau": "Netzwerkfehler. Prüfe deine Verbindung und versuche es erneut.",
-      "inconnu": "Ein Fehler ist aufgetreten. Bitte versuche es erneut."
-    }
-  },
   "paywall": {
     "proLabel": "Einrichtungen vorbehalten",
     "proCta": "Erfahren, warum →",
     "proBack": "Zurück zum Dashboard",
-    "breadcrumbCours": "Kurse",
-    "coursNum": "Kurs {num}",
-    "exercicesTitle": "Übungen — {title}",
-    "lockedCours": "Dieser Kurs ist Teil des Abonnements",
-    "lockedExercices": "Diese Übungen sind Teil des Abonnements",
-    "lockedText": "Die Kurse 1 bis {free} sind frei zugänglich. Schalte alle {count} Kurse, die SATB-Übungen aller Stufen und die Fortschrittsverfolgung frei.",
-    "seePlans": "Abonnements ansehen",
-    "startCours1": "Mit Kurs 1 beginnen",
-    "tryFree": "Kostenlos testen"
+    "coursNum": "Kurs {num}"
   },
   "landing": {
     "topbar": "Zwölf Stücke, eine Geschichte — von Bach bis Evans",
@@ -4654,7 +4623,6 @@
     "start": "Starten",
     "continue": "Fortfahren",
     "review": "Wiederholen",
-    "upgradeAccess": "Einrichtungen vorbehalten →",
     "exercises": "Übungen",
     "cours": "Kurs"
   },

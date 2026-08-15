@@ -215,7 +215,16 @@ export default function AnalysePartition() {
         body: JSON.stringify({ analysis }),
       });
       if (!res.ok) {
-        setCommentaire("Erreur lors de la génération du commentaire.");
+        // Le 403 n'est pas une panne : c'est la seule fonction de cette page
+        // qui appelle un modèle, et elle passe par une licence d'établissement.
+        // Le dire franchement vaut mieux qu'un « erreur » qui laisse croire à
+        // un bogue, d'autant que l'analyse, elle, s'est affichée normalement.
+        const data = await res.json().catch(() => ({}));
+        setCommentaire(
+          res.status === 403
+            ? "Le commentaire rédigé est la seule partie de cette page qui fait appel à l'intelligence artificielle : chaque requête a un coût réel, et elle est réservée aux établissements sous licence. L'analyse harmonique ci-contre — degrés, fonctions, cadences, notes étrangères — reste entièrement ouverte."
+            : (data.error ?? "Erreur lors de la génération du commentaire."),
+        );
         setIsGenerating(false);
         return;
       }

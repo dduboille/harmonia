@@ -160,7 +160,7 @@ export default async function ConservatoirePage({ params }: Props) {
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
             {[
-              { icon: "🎵", title: "Interface identique", desc: "Accès complet à Harmonia Pro — même expérience que les abonnés individuels." },
+              { icon: "🎵", title: "Interface identique", desc: "Le site entier, plus l'assistant et le commentaire rédigé que la licence débloque." },
               { icon: "📝", title: "Voir les devoirs assignés", desc: "Les devoirs du prof apparaissent directement dans le tableau de bord." },
               { icon: "📤", title: "Soumettre au prof", desc: "Les exercices complétés sont envoyés automatiquement pour correction." },
               { icon: "💬", title: "Feedback personnalisé", desc: "Recevez la note et les commentaires du professeur dans l'application." },
@@ -195,7 +195,7 @@ export default async function ConservatoirePage({ params }: Props) {
           Tarifs institutionnels
         </h2>
         <p style={{ textAlign: "center", color: "#666", marginBottom: 48, fontSize: 16 }}>
-          Chaque élève accède à tout Harmonia Pro inclus dans l'abonnement.
+          Le site est gratuit pour chacun de vos élèves. La licence ouvre en plus les fonctions d'intelligence artificielle et le suivi de la classe par le professeur.
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20 }}>
           {[

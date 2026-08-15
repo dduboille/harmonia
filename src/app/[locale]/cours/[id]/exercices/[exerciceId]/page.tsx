@@ -6,12 +6,8 @@
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { auth } from "@clerk/nextjs/server";
 import ExerciceContent from "@/components/ExerciceContent";
 import { ALL_EXERCISES } from "@/exercises/all-exercises";
-import { getUserPlan } from "@/lib/progression";
-import { getCours, isFreeCours } from "@/lib/catalogue";
-import { CoursPaywall } from "@/components/Paywall";
 import { DIFFICULTY_LABEL, DIFFICULTY_COLOR, DIFFICULTY_BG } from "@/types/exercise";
 import type { IdentifyExercise, BuildExercise } from "@/types/exercise";
 
@@ -23,21 +19,12 @@ interface Props {
 export default async function ExercicePage({ params, searchParams }: Props) {
   const { locale, id, exerciceId } = await params;
   const { devoirId } = await searchParams;
-  const { userId } = await auth();
-  const plan = userId ? await getUserPlan(userId) : "free";
   const coursId = parseInt(id);
   const exercise = ALL_EXERCISES.find(
     e => e.id === exerciceId && e.cours === coursId
   );
 
   if (!exercise) return notFound();
-
-  // Le plan n'était consulté que pour autoriser l'affichage de la solution :
-  // l'exercice lui-même, y compris pour les cours payants, était servi à tous.
-  const cours = getCours(coursId);
-  if (cours && plan === "free" && !isFreeCours(coursId)) {
-    return <CoursPaywall locale={locale} cours={cours} signedIn={Boolean(userId)} subject="exercices" />;
-  }
 
   const allForCours = ALL_EXERCISES.filter(e => e.cours === exercise.cours);
   const currentIdx  = allForCours.findIndex(e => e.id === exerciceId);
@@ -96,7 +83,6 @@ export default async function ExercicePage({ params, searchParams }: Props) {
               solution={(exercise as any).solution}
               hint={(exercise as any).hint}
               devoirId={devoirId}
-              plan={plan}
               regles={(exercise as any).regles}
             />
           ) : (

@@ -7,7 +7,7 @@
 
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
-import { estAdmin } from "@/lib/trial-codes";
+import { estAdmin } from "@/lib/admin";
 import {
   listerEtablissements, creerEtablissement, creerLicence, majStatutLicence, rattacherClasse,
   listerClasses,
