@@ -29,6 +29,10 @@ const isPublicRoute = createRouteMatcher([
   "/:locale/dissonance",
   "/:locale/repertoire",
   "/:locale/demarche",
+  // La vitrine institutionnelle : elle est dans le sitemap et c'est la porte
+  // d'entrée des conservatoires. Sans cette ligne, un directeur arrivant par
+  // une recherche était renvoyé vers /sign-in.
+  "/:locale/conservatoire",
   "/:locale/conditions",
   "/:locale/confidentialite",
   // /preview n'est PAS ici : c'est le bac à sable de la landing (son en-tête dit

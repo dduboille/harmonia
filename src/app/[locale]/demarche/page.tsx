@@ -269,7 +269,7 @@ export default async function DemarchePage({
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Link
-              href={`/${locale}/landing-conservatoire`}
+              href={`/${locale}/conservatoire`}
               style={{
                 display: "inline-block", padding: "14px 30px", borderRadius: 6,
                 background: "#1a1a1a", color: "#fff", textDecoration: "none",

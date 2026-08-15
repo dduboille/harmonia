@@ -18,7 +18,9 @@ export default function robots(): MetadataRoute.Robots {
           // Bac à sable de la landing (cf. LandingPreview.tsx) : contenu dupliqué/expérimental,
           // jamais promu — indexé, il concurrencerait la vraie page d'accueil.
           "/fr/preview", "/en/preview", "/es/preview", "/de/preview", "/pt/preview", "/it/preview",
-          // Page vitrine conservatoire mise de côté (cf. mémoire projet) : pas le récit actuel.
+          // Ancienne vitrine conservatoire : elle redirige désormais vers /conservatoire,
+          // l'unique page institutionnelle. On la garde interdite pour que les moteurs
+          // n'indexent pas deux URL menant au même contenu.
           "/fr/landing-conservatoire", "/en/landing-conservatoire", "/es/landing-conservatoire",
           "/de/landing-conservatoire", "/pt/landing-conservatoire", "/it/landing-conservatoire",
           // Page de développement (banc d'essai PianoPlayer), sans intérêt pour un visiteur.

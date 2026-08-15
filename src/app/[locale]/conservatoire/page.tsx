@@ -199,9 +199,9 @@ export default async function ConservatoirePage({ params }: Props) {
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20 }}>
           {[
-            { label: "Petite école", sub: "Jusqu'à 30 élèves", price: "199 € / an", highlight: false },
-            { label: "Conservatoire", sub: "Jusqu'à 100 élèves", price: "499 € / an", highlight: true },
-            { label: "Grand établissement", sub: "Élèves illimités", price: "Sur devis", highlight: false },
+            { label: "Classe", sub: "Une classe, effectif libre", price: "199 € / an", highlight: false },
+            { label: "Établissement", sub: "Toutes les classes, tous les professeurs", price: "499 € / an", highlight: true },
+            { label: "Grand établissement", sub: "Plusieurs sites, besoins particuliers", price: "Sur devis", highlight: false },
           ].map((plan) => (
             <div key={plan.label} style={{
               background: plan.highlight ? ACCENT : "#fff",
@@ -262,7 +262,7 @@ export default async function ConservatoirePage({ params }: Props) {
           marginBottom: 14,
           fontFamily: "Georgia, serif",
         }}>
-          Commencer avec une classe gratuite de 10 élèves
+          Créer une classe d'essai, gratuitement
         </h2>
         <p style={{ opacity: 0.85, marginBottom: 32, fontSize: 15 }}>
           Aucune carte bancaire requise. Créez votre première classe en 30 secondes.
