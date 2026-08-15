@@ -534,6 +534,7 @@ export default function LandingPage() {
               { label: t("navCursus"), href: `/${locale}/cursus` },
               { label: t("navDissonance"), href: `/${locale}/dissonance` },
               { label: t("navRepertoire"), href: `/${locale}/repertoire` },
+              { label: t("navDemarche"), href: `/${locale}/demarche` },
               { label: t("footerPrivacy"), href: `/${locale}/confidentialite` },
               { label: t("footerTerms"), href: `/${locale}/conditions` },
             ].map(link => (

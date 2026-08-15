@@ -26,8 +26,7 @@ const TOOL_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "cursus",            priority: 0.8 },
   { path: "dissonance",        priority: 0.7 },
   { path: "repertoire",        priority: 0.7 },
-  // /demarche : volontairement ABSENTE tant que le texte n'est pas validé —
-  // c'est une prise de parole publique, on ne la propose pas à l'indexation avant.
+  { path: "demarche",          priority: 0.8 },
   { path: "dictee",            priority: 0.8 },
   { path: "notes-etrangeres",  priority: 0.8 },
   { path: "atelier",           priority: 0.7 },

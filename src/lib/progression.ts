@@ -5,6 +5,7 @@
  */
 
 import { supabaseAdmin, type UserProgress } from "@/lib/supabase";
+import { couvertParUnEtablissement } from "@/lib/licences-db";
 
 // ── Lire la progression d'un exercice ─────────────────────────
 
@@ -174,6 +175,19 @@ const PLAN_MAP: Record<string, "free" | "pro" | "annual"> = {
   annual:          "annual",
 };
 
+/**
+ * Le plan d'un utilisateur — L'UNIQUE point de décision d'accès du produit.
+ *
+ * Deux origines possibles, dans cet ordre :
+ *  1. son propre abonnement (`user_subscriptions`), écrit par Stripe ou par un
+ *     code d'essai ;
+ *  2. à défaut, la licence de son établissement, s'il est élève ou professeur
+ *     d'une classe rattachée à un conservatoire dont la licence court.
+ *
+ * L'ordre compte : un abonnement personnel valide n'a pas besoin d'une seconde
+ * lecture en base, et le cas de loin le plus fréquent (un visiteur sans rien)
+ * ne paie qu'une requête supplémentaire, celle des classes.
+ */
 export async function getUserPlan(
   userId: string
 ): Promise<"free" | "pro" | "annual"> {
@@ -183,15 +197,21 @@ export async function getUserPlan(
     .eq("user_id", userId)
     .single();
 
-  if (!data) return "free";
-
-  // Vérifier que l'abonnement n'est pas expiré
-  if (data.current_period_end) {
-    const expiry = new Date(data.current_period_end);
-    if (expiry < new Date()) return "free";
+  if (data) {
+    // Vérifier que l'abonnement n'est pas expiré
+    const expire =
+      data.current_period_end != null && new Date(data.current_period_end) < new Date();
+    if (!expire) {
+      const plan = PLAN_MAP[data.plan] ?? "free";
+      if (plan !== "free") return plan;
+    }
   }
 
-  return PLAN_MAP[data.plan] ?? "free";
+  // Pas de droit individuel : reste la licence d'un établissement. C'est ce qui
+  // fait qu'un conservatoire peut payer POUR ses élèves — sans cela, rejoindre
+  // une classe n'ouvrait aucun cours et l'offre institutionnelle promettait ce
+  // que le produit ne savait pas tenir.
+  return (await couvertParUnEtablissement(userId)) ? "pro" : "free";
 }
 
 // ── Cours accessibles selon le plan ──────────────────────────
