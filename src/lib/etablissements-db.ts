@@ -143,6 +143,50 @@ export async function listerEtablissements(a: Date = new Date()): Promise<Etabli
   });
 }
 
+export interface ClasseAdmin {
+  id: string;
+  nom: string;
+  prof_id: string;
+  code_acces: string;
+  etablissement_id: string | null;
+  nb_eleves: number;
+}
+
+/**
+ * Toutes les classes, avec leur effectif et leur rattachement.
+ *
+ * C'est ce qui permet à l'administrateur de relier une classe créée par un
+ * professeur à l'établissement qui paie — le geste sans lequel une licence
+ * n'ouvre rien, puisque la couverture se calcule en remontant de la classe
+ * vers son établissement.
+ */
+export async function listerClasses(): Promise<ClasseAdmin[]> {
+  const { data, error } = await supabaseAdmin
+    .from("classes")
+    .select("id, nom, prof_id, code_acces, etablissement_id")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Lecture des classes impossible :", error.message);
+    return [];
+  }
+  const classes = (data ?? []) as Array<Omit<ClasseAdmin, "nb_eleves">>;
+  if (classes.length === 0) return [];
+
+  // Un seul comptage pour toutes les classes plutôt qu'une requête par ligne.
+  const { data: eleves } = await supabaseAdmin
+    .from("classe_eleves")
+    .select("classe_id")
+    .in("classe_id", classes.map((c) => c.id));
+
+  const parClasse = new Map<string, number>();
+  for (const e of (eleves ?? []) as Array<{ classe_id: string }>) {
+    parClasse.set(e.classe_id, (parClasse.get(e.classe_id) ?? 0) + 1);
+  }
+
+  return classes.map((c) => ({ ...c, nb_eleves: parClasse.get(c.id) ?? 0 }));
+}
+
 /** Rattache une classe existante à un établissement (ou l'en détache si `null`). */
 export async function rattacherClasse(classeId: string, etablissementId: string | null): Promise<boolean> {
   const { error } = await supabaseAdmin

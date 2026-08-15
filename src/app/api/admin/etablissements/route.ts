@@ -10,6 +10,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { estAdmin } from "@/lib/trial-codes";
 import {
   listerEtablissements, creerEtablissement, creerLicence, majStatutLicence, rattacherClasse,
+  listerClasses,
 } from "@/lib/etablissements-db";
 import { listerDemandes, majDemande, STATUTS_DEMANDE, type StatutDemande } from "@/lib/demandes-etablissement";
 
@@ -26,8 +27,10 @@ export async function GET() {
   const verif = await verifierAdmin();
   if (!verif.ok) return NextResponse.json({ error: "Accès refusé" }, { status: verif.status });
 
-  const [etablissements, demandes] = await Promise.all([listerEtablissements(), listerDemandes()]);
-  return NextResponse.json({ etablissements, demandes });
+  const [etablissements, demandes, classes] = await Promise.all([
+    listerEtablissements(), listerDemandes(), listerClasses(),
+  ]);
+  return NextResponse.json({ etablissements, demandes, classes });
 }
 
 export async function POST(req: NextRequest) {

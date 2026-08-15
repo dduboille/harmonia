@@ -35,6 +35,14 @@ interface Etablissement {
   sousLicence: boolean;
 }
 
+interface Classe {
+  id: string;
+  nom: string;
+  code_acces: string;
+  etablissement_id: string | null;
+  nb_eleves: number;
+}
+
 interface Demande {
   id: string;
   nom: string;
@@ -72,6 +80,7 @@ const S = {
 export default function AdminEtablissementsPage() {
   const [etabs, setEtabs] = useState<Etablissement[] | null>(null);
   const [demandes, setDemandes] = useState<Demande[]>([]);
+  const [classes, setClasses] = useState<Classe[]>([]);
   const [erreur, setErreur] = useState<string | null>(null);
   const [enCours, setEnCours] = useState(false);
 
@@ -92,6 +101,7 @@ export default function AdminEtablissementsPage() {
       const d = await r.json();
       setEtabs(d.etablissements ?? []);
       setDemandes(d.demandes ?? []);
+      setClasses(d.classes ?? []);
       setErreur(null);
     } catch {
       setErreur("Chargement impossible.");
@@ -215,6 +225,55 @@ export default function AdminEtablissementsPage() {
           <p style={{ fontSize: 14, color: "#767676" }}>Aucun établissement.</p>
         ) : (
           etabs.map((e) => <CarteEtablissement key={e.id} e={e} enCours={enCours} envoyer={envoyer} />)
+        )}
+      </section>
+
+      {/* ── Rattacher les classes ─────────────────────────────────── */}
+      <section style={S.bloc}>
+        <h2 style={S.h2}>Classes</h2>
+        <p style={S.sous}>
+          Une licence n&rsquo;ouvre les cours qu&rsquo;aux classes RATTACHÉES à l&rsquo;établissement :
+          la couverture se calcule en remontant de l&rsquo;élève vers sa classe, puis vers la licence.
+          Une classe non rattachée reste une classe personnelle, sans droits.
+        </p>
+        {classes.length === 0 ? (
+          <p style={{ fontSize: 14, color: "#767676" }}>Aucune classe créée pour l&rsquo;instant.</p>
+        ) : (
+          classes.map((c) => {
+            const etab = etabs?.find((e) => e.id === c.etablissement_id);
+            return (
+              <div key={c.id} style={{ ...S.ligne, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+                <div>
+                  <strong style={{ fontSize: 15 }}>{c.nom}</strong>
+                  <span style={{ fontSize: 13, color: "#767676" }}>
+                    {" — "}code {c.code_acces} · {c.nb_eleves} élève{c.nb_eleves > 1 ? "s" : ""}
+                  </span>
+                  <div style={{ fontSize: 13, marginTop: 3 }}>
+                    {etab
+                      ? <span style={{ color: etab.sousLicence ? "#0F6E56" : "#C53030" }}>
+                          {etab.nom}{etab.sousLicence ? "" : " — sans licence active, les élèves n'ont pas accès"}
+                        </span>
+                      : <span style={{ color: "#8a8477" }}>Classe personnelle, non rattachée</span>}
+                  </div>
+                </div>
+                <select
+                  value={c.etablissement_id ?? ""}
+                  disabled={enCours}
+                  onChange={(ev) => void envoyer({
+                    action: "rattacher-classe",
+                    classe_id: c.id,
+                    etablissement_id: ev.target.value || null,
+                  })}
+                  style={{ ...S.champ, width: 240, marginBottom: 0 }}
+                >
+                  <option value="">— Aucun établissement —</option>
+                  {(etabs ?? []).map((e) => (
+                    <option key={e.id} value={e.id}>{e.nom}</option>
+                  ))}
+                </select>
+              </div>
+            );
+          })
         )}
       </section>
     </main>
