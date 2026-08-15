@@ -103,7 +103,7 @@ export default async function DemarchePage({
           <p style={{ ...P, fontSize: "clamp(15px, 2vw, 18px)", color: "#555", maxWidth: 620, margin: "0 auto" }}>
             Depuis le premier jour, ce site porte en sous-titre : « Niveau conservatoire.
             Accessible à tous. » La première moitié était tenue. La seconde ne l&rsquo;était
-            qu&rsquo;à moitié — trois cours ouverts, quarante-cinq derrière un abonnement.
+            qu&rsquo;à moitié, avec trois cours ouverts et quarante-cinq derrière un abonnement.
             Cette page explique pourquoi cela change, et comment le projet vit.
           </p>
         </div>
@@ -146,9 +146,11 @@ export default async function DemarchePage({
             <Chiffre valeur={String(LANGUES)} libelle="langues" />
           </div>
           <p style={{ ...P, maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
-            Les cours, les partitions, les analyses, les exercices et leur correction
-            automatique : tout cela est ouvert. Le parcours va des fondements de la gamme
-            jusqu&rsquo;aux spécialisations du DNSPM.
+            Les cours, les partitions et leurs analyses écrites, les exercices et leur
+            correction automatique : tout cela est ouvert. Le parcours va des fondements de
+            la gamme jusqu&rsquo;aux spécialisations du DNSPM. Seules les fonctions
+            d&rsquo;intelligence artificielle relèvent de l&rsquo;offre payante, pour la
+            raison expliquée plus bas.
           </p>
         </div>
       </section>
@@ -162,7 +164,7 @@ export default async function DemarchePage({
             Gratuit ne veut pas dire bâclé, et c&rsquo;est précisément là que le projet
             dépense. Chacune des {REPERTOIRE_COUNT} partitions du répertoire a été vérifiée
             note à note, contre la partition elle-même : les chiffrages recoupés mesure par
-            mesure, les affirmations douteuses écartées, les erreurs corrigées — y compris
+            mesure, les affirmations douteuses écartées, les erreurs corrigées, y compris
             les miennes. Aucune analyse n&rsquo;est reprise telle quelle d&rsquo;une source
             non vérifiée.
           </p>
@@ -173,8 +175,8 @@ export default async function DemarchePage({
             la règle, la mise en ligne échoue.
           </p>
           <p style={{ ...P, margin: 0 }}>
-            C&rsquo;est ce travail-là — long, invisible, et impossible à automatiser
-            entièrement — qui distingue Harmonia d&rsquo;un cours trouvé au hasard. C&rsquo;est
+            C&rsquo;est ce travail-là, long, invisible et impossible à automatiser
+            entièrement, qui distingue Harmonia d&rsquo;un cours trouvé au hasard. C&rsquo;est
             lui qu&rsquo;il faut financer.
           </p>
         </div>
@@ -196,12 +198,12 @@ export default async function DemarchePage({
               {
                 titre: "Votre participation, si vous le pouvez et le voulez",
                 corps:
-                  "Rien n'est demandé, rien n'est bloqué, aucune fonctionnalité n'est retenue en otage. Si l'outil vous sert et que vous en avez les moyens, vous pouvez contribuer. Si ce n'est pas le cas, utilisez-le sans y penser : c'est exactement pour cela qu'il est ouvert.",
+                  "Rien n'est demandé, et aucun cours n'est refermé pour faire pression. Si l'outil vous sert et que vous en avez les moyens, vous pouvez contribuer. Si ce n'est pas le cas, utilisez-le sans y penser : c'est exactement pour cela qu'il est ouvert.",
               },
               {
-                titre: "Les fonctions d'intelligence artificielle, comptées",
+                titre: "Les fonctions d'intelligence artificielle",
                 corps:
-                  "L'assistant et l'analyse automatique de partition me coûtent à chaque utilisation. Elles restent accessibles, mais avec un quota. C'est la seule limite du site, et elle n'a rien d'un argument commercial : c'est une facture que je paie réellement.",
+                  "L'assistant et l'analyse automatique de partition ne font pas partie de l'accès libre : chaque utilisation m'est facturée, et les ouvrir sans compter mettrait le projet en danger. Elles relèvent de l'offre payante. Tout le reste du site, lui, est ouvert sans condition.",
               },
             ].map((bloc, i) => (
               <div
@@ -240,12 +242,12 @@ export default async function DemarchePage({
           <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 18 }}>
             {[
               ["Pas de publicité.", "Nulle part, sous aucune forme."],
-              ["Pas de revente de données.", "Ni les vôtres, ni celles de vos élèves — jamais, à personne."],
+              ["Pas de revente de données.", "Ni les vôtres, ni celles de vos élèves ; jamais, à personne."],
               ["Pas de contenu retenu en otage.", "Aucun cours ne sera refermé pour faire pression. Ce qui est ouvert le reste."],
               ["Pas d'approximation.", "Une erreur d'analyse signalée est corrigée, et l'erreur est reconnue."],
             ].map(([titre, corps]) => (
               <li key={titre} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                <span aria-hidden="true" style={{ color: "#E9C97E", fontWeight: 700, flexShrink: 0, lineHeight: 1.7 }}>—</span>
+                <span aria-hidden="true" style={{ color: "#E9C97E", fontWeight: 700, flexShrink: 0, lineHeight: 1.7 }}>·</span>
                 <p style={{ ...P, color: "#ccc", margin: 0, lineHeight: 1.7 }}>
                   <strong style={{ color: "#fff", fontWeight: 600 }}>{titre}</strong> {corps}
                 </p>
@@ -262,7 +264,7 @@ export default async function DemarchePage({
           <p style={{ ...P, marginBottom: 32 }}>
             La façon la plus utile, de loin : si vous enseignez dans un établissement,
             parlez-en autour de vous. Une licence de conservatoire finance bien plus de
-            développement que n&rsquo;importe quelle contribution individuelle — et elle
+            développement que n&rsquo;importe quelle contribution individuelle, et elle
             ouvre l&rsquo;outil à toute une promotion.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
