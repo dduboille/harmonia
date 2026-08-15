@@ -445,7 +445,7 @@ const STYLE_COLORS: Record<string, string> = {
   classique: '#185FA5', jazz: '#BA7517', modal: '#2E8B57', romantique: '#7B3F9E',
 };
 
-export default function CompositionGuidee({ plan }: { plan?: string }) {
+export default function CompositionGuidee() {
   const [step, setStep] = useState<Step>('select');
   const [exercise, setExercise] = useState<MelodyExercise | null>(null);
   const [attempt, setAttempt] = useState<string[][]>([[], [], [], []]);
@@ -455,16 +455,15 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
   const [tempo, setTempo] = useState(80);
   const pianoRef = useRef<PianoPlayerRef>(null);
 
-  const isFree = !plan || plan === "free";
   const params = useParams();
   const locale = (params?.locale as string) ?? "fr";
 
   const filtered = useMemo(() => {
-    let list = isFree ? MELODIES.slice(0, 1) : MELODIES;
+    let list = MELODIES;
     if (filterDifficulty) list = list.filter(m => m.difficulty === filterDifficulty);
     if (filterStyle) list = list.filter(m => m.style === filterStyle);
     return list;
-  }, [filterDifficulty, filterStyle, isFree]);
+  }, [filterDifficulty, filterStyle]);
 
   const handleSelect = (ex: MelodyExercise) => {
     setExercise(ex);
@@ -667,20 +666,6 @@ export default function CompositionGuidee({ plan }: { plan?: string }) {
         {step === 'select' && (
           <div>
             {/* Free user notice */}
-            {isFree && (
-              <div style={{
-                background: "#FAEEDA", border: "0.5px solid #F6AD55",
-                borderRadius: 8, padding: "10px 14px", marginBottom: "1.5rem",
-                fontSize: 13, color: "#744210", lineHeight: 1.5,
-                fontFamily: 'system-ui,sans-serif',
-              }}>
-                ✦ Mode gratuit — 1 exercice disponible.{" "}
-                <Link href={`/${locale}/upgrade`} style={{ color: "#BA7517", fontWeight: 700, textDecoration: "none" }}>
-                  Passer Pro
-                </Link>{" "}pour accéder à tous les exercices.
-              </div>
-            )}
-
             {/* Filters */}
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: '1.5rem', alignItems: 'center' }}>
               <span style={{ fontSize: 11, fontWeight: 700, color: '#888', letterSpacing: '0.08em' }}>NIVEAU</span>

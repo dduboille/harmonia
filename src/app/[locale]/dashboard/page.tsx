@@ -223,12 +223,9 @@ export default async function DashboardPage({ params }: Props) {
               color: PLAN_COLOR[plan],
               border: `0.5px solid ${PLAN_COLOR[plan]}40`,
             }}>
+              {/* Plus de lien d'abonnement ici : le plan gratuit n'est plus un
+                  palier d'attente mais l'accès normal, il n'y a rien à y faire. */}
               {t(PLAN_LABEL_KEY[plan] as Parameters<typeof t>[0])}
-              {plan === "free" && (
-                <Link href={`/${locale}/upgrade`} style={{ marginLeft: 8, color: "#185FA5", textDecoration: "none" }}>
-                  {t("upgradeCta")}
-                </Link>
-              )}
             </div>
             <Link href={`/${locale}/profil`} style={{
               fontSize: 12,

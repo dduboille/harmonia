@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { getUserPlan } from "@/lib/progression";
 import Releve from "@/components/Releve";
 
 export const metadata: Metadata = {
@@ -23,19 +22,18 @@ interface Props {
 }
 
 // Montage identique au générateur SATB (l'outil frère) : authentification
-// requise, pas de barrière Pro à l'entrée — le plan gratuit est restreint à la
-// progression II–V–I à l'intérieur de l'outil, comme au générateur.
+// requise, et aucune restriction à l'intérieur de l'outil. Les deux limitaient
+// autrefois le plan gratuit à la progression II–V–I ; les exercices sont
+// désormais ouverts à tous, seules les fonctions IA restent réservées.
 export default async function RelevePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const { userId } = await auth();
   if (!userId) redirect(`/${locale}/sign-in`);
 
-  const plan = await getUserPlan(userId);
-
   return (
     <main style={{ minHeight: "100vh", background: "#f4f1ec" }}>
-      <Releve plan={plan} />
+      <Releve />
     </main>
   );
 }

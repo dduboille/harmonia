@@ -4617,7 +4617,7 @@
     "planFree": "Plan Gratuito",
     "planPro": "Plan Pro",
     "planAnnual": "Plan Anual",
-    "upgradeCta": "Pasarse a Pro →",
+    "upgradeCta": "Reservado a los centros →",
     "myProfile": "Mi perfil",
     "statsExercises": "Ejercicios completados",
     "statsProgress": "Progreso global",
@@ -4654,7 +4654,7 @@
     "start": "Comenzar",
     "continue": "Continuar",
     "review": "Repasar",
-    "upgradeAccess": "Pasarse a Pro para acceder →",
+    "upgradeAccess": "Reservado a los centros →",
     "exercises": "ejercicios",
     "cours": "Lección"
   },
@@ -8722,8 +8722,6 @@
     "voirSolution": "Ver la solución",
     "masquerSolution": "Ocultar la solución",
     "solutionTitre": "Solución completa",
-    "session": "Puntuación de la sesión (compases correctos)",
-    "gratuit": "Plan gratuito — solo la progresión II–V–I.",
-    "passerPro": "Pasar a Pro"
+    "session": "Puntuación de la sesión (compases correctos)"
   }
 }

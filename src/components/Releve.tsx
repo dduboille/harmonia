@@ -24,8 +24,6 @@
 
 import React, { useRef, useState, useCallback, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import PianoPlayer, { PianoPlayerRef } from "@/components/PianoPlayer";
 import StudioScore from "@/components/StudioScore";
@@ -75,11 +73,8 @@ function mesuresBasseSeule(exercice: ExerciceReleve): Measure[] {
 
 // ── Composant ──────────────────────────────────────────────────────────────────
 
-export default function Releve({ plan }: { plan?: string }) {
+export default function Releve() {
   const t = useTranslations("releve");
-  const params = useParams();
-  const locale = (params?.locale as string) ?? "fr";
-  const isFree = !plan || plan === "free";
 
   const pianoRef = useRef<PianoPlayerRef>(null);
   // Dernier état de l'éditeur du palier ① (rempli par onMeasuresChange).
@@ -107,8 +102,7 @@ export default function Releve({ plan }: { plan?: string }) {
     const filtres: FiltresTirage = {
       niveau: filtreNiveau,
       tonalites: filtreTonalites,
-      // Gating : miroir du générateur SATB — le plan gratuit reste sur II–V–I.
-      templateIds: isFree ? ["ii-v-i"] : null,
+      templateIds: null,
     };
     const ex = tirerExercice(Math.random, filtres);
     if (!ex) return;
@@ -123,7 +117,7 @@ export default function Releve({ plan }: { plan?: string }) {
     setMontrerSolution(false);
     saisieBasseRef.current = null;
     pianoRef.current?.stopAll();
-  }, [filtreNiveau, filtreTonalites, isFree]);
+  }, [filtreNiveau, filtreTonalites]);
 
   // Premier tirage au montage (les filtres par défaut suffisent).
   useEffect(() => {
@@ -222,19 +216,6 @@ export default function Releve({ plan }: { plan?: string }) {
         <p style={{ fontSize: 14, color: "#666", margin: 0, lineHeight: 1.6 }}>{t("sousTitre")}</p>
       </div>
 
-      {/* Bannière plan gratuit (gating : miroir du générateur SATB) */}
-      {isFree && (
-        <div style={{
-          background: "#FAEEDA", border: "0.5px solid #F6AD55", borderRadius: 8,
-          padding: "8px 12px", marginBottom: 16, fontSize: 12, color: "#744210", lineHeight: 1.5,
-        }}>
-          ✦ {t("gratuit")}{" "}
-          <Link href={`/${locale}/upgrade`} style={{ color: "#BA7517", fontWeight: 700, textDecoration: "none" }}>
-            {t("passerPro")}
-          </Link>
-        </div>
-      )}
-
       {/* Barre de contrôle : paliers, mode d'écoute, filtres, nouvel exercice */}
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center", marginBottom: 16 }}>
 
@@ -289,22 +270,17 @@ export default function Releve({ plan }: { plan?: string }) {
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center", marginBottom: 20 }}>
         <span style={{ fontSize: 11, color: "#767676" }}>{t("filtres.niveau")}</span>
         {([null, 1, 2, 3] as (1 | 2 | 3 | null)[]).map(d => {
-          // Gating : le plan gratuit ne joue que II–V–I (niveau 1) — les
-          // niveaux 2-3 sont verrouillés (le tirage n'y rendrait rien).
-          const verrouille = isFree && d !== null && d !== 1;
           return (
-            <button key={String(d)} onClick={() => !verrouille && setFiltreNiveau(d)}
-              disabled={verrouille}
+            <button key={String(d)} onClick={() => setFiltreNiveau(d)}
               style={{
                 padding: "4px 12px", borderRadius: 16, fontSize: 11, fontWeight: 600,
-                cursor: verrouille ? "not-allowed" : "pointer",
+                cursor: "pointer",
                 border: "0.5px solid",
-                background: filtreNiveau === d ? "#1a1a1a" : verrouille ? "#f5f5f5" : "#fff",
-                color: filtreNiveau === d ? "#fff" : verrouille ? "#aaa" : "#666",
+                background: filtreNiveau === d ? "#1a1a1a" : "#fff",
+                color: filtreNiveau === d ? "#fff" : "#666",
                 borderColor: filtreNiveau === d ? "#1a1a1a" : "#e0dbd3",
-                opacity: verrouille ? 0.6 : 1,
               }}>
-              {verrouille ? "🔒 " : ""}{d === null ? t("filtres.tousNiveaux") : `${t("filtres.niveau")} ${d}`}
+              {d === null ? t("filtres.tousNiveaux") : `${t("filtres.niveau")} ${d}`}
             </button>
           );
         })}

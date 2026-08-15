@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { getUserPlan } from "@/lib/progression";
 import GenerateurSATB from "@/components/GenerateurSATB";
 
 export const metadata: Metadata = {
@@ -25,11 +24,9 @@ export default async function GenerateurSATBPage({ params }: Props) {
   const { userId } = await auth();
   if (!userId) redirect(`/${locale}/sign-in`);
 
-  const plan = await getUserPlan(userId);
-
   return (
     <main style={{ minHeight: "100vh", background: "#f4f1ec" }}>
-      <GenerateurSATB plan={plan} />
+      <GenerateurSATB />
     </main>
   );
 }

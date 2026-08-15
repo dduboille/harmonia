@@ -154,19 +154,9 @@ export default async function ProfilPage({ params }: Props) {
               )}
             </div>
 
-            {plan === "free" ? (
-              <Link href={`/${locale}/upgrade`} style={{
-                padding: "8px 16px",
-                borderRadius: 6,
-                background: "#1a1a1a",
-                color: "#fff",
-                fontSize: 13,
-                fontWeight: 500,
-                textDecoration: "none",
-              }}>
-                Passer Pro →
-              </Link>
-            ) : null}
+            {/* Rien à proposer au plan gratuit : c'est l'accès normal, et les
+                fonctions IA passent par une licence d'établissement, pas par un
+                achat individuel. */}
           </div>
 
           {plan !== "free" && (

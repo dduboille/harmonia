@@ -6141,7 +6141,7 @@
     "planFree": "Free Plan",
     "planPro": "Pro Plan",
     "planAnnual": "Annual Plan",
-    "upgradeCta": "Upgrade to Pro →",
+    "upgradeCta": "Reserved for institutions →",
     "myProfile": "My profile",
     "statsExercises": "Completed exercises",
     "statsProgress": "Global progress",
@@ -6178,7 +6178,7 @@
     "start": "Start",
     "continue": "Continue",
     "review": "Review",
-    "upgradeAccess": "Upgrade to Pro to access →",
+    "upgradeAccess": "Reserved for institutions →",
     "exercises": "exercises",
     "cours": "Course"
   },
@@ -8721,8 +8721,6 @@
     "voirSolution": "Show the solution",
     "masquerSolution": "Hide the solution",
     "solutionTitre": "Full solution",
-    "session": "Session score (correct measures)",
-    "gratuit": "Free plan — II–V–I progression only.",
-    "passerPro": "Go Pro"
+    "session": "Session score (correct measures)"
   }
 }

@@ -4617,7 +4617,7 @@
     "planFree": "Kostenlos",
     "planPro": "Pro",
     "planAnnual": "Jahresplan",
-    "upgradeCta": "Zu Pro wechseln →",
+    "upgradeCta": "Einrichtungen vorbehalten →",
     "myProfile": "Mein Profil",
     "statsExercises": "Abgeschlossene Übungen",
     "statsProgress": "Gesamtfortschritt",
@@ -4654,7 +4654,7 @@
     "start": "Starten",
     "continue": "Fortfahren",
     "review": "Wiederholen",
-    "upgradeAccess": "Zu Pro wechseln für Zugang →",
+    "upgradeAccess": "Einrichtungen vorbehalten →",
     "exercises": "Übungen",
     "cours": "Kurs"
   },
@@ -8722,8 +8722,6 @@
     "voirSolution": "Lösung anzeigen",
     "masquerSolution": "Lösung ausblenden",
     "solutionTitre": "Vollständige Lösung",
-    "session": "Sitzungsergebnis (richtige Takte)",
-    "gratuit": "Kostenloser Plan — nur II–V–I-Progression.",
-    "passerPro": "Pro werden"
+    "session": "Sitzungsergebnis (richtige Takte)"
   }
 }
