@@ -35,10 +35,12 @@ const isPublicRoute = createRouteMatcher([
   "/:locale/conservatoire",
   "/:locale/conditions",
   "/:locale/confidentialite",
-  // /preview n'est PAS ici : c'est le bac à sable de la landing (son en-tête dit
-  // « jamais en production »). Il était pourtant public et indexable, avec des
-  // chiffres périmés et des fonctionnalités annoncées « bientôt » alors qu'elles
-  // sont livrées. Il exige désormais un compte.
+  // /preview avait été fermé parce qu'il exposait un bac à sable de la landing
+  // aux chiffres périmés. Il ne contient plus rien : c'est une redirection vers
+  // /demarche. Le laisser fermé enverrait vers /sign-in quiconque suit un vieux
+  // lien, c'est-à-dire exactement l'inverse du but. Il reste interdit aux
+  // robots dans robots.ts, une redirection n'ayant rien à faire dans un index.
+  "/:locale/preview",
   "/:locale/landing-conservatoire",
   "/:locale/sign-in(.*)",
   "/:locale/sign-up(.*)",

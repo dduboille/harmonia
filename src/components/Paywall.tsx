@@ -15,7 +15,14 @@ import { COURS_COUNT, FREE_COURS } from "@/lib/catalogue";
 
 const FREE_COUNT = FREE_COURS.length;
 
-/** Verrou d'une fonctionnalité réservée au plan Pro. */
+/**
+ * Verrou des fonctions reposant sur l'intelligence artificielle.
+ *
+ * C'est le seul paywall encore atteignable : les cours, eux, sont ouverts à
+ * tous. Il ne propose plus d'acheter un plan — il n'y en a plus — mais renvoie
+ * vers `/demarche`, qui explique pourquoi ces fonctions font exception et
+ * conduit à l'offre des établissements.
+ */
 export async function ProPaywall({
   locale,
   title,
@@ -42,7 +49,7 @@ export async function ProPaywall({
         </p>
         <div style={{ display: "flex", flexDirection: "column" as const, gap: 10, alignItems: "center" }}>
           <Link
-            href={`/${locale}/upgrade`}
+            href={`/${locale}/demarche`}
             style={{ display: "inline-block", padding: "14px 32px", borderRadius: 10, background: "#5C3D6E", color: "#fff", fontSize: 14, fontWeight: 700, textDecoration: "none", fontFamily: "system-ui, sans-serif" }}
           >
             {t("proCta")}

@@ -4389,8 +4389,8 @@
     }
   },
   "paywall": {
-    "proLabel": "Función Pro",
-    "proCta": "Pasarse a Pro →",
+    "proLabel": "Reservado a los centros",
+    "proCta": "Entender por qué →",
     "proBack": "Volver al panel",
     "breadcrumbCours": "Cursos",
     "coursNum": "Curso {num}",

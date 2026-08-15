@@ -22,7 +22,9 @@ const TOOL_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "entrainement",      priority: 0.8 },
   { path: "creation",          priority: 0.8 },
   { path: "analyse",           priority: 0.8 },
-  { path: "upgrade",           priority: 0.8 },
+  // `upgrade` en est retiré : la page redirige désormais vers `demarche`, et
+  // une URL de redirection au sitemap fait signaler « page avec redirection »
+  // par Search Console sans rien indexer de plus.
   { path: "cursus",            priority: 0.8 },
   { path: "dissonance",        priority: 0.7 },
   { path: "repertoire",        priority: 0.7 },

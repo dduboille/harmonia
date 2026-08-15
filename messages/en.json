@@ -5913,8 +5913,8 @@
     }
   },
   "paywall": {
-    "proLabel": "Pro feature",
-    "proCta": "Upgrade to Pro →",
+    "proLabel": "Reserved for institutions",
+    "proCta": "Understand why →",
     "proBack": "Back to dashboard",
     "breadcrumbCours": "Courses",
     "coursNum": "Course {num}",
