@@ -72,8 +72,19 @@ export const COURS: CoursMeta[] = [
 /** Nombre total de cours publiés. */
 export const COURS_COUNT = COURS.length;
 
-/** Cours ouverts sans abonnement (et indexables par les moteurs). */
-export const FREE_COURS = [1, 2, 3];
+/**
+ * Cours ouverts sans abonnement (et indexables par les moteurs) : tous.
+ *
+ * Le catalogue était auparavant limité aux trois premiers, le reste étant
+ * réservé aux abonnés. Depuis que l'accès individuel est gratuit, il n'y a
+ * plus de cours retenu : le financement vient des licences d'établissement et
+ * des participations volontaires, pas d'un chapitre pris en otage.
+ *
+ * Seules les fonctions reposant sur l'intelligence artificielle restent
+ * réservées — elles ont un coût marginal par requête, et passent par un
+ * verrou distinct (`ProPaywall`, sur `plan === "free"` seul).
+ */
+export const FREE_COURS = COURS.map(c => c.num);
 
 export function getCours(num: number): CoursMeta | undefined {
   return COURS.find(c => c.num === num);

@@ -15,57 +15,42 @@ import Link from "next/link";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { COURS_COUNT, FREE_COURS } from "@/lib/catalogue";
+import { COURS_COUNT } from "@/lib/catalogue";
 import { REPERTOIRE_COUNT } from "@/data/repertoire";
-
-const FREE_COUNT = FREE_COURS.length;
-
-/**
- * Code d'essai actuellement mis en avant sur la landing. À changer ici
- * (une seule ligne, pas besoin de toucher les 6 fichiers de traduction)
- * quand ses 10 utilisations seront épuisées et qu'un nouveau code sera créé
- * depuis /admin/essai.
- */
-const CODE_ESSAI_ACTUEL = "GETHARM14D";
 
 /** Remplit les jetons de comptage des chaînes traduites. */
 function fill(s: string): string {
   return s
     .replaceAll("{count}", String(COURS_COUNT))
-    .replaceAll("{freePlus}", String(FREE_COUNT + 1))
-    .replaceAll("{free}", String(FREE_COUNT))
-    .replaceAll("{code}", CODE_ESSAI_ACTUEL);
+    .replaceAll("{repertoire}", String(REPERTOIRE_COUNT));
 }
 
 /**
- * Habillage des cartes tarifaires. Chaque plan porte ses propres couleurs de
- * texte, accordées à son fond : elles étaient auparavant dérivées d'un ternaire
- * `plan.name === "Pro"` qui appliquait les couleurs du thème sombre à la carte
- * crème et inversement — les arguments de vente des deux plans payants
- * s'affichaient donc à 1,4:1 et 2,3:1 de contraste, c'est-à-dire invisibles,
- * pendant que le plan gratuit restait parfaitement lisible.
+ * Les deux voies d'accès, depuis que le site est gratuit pour les personnes.
+ *
+ * La première n'est plus un « plan » : c'est l'accès normal, sans contrepartie.
+ * La seconde est la seule offre payante qui subsiste, et le bandeau qu'elle
+ * porte dit exactement à quoi elle sert — c'est elle qui finance la première.
+ *
+ * Chaque carte porte ses propres couleurs de texte, accordées à son fond : un
+ * ancien ternaire sur le nom du plan appliquait les couleurs du thème sombre à
+ * la carte claire et inversement, si bien que les arguments s'affichaient à
+ * 1,4:1 de contraste, c'est-à-dire invisibles.
  */
-const PLAN_STYLES = [
+const OFFRE_STYLES = [
   {
-    href: "cours", price: "0€", period: "",
+    href: "cours", price: "0 €", period: "",
     bg: "#fff", border: "#e0dbd3",
     labelColor: "#6b6b6b", priceColor: "#1a1a1a", periodColor: "#6b6b6b", descColor: "#6b6b6b",
     checkColor: "#0F6E56", featureColor: "#444", mutedColor: "#767676",
-    badgeBg: "", ctaBg: "transparent", ctaColor: "#1a1a1a", ctaBorder: "1px solid #c8c4bc",
+    badgeBg: "", ctaBg: "#1a1a1a", ctaColor: "#fff", ctaBorder: "1px solid #1a1a1a",
   },
   {
-    href: "upgrade", price: "9€", period: "/mois",
+    href: "conservatoire", price: "199 €", period: "/ classe / an",
     bg: "#1a1a1a", border: "#1a1a1a",
     labelColor: "#bdbdbd", priceColor: "#fff", periodColor: "#bdbdbd", descColor: "#bdbdbd",
     checkColor: "#9AE6B4", featureColor: "#e8e8e8", mutedColor: "#9a9a9a",
     badgeBg: "#9A5F12", ctaBg: "#fff", ctaColor: "#1a1a1a", ctaBorder: "1px solid #fff",
-  },
-  {
-    href: "upgrade", price: "19€", period: "/mois",
-    bg: "#FAEEDA", border: "#F6AD55",
-    labelColor: "#8a5a10", priceColor: "#1a1a1a", periodColor: "#8a5a10", descColor: "#6b4a00",
-    checkColor: "#0F6E56", featureColor: "#4a3800", mutedColor: "#7a6a52",
-    badgeBg: "#1a1a1a", ctaBg: "#9A5F12", ctaColor: "#fff", ctaBorder: "none",
   },
 ];
 
@@ -74,7 +59,7 @@ const LEVEL_ACCENT = ["#9A5F12", "#9A5F12", "#E9C97E", "#9A5F12", "#9A5F12"];
 interface Feature { title: string; desc: string }
 interface Step { title: string; desc: string }
 interface Level { title: string; target: string; refs: string; modules: string[] }
-interface Plan { name: string; desc: string; cta: string; badge: string; features: string[]; notIncluded: string[] }
+interface Offre { name: string; desc: string; cta: string; badge: string; features: string[]; notIncluded: string[] }
 interface Faq { q: string; a: string }
 
 function FAQItem({ q, a }: { q: string; a: string }) {
@@ -149,8 +134,11 @@ export default function LandingPage() {
   const features = t.raw("features") as Feature[];
   const steps = t.raw("steps") as Step[];
   const levels = t.raw("levels") as Level[];
-  const plans = t.raw("plans") as Plan[];
-  const faq = t.raw("faq") as Faq[];
+  const offres = t.raw("offres") as Offre[];
+  // La FAQ parle désormais de comptages (cours, pièces analysées) : on la passe
+  // par `fill` comme les autres contenus bruts, pour que le nombre affiché suive
+  // le catalogue au lieu d'être figé dans six fichiers de traduction.
+  const faq = (t.raw("faq") as Faq[]).map(f => ({ q: fill(f.q), a: fill(f.a) }));
 
   const navLinks = [
     { href: `/${locale}/cours`, label: t("navCourses") },
@@ -418,67 +406,53 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Essai gratuit */}
-      <section style={{ padding: "0 1.5rem 60px" }}>
-        <div style={{
-          maxWidth: 760, margin: "0 auto", textAlign: "center" as const,
-          padding: "40px 32px", borderRadius: 14, background: "#FAEEDA", border: "0.5px solid #F6AD55",
-        }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", color: "#8a5a10", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>
-            {t("essaiLabel")}
-          </div>
-          <h2 style={{ fontSize: "clamp(24px, 3.6vw, 34px)", fontWeight: 400, margin: "0 0 14px", letterSpacing: "-0.01em", color: "#1a1a1a" }}>
-            {t("essaiH2")}
-          </h2>
-          <p style={{ fontSize: 15, color: "#6b4a00", lineHeight: 1.7, margin: "0 auto 28px", maxWidth: 520, fontFamily: "system-ui, sans-serif" }}>
-            {t("essaiText", { code: CODE_ESSAI_ACTUEL })}
-          </p>
-          <Link
-            href={`/${locale}/essai?code=${CODE_ESSAI_ACTUEL}`}
-            style={{ display: "inline-block", padding: "14px 32px", borderRadius: 6, background: "#9A5F12", color: "#fff", textDecoration: "none", fontSize: 15, fontWeight: 500, fontFamily: "system-ui, sans-serif", letterSpacing: "0.02em" }}
-          >
-            {t("essaiBtn")}
-          </Link>
-        </div>
-      </section>
-
-      {/* Tarifs */}
+      {/* Démarche — gratuité et financement */}
       <section style={{ padding: "100px 1.5rem" }}>
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
-          <div style={{ textAlign: "center" as const, marginBottom: 64 }}>
+          <div style={{ textAlign: "center" as const, marginBottom: 44 }}>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", color: "#0F6E56", textTransform: "uppercase" as const, fontFamily: "system-ui", marginBottom: 12 }}>{t("pricingLabel")}</div>
             <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 400, margin: "0 0 12px", letterSpacing: "-0.01em" }}>{t("pricingH2")}</h2>
             <p style={{ fontSize: 15, color: "#5f5f5f", margin: 0, fontFamily: "system-ui, sans-serif" }}>{t("pricingSub")}</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: 20, alignItems: "start" }}>
-            {plans.map((plan, i) => {
-              const s = PLAN_STYLES[i];
+
+          <div style={{ maxWidth: 640, margin: "0 auto 56px" }}>
+            <p style={{ fontSize: 16, color: "#4a4a4a", lineHeight: 1.85, margin: "0 0 18px", fontFamily: "Georgia, serif" }}>
+              {fill(t("pricingIntro"))}
+            </p>
+            <p style={{ fontSize: 16, color: "#4a4a4a", lineHeight: 1.85, margin: 0, fontFamily: "Georgia, serif" }}>
+              {t("pricingIntro2")}
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: 20, alignItems: "start" }}>
+            {offres.map((offre, i) => {
+              const s = OFFRE_STYLES[i];
               return (
-                <div key={plan.name} style={{ padding: "32px", borderRadius: 12, background: s.bg, border: `1px solid ${s.border}`, position: "relative" as const }}>
-                  {plan.badge && (
+                <div key={offre.name} style={{ padding: "32px", borderRadius: 12, background: s.bg, border: `1px solid ${s.border}`, position: "relative" as const }}>
+                  {offre.badge && (
                     <div style={{ position: "absolute" as const, top: -12, left: "50%", transform: "translateX(-50%)", background: s.badgeBg, color: "#fff", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", padding: "4px 12px", borderRadius: 10, fontFamily: "system-ui, sans-serif", whiteSpace: "nowrap" as const }}>
-                      {plan.badge}
+                      {offre.badge}
                     </div>
                   )}
                   <div style={{ marginBottom: 24 }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: s.labelColor, fontFamily: "system-ui", marginBottom: 8 }}>{plan.name}</div>
-                    <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 6 }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: s.labelColor, fontFamily: "system-ui", marginBottom: 8 }}>{offre.name}</div>
+                    <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 6, flexWrap: "wrap" as const }}>
                       <span style={{ fontSize: 40, fontWeight: 400, color: s.priceColor, letterSpacing: "-0.03em" }}>{s.price}</span>
                       <span style={{ fontSize: 14, color: s.periodColor, fontFamily: "system-ui" }}>{s.period}</span>
                     </div>
-                    <p style={{ fontSize: 13, color: s.descColor, margin: 0, fontFamily: "system-ui, sans-serif" }}>{plan.desc}</p>
+                    <p style={{ fontSize: 13, color: s.descColor, margin: 0, fontFamily: "system-ui, sans-serif" }}>{offre.desc}</p>
                   </div>
                   <Link href={`/${locale}/${s.href}`} style={{ display: "block", width: "100%", padding: "14px", borderRadius: 6, textAlign: "center" as const, textDecoration: "none", fontSize: 14, fontWeight: 500, fontFamily: "system-ui, sans-serif", background: s.ctaBg, color: s.ctaColor, border: s.ctaBorder, marginBottom: 24, boxSizing: "border-box" as const }}>
-                    {plan.cta}
+                    {offre.cta}
                   </Link>
                   <div style={{ display: "flex", flexDirection: "column" as const, gap: 8 }}>
-                    {plan.features.map(f => (
+                    {offre.features.map(f => (
                       <div key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "system-ui, sans-serif" }}>
                         <span aria-hidden="true" style={{ color: s.checkColor, flexShrink: 0 }}>✓</span>
                         <span style={{ color: s.featureColor }}>{fill(f)}</span>
                       </div>
                     ))}
-                    {plan.notIncluded.map(f => (
+                    {offre.notIncluded.map(f => (
                       <div key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "system-ui, sans-serif" }}>
                         <span aria-hidden="true" style={{ color: s.mutedColor, flexShrink: 0 }}>✗</span>
                         <span style={{ color: s.mutedColor }}>{fill(f)}</span>
@@ -488,6 +462,16 @@ export default function LandingPage() {
                 </div>
               );
             })}
+          </div>
+
+          <p style={{ fontSize: 13, color: "#767676", lineHeight: 1.75, textAlign: "center" as const, maxWidth: 560, margin: "28px auto 0", fontFamily: "system-ui, sans-serif" }}>
+            {t("pricingNoteIa")}
+          </p>
+
+          <div style={{ textAlign: "center" as const, marginTop: 24 }}>
+            <Link href={`/${locale}/demarche`} style={{ fontSize: 13, color: "#9A5F12", textDecoration: "none", fontWeight: 600, fontFamily: "system-ui, sans-serif" }}>
+              {t("pricingLink")}
+            </Link>
           </div>
         </div>
       </section>
@@ -518,7 +502,7 @@ export default function LandingPage() {
           <Link href={`/${locale}/cours`} style={{ display: "inline-block", padding: "16px 40px", borderRadius: 4, background: "#9A5F12", color: "#fff", textDecoration: "none", fontSize: 16, fontWeight: 500, fontFamily: "system-ui, sans-serif", letterSpacing: "0.02em" }}>
             {t("ctaBtn")}
           </Link>
-          <p style={{ marginTop: 16, fontSize: 12, color: "#8a8a8a", fontFamily: "system-ui, sans-serif" }}>{t("ctaNote", { free: FREE_COUNT })}</p>
+          <p style={{ marginTop: 16, fontSize: 12, color: "#8a8a8a", fontFamily: "system-ui, sans-serif" }}>{t("ctaNote", { count: COURS_COUNT })}</p>
         </div>
       </section>
 

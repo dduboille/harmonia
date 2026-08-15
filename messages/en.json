@@ -5938,7 +5938,7 @@
     "sub3": "Accessible to all.",
     "cta1": "Start for free",
     "cta2": "Explore the keys",
-    "footer": "Free to start · No card required · 6 languages",
+    "footer": "Free, no conditions · No card required · 6 languages",
     "navCourses": "Courses",
     "navAtelier": "Workshop",
     "navScales": "Keys",
@@ -5946,12 +5946,49 @@
     "methodH2": "Learning through practice",
     "featuresLabel": "Features",
     "featuresH2": "Everything you need to progress",
-    "pricingLabel": "Pricing",
-    "pricingH2": "Choose your pace",
-    "pricingSub": "Start for free. Go Pro when you're ready.",
+    "pricingLabel": "Our approach",
+    "pricingH2": "Free, no strings attached",
+    "pricingSub": "Access to knowledge should not depend on what you can afford.",
+    "pricingIntro": "Harmonia was born in a classroom, not in a business plan. The {count} courses, the 850 corrected exercises and the {repertoire} repertoire pieces analysed bar by bar are open to everyone, with no subscription and no credit card: students, teachers, self-taught musicians, the merely curious.",
+    "pricingIntro2": "Building and hosting such a tool does cost money. That cost is covered by the institutions that take a licence for their classes, and by the people who choose to contribute. Never by advertising, never by selling data, never by holding a chapter hostage to force a payment.",
+    "pricingNoteIa": "The one exception to free access: the features that rely on artificial intelligence. Every request has a real cost that we cannot absorb for nothing.",
+    "pricingLink": "Read the full statement →",
+    "offres": [
+      {
+        "name": "For everyone",
+        "desc": "Students, teachers, self-taught musicians",
+        "cta": "Start now",
+        "badge": "",
+        "features": [
+          "All {count} courses, in full",
+          "850+ corrected SATB exercises",
+          "{repertoire} repertoire pieces analysed",
+          "The 24 keys, dictation, writing workshop",
+          "Available in 6 languages",
+          "No subscription, no credit card"
+        ],
+        "notIncluded": [
+          "Artificial-intelligence features"
+        ]
+      },
+      {
+        "name": "For institutions",
+        "desc": "Conservatoires, music schools, secondary schools",
+        "cta": "Request a quote",
+        "badge": "What funds the rest",
+        "features": [
+          "Everything above, for all your classes",
+          "€499 for the whole institution",
+          "Student tracking for teachers",
+          "Conversational assistant and score analysis",
+          "Quote and invoice on request"
+        ],
+        "notIncluded": []
+      }
+    ],
     "ctaH2": "Start understanding",
     "ctaEm": "music",
-    "ctaSub": "3 free courses. No credit card. Start now.",
+    "ctaSub": "Every course is open. No credit card. Start now.",
     "ctaBtn": "Start for free →",
     "navCursus": "Curriculum",
     "navDashboard": "My space →",
@@ -6062,59 +6099,6 @@
         ]
       }
     ],
-    "plans": [
-      {
-        "name": "Free",
-        "desc": "To discover tonal harmony",
-        "cta": "Start for free",
-        "badge": "",
-        "features": [
-          "Lessons 1 to {free}, in full",
-          "Unlimited quiz (lessons 1–{free})",
-          "Level 1 SATB exercises",
-          "Harmonic dictation",
-          "The 24 keys reference page",
-          "High-quality audio"
-        ],
-        "notIncluded": [
-          "Lessons {freePlus} to {count}",
-          "Level 2–5 exercises",
-          "AI features"
-        ]
-      },
-      {
-        "name": "Student",
-        "desc": "All lessons and exercises",
-        "cta": "Choose Student",
-        "badge": "Most popular",
-        "features": [
-          "All lessons (1 to {count})",
-          "Unlimited quiz on every lesson",
-          "600+ SATB exercises",
-          "24 keys × 4 positions",
-          "Every difficulty level",
-          "Continuous updates"
-        ],
-        "notIncluded": [
-          "AI features"
-        ]
-      },
-      {
-        "name": "Pro",
-        "desc": "Student + AI features",
-        "cta": "Choose Pro",
-        "badge": "Best value",
-        "features": [
-          "Everything in Student",
-          "Conversational AI assistant",
-          "MusicXML score analysis",
-          "Library of 110 progressions",
-          "Comparator of 11 harmonic styles",
-          "Priority support"
-        ],
-        "notIncluded": []
-      }
-    ],
     "faqLabel": "Frequently asked questions",
     "faqH2": "Everything you want to know",
     "faq": [
@@ -6131,24 +6115,24 @@
         "a": "Yes. Tonal harmony is a universal language. The exercises train abstract harmonic understanding — applicable to any instrument, or to composition."
       },
       {
-        "q": "Can I cancel my subscription at any time?",
-        "a": "Yes, with no commitment. Cancellation takes effect at the end of the current period. On the annual plan you keep access until the end of the year you paid for."
+        "q": "Why is Harmonia free?",
+        "a": "Because access to knowledge should not depend on what you can afford. The courses, the exercises and the score analyses are open without conditions. Development is funded by the institutions that take a licence for their classes, and by voluntary contributions from those who can afford them."
+      },
+      {
+        "q": "Is everything really free?",
+        "a": "Yes, with one exception: the features that rely on artificial intelligence, namely the conversational assistant and automatic score analysis. Every request has a real cost. Everything else, the {count} courses, the 850 exercises and the {repertoire} analysed pieces, can be used without limit."
       },
       {
         "q": "Is the content updated regularly?",
-        "a": "Yes. Harmonia is under active development — new exercises, lessons and features are added regularly. Pro subscribers get every update."
+        "a": "Yes. Harmonia is under active development: new exercises, courses and analyses are added regularly. Everyone benefits as soon as they go live, with nothing to do."
       }
     ],
-    "ctaNote": "Lessons 1 to {free} · Unlimited quiz · SATB exercises",
+    "ctaNote": "All {count} courses · Unlimited quizzes · 850+ SATB exercises",
     "footerPrivacy": "Privacy",
     "footerTerms": "Terms",
     "footerContact": "Contact",
     "navDissonance": "Dissonance",
     "navRepertoire": "Repertoire",
-    "essaiLabel": "TRIAL OFFER",
-    "essaiH2": "14 days of Pro, free",
-    "essaiText": "No credit card needed: enter code {code} on the trial page to unlock every course and all AI features for 14 days.",
-    "essaiBtn": "Activate my free trial",
     "navDemarche": "Our approach"
   },
   "dashboard": {

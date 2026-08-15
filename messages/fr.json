@@ -3432,7 +3432,7 @@
     "sub3": "Accessible à tous.",
     "cta1": "Commencer gratuitement",
     "cta2": "Explorer les tonalités",
-    "footer": "Gratuit pour commencer · Aucune carte requise · 6 langues",
+    "footer": "Gratuit, sans condition · Aucune carte requise · 6 langues",
     "navCourses": "Cours",
     "navAtelier": "Atelier",
     "navScales": "Tonalités",
@@ -3440,12 +3440,49 @@
     "methodH2": "L'apprentissage par la pratique",
     "featuresLabel": "Fonctionnalités",
     "featuresH2": "Tout ce qu'il faut pour progresser",
-    "pricingLabel": "Tarifs",
-    "pricingH2": "Choisissez votre rythme",
-    "pricingSub": "Commencez gratuitement. Passez Pro quand vous êtes prêt.",
+    "pricingLabel": "Notre démarche",
+    "pricingH2": "Gratuit, sans condition",
+    "pricingSub": "L'accès au savoir ne devrait pas dépendre des moyens de chacun.",
+    "pricingIntro": "Harmonia est né dans une salle de classe, pas dans un plan d'affaires. Les {count} cours, les 850 exercices corrigés et les {repertoire} pièces du répertoire analysées mesure par mesure sont ouverts à tous, sans abonnement ni carte bancaire : élèves, professeurs, autodidactes, curieux.",
+    "pricingIntro2": "Développer et héberger un tel outil a pourtant un coût. Il est couvert par les établissements qui prennent une licence pour leurs classes, et par les personnes qui choisissent d'y participer. Jamais par la publicité, jamais par la revente de données, jamais en retenant un chapitre en otage pour forcer un paiement.",
+    "pricingNoteIa": "Seule exception à la gratuité : les fonctions qui reposent sur l'intelligence artificielle. Chaque requête a un coût réel que nous ne savons pas absorber sans contrepartie.",
+    "pricingLink": "Lire la démarche en entier →",
+    "offres": [
+      {
+        "name": "Pour tous",
+        "desc": "Élèves, professeurs, autodidactes",
+        "cta": "Commencer maintenant",
+        "badge": "",
+        "features": [
+          "Les {count} cours, en entier",
+          "850+ exercices SATB corrigés",
+          "{repertoire} pièces du répertoire analysées",
+          "Les 24 tonalités, dictée, atelier d'écriture",
+          "Disponible en 6 langues",
+          "Sans abonnement ni carte bancaire"
+        ],
+        "notIncluded": [
+          "Fonctions d'intelligence artificielle"
+        ]
+      },
+      {
+        "name": "Pour les établissements",
+        "desc": "Conservatoires, écoles de musique, collèges et lycées",
+        "cta": "Demander un devis",
+        "badge": "Ce qui finance le reste",
+        "features": [
+          "Tout ce qui précède, pour toutes vos classes",
+          "499 € pour l'établissement entier",
+          "Suivi des élèves par le professeur",
+          "Assistant conversationnel et analyse de partitions",
+          "Devis et facture sur demande"
+        ],
+        "notIncluded": []
+      }
+    ],
     "ctaH2": "Commencez à comprendre",
     "ctaEm": "la musique",
-    "ctaSub": "3 cours gratuits. Aucune carte de crédit. Commencez maintenant.",
+    "ctaSub": "Tous les cours sont ouverts. Aucune carte de crédit. Commencez maintenant.",
     "ctaBtn": "Commencer gratuitement →",
     "navCursus": "Cursus",
     "navDashboard": "Mon espace →",
@@ -3556,59 +3593,6 @@
         ]
       }
     ],
-    "plans": [
-      {
-        "name": "Gratuit",
-        "desc": "Pour découvrir l'harmonie tonale",
-        "cta": "Commencer gratuitement",
-        "badge": "",
-        "features": [
-          "Cours 1 à {free} complets",
-          "Quiz illimité (cours 1–{free})",
-          "Exercices SATB niveau 1",
-          "Dictée harmonique",
-          "Page des 24 tonalités",
-          "Audio haute qualité"
-        ],
-        "notIncluded": [
-          "Cours {freePlus} à {count}",
-          "Exercices niveaux 2–5",
-          "Fonctionnalités IA"
-        ]
-      },
-      {
-        "name": "Étudiant",
-        "desc": "Tous les cours et exercices",
-        "cta": "Choisir Étudiant",
-        "badge": "Le plus populaire",
-        "features": [
-          "Tous les cours (1 à {count})",
-          "Quiz illimité sur tous les cours",
-          "600+ exercices SATB",
-          "24 tonalités × 4 positions",
-          "Tous les niveaux de difficulté",
-          "Mises à jour continues"
-        ],
-        "notIncluded": [
-          "Fonctionnalités IA"
-        ]
-      },
-      {
-        "name": "Pro",
-        "desc": "Étudiant + fonctionnalités IA",
-        "cta": "Choisir Pro",
-        "badge": "Meilleure valeur",
-        "features": [
-          "Tout le plan Étudiant",
-          "Assistant IA conversationnel",
-          "Analyse de partition MusicXML",
-          "Bibliothèque de 110 progressions",
-          "Comparateur de 11 styles harmoniques",
-          "Support prioritaire"
-        ],
-        "notIncluded": []
-      }
-    ],
     "faqLabel": "Questions fréquentes",
     "faqH2": "Tout ce que vous voulez savoir",
     "faq": [
@@ -3625,24 +3609,24 @@
         "a": "Oui. L'harmonie tonale est un langage universel. Les exercices travaillent la compréhension harmonique abstraite — applicable à n'importe quel instrument ou à la composition."
       },
       {
-        "q": "Puis-je annuler mon abonnement à tout moment ?",
-        "a": "Oui, sans engagement. L'annulation prend effet à la fin de la période en cours. Pour le plan annuel, vous conservez l'accès jusqu'à la fin de l'année payée."
+        "q": "Pourquoi Harmonia est-il gratuit ?",
+        "a": "Parce que l'accès au savoir ne devrait pas dépendre des moyens de chacun. Les cours, les exercices et les analyses de partitions sont ouverts sans condition. Le développement est financé par les établissements qui prennent une licence pour leurs classes, et par les participations volontaires de ceux qui le peuvent."
+      },
+      {
+        "q": "Tout est-il vraiment gratuit ?",
+        "a": "Oui, à une exception près : les fonctions qui reposent sur l'intelligence artificielle, c'est-à-dire l'assistant conversationnel et l'analyse automatique de partitions. Chaque requête a un coût réel. Tout le reste, les {count} cours, les 850 exercices et les {repertoire} pièces analysées, s'utilise sans limite."
       },
       {
         "q": "Le contenu est-il régulièrement mis à jour ?",
-        "a": "Oui. Harmonia est en développement actif — de nouveaux exercices, cours et fonctionnalités sont ajoutés régulièrement. Les abonnés Pro bénéficient de toutes les mises à jour."
+        "a": "Oui. Harmonia est en développement actif : de nouveaux exercices, cours et analyses sont ajoutés régulièrement. Chacun en bénéficie dès la mise en ligne, sans rien avoir à faire."
       }
     ],
-    "ctaNote": "Cours 1 à {free} · Quiz illimité · Exercices SATB",
+    "ctaNote": "Les {count} cours · Quiz illimité · 850+ exercices SATB",
     "footerPrivacy": "Confidentialité",
     "footerTerms": "CGU",
     "footerContact": "Contact",
     "navDissonance": "Dissonance",
     "navRepertoire": "Répertoire",
-    "essaiLabel": "OFFRE D'ESSAI",
-    "essaiH2": "14 jours de Pro, gratuits",
-    "essaiText": "Sans carte bancaire : entrez le code {code} sur la page d'essai pour débloquer tous les cours et les fonctionnalités IA pendant 14 jours.",
-    "essaiBtn": "Activer mon essai gratuit",
     "navDemarche": "La démarche"
   },
   "dashboard": {

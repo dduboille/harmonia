@@ -8,7 +8,7 @@
  * crawl. Généré depuis `COURS` (catalogue.ts) : jamais de nombre figé qui se
  * périme quand un cours s'ajoute.
  */
-import { COURS, COURS_COUNT, FREE_COURS } from "@/lib/catalogue";
+import { COURS, COURS_COUNT } from "@/lib/catalogue";
 
 export const dynamic = "force-static";
 
@@ -45,7 +45,7 @@ function buildLlmsTxt(): string {
 
 > Harmonia est une plateforme éducative en ligne dédiée à l'harmonie tonale et à l'écriture musicale : ${COURS_COUNT} cours interactifs, un moteur de validation harmonique en temps réel (conduite des voix, quintes/octaves parallèles, résolutions), et une suite d'outils de composition et d'analyse. Disponible en français, anglais, espagnol, allemand, portugais et italien.
 
-Le contenu couvre trois parcours qui se recoupent dans les mêmes cours : un cursus de conservatoire (niveaux 1 à 5, jalonné sur les épreuves du DEM), un socle de licence/master de musicologie (basse chiffrée, contrepoint de la Renaissance, méthodologie du commentaire d'écoute, analyse post-tonale/set theory), et un parcours DNSPM pour interprètes (analyser une œuvre à l'exécution, lecture de partition d'orchestre, méthodologie du relevé). Les ${FREE_COURS.length} premiers cours sont accessibles gratuitement sans carte bancaire ; le reste du catalogue est disponible par abonnement.
+Le contenu couvre trois parcours qui se recoupent dans les mêmes cours : un cursus de conservatoire (niveaux 1 à 5, jalonné sur les épreuves du DEM), un socle de licence/master de musicologie (basse chiffrée, contrepoint de la Renaissance, méthodologie du commentaire d'écoute, analyse post-tonale/set theory), et un parcours DNSPM pour interprètes (analyser une œuvre à l'exécution, lecture de partition d'orchestre, méthodologie du relevé). L'intégralité des ${COURS_COUNT} cours est accessible gratuitement, sans abonnement ni carte bancaire.
 
 ## Cours
 
@@ -67,9 +67,9 @@ ${coursSection()}
 
 ## Accès
 
-- Gratuit : cours 1 à ${FREE_COURS.length}, quiz illimités sur ces cours, exercices SATB de niveau 1.
-- Abonnement Étudiant : intégralité des ${COURS_COUNT} cours et de leurs exercices.
-- Abonnement Pro : Étudiant + assistant IA conversationnel, analyse de partition, comparateur de styles, bibliothèque de progressions.
+- Gratuit pour toute personne : les ${COURS_COUNT} cours, leurs quiz et leurs exercices SATB de tous niveaux, sans abonnement ni carte bancaire.
+- Licence d'établissement (conservatoires, écoles de musique, collèges et lycées) : 199 € par classe et par an, 499 € pour l'établissement entier. Elle ouvre en plus les fonctions reposant sur l'intelligence artificielle et le suivi des élèves par le professeur.
+- Les fonctions d'intelligence artificielle (assistant conversationnel, analyse automatique de partition, comparateur de styles, bibliothèque de progressions) sont la seule exception à la gratuité : chaque requête a un coût réel.
 
 ## Optional
 
