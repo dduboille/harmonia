@@ -27,7 +27,7 @@ export default async function ConfidentialitePage({ params }: Props) {
             Politique de confidentialité
           </h1>
           <p style={{ fontSize: 14, color: "#666", fontFamily: "system-ui, sans-serif", margin: 0 }}>
-            Dernière mise à jour : 19 mai 2026
+            Dernière mise à jour : 15 août 2026
           </p>
         </div>
       </div>
@@ -48,7 +48,9 @@ export default async function ConfidentialitePage({ params }: Props) {
         <Section title="1. Responsable du traitement">
           <p style={bodyText}>
             Le responsable du traitement des données à caractère personnel est :{" "}
-            <strong>Dany Duboille</strong>, opérant sous le nom commercial <strong>Harmonia</strong>.
+            <strong>Dany Duboille</strong>, personne physique agissant à titre non
+            professionnel, éditeur du site <strong>Harmonia</strong>. Cette mention sera
+            remplacée par celle de l'association éditrice dès son immatriculation.
           </p>
           <InfoGrid items={[
             { label: "Contact", value: "appliharmonia@gmail.com" },
@@ -92,22 +94,40 @@ export default async function ConfidentialitePage({ params }: Props) {
             </p>
           </SubSection>
 
-          <SubSection title="2.3 Paiement — via Stripe">
+          <SubSection title="2.3 Facturation des établissements">
             <p style={bodyText}>
-              Si vous souscrivez à un abonnement payant (Étudiant ou Pro), le paiement est entièrement
-              traité par <strong>Stripe</strong>. Harmonia ne stocke ni ne voit jamais vos données bancaires.
+              <strong>Aucune donnée bancaire n'est collectée</strong>, ni par Harmonia ni par un
+              prestataire de paiement : l'accès individuel est gratuit, et les licences des
+              établissements sont réglées par virement, sur facture.
             </p>
             <ul style={listStyle}>
-              <li style={liStyle}><strong>Ce que Stripe collecte</strong> : numéro de carte, date d'expiration, CVV, adresse de facturation</li>
-              <li style={liStyle}><strong>Ce que Harmonia reçoit</strong> : votre identifiant Stripe, le plan souscrit, la date de renouvellement, le statut de l'abonnement</li>
+              <li style={liStyle}><strong>Pour les établissements clients</strong> : dénomination, adresse de facturation, SIRET, ainsi que le nom, la fonction et l'adresse électronique de la personne référente</li>
+              <li style={liStyle}><strong>Usage</strong> : établissement des devis et des factures, et gestion de la licence — rien d'autre</li>
             </ul>
             <p style={{ ...bodyText, color: "#888", fontSize: 13 }}>
-              Stripe est certifié PCI DSS niveau 1.{" "}
-              <a href="https://stripe.com/fr/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "#185FA5" }}>stripe.com/fr/privacy</a>.
+              Base légale : exécution du contrat, et obligation légale de conservation des pièces comptables.
             </p>
           </SubSection>
 
-          <SubSection title="2.4 Données d'audience — via Vercel Analytics">
+          <SubSection title="2.4 Demandes de devis">
+            <p style={bodyText}>
+              Lorsqu'un formulaire de demande de devis est envoyé depuis la page destinée aux
+              établissements, sont enregistrés le nom, l'adresse électronique, la fonction, la
+              ville, l'établissement, l'effectif indiqué et le message libre de la personne qui
+              écrit. Un compte n'est pas nécessaire pour cela.
+            </p>
+            <p style={bodyText}>
+              Ces informations servent uniquement à répondre à la demande et à en assurer le suivi.
+              Elles sont conservées <strong>trois ans à compter du dernier contact</strong>, puis
+              supprimées. Vous pouvez en demander la suppression à tout moment à{" "}
+              <a href="mailto:appliharmonia@gmail.com" style={{ color: "#185FA5" }}>appliharmonia@gmail.com</a>.
+            </p>
+            <p style={{ ...bodyText, color: "#888", fontSize: 13 }}>
+              Base légale : intérêt légitime — répondre à une sollicitation émanant de la personne elle-même.
+            </p>
+          </SubSection>
+
+          <SubSection title="2.5 Données d'audience — via Vercel Analytics">
             <p style={bodyText}>
               Nous utilisons Vercel Analytics pour mesurer l'audience du site. Ces données sont
               anonymisées et agrégées :
@@ -122,7 +142,7 @@ export default async function ConfidentialitePage({ params }: Props) {
             </p>
           </SubSection>
 
-          <SubSection title="2.5 Cookies techniques">
+          <SubSection title="2.6 Cookies techniques">
             <p style={bodyText}>
               Harmonia n'utilise que des cookies strictement nécessaires au fonctionnement du service :
             </p>
@@ -143,16 +163,17 @@ export default async function ConfidentialitePage({ params }: Props) {
             {[
               { finalite: "Authentification", base: "Exécution du contrat", details: "Permettre la connexion et la gestion de votre compte" },
               { finalite: "Sauvegarde de progression", base: "Exécution du contrat", details: "Mémoriser vos scores et avancement dans les cours" },
-              { finalite: "Facturation", base: "Obligation légale + contrat", details: "Traiter les paiements et émettre les factures" },
+              { finalite: "Facturation", base: "Obligation légale + contrat", details: "Établir les devis et les factures des établissements" },
               { finalite: "Fonctionnalité Conservatoire", base: "Consentement / contrat", details: "Partager vos soumissions avec votre professeur" },
               { finalite: "Mesure d'audience", base: "Intérêt légitime", details: "Améliorer le service sur la base de statistiques anonymes" },
-              { finalite: "Emails transactionnels", base: "Exécution du contrat", details: "Confirmations d'abonnement, notifications pédagogiques" },
+              { finalite: "Emails transactionnels", base: "Exécution du contrat", details: "Confirmations de compte, notifications pédagogiques" },
+              { finalite: "Demandes de devis", base: "Intérêt légitime", details: "Répondre aux établissements qui sollicitent une offre" },
             ].map((row, i) => (
               <div key={row.finalite} style={{
                 display: "grid", gridTemplateColumns: "1fr 1fr 2fr",
                 gap: 0, padding: "14px 18px",
                 background: i % 2 === 0 ? "#fff" : "#fafaf8",
-                borderBottom: i < 5 ? "0.5px solid #f0ece6" : "none",
+                borderBottom: i < 6 ? "0.5px solid #f0ece6" : "none",
                 fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#444",
                 alignItems: "start",
               }}>
@@ -186,11 +207,6 @@ export default async function ConfidentialitePage({ params }: Props) {
                 desc: "Authentification et gestion des comptes utilisateurs. Serveurs aux États-Unis. Adhère au EU-US Data Privacy Framework.",
                 link: "clerk.com/legal/privacy",
               },
-              {
-                name: "Stripe", flag: "🇺🇸",
-                desc: "Traitement des paiements. Serveurs aux États-Unis et en Europe. Certifié PCI DSS niveau 1.",
-                link: "stripe.com/fr/privacy",
-              },
             ].map(h => (
               <div key={h.name} style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "16px 20px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
@@ -215,6 +231,7 @@ export default async function ConfidentialitePage({ params }: Props) {
               { type: "Données de compte", duree: "Jusqu'à suppression du compte + 30 jours" },
               { type: "Données de progression", duree: "Jusqu'à suppression du compte" },
               { type: "Données de facturation", duree: "10 ans (obligation légale comptable)" },
+              { type: "Demandes de devis", duree: "3 ans après le dernier contact" },
               { type: "Cookies de session", duree: "Session ou 30 jours selon le choix de connexion" },
               { type: "Logs serveur", duree: "90 jours maximum (Vercel)" },
               { type: "Données analytics", duree: "12 mois glissants (agrégées, anonymisées)" },
@@ -223,7 +240,7 @@ export default async function ConfidentialitePage({ params }: Props) {
                 display: "flex", justifyContent: "space-between", alignItems: "center",
                 padding: "13px 18px", gap: 16,
                 background: i % 2 === 0 ? "#fff" : "#fafaf8",
-                borderBottom: i < 5 ? "0.5px solid #f0ece6" : "none",
+                borderBottom: i < 6 ? "0.5px solid #f0ece6" : "none",
                 fontFamily: "system-ui, sans-serif", fontSize: 13,
               }}>
                 <span style={{ fontWeight: 600, color: "#333" }}>{row.type}</span>
@@ -299,7 +316,7 @@ export default async function ConfidentialitePage({ params }: Props) {
             fins commerciales. Les seuls partages sont :
           </p>
           <ul style={listStyle}>
-            <li style={liStyle}><strong>Prestataires techniques</strong> : Clerk, Supabase, Stripe, Vercel — uniquement pour fournir le service, dans le cadre de contrats de traitement de données (DPA)</li>
+            <li style={liStyle}><strong>Prestataires techniques</strong> : Clerk, Supabase, Vercel — uniquement pour fournir le service, dans le cadre de contrats de traitement de données (DPA)</li>
             <li style={liStyle}><strong>Fonctionnalité Conservatoire</strong> : si vous êtes élève dans une classe Harmonia, votre professeur peut voir vos scores pour les devoirs qu'il a assignés</li>
             <li style={liStyle}><strong>Obligation légale</strong> : si une autorité compétente l'exige dans le cadre de la loi applicable</li>
           </ul>

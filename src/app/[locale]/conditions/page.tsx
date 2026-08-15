@@ -28,7 +28,7 @@ export default async function ConditionsPage({ params }: Props) {
             Conditions Générales d'Utilisation
           </h1>
           <p style={{ fontSize: 14, color: "#666", fontFamily: "system-ui, sans-serif", margin: 0 }}>
-            Dernière mise à jour : 19 mai 2026 · Version 1.0
+            Dernière mise à jour : 15 août 2026 · Version 2.0
           </p>
         </div>
       </div>
@@ -46,6 +46,28 @@ export default async function ConditionsPage({ params }: Props) {
             veuillez ne pas utiliser le service.
           </p>
         </div>
+
+        <Section title="0. Mentions légales">
+          <p style={bodyText}>
+            <strong>Éditeur du site</strong> : Dany Duboille, personne physique agissant
+            à titre non professionnel. Contact :{" "}
+            <a href="mailto:appliharmonia@gmail.com" style={{ color: "#185FA5" }}>appliharmonia@gmail.com</a>.
+          </p>
+          <p style={bodyText}>
+            <strong>Directeur de la publication</strong> : Dany Duboille.
+          </p>
+          <p style={bodyText}>
+            <strong>Hébergeur</strong> : Vercel Inc., 340 S Lemon Ave #4133, Walnut,
+            CA 91789, États-Unis —{" "}
+            <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" style={{ color: "#185FA5" }}>vercel.com</a>.
+          </p>
+          <p style={{ ...bodyText, fontSize: 13, color: "#666" }}>
+            Conformément au 2 du III de l'article 6 de la loi n° 2004-575 du 21 juin 2004,
+            l'éditeur, qui n'exerce pas à titre professionnel, a communiqué son identité
+            à son hébergeur. Ces mentions seront remplacées par celles de l'association
+            éditrice dès son immatriculation.
+          </p>
+        </Section>
 
         <Section title="1. Description du service">
           <p style={bodyText}>
@@ -88,83 +110,59 @@ export default async function ConditionsPage({ params }: Props) {
           </p>
         </Section>
 
-        <Section title="3. Plans tarifaires et abonnements">
+        <Section title="3. Conditions financières">
           <p style={bodyText}>
-            Harmonia propose trois plans d'accès :
-          </p>
-
-          <div style={{ display: "flex", flexDirection: "column" as const, gap: 12, marginBottom: 20 }}>
-            {[
-              {
-                name: "Gratuit",
-                price: "0 €",
-                desc: "Accès permanent aux cours 1 à 3, aux quiz illimités sur ces cours, aux exercices SATB de niveau 1, à la dictée harmonique et à la page des 24 tonalités. Aucune carte bancaire requise.",
-                color: "#555",
-                bg: "#fff",
-              },
-              {
-                name: "Étudiant",
-                price: "9 € / mois",
-                desc: `Accès à l'intégralité des ${COURS_COUNT} cours, aux 600+ exercices SATB dans les 24 tonalités et les 4 positions, à tous les niveaux de difficulté. Abonnement mensuel renouvelable.`,
-                color: "#185FA5",
-                bg: "#E6F1FB",
-              },
-              {
-                name: "Pro",
-                price: "19 € / mois",
-                desc: "Tout le plan Étudiant, plus l'assistant IA conversationnel, l'analyse de partition MusicXML/MIDI, la bibliothèque de 200+ progressions et le comparateur de 11 styles harmoniques.",
-                color: "#BA7517",
-                bg: "#FAEEDA",
-              },
-            ].map(plan => (
-              <div key={plan.name} style={{ background: plan.bg, border: `0.5px solid ${plan.color}40`, borderRadius: 10, padding: "18px 22px" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, flexWrap: "wrap" as const, gap: 8 }}>
-                  <span style={{ fontWeight: 700, fontSize: 15, color: plan.color }}>{plan.name}</span>
-                  <span style={{ fontWeight: 700, fontSize: 14, color: plan.color, fontFamily: "system-ui, sans-serif" }}>{plan.price}</span>
-                </div>
-                <p style={{ ...bodyText, margin: 0, fontSize: 13, color: "#555" }}>{plan.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <p style={bodyText}>
-            Les prix sont exprimés en euros toutes taxes comprises (TTC). Harmonia se réserve le droit
-            de modifier ses tarifs avec un préavis d'au moins <strong>30 jours</strong> par e-mail.
-            En cas de hausse tarifaire, vous pouvez résilier votre abonnement avant la date de prise
-            d'effet sans frais supplémentaires.
+            <strong>L'accès individuel est gratuit et sans contrepartie.</strong> Les
+            {" "}{COURS_COUNT} cours, leurs exercices, les analyses de partitions et
+            l'ensemble des outils sont ouverts à toute personne disposant d'un compte,
+            sans abonnement, sans carte bancaire et sans limitation de durée. Aucun
+            paiement n'est demandé aux particuliers, et aucun moyen de paiement ne
+            leur est réclamé.
           </p>
           <p style={bodyText}>
-            Le paiement est traité par <strong>Stripe</strong>. En souscrivant un abonnement payant,
-            vous acceptez également les{" "}
-            <a href="https://stripe.com/fr/legal/ssa" target="_blank" rel="noopener noreferrer" style={{ color: "#185FA5" }}>
-              conditions d'utilisation de Stripe
-            </a>. Les factures sont disponibles dans votre espace personnel.
+            <strong>Deux fonctions font exception</strong> : l'assistant conversationnel
+            et le commentaire rédigé de l'analyseur de partitions. Elles reposent sur un
+            modèle d'intelligence artificielle dont chaque requête a un coût, et elles
+            sont réservées aux utilisateurs couverts par la licence d'un établissement.
+          </p>
+          <p style={bodyText}>
+            <strong>Les établissements d'enseignement</strong> — conservatoires, écoles
+            de musique, collèges et lycées — peuvent souscrire une licence annuelle :
+            199 € par classe, ou 499 € pour l'établissement entier. Elle ouvre les
+            fonctions ci-dessus à leurs élèves et à leurs professeurs, et donne accès au
+            suivi de classe.
+          </p>
+          <p style={bodyText}>
+            La licence est établie sur devis et réglée sur facture, par virement. Aucun
+            paiement en ligne n'est proposé, et <strong>aucune donnée bancaire n'est
+            collectée</strong> par Harmonia. Les tarifs sont exprimés en euros ; la
+            mention de TVA applicable figure sur chaque devis et chaque facture.
+          </p>
+          <p style={bodyText}>
+            <strong>Les participations volontaires</strong> des utilisateurs qui le
+            souhaitent sont facultatives et sans contrepartie : elles n'ouvrent aucun
+            droit, aucune fonction et aucun avantage, et ne conditionnent en rien
+            l'accès au service.
           </p>
         </Section>
 
-        <Section title="4. Renouvellement et annulation">
+        <Section title="4. Durée de la licence des établissements">
           <p style={bodyText}>
-            Les abonnements sont à <strong>renouvellement automatique</strong> à la fin de chaque
-            période de facturation (mensuelle ou annuelle), sauf annulation préalable de votre part.
+            Cette section ne concerne que les établissements sous licence. Les comptes
+            individuels n'ont ni durée ni échéance : l'accès est ouvert tant que le
+            compte existe.
           </p>
-
-          <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, overflow: "hidden", marginBottom: 20 }}>
-            {[
-              { q: "Quand puis-je annuler ?", a: "À tout moment, sans frais ni pénalité, depuis votre espace de gestion d'abonnement ou en contactant appliharmonia@gmail.com." },
-              { q: "Quand l'annulation prend-elle effet ?", a: "À la fin de la période de facturation en cours. Vous conservez l'accès au service jusqu'à cette date. Aucun remboursement partiel n'est accordé pour la période non consommée, sauf disposition légale contraire." },
-              { q: "Abonnement annuel", a: "En cas d'annulation d'un abonnement annuel, l'accès est maintenu jusqu'à la fin de l'année déjà payée. Aucun remboursement proratisé n'est proposé, sauf dans les cas prévus par la législation applicable." },
-              { q: "Rétractation (14 jours)", a: "Conformément à l'article L.221-18 du Code de la consommation, vous disposez d'un droit de rétractation de 14 jours à compter de la souscription de votre premier abonnement payant, à condition de ne pas avoir commencé à utiliser les fonctionnalités payantes. Pour exercer ce droit, contactez appliharmonia@gmail.com." },
-            ].map((item, i) => (
-              <div key={item.q} style={{
-                padding: "16px 20px",
-                background: i % 2 === 0 ? "#fff" : "#fafaf8",
-                borderBottom: i < 3 ? "0.5px solid #f0ece6" : "none",
-              }}>
-                <div style={{ fontWeight: 600, fontSize: 14, color: "#1a1a1a", marginBottom: 6, fontFamily: "system-ui, sans-serif" }}>{item.q}</div>
-                <div style={{ fontSize: 13, color: "#666", lineHeight: 1.7, fontFamily: "system-ui, sans-serif" }}>{item.a}</div>
-              </div>
-            ))}
-          </div>
+          <p style={bodyText}>
+            La licence court sur la période indiquée au devis, généralement une année
+            scolaire. <strong>Elle ne se renouvelle pas automatiquement</strong> :
+            aucune reconduction tacite, aucun prélèvement, aucune facture n'est émise
+            sans une nouvelle commande de l'établissement.
+          </p>
+          <p style={bodyText}>
+            À l'échéance, les élèves et les professeurs conservent l'intégralité de leur
+            accès au site et de leur progression. Seules cessent les deux fonctions
+            reposant sur l'intelligence artificielle et le suivi de classe.
+          </p>
         </Section>
 
         <Section title="5. Propriété intellectuelle">
@@ -236,8 +234,9 @@ export default async function ConditionsPage({ params }: Props) {
           </ul>
           <p style={bodyText}>
             Harmonia ne saurait être tenu responsable des préjudices liés à une interruption du service,
-            quelle qu'en soit la cause. Pour les abonnements payants, une interruption prolongée et
-            significative pourrait donner lieu à un geste commercial, apprécié au cas par cas.
+            quelle qu'en soit la cause. Pour les établissements sous licence, une interruption
+            prolongée et significative pourrait donner lieu à un geste commercial, apprécié
+            au cas par cas.
           </p>
         </Section>
 
@@ -255,7 +254,7 @@ export default async function ConditionsPage({ params }: Props) {
           <ul style={listStyle}>
             <li style={liStyle}><strong>Des dommages indirects</strong> : perte de données, manque à gagner, préjudice commercial, même si Harmonia avait été informé de la possibilité de tels dommages</li>
             <li style={liStyle}><strong>Des erreurs pédagogiques</strong> : bien que le contenu soit rédigé avec soin, les cours et exercices peuvent contenir des inexactitudes. Harmonia n'est pas un établissement d'enseignement agréé</li>
-            <li style={liStyle}><strong>Du contenu tiers</strong> : liens vers des ressources externes, services de prestataires (Clerk, Stripe, Supabase, Vercel) qui disposent de leurs propres conditions</li>
+            <li style={liStyle}><strong>Du contenu tiers</strong> : liens vers des ressources externes, services de prestataires (Clerk, Supabase, Vercel) qui disposent de leurs propres conditions</li>
             <li style={liStyle}><strong>Des interruptions de service</strong> causées par des événements hors du contrôle d'Harmonia (force majeure, pannes de réseau, décisions de tiers)</li>
           </ul>
           <p style={bodyText}>
@@ -284,9 +283,10 @@ export default async function ConditionsPage({ params }: Props) {
             des nouvelles conditions.
           </p>
           <p style={bodyText}>
-            Si vous n'acceptez pas les nouvelles conditions, vous pouvez résilier votre abonnement
-            avant leur entrée en vigueur. La poursuite de l'utilisation du service après cette date
-            vaut acceptation des CGU modifiées.
+            Si vous n'acceptez pas les nouvelles conditions, vous pouvez cesser d'utiliser le
+            service et demander la suppression de votre compte avant leur entrée en vigueur. La
+            poursuite de l'utilisation du service après cette date vaut acceptation des CGU
+            modifiées.
           </p>
           <p style={bodyText}>
             La version en vigueur est toujours accessible sur{" "}
@@ -304,14 +304,15 @@ export default async function ConditionsPage({ params }: Props) {
           <p style={bodyText}>
             <strong>Par Harmonia :</strong> nous nous réservons le droit de résilier ou suspendre
             votre accès, sans préavis, en cas de violation grave des présentes CGU (fraude, abus,
-            tentative de piratage). En cas de résiliation sans faute de votre part, les sommes
-            correspondant à la période non consommée vous seront remboursées proratiquement.
+            tentative de piratage). Si un établissement sous licence était concerné sans faute
+            de sa part, les sommes correspondant à la période non consommée lui seraient
+            remboursées au prorata.
           </p>
           <p style={bodyText}>
             <strong>Cessation du service :</strong> si Harmonia décide de mettre fin au service,
-            les utilisateurs disposant d'un abonnement actif seront informés avec un préavis
-            d'au moins <strong>30 jours</strong> et remboursés proratiquement pour la période non
-            consommée.
+            l'ensemble des utilisateurs en sera informé avec un préavis d'au moins{" "}
+            <strong>30 jours</strong>. Les établissements sous licence seraient remboursés au
+            prorata de la période non consommée.
           </p>
         </Section>
 
@@ -374,7 +375,7 @@ export default async function ConditionsPage({ params }: Props) {
         <Section title="14. Contact">
           <div style={{ background: "#fff", border: "0.5px solid #e8e3db", borderRadius: 10, padding: "24px 28px" }}>
             <p style={{ ...bodyText, margin: "0 0 18px" }}>
-              Pour toute question relative aux présentes CGU, à votre abonnement ou à l'utilisation
+              Pour toute question relative aux présentes CGU, à votre licence ou à l'utilisation
               du service :
             </p>
             <div style={{ display: "flex", flexDirection: "column" as const, gap: 12, fontFamily: "system-ui, sans-serif" }}>
