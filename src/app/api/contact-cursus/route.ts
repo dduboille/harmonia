@@ -1,6 +1,7 @@
 ﻿import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { rateLimit, clientIp, tooManyRequests } from "@/lib/rate-limit";
+import { enregistrerDemande } from "@/lib/demandes-etablissement";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -28,6 +29,13 @@ export async function POST(req: NextRequest) {
     if (!email.includes("@")) {
       return NextResponse.json({ error: "Email invalide" }, { status: 400 });
     }
+
+    // Même registre que /api/contact-conservatoire : le prospect est écrit
+    // avant l'envoi, pour qu'un e-mail perdu ne l'emporte pas.
+    await enregistrerDemande({
+      nom: `${prenom} ${nom}`.trim(), email, etablissement,
+      fonction, ville, pays, nbEleves, message,
+    });
 
     const { error: err1 } = await resend.emails.send({
       from: "Harmonia <bonjour@getharmonia.app>",

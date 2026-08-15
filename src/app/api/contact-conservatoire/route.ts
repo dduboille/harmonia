@@ -1,6 +1,7 @@
 ﻿import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { rateLimit, clientIp, tooManyRequests } from "@/lib/rate-limit";
+import { enregistrerDemande } from "@/lib/demandes-etablissement";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -27,6 +28,11 @@ export async function POST(req: NextRequest) {
     if (!email.includes("@")) {
       return NextResponse.json({ error: "Email invalide" }, { status: 400 });
     }
+
+    // On écrit AVANT d'envoyer : un e-mail perdu ne doit plus emporter le
+    // prospect avec lui. L'écriture ne lève jamais — si elle échoue, on
+    // journalise et on envoie quand même.
+    await enregistrerDemande({ nom, email, etablissement, nbEleves, message });
 
     // Email interne → contact@getharmonia.app
     const { error: err1 } = await resend.emails.send({
